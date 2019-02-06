@@ -1,0 +1,18 @@
+{
+    "icao": "cay",
+    "name": "Cayman Airlines",
+    "callsign": {
+        "name": "Cayman",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B733", 4],
+            ["B738", 1]
+        ],
+        "short": [
+            ["DHC6", 2],
+            ["SF34", 2]
+        ]
+    }
+}

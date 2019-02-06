@@ -3,14 +3,16 @@
     "name": "SkyWest",
     "callsign": {
         "name": "SkyWest",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["CRJ2", 169],
-            ["CRJ7", 98 ],
-            ["CRJ9", 36 ],
-            ["E170", 50 ]
+            ["CRJ2", 204],
+            ["CRJ7", 88],
+            ["CRJ9", 36],
+            ["E170", 117]
         ]
     }
 }

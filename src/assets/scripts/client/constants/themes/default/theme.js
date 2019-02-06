@@ -10,6 +10,7 @@ import { WIND_VANE_THEME } from './modules/windVane';
  * @final
  */
 export const THEME_DEFAULT = {
+    CLASSNAME: 'canvas-theme-default',
     DATA_BLOCK: DATA_BLOCK_THEME,
     RADAR_TARGET: RADAR_TARGET_THEME,
     SCOPE: SCOPE_THEME,

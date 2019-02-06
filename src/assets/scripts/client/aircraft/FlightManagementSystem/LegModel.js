@@ -1,290 +1,664 @@
-import _drop from 'lodash/drop';
+import _findIndex from 'lodash/findIndex';
+import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
-import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import WaypointModel from './WaypointModel';
-import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
-    FLIGHT_PHASE,
-    PROCEDURE_TYPE
-} from '../../constants/aircraftConstants';
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
+import {
+    LEG_TYPE,
+    PROCEDURE_TYPE,
+    PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
+} from '../../constants/routeConstants';
 
 /**
- * A section of a flight plan containing one to many `WaypointModel` objects.
- *
- * Instantiated from a `routeSegment`
- *
- * A `LegModel` represents each section of a flight plan:
- * - single `WaypointModel` will be built from a `routeSegment` not included in a standard
- *                          procedure and without restrictions
- * - single `WaypointModel` assigned to hold at, which can be a navaid or a position array
- * - standard procedure     (sid/star/airway), which may contain many `WaypointModel` objects,
- *                          each of which may specify altitude and/or speed restrictions.
- *
- * RouteSegment Examples:
- *  - directRouteSegment: 'COWBY'
- *  - holdRouteSegment: '@COWBY'
- *  - procedureRouteSegment: 'KLAS.COWBY6.DRK'
+ * A portion of a navigation route containing one or more `WaypointModel` objects.
  *
  * @class LegModel
  */
 export default class LegModel {
     /**
-     * @constructor
      * @for LegModel
-     * @param routeSegment {string}
-     * @param runway {string}
-     * @param flightPhase {string}
-     * @param navigationLibrary {NavigationLibrary}
-     * @param holdWaypointProps {object}
+     * @constructor
+     * @param routeString {string}
      */
-    constructor(routeSegment, runway, flightPhase, navigationLibrary, holdWaypointProps = {}) {
+    constructor(routeString) {
         /**
-         * NavigationLibrary instance
-         *
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @default navigationLibrary
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
-
-        /**
-         * Provide easy access to the parts of a procedureRouteString,
-         * when a leg is a procedure
-         *
-         * @property _procedureRouteModel
-         * @type {RouteModel|null}
-         * @default null
-         */
-        this._procedureRouteModel = null;
-
-        /**
-         * Indicates the leg is for a standardRoute procedure
-         *
-         * @property isProcedure
-         * @type {boolean}
-         * @private
-         */
-        this.isProcedure = false;
-
-        /**
-         * Indicates the leg is for a holding pattern
-         *
-         * This property should only be used internally for easier
-         * switching on routeStrings.
-         *
-         * The `WaypointModel` also has an `#isHold` property
-         * that should be used to determine if a waypoint is
-         * for a holding pattern.
-         *
-         * @property _isHold
-         * @type {boolean}
-         * @private
-         */
-        this._isHold = false;
-
-        /**
-         * When a leg is a procedure, this property describes what type of procedure
-         *
-         * @type {PROCEDURE_TYPE}
-         * @default ''
-         */
-        this.procedureType = '';
-
-        /**
-         * String representation of the current routeSegment.
-         *
-         * A directRoute contains a single WaypointModel and is separated
-         * by `..` in the routeString. In this example there are two directRoute
-         * segments, thus this routeString will result in two LegModels:
-         * - `FIXA..COWBY`
-         *
-         * A procedureRoute contains many `WaypointModel` objects and describes
-         * a standardRoute (sid/star/airway). procedureRoutes are separated by
-         * a single '.':
-         * - `DAG.KEPEC3.KLAS`
+         * Reference to an instance of a `AirwayModel` object (if this is an airway leg)
          *
          * @for LegModel
-         * @property routeString
-         * @type {string}
+         * @property _airwayModel
+         * @type {AirwayModel|null}
+         * @default null
+         * @private
          */
-        this.routeString = '';
+        this._airwayModel = null;
 
         /**
-         * List of `WaypointModel` objects defined within a `LegModel`.
+         * Type of leg from list of types defined in `LEG_TYPE`
          *
-         * If this leg represents a `directRoute`, there will only be one
-         * `WaypointModel` contained in `#waypointCollection`.
-         *
-         * @propert waypointCollection
-         * @type {array}
-         * @default []
+         * @for LegModel
+         * @property _legType
+         * @type {string}
+         * @default ''
+         * @private
          */
-        this.waypointCollection = [];
+        this._legType = '';
 
-        this.init(routeSegment, runway, flightPhase, holdWaypointProps);
+        /**
+         * Reference to an instance of a `ProcedureModel` object (if this is a procedure leg)
+         *
+         * @for LegModel
+         * @property _procedureModel
+         * @type {ProcedureModel|null}
+         * @default null
+         * @private
+         */
+        this._procedureModel = null;
+
+        /**
+         * Array of `WaypointModel`s that have been passed (or skipped)
+         *
+         * Aircraft will proceed along the route to each waypoint, and upon passing
+         * a waypoint, it will move that waypoint here to the `#_previousWaypointCollection`,
+         * and proceed to the next waypoint in the `#_waypointCollection` until no more
+         * `WaypointModel`s remain in the leg, at which point, they continue to the next leg.
+         *
+         * @for LegModel
+         * @property _previousWaypointCollection
+         * @type {array<WaypointModel>}
+         * @default []
+         * @private
+         */
+        this._previousWaypointCollection = [];
+
+        /**
+         * Standard-formatted route string for this leg, excluding any special characters
+         *
+         * @for LegModel
+         * @property _routeString
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._routeString = '';
+
+        /**
+         * Array of `WaypointModel`s to follow, excluding any waypoints passed (or skipped)
+         *
+         * Upon completion of a given `WaypointModel` in the `#_waypointCollection`, that
+         * waypoint will be moved to the `#_previousWaypointCollection`, and the aircraft will
+         * continue to the next `WaypointModel` in the `#_waypointCollection`.
+         *
+         * @for LegModel
+         * @property _waypointCollection
+         * @type {array<WaypointModel>}
+         * @default []
+         * @private
+         */
+        this._waypointCollection = [];
+
+        this.init(routeString);
     }
 
     /**
-     * Return the name of the procedure if this is a procedure leg
+     * Returns the active `WaypointModel`
      *
-     * @property procedureName
-     * @type {string}
-     * @return {string}
-     */
-    get procedureName() {
-        if (!this.isProcedure) {
-            return null;
-        }
-
-        return this._procedureRouteModel.procedure;
-    }
-
-    /**
-     * Return the name of the procedure exit (airport) if this is a procedure leg
+     * Assumed to always be the first item in the `#waypointCollection`
      *
-     * This is used only for arrival routes and only within the `AircraftStripView`
-     *
-     * @property exitName
-     * @type {string}
-     * @return {string}
-     */
-    get exitName() {
-        if (!this.isProcedure) {
-            return null;
-        }
-
-        return this._procedureRouteModel.exit;
-    }
-
-    /**
-     * Return the name and exit of the procedure if this is a procedure leg
-     *
-     * Will return a string in an abbreviated procedureRouteString format.
-     *
-     * This should only be used for the view, like the `AircraftStripView`, because
-     * the output will not be valid for anything that works with a routeString
-     *
-     * @property procedureAndExitName
-     * @type {string}
-     * @return {string}
-     */
-    get procedureAndExitName() {
-        if (!this.isProcedure) {
-            return null;
-        }
-
-        return `${this._procedureRouteModel.procedure}.${this._procedureRouteModel.exit}`;
-    }
-
-    /**
-     * The active `WaypointModel`.
-     *
-     * Assumed to always be the first item in
-     * the `#waypointCollection`
-     *
+     * @for LegModel
      * @property currentWaypoint
-     * @return {WaypointModel}
+     * @type {WaypointModel}
      */
     get currentWaypoint() {
-        return this.waypointCollection[0];
+        if (this._waypointCollection.length === 0) {
+            throw new TypeError('Expected the current leg to contain at least one waypoint');
+        }
+
+        return this._waypointCollection[0];
     }
 
     /**
-     * The `WaypointModel` immediately following the `#currentWaypoint`
-     * in the flightPlan
+     * Returns whether this leg is an airway leg
      *
-     * Used when calculating headings to the next waypoint.
+     * @for LegModel
+     * @property isAirwayLeg
+     * @type {boolean}
+     */
+    get isAirwayLeg() {
+        return this._legType === LEG_TYPE.AIRWAY;
+    }
+
+    /**
+     * Returns whether this leg is a direct leg
      *
+     * @for LegModel
+     * @property isDirectLeg
+     * @type {boolean}
+     */
+    get isDirectLeg() {
+        return this._legType === LEG_TYPE.DIRECT;
+    }
+
+    /**
+     * Returns whether this leg is a procedure leg
+     *
+     * @for LegModel
+     * @property isProcedureLeg
+     * @type {boolean}
+     */
+    get isProcedureLeg() {
+        return this._legType === LEG_TYPE.PROCEDURE;
+    }
+
+    /**
+     * Whether this leg is a SID Procedure leg
+     *
+     * @for RouteModel
+     * @property isSidLeg
+     * @type {boolean}
+     */
+    get isSidLeg() {
+        return this.isProcedureLeg && this._procedureModel.procedureType === PROCEDURE_TYPE.SID;
+    }
+
+    /**
+     * Whether this leg is a STAR Procedure leg
+     *
+     * @for RouteModel
+     * @property isStarLeg
+     * @type {boolean}
+     */
+    get isStarLeg() {
+        return this.isProcedureLeg && this._procedureModel.procedureType === PROCEDURE_TYPE.STAR;
+    }
+
+    /**
+     * Returns the type of this leg
+     *
+     * @for LegModel
+     * @property legType
+     * @type {string}
+     */
+    get legType() {
+        return this._legType;
+    }
+
+    /**
+     * Returns the `WaypointModel` immediately following the `#currentWaypoint`
+     *
+     * @for LegModel
      * @property nextWaypoint
-     * @return {WaypointModel}
+     * @type {WaypointModel}
      */
     get nextWaypoint() {
-        return this.waypointCollection[1];
+        return this._waypointCollection[1];
     }
 
     /**
-     * Instantiate the class properties
+     * Returns the route string for this leg
+     *
+     * @for LegModel
+     * @property routeString
+     * @type {string}
+     */
+    get routeString() {
+        return this._routeString;
+    }
+
+    /**
+     * Return the `#_waypointCollection`
+     *
+     * @for LegModel
+     * @property waypoints
+     * @type {array<WaypointModel>}
+     */
+    get waypoints() {
+        return this._waypointCollection;
+    }
+
+    get altitude() {
+        return this._procedureModel.altitude;
+    }
+
+    // ------------------------------ LIFECYCLE ------------------------------
+
+    /**
+     * Initialize instance properties
      *
      * @for LegModel
      * @method init
-     * @param routeSegment {string}
-     * @param runway {string}
-     * @param holdWaypointProps {object}
+     * @param routeString {string}
+     * @chainable
      */
-    init(routeSegment, runway, flightPhase, holdWaypointProps) {
-        this.isProcedure = RouteModel.isProcedureRouteString(routeSegment);
-        // TODO: replace with constant
-        this._isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
+    init(routeString) {
+        this._routeString = routeString;
 
-        this.routeString = routeSegment.toLowerCase();
-        this._procedureRouteModel = this._buildProcedureRouteModel(routeSegment);
-        this.procedureType = this._buildProcedureType(flightPhase);
-        this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps);
+        const [entryOrFixName, airwayOrProcedureName, exit] = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+
+        this._ensureRouteStringIsSingleSegment(routeString);
+        this._legType = this._determineLegType(airwayOrProcedureName);
+        this._airwayModel = NavigationLibrary.getAirway(airwayOrProcedureName);
+        this._procedureModel = NavigationLibrary.getProcedure(airwayOrProcedureName);
+        this._waypointCollection = this._generateWaypointCollection(entryOrFixName, exit);
+
+        return this;
     }
 
     /**
-     * Reset the model's instance properties
+     * Reset instance properties
      *
      * @for LegModel
-     * @method destroy
+     * @method reset
+     * @chainable
      */
-    destroy() {
-        this._destroyWaypointCollection();
+    reset() {
+        this._resetWaypointCollection();
 
-        this.isProcedure = false;
-        this._isHold = false;
-        this.procedureType = '';
-        this.routeString = '';
-        this.waypointCollection = [];
+        this._airwayModel = null;
+        this._legType = '';
+        this._procedureModel = null;
+        this._previousWaypointCollection = [];
+        this._routeString = '';
+        this._waypointCollection = [];
+
+        return this;
     }
 
     /**
-     * Given an index, drop the `WaypointModel`s before that index and make `waypointIndex`
-     * the next `0` index of the array.
-     *
-     * This is useful for skipping to a specific waypoint in the flightPlan.
+     * Return the type of leg this will be, based on the route string
      *
      * @for LegModel
-     * @method skipToWaypointAtIndex
-     * @param waypointIndex {number}
+     * @method _determineLegType
+     * @param airwayOrProcedureName {string}
+     * @return {string} property of `LEG_TYPE` enum
      */
-    skipToWaypointAtIndex(waypointIndex) {
-        this.waypointCollection = _drop(this.waypointCollection, waypointIndex);
+    _determineLegType(airwayOrProcedureName) {
+        if (this._routeString.indexOf('.') === INVALID_NUMBER) {
+            return LEG_TYPE.DIRECT;
+        }
+
+        if (NavigationLibrary.hasAirway(airwayOrProcedureName)) {
+            return LEG_TYPE.AIRWAY;
+        }
+
+        if (NavigationLibrary.hasProcedure(airwayOrProcedureName)) {
+            return LEG_TYPE.PROCEDURE;
+        }
+
+        throw new TypeError(`Expected airway or procedure name, but we can't ' +
+            'determine what kind of leg ${airwayOrProcedureName} is`);
     }
 
     /**
-     * Destroy the current `WaypointModel` and remove it from the
-     * `waypointCollection`.
-     *
-     * This puts the item that previously occupied the `1` index now
-     * at `0` making it the `currentWaypoint`.
+     * Verify that we are not attempting to initialize this `LegModel` with a route
+     * string that should have been two separate `LegModels`, and throw errors if
+     * we ever DO make such a mistake.
      *
      * @for LegModel
-     * @method moveToNextWaypoint
+     * @method _ensureRouteStringIsSingleSegment
+     * @param routeString {string}
      */
-    moveToNextWaypoint() {
-        this.currentWaypoint.destroy();
-        // this is mutable
-        this.waypointCollection.shift();
+    _ensureRouteStringIsSingleSegment(routeString) {
+        if (routeString.indexOf('..') !== INVALID_INDEX) {
+            throw new TypeError(`Expected single fix or single procedure route string, but received '${routeString}'`);
+        }
+
+        if (routeString.split('.').length > 3) {
+            throw new TypeError(`Expected single procedure route string, but received '${routeString}'`);
+        }
     }
 
     /**
-     * Find if a Waypoint exists within `#waypointCollection`
+     * Generate an array of `WaypointModel`s an aircraft's FMS will need in order to
+     * navigate along this leg instance.
      *
      * @for LegModel
-     * @method hasWaypoint
-     * @param waypointName {string}
-     * @return {boolean}
+     * @param _generateWaypointCollection
+     * @param entryOrFixName {string} name of the entry point (if airway/procedure), or fix name
+     * @param exit {string} name of exit point (if airway/procedure), or `undefined`
+     * @return {array<WaypointModel>}
      */
-    hasWaypoint(waypointName) {
-        // using a for loop here instead of `_find()` because this operation could happen a lot. a for
-        // loop is going to be faster than `_find()` in most cases.
-        for (let i = 0; i < this.waypointCollection.length; i++) {
-            const waypoint = this.waypointCollection[i];
+    _generateWaypointCollection(entryOrFixName, exit) {
+        if (this._legType === LEG_TYPE.DIRECT) {
+            return [new WaypointModel(entryOrFixName)];
+        }
 
-            if (waypointName.toLowerCase() === waypoint.name) {
+        if (this._legType === LEG_TYPE.AIRWAY) {
+            this._verifyAirwayAndEntryAndExitAreValid(entryOrFixName, exit);
+
+            return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+        }
+
+        this._verifyProcedureAndEntryAndExitAreValid(entryOrFixName, exit);
+
+        return this._procedureModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+    }
+
+    // ------------------------------ PUBLIC ------------------------------
+
+    /**
+     * Mark the specified waypoint as a hold waypoint
+     *
+     * @for LegModel
+     * @method activateHoldForWaypointName
+     * @param waypointName {string} name of waypoint in route
+     * @param holdParameters {object}
+     */
+    activateHoldForWaypointName(waypointName, holdParameters) {
+        if (!this.hasWaypointName(waypointName)) {
+            return;
+        }
+
+        const waypointIndex = this._findIndexOfWaypointName(waypointName);
+        const waypointModel = this._waypointCollection[waypointIndex];
+
+        waypointModel.setHoldParametersAndActivateHold(holdParameters);
+    }
+
+    /**
+     * Return the identifier of the airway being used in this leg
+     *
+     * @for LegModel
+     * @method getAirwayName
+     * @return {string}
+     */
+    getAirwayName() {
+        if (!this.isAirwayLeg) {
+            return;
+        }
+
+        return this._airwayModel.icao;
+    }
+
+    /**
+     * Return an array of WaypointModels AFTER (not including) the specified waypoint
+     *
+     * @for LegModel
+     * @method getAllWaypointModelsAfterWaypointName
+     * @return {array<WaypointModel>}
+     */
+    getAllWaypointModelsAfterWaypointName(waypointName) {
+        const indexOfWaypointName = this._findIndexOfWaypointName(waypointName);
+
+        return this._waypointCollection.slice().splice(indexOfWaypointName + 1);
+    }
+
+    /**
+     * Return an array of WaypointModels BEFORE (not including) the specified waypoint
+     *
+     * @for LegModel
+     * @method getAllWaypointModelsBeforeWaypointName
+     * @return {array<WaypointModel>}
+     */
+    getAllWaypointModelsBeforeWaypointName(waypointName) {
+        const indexOfWaypointName = this._findIndexOfWaypointName(waypointName);
+        const copyOfWaypointCollection = this._waypointCollection.slice();
+
+        copyOfWaypointCollection.splice(indexOfWaypointName);
+
+        return copyOfWaypointCollection;
+    }
+
+    /**
+     * Return the ICAO identifier for the airport at which this leg will terminate (if
+     * it is in fact a STAR leg, of course).
+     *
+     * @for LegModel
+     * @method getArrivalRunwayAirportIcao
+     * @return {string}
+     */
+    getArrivalRunwayAirportIcao() {
+        if (!this.isStarLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[2];
+        const arrivalAirportIcao = airportAndRunway.substr(0, 4);
+
+        return arrivalAirportIcao.toLowerCase();
+    }
+
+    /**
+     * Return the name of the runway at which this leg will terminate (if it is in fact
+     * a STAR leg, of course).
+     *
+     * @for LegModel
+     * @method getArrivalRunwayName
+     * @return {string}
+     */
+    getArrivalRunwayName() {
+        if (!this.isStarLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[2];
+        const arrivalRunwayName = airportAndRunway.substr(4);
+
+        return arrivalRunwayName;
+    }
+
+    /**
+    * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
+    *
+    * @for LegModel
+    * @method getBottomAltitude
+    * @return {number}
+    */
+    getBottomAltitude() {
+        if (!this.isProcedureLeg) {
+            return INVALID_NUMBER;
+        }
+
+        const minimumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMinimum);
+        const positiveValueRestrictionList = _without(minimumAltitudes, INVALID_NUMBER);
+        const bottomAltitude = Math.min(...positiveValueRestrictionList);
+
+        if (bottomAltitude === Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return bottomAltitude;
+    }
+
+    /**
+    * Return the ICAO identifier for the airport at which this leg originates (if
+    * it is in fact a SID leg, of course).
+    *
+    * @for LegModel
+    * @method getDepartureRunwayAirportIcao
+    * @return {string}
+    */
+    getDepartureRunwayAirportIcao() {
+        if (!this.isSidLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[0];
+        const departureAirportIcao = airportAndRunway.substr(0, 4);
+
+        return departureAirportIcao.toLowerCase();
+    }
+
+    /**
+    * Return the name of the runway at which this leg begins (if it is in fact
+    * a SID leg, of course).
+    *
+    * @for LegModel
+    * @method getDepartureRunwayName
+    * @return {string}
+    */
+    getDepartureRunwayName() {
+        if (!this.isSidLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[0];
+        const departureRunwayName = airportAndRunway.substr(4);
+
+        return departureRunwayName;
+    }
+
+    /**
+     * Return the ICAO identifier for the procedure being used by this leg
+     *
+     * @for LegModel
+     * @method getProcedureIcao
+     * @return {string}
+     */
+    getProcedureIcao() {
+        if (!this.isProcedureLeg) {
+            return;
+        }
+
+        return this._procedureModel.icao;
+    }
+
+    /**
+     * Return the name of the procedure being used by this leg
+     *
+     * @for LegModel
+     * @method getProcedureName
+     * @return {string}
+     */
+    getProcedureName() {
+        if (!this.isProcedureLeg) {
+            return;
+        }
+
+        return this._procedureModel.name;
+    }
+
+    /**
+     * Return the name of this leg's exit fix
+     *
+     * @for LegModel
+     * @method getExitFixName
+     * @return {string}
+     */
+    getEntryFixName() {
+        if (this.isDirectLeg) {
+            return this._routeString;
+        }
+
+        const routeStringElements = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+
+        return routeStringElements[0];
+    }
+
+    /**
+     * Return the name of this leg's exit fix
+     *
+     * @for LegModel
+     * @method getExitFixName
+     * @return {string}
+     */
+    getExitFixName() {
+        if (this.isDirectLeg) {
+            return this._routeString;
+        }
+
+        const routeStringElements = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+
+        return routeStringElements[2];
+    }
+
+    /**
+     * Returns the route string for this leg, removing any airports
+     * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
+     *
+     * BE CAREFUL using this method, because technically `BANGR9.PANGL` is not technically a
+     * valid route string, as it does not follow the proper format. This method was created
+     * as a means to remove the airports from the route strings so we can display a route on
+     * the flight strip that excludes the airport, since this is instead shown in a separate
+     * section of the flight strip, and should not be included in the route section.
+     *
+     * @for LegModel
+     * @method getRouteStringWithoutAirports
+     * @return {string}
+     */
+    getRouteStringWithoutAirports() {
+        const routeString = this._routeString;
+
+        if (this.isSidLeg) {
+            const elements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+            const procedure = elements[1];
+            const exit = elements[2];
+
+            return `${procedure}.${exit}`;
+        }
+
+        if (this.isStarLeg) {
+            const elements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+            const entry = elements[0];
+            const procedure = elements[1];
+
+            return `${entry}.${procedure}`;
+        }
+
+        return routeString;
+    }
+
+    /**
+     * Returns the highest `#altitudeMaximum` of all `WaypointModel`s in this leg
+     *
+     * @for LegModel
+     * @method getTopAltitude
+     * @return {number}
+     */
+    getTopAltitude() {
+        if (!this.isProcedureLeg) {
+            return INVALID_NUMBER;
+        }
+
+        const maximumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMaximum);
+        const positiveValueRestrictionList = _without(maximumAltitudes, INVALID_NUMBER);
+        const topAltitude = Math.max(...positiveValueRestrictionList);
+
+        if (topAltitude === -Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return topAltitude;
+    }
+
+    /**
+    * Whether there are any `WaypointModel`s in this leg beyond the `#currentWaypoint`
+    *
+    * @for LegModel
+    * @method hasNextWaypoint
+    * @return {boolean}
+    */
+    hasNextWaypoint() {
+        return this._waypointCollection.length > 1;
+    }
+
+    /**
+    * Whether a `WaypointModel` with the specified name exists within the `#_waypointCollection`
+    *
+    * Note that this will return false even if the specified fix name IS included
+    * in the `#_previousWaypointCollection`.
+    *
+    * @for LegModel
+    * @method hasWaypointName
+    * @param waypointName {string}
+    * @return {boolean}
+    */
+    hasWaypointName(waypointName) {
+        if (_isEmpty(waypointName)) {
+            throw new TypeError(`Expected valid fix name but received '${waypointName}'`);
+        }
+
+        waypointName = waypointName.toUpperCase();
+
+        // using a for loop instead of `_find()` to maximize performance
+        // because this operation could happen quite frequently
+        for (let i = 0; i < this._waypointCollection.length; i++) {
+            if (this._waypointCollection[i].name === waypointName) {
                 return true;
             }
         }
@@ -293,246 +667,209 @@ export default class LegModel {
     }
 
     /**
-     * Collects the `#altitudeMaximum` value from each waypoint
-     * in the `#waypointCollection`, then finds the highest value
-     *
-     * @for LegModel
-     * @method getProcedureTopAltitude
-     * @return {number}
-     */
-    getProcedureTopAltitude() {
-        const isMaximum = true;
+    * Move the `#currentWaypoint` to the `#_previousWaypointCollection`
+    *
+    * This also results in the `WaypointModel` previously at index `1` becoming
+    * index `0`, thus making it the new `#currentWaypoint`.
+    *
+    * @for LegModel
+    * @method moveToNextWaypoint
+    */
+    moveToNextWaypoint() {
+        const waypointModelToMove = this._waypointCollection.shift();
 
-        if (!this.isProcedure) {
-            return -1;
+        this._previousWaypointCollection.push(waypointModelToMove);
+    }
+
+    procedureHasEntry(entryName) {
+        if (!this.isProcedureLeg) {
+            return false;
         }
 
-        return this._findMinOrMaxAltitudeInProcedure(isMaximum);
+        return this._procedureModel.hasEntry(entryName);
     }
 
-    /**
-     * Collects the `#altitudeMinimum` value from each waypoint
-     * in the `#waypointCollection`, then finds the lowest value
-     *
-     * @for LegModel
-     * @method getProcedureBottomAltitude
-     * @return {number}
-     */
-    getProcedureBottomAltitude() {
-        const isMaximum = false;
-
-        if (!this.isProcedure) {
-            return -1;
+    procedureHasExit(exitName) {
+        if (!this.isProcedureLeg) {
+            return false;
         }
 
-        return this._findMinOrMaxAltitudeInProcedure(isMaximum);
+        return this._procedureModel.hasExit(exitName);
     }
 
     /**
-     * Encapsulation of boolean logic used to determine if it is possible
-     * to move to a next waypoint.
-     *
-     * This is used when preparing to move to the next waypoint in the flight plan
+     * Move all `WaypointModel`s to the `#_previousWaypointCollection`
      *
      * @for LegModel
-     * @method hasNextWaypoint
-     * @return {boolean}
+     * @method skipAllWaypointsInLeg
      */
-    hasNextWaypoint() {
-        return this.waypointCollection.length > 1;
+    skipAllWaypointsInLeg() {
+        this._previousWaypointCollection.push(...this._waypointCollection);
+
+        this._waypointCollection = [];
     }
 
     /**
-     * Loop through each `WaypointModel` and call `.destroy()`
+     * Move all `WaypointModel`s before the specified waypoint to the `#_previousWaypointCollection`
      *
-     * This clears destroys each `WaypointModel` contained in the collection.
+     * This also results in the waypoint with the specified name becoming the new `#currentWaypoint`
+     *
+     * @for LegModel
+     * @method skipToWaypointName
+     * @param waypointName {string}
+     * @return {boolean} success of operation
+     */
+    skipToWaypointName(waypointName) {
+        const waypointIndex = this._findIndexOfWaypointName(waypointName);
+
+        if (waypointIndex === INVALID_INDEX) {
+            return false;
+        }
+
+        const numberOfWaypointsToMove = waypointIndex;
+        const waypointModelsToMove = this._waypointCollection.splice(0, numberOfWaypointsToMove);
+
+        this._previousWaypointCollection.push(...waypointModelsToMove);
+
+        return true;
+    }
+
+    /**
+    * If applicable, make the SID entry match the specified departure runway
+    *
+    * @for LegModel
+    * @method updateSidLegForDepartureRunwayModel
+    * @param runwayModel {RunwayModel}
+    */
+    updateSidLegForDepartureRunwayModel(runwayModel) {
+        if (!this.isSidLeg) {
+            return;
+        }
+
+        const routeStringComponents = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const currentEntryName = routeStringComponents[0];
+        const currentExitName = routeStringComponents[2];
+        // assumed first four characters of exit name to be airport ICAO
+        const currentRunwayName = currentEntryName.substr(4);
+        const nextRunwayName = runwayModel.name;
+        const nextEntryName = currentEntryName.substr(0, 4).concat(nextRunwayName);
+
+        if (runwayModel.name === currentRunwayName) {
+            return;
+        }
+
+
+        if (!this._procedureModel.hasEntry(nextEntryName)) {
+            return;
+        }
+
+        this._waypointCollection = this._generateWaypointCollection(nextEntryName, currentExitName);
+    }
+
+    /**
+     * If applicable, make the STAR exit match the specified arrival runway model
+     *
+     * @for LegModel
+     * @method updateStarLegForArrivalRunwayModel
+     * @param runwayModel {RunwayModel}
+     */
+    updateStarLegForArrivalRunwayModel(runwayModel) {
+        if (!this.isStarLeg) {
+            return;
+        }
+
+        const routeStringComponents = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const currentEntryName = routeStringComponents[0];
+        const currentExitName = routeStringComponents[2];
+        // assumed first four characters of exit name to be airport ICAO
+        const currentRunwayName = currentExitName.substr(4);
+        const nextRunwayName = runwayModel.name;
+        const nextExitName = currentExitName.substr(0, 4).concat(nextRunwayName);
+
+        if (runwayModel.name === currentRunwayName) {
+            return;
+        }
+
+        if (!this._procedureModel.hasExit(nextExitName)) {
+            return;
+        }
+
+        this._waypointCollection = this._generateWaypointCollection(currentEntryName, nextExitName);
+    }
+
+    // ------------------------------ PRIVATE ------------------------------
+
+    _findIndexOfWaypointName(waypointName) {
+        return _findIndex(this._waypointCollection, (waypointModel) => {
+            return waypointModel.name === waypointName.toUpperCase();
+        });
+    }
+
+    /**
+     * Reset all waypoints and move them to the `#_previousWaypointCollection`
      *
      * TODO: implement object pooling with `WaypointModel`, this is the method
      *       where the `WaypointModel` is returned to the pool
      *
-     * @for Fms
-     * @method _destroyWaypointCollection
+     * @for LegModel
+     * @method _resetWaypointCollection
      * @private
      */
-    _destroyWaypointCollection() {
-        for (let i = 0; i < this.waypointCollection.length; i++) {
-            const waypointModel = this.waypointCollection[i];
+    _resetWaypointCollection() {
+        this.skipAllWaypointsInLeg();
 
-            waypointModel.destroy();
+        for (let i = 0; i < this._previousWaypointCollection.length; i++) {
+            this._previousWaypointCollection[i].reset();
         }
     }
 
     /**
-     * Create the intial `#waypointCollection` from a `routeSegment`
+     * Ensure that the airway, entry, and exit are all valid and can be used to generate waypoints
      *
-     * Should run only on instantiation
+     * Note that this should only be run on AIRWAY legs!
      *
      * @for LegModel
-     * @method _buildWaypointCollection
-     * @param routeSegment {string}
-     * @param runway {string}
-     * @param flightPhase {string}
-     * @param holdWaypointProps {object}
+     * @method _verifyAirwayAndEntryAndExitAreValid
      * @private
      */
-    _buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps) {
-        if (this.isProcedure) {
-            return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
-        } else if (this._isHold) {
-            return this._buildWaypointForHoldingPattern(routeSegment, holdWaypointProps);
+    _verifyAirwayAndEntryAndExitAreValid(entryName, exitName) {
+        if (_isNil(this._airwayModel)) {
+            throw new TypeError('Unable to generate waypoints because the requested airway does not exist');
         }
 
-        return this._buildWaypointForDirectRoute(routeSegment);
+        const airwayIcao = this._airwayModel.icao;
+
+        if (!this._airwayModel.hasFixName(entryName)) {
+            throw new TypeError(`Expected valid entry of ${airwayIcao}, but received ${entryName}`);
+        }
+
+        if (!this._airwayModel.hasFixName(exitName)) {
+            throw new TypeError(`Expected valid exit of ${airwayIcao}, but received ${exitName}`);
+        }
     }
 
     /**
-     * Given a `directRouteSegment`, generate a `WaypointModel`.
+     * Ensure that the procedure, entry, and exit are all valid and can be used to generate waypoints
      *
-     * Returns an array eventhough there will only ever by one WaypointModel
-     * for a directRouteSegment. This is because the `#waypointCollection` is
-     * always assumed to be an array and the result of this method is used to
-     * set `#waypointCollection`.
+     * Note that this should only be run on PROCEDURE legs!
      *
      * @for LegModel
-     * @method _buildWaypointForDirectRoute
-     * @param directRouteSegment {string}
-     * @return {array<WaypointModel>}
+     * @method _verifyProcedureAndEntryAndExitAreValid
      * @private
      */
-    _buildWaypointForDirectRoute(directRouteSegment) {
-        const fixModel = this._navigationLibrary.findFixByName(directRouteSegment);
-
-        return [
-            fixModel.toWaypointModel()
-        ];
-    }
-
-    /**
-     * Given an `holdRouteSegment`, generate a `WaypointModel`.
-     *
-     * Returns an array eventhough there will only ever by one WaypointModel
-     * for a directRouteSegment. This is because the `#waypointCollection` is
-     * always assumed to be an array and the result of this method is used to
-     * set `#waypointCollection`.
-     *
-     * @for LegModel
-     * @method _buildWaypointForHoldingPattern
-     * @param routeString {string}
-     * @return {array<WaypointModel>}
-     * @private
-     */
-    _buildWaypointForHoldingPattern(routeString, holdWaypointProps) {
-        // TODO: replace with constant
-        if (routeString === 'GPS') {
-            return this._buildWaypointForHoldingPatternAtPosition(holdWaypointProps);
+    _verifyProcedureAndEntryAndExitAreValid(entryName, exitName) {
+        if (_isNil(this._procedureModel)) {
+            throw new TypeError('Unable to generate waypoints because the requested procedure does not exist');
         }
 
-        const isHold = true;
-        const holdRouteSegment = extractFixnameFromHoldSegment(routeString);
-        const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
+        const procedureIcao = this._procedureModel.icao;
 
-        if (!fixModel) {
-            // TODO: Do something more helpful than this, that ends up telling the user their mistake
-            return new Error(`Requested fix of '${holdRouteSegment}' could not be found!`);
+        if (!this._procedureModel.hasEntry(entryName)) {
+            throw new TypeError(`Expected valid entry of ${procedureIcao}, but received ${entryName}`);
         }
 
-        return [
-            fixModel.toWaypointModel(isHold, holdWaypointProps)
-        ];
-    }
-
-    /**
-     * Create a new `WaypointModel` for a holding pattern at a specific x/y position.
-     *
-     * @for LegModel
-     * @method _buildWaypointForHoldingPatternAtPosition
-     * @param holdWaypointProps {object}
-     * @return {array<WaypointModel>}
-     */
-    _buildWaypointForHoldingPatternAtPosition(holdWaypointProps) {
-        const waypointModel = new WaypointModel(holdWaypointProps);
-
-        return [waypointModel];
-    }
-
-    /**
-     * Given a procedureRouteSegment, find the `StandardRouteWaypointModels` for the
-     * route and generate `WaypointModel`s that can be consumed by the Fms.
-     *
-     * @for LegModel
-     * @method _buildWaypointCollectionForProcedureRoute
-     * @param procedureRouteSegment {string}
-     * @return {array<WaypointModel>}
-     * @private
-     */
-    _buildWaypointCollectionForProcedureRoute(procedureRouteSegment, runway, flightPhase) {
-        return this._navigationLibrary.buildWaypointModelsForProcedure(procedureRouteSegment, runway, flightPhase);
-    }
-
-    /**
-     * Create a `RouteModel` for a procedureRouteString.
-     *
-     * This allows for easy access to the various parts of a procedureRouteString.
-     * Currently these parts are accessed via getters and are used for view logic,
-     * namely the `AircraftStripView`.
-     *
-     * @for Fms
-     * @method _buildProcedureRouteModel
-     * @param routeSegment {string}  current leg in routeString format
-     * @return {RouteModel|null}
-     * @private
-     */
-    _buildProcedureRouteModel(routeSegment) {
-        if (!this.isProcedure) {
-            return null;
+        if (!this._procedureModel.hasExit(exitName)) {
+            throw new TypeError(`Expected valid exit of ${procedureIcao}, but received ${exitName}`);
         }
-
-        return new RouteModel(routeSegment);
-    }
-
-    /**
-     * Returns a string representing a `procedureType` associated with
-     * this `LegModel`, if the Leg is in fact a procedure.
-     *
-     * @for LegModel
-     * @param flightPhase {string}
-     * @return {string}
-     */
-    _buildProcedureType(flightPhase) {
-        if (!this.isProcedure) {
-            return '';
-        }
-
-        // TODO: As amended, the following is probably an unsafe assumption, and should be reexamined.
-        let procedureType = PROCEDURE_TYPE.STAR;
-
-        if (flightPhase === FLIGHT_PHASE.APRON) {
-            procedureType = PROCEDURE_TYPE.SID;
-        }
-
-        return procedureType;
-    }
-
-    /**
-     * Finds the minimum or maximum altitude restriction in the `#waypointCollection`
-     *
-     * @for LegModel
-     * @method _findMinOrMaxAltitudeInProcedure
-     * @param isMaximum {boolean}
-     * @return {number}
-     * @private
-     */
-    _findMinOrMaxAltitudeInProcedure(isMaximum = false) {
-        if (isMaximum) {
-            const maximumAltitudes = _map(this.waypointCollection, (waypoint) => waypoint.altitudeMaximum);
-
-            return Math.max(...maximumAltitudes);
-        }
-
-        const minimumAltitudes = _map(this.waypointCollection, (waypoint) => waypoint.altitudeMinimum);
-        // setting this value here so we run `_without`, which might not be performant, only when we need it
-        const positiveValueRestrictionList = _without(minimumAltitudes, -1);
-
-        return Math.min(...positiveValueRestrictionList);
     }
 }

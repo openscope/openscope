@@ -3,12 +3,22 @@
     "name": "Transavia Holland",
     "callsign": {
         "name": "Transavia",
-        "length": 4
+        "callsignFormats": [
+            "####",
+            "###@",
+            "###",
+            "##@",
+            "#@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B737", 8 ],
-            ["B738", 30]
+            ["B737", 8],
+            ["B738", 34]
+        ],
+        "short": [
+            ["B737", 8],
+            ["B738", 34]
         ]
     }
 }

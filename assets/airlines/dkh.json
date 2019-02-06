@@ -3,7 +3,9 @@
     "name": "Juneyao Airlines",
     "callsign": {
         "name": "Air Juneyao",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

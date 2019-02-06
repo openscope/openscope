@@ -13,14 +13,15 @@
         "comma-dangle": [2, "never"],
         "no-did-mount-set-state": [0, "never"],
         "indent": [1, 4, {"SwitchCase": 1}],
-        "max-len": [1, 120],
+        "max-len": [1, 130],
         "no-console": 0,
         "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
         "prefer-spread": 1,
         "semi": [2, "always"],
         "space-before-function-paren": [2, "never"],
-        "no-case-declarations": 1,
+        "no-case-declarations": 0,
         "no-continue": 0,
+        "no-unused-vars": ["error", { "argsIgnorePattern": "event|error" }],
 
         # The rules below are only included to get through the first rounds of refactor. the
         # rules should be re-implemented and errors addressed at a later date

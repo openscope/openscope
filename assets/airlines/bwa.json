@@ -3,14 +3,16 @@
     "name": "Caribbean Airlines",
     "callsign": {
         "name": "Caribbean Airlines",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "short": [
-            ["AT72", 5 ]
+            ["AT72", 5]
         ],
         "default": [
-            ["B738", 12 ]
+            ["B738", 12]
         ]
     }
 }

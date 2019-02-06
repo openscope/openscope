@@ -15,7 +15,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_INSIDE_RANGE
      */
-    HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE,
+    HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE_05,
 
     /**
      * Color of the dots behind the aircraft, showing where it has been
@@ -24,7 +24,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_OUTSIDE_RANGE
      */
-    HISTORY_DOT_OUTSIDE_RANGE: COLOR.WHITE,
+    HISTORY_DOT_OUTSIDE_RANGE: COLOR.WHITE_05,
 
     /**
      * Radius of the history dots, in kilometers
@@ -123,6 +123,14 @@ export const RADAR_TARGET_THEME = {
      * @property RING_VIOLATION
      */
     RING_VIOLATION: COLOR.RED,
+
+    /**
+     * Color of halo
+     *
+     * @memberof RADAR_TARGET_THEME
+     * @property HALO
+     */
+    HALO: COLOR.GREEN_LIGHT,
 
     /**
      * Whether or not the small line behind aircraft established on an

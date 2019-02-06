@@ -10,7 +10,7 @@ import { TIME, REGEX } from '../constants/globalConstants';
  * @type {number}
  * @final
  */
-const DECIMAL_RADIX = 10;
+export const DECIMAL_RADIX = 10;
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -160,6 +160,17 @@ export const kn_ms = (kn = 0) => {
 };
 
 /**
+ * nautical miles to feet
+ *
+ * @function nm_ft
+ * @param nm {number}
+ * @return {number}
+ */
+export const nm_ft = (nm) => {
+    return nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
+}
+
+/**
  * convert radians to degrees
  *
  * @function radiansToDegrees
@@ -179,31 +190,6 @@ export const radiansToDegrees = (radians) => {
  */
 export const degreesToRadians = (degrees) => {
     return (degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES) * (tau());
-};
-
-/**
- * NOT IN USE
- * convert pixels to kilometers at the current scale
- *
- * @function px_to_km
- * @param  {number} pixels
- * @param  {number} scale
- * @return {number}
- */
-export const px_to_km = (pixels, scale) => {
-    return pixels / scale;
-};
-
-/**
- * NOT IN USE
- * convert kilometers to pixels at the current scale
- *
- * @function km_to_px
- * @param  {number} kilometers
- * @return {number}
- */
-export const km_to_px = (kilometers, scale) => {
-    return kilometers * scale;
 };
 
 /**

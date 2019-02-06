@@ -1,0 +1,18 @@
+{
+    "icao": "msc",
+    "name": "Air Cairo",
+    "callsign": {
+        "name": "Air Cairo",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 7]
+        ],
+        "a320": [
+            ["A320", 7]
+        ]
+    }
+}

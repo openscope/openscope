@@ -3,12 +3,16 @@
     "name": "Cargolux Airlines International",
     "callsign": {
         "name": "Cargolux",
-        "length": 3
+        "callsignFormats": [
+            "###",
+            "##@@",
+            "###@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B744", 8],
-            ["B748", 13]
+            ["B744", 13],
+            ["B748", 14]
         ]
     }
 }

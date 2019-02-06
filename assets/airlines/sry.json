@@ -1,0 +1,22 @@
+{
+    "icao": "sry",
+    "name": "Via Airlines",
+    "callsign": {
+        "name": "Stingray",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E145", 6],
+            ["E120", 4]
+        ],
+        "e145": [
+            ["E145", 6]
+        ],
+        "e120": [
+            ["E120", 4]
+        ]
+    }
+}

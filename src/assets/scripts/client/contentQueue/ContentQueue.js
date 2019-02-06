@@ -96,7 +96,6 @@ export default class ContentQueueClass {
      */
     load(url) {
         const c = this.queuedContent[url];
-        this.loadingView.startLoad(c.url);
 
         $.getJSON(c.url)
             .done((data, textStatus, jqXHR) => {
@@ -107,10 +106,6 @@ export default class ContentQueueClass {
             })
             .always(() => {
                 delete this.queuedContent[c.url];
-
-                if (!this.startLoad()) {
-                    this.loadingView.stopLoad();
-                }
             });
     }
 }

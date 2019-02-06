@@ -1,5 +1,6 @@
 import _forEach from 'lodash/forEach';
 import SpawnPatternCollection from './SpawnPatternCollection';
+import TimeKeeper from '../engine/TimeKeeper';
 import GameController from '../game/GameController';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
@@ -45,7 +46,7 @@ export default class SpawnScheduler {
     createSchedulesFromList(spawnPatternCollection, aircraftController) {
         _forEach(spawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
             // set the #cycleStartTime for this `spawnPatternModel` with current game time
-            spawnPatternModel.cycleStart(GameController.game.time);
+            spawnPatternModel.cycleStart(TimeKeeper.accumulatedDeltaTime);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
 
             // TODO: abstract this to a class method on the `SpawnPatternModel`
@@ -92,7 +93,7 @@ export default class SpawnScheduler {
      * @return {function}
      */
     createNextSchedule(spawnPatternModel, aircraftController) {
-        const delay = spawnPatternModel.getNextDelayValue(GameController.game.time);
+        const delay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
 
         return GameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,

@@ -3,11 +3,13 @@
     "name": "Singapore Airlines Cargo",
     "callsign": {
         "name": "Singcargo",
-        "length": 3
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["B744", 11]
+            ["B744", 7]
         ]
     }
 }

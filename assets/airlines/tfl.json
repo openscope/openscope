@@ -3,11 +3,23 @@
     "name": "TUI Airlines Netherlands",
     "callsign": {
         "name": "Orange",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###",
+            "##@",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 8],
+            ["B738", 7],
+            ["B763", 1],
+            ["B788", 3]
+        ],
+        "short": [
+            ["B738", 7]
+        ],
+        "long": [
             ["B763", 1],
             ["B788", 3]
         ]

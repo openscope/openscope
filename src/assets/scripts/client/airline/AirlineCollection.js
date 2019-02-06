@@ -5,6 +5,7 @@ import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
+import { AIRLINE_NAME_FLEET_SEPARATOR } from '../constants/airlineConstants';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
@@ -52,7 +53,7 @@ export default class AirlineCollection extends BaseCollection {
     /**
      * Lifecycle method. Should be run only once on instantiation
      *
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for AirlineCollection
      * @method init
@@ -94,19 +95,18 @@ export default class AirlineCollection extends BaseCollection {
      * @return {AirlineModel|undefined}
      */
     findAirlineById(id) {
-        const airlineNameAndFleetSeparator = '/';
         let airlineId = id.toLowerCase();
 
-        if (airlineId.indexOf(airlineNameAndFleetSeparator) !== INVALID_INDEX) {
+        if (airlineId.indexOf(AIRLINE_NAME_FLEET_SEPARATOR) !== INVALID_INDEX) {
             // this should not get hit in most circumstances. The puropse of this method is to find
             // and `AirlineModel` object and not a list of aircraft from a fleet
             console.warn(
                 `Found a specific fleet with airline id ${id}. This method should be used to find an ` +
-                `AirlineModel instance and not a fleet within an AirlineModel. If you need to find a ` +
-                `specific fleet from an airline, you can use the AirlineModel method: ` +
-                `airlineModel._getRandomAircraftTypeFromFleet(fleetName)`
+                'AirlineModel instance and not a fleet within an AirlineModel. If you need to find a ' +
+                'specific fleet from an airline, you can use the AirlineModel method: ' +
+                'airlineModel._getRandomAircraftTypeFromFleet(fleetName)'
             );
-            airlineId = id.split('/')[0];
+            airlineId = id.split(AIRLINE_NAME_FLEET_SEPARATOR)[0];
         }
 
         return _find(this._items, { icao: airlineId });

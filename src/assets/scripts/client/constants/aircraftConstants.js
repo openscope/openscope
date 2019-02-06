@@ -5,7 +5,8 @@
  */
 export const FLIGHT_CATEGORY = {
     ARRIVAL: 'arrival',
-    DEPARTURE: 'departure'
+    DEPARTURE: 'departure',
+    OVERFLIGHT: 'overflight'
 };
 
 /**
@@ -52,15 +53,19 @@ export const FLIGHT_PHASE = {
      */
     TAKEOFF: 'TAKEOFF',
     /**
+     * Not yet reached requested cruise altitude
+     *
+     * Aircraft remain in this phase until reaching their requested cruise altitude (CRUISE)
+     *
      * @memberof FLIGHT_PHASE
      * @property CLIMB
      * @type {string}
      */
     CLIMB: 'CLIMB',
     /**
-     * describes an aircraft currently in flight and not following an ILS path. Aircraft entering
-     * controlled airspace also have this state. If an ILS path is picked up, the aircraft
-     * will transition to 'landing'
+     * Not yet cleared to descend below requested cruise altitude
+     *
+     * Aircraft remain in this phase until cleared to descend (DESCENT)
      *
      * @memberof FLIGHT_PHASE
      * @property CRUISE
@@ -68,54 +73,46 @@ export const FLIGHT_PHASE = {
      */
     CRUISE: 'CRUISE',
     /**
+     * Instructed to enter (or already in) airborne holding pattern
+     *
+     * Aircraft remain in this phase until cleared out of the hold (CLIMB/CRUISE/DESCENT)
+     *
      * @memberof FLIGHT_PHASE
      * @property HOLD
      * @type {string}
      */
     HOLD: 'HOLD',
     /**
+     * Configured for (or already in) descent out of requested cruise altitude
+     *
+     * Aircraft remain in this phase until fully established on an approach (APPROACH)
+     *
      * @memberof FLIGHT_PHASE
      * @property DESCENT
      * @type {string}
      */
     DESCENT: 'DESCENT',
     /**
+     * Fully established on the approach, outside of the final approach fix
+     *
+     * Aircraft remain in this phase until within the final approach fix (LANDING)
+     *
      * @memberof FLIGHT_PHASE
      * @property APPROACH
      * @type {string}
      */
     APPROACH: 'APPROACH',
     /**
-     * aircraft following an ILS path or is on the runway in the process of stopping.
-     * If an ILS approach or a landing is aborted, the aircraft re-enters 'cruise' mode
+     * Fully established on the approach, within the final approach fix
+     *
+     * Aircraft remain in this phase until instructed to go around (DESCENT)
+     *   - If landing successful, they will remain in this phase until deletion
      *
      * @memberof FLIGHT_PHASE
      * @property LANDING
      * @type {string}
      */
     LANDING: 'LANDING'
-};
-
-/**
- * @property WAYPOINT_NAV_MODE
- * @type {Object}
- * @final
- */
-export const WAYPOINT_NAV_MODE = {
-    FIX: 'fix',
-    HEADING: 'heading',
-    HOLD: 'hold',
-    RWY: 'rwy'
-};
-
-/**
- * @property PROCEDURE_TYPE
- * @type {Object}
- * @final
- */
-export const PROCEDURE_TYPE = {
-    SID: 'SID',
-    STAR: 'STAR'
 };
 
 /**
@@ -153,6 +150,16 @@ export const PERFORMANCE = {
      * @final
      */
     LANDING_ASSIGNED_SPEED_DISTANCE_NM: 5,
+
+    /**
+     * Maximum vertical distance between the aircraft and the glidepath to
+     * consider the aircraft to be "established on the glidepath"
+     *
+     * @property MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH: 100,
 
     /**
     * Maximum distance from the current waypoint to allow us to proceed to the next waypoint
@@ -240,7 +247,16 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    TYPICAL_CLIMB_FACTOR: 0.7
+    TYPICAL_CLIMB_FACTOR: 0.7,
+
+    /**
+     * Standard pressure, the baseline used universally, is 1013.25 hPa, which is equivalent to 1013.25 mb or 29.92 inHg
+     *
+     * @property DEFAULT_ALTIMETER_IN_INHG
+     * @type {number}
+     * @final
+     */
+    DEFAULT_ALTIMETER_IN_INHG: 29.92
 };
 
 /**

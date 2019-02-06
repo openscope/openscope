@@ -1,0 +1,16 @@
+{
+    "icao": "nla",
+    "name": "Peninsula Airways",
+    "callsign": {
+        "name": "Peninsula",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["SB20", 3],
+            ["SF34", 17]
+        ]
+    }
+}

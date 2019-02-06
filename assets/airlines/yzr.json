@@ -1,16 +1,34 @@
 {
     "icao": "yzr",
-    "name": "Yangtze River Express",
+    "name": "Suparna Airlines",
     "callsign": {
         "name": "Yangtze River",
-        "length": 3
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["B733",    16],
-            ["B734",     3],
-            ["B738",     2],
-            ["B744",     3]
+            ["B733", 11],
+            ["B734", 3],
+            ["B738", 9],
+            ["B744", 4],
+            ["B788", 1]
+        ],
+        "passenger": [
+            ["B738", 9],
+            ["B788", 1]
+        ],
+        "long": [
+            ["B788", 1]
+        ],
+        "short": [
+            ["B738", 9]
+        ],
+        "cargo": [
+            ["B733", 11],
+            ["B734", 3],
+            ["B744", 4]
         ]
     }
 }

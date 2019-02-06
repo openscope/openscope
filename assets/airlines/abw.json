@@ -1,0 +1,21 @@
+{
+    "icao": "abw",
+    "name": "AirBridgeCargo",
+    "callsign": {
+        "name": "AirBridgeCargo",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B734", 1],
+            ["B744", 7],
+            ["B748", 11]
+        ],
+        "b747": [
+            ["B744", 7],
+            ["B748", 11]
+        ]
+    }
+}

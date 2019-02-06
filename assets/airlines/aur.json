@@ -1,0 +1,19 @@
+{
+    "icao": "aur",
+    "name": "Aurigny Air Services",
+    "callsign": {
+        "name": "Ayline",
+        "callsignFormats": [
+            "###",
+            "#@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT45", 1],
+            ["AT72", 3],
+            ["D228", 4],
+            ["E190", 1]
+        ]
+    }
+}

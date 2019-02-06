@@ -3,14 +3,18 @@
     "name": "Luxair",
     "callsign": {
         "name": "Luxair",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###",
+            "##@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B737", 2 ],
+            ["B737", 2],
             ["B738", 4],
-            ["DH8D", 9],
-            ["E145", 2]
+            ["CRJ7", 4],
+            ["DH8D", 11]
         ]
     }
 }

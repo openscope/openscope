@@ -1,7 +1,9 @@
+import _ceil from 'lodash/ceil';
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import { PERFORMANCE } from '../../constants/aircraftConstants';
+import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import {
     angle_offset,
@@ -15,6 +17,7 @@ import {
     calculateCrosswindAngle,
     getOffset
 } from '../../math/flightMath';
+import { radio_runway } from '../../utilities/radioUtilities';
 import {
     km,
     km_ft,
@@ -36,7 +39,7 @@ export default class RunwayModel extends BaseModel {
      * @param end {number}
      * @param airportPositionModel {StaticPositionModel}
      */
-     // istanbul ignore next
+    // istanbul ignore next
     constructor(options = {}, end, airportPositionModel) {
         super();
 
@@ -92,13 +95,6 @@ export default class RunwayModel extends BaseModel {
         };
 
         /**
-         * @property labelPos
-         * @type {array<number>}
-         * @default []
-         */
-        this.labelPos = [];
-
-        /**
          * @property length
          * @type
          * @default
@@ -122,6 +118,15 @@ export default class RunwayModel extends BaseModel {
          * @default []
          */
         this.queue = [];
+
+        /**
+         * The flight number of the last aircraft that used the runway for takeoff.
+         *
+         * @property lastDepartedAircraftCallsign
+         * @type {string}
+         * @default null
+         */
+        this.lastDepartedAircraftCallsign = null;
 
         this._init(options, end, airportPositionModel);
     }
@@ -229,7 +234,7 @@ export default class RunwayModel extends BaseModel {
             this.ils.glideslopeGradient = degreesToRadians(data.glideslope[end]);
         }
 
-        // FIXME: neither property is defined in any airport json files
+        // TODO: neither property is defined in any airport json files
         // if (data.ils_gs_maxHeight) {
         //     this.ils.gs_maxHeight = data.ils_gs_maxHeight[end];
         // }
@@ -259,6 +264,44 @@ export default class RunwayModel extends BaseModel {
 
         // TODO: this logic could be abstracted to a helper.
         return this.elevation + (rise * km_ft(distance));
+    }
+
+    /**
+     * Calculate the height of the glideslope at (or abeam) the final approach fix
+     *
+     * @for RunwayModel
+     * @method getGlideslopeAltitudeAtFinalApproachFix
+     * @return {number} glideslope altitude in ft MSL
+     */
+    getGlideslopeAltitudeAtFinalApproachFix() {
+        return this.getGlideslopeAltitude(km(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM));
+    }
+
+    /**
+     * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
+     *
+     * @for RunwayModel
+     * @method getMinimumGlideslopeInterceptAltitude
+     * @return {number} glideslope altitude in ft MSL
+     */
+    getMinimumGlideslopeInterceptAltitude() {
+        const altitudeAtFinalApproachFix = this.getGlideslopeAltitudeAtFinalApproachFix();
+        const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
+
+        return minimumInterceptAltitude;
+    }
+
+    /**
+     * Return the spoken name of the runway, spelled out into words
+     *
+     * Ex: "two six left"
+     *
+     * @for RunwayModel
+     * @method getRadioName
+     * @return {string}
+     */
+    getRadioName() {
+        return radio_runway(this.name);
     }
 
     /**
@@ -342,8 +385,10 @@ export default class RunwayModel extends BaseModel {
     isOnApproachCourse(aircraftModel) {
         const approachOffset = getOffset(aircraftModel, this.relativePosition, this.angle);
         const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
+        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isNotPastRunwayThreshold = approachOffset[1] > 0;
 
-        return lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        return isAlignedWithCourse && isNotPastRunwayThreshold;
     }
 
     /**

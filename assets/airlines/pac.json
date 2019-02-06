@@ -2,14 +2,16 @@
     "icao": "pac",
     "name": "Polar Air Cargo",
     "callsign": {
-        "name": "Polar Tiger",
-        "length": 3
+        "name": "Polar",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B744",    7],
-            ["B748",    5],
-            ["B763",    3]
+            ["B744", 7],
+            ["B748", 5],
+            ["B763", 4]
         ]
     }
 }

@@ -3,13 +3,14 @@
     "name": "Insel Air",
     "callsign": {
         "name": "Inselair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["f50", 6],
-            ["md82", 2],
-            ["md83", 1]
+            ["F50", 4],
+            ["MD83", 1]
         ]
     }
 }

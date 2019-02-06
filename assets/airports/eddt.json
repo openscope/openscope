@@ -11,8 +11,11 @@
     "ctr_ceiling": 15000,
     "initial_alt": 4000,
     "position": ["N52d33m33.53", "E13d17m16.82", "122.0ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N52d33m33.53", "E13d17m16.82"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N52d33m33.53", "E13d17m16.82"],
+        "radius_nm": 5.0
+    },
     "has_terrain": false,
     "wind": {
         "angle": 280,
@@ -338,7 +341,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -362,7 +364,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -386,7 +387,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -410,7 +410,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -434,7 +433,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -457,7 +455,6 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -475,7 +472,6 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["sas", 5]
@@ -492,7 +488,6 @@
             "rate": 10,
             "entrail": [10, 35],
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10]
             ]
@@ -508,7 +503,6 @@
             "rate": 10,
             "entrail": [10, 35],
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10]
             ]
@@ -524,12 +518,14 @@
             "rate": 10,
             "entrail": [10, 35],
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["aua", 5],
                 ["thy", 5]
             ]
         }
-    ]
+    ],
+    "maps": {
+        "base": []
+    }
 }

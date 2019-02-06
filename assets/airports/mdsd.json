@@ -11,8 +11,11 @@
     "ctr_ceiling": 19500,
     "initial_alt": 4000,
     "position": ["N18.432908807306845", "W69.66732787399317", "58ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N18.432908807306845", "W69.66732787399317"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [18.432908807306845, -69.66732787399317],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 160,
@@ -1152,7 +1155,7 @@
             "exitPoints": {
                 "AVRES": ["AVRES"]
             },
-            "draw": [[]]
+            "draw": [["AVRES"]]
         },
         "BIBOK1": {
             "icao": "BIBOK1",
@@ -1178,7 +1181,7 @@
             "exitPoints": {
                 "BIBOK": ["BIBOK"]
             },
-            "draw": [[]]
+            "draw": [["BIBOK"]]
         },
         "DELPO1": {
             "icao": "DELPO1",
@@ -1204,7 +1207,7 @@
             "exitPoints": {
                 "DELPO": ["DELPO"]
             },
-            "draw": [[]]
+            "draw": [["DELPO"]]
         },
         "KANAM": {
             "icao": "KANAM",
@@ -1247,7 +1250,7 @@
             "exitPoints": {
                 "KARIB": ["KARIB"]
             },
-            "draw": [[]]
+            "draw": [["KARIB"]]
         },
         "KERSO": {
             "icao": "KERSO",
@@ -1290,7 +1293,7 @@
             "exitPoints": {
                 "KERSO": ["KERSO"]
             },
-            "draw": [[]]
+            "draw": [["KERSO"]]
         },
         "KODIX1": {
             "icao": "KODIX1",
@@ -1316,7 +1319,7 @@
             "exitPoints": {
                 "KODIX": ["KODIX"]
             },
-            "draw": [[]]
+            "draw": [["KODIX"]]
         },
         "LECKY": {
             "icao": "LECKY",
@@ -1359,7 +1362,7 @@
             "exitPoints": {
                 "LECKY": ["LECKY"]
             },
-            "draw": [[]]
+            "draw": [["LECKY"]]
         },
         "MIROX": {
             "icao": "MIROX",
@@ -1403,7 +1406,7 @@
             "exitPoints": {
                 "PIVAR": ["PIVAR"]
             },
-            "draw": [[]]
+            "draw": [["PIVAR"]]
         },
         "POBEX1": {
             "icao": "POBEX1",
@@ -1429,7 +1432,7 @@
             "exitPoints": {
                 "POBEX": ["POBEX"]
             },
-            "draw": [[]]
+            "draw": [["POBEX"]]
         },
         "RIBES1": {
             "icao": "RIBES1",
@@ -1455,7 +1458,7 @@
             "exitPoints": {
                 "RIBES": ["RIBES"]
             },
-            "draw": [[]]
+            "draw": [["BIBOK"]]
         }
     },
     "stars": {

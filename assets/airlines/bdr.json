@@ -1,0 +1,19 @@
+{
+    "icao": "bdr",
+    "name": "Badr Airlines",
+    "callsign": {
+        "name": "Badr Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 1],
+            ["B735", 4]
+        ],
+        "b735": [
+            ["B735", 4]
+        ]
+    }
+}

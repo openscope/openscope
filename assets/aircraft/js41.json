@@ -1,0 +1,37 @@
+{
+    "name": "British Aerospace BAe-4100 Jetstream 41",
+    "icao": "JS41",
+    "engines": {
+        "number": 2,
+        "type": "S"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "F"
+    },
+    "ceiling": 26000,
+    "rate": {
+        "climb":      2200,
+        "descent":    1500,
+        "accelerate": 3,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.523,
+        "landing": 1.280
+    },
+    "speed":{
+        "min":     90,
+        "landing": 106,
+        "cruise":  260,
+        "cruiseM": null,
+        "max":     295,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

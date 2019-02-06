@@ -1,5 +1,6 @@
 /* eslint-disable */
 export const AIRPORT_JSON_KLAS_MOCK = {
+    "airac": 1004,
     "radio": {
         "twr": "Las Vegas Tower",
         "app": "Las Vegas Approach",
@@ -12,8 +13,11 @@ export const AIRPORT_JSON_KLAS_MOCK = {
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
     "position": ["N36.080056", "W115.15225", "2181ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N36.080056", "W115.15225"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [36.080056, -115.15225],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 220,
@@ -47,67 +51,79 @@ export const AIRPORT_JSON_KLAS_MOCK = {
     "fixes": {
         "_NAPSE068": ["N36.11211", "W115.14661"],
         "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
-        "BCE":   ["N37.68918661436860", "W112.30389943797489"],
+        "BCE"  : ["N37.68918661436860", "W112.30389943797489"],
         "BESSY": ["N36.10772192196994", "W115.28956463349111"],
         "BETHL": ["N36.88434886833625", "W112.44043432584908"],
         "BIKKR": ["N36.56666216331978", "W116.75003219453492"],
+        "BLD"  : ["N35d59.75", "W114d51.81"],
         "BOACH": ["N35.67826104359460", "W115.29470074200118"],
-        "BTY":   ["N36.80061034723484", "W116.74761520229488"],
+        "BTY"  : ["N36.80061034723484", "W116.74761520229488"],
         "CAKNU": ["N35.79497348504005", "W115.32657482716670"],
         "CEASR": ["N35.86643681022607", "W115.26186993709274"],
         "CEJAY": ["N35.67916090020152", "W113.92728738219890"],
         "CHIPZ": ["N35.98057081407233", "W114.60835047683747"],
+        "CHRLT": ["N35d08.94m0", "W116d20.74m0"],
         "CLARR": ["N35.67566367329321", "W115.67975781824246"],
         "CODNO": ["N35.90052298588567", "W115.27007763355576"],
         "COMPS": ["N36.01130864768042", "W114.49958582603571"],
         "CONDY": ["N36.07641124919886", "W115.01629344835165"],
         "CORKR": ["N36.08396031716501", "W112.40035253455397"],
         "COWBY": ["N35.92358556169513", "W113.90273980476096"],
+        "CRESO": ["N35d46.44", "W115d09.91"],
         "CUTRO": ["N35.60470439386878", "W112.38335805786619"],
-        "DAG":   ["N34.96243841895487", "W116.57819915246961"],
+        "DAG"  : ["N34.96243841895487", "W116.57819915246961"],
+        "DANBY": ["N35d18.69", "W115d47.15"],
         "DBIGE": ["N36.44578613614583", "W116.60826049345508"],
-        "DRK":   ["N34.70254419641165", "W112.48033987149775"],
+        "DISBE": ["N35d07.20m0", "W116d22.90m0"],
+        "DRK"  : ["N34.70254419641165", "W112.48033987149775"],
         "DUBLX": ["N36.17059038465186", "W114.63748027193712"],
-        "DVC":   ["N37.80875083633090", "W108.93128889102987"],
+        "DVC"  : ["N37.80875083633090", "W108.93128889102987"],
         "FEBET": ["N35.87194543503893", "W115.28284237382348"],
         "FIXIX": ["N36.01499475348733", "W115.20134441672967"],
         "FLICR": ["N36.07622810916583", "W114.85148478998396"],
         "FLYES": ["N36.07604496870633", "W114.76281138717750"],
         "FORGE": ["N35.86472292298355", "W115.06848537453500"],
         "FRAWG": ["N36.14530265817758", "W114.76779643367257"],
+        "FREDD": ["N36d54.56m0", "W112d21.07m0"],
         "FUZZY": ["N36.20058355693305", "W115.90025800614106"],
         "GALNE": ["N35.99218293438480", "W115.21433575001986"],
+        "GFS"  : ["N35d07.87", "W115d10.59"],
         "GRNPA": ["N36.26467677181758", "W114.51481791576114"],
-        "GUP":   ["N35.47600708931211", "W108.87260129820142"],
+        "GUP"  : ["N35.47600708931211", "W108.87260129820142"],
         "HAMIG": ["N36.27163937080748", "W115.00738078946648"],
         "HAWKO": ["N36.07635020256857", "W114.91130534792492"],
-        "HEC":   ["N34.79699948396530", "W116.46291365802023"],
+        "HEC"  : ["N34.79699948396530", "W116.46291365802023"],
         "HITME": ["N35.82137402914000", "W115.07415020009759"],
         "HOLDM": ["N36.81859083219121", "W113.54459694745292"],
-        "IGM":   ["N35.26053924898525", "W113.93403481886898"],
-        "INW":   ["N35.06160364278470", "W110.79501650112277"],
+        "IGM"  : ["N35.26053924898525", "W113.93403481886898"],
+        "INW"  : ["N35.06160364278470", "W110.79501650112277"],
         "IPUMY": ["N36.03104054216308", "W115.37529232700500"],
         "JABNA": ["N36.10387742351859", "W115.15051204868132"],
         "JAKER": ["N36.01475037611731", "W115.20496990508973"],
         "JEBBB": ["N35.91065829681875", "W115.38513653498266"],
         "JESJI": ["N36.07370480307023", "W115.07858135253764"],
         "JOGMU": ["N36.24283086504572", "W115.03200389791188"],
+        "JOKUR": ["N35d02.51", "W116d23.98"],
         "JOTNU": ["N34.32589043757116", "W115.52952664432249"],
         "KADDY": ["N35.74237086004003", "W114.38349466750633"],
         "KENNO": ["N37.29815901682068", "W117.31024567717155"],
         "KEPEC": ["N35.97127988740638", "W115.56351559769807"],
         "KIBSE": ["N35.94193294008936", "W115.24303753287032"],
+        "KIDDR": ["N34d56.66m0", "W112d27.99m0"],
         "KIMME": ["N35.99529958099861", "W114.83056270090610"],
         "KSINO": ["N36.57553879560182", "W114.08459329705524"],
         "LARRE": ["N36.07354200634845", "W114.83600093344620"],
+        "LAS"  : ["N36d04.78m0", "W115d09.59m0"],
         "LEFFT": [36.123456, -114.123456],
         "LEMNZ": ["N36.13731215730534", "W115.13253566889603"],
+        "LOOSN": ["N36d08.13m0", "W114d56.40m0"],
         "LRAIN": ["N36.51785283367872", "W110.58670198243438"],
         "LUXOR": ["N36.39497532579257", "W114.48037577634227"],
         "MDDOG": ["N35.88559296100447", "W115.40535366799047"],
         "MINEY": ["N35.96194711027926", "W114.89972392677473"],
         "MISEN": ["N35.10233599378612", "W116.40387358715677"],
-        "MLF":   ["N38.36038769119973", "W113.01321112941896"],
+        "MLF"  : ["N38.36038769119973", "W113.01321112941896"],
+        "MMM"  : ["N36d46.16m0", "W114d16.65m0"],
         "MOSBI": ["N35.59297408871882", "W111.89520115638572"],
         "MYCAL": ["N36.46020483761564", "W116.26421675428702"],
         "NAPSE": ["N36.15945177717885", "W114.82059260791594"],
@@ -115,10 +131,12 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "NICLE": ["N36.31212384444554", "W113.22469795042240"],
         "NIPZO": ["N36.01857886786184", "W115.20285503687968"],
         "NODIY": ["N35.94829237060912", "W115.24288647085534"],
-        "OAL":   ["N38.00327017305898", "W117.77045610587656"],
+        "OAL"  : ["N38.00327017305898", "W117.77045610587656"],
+        "OASYS": ["N35d54.25m0", "W115d23.20m0"],
         "OGKIJ": ["N36.07378620130471", "W115.17128307574417"],
         "ONRUE": ["N35.90878224058892", "W113.06865088892485"],
-        "PGS":   ["N35.62474224555941", "W113.54449623618262"],
+        "PGA"  : ["N36d55.86", "W111d26.85"],
+        "PGS"  : ["N35.62474224555941", "W113.54449623618262"],
         "PIRMD": ["N36.07354200634846", "W115.25300762586048"],
         "PIRME": ["N36.10515894390783", "W115.15330669595886"],
         "POKRR": ["N36.06261350594839", "W114.59815379082481"],
@@ -135,11 +153,13 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "SKEBR": ["N35.75716439527358", "W115.57560055889826"],
         "SOSOY": ["N35.98900505026560", "W115.21969845155245"],
         "SUNST": ["N36.01026999005443", "W115.08079692875768"],
+        "SUVIE": ["N36d21.57m0", "W114d48.29m0"],
         "SUZSI": ["N36.03747422981203", "W114.52166605722857"],
         "TACUS": ["N37.08779081752977", "W116.90330978575741"],
         "TARRK": ["N35.89048836135225", "W115.64954541524196"],
         "TINNK": ["N36.18871771065602", "W114.70533229046907"],
-        "TNP":   ["N34.11222834727155", "W115.76994184119893"],
+        "TNP"  : ["N34.11222834727155", "W115.76994184119893"],
+        "TOMIS": ["N36d08.62m0", "W115d18.03m0"],
         "TRAGR": ["N36.11602051521614", "W115.63720868401677"],
         "TRALR": ["N36.19371621441246", "W114.24459314471153"],
         "TRREY": ["N35.85737732038136", "W115.29470074200118"],
@@ -147,7 +167,9 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "TUMBE": ["N36.80552919390130", "W116.66745162633357"],
         "TYSSN": ["N35.85558162509773", "W114.43636637275719"],
         "WASTE": ["N36.07639090032735", "W115.07384807606756"],
+        "WHIGG": ["N35d30.48", "W115d31.42"],
         "WILLW": ["N35.95018787107463", "W114.87807170462438"],
+        "WINDS": ["N35d51.39m0", "W114d35.93m0"],
         "WITLA": ["N35.97832968185141", "W115.35079510357211"],
         "ZABES": ["N36.02682578467890", "W115.19809658340710"],
         "ZATES": ["N35.45502967300586", "W114.11500711284192"],
@@ -179,19 +201,23 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "ils": [true, false]
         }
     ],
+    "airways": {
+        "V394": ["DAG", "DISBE", "CHRLT", "CLARR", "OASYS", "LAS", "SUVIE", "MMM"],
+        "J11": ["BCE", "FREDD", "CORKR", "NAVHO", "KIDDR", "DRK"]
+    },
     "sids": {
         "BOACH6": {
             "icao": "BOACH6",
             "name": "Boach Six",
+            "altitude": 7000,
             "rwy": {
-                "01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
-                "01R": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
-                "07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], "RODDD"],
-                "19R": ["JAKER", ["ROPPR", "A70"], "RODDD"],
-                "25L": ["PIRMD", ["ROPPR", "A70"], "RODDD"],
-                "25R": ["RBELL", ["ROPPR", "A70"], "RODDD"]
+                "KLAS01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], "RODDD"],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], "RODDD"],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], "RODDD"],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], "RODDD"]
             },
             "body": [["BOACH", "A130+"]],
             "exitPoints": {
@@ -211,16 +237,15 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "COWBY6": {
             "icao": "COWBY6",
             "name": "Cowboy Six",
-            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "rwy": {
-                "01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
-                "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
+                "KLAS01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "KLAS01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
+                "KLAS19L": ["FIXIX", "ROPPR", "CEASR", "HITME"],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
             },
             "body": ["COWBY"],
             "exitPoints": {
@@ -239,14 +264,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "icao": "SHEAD9",
             "name": "Shead Nine",
             "rwy": {
-                "01L": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "01R": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]]
+                "KLAS01L": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS01R": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]]
             },
             "body": [["SHEAD", "A140+"]],
             "exitPoints": {
@@ -260,18 +285,19 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["KENNO", "OAL*"]
             ]
         },
+        // Not a real route, used to test soft altitude restrictions
         "TRALR6": {
             "icao": "TRALR6",
             "name": "Trailer Six",
             "rwy": {
-                "01L": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
-                "01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
-                "07L": ["WASTE", ["BAKRR", "A70"]],
-                "07R": ["JESJI", ["BAKRR", "A70"]],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
+                "KLAS01L": ["_NAPSE068", ["NAPSE", "S250-"], "TINNK", "RIOOS"],
+                "KLAS01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"]],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"]],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"], ["BIKKR", "A400-"], "TRALR"]
             },
             "body": ["TRALR"],
             "exitPoints": {
@@ -290,23 +316,23 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "GRNPA1": {
             "icao": "GRNPA1",
             "name": "Grandpa One",
-            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "entryPoints": {
                 "BETHL": ["BETHL", ["HOLDM", "A270"]],
-                "BCE":   ["BCE"],
+                "BCE":   [["BCE", "S310-"]],
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270"]],
                 "MLF":   ["MLF"]
             },
-            "body": [["KSINO", "A170"], ["LUXOR", "A120|S250"], ["GRNPA", "A110"], ["DUBLX", "A90"], ["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+            "body": [["KSINO", "A170"], ["LUXOR", "A120|S250"], ["GRNPA", "A110"], ["DUBLX", "A90"]],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "DUBLX": [],
+                "KLAS01L": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS01R": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS07L": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS07R": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS19L": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS19R": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS25L": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
+                "KLAS25R": [["FRAWG", "A80|S210"], "TRROP", "LEMNZ"]
             },
             "draw": [[]]
         },
@@ -314,23 +340,22 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "GRNPA2": {
             "icao": "GRNPA2",
             "name": "Grandpa Two",
-            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "entryPoints": {
                 "BETHL": ["BETHL", ["HOLDM", "A270+"]],
                 "BCE":   ["BCE"],
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270+"]],
                 "MLF":   ["MLF"]
             },
-            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A80+|S210"], "TRROP", "LEMNZ"],
+            "body": [["KSINO", "A170"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110-"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], ["TRROP", "A30+"], "LEMNZ"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -343,14 +368,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": ["LEMNZ"],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": ["LEMNZ"],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -363,14 +388,13 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["CLARR", "A130|S250"], "SKEBR", ["KEPEC", "A130"], ["IPUMY", "A110|S230"], ["NIPZO", "A90"], ["SUNST", "A80|S210"], ["KIMME", "A80|S210"], ["CHIPZ", "A80|S170"], "POKRR", "PRINO"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": ['LEFFT'],
-                "19R": ['RIGHT'],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": ['LEFFT'],
+                "KLAS19R": ['RIGHT'],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -383,20 +407,20 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["MYCAL", "A240"], ["FUZZY", "A160|S250"], "TRAGR", ["IPUMY", "A110|S230"], ["NIPZO", "A90"], ["SUNST", "A80|S210"], ["KIMME", "A80|S210"], ["CHIPZ", "A80|S170"], "POKRR", "PRINO"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
         "TYSSN4": {
             "icao": "TYSSN4",
-            "name": "Tyson Three",
+            "name": "Tyson Four",
             "entryPoints": {
                 "DRK":   ["DRK", ["IGM", "A240"], ["ZATES", "A190"]],
                 "IGM":   [["IGM", "A240"], ["ZATES", "A190"]],
@@ -405,14 +429,31 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["KADDY", "A120|S250"], "TYSSN", ["SUZSI", "A100|S210"], ["PRINO", "A80"]],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
+            },
+            "draw": [[]]
+        },
+        // not real. a modification of the TYSSN4 with speed restrictions removed.
+        "ZIMBO1": {
+            "icao": "ZIMBO1",
+            "name": "Zimbo One",
+            "entryPoints": {
+                "DRK": ["DRK", ["IGM", "A240"], ["ZATES", "A190"]]
+            },
+            "body": [["KADDY", "A120"], "TYSSN", ["SUZSI", "A100"], ["PRINO", "A60"]],
+            "rwy": {
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": []
             },
             "draw": [[]]
         }

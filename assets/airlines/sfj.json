@@ -3,11 +3,13 @@
     "name": "StarFlyer",
     "callsign": {
         "name": "Starflyer",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 9]
+            ["A320", 10]
         ]
     }
 }

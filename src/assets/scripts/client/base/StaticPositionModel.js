@@ -97,8 +97,7 @@ export default class StaticPositionModel extends DynamicPositionModel {
      */
     setCoordinates(...args) {
         console.warn(`Unexpected attempt to modify a StaticPositionModel, via .setCoordinates(${args});`);
-
-        return; // do nothing, because `StaticPositionModel`s cannot be changed
+        // do nothing, because `StaticPositionModel`s cannot be changed
     }
 
     /**
@@ -113,6 +112,9 @@ export default class StaticPositionModel extends DynamicPositionModel {
         }
 
         this._relativePosition = DynamicPositionModel.calculateRelativePosition(
-            this.gps, this._referencePosition, this._magneticNorth);
+            this.gps,
+            this._referencePosition,
+            this._magneticNorth
+        );
     }
 }

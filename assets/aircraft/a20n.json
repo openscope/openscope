@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A320 Neo",
+    "icao": "A20N",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "D"
+    },
+    "ceiling": 39000,
+    "rate": {
+        "climb":      3500,
+        "descent":    3000,
+        "accelerate": 7,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.900,
+        "landing": 1.400
+    },
+    "speed":{
+        "min":     115,
+        "landing": 130,
+        "cruise":  454,
+        "cruiseM": null,
+        "max":     487,
+        "maxM":    0.83
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

@@ -3,7 +3,9 @@
     "name": "Malaysia Airlines",
     "callsign": {
         "name": "Malaysian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

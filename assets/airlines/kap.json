@@ -2,16 +2,26 @@
     "icao": "kap",
     "name": "Cape Air",
     "callsign": {
-        "name": "Care",
-        "length": 4
+        "name": "Cair",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##",
+            "#"
+        ]
     },
     "fleets": {
-        "micronesia": [
-            ["AT43", 2  ]
-        ],
         "default": [
-            ["C402", 83 ],
-            ["BN2P", 4  ]
+            ["AT43", 3],
+            ["BN2P", 2],
+            ["C402", 78]
+        ],
+        "micronesia": [
+            ["AT43", 3]
+        ],
+        "usa": [
+            ["BN2P", 2],
+            ["C402", 78]
         ]
     }
 }

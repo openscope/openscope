@@ -3,7 +3,9 @@
     "name": "Malindo Air",
     "callsign": {
         "name": "Malindo",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

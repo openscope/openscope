@@ -3,7 +3,9 @@
     "name": "Força Aerea Brasileira",
     "callsign": {
         "name": "FAB",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

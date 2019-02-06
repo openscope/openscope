@@ -1,17 +1,9 @@
 import _isArray from 'lodash/isArray';
-import _lowerCase from 'lodash/lowerCase';
+import _toLower from 'lodash/toLower';
+import { AIRLINE_NAME_FLEET_SEPARATOR } from '../constants/airlineConstants';
 import { choose_weight } from '../utilities/generalUtilities';
 
 // TODO: this file needs to be renamed to something more generalized.
-
-/**
- * Symobl that possibly seperates and airline name from its fleet classification
- *
- * @property NAME_FLEET_SEPERATOR
- * @type {string}
- * @final
- */
-const NAME_FLEET_SEPERATOR = '/';
 
 /**
  * Enemeration of an index value of `0`
@@ -31,9 +23,8 @@ const FIRST_INDEX = 0;
  */
 const SECOND_INDEX = 1;
 
-
 /**
- * Accepts a selected airline name, which may or may not contain the `NAME_FLEET_SEPERATOR`, and
+ * Accepts a selected airline name, which may or may not contain the `AIRLINE_NAME_FLEET_SEPARATOR`, and
  * returns the `airlineNameAndFleet` object with updated property values.
  *
  * @function _extractNameAndFleetFromCurrentAirline
@@ -41,18 +32,18 @@ const SECOND_INDEX = 1;
  * @param airlineNameAndFleet {object}
  * @return airlineNameAndFleet {object}
  */
-const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndFleet) => {
-    airlineNameAndFleet.name = _lowerCase(selectedAirline);
+function _extractNameAndFleetFromCurrentAirline(selectedAirline, airlineNameAndFleet) {
+    airlineNameAndFleet.name = _toLower(selectedAirline);
 
-    if (selectedAirline.indexOf(NAME_FLEET_SEPERATOR) > -1) {
-        const nameAndFleet = selectedAirline.split(NAME_FLEET_SEPERATOR);
+    if (selectedAirline.indexOf(AIRLINE_NAME_FLEET_SEPARATOR) > -1) {
+        const nameAndFleet = selectedAirline.split(AIRLINE_NAME_FLEET_SEPARATOR);
 
-        airlineNameAndFleet.name = _lowerCase(nameAndFleet[FIRST_INDEX]);
+        airlineNameAndFleet.name = _toLower(nameAndFleet[FIRST_INDEX]);
         airlineNameAndFleet.fleet = nameAndFleet[SECOND_INDEX];
     }
 
     return airlineNameAndFleet;
-};
+}
 
 // TODO: this method should be able to handle a string value as a parameter
 /**
@@ -66,13 +57,14 @@ const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndF
  * - 'aal/90long'
  * ```
  *
- * @method airlineNameAndFleetHelper
+ * @function airlineNameAndFleetHelper
  * @param airline {array<string>}
  * @return airlineNameAndFleet {object}
  */
-export const airlineNameAndFleetHelper = (airline) => {
+export function airlineNameAndFleetHelper(airline) {
     if (!_isArray(airline)) {
-        throw new TypeError(`Invalid parameter. Expected airline to be an array but instead received ${typeof airline}`);
+        throw new TypeError(`Invalid parameter. Expected airline to be an array ' +
+            'but instead received ${typeof airline}`);
     }
 
     // this could be a model object, but the values used here are temporary so we just use a constant
@@ -89,7 +81,7 @@ export const airlineNameAndFleetHelper = (airline) => {
     // we're being sneaky here. the `airlineNameAndFleet` object is created within this function. It then
     // gets sent off to the next function to be modified.
     return _extractNameAndFleetFromCurrentAirline(airline[FIRST_INDEX], airlineNameAndFleet);
-};
+}
 
 
 // @deprecated
@@ -101,10 +93,11 @@ export const airlineNameAndFleetHelper = (airline) => {
  * @param airlineList {array}
  * @return {object}
  */
-export const randomAirlineSelectionHelper = (airlineList) => {
+export function randomAirlineSelectionHelper(airlineList) {
     // TODO: a large portion of this function is duplicated above, refactor
     if (!_isArray(airlineList)) {
-        throw new TypeError(`Invalid parameter. Expected airlineList to be an array but instead received ${typeof airlineList}`);
+        throw new TypeError(`Invalid parameter. Expected airlineList to be an array ' +
+            'but instead received ${typeof airlineList}`);
     }
 
     // this could be a model object, but the values used here are temporary so we just use a constant
@@ -121,4 +114,4 @@ export const randomAirlineSelectionHelper = (airlineList) => {
     const selectedAirline = choose_weight(airlineList);
 
     return _extractNameAndFleetFromCurrentAirline(selectedAirline, airlineNameAndFleet);
-};
+}

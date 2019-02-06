@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import AppController from './AppController';
 import EventBus from './lib/EventBus';
-import { time, calculateDeltaTime } from './utilities/timeHelpers';
+import TimeKeeper from './engine/TimeKeeper';
+import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
@@ -46,75 +47,111 @@ export default class App {
 
         this.prop = prop;
         this.prop.complete = false;
-        this.prop.time = {};
-        this.prop.time.start = time();
-        this.prop.time.frames = 0;
-        this.prop.time.frame = {};
-        this.prop.time.frame.start = time();
-        this.prop.time.frame.count = 0;
-        this.prop.time.frame.last = time();
-        this.prop.time.frame.delta = 0;
-        this.prop.time.fps = 0;
         this.prop.log = LOG.DEBUG;
         this.prop.loaded = false;
 
-        return this.createHandlers()
-            .initiateDataLoad(airportLoadList, initialAirportToLoad);
+        return this.setupHandlers()
+            .loadInitialAirport(airportLoadList, initialAirportToLoad);
     }
 
     /**
      * Create event handlers
      *
      * @for App
-     * @method createHandlers
+     * @method setupHandlers
      * @chainable
      */
-    createHandlers() {
-        this.eventBus.on(EVENT.SHOULD_PAUSE_UPDATE_LOOP, this.updateRun);
+    setupHandlers() {
+        this.loadDefaultAiportAfterStorageIcaoFailureHandler = this.loadDefaultAiportAfterStorageIcaoFailure.bind(this);
+        this.loadAirlinesAndAircraftHandler = this.loadAirlinesAndAircraft.bind(this);
+        this.setupChildrenHandler = this.setupChildren.bind(this);
+        this.onPauseHandler = this._onPause.bind(this);
+        this.onUpdateHandler = this.update.bind(this);
+
+        this.eventBus.on(EVENT.PAUSE_UPDATE_LOOP, this.onPauseHandler);
 
         return this;
     }
 
     /**
-     * Lifecycle method. Should be called only once on initialization.
+     * Used to load data for the initial airport using an icao from
+     * either localStorage or `DEFAULT_AIRPORT_ICAO`
      *
-     * Used to load an initial data set from several sources.
+     * If a localStorage airport cannot be found, we will attempt
+     * to load the `DEFAULT_AIRPORT_ICAO`
+     *
+     * Lifecycle method. Should be called only once on initialization
      *
      * @for App
-     * @method setupChildren
+     * @method loadInitialAirport
      * @param airportLoadList {array<object>}  List of airports to load
      */
-    initiateDataLoad(airportLoadList, initialAirportToLoad) {
+    loadInitialAirport(airportLoadList, initialAirportToLoad) {
+        const initialAirportIcao = initialAirportToLoad.toLowerCase();
+
+        $.getJSON(`assets/airports/${initialAirportIcao}.json`)
+            .then((response) => this.loadAirlinesAndAircraftHandler(airportLoadList, initialAirportIcao, response))
+            .catch((error) => this.loadDefaultAiportAfterStorageIcaoFailureHandler(airportLoadList));
+    }
+
+    /**
+     * Used only when an attempt to load airport data with an icao in localStorage fails.
+     * In this case we attempt to load the default airport with this method
+     *
+     * Lifecycle method. Should be called only once on initialization
+     *
+     * @for App
+     * @method onLoadDefaultAirportAfterStorageIcaoFailure
+     * @param {array<object>} airportLoadList
+     */
+    loadDefaultAiportAfterStorageIcaoFailure(airportLoadList) {
+        $.getJSON(`assets/airports/${DEFAULT_AIRPORT_ICAO}.json`)
+            .then((defaultAirportResponse) => this.loadAirlinesAndAircraftHandler(
+                airportLoadList,
+                DEFAULT_AIRPORT_ICAO,
+                defaultAirportResponse
+            ));
+    }
+
+    /**
+     * Handler method called after data has loaded for the airline and aircraftTypeDefinitions datasets.
+     *
+     * Lifecycle method. Should be called only once on initialization
+     *
+     * @for App
+     * @method loadAirlinesAndAircraft
+     * @param {array>object>} airportLoadList
+     * @param {string} initialAirportIcao
+     * @param {object<string>} initialAirportResponse
+     */
+    loadAirlinesAndAircraft(airportLoadList, initialAirportIcao, initialAirportResponse) {
+        const airlineListPromise = $.getJSON('assets/airlines/airlines.json');
+        const aircraftListPromise = $.getJSON('assets/aircraft/aircraft.json');
+
         // This is provides a way to get async data from several sources in the app before anything else runs
-        // TODO: this is wrong. move this and make it less bad!
-        $.when(
-            $.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
-            $.getJSON('assets/airlines/airlines.json'),
-            $.getJSON('assets/aircraft/aircraft.json')
-        )
-            .done((airportResponse, airlineResponse, aircraftResponse) => {
-                this.setupChildren(
+        // we need to resolve data from two sources before the app can proceede. This data should always
+        // exist, if it doesn't, something has gone terribly wrong.
+        $.when(airlineListPromise, aircraftListPromise)
+            .done((airlineResponse, aircraftResponse) => {
+                this.setupChildrenHandler(
                     airportLoadList,
-                    airportResponse[0],
+                    initialAirportIcao,
+                    initialAirportResponse,
                     airlineResponse[0].airlines,
                     aircraftResponse[0].aircraft
                 );
-            })
-            .fail((jqXHR, textStatus, errorThrown) => {
-                console.error(textStatus);
             });
-
-        return this;
     }
 
     /**
      * Callback for a successful data load
      *
-     * An first load of data occurs on startup where we load the initial airport, airline definitions and
-     * aircraft definitiions. this method is called onComplete of that data load and is used to
+     * A first load of data occurs on startup where we load the initial airport, airline definitions and
+     * aircraft type definitiions. this method is called onComplete of that data load and is used to
      * instantiate various classes with the loaded data.
      *
-     * This method should run only on initial load of the app.
+     * This method will fire `.enable()` that will finish the initialization lifecycle and begine the game loop.
+     * Lifecycle method. Should be called only once on initialization
      *
      * @for App
      * @method setupChildren
@@ -123,9 +160,10 @@ export default class App {
      * @param airlineList {array}             List of all Airline definitions
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
-    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         this._appController.setupChildren(
             airportLoadList,
+            initialAirportIcao,
             initialAirportData,
             airlineList,
             aircraftTypeDefinitionList
@@ -195,7 +233,7 @@ export default class App {
      * @method init_pre
      */
     init_pre() {
-        this._appController.init_pre(this.getDeltaTime);
+        this._appController.init_pre();
 
         return this;
     }
@@ -224,27 +262,14 @@ export default class App {
      */
     done() {
         this._appController.done();
-
-        $(window).resize(this._appController.resize);
         this._appController.resize();
 
         this.prop.loaded = true;
 
-        this.ready();
-
         if (UPDATE) {
-            requestAnimationFrame(() => this.update());
+            requestAnimationFrame(this.onUpdateHandler);
         }
 
-
-        return this;
-    }
-
-    /**
-     * @for App
-     * @method ready
-     */
-    ready() {
         return this;
     }
 
@@ -293,57 +318,25 @@ export default class App {
             return this;
         }
 
-        requestAnimationFrame(() => this.update());
+        requestAnimationFrame(this.onUpdateHandler);
 
         this.updatePre();
         this.updatePost();
-        this.incrementFrame();
+        TimeKeeper.update();
 
         return this;
     }
 
     /**
      * @for App
-     * @method incrementFrame
-     */
-    incrementFrame() {
-        // the framerate is updated this often (seconds)
-        const frameDelay = 1;
-        const currentTime = time();
-        const elapsed = currentTime - this.prop.time.frame.start;
-
-        this.prop.time.frames += 1;
-        this.prop.time.frame.count += 1;
-
-        if (elapsed > frameDelay) {
-            this.prop.time.fps = this.prop.time.frame.count / elapsed;
-            this.prop.time.frame.count = 0;
-            this.prop.time.frame.start = currentTime;
-        }
-
-        this.prop.time.frame.delta = calculateDeltaTime(this.prop.time.frame.last);
-        this.prop.time.frame.last = currentTime;
-    }
-
-    /**
-     * @for App
-     * @method getDeltaTime
-     * @return {number}
-     */
-    getDeltaTime = () => {
-        return this.prop.time.frame.delta;
-    };
-
-    /**
-     * @for App
-     * @method updateRun
+     * @method _onPause
      * @param shouldUpdate {boolean}
      */
-    updateRun = (shouldUpdate) => {
+    _onPause(shouldUpdate) {
         if (!UPDATE && shouldUpdate) {
-            requestAnimationFrame(() => this.update());
+            requestAnimationFrame(this.onUpdateHandler);
         }
 
         UPDATE = shouldUpdate;
-    };
+    }
 }

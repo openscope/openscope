@@ -1,0 +1,17 @@
+{
+    "icao": "fdy",
+    "name": "Sun Air Express",
+    "callsign": {
+        "name": "Friendly",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C208", 20]
+        ]
+    }
+}

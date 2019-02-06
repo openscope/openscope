@@ -11,8 +11,11 @@
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
     "position": ["N38.17408043168461", "W85.736480707038", "501ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N38.17408043168461", "W85.736480707038"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [38.17408043168461, -85.736480707038],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 220,
@@ -21,7 +24,7 @@
     "arrivalRunway": "17L",
     "departureRunway": "17R",
     "airspace": [
-        { 
+        {
             "floor": 0,
             "ceiling": 100,
             "airspace_class": "C",
@@ -53,9 +56,9 @@
         }
     ],
     "fixes": {
-        "_RWY11294GADSN268": ["N38.18880", "W85.77804"],
-        "_RWY17R348RRROE333": ["N38.21339", "W85.75886"],
-        "_RWY35L168LEENE183": ["N38.14838", "W85.73555"],
+        "_RWY29GADSN268": ["N38.18880", "W85.77804"],
+        "_RWY35LRRROE333": ["N38.21339", "W85.75886"],
+        "_RWY17RLEENE183": ["N38.14838", "W85.73555"],
         "ALENN": ["N37.95973677162147", "W87.66478728675004"],
         "ALOMY": ["N38.08306786840786", "W86.10184478176800"],
         "APALO": ["N38.00573973623054", "W86.85976409333988"],
@@ -67,6 +70,7 @@
         "BRELL": ["N38.08749959286448", "W85.58775329003696"],
         "BUHBA": ["N38.27522209503794", "W85.88747405421600"],
         "BULCO": ["N38.00784976846791", "W85.68793486963310"],
+        "BWG"  : ["N36.92871042537329", "W86.44345340950882"],
         "CAESR": ["N38.12785914989624", "W85.95524596584137"],
         "CANBE": ["N38.32054180796434", "W85.98923491848025"],
         "CHERI": ["N38.23019770888988", "W86.51493071929468"],
@@ -120,6 +124,7 @@
         "OHAGI": ["N37.86829482079256", "W84.74352263812820"],
         "OLEDE": ["N37.20249551034650", "W84.67499541644419"],
         "ONMEE": ["N38.07463604121260", "W85.90402221095533"],
+        "OSINE": ["N37.53351667429137", "W86.31936283662856"],
         "PENTO": ["N38.32867588102035", "W87.28795623203877"],
         "PGSUS": ["N37.97305353617593", "W85.65840911279531"],
         "PKAGE": ["N38.07398739885196", "W85.57264708886412"],
@@ -375,9 +380,9 @@
             "name": "Apalo Three",
             "rwy": {
                 "17L": ["DROPA", "DIIME", "ONMEE"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "ONMEE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "LUUKE", "ALOMY"],
-                "35L": ["_RWY17R348RRROE333", "RRROE", "BUHBA", "ALOMY"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "ONMEE"],
+                "29": ["_RWY29GADSN268", "GADSN", "LUUKE", "ALOMY"],
+                "35L": ["_RWY35LRRROE333", "RRROE", "BUHBA", "ALOMY"],
                 "35R": ["GRIPZ", "SLATY", "BUHBA", "ALOMY"]
             },
             "body": ["DOWNS"],
@@ -385,9 +390,9 @@
                 "APALO": ["APALO"]
             },
             "draw": [
-                ["_RWY35L168LEENE183", "LEENE", "ONMEE", "DOWNS", "APALO*"],
-                ["_RWY17R348RRROE333", "RRROE", "BUHBA", "ALOMY", "DOWNS"],
-                ["_RWY11294GADSN268", "GADSN", "LUUKE", "ALOMY"],
+                ["_RWY17RLEENE183", "LEENE", "ONMEE", "DOWNS", "APALO*"],
+                ["_RWY35LRRROE333", "RRROE", "BUHBA", "ALOMY", "DOWNS"],
+                ["_RWY29GADSN268", "GADSN", "LUUKE", "ALOMY"],
                 ["DROPA", "DIIME", "ONMEE"],
                 ["GRIPZ", "SLATY", "BUHBA"]
             ]
@@ -397,9 +402,9 @@
             "name": "Cargo Two",
             "rwy": {
                 "17L": ["DROPA", "DIIME", "ONMEE", "DOCKE"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "ONMEE", "DOCKE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "LUUKE"],
-                "35L": ["_RWY17R348RRROE333", "RRROE", "BUHBA"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "ONMEE", "DOCKE"],
+                "29": ["_RWY29GADSN268", "GADSN", "LUUKE"],
+                "35L": ["_RWY35LRRROE333", "RRROE", "BUHBA"],
                 "35R": ["GRIPZ", "SLATY", "BUHBA"]
             },
             "body": [],
@@ -417,9 +422,9 @@
             "name": "Fedra Three",
             "rwy": {
                 "17L": ["DROPA"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "PKAGE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "LUUKE", "IAMUR", "FADDR"],
-                "35L": ["_RWY17R348RRROE333", "RRROE", "LLAWS", "GLDIE"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "PKAGE"],
+                "29": ["_RWY29GADSN268", "GADSN", "LUUKE", "IAMUR", "FADDR"],
+                "35L": ["_RWY35LRRROE333", "RRROE", "LLAWS", "GLDIE"],
                 "35R": ["GRIPZ", "BAALK", "SIXMI", "GLDIE"]
             },
             "body": ["FRATE", "FEDRA"],
@@ -441,9 +446,9 @@
             "name": "Strep Three",
             "rwy": {
                 "17L": ["DROPA", "DIIME", "ONMEE", "CANBE"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "ONMEE", "CANBE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "CANBE"],
-                "35L": ["_RWY17R348RRROE333", "RRROE"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "ONMEE", "CANBE"],
+                "29": ["_RWY29GADSN268", "GADSN", "CANBE"],
+                "35L": ["_RWY35LRRROE333", "RRROE"],
                 "35R": ["GRIPZ", "YAGRR"]
             },
             "body": [],
@@ -672,7 +677,7 @@
             "origin": "KSDF",
             "destination": "",
             "category": "departure",
-            "route": "KSDF.CRRGO2.CRRGO",
+            "route": "KSDF.CRRGO2.CRRGO..OSINE..BWG",
             "altitude": "",
             "speed": "",
             "method": "random",

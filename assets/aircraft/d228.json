@@ -1,0 +1,37 @@
+{
+    "name": "Dornier 228",
+    "icao": "D228",
+    "engines": {
+        "number": 2,
+        "type": "T"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 3,
+        "lahso": 2,
+        "recat": "F"
+    },
+    "ceiling": 28000,
+    "rate": {
+        "climb":      1500,
+        "descent":    800,
+        "accelerate": 3,
+        "decelerate": 2
+    },
+    "runway": {
+        "takeoff": 0.700,
+        "landing": 0.450
+    },
+    "speed":{
+        "min":     70,
+        "landing": 85,
+        "cruise":  210,
+        "cruiseM": null,
+        "max":     237,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

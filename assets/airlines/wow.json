@@ -1,0 +1,22 @@
+{
+    "icao": "wow",
+    "name": "WOW Air",
+    "callsign": {
+        "name": "Wow Air",
+        "callsignFormats": [
+            "#@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A20N", 1],
+            ["A21N", 2],
+            ["A320", 2],
+            ["A321", 12],
+            ["A333", 3]
+        ],
+        "a320": [
+            ["A320", 2]
+        ]
+    }
+}

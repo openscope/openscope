@@ -8,31 +8,41 @@
     font-family: Monospace, serif;
     font-size: 12px;
     max-width: 500px;
-    background-color: @background-dark;
-    transition: ease-in-out all 0.3s;
+    background-color: @dark-06;
+    box-sizing: border-box;
+    transition: all ease-in-out 0.3s;
+    z-index: 100;
 }
 
 .mix-stripView_isHidden {
     right: -390px;
 }
 
+.stripTitle {
+    background-color: #222222;
+    color: #ffffff;
+    font-size: 1.25em;
+    padding: 5px 0;
+    text-align: center;
+}
+
 .stripView-list {
-    max-height: 100%;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     width: ~"calc(100% - " @spacing-2x ~")";
-    position: absolute;
-    top: @spacing-2x;
-    bottom: @spacing-2x;
-    left: @spacing-2x;
     overflow-y: scroll;
     list-style-type: none;
-    transform: scaleY(-1);
+    height: ~"calc(50% - 1.25em - 10px)";
+    display: flex;
+    flex-direction: column;
 }
 
 .stripViewItem {
     border: 1px solid #222;
     transition: ease-in-out margin 0.15s;
-    transform: scaleY(-1);
+}
+
+.stripViewItem:first-child {
+    margin-top: auto;
 }
 
 .active,
@@ -58,6 +68,7 @@
     text-align: center;
     overflow: hidden;
     vertical-align: top;
+    box-sizing: border-box;
 }
 
 .stripView-table-td + .stripView-table-td {
@@ -82,44 +93,79 @@
     text-align: left;
 }
 
+.stripView-table-tr > .stripView-table-td:nth-child(0n+5) {
+    width: 50px;
+    text-align: right;
+    border: none;
+}
+
+.stripView-preplanning {
+    color: red;
+}
+
 .mix-stripView-table_borderTop {
     border-top: 1px solid;
 }
-
 
 .stripView-trigger {
     height: 100%;
     width: 10px;
     float: left;
+    background-color: @dark-06;
     cursor: pointer;
-}
-
-.mix-stripView_isHidden .stripView-trigger:after {
-    transform: rotateY(-180deg);
 }
 
 .stripView-trigger:after {
     position: absolute;
     top: 40%;
     left: -25px;
-    padding: 20px 10px 20px 10px;
-    background: @background-dark;
+    padding: 20px 6px;
     color: @white;
     font-weight: 700;
-    content: '>|';
-    border-radius: 8px;
+    content: ">|";
+    border-radius: 8px 0 0 8px;
 }
 
-.stripView-trigger:hover:after,
-.stripView-trigger:hover {
-    background-color: @dark-gray;
+.mix-stripView_isHidden .stripView-trigger:after {
+    border-radius: 0 8px 8px 0;
+    transform: rotateY(-180deg);
 }
 
+// grouped styles for open/close hover/no hover styles
+.mix-stripView_isHidden .stripView-trigger,
+.mix-stripView_isHidden .stripView-trigger:after {
+    background-color: @background-dark;
+}
 
+.mix-stripView_isHidden .stripView-trigger:hover,
+.mix-stripView_isHidden .stripView-trigger:hover:after {
+    background-color: @dark-06;
+}
+
+.stripView-trigger {
+    // using transparent here so our rgba() opacity values don't stack up
+    background-color: transparent;
+}
+
+.stripView-trigger:after {
+    background-color: @dark-06;
+}
+
+.stripView-trigger:hover,
+.stripView-trigger:hover:after {
+    background-color: @background-dark;
+}
+
+// TODO: rename these to follow js classname conventions (ex: `.js-isDeparture`)
+// these classes are added by JS
 .departure {
     border-left: 5px solid @departure-accent;
 }
 
 .arrival {
     border-left: 5px solid @arrival-accent;
+}
+
+.overflight {
+    border-left: 5px solid @overflight-accent;
 }

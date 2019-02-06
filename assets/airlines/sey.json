@@ -1,0 +1,18 @@
+{
+    "icao": "sey",
+    "name": "Air Seychelles",
+    "callsign": {
+        "name": "Seychelles",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 2]
+        ],
+        "a320": [
+            ["A320", 2]
+        ]
+    }
+}

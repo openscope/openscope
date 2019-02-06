@@ -3,14 +3,17 @@
     "name": "JetBlue",
     "callsign": {
         "name": "JetBlue",
-        "length": 3,
-        "alpha": false
+        "callsignFormats": [
+            "####",
+            "###",
+            "##"
+        ]
     },
     "fleets": {
         "default": [
             ["A320", 130],
-            ["A321", 27 ],
-            ["E190", 60 ]
+            ["A321", 56],
+            ["E190", 60]
         ]
     }
 }

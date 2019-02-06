@@ -23,7 +23,7 @@ ava('does not call .setCurrentPosition() when airportData does not have a positi
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
-    model.parse(invalidAirportJsonMock);
+    model.init(invalidAirportJsonMock);
 
     t.false(setCurrentPositionSpy.called);
 });
@@ -32,7 +32,7 @@ ava('calls .setCurrentPosition() when airportData has a position value', (t) => 
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
-    model.parse(AIRPORT_JSON_KLAS_MOCK);
+    model.init(AIRPORT_JSON_KLAS_MOCK);
 
     t.true(setCurrentPositionSpy.calledOnce);
 });
@@ -43,7 +43,7 @@ ava('.setCurrentPosition() returns early when passed an invalid coordinate', (t)
 
     model.setCurrentPosition([]);
 
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 });
 
 ava('.buildAirportAirspace() returns early when passed a null or undefined argument', (t) => {
@@ -52,7 +52,7 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
 
     model.buildAirportAirspace();
 
-    t.true(model.airspace === null);
+    t.true(!model.airspace);
 });
 
 ava('.buildAirportMaps() returns early when passed a null or undefined argument', (t) => {
@@ -61,7 +61,7 @@ ava('.buildAirportMaps() returns early when passed a null or undefined argument'
 
     model.buildAirportMaps();
 
-    t.true(model.maps === null);
+    t.true(!model.maps);
 });
 
 ava('.buildRestrictedAreas() returns early when passed a null or undefined argument', (t) => {
@@ -70,7 +70,7 @@ ava('.buildRestrictedAreas() returns early when passed a null or undefined argum
 
     model.buildRestrictedAreas();
 
-    t.true(model.restricted_areas === null);
+    t.true(!model.restricted_areas);
 });
 
 ava('.updateCurrentWind() returns early when passed a null or undefined argument', (t) => {
@@ -126,7 +126,7 @@ ava('.getRunwayByName() returns null when passed an invalid runwayname', (t) => 
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const result = model.getRunway();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.getActiveRunwayForCategory() returns the correct RunwayModel for departure', (t) => {

@@ -3,12 +3,28 @@
     "name": "Stobart Air",
     "callsign": {
         "name": "Stobart",
-        "length": 3
+        "callsignFormats": [
+            "##@@",
+            "###@",
+            "##@",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
-            ["AT72", 6],
-            ["AT43", 4]
+            ["AT43", 1],
+            ["AT75", 2],
+            ["AT76", 13],
+            ["E190", 2]
+        ],
+        "einRegional": [
+            ["AT43", 1],
+            ["AT76", 11]
+        ],
+        "bee": [
+            ["AT75", 2],
+            ["AT76", 2],
+            ["E190", 2]
         ]
     }
 }

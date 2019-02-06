@@ -1,0 +1,24 @@
+{
+    "icao": "sxs",
+    "name": "SunExpress",
+    "callsign": {
+        "name": "Sunexpress",
+        "callsignFormats": [
+            "#@@",
+            "##@",
+            "#@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 4],
+            ["B738", 50]
+        ],
+        "a320": [
+            ["A320", 4]
+        ],
+        "b738": [
+            ["B738", 50]
+        ]
+    }
+}

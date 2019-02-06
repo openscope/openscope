@@ -11,8 +11,11 @@
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
     "position": ["N48d6m37.07", "E16d34m10.92"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N48d6m37.07", "E16d34m10.92"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N48d6m37.07", "E16d34m10.92"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 140,
@@ -700,7 +703,7 @@
                 "29": [],
                 "34": []
             },
-            "draw": [                
+            "draw": [
                 ["NERDU", "WW987", "WW985", "WW983", "WW981", "WW979", "WW977", "WW975", "WW974", "WW973", "WW972", "WW971", "WW970"]
             ]
         },
@@ -1105,7 +1108,6 @@
                 ["azq", 2],
                 ["baw", 6],
                 ["bel", 3],
-                ["ber", 17],
                 ["bti", 2]
             ]
         },
@@ -1152,7 +1154,6 @@
                 ["aui", 2],
                 ["baw", 6],
                 ["bel", 3],
-                ["ber", 16],
                 ["bti", 2],
                 ["cal/long", 1],
                 ["dlh", 10],
@@ -1283,7 +1284,6 @@
                 ["aui", 2],
                 ["baw", 6],
                 ["bel", 3],
-                ["ber", 16],
                 ["bti", 2],
                 ["cal/long", 1],
                 ["dlh", 10],
@@ -1325,5 +1325,8 @@
                 ["swr/long", 1]
             ]
         }
-    ]
+    ],
+    "maps": {
+        "base": []
+    }
 }

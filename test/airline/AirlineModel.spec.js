@@ -7,8 +7,7 @@ import _map from 'lodash/map';
 import AirlineModel from '../../src/assets/scripts/client/airline/AirlineModel';
 import {
     AIRLINE_DEFINITION_MOCK,
-    AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK,
-    NOVEMBER_AIRLINE_MOCK
+    AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK
 } from './_mocks/airlineMocks';
 
 ava('throws when called with invalid data', (t) => {
@@ -93,35 +92,6 @@ ava('.getRandomAircraftType() calls ._getRandomAircraftTypeFromFleet() fleet is 
     t.true(_getRandomAircraftTypeFromFleetSpy.calledWithExactly(fleetNameMock));
 });
 
-ava('.generateFlightNumber() creates a flightNumber made up of numbers if !flightNumberGeneration.alphaNumeric', (t) => {
-    const numericRegex = /[0-9]+$/;
-    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
-    const result = model.generateFlightNumber();
-
-    t.true(result.length === model.flightNumberGeneration.length);
-    t.true(numericRegex.test(result));
-});
-
-ava('.generateFlightNumber() creates a flightNumber made up of numbers and letters if flightNumberGeneration.alphaNumeric', (t) => {
-    const alphaNumericRegex = /\w+/;
-    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
-    model.flightNumberGeneration.length = 5;
-    model.flightNumberGeneration.alphaNumeric = true;
-
-    const result = model.generateFlightNumber();
-
-    t.true(result.length === model.flightNumberGeneration.length);
-    t.true(alphaNumericRegex.test(result));
-});
-
-ava.skip('.generateFlightNumber() creates a flightNumber with a prefix', (t) => {
-    const expectedResult = 'N';
-    const model = new AirlineModel(NOVEMBER_AIRLINE_MOCK);
-    const result = model.generateFlightNumber();
-
-    t.true(result[0] === expectedResult);
-});
-
 ava('._getRandomAircraftTypeFromFleet() throws if it received an invalid fleetName', (t) => {
     const fleetNameMock = 'threeve';
     const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
@@ -142,6 +112,14 @@ ava('._transformFleetNamesToLowerCase() transforms each type in fleet to lowerca
     const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
 
     t.true(model.fleets.default[0][[0]] === 'a319');
+});
+
+ava('.generateFlightNumber() returns a valid callsign when called', (t) => {
+    const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
+    const result = model.generateFlightNumber();
+    const regex = /[^A-Z]/;
+
+    t.true(regex.test(result) && result.charAt(0) !== 0);
 });
 
 ava('._isActiveFlightNumber() returns false if a given flightNumber is not present in activeFlightNumbers', (t) => {

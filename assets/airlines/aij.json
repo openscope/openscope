@@ -3,12 +3,17 @@
     "name": "Interjet",
     "callsign": {
         "name": "InterJet",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["SU9",  20],
-            ["A320", 42]
+            ["A20N", 4],
+            ["A21N", 3],
+            ["A320", 47],
+            ["A321", 6],
+            ["SU95", 22]
         ]
     }
 }

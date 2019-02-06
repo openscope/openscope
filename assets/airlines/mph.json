@@ -3,13 +3,13 @@
     "name": "Martinair",
     "callsign": {
         "name": "Martinair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B744", 1],
-            ["TB20", 2],
-            ["TOBA", 4]
+            ["B744", 1]
         ]
     }
 }

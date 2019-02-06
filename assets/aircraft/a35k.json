@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A350-1000",
+    "icao": "A35K",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "H",
+    "category": {
+        "srs": 3,
+        "lahso": 9,
+        "recat": "B"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3500,
+        "descent":    2000,
+        "accelerate": 6,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 3.200,
+        "landing": 2.300
+    },
+    "speed":{
+        "min":     125,
+        "landing": 140,
+        "cruise":  487,
+        "cruiseM": null,
+        "max":     510,
+        "maxM":    0.89
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

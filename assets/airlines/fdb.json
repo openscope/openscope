@@ -3,11 +3,24 @@
     "name": "Flydubai",
     "callsign": {
         "name": "Sky Dubai",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 50]
+            ["B38M", 6],
+            ["B738", 55]
+        ],
+        "b38m": [
+            ["B38M", 6]
+        ],
+        "b73x": [
+            ["B38M", 6],
+            ["B738", 55]
+        ],
+        "b738": [
+            ["B738", 116]
         ]
     }
 }

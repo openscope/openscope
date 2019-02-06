@@ -1,0 +1,19 @@
+{
+    "icao": "eja",
+    "name": "NetJets",
+    "callsign": {
+        "name": "ExecJet",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["C550", 1],
+            ["C56X", 30],
+            ["E55P", 10],
+            ["F2TH", 18],
+            ["GLEX", 8],
+            ["GLF5", 10],
+            ["H25B", 46]
+        ]
+    }
+}

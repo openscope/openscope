@@ -11,8 +11,11 @@
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
     "position": ["N41d58.639208", "W87d54.480355", "680ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N41d58.639208", "W87d54.480355"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N41d58.639208", "W87d54.480355"],
+        "radius_nm": 5.0
+    },
     "has_terrain": false,
     "wind": {
         "angle": 270,
@@ -495,7 +498,6 @@
                 ["aua/long", 3],
                 ["aza/long", 3],
                 ["baw/long", 5],
-                ["ber/long", 2],
                 ["cpa",      3],
                 ["dal",      5],
                 ["dal/long", 3],
@@ -631,7 +633,6 @@
                 ["aua/long", 3],
                 ["aza/long", 3],
                 ["baw/long", 5],
-                ["ber/long", 2],
                 ["dal",      5],
                 ["dal/long", 3],
                 ["dlh/long", 5],

@@ -1,0 +1,16 @@
+{
+    "icao": "sil",
+    "name": "Silver Airways",
+    "callsign": {
+        "name": "Silver Wings",
+        "callsignFormats": [
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT45", 1],
+            ["SF34", 22]
+        ]
+    }
+}
