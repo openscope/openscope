@@ -124,6 +124,7 @@ export default class ChangelogController {
      * @private
      */
     _onChangelogToggle() {
+        this.$changelogToggle.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this.$changelogContainer.toggleClass(SELECTORS.CLASSNAMES.CHANGELOG_VISIBLE);
     }
 
