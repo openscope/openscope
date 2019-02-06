@@ -9,7 +9,6 @@ import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
-import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants'
 import { tau } from '../math/circle';
 import {
     sin,
