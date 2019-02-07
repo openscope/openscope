@@ -1,4 +1,25 @@
-.changelog-container {
+.changelogContainer_isOpen {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.changelog-hd {
+    min-height: 1.5em;
+    padding: @spacing-2x 0 7px 0;
+    font-size: 170%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.changelog-version {
+    min-height: 1.5em;
+    padding: @spacing-1x 0 4px 0;
+    font-size: 140%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.js-changelogContainer {
     width: 480px;
     max-height: 480px;
     overflow-y: scroll;
@@ -20,32 +41,7 @@
     z-index: 200;
 }
 
-.changelog-container.changelog-container-is-visible {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.changelog-container .changelog-title {
-    min-height: 1.5em;
-    padding: @spacing-2x 0 7px 0;
-    font-size: 170%;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.changelog-container .changelog-version {
-    min-height: 1.5em;
-    padding: @spacing-1x 0 4px 0;
-    font-size: 140%;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.changelog-container .changelog a {
-    color: @light-gray;
-}
-
-.changelog-container .dismiss-changelog {
+.js-dismissChangelog {
     min-height: 1.5em;
     padding: @spacing-1x 0 4px 0;
     font-size: 140%;
@@ -53,45 +49,4 @@
     text-decoration: underline;
     color: @light-gray;
     box-sizing: border-box;
-}
-
-/*
-    The headers are automatically built from markdown files,
-    so we can't select them by classes
-*/
-.changelog h1,
-.changelog h2,
-.changelog h3,
-.changelog h4,
-.changelog h5,
-.changelog h6 {
-    font-size: 16px;
-    padding-top: 15px;
-}
-
-.changelog li {
-    padding: 15px 0 0 0;
-}
-
-.changelog li + li {
-    padding: 5px 0;
-}
-
-.changelog a {
-    color: @light-gray;
-}
-
-.changelog table,
-.changelog th,
-.changelog td {
-    border: 1px solid #666666;
-    border-collapse: collapse;
-}
-
-.changelog th {
-    padding: 5px;
-}
-
-.changelog td {
-    padding: 3px;
 }

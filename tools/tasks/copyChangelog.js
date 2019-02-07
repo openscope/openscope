@@ -31,21 +31,6 @@ function parseMarkdown(markdown) {
 }
 
 /**
- * Gets the first `h1` HTML element in the stringified HTML.
- *
- * @method getHtmlElement
- * @param {String} totalHtml
- * @returns {String} the HTML section
- */
-function getHtmlElement(totalHtml) {
-    const searchKey = '<h1';
-    // The second element, because the first should be a null string
-    const foundHtml = totalHtml.split(searchKey)[1];
-
-    return searchKey + foundHtml;
-}
-
-/**
  * Writes the changelog string to the destination file.
  *
  * @method writeOutput
@@ -76,9 +61,8 @@ function writeOutput(stringToWrite) {
 function copyChangelog() {
     const markdown = loadChangelogMarkdown();
     const html = parseMarkdown(markdown);
-    const changelogString = getHtmlElement(html);
 
-    writeOutput(changelogString);
+    writeOutput(html);
 
     fancyLog(colors.green('--- Writing changelog to public/assets/changelog.json'));
 

@@ -27,15 +27,7 @@ export default class ChangelogController {
          * @property $changelogContainer
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogContainer = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTAINER);
-
-        /**
-         * The DOM element that displays the version above the changelog
-         *
-         * @property $changelogVersion
-         * @type {JQuery|HTMLElement}
-         */
-        this.$changelogVersion = $(SELECTORS.DOM_SELECTORS.CHANGELOG_VERSION);
+        this.$changelogContainer = null;
 
         /**
          * Changelog data element - where the text goes
@@ -43,7 +35,7 @@ export default class ChangelogController {
          * @property $changelogData
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogData = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTENT);
+        this.$changelogData = null;
 
         /**
          * The link at the bottom of the container to
@@ -52,7 +44,7 @@ export default class ChangelogController {
          * @property $changelogDismiss
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogDismiss = $(SELECTORS.DOM_SELECTORS.CHANGELOG_DISMISS);
+        this.$changelogDismiss = null;
 
         /**
          * Toggle selector for the changelog
@@ -61,7 +53,7 @@ export default class ChangelogController {
          * @property $changelogToggle
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogToggle = $(SELECTORS.DOM_SELECTORS.CHANGELOG_TOGGLE);
+        this.$changelogToggle = null;
 
         /**
          * A string representation of the actual changelog.
@@ -71,16 +63,38 @@ export default class ChangelogController {
          */
         this.content = null;
 
-        /**
-         * The current version of openScope.
-         *
-         * @property version
-         * @type {String}
-         */
-        this.version = null;
-
-        this._setupHandlers()
+        this.init()
+            ._createChildren()
+            ._setupHandlers()
             .enable();
+    }
+
+    /**
+     * Init method
+     *
+     * @for ChangelogController
+     * @method init
+     * @chainable
+     */
+    init() {
+        return this;
+    }
+
+    /**
+     * Sets up the DOM class properties
+     *
+     * @for ChangelogController
+     * @method _createChildren
+     * @private
+     * @chainable
+     */
+    _createChildren() {
+        this.$changelogContainer = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTAINER);
+        this.$changelogData = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTENT);
+        this.$changelogDismiss = $(SELECTORS.DOM_SELECTORS.CHANGELOG_DISMISS);
+        this.$changelogToggle = $(SELECTORS.DOM_SELECTORS.CHANGELOG_TOGGLE);
+
+        return this;
     }
 
     /**
@@ -94,9 +108,6 @@ export default class ChangelogController {
     _setupHandlers() {
         this._onChangelogToggleHandler = this._onChangelogToggle.bind(this);
 
-        this.$changelogToggle.on('click', this._onChangelogToggleHandler);
-        this.$changelogDismiss.on('click', this._onChangelogToggleHandler);
-
         return this;
     }
 
@@ -107,10 +118,10 @@ export default class ChangelogController {
      * @method enable
      */
     enable() {
-        this.content = '<p>Loading...</p>';
-        this.version = window.GLOBAL.VERSION;
+        this.$changelogToggle.on('click', this._onChangelogToggleHandler);
+        this.$changelogDismiss.on('click', this._onChangelogToggleHandler);
 
-        this.$changelogVersion.text(`openScope v${this.version}`);
+        this.content = '<p>Loading...</p>';
         this.$changelogData.html(this.content);
 
         this.loadChangelogContent();
@@ -167,7 +178,7 @@ export default class ChangelogController {
             let loadedContent = data.changelog;
 
             // Strip out the version, as it's already in the title
-            loadedContent = loadedContent.split('</h1>')[1];
+            // loadedContent = loadedContent.split('</h1>')[1];
 
             this.content = loadedContent;
             this.onLoadComplete();
