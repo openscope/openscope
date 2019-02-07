@@ -52,3 +52,17 @@
     color: @light-gray;
     box-sizing: border-box;
 }
+
+/*
+    The headers are automatically built from markdown files,
+    so we can't select them by classes
+*/
+.changelog h1,
+.changelog h2,
+.changelog h3,
+.changelog h4,
+.changelog h5,
+.changelog h6 {
+    font-size: 16px;
+    padding-top: 15px;
+}
