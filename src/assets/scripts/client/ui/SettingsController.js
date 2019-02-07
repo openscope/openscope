@@ -8,35 +8,39 @@ import GameController from '../game/GameController';
  * @type {string}
  * @final
  */
-const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
+const UI_SETTINGS_MODAL_TEMPLATE = `
+    <div class="option-dialog dialog">
+        <p class="dialog-title">Options</p>
+        <div class="dialog-body nice-scrollbar"></div>
+    </div>`;
 
 /**
  * @property UI_OPTION_CONTAINER_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
+const UI_OPTION_CONTAINER_TEMPLATE = '<div class="form-element"></div>';
 
 /**
  * @property UI_OPTION_LABEL_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTION_LABEL_TEMPLATE = '<span class="option-description"></span>';
+const UI_OPTION_LABEL_TEMPLATE = '<span class="form-label"></span>';
 
 /**
  * @property UI_OPTION_SELECTOR_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
+const UI_OPTION_SELECTOR_TEMPLATE = '<span class="form-type-select"></span>';
 
 /**
  * @property UI_STATIC_TEXT_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_STATIC_TEXT_TEMPLATE = '<span class="option-static-text"></span>';
+const UI_STATIC_TEXT_TEMPLATE = '<span class="form-static-text"></span>';
 
 /**
  * @class SettingsController
@@ -52,6 +56,24 @@ export default class SettingsController {
          */
         this.$element = $element;
 
+        /**
+         * Dialog DOM element
+         *
+         * @property $dialog
+         * @type {jquery|HTML Element}
+         * @default null
+         */
+        this.$dialog = null;
+
+        /**
+         * DOM element of the dialogBody
+         *
+         * @property $dialogBody
+         * @type {jquery|HTML Element}
+         * @default null
+         */
+        this.$dialogBody = null;
+
         this.init();
     }
 
@@ -62,7 +84,8 @@ export default class SettingsController {
      * @chainable
      */
     init() {
-        const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
+        this.$dialog = $(UI_SETTINGS_MODAL_TEMPLATE);
+        this.$dialogBody = this.$dialog.find('.dialog-body');
         const $version = this._buildVersionTemplate();
         const descriptions = GameController.game.option.getDescriptions();
 
@@ -72,12 +95,12 @@ export default class SettingsController {
             }
 
             const $container = this._buildOptionTemplate(opt);
-            $options.append($container);
+            this.$dialogBody.append($container);
         });
 
         $version.addClass('simulator-version');
-        $options.append($version);
-        this.$element.append($options);
+        this.$dialogBody.append($version);
+        this.$element.append(this.$dialog);
 
         return this;
     }
@@ -101,7 +124,6 @@ export default class SettingsController {
         $container.append($label);
         $label.text(option.description);
 
-        // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
             const $optionSelectTempalate = this._buildOptionSelectTemplate(option.optionList[i], selectedOption);
 
