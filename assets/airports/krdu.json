@@ -930,10 +930,10 @@
             "destination": "KRDU",
             "category": "arrival",
             "route": "ROA.ALDAN2.KRDU23R",
-            "altitude": [25000, 31000],
-            "speed": 320,
+            "altitude": [25000, 29000],
+            "speed": 280,
             "method": "random",
-            "rate": 4.8,
+            "rate": 3.99,
             "airlines": [
                 ["aal", 23],
                 ["asa", 1],
@@ -946,7 +946,6 @@
                 ["gjs", 10],
                 ["jia", 1],
                 ["lof", 7],
-                ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
                 ["swa", 25],
@@ -957,11 +956,24 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "ILM.BLOGS2.KRDU23R",
-            "altitude": [30000, 36000],
-            "speed": 320,
+            "route": "ROA.ALDAN2.KRDU23R",
+            "altitude": [19000, 21000],
+            "speed": 280,
             "method": "random",
-            "rate": 0.4,
+            "rate": 0.81,
+            "airlines": [
+                ["n/fastGA", 25]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KRDU",
+            "category": "arrival",
+            "route": "ILM.BLOGS2.KRDU23R",
+            "altitude": [28000, 32000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.33,
             "airlines": [
                 ["aal", 23],
                 ["aay", 1],
@@ -975,7 +987,6 @@
                 ["jbu", 7],
                 ["jia", 1],
                 ["lof", 7],
-                ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
                 ["swa", 25]
@@ -985,11 +996,24 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "HPW.KAROO2.KRDU23R",
-            "altitude": [28000, 34000],
-            "speed": 320,
+            "route": "ILM.BLOGS2.KRDU23R",
+            "altitude": [20000, 22000],
+            "speed": 280,
             "method": "random",
-            "rate": 3.7,
+            "rate": 0.07,
+            "airlines": [
+                ["n/fastGA", 25]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KRDU",
+            "category": "arrival",
+            "route": "HPW.KAROO2.KRDU23R",
+            "altitude": [24000, 28000],
+            "speed": 270,
+            "method": "random",
+            "rate": 3.08,
             "airlines": [
                 ["aal", 23],
                 ["aal/long", 1],
@@ -1004,7 +1028,6 @@
                 ["jbu", 7],
                 ["jia", 1],
                 ["lof", 7],
-                ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
                 ["swa", 25],
@@ -1015,11 +1038,24 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "IRQ.MALNR3.KRDU23R",
-            "altitude": [33000, 39000],
-            "speed": 320,
+            "route": "HPW.KAROO2.KRDU23R",
+            "altitude": [20000, 22000],
+            "speed": 270,
             "method": "random",
-            "rate": 3.2,
+            "rate": 0.62,
+            "airlines": [
+                ["n/fastGA", 25]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KRDU",
+            "category": "arrival",
+            "route": "IRQ.MALNR3.KRDU23R",
+            "altitude": [27000, 31000],
+            "speed": 280,
+            "method": "random",
+            "rate": 2.66,
             "airlines": [
                 ["aal", 23],
                 ["aay", 1],
@@ -1034,11 +1070,23 @@
                 ["gjs", 10],
                 ["jia", 1],
                 ["lof", 7],
-                ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
                 ["swa", 25],
                 ["ual", 9]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KRDU",
+            "category": "arrival",
+            "route": "IRQ.MALNR3.KRDU23R",
+            "altitude": [23000, 25000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.54,
+            "airlines": [
+                ["n/fastGA", 25]
             ]
         }
     ],
