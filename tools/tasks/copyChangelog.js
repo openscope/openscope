@@ -18,6 +18,21 @@ function loadChangelogMarkdown() {
 }
 
 /**
+ * Strips out everything but the most recent changelog entry.
+ *
+ * @method getLatestEntry
+ * @param {String} markdown
+ * @returns {String} the data from the latest entry 
+ */
+function getLatestEntry(markdown) {
+    const headerRegexp = /# [0-9]\.[0-9]+\.[0-9] \(.*\)/g;
+    const splitMarkdown = markdown.split(headerRegexp);
+
+    // Return only the latest data
+    return splitMarkdown[1];
+}
+
+/**
  * Encapsulates the `makeHtml(String)` function provided by showdown.
  *
  * @method parseMarkdown
@@ -60,7 +75,8 @@ function writeOutput(stringToWrite) {
  */
 function copyChangelog() {
     const markdown = loadChangelogMarkdown();
-    const html = parseMarkdown(markdown);
+    const entry = getLatestEntry(markdown);
+    const html = parseMarkdown(entry);
 
     writeOutput(html);
 

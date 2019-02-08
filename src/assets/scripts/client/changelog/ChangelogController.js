@@ -175,12 +175,7 @@ export default class ChangelogController {
         const changelogPromise = this.contentQueue.add(options);
 
         changelogPromise.done((data, textStatus, jqXHR) => {
-            let loadedContent = data.changelog;
-
-            // Strip out the version, as it's already in the title
-            loadedContent = loadedContent.split('</h1>')[1];
-
-            this.content = loadedContent;
+            this.content = data.changelog;
             this.onLoadComplete();
         });
     }
