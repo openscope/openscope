@@ -178,7 +178,7 @@ export default class ChangelogController {
             let loadedContent = data.changelog;
 
             // Strip out the version, as it's already in the title
-            // loadedContent = loadedContent.split('</h1>')[1];
+            loadedContent = loadedContent.split('</h1>')[1];
 
             this.content = loadedContent;
             this.onLoadComplete();

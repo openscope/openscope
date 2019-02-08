@@ -1,25 +1,4 @@
-.changelogContainer_isOpen {
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.changelog-hd {
-    min-height: 1.5em;
-    padding: @spacing-2x 0 7px 0;
-    font-size: 170%;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.changelog-version {
-    min-height: 1.5em;
-    padding: @spacing-1x 0 4px 0;
-    font-size: 140%;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.js-changelogContainer {
+.changelog-container {
     width: 480px;
     max-height: 480px;
     overflow-y: scroll;
@@ -41,12 +20,32 @@
     z-index: 200;
 }
 
-.js-dismissChangelog {
+.changelog-container_isOpen {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.changelog-hd {
+    min-height: 1.5em;
+    padding: @spacing-2x 0 7px 0;
+    font-size: 170%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.changelog-version {
     min-height: 1.5em;
     padding: @spacing-1x 0 4px 0;
     font-size: 140%;
     text-align: center;
-    text-decoration: underline;
+    box-sizing: border-box;
+}
+
+.changelog-view-full {
+    min-height: 1.5em;
+    padding: @spacing-1x 0 4px 0;
+    font-size: 140%;
+    text-align: center;
     color: @light-gray;
     box-sizing: border-box;
 }
