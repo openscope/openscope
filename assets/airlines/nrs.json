@@ -4,7 +4,9 @@
     "callsign": {
         "name": "Rednose",
         "callsignFormats": [
-            "####"
+            "####",
+            "##@",
+            "#@@"
         ]
     },
     "fleets": {

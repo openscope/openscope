@@ -4,13 +4,14 @@
     "callsign": {
         "name": "Iberexpress",
         "callsignFormats": [
-            "###"
+            "####",
+            "##@@"
         ]
     },
     "fleets": {
         "default": [
             ["A320", 18],
-            ["A321", 3]
+            ["A321", 4]
         ],
         "a320": [
             ["A320", 18]
