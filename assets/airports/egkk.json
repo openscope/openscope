@@ -2289,6 +2289,416 @@
     },
     "spawnPatterns": [
         {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.ADMAG2X.ADMAG.Y312.DVR.L10.RINTI.UL10.LESDO",
+            "speed": "",
+            "rate": 0.52,
+            "airlines": [
+                ["baw/short", 42],
+                ["ezy/airbusShort", 109],
+                ["ibk/b738", 2],
+                ["m/fastGA", 1],
+                ["tcx/a321", 2],
+                ["tom/b738", 3],
+                ["tom/b752", 2]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.ADMAG2X.ADMAG.Y312.DVR.M140.VABIK.UQ70.KOK",
+            "speed": "",
+            "rate": 1.07,
+            "airlines": [
+                ["awc/a321", 1],
+                ["baw/b772", 7],
+                ["baw/short", 33],
+                ["ent/b738", 7],
+                ["ezy/airbusShort", 205],
+                ["ibk/b738", 17],
+                ["jaf", 2],
+                ["rwd/a33x", 8],
+                ["tcx/a321", 15],
+                ["tcx/b753", 4],
+                ["tom/b738", 14],
+                ["tom/b752", 8],
+                ["tom/b787", 9]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.ADMAG2X.ADMAG.Y312.DVR.UL9.KONAN.UL607.MATUG",
+            "speed": "",
+            "rate": 4.98,
+            "airlines": [
+                ["amc/a320", 19],
+                ["baw/short", 222],
+                ["bru/e190", 7],
+                ["ctn/a319", 2],
+                ["ctn/a320", 3],
+                ["ent/b738", 1],
+                ["ezy/airbusShort", 690],
+                ["foo/a321", 30],
+                ["iaw/a320", 7],
+                ["ibk/b738", 37],
+                ["mgx/e190", 5],
+                ["pgt/b738", 2],
+                ["qtr/b788", 43],
+                ["tcx/a321", 118],
+                ["tcx/b753", 26],
+                ["tgz/b737", 2],
+                ["tgz/e190", 4],
+                ["thy/a321", 41],
+                ["thy/b738", 19],
+                ["tom/b738", 79],
+                ["tom/b752", 16],
+                ["tom/b787", 25],
+                ["tvs/b738", 11],
+                ["uae/a388", 56],
+                ["vlg/a319", 24],
+                ["wzz/a321", 22]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.BOGNA1X.BOGNA.L612.BENBO.UL612.MOU",
+            "speed": "",
+            "rate": 1.75,
+            "airlines": [
+                ["baw/short", 152],
+                ["ezs/short", 71],
+                ["ezy/airbusShort", 264],
+                ["ibk/b738", 5],
+                ["tcx/a321", 6],
+                ["tcx/b753", 2],
+                ["tom/b738", 1],
+                ["tom/b752", 2],
+                ["vlg/a320", 39]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.BOGNA1X.BOGNA.L612.BENBO.Y47.DRAKE.L151.SITET.UN859.LOMRA",
+            "speed": "",
+            "rate": 2.71,
+            "airlines": [
+                ["baw/short", 153],
+                ["ezy/airbusShort", 411],
+                ["ibk/b738", 60],
+                ["ryr/b738", 13],
+                ["tcx/a321", 31],
+                ["tcx/b753", 5],
+                ["tom/b738", 21],
+                ["tom/b752", 7],
+                ["tom/b788", 6],
+                ["vlg/short", 130]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.BOGNA1X.BOGNA.L612.HAWKE.M189.NEVIL.G27.ANGLO",
+            "speed": "",
+            "rate": 0.47,
+            "airlines": [
+                ["baw/a319", 83],
+                ["ezy/airbusShort", 62]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.BOGNA1X.BOGNA.L612.XAMAB.UL612.RESMI",
+            "speed": "",
+            "rate": 0.32,
+            "airlines": [
+                ["ent/b738", 4],
+                ["ezs/a320", 17],
+                ["ezy/airbusShort", 67],
+                ["ibk/b738", 1],
+                ["sp/fastGA", 1],
+                ["tcx/b753", 3],
+                ["tom/b738", 3],
+                ["tom/b752", 3]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.BOGNA1X.BOGNA.UL612.BENBO.UY47.DRAKE.UL151.SITET.UN859.LGL",
+            "speed": "",
+            "rate": 1.08,
+            "airlines": [
+                ["baw/short", 88],
+                ["ezy/airbusShort", 206],
+                ["ibk/b738", 12],
+                ["tcx/a321", 5],
+                ["tom/b738", 3],
+                ["tom/b752", 3],
+                ["vlg/a320", 16]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.BOGNA1X.BOGNA.UL612.RESMI.UM728.LERGA",
+            "speed": "",
+            "rate": 0.56,
+            "airlines": [
+                ["baw/short", 58],
+                ["ezy/airbusShort", 86],
+                ["ibk/b738", 9],
+                ["tar/a320", 9],
+                ["tcx/a321", 5],
+                ["tom/b738", 6]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.FRANE1X.FRANE.M604.BUSOM",
+            "speed": "",
+            "rate": 0.47,
+            "airlines": [
+                ["ibk/b738", 67],
+                ["nax/short", 78]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.FRANE1X.FRANE.M604.GASBA.M197.REDFA.UL620.TULIP",
+            "speed": "",
+            "rate": 1.53,
+            "airlines": [
+                ["aui/b738", 41],
+                ["bti/b73x", 18],
+                ["bti/bcs3", 26],
+                ["cal/a359", 14],
+                ["cca/a333", 12],
+                ["cpa/a359", 16],
+                ["ezy/airbusShort", 184],
+                ["ibk/b738", 126],
+                ["nax/b738", 2],
+                ["nrs/b789", 12],
+                ["sdm/a319", 21]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.FRANE1X.FRANE.M604.LARGA.P144.GOLUM",
+            "speed": "",
+            "rate": 0.43,
+            "airlines": [
+                ["ibk/b738", 103],
+                ["nax/b738", 29]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.FRANE1X.FRANE.M604.TOVGU.M84.CLN.L620.REDFA",
+            "speed": "",
+            "rate": 0.63,
+            "airlines": [
+                ["baw/short", 56],
+                ["ezy/airbusShort", 137]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.HARDY1X.HARDY.M605.XIDIL.UM605.BIBAX",
+            "speed": "",
+            "rate": 0.36,
+            "airlines": [
+                ["ezy/airbusShort", 73],
+                ["vlg/a320", 39]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.LAM2X.LAM.L10.BPK.UN601.LESTA",
+            "speed": "",
+            "rate": 0.62,
+            "airlines": [
+                ["ezy/airbusShort", 192]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.LAM2X.LAM.L10.BPK.UN601.POL",
+            "speed": "",
+            "rate": 1.72,
+            "airlines": [
+                ["baw/b772", 9],
+                ["baw/short", 130],
+                ["ein/a320", 18],
+                ["ezy/airbusShort", 212],
+                ["ice/b38m", 2],
+                ["ice/b752", 20],
+                ["nrs/b789", 101],
+                ["tom/b788", 3],
+                ["wow/short", 38]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.DAWLY",
+            "speed": "",
+            "rate": 0.19,
+            "airlines": [
+                ["bee/e170", 45],
+                ["nrs/b789", 7],
+                ["tom/b788", 4],
+                ["tsc/a310", 4]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.NIBDA.N14.KENET.UL9.GAVGO.UL18.DIKAS",
+            "speed": "",
+            "rate": 1.83,
+            "airlines": [
+                ["baw/b772", 80],
+                ["ein/a320", 93],
+                ["nrs/b789", 56],
+                ["ryr/b738", 169],
+                ["tcx/a332", 8],
+                ["tom/b789", 5],
+                ["tsc/a33x", 37],
+                ["vir/b744", 45],
+                ["wja/b38m", 22],
+                ["wja/b763", 60]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.M195.LORKU.UN866.GOBUR.UN484.RUSIB",
+            "speed": "",
+            "rate": 0.17,
+            "airlines": [
+                ["baw/b772", 25],
+                ["tcx/a332", 5],
+                ["tom/b787", 21],
+                ["vir/b744", 2]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.M195.LORKU.UN866.TITUB",
+            "speed": "",
+            "rate": 2.07,
+            "airlines": [
+                ["baw/short", 151],
+                ["ezy/airbusShort", 255],
+                ["ibk/b738", 64],
+                ["mac/a320", 5],
+                ["pga/e190", 24],
+                ["rzo/a320", 2],
+                ["tap/a319", 35],
+                ["tap/a320", 14],
+                ["tcx/a321", 28],
+                ["tcx/b753", 3],
+                ["tom/b738", 21],
+                ["tom/b752", 19],
+                ["tom/b788", 6],
+                ["tom/b789", 3],
+                ["vlg/a320", 10]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.N19.ADKIK.L22.MOPAT",
+            "speed": "",
+            "rate": 0.06,
+            "airlines": [
+                ["baw/b772", 18],
+                ["n/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.N19.GAPLI",
+            "speed": "",
+            "rate": 0.56,
+            "airlines": [
+                ["baw/b772", 90],
+                ["nrs/b789", 12],
+                ["tcx/a332", 5],
+                ["tom/b787", 22],
+                ["vir/a33x", 33],
+                ["vir/b744", 11]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.N63.LELNA.UN621.BASIK.UN90.NOVAN",
+            "speed": "",
+            "rate": 1.53,
+            "airlines": [
+                ["aea/b738", 20],
+                ["baw/short", 131],
+                ["ezy/airbusShort", 177],
+                ["ibk/b738", 58],
+                ["ibs/a320", 39],
+                ["mac/a320", 14],
+                ["ram/b738", 20],
+                ["tom/b738", 9],
+                ["tom/b752", 2],
+                ["tom/b788", 4]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.Q41.ORTAC",
+            "speed": "",
+            "rate": 0.36,
+            "airlines": [
+                ["aur/at72", 32],
+                ["aur/e190", 78]
+            ]
+        },
+        {
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
@@ -2413,7 +2823,7 @@
                 ["baw/short", 324],
                 ["ezs/short", 71],
                 ["ezy/airbusShort", 749],
-                ["ibk/b738m", 41],
+                ["ibk/b738", 41],
                 ["tcx", 47],
                 ["tom/b738", 28],
                 ["tom/b752", 6],
@@ -2722,9 +3132,8 @@
                 ["ent/b738", 12],
                 ["ezs/a320", 17],
                 ["ezy/airbusShort", 530],
-                ["fcb/a320", 23],
                 ["ibk/b738", 42],
-                ["mgx", 5],
+                ["mgx/e190", 5],
                 ["sp/fastGA", 1],
                 ["tar/a320", 9],
                 ["tcx/a321", 86],
