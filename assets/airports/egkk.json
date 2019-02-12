@@ -2291,6 +2291,7 @@
             "category": "departure",
             "route": "EGKK26L.ADMAG2X.ADMAG.Y312.DVR.L10.RINTI.UL10.LESDO",
             "speed": "",
+            "method": "random",
             "rate": 0.52,
             "airlines": [
                 ["baw/short", 42],
@@ -2308,6 +2309,7 @@
             "category": "departure",
             "route": "EGKK26L.ADMAG2X.ADMAG.Y312.DVR.M140.VABIK.UQ70.KOK",
             "speed": "",
+            "method": "random",
             "rate": 1.07,
             "airlines": [
                 ["awc/a321", 1],
@@ -2331,6 +2333,7 @@
             "category": "departure",
             "route": "EGKK26L.ADMAG2X.ADMAG.Y312.DVR.UL9.KONAN.UL607.MATUG",
             "speed": "",
+            "method": "random",
             "rate": 4.98,
             "airlines": [
                 ["amc/a320", 19],
@@ -2367,6 +2370,7 @@
             "category": "departure",
             "route": "EGKK26L.BOGNA1X.BOGNA.L612.BENBO.UL612.MOU",
             "speed": "",
+            "method": "random",
             "rate": 1.75,
             "airlines": [
                 ["baw/short", 152],
@@ -2386,6 +2390,7 @@
             "category": "departure",
             "route": "EGKK26L.BOGNA1X.BOGNA.L612.BENBO.Y47.DRAKE.L151.SITET.UN859.LOMRA",
             "speed": "",
+            "method": "random",
             "rate": 2.71,
             "airlines": [
                 ["baw/short", 153],
@@ -2406,6 +2411,7 @@
             "category": "departure",
             "route": "EGKK26L.BOGNA1X.BOGNA.L612.HAWKE.M189.NEVIL.G27.ANGLO",
             "speed": "",
+            "method": "random",
             "rate": 0.47,
             "airlines": [
                 ["baw/a319", 83],
@@ -2418,6 +2424,7 @@
             "category": "departure",
             "route": "EGKK26L.BOGNA1X.BOGNA.L612.XAMAB.UL612.RESMI",
             "speed": "",
+            "method": "random",
             "rate": 0.32,
             "airlines": [
                 ["ent/b738", 4],
@@ -2436,6 +2443,7 @@
             "category": "departure",
             "route": "EGKK26L.BOGNA1X.BOGNA.UL612.BENBO.UY47.DRAKE.UL151.SITET.UN859.LGL",
             "speed": "",
+            "method": "random",
             "rate": 1.08,
             "airlines": [
                 ["baw/short", 88],
@@ -2453,6 +2461,7 @@
             "category": "departure",
             "route": "EGKK26L.BOGNA1X.BOGNA.UL612.RESMI.UM728.LERGA",
             "speed": "",
+            "method": "random",
             "rate": 0.56,
             "airlines": [
                 ["baw/short", 58],
@@ -2469,6 +2478,7 @@
             "category": "departure",
             "route": "EGKK26L.FRANE1X.FRANE.M604.BUSOM",
             "speed": "",
+            "method": "random",
             "rate": 0.47,
             "airlines": [
                 ["ibk/b738", 67],
@@ -2481,6 +2491,7 @@
             "category": "departure",
             "route": "EGKK26L.FRANE1X.FRANE.M604.GASBA.M197.REDFA.UL620.TULIP",
             "speed": "",
+            "method": "random",
             "rate": 1.53,
             "airlines": [
                 ["aui/b738", 41],
@@ -2502,6 +2513,7 @@
             "category": "departure",
             "route": "EGKK26L.FRANE1X.FRANE.M604.LARGA.P144.GOLUM",
             "speed": "",
+            "method": "random",
             "rate": 0.43,
             "airlines": [
                 ["ibk/b738", 103],
@@ -2514,6 +2526,7 @@
             "category": "departure",
             "route": "EGKK26L.FRANE1X.FRANE.M604.TOVGU.M84.CLN.L620.REDFA",
             "speed": "",
+            "method": "random",
             "rate": 0.63,
             "airlines": [
                 ["baw/short", 56],
@@ -2526,6 +2539,7 @@
             "category": "departure",
             "route": "EGKK26L.HARDY1X.HARDY.M605.XIDIL.UM605.BIBAX",
             "speed": "",
+            "method": "random",
             "rate": 0.36,
             "airlines": [
                 ["ezy/airbusShort", 73],
@@ -2538,6 +2552,7 @@
             "category": "departure",
             "route": "EGKK26L.LAM2X.LAM.L10.BPK.UN601.LESTA",
             "speed": "",
+            "method": "random",
             "rate": 0.62,
             "airlines": [
                 ["ezy/airbusShort", 192]
@@ -2549,6 +2564,7 @@
             "category": "departure",
             "route": "EGKK26L.LAM2X.LAM.L10.BPK.UN601.POL",
             "speed": "",
+            "method": "random",
             "rate": 1.72,
             "airlines": [
                 ["baw/b772", 9],
@@ -2568,6 +2584,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.DAWLY",
             "speed": "",
+            "method": "random",
             "rate": 0.19,
             "airlines": [
                 ["bee/e170", 45],
@@ -2582,6 +2599,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.NIBDA.N14.KENET.UL9.GAVGO.UL18.DIKAS",
             "speed": "",
+            "method": "random",
             "rate": 1.83,
             "airlines": [
                 ["baw/b772", 80],
@@ -2602,6 +2620,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.M195.LORKU.UN866.GOBUR.UN484.RUSIB",
             "speed": "",
+            "method": "random",
             "rate": 0.17,
             "airlines": [
                 ["baw/b772", 25],
@@ -2616,6 +2635,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.M195.LORKU.UN866.TITUB",
             "speed": "",
+            "method": "random",
             "rate": 2.07,
             "airlines": [
                 ["baw/short", 151],
@@ -2641,6 +2661,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.N19.ADKIK.L22.MOPAT",
             "speed": "",
+            "method": "random",
             "rate": 0.06,
             "airlines": [
                 ["baw/b772", 18],
@@ -2653,6 +2674,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.N19.GAPLI",
             "speed": "",
+            "method": "random",
             "rate": 0.56,
             "airlines": [
                 ["baw/b772", 90],
@@ -2669,6 +2691,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.N63.LELNA.UN621.BASIK.UN90.NOVAN",
             "speed": "",
+            "method": "random",
             "rate": 1.53,
             "airlines": [
                 ["aea/b738", 20],
@@ -2689,6 +2712,7 @@
             "category": "departure",
             "route": "EGKK26L.NOVMA1X.NOVMA.L620.SAM.Q41.ORTAC",
             "speed": "",
+            "method": "random",
             "rate": 0.36,
             "airlines": [
                 ["aur/at72", 32],
