@@ -10,6 +10,7 @@
 
 
 ### Enhancements & Refactors
+- [#859](https://github.com/openscope/openscope/issues/859) - Reintroduce London Gatwick Airport (EGKK)
 
 
 # 6.10.0 (February 1, 2019)
