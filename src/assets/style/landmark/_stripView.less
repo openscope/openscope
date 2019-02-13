@@ -33,12 +33,16 @@
     list-style-type: none;
     height: ~"calc(50% - 1.25em - 10px)";
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .stripViewItem {
     border: 1px solid #222;
     transition: ease-in-out margin 0.15s;
+}
+
+.stripViewItem:first-child {
+    margin-top: auto;
 }
 
 .active,
@@ -87,6 +91,16 @@
 
 .stripView-table-tr > .stripView-table-td:nth-child(0n+4) {
     text-align: left;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+5) {
+    width: 50px;
+    text-align: right;
+    border: none;
+}
+
+.stripView-preplanning {
+    color: red;
 }
 
 .mix-stripView-table_borderTop {
@@ -150,4 +164,8 @@
 
 .arrival {
     border-left: 5px solid @arrival-accent;
+}
+
+.overflight {
+    border-left: 5px solid @overflight-accent;
 }

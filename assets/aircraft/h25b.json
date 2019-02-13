@@ -1,0 +1,37 @@
+{
+    "name": "Hawker 850",
+    "icao": "H25B",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "S+",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "F"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb": 3000,
+        "descent": 2500,
+        "accelerate": 4,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.700,
+        "landing": 1.200
+    },
+    "speed":{
+        "min": 120,
+        "landing": 130,
+        "cruise": 402,
+        "cruiseM": 0.79,
+        "max": 448,
+        "maxM": 0.805
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

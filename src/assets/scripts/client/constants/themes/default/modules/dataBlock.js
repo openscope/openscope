@@ -12,6 +12,14 @@ import { COLOR } from '../color';
  */
 export const DATA_BLOCK_THEME = {
     /**
+     * Number of characters of aircraft model icao to show in data block
+     *
+     * @memberof AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT
+     * @type {number}
+     */
+    AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT: 4,
+
+    /**
      * Color of the bar on the left side of the data block
      * Opacity used for when the aircraft is within the airspace
      *
@@ -102,6 +110,30 @@ export const DATA_BLOCK_THEME = {
     HAS_FILL: false,
 
     /**
+     * One half of the height of a data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property HALF_HEIGHT
+     */
+    HALF_HEIGHT: 16,
+
+    /**
+     * One half of the width of a data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property HALF_HEIGHT
+     */
+    HALF_WIDTH: 30,
+
+    /**
+     * Height of a data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property HEIGHT
+     */
+    HEIGHT: 32,
+
+    /**
      * Direction to extend the data block away from the target
      * Currently, only 360, 45, 90, 135, 180, 225, 270, and 315 are available.
      *
@@ -157,6 +189,14 @@ export const DATA_BLOCK_THEME = {
     LEADER_PADDING_FROM_TARGET_PX: 0,
 
     /**
+     * Number of characters of scratchpad to show in data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @type {number}
+     */
+    SCRATCHPAD_CHARACTER_LIMIT: 3,
+
+    /**
      * Font and size of text used in the data block
      *
      * @memberof DATA_BLOCK_THEME
@@ -189,5 +229,13 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_SELECTED
      */
-    TEXT_SELECTED: COLOR.WHITE
+    TEXT_SELECTED: COLOR.WHITE,
+
+    /**
+     * Width of the data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property WIDTH
+     */
+    WIDTH: 60
 };

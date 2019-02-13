@@ -4,7 +4,7 @@ import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import TimeKeeper from '../engine/TimeKeeper';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
@@ -51,11 +51,12 @@ export default class AircraftConflict {
     /**
      * Is there anything which should be brought to the controllers attention
      *
-     * @returns {Array of Boolean} First element true if any conflicts/warnings,
-     *                             Second element true if any violations.
+     * @for AircraftConflict
+     * @method hasAlerts
+     * @returns {boolean} whether ANY conflicts OR violations exist
      */
     hasAlerts() {
-        return [this.hasConflict(), this.hasViolation()];
+        return this.hasConflict() || this.hasViolation();
     }
 
     /**

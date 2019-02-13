@@ -11,8 +11,11 @@
     "ctr_ceiling": 21500,
     "initial_alt": 7000,
     "position": ["N60d12m10.00", "E11d05m02.00", "681ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N60d12m10.00", "E11d05m02.00"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N60d12m10.00", "E11d05m02.00"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 10,
@@ -759,7 +762,7 @@
             "icao": "MASEV6B",
             "name": "Masev Six Bravo",
             "rwy": {
-                "ENGM01R": [] 
+                "ENGM01R": []
             },
             "body": ["GM440", "GM506", "GM504", "GM617"],
             "exitPoints": {
@@ -1029,7 +1032,7 @@
             "rwy": {
                 "ENGM01L": [],
                 "ENGM01R": []
-            },           
+            },
             "draw": [
                 ["ADOPI", "NIVDU", "GM405", "GM406", "GM404", "GM455", "VALPU"]
             ]
@@ -1044,7 +1047,7 @@
             "rwy": {
                 "ENGM19L": [],
                 "ENGM19R": []
-            },           
+            },
             "draw": [
                 ["ADOPI", "EXUDA", "GM429", "GM430", "GM431", "GM452", "BAVAD"]
             ]
@@ -1059,7 +1062,7 @@
             "rwy": {
                 "ENGM01L": [],
                 "ENGM01R": []
-            },           
+            },
             "draw": [
                 ["BELGU", "AGNIL", "GM432", "GM433", "GM434", "GM435", "BAVAD"]
             ]
@@ -1074,7 +1077,7 @@
             "rwy": {
                 "ENGM19L": [],
                 "ENGM19R": []
-            },           
+            },
             "draw": [
                 ["BELGU", "VANUK", "GM456", "GM400", "GM402"]
             ]
@@ -1089,7 +1092,7 @@
             "rwy": {
                 "ENGM01L": [],
                 "ENGM01R": []
-            },           
+            },
             "draw": [
                 ["ESEBA", "IDAMO", "GM403", "GM411", "GM413", "GM412", "GM454", "INSUV"]
             ]
@@ -1104,7 +1107,7 @@
             "rwy": {
                 "ENGM19L": [],
                 "ENGM19R": []
-            },           
+            },
             "draw": [
                 ["ESEBA", "KEGET", "GM422", "GM423", "GM424", "GM425", "GM453", "TITLA"]
             ]
@@ -1119,7 +1122,7 @@
             "rwy": {
                 "ENGM01L": [],
                 "ENGM01R": []
-            },           
+            },
             "draw": [
                 ["INREX", "IXUMA", "GM418", "GM419", "GM420", "GM421", "TITLA"]
             ]
@@ -1134,7 +1137,7 @@
             "rwy": {
                 "ENGM19L": [],
                 "ENGM19R": []
-            },           
+            },
             "draw": [
                 ["INREX", "SUSIB", "GM457", "GM401", "GM403"]
             ]
@@ -1149,7 +1152,7 @@
             "rwy": {
                 "ENGM01L": [],
                 "ENGM01R": []
-            },           
+            },
             "draw": [
                 ["LUNIP", "DEVKU", "GM416", "GM417", "GM415", "GM414", "INSUV"]
             ]
@@ -1164,7 +1167,7 @@
             "rwy": {
                 "ENGM19L": [],
                 "ENGM19R": []
-            },           
+            },
             "draw": [
                 ["LUNIP", "DIDAX", "GM447", "GM426", "GM422"]
             ]
@@ -1179,7 +1182,7 @@
             "rwy": {
                 "ENGM01L": [],
                 "ENGM01R": []
-            },           
+            },
             "draw": [
                 ["RIPAM", "ROXIM", "GM410", "GM409", "GM408", "GM407", "VALPU"]
             ]
@@ -1194,7 +1197,7 @@
             "rwy": {
                 "ENGM19L": [],
                 "ENGM19R": []
-            },           
+            },
             "draw": [
                 ["RIPAM", "INGAR", "UTEXO", "GM451", "GM427", "GM428"]
             ]

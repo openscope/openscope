@@ -4,7 +4,7 @@ import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
-import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
+import WaypointModel from './WaypointModel';
 import {
     INVALID_INDEX,
     INVALID_NUMBER
@@ -13,7 +13,7 @@ import {
     LEG_TYPE,
     PROCEDURE_TYPE,
     PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
- } from '../../constants/routeConstants';
+} from '../../constants/routeConstants';
 
 /**
  * A portion of a navigation route containing one or more `WaypointModel` objects.
@@ -221,6 +221,10 @@ export default class LegModel {
         return this._waypointCollection;
     }
 
+    get altitude() {
+        return this._procedureModel.altitude;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -287,8 +291,7 @@ export default class LegModel {
         }
 
         throw new TypeError(`Expected airway or procedure name, but we can't ' +
-            'determine what kind of leg ${airwayOrProcedureName} is`
-        );
+            'determine what kind of leg ${airwayOrProcedureName} is`);
     }
 
     /**

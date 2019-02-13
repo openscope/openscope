@@ -1,7 +1,9 @@
+import _ceil from 'lodash/ceil';
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import { PERFORMANCE } from '../../constants/aircraftConstants';
+import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import {
     angle_offset,
@@ -37,7 +39,7 @@ export default class RunwayModel extends BaseModel {
      * @param end {number}
      * @param airportPositionModel {StaticPositionModel}
      */
-     // istanbul ignore next
+    // istanbul ignore next
     constructor(options = {}, end, airportPositionModel) {
         super();
 
@@ -116,6 +118,15 @@ export default class RunwayModel extends BaseModel {
          * @default []
          */
         this.queue = [];
+
+        /**
+         * The flight number of the last aircraft that used the runway for takeoff.
+         *
+         * @property lastDepartedAircraftCallsign
+         * @type {string}
+         * @default null
+         */
+        this.lastDepartedAircraftCallsign = null;
 
         this._init(options, end, airportPositionModel);
     }
@@ -253,6 +264,31 @@ export default class RunwayModel extends BaseModel {
 
         // TODO: this logic could be abstracted to a helper.
         return this.elevation + (rise * km_ft(distance));
+    }
+
+    /**
+     * Calculate the height of the glideslope at (or abeam) the final approach fix
+     *
+     * @for RunwayModel
+     * @method getGlideslopeAltitudeAtFinalApproachFix
+     * @return {number} glideslope altitude in ft MSL
+     */
+    getGlideslopeAltitudeAtFinalApproachFix() {
+        return this.getGlideslopeAltitude(km(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM));
+    }
+
+    /**
+     * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
+     *
+     * @for RunwayModel
+     * @method getMinimumGlideslopeInterceptAltitude
+     * @return {number} glideslope altitude in ft MSL
+     */
+    getMinimumGlideslopeInterceptAltitude() {
+        const altitudeAtFinalApproachFix = this.getGlideslopeAltitudeAtFinalApproachFix();
+        const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
+
+        return minimumInterceptAltitude;
     }
 
     /**

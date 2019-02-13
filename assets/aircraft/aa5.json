@@ -1,0 +1,37 @@
+{
+    "name": "Grumman AA-5/A/B Traveller/Cheeta/Tiger",
+    "icao": "AA5",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": 1,
+        "recat": "F"
+    },
+    "ceiling": 12650,
+    "rate": {
+        "climb":      660,
+        "descent":    1000,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 0.488,
+        "landing": 0.335
+    },
+    "speed":{
+        "min":     53,
+        "landing": 65,
+        "cruise":  127,
+        "cruiseM": null,
+        "max":     164,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": false
+    }
+}

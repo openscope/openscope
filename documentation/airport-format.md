@@ -1,5 +1,3 @@
-[noaa-calculator]: https://www.ngdc.noaa.gov/geomag-web/#declination
-
 # Airport Format
 
 * [Property Descriptions](#property-descriptions)
@@ -17,14 +15,15 @@
   * [Identifiers](#icao-and-iata-identifiers)
   * [Flight Level](#flight-level)
 
-The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
+The airport JSON file must be in "[assets/airports](https://github.com/openscope/openscope/tree/develop/assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](https://github.com/openscope/openscope/blob/develop/assets/airports/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
 
 ## Example
 
-_Note: The code block shown below is an abbreviated version of [ksea.json](assets/airports/ksea.json)._
+_Note: The code block shown below is an abbreviated version of [ksea.json](https://github.com/openscope/openscope/blob/develop/assets/airports/ksea.json)._
 
 ```javascript
 {
+    "airac": 1801,
     "radio": {
         "twr": "Seatle Tower",
         "app": "Seattle Approach",
@@ -37,8 +36,11 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
     "position": ["N47d26.99m0", "W122d18.71m0"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N47d26.99m0", "W122d18.71m0"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N47d26.99m0", "W122d18.71m0"],
+        "radius_nm": 5.0,
+    }
     "has_terrain": true,
     "wind": {
         "angle": 150,
@@ -115,6 +117,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
         "SUMMA1": {
             "icao": "SUMMA1",
             "name": "Summa One",
+            "altitude": 7000,
             "rwy": {
                 "KSEA16L": ["NEVJO"],
                 "KSEA16R": ["NEVJO"],
@@ -188,6 +191,21 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
                 ["aca", 1],
                 ["asa", 3]
             ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
         }
     ],
     "maps": {
@@ -208,6 +226,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 _all properties in this section are required_
 
+* **airac** ― AIRAC cycle from which data for the airport was taken. The airport must be fully compliant as of the specified cycle in order for this value to be changed.
 * **radio** ― The radio callsigns for each controller:
 
 ```javascript
@@ -217,17 +236,19 @@ _all properties in this section are required_
     "dep": "Seattle Departure"
 },
 ```
-
 * **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
 * **iata** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
-* **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator][noaa-calculator] if you can't find this value_
+* **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator](https://www.ngdc.noaa.gov/geomag-web/#declination) if you can't find this value_
 * **ctr_radius** ― The radius (in kilometers) of the controlled airspace that aircraft are simulated within. Outside of this radius aircraft are removed, so ensure it is large enough for your airspace.
 * **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
 * **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
 * **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
-* **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
-* **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
-* **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](../..assets/airports/terrain).
+* **rr_radius_nm** ― (deprecated) Use **rr.radius_nm** instead.
+* **rr_center** ― (deprecated) Use **rr.center** instead.
+* **rr.enabled** ― Whether or not range rings will be shown for this airport
+* **rr.radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
+* **rr.center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
+* **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](https://github.com/openscope/openscope/tree/develop/assets/airports/terrain).
 * **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
 
 ```javascript
@@ -326,6 +347,14 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 
 ```javascript
 "_RWY33L01DME": [42.342838, -70.975751]
+```
+* Any fixes that represent the intersection of a runway's inbound course and another course to a fix will be descried using the format below. Note that the runway whose _approach course_ intersects is the one to be used, not the runway whose _departure course_ intersects.
+```javascript
+"_RWY12BSTER081": []
+```
+* Any fixes that represent the intersection of radials off of two fixes will be described by including each fix's _outbound_ radial.
+```javascript
+"_FIXXA030FIXXB180"
 ```
 
 * Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
@@ -480,6 +509,7 @@ _All properties in this section are required for each route definition_
     "SUMMA1": {
         "icao": "SUMMA1",
         "name": "Summa One",
+        "altitude": 7000,
         "rwy": {
             "KSEA16L": ["NEVJO"],
             "KSEA16R": ["NEVJO"],
@@ -512,6 +542,7 @@ SID is an acronym for _Standard Instrument Departure_.
 ```
 
 * **name** - spoken name of the route used for read backs.
+* **altitude** - (number) initial climb clearance (optional).
 * **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment.
 * **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
@@ -602,13 +633,28 @@ _At least one `spawnPattern` is required to get aircraft populating into the app
             ["aca", 1],
             ["asa", 3]
         ]
+    },
+    {
+        "origin": "",
+        "destination": "",
+        "category": "overflight",
+        "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
+        "altitude": [18000, 36000],
+        "speed": 320,
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["aal", 4],
+            ["aca", 1],
+            ["asa", 3]
+        ]
     }
 ],
 ```
 
 Contains the parameters used to determine how and where aircraft are spawned into the simulation.  At least one `spawnPattern` is required so that aircraft can be added to the simulation.
 
-_see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
+_see [spawnPatternReadme.md](spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
 
 ### Maps
 

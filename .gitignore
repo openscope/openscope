@@ -5,9 +5,10 @@ _site/
 coverage/
 .vs/
 .idea/
+.vscode
 .nyc_output/
 node_modules/
-npm-debug.log
+npm-debug.log.*
 public/
 assets/style/
 assets/scripts/

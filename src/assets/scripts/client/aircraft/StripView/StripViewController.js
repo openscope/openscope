@@ -156,8 +156,8 @@ export default class StripViewController {
             }
 
             let stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
-            
-            if (typeof stripViewModel === "undefined") {
+
+            if (typeof stripViewModel === 'undefined') {
                 stripViewModel = this.createStripView(aircraftModel);
             }
 
@@ -282,10 +282,10 @@ export default class StripViewController {
             throw new TypeError(`Expected an instance of StripViewModel but received ${typeof stripViewModel}`);
         }
 
-        const listView = stripViewModel.isDeparture ? this.$stripViewListDepartures : this.$stripViewListArrivals
+        const listView = stripViewModel.isDeparture ? this.$stripViewListDepartures : this.$stripViewListArrivals;
         const scrollPosition = listView.scrollTop();
-        
-        listView.append(stripViewModel.$element);
+
+        listView.prepend(stripViewModel.$element);
         // shift scroll down one strip's height
         listView.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
@@ -337,16 +337,16 @@ export default class StripViewController {
         return nextCid;
     }
 
-     /**
-      * Remove a given `#cid` from use
-      *
-      * Used when an aircraft has landed or departed controlled airspace
-      *
-      * @for StripViewController
-      * @method _removeCidFromUse
-      * @param cid {number}
-      * @private
-      */
+    /**
+     * Remove a given `#cid` from use
+     *
+     * Used when an aircraft has landed or departed controlled airspace
+     *
+     * @for StripViewController
+     * @method _removeCidFromUse
+     * @param cid {number}
+     * @private
+     */
     _removeCidFromUse(cid) {
         const cidIndex = this._cidNumbersInUse.indexOf(cid);
 

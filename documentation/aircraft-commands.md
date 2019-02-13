@@ -16,6 +16,7 @@
 [Routing Commands](#routing-commands)
 - [~~Fix~~](#fix)
 - [Hold](#hold)
+- [Exit Hold](#exit-hold)
 - [Proceed Direct](#proceed-direct)
 - [Route](#route)
 - [Reroute](#reroute)
@@ -88,11 +89,10 @@ _Syntax -_ `AAL123 cto`
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
 
-_Information -_ This command tells the specified plane to taxi to a
-runway; if a runway is not included they will continue to the runway
-with the largest headwind.
+_Information -_ This command tells the specified plane to taxi to and hold short
+of specified runway.
 
-_Syntax -_ `AAL123 taxi [Runway]`
+_Syntax -_ `AAL123 taxi [runway]`
 
 # Arrival Commands
 These commands are only used by arrival aircraft.
@@ -106,7 +106,7 @@ runway assignment. In cases where their STAR says to follow a different series
 of waypoints dependent upon their runway, we can use this command to have an
 aircraft follow the desired branch of the STAR toward the desired runway.
 
-_Syntax -_ `AAL123 e 26r`
+_Syntax -_ `AAL123 e [runway]`
 
 ### Descend via STAR
 _Aliases -_ `dvs`
@@ -132,7 +132,7 @@ the glideslope and land.
 
 Note: This replaces the old `land` / `l` command.
 
-_Syntax -_ `AAL123 i [rwy]`
+_Syntax -_ `AAL123 i [runway]`
 
 # Routing Commands
 These commands allow you to manipulate the route in the aircraft's FMS.
@@ -160,6 +160,18 @@ with simply `[fixname]`. Any combination of these arguments provided in
 any order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
+
+### Exit Hold
+_Aliases -_ `cancelhold` `continue` `exithold` `nohold` `xh`
+
+_Information -_ This command instructs the aircraft to leave a holding
+pattern and resume its flight plan.
+
+_Parameters -_ Optionally, you may specify the fix at which to cancel the hold,
+by specifying the fix at the end of the command: `AAL123 cancelhold [fixname]`.
+This can be useful if multiple holds exist.
+
+_Syntax -_ `AAL123 continue` or `AAL123 xh BOTON`
 
 ### Proceed Direct
 _Aliases -_ `direct` / `pd` / `dct`
