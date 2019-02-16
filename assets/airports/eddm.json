@@ -7,9 +7,9 @@
     },
     "icao": "EDDM",
     "iata": "MUC",
-    "magnetic_north": 2.7,
+    "magnetic_north": 3,
     "ctr_radius": 80,
-    "ctr_ceiling": 10000,
+    "ctr_ceiling": 19500,
     "initial_alt": 7000,
     "position": ["N48d21m13.62", "E011d47m09.91", "1487ft"],
     "rangeRings": {
@@ -19,8 +19,8 @@
     },
     "has_terrain": false,
     "wind": {
-        "angle": 270,
-        "speed": 7
+        "angle": 240,
+        "speed": 6
     },
     "arrivalRunway": "26L",
     "departureRunway": "26R",
