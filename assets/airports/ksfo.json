@@ -1,4 +1,5 @@
 {
+    "airac": 1902,
     "radio": {
         "twr": "San Francisco Tower",
         "app": "NorCal Approach",
@@ -292,10 +293,10 @@
             "icao": "AFIVA1",
             "name": "Afiva One",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "28L": [],
-                "28R": []
+                "KSFO1L": [],
+                "KSFO1R": [],
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "body": [["AFIVA", "A40+"], "JAYKK"],
             "exitPoints": {
@@ -311,10 +312,10 @@
             "icao": "CIITY3",
             "name": "City Three",
             "rwy": {
-                "10L": ["ORYAN", "SAHEY"],
-                "10R": ["URRSA", "SAHEY"],
-                "19L": [],
-                "19R": []
+                "KSFO10L": ["ORYAN", "SAHEY"],
+                "KSFO10R": ["URRSA", "SAHEY"],
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "body": [["CIITY", "A50+"]],
             "exitPoints": {
@@ -339,10 +340,10 @@
             "icao": "FOGGG2",
             "name": "Fog Two",
             "rwy": {
-                "10L": [],
-                "10R": [],
-                "19L": [],
-                "19R": []
+                "KSFO10L": [],
+                "KSFO10R": [],
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "body": [["FOGGG", "A40+"]],
             "exitPoints": {
@@ -368,14 +369,14 @@
             "icao": "GAPP7",
             "name": "Gap Seven",
             "rwy": {
-                "1L": ["_SFO3501.5DME", "#350"],
-                "1R": ["_SFO3501.5DME", "#350"],
-                "10L": ["_SFO0901.5DME", "BARTN", "OSI"],
-                "10R": ["_SFO0901.5DME", "BARTN", "OSI"],
-                "19L": ["_SFO0901.5DME", "BARTN", "OSI"],
-                "19R": ["_SFO0901.5DME", "BARTN", "OSI"],
-                "28L": ["_SFO2811.5DME", "NORMM"],
-                "28R": ["_SFO2811.5DME", "NORMM"]
+                "KSFO1L": ["_SFO3501.5DME", "#350"],
+                "KSFO1R": ["_SFO3501.5DME", "#350"],
+                "KSFO10L": ["_SFO0901.5DME", "BARTN", "OSI"],
+                "KSFO10R": ["_SFO0901.5DME", "BARTN", "OSI"],
+                "KSFO19L": ["_SFO0901.5DME", "BARTN", "OSI"],
+                "KSFO19R": ["_SFO0901.5DME", "BARTN", "OSI"],
+                "KSFO28L": ["_SFO2811.5DME", "NORMM"],
+                "KSFO28R": ["_SFO2811.5DME", "NORMM"]
             },
             "body": [],
             "exitPoints": {
@@ -403,8 +404,8 @@
             "icao": "GNNRR2",
             "name": "Gunner Two",
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "body": ["_RWY2801.6DME", "GNNRR"],
             "exitPoints": {
@@ -426,12 +427,12 @@
             "icao": "MOLEN8",
             "name": "Molen Eight",
             "rwy": {
-                "10L": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
-                "10R": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
-                "19L": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
-                "19R": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
-                "28L": ["_SFO2811.5DME", ["WESLA", "A18+"], "_SFO287007DME"],
-                "28R": ["_SFO2811.5DME", ["WESLA", "A18+"], "_SFO287007DME"]
+                "KSFO10L": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
+                "KSFO10R": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
+                "KSFO19L": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
+                "KSFO19R": ["_SFO0901.5DME", ["^SIPLY", "A25+"], "_SIPLY233STINS324"],
+                "KSFO28L": ["_SFO2811.5DME", ["WESLA", "A18+"], "_SFO287007DME"],
+                "KSFO28R": ["_SFO2811.5DME", ["WESLA", "A18+"], "_SFO287007DME"]
             },
             "body": ["STINS", "MOLEN"],
             "exitPoints": {
@@ -446,10 +447,10 @@
             "icao": "NIITE3",
             "name": "Night Three",
             "rwy": {
-                "1L": ["MDBAY", "HUSSH"],
-                "1R": ["MDBAY", "HUSSH"],
-                "28L": ["GALOO"],
-                "28R": ["GALOO"]
+                "KSFO1L": ["MDBAY", "HUSSH"],
+                "KSFO1R": ["MDBAY", "HUSSH"],
+                "KSFO28L": ["GALOO"],
+                "KSFO28R": ["GALOO"]
             },
             "body": ["NIITE"],
             "exitPoints": {
@@ -475,10 +476,10 @@
             "icao": "OFFSH1",
             "name": "Offshore One",
             "rwy": {
-                "1L": ["_SFO3501.5DME", ["^SEPDY", "A16+"]],
-                "1R": ["_SFO3501.5DME", ["^SEPDY", "A16+"]],
-                "28L": ["_SFO2811.5DME", ["^SENZY", "A25+"]],
-                "28R": ["_SFO2811.5DME", ["^SENZY", "A25+"]]
+                "KSFO1L": ["_SFO3501.5DME", ["^SEPDY", "A16+"]],
+                "KSFO1R": ["_SFO3501.5DME", ["^SEPDY", "A16+"]],
+                "KSFO28L": ["_SFO2811.5DME", ["^SENZY", "A25+"]],
+                "KSFO28R": ["_SFO2811.5DME", ["^SENZY", "A25+"]]
             },
             "body": ["WAMMY", ["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
             "exitPoints": {
@@ -500,10 +501,10 @@
             "icao": "SAHEY3",
             "name": "Sahey Three",
             "rwy": {
-                "10L": ["ORYAN"],
-                "10R": ["URRSA"],
-                "19L": [],
-                "19R": []
+                "KSFO10L": ["ORYAN"],
+                "KSFO10R": ["URRSA"],
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "body": ["SAHEY"],
             "exitPoints": {
@@ -523,10 +524,10 @@
             "icao": "SFO4",
             "name": "San Francisco Four",
             "rwy": {
-                "1L": ["#033"],
-                "1R": ["#033"],
-                "28L": ["_SFO2811.5DME", "NORMM"],
-                "28R": ["_SFO2811.5DME", "NORMM"]
+                "KSFO1L": ["#033"],
+                "KSFO1R": ["#033"],
+                "KSFO28L": ["_SFO2811.5DME", "NORMM"],
+                "KSFO28R": ["_SFO2811.5DME", "NORMM"]
             },
             "body": [],
             "exitPoints": {
@@ -550,8 +551,8 @@
             "icao": "SNTNA2",
             "name": "Santana Two",
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "body": ["KYNNG", "KRLOS", "SNTNA"],
             "exitPoints": {
@@ -575,8 +576,8 @@
             "icao": "SSTIK3",
             "name": "Stick Three",
             "rwy": {
-                "1L": [],
-                "1R": []
+                "KSFO1L": [],
+                "KSFO1R": []
             },
             "body": ["^SSTIK", ["PORTE", "A100-"]],
             "exitPoints": {
@@ -601,10 +602,10 @@
             "icao": "TRUKN2",
             "name": "Truckin Two",
             "rwy": {
-                "1L": [["TYDYE", "A30+"]],
-                "1R": [["TYDYE", "A30+"]],
-                "28L": [],
-                "28R": []
+                "KSFO1L": [["TYDYE", "A30+"]],
+                "KSFO1R": [["TYDYE", "A30+"]],
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "body": ["TRUKN"],
             "exitPoints": {
@@ -628,8 +629,8 @@
             "icao": "WESLA3",
             "name": "Wesla Three",
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "body": [["^WESLA", "A20+|S230-"], "PORTE"],
             "exitPoints": {
@@ -659,8 +660,8 @@
             },
             "body": [["DYAMD", "A270+"], ["LAANE", "A220+|A260-|S280"], "ALWYS", ["HEFLY", "A140+|A190-|S250"], ["ARRTU", "A100|S250"], ["ADDMM", "A90|S240"], ["COGGR", "A70+|A90-|S210"], ["BERKS", "A50|S210"]],
             "rwy": {
-                "19L": [],
-                "19R": []
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "draw": [
                 ["INYOE", "DYAMD", "LAANE", "ALWYS", "HEFLY", "ARRTU", "ADDMM", "COGGR", "BERKS"],
@@ -679,8 +680,8 @@
             },
             "body": [["LOZIT", "A160-|S280"], ["BDEGA", "A130-"], ["CORKK", "A110|S250"], "BRIXX", "#140"],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["AMAKR", "QUINN", "BGGLO", "LOZIT", "BDEGA", "CORKK", "BRIXX"],
@@ -698,8 +699,8 @@
             },
             "body": ["BSR", "CARME", "ANJEE", "SKUNK", "BOLDR", "MENLO", "#330"],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["BSR", "CARME", "ANJEE", "SKUNK", "BOLDR", "MENLO"]
@@ -714,8 +715,8 @@
             },
             "body": [["DYAMD", "A270+"], ["LAANE", "A220+|A260-|S280"], "ALWYS", ["FLOWZ", "A140+|A190-|S280"], ["CEDES", "A100+|A120-|S250"], ["FRELY", "A80+|S240"], ["ARCHI", "A80|S230"]],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["ALWYS", "FLOWZ", "CEDES", "FRELY", "ARCHI"]
@@ -733,8 +734,8 @@
             },
             "body": ["PYE", "LOZIT", "DUXBY", "SFO"],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["RBG", "ENI", "PYE", "LOZIT", "DUXBY", "SFO"],
@@ -754,8 +755,8 @@
             },
             "body": ["MOD", "LEEFF", "GROAN", "CEDES", "ARCHI", "MEHTA"],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["FMG", "TROSE", "MOD", "LEEFF", "GROAN", "CEDES", "ARCHI", "MEHTA"],
@@ -773,10 +774,10 @@
             },
             "body": ["PYE", "STINS", "HADLY", "OSI"],
             "rwy": {
-                "19L": [],
-                "19R": [],
-                "28L": [],
-                "28R": []
+                "KSFO19L": [],
+                "KSFO19R": [],
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["ENI", "PYE", "STINS", "HADLY", "OSI"],
@@ -792,8 +793,8 @@
             },
             "body": ["MOVDD", "RISTI", ["CEDES", "A90"], "#220"],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["TIPRE", "OOWEN", "MOVDD", "RISTI", "CEDES"],
@@ -808,8 +809,8 @@
             },
             "body": ["SERFR", ["NRRLI", "A200+|S280"], ["WWAVS", "A150+|A190-|S280"], ["EPICK", "A100+|A150-|S280"], ["EDDYY", "A60+|S240"], ["SWELS", "A47+"], ["MENLO", "A40|S230"]],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["SERFR", "NRRLI", "WWAVS", "EPICK", "EDDYY", "SWELS", "MENLO"]
@@ -827,8 +828,8 @@
             },
             "body": ["PYE", "STINS", "SFO"],
             "rwy": {
-                "19L": [],
-                "19R": []
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "draw": [
                 ["RBG", "ENI", "PYE", "STINS", "SFO"],
@@ -849,8 +850,8 @@
             },
             "body": [["LOZIT", "A110-|S250"], ["STLER", "A80+"], "WESLA", ["MVRKK", "A70|S210"], "#360"],
             "rwy": {
-                "19L": [],
-                "19R": []
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "draw": [
                 ["AMAKR", "QUINN", "BGGLO", "LOZIT", "STLER", "WESLA", "MVRKK"],
@@ -868,8 +869,8 @@
             },
             "body": ["SERFR", ["NRRLI", "A200+|S280"], ["WWAVS", "A150+|A190-|S280"], ["WPOUT", "A110|S250"], ["THEEZ", "A80+|S240"], ["WESLA", "A60|S210"], "MVRKK", "#360"],
             "rwy": {
-                "19L": [],
-                "19R": []
+                "KSFO19L": [],
+                "KSFO19R": []
             },
             "draw": [
                 ["SERFR", "NRRLI", "WWAVS", "WPOUT", "THEEZ", "WESLA", "MVRKK"]
@@ -883,8 +884,8 @@
             },
             "body": ["YOSEM", "SNORA", ["ZOMER", "A270+|S280"], ["FRIGG", "A190-"], ["SOOIE", "A110+|A130-|S250"], ["FAITH", "A80"]],
             "rwy": {
-                "28L": [],
-                "28R": []
+                "KSFO28L": [],
+                "KSFO28R": []
             },
             "draw": [
                 ["YOSEM", "SNORA", "ZOMER", "FRIGG", "SOOIE", "FAITH"]
@@ -896,7 +897,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.GNNRR2.AMAKR",
+            "route": "KSFO28L.GNNRR2.AMAKR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -917,7 +918,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.GNNRR2.ALCOA",
+            "route": "KSFO28L.GNNRR2.ALCOA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -940,7 +941,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.GNNRR2.ALANN",
+            "route": "KSFO28L.GNNRR2.ALANN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -955,7 +956,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.NIITE3.SYRAH",
+            "route": "KSFO28L.NIITE3.SYRAH",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -980,7 +981,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.NIITE3.TIPRE",
+            "route": "KSFO28L.NIITE3.TIPRE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1007,7 +1008,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.NIITE3.GRTFL",
+            "route": "KSFO28L.NIITE3.GRTFL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1043,7 +1044,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.TRUKN2.SYRAH",
+            "route": "KSFO28L.TRUKN2.SYRAH",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1068,7 +1069,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.TRUKN2.TIPRE",
+            "route": "KSFO28L.TRUKN2.TIPRE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1095,7 +1096,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.TRUKN2.DEDHD",
+            "route": "KSFO28L.TRUKN2.DEDHD",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1131,7 +1132,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.SNTNA2.TIPRE",
+            "route": "KSFO28L.SNTNA2.TIPRE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1155,7 +1156,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.SSTIK3.LOSHN",
+            "route": "KSFO1L.SSTIK3.LOSHN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1178,7 +1179,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.SSTIK3.EBAYE",
+            "route": "KSFO1L.SSTIK3.EBAYE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1201,7 +1202,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.SSTIK3.NTELL",
+            "route": "KSFO1L.SSTIK3.NTELL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1224,7 +1225,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO.OFFSH1.MCKEY",
+            "route": "KSFO28L.OFFSH1.MCKEY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1247,7 +1248,7 @@
             "origin": "",
             "destination": "KSFO",
             "category": "arrival",
-            "route": "AMAKR.BDEGA2.KSFO",
+            "route": "AMAKR.BDEGA2.KSFO28R",
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
@@ -1268,7 +1269,7 @@
             "origin": "",
             "destination": "KSFO",
             "category": "arrival",
-            "route": "LEGGS.BDEGA2.KSFO",
+            "route": "LEGGS.BDEGA2.KSFO28R",
             "altitude": [32000, 38000],
             "speed": 320,
             "method": "random",
@@ -1304,7 +1305,7 @@
             "origin": "",
             "destination": "KSFO",
             "category": "arrival",
-            "route": "MLBEC.BDEGA2.KSFO",
+            "route": "MLBEC.BDEGA2.KSFO28R",
             "altitude": [29000, 34000],
             "speed": 320,
             "method": "random",
@@ -1331,7 +1332,7 @@
             "origin": "",
             "destination": "KSFO",
             "category": "arrival",
-            "route": "MRRLO.BDEGA2.KSFO",
+            "route": "MRRLO.BDEGA2.KSFO28R",
             "altitude": [29000, 34000],
             "speed": 320,
             "method": "random",
@@ -1367,7 +1368,7 @@
             "origin": "",
             "destination": "KSFO",
             "category": "arrival",
-            "route": "INYOE.DYAMD3.KSFO",
+            "route": "INYOE.DYAMD3.KSFO28R",
             "altitude": [30000, 40000],
             "speed": 320,
             "method": "random",
@@ -1392,7 +1393,7 @@
             "origin": "",
             "destination": "KSFO",
             "category": "arrival",
-            "route": "SERFR.SERFR2.KSFO",
+            "route": "SERFR.SERFR2.KSFO28R",
             "altitude": [24000, 32000],
             "speed": 320,
             "method": "random",
