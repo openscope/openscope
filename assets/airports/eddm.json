@@ -17,7 +17,7 @@
         "center": ["N48d21m13.62", "E011d47m09.91"],
         "radius_nm": 5.0
     },
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
         "angle": 240,
         "speed": 6
