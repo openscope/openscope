@@ -1092,7 +1092,7 @@
             "airlines": [
                 ["afr/short", 10],
                 ["baw/short", 10],
-                ["baw/b767", 5],
+                ["baw/short", 5],
                 ["cfe", 9],
                 ["ein/short", 7],
                 ["ewg/short", 2],
@@ -1134,7 +1134,7 @@
             "airlines": [
                 ["afr/short", 11],
                 ["baw/short", 14],
-                ["baw/b767", 4],
+                ["baw/short", 4],
                 ["cfe", 9],
                 ["ein/short", 7],
                 ["ewg/short", 2],
@@ -1227,7 +1227,7 @@
             "airlines": [
                 ["afr/short", 10],
                 ["baw/short", 13],
-                ["baw/b767", 2],
+                ["baw/short", 2],
                 ["cfe", 9],
                 ["ein/short", 7],
                 ["ewg/short", 5],
@@ -1310,7 +1310,7 @@
             "airlines": [
                 ["afr/short", 10],
                 ["baw/short", 13],
-                ["baw/b767", 2],
+                ["baw/short", 2],
                 ["cfe", 9],
                 ["ein/short", 7],
                 ["ewg/short", 2],
