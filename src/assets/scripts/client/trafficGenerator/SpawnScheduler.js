@@ -92,7 +92,7 @@ class SpawnScheduler {
      * @for SpawnScheduler
      * @method createPreSpawnDepartures
      */
-    createPreSpawnDepartures(aircraftController) {
+    createPreSpawnDepartures() {
         const departureModelsToPreSpawn = SpawnPatternCollection.getDepartureModelsForPreSpawn();
 
         for (let i = 0; i < departureModelsToPreSpawn.length; i++) {
