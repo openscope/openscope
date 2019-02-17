@@ -1,0 +1,385 @@
+[aar/a333/rksi,2], TOMAN
+[aar/b744/rksi,1], TOMAN
+[abw/74n/vhhh,1], VMR
+[afr/b77w/lfpg,1], MASBO
+[aic/a20n/vidp,1], AROSO
+[aic/b788/vabb,1], AROSO
+[aic/b788/vidp,1], AROSO
+[aic/b788/vomm,1], AROSO
+[aiq/a320/vtbd,5], AROSO
+[aiq/a320/vtsg,1], AROSO
+[aiq/a320/vtsp,1], AROSO
+[alk/a20n/vcbi,2], ADMIM
+[alk/a332/vcbi,1], ADMIM
+[ana/b763/rjaa,1], TOMAN
+[ana/b77w/rjaa,1], TOMAN
+[ana/b789/rjtt,2], TOMAN
+[anz/b789/nzaa,1], ANITO
+[apg/a320/rpvm,1], TOMAN
+[awq/a320/wadd,4], VENIX
+[awq/a320/wahh,1], ANITO
+[awq/a320/wahs,1], VENIX
+[awq/a320/wicc,1], ANITO
+[awq/a320/wiii,4], ANITO
+[axb/b738/vomm,1], AROSO
+[axb/b738/vocb,1], AROSO
+[axb/b738/votr,1], MASBO
+[axm/a20n/wmkk,5], AROSO
+[axm/a320/wbgg,2], TOMAN
+[axm/a320/wbgr,1], TOMAN
+[axm/a320/wbkk,2], TOMAN
+[axm/a320/wmkk,6], AROSO
+[axm/a320/wmkl,1], AROSO
+[axm/a320/wmkp,5], AROSO
+[baw/a388/egll,1], AROSO
+[baw/b77w/egll,1], AROSO
+[baw/b77w/yssy,1], ANITO
+[bbc/b738/vghs,1],
+[bkp/a319/vtsm,2],
+[btk/a320/wiii,3], ANITO
+[cal/a333/rctp,2],
+[cal/a333/warr,1],
+[cal/b744/rpll,1],
+[cbg/a320/zgnn,1],
+[cca/b789/zbaa,1],
+[cca/a320/zuuu,1],
+[cca/b789/zbaa,1],
+[ceb/a320/rpvm,1], TOMAN
+[ceb/a330/rpll,1],
+[ceb/a320/rplc,1],
+[ceb/a320/rpll,1],
+[ceb/a320/rpmd,1],
+[ceb/a333/rpll,1],
+[ces/a320/zsqz,1],
+[ces/a332/zspd,4],
+[chb/a320/zuck,1],
+[ckk/b744/vtbs,1],
+[clx/b748/ellx,1],
+[clx/b748/vhhh,1], VMR
+[cpa/a330/vhhh,1], VMR
+[cpa/b773/vhhh,1], VMR
+[cpa/a333/vhhh,2], VMR
+[cpa/a333/vtbs,1],
+[cpa/a359/vhhh,3], VMR
+[cpa/b744/wmkp,1], AROSO
+[cpa/b773/vhhh,1], VMR
+[cqh/a320/zspd,1],
+[csc/null/zgnn,1],
+[csn/a320/zggg,2],
+[csn/b38m/zggg,1],
+[csz/b738/zgsz,2],
+[cxa/b738/zsam,2],
+[cxa/b738/zsfz,2],
+[dal/b763/rjaa,1], TOMAN
+[dlh/a359/eddm,1],
+[dlh/a388/eddf,1],
+[etd/b789/omaa,1],
+[eth/b788/haab,1],
+[eth/b788/wmkk,1], AROSO
+[eva/b744/vtbs,1],
+[eva/b77w/rctp,2],
+[ffm/at7/wmki,2], AROSO
+[ffm/at7/wmsa,3], AROSO
+[ffm/at75/wmkd,1], AROSO
+[ffm/at75/wmki,2], AROSO
+[ffm/at75/wmsa,7], AROSO
+[fin/a359/efhk,1],
+[gia/b738/wiii,1], ANITO
+[gia/a333/wiii,1], ANITO
+[gia/b38m/wiii,1], ANITO
+[gia/b738/wadd,2], VENIX
+[gia/b738/warr,1],
+[gia/b738/wiii,6], ANITO
+[gia/null/wicc,1], ANITO
+[hbh/b738/zshc,1],
+[hkc/a332/vhhh,1], VMR
+[hvn/a321/vvnb,2],
+[hvn/a321/vvts,4],
+[igo/a320/vecc,1],
+[igo/a320/vobl,1],
+[igo/a320/vomm,2], AROSO
+[igo/a320/votr,1], MASBO
+[jai/a332/vabb,1], AROSO
+[jai/b738/vabb,1], AROSO
+[jai/b738/vidp,2], AROSO
+[jai/b738/vobl,2],
+[jal/b772/rjaa,1], TOMAN
+[jal/b772/rjtt,2], TOMAN
+[jsa/a320/rctp,1],
+[jsa/a320/roah,1],
+[jsa/a320/rplc,1],
+[jsa/a320/rpll,2],
+[jsa/a320/vtbs,1],
+[jsa/a320/vvts,1],
+[jsa/a320/wadd,2], VENIX
+[jsa/a320/wiii,1], ANITO
+[jsa/a320/wimm,1],
+[jsa/a320/wmkk,1], AROSO
+[jsa/a320/zjhk,1],
+[jsa/a320/rpll,1],
+[jsa/a320/vdpp,1],
+[jsa/a320/vdsr,1],
+[jsa/a320/vhhh,1], VMR
+[jsa/a320/vtbs,2],
+[jsa/a320/vtsp,2], AROSO
+[jsa/a320/vtss,1],
+[jsa/a320/vvdn,1],
+[jsa/a320/vvts,2],
+[jsa/a320/vyyy,2],
+[jsa/a320/wadd,2], VENIX
+[jsa/a320/warr,1],
+[jsa/a320/wiii,3], ANITO
+[jsa/a320/wimm,1],
+[jsa/a320/wipp,1],
+[jsa/a320/wmkk,4], AROSO
+[jsa/a320/wmkp,2], AROSO
+[jsa/a320/ypdn,1],
+[jst/a320/wadd,1], VENIX
+[jst/b788/ymml,1],
+[kal/a333/rksi,1], TOMAN
+[kal/b773/rksi,1], TOMAN
+[kal/b77w/rksi,1], TOMAN
+[klm/b77w/eham,1],
+[klm/b77w/wadd,1], VENIX
+[lni/b738/wiii,2], ANITO
+[lni/b739/wiii,4], ANITO
+[lot/b788/epwa,1],
+[mas/b738/wmkk,1], AROSO
+[mas/b738/wbgg,1], TOMAN
+[mas/b738/wmkk,9], AROSO
+[mau/a332/fimp,1],
+[mau/a332/wmkk,1], AROSO
+[mau/null/vtbs,1],
+[mma/a319/vyyy,1],
+[mxd/b738/wbkk,1], TOMAN
+[mxd/b738/wmkk,4], AROSO
+[pal/a321/rpll,1],
+[pal/a321/rpll,2],
+[pal/a359/rpll,1],
+[pic/a320/vvts,1],
+[qfa/a332/ymml,1],
+[qfa/a332/ypph,1],
+[qfa/a333/ybbn,1],
+[qfa/a333/yssy,1], ANITO
+[qfa/a388/egll,1], AROSO
+[qfa/a388/ymml,1],
+[qfa/a388/yssy,1], ANITO
+[qfa/null/yssy,1], ANITO
+[qtr/a359/othh,1],
+[qtr/a359/othh,2],
+[rba/a20n/wbsb,2],
+[rge/b737/vghs,2],
+[sco/a320/rpll,1],
+[sco/a320/vhhh,1], VMR
+[sco/a320/vtbs,1],
+[sco/a320/vvts,1],
+[sco/a320/wadd,1], VENIX
+[sco/a320/warr,1],
+[sco/a320/wmki,1], AROSO
+[sco/a320/zsjn,1],
+[sco/b788/rckh,1],
+[sco/b788/yssy,1], ANITO
+[sco/b789/rctp,1],
+[sco/b789/ymml,1],
+[sco/b789/zggg,1],
+[sco/a319/rplc,1],
+[sco/a319/vhhh,1], VMR
+[sco/a319/vtbs,1],
+[sco/a319/wmkd,1], AROSO
+[sco/a320/rctp,2],
+[sco/a320/rpll,1],
+[sco/a320/vhhh,1], VMR
+[sco/a320/vmmc,1],
+[sco/a320/vobl,1],
+[sco/a320/voci,1],
+[sco/a320/vohs,1],
+[sco/a320/votr,2], MASBO
+[sco/a320/vtbs,2],
+[sco/a320/vtsg,1], AROSO
+[sco/a320/vtsp,3], AROSO
+[sco/a320/vtss,2],
+[sco/a320/vvnb,1],
+[sco/a320/vvts,2],
+[sco/a320/wadd,2], VENIX
+[sco/a320/wbgg,1], TOMAN
+[sco/a320/wibb,1],
+[sco/a320/wiii,3], ANITO
+[sco/a320/wipp,1],
+[sco/a320/wmki,2], AROSO
+[sco/a320/wmkk,4], AROSO
+[sco/a320/wmkl,2], AROSO
+[sco/a320/wmkp,3], AROSO
+[sco/a320/zlxy,1],
+[sco/a320/zswx,1],
+[sco/b788/viar,1],
+[sco/b788/vomm,1], AROSO
+[sco/b788/vtbd,1], AROSO
+[sco/b788/ypph,1],
+[sco/b788/zggg,1],
+[sco/b788/zshc,1],
+[sco/b789/rctp,1],
+[sco/b789/vtbs,1],
+[sco/b789/ybcg,1],
+[sco/b789/zsnj,1],
+[sia/a333/rjff,1],
+[sia/a333/vtbs,1],
+[sia/a333/vyyy,1],
+[sia/a333/warr,1],
+[sia/a333/ypph,2],
+[sia/a359/eddm,1],
+[sia/a359/faor,1],
+[sia/a359/limc,1],
+[sia/a359/uudd,1],
+[sia/a359/vabb,1], AROSO
+[sia/a359/ybbn,1],
+[sia/a359/ymml,1],
+[sia/a388/egll,1], AROSO
+[sia/a388/lszh,1],
+[sia/a388/rjbb,1],
+[sia/a388/yssy,1], ANITO
+[sia/74y/vhhh,2], VMR
+[sia/74y/vobl,1],
+[sia/b772/ltba,1],
+[sia/b772/vhhh,1], VMR
+[sia/b772/ybbn,1],
+[sia/b772/zbaa,1],
+[sia/b773/wiii,2], ANITO
+[sia/b773/zspd,1],
+[sia/b77w/lfpg,2], MASBO
+[sia/b77w/rksi,1], TOMAN
+[sia/b77w/yssy,1], ANITO
+[sia/b77w/zspd,1],
+[sia/b787/rjgg,1],
+[sia/b787/vidp,1], AROSO
+[sia/a320/wbsb,1],
+[sia/a333/rctp,2],
+[sia/a333/rksi,3], TOMAN
+[sia/a333/vaah,1],
+[sia/a333/vabb,1], AROSO
+[sia/a333/vcbi,1], ADMIM
+[sia/a333/vghs,2],
+[sia/a333/vomm,1], AROSO
+[sia/a333/vrmm,1],
+[sia/a333/vtbs,5],
+[sia/a333/vvnb,1],
+[sia/a333/vvts,3],
+[sia/a333/wadd,3], VENIX
+[sia/a333/wiii,1], ANITO
+[sia/a333/ypad,1],
+[sia/a333/zggg,1],
+[sia/a359/eham,1],
+[sia/a359/kewr,1],
+[sia/a359/ksfo,1],
+[sia/a359/lebl,1],
+[sia/a359/rjtt,1], TOMAN
+[sia/a359/vhhh,1], VMR
+[sia/a359/wiii,2], ANITO
+[sia/a359/wmkk,1], AROSO
+[sia/a359/ybbn,2],
+[sia/a388/eddf,1],
+[sia/a388/egll,2], AROSO
+[sia/a388/nzaa,1], ANITO
+[sia/a388/vabb,1], AROSO
+[sia/a388/vhhh,1], VMR
+[sia/a388/vidp,1], AROSO
+[sia/a388/ymml,1],
+[sia/a388/yssy,1], ANITO
+[sia/a388/zbaa,1],
+[sia/a388/zspd,1],
+[sia/b744/faor,1],
+[sia/b744/yssy,1], ANITO
+[sia/b772/nzch,1],
+[sia/b772/rpll,2],
+[sia/b772/vhhh,2], VMR
+[sia/b772/vobl,1],
+[sia/b772/wiii,1], ANITO
+[sia/b772/ypph,1],
+[sia/b773/rjtt,1], TOMAN
+[sia/b773/wiii,3], ANITO
+[sia/b773/zspd,1],
+[sia/b77w/eddf,1],
+[sia/b77w/egll,1], AROSO
+[sia/b77w/nzaa,1], ANITO
+[sia/b77w/omdb,1],
+[sia/b77w/rjaa,1], TOMAN
+[sia/b77w/rjtt,1], TOMAN
+[sia/b77w/rpll,1],
+[sia/b77w/vhhh,2], VMR
+[sia/b77w/ymml,2],
+[sia/b77w/yssy,2], ANITO
+[sia/b77w/zbaa,1],
+[sia/b78x/rjaa,1], TOMAN
+[sia/b78x/rjbb,1],
+[sia/b78x/rpll,1],
+[sia/b78x/wadd,1], VENIX
+[sia/b78x/ypph,1],
+[slk/a320/waaa,1],
+[slk/a320/wall,1],
+[slk/a320/wimm,1],
+[slk/b738/vdpp,1],
+[slk/b738/vtsp,1], AROSO
+[slk/b738/wadd,1], VENIX
+[slk/b738/wmkk,2], AROSO
+[slk/b738/wmkp,1], AROSO
+[slk/b738/zgsz,1],
+[slk/7m8/rjoa,1],
+[slk/7m8/vobl,1],
+[slk/7m8/ybcs,1],
+[slk/7m8/zuck,1],
+[slk/a319/vevz,1],
+[slk/a319/vtsm,2],
+[slk/a319/wbkk,1], TOMAN
+[slk/a319/wmkk,1], AROSO
+[slk/a320/vdpp,1],
+[slk/a320/voci,1],
+[slk/a320/votv,1],
+[slk/a320/vrmm,2],
+[slk/a320/vtsp,1], AROSO
+[slk/a320/waaa,1],
+[slk/a320/wahs,1], VENIX
+[slk/a320/zgha,1],
+[slk/b38m/vdpp,1],
+[slk/b38m/vnkt,1],
+[slk/b38m/vohs,2],
+[slk/b38m/wmkp,1], AROSO
+[slk/b38m/ypdn,1],
+[slk/b38m/zsfz,1],
+[slk/b738/rpmd,1],
+[slk/b738/vdsr,2],
+[slk/b738/vecc,1],
+[slk/b738/vocb,1], AROSO
+[slk/b738/voci,1],
+[slk/b738/vtcc,1],
+[slk/b738/vtsp,3], AROSO
+[slk/b738/vvdn,1],
+[slk/b738/vvnb,1],
+[slk/b738/vyyy,2],
+[slk/b738/wahh,1], ANITO
+[slk/b738/warr,1],
+[slk/b738/wicc,1], ANITO
+[slk/b738/wimm,1],
+[slk/b738/wmkk,5], AROSO
+[slk/b738/wmkp,3], AROSO
+[slk/b738/zhhh,1],
+[slk/b738/zppp,1],
+[slk/b738/zsam,1],
+[slk/b738/zuuu,2],
+[swr/b77w/lszh,1],
+[tha/a359/vtbs,2],
+[tha/b773/vtbs,3],
+[thy/b77w/ltba,1],
+[tlm/b39m/vtbd,2], AROSO
+[tmg/73f/wall,1],
+[uae/b77w/omdb,1],
+[uae/b77w/ybbn,1],
+[uae/77x/yssy,1], ANITO
+[uae/a388/omdb,2],
+[uae/a388/ymml,1],
+[uae/b77w/omdb,1],
+[ual/b789/ksfo,2],
+[ual/null/klax,1],
+[uba/b738/vyyy,2],
+[ubg/b738/vghs,1],
+[utp/abf/zgsz,1],
+[vjc/a320/vvts,2],
+[vjc/a321/vvnb,1]
