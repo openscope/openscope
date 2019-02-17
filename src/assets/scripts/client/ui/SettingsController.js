@@ -67,6 +67,15 @@ export default class SettingsController {
          */
         this.$dialog = null;
 
+        /**
+         * Dialog's body DOM element
+         *
+         * @property $dialogBody
+         * @type {jquery|HTML Element}
+         * @default null
+         */
+        this.$dialogBody = null;
+
         this.init();
     }
 
@@ -78,7 +87,7 @@ export default class SettingsController {
      */
     init() {
         this.$dialog = $(UI_SETTINGS_MODAL_TEMPLATE);
-        this.$body = this.$dialog.find('.dialog-body');
+        this.$dialogBody = this.$dialog.find(`.${SELECTORS.DIALOG_BODY}`);
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
@@ -88,7 +97,7 @@ export default class SettingsController {
 
             const $container = this._buildOptionTemplate(opt);
 
-            this.$body.append($container);
+            this.$dialogBody.append($container);
         });
 
         const $version = this._buildVersionTemplate();
