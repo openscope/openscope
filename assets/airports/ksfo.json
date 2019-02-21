@@ -115,7 +115,6 @@
         "EPICK": ["N36d57.05", "W121d57.16"],
         "FAITH": ["N37d24.07", "W121d51.71"],
         "FFOIL": ["N37d00.37", "W122d33.85"],
-        "FLOKK": ["N36d31.42", "W122d06.45"],
         "FLOWZ": ["N37d35.55", "W121d15.88"],
         "FLW"  : ["N35d05.58", "W119d51.93"],
         "FMG"  : ["N39d31.88", "W119d39.36"],
@@ -152,6 +151,7 @@
         "LEEFF": ["N37d36.52", "W121d07.44"],
         "LEGGS": ["N39d20.20", "W121d05.75"],
         "LETHH": ["N38d37.29", "W123d08.68"],
+        "LIBBO": ["N36d0.00", "W121d50.00"],
         "LIN"  : ["N38d04.47", "W121d00.23"],
         "LLVII": ["N37d42.03", "W121d46.75"],
         "LNNDA": ["N37d28.93", "W120d26.65"],
@@ -334,35 +334,6 @@
                 ["BCEEE", "ORRCA*"],
                 ["BCEEE", "TIPRE*"],
                 ["URRSA", "SAHEY"]
-            ]
-        },
-        "FOGGG2": {
-            "icao": "FOGGG2",
-            "name": "Fog Two",
-            "rwy": {
-                "KSFO10L": [],
-                "KSFO10R": [],
-                "KSFO19L": [],
-                "KSFO19R": []
-            },
-            "body": [["FOGGG", "A40+"]],
-            "exitPoints": {
-                "DEDHD": [["WOULD", "A100+"], "DEDHD"],
-                "GRTFL": [["WOULD", "A100+"], "GRTFL"],
-                "MOGEE": [["BCEEE", "A110+"], "MOGEE"],
-                "ORRCA": [["WOULD", "A100+"], "ORRCA"],
-                "SYRAH": [["LLVII", "A120+"], "SYRAH"],
-                "TIPRE": [["BCEEE", "A110+"], "TIPRE"]
-            },
-            "draw": [
-                ["FOGGG", "WOULD", "DEDHD*"],
-                ["WOULD", "GRTFL*"],
-                ["WOULD", "ORRCA*"],
-                ["FOGGG", "BCEEE"],
-                ["FOGGG", "LLVII"],
-                ["MOGEE*"],
-                ["TIPRE*"],
-                ["SYRAH*"]
             ]
         },
         "GAPP7": {
@@ -572,9 +543,9 @@
                 ["SNTNA", "TIPRE*"]
             ]
         },
-        "SSTIK3": {
-            "icao": "SSTIK3",
-            "name": "Stick Three",
+        "SSTIK4": {
+            "icao": "SSTIK4",
+            "name": "Stick Four",
             "rwy": {
                 "KSFO1L": [],
                 "KSFO1R": []
@@ -585,10 +556,10 @@
                 "EBAYE": ["SUSEY", "EBAYE"],
                 "LOSHN": ["KAYEX", "LOSHN"],
                 "NTELL": ["UTOOB", "NTELL"],
-                "YYUNG": ["FFOIL", "FLOKK", "YYUNG"]
+                "YYUNG": ["FFOIL", "LIBBO", "YYUNG"]
             },
             "draw": [
-                ["SSTIK", "PORTE", "FFOIL", "FLOKK", "YYUNG*"],
+                ["SSTIK", "PORTE", "FFOIL", "LIBBO", "YYUNG*"],
                 ["PORTE", "UTOOB", "NTELL*"],
                 ["PORTE", "KTINA"],
                 ["PORTE", "SUSEY"],
@@ -625,9 +596,9 @@
                 ["COSMC", "SYRAH*"]
             ]
         },
-        "WESLA3": {
-            "icao": "WESLA3",
-            "name": "Wesla Three",
+        "WESLA4": {
+            "icao": "WESLA4",
+            "name": "Wesla Four",
             "rwy": {
                 "KSFO28L": [],
                 "KSFO28R": []
@@ -638,7 +609,7 @@
                 "EBAYE": ["SUSEY", "EBAYE"],
                 "LOSHN": ["KAYEX", "LOSHN"],
                 "NTELL": ["UTOOB", "NTELL"],
-                "YYUNG": ["FFOIL", "FLOKK", "YYUNG"]
+                "YYUNG": ["FFOIL", "LIBBO", "YYUNG"]
             },
             "draw": [
                 ["WESLA", "PORTE"],
@@ -651,9 +622,9 @@
         }
     },
     "stars": {
-        "ALWYS1": {
-            "icao": "ALWYS1",
-            "name": "Always One",
+        "ALWYS2": {
+            "icao": "ALWYS2",
+            "name": "Always Two",
             "entryPoints": {
                 "INYOE": ["INYOE"],
                 "RUSME": ["RUSME"]
@@ -1156,7 +1127,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO1L.SSTIK3.LOSHN",
+            "route": "KSFO1L.SSTIK4.LOSHN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1179,7 +1150,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO1L.SSTIK3.EBAYE",
+            "route": "KSFO1L.SSTIK4.EBAYE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1202,7 +1173,7 @@
             "origin": "KSFO",
             "destination": "",
             "category": "departure",
-            "route": "KSFO1L.SSTIK3.NTELL",
+            "route": "KSFO1L.SSTIK4.NTELL",
             "altitude": "",
             "speed": "",
             "method": "random",
