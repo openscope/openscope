@@ -261,7 +261,7 @@ export default class StripViewController {
             return;
         }
 
-        this._removeCidFromUse(stripViewModel.cid);
+        this._removeCidFromUse(Number(stripViewModel.cid));
         this._collection.removeItem(stripViewModel);
         stripViewModel.destroy();
     }

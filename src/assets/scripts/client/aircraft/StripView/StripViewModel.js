@@ -159,7 +159,7 @@ export default class StripViewModel extends BaseModel {
          * Currently only numeric, but could be made alpha-numberic
          *
          * @property cid
-         * @type {number}
+         * @type {string}
          * @default cidValue
          * @private
          */
