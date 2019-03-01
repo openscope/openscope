@@ -30,6 +30,7 @@ export const KEY_CODES = {
     NUM_ADD: 'NumpadAdd',
     NUM_SUBTRACT: 'NumpadSubtract',
     NUM_DIVIDE: 'NumpadDivide',
+    NUM_ENTER: 'NumpadEnter',
     // arrow keys
     LEFT_ARROW: 'ArrowLeft',
     UP_ARROW: 'ArrowUp',
