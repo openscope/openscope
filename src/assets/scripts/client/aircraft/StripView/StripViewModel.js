@@ -160,7 +160,6 @@ export default class StripViewModel extends BaseModel {
          * @property cid
          * @type {number}
          * @default cidValue
-         * @private
          */
         this.cid = cidValue;
 
@@ -172,7 +171,6 @@ export default class StripViewModel extends BaseModel {
          * @property cidString
          * @type {string}
          * @default cidValue
-         * @private
          */
         this.cidString = leftPad(cidValue, 3);
 
