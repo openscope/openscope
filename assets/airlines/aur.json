@@ -3,8 +3,10 @@
     "name": "Aurigny Air Services",
     "callsign": {
         "name": "Ayline",
-        "length": 3,
-        "alpha": true
+        "callsignFormats": [
+            "###",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [

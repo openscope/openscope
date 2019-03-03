@@ -120,6 +120,30 @@ export const altitudeValidator = (args = []) => {
 };
 
 /**
+ * Checks that there is exactly zero or one value and the data is of the correct type
+ *
+ * ```
+ * Allowed argument shapes:
+ * - ['030']
+ * ```
+ *
+ * @function optionalAltitudeValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+export const optionalAltitudeValidator = (args = []) => {
+    const hasLengthError = zeroOrOneArgumentValidator(args);
+
+    if (hasLengthError) {
+        return hasLengthError;
+    }
+
+    if (args.length !== 0) {
+        return altitudeValidator(args);
+    }
+};
+
+/**
  * Verifies a list of fix names are all strings and that there is at least one
  *
  * @function fixValidator

@@ -1,0 +1,24 @@
+{
+    "icao": "tbn",
+    "name": "Taban Airlines",
+    "callsign": {
+        "name": "Taban",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A310", 1],
+            ["A319", 1],
+            ["B734", 1],
+            ["B752", 1],
+            ["MD88", 5],
+            ["RJ85", 1]
+        ],
+        "a310": [
+            ["A310", 1]
+        ]
+    }
+}

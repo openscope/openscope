@@ -2,14 +2,14 @@
     "icao": "poe",
     "name": "Porter Airlines",
     "callsign": {
-        "name": "Porter",
+        "name": "Porter Air",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["dh8d", 28]
+            ["DH8D", 29]
         ]
     }
 }

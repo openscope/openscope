@@ -1,8 +1,7 @@
 import {
     abs,
     sin,
-    cos,
-    tan
+    cos
 } from './core';
 import {
     tau,
@@ -18,34 +17,66 @@ import {
     area_to_poly
 } from './vector';
 import {
-    kn_ms,
     degreesToRadians,
     radiansToDegrees
 } from '../utilities/unitConverters';
-import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
+import { PERFORMANCE } from '../constants/aircraftConstants';
 
 /**
- * @function calcTurnRadius
- * @param speed {number} currentSpeed of an aircraft
- * @param bankAngle {number} bank angle of an aircraft
- * @return {number}
+ * Calculate the radius of turn of the aircraft, given its groundspeed
+ *
+ * Reference:
+ * http://www.flightlearnings.com/2009/08/26/radius-of-turn/
+ * https://en.wikipedia.org/wiki/Banked_turn#Banked_turn_in_aeronautics
+ *
+ * Possible conversion factor constants:
+ *    - 68416 (yields nautical miles)
+ *    - 11.26 (yields feet)
+ *
+ * @function calcTurnRadiusByBankAngle
+ * @param speed {number} aircraft groundspeed, in knots
+ * @param bankAngle {number} bank angle to use, in radians
+ * @return {number} radius of turn, in nautical miles
  */
-export const calcTurnRadius = (speed, bankAngle) => {
-    return (speed * speed) / (PHYSICS_CONSTANTS.GRAVITATIONAL_MAGNITUDE * tan(bankAngle));
-};
+export function calcTurnRadiusByBankAngle(speed, bankAngle) {
+    const conversionFactor = 68416; // yields radius in nautical miles
+
+    return (speed * speed) / (conversionFactor * Math.tan(bankAngle));
+}
+
 
 /**
- * @function calcTurnInitiationDistance
- * @param speed {number}            currentSpeed of an aircraft
- * @param bankAngle {number}        bank angle of an aircraft
- * @param courseChange {number}
+ * Calculate the radius of turn of the aircraft, given its groundspeed and
+ * its turn rate
+ *
+ * R = speedInKnots / (turnRateInDegreePerSecond * 20 * PI)
+ *
+ * https://en.wikipedia.org/wiki/Standard_rate_turn#Formulae
+ *
+ * @function calcTurnRadiusByTurnRate
+ * @param speed {number} aircraft groundspeed, in knots
+ * @param turnRate {number} in radians per second
+ * @return {number} radius of turn, in nautical miles
+ */
+export function calcTurnRadiusByTurnRate(speed, turnRate) {
+    return speed / (turnRate * 180 * 20);
+}
+
+/**
+ * The turn initiation distance is the distance that is necessary to complete
+ * a turn before reaching of a fly-by turn.
+ *
+ * @function calcTurnInitiationDistanceNm
+ * @param speed {number}        current speed of the aircraft in knots
+ * @param turnRate {number}     turn rate of the aircraft in radian per second
+ * @param courseChange {number} angular difference, in radians
  * @return {number}
  */
-export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
-    const turnRadius = calcTurnRadius(speed, bankAngle);
+export function calcTurnInitiationDistanceNm(speed, turnRate, courseChange) {
+    const turnRadiusNm = calcTurnRadiusByTurnRate(speed, turnRate);
 
-    return turnRadius * tan(courseChange / 2) + speed;
-};
+    return turnRadiusNm * Math.tan(courseChange * 0.5);
+}
 
 /**
  * Returns the bearing from `startPosition` to `endPosition`
@@ -54,7 +85,9 @@ export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
  * @param endPosition {array}       positional array, end point
  * @return {number}
  */
-export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPosition, startPosition));
+export function bearingToPoint(startPosition, endPosition) {
+    return vradial(vsub(endPosition, startPosition));
+}
 
 // TODO: this may be better suited to live in an Aircraft model somewhere.
 // TODO: This is goofy like this. Should be changed to accept (PositionModel, PositionModel, heading)
@@ -70,7 +103,7 @@ export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPo
  *                                              [1] is the longitudinal offset, in km
  *                                              [2] is the hypotenuse (straight-line distance), in km
  */
-export const getOffset = (aircraft, target, headingThruTarget = null) => {
+export function getOffset(aircraft, target, headingThruTarget = null) {
     if (!headingThruTarget) {
         headingThruTarget = aircraft.heading;
     }
@@ -84,9 +117,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
 
     return offset;
-};
-
-
+}
 
 /**
  *
@@ -95,7 +126,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
  * @param  pos {array}
  * @return {boolean}
  */
-export const isWithinAirspace = (airport, pos) => {
+export function isWithinAirspace(airport, pos) {
     const perim = airport.perimeter;
 
     if (perim) {
@@ -103,7 +134,7 @@ export const isWithinAirspace = (airport, pos) => {
     }
 
     return distance2d(pos, airport.relativePosition) <= airport.ctr_radius;
-};
+}
 
 /**
  *
@@ -112,7 +143,7 @@ export const isWithinAirspace = (airport, pos) => {
  * @param pos {array}
  * @return {boolean}
  */
-export const calculateDistanceToBoundary = (airport, pos) => {
+export function calculateDistanceToBoundary(airport, pos) {
     const perim = airport.perimeter;
 
     if (perim) {
@@ -121,25 +152,25 @@ export const calculateDistanceToBoundary = (airport, pos) => {
     }
 
     return abs(distance2d(pos, airport.relativePosition) - airport.ctr_radius);
-};
+}
 
 
 /**
  * @function _calculateNominalNewCourse
- * @param nextWaypointPosition {array}
- * @param currentWaypointPosition {array}
+ * @param nextWaypointRelativePosition {array}
+ * @param currentWaypointRelativePosition {array}
  * @return nominalNewCourse {number}
  * */
-const _calculateNominalNewCourse = (nextWaypointPosition, currentWaypointPosition) => {
-    let nominalNewCourse = vradial(vsub(nextWaypointPosition, currentWaypointPosition));
+function _calculateNominalNewCourse(nextWaypointRelativePosition, currentWaypointRelativePosition) {
+    let nominalNewCourse = vradial(vsub(nextWaypointRelativePosition, currentWaypointRelativePosition));
 
+    // normalize angle within 0 to 2pi
     if (nominalNewCourse < 0) {
-        // TODO: what is this doing? this should go in a new method.
         nominalNewCourse += tau();
     }
 
     return nominalNewCourse;
-};
+}
 
 /**
  * @function _calculateCourseChangeInRadians
@@ -147,7 +178,7 @@ const _calculateNominalNewCourse = (nextWaypointPosition, currentWaypointPositio
  * @param nominalNewCourse {number}
  * @return {number}
  */
-const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
+function _calculateCourseChangeInRadians(currentHeading, nominalNewCourse) {
     let courseChange = abs(radiansToDegrees(currentHeading) - radiansToDegrees(nominalNewCourse));
 
     if (courseChange > 180) {
@@ -155,7 +186,7 @@ const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
     }
 
     return degreesToRadians(courseChange);
-};
+}
 
 /**
  * Calculate the turn initiation distance for an aircraft to navigate between two fixes.
@@ -164,36 +195,37 @@ const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
  * - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
  * - The Avionics Handbook, ch 15
  *
- * @function aircraft_turn_initiation_distance
+ * @function calculateTurnInitiationDistance
  * @param aircraft {AircraftModel}
- * @param fix
+ * @param currentWaypointPosition {StaticPositionModel}
+ * @return {number} distance before fix to initiate turn to level out on route, in nautical miles
  */
-export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition) => {
-    let currentHeading = aircraft.heading;
-    const nominalBankAngleDegrees = 25;
-    const speed = kn_ms(aircraft.speed);
-    const bankAngle = degreesToRadians(nominalBankAngleDegrees);
+export function calculateTurnInitiationDistance(aircraft, currentWaypointPosition) {
     const nextWaypointModel = aircraft.fms.nextWaypoint;
 
     if (!aircraft.fms.hasNextWaypoint() || nextWaypointModel.isVectorWaypoint) {
         return 0;
     }
 
-    if (currentHeading < 0) {
-        currentHeading += tau();
+    // use the target heading instead of the actual heading to take into account
+    // that we might be already turning and there might be no need to initiate
+    // a turn at the moment. see #935
+    let targetHeading = aircraft.target.heading;
+
+    if (targetHeading < 0) {
+        targetHeading += tau();
     }
 
+    const turnRate = PERFORMANCE.TURN_RATE;
     const nominalNewCourse = _calculateNominalNewCourse(
         nextWaypointModel.relativePosition,
         currentWaypointPosition.relativePosition
     );
-    const courseChange = _calculateCourseChangeInRadians(currentHeading, nominalNewCourse);
-    // meters, bank establishment in 1s
-    const turnInitiationDistance = calcTurnInitiationDistance(speed, bankAngle, courseChange);
+    const courseChange = _calculateCourseChangeInRadians(targetHeading, nominalNewCourse);
+    const turnInitiationDistanceNm = calcTurnInitiationDistanceNm(aircraft.groundSpeed, turnRate, courseChange);
 
-    // convert m to km
-    return turnInitiationDistance / 1000;
-};
+    return turnInitiationDistanceNm;
+}
 
 /**
  * @function calculateCrosswindAngle
@@ -201,4 +233,6 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
  * @param windAngle {number}
  * @return {number}
  */
-export const calculateCrosswindAngle = (runwayAngle, windAngle) => abs(angle_offset(runwayAngle, windAngle));
+export function calculateCrosswindAngle(runwayAngle, windAngle) {
+    return abs(angle_offset(runwayAngle, windAngle));
+}

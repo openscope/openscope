@@ -2,7 +2,7 @@ import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
-// FIXME: Fix and start using the model source factory again!
+// TODO: Start using the model source factory again!
 // import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../base/BaseCollection';
 import FixModel from './FixModel';
@@ -30,7 +30,7 @@ class FixCollection extends BaseCollection {
     addItems(fixList, referencePosition) {
         if (this.length !== 0) {
             // you made it here because an airport has changed.
-            // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
+            // in `AirportModel.init()` this method is called with the fix data for the new airport. We don't want
             // or need to keep the fixes from a previous airport so if `_items` has a length, we need to reset that
             // property before we begin to add fixes for the new airport.
             this.removeItems();

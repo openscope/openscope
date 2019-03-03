@@ -1,4 +1,5 @@
 {
+    "airac": 1802,
     "radio": {
         "twr": "Portland Tower",
         "app": "Portland Approach",
@@ -11,8 +12,11 @@
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
     "position": ["N45.588708", "W122.596869", "31ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N45.588708", "W122.596869"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [45.588708, -122.596869],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 310,
@@ -391,13 +395,14 @@
         }
     },
     "stars": {
-        "HELNS5": {
-            "icao": "HELNS5",
-            "name": "Helens Five",
+        "HELNS6": {
+            "icao": "HELNS6",
+            "name": "Helens Six",
             "entryPoints": {
-                "SEA": ["SEA", "BUWZO"]
+                "BUWZO": [],
+                "SEA": ["SEA"]
             },
-            "body": ["HELNS", ["KRATR", "A120|S300-"], "BTG"],
+            "body": ["BUWZO", "HELNS", ["KRATR", "A100+|S300-"], ["BTG", "A70+"]],
             "rwy": {
                 "KPDX10L": ["#280"],
                 "KPDX10R": ["#280"],
@@ -457,14 +462,17 @@
                 ["HYKER", "BATYL"]
             ]
         },
-        "MOXEE6": {
-            "icao": "MOXEE6",
-            "name": "Moxee Six",
+        "OCITY1": {
+            "icao": "OCITY1",
+            "name": "Oh City One",
             "entryPoints": {
-                "LMT": ["LMT"],
-                "OED": ["OED"]
+                "LMT": ["LMT", "MOXEE", "PORTL"],
+                "MOXEE": ["MOXEE", "PORTL"],
+                "OED": ["OED", "MOXEE", "PORTL"],
+                "PORTL": ["PORTL"],
+                "VANTZ": []
             },
-            "body": ["MOXEE", "PORTL", "VANTZ", "OCITY"],
+            "body": [["VANTZ", "S250-"], ["OCITY", "A70+"]],
             "rwy": {
                 "KPDX10L": ["#280"],
                 "KPDX10R": ["#280"],
@@ -541,7 +549,7 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["asa", 32],
+                ["asa", 34],
                 ["cpz", 4],
                 ["dal", 20],
                 ["fdx", 3],
@@ -551,8 +559,7 @@
                 ["skw", 15],
                 ["swa", 33],
                 ["ual", 18],
-                ["ups", 4],
-                ["vrd", 2]
+                ["ups", 4]
             ]
         },
         {
@@ -592,7 +599,7 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["asa", 32],
+                ["asa", 34],
                 ["cpz", 4],
                 ["dal", 20],
                 ["fdx", 3],
@@ -602,8 +609,7 @@
                 ["skw", 15],
                 ["swa", 33],
                 ["ual", 18],
-                ["ups", 4],
-                ["vrd", 2]
+                ["ups", 4]
             ]
         },
         {
@@ -715,7 +721,7 @@
             "rate": 6,
             "airlines": [
                 ["aal", 10],
-                ["asa", 10],
+                ["asa", 12],
                 ["cpz", 4],
                 ["dal", 20],
                 ["fft", 2],
@@ -728,8 +734,7 @@
                 ["skw", 15],
                 ["swa", 33],
                 ["ual", 18],
-                ["ups", 4],
-                ["vrd", 2]
+                ["ups", 4]
             ]
         }
     ],

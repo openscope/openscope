@@ -1,9 +1,25 @@
 import ava from 'ava';
+import sinon from 'sinon';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import RadarTargetModel from '../../src/assets/scripts/client/scope/RadarTargetModel';
-import { ARRIVAL_AIRCRAFT_MODEL_MOCK } from '../aircraft/_mocks/aircraftMocks';
+import {
+    ARRIVAL_AIRCRAFT_MODEL_MOCK,
+    ARRIVAL_AIRCRAFT_MODEL_MOCK_HEAVY,
+    ARRIVAL_AIRCRAFT_MODEL_MOCK_SUPER,
+    DEPARTURE_AIRCRAFT_MODEL_MOCK
+} from '../aircraft/_mocks/aircraftMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { THEME } from '../../src/assets/scripts/client/constants/themes';
+
+let sandbox; // using the sinon sandbox ensures stubs are restored after each test
+
+ava.beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+});
+
+ava.afterEach(() => {
+    sandbox.restore();
+});
 
 ava('throws when called to instantiate with no parameters', (t) => {
     t.throws(() => new RadarTargetModel());
@@ -18,7 +34,7 @@ ava('initializes correctly when called to instantiate with correct parameters', 
     t.true(model._dataBlockLeaderLength === THEME.DEFAULT.DATA_BLOCK.LEADER_LENGTH);
     t.deepEqual(model._eventBus, EventBus);
     t.true(model._hasFullDataBlock === true);
-    t.true(model._hasHalo === false);
+    t.true(model._haloRadius === INVALID_NUMBER);
     t.true(model._hasSuppressedDataBlock === false);
     t.true(model._interimAltitude === INVALID_NUMBER);
     t.true(model._isUnderOurControl === true);
@@ -149,18 +165,38 @@ ava('.setScratchpad() sets #_scratchPadText to the specified string', (t) => {
     t.true(model._scratchPadText === newScratchPadText);
 });
 
-ava('.toggleHalo() toggles #_hasHalo to opposite of its current value', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+ava('.setHalo() sets halo radius correctly when no halo previously existed', (t) => {
+    const radarTargetModel = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'TOGGLE HALO'];
-    const haloWasActive = model._hasHalo;
-
-    const response = model.toggleHalo();
-
-    const haloIsActive = model._hasHalo;
+    const response = radarTargetModel.setHalo(7);
 
     t.deepEqual(response, expectedResponse);
-    t.false(haloWasActive);
-    t.true(haloIsActive);
+    t.true(radarTargetModel._haloRadius === 7);
+});
+
+ava('.setHalo() adjusts halo radius correctly when a halo previously existed', (t) => {
+    const radarTargetModel = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+
+    radarTargetModel._haloRadius = 5;
+
+    const expectedResponse = [true, 'ADJUST HALO'];
+    const response = radarTargetModel.setHalo(7);
+
+    t.deepEqual(response, expectedResponse);
+    t.true(radarTargetModel._haloRadius === 7);
+});
+
+ava('.setHalo() calls .removeHalo() when a halo is requested of the same radius as the existing', (t) => {
+    const radarTargetModel = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const removeHaloStub = sinon.stub(radarTargetModel, 'removeHalo');
+
+    radarTargetModel._haloRadius = 7;
+
+    const expectedResponse = undefined;
+    const response = radarTargetModel.setHalo(7);
+
+    t.true(response === expectedResponse);
+    t.true(removeHaloStub.calledWithExactly());
 });
 
 ava('._initializeScratchPad() sets #_scratchPadText to show aircraft\'s destination', (t) => {
@@ -172,11 +208,18 @@ ava('._initializeScratchPad() sets #_scratchPadText to show aircraft\'s destinat
     t.true(model._scratchPadText === expectedValue);
 });
 
-ava('._initializeScratchPad() sets #_scratchPadText to "XXX" when aircraft has no destination', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    const expectedValue = 'XXX';
+ava('._initializeScratchPad() sets #_scratchPadText to departure exit fix when aircraft is on departure route', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    const expectedValue = 'GUP';
 
-    model.aircraftModel.destination = undefined;
+    model._initializeScratchPad();
+
+    t.true(model._scratchPadText === expectedValue);
+});
+
+ava('._initializeScratchPad() sets #_scratchPadText to arrival airport when aircraft is on arrival route', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const expectedValue = 'LAS';
 
     model._initializeScratchPad();
 
@@ -199,4 +242,25 @@ ava('._setTheme() changes the value of #_theme', (t) => {
     model._setTheme(themeName);
 
     t.true(model._theme === THEME.CLASSIC);
+});
+
+ava('.buildDataBlockRowOne() creates correct first row for Large', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const expectedValue = 'AAL432';
+
+    t.true(model.buildDataBlockRowOne() === expectedValue);
+});
+
+ava('.buildDataBlockRowOne() creates correct first row for Heavy', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK_HEAVY);
+    const expectedValue = 'UAL99 H';
+
+    t.true(model.buildDataBlockRowOne() === expectedValue);
+});
+
+ava('.buildDataBlockRowOne() creates correct first row for Super', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK_SUPER);
+    const expectedValue = 'UAE11 J';
+
+    t.true(model.buildDataBlockRowOne() === expectedValue);
 });

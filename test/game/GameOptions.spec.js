@@ -17,7 +17,7 @@ ava('sets #_options on instantiation', (t) => {
         'ptlLength',
         'drawProjectedPaths',
         'softCeiling',
-        'includeWipAirports'
+        'rangeRings'
     ];
 
     const model = new GameOptions();

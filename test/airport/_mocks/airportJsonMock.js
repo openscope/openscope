@@ -1,5 +1,6 @@
 /* eslint-disable */
 export const AIRPORT_JSON_KLAS_MOCK = {
+    "airac": 1004,
     "radio": {
         "twr": "Las Vegas Tower",
         "app": "Las Vegas Approach",
@@ -12,8 +13,11 @@ export const AIRPORT_JSON_KLAS_MOCK = {
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
     "position": ["N36.080056", "W115.15225", "2181ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N36.080056", "W115.15225"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [36.080056, -115.15225],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 220,
@@ -80,6 +84,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "FLYES": ["N36.07604496870633", "W114.76281138717750"],
         "FORGE": ["N35.86472292298355", "W115.06848537453500"],
         "FRAWG": ["N36.14530265817758", "W114.76779643367257"],
+        "FREDD": ["N36d54.56m0", "W112d21.07m0"],
         "FUZZY": ["N36.20058355693305", "W115.90025800614106"],
         "GALNE": ["N35.99218293438480", "W115.21433575001986"],
         "GFS"  : ["N35d07.87", "W115d10.59"],
@@ -104,6 +109,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "KENNO": ["N37.29815901682068", "W117.31024567717155"],
         "KEPEC": ["N35.97127988740638", "W115.56351559769807"],
         "KIBSE": ["N35.94193294008936", "W115.24303753287032"],
+        "KIDDR": ["N34d56.66m0", "W112d27.99m0"],
         "KIMME": ["N35.99529958099861", "W114.83056270090610"],
         "KSINO": ["N36.57553879560182", "W114.08459329705524"],
         "LARRE": ["N36.07354200634845", "W114.83600093344620"],
@@ -196,12 +202,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         }
     ],
     "airways": {
-        "V394": ["DAG", "DISBE", "CHRLT", "CLARR", "OASYS", "LAS", "SUVIE", "MMM"]
+        "V394": ["DAG", "DISBE", "CHRLT", "CLARR", "OASYS", "LAS", "SUVIE", "MMM"],
+        "J11": ["BCE", "FREDD", "CORKR", "NAVHO", "KIDDR", "DRK"]
     },
     "sids": {
         "BOACH6": {
             "icao": "BOACH6",
             "name": "Boach Six",
+            "altitude": 7000,
             "rwy": {
                 "KLAS01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
@@ -277,6 +285,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["KENNO", "OAL*"]
             ]
         },
+        // Not a real route, used to test soft altitude restrictions
         "TRALR6": {
             "icao": "TRALR6",
             "name": "Trailer Six",
@@ -285,10 +294,10 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"]],
                 "KLAS07R": ["JESJI", ["BAKRR", "A70"]],
-                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"], ["BIKKR", "A400-"], "TRALR"]
             },
             "body": ["TRALR"],
             "exitPoints": {
@@ -337,7 +346,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270+"]],
                 "MLF":   ["MLF"]
             },
-            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], "TRROP", "LEMNZ"],
+            "body": [["KSINO", "A170"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110-"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], ["TRROP", "A30+"], "LEMNZ"],
             "rwy": {
                 "KLAS01L": [],
                 "KLAS01R": [],
@@ -421,7 +430,6 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "body": [["KADDY", "A120|S250"], "TYSSN", ["SUZSI", "A100|S210"], ["PRINO", "A80"]],
             "rwy": {
                 "KLAS01L": [],
-                "KLAS01R": [],
                 "KLAS07L": [],
                 "KLAS07R": [],
                 "KLAS19L": [],
@@ -445,9 +453,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS07L": [],
                 "KLAS07R": [],
                 "KLAS19L": [],
-                "KLAS19R": [],
-                "KLAS25L": [],
-                "KLAS25R": []
+                "KLAS19R": []
             },
             "draw": [[]]
         }

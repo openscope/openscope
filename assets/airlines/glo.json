@@ -4,13 +4,13 @@
     "callsign": {
         "name": "Gol",
         "callsignFormats": [
-            "###"
+            "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B737", 33 ],
-            ["B738", 107]
+            ["B737", 26],
+            ["B738", 92]
         ]
     }
 }

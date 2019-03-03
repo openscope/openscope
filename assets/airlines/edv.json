@@ -4,13 +4,14 @@
     "callsign": {
         "name": "Endeavor",
         "callsignFormats": [
-            "###"
+            "####"
         ]
     },
     "fleets": {
         "default": [
-            ["CRJ2", 44 ],
-            ["CRJ9", 81 ]
+            ["CRJ2", 47],
+            ["CRJ7", 3],
+            ["CRJ9", 106]
         ]
     }
 }

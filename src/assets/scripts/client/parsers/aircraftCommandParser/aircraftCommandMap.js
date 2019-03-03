@@ -1,39 +1,4 @@
-/**
- * List of System Commands
- *
- * When a command is parsed, the value here will be used for the `name` property
- * of the `AircraftCommandParser`
- *
- * @property SYSTEM_COMMANDS
- * @type {Object}
- * @final
- */
-export const SYSTEM_COMMANDS = {
-    auto: 'auto',
-    clear: 'clear',
-    pause: 'pause',
-    tutorial: 'tutorial',
-
-    // single arg commands
-    '`': 'moveDataBlock',
-    airport: 'airport',
-    rate: 'rate',
-    timewarp: 'timewarp',
-    transmit: 'transmit'
-};
-
-/**
- * Some commands are converted to unicode (to provide arrow characters) for specific shortkeys
- *
- * This maps those unicode values, converted to a string, to the correct root command
- *
- * @property UNICODE_COMMANDS
- * @type {Object}
- * @final
- */
-const UNICODE_COMMANDS = {
-    '\\u2B50': 'land'
-};
+import _findKey from 'lodash/findKey';
 
 /**
  * Complete map of commands
@@ -54,67 +19,206 @@ const UNICODE_COMMANDS = {
  * @final
  */
 export const AIRCRAFT_COMMAND_MAP = {
-    ...SYSTEM_COMMANDS,
-    ...UNICODE_COMMANDS,
-
-    abort: 'abort',
-    taxi: 'taxi',
-    wait: 'taxi',
-    w: 'taxi',
-    sid: 'sid',
-    star: 'star',
-    clearedAsFiled: 'clearedAsFiled',
-    caf: 'clearedAsFiled',
-    climbViaSID: 'climbViaSID',
-    cvs: 'climbViaSID',
-    descendViaStar: 'descendViaStar',
-    dvs: 'descendViaStar',
-    climb: 'altitude',
-    c: 'altitude',
-    descend: 'altitude',
-    d: 'altitude',
-    altitude: 'altitude',
-    a: 'altitude',
-    takeoff: 'takeoff',
-    to: 'takeoff',
-    cto: 'takeoff',
-    fph: 'flyPresentHeading',
-    heading: 'heading',
-    fh: 'heading',
-    h: 'heading',
-    turn: 'heading',
-    t: 'heading',
-    speed: 'speed',
-    slow: 'speed',
-    sp: 'speed',
-    '+': 'speed',
-    '-': 'speed',
-    ils: 'land',
-    i: 'land',
-    land: 'land',
-    l: 'land',
-    '*': 'land',
-    reroute: 'reroute',
-    rr: 'reroute',
-    route: 'route',
-    f: 'fix',
-    fix: 'fix',
-    track: 'fix',
-    direct: 'direct',
-    pd: 'direct',
-    dct: 'direct',
-    hold: 'hold',
-    squawk: 'squawk',
-    sq: 'squawk',
-    delete: 'delete',
-    del: 'delete',
-    kill: 'delete',
-    sa: 'sayAltitude',
-    saa: 'sayAssignedAltitude',
-    sh: 'sayHeading',
-    sah: 'sayAssignedHeading',
-    si: 'sayIndicatedAirspeed',
-    sas: 'sayAssignedSpeed'
+    abort: {
+        aliases: ['abort'],
+        functionName: 'runAbort',
+        isSystemCommand: false
+    },
+    airac: {
+        aliases: ['airac'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    airport: {
+        aliases: ['airport'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    altitude: {
+        aliases: ['a', 'altitude', 'c', 'climb', 'd', 'descend'],
+        functionName: 'runAltitude',
+        isSystemCommand: false
+    },
+    auto: {
+        aliases: ['auto'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    clear: {
+        aliases: ['clear'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    clearedAsFiled: {
+        aliases: ['caf', 'clearedAsFiled'],
+        functionName: 'runClearedAsFiled',
+        isSystemCommand: false
+    },
+    climbViaSid: {
+        aliases: ['climbViaSid', 'cvs'],
+        functionName: 'runClimbViaSID',
+        isSystemCommand: false
+    },
+    delete: {
+        aliases: ['del', 'delete', 'kill'],
+        functionName: 'runDelete',
+        isSystemCommand: false
+    },
+    descendViaStar: {
+        aliases: ['descendViaStar', 'dvs'],
+        functionName: 'runDescendViaStar',
+        isSystemCommand: false
+    },
+    direct: {
+        aliases: ['dct', 'direct', 'pd'],
+        functionName: 'runDirect',
+        isSystemCommand: false
+    },
+    cancelHold: {
+        aliases: ['exithold', 'cancelhold', 'continue', 'nohold', 'xh'],
+        functionName: 'runCancelHoldingPattern',
+        isSystemCommand: false
+    },
+    expectArrivalRunway: {
+        aliases: ['e'],
+        functionName: 'runExpectArrivalRunway',
+        isSystemCommand: false
+    },
+    fix: {
+        aliases: ['f', 'fix', 'track'],
+        functionName: 'runFix',
+        isSystemCommand: false
+    },
+    flyPresentHeading: {
+        aliases: ['fph'],
+        functionName: 'runFlyPresentHeading',
+        isSystemCommand: false
+    },
+    heading: {
+        aliases: ['fh', 'h', 'heading', 't', 'turn'],
+        functionName: 'runHeading',
+        isSystemCommand: false
+    },
+    hold: {
+        aliases: ['hold'],
+        functionName: 'runHold',
+        isSystemCommand: false
+    },
+    ils: {
+        aliases: ['*', 'i', 'ils'],
+        functionName: 'runIls',
+        isSystemCommand: false
+    },
+    land: {
+        aliases: ['land'],
+        functionName: 'runLand',
+        isSystemCommand: false
+    },
+    moveDataBlock: {
+        aliases: ['`'],
+        functionName: 'runMoveDataBlock',
+        isSystemCommand: false
+    },
+    pause: {
+        aliases: ['pause'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    rate: {
+        aliases: ['rate'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    reroute: {
+        aliases: ['reroute', 'rr'],
+        functionName: 'runReroute',
+        isSystemCommand: false
+    },
+    route: {
+        aliases: ['route'],
+        functionName: 'runRoute',
+        isSystemCommand: false
+    },
+    sayAltitude: {
+        aliases: ['sa'],
+        functionName: 'runSayAltitude',
+        isSystemCommand: false
+    },
+    sayAssignedAltitude: {
+        aliases: ['saa'],
+        functionName: 'runSayAssignedAltitude',
+        isSystemCommand: false
+    },
+    sayAssignedHeading: {
+        aliases: ['sah'],
+        functionName: 'runSayAssignedHeading',
+        isSystemCommand: false
+    },
+    sayAssignedSpeed: {
+        aliases: ['sas'],
+        functionName: 'runSayAssignedSpeed',
+        isSystemCommand: false
+    },
+    sayHeading: {
+        aliases: ['sh'],
+        functionName: 'runSayHeading',
+        isSystemCommand: false
+    },
+    sayIndicatedAirspeed: {
+        aliases: ['si'],
+        functionName: 'runSayIndicatedAirspeed',
+        isSystemCommand: false
+    },
+    sayRoute: {
+        aliases: ['sr'],
+        functionName: 'runSayRoute',
+        isSystemCommand: false
+    },
+    sid: {
+        aliases: ['sid'],
+        functionName: 'runSID',
+        isSystemCommand: false
+    },
+    speed: {
+        aliases: ['-', '+', 'slow', 'sp', 'speed'],
+        functionName: 'runSpeed',
+        isSystemCommand: false
+    },
+    squawk: {
+        aliases: ['sq', 'squawk'],
+        functionName: 'runSquawk',
+        isSystemCommand: false
+    },
+    star: {
+        aliases: ['star'],
+        functionName: 'runSTAR',
+        isSystemCommand: false
+    },
+    takeoff: {
+        aliases: ['cto', 'to', 'takeoff'],
+        functionName: 'runTakeoff',
+        isSystemCommand: false
+    },
+    taxi: {
+        aliases: ['taxi', 'w', 'wait'],
+        functionName: 'runTaxi',
+        isSystemCommand: false
+    },
+    timewarp: {
+        aliases: ['timewarp'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    transmit: {
+        aliases: ['transmit'],
+        functionName: '',
+        isSystemCommand: true
+    },
+    tutorial: {
+        aliases: ['tutorial'],
+        functionName: '',
+        isSystemCommand: true
+    }
 };
 
 /**
@@ -123,3 +227,14 @@ export const AIRCRAFT_COMMAND_MAP = {
  * @final
  */
 export const EXPEDITE = ['expedite', 'x'];
+
+/**
+ * Get the name of a command when given any of that command's aliases
+ *
+ * @function findCommandNameWithAlias
+ * @param commandAlias {string}
+ * @return {string}
+ */
+export function findCommandNameWithAlias(commandAlias) {
+    return _findKey(AIRCRAFT_COMMAND_MAP, (command) => command.aliases.indexOf(commandAlias) !== -1);
+}

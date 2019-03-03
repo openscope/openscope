@@ -1,0 +1,15 @@
+{
+    "icao": "pbd",
+    "name": "Pobeda",
+    "callsign": {
+        "name": "Pobeda",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 19]
+        ]
+    }
+}

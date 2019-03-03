@@ -13,7 +13,7 @@
         "comma-dangle": [2, "never"],
         "no-did-mount-set-state": [0, "never"],
         "indent": [1, 4, {"SwitchCase": 1}],
-        "max-len": [1, 120],
+        "max-len": [1, 130],
         "no-console": 0,
         "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
         "prefer-spread": 1,

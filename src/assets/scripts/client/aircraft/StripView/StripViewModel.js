@@ -8,25 +8,6 @@ import { SELECTORS } from '../../constants/selectors';
 import { leftPad } from '../../utilities/generalUtilities';
 
 /**
- * @property STRIP_VIEW_SELECTORS
- * @type {object<string, string}
- * @final
- */
-const STRIP_VIEW_SELECTORS = {
-    CALLSIGN: '.js-stripView-callsign',
-    AIRCRAFT_MODEL: '.js-stripView-aircraftModel',
-    CID: '.js-stripView-cid',
-    TRANSPONDER: '.js-stripView-transponder',
-    ASSIGNED_ALTITUDE: '.js-stripView-assignedAltitude',
-    FLIGHT_PLAN_ALTITUDE: '.js-stripView-flightPlanAltitude',
-    DEPARTURE_AIRPORT_ID: '.js-stripView-departureAirportId',
-    ARRIVAL_AIRPORT_ID: '.js-stripView-arrivalAirportId',
-    ALTERNATE_AIRPORT_ID: '.js-stripView-alternateAirportId',
-    FLIGHT_PLAN: '.js-stripView-flightPlan',
-    REMARKS: '.js-stripView-remarks'
-};
-
-/**
  * Encapsulation of data and view elements for a single aircraft progress strip
  *
  * Handles display and updating of an aircraft progress strip
@@ -68,6 +49,18 @@ export default class StripViewModel extends BaseModel {
          * @private
          */
         this._eventBus = EventBus;
+
+        /**
+         * If an aircraft is a Departure
+         *
+         * When this is true it means the aircraft is a Departure
+         * and if this is false it means the aircraft is an Arrival.
+         *
+         * @property isDeparture
+         * @type {boolean}
+         * @default false
+         */
+        this.isDeparture = false;
 
         /**
          * Root HTML Element
@@ -308,11 +301,49 @@ export default class StripViewModel extends BaseModel {
         /**
          * HTML Element that holds the `#_flightPlan` value
          *
-         * @property $_flightPlanView
+         * @property $flightPlanView
          * @type {JQuery Element}
          * @default null
          */
         this.$flightPlanView = null;
+
+        /**
+         * Value of the remarks field
+         *
+         * @property _remarks
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._remarks = '';
+
+        /**
+         * HTML Element that holds the `#remarks` value
+         *
+         * @property $remarks
+         * @type {JQuery Element}
+         * @default null
+         */
+        this.$remarks = null;
+
+        /**
+         * The expected or assigned runway
+         *
+         * @property _runwayInformation
+         * @type {object}
+         * @default ''
+         * @private
+         */
+        this._runwayInformation = null;
+
+        /**
+         * HTML Element that holds the `#runway` value
+         *
+         * @property $runway
+         * @type {JQuery Element}
+         * @default null
+         */
+        this.$runway = null;
 
         return this._init(aircraftModel)
             ._createChildren()
@@ -368,6 +399,8 @@ export default class StripViewModel extends BaseModel {
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
+        this.isDeparture = aircraftModel.isDeparture();
+        this._runwayInformation = this._buildRunwayInformation(aircraftModel);
 
         return this;
     }
@@ -383,16 +416,18 @@ export default class StripViewModel extends BaseModel {
      */
     _createChildren() {
         this.$element = $(STRIP_VIEW_TEMPLATE);
-        this.$callsignView = this.$element.find(STRIP_VIEW_SELECTORS.CALLSIGN);
-        this.$aircraftTypeView = this.$element.find(STRIP_VIEW_SELECTORS.AIRCRAFT_MODEL);
-        this.$cidView = this.$element.find(STRIP_VIEW_SELECTORS.CID);
-        this.$transponderView = this.$element.find(STRIP_VIEW_SELECTORS.TRANSPONDER);
-        this.$assignedAltitudeView = this.$element.find(STRIP_VIEW_SELECTORS.ASSIGNED_ALTITUDE);
-        this.$flightPlanAltitudeView = this.$element.find(STRIP_VIEW_SELECTORS.FLIGHT_PLAN_ALTITUDE);
-        this.$arrivalAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ARRIVAL_AIRPORT_ID);
-        this.$departureAirportView = this.$element.find(STRIP_VIEW_SELECTORS.DEPARTURE_AIRPORT_ID);
-        this.$alternateAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ALTERNATE_AIRPORT_ID);
-        this.$flightPlanView = this.$element.find(STRIP_VIEW_SELECTORS.FLIGHT_PLAN);
+        this.$callsignView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_CALLSIGN);
+        this.$aircraftTypeView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_AIRCRAFT_TYPE);
+        this.$cidView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_CID);
+        this.$transponderView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_TRANSPONDER);
+        this.$assignedAltitudeView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_ASSIGNED_ALTITUDE);
+        this.$flightPlanAltitudeView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_FLIGHT_PLAN_ALTITUDE);
+        this.$arrivalAirportView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_ARRIVAL_AIRPORT_ID);
+        this.$departureAirportView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_DEPARTURE_AIRPORT_ID);
+        this.$alternateAirportView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_ALTERNATE_AIRPORT_ID);
+        this.$flightPlanView = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_FLIGHT_PLAN);
+        this.$remarks = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_REMARKS);
+        this.$runway = this.$element.find(SELECTORS.CLASSNAMES.STRIP_VIEW_RUNWAY);
 
         return this;
     }
@@ -470,6 +505,8 @@ export default class StripViewModel extends BaseModel {
         this.$arrivalAirportView.text(this._arrivalAirport);
         this.$alternateAirportView.text(this._alternateAirport);
         this.$flightPlanView.text(this._flightPlan);
+        this.$remarks.text(this._remarks);
+        this.$runway.text(this._runwayInformation.name);
 
         return this;
     }
@@ -524,6 +561,10 @@ export default class StripViewModel extends BaseModel {
         this.$alternateAirportView = null;
         this._flightPlan = '';
         this.$flightPlanView = null;
+        this._remarks = '';
+        this.$remarks = null;
+        this._runwayInformation = null;
+        this.$runway = null;
 
         return this;
     }
@@ -569,16 +610,49 @@ export default class StripViewModel extends BaseModel {
      *
      * @for AircraftStripView
      * @method _buildClassnameForFlightCategory
+     * @param aircraftModel {AircraftModel}
      * @return {string}
      */
     _buildClassnameForFlightCategory(aircraftModel) {
-        let className = SELECTORS.CLASSNAMES.ARRIVAL;
-
         if (aircraftModel.isDeparture()) {
-            className = SELECTORS.CLASSNAMES.DEPARTURE;
+            return SELECTORS.CLASSNAMES.DEPARTURE;
         }
 
-        return className;
+        if (aircraftModel.isOverflight()) {
+            return SELECTORS.CLASSNAMES.OVERFLIGHT;
+        }
+
+        return SELECTORS.CLASSNAMES.ARRIVAL;
+    }
+
+    /**
+     * Returns the runway and if it is expected or assigned based on whether an
+     * aircraft is a `departure` or an `arrival`.
+     *
+     * @for AircraftStripView
+     * @method _buildRunwayInformation
+     * @param aircraftModel {AircraftModel}
+     * @return {object}
+     */
+    _buildRunwayInformation(aircraftModel) {
+        if (aircraftModel.isDeparture() && aircraftModel.isOnGround()) {
+            return {
+                hasRunwayAssigned: !aircraftModel.isApron(),
+                name: aircraftModel.fms.departureRunwayModel.name
+            };
+        }
+
+        if (aircraftModel.isArrival()) {
+            return {
+                hasRunwayAssigned: aircraftModel.pilot.hasApproachClearance,
+                name: aircraftModel.fms.arrivalRunwayModel.name
+            };
+        }
+
+        return {
+            hasRunwayAssigned: false,
+            name: ''
+        };
     }
 
     /**
@@ -631,6 +705,7 @@ export default class StripViewModel extends BaseModel {
      */
     _shouldUpdate(aircraftModel) {
         const viewModel = aircraftModel.getViewModel();
+        const runwayInfo = this._buildRunwayInformation(aircraftModel);
 
         return this.insideCenter !== viewModel.insideCenter ||
             this._transponder !== viewModel.transponderCode ||
@@ -638,7 +713,9 @@ export default class StripViewModel extends BaseModel {
             this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
             this._arrivalAirport !== viewModel.arrivalAirportId ||
             this._departureAirport !== viewModel.departureAirportId ||
-            this._flightPlan !== viewModel.flightPlan;
+            this._flightPlan !== viewModel.flightPlan ||
+            this._runwayInformation.hasRunwayAssigned !== runwayInfo.hasRunwayAssigned ||
+            this._runwayInformation.name !== runwayInfo.name;
     }
 
     /**
@@ -670,6 +747,12 @@ export default class StripViewModel extends BaseModel {
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
+        this._runwayInformation = this._buildRunwayInformation(aircraftModel);
+
+        this.$runway.toggleClass(
+            SELECTORS.CLASSNAMES.STRIP_VIEW_PREPLANNING,
+            !this._runwayInformation.hasRunwayAssigned
+        );
 
         return this._redraw();
     }

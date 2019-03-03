@@ -200,6 +200,26 @@ class CanvasStageModel {
     }
 
     /**
+     * Translate a mouse position, in pixels, as it relates to the
+     * browser window to canvas position
+     *
+     * @for CanvasStageModel
+     * @method translateMousePositionToCanvasPosition
+     * @param x {number}
+     * @param y {number}
+     * @return {object<string, number>}
+     */
+    translateMousePositionToCanvasPosition(x, y) {
+        const canvasPositionX = x - this.halfWidth;
+        const canvasPositionY = -y + this.halfHeight;
+
+        return {
+            x: canvasPositionX,
+            y: canvasPositionY
+        };
+    }
+
+    /**
      * Translate a pixel value to kilometers based on the current `#_scale` value
      *
      * @for CanvasStageModel

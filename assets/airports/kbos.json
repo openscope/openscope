@@ -1,4 +1,5 @@
 {
+    "airac": 1802,
     "radio": {
         "twr": "Boston Tower",
         "app": "Boston Approach",
@@ -11,8 +12,11 @@
     "ctr_ceiling": 14000,
     "initial_alt": 5000,
     "position": ["N42.362972", "W71.006417", "19ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N42.362972", "W71.006417"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [42.362972, -71.006417],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 230,
@@ -789,17 +793,17 @@
             "airlines": [
                 ["aal", 10],
                 ["aal/long", 4],
+                ["asa", 5],
                 ["asq", 2],
                 ["dal", 7],
                 ["dal/long", 3],
                 ["jbu", 20],
                 ["nks", 5],
+                ["rpa", 5],
                 ["scx", 5],
                 ["swa", 10],
-                ["tcf", 5],
                 ["ual", 8],
-                ["ual/long", 2],
-                ["vrd", 5]
+                ["ual/long", 2]
             ]
         },
         {
@@ -817,7 +821,7 @@
                 ["jbu", 20],
                 ["nax", 1],
                 ["nks", 5],
-                ["tcf", 5],
+                ["rpa", 5],
                 ["ual", 8]
             ]
         },
@@ -880,7 +884,6 @@
                 ["afr/long", 3],
                 ["aza/long", 2],
                 ["baw/long", 5],
-                ["ber/long", 2],
                 ["cpa", 1],
                 ["dal/long", 3],
                 ["dlh/long", 5],
@@ -910,17 +913,17 @@
             "airlines": [
                 ["aal", 10],
                 ["aal/long", 4],
+                ["asa", 5],
                 ["asq", 2],
                 ["dal", 7],
                 ["dal/long", 3],
                 ["jbu", 20],
                 ["nks", 5],
+                ["rpa", 5],
                 ["scx", 5],
                 ["swa", 10],
-                ["tcf", 5],
                 ["ual", 8],
-                ["ual/long", 2],
-                ["vrd", 5]
+                ["ual/long", 2]
             ]
         },
         {
@@ -957,9 +960,9 @@
                 ["jbu", 30],
                 ["nax", 5],
                 ["nks", 5],
+                ["rpa", 5],
                 ["scx", 5],
                 ["swa", 10],
-                ["tcf", 5],
                 ["ual", 8]
             ]
         },
@@ -976,19 +979,18 @@
                 ["aal", 10],
                 ["aal/long", 2],
                 ["aca", 3],
-                ["asa", 1],
+                ["asa", 6],
                 ["asq", 2],
                 ["cpa", 1],
                 ["dal", 7],
                 ["jal/long", 2],
                 ["jbu", 40],
                 ["nks", 3],
+                ["rpa", 5],
                 ["scx", 3],
                 ["swa", 10],
-                ["tcf", 5],
                 ["ual", 8],
-                ["ual/long", 2],
-                ["vrd", 5]
+                ["ual/long", 2]
             ]
         },
         {
@@ -1008,7 +1010,6 @@
                 ["afr/long", 3],
                 ["aza/long", 2],
                 ["baw/long", 5],
-                ["ber/long", 2],
                 ["dal/long", 3],
                 ["dlh/long", 5],
                 ["ein/long", 2],
@@ -1039,8 +1040,8 @@
                 ["jbu", 40],
                 ["nax", 1],
                 ["nks", 10],
+                ["rpa", 3],
                 ["swa", 5],
-                ["tcf", 3],
                 ["ual", 5]
             ]
         },
@@ -1056,14 +1057,14 @@
             "airlines": [
                 ["aal", 10],
                 ["amx", 3],
+                ["asa", 5],
                 ["asq", 2],
                 ["dal", 7],
                 ["jbu", 40],
                 ["nks", 5],
+                ["rpa", 5],
                 ["swa", 10],
-                ["tcf", 5],
-                ["ual", 8],
-                ["vrd", 5]
+                ["ual", 8]
             ]
         }
     ],

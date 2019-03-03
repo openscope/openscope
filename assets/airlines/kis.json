@@ -1,0 +1,26 @@
+{
+    "icao": "kis",
+    "name": "Kish Airlines",
+    "callsign": {
+        "name": "Kish Air",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 1],
+            ["A321", 2],
+            ["B735", 1],
+            ["F100", 2],
+            ["MD82", 4],
+            ["MD83", 3]
+        ],
+        "a321": [
+            ["MD82", 4]
+        ],
+        "md82": [
+            ["A321", 2]
+        ]
+    }
+}

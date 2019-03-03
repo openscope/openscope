@@ -1,0 +1,26 @@
+{
+    "icao": "ohy",
+    "name": "Onur Air",
+    "callsign": {
+        "name": "Onur Air",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 7],
+            ["A321", 9],
+            ["A332", 10]
+        ],
+        "short": [
+            ["A320", 7],
+            ["A321", 9]
+        ],
+        "a320": [
+            ["A320", 7]
+        ]
+    }
+}

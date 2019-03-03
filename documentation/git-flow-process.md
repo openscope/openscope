@@ -1,4 +1,4 @@
-## Naming Convention
+# Naming Convention
 Each issue and corresponding pull request will be placed in one of the following categories:
 - `feature`: addition of a _completely new feature_
 - `enhancement`: notable _improvement or expansion upon an existing feature_
@@ -26,7 +26,7 @@ Resolves #321.
 Short description of the purpose of these changes
 ```
 
-## Git Flow Process
+# Git Flow Process
 
 The post linked below has a thorough explanation of a very effective git branching strategy. Though slightly modified, our branching strategy and conventions are based heavily on this write-up.
 

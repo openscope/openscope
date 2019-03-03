@@ -46,12 +46,20 @@ export default class StripViewController {
         this.$stripView = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW);
 
         /**
-         * List element containing each `StripViewModel` instance
+         * List element containing each `StripViewModel` instance that is an Arrival
          *
-         * @property $stripViewList
+         * @property $stripViewListArrivals
          * @type {JQuery|HTMLElement}
          */
-        this.$stripViewList = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW_LIST);
+        this.$stripViewListArrivals = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW_ARRIVALS_LIST);
+
+        /**
+         * List element containing each `StripViewModel` instance that is a Departure
+         *
+         * @property $stripViewListDepartures
+         * @type {JQuery|HTMLElement}
+         */
+        this.$stripViewListDepartures = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW_DEPARTURES_LIST);
 
         /**
          * Trigger that toggles visibility of the `$stripView`
@@ -95,7 +103,8 @@ export default class StripViewController {
      */
     enable() {
         this.$stripListTrigger.on('click', this._onStripListToggle);
-        this.$stripViewList.on('click', this._onStripListClickOutsideStripViewModel);
+        this.$stripViewListArrivals.on('click', this._onStripListClickOutsideStripViewModel);
+        this.$stripViewListDepartures.on('click', this._onStripListClickOutsideStripViewModel);
 
         return this;
     }
@@ -108,6 +117,20 @@ export default class StripViewController {
      */
     destroy() {
         this._collection = null;
+    }
+
+    /**
+     * Provides a way to check if a `StripViewModel` exists for a given `AircraftModel`
+     *
+     * @for StripViewController
+     * @method hasStripViewModel
+     * @param aircraftModel {AircraftModel}
+     * @returns {booelan}
+     */
+    hasStripViewModel(aircraftModel) {
+        const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+        return typeof stripViewModel !== 'undefined';
     }
 
     /**
@@ -127,24 +150,28 @@ export default class StripViewController {
         // We need a proper `AircraftCollection` for that to work
         for (let i = 0; i < aircraftList.length; i++) {
             const aircraftModel = aircraftList[i];
-            const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
-                this._addViewToStripList(stripViewModel);
+            if (!aircraftModel.isControllable) {
+                continue;
             }
 
-            if (aircraftModel.inside_ctr) {
-                stripViewModel.update(aircraftModel);
+            let stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+            if (typeof stripViewModel === 'undefined') {
+                stripViewModel = this.createStripView(aircraftModel);
             }
+
+            stripViewModel.update(aircraftModel);
         }
     }
 
     /**
-     * Create a new `StripViewModel` instance and addit to the collection
+     * Create a new `StripViewModel` instance and add it to the collection
      *
      * @for StripViewController
      * @method createStripView
      * @param aircraftModel {AircraftModel}
+     * @return {StripViewModel}
      */
     createStripView(aircraftModel) {
         const stripViewCid = this._generateCidNumber();
@@ -152,9 +179,11 @@ export default class StripViewController {
 
         this._collection.addItem(stripViewModel);
 
-        if (aircraftModel.isDeparture() || aircraftModel.inside_ctr) {
+        if (aircraftModel.isDeparture() || aircraftModel.isControllable) {
             this._addViewToStripList(stripViewModel);
         }
+
+        return stripViewModel;
     }
 
     /**
@@ -224,7 +253,12 @@ export default class StripViewController {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
         if (!stripViewModel) {
-            throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
+            console.warn(
+                `Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist.` +
+                'This is likely not a fatal problem, but if you are seeing this, please let somebody know.'
+            );
+
+            return;
         }
 
         this._removeCidFromUse(stripViewModel.cid);
@@ -248,11 +282,12 @@ export default class StripViewController {
             throw new TypeError(`Expected an instance of StripViewModel but received ${typeof stripViewModel}`);
         }
 
-        const scrollPosition = this.$stripViewList.scrollTop();
+        const listView = stripViewModel.isDeparture ? this.$stripViewListDepartures : this.$stripViewListArrivals;
+        const scrollPosition = listView.scrollTop();
 
-        this.$stripViewList.append(stripViewModel.$element);
+        listView.prepend(stripViewModel.$element);
         // shift scroll down one strip's height
-        this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
+        listView.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
 
     /**
@@ -302,16 +337,16 @@ export default class StripViewController {
         return nextCid;
     }
 
-     /**
-      * Remove a given `#cid` from use
-      *
-      * Used when an aircraft has landed or departed controlled airspace
-      *
-      * @for StripViewController
-      * @method _removeCidFromUse
-      * @param cid {number}
-      * @private
-      */
+    /**
+     * Remove a given `#cid` from use
+     *
+     * Used when an aircraft has landed or departed controlled airspace
+     *
+     * @for StripViewController
+     * @method _removeCidFromUse
+     * @param cid {number}
+     * @private
+     */
     _removeCidFromUse(cid) {
         const cidIndex = this._cidNumbersInUse.indexOf(cid);
 

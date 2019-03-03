@@ -2,17 +2,17 @@
     "icao": "tvs",
     "name": "Travel Service",
     "callsign": {
-        "name": "SKYTRAVEL",
+        "name": "Skytravel",
         "callsignFormats": [
-            "###"
+            "####",
+            "#@@",
+            "#@"
         ]
     },
     "fleets": {
         "default": [
-            ["B737",  2 ],
-            ["B738",  25],
-            ["B739",  2 ],
-            ["B38M",  1 ]
+            ["B738", 9],
+            ["B739", 2]
         ]
     }
 }

@@ -1,0 +1,25 @@
+{
+    "icao": "tbz",
+    "name": "ATA Airlines",
+    "callsign": {
+        "name": "Atalar",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 3],
+            ["B733", 1],
+            ["B735", 1],
+            ["E145", 1],
+            ["MD83", 7]
+        ],
+        "a320": [
+            ["A320", 3]
+        ],
+        "md83": [
+            ["MD83", 7]
+        ]
+    }
+}

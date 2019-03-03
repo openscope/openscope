@@ -2,12 +2,17 @@
     "icao": "lbt",
     "name": "Nouvelair Tunisie",
     "callsign": {
-        "name": "NOUVELAIR",
-        "length": 3
+        "name": "Nouvelair",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 8 ]
+            ["A320", 8]
+        ],
+        "a320": [
+            ["A320", 8]
         ]
     }
 }

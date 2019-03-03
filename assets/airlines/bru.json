@@ -2,29 +2,27 @@
     "icao": "bru",
     "name": "Belavia Belarusian Airlines",
     "callsign": {
-<<<<<<< HEAD
-        "name": "BELARUS AVIA",
-=======
         "name": "Belarus Avia",
->>>>>>> develop
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["B733", 8],
             ["B735", 6],
             ["B738", 5],
-<<<<<<< HEAD
-            ["E170", 2],
-            ["E190", 2],
-            ["CR2",  4],
-            ["CRJ1", 1]
-=======
             ["CRJ2", 3],
             ["E170", 2],
             ["E190", 2],
             ["T154", 2]
->>>>>>> develop
+        ],
+        "ltba": [
+            ["B733", 8],
+            ["B735", 6],
+            ["B738", 5],
+            ["E190", 2]
         ]
     }
 }

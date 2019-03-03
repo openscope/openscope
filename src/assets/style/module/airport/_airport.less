@@ -1,11 +1,11 @@
 /* TODO: this rule should be moved to a class instead of ID */
 /* TODO: this rule should be broken up into several other rules */
 #airport-switch {
+    width: fit-content;
     height: auto;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     max-height: ~"calc(85% - 2.3em - 20px)";
-    width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
     padding: 0px 10px 0px 10px;
     position: absolute;
@@ -42,7 +42,6 @@
 
 .airport-list {
     width: 100%;
-    max-width: 500px;
     height: auto;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     max-height: ~"calc(100% - 2.3em - 32px)";
@@ -79,13 +78,6 @@
     text-align: center;
 }
 
-.airport-list-item .symbol {
-    width: 0.7em;
-    margin-left: 1em;
-    display: inline-block;
-    text-align: center;
-}
-
 .airport-list-item .name {
     margin-left: 1em;
     display: inline-block;
@@ -112,25 +104,4 @@
     margin-left: 0;
     background-color: @blue-medium;
     cursor: pointer;
-}
-
-#airport-list-notes {
-    min-height: 0.8em;
-    padding: 2px 0px 3px 0px;
-    font-size: 70%;
-    font-weight: normal;
-    text-align: center;
-}
-
-#airport-list-notes .symbol {
-    display: inline-block;
-    text-align: center;
-    font-style: normal;
-}
-
-#airport-list-notes .words {
-    display: inline-block;
-    text-align: center;
-    font-style: italic;
-    padding-left: 0.5em;
 }

@@ -1,0 +1,17 @@
+{
+    "icao": "pvl",
+    "name": "Provincial Airlines",
+    "callsign": {
+        "name": "Provincial",
+        "callsignFormat": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["DH8A", 4],
+            ["DH8C", 5]
+        ]
+    }
+}

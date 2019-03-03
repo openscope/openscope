@@ -1,0 +1,23 @@
+{
+    "icao": "sai",
+    "name": "Shaheen Air",
+    "callsign": {
+        "name": "Shaheen Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 5],
+            ["A320", 8],
+            ["A332", 4]
+        ],
+        "a319": [
+            ["A319", 5]
+        ],
+        "a320": [
+            ["A320", 8]
+        ]
+    }
+}

@@ -2,12 +2,14 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import EventBus from '../lib/EventBus';
+import EventTracker from '../EventTracker';
 import GameOptions from './GameOptions';
 import TimeKeeper from '../engine/TimeKeeper';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { TIME } from '../constants/globalConstants';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 import { SELECTORS } from '../constants/selectors';
 import { THEME } from '../constants/themes';
 
@@ -27,8 +29,10 @@ const GAME_EVENTS_POINT_VALUES = {
     HIGH_CROSSWIND_OPERATION: -5,
     HIGH_TAILWIND_OPERATION: -25,
     ILLEGAL_APPROACH_CLEARANCE: -10,
+    LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE: -10,
     NOT_CLEARED_ON_ROUTE: -25,
-    SEPARATION_LOSS: -200
+    SEPARATION_LOSS: -200,
+    NO_TAKEOFF_SEPARATION: -200
 };
 
 /**
@@ -46,8 +50,21 @@ export const GAME_EVENTS = {
     HIGH_CROSSWIND_OPERATION: 'HIGH_CROSSWIND_OPERATION',
     HIGH_TAILWIND_OPERATION: 'HIGH_TAILWIND_OPERATION',
     ILLEGAL_APPROACH_CLEARANCE: 'ILLEGAL_APPROACH_CLEARANCE',
+    /**
+    * Aircraft is cleared for the approach, has just become fully established on the localizer,
+    * but they are above the glideslope, and will have to chase it down
+    *
+    * This event is used to assess a penalty to the controller because they are required to have
+    * aircraft at/below glideslope altitude when intercepting the localizer
+    *
+    * @memberof GAME_EVENTS
+    * @property LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE
+    * @type {string}
+    */
+    LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE: 'LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE',
     NOT_CLEARED_ON_ROUTE: 'NOT_CLEARED_ON_ROUTE',
-    SEPARATION_LOSS: 'SEPARATION_LOSS'
+    SEPARATION_LOSS: 'SEPARATION_LOSS',
+    NO_TAKEOFF_SEPARATION: 'NO_TAKEOFF_SEPARATION'
 };
 
 /**
@@ -265,16 +282,19 @@ class GameController {
 
         if (TimeKeeper.simulationRate >= 5) {
             TimeKeeper.updateSimulationRate(1);
+            EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', '1');
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (TimeKeeper.simulationRate === 1) {
             TimeKeeper.updateSimulationRate(2);
+            EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', '2');
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
             TimeKeeper.updateSimulationRate(5);
+            EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', '5');
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -316,18 +336,20 @@ class GameController {
      */
     game_pause_toggle() {
         if (TimeKeeper.isPaused) {
+            EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'pause', 'false');
             this.game_unpause();
 
             return;
         }
 
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'pause', 'true');
         this.game_pause();
     }
 
     /**
      * @for GameController
      * @method game_paused
-     * @return
+     * @return {boolean}
      */
     game_paused() {
         return !this.game.focused || TimeKeeper.isPaused;
@@ -336,7 +358,7 @@ class GameController {
     /**
      * @for GameController
      * @method game_speedup
-     * @return
+     * @return {number}
      */
     game_speedup() {
         return !this.game_paused() ? TimeKeeper.simulationRate : 0;
@@ -345,11 +367,11 @@ class GameController {
     /**
      * @for GameController
      * @method game_timeout
-     * @param func {function}
-     * @param delay {number}
+     * @param func {function} called when timeout is triggered
+     * @param delay {number} in seconds
      * @param that
      * @param data
-     * @return gameTimeout
+     * @return {array} gameTimeout
      */
     game_timeout(functionToCall, delay, that, data) {
         const timerDelay = TimeKeeper.accumulatedDeltaTime + delay;
@@ -363,11 +385,11 @@ class GameController {
     /**
      * @for GameController
      * @method game_interval
-     * @param func {function}
-     * @param delay {number}
+     * @param func {function} called when timeout is triggered
+     * @param delay {number} in seconds
      * @param that
      * @param data
-     * @return to
+     * @return {array} to
      */
     game_interval(func, delay, that, data) {
         const to = [func, TimeKeeper.accumulatedDeltaTime + delay, data, delay, true, that];
@@ -408,7 +430,9 @@ class GameController {
         if (this.game.score === this.game.last_score) {
             return;
         }
+
         const $scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
+
         $scoreElement.text(round(this.game.score));
 
         // TODO: wait, what? Why not just < 0?
@@ -446,7 +470,7 @@ class GameController {
             let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
             const callback = timeout[0];
-            let delayFireTime = timeout[1];
+            const delayFireTime = timeout[1];
             const callbackArguments = timeout[2];
             const delayInterval = timeout[3];
             const shouldRepeat = timeout[4];
@@ -456,7 +480,7 @@ class GameController {
                 willRemoveTimerFromList = true;
 
                 if (shouldRepeat) {
-                    delayFireTime += delayInterval;
+                    timeout[1] = delayFireTime + delayInterval;
                     willRemoveTimerFromList = false;
                 }
             }

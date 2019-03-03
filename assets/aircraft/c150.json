@@ -1,0 +1,37 @@
+{
+    "name": "Cessna 150",
+    "icao": "C150",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": 1,
+        "recat": "F"
+    },
+    "ceiling": 15500,
+    "rate": {
+        "climb":      670,
+        "descent":    1000,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 0.410,
+        "landing": 0.360
+    },
+    "speed":{
+        "min":     48,
+        "landing": 65,
+        "cruise":  100,
+        "cruiseM": null,
+        "max":     162,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": false
+    }
+}

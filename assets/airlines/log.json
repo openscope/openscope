@@ -3,8 +3,11 @@
     "name": "Loganair",
     "callsign": {
         "name": "Logan",
-        "length": 3,
-        "alpha": true
+        "callsignFormats": [
+            "###@",
+            "##@@",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
@@ -12,7 +15,7 @@
             ["D328", 2],
             ["DHC6", 3],
             ["SB20", 5],
-            ["SF34", 17]
+            ["SF34", 13]
         ]
     }
 }

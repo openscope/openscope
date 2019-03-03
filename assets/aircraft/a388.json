@@ -5,7 +5,7 @@
         "number": 4,
         "type": "J"
     },
-    "weightclass": "U",
+    "weightClass": "J",
     "category": {
         "srs": 3,
         "lahso": 10,
@@ -25,10 +25,10 @@
     "speed":{
         "min":     125,
         "landing": 135,
-        "max":     560,
-        "cruiseM": null,
-        "cruise":  595,
-        "maxM":    null
+        "cruise":  560,
+        "cruiseM": 0.85,
+        "max":     595,
+        "maxM":    0.89
     },
     "capability": {
         "ils": true,

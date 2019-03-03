@@ -12,7 +12,7 @@ Class B airspace exists with tops of 8,000 feet over the Kansas City area.
 ### Instrument Procedures
 The procedures at MCI are somewhat automated, with the design of the SIDs and STARs taking some weight off the controllers. Departing aircraft must be vectored to specified routes depicted on charts and controllers must issue arriving aircraft descent clearances and vectors to their final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 _To be completed. There is very little information on the structure of the TRACON._
 ```
 F - Final  (default)

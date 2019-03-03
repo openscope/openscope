@@ -1,0 +1,37 @@
+{
+    "name": "CRJ 1000",
+    "icao": "CRJX",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 8,
+        "recat": "E"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3000,
+        "descent":    2100,
+        "accelerate": 9,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.996,
+        "landing": 1.478
+    },
+    "speed":{
+        "min":     110,
+        "landing": 130,
+        "cruise":  440,
+        "cruiseM": 0.78,
+        "max":     470,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
