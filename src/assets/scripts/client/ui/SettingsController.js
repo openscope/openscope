@@ -18,18 +18,30 @@ const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
 const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
 
 /**
+ * @property UI_OPTION_LABEL_TEMPLATE
+ * @type {string}
+ * @final
+ */
+const UI_OPTION_LABEL_TEMPLATE = '<span class="option-description"></span>';
+
+/**
  * @property UI_OPTION_SELECTOR_TEMPLATE
  * @type {string}
  * @final
  */
 const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 
+/**
+ * @property UI_STATIC_TEXT_TEMPLATE
+ * @type {string}
+ * @final
+ */
+const UI_STATIC_TEXT_TEMPLATE = '<span class="option-static-text"></span>';
 
 /**
  * @class SettingsController
  */
 export default class SettingsController {
-
     constructor($element) {
         /**
          * Root DOM element
@@ -51,6 +63,7 @@ export default class SettingsController {
      */
     init() {
         const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
+        const $version = this._buildVersionTemplate();
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
@@ -62,6 +75,8 @@ export default class SettingsController {
             $options.append($container);
         });
 
+        $version.addClass('simulator-version');
+        $options.append($version);
         this.$element.append($options);
 
         return this;
@@ -78,11 +93,13 @@ export default class SettingsController {
      */
     _buildOptionTemplate(option) {
         const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
-        $container.append(`<span class="option-description">${option.description}</span>`);
-
+        const $label = $(UI_OPTION_LABEL_TEMPLATE);
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select name="${option.name}"></select>`);
         const selectedOption = GameController.game.option.getOptionByName(option.name);
+
+        $container.append($label);
+        $label.text(option.description);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -126,5 +143,45 @@ export default class SettingsController {
         }
 
         return `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
+    }
+
+    /**
+     * Builds a static text information psuedo-option.
+     * Will display as such:
+     *
+     * `(settings menu)`
+     *
+     * `Text text text         Value value value`
+     *
+     * @for SettingsController
+     * @method _buildStaticTemplate
+     * @param {string} label
+     * @param {string} value (optional)
+     * @return {JQuery|HTML element}
+     */
+    _buildStaticTemplate(label, value = '') {
+        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
+        const $label = $(UI_OPTION_LABEL_TEMPLATE);
+        const $value = $(UI_STATIC_TEXT_TEMPLATE);
+
+        $container.append($label);
+        $container.append($value);
+        $label.text(label);
+        $value.text(value);
+
+        return $container;
+    }
+
+    /**
+     * Build the html for the simulator version psuedo-option.
+     *
+     * @for SettingsController
+     * @method _buildVersionTemplate
+     * @return {JQuery|HTML element}
+     */
+    _buildVersionTemplate() {
+        const simulatorVersion = window.GLOBAL.VERSION;
+
+        return this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
     }
 }
