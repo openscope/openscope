@@ -239,8 +239,7 @@ export default class WaypointModel {
                 throw new TypeError(`Expected restricted fix to have restrictions, but received ${data}`);
             }
 
-            fixName = data[0];
-            restrictions = data[1];
+            [fixName, restrictions] = data;
         }
 
         this._name = fixName.replace('@', '').replace('^', '');
@@ -316,8 +315,6 @@ export default class WaypointModel {
 
         if (fixName.indexOf('#') !== INVALID_INDEX) {
             this._initVectorWaypoint();
-
-            return;
         }
     }
 
@@ -499,13 +496,13 @@ export default class WaypointModel {
      */
     setAltitudeMaximum(altitudeMaximum) {
         if (_isNaN(altitudeMaximum)) {
-            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
-                `but received '${altitudeMaximum}'`);
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', `
+                + `but received '${altitudeMaximum}'`);
         }
 
         if (altitudeMaximum < 0 || altitudeMaximum > 60000) {
-            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
-                `but received altitude altitude of '${altitudeMaximum}'`);
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, `
+                + `but received altitude altitude of '${altitudeMaximum}'`);
         }
 
         this.altitudeMaximum = altitudeMaximum;
@@ -521,13 +518,13 @@ export default class WaypointModel {
      */
     setAltitudeMinimum(altitudeMinimum) {
         if (_isNaN(altitudeMinimum)) {
-            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
-                `but received '${altitudeMinimum}'`);
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', `
+                + `but received '${altitudeMinimum}'`);
         }
 
         if (altitudeMinimum < 0 || altitudeMinimum > 60000) {
-            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
-                `but received altitude altitude of '${altitudeMinimum}'`);
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, `
+                + `but received altitude altitude of '${altitudeMinimum}'`);
         }
 
         this.altitudeMinimum = altitudeMinimum;
@@ -569,8 +566,8 @@ export default class WaypointModel {
      */
     setHoldTimer(expirationTime) {
         if (typeof expirationTime !== 'number') {
-            throw new TypeError('Expected hold timer expiration time to be a ' +
-                `number, but received type ${typeof expirationTime}`);
+            throw new TypeError('Expected hold timer expiration time to be a '
+                + `number, but received type ${typeof expirationTime}`);
         }
 
         this._holdParameters.timer = expirationTime;
@@ -592,7 +589,9 @@ export default class WaypointModel {
             this.altitudeMinimum = altitude;
 
             return;
-        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
+        }
+
+        if (restriction.indexOf('-') !== INVALID_INDEX) {
             this.altitudeMaximum = altitude;
 
             return;
@@ -625,8 +624,8 @@ export default class WaypointModel {
             } else if (restriction[0] === 'S') {
                 this._applySpeedRestriction(restriction.substr(1));
             } else {
-                throw new TypeError('Expected "A" or "S" prefix on restriction, ' +
-                    `but received prefix '${restriction[0]}'`);
+                throw new TypeError('Expected "A" or "S" prefix on restriction, '
+                    + `but received prefix '${restriction[0]}'`);
             }
         }
     }
@@ -645,7 +644,9 @@ export default class WaypointModel {
             this.speedMinimum = speed;
 
             return;
-        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
+        }
+
+        if (restriction.indexOf('-') !== INVALID_INDEX) {
             this.speedMaximum = speed;
 
             return;

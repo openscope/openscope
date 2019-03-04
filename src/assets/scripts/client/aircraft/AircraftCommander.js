@@ -4,7 +4,7 @@ import _map from 'lodash/map';
 import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import GameController, { GAME_EVENTS } from '../game/GameController';
+import GameController from '../game/GameController';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import UiController from '../ui/UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';

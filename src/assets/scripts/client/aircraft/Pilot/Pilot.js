@@ -2,10 +2,10 @@ import _ceil from 'lodash/ceil';
 import _find from 'lodash/find';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
-import _find from 'lodash/find';
 import AirportController from '../../airport/AirportController';
 import Fms from '../FlightManagementSystem/Fms';
 import ModeController from '../ModeControl/ModeController';
+import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import { MCP_MODE } from '../ModeControl/modeControlConstants';
 import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
@@ -91,7 +91,6 @@ export default class Pilot {
      * @method enable
      */
     enable() {
-
     }
 
     /**
@@ -746,7 +745,7 @@ export default class Pilot {
 
         const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
 
-        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
         return [true, {
             log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()}, ${holdParametersReadback}`,
             say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()}, ${holdParametersReadback}`
