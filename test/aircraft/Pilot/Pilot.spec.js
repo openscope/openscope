@@ -621,8 +621,8 @@ ava('.crossFix() correctly configures MCP and returns correct response ', (t) =>
     const expectedResponse = [
         true,
         {
-            log: 'crossing SKEBR at 8000',
-            say: 'crossing SKEBR at eight thousand'
+            log: 'cross SKEBR at 8000',
+            say: 'cross SKEBR at eight thousand'
         }
     ];
 

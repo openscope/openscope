@@ -176,10 +176,10 @@ export const fixValidator = (args = []) => {
  * @return {boolean}
  */
 export const isValidDirectionString = (value) => {
-    return value === 'left' ||
-        value === 'l' ||
-        value === 'right' ||
-        value === 'r';
+    return value === 'left'
+        || value === 'l'
+        || value === 'right'
+        || value === 'r';
 };
 
 /**
@@ -199,7 +199,7 @@ export const isValidDirectionString = (value) => {
  * @return {string|undefined}
  */
 export const headingValidator = (args = []) => {
-    const length = args.length;
+    const { length } = args;
     const hasLengthError = oneOrTwoArgumentValidator(args);
     let numberFromString;
 
@@ -223,7 +223,7 @@ export const headingValidator = (args = []) => {
                 return ERROR_MESSAGE.INVALID_DIRECTION_STRING;
             }
 
-            if (isNaN(numberFromString)) {
+            if (_isNaN(numberFromString)) {
                 return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
             }
 
@@ -297,11 +297,14 @@ export const crossingValidator = (args = []) => {
         return ERROR_MESSAGE.TWO_ARG_LENGTH;
     }
 
-    if (!_isString(args[0]) || !_isString(args[1])) {
+    const [fixName] = args;
+    let altitude = args[1];
+
+    if (!_isString(fixName)) {
         return ERROR_MESSAGE.MUST_BE_STRING;
     }
 
-    const altitude = convertStringToNumber(args[1]);
+    altitude = convertStringToNumber(altitude);
 
     if (_isNaN(altitude)) {
         return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;

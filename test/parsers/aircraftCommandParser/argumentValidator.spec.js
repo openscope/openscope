@@ -299,52 +299,44 @@ ava('.squawkValidator() returns string when passed invalid squawk', t => {
 
 ava('.crossingValidator() returns a string when passed the wrong number of arguments', t => {
     let result = crossingValidator();
-    t.true(result === 'Invalid argument length. Expected exactly three arguments');
+    t.true(result === 'Invalid argument length. Expected exactly two arguments');
 
     result = crossingValidator([]);
-    t.true(result === 'Invalid argument length. Expected exactly three arguments');
+    t.true(result === 'Invalid argument length. Expected exactly two arguments');
 
-    result = crossingValidator(['', '']);
-    t.true(result === 'Invalid argument length. Expected exactly three arguments');
+    result = crossingValidator(['', '', '']);
+    t.true(result === 'Invalid argument length. Expected exactly two arguments');
 });
 
 ava('.crossingValidator() returns undefined when passed valid arguments', t => {
-    let result = crossingValidator(['LEMDY', 'at', '50']);
+    let result = crossingValidator(['LEMDY', '50']);
     t.true(typeof result === 'undefined');
 
-    result = crossingValidator(['BLUB', '@', '100']);
+    result = crossingValidator(['BLUB', '100']);
     t.true(typeof result === 'undefined');
 });
 
 ava('.crossingValidator() returns an error when fixname is not a string', t => {
-    let result = crossingValidator([50, 'at', '50']);
+    let result = crossingValidator([50, '50']);
     t.true(result === 'Invalid argument. Must be a string');
 
-    result = crossingValidator([{}, '@', '100']);
+    result = crossingValidator([{}, '100']);
     t.true(result === 'Invalid argument. Must be a string');
 
-    result = crossingValidator([[], '@', '100']);
+    result = crossingValidator([[], '100']);
     t.true(result === 'Invalid argument. Must be a string');
-});
-
-ava('.crossingValidator() returns an error when at is not a at', t => {
-    let result = crossingValidator(['LEMDY', '', '50']);
-    t.true(result === 'Invalid argument. Expected \'at\' or \'@\'');
-
-    result = crossingValidator(['LEMDY', 'bat', '100']);
-    t.true(result === 'Invalid argument. Expected \'at\' or \'@\'');
 });
 
 ava('.crossingValidator() returns an error when altitude is not a number', t => {
-    let result = crossingValidator(['LEMDY', 'at', 'xx']);
+    let result = crossingValidator(['LEMDY', 'xx']);
     t.true(result === 'Invalid argument. Altitude must be a number');
 
-    result = crossingValidator(['LEMDY', '@', '']);
+    result = crossingValidator(['LEMDY', '']);
     t.true(result === 'Invalid argument. Altitude must be a number');
 
-    result = crossingValidator(['LEMDY', '@', []]);
+    result = crossingValidator(['LEMDY', []]);
     t.true(result === 'Invalid argument. Altitude must be a number');
 
-    result = crossingValidator(['LEMDY', '@', {}]);
+    result = crossingValidator(['LEMDY', {}]);
     t.true(result === 'Invalid argument. Altitude must be a number');
 });

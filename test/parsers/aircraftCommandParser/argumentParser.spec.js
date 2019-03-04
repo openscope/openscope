@@ -161,7 +161,7 @@ ava('.timewarpParser() returns an array with 50 as a value when provided as an a
 
 
 ava('.crossingParser() returns an array with the correct values', (t) => {
-    const result = crossingParser(['LEMDY', 'at', '50']);
+    const result = crossingParser(['LEMDY', '50']);
 
     t.true(result[0] === 'LEMDY');
     t.true(result[1] === 5000);
