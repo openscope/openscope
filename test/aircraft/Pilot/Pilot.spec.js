@@ -475,15 +475,17 @@ ava('.climbViaSID() returns early when the given altitude is below the aircraft\
     const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
     aircraftModel.altitude = 5000;
     const pilot = createPilotFixture();
+    pilot._fms.departureAirportModel = airportModelFixture;
     const expectedResponse = [
         false,
         {
-            log: 'unable to comply, say again',
-            say: 'unable to comply, say again'
+            log: 'unable to maintain 2000, the MSA is 3200',
+            say: 'unable to maintain two thousand, the MSA is three thousand two hundred'
         }
     ];
 
     const response = pilot.climbViaSid(aircraftModel, 2000);
+
     t.deepEqual(response, expectedResponse);
 });
 
@@ -491,11 +493,13 @@ ava('.climbViaSID() correctly configures MCP and returns correct response when n
     const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
     aircraftModel.altitude = 0;
     const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
+    pilot._fms.departureAirportModel = airportModelFixture;
+    pilot._fms.flightPlanAltitude = 41000;
     const expectedResponse = [
         true,
         {
-            log: 'climb via SID and maintain 41000',
-            say: 'climb via SID and maintain flight level four one zero'
+            log: 'climb via SID and maintain 19000',
+            say: 'climb via SID and maintain flight level one niner zero'
         }
     ];
 
@@ -504,13 +508,15 @@ ava('.climbViaSID() correctly configures MCP and returns correct response when n
     t.deepEqual(response, expectedResponse);
     t.true(pilot._mcp.altitudeMode === 'VNAV');
     t.true(pilot._mcp.speedMode === 'VNAV');
-    t.true(pilot._mcp.altitude === 41000);
+    t.true(pilot._mcp.altitude === pilot._fms.departureAirportModel.maxAssignableAltitude);
 });
 
 ava('.climbViaSID() correctly configures MCP and returns correct response when an altitude is given', (t) => {
     const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
     aircraftModel.altitude = 0;
     const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
+    pilot._fms.departureAirportModel = airportModelFixture;
+    pilot._fms.flightPlanAltitude = 41000;
     const expectedResponse = [
         true,
         {
@@ -616,13 +622,14 @@ ava('.conductInstrumentApproach() returns a success message', (t) => {
 ava('.crossFix() correctly configures MCP and returns correct response ', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilotFixture = createPilotFixture();
+    aircraftModel.fms.departureAirportModel = airportModelFixture;
     const fixNameMock = 'SKEBR';
     const altitudeMock = 8000;
     const expectedResponse = [
         true,
         {
             log: 'cross SKEBR at 8000',
-            say: 'cross SKEBR at eight thousand'
+            say: 'cross skebr at eight thousand'
         }
     ];
 
@@ -643,7 +650,7 @@ ava('.descendViaStar() returns early when provided bottom altitude parameter is 
     pilot._mcp.setAltitudeFieldValue(initialAltitudeMock);
     pilot._mcp.setAltitudeHold();
 
-    const expectedResponse = [false, 'unable to descend to bottom altitude of threeve'];
+    const expectedResponse = [false, 'unable to maintain an altitude of threeve'];
     const response = pilot.descendViaStar(aircraftModel, invalidAltitudeMock);
 
     t.deepEqual(response, expectedResponse);
@@ -653,7 +660,7 @@ ava('.descendViaStar() returns early when provided bottom altitude parameter is 
 ava('.descendViaStar() returns early when no bottom altitude param provided and FMS has no bottom altitude', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
-    const failureResponseMock = [false, 'unable to descend via STAR'];
+    const failureResponseMock = [false, 'unable, no altitude assigned'];
 
     pilot._mcp.setAltitudeFieldValue(initialAltitudeMock);
     pilot._mcp.setAltitudeHold();
@@ -670,7 +677,7 @@ ava('.descendViaStar() returns early when no bottom altitude param provided and 
 ava('.descendViaStar() returns early when no bottom altitude param provided and FMS bottom altitude is invalid', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
-    const failureResponseMock = [false, 'unable to descend via STAR'];
+    const failureResponseMock = [false, 'unable, no altitude assigned'];
 
     pilot._mcp.setAltitudeFieldValue(initialAltitudeMock);
     pilot._mcp.setAltitudeHold();
@@ -689,15 +696,16 @@ ava('.descendViaStar() returns early when no bottom altitude param provided and 
 ava('.descendViaStar() returns early when the bottom altitude is above the aircraft\'s current altitude', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
+    aircraftModel.altitude = 5000;
     const expectedResponse = [
         false,
         {
-            log: 'unable to comply, say again',
-            say: 'unable to comply, say again'
+            log: 'unable, we\'re already at 5000',
+            say: 'unable, we\'re already at five thousand'
         }
     ];
 
-    const response = pilot.descendViaStar(aircraftModel, 31000);
+    const response = pilot.descendViaStar(aircraftModel, 17000);
     t.deepEqual(response, expectedResponse);
 });
 

@@ -2754,7 +2754,7 @@ export default class AircraftModel {
      * @param nextAltitude {number} altitude the aircraft should maintain
      * @return {array}           [success of operation, readback]
      */
-    validateNextAltitude(nextAltitude) {
+    validateNextAltitude(nextAltitude, airportModel) {
         if (nextAltitude === INVALID_NUMBER) {
             return [false, 'unable, no altitude assigned'];
         }
@@ -2767,6 +2767,15 @@ export default class AircraftModel {
             const readback = {};
             readback.log = `unable to maintain ${nextAltitude} due to performance`;
             readback.say = `unable to maintain ${radio_altitude(nextAltitude)} due to performance`;
+
+            return [false, readback];
+        }
+
+        if (nextAltitude < airportModel.minAssignableAltitude) {
+            const minimumAltitude = airportModel.minAssignableAltitude;
+            const readback = {};
+            readback.log = `unable to maintain ${nextAltitude}, the MSA is ${minimumAltitude}`;
+            readback.say = `unable to maintain ${radio_altitude(nextAltitude)}, the MSA is ${radio_altitude(minimumAltitude)}`;
 
             return [false, readback];
         }

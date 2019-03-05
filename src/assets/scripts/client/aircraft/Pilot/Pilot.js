@@ -116,17 +116,16 @@ export default class Pilot {
      * @return {array} [success of operation, readback]
      */
     maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
-        const response = aircraftModel.validateNextAltitude(altitude);
+        const response = aircraftModel.validateNextAltitude(altitude, airportModel);
 
         if (!response[0]) {
             return response;
         }
 
         const currentAltitude = aircraftModel.altitude;
-        const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
-        let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
+        let clampedAltitude = airportModel.clampWithinAssignableAltitudes(altitude);
 
-        if (shouldUseSoftCeiling && clampedAltitude === maxAssignableAltitude) {
+        if (shouldUseSoftCeiling && clampedAltitude === airportModel.maxAssignableAltitude) {
             // causes aircraft to 'leave' airspace, and continue climb through ceiling
             clampedAltitude += 1;
         }
@@ -468,20 +467,25 @@ export default class Pilot {
     climbViaSid(aircraftModel, maximumAltitude) {
         let nextAltitude = maximumAltitude;
 
+
         if (typeof nextAltitude === 'undefined') {
             nextAltitude = this._fms.flightPlanAltitude;
         }
 
-        const response = aircraftModel.validateNextAltitude(nextAltitude);
+        const { departureAirportModel } = this._fms;
+        const altitudeCheck = aircraftModel.validateNextAltitude(nextAltitude, departureAirportModel);
 
-        if (!response[0]) {
-            return response;
+        if (!altitudeCheck[0]) {
+            return altitudeCheck;
         }
 
-        if (nextAltitude < aircraftModel.altitude) {
+        nextAltitude = departureAirportModel.clampWithinAssignableAltitudes(nextAltitude);
+
+        if (aircraftModel.altitude > nextAltitude) {
+            const currentAltitude = _ceil(aircraftModel.altitude, -2);
             const readback = {};
-            readback.log = 'unable to comply, say again';
-            readback.say = 'unable to comply, say again';
+            readback.log = `unable, we're already at ${currentAltitude}`;
+            readback.say = `unable, we're already at ${radio_altitude(currentAltitude)}`;
 
             return [false, readback];
         }
@@ -517,18 +521,20 @@ export default class Pilot {
             nextAltitude = this._fms.getBottomAltitude();
         }
 
-        if (nextAltitude === INVALID_NUMBER) {
-            return [false, 'unable to descend via STAR'];
+        const { arrivalAirportModel } = this._fms;
+        const altitudeCheck = aircraftModel.validateNextAltitude(nextAltitude, arrivalAirportModel);
+
+        if (!altitudeCheck[0]) {
+            return altitudeCheck;
         }
 
-        if (typeof nextAltitude !== 'number') {
-            return [false, `unable to descend to bottom altitude of ${nextAltitude}`];
-        }
+        nextAltitude = arrivalAirportModel.clampWithinAssignableAltitudes(nextAltitude);
 
         if (aircraftModel.altitude < nextAltitude) {
+            const currentAltitude = _ceil(aircraftModel.altitude, -2);
             const readback = {};
-            readback.log = 'unable to comply, say again';
-            readback.say = 'unable to comply, say again';
+            readback.log = `unable, we're already at ${currentAltitude}`;
+            readback.say = `unable, we're already at ${radio_altitude(currentAltitude)}`;
 
             return [false, readback];
         }
@@ -554,7 +560,7 @@ export default class Pilot {
      * @param altitude {number} the altitude
      * @return {array}  success of operation, readback]
      */
-    crossFix(aircraft, fixName, altitude) {
+    crossFix(aircraftModel, fixName, altitude) {
         if (!NavigationLibrary.hasFixName(fixName)) {
             return [false, `unable to find '${fixName}'`];
         }
@@ -563,11 +569,14 @@ export default class Pilot {
             return [false, `unable, '${fixName}' is not on our route`];
         }
 
-        const response = aircraft.validateNextAltitude(altitude);
+        const airportModel = this._fms.arrivalAirportModel || this._fms.departureAirportModel;
+        const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
 
-        if (!response[0]) {
-            return response;
+        if (!altitudeCheck[0]) {
+            return altitudeCheck;
         }
+
+        altitude = airportModel.clampWithinAssignableAltitudes(altitude);
 
         const waypoint = this._fms.findWaypoint(fixName);
 
@@ -576,8 +585,8 @@ export default class Pilot {
         this._mcp.setAltitudeVnav();
 
         const readback = {
-            log: `cross ${fixName} at ${altitude}`,
-            say: `cross ${fixName} at ${radio_altitude(altitude)}`
+            log: `cross ${fixName.toUpperCase()} at ${altitude}`,
+            say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)}`
         };
 
         return [true, readback];
