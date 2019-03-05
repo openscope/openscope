@@ -20,3 +20,4 @@ notifications:
       - "%{commit_subject}"
 after_success:
   - npm run coveralls
+  - npm run lint
