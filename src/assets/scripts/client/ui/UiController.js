@@ -25,7 +25,7 @@ class UiController {
 
         this.$element = null;
         this.$airportDialog = null;
-        this.$airportList = null;
+        this.$airportDialogBody = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
         this.$pauseToggle = null;
@@ -58,7 +58,7 @@ class UiController {
 
         this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
-        this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
+        this.$airportDialogBody = this.$airportDialog.find('.dialog-body');
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
@@ -153,7 +153,7 @@ class UiController {
 
         this.$element = null;
         this.$airportDialog = null;
-        this.$airportList = null;
+        this.$airportDialogBody = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
         this.$pauseToggle = null;
@@ -266,7 +266,7 @@ class UiController {
      */
     _buildAirportList() {
         // clear out the contents of this element
-        this.$airportList.empty();
+        this.$airportDialogBody.empty();
 
         const airports = _keys(AirportController.airports).sort();
         let difficulty = '';
@@ -286,7 +286,7 @@ class UiController {
                 }
             });
 
-            this.$airportList.append($airportListItem);
+            this.$airportDialogBody.append($airportListItem);
         }
     }
 
@@ -379,7 +379,7 @@ class UiController {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
-        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
+        const $previousActiveAirport = this.$airportDialogBody.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         // Remove the active class from a no-longer-selected airport in the list.
         if ($previousActiveAirport.length !== 0) {

@@ -6,6 +6,7 @@
 
 
 ### Enhancements & Refactors
+- [#1323](https://github.com/openscope/openscope/issues/1323) - Create a css module for dialogs
 
 
 # 6.11.0 (March 4, 2019)
