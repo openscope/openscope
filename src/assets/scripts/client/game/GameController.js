@@ -588,7 +588,10 @@ class GameController {
     _onWindowFocus(event) {
         this.game.focused = true;
 
-        TimeKeeper.setPause(false);
+        // if was already manually paused when lost focus, respect that
+        if (!$('html').hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
+            TimeKeeper.setPause(false);
+        }
     }
 
 
