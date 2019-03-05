@@ -14,7 +14,7 @@
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "posttest": "npm run report",
     "coveralls": "nyc report -r text-lcov | coveralls",
-    "lint": "eslint src/**; exit 0",
+    "lint": "eslint src/assets/scripts/client/**",
     "start": "node public/assets/scripts/server/index.js",
     "server": "npm run start",
     "validator": "validator -a"
