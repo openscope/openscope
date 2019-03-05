@@ -2,22 +2,22 @@ import ava from 'ava';
 import sinon from 'sinon';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
-import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import {
     createNavigationLibraryFixture,
     resetNavigationLibraryFixture
-} from '../../fixtures/navigationLibraryFixtures'
-import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
+} from '../../fixtures/navigationLibraryFixtures';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_HOLD_PARAMETERS } from '../../../src/assets/scripts/client/constants/waypointConstants';
 
-let navigationLibrary;
+let sandbox;
 
 ava.beforeEach(() => {
+    sandbox = sinon.sandbox.create();
     createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
+    sandbox.restore();
     resetNavigationLibraryFixture();
 });
 
@@ -571,7 +571,7 @@ ava('#name returns value of #_name for fixes with names not prefixed with unders
 
 ava('#positionModel returns #_positionModel', (t) => {
     const waypointModel = new WaypointModel('BOACH');
-    const positionModel = waypointModel.positionModel;
+    const { positionModel } = waypointModel;
     const expectedResult = [35.6782610435946, -115.29470074200118];
     const result = positionModel.gps;
 
@@ -721,6 +721,84 @@ ava('.hasMinimumAltitudeAtOrAbove() returns true when waypoint has min restricti
 
     t.true(waypointWithMinAltAtConstraint.hasMinimumAltitudeAtOrAbove(constraint));
     t.true(waypointWithMinAltAboveConstraint.hasMinimumAltitudeAtOrAbove(constraint));
+});
+
+ava('.setAltitude() calls .setAltitudeMinimum() and .setAltitudeMaximum()', (t) => {
+    const model = new WaypointModel('BOACH');
+    const altitudeMock = 5000;
+    const setAltitudeMinimumStub = sinon.stub(model, 'setAltitudeMinimum');
+    const setAltitudeMaximumStub = sinon.stub(model, 'setAltitudeMaximum');
+    const result = model.setAltitude(altitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(setAltitudeMinimumStub.calledOnce);
+    t.true(setAltitudeMaximumStub.calledOnce);
+});
+
+ava('.setAltitudeMaximum() returns early if specified altitude is not a number', (t) => {
+    const model = new WaypointModel('BOACH');
+    const originalAltitudeMaximimValueMock = 7000;
+    const nextAltitudeMock = 'chipz';
+    model.altitudeMaximum = originalAltitudeMaximimValueMock;
+    const result = model.setAltitudeMaximum(nextAltitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMaximum === originalAltitudeMaximimValueMock);
+});
+
+ava('.setAltitudeMaximum() returns early if specified altitude is an "unreasonable" value', (t) => {
+    const model = new WaypointModel('BOACH');
+    const originalAltitudeMaximimValueMock = 7000;
+    const nextAltitudeMock = 99999;
+    model.altitudeMaximum = originalAltitudeMaximimValueMock;
+    const result = model.setAltitudeMaximum(nextAltitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMaximum === originalAltitudeMaximimValueMock);
+});
+
+ava('.setAltitudeMaximum() sets #altitudeMaximum to the specified altitude', (t) => {
+    const model = new WaypointModel('BOACH');
+    const originalAltitudeMaximimValueMock = 7000;
+    const nextAltitudeMock = 5500;
+    model.altitudeMaximum = originalAltitudeMaximimValueMock;
+    const result = model.setAltitudeMaximum(nextAltitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMaximum === nextAltitudeMock);
+});
+
+ava('.setAltitudeMinimum() returns early if specified altitude is not a number', (t) => {
+    const model = new WaypointModel('BOACH');
+    const originalAltitudeMinimimValueMock = 7000;
+    const nextAltitudeMock = 'chipz';
+    model.altitudeMinimum = originalAltitudeMinimimValueMock;
+    const result = model.setAltitudeMinimum(nextAltitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMinimum === originalAltitudeMinimimValueMock);
+});
+
+ava('.setAltitudeMinimum() returns early if specified altitude is an "unreasonable" value', (t) => {
+    const model = new WaypointModel('BOACH');
+    const originalAltitudeMinimimValueMock = 7000;
+    const nextAltitudeMock = 99999;
+    model.altitudeMinimum = originalAltitudeMinimimValueMock;
+    const result = model.setAltitudeMinimum(nextAltitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMinimum === originalAltitudeMinimimValueMock);
+});
+
+ava('.setAltitudeMinimum() sets #altitudeMinimum to the specified altitude', (t) => {
+    const model = new WaypointModel('BOACH');
+    const originalAltitudeMinimimValueMock = 7000;
+    const nextAltitudeMock = 5500;
+    model.altitudeMinimum = originalAltitudeMinimimValueMock;
+    const result = model.setAltitudeMinimum(nextAltitudeMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMinimum === nextAltitudeMock);
 });
 
 ava('.setHoldParameters() sets #_holdParameters to default values when no argument is provided', (t) => {

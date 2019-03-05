@@ -1850,7 +1850,7 @@ export default class AircraftModel {
             const nextWaypointPosition = currentWaypoint.positionModel;
 
             if (_isNil(nextWaypointPosition)) {
-                console.log('Expected a valid PositionModel object for waypoint '
+                console.warn('Expected a valid PositionModel object for waypoint '
                     + `"${currentWaypoint.name}", but received ${nextWaypointPosition}`);
             }
 

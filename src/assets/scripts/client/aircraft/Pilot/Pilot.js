@@ -10,7 +10,6 @@ import { MCP_MODE } from '../ModeControl/modeControlConstants';
 import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { radians_normalize } from '../../math/circle';
-import { clamp } from '../../math/core';
 import {
     groupNumbers,
     radio_altitude,
@@ -55,7 +54,7 @@ export default class Pilot {
          * @type {Fms}
          * @private
          */
-        this._fms = fms;
+        this._fms = null;
 
         /**
          * @for Pilot
@@ -63,7 +62,7 @@ export default class Pilot {
          * @type {ModeController}
          * @private
          */
-        this._mcp = modeController;
+        this._mcp = null;
 
         /**
          * Whether the aircraft has received a clearance to conduct an approach to a runway
@@ -84,23 +83,36 @@ export default class Pilot {
          * @default false
          */
         this.hasDepartureClearance = false;
+
+        return this.init(fms, modeController);
     }
 
     /**
      * @for Pilot
-     * @method enable
+     * @method init
+     * @chainable
      */
-    enable() {
-    }
-
-    /**
-     * @for Pilot
-     * @method destroy
-     */
-    destroy() {
-        this._mcp = null;
-        this._fms = null;
+    init(fms, modeController) {
+        this._fms = fms;
+        this._mcp = modeController;
         this.hasApproachClearance = false;
+        this.hasDepartureClearance = false;
+
+        return this;
+    }
+
+    /**
+     * @for Pilot
+     * @method reset
+     * @chainable
+     */
+    reset() {
+        this._fms = null;
+        this._mcp = null;
+        this.hasApproachClearance = false;
+        this.hasDepartureClearance = false;
+
+        return this;
     }
 
     /**
@@ -555,7 +567,7 @@ export default class Pilot {
      *
      * @for Pilot
      * @method crossFix
-     * @param aircraft {AircraftModel}
+     * @param aircraftModel {AircraftModel}
      * @param fixName  {string} name of the fix
      * @param altitude {number} the altitude
      * @return {array}  success of operation, readback]
