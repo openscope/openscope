@@ -576,7 +576,7 @@ class GameController {
 
         $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
         $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
-        $fastForwards.prop('title', 'Set time warp to 2');        
+        $fastForwards.prop('title', 'Set time warp to 2');
         TimeKeeper.setPause(true);
     }
 
