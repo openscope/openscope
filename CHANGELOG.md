@@ -3,6 +3,7 @@
 
 
 ### Bugfixes
+- [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons when window loses and regains focus.
 
 
 ### Enhancements & Refactors
