@@ -696,7 +696,7 @@ export default class AircraftModel {
      * @return cs {string}
      */
     getRadioCallsign() {
-        let weight = this.getRadioWeightClass();
+        let weight = this.model.getRadioWeightClass();
 
         if (!_isEmpty(weight)) {
             weight = ` ${weight}`;
@@ -709,26 +709,6 @@ export default class AircraftModel {
         return `${this.airlineCallsign} ${groupNumbers(this.flightNumber)}${weight}`;
     }
 
-    /**
-     * Get the weight classifier for an aircraft's callsign, as spoken over the radio
-     *
-     * @for AircraftModel
-     * @method getRadioWeightClass
-     * @return {string}
-     */
-    getRadioWeightClass() {
-        const { weightClass } = this.model;
-
-        if (weightClass === 'H') {
-            return 'heavy';
-        }
-
-        if (weightClass === 'J') {
-            return 'super';
-        }
-
-        return '';
-    }
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`
     /**
