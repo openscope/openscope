@@ -570,6 +570,7 @@ class GameController {
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
         TimeKeeper.updateSimulationRate(1);
+        TimeKeeper.setPause(true);
 
         // update visual state of the timewarp control button for consistency
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
@@ -577,7 +578,6 @@ class GameController {
         $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
         $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
         $fastForwards.prop('title', 'Set time warp to 2');
-        TimeKeeper.setPause(true);
     }
 
     /**
