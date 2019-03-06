@@ -36,6 +36,7 @@ import {
 import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
+import { range } from 'lodash';
 
 const DEFAULT_CTR_RADIUS_KM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
@@ -451,11 +452,16 @@ export default class AirportModel {
             );
         });
 
-        this.ctr_radius = Math.max(
-            ..._map(this.perimeter, (vertexPosition) => vlen(
-                vsub(vertexPosition.relativePosition, this.rangeRings.center.relativePosition)
-            ))
-        );
+        this.ctr_radius = 0;
+
+        for (const airspaceModel of this.airspace) {
+            this.ctr_radius = Math.max(
+                this.ctr_radius,
+                ..._map(airspaceModel.poly, (vertexPosition) => vlen(
+                    vsub(vertexPosition.relativePosition, this.rangeRings.center.relativePosition)
+                ))
+            );
+        }
     }
 
     /**
