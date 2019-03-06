@@ -664,7 +664,7 @@ ava('.crossFix() returns early when the specified altitude fails .validateNextAl
     const altitudeMock = 13000;
     const expectedResult = [false, 'some reply from validate-next-altitude'];
 
-    sinon.stub(aircraftModel, 'validateNextAltitude', () => expectedResult);
+    sinon.stub(aircraftModel, 'validateNextAltitude').returns(expectedResult);
 
     const result = aircraftModel.pilot.crossFix(aircraftModel, fixNameMock, altitudeMock);
 
@@ -696,30 +696,6 @@ ava('.crossFix() correctly configures departure aircraft\'s MCP and returns corr
 
     t.deepEqual(result, expectedResult);
 });
-
-// ava('.crossFix() correctly configures MCP and returns correct response ', (t) => {
-//     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-//     const pilotFixture = createPilotFixture();
-//     aircraftModel.fms.departureAirportModel = airportModelFixture;
-//     const fixNameMock = 'SKEBR';
-//     const altitudeMock = 8000;
-//     const expectedResponse = [
-//         true,
-//         {
-//             log: 'cross SKEBR at 8000',
-//             say: 'cross skebr at eight thousand'
-//         }
-//     ];
-//
-//     const waypointModel = pilotFixture._fms.findWaypoint(fixNameMock);
-//     const response = pilotFixture.crossFix(aircraftModel, fixNameMock, altitudeMock);
-//
-//     t.deepEqual(response, expectedResponse);
-//     t.true(pilotFixture._mcp.altitudeMode === 'VNAV');
-//     t.true(pilotFixture._mcp.altitude === altitudeMock);
-//     t.true(waypointModel.altitudeMinimum === altitudeMock);
-//     t.true(waypointModel.altitudeMaximum === altitudeMock);
-// });
 
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
