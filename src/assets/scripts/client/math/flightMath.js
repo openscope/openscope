@@ -126,6 +126,7 @@ export function getOffset(aircraft, target, headingThruTarget = null) {
  * @return {boolean}
  */
 export function calculateDistanceToBoundary(airport, pos) {
+    // TODO: remove perimeter
     const perim = airport.perimeter;
 
     if (perim) {
