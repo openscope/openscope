@@ -894,17 +894,20 @@ export default class AirportModel {
      * @for AirportModel
      * @function isPointWithinAirspace
      * @param point {array} x,y
+     * @param altitude {number}
      * @return {boolean}
      */
-    isPointWithinAirspace(point) {
+    isPointWithinAirspace(point, altitude = 0) {
         if (!this.airspace) {
-            return vlen(point) <= this.ctr_radius;
+            return vlen(point) <= this.ctr_radius && altitude <= this.ctr_ceiling;
         }
 
         for (let i = 0; i < this.airspace.length; i++) {
             const airspace = this.airspace[i];
 
-            if (airspace.isPointInside(point)) {
+            if (airspace.isPointInside(point)
+                && airspace.floor <= altitude
+                && airspace.ceiling >= altitude) {
                 return true;
             }
         }

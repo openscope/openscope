@@ -1010,7 +1010,6 @@ export default class AircraftModel {
         return glideslopeAltitudeDifference <= PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
     }
 
-    // TODO: the logic here should be moved to the `AirportModel`
     /**
      * Checks if the aircraft is inside the airspace of a specified airport
      *
@@ -1020,11 +1019,7 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isInsideAirspace(airport) {
-        const withinAirspaceLateralBoundaries = airport.isPointWithinAirspace(this.positionModel.relativePosition);
-        // TODO:
-        const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
-
-        return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
+        return airport.isPointWithinAirspace(this.positionModel.relativePosition, this.altitude);
     }
 
     /**
