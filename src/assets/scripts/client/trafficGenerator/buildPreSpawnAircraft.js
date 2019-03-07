@@ -305,7 +305,7 @@ const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
             continue;
         }
 
-        if (airport.isWithinAirspace(waypointModel.relativePosition)) {
+        if (airport.isPointWithinAirspace(waypointModel.relativePosition)) {
             distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(
                 airport,
                 previousWaypoint.relativePosition
