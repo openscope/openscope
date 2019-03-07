@@ -2402,35 +2402,24 @@ export default class AircraftModel {
      * @param scaleSpeed
      */
     updateGroundSpeedPhysics() {
+        const airportModel = AirportController.airport_get();
         // TODO: Much of this should be abstracted to helper functions
-
         // Calculate true air speed vector
         const trueAirspeedIncreaseFactorPerFoot = 0.000016; // 0.16% per thousand feet
         const indicatedAirspeed = this.speed;
         const trueAirspeed = indicatedAirspeed * (1 + (this.altitude * trueAirspeedIncreaseFactorPerFoot));
         const flightThroughAirVector = vscale(vectorize_2d(this.heading), trueAirspeed);
-
-        // Calculate wind vector
-        const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
-        const wind = AirportController.airport_get().wind;
-        const windTravelDirection = wind.angle + Math.PI;
-        const windTravelSpeedAtSurface = wind.speed;
-        const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
-        const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
-
+        const windVector = airportModel.wind.calculateWindVector(this.altitude);
         // Calculate ground speed and direction
         const flightPathVector = vadd(flightThroughAirVector, windVector);
-        const groundTrack = vradial(flightPathVector);
-        const groundSpeed = vlen(flightPathVector);
+        this.groundTrack = vradial(flightPathVector);
+        this.groundSpeed = vlen(flightPathVector);
 
         // Calculate new position
         const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
-        const distanceTraveled_nm = groundSpeed * hoursElapsed;
+        const distanceTraveled_nm = this.groundSpeed * hoursElapsed;
 
-        this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
-
-        this.groundTrack = groundTrack;
-        this.groundSpeed = groundSpeed;
+        this.positionModel.setCoordinatesByBearingAndDistance(this.groundTrack, distanceTraveled_nm);
 
         // TODO: is this needed anymore?
         // TODO: Fix this to prevent drift (being blown off course)

@@ -6,6 +6,7 @@ import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
+import AirportWindModel from './AirportWindModel';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
@@ -194,6 +195,15 @@ export default class AirportModel {
         this.terrain = {};
 
         /**
+         * Current prevailing wind conditions
+         *
+         * @property wind
+         * @type {AirportWindModel}
+         * @default null
+         */
+        this.wind = null;
+
+        /**
          * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
          *
          * @property perimeter
@@ -215,12 +225,9 @@ export default class AirportModel {
          * default wind settings for an airport
          *
          * @property wind
-         * @type {object}
+         * @type {AirportWindModel}
          */
-        this.wind = {
-            speed: 10,
-            angle: 0
-        };
+        this.wind = null;
 
         /**
          * @for AirportModel
@@ -367,13 +374,13 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
+        this.wind = new AirportWindModel(data.wind);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
-        this.updateCurrentWind(data.wind);
     }
 
     /**
@@ -508,20 +515,6 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method updateCurrentWind
-     * @param currentWind
-     */
-    updateCurrentWind(currentWind) {
-        if (!currentWind) {
-            return;
-        }
-
-        this.wind.speed = currentWind.speed;
-        this.wind.angle = degreesToRadians(currentWind.angle);
-    }
-
-    /**
-     * @for AirportModel
      * @method set
      * @param airportJson {object}
      */
@@ -545,7 +538,7 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method getWind
-     * @return wind {number}
+     * @return {AirportWindModel} wind
      */
     getWind() {
         return this.wind;
@@ -657,26 +650,17 @@ export default class AirportModel {
         return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
     }
 
-    // TODO: Implement changing winds, then bring this method back to life
     /**
      * @for AirportModel
      * @method updateRunway
      */
-    updateRunway() {
-        // const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(this.getWind);
-        //
-        // this.setArrivalRunway(bestRunwayForWind);
-        // this.setDepartureRunway(bestRunwayForWind);
-    }
+    updateRunway(nextWind) {
+        const currentWind = nextWind;
+        const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(currentWind);
 
-    // TODO: leaving this here for when we implement variable winds
-    // /**
-    //  * @for AirportModel
-    //  * @method setRunwayTimeout
-    //  */
-    // setRunwayTimeout() {
-    //     this.timeout.runway = GameController.game_timeout(this.updateRunway, Math.random() * 30, this);
-    // }
+        this.setArrivalRunway(bestRunwayForWind);
+        this.setDepartureRunway(bestRunwayForWind);
+    }
 
     /**
      * Return a `RunwayModel` for the provided name

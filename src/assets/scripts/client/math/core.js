@@ -241,3 +241,23 @@ export function generateRandomOctalWithLength(length = 1) {
 
     return leftPad(value.join(''), length);
 }
+
+/**
+ * Generates a random number, on an (approximate) bell curve.
+ * AKA - Normal Distribution, Gaussian Distribution.
+ *
+ * Note the maximum number it can produce is just below 2 times the `average` parameter,
+ * and it cannot produce negative numbers. Use _clamp if 2 * average is too high.
+ *
+ * @function calculateNormalDistributedNumber
+ * @param average {Number}
+ * @return {Number}
+ */
+export function calculateNormalDistributedNumber(average) {
+    // This gets the average of eight (pseudo)random numbers, which makes it a rough bell curve.
+    // This means that the average would be around 0.5, so we only divide by four instead of eight (making the average about 1).
+    const initialNumber = ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) / 4);
+
+    // initialNumber averages 1, so we multiply by the desired average.
+    return initialNumber * average;
+}

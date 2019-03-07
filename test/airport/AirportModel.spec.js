@@ -73,17 +73,6 @@ ava('.buildRestrictedAreas() returns early when passed a null or undefined argum
     t.true(!model.restricted_areas);
 });
 
-ava('.updateCurrentWind() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
-    model.wind.speed = 42;
-    model.wind.angle = 42;
-
-    model.updateCurrentWind();
-
-    t.true(model.wind.speed === 42);
-    t.true(model.wind.angle === 42);
-});
-
 ava('.set() calls .load() when #lodaed is false', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const loadSpy = sinon.spy(model, 'load');

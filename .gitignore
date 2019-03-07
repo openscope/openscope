@@ -4,6 +4,7 @@ _atc-call-stack.js
 _site/
 coverage/
 .vs/
+.vscode/
 .idea/
 .vscode
 .nyc_output/
