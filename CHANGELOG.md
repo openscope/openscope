@@ -7,6 +7,7 @@
 
 
 ### Enhancements & Refactors
+- [#10](https://github.com/openscope/openscope/issues/10) - Command for crossing restrictions (only altitude)
 
 
 # 6.11.0 (March 4, 2019)

@@ -28,6 +28,9 @@
 - [Heading](#heading)
 - [Speed](#speed)
 
+[Conditional / Pilot's Discretion Commands](#conditional-/-pilot's-discretion-commands)
+- [Cross](#cross)
+
 [Aircraft Query Commands](#aircraft-query-commands)
 - [Say Altitude](#say-altitude)
 - [Say Assigned Altitude](#say-assigned-altitude)
@@ -298,6 +301,17 @@ to. It takes some time to increase and reduce speed. Remember that speed is
 always expressed in knots.
 
 _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+
+# Conditional / Pilot's Discretion Commands
+These commands are used to give instructions which pilots are free to determine how to operate
+the airplane, as long as they comply with the restrictions given.
+
+## Cross
+_Aliases -_ `cross`, `cr`
+
+_Information -_ This command has the aircraft cross a specified point along their route at a specified altitude. The altitude must be entered in hundreds of feet (eg `130` for 13,000 feet).
+
+_Syntax -_ `AAL123 cr aubrn 130`
 
 # Aircraft Query Commands
 These commands are used to ask the aircraft some basic questions.

@@ -192,7 +192,7 @@ export const holdParser = (args) => {
  * the `timewarp` command needs to be able to provide a default value,
  * this parser allows us to do that.
  *
- * @method timewarpParser
+ * @function timewarpParser
  * @param  {array|undefined} [args=[]]
  * @return {array<number>}
  */
@@ -208,4 +208,19 @@ export const timewarpParser = (args = []) => {
     return [
         convertStringToNumber(args[0])
     ];
+};
+
+/**
+ * Convert the altitude argument from flight level number (i.e. 180) to feet in thousands (i.e. 18000).
+ *
+ * @function crossingParser
+ * @param  args {array} [fix name, altitude]
+ * @return {array<string, number>}
+ */
+export const crossingParser = (args = []) => {
+    const fix = args[0];
+    const altitude = convertToThousands(args[1]);
+    // TODO: Add logic for speeds at fix (eg "250K" means to cross at 250kt, while "250" means cross at FL250)
+
+    return [fix, altitude];
 };

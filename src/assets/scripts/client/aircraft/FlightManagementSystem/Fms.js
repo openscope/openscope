@@ -1095,11 +1095,11 @@ export default class Fms {
         if (!this._routeModel.isRunwayModelValidForStar(nextRunwayModel)) {
             const readback = {};
             readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is `
-                            + `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting `
-                            + `Runway ${currentArrivalRunway.name} instead`;
+                + `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting `
+                + `Runway ${currentArrivalRunway.name} instead`;
             readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} `
-                            + `is not valid for the ${this._routeModel.getStarName()} arrival, expecting `
-                            + `Runway ${currentArrivalRunway.getRadioName()} instead`;
+                + `is not valid for the ${this._routeModel.getStarName()} arrival, expecting `
+                + `Runway ${currentArrivalRunway.getRadioName()} instead`;
 
             return [false, readback];
         }

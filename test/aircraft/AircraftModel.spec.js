@@ -400,6 +400,9 @@ ava('.updateTarget() causes departures to comply with AT altitude restriction', 
 
     moveAircraftToFix(model, 'ROPPR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -413,6 +416,9 @@ ava('.updateTarget() causes departures to comply with ABOVE altitude restriction
 
     moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -427,6 +433,9 @@ ava('.updateTarget() causes departures to comply with BELOW altitude restriction
 
     moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -451,10 +460,13 @@ ava('.updateTarget() causes departures to climb to cruise altitude if there is n
 
     moveAircraftToFix(model, 'TRALR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 31000);
+    t.true(model.target.altitude === 19000);
 });
 
 ava('.updateTarget() causes arrivals to descend to the assigned altitude if the minimal altitude restriction is above the assigned altitude', (t) => {
@@ -475,10 +487,13 @@ ava('.updateTarget() causes departures to climb to cruise altitude if the maximu
 
     moveAircraftToFix(model, 'BIKKR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 31000);
+    t.true(model.target.altitude === 19000);
 });
 
 ava('.updateTarget() causes arrivals to climb to comply with minimal altitude restriction', (t) => {
@@ -501,6 +516,9 @@ ava('.updateTarget() causes departures to descend to comply with maximum altitud
 
     moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -525,6 +543,9 @@ ava('.updateTarget() causes departures to prioritize clearance over restriction'
 
     moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 7000);
     model.updateTarget();
 
