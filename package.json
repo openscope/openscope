@@ -15,6 +15,7 @@
     "posttest": "npm run report",
     "coveralls": "nyc report -r text-lcov | coveralls",
     "lint": "eslint src/assets/scripts/client/**",
+    "lint-diff": "lint-diff",
     "start": "node public/assets/scripts/server/index.js",
     "server": "npm run start",
     "validator": "validator -a"
@@ -118,6 +119,7 @@
     "gulp-uglify": "3.0.1",
     "handlebars-helpers": "0.10.0",
     "handlebars-layouts": "3.1.4",
+    "lint-diff": "1.2.1",
     "merge-stream": "1.0.1",
     "nyc": "13.1.0",
     "path": "0.12.7",
