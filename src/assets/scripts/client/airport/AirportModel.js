@@ -892,11 +892,11 @@ export default class AirportModel {
     /**
      *
      * @for AirportModel
-     * @method isWithinAirspace
+     * @function isPointWithinAirspace
      * @param point {array} x,y
      * @return {boolean}
      */
-    isWithinAirspace(point) {
+    isPointWithinAirspace(point) {
         if (!this.airspace) {
             return vlen(point) <= this.ctr_radius;
         }

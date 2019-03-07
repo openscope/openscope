@@ -1020,7 +1020,7 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isInsideAirspace(airport) {
-        const withinAirspaceLateralBoundaries = airport.isWithinAirspace(this.positionModel.relativePosition);
+        const withinAirspaceLateralBoundaries = airport.isPointWithinAirspace(this.positionModel.relativePosition);
         // TODO:
         const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
 
