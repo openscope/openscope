@@ -21,7 +21,7 @@ import { isEmptyObject } from '../utilities/validatorUtilities';
  * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
  * @return {array<number>} offset distance from spawn point to each waypoint
  */
-function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
+export function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
     // begin by storing the first fix's offset: a distance of 0 from the spawn point
     const waypointOffsetMap = [0];
     let totalDistanceTraveled = 0;
@@ -57,7 +57,7 @@ function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
  * @param waypointOffsetMap {array<number>} offset distance from spawn point to each waypoint
  * @return {array<array<number>>} [[offsetDistance, altitude], [offsetDistance, altitude], ...]
  */
-function _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap) {
+export function _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap) {
     const altitudeOffsets = [];
 
     for (let i = 0; i < waypointModelList.length; i++) {
@@ -82,41 +82,37 @@ function _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap) {
  * Calculate the interpolated altitude along the glidepath at the given distance along the route from the spawn point
  *
  * @function _calculateAltitudeAtOffset
- * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
- * @param waypointOffsetMap {array<number>} offset distance from spawn point to each waypoint
  * @param altitudeOffsets {array<array<number>>} information about location of altitude restrictions
  * @param offsetDistance {number} distance along route at which we want to know the ideal spawn altitude
  * @return {number} ideal spawn altitude, in feet (rounded up to nearest thousand)
  */
-function _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, offsetDistance) {
+export function _calculateAltitudeAtOffset(altitudeOffsets, offsetDistance) {
     const indexOfDistance = 0;
     const indexOfAltitude = 1;
     const indexOfNextAltitudeRestriction = _findIndex(altitudeOffsets, (altitudeOffset) => {
         return altitudeOffset[indexOfDistance] >= offsetDistance;
     });
-    const indexOfPreviousAltitudeRestriction = indexOfNextAltitudeRestriction - 1;
+    let indexOfPreviousAltitudeRestriction = indexOfNextAltitudeRestriction - 1;
 
-    // handle cases where we dont have altitude restrictions ahead AND behind the spawn point
-    if (indexOfNextAltitudeRestriction < 0) {
-        if (indexOfPreviousAltitudeRestriction < 0) {
+    if (indexOfPreviousAltitudeRestriction < -1) {
+        indexOfPreviousAltitudeRestriction = altitudeOffsets.length - 1;
+    }
+
+    if (indexOfNextAltitudeRestriction < 0) { // no restrictions ahead
+        if (indexOfPreviousAltitudeRestriction < 0) { // no restrictions ahead or behind
             return undefined;
         }
 
         return altitudeOffsets[indexOfPreviousAltitudeRestriction][indexOfAltitude];
     }
 
-    if (indexOfPreviousAltitudeRestriction < 0) {
+    if (indexOfPreviousAltitudeRestriction < 0) { // have restrictions ahead, but none behind
         return _floor(altitudeOffsets[indexOfNextAltitudeRestriction][indexOfAltitude], -3);
     }
 
     const previousAltitudeRestriction = altitudeOffsets[indexOfPreviousAltitudeRestriction];
     const nextAltitudeRestriction = altitudeOffsets[indexOfNextAltitudeRestriction];
     const distanceBetweenRestrictions = nextAltitudeRestriction[indexOfDistance] - previousAltitudeRestriction[indexOfDistance];
-
-    if (distanceBetweenRestrictions === 0) {
-        return _floor(previousAltitudeRestriction[indexOfAltitude], -3);
-    }
-
     const altitudeBetweenRestrictions = nextAltitudeRestriction[indexOfAltitude] - previousAltitudeRestriction[indexOfAltitude];
     const distanceFromPreviousRestrictionToOffsetDistance = offsetDistance - previousAltitudeRestriction[indexOfDistance];
     const progressBetweenRestrictions = distanceFromPreviousRestrictionToOffsetDistance / distanceBetweenRestrictions;
@@ -128,27 +124,27 @@ function _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitu
 /**
  * Calculate the ideal spawn altitude at the given distance along the route from the spawn point
  *
- * @function _calculateAltitudeAtOffset
- * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
- * @param waypointOffsetMap {array<number>} offset distance from spawn point to each waypoint
+ * @function _calculateIdealSpawnAltitudeAtOffset
  * @param altitudeOffsets {array<array<number>>} information about location of altitude restrictions
  * @param offsetDistance {number} distance along route at which we want to know the ideal spawn altitude
+ * @param spawnSpeed {number} airspeed at which to spawn the aircraft
  * @param spawnAltitude {number|array<number>} altitude specified in the spawn pattern json
- * @param totalDistance {number} distance long route from spawn point to airspace boundary
+ * @param totalDistance {number} distance along route from spawn point to airspace boundary
+ * @param airspaceCeiling {number} altitude of the top of our airspace
  * @return {number} ideal spawn altitude, in feet (rounded up to nearest thousand)
  */
 /* eslint-disable-next-line max-len */
-function _calculateIdealSpawnAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, offsetDistance, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
+export function _calculateIdealSpawnAltitudeAtOffset(altitudeOffsets, offsetDistance, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
     const indexOfDistance = 0;
     const indexOfAltitude = 1;
     let firstAltitudeRestriction = altitudeOffsets[0];
 
-    if (!firstAltitudeRestriction) {
+    if (!firstAltitudeRestriction) { // no altitude restrictions at all
         firstAltitudeRestriction = [totalDistance, airspaceCeiling];
     }
 
     if (offsetDistance >= firstAltitudeRestriction[indexOfDistance]) {
-        return _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, offsetDistance);
+        return _calculateAltitudeAtOffset(altitudeOffsets, offsetDistance);
     }
 
     const distanceToFirstAltitudeRestriction = firstAltitudeRestriction[indexOfDistance] - offsetDistance;
@@ -198,8 +194,6 @@ function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, s
             distanceFromPreviousWaypointToSpawnPoint
         );
         const altitude = _calculateIdealSpawnAltitudeAtOffset(
-            waypointModelList,
-            waypointOffsetMap,
             altitudeOffsets,
             spawnOffset,
             spawnSpeed,
