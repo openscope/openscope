@@ -82,7 +82,7 @@ export const CLASSNAMES = {
     TOGGLE_TUTORIAL: 'toggle-tutorial',
     TOGGLE_VIDEO_MAP: 'toggle-video-map',
     TOGGLE_TRAFFIC: 'toggle-traffic',
-    SPEECH_TOGGLE: 'toggle-speech',
+    TOGGLE_SPEECH: 'toggle-speech',
     WARN: 'warn',
     WARNING_BUTTON: 'warning-button'
 };
