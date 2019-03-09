@@ -175,7 +175,7 @@ export default class TrafficRateController {
             this._rates[category] = 1;
             this._elements[category] = [];
 
-            const $formElement = this._buildSlider(category, category, this._onChangeFlightCategoryRate);
+            const $formElement = this._buildSlider(category, category, category, this._onChangeFlightCategoryRate);
 
             this.$dialogBody.append($formElement);
         }
@@ -188,10 +188,11 @@ export default class TrafficRateController {
             }
 
             _forEach(spawnPatterns, (spawnPattern) => {
-                const { routeString } = spawnPattern;
-                this._rates[routeString] = spawnPattern.rate;
+                const label = spawnPattern.routeString.replace(/\./g, ' ');
 
-                const $formElement = this._buildInputField(routeString, spawnPattern, this._onChangeSpawnPatternRate);
+                this._rates[spawnPattern.id] = spawnPattern.rate;
+
+                const $formElement = this._buildInputField(spawnPattern.id, label, spawnPattern, this._onChangeSpawnPatternRate);
 
                 this.$dialogBody.append($formElement);
 
@@ -210,12 +211,11 @@ export default class TrafficRateController {
      * @param onChangeMethod {function}
      * @return {jquery|HTML Element}
      */
-    _buildSlider(key, data, onChangeMethod) {
+    _buildSlider(key, label, data, onChangeMethod) {
         const rate = this._rates[key];
-        const name = key.replace(/\./g, ' ');
         const template = `
             <div class="form-element">
-                <div class="form-label">${name}</div>
+                <div class="form-label">${label}</div>
                 <input class="form-slider" type="range" name="${key}" value="${rate}" min="0" max="10" step="0.5" />
                 <span class="form-value">${rate}</span>
             </div>`;
@@ -237,12 +237,11 @@ export default class TrafficRateController {
      * @param onChangeMethod {function}
      * @return {jquery|HTML Element}
      */
-    _buildInputField(key, data, onChangeMethod) {
+    _buildInputField(key, label, data, onChangeMethod) {
         const rate = this._rates[key];
-        const name = key.replace(/\./g, ' ');
         const template = `
             <div class="form-element">
-                <div class="form-label">${name}</div>
+                <div class="form-label">${label}</div>
                 <input class="form-input" type="number" name="${key}" value="${rate}" min="0" max="60">
                 <span class="form-value">${rate}</span>
             </div>`;
@@ -292,7 +291,7 @@ export default class TrafficRateController {
         const value = $target.val();
         const spawnPattern = event.data.rateKey;
 
-        this._rates[spawnPattern.routeString] = parseFloat(value);
+        this._rates[spawnPattern.id] = parseFloat(value);
 
         this._updateRate(spawnPattern, $output);
     }
@@ -306,9 +305,9 @@ export default class TrafficRateController {
      * @param $output {jQuery element} text element to output the actual rate
      */
     _updateRate(spawnPattern, $output) {
-        const { category, routeString } = spawnPattern;
+        const { category } = spawnPattern;
 
-        spawnPattern.rate = this._rates[category] * this._rates[routeString];
+        spawnPattern.rate = this._rates[category] * this._rates[spawnPattern.id];
 
         $output.text(spawnPattern.rate);
         SpawnScheduler.resetTimer(spawnPattern);

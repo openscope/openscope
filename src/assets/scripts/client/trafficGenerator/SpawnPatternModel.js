@@ -106,7 +106,6 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * Provides easy access to a specific scheduleId
          *
-         * @deprecated
          * @property scheduleId
          * @type {number}
          * @default INVALID_NUMBER
@@ -382,6 +381,17 @@ export default class SpawnPatternModel extends BaseModel {
         this._uptime = INVALID_NUMBER;
 
         this.init(spawnPatternJson);
+    }
+
+    /**
+     * The spawn pattern's id
+     *
+     * @property id
+     * @return {string}
+     */
+
+    get id() {
+        return this._id;
     }
 
     /**
