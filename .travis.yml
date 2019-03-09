@@ -39,8 +39,10 @@ jobs:
     - name: "lint-diff"
       if: type = pull_request
       script: npm run lint-diff -- $TRAVIS_COMMIT_RANGE
+      after_success:
       env: LINT=TRUE
     - name: "eslint"
       if: type = push AND branch = master
       script: npm run lint
+      after_success:
       env: LINT=TRUE
