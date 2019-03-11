@@ -218,14 +218,6 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a str
     t.true(model._maximumAltitude === 23000);
 });
 
-ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
-    const expectedResult = 360;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
-    const result = model._calculateMaximumDelayFromSpawnRate();
-
-    t.true(result === expectedResult);
-});
-
 ava('._initializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 

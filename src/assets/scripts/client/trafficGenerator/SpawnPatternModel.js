@@ -695,17 +695,19 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _calculateRandomDelayPeriod() {
         const minimumDelay = this._calculateMinimumDelayFromSpeed();
-        const maximumDelay = this._calculateMaximumDelayFromSpawnRate();
+        //const maximumDelay = this._calculateMaximumDelayFromSpawnRate();
+        const averageDelay = TIME.ONE_HOUR_IN_SECONDS / this.rate;
 
-        let targetDelayPeriod = maximumDelay;
+        if (averageDelay < minimumDelay) {
+            console.error(`Too many aircraft requested on spawn pattern "${this.routeString}"`);
 
-        if (targetDelayPeriod < minimumDelay) {
-            targetDelayPeriod = minimumDelay;
+            return minimumDelay;
         }
 
-        const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - minimumDelay);
+        const delayVariation = averageDelay - minimumDelay;
+        const maximumDelay = averageDelay + delayVariation;
 
-        return _random(minimumDelay, maxDelayPeriod);
+        return _random(minimumDelay, maximumDelay);
     }
 
     /**
