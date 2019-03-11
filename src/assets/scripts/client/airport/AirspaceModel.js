@@ -123,10 +123,16 @@ export default class AirspaceModel extends BaseModel {
      * @for AirspaceModel
      * @method isPointInside
      * @param point {array} x,y
+     * @param altitude {number}
      * @return {boolean}
      */
-    isPointInside(point) {
+    isPointInside(point, altitude) {
         if (!point_in_poly(point, this.relativePoly)) {
+            return false;
+        }
+
+        if (this.floor > altitude
+         || this.ceiling < altitude) {
             return false;
         }
 

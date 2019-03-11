@@ -910,9 +910,7 @@ export default class AirportModel {
         for (let i = 0; i < this.airspace.length; i++) {
             const airspace = this.airspace[i];
 
-            if (airspace.isPointInside(point)
-                && airspace.floor <= altitude
-                && airspace.ceiling >= altitude) {
+            if (airspace.isPointInside(point, altitude)) {
                 return true;
             }
         }
