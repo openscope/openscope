@@ -263,6 +263,8 @@ class GameController {
             this.game_timewarp_toggle();
 
             return;
+        } else if (nextValue < 0) {
+            return;
         }
 
         TimeKeeper.updateSimulationRate(nextValue);
