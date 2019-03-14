@@ -264,6 +264,7 @@ class GameController {
 
             return;
         } else if (nextValue < 0) {
+            // just for testing
             return;
         }
 
