@@ -348,6 +348,7 @@ export default class InputController {
 
                 break;
             case KEY_CODES.ENTER:
+            case KEY_CODES.NUM_ENTER:
             case LEGACY_KEY_CODES.ENTER:
                 this.processCommand();
 

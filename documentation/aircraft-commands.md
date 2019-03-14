@@ -16,6 +16,7 @@
 [Routing Commands](#routing-commands)
 - [~~Fix~~](#fix)
 - [Hold](#hold)
+- [Exit Hold](#exit-hold)
 - [Proceed Direct](#proceed-direct)
 - [Route](#route)
 - [Reroute](#reroute)
@@ -26,6 +27,9 @@
 - [Altitude](#altitude)
 - [Heading](#heading)
 - [Speed](#speed)
+
+[Conditional / Pilot's Discretion Commands](#conditional-/-pilot's-discretion-commands)
+- [Cross](#cross)
 
 [Aircraft Query Commands](#aircraft-query-commands)
 - [Say Altitude](#say-altitude)
@@ -160,6 +164,18 @@ any order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
 
+### Exit Hold
+_Aliases -_ `cancelhold` `continue` `exithold` `nohold` `xh`
+
+_Information -_ This command instructs the aircraft to leave a holding
+pattern and resume its flight plan.
+
+_Parameters -_ Optionally, you may specify the fix at which to cancel the hold,
+by specifying the fix at the end of the command: `AAL123 cancelhold [fixname]`.
+This can be useful if multiple holds exist.
+
+_Syntax -_ `AAL123 continue` or `AAL123 xh BOTON`
+
 ### Proceed Direct
 _Aliases -_ `direct` / `pd` / `dct`
 
@@ -285,6 +301,17 @@ to. It takes some time to increase and reduce speed. Remember that speed is
 always expressed in knots.
 
 _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+
+# Conditional / Pilot's Discretion Commands
+These commands are used to give instructions which pilots are free to determine how to operate
+the airplane, as long as they comply with the restrictions given.
+
+## Cross
+_Aliases -_ `cross`, `cr`
+
+_Information -_ This command has the aircraft cross a specified point along their route at a specified altitude. The altitude must be entered in hundreds of feet (eg `130` for 13,000 feet).
+
+_Syntax -_ `AAL123 cr aubrn 130`
 
 # Aircraft Query Commands
 These commands are used to ask the aircraft some basic questions.

@@ -176,10 +176,10 @@ export const fixValidator = (args = []) => {
  * @return {boolean}
  */
 export const isValidDirectionString = (value) => {
-    return value === 'left' ||
-        value === 'l' ||
-        value === 'right' ||
-        value === 'r';
+    return value === 'left'
+        || value === 'l'
+        || value === 'right'
+        || value === 'r';
 };
 
 /**
@@ -199,7 +199,7 @@ export const isValidDirectionString = (value) => {
  * @return {string|undefined}
  */
 export const headingValidator = (args = []) => {
-    const length = args.length;
+    const { length } = args;
     const hasLengthError = oneOrTwoArgumentValidator(args);
     let numberFromString;
 
@@ -223,7 +223,7 @@ export const headingValidator = (args = []) => {
                 return ERROR_MESSAGE.INVALID_DIRECTION_STRING;
             }
 
-            if (isNaN(numberFromString)) {
+            if (_isNaN(numberFromString)) {
                 return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
             }
 
@@ -277,5 +277,36 @@ export const squawkValidator = (args = []) => {
 
     if (!REGEX.TRANSPONDER_CODE.test(args[0])) {
         return ERROR_MESSAGE.INVALID_SQUAWK;
+    }
+};
+
+/**
+ * Checks that args is the required length and the data is of the correct type
+ *
+ * ```
+ * Allowed argument shapes:
+ * - ['dumba', '120']
+ * ```
+ *
+ * @function crossingValidator
+ * @param args {array}
+ * @return {array<string>}
+ */
+export const crossingValidator = (args = []) => {
+    if (args.length !== 2) {
+        return ERROR_MESSAGE.TWO_ARG_LENGTH;
+    }
+
+    const [fixName] = args;
+    let altitude = args[1];
+
+    if (!_isString(fixName)) {
+        return ERROR_MESSAGE.MUST_BE_STRING;
+    }
+
+    altitude = convertStringToNumber(altitude);
+
+    if (_isNaN(altitude)) {
+        return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
     }
 };

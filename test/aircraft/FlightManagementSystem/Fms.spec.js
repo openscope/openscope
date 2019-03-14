@@ -188,7 +188,10 @@ ava('.activateHoldForWaypointName() returns failure message when the route does 
     const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
     const unknownWaypointName = 'DINGBAT';
     const holdParametersMock = { turnDirection: 'left' };
-    const expectedResult = [false, `unable to hold at ${unknownWaypointName}; it is not on our route!`];
+    const expectedResult = [false, {
+        log: `unable to hold at ${unknownWaypointName}; it is not on our route!`,
+        say: `unable to hold at ${unknownWaypointName.toLowerCase()}; it is not on our route!`
+    }];
     const result = fms.activateHoldForWaypointName(unknownWaypointName, holdParametersMock);
 
     t.true(routeModelActivateHoldForWaypointNameSpy.notCalled);

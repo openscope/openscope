@@ -4,7 +4,7 @@ import _map from 'lodash/map';
 import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import GameController, { GAME_EVENTS } from '../game/GameController';
+import GameController from '../game/GameController';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import UiController from '../ui/UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
@@ -237,12 +237,27 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runClimbViaSID
      * @param aircraft {AircraftModel}
+     * @param data {array}
      * @return {array} [success of operation, readback]
      */
     runClimbViaSID(aircraft, data) {
         const altitude = data[0];
 
         return aircraft.pilot.climbViaSid(aircraft, altitude);
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runCross
+     * @param aircraft {AircraftModel}
+     * @param data {array}
+     * @return {array} [success of operation, readback]
+     */
+    runCross(aircraft, data) {
+        const fix = data[0].toUpperCase();
+        const altitude = data[1];
+
+        return aircraft.pilot.crossFix(aircraft, fix, altitude);
     }
 
     /**
@@ -301,6 +316,21 @@ export default class AircraftCommander {
         };
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
+    }
+
+    /**
+     * Exit holding pattern and resume navigation
+     *
+     * @for AircraftCommander
+     * @method runCancelHoldingPattern
+     * @param aircraft {AircraftModel}
+     * @param args {array}
+     * @return {array} [success of operation, readback]
+     */
+    runCancelHoldingPattern(aircraft, args) {
+        const fixName = args[0];
+
+        return aircraft.pilot.cancelHoldingPattern(fixName);
     }
 
     /**

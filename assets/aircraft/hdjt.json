@@ -7,14 +7,14 @@
     },
     "weightClass": "S",
     "category": {
-        "srs": 1,
+        "srs": 3,
         "lahso": 1,
         "recat": "F"
     },
     "ceiling": 41000,
     "rate": {
-        "climb":      660,
-        "descent":    1000,
+        "climb":      2500,
+        "descent":    2000,
         "accelerate": 4,
         "decelerate": 3
     },
