@@ -4,6 +4,7 @@
 
 ### Bugfixes
 - [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons when window loses and regains focus.
+- [#1341](https://github.com/openscope/openscope/issues/1341) - Fix CID number generation bug in cases of CID collision
 
 
 ### Enhancements & Refactors
