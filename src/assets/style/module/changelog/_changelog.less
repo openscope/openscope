@@ -1,12 +1,15 @@
 .changelog-container {
-    width: 480px;
-    max-height: 480px;
+    width: fit-content;
+    max-width: 70%;
+    height: fit-content;
+    max-height: calc(100% - 200px);
     overflow-y: scroll;
-    margin-left: -240px;
-    padding: 12px 15px;
+    padding: 15px;
     position: absolute;
-    top: 20%;
-    left: 50%;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
     background-color: @dark;
     color: @light-gray;
     font-size: 12px;
@@ -26,25 +29,23 @@
 }
 
 .changelog-hd {
-    min-height: 1.5em;
-    padding: @spacing-2x 0 7px 0;
-    font-size: 170%;
+    padding-bottom: 5px;
+    font-size: 2em;
     text-align: center;
     box-sizing: border-box;
 }
 
 .changelog-version {
-    min-height: 1.5em;
-    padding: @spacing-1x 0 4px 0;
-    font-size: 140%;
+    padding: 5px;
+    font-size: 1em;
     text-align: center;
+    text-decoration: underline;
     box-sizing: border-box;
 }
 
 .changelog-view-full {
-    min-height: 1.5em;
-    padding: @spacing-1x 0 4px 0;
-    font-size: 140%;
+    padding-top: 10px;
+    font-size: 0.7em;
     text-align: center;
     color: @light-gray;
     box-sizing: border-box;
