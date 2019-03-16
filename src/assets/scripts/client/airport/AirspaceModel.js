@@ -2,8 +2,8 @@ import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
-import { convertToThousands } from '../utilities/unitConverters';
-import { buildPolyPositionModels, point_in_poly } from '../math/vector';
+import { convertToThousands, nm } from '../utilities/unitConverters';
+import { buildPolyPositionModels, point_in_poly, distance_to_poly } from '../math/vector';
 
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
@@ -119,7 +119,6 @@ export default class AirspaceModel extends BaseModel {
 
     /**
      *
-     *
      * @for AirspaceModel
      * @method isPointInside
      * @param point {array} x,y
@@ -127,15 +126,33 @@ export default class AirspaceModel extends BaseModel {
      * @return {boolean}
      */
     isPointInside(point, altitude) {
-        if (!point_in_poly(point, this.relativePoly)) {
+        if (!this.isPointInside2D(point)) {
             return false;
         }
 
-        if (this.floor > altitude
-         || this.ceiling < altitude) {
-            return false;
-        }
+        return this.floor <= altitude && altitude <= this.ceiling;
+    }
 
-        return true;
+    /**
+     *
+     * @for AirspaceModel
+     * @method isPointInside
+     * @param point {array} x,y
+     * @return {boolean}
+     */
+    isPointInside2D(point) {
+        return point_in_poly(point, this.relativePoly);
+    }
+
+    /**
+     * calculates the distance to the airspace in nm
+     *
+     * @for AirspaceModel
+     * @method distanceToBoundary
+     * @param point {array} x,y
+     * @return {number} in nm
+     */
+    distanceToBoundary(point) {
+        return nm(distance_to_poly(point, this.relativePoly));
     }
 }

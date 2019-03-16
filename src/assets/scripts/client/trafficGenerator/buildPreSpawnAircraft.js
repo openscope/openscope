@@ -6,11 +6,9 @@ import _random from 'lodash/random';
 import _without from 'lodash/without';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 import { TIME } from '../constants/globalConstants';
-import {
-    calculateDistanceToBoundary
-} from '../math/flightMath';
 import { nm } from '../utilities/unitConverters';
 import { isEmptyObject } from '../utilities/validatorUtilities';
+import { distance2d } from '../math/distance';
 
 /**
  * Return an array whose indices directly mirror those of `waypointModelList`, except it
@@ -284,14 +282,13 @@ const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
  * Returns the total distance from beginning to end of the provided route, along the route's course
  *
  * @function _calculateTotalDistanceAlongRoute
- * @param waypointModelList {array<StandardRouteWaypointModel>}
+ * @param waypointModelList {array<WaypointModel>}
  * @param airport {AirportModel}
- * @return {object}
+ * @return {number}
  */
 const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
     // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
     // distance between closest fix outside airspace and airspace border in nm
-    let distanceFromClosestFixToAirspaceBoundary = 0;
     let totalDistance = 0;
 
     // Iteration started at index 1 to ensure two elements are available. It is
@@ -305,17 +302,25 @@ const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
             continue;
         }
 
-        if (airport.isPointWithinAirspace(waypointModel.relativePosition)) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(
-                airport,
-                previousWaypoint.relativePosition
-            ));
-            totalDistance += distanceFromClosestFixToAirspaceBoundary;
+        const distanceBetweenWaypoints = nm(distance2d(previousWaypoint.relativePosition, waypointModel.relativePosition));
+        let distanceToBoundary = Infinity;
+
+        for (let j = 0; j < airport.airspace.length; j++) {
+            const airspace = airport.airspace[j];
+
+            if (airspace.isPointInside2D(waypointModel.relativePosition)) {
+                const distanceToAirspace = airspace.distanceToBoundary(previousWaypoint.relativePosition);
+                // find shortest distance, since the waypoint might be inside multiple airspace polygons
+                distanceToBoundary = Math.min(distanceToBoundary, distanceToAirspace);
+            }
+        }
+
+        // if waypointModel is within any of our airspace
+        if (distanceToBoundary !== Infinity) {
+            totalDistance += distanceToBoundary;
 
             break;
         }
-
-        const distanceBetweenWaypoints = previousWaypoint.calculateDistanceToWaypoint(waypointModel);
 
         totalDistance += distanceBetweenWaypoints;
     }

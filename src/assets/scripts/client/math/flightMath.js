@@ -119,27 +119,6 @@ export function getOffset(aircraft, target, headingThruTarget = null) {
 }
 
 /**
- *
- * @function calculateDistanceToBoundary
- * @param airport {AirportModel}
- * @param pos {array}
- * @return {boolean}
- */
-export function calculateDistanceToBoundary(airport, pos) {
-    // TODO: remove perimeter
-    const perim = airport.perimeter;
-
-    if (perim) {
-        // km
-        const poly = _map(perim, (v) => v.relativePosition);
-
-        return distance_to_poly(pos, poly);
-    }
-
-    return abs(distance2d(pos, airport.relativePosition) - airport.ctr_radius);
-}
-
-/**
  * @function _calculateNominalNewCourse
  * @param nextWaypointRelativePosition {array}
  * @param currentWaypointRelativePosition {array}

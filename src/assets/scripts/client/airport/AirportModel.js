@@ -16,11 +16,12 @@ import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
-import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
+import { degreesToRadians, parseElevation, nm } from '../utilities/unitConverters';
 import {
     sin,
     cos,
-    round
+    round,
+    abs
 } from '../math/core';
 import {
     buildPolyPositionModels,
@@ -28,7 +29,8 @@ import {
     vlen,
     vsub,
     vadd,
-    vscale
+    vscale,
+    point_in_poly
 } from '../math/vector';
 import {
     FLIGHT_CATEGORY,
@@ -38,6 +40,7 @@ import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { range } from 'lodash';
+import { distance2d } from '../math/distance';
 
 const DEFAULT_CTR_RADIUS_KM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
@@ -198,15 +201,6 @@ export default class AirportModel {
          * @default {}
          */
         this.terrain = {};
-
-        /**
-         * a polygon that outlines the outermost lateral airspace boundary.
-         *
-         * @property perimeter
-         * @type {array<array>}
-         * @default null
-         */
-        this.perimeter = null;
 
         /**
          * @property timeout
@@ -377,7 +371,6 @@ export default class AirportModel {
         this._initRangeRings(data.rangeRings);
         this.loadTerrain();
         this.buildAirspace(data.airspace);
-        this.buildAirspacePerimeter(data.perimeter);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
@@ -419,21 +412,6 @@ export default class AirportModel {
         }
 
         this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
-    }
-
-    /**
-     * create 3d polygonal airspace
-     *
-     * @for AirportModel
-     * @method buildAirportAirspace
-     * @param airspace
-     */
-    buildAirspacePerimeter(perimeter) {
-        if (perimeter) {
-            this.perimeter = buildPolyPositionModels(perimeter, this._positionModel, this._positionModel.magneticNorth);
-        } else {
-            this.perimeter = _head(this.airspace).poly;
-        }
     }
 
     /**
@@ -902,9 +880,9 @@ export default class AirportModel {
      * @param altitude {number}
      * @return {boolean}
      */
-    isPointWithinAirspace(point, altitude = 0) {
+    isPointWithinAirspace(point, altitude) {
         if (!this.airspace) {
-            return vlen(point) <= this.ctr_radius && altitude <= this.ctr_ceiling;
+            return this.distance2d(point) <= this.ctr_radius && altitude <= this.ctr_ceiling;
         }
 
         for (let i = 0; i < this.airspace.length; i++) {
@@ -916,5 +894,16 @@ export default class AirportModel {
         }
 
         return false;
+    }
+
+    /**
+     *
+     * @for AirportModel
+     * @function distance2d
+     * @param point {array} x,y
+     * @return {number} distance in km
+     */
+    distance2d(point) {
+        return distance2d(point, this.relativePosition);
     }
 }

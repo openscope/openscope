@@ -154,7 +154,7 @@ ava('.area_to_poly() returns an array of 2 index arrays that represent canvas po
         [-67.81746809538386, 15.91078422023606]
     ];
 
-    const result = _map(airportModelFixture.perimeter, (v) => v.relativePosition);
+    const result = _map(airportModelFixture.airspace[0].poly, (v) => v.relativePosition);
 
     t.true(_isEqual(result, expectedResult));
 });
