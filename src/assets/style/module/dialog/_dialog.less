@@ -5,7 +5,6 @@
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     max-height: ~"calc(100% - 2*36px - 2*7px)";
     width: 600px;
-    //width: fit-content;
     margin: auto;
     padding: 0px 10px 10px 10px;
     position: absolute;
@@ -25,31 +24,6 @@
     z-index: 200;
 }
 
-.dialog.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.dialog-title {
-    padding: @spacing-2x 0 7px 0;
-    font-size: 170%;
-    text-align: center;
-}
-
-.dialog-body {
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    padding: @spacing-1x @spacing-1x;
-    background-color: @dark;
-    color: @light-gray;
-    font-size: 100%;
-    border: 2px solid @blue-medium;
-    border-radius: 10px;
-    overflow-y: auto;
-}
-
 .dialog select {
     width: 100%;
     padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
@@ -67,17 +41,42 @@
     outline: none;
 }
 
-.form-element {
-    display: flex;
+.dialog-body {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: @spacing-1x @spacing-1x;
+    background-color: @dark;
+    color: @light-gray;
+    font-size: 100%;
+    border: 2px solid @blue-medium;
+    border-radius: 10px;
+    overflow-y: auto;
 }
 
-.form-element + .form-element {
-    margin-top: 2px;
+.dialog.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dialog-title {
+    padding: @spacing-2x 0 7px 0;
+    font-size: 170%;
+    text-align: center;
+}
+
+.form-element {
+    display: flex;
 }
 
 .form-element input[type="range"] {
     display: block;
     flex-grow: 1;
+}
+
+.form-element + .form-element {
+    margin-top: 2px;
 }
 
 .form-label {

@@ -6,6 +6,7 @@ import SpawnScheduler from '../trafficGenerator/SpawnScheduler';
 import { SELECTORS, CLASSNAMES } from '../constants/selectors';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
+import { REGEX } from '../constants/globalConstants';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -188,7 +189,7 @@ export default class TrafficRateController {
             }
 
             _forEach(spawnPatterns, (spawnPattern) => {
-                const label = spawnPattern.routeString.replace(/\./g, ' ');
+                const label = spawnPattern.routeString.replace(REGEX.SINGLE_DOT, ' ');
 
                 this._rates[spawnPattern.id] = spawnPattern.rate;
 

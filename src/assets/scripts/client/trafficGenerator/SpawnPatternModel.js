@@ -579,18 +579,6 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Calculates the upper bound of the spawn delay value.
-     *
-     * @for SpawnPatternModel
-     * @method _calculateMaximumDelayFromSpawnRate
-     * @return {number}
-     * @private
-     */
-    _calculateMaximumDelayFromSpawnRate() {
-        return TIME.ONE_HOUR_IN_SECONDS / this.rate;
-    }
-
-    /**
      *
      *
      * @for SpawnPatternModel
