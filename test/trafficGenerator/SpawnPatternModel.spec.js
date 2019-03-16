@@ -85,6 +85,24 @@ ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) =>
     t.true(typeof result === 'number');
 });
 
+ava('#id returns #_id', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
+    const expectedResult = 'some-value';
+    model._id = expectedResult;
+    const result = model.id;
+
+    t.true(result === expectedResult);
+});
+
+ava('#positionModel returns #_positionModel', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
+    const expectedResult = 'some-value';
+    model._positionModel = expectedResult;
+    const result = model.positionModel;
+
+    t.true(result === expectedResult);
+});
+
 ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
     const cycleStartTimeMock = 42;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);

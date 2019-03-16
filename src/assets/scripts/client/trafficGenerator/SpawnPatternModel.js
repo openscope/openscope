@@ -458,7 +458,6 @@ export default class SpawnPatternModel extends BaseModel {
             return;
         }
 
-        // TODO: this is a temporary development check. this should be removed before merging in to develop
         if (!spawnPatternModelJsonValidator(spawnPatternJson)) {
             console.error('### Invalid spawnPatternJson received', spawnPatternJson);
         }
