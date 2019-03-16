@@ -3,6 +3,11 @@ language: node_js
 node_js:
 - '10'
 - '11'
+
+# must specify this for allow_failures to work on env key
+# https://docs.travis-ci.com/user/customizing-the-build#rows-that-are-allowed-to-fail
+env: 
+
 git:
   depth: 3
 cache:
@@ -20,3 +25,24 @@ notifications:
       - "%{commit_subject}"
 after_success:
   - npm run coveralls
+
+branches:
+  only:
+  - develop
+  - master
+jobs:
+  fast_finish: true
+  allow_failures:
+      # lint errors should not fail the whole build
+    - env: LINT=TRUE
+  include:
+    - name: "lint-diff"
+      if: type = pull_request
+      script: npm run lint-diff -- $TRAVIS_COMMIT_RANGE
+      after_success:
+      env: LINT=TRUE
+    - name: "eslint"
+      if: type = push AND branch = master
+      script: npm run lint
+      after_success:
+      env: LINT=TRUE
