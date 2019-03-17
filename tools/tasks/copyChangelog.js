@@ -22,7 +22,7 @@ function loadChangelogMarkdown() {
  *
  * @method getLatestEntry
  * @param {String} markdown
- * @returns {String} the data from the latest entry 
+ * @returns {String} the data from the latest entry
  */
 function getLatestEntry(markdown) {
     const headerRegexp = /# [0-9]\.[0-9]+\.[0-9] \(.*\)/g;
@@ -36,7 +36,7 @@ function getLatestEntry(markdown) {
  * Encapsulates the `makeHtml(String)` function provided by showdown.
  *
  * @method parseMarkdown
- * @param {String} markdown 
+ * @param {String} markdown
  * @returns {String} parsed html
  */
 function parseMarkdown(markdown) {
@@ -57,7 +57,7 @@ function writeOutput(stringToWrite) {
         changelog: stringToWrite
     });
 
-    fs.writeFile(destFile, outputJSON, err => {
+    fs.writeFile(destFile, outputJSON, (err) => {
         if (err) {
             fancyLog(colors.red('--- Failed to write the changelog to public/assets'));
             Promise.reject(err);

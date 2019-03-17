@@ -174,7 +174,7 @@ export default class ChangelogController {
         };
         const changelogPromise = this.contentQueue.add(options);
 
-        changelogPromise.done((data, textStatus, jqXHR) => {
+        changelogPromise.done((data /* , textStatus, jqXHR */) => {
             this.content = data.changelog;
             this.onLoadComplete();
         });
