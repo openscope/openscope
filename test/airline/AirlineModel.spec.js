@@ -1,8 +1,8 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isArray from 'lodash/isArray';
-import _isEqual from 'lodash/isEqual';
-import _map from 'lodash/map';
+import * as _isArray from 'lodash/isArray';
+import * as _isEqual from 'lodash/isEqual';
+import * as _map from 'lodash/map';
 
 import AirlineModel from '../../src/assets/scripts/client/airline/AirlineModel';
 import {

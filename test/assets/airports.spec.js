@@ -1,7 +1,7 @@
 import ava from 'ava';
 import fs from 'fs';
 import path from 'path';
-import _forEach from 'lodash/forEach';
+import * as _forEach from 'lodash/forEach';
 
 const airportAssetsPath = path.join(__dirname, '..', '..', 'assets', 'airports');
 const erroringFileNames = [];

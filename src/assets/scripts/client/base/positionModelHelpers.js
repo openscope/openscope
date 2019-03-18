@@ -1,4 +1,4 @@
-import _isNil from 'lodash/isNil';
+import * as _isNil from 'lodash/isNil';
 import {
     INVALID_INDEX,
     REGEX

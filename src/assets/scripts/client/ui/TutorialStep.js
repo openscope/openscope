@@ -1,4 +1,4 @@
-import _get from 'lodash/get';
+import * as _get from 'lodash/get';
 
 const INIT_POSITION_PADDING = [0, 0];
 

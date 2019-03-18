@@ -1,6 +1,6 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
-import _forEach from 'lodash/forEach';
+import * as _forEach from 'lodash/forEach';
 
 import AircraftTypeDefinitionCollection from '../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionCollection';
 import AircraftTypeDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionModel';

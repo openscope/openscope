@@ -1,6 +1,6 @@
-import _isNaN from 'lodash/isNaN';
-import _isString from 'lodash/isString';
-import _forEach from 'lodash/forEach';
+import * as _isNaN from 'lodash/isNaN';
+import * as _isString from 'lodash/isString';
+import * as _forEach from 'lodash/forEach';
 import { convertStringToNumber } from '../../utilities/unitConverters';
 import { EXPEDITE } from './aircraftCommandMap';
 import { ERROR_MESSAGE } from './aircraftCommandParserMessages';

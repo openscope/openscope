@@ -1,6 +1,6 @@
-import _isEqual from 'lodash/isEqual';
-import _isNumber from 'lodash/isNumber';
-import _map from 'lodash/map';
+import * as _isEqual from 'lodash/isEqual';
+import * as _isNumber from 'lodash/isNumber';
+import * as _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';

@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import _noop from 'lodash/noop';
+import * as _noop from 'lodash/noop';
 
 global.window = {
     // gameController: {

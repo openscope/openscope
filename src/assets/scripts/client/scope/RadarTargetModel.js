@@ -1,6 +1,6 @@
-import _has from 'lodash/has';
-import _isEmpty from 'lodash/isEmpty';
-import _isNaN from 'lodash/isNaN';
+import * as _has from 'lodash/has';
+import * as _isEmpty from 'lodash/isEmpty';
+import * as _isNaN from 'lodash/isNaN';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
 import { INVALID_NUMBER } from '../constants/globalConstants';

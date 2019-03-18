@@ -1,9 +1,9 @@
-import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
-import _isNil from 'lodash/isNil';
-import _map from 'lodash/map';
-import _random from 'lodash/random';
-import _uniq from 'lodash/uniq';
+import * as _forEach from 'lodash/forEach';
+import * as _isArray from 'lodash/isArray';
+import * as _isNil from 'lodash/isNil';
+import * as _map from 'lodash/map';
+import * as _random from 'lodash/random';
+import * as _uniq from 'lodash/uniq';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 

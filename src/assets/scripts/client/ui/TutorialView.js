@@ -1,6 +1,6 @@
 /* eslint-disable max-len, no-undef, indent */
-import $ from 'jquery';
-import _has from 'lodash/has';
+import * as $ from 'jquery';
+import * as _has from 'lodash/has';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import TimeKeeper from '../engine/TimeKeeper';

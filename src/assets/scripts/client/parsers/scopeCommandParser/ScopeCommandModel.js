@@ -1,8 +1,8 @@
-import _first from 'lodash/first';
-import _has from 'lodash/has';
-import _last from 'lodash/last';
-import _without from 'lodash/without';
-import _values from 'lodash/values';
+import * as _first from 'lodash/first';
+import * as _has from 'lodash/has';
+import * as _last from 'lodash/last';
+import * as _without from 'lodash/without';
+import * as _values from 'lodash/values';
 import {
     IMPLIED_COMMANDS,
     EXPLICIT_COMMANDS,

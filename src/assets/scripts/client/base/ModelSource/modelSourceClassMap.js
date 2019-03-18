@@ -1,4 +1,4 @@
-import _keys from 'lodash/keys';
+import * as _keys from 'lodash/keys';
 import FixModel from '../../navigationLibrary/FixModel';
 import SpawnPatternModel from '../../trafficGenerator/SpawnPatternModel';
 

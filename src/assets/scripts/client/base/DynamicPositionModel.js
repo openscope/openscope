@@ -1,5 +1,5 @@
-import _isNumber from 'lodash/isNumber';
-import _uniqueId from 'lodash/uniqueId';
+import * as _isNumber from 'lodash/isNumber';
+import * as _uniqueId from 'lodash/uniqueId';
 import {
     adjustForMagneticNorth,
     calculateDistanceToPointForX,

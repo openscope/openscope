@@ -1,6 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isNil from 'lodash/isNil';
+import * as _isNil from 'lodash/isNil';
 import GameOptions from '../../src/assets/scripts/client/game/GameOptions';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import { GAME_OPTION_LIST_MOCK } from './_mocks/gameOptionMocks';

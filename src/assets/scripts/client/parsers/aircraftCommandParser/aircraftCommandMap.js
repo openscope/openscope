@@ -1,4 +1,4 @@
-import _findKey from 'lodash/findKey';
+import * as _findKey from 'lodash/findKey';
 
 /**
  * Complete map of commands

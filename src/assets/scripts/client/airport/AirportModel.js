@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
-import _ceil from 'lodash/ceil';
-import _chunk from 'lodash/chunk';
-import _forEach from 'lodash/forEach';
-import _get from 'lodash/get';
-import _head from 'lodash/head';
-import _map from 'lodash/map';
+import * as _ceil from 'lodash/ceil';
+import * as _chunk from 'lodash/chunk';
+import * as _forEach from 'lodash/forEach';
+import * as _get from 'lodash/get';
+import * as _head from 'lodash/head';
+import * as _map from 'lodash/map';
 import AirportController from './AirportController';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';

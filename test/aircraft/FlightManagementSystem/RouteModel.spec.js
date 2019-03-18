@@ -1,9 +1,9 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _every from 'lodash/every';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
-import _map from 'lodash/map';
+import * as _every from 'lodash/every';
+import * as _isArray from 'lodash/isArray';
+import * as _isEmpty from 'lodash/isEmpty';
+import * as _map from 'lodash/map';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import RouteModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';

@@ -1,4 +1,4 @@
-import _isNil from 'lodash/isNil';
+import * as _isNil from 'lodash/isNil';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 // import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {

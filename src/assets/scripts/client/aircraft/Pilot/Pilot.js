@@ -1,6 +1,6 @@
-import _ceil from 'lodash/ceil';
-import _floor from 'lodash/floor';
-import _isNil from 'lodash/isNil';
+import * as _ceil from 'lodash/ceil';
+import * as _floor from 'lodash/floor';
+import * as _isNil from 'lodash/isNil';
 import AirportController from '../../airport/AirportController';
 import Fms from '../FlightManagementSystem/Fms';
 import ModeController from '../ModeControl/ModeController';

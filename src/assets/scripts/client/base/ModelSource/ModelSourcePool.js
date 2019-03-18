@@ -1,7 +1,7 @@
-import _find from 'lodash/find';
-import _has from 'lodash/has';
-import _isNil from 'lodash/isNil';
-import _without from 'lodash/without';
+import * as _find from 'lodash/find';
+import * as _has from 'lodash/has';
+import * as _isNil from 'lodash/isNil';
+import * as _without from 'lodash/without';
 import BaseCollection from '../BaseCollection';
 import {
     CLASS_MAP,

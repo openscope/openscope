@@ -1,7 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _includes from 'lodash/includes';
-import _map from 'lodash/map';
+import * as _includes from 'lodash/includes';
+import * as _map from 'lodash/map';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import RadarTargetCollection from '../../src/assets/scripts/client/scope/RadarTargetCollection';
 import { THEME } from '../../src/assets/scripts/client/constants/themes';

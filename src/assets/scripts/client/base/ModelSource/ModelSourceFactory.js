@@ -1,4 +1,4 @@
-import _has from 'lodash/has';
+import * as _has from 'lodash/has';
 import modelSourcePool from './ModelSourcePool';
 import { CLASS_MAP } from './modelSourceClassMap';
 

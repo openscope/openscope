@@ -1,5 +1,5 @@
 import ava from 'ava';
-import _isEqual from 'lodash/isEqual';
+import * as _isEqual from 'lodash/isEqual';
 
 import {
     vlen,

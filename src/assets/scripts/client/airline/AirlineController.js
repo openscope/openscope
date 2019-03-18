@@ -1,4 +1,4 @@
-import _isNil from 'lodash/isNil';
+import * as _isNil from 'lodash/isNil';
 import AirlineCollection from './AirlineCollection';
 import AirlineModel from './AirlineModel';
 import { INVALID_INDEX } from '../constants/globalConstants';

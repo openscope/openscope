@@ -1,4 +1,4 @@
-import _uniqueId from 'lodash/uniqueId';
+import * as _uniqueId from 'lodash/uniqueId';
 
 /**
  * Base class from which a collection type class can inherit from.

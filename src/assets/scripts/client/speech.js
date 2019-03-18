@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
-import $ from 'jquery';
-import _get from 'lodash/get';
-import _has from 'lodash/has';
+import * as $ from 'jquery';
+import * as _get from 'lodash/get';
+import * as _has from 'lodash/has';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';

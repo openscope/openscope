@@ -1,10 +1,10 @@
-import _forEach from 'lodash/forEach';
-import _get from 'lodash/get';
-import _map from 'lodash/map';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
-import _random from 'lodash/random';
-import _round from 'lodash/round';
+import * as _forEach from 'lodash/forEach';
+import * as _get from 'lodash/get';
+import * as _map from 'lodash/map';
+import * as _isArray from 'lodash/isArray';
+import * as _isEmpty from 'lodash/isEmpty';
+import * as _random from 'lodash/random';
+import * as _round from 'lodash/round';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 import AirportController from '../airport/AirportController';
 import BaseModel from '../base/BaseModel';

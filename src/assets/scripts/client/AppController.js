@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import $ from 'jquery';
+import * as $ from 'jquery';
 import AircraftCommander from './aircraft/AircraftCommander';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';

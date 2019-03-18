@@ -1,8 +1,8 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isArray from 'lodash/isArray';
-import _isEqual from 'lodash/isEqual';
-import _isObject from 'lodash/isObject';
+import * as _isArray from 'lodash/isArray';
+import * as _isEqual from 'lodash/isEqual';
+import * as _isObject from 'lodash/isObject';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';

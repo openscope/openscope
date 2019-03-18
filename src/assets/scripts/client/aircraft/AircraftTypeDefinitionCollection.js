@@ -1,5 +1,5 @@
-import _find from 'lodash/find';
-import _map from 'lodash/map';
+import * as _find from 'lodash/find';
+import * as _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';

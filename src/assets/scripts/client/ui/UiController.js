@@ -1,5 +1,5 @@
-import $ from 'jquery';
-import _keys from 'lodash/keys';
+import * as $ from 'jquery';
+import * as _keys from 'lodash/keys';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';

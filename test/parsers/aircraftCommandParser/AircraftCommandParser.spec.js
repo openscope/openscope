@@ -1,8 +1,8 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isEqual from 'lodash/isEqual';
-import _map from 'lodash/map';
-import _tail from 'lodash/tail';
+import * as _isEqual from 'lodash/isEqual';
+import * as _map from 'lodash/map';
+import * as _tail from 'lodash/tail';
 
 import AircraftCommandParser from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandParser';
 import AircraftCommandModel from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandModel';

@@ -1,4 +1,4 @@
-import _mapValues from 'lodash/mapValues';
+import * as _mapValues from 'lodash/mapValues';
 
 /**
  * CSS classnames used throught the app.

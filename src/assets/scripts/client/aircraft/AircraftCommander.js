@@ -1,7 +1,7 @@
-import _has from 'lodash/has';
-import _isNil from 'lodash/isNil';
-import _map from 'lodash/map';
-import _round from 'lodash/round';
+import * as _has from 'lodash/has';
+import * as _isNil from 'lodash/isNil';
+import * as _map from 'lodash/map';
+import * as _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';

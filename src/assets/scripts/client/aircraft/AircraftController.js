@@ -1,8 +1,8 @@
 /* eslint-disable no-continue */
-import _find from 'lodash/find';
-import _get from 'lodash/get';
-import _isObject from 'lodash/isObject';
-import _without from 'lodash/without';
+import * as _find from 'lodash/find';
+import * as _get from 'lodash/get';
+import * as _isObject from 'lodash/isObject';
+import * as _without from 'lodash/without';
 import AirportController from '../airport/AirportController';
 import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';

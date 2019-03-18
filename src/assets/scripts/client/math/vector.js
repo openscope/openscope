@@ -1,5 +1,5 @@
-import _forEach from 'lodash/forEach';
-import _map from 'lodash/map';
+import * as _forEach from 'lodash/forEach';
+import * as _map from 'lodash/map';
 import { sin, cos, abs, clamp } from './core';
 import { degreesToRadians } from '../utilities/unitConverters';
 

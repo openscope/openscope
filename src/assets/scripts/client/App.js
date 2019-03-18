@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 import AppController from './AppController';
 import EventBus from './lib/EventBus';
 import TimeKeeper from './engine/TimeKeeper';

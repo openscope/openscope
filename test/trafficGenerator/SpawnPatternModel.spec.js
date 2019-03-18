@@ -1,7 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isEqual from 'lodash/isEqual';
-import _round from 'lodash/round';
+import * as _isEqual from 'lodash/isEqual';
+import * as _round from 'lodash/round';
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import {
     createAirportControllerFixture,

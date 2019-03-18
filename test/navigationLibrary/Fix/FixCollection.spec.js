@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
-import _isEqual from 'lodash/isEqual';
+import * as _isEqual from 'lodash/isEqual';
 
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/FixCollection';
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';

@@ -1,7 +1,7 @@
-import _compact from 'lodash/compact';
-import _find from 'lodash/find';
-import _forEach from 'lodash/forEach';
-import _map from 'lodash/map';
+import * as _compact from 'lodash/compact';
+import * as _find from 'lodash/find';
+import * as _forEach from 'lodash/forEach';
+import * as _map from 'lodash/map';
 // TODO: Start using the model source factory again!
 // import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../base/BaseCollection';

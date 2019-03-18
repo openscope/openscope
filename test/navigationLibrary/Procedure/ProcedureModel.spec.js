@@ -1,7 +1,7 @@
 import ava from 'ava';
-import _every from 'lodash/every';
-import _map from 'lodash/map';
-import _isArray from 'lodash/isArray';
+import * as _every from 'lodash/every';
+import * as _map from 'lodash/map';
+import * as _isArray from 'lodash/isArray';
 import ProcedureModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureModel';
 import {
     createNavigationLibraryFixture,

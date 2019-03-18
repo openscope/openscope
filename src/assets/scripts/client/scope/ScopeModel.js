@@ -1,5 +1,5 @@
-import _has from 'lodash/has';
-import _isNil from 'lodash/isNil';
+import * as _has from 'lodash/has';
+import * as _isNil from 'lodash/isNil';
 import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';

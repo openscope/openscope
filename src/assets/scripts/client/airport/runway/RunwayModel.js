@@ -1,5 +1,5 @@
-import _ceil from 'lodash/ceil';
-import _without from 'lodash/without';
+import * as _ceil from 'lodash/ceil';
+import * as _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import { PERFORMANCE } from '../../constants/aircraftConstants';

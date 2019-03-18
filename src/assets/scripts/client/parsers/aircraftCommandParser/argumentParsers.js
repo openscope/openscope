@@ -1,4 +1,4 @@
-import _defaultTo from 'lodash/defaultTo';
+import * as _defaultTo from 'lodash/defaultTo';
 import { isValidDirectionString } from './argumentValidators';
 import { INVALID_INDEX } from '../../constants/globalConstants';
 import {

@@ -1,4 +1,4 @@
-import _forEach from 'lodash/forEach';
+import * as _forEach from 'lodash/forEach';
 import SpawnPatternCollection from './SpawnPatternCollection';
 import TimeKeeper from '../engine/TimeKeeper';
 import GameController from '../game/GameController';

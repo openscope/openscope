@@ -1,4 +1,4 @@
-import _cloneDeep from 'lodash/cloneDeep';
+import * as _cloneDeep from 'lodash/cloneDeep';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 

@@ -1,8 +1,8 @@
-import _findIndex from 'lodash/findIndex';
-import _isEmpty from 'lodash/isEmpty';
-import _isNil from 'lodash/isNil';
-import _map from 'lodash/map';
-import _without from 'lodash/without';
+import * as _findIndex from 'lodash/findIndex';
+import * as _isEmpty from 'lodash/isEmpty';
+import * as _isNil from 'lodash/isNil';
+import * as _map from 'lodash/map';
+import * as _without from 'lodash/without';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import WaypointModel from './WaypointModel';
 import {

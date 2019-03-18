@@ -1,8 +1,8 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _every from 'lodash/every';
-import _filter from 'lodash/filter';
-import _isArray from 'lodash/isArray';
+import * as _every from 'lodash/every';
+import * as _filter from 'lodash/filter';
+import * as _isArray from 'lodash/isArray';
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 // import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';

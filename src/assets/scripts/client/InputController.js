@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
-import $ from 'jquery';
-import _has from 'lodash/has';
-import _includes from 'lodash/includes';
+import * as $ from 'jquery';
+import * as _has from 'lodash/has';
+import * as _includes from 'lodash/includes';
 import AirportController from './airport/AirportController';
 import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';

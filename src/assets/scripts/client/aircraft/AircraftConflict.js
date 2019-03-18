@@ -1,5 +1,5 @@
-import _includes from 'lodash/includes';
-import _filter from 'lodash/filter';
+import * as _includes from 'lodash/includes';
+import * as _filter from 'lodash/filter';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController, { GAME_EVENTS } from '../game/GameController';

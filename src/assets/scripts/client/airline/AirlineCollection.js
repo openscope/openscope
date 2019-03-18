@@ -1,8 +1,8 @@
-import _find from 'lodash/find';
-import _flatten from 'lodash/flatten';
-import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
-import _map from 'lodash/map';
+import * as _find from 'lodash/find';
+import * as _flatten from 'lodash/flatten';
+import * as _forEach from 'lodash/forEach';
+import * as _isArray from 'lodash/isArray';
+import * as _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
 import { AIRLINE_NAME_FLEET_SEPARATOR } from '../constants/airlineConstants';

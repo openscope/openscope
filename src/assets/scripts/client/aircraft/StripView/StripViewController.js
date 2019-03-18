@@ -1,6 +1,6 @@
-import $ from 'jquery';
-import _random from 'lodash/random';
-import _without from 'lodash/without';
+import * as $ from 'jquery';
+import * as _random from 'lodash/random';
+import * as _without from 'lodash/without';
 import StripViewCollection from './StripViewCollection';
 import StripViewModel from './StripViewModel';
 import { INVALID_INDEX } from '../../constants/globalConstants';

@@ -1,6 +1,6 @@
 import ava from 'ava';
-import _isArray from 'lodash/isArray';
-import _isString from 'lodash/isString';
+import * as _isArray from 'lodash/isArray';
+import * as _isString from 'lodash/isString';
 import BaseCollection from '../../src/assets/scripts/client/base/BaseCollection';
 import ExtendedBaseCollectionFixture from './_fixtures/ExtendedBaseCollectionFixture';
 

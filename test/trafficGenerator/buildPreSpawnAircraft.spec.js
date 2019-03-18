@@ -1,7 +1,7 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
-import _isArray from 'lodash/isArray';
-import _map from 'lodash/map';
+import * as _isArray from 'lodash/isArray';
+import * as _map from 'lodash/map';
 import { buildPreSpawnAircraft } from '../../src/assets/scripts/client/trafficGenerator/buildPreSpawnAircraft';
 import {
     createNavigationLibraryFixture,

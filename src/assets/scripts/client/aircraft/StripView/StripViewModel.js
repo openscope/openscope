@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
 import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';

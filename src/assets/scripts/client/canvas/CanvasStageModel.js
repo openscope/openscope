@@ -1,4 +1,4 @@
-import _has from 'lodash/has';
+import * as _has from 'lodash/has';
 import EventBus from '../lib/EventBus';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';

@@ -1,5 +1,5 @@
-import _uniqueId from 'lodash/uniqueId';
-import _isString from 'lodash/isString';
+import * as _uniqueId from 'lodash/uniqueId';
+import * as _isString from 'lodash/isString';
 
 /**
  * Base class for all Model objects to inherit from.

@@ -1,5 +1,5 @@
-import _isNumber from 'lodash/isNumber';
-import _random from 'lodash/random';
+import * as _isNumber from 'lodash/isNumber';
+import * as _random from 'lodash/random';
 import { leftPad } from '../utilities/generalUtilities';
 
 /**

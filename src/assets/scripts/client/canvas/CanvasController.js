@@ -1,7 +1,7 @@
-import $ from 'jquery';
-import _cloneDeep from 'lodash/cloneDeep';
-import _filter from 'lodash/filter';
-import _has from 'lodash/has';
+import * as $ from 'jquery';
+import * as _cloneDeep from 'lodash/cloneDeep';
+import * as _filter from 'lodash/filter';
+import * as _has from 'lodash/has';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';

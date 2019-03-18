@@ -1,4 +1,4 @@
-import _isNil from 'lodash/isNil';
+import * as _isNil from 'lodash/isNil';
 import EventBus from '../lib/EventBus';
 import { GAME_OPTION_VALUES } from '../constants/gameOptionConstants';
 

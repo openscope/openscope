@@ -1,4 +1,4 @@
-import _has from 'lodash/has';
+import * as _has from 'lodash/has';
 import AirportModel from './AirportModel';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';

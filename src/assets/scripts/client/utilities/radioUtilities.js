@@ -1,6 +1,6 @@
-import _clone from 'lodash/clone';
-import _compact from 'lodash/compact';
-import _map from 'lodash/map';
+import * as _clone from 'lodash/clone';
+import * as _compact from 'lodash/compact';
+import * as _map from 'lodash/map';
 import { round } from '../math/core';
 import { tau, radians_normalize } from '../math/circle';
 

@@ -1,7 +1,7 @@
-import _filter from 'lodash/filter';
-import _forEach from 'lodash/forEach';
-import _reduce from 'lodash/reduce';
-import _random from 'lodash/random';
+import * as _filter from 'lodash/filter';
+import * as _forEach from 'lodash/forEach';
+import * as _reduce from 'lodash/reduce';
+import * as _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import SpawnPatternModel from './SpawnPatternModel';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';

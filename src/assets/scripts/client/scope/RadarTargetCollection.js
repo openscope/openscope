@@ -1,5 +1,5 @@
-import _filter from 'lodash/filter';
-import _has from 'lodash/has';
+import * as _filter from 'lodash/filter';
+import * as _has from 'lodash/has';
 import RadarTargetModel from './RadarTargetModel';
 import BaseCollection from '../base/BaseCollection';
 import EventBus from '../lib/EventBus';

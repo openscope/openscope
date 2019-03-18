@@ -1,5 +1,5 @@
-import $ from 'jquery';
-import _get from 'lodash/get';
+import * as $ from 'jquery';
+import * as _get from 'lodash/get';
 
 /**
  * Simple container for a given piece of content

@@ -1,4 +1,4 @@
-import _isArray from 'lodash/isArray';
+import * as _isArray from 'lodash/isArray';
 
 /**
  * Helper method to translate a unicode character into a readable string value

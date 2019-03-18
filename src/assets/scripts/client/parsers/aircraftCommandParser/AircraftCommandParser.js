@@ -1,8 +1,8 @@
-import _compact from 'lodash/compact';
-import _forEach from 'lodash/forEach';
-import _isString from 'lodash/isString';
-import _map from 'lodash/map';
-import _tail from 'lodash/tail';
+import * as _compact from 'lodash/compact';
+import * as _forEach from 'lodash/forEach';
+import * as _isString from 'lodash/isString';
+import * as _map from 'lodash/map';
+import * as _tail from 'lodash/tail';
 import AircraftCommandModel from './AircraftCommandModel';
 import {
     AIRCRAFT_COMMAND_MAP,

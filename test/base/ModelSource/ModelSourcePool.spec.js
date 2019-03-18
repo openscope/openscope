@@ -1,7 +1,7 @@
 /* eslint-disable arrow-parens, import/no-extraneous-dependencies, new-cap */
 import ava from 'ava';
 import sinon from 'sinon';
-import _isEqual from 'lodash/isEqual';
+import * as _isEqual from 'lodash/isEqual';
 
 import modelSourcePool from '../../../src/assets/scripts/client/base/ModelSource/ModelSourcePool';
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';

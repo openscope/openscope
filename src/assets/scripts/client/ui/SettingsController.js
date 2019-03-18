@@ -1,6 +1,6 @@
-import $ from 'jquery';
-import _forEach from 'lodash/forEach';
-import _isNaN from 'lodash/isNaN';
+import * as $ from 'jquery';
+import * as _forEach from 'lodash/forEach';
+import * as _isNaN from 'lodash/isNaN';
 import GameController from '../game/GameController';
 
 /**

@@ -1,7 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isArray from 'lodash/isArray';
-import _map from 'lodash/map';
+import * as _isArray from 'lodash/isArray';
+import * as _map from 'lodash/map';
 import AirwayModel from '../../src/assets/scripts/client/navigationLibrary/AirwayModel';
 import {
     createNavigationLibraryFixture,

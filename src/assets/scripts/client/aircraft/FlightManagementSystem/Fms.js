@@ -1,8 +1,8 @@
-import _find from 'lodash/find';
-import _includes from 'lodash/includes';
-import _isEmpty from 'lodash/isEmpty';
-import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
+import * as _find from 'lodash/find';
+import * as _includes from 'lodash/includes';
+import * as _isEmpty from 'lodash/isEmpty';
+import * as _isNil from 'lodash/isNil';
+import * as _isObject from 'lodash/isObject';
 import RouteModel from './RouteModel';
 import AirportController from '../../airport/AirportController';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';

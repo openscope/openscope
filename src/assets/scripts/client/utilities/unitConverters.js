@@ -1,6 +1,6 @@
-import _includes from 'lodash/includes';
-import _isNumber from 'lodash/isNumber';
-import _startsWith from 'lodash/startsWith';
+import * as _includes from 'lodash/includes';
+import * as _isNumber from 'lodash/isNumber';
+import * as _startsWith from 'lodash/startsWith';
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
 import { TIME, REGEX } from '../constants/globalConstants';

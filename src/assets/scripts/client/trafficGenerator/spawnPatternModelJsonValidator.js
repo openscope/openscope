@@ -1,7 +1,7 @@
 // istanbul ignore
-import _difference from 'lodash/difference';
-import _has from 'lodash/has';
-import _keys from 'lodash/keys';
+import * as _difference from 'lodash/difference';
+import * as _has from 'lodash/has';
+import * as _keys from 'lodash/keys';
 
 const ACCEPTED_KEYS = [
     'destination',

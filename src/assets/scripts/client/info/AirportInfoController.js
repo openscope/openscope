@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import * as $ from 'jquery';
 import { leftPad } from '../utilities/generalUtilities';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import AirportController from '../airport/AirportController';

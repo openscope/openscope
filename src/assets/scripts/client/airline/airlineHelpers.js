@@ -1,5 +1,5 @@
-import _isArray from 'lodash/isArray';
-import _toLower from 'lodash/toLower';
+import * as _isArray from 'lodash/isArray';
+import * as _toLower from 'lodash/toLower';
 import { AIRLINE_NAME_FLEET_SEPARATOR } from '../constants/airlineConstants';
 import { choose_weight } from '../utilities/generalUtilities';
 

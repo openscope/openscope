@@ -1,6 +1,6 @@
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
-import _isObject from 'lodash/isObject';
+import * as _isArray from 'lodash/isArray';
+import * as _isEmpty from 'lodash/isEmpty';
+import * as _isObject from 'lodash/isObject';
 
 /**
  * This will return true if it is not an object or it is empty
