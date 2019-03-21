@@ -113,11 +113,18 @@ export default class AirspaceModel extends BaseModel {
         this.airspace_class = '';
     }
 
+    /**
+     * Transforms the polygon into a relative polygon
+     *
+     * @for AirspaceModel
+     * @method transformPoly
+     */
     transformPoly() {
         this.relativePoly = _map(this.poly, (v) => v.relativePosition);
     }
 
     /**
+     * Checks if a point (2D position and altitude) is within this airspace
      *
      * @for AirspaceModel
      * @method isPointInside
@@ -134,6 +141,7 @@ export default class AirspaceModel extends BaseModel {
     }
 
     /**
+     * Checks if a 2D point is within the 2D projection of the airspace
      *
      * @for AirspaceModel
      * @method isPointInside
