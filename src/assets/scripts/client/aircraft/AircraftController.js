@@ -448,6 +448,21 @@ export default class AircraftController {
     }
 
     /**
+     * Finds an aircraft by its transponder (squawk) code
+     *
+     * @method findAircraftByTransponderCode
+     * @param {Number} transponderCode
+     * @return {AircraftModel}
+     */
+    findAircraftByTransponderCode(transponderCode) {
+        if (!transponderCode) {
+            return;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.transponderCode === transponderCode);
+    }
+
+    /**
      * Update all the `StripViewModel` objects with up-to-date aircraft data
      *
      * This is a **HOT** method and will run within the game loop
