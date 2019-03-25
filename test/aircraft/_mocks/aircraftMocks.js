@@ -164,6 +164,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '1567',
+    cid: 001,
     destination: '',
     origin: 'KLAS',
     fleet: 'default',
@@ -200,6 +201,7 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '432',
+    cid: 998,
     destination: 'KLAS',
     origin: '',
     fleet: 'default',
@@ -218,6 +220,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_HEAVY = {
     transponderCode: 1356,
     callsign: '99',
+    cid: 500,
     destination: 'KATL',
     origin: '',
     fleet: 'default',
@@ -236,6 +239,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_HEAVY = {
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_SUPER = {
     transponderCode: 6375,
     callsign: '11',
+    cid: 678,
     destination: 'OMDB',
     origin: '',
     fleet: 'default',
