@@ -154,7 +154,8 @@ export default class RadarTargetCollection extends BaseCollection {
         const radarTargetModels = this._items;
         const results = _filter(radarTargetModels, ({ aircraftModel }) =>
             aircraftModel.transponderCode === aircraftReference ||
-            aircraftModel.callsign === aircraftReference
+            aircraftModel.callsign === aircraftReference ||
+            aircraftModel.cid === aircraftReference
         );
 
         if (results.length > 1) {
