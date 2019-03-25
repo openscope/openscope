@@ -2,6 +2,7 @@
 import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
+import _random from 'lodash/random';
 import _without from 'lodash/without';
 import AirportController from '../airport/AirportController';
 import UiController from '../ui/UiController';
@@ -58,6 +59,15 @@ const RESERVED_SQUAWK_CODES = [
     // military
     7777
 ];
+
+/**
+ * The highest number allowed for a cid value
+ *
+ * @property CID_UPPER_BOUND
+ * @type {number}
+ * @final
+ */
+const CID_UPPER_BOUND = 999;
 
 /**
  *
@@ -135,6 +145,13 @@ export default class AircraftController {
          * @private
          */
         this._transponderCodesInUse = [];
+
+        /**
+         * @property _cidNumbersInUse
+         * @type {array<number>}
+         * @private
+         */
+        this._cidNumbersInUse = [];
 
         prop.aircraft = aircraft;
         this.aircraft = aircraft;
@@ -335,6 +352,7 @@ export default class AircraftController {
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
+        this._removeCidFromUse(aircraftModel.cidValue);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
 
         if (aircraftModel.isControllable) {
@@ -412,6 +430,21 @@ export default class AircraftController {
         }
 
         return _find(this.aircraft.list, (aircraft) => aircraft.id === id);
+    }
+
+    /**
+     * Finds an aircraft by its cid (NOT internal id)
+     *
+     * @method findAircraftByCid
+     * @param {string} cid
+     * @return {AircraftModel}
+     */
+    findAircraftByCid(cid) {
+        if (!cid) {
+            return;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.cid === cid);
     }
 
     /**
@@ -599,6 +632,7 @@ export default class AircraftController {
         // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
+        const cid = this._generateCidNumber();
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
@@ -619,6 +653,7 @@ export default class AircraftController {
             origin: spawnPatternModel.origin,
             destination: spawnPatternModel.destination,
             callsign: flightNumber,
+            cid: cid,
             category: spawnPatternModel.category,
             airline: airlineModel.icao,
             airlineCallsign: airlineModel.radioName,
@@ -893,5 +928,47 @@ export default class AircraftController {
         if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.isControllable && aircraftModel.isRemovable) {
             this.aircraft_remove(aircraftModel);
         }
+    }
+
+    /**
+     * Generate a unique number to represent a `CID`
+     *
+     * Should be displayed with leading zeros, so a `CID` value of `1` should be displayed as `001`
+     *
+     * @for AircraftController
+     * @method _generateCidNumber
+     * @return nextCid {number}
+     * @private
+     */
+    _generateCidNumber() {
+        const nextCid = _random(1, CID_UPPER_BOUND);
+
+        if (this._cidNumbersInUse.indexOf(nextCid) !== INVALID_INDEX) {
+            return this._generateCidNumber();
+        }
+
+        this._cidNumbersInUse.push(nextCid);
+
+        return nextCid;
+    }
+
+    /**
+     * Remove a given `#cid` from use
+     *
+     * Used when an aircraft has landed or departed controlled airspace
+     *
+     * @for AircraftController
+     * @method _removeCidFromUse
+     * @param cid {number}
+     * @private
+     */
+    _removeCidFromUse(cid) {
+        const cidIndex = this._cidNumbersInUse.indexOf(cid);
+
+        if (cidIndex === INVALID_INDEX) {
+            return;
+        }
+
+        this._cidNumbersInUse = _without(this._cidNumbersInUse, cid);
     }
 }
