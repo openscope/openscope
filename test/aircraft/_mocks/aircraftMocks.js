@@ -164,7 +164,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '1567',
-    cid: 001,
+    cid: 1,
     destination: '',
     origin: 'KLAS',
     fleet: 'default',
