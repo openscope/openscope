@@ -1,11 +1,12 @@
 # 6.12.0 (April 1, 2019)
 ### New Features
+- [#804](https://github.com/openscope/openscope/issues/804) - Adds a changelog in-game
 
 
 ### Bugfixes
 - [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons when window loses and regains focus.
 - [#1341](https://github.com/openscope/openscope/issues/1341) - Fix CID number generation bug in cases of CID collision
-- [#804](https://github.com/openscope/openscope/issues/804) - Adds a changelog in-game
+- [#1183](https://github.com/openscope/openscope/issues/1183) - Marks a deep render when theme is changed
 
 
 ### Enhancements & Refactors
