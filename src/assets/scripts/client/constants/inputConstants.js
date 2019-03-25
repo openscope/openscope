@@ -95,6 +95,19 @@ export const LEGACY_KEY_CODES = {
 };
 
 /**
+ * Enumeration of the mouse button names
+ *
+ * @property MOUSE_BUTTON_NAMES
+ * @type {Object}
+ * @final
+ */
+export const MOUSE_BUTTON_NAMES = {
+    LEFT: 'left',
+    MIDDLE: 'middle',
+    RIGHT: 'right'
+}
+
+/**
  * Enumeration of mouse events returned from $event.which
  *
  * These codes can only be used with jQuery event object.

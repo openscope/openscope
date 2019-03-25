@@ -18,6 +18,7 @@ import {
     COMMAND_CONTEXT,
     KEY_CODES,
     LEGACY_KEY_CODES,
+    MOUSE_BUTTON_NAMES,
     MOUSE_EVENT_CODE,
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
@@ -800,7 +801,7 @@ export default class InputController {
      * @private
      */
     _onRightMousePress(event) {
-        this._markMousePressed();
+        this._markMousePressed(MOUSE_BUTTON_NAMES.RIGHT);
     }
 
     /**
@@ -824,7 +825,7 @@ export default class InputController {
 
         if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
             this.deselectAircraft();
-            this._markMousePressed();
+            this._markMousePressed(MOUSE_BUTTON_NAMES.LEFT);
         } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
             const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
             this.input.command = newCommandValue;
