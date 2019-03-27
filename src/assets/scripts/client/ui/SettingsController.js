@@ -87,7 +87,7 @@ export default class SettingsController {
      */
     init() {
         this.$dialog = $(UI_SETTINGS_MODAL_TEMPLATE);
-        this.$dialogBody = this.$dialog.find(`.${SELECTORS.DIALOG_BODY}`);
+        this.$dialogBody = this.$dialog.find(SELECTORS.DOM_SELECTORS.DIALOG_BODY);
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
