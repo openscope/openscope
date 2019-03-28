@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
@@ -841,7 +841,7 @@ export default class InputController {
      * Method to initiate a mouse click and drag. Checks whether or not
      * the correct button is pressed, records the position, and marks the
      * mouse as down.
-     * 
+     *
      * @for InputController
      * @method _markMousePressed
      * @param {String} mouseButton

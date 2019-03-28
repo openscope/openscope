@@ -156,18 +156,18 @@ export const GAME_OPTION_VALUES = [
     {
         name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
         defaultValue: 'right',
-        description: 'Click to drag mouse button',
+        description: 'Panning Button',
         help: 'Which mouse button (left or right) should drag the canvas when held',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: 'Right',
-                value: 'right'
+                displayLabel: 'Left Click',
+                value: 'left'
             },
             {
-                displayLabel: 'Left',
-                value: 'left'
+                displayLabel: 'Right Click',
+                value: 'right'
             }
         ]
     },

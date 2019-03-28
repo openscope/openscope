@@ -1,6 +1,6 @@
 # 6.12.0 (April 1, 2019)
 ### New Features
-- [#804](https://github.com/openscope/openscope/issues/804) - Add a changelog in-game
+- [#804](https://github.com/openscope/openscope/issues/804) - Add ability to view changelog for the current version
 - [#1330](https://github.com/openscope/openscope/issues/1330) - Allow user to choose which mouse button drags the canvas
 
 
@@ -11,8 +11,8 @@
 
 
 ### Enhancements & Refactors
-- [#10](https://github.com/openscope/openscope/issues/10) - Add command for altitude restrictions at fixes
-- [#598](https://github.com/openscope/openscope/issues/598) - Add `eslint` and `lint-diff` to Travis CI task list
+- [#10](https://github.com/openscope/openscope/issues/10) - Add command for altitude restrictions at fixes ("cr")
+- [#598](https://github.com/openscope/openscope/issues/598) - Add linting (`lint-diff`) to Travis CI task list
 
 
 # 6.11.0 (March 4, 2019)
