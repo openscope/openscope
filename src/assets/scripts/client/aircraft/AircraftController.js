@@ -1,8 +1,10 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
 import _get from 'lodash/get';
+import _includes from 'lodash/includes';
 import _isObject from 'lodash/isObject';
-import _random from 'lodash/random';
+import _padStart from 'lodash/padStart';
+import _shuffle from 'lodash/shuffle';
 import _without from 'lodash/without';
 import AirportController from '../airport/AirportController';
 import UiController from '../ui/UiController';
@@ -61,15 +63,6 @@ const RESERVED_SQUAWK_CODES = [
 ];
 
 /**
- * The highest number allowed for a cid value
- *
- * @property CID_UPPER_BOUND
- * @type {number}
- * @final
- */
-const CID_UPPER_BOUND = 999;
-
-/**
  *
  *
  * @class AircraftController
@@ -103,6 +96,26 @@ export default class AircraftController {
          * @private
          */
         this._airlineController = airlineController;
+
+        /**
+         * Array of CIDs currently assigned to a flight plan
+         *
+         * @for AircraftController
+         * @property _activeCidNumbers
+         * @type {array<string>} - padded three-digit number strings, eg '000', '005', '999'
+         * @private
+         */
+        this._activeCidNumbers = [];
+
+        /**
+         * Array of CIDs not currently in use, and able to be assigned
+         *
+         * @for AircraftController
+         * @property _availableCidNumbers
+         * @type {array<string>} - padded three-digit number strings, eg '000', '005', '999'
+         * @private
+         */
+        this._availableCidNumbers = [];
 
         /**
          * Local reference to static `EventBus` class
@@ -146,13 +159,6 @@ export default class AircraftController {
          */
         this._transponderCodesInUse = [];
 
-        /**
-         * @property _cidNumbersInUse
-         * @type {array<number>}
-         * @private
-         */
-        this._cidNumbersInUse = [];
-
         prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
@@ -180,7 +186,23 @@ export default class AircraftController {
      * @chainable
      */
     init() {
+        this._initCids();
+
         return this;
+    }
+
+    // TODO: This doesn't really belong here. Should not be owned by specific AircraftModel instances
+    /**
+     * Initialize CID values
+     *
+     * @for AircraftController
+     * @method _initCids
+     * @private
+     */
+    _initCids() {
+        const cidList = Array.from(new Array(1000), (val, index) => _padStart(index, 3, '0'));
+
+        this._availableCidNumbers = _shuffle(cidList);
     }
 
     /**
@@ -286,14 +308,6 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
-     * @method aircraft_auto_toggle
-     */
-    aircraft_auto_toggle() {
-        this.aircraft.auto.enabled = !this.aircraft.auto.enabled;
-    }
-
-    /**
-     * @for AircraftController
      * @method aircraft_get_nearest
      * @param position {StaticPositionModel}
      */
@@ -351,7 +365,7 @@ export default class AircraftController {
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
-        this._removeCidFromUse(aircraftModel.cidValue);
+        this._releaseCid(aircraftModel.cidValue);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
 
         if (aircraftModel.isControllable) {
@@ -646,7 +660,7 @@ export default class AircraftController {
         // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
-        const cid = this._generateCidNumber();
+        const cid = this._getAvailableCid();
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
@@ -945,44 +959,44 @@ export default class AircraftController {
     }
 
     /**
-     * Generate a unique number to represent a `CID`
-     *
-     * Should be displayed with leading zeros, so a `CID` value of `1` should be displayed as `001`
+     * Return a CID number, and remove it from the list of available CIDs
      *
      * @for AircraftController
-     * @method _generateCidNumber
+     * @method _getAvailableCid
      * @return nextCid {number}
      * @private
      */
-    _generateCidNumber() {
-        const nextCid = _random(1, CID_UPPER_BOUND);
+    _getAvailableCid() {
+        const cid = this._availableCidNumbers.shift();
 
-        if (this._cidNumbersInUse.indexOf(nextCid) !== INVALID_INDEX) {
-            return this._generateCidNumber();
+        if (typeof cid === 'undefined') {
+            throw new TypeError('Attempted to create a new CID, but all 1,000 CIDs are currently in use!');
         }
 
-        this._cidNumbersInUse.push(nextCid);
-
-        return nextCid;
+        return cid;
     }
 
     /**
-     * Remove a given `#cid` from use
-     *
-     * Used when an aircraft has landed or departed controlled airspace
+     * Return the given CID number to the list of available CIDs
      *
      * @for AircraftController
-     * @method _removeCidFromUse
+     * @method _releaseCid
      * @param cid {number}
      * @private
      */
-    _removeCidFromUse(cid) {
-        const cidIndex = this._cidNumbersInUse.indexOf(cid);
-
-        if (cidIndex === INVALID_INDEX) {
-            return;
+    _releaseCid(cid) {
+        if (typeof cid !== 'string') {
+            throw new TypeError(`Expected CID to be a string, but received type "${typeof cid}"`);
         }
 
-        this._cidNumbersInUse = _without(this._cidNumbersInUse, cid);
+        if (cid.length !== 3) {
+            throw new TypeError(`Expected CID to be three characters, but received "${cid}"`);
+        }
+
+        if (_includes(this._availableCidNumbers, cid)) {
+            throw new TypeError(`Attempted to return CID "${cid}" to #_availableCidNumbers, but it was already there!`);
+        }
+
+        this._availableCidNumbers.push(cid);
     }
 }
