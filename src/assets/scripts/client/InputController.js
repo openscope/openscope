@@ -668,18 +668,6 @@ export default class InputController {
 
                 return true;
 
-            case PARSED_COMMAND_NAME.AUTO:
-                // TODO: does this function exist anywhere?
-                // aircraft_toggle_auto();
-                //
-                // if (this._aircraftController.aircraft.auto.enabled) {
-                //     UiController.ui_log('automatic controller ENGAGED');
-                // } else {
-                //     UiController.ui_log('automatic controller OFF');
-                // }
-
-                return true;
-
             case PARSED_COMMAND_NAME.PAUSE:
                 GameController.game_pause_toggle();
 

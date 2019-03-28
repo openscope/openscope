@@ -158,7 +158,6 @@ export default class AircraftController {
 
         // TODO: this should its own collection class
         this.aircraft.list = [];
-        this.aircraft.auto = { enabled: false };
         this.conflicts = [];
 
         /**
