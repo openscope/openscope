@@ -159,7 +159,7 @@ export default class StripViewModel extends BaseModel {
         this._cid = '';
 
         /**
-         * HTML Element that holds `#_cidValue`
+         * HTML Element that holds `#_cid`
          *
          * @property $cidView
          * @type {JQuery Element}

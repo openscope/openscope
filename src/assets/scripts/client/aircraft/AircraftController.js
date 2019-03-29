@@ -337,7 +337,7 @@ export default class AircraftController {
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
         this.releaseTransponderCode(aircraftModel.transponderCode);
-        this._releaseCid(aircraftModel.cidValue);
+        this._releaseCid(aircraftModel.cid);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
 
         if (aircraftModel.isControllable) {
@@ -607,7 +607,6 @@ export default class AircraftController {
         // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
-        const cid = this._getAvailableCid();
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
@@ -619,16 +618,15 @@ export default class AircraftController {
         }
 
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
-        const transponderCode = this.getAvailableTransponderCode();
 
         return {
             fleet,
             altitude,
-            transponderCode,
+            transponderCode: this.getAvailableTransponderCode(),
             origin: spawnPatternModel.origin,
             destination: spawnPatternModel.destination,
             callsign: flightNumber,
-            cid: cid,
+            cid: this._getAvailableCid(),
             category: spawnPatternModel.category,
             airline: airlineModel.icao,
             airlineCallsign: airlineModel.radioName,

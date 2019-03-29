@@ -140,7 +140,6 @@ export default class RadarTargetCollection extends BaseCollection {
         return radarTargetModel;
     }
 
-    // TODO: Allow us to choose an aircraft by its CID
     /**
      * Get the radar target model object for the specified aircraft
      *
