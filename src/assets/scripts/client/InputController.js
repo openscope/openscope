@@ -801,7 +801,7 @@ export default class InputController {
      * @private
      */
     _onRightMousePress(event) {
-        this._markMousePressed(MOUSE_BUTTON_NAMES.RIGHT);
+        this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
     }
 
     /**
@@ -825,7 +825,7 @@ export default class InputController {
 
         if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
             this.deselectAircraft();
-            this._markMousePressed(MOUSE_BUTTON_NAMES.LEFT);
+            this._markMousePressed(event, MOUSE_BUTTON_NAMES.LEFT);
         } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
             const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
             this.input.command = newCommandValue;
@@ -846,7 +846,7 @@ export default class InputController {
      * @method _markMousePressed
      * @param {String} mouseButton
      */
-    _markMousePressed(mouseButton) {
+    _markMousePressed(event, mouseButton) {
         const canvasDragButton = GameController.getGameOption(GAME_OPTION_NAMES.MOUSE_CLICK_DRAG);
         const mousePositionX = event.pageX - CanvasStageModel._panX;
         const mousePositionY = event.pageY - CanvasStageModel._panY;

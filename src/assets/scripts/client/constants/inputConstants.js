@@ -105,7 +105,7 @@ export const MOUSE_BUTTON_NAMES = {
     LEFT: 'left',
     MIDDLE: 'middle',
     RIGHT: 'right'
-}
+};
 
 /**
  * Enumeration of mouse events returned from $event.which
