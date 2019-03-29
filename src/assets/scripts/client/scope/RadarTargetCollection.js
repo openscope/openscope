@@ -140,7 +140,6 @@ export default class RadarTargetCollection extends BaseCollection {
         return radarTargetModel;
     }
 
-    // TODO: Allow us to choose an aircraft by its CID
     /**
      * Get the radar target model object for the specified aircraft
      *
@@ -154,7 +153,8 @@ export default class RadarTargetCollection extends BaseCollection {
         const radarTargetModels = this._items;
         const results = _filter(radarTargetModels, ({ aircraftModel }) =>
             aircraftModel.transponderCode === aircraftReference ||
-            aircraftModel.callsign === aircraftReference
+            aircraftModel.callsign === aircraftReference ||
+            aircraftModel.cid === aircraftReference
         );
 
         if (results.length > 1) {
