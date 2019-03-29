@@ -1,5 +1,6 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
+import _filter from 'lodash/filter';
 import _get from 'lodash/get';
 import _includes from 'lodash/includes';
 import _isObject from 'lodash/isObject';
@@ -16,51 +17,17 @@ import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
-import {
-    abs,
-    generateRandomOctalWithLength
-} from '../math/core';
+import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import { speech_say } from '../speech';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
-import {
-    INVALID_INDEX,
-    REGEX
-} from '../constants/globalConstants';
+import { REGEX } from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
-
-/**
- * List of transponder codes that are invalid for random assignment
- *
- * This enum should be used only during the generation of
- * `AircraftModel` objects.
- *
- * The codes listed should still be assignable at the
- * controler's discretion
- *
- * @property RESERVED_SQUAWK_CODES
- * @type {array<number>}
- * @final
- */
-const RESERVED_SQUAWK_CODES = [
-    // VFR
-    1200,
-    // gliders
-    1202,
-    // hijack
-    7500,
-    // communication failure
-    7600,
-    // emergency
-    7700,
-    // military
-    7777
-];
 
 /**
  *
@@ -98,16 +65,6 @@ export default class AircraftController {
         this._airlineController = airlineController;
 
         /**
-         * Array of CIDs currently assigned to a flight plan
-         *
-         * @for AircraftController
-         * @property _activeCidNumbers
-         * @type {array<string>} - padded three-digit number strings, eg '000', '005', '999'
-         * @private
-         */
-        this._activeCidNumbers = [];
-
-        /**
          * Array of CIDs not currently in use, and able to be assigned
          *
          * @for AircraftController
@@ -116,6 +73,19 @@ export default class AircraftController {
          * @private
          */
         this._availableCidNumbers = [];
+
+        /**
+         * List of discrete transponder codes not currently in use, and able to be assigned
+         *
+         * Note: Only digits 0-7 may be used.
+         * Note: "Discrete" codes must not end in "00".
+         *
+         * @for AircraftController
+         * @property _availableTransponderCodes
+         * @type {array<string>} - padded four-digit OTCAL-NUMBER strings, eg '0000', '0005', '7777'
+         * @private
+         */
+        this._availableTransponderCodes = [];
 
         /**
          * Local reference to static `EventBus` class
@@ -147,18 +117,6 @@ export default class AircraftController {
          */
         this._scopeModel = scopeModel;
 
-        /**
-         * List of `transponderCode` values in use
-         *
-         * Each `transponderCode` should be unique, thus we maintain this list
-         * so we can know which codes are active.
-         *
-         * @property _transponderCodesInUse
-         * @type {array<number>}
-         * @private
-         */
-        this._transponderCodesInUse = [];
-
         prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
@@ -187,13 +145,13 @@ export default class AircraftController {
      */
     init() {
         this._initCids();
+        this._initTransponderCodes();
 
         return this;
     }
 
-    // TODO: This doesn't really belong here. Should not be owned by specific AircraftModel instances
     /**
-     * Initialize CID values
+     * Initialize possible CID values
      *
      * @for AircraftController
      * @method _initCids
@@ -203,6 +161,20 @@ export default class AircraftController {
         const cidList = Array.from(new Array(1000), (val, index) => _padStart(index, 3, '0'));
 
         this._availableCidNumbers = _shuffle(cidList);
+    }
+
+    /**
+     * Initialize possible transponder code values
+     *
+     * @for AircraftController
+     * @method _initTransponderCodes
+     * @private
+     */
+    _initTransponderCodes() {
+        let codeList = Array.from(new Array(10000), (val, index) => _padStart(index, 4, '0'));
+        codeList = _filter(codeList, (code) => this.isValidDiscreteTransponderCode(code));
+
+        this._availableTransponderCodes = _shuffle(codeList);
     }
 
     /**
@@ -364,7 +336,7 @@ export default class AircraftController {
         AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
-        this._removeTransponderCodeFromUse(aircraftModel);
+        this.releaseTransponderCode(aircraftModel.transponderCode);
         this._releaseCid(aircraftModel.cidValue);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
 
@@ -595,31 +567,6 @@ export default class AircraftController {
     }
 
     /**
-     * Called from within the `AircraftCommander` this method is used:
-     * - to verify that the `nextTransponderCode` is valid
-     * - remove the previous `transponderCode` from `#_transponderCodesInUse`
-     * - add `nextTransponderCode` to `#_transponderCodesInUse`
-     *
-     * @for AircraftController
-     * @method onRequestToChangeTransponderCode
-     * @param transponderCode {string}
-     * @param aircraftModel {aircraftModel}
-     * @return {boolean}
-     */
-    onRequestToChangeTransponderCode = (transponderCode, aircraftModel) => {
-        if (!this._isValidTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
-            return false;
-        }
-
-        this._removeTransponderCodeFromUse(aircraftModel.transponderCode);
-        this._addTransponderCodeToInUse(transponderCode);
-
-        aircraftModel.transponderCode = transponderCode;
-
-        return true;
-    };
-
-    /**
      * Accept a pre-built object that can be used to create an `AircraftModel`
      * and then add it to the collection.
      *
@@ -672,7 +619,7 @@ export default class AircraftController {
         }
 
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
-        const transponderCode = this._generateUniqueTransponderCode();
+        const transponderCode = this.getAvailableTransponderCode();
 
         return {
             fleet,
@@ -714,91 +661,75 @@ export default class AircraftController {
     }
 
     /**
-     * Generate a unique `transponderCode`
-     *
-     * This method should only be run while building props for a
-     * soon-to-be-instantiated `AircraftModel`
+     * Return a transponder code, and remove it from the list of available codes
      *
      * @for AircraftController
-     * @method _generateUniqueTransponderCode
-     * @return {number}
+     * @method getAvailableTransponderCode
+     * @returns {string}
      * @private
      */
-    _generateUniqueTransponderCode() {
-        const transponderCode = generateRandomOctalWithLength(4);
+    getAvailableTransponderCode() {
+        const code = this._availableTransponderCodes.shift();
 
-        if (!this._isDiscreteTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
-            // the value generated is already in use, recurse back through this method and try again
-            this._generateUniqueTransponderCode();
+        if (typeof code === 'undefined') {
+            throw new TypeError('Attempted to retrieve a new squawk code, but all codes are currently in use!');
         }
 
-        this._addTransponderCodeToInUse(transponderCode);
-
-        return transponderCode;
+        return code;
     }
 
     /**
-     * Add a given `transponderCode` to the `#_transponderCodesInUse` list
+     * Return the given transponder code to the list of available codes
      *
      * @for AircraftController
-     * @method _addTransponderCodeToInUse
-     * @param transponderCode {number}
+     * @method releaseTransponderCode
+     * @param transponderCode {string}
+     * @private
      */
-    _addTransponderCodeToInUse(transponderCode) {
-        this._transponderCodesInUse.push(transponderCode);
+    releaseTransponderCode(transponderCode) {
+        if (typeof transponderCode !== 'string') {
+            throw new TypeError(`Expected transponder code to be a string, but received type "${typeof transponderCode}"`);
+        }
+
+        if (transponderCode.length !== 4) {
+            throw new TypeError(`Expected transponder code to be four characters, but received "${transponderCode}"`);
+        }
+
+        if (_includes(this._availableTransponderCodes, transponderCode)) {
+            throw new TypeError(`Attempted to return transponder code "${transponderCode}" `
+                + 'to #_availableTransponderCodes, but it was already there!');
+        }
+
+        this._availableTransponderCodes.push(transponderCode);
     }
 
     /**
-     * Remove the `transponderCode` from the list of `#_transponderCodesInUse`
+     * Returns whether the specified value is a valid (and discrete) transponder code
+     *
+     * Note: Code must be octal (digits 0-7 only)
+     * Note: Code must be discrete (not ending in double zeros)
+     * Note: Code must not be a reserved code
      *
      * @for AircraftController
-     * @method _removeTransponderCodeFromUse
-     * @param transponderCode {number}
-     */
-    _removeTransponderCodeFromUse({ transponderCode }) {
-        this._transponderCodesInUse = _without(this._transponderCodesInUse, transponderCode);
-    }
-
-    /**
-     * Boolean helper used to determine if a given `transponderCode` is already
-     * present within the `#_transponderCodesInUse` list.
-     *
-     * @for AircraftController
-     * @method _isTransponderCodeInUse
-     * @param transponderCode {number}
-     * @return {booelean}
-     */
-    _isTransponderCodeInUse(transponderCode) {
-        return this._transponderCodesInUse.indexOf(transponderCode) !== INVALID_INDEX;
-    }
-
-    /**
-     * Boolean helper used to determine if a given `transponderCode` is both
-     * the correct length and an octal number.
-     *
-     * @for AircraftController
-     * @method _isValidTransponderCode
+     * @method isValidDiscreteTransponderCode
      * @param transponderCode {number}
      * @return {boolean}
      */
-    _isValidTransponderCode(transponderCode) {
-        return REGEX.FOUR_DIGIT_OCTAL.test(transponderCode);
-    }
+    isValidDiscreteTransponderCode(transponderCode) {
+        const RESERVED_SQUAWK_CODES = [
+            '1200', // VFR
+            '1202', // gliders
+            '4000', // fast-maneuvering military aircraft
+            '7500', // hijack
+            '7600', // communication failure
+            '7700', // emergency
+            '7777' // military
+        ];
+        const isOctal = REGEX.TRANSPONDER_CODE.test(transponderCode);
+        const isDiscrete = transponderCode[2] !== '0' || transponderCode[3] !== '0';
+        const isNotReserved = !_includes(RESERVED_SQUAWK_CODES, transponderCode);
 
-    /**
-     * Helper used to determine if a given `transponderCode` is both
-     * valid and not in use.
-     *
-     * @for AircraftController
-     * @method _isDiscreteTransponderCode
-     * @param transponderCode {number}
-     * @return {boolean}
-     */
-    _isDiscreteTransponderCode(transponderCode) {
-        const isValidCode = this._isValidTransponderCode(transponderCode);
-        const isReservedCode = RESERVED_SQUAWK_CODES.indexOf(transponderCode) !== INVALID_INDEX;
-
-        return isValidCode && !isReservedCode;
+        return isOctal && isDiscrete && isNotReserved;
     }
 
     /**
@@ -970,7 +901,7 @@ export default class AircraftController {
         const cid = this._availableCidNumbers.shift();
 
         if (typeof cid === 'undefined') {
-            throw new TypeError('Attempted to create a new CID, but all 1,000 CIDs are currently in use!');
+            throw new TypeError('Attempted to retrieve a new CID, but all 1,000 CIDs are currently in use!');
         }
 
         return cid;

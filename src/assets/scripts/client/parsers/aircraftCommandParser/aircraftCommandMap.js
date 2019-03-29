@@ -189,11 +189,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runSpeed',
         isSystemCommand: false
     },
-    squawk: {
-        aliases: ['sq', 'squawk'],
-        functionName: 'runSquawk',
-        isSystemCommand: false
-    },
+    // squawk: {
+    //     aliases: ['sq', 'squawk'],
+    //     functionName: 'runSquawk',
+    //     isSystemCommand: false
+    // },
     star: {
         aliases: ['star'],
         functionName: 'runSTAR',

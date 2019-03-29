@@ -29,10 +29,9 @@ import { radiansToDegrees } from '../utilities/unitConverters';
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(aircraftController, onChangeTransponderCode) {
+    constructor(aircraftController) {
         this._eventBus = EventBus;
         this._aircraftController = aircraftController;
-        this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
     /**
@@ -722,24 +721,16 @@ export default class AircraftCommander {
         return [false, 'the "land" command has been deprecated, please use "i" / "ils" instead'];
     }
 
-    /**
-     * @for AircraftCommander
-     * @method runSquawk
-     * @param aircraft {AircraftModel}
-     * @param data {array<string>}
-     * @return {array}   [success of operation, readback]
-     */
-    runSquawk(aircraft, data) {
-        const squawk = data[0];
-        const result = this._onChangeTransponderCode(squawk, aircraft);
-        let message = `squawking ${squawk}`;
-
-        if (!result) {
-            message = `unable to squawk ${squawk}`;
-        }
-
-        return [result, message];
-    }
+    // /**
+    //  * @for AircraftCommander
+    //  * @method runSquawk
+    //  * @param aircraftModel {AircraftModel}
+    //  * @param data {array<string>}
+    //  * @return {array} [success of operation, readback]
+    //  */
+    // runSquawk(aircraftModel, data) {
+    //     const nextSquawk = data[0];
+    // }
 
     /**
      * @for AircraftCommander

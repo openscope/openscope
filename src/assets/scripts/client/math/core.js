@@ -1,6 +1,4 @@
 import _isNumber from 'lodash/isNumber';
-import _random from 'lodash/random';
-import { leftPad } from '../utilities/generalUtilities';
 
 /**
  * @function round
@@ -222,22 +220,4 @@ export function extrapolate_range_clamp(range1Min, targetValue, range1Max, range
     const extrapolationResult = extrapolate_range(range1Min, targetValue, range1Max, range2Min, range2Max);
 
     return clamp(extrapolationResult, range2Min, range2Max);
-}
-
-/**
- * Generate a random number with each digit between 0-7
- *
- * @function generateRandomOctalWithLength
- * @return {string}                         number with digits between 0-7
- */
-export function generateRandomOctalWithLength(length = 1) {
-    const value = [];
-
-    for (let i = 0; i < length; i++) {
-        const randomOctal = _random(0, 7);
-
-        value.push(randomOctal);
-    }
-
-    return leftPad(value.join(''), length);
 }
