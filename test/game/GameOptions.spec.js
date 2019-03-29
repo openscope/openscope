@@ -17,6 +17,7 @@ ava('sets #_options on instantiation', (t) => {
         'ptlLength',
         'drawProjectedPaths',
         'softCeiling',
+        'mouseClickDrag',
         'rangeRings'
     ];
 
