@@ -73,8 +73,8 @@ class SpawnScheduler {
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
 
             // TODO: abstract this to a class method on the `SpawnPatternModel`
-            if (spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL &&
-                spawnPatternModel.preSpawnAircraftList.length > 0) {
+            if (spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
+                && spawnPatternModel.preSpawnAircraftList.length > 0) {
                 this.aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
             }
         });

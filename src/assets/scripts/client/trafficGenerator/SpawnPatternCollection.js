@@ -15,7 +15,6 @@ import { isEmptyObject } from '../utilities/validatorUtilities';
  * @extends BaseCollection
  */
 class SpawnPatternCollection extends BaseCollection {
-
     /**
      * Public property that gives access to the current value of `_items`
      *
