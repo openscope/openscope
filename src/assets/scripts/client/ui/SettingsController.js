@@ -16,6 +16,13 @@ const UI_SETTINGS_MODAL_TEMPLATE = `
     </div>`;
 
 /**
+ * @property UI_DIALOG_FOOTER_TEMPLATE
+ * @type {string}
+ * @final
+ */
+const UI_DIALOG_FOOTER_TEMPLATE = '<div class="dialog-footer"></div>';
+
+/**
  * @property UI_OPTION_CONTAINER_TEMPLATE
  * @type {string}
  * @final
@@ -226,10 +233,10 @@ export default class SettingsController {
      */
     _buildVersionTemplate() {
         const simulatorVersion = window.GLOBAL.VERSION;
-        const template = this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
+        const $container = $(UI_DIALOG_FOOTER_TEMPLATE);
 
-        template.addClass('simulator-version');
+        $container.text(`openScope ATC Simulator v${simulatorVersion}`);
 
-        return template;
+        return $container;
     }
 }
