@@ -400,12 +400,14 @@ class GameController {
     }
 
     /**
+     * Destroys a specific timer.
+     *
      * @for GameController
-     * @method game_clear_timeout
-     * @param gameTimeout
+     * @method destroyTimer
+     * @param timer {array} the timer to destroy
      */
-    game_clear_timeout(gameTimeout) {
-        this.game.timeouts.splice(this.game.timeouts.indexOf(gameTimeout), 1);
+    destroyTimer(timer) {
+        this.game.timeouts.splice(this.game.timeouts.indexOf(timer), 1);
     }
 
     /**

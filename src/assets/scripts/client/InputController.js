@@ -22,7 +22,7 @@ import {
     MOUSE_EVENT_CODE,
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
-import { SELECTORS } from './constants/selectors';
+import { SELECTORS, CLASSNAMES } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
@@ -330,6 +330,11 @@ export default class InputController {
      * @private
      */
     _onKeydown(event) {
+        if (this._isDialog(event.target)) {
+            // ignore input for dialogs
+            return;
+        }
+
         const currentCommandInputValue = this.$commandInput.val();
 
         let code = event.originalEvent.code;
@@ -478,6 +483,25 @@ export default class InputController {
             default:
                 this.$commandInput.focus();
         }
+    }
+
+    /**
+     * Returns true if $element is part of a dialog
+     *
+     * @for InputController
+     * @method _isDialog
+     * @param element {jquery element}
+     * @return {boolean}
+     * @private
+     */
+    _isDialog($element) {
+        if ($element.classList.contains(CLASSNAMES.DIALOG)) {
+            return true;
+        }
+
+        const { parentElement } = $element;
+
+        return parentElement && this._isDialog(parentElement);
     }
 
     /**

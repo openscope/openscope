@@ -25,7 +25,7 @@ export const speech_init = () => {
 
     if (_get(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED, false) === true) {
         prop.speech.enabled = true;
-        $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE).addClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH).addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 };
 
@@ -94,7 +94,7 @@ export const speech_say = (sentence, pilotVoice) => {
  * @function speech_toggle
  */
 export const speech_toggle = () => {
-    const $speechToggleElement = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+    const $speechToggleElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
     prop.speech.enabled = !prop.speech.enabled;
 
     if (!prop.speech.enabled) {

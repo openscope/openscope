@@ -9,61 +9,95 @@ import {
     createNavigationLibraryFixture,
     resetNavigationLibraryFixture
 } from '../fixtures/navigationLibraryFixtures';
+import { spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture } from '../fixtures/trafficGeneratorFixtures';
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 
+let sandbox; // using the sinon sandbox ensures stubs are restored after each test
+
 ava.beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+
     createNavigationLibraryFixture();
     createAirportControllerFixture();
 });
 
-ava.afterEach(() => {
+ava.afterEach.always(() => {
+    sandbox.restore();
+
     resetNavigationLibraryFixture();
     resetAirportControllerFixture();
+    SpawnPatternCollection.reset();
 });
 
-ava('throws when called with invalid parameters', (t) => {
-    t.throws(() => new SpawnPatternCollection());
-
-    t.notThrows(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK));
+ava('.init() throws when the provided airport JSON data is empty', (t) => {
+    t.throws(() => SpawnPatternCollection.init());
+    t.throws(() => SpawnPatternCollection.init({}));
 });
 
 ava('.init() calls _buildSpawnPatternModels()', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    const _buildSpawnPatternModelsSpy = sinon.spy(collection, '_buildSpawnPatternModels');
+    const _buildSpawnPatternModelsSpy = sandbox.spy(SpawnPatternCollection, '_buildSpawnPatternModels');
 
-    collection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
     t.true(_buildSpawnPatternModelsSpy.calledWithExactly(AIRPORT_JSON_FOR_SPAWN_MOCK.spawnPatterns));
 });
 
 ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    const addItemSpy = sinon.spy(collection, 'addItem');
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    collection.addItems([]);
+    const addItemSpy = sandbox.spy(SpawnPatternCollection, 'addItem');
+
+    SpawnPatternCollection.addItems([]);
     t.false(addItemSpy.called);
 
-    collection.addItems();
+    SpawnPatternCollection.addItems();
     t.false(addItemSpy.called);
 });
 
 ava('.addItems() calls .addItem() for each item in the list passed as an argument', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    const addItemStub = sinon.stub(collection, 'addItem');
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    collection.addItems([false, false]);
-    t.true(addItemStub.calledTwice);
+    const addItemSpy = sandbox.spy(SpawnPatternCollection, 'addItem');
+
+    SpawnPatternCollection.addItems([spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture]);
+
+    t.true(addItemSpy.calledTwice);
 });
 
 ava('.addItem() throws if anything other than a SpawnPatternModel is passed as an argument', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    t.throws(() => collection.addItem());
-    t.throws(() => collection.addItem([]));
-    t.throws(() => collection.addItem({}));
-    t.throws(() => collection.addItem(42));
-    t.throws(() => collection.addItem('threeve'));
-    t.throws(() => collection.addItem(false));
-    t.throws(() => collection.addItem(null));
-    t.throws(() => collection.addItem(undefined));
+    t.throws(() => SpawnPatternCollection.addItem());
+    t.throws(() => SpawnPatternCollection.addItem([]));
+    t.throws(() => SpawnPatternCollection.addItem({}));
+    t.throws(() => SpawnPatternCollection.addItem(42));
+    t.throws(() => SpawnPatternCollection.addItem('threeve'));
+    t.throws(() => SpawnPatternCollection.addItem(false));
+    t.throws(() => SpawnPatternCollection.addItem(null));
+    t.throws(() => SpawnPatternCollection.addItem(undefined));
+});
+
+ava('.findSpawnPatternsByCategory() returns an empty array when no spawn patterns of the specified category are found', (t) => {
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.addItems([spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture]);
+
+    const categoryMock = 'threeve';
+    const expectedResult = [];
+    const result = SpawnPatternCollection.findSpawnPatternsByCategory(categoryMock);
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.findSpawnPatternsByCategory() returns all SpawnPatternModels in the collection which have the specified category', (t) => {
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.addItems([
+        spawnPatternModelArrivalFixture,
+        spawnPatternModelDepartureFixture
+    ]);
+
+    const categoryMock = 'arrival';
+    const result = SpawnPatternCollection.findSpawnPatternsByCategory(categoryMock);
+
+    t.true(result.length === 1);
+    t.true(result.every((spawnPatternModel) => spawnPatternModel.category === categoryMock));
 });
