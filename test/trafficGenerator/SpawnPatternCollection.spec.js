@@ -26,6 +26,12 @@ ava.afterEach.always(() => {
 
     resetNavigationLibraryFixture();
     resetAirportControllerFixture();
+    SpawnPatternCollection.reset();
+});
+
+ava('.init() throws when the provided airport JSON data is empty', (t) => {
+    t.throws(() => SpawnPatternCollection.init());
+    t.throws(() => SpawnPatternCollection.init({}));
 });
 
 ava('.init() calls _buildSpawnPatternModels()', (t) => {
@@ -69,4 +75,29 @@ ava('.addItem() throws if anything other than a SpawnPatternModel is passed as a
     t.throws(() => SpawnPatternCollection.addItem(false));
     t.throws(() => SpawnPatternCollection.addItem(null));
     t.throws(() => SpawnPatternCollection.addItem(undefined));
+});
+
+ava('.findSpawnPatternsByCategory() returns an empty array when no spawn patterns of the specified category are found', (t) => {
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.addItems([spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture]);
+
+    const categoryMock = 'threeve';
+    const expectedResult = [];
+    const result = SpawnPatternCollection.findSpawnPatternsByCategory(categoryMock);
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.findSpawnPatternsByCategory() returns all SpawnPatternModels in the collection which have the specified category', (t) => {
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.addItems([
+        spawnPatternModelArrivalFixture,
+        spawnPatternModelDepartureFixture
+    ]);
+
+    const categoryMock = 'arrival';
+    const result = SpawnPatternCollection.findSpawnPatternsByCategory(categoryMock);
+
+    t.true(result.length === 1);
+    t.true(result.every((spawnPatternModel) => spawnPatternModel.category === categoryMock));
 });

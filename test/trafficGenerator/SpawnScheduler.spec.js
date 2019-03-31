@@ -1,5 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
+import GameController from '../../src/assets/scripts/client/game/GameController';
 import SpawnScheduler from '../../src/assets/scripts/client/trafficGenerator/SpawnScheduler';
 import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
 import {
@@ -10,7 +11,8 @@ import {
     createNavigationLibraryFixture,
     resetNavigationLibraryFixture
 } from '../fixtures/navigationLibraryFixtures';
-import { AIRPORT_JSON_FOR_SPAWN_MOCK } from '../trafficGenerator/_mocks/spawnPatternMocks';
+import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
+import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 
 let aircraftControllerStub;
 let spawnPatternCollectionFixture;
@@ -98,3 +100,53 @@ ava('.createAircraftAndRegisterNextTimeout() calls .createNextSchedule()', (t) =
 
     t.true(createNextScheduleSpy.calledOnce);
 });
+
+ava('.resetTimer() returns early when SpawnPatternModel has no #scheduleId', (t) => {
+    SpawnScheduler.init(aircraftControllerStub);
+    const destroyTimerStub = sandbox.stub(GameController, 'destroyTimer');
+    const spawnPatternModel = SpawnPatternCollection._items[0];
+    spawnPatternModel.scheduleId = INVALID_NUMBER;
+
+    SpawnScheduler.resetTimer(spawnPatternModel);
+
+    delete spawnPatternModel.scheduleId;
+
+    SpawnScheduler.resetTimer(spawnPatternModel);
+
+    t.true(destroyTimerStub.notCalled);
+});
+
+ava('.resetTimer() destroys existing timers but does not create a new spawn schedule when SpawnPatternModel has a non-positive spawn rate', (t) => {
+    SpawnScheduler.init(aircraftControllerStub);
+    const spawnPatternModel = SpawnPatternCollection._items[0];
+    const destroyTimerStub = sandbox.stub(GameController, 'destroyTimer');
+    const getNextDelayValueStub = sandbox.stub(spawnPatternModel, 'getNextDelayValue');
+    spawnPatternModel.rate = 0;
+
+    SpawnScheduler.resetTimer(spawnPatternModel);
+
+    spawnPatternModel.rate = -6;
+    spawnPatternModel.scheduleId = 10;
+
+    SpawnScheduler.resetTimer(spawnPatternModel);
+
+    t.true(destroyTimerStub.calledTwice);
+    t.true(getNextDelayValueStub.notCalled);
+});
+
+// ava('.resetTimer() updates remaining time when timer has not yet expired', (t) => {
+//     SpawnScheduler.init(aircraftControllerStub);
+//     const spawnPatternModel = SpawnPatternCollection._items[0];
+//
+//     sandbox.stub(spawnPatternModel, 'getNextDelayValue').returns(15);
+//
+//     // TimeKeeper.accumulatedDeltaTime += 10;
+//     const oldTimerValue = TimeKeeper.accumulatedDeltaTime;
+//     const createAircraftWithSpawnPatternModelStub = sandbox.stub(spawnPatternModel.aircraftController, 'createAircraftWithSpawnPatternModel');
+//     const _createTimeoutStub = sandbox.stub(SpawnScheduler, '_createTimeout');
+//
+//     SpawnScheduler.resetTimer(spawnPatternModel);
+//
+//     t.true(createAircraftWithSpawnPatternModelStub.notCalled);
+//     t.true(_createTimeoutStub.calledWithExactly(spawnPatternModel, oldTimerValue + (15)));
+// });

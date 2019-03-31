@@ -3,6 +3,7 @@ import SpawnPatternCollection from './SpawnPatternCollection';
 import TimeKeeper from '../engine/TimeKeeper';
 import GameController from '../game/GameController';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { INVALID_NUMBER } from '../constants/globalConstants';
 
 /**
  * Used to create a game_timer for a `SpawnPatternModel` and provide
@@ -125,26 +126,31 @@ class SpawnScheduler {
      */
     resetTimer(spawnPatternModel) {
         let timePassed = 0;
+        const { scheduleId } = spawnPatternModel;
 
-        if (spawnPatternModel.scheduleId) {
-            GameController.destroyTimer(spawnPatternModel.scheduleId);
-
-            const timerStart = spawnPatternModel.scheduleId[1] - spawnPatternModel.scheduleId[3];
-            timePassed = TimeKeeper.accumulatedDeltaTime - timerStart;
-            spawnPatternModel.scheduleId = null;
+        if (!scheduleId || scheduleId === INVALID_NUMBER) {
+            return;
         }
 
-        if (spawnPatternModel.rate > 0) {
-            let nextDelay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
+        GameController.destroyTimer(spawnPatternModel.scheduleId);
 
-            if (timePassed < nextDelay) {
-                nextDelay -= timePassed;
-            } else {
-                this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
-            }
+        const timerStart = spawnPatternModel.scheduleId[1] - spawnPatternModel.scheduleId[3];
+        timePassed = TimeKeeper.accumulatedDeltaTime - timerStart;
+        spawnPatternModel.scheduleId = null;
 
-            spawnPatternModel.scheduleId = this._createTimeout(spawnPatternModel, nextDelay);
+        if (spawnPatternModel.rate <= 0) {
+            return;
         }
+
+        let nextDelay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
+        console.log(nextDelay, timePassed);
+        if (timePassed < nextDelay) {
+            nextDelay -= timePassed;
+        } else {
+            this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+        }
+
+        spawnPatternModel.scheduleId = this._createTimeout(spawnPatternModel, nextDelay);
     }
 
     /**
