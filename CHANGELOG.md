@@ -4,12 +4,10 @@
 - [#1330](https://github.com/openscope/openscope/issues/1330) - Allow user to choose which mouse button drags the canvas
 - [#16](https://github.com/openscope/openscope/issues/16) - Add traffic volume scaling controls
 
-
 ### Bugfixes
 - [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons
 - [#1341](https://github.com/openscope/openscope/issues/1341) - Fix CID number generation bug when generated CID is already in use
 - [#1183](https://github.com/openscope/openscope/issues/1183) - Ensure a deep render occurs when changing themes
-
 
 ### Enhancements & Refactors
 - [#10](https://github.com/openscope/openscope/issues/10) - Add command for altitude restrictions at fixes ("cr")
