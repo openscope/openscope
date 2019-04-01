@@ -1,3 +1,13 @@
+# 6.13.0 (May 1, 2019)
+### New Features
+
+
+### Bugfixes
+
+
+### Enhancements & Refactors
+
+
 # 6.12.0 (April 1, 2019)
 ### New Features
 - [#804](https://github.com/openscope/openscope/issues/804) - Add ability to view changelog for the current version
