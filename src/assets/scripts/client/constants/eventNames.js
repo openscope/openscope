@@ -192,6 +192,13 @@ export const EVENT = {
     TOGGLE_TERRAIN: 'toggle-terrain',
 
     /**
+     * @memberof EVENT
+     * @property TOGGLE_TRAFFIC
+     * @type {string}
+     */
+    TOGGLE_TRAFFIC: 'toggle-traffic',
+
+    /**
      * Open/close the tutorial modal
      *
      * @memberof EVENT
@@ -288,5 +295,4 @@ export const AIRCRAFT_EVENT = {
      * @type {string}
      */
     AIRSPACE_EXIT: 'airspace-exit'
-
-}
+};

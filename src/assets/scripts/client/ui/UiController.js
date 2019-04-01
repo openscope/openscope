@@ -5,6 +5,7 @@ import EventBus from '../lib/EventBus';
 import EventTracker from '../EventTracker';
 import GameController from '../game/GameController';
 import SettingsController from './SettingsController';
+import TrafficRateController from './TrafficRateController';
 import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
 import { EVENT } from '../constants/eventNames';
@@ -25,7 +26,7 @@ class UiController {
 
         this.$element = null;
         this.$airportDialog = null;
-        this.$airportList = null;
+        this.$airportDialogBody = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
         this.$pauseToggle = null;
@@ -40,6 +41,7 @@ class UiController {
         this.$toggleTutorial = null;
         this.$toggleOptions = null;
         this.$toggleVideoMap = null;
+        this.$toggleTraffic = null;
     }
 
     /**
@@ -55,15 +57,16 @@ class UiController {
         this._eventBus = EventBus;
         this.tutorialView = new TutorialView($element);
         this.settingsController = new SettingsController($element);
+        this.trafficRateController = new TrafficRateController($element);
 
         this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
-        this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
+        this.$airportDialogBody = this.$airportDialog.find(SELECTORS.DOM_SELECTORS.DIALOG_BODY);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
-        this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+        this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
         this.$switchAirport = this.$element.find(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT);
         this.$toggleLabels = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS);
         this.$toggleRestrictedAreas = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS);
@@ -73,6 +76,7 @@ class UiController {
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
+        this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
 
         return this.setupHandlers()
             .enable();
@@ -111,6 +115,7 @@ class UiController {
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
+        this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
 
         return this;
     }
@@ -136,6 +141,7 @@ class UiController {
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
+        this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
 
         return this.destroy();
     }
@@ -153,7 +159,7 @@ class UiController {
 
         this.$element = null;
         this.$airportDialog = null;
-        this.$airportList = null;
+        this.$airportDialogBody = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
         this.$pauseToggle = null;
@@ -168,6 +174,7 @@ class UiController {
         this.$toggleTutorial = null;
         this.$toggleOptions = null;
         this.$toggleVideoMap = null;
+        this.$onToggleTraffic = null;
 
         return this;
     }
@@ -179,8 +186,6 @@ class UiController {
     ui_init() {
         this.tutorialView.tutorial_init_pre();
         this.$fastForwards.prop('title', 'Set time warp to 2');
-        // TODO: Make the options dialog findable by ID, not just by class
-        this.$optionsDialog = this.$element.find(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
     }
 
     /**
@@ -194,8 +199,12 @@ class UiController {
             this.tutorialView.tutorial_close();
         }
 
-        if (this.isOptionsDialogOpen()) {
+        if (this.settingsController.isDialogOpen()) {
             this.onToggleOptions();
+        }
+
+        if (this.trafficRateController.isDialogOpen()) {
+            this.onToggleTraffic();
         }
 
         if (this.isAirportSelectionDialogOpen()) {
@@ -212,17 +221,6 @@ class UiController {
      */
     isAirportSelectionDialogOpen() {
         return this.$airportDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
-    }
-
-    /**
-     * Returns whether the airport selection dialog is open
-     *
-     * @for UiController
-     * @method isOptionsDialogOpen
-     * @return {boolean}
-     */
-    isOptionsDialogOpen() {
-        return this.$optionsDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
     /**
@@ -266,7 +264,7 @@ class UiController {
      */
     _buildAirportList() {
         // clear out the contents of this element
-        this.$airportList.empty();
+        this.$airportDialogBody.empty();
 
         const airports = _keys(AirportController.airports).sort();
         let difficulty = '';
@@ -286,7 +284,7 @@ class UiController {
                 }
             });
 
-            this.$airportList.append($airportListItem);
+            this.$airportDialogBody.append($airportListItem);
         }
     }
 
@@ -379,7 +377,7 @@ class UiController {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
-        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
+        const $previousActiveAirport = this.$airportDialogBody.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         // Remove the active class from a no-longer-selected airport in the list.
         if ($previousActiveAirport.length !== 0) {
@@ -449,7 +447,7 @@ class UiController {
     onToggleOptions() {
         EventTracker.recordEvent(TRACKABLE_EVENT.SETTINGS, 'toggle-dialog', `${this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
+        this.settingsController.toggleDialog();
     }
 
     /**
@@ -526,6 +524,18 @@ class UiController {
      */
     onClickGithubLink(event) {
         EventTracker.recordClickOnOutboundLink(event.target.href);
+    }
+
+    /**
+     * Handler for toggling the traffic volume view
+     *
+     * @for UiController
+     * @method onToggleTraffic
+     * @param event {jquery event}
+     */
+    onToggleTraffic(event) {
+        this.$toggleTraffic.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.trafficRateController.toggleDialog();
     }
 }
 

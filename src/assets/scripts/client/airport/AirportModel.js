@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import _ceil from 'lodash/ceil';
 import _chunk from 'lodash/chunk';
+import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -504,6 +505,18 @@ export default class AirportModel {
 
             this.restricted_areas.push(obj);
         });
+    }
+
+    /**
+     * Return an altitude clamped within the min/max assignable altitudes for this airport
+     *
+     * @for AirportModel
+     * @method clampWithinAssignableAltitudes
+     * @param altitude
+     * @return {number}
+     */
+    clampWithinAssignableAltitudes(altitude) {
+        return _clamp(altitude, this.minAssignableAltitude, this.maxAssignableAltitude);
     }
 
     /**
