@@ -1220,42 +1220,30 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "LUL.G42.BLM.BLM2G.LSZH14",
-            "altitude": [28000, 32000],
+            "altitude": 28000,
             "speed": 290,
             "method": "random",
-            "rate": 4.025,
-            "airlines": [
-                ["afr/short", 10],
-                ["baw/short", 13],
-                ["baw/b767", 2],
-                ["cfe", 9],
-                ["ein/short", 7],
-                ["ewg/short", 5],
-                ["ezy", 10],
-                ["ice", 5],
-                ["klm/short", 12],
-                ["hb/fastGA", 2],
-                ["swr/short", 52],
-                ["tra", 5]
-
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "LUL.G42.BLM.BLM2G.LSZH14",
-            "altitude": 24000,
-            "speed": 290,
-            "method": "random",
-            "rate": 1.15,
+            "rate": 5.175,
             "airlines": [
                 ["aal/long", 10],
                 ["aca/long", 10],
+                ["afr/short", 10],
+                ["baw/b767", 2],
+                ["baw/short", 13],
+                ["cfe", 9],
                 ["dal/long", 10],
                 ["edw/long", 35],
+                ["ein/short", 7],
+                ["ewg/short", 5],
+                ["ezy", 10],
+                ["hb/fastGA", 2],
+                ["ice", 5],
+                ["klm/short", 12],
                 ["swr/long", 75],
+                ["swr/short", 52],
+                ["tra", 5],
                 ["ual/long", 10]
+
             ]
         },
         {
@@ -1306,37 +1294,25 @@
             "altitude": [28000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 1.75,
-            "airlines": [
-                ["afr/short", 10],
-                ["baw/short", 13],
-                ["baw/b767", 2],
-                ["cfe", 9],
-                ["ein/short", 7],
-                ["ewg/short", 2],
-                ["ezy", 10],
-                ["ice", 3],
-                ["klm/short", 12],
-                ["hb/fastGA", 2],
-                ["swr/short", 54],
-                ["tra", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "LUL.UL613.HOC.HOC1G.LSZH14",
-            "altitude": [23000, 25000],
-            "speed": 290,
-            "method": "random",
-            "rate": 0.23,
+            "rate": 1.98,
             "airlines": [
                 ["aal/long", 10],
                 ["aca/long", 10],
+                ["afr/short", 10],
+                ["baw/b767", 2],
+                ["baw/short", 13],
+                ["cfe", 9],
                 ["dal/long", 10],
                 ["edw/long", 30],
+                ["ein/short", 7],
+                ["ewg/short", 2],
+                ["ezy", 10],
+                ["hb/fastGA", 2],
+                ["ice", 3],
+                ["klm/short", 12],
                 ["swr/long", 70],
+                ["swr/short", 54],
+                ["tra", 4],
                 ["ual/long", 10]
             ]
         },
@@ -1348,27 +1324,15 @@
             "altitude": [30000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 2.0125,
+            "rate": 2.5875,
             "airlines": [
                 ["edw/short", 20],
                 ["ezy", 5],
                 ["gsw", 6],
+                ["swr/long", 35],
                 ["swr/short", 47],
                 ["tap", 10],
                 ["vlg", 25]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "CANNE.UZ651.KELIP.KELIP2G.LSZH14",
-            "altitude": [27000, 32000],
-            "speed": 290,
-            "method": "random",
-            "rate": 0.575,
-            "airlines": [
-                ["swr/long", 35]
             ]
         },
         {
@@ -1379,82 +1343,38 @@
             "altitude": [30000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 2.455,
+            "rate": 4.83,
             "airlines": [
                 ["adr", 3],
                 ["aee", 3],
-                ["asl", 4],
-                ["aua/short", 9],
-                ["ctn", 2],
-                ["d/fastGA", 2],
-                ["edw/short", 20],
-                ["ely", 5],
-                ["ewg/short", 2],
-                ["ezy", 3],
-                ["gsw", 8],
-                ["lzb", 2],
-                ["rja", 4],
-                ["sia/a380", 6],
-                ["swr/short", 68],
-                ["sxs", 5],
-                ["thy/short", 7],
-                ["uae/a380", 10]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "KOGOL.UL608.KPT.UL856.RAVED.NEGRA1A.LSZH14",
-            "altitude": [32000, 35000],
-            "speed": 290,
-            "method": "random",
-            "rate": 0.86,
-            "airlines": [
-                ["edw/long", 15],
-                ["etd/long", 5],
-                ["oma/long", 5],
-                ["qtr/long", 12],
-                ["swr/long", 35],
-                ["tha/long", 8],
-                ["thy/long", 3],
-                ["uae/a380", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "MERSI.Y100.ATMAX.Y110.KPT.UL856.RAVED.NEGRA1A.LSZH14",
-            "altitude": [31000, 39000],
-            "speed": 290,
-            "method": "random",
-            "rate": 1.155,
-            "airlines": [
                 ["afl", 3],
+                ["asl", 4],
                 ["aua/short", 18],
                 ["aui", 2],
+                ["cca/long", 3],
                 ["cpa", 4],
+                ["ctn", 2],
+                ["d/fastGA", 2],
                 ["dlh/short", 13],
-                ["edw/short", 5],
+                ["edw/long", 15],
+                ["edw/short", 20],
+                ["ely", 5],
+                ["etd/long", 5],
                 ["ewg/short", 10],
                 ["ezy", 5],
+                ["gsw", 8],
                 ["gwi", 1],
-                ["swr/short", 80]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "MERSI.Y100.ATMAX.Y110.KPT.UL856.RAVED.NEGRA1A.LSZH14",
-            "altitude": [29000, 32000],
-            "speed": 290,
-            "method": "random",
-            "rate": 0.36,
-            "airlines": [
-                ["cca/long", 3],
-                ["swr/long", 20]
+                ["lzb", 2],
+                ["oma/long", 5],
+                ["qtr/long", 12],
+                ["rja", 4],
+                ["sia/a380", 6],
+                ["swr/long", 35],
+                ["swr/short", 80],
+                ["sxs", 5],
+                ["tha/long", 8],
+                ["thy/short", 7],
+                ["uae/a380", 20]
             ]
         },
         {
@@ -1465,7 +1385,7 @@
             "altitude": [31000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 4.05,
+            "rate": 4.3125,
             "airlines": [
                 ["afl", 3],
                 ["bti", 2],
@@ -1476,27 +1396,15 @@
                 ["ezy", 3],
                 ["fin/short", 3],
                 ["gwi", 1],
+                ["hb/fastGA", 2],
                 ["klm/short", 5],
                 ["lot", 2],
-                ["hb/fastGA", 2],
                 ["oaw", 2],
                 ["sas/short", 5],
-                ["swr/short", 38],
-                ["vlg", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LSZH",
-            "category": "arrival",
-            "route": "SUNEG.T721.RILAX.RILAX1A.LSZH14",
-            "altitude": [29000, 34000],
-            "speed": 290,
-            "method": "random",
-            "rate": 0.2625,
-            "airlines": [
                 ["swr/long", 10],
-                ["ual/long", 1]
+                ["swr/short", 38],
+                ["ual/long", 1],
+                ["vlg", 1]
             ]
         },
         {
