@@ -3,10 +3,10 @@
 ## Table of Contents
 
 [Departure Commands](#departure-commands)
+- [Taxi](#taxi)
 - [Cleared as Filed](#cleared-as-filed)
 - [Climb via SID](#climb-via-sid)
 - [Takeoff](#takeoff)
-- [Taxi](#taxi)
 
 [Arrival Commands](#arrival-commands)
 - [Expect Runway](#expect-runway)
@@ -55,6 +55,14 @@
 # Departure Commands
 These commands are used by departure aircraft.
 
+### Taxi
+_Aliases -_ `taxi` / `wait` / `w`
+
+_Information -_ This command tells the specified plane to taxi to and hold short
+of specified runway.
+
+_Syntax -_ `AAL123 taxi [runway]`
+
 ### Cleared As Filed
 _Aliases -_ `caf`
 
@@ -88,14 +96,6 @@ previously to "climb via the SID". If neither has happened, they will ask
 for an altitude assignment before they agree to take off.
 
 _Syntax -_ `AAL123 cto`
-
-### Taxi
-_Aliases -_ `taxi` / `wait` / `w`
-
-_Information -_ This command tells the specified plane to taxi to and hold short
-of specified runway.
-
-_Syntax -_ `AAL123 taxi [runway]`
 
 # Arrival Commands
 These commands are only used by arrival aircraft.
