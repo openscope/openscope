@@ -128,22 +128,20 @@ class SpawnScheduler {
         let timePassed = 0;
         const { scheduleId } = spawnPatternModel;
 
-        if (!scheduleId || scheduleId === INVALID_NUMBER) {
-            return;
+        if (scheduleId && scheduleId !== INVALID_NUMBER) {
+            GameController.destroyTimer(spawnPatternModel.scheduleId);
+
+            const timerStart = spawnPatternModel.scheduleId[1] - spawnPatternModel.scheduleId[3];
+            timePassed = TimeKeeper.accumulatedDeltaTime - timerStart;
+            spawnPatternModel.scheduleId = null;
         }
-
-        GameController.destroyTimer(spawnPatternModel.scheduleId);
-
-        const timerStart = spawnPatternModel.scheduleId[1] - spawnPatternModel.scheduleId[3];
-        timePassed = TimeKeeper.accumulatedDeltaTime - timerStart;
-        spawnPatternModel.scheduleId = null;
 
         if (spawnPatternModel.rate <= 0) {
             return;
         }
 
         let nextDelay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
-        console.log(nextDelay, timePassed);
+
         if (timePassed < nextDelay) {
             nextDelay -= timePassed;
         } else {

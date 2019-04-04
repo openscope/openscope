@@ -3,6 +3,7 @@
 
 
 ### Bugfixes
+- [#1358](https://github.com/openscope/openscope/issues/1358) - Configuring overall or individual route traffic rate to 0 and back up to x leaves queue empty for rest of simulation
 
 
 ### Enhancements & Refactors
