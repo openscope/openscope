@@ -1,11 +1,6 @@
-# 6.13.0 (May 1, 2019)
-### New Features
-
-
-### Bugfixes
-
-
-### Enhancements & Refactors
+# 6.12.1 (April 4, 2019)
+### Hotfixes
+- [#1358](https://github.com/openscope/openscope/issues/1358) - Ensure traffic resumes spawning after a spawn pattern is turned off and back on
 
 
 # 6.12.0 (April 1, 2019)
