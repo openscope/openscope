@@ -1,3 +1,8 @@
+# 6.12.1 (April 4, 2019)
+### Hotfixes
+- [#1358](https://github.com/openscope/openscope/issues/1358) - Ensure traffic resumes spawning after a spawn pattern is turned off and back on
+
+
 # 6.12.0 (April 1, 2019)
 ### New Features
 - [#804](https://github.com/openscope/openscope/issues/804) - Add ability to view changelog for the current version
