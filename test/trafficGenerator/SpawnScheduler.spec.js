@@ -131,19 +131,32 @@ ava('.resetTimer() does not destroy existing timers when SpawnPatternModel has a
     t.true(destroyTimerStub.notCalled);
 });
 
-ava('.resetTimer() destroys existing timers when SpawnPatternModel has a positive and valid #scheduleId', (t) => {
+ava('.resetTimer() destroys existing timers when SpawnPatternModel has a positive and valid #scheduleId and exits early if rate is zero', (t) => {
     SpawnScheduler.init(aircraftControllerStub);
     const destroyTimerStub = sandbox.stub(GameController, 'destroyTimer');
     const spawnPatternModel = SpawnPatternCollection._items[0];
+    const getNextDelayValueStub = sandbox.stub(spawnPatternModel, 'getNextDelayValue');
     spawnPatternModel.scheduleId = 10;
-
-    SpawnScheduler.resetTimer(spawnPatternModel);
-
-    delete spawnPatternModel.scheduleId;
+    spawnPatternModel.rate = 0;
 
     SpawnScheduler.resetTimer(spawnPatternModel);
 
     t.true(destroyTimerStub.calledOnce);
+    t.true(getNextDelayValueStub.notCalled);
+});
+
+ava('.resetTimer() destroys existing timers when SpawnPatternModel has a positive and valid #scheduleId and gets next delay value if rate is positive', (t) => {
+    SpawnScheduler.init(aircraftControllerStub);
+    const destroyTimerStub = sandbox.stub(GameController, 'destroyTimer');
+    const spawnPatternModel = SpawnPatternCollection._items[0];
+    const getNextDelayValueStub = sandbox.stub(spawnPatternModel, 'getNextDelayValue');
+    spawnPatternModel.scheduleId = 10;
+    spawnPatternModel.rate = 1;
+
+    SpawnScheduler.resetTimer(spawnPatternModel);
+
+    t.true(destroyTimerStub.calledOnce);
+    t.true(getNextDelayValueStub.calledOnce);
 });
 
 ava('.resetTimer() destroys existing timers twice when SpawnPatternModel has a positive and valid #scheduleId and rate is set to 0 and then positive', (t) => {
