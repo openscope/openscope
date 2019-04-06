@@ -6,6 +6,7 @@
 
 
 ### Enhancements & Refactors
+- [#1360](https://github.com/openscope/openscope/issues/1360) - Test cases to increase coverage of spawn patterns logic
 
 
 # 6.12.1 (April 4, 2019)
