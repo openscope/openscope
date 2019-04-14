@@ -100,7 +100,7 @@ export function _calculateAltitudeAtOffset(altitudeOffsets, offsetDistance) {
 
     if (indexOfNextAltitudeRestriction < 0) { // no restrictions ahead
         if (indexOfPreviousAltitudeRestriction < 0) { // no restrictions ahead or behind
-            return undefined;
+            throw new TypeError('Expected altitude restrictions to calculate appropriate spawn altiude, but none were received.');
         }
 
         return altitudeOffsets[indexOfPreviousAltitudeRestriction][indexOfAltitude];
@@ -133,8 +133,14 @@ export function _calculateAltitudeAtOffset(altitudeOffsets, offsetDistance) {
  * @param airspaceCeiling {number} altitude of the top of our airspace
  * @return {number} ideal spawn altitude, in feet (rounded up to nearest thousand)
  */
-/* eslint-disable-next-line max-len */
-export function _calculateIdealSpawnAltitudeAtOffset(altitudeOffsets, offsetDistance, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
+export function _calculateIdealSpawnAltitudeAtOffset(
+    altitudeOffsets,
+    offsetDistance,
+    spawnSpeed,
+    spawnAltitude,
+    totalDistance,
+    airspaceCeiling
+) {
     const indexOfDistance = 0;
     const indexOfAltitude = 1;
     let firstAltitudeRestriction = altitudeOffsets[0];
@@ -172,8 +178,14 @@ export function _calculateIdealSpawnAltitudeAtOffset(altitudeOffsets, offsetDist
  * @param totalDistance {number} distance along route from spawn point to airspace boundary
  * @return spawnPositions {array<number>} distances along route, in nm
  */
-/* eslint-disable-next-line max-len */
-function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
+function _calculateSpawnPositionsAndAltitudes(
+    waypointModelList,
+    spawnOffsets,
+    spawnSpeed,
+    spawnAltitude,
+    totalDistance,
+    airspaceCeiling
+) {
     const spawnPositionsAndAltitudes = [];
     const waypointOffsetMap = _calculateOffsetsToEachWaypointInRoute(waypointModelList);
     const altitudeOffsets = _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap);
@@ -328,7 +340,12 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
     const spawnPositions = _calculateSpawnPositionsAndAltitudes(
-        waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling
+        waypointModelList,
+        spawnOffsets,
+        spawnSpeed,
+        spawnAltitude,
+        totalDistance,
+        airspaceCeiling
     );
 
     return spawnPositions;
@@ -352,12 +369,10 @@ const _preSpawn = (spawnPatternJson, airport) => {
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, currentAirport) => {
     if (isEmptyObject(spawnPatternJson)) {
-        // eslint-disable-next-line max-len
         throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
     }
 
     if (_isNil(currentAirport)) {
-        // eslint-disable-next-line max-len
         throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected currentAirport to be defined');
     }
 

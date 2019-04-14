@@ -1,22 +1,17 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isArray from 'lodash/isArray';
 import _floor from 'lodash/floor';
-import _map from 'lodash/map';
 import RouteModel from '../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteModel';
 import {
     _calculateOffsetsToEachWaypointInRoute,
     _calculateAltitudeOffsets,
     _calculateAltitudeAtOffset,
-    _calculateIdealSpawnAltitudeAtOffset,
-    buildPreSpawnAircraft
+    _calculateIdealSpawnAltitudeAtOffset
 } from '../../src/assets/scripts/client/trafficGenerator/buildPreSpawnAircraft';
 import {
     createNavigationLibraryFixture,
     resetNavigationLibraryFixture
 } from '../fixtures/navigationLibraryFixtures';
-import { airportModelFixture } from '../fixtures/airportFixtures';
-import { ARRIVAL_PATTERN_MOCK } from './_mocks/spawnPatternMocks';
 
 let sandbox;
 
@@ -61,12 +56,11 @@ ava('_calculateAltitudeOffsets returns an array of the altitudes required and th
     t.deepEqual(result, expectedResult);
 });
 
-ava('_calculateAltitudeAtOffset returns undefined when there are no altitude restrictions ahead nor behind', (t) => {
+ava('_calculateAltitudeAtOffset throws when there are no altitude restrictions ahead nor behind', (t) => {
     const altitudesAtOffsets = [];
     const offsetDistanceMock = 25;
-    const result = _calculateAltitudeAtOffset(altitudesAtOffsets, offsetDistanceMock);
 
-    t.true(typeof result === 'undefined');
+    t.throws(() => _calculateAltitudeAtOffset(altitudesAtOffsets, offsetDistanceMock));
 });
 
 ava('_calculateAltitudeAtOffset returns altitude of previous restriction when there are restrictions behind but none ahead', (t) => {
@@ -176,18 +170,18 @@ ava('_calculateIdealSpawnAltitudeAtOffset() returns an appropriate altitude when
     t.true(expectedResult === result);
 });
 
-// ava.skip('buildPreSpawnAircraft() throws when passed invalid parameters', (t) => {
+// ava('buildPreSpawnAircraft() throws when passed invalid parameters', (t) => {
 //     t.throws(() => buildPreSpawnAircraft());
 //     t.throws(() => buildPreSpawnAircraft({}));
 //     t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null, null));
 //     t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null, airportModelFixture));
 // });
 //
-// ava.skip('buildPreSpawnAircraft() does not throw when passed valid parameters', (t) => {
+// ava('buildPreSpawnAircraft() does not throw when passed valid parameters', (t) => {
 //     t.notThrows(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture));
 // });
 //
-// ava.skip('buildPreSpawnAircraft() returns an array of objects with correct keys', (t) => {
+// ava('buildPreSpawnAircraft() returns an array of objects with correct keys', (t) => {
 //     const results = buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture);
 //
 //     t.true(_isArray(results));
