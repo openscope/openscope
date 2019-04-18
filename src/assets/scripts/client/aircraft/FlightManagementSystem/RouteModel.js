@@ -324,9 +324,9 @@ export default class RouteModel extends BaseModel {
             return null;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._findSidLeg();
 
-        return this._legCollection[sidLegIndex].getDepartureRunwayAirportIcao();
+        return sidLegModel.getDepartureRunwayAirportIcao();
     }
 
     /**
@@ -358,9 +358,9 @@ export default class RouteModel extends BaseModel {
             return null;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._findSidLeg();
 
-        return this._legCollection[sidLegIndex].getDepartureRunwayName();
+        return sidLegModel.getDepartureRunwayName();
     }
 
     /**
@@ -417,7 +417,9 @@ export default class RouteModel extends BaseModel {
 
     /**
     * Returns the full route string, with airports removed
-    * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
+    *
+    * Example:
+    * - `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
     *
     * @for RouteModel
     * @method getFullRouteStringWithoutAirportsWithSpaces
@@ -436,6 +438,12 @@ export default class RouteModel extends BaseModel {
 
     /**
      * Return `#fullRouteString` with spaces between elements instead of dot notation
+     *
+     * Example:
+     * - `KSEA16L.BANGR9.PANGL` --> `KSEA16L BANGR9 PANGL`
+     *
+     * Used mostly for representing the route string in the view, like
+     * an aircraft strip, etc.
      *
      * @for RouteModel
      * @method getFullRouteStringWithSpaces
@@ -463,6 +471,9 @@ export default class RouteModel extends BaseModel {
     /**
      * Return `#routeString` with spaces between elements instead of dot notation
      *
+     * Example:
+     * - `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
+     *
      * @for RouteModel
      * @method getRouteStringWithSpaces
      * @return {string}
@@ -471,6 +482,31 @@ export default class RouteModel extends BaseModel {
         const routeString = this.getRouteString();
 
         return routeString.replace(REGEX.DOUBLE_DOT, ' ').replace(REGEX.SINGLE_DOT, ' ');
+    }
+
+    /**
+     * Returns exit waypoint for a departure aircraft, to be used in datablock
+     *
+     * When a SID procedure is defined, this will return the exit waypoint
+     * Example:
+     * - `KLAS07R.BOACH6.TNP` -> `TNP`
+     *
+     * When no SID procedure is defined, this will return the first fix in the route
+     * Example:
+     * - `OAL..MLF..PGS` -> `OAL`
+     *
+     * @for RouteModel
+     * @method getFlightPlanEntry
+     * @returns {string} First fix in flightPlan or exit fix of SID
+     */
+    getFlightPlanEntry() {
+        if (!this.hasSidLeg()) {
+            return this.getFullRouteString().split('..')[0];
+        }
+
+        const sidLegModel = this._findSidLeg();
+
+        return sidLegModel.getExitFixName();
     }
 
     /**
@@ -485,7 +521,7 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getProcedureIcao();
     }
@@ -502,9 +538,28 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getProcedureName();
+    }
+
+    /**
+     * Return the initial altitude of the SID or the airport
+     *
+     * @for RouteModel
+     * @method getInitialClimbClearance
+     * @return {number}
+     */
+    getInitialClimbClearance() {
+        const sidLegModel = this._findSidLeg();
+
+        if (sidLegModel && sidLegModel.altitude) {
+            return sidLegModel.altitude;
+        }
+
+        const airport = AirportController.airport_get();
+
+        return airport.initial_alt;
     }
 
     /**
@@ -649,8 +704,7 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         if (!sidLegModel) {
             return true;
@@ -752,29 +806,20 @@ export default class RouteModel extends BaseModel {
      * @for RouteModel
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @return {boolean} whether operation was successful
+     * @return {array} [success of operation, response]
      */
     replaceDepartureProcedure(routeString) {
-        let sidLegModel;
+        let routeModel;
 
         try {
-            sidLegModel = new LegModel(routeString);
+            routeModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
-            return false;
+            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
-        // if no SID leg exists, insert the new one as the new first leg
-        if (!this.hasSidLeg()) {
-            this._legCollection.unshift(sidLegModel);
-
-            return true;
-        }
-
-        this._legCollection[this._findSidLegIndex()] = sidLegModel;
-
-        return true;
+        return this.absorbRouteModel(routeModel);
     }
 
     /**
@@ -832,8 +877,7 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
@@ -860,7 +904,6 @@ export default class RouteModel extends BaseModel {
         const originalCurrentWaypointName = this.currentWaypoint.name;
         const nextExitName = `${this.getArrivalRunwayAirportIcao().toUpperCase()}${runwayModel.name}`;
         const starLegIndex = this._findStarLegIndex();
-
         const amendedStarLegModel = this._createAmendedStarLegUsingDifferentExitName(nextExitName, starLegIndex);
         this._legCollection[starLegIndex] = amendedStarLegModel;
 
@@ -1433,6 +1476,20 @@ export default class RouteModel extends BaseModel {
      */
     _findSidLegIndex() {
         return _findIndex(this._legCollection, (legModel) => legModel.isSidLeg);
+    }
+
+    /**
+     * Return the SID leg
+     *
+     * If for some reason there are multiple, this returns the first one.
+     * This search does NOT include legs in the `#_previousLegCollection`.
+     *
+     * @for RouteModel
+     * @method findSidLeg
+     * @return {ProcedureModel}
+     */
+    _findSidLeg() {
+        return this._legCollection.find((legModel) => legModel.isSidLeg);
     }
 
     /**

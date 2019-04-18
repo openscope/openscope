@@ -2,8 +2,6 @@ import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import UiController from '../../src/assets/scripts/client/ui/UiController';
-import GameController, { GAME_EVENTS } from '../../src/assets/scripts/client/game/GameController';
 import {
     createAirportControllerFixture,
     resetAirportControllerFixture,
@@ -121,13 +119,13 @@ ava('.cancelLanding() configures MCP correctly when landing cancelled below the 
     t.true(radioCallStub.calledWithExactly(expectedRadioTranscript, 'app', true));
 });
 
-ava('.getViewModel() includes an altitude that has not been rounded to the nearest foot', (t) => {
+ava('.getViewModel() includes an altitude that has not been rounded beyond the nearest foot', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     model.mcp.altitude = 7777.1234567;
 
     const { assignedAltitude: result } = model.getViewModel();
 
-    t.true(result === 77.77123456700001);
+    t.true(result === 77.77);
 });
 
 ava('.isAboveGlidepath() returns false when aircraft altitude is below glideslope altitude', (t) => {
@@ -315,64 +313,6 @@ ava('.isOnFinal() returns true when both on the selected course and within the f
     t.true(result);
 });
 
-ava('.judgeLocalizerInterception() returns early when called for an aircraft projection', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    model.projected = true;
-    const penalizeLocalizerInterceptAltitudeStub = sandbox.stub(model, 'penalizeLocalizerInterceptAltitude');
-    const result = model.judgeLocalizerInterception();
-
-    t.true(typeof result === 'undefined');
-    t.true(penalizeLocalizerInterceptAltitudeStub.notCalled);
-});
-
-ava('.judgeLocalizerInterception() does not call .penalizeLocalizerInterceptAltitude() when at or below glideslope', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const penalizeLocalizerInterceptAltitudeStub = sandbox.stub(model, 'penalizeLocalizerInterceptAltitude');
-
-    sandbox.stub(model, 'isAboveGlidepath', () => false);
-
-    const result = model.judgeLocalizerInterception();
-
-    t.true(typeof result === 'undefined');
-    t.true(penalizeLocalizerInterceptAltitudeStub.notCalled);
-});
-
-ava('.judgeLocalizerInterception() calls .penalizeLocalizerInterceptAltitude() when above glideslope', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const penalizeLocalizerInterceptAltitudeStub = sandbox.stub(model, 'penalizeLocalizerInterceptAltitude');
-
-    sandbox.stub(model, 'isAboveGlidepath', () => true);
-
-    const result = model.judgeLocalizerInterception();
-
-    t.true(typeof result === 'undefined');
-    t.true(penalizeLocalizerInterceptAltitudeStub.calledWithExactly());
-});
-
-ava('.penalizeLocalizerInterceptAltitude() records an event and notifies the user of their error', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const uiControllerUiLogStub = sandbox.stub(UiController, 'ui_log');
-    const gameControllerRecordEventStub = sandbox.stub(GameController, 'events_recordNew');
-    const expectedLogMessage = `${model.getCallsign()} intercepted localizer above glideslope`;
-    const result = model.penalizeLocalizerInterceptAltitude();
-
-    t.true(typeof result === 'undefined');
-    t.true(uiControllerUiLogStub.calledWithExactly(expectedLogMessage, true));
-    t.true(gameControllerRecordEventStub.calledWithExactly(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE));
-});
-
-ava('.penalizeLocalizerInterceptAngle() records an event and notifies the user of their error', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const uiControllerUiLogStub = sandbox.stub(UiController, 'ui_log');
-    const gameControllerRecordEventStub = sandbox.stub(GameController, 'events_recordNew');
-    const expectedLogMessage = `${model.getCallsign()} approach course intercept angle was greater than 30 degrees`;
-    const result = model.penalizeLocalizerInterceptAngle();
-
-    t.true(typeof result === 'undefined');
-    t.true(uiControllerUiLogStub.calledWithExactly(expectedLogMessage, true));
-    t.true(gameControllerRecordEventStub.calledWithExactly(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE));
-});
-
 ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const expectedResult = 3994.129742601768;
@@ -460,6 +400,9 @@ ava('.updateTarget() causes departures to comply with AT altitude restriction', 
 
     moveAircraftToFix(model, 'ROPPR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -473,6 +416,9 @@ ava('.updateTarget() causes departures to comply with ABOVE altitude restriction
 
     moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -487,6 +433,9 @@ ava('.updateTarget() causes departures to comply with BELOW altitude restriction
 
     moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -511,10 +460,13 @@ ava('.updateTarget() causes departures to climb to cruise altitude if there is n
 
     moveAircraftToFix(model, 'TRALR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 31000);
+    t.true(model.target.altitude === 19000);
 });
 
 ava('.updateTarget() causes arrivals to descend to the assigned altitude if the minimal altitude restriction is above the assigned altitude', (t) => {
@@ -535,10 +487,13 @@ ava('.updateTarget() causes departures to climb to cruise altitude if the maximu
 
     moveAircraftToFix(model, 'BIKKR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 31000);
+    t.true(model.target.altitude === 19000);
 });
 
 ava('.updateTarget() causes arrivals to climb to comply with minimal altitude restriction', (t) => {
@@ -561,6 +516,9 @@ ava('.updateTarget() causes departures to descend to comply with maximum altitud
 
     moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -585,6 +543,9 @@ ava('.updateTarget() causes departures to prioritize clearance over restriction'
 
     moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 7000);
     model.updateTarget();
 
@@ -592,7 +553,7 @@ ava('.updateTarget() causes departures to prioritize clearance over restriction'
 });
 
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
-    const expectedResult = [false, 'unable to taxi, we\'re airborne'];
+    const expectedResult = [false, 'unable to taxi, we\'re already airborne'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const arrivalResult = arrival.taxiToRunway(runwayModelMock);
 
@@ -605,6 +566,18 @@ ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
     t.deepEqual(departureResult, expectedResult);
 });
 
+ava('.taxiToRunway() returns an error when the aircraft is taking off', (t) => {
+    const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+
+    aircraftModel.fms.currentPhase = FLIGHT_PHASE.TAKEOFF;
+
+    const expectedResult = [false, 'unable to taxi, we\'re already taking off'];
+    const result = aircraftModel.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(result, expectedResult);
+    t.true(aircraftModel.flightPhase === FLIGHT_PHASE.TAKEOFF);
+});
+
 ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
     const expectedResult = [false, 'unable to taxi to runway, we have just landed'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
@@ -615,33 +588,12 @@ ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
     t.deepEqual(arrivalResult, expectedResult);
 });
 
-ava('.taxiToRunway() cancels IFR clearance if runway is invalid for the assigned SID', (t) => {
-    const expectedResult = [
-        true,
-        {
-            log: 'taxi to runway 01R',
-            say: 'taxi to runway zero one right'
-        }
-    ];
-    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
-    // BOACH6 is the only SID with an invalid runway
-    model.fms.replaceFlightPlanWithNewRoute('KLAS07R.BOACH6.HEC');
-    model.pilot.hasDepartureClearance = true;
-
-    const invalidRunway = airportModelFixture.getRunway('01R');
-
-    const result = model.taxiToRunway(invalidRunway);
-
-    t.deepEqual(result, expectedResult);
-    t.false(model.pilot.hasDepartureClearance);
-});
-
 ava('.taxiToRunway() returns a success message when finished', (t) => {
     const expectedResult = [
         true,
         {
-            log: 'taxi to runway 19L',
-            say: 'taxi to runway one niner left'
+            log: 'taxi to and hold short of Runway 19L',
+            say: 'taxi to and hold short of Runway one niner left'
         }
     ];
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);

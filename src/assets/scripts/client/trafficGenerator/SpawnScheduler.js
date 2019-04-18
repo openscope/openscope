@@ -3,6 +3,7 @@ import SpawnPatternCollection from './SpawnPatternCollection';
 import TimeKeeper from '../engine/TimeKeeper';
 import GameController from '../game/GameController';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { INVALID_NUMBER } from '../constants/globalConstants';
 
 /**
  * Used to create a game_timer for a `SpawnPatternModel` and provide
@@ -12,27 +13,52 @@ import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
  *
  * @class SpawnScheduler
  */
-export default class SpawnScheduler {
+class SpawnScheduler {
     /**
      * @constructor
      * @for SpawnScheduler
-     * @param spawnPatternCollection {SpawnPatternCollection}
      * @param aircraftController {AircraftController}
      */
-    constructor(spawnPatternCollection, aircraftController) {
-        if (!(spawnPatternCollection instanceof SpawnPatternCollection)) {
-            throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a SpawnPatternCollection.');
-        }
+    constructor() {
+        /**
+         * @property _aircraftController
+         * @type {AircraftController}
+         * @default null
+         * @private
+         */
+        this._aircraftController = null;
+    }
 
+    /**
+     * @for SpawnScheduler
+     * @method init
+     * @param aircraftController {AircraftController}
+     * @chainable
+     */
+    init(aircraftController) {
         if (typeof aircraftController === 'undefined') {
             throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftController to be defined.');
         }
 
+        this.aircraftController = aircraftController;
+
+        this.startScheduler();
+
+        return this;
+    }
+
+    /**
+     * Starts the scheduler and prespawns departures
+     *
+     * @for SpawnScheduler
+     * @method startScheduler
+     */
+    startScheduler() {
         // TODO: rename to createSchedulesWithTimer
-        this.createSchedulesFromList(spawnPatternCollection, aircraftController);
+        this.createSchedulesFromList();
         // TODO: create getter on collection to get all preSpawn including departures
         // TODO: create method `createPreSpawnDeparturesAndArrivals`
-        this.createPreSpawnDepartures(spawnPatternCollection, aircraftController);
+        this.createPreSpawnDepartures();
     }
 
     /**
@@ -40,21 +66,17 @@ export default class SpawnScheduler {
      *
      * @for SpawnScheduler
      * @method createSchedulesFromList
-     * @param spawnPatternCollection {SpawnPatternCollection}
-     * @param aircraftController {AircraftTypeDefinitionCollection}
      */
-    createSchedulesFromList(spawnPatternCollection, aircraftController) {
-        _forEach(spawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
+    createSchedulesFromList() {
+        _forEach(SpawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
             // set the #cycleStartTime for this `spawnPatternModel` with current game time
             spawnPatternModel.cycleStart(TimeKeeper.accumulatedDeltaTime);
-            spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
+            spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
 
             // TODO: abstract this to a class method on the `SpawnPatternModel`
-            if (
-                spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL &&
-                spawnPatternModel.preSpawnAircraftList.length > 0
-            ) {
-                aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
+            if (spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
+                && spawnPatternModel.preSpawnAircraftList.length > 0) {
+                this.aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
             }
         });
     }
@@ -70,16 +92,14 @@ export default class SpawnScheduler {
      *
      * @for SpawnScheduler
      * @method createPreSpawnDepartures
-     * @param spawnPatternCollection {SpawnPatternCollection}
-     * @param aircraftController {AircraftController}
      */
-    createPreSpawnDepartures(spawnPatternCollection, aircraftController) {
-        const departureModelsToPreSpawn = spawnPatternCollection.getDepartureModelsForPreSpawn();
+    createPreSpawnDepartures() {
+        const departureModelsToPreSpawn = SpawnPatternCollection.getDepartureModelsForPreSpawn();
 
         for (let i = 0; i < departureModelsToPreSpawn.length; i++) {
             const spawnPatternModel = departureModelsToPreSpawn[i];
 
-            aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+            this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
         }
     }
 
@@ -89,12 +109,58 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @method createNextSchedule
      * @param spawnPatternModel {SpawnPatternModel}
-     * @param aircraftController {AircraftTypeDefinitionCollection}
-     * @return {function}
+     * @return {array}
      */
-    createNextSchedule(spawnPatternModel, aircraftController) {
+    createNextSchedule(spawnPatternModel) {
         const delay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
 
+        return this._createTimeout(spawnPatternModel, delay);
+    }
+
+    /**
+     * Resets the timer for a specific spawn pattern
+     *
+     * @for SpawnScheduler
+     * @method resetTimer
+     * @param spawnPatternModel {SpawnPatternModel}
+     */
+    resetTimer(spawnPatternModel) {
+        let timePassed = 0;
+        const { scheduleId } = spawnPatternModel;
+
+        if (scheduleId && scheduleId !== INVALID_NUMBER) {
+            GameController.destroyTimer(spawnPatternModel.scheduleId);
+
+            const timerStart = spawnPatternModel.scheduleId[1] - spawnPatternModel.scheduleId[3];
+            timePassed = TimeKeeper.accumulatedDeltaTime - timerStart;
+            spawnPatternModel.scheduleId = null;
+        }
+
+        if (spawnPatternModel.rate <= 0) {
+            return;
+        }
+
+        let nextDelay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
+
+        if (timePassed < nextDelay) {
+            nextDelay -= timePassed;
+        } else {
+            this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+        }
+
+        spawnPatternModel.scheduleId = this._createTimeout(spawnPatternModel, nextDelay);
+    }
+
+    /**
+     * Registers a new timeout, its callback and callback arguments with the `GameController`
+     *
+     * @for SpawnScheduler
+     * @method _createTimeout
+     * @param spawnPatternModel {SpawnPatternModel}
+     * @param delay {number} time in seconds
+     * @return {array}
+     */
+    _createTimeout(spawnPatternModel, delay) {
         return GameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,
             // lifespan of timeout
@@ -102,7 +168,7 @@ export default class SpawnScheduler {
             // passing null only to match existing api
             null,
             // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
-            [spawnPatternModel, aircraftController]
+            [spawnPatternModel, this.aircraftController]
         );
     }
 
@@ -125,6 +191,9 @@ export default class SpawnScheduler {
 
         aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
 
-        this.createNextSchedule(spawnPatternModel, aircraftController);
+        spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
     };
 }
+
+
+export default new SpawnScheduler();

@@ -22,7 +22,7 @@ import { speech_say } from '../speech';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { EVENT } from '../constants/eventNames';
+import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
 import {
     INVALID_INDEX,
     REGEX
@@ -75,8 +75,8 @@ export default class AircraftController {
     constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
-                `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. '
+                + `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
@@ -383,16 +383,35 @@ export default class AircraftController {
     }
 
     /**
+     * Finds an aircraft by its callsign
+     *
      * @method findAircraftByCallsign
-     * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
+     * @param  {string} callsign
+     * @return {AircraftModel}
      */
-    findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
+    findAircraftByCallsign(callsign) {
+        if (!callsign) {
+            return;
         }
 
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+        const normalizedCallsign = callsign.toUpperCase();
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign === normalizedCallsign);
+    }
+
+    /**
+     * Finds an aircraft by its internal id
+     *
+     * @method findAircraftById
+     * @param  {string} id
+     * @return {AircraftModel}
+     */
+    findAircraftById(id) {
+        if (!id) {
+            return;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.id === id);
     }
 
     /**
@@ -421,7 +440,7 @@ export default class AircraftController {
     /**
      * @method debug
      * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
+     * @return {AircraftModel}
      */
     debug(callsign = '') {
         return this.findAircraftByCallsign(callsign);
@@ -584,7 +603,7 @@ export default class AircraftController {
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
         // airspace can safely enter controlled airspace properly
-        let altitude = spawnPatternModel.altitude;
+        let { altitude } = spawnPatternModel;
 
         if (isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL) {
             altitude = Math.min(18000, altitude);
@@ -713,7 +732,10 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isDiscreteTransponderCode(transponderCode) {
-        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === INVALID_INDEX;
+        const isValidCode = this._isValidTransponderCode(transponderCode);
+        const isReservedCode = RESERVED_SQUAWK_CODES.indexOf(transponderCode) !== INVALID_INDEX;
+
+        return isValidCode && !isReservedCode;
     }
 
     /**
@@ -834,15 +856,16 @@ export default class AircraftController {
     _updateAircraftVisibility(aircraftModel) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
         if (aircraftModel.isArrival() && aircraftModel.isStopped()) {
-            // TODO: move this to the GAME_EVENTS constant
-            // TODO: move this out of the aircraft model
-            aircraftModel.scoreWind('landed');
+            EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
 
             UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
-            speech_say([
-                { type: 'callsign', content: aircraftModel },
-                { type: 'text', content: ', switching to ground, good day' }
-            ]);
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraftModel },
+                    { type: 'text', content: ', switching to ground, good day' }
+                ],
+                aircraftModel.pilotVoice
+            );
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
             aircraftModel.setIsFlightStripRemovable();
@@ -857,10 +880,13 @@ export default class AircraftController {
             aircraftModel.setIsFlightStripRemovable();
             aircraftModel.setIsRemovable();
 
-            speech_say([
-                { type: 'callsign', content: aircraftModel },
-                { type: 'text', content: ', radar contact lost' }
-            ]);
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraftModel },
+                    { type: 'text', content: ', radar contact lost' }
+                ],
+                aircraftModel.pilotVoice
+            );
         }
 
         // Clean up the screen from aircraft that are too far

@@ -11,8 +11,11 @@
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
     "position": ["N38.17408043168461", "W85.736480707038", "501ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N38.17408043168461", "W85.736480707038"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [38.17408043168461, -85.736480707038],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 220,
@@ -21,7 +24,7 @@
     "arrivalRunway": "17L",
     "departureRunway": "17R",
     "airspace": [
-        { 
+        {
             "floor": 0,
             "ceiling": 100,
             "airspace_class": "C",

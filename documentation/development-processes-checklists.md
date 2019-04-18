@@ -16,7 +16,6 @@ _Note: Except on the first merge of a hotfix/bugfix/feature branch, please alway
 
 In total, each sprint cycle will include the following actions in the following order:
 
-1. [Initialization Phase Checklist](#initialization-phase-checklist)
 1. [Sprint Closeout Procedure](#sprint-closeout-procedure)
 1. [Before Development Phase Checklist](#before-development-phase-checklist)
 1. Proceed with development in accordance with the [Development Procedures](#development-procedures)
@@ -24,14 +23,6 @@ In total, each sprint cycle will include the following actions in the following 
 1. [Release Procedure](#release-procedure)
 
 ---
-
-### Initialization Phase Checklist
-1. Checkout `develop`.
-1. Commit with `ARCH - Prepare CHANGELOG and set beta version for upcoming sprint` and push.
-    - Set version number to planned number for this sprint, plus `-BETA`, eg `v#.#.#-BETA`.
-    - Prepare changelog for next sprint by adding sections and whitespace.
-
-_Only hotfix branches may be merged (to `master --> develop`) during this phase. Always add tags and release notes with each hotfix._
 
 ### Sprint Closeout Procedure
 1. Clean up sprint board and milestone.
@@ -93,10 +84,17 @@ _Only bugfix branches may be merged (to `release/#.#.# --> develop`) during this
     - Use commit message `ARCH - Finalize CHANGELOG and set version number for v#.#.# release`
 1. Merge `release/#.#.#` into `master` by accepting the existing pull request for the `release/#.#.#` branch.
     - Include summary of `Deploy v#.#.# (#[PRNumber])`.
-1. Checkout `master` locally and create and push a new version tag.
+1. Checkout `master`.
+1. Create and push a new version tag.
     - `git tag v#.#.#` and `git push origin v#.#.#`
 1. On the repository's [tags](https://github.com/openscope/openscope/tags) page, find the newly created tag and add release notes.
     - Include title of the version number, eg `v#.#.#`.
     - Include a description copied from the `CHANGELOG`.
-1. Merge `master` into `develop` with `git merge master` (results in a FF) and push.
 1. On Heroku, change staging app to maintenance mode.
+1. Checkout `develop`.
+1. Merge `master` into `develop` with `git merge master` (results in a FF).
+1. Commit with `ARCH - Prepare CHANGELOG and set beta version for upcoming sprint` and push.
+    - Set version number to planned number for this sprint, plus `-BETA`, eg `v#.#.#-BETA`.
+    - Prepare changelog for next sprint by adding sections and whitespace.
+
+_Only hotfix branches may be merged (to `master --> develop`) during the initialization phase. Always add tags and release notes with each hotfix._
