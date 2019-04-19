@@ -30,7 +30,6 @@ export const TIME = {
 export const REGEX = {
     COMPASS_DIRECTION: /^[NESW]/,
     DOUBLE_DOT: /\.\./g,
-    FOUR_DIGIT_OCTAL: /[0-7]{4}/g,
     LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
     SW: /[SW]/,
     SINGLE_DOT: /\./g,

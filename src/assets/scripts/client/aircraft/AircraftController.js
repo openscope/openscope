@@ -719,7 +719,7 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isValidTransponderCode(transponderCode) {
-        return REGEX.FOUR_DIGIT_OCTAL.test(transponderCode);
+        return REGEX.TRANSPONDER_CODE.test(transponderCode);
     }
 
     /**
