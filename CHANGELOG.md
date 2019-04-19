@@ -1,6 +1,7 @@
 # 6.12.2 (April 15, 2019)
 ### Hotfixes
 - [#943](https://github.com/openscope/openscope/issues/943) - Fix random spawn calculations to ensure arrivals are available quickly
+- [#1355](https://github.com/openscope/openscope/issues/1355) - Ensure LSZH arrivals descend properly
 
 
 # 6.12.1 (April 4, 2019)

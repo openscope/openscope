@@ -726,7 +726,7 @@
             "icao": "BERSU1G",
             "name": "Bersu One Golf",
             "entryPoints": {
-                "BERSU": ["BERSU"]
+                "BERSU": [["BERSU", "A100"]]
             },
             "body": ["TADOB", ["ERMUS", "A80+"], ["@GIPOL", "A70+"]],
             "rwy": {
@@ -747,7 +747,7 @@
             "entryPoints": {
                 "BLM": [["BLM", "A200-"]]
             },
-            "body": [["ZH677", "A120+"], ["@GIPOL", "A70+"]],
+            "body": [["ZH677", "A120+|A130-"], ["@GIPOL", "A70+"]],
             "rwy": {
                 "LSZH10": [],
                 "LSZH14": [],
@@ -764,7 +764,7 @@
             "icao": "DOPIL1G",
             "name": "Dopil One Golf",
             "entryPoints": {
-                "DOPIL": ["DOPIL"]
+                "DOPIL": [["DOPIL", "A90-"]]
             },
             "body": ["NOLKA", ["ERMUS", "A80+"], ["@GIPOL", "A70+"]],
             "rwy": {
@@ -783,7 +783,7 @@
             "icao": "HOC1G",
             "name": "Hochwald One Golf",
             "entryPoints": {
-                "HOC": ["HOC"]
+                "HOC": [["HOC", "A110-"]]
             },
             "body": [["GIPOL", "A70+"]],
             "rwy": {
@@ -804,7 +804,7 @@
             "entryPoints": {
                 "KELIP": ["KELIP"]
             },
-            "body": [["MOSIT", "A140+"], ["ZH628", "A100+"], "ZH627", "KLO", ["@GIPOL", "A70+"]],
+            "body": [["MOSIT", "A140+"], ["ZH628", "A100"], "ZH627", "KLO", ["@GIPOL", "A70+"]],
             "rwy": {
                 "LSZH10": [],
                 "LSZH14": [],
@@ -822,7 +822,7 @@
             "name": "Negra One Alpha",
             "entryPoints": {
                 "NEGRA": [],
-                "RAVED": ["RAVED", "ETOXU"]
+                "RAVED": [["RAVED", "A190-"], "ETOXU"]
             },
             "body": ["NEGRA", "MATIV", ["@AMIKI", "A70+"]],
             "rwy": {
@@ -841,7 +841,7 @@
             "icao": "RILAX1A",
             "name": "Rilax One Alpha",
             "entryPoints": {
-                "RILAX": ["RILAX"]
+                "RILAX": [["RILAX", "A100-"]]
             },
             "body": [],
             "rwy": {
@@ -898,7 +898,7 @@
             "icao": "WIL2Z",
             "name": "Willisau Two Zulu",
             "entryPoints": {
-                "WIL": ["WIL"]
+                "WIL": [["WIL", "A130"]]
             },
             "body": [["@GIPOL", "A70+"]],
             "rwy": {
@@ -1220,7 +1220,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "LUL.G42.BLM.BLM2G.LSZH14",
-            "altitude": 28000,
+            "altitude": 23000,
             "speed": 290,
             "method": "random",
             "rate": 5.175,
@@ -1251,7 +1251,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "KORED.UN871.BERSU.BERSU1G.LSZH14",
-            "altitude": [23000, 25000],
+            "altitude": 10000,
             "speed": 290,
             "method": "random",
             "rate": 2.3,
@@ -1271,7 +1271,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "LAMUR.Z57.DOPIL.DOPIL1G.LSZH14",
-            "altitude": [25000, 27000],
+            "altitude": 21000,
             "speed": 290,
             "method": "random",
             "rate": 1.725,
@@ -1291,7 +1291,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "LUL.UL613.HOC.HOC1G.LSZH14",
-            "altitude": [28000, 32000],
+            "altitude": 21000,
             "speed": 290,
             "method": "random",
             "rate": 1.98,
@@ -1321,7 +1321,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "CANNE.UZ651.KELIP.KELIP2G.LSZH14",
-            "altitude": [30000, 39000],
+            "altitude": 22000,
             "speed": 290,
             "method": "random",
             "rate": 2.5875,
@@ -1340,7 +1340,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "KOGOL.UL608.KPT.UL856.RAVED.NEGRA1A.LSZH14",
-            "altitude": [30000, 39000],
+            "altitude": 30000,
             "speed": 290,
             "method": "random",
             "rate": 4.83,
@@ -1382,7 +1382,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "SUNEG.T721.RILAX.RILAX1A.LSZH14",
-            "altitude": [31000, 39000],
+            "altitude": 26000,
             "speed": 290,
             "method": "random",
             "rate": 4.3125,
@@ -1412,7 +1412,7 @@
             "destination": "LSZH",
             "category": "arrival",
             "route": "SPR.G5.WIL.WIL2Z.LSZH14",
-            "altitude": [31000, 39000],
+            "altitude": 25000,
             "speed": 290,
             "method": "random",
             "rate": 0.23,
