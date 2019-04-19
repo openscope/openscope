@@ -5,6 +5,7 @@
 ### Bugfixes
 - [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft Not Squawking Assigned Code
 
+
 ### Enhancements & Refactors
 
 
