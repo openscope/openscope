@@ -2002,24 +2002,7 @@
             "altitude": [23000, 27000],
             "speed": 300,
             "method": "cyclic",
-            "rate": 2,
-            "airlines": [
-                ["aca", 7],
-                ["dal", 2],
-                ["poe", 5],
-                ["ual", 3],
-                ["wja", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "CYOW",
-            "category": "arrival",
-            "route": "ELSUB.CAPTL4.CYOW32",
-            "altitude": [24000, 25000],
-            "speed": 300,
-            "method": "cyclic",
-            "rate": 1,
+            "rate": 3,
             "airlines": [
                 ["aca", 7],
                 ["dal", 2],
@@ -2036,24 +2019,11 @@
             "altitude": [18000, 24000],
             "speed": 300,
             "method": "cyclic",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["aca/long", 12],
                 ["aal", 1],
                 ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "CYOW",
-            "category": "arrival",
-            "route": "BUGSY.DEANS8.CYOW32",
-            "altitude": [18000, 21000],
-            "speed": 300,
-            "method": "cyclic",
-            "rate": 1,
-            "airlines": [
-                ["aca/long", 12]
             ]
         },
         {
