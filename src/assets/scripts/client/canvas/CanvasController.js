@@ -3,7 +3,6 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _filter from 'lodash/filter';
 import _has from 'lodash/has';
 import _inRange from 'lodash/inRange';
-import _map from 'lodash/map';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
@@ -555,15 +554,13 @@ export default class CanvasController {
         const textHeight = 14;
 
         cc.save();
-        cc.translate(runwayPosition.x, runwayPosition.y);
-        cc.rotate(angle);
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
-        cc.save();
+        cc.translate(runwayPosition.x, runwayPosition.y);
+        cc.rotate(angle);
         cc.translate(0, length2 + textHeight);
         cc.rotate(-angle);
         cc.fillText(runwayModel.name, 0, 0);
-        cc.restore();
         cc.restore();
     }
 
@@ -866,16 +863,17 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      * @param position {array<number, number>} position coordinates (in km)
      * @param labels {array}
+     * @param lineHeight {number} in pixel
      * @private
      */
-    _drawText(cc, position, labels) {
+    _drawText(cc, position, labels, lineHeight = 15) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
         const dx = cc.textAlign === 'right' ? -10 : 10;
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
             const positionX = positionInPx.x + dx;
-            const positionY = positionInPx.y + (15 * k);
+            const positionY = positionInPx.y + (lineHeight * k);
 
             cc.fillText(textItem, positionX, positionY);
         }
@@ -1675,6 +1673,9 @@ export default class CanvasController {
      * @private
      */
     _drawAirspaceAndRangeRings(cc) {
+        const airport = AirportController.airport_get();
+        const rangeRingRadius = this._calculateRangeRingRadius(airport);
+
         cc.save();
         // translate to airport center
         // TODO: create method in CanvasStageModel to returns an array with these values
@@ -1682,22 +1683,6 @@ export default class CanvasController {
             round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
             round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
         );
-
-        this._drawAirspaceWithRangeRings(cc);
-        cc.restore();
-    }
-
-    /**
-     * Draw polygonal airspace border
-     *
-     * @for CanvasController
-     * @method _drawAirspaceWithRangeRings
-     * @param cc {HTMLCanvasContext}
-     * @private
-     */
-    _drawAirspaceWithRangeRings(cc) {
-        const airport = AirportController.airport_get();
-        const rangeRingRadius = this._calculateRangeRingRadius(airport);
 
         // draw airspaces
         for (let i = 0; i < airport.airspace.length; i++) {
@@ -1710,25 +1695,65 @@ export default class CanvasController {
 
             this._drawPoly(cc, airspace.relativePoly, false);
 
-            if (rangeRingRadius === 0) {
-                // prevent infinite loop
-                continue;
-            }
+            // prevent infinite loop when rangeRingRadius is 0
+            if (rangeRingRadius > 0) {
+                cc.clip();
 
-            cc.clip();
+                // cc.linewidth = 1;
+                cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
 
-            // cc.linewidth = 1;
-            cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-
-            // Fill up airportModel's ctr_radius with rings of the specified radius
-            for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
-                cc.beginPath();
-                cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
-                cc.stroke();
+                // Fill up airportModel's ctr_radius with rings of the specified radius
+                for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
+                    cc.beginPath();
+                    cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
+                    cc.stroke();
+                }
             }
 
             cc.restore();
         }
+
+
+        cc.fillStyle = 'rgba(224, 128, 128, 1.0)';
+        cc.font = '20px monoOne, monospace';
+        cc.textAlign = 'center';
+        cc.textBaseline = 'middle';
+
+        const lineHeight = 20;
+
+        for (let i = 0; i < airport.airspace.length; i++) {
+            const airspace = airport.airspace[i];
+            const airspaceCenter = this._calculateAirspaceCenter(airspace);
+            const transformedX = CanvasStageModel.translateKilometersToPixels(airspaceCenter.x);
+            const transformedY = -CanvasStageModel.translateKilometersToPixels(airspaceCenter.y);
+
+            cc.fillText(`Airspace ${i} (${airspace.airspace_class})`, transformedX, transformedY);
+            cc.fillText(`${airspace.ceiling}`, transformedX, transformedY + 1 * lineHeight);
+            cc.fillText(`${airspace.floor}`, transformedX, transformedY + 2 * lineHeight);
+        }
+
+        cc.restore();
+    }
+
+    _calculateAirspaceCenter(airspace) {
+        let minX = Number.MAX_VALUE;
+        let minY = Number.MAX_VALUE;
+        let maxX = Number.MIN_VALUE;
+        let maxY = Number.MIN_VALUE;
+
+        for (let i = 0; i < airspace.relativePoly.length; i++) {
+            const point = airspace.relativePoly[i];
+
+            minX = Math.min(minX, point[0]);
+            maxX = Math.max(maxX, point[0]);
+            minY = Math.min(minY, point[1]);
+            maxY = Math.max(maxY, point[1]);
+        }
+
+        return {
+            x: (minX + maxX) * 0.5,
+            y: (minY + maxY) * 0.5
+        };
     }
 
     /**
@@ -1766,11 +1791,11 @@ export default class CanvasController {
         cc.beginPath();
 
         for (let i = 0; i < poly.length; i++) {
-            const singlePoly = poly[i];
+            const point = poly[i];
 
             cc.lineTo(
-                CanvasStageModel.translateKilometersToPixels(singlePoly[0]),
-                -CanvasStageModel.translateKilometersToPixels(singlePoly[1])
+                CanvasStageModel.translateKilometersToPixels(point[0]),
+                -CanvasStageModel.translateKilometersToPixels(point[1])
             );
         }
 
