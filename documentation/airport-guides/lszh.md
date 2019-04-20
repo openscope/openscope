@@ -32,7 +32,7 @@ Flugplatz St. Gallen-Altenrhein (St. Gallen–Altenrhein Airport)
 26,382 annual operations (2016)  
 40nm to the east of LSZH  
 
-St. Gallen–Altenrhein Airport is a small airport in Altenrhein in the Canton of St. Gallen, Switzerland near Lake Constance. It is also known under its trading name People's Business Airport and is the home base for People's Viennaline. 
+St. Gallen–Altenrhein Airport is a small airport in Altenrhein in the Canton of St. Gallen, Switzerland near Lake Constance. It is also known under its trading name People's Business Airport and is the home base for People's Viennaline.
 
 
 #### EDNY
@@ -40,7 +40,7 @@ Flughafen Friedrichshafen (Friedrichshafen Airport)
 42,374 annual operations (2016)  
 43nm to the east of LSZH  
 
-Friedrichshafen Airport is a minor international airport 1.9 miles (3 km) north of Friedrichshafen, Germany, on the banks of Lake Constance (German: Bodensee). It is the third biggest airport in the German state of Baden-Württemberg after Stuttgart and Karlsruhe/Baden-Baden and served 559,985 passengers in 2015. Friedrichshafen features flights to European metropolitan and leisure destinations. Due to its proximity to the Austrian Alps it is also heavily used during the winter by skiing tourists. 
+Friedrichshafen Airport is a minor international airport 1.9 miles (3 km) north of Friedrichshafen, Germany, on the banks of Lake Constance (German: Bodensee). It is the third biggest airport in the German state of Baden-Württemberg after Stuttgart and Karlsruhe/Baden-Baden and served 559,985 passengers in 2015. Friedrichshafen features flights to European metropolitan and leisure destinations. Due to its proximity to the Austrian Alps it is also heavily used during the winter by skiing tourists.
 
 
 #### LSME
@@ -55,6 +55,18 @@ Militärflugplatz Dübendorf (Dübendorf Military Air Base)
 5nm to the south of LSZH  
 
 Today Dübendorf AFB is the home of Lufttransportstaffel 3 and Lufttransportstaffel 4 (Air Transport squadron 3 and 4) with Eurocopter EC635, Eurocopter AS332 Super Puma, Eurocopter AS532 Cougar, De Havilland Canada Twin Otter, Beechcraft 1900 and Beechcraft Super King Air. Dübendorf is, together with Locarno AFB, the home base of the PC-7 Team and the Superpuma/cougar Displayteam. Other Swiss military aircraft such as the Pilatus PC-6 Turbo-Porter and Pilatus PC-9 are often seen in Dübendorf.
+
+### Deviations from Reality
+In order to force aircraft to descend into our airspace:
+- BLM2G STAR amended to include an altitude restriction at `ZH677` of 120-130.
+- BERSU1G STAR amended to include an altitude restriction at `BERSU` of 100.
+- DOPIL1G STAR amended to include an altitude restriction at `DOPIL` of AOB 90.
+- HOC1G STAR amended to include an altitude restriction at `HOC` of AOB 110.
+- KELIP2G STAR amended to include an altitude restriction at `ZH628` of 100.
+- NEGRA1A STAR amended to include an altitude restriction at `RAVED` of AOB 190.
+- RILAX1A STAR amended to include an altitude restriction at `RILAX` of AOB 100.
+- WIL2Z STAR amended to include an altitude restriction at `WIL` of 130.
+
 
 ### Additional Resources
 VATSIM Charts (http://www.vacc.ch/en/airports_and_charts/)

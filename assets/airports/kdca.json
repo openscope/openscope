@@ -1347,7 +1347,7 @@
             "entryPoints": {
                 "MXE": ["MXE", "NUGGY", "TROYZ", "BELAY", "TRISH"]
             },
-            "body": ["CLIPR", ["BAL", "S250"], "EYESS"],
+            "body": ["CLIPR", "BAL", "EYESS"],
             "rwy": {
                 "KDCA1": ["BRUNC", "FELTY", "HITEK", "^CAVDI", "#187"],
                 "KDCA19": ["EDDWD", "MEGGS", "^NAYES", "#327"]
@@ -1750,16 +1750,19 @@
             "altitude": 13000,
             "speed": 250,
             "method": "random",
-            "rate": 4.02,
+            "rate": 5,
             "airlines": [
                 ["aal", 6],
                 ["asq", 2],
                 ["edv", 2],
                 ["jbu", 4],
                 ["jia", 2],
+                ["jia", 2],
+                ["jza", 1],
                 ["jza", 1],
                 ["lof", 5],
-                ["rpa", 12]
+                ["rpa", 12],
+                ["skv", 2]
             ]
         },
         {
@@ -1812,23 +1815,6 @@
             "rate": 0.09,
             "airlines": [
                 ["rpa", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KDCA",
-            "category": "arrival",
-            "route": "PSB.SKILS4.KDCA1",
-            "altitude": 30000,
-            "speed": 300,
-            "method": "random",
-            "rate": 0.98,
-            "airlines": [
-                ["jia", 2],
-                ["jza", 1],
-                ["lof", 3],
-                ["rpa", 3],
-                ["skv", 2]
             ]
         },
         {

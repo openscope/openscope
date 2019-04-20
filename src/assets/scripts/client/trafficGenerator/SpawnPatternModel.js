@@ -579,6 +579,50 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Used to determine if this spawn pattern will spawn aircraft in the air instead of on the ground
+     *
+     * @for SpawnPatternModel
+     * @method isAirborneAtSpawn
+     * @return {boolean}
+     */
+    isAirborneAtSpawn() {
+        return this.isArrival() || this.isOverflight();
+    }
+
+    /**
+     * Used to determine if this spawn pattern is for an arrival
+     *
+     * @for SpawnPatternModel
+     * @method isArrival
+     * @return {boolean}
+     */
+    isArrival() {
+        return this.category === FLIGHT_CATEGORY.ARRIVAL;
+    }
+
+    /**
+     * Used to determine if this spawn pattern is for an departing aircraft
+     *
+     * @for SpawnPatternModel
+     * @method isDeparture
+     * @return {boolean}
+     */
+    isDeparture() {
+        return this.category === FLIGHT_CATEGORY.DEPARTURE;
+    }
+
+    /**
+     * Used to determine if this spawn pattern is for an overflight
+     *
+     * @for SpawnPatternModel
+     * @method isOverflight
+     * @return {boolean}
+     */
+    isOverflight() {
+        return this.category === FLIGHT_CATEGORY.OVERFLIGHT;
+    }
+
+    /**
      *
      *
      * @for SpawnPatternModel
@@ -945,7 +989,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @param spawnPatternJson {object}
      */
     _buildPreSpawnAircraft(spawnPatternJson) {
-        if (this._isDeparture()) {
+        if (this.isDeparture()) {
             // TODO: this may be dead, please remove if it is
             const preSpawnDepartureAircraft = [{
                 type: 'departure'
@@ -1013,41 +1057,5 @@ export default class SpawnPatternModel extends BaseModel {
         );
 
         return selfReferencingPosition;
-    }
-
-    /**
-     * Used to determine if this spawn pattern is for an arriving aircraft
-     *
-     * @for SpawnPatternModel
-     * @method _isArrival
-     * @return {boolean}
-     * @private
-     */
-    _isArrival() {
-        return this.category === FLIGHT_CATEGORY.ARRIVAL;
-    }
-
-    /**
-     * Used to determine if this spawn pattern is for an departing aircraft
-     *
-     * @for SpawnPatternModel
-     * @method _isDeparture
-     * @return {boolean}
-     * @private
-     */
-    _isDeparture() {
-        return this.category === FLIGHT_CATEGORY.DEPARTURE;
-    }
-
-    /**
-     * Used to determine if this spawn pattern is for an overflight aircraft
-     *
-     * @for SpawnPatternModel
-     * @method _isOverFlight
-     * @return {boolean}
-     * @private
-     */
-    _isOverflight() {
-        return this.category === FLIGHT_CATEGORY.OVERFLIGHT;
     }
 }
