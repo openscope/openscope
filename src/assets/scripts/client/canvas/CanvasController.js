@@ -1713,9 +1713,8 @@ export default class CanvasController {
             cc.restore();
         }
 
-
         cc.fillStyle = 'rgba(224, 128, 128, 1.0)';
-        cc.font = '20px monoOne, monospace';
+        cc.font = '16px monoOne, monospace';
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
@@ -1723,9 +1722,8 @@ export default class CanvasController {
 
         for (let i = 0; i < airport.airspace.length; i++) {
             const airspace = airport.airspace[i];
-            const airspaceCenter = this._calculateAirspaceCenter(airspace);
-            const transformedX = CanvasStageModel.translateKilometersToPixels(airspaceCenter.x);
-            const transformedY = -CanvasStageModel.translateKilometersToPixels(airspaceCenter.y);
+            const transformedX = CanvasStageModel.translateKilometersToPixels(airspace.labelPosition.x);
+            const transformedY = -CanvasStageModel.translateKilometersToPixels(airspace.labelPosition.y);
 
             cc.fillText(`Airspace ${i} (${airspace.airspace_class})`, transformedX, transformedY);
             cc.fillText(`${airspace.ceiling}`, transformedX, transformedY + 1 * lineHeight);
@@ -1733,27 +1731,6 @@ export default class CanvasController {
         }
 
         cc.restore();
-    }
-
-    _calculateAirspaceCenter(airspace) {
-        let minX = Number.MAX_VALUE;
-        let minY = Number.MAX_VALUE;
-        let maxX = Number.MIN_VALUE;
-        let maxY = Number.MIN_VALUE;
-
-        for (let i = 0; i < airspace.relativePoly.length; i++) {
-            const point = airspace.relativePoly[i];
-
-            minX = Math.min(minX, point[0]);
-            maxX = Math.max(maxX, point[0]);
-            minY = Math.min(minY, point[1]);
-            maxY = Math.max(maxY, point[1]);
-        }
-
-        return {
-            x: (minX + maxX) * 0.5,
-            y: (minY + maxY) * 0.5
-        };
     }
 
     /**

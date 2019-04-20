@@ -78,6 +78,16 @@ export default class AirspaceModel extends BaseModel {
          */
         this.airspace_class = '';
 
+        /**
+         * Position of the label of the airspace on the screen
+         *
+         * @for AirspaceModel
+         * @property labelPosition
+         * @type {object} x,y in km
+         * @default null
+         */
+        this.labelPosition = null;
+
         return this._init(airspace, airportPosition, magneticNorth);
     }
 
@@ -89,6 +99,7 @@ export default class AirspaceModel extends BaseModel {
      * @param airspace {array}
      * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
+     * @chainable
      * @private
      */
     _init(airspace, airportPosition, magneticNorth) {
@@ -99,7 +110,38 @@ export default class AirspaceModel extends BaseModel {
 
         this.transformPoly();
 
+        this.labelPosition = airspace.labelPosition !== undefined ? airspace.labelPosition : this._calculateLabelPosition();
+
         return this;
+    }
+
+    /**
+     * Calculates the center of the airspace
+     *
+     * @for _calculateLabelPosition
+     * @method _calculateLabelPosition
+     * @returns {object} {x,y} coordinates in km
+     * @private
+     */
+    _calculateLabelPosition() {
+        let minX = Number.MAX_VALUE;
+        let minY = Number.MAX_VALUE;
+        let maxX = Number.MIN_VALUE;
+        let maxY = Number.MIN_VALUE;
+
+        for (let i = 0; i < this.relativePoly.length; i++) {
+            const point = this.relativePoly[i];
+
+            minX = Math.min(minX, point[0]);
+            maxX = Math.max(maxX, point[0]);
+            minY = Math.min(minY, point[1]);
+            maxY = Math.max(maxY, point[1]);
+        }
+
+        return {
+            x: (minX + maxX) * 0.5,
+            y: (minY + maxY) * 0.5
+        };
     }
 
     /**
