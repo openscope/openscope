@@ -1387,27 +1387,11 @@
             "origin": "",
             "destination": "ENGM",
             "category": "arrival",
-            "route": "UTUNA.M609.BELGU.BELGU3L.ENGM01L",
-            "altitude": 18000,
-            "speed": 320,
-            "method": "random",
-            "rate": 0.8,
-            "airlines": [
-                ["bcy/SAS", 3],
-                ["ibk", 8],
-                ["nax", 8],
-                ["sas", 8]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "ENGM",
-            "category": "arrival",
             "route": "GIGIR.Z313.BELGU.BELGU3L.ENGM01L",
             "altitude": 18000,
             "speed": 320,
             "method": "random",
-            "rate": 1.5,
+            "rate": 2.3,
             "airlines": [
                 ["bcy/SAS", 3],
                 ["ibk", 8],
@@ -1485,24 +1469,7 @@
             "altitude": 18000,
             "speed": 320,
             "method": "random",
-            "rate": 1.2,
-            "airlines": [
-                ["bcy/SAS", 3],
-                ["ibk", 8],
-                ["nax", 8],
-                ["ryr", 3],
-                ["sas", 8]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "ENGM",
-            "category": "arrival",
-            "route": "PIPEX.M609.RIPAM.RIPAM3L.ENGM01L",
-            "altitude": 18000,
-            "speed": 320,
-            "method": "random",
-            "rate": 2.5,
+            "rate": 3.7,
             "airlines": [
                 ["afr", 2],
                 ["baw", 4],

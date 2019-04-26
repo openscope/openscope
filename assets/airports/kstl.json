@@ -1441,45 +1441,6 @@
             "airlines": [
                 ["kap", 5]
             ]
-        },
-        {
-            "origin": "",
-            "destination": "kstl",
-            "category": "arrival",
-            "route": "PXV.QBALL1.KSTL29",
-            "altitude": [8000, 11000],
-            "speed": 180,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["kap", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kstl",
-            "category": "arrival",
-            "route": "SGF.KOOOP1.KSTL29",
-            "altitude": [7000, 10000],
-            "speed": 180,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["kap", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kstl",
-            "category": "arrival",
-            "route": "IRK.RIVRS5.KSTL30R",
-            "altitude": [8000, 11000],
-            "speed": 180,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["kap", 5]
-            ]
         }
     ],
     "maps": {

@@ -987,20 +987,7 @@
             "destination": "LROP",
             "category": "arrival",
             "route": "CND.L5.NETUL.NETUL2U.LROP08R",
-            "altitude":  [15000, 17000],
-            "speed": 320,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["rot", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LROP",
-            "category": "arrival",
-            "route": "CND.M747.IDARU.IDARU2U.LROP08R",
-            "altitude":  [15000, 17000],
+            "altitude":  16000,
             "speed": 320,
             "method": "random",
             "rate": 1,
