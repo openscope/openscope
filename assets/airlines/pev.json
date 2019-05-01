@@ -1,6 +1,6 @@
 {
     "icao": "pev",
-    "name": "People's",
+    "name": "Peoples Viennaline",
     "callsign": {
         "name": "Peoples",
         "callsignFormats": [
@@ -9,6 +9,9 @@
     },
     "fleets": {
         "default": [
+            ["E170", 2]
+        ],
+        "e170": [
             ["E170", 2]
         ]
     }

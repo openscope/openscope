@@ -1037,7 +1037,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1117,7 +1116,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1197,7 +1195,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1277,7 +1274,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1357,7 +1353,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1437,7 +1432,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1517,7 +1511,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1597,7 +1590,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1677,7 +1669,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["ein",   2],
                 ["afl",   1],
@@ -1945,7 +1936,6 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["asl",   1],
                 ["aza",   2],
@@ -1989,7 +1979,6 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["adr",   2],
                 ["aee",   1],
                 ["asl",   1],
                 ["aza",   2],
