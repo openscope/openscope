@@ -1714,20 +1714,6 @@
                 ["BALAD*", "WW964", "WW956", "WW954", "WW953", "WW952", "WW951"]
             ]
         },
-        "BALAD1U": {
-            "icao": "BALAD1U",
-            "name": "Balad One Uniform Transition",
-            "entryPoints": {
-                "BALAD": ["BALAD", "A080+"]
-            },
-            "body": [["WW054", "A050+"], ["WW052", "A040+"]],
-            "rwy": {
-                "LOWW29": []
-            },
-            "draw": [
-                ["BALAD*", "WW054", "WW052"]
-            ]
-        },
         "BALAD3N": {
             "icao": "BALAD3N",
             "name": "Balad Three November Transition",
@@ -1740,6 +1726,20 @@
             },
             "draw": [
                 ["BALAD*", "WW988", "WW982", "WW980", "WW978", "WW976", "WW974", "WW973", "WW972", "WW971"]
+            ]
+        },
+        "BALAD1U": {
+            "icao": "BALAD1U",
+            "name": "Balad One Uniform Transition",
+            "entryPoints": {
+                "BALAD": ["BALAD", "A080+"]
+            },
+            "body": [["WW054", "A050+"], ["WW052", "A040+"]],
+            "rwy": {
+                "LOWW29": []
+            },
+            "draw": [
+                ["BALAD*", "WW054", "WW052"]
             ]
         },
         "BARUG1W": {
@@ -2228,7 +2228,7 @@
                 ["pgt/b738", 1700],
                 ["qtr/a359", 1400],
                 ["rja/e190", 400],
-                ["rot/shortjet", 1200],
+                ["rot/shortJet", 1200],
                 ["sva/a320", 200],
                 ["sxs/b738", 1100],
                 ["thy/loww", 4000],
@@ -2261,7 +2261,7 @@
                 ["ewg/short", 4550],
                 ["msr/b738", 250],
                 ["sva/a320", 200],
-                ["tay/737", 467],
+                ["tay/b737", 467],
                 ["wzz/default", 1100]
             ]
         },   
@@ -2290,7 +2290,7 @@
                 ["klm/short", 2100],
                 ["ldm/default", 733],
                 ["lgl/dh8d", 2500],
-                ["tay/737", 467],
+                ["tay/b737", 467],
                 ["tra/short", 400],
                 ["ups/b763", 350],
                 ["wzz/default", 1100],
@@ -2321,7 +2321,7 @@
                 ["ana/b789", 350],
                 ["aua/default", 8858],
                 ["aui/b738", 700],
-                ["azq/747", 100],
+                ["azq/b747", 100],
                 ["clx/default", 100],
                 ["eva/b77w", 350],
                 ["kal/b772", 700],
@@ -2406,7 +2406,7 @@
                 ["ldm/default", 733],
                 ["pev/e170", 2200],
                 ["swr/a320", 1650],
-                ["tap/airbusshort", 600],
+                ["tap/loww", 600],
                 ["tvf/short", 450],
                 ["wzz/default", 1100],
                 ["oe/fastGA", 78],
@@ -2462,7 +2462,7 @@
             "airlines": [
                 ["adr/default", 600],
                 ["aua/default", 8858],
-                ["azq/747", 100],
+                ["azq/b747", 100],
                 ["eju/default", 1933],
                 ["ezy/airbus", 833],
                 ["foo/default", 786],
@@ -2493,7 +2493,7 @@
                 ["aua/default", 8858],
                 ["ewg/short", 4550],
                 ["foo/default", 786],
-                ["tay/737", 467],
+                ["tay/b737", 467],
                 ["vlg/a320", 1200],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
@@ -2525,7 +2525,7 @@
                 ["ibe/a320", 2600],
                 ["kal/b772", 467],
                 ["ldm/default", 733],
-                ["tap/airbusshort", 600],
+                ["tap/loww", 600],
                 ["vlg/a320", 1200],
                 ["wzz/default", 1100]
             ]
@@ -2600,7 +2600,7 @@
                 ["pgt/b738", 1700],
                 ["qtr/a359", 1400],
                 ["rja/e190", 400],
-                ["rot/shortjet", 1200],
+                ["rot/shortJet", 1200],
                 ["sva/a320", 200],
                 ["sxs/b738", 1100],
                 ["thy/loww", 4000],
@@ -2636,7 +2636,7 @@
                 ["ewg/short", 4550],
                 ["msr/b738", 250],
                 ["sva/a320", 200],
-                ["tay/737", 467],
+                ["tay/b737", 467],
                 ["wzz/default", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
@@ -2677,7 +2677,7 @@
                 ["klm/short", 2100],
                 ["ldm/default", 733],
                 ["lgl/dh8d", 2500],
-                ["tay/737", 467],
+                ["tay/b737", 467],
                 ["tra/short", 400],
                 ["ups/b763", 350],
                 ["wzz/default", 2200],
@@ -2709,7 +2709,7 @@
                 ["ana/b789", 350],
                 ["aua/default", 8858],
                 ["aui/b738", 700],
-                ["azq/747", 100],
+                ["azq/b747", 100],
                 ["clx/default", 100],
                 ["eva/b77w", 350],
                 ["kal/b772", 700],
@@ -2780,7 +2780,7 @@
                 ["ldm/default", 1466],
                 ["pev/e170", 2200],
                 ["swr/a320", 3300],
-                ["tap/airbusshort", 600],
+                ["tap/loww", 600],
                 ["tvf/short", 900],
                 ["vlg/a320", 1200],
                 ["wzz/default", 1100],
@@ -2802,7 +2802,7 @@
             "airlines": [
                 ["adr/default", 600],
                 ["aua/default", 8858],
-                ["azq/747", 100],
+                ["azq/b747", 100],
                 ["eju/default", 1933],
                 ["ezy/airbus", 833],
                 ["foo/default", 786],
@@ -2833,7 +2833,7 @@
                 ["aua/default", 8858],
                 ["ewg/short", 4550],
                 ["foo/default", 786],
-                ["tay/737", 467],
+                ["tay/b737", 467],
                 ["vlg/a320", 1200],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
@@ -2865,7 +2865,7 @@
                 ["ibe/a320", 2600],
                 ["kal/b772", 467],
                 ["ldm/default", 733],
-                ["tap/airbusshort", 600],
+                ["tap/loww", 600],
                 ["vlg/a320", 1200],
                 ["wzz/default", 1100]
             ]
