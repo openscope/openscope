@@ -1,0 +1,24 @@
+{
+    "icao": "eju",
+    "name": "easyJet Europe",
+    "callsign": {
+        "name": "Alpine",
+        "callsignFormats": [
+            "####",
+            "###@",
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 45],
+            ["A320", 91]
+        ],
+        "a319": [
+            ["A319", 45]
+        ],
+        "a320": [
+            ["A320", 91]
+        ]
+    }
+}
