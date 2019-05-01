@@ -14,7 +14,7 @@ import { THEME } from '../../src/assets/scripts/client/constants/themes';
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
 
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 
 ava.afterEach(() => {
