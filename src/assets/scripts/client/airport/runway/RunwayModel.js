@@ -201,9 +201,9 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const farSideIndex = end === 0
-                ? 1
-                : 0;
+            const farSideIndex = end === 0 ?
+                1 :
+                0;
 
             const thisSide = new StaticPositionModel(
                 data.end[end],

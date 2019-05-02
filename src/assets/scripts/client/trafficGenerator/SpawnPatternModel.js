@@ -658,8 +658,8 @@ export default class SpawnPatternModel extends BaseModel {
         this._aircraftPerHourDown = this.speed / this.entrail[1]; // to help the uptime calculation
 
         // TODO: move this calculation out to a helper function or class method
-        this.uptime = (this.period * this.rate - this.period * this._aircraftPerHourDown)
-            / (this._aircraftPerHourUp - this._aircraftPerHourDown);
+        this.uptime = (this.period * this.rate - this.period * this._aircraftPerHourDown) /
+            (this._aircraftPerHourUp - this._aircraftPerHourDown);
         this.uptime -= this.uptime % (TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp);
 
         // TODO: abstract to helper
@@ -675,16 +675,16 @@ export default class SpawnPatternModel extends BaseModel {
         // TODO: abstract this if/else block to helper method
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.rate > this._aircraftPerHourUp) {
-            console.warn('TOO MANY ARRIVALS IN SURGE! Requested: '
-                + `${this.rate} acph | Acceptable Range for requested entrail distance: `
-                + `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
+            console.warn('TOO MANY ARRIVALS IN SURGE! Requested: ' +
+                `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
+                `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
 
             this.rate = this._aircraftPerHourUp;
             this._aircraftPerHourDown = this._aircraftPerHourUp;
         } else if (this.rate < this._aircraftPerHourDown) {
-            console.warn('TOO FEW ARRIVALS IN SURGE! Requested: '
-                + `${this.rate} acph | Acceptable Range for requested entrail distance: `
-                + `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
+            console.warn('TOO FEW ARRIVALS IN SURGE! Requested: ' +
+                `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
+                `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
 
             this.rate = this._aircraftPerHourDown;
             this._aircraftPerHourUp = this._aircraftPerHourDown;
@@ -704,9 +704,9 @@ export default class SpawnPatternModel extends BaseModel {
         const period = _get(spawnPatternJson, 'period', null);
 
         this.offset = convertMinutesToSeconds(offset);
-        this.period = period
-            ? convertMinutesToSeconds(period)
-            : this.period;
+        this.period = period ?
+            convertMinutesToSeconds(period) :
+            this.period;
         this.variation = _get(spawnPatternJson, 'variation', 0);
     }
 
@@ -919,9 +919,9 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _isValidCategory(category) {
-        return category === FLIGHT_CATEGORY.ARRIVAL
-            || category === FLIGHT_CATEGORY.DEPARTURE
-            || category === FLIGHT_CATEGORY.OVERFLIGHT;
+        return category === FLIGHT_CATEGORY.ARRIVAL ||
+            category === FLIGHT_CATEGORY.DEPARTURE ||
+            category === FLIGHT_CATEGORY.OVERFLIGHT;
     }
 
     /**

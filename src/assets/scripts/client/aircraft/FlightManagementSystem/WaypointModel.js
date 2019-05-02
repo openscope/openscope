@@ -494,15 +494,15 @@ export default class WaypointModel {
      */
     setAltitudeMaximum(altitudeMaximum) {
         if (!_isNumber(altitudeMaximum)) {
-            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', `
-                + `but received '${altitudeMaximum}'`);
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
+                `but received '${altitudeMaximum}'`);
 
             return;
         }
 
         if (altitudeMaximum < 0 || altitudeMaximum > 60000) {
-            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, `
-                + `but received altitude of '${altitudeMaximum}'`);
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
+                `but received altitude of '${altitudeMaximum}'`);
 
             return;
         }
@@ -519,15 +519,15 @@ export default class WaypointModel {
      */
     setAltitudeMinimum(altitudeMinimum) {
         if (!_isNumber(altitudeMinimum)) {
-            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', `
-                + `but received '${altitudeMinimum}'`);
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
+                `but received '${altitudeMinimum}'`);
 
             return;
         }
 
         if (altitudeMinimum < 0 || altitudeMinimum > 60000) {
-            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, `
-                + `but received altitude altitude of '${altitudeMinimum}'`);
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
+                `but received altitude altitude of '${altitudeMinimum}'`);
 
             return;
         }
@@ -571,8 +571,8 @@ export default class WaypointModel {
      */
     setHoldTimer(expirationTime) {
         if (typeof expirationTime !== 'number') {
-            throw new TypeError('Expected hold timer expiration time to be a '
-                + `number, but received type ${typeof expirationTime}`);
+            throw new TypeError('Expected hold timer expiration time to be a ' +
+                `number, but received type ${typeof expirationTime}`);
         }
 
         this._holdParameters.timer = expirationTime;
@@ -629,8 +629,8 @@ export default class WaypointModel {
             } else if (restriction[0] === 'S') {
                 this._applySpeedRestriction(restriction.substr(1));
             } else {
-                throw new TypeError('Expected "A" or "S" prefix on restriction, '
-                    + `but received prefix '${restriction[0]}'`);
+                throw new TypeError('Expected "A" or "S" prefix on restriction, ' +
+                    `but received prefix '${restriction[0]}'`);
             }
         }
     }
