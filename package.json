@@ -7,17 +7,17 @@
     "npm": "6.4.0"
   },
   "scripts": {
-    "postinstall": "gulp build --prod",
-    "test": "nyc --require @babel/register ava --concurrency=5",
-    "gulp": "gulp build",
-    "build": "gulp build && npm run test",
-    "report": "nyc report --reporter=cobertura --reporter=lcov",
-    "posttest": "npm run report",
+    "build": "gulp build --prod",
+    "build:dev": "gulp build",
     "coveralls": "nyc report -r text-lcov | coveralls",
-    "lint": "eslint src/assets/scripts/client/**",
+    "gulp": "gulp build",
     "lint-diff": "lint-diff",
-    "start": "node public/assets/scripts/server/index.js",
+    "lint": "eslint src/assets/scripts/client/**",
+    "posttest": "npm run report",
+    "report": "nyc report --reporter=cobertura --reporter=lcov",
     "server": "npm run start",
+    "start": "node public/assets/scripts/server/index.js",
+    "test": "nyc ava --concurrency=5",
     "validator": "validator -a"
   },
   "repository": {
