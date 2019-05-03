@@ -18,6 +18,17 @@ export const TRACKABLE_EVENT = {
     AIRPORTS: 'airports',
 
     /**
+     * spawn pattern changes like
+     *
+     * - flight-category
+     * - spawn-pattern
+     *
+     * @memberof CHANGE_SPAWN_PATTERN
+     * @property SETTINGS
+     */
+    CHANGE_SPAWN_PATTERN: 'change-spawn-pattern',
+
+    /**
      * options events, encompasses all buttons
      * in option bar footer
      *

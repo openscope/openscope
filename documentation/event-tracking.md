@@ -55,7 +55,17 @@ options -> timewarp -> v
 options -> timewarp-manual-entry -> v
 options -> pause -> v
 options -> speech -> v
-options -> tutorial - v
+options -> traffic -> v
+options -> tutorial -> v
+```
+
+### Traffic
+
+We support changing spawn pattern rates by category (arrival, departure, overflight) or by individual pattern.
+
+```text
+change-spawn-pattern -> flight-category -> ${AIRPORT_ICAO}:{CATEGORY}:{NEXT_VALUE}
+change-spawn-pattern -> spawn-pattern -> ${AIRPORT_ICAO}:{ROUTE_STRING}:{PREVIOUS_VALUE}:{NEXT_VALUE}
 ```
 
 ### Tutorial

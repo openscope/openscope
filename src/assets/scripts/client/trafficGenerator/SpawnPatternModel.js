@@ -405,6 +405,25 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Convenience getter used for `EventTracker`
+     *
+     * This getter *should not* be used in code for
+     * anything other than event tracking
+     *
+     * @property airportIcao
+     * @return string
+     */
+    get airportIcao() {
+        if (this.isOverflight()) {
+            return 'overflight';
+        }
+
+        return this.isArrival() ?
+            this.destination :
+            this.origin;
+    }
+
+    /**
      * Initial altitude of a spawning aircraft
      *
      * value rounded to the nearest thousandth foot
