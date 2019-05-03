@@ -310,8 +310,8 @@
         }
     ],
     "fixes": {
-        "_LOWW291000": ["N48d08m27.00", "E16d28m38.00"],
-        "_LOWW341600": ["N48d05m24.00", "E16d35m24.00"],
+        "_LOWW291000": ["N48d07m53.00", "E16d30m23.00"],
+        "_LOWW341600": ["N48d08m36.00", "E16d34m08.00"], 
         "_LZIBOKR"  : ["N48d13.40", "E17d17.40"],
 
         "_LOAV" : ["N47d57m87.00", "E16d15m57.00"],
@@ -655,7 +655,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW395", "WW397", "WW387", "AGMIM"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW397", "WW387", "AGMIM"],
             "exitPoints": {
                 "KOXER": ["KOXER"]
             },
@@ -700,7 +700,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW375", "WW370", "WW405"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW375", "WW370", "WW405"],
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
@@ -730,7 +730,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW395", "WW397", "WW387", "ASPIB"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW397", "WW387", "ASPIB"],
             "exitPoints": {
                 "ADAMA": ["ADAMA"]
             },
@@ -775,12 +775,12 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW293", ["WW230", "A040+"], "WW266", "WW171", "WW181"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW293", ["WW230", "A040+"], "WW266", "WW171", "WW181"],
             "exitPoints": {
                 "DITIS": ["DITIS"]
             },
             "draw": [
-                ["LOWW291000", "WW293", "WW230", "WW266", "WW171", "WW181", "DITIS"]
+                ["_LOWW291000", "WW293", "WW230", "WW266", "WW171", "WW181", "DITIS"]
             ]
         },
         "DITIS1D": {
@@ -805,7 +805,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW395", "WW396", "WW406", "ELSIS"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW396", "WW406", "ELSIS"],
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
@@ -835,7 +835,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW395", "WW396", "WW406", "EMKOG"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW396", "WW406", "EMKOG"],
             "exitPoints": {
                 "STEIN": ["STEIN"]
             },
@@ -880,7 +880,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "IMVOB"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "IMVOB"],
             "exitPoints": {
                 "OSPEN": ["OSPEN"]
             },
@@ -895,7 +895,7 @@
             "rwy": {
                 "LOWW34": []
             },
-            "body": [["_LOWW3416000", "A013+"], "WW296", "WW383", "IMVOB"],
+            "body": [["_LOWW341600", "A013+"], "WW296", "WW383", "IMVOB"],
             "exitPoints": {
                 "OSPEN": ["OSPEN"]
             },
@@ -925,7 +925,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "IRGOT"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "IRGOT"],
             "exitPoints": {
                 "RUPET": ["RUPET"]
             },
@@ -985,7 +985,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW286", "WW387"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW286", "WW387"],
             "exitPoints": {
                 "KOXER": ["KOXER"]
             },
@@ -1045,7 +1045,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW293", "WW230", "WW266", "WW171"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW293", "WW230", "WW266", "WW171"],
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
@@ -1105,7 +1105,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW293", ["WW230", "A040+"], "WW266"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW293", ["WW230", "A040+"], "WW266"],
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
@@ -1180,7 +1180,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW293", "WW232", ["WW231", "A040+"]],
+            "body": [["_LOWW291000", "A010|S205-"], "WW293", "WW232", ["WW231", "A040+"]],
             "exitPoints": {
                 "LUGEM": ["LUGEM"]
             },
@@ -1255,7 +1255,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW293", "WW232", ["WW231", "A040+"]],
+            "body": [["_LOWW291000", "A010|S205-"], "WW293", "WW232", ["WW231", "A040+"]],
             "exitPoints": {
                 "MEDIX": ["MEDIX"]
             },
@@ -1300,7 +1300,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "ODSUD"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "ODSUD"],
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
@@ -1345,7 +1345,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "WW398", "OSMOD"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW398", "OSMOD"],
             "exitPoints": {
                 "LUGEM": ["LUGEM"]
             },
@@ -1420,7 +1420,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "WW172"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW172"],
             "exitPoints": {
                 "OSPEN": ["OSPEN"]
             },
@@ -1450,7 +1450,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "WW398", "OTGAR"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW398", "OTGAR"],
             "exitPoints": {
                 "MEDIX": ["MEDIX"]
             },
@@ -1525,7 +1525,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW383", "WW172"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW172"],
             "exitPoints": {
                 "RUPET": ["RUPET"]
             },
@@ -1585,7 +1585,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296"],
             "exitPoints": {
                 "SNU": ["SNU"]
             },
@@ -1660,7 +1660,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW295", ["WW233", "A040+"]],
+            "body": [["_LOWW291000", "A010|S205-"], "WW295", ["WW233", "A040+"]],
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
@@ -1690,7 +1690,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW233"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233"],
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
@@ -1735,7 +1735,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW375", "WW370", "WW405"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW375", "WW370", "WW405"],
             "exitPoints": {
                 "STEIN": ["STEIN"]
             },
@@ -1765,7 +1765,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW233", "WW391", "WW392", "UMSUM"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233", "WW391", "WW392", "UMSUM"],
             "exitPoints": {
                 "DITIS": ["DITIS"]
             },
@@ -1780,7 +1780,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW233", "WW391", "WW393", "UNGUT"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233", "WW391", "WW393", "UNGUT"],
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
@@ -1795,7 +1795,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+"], "WW296", "WW233", "WW391", "WW393", "WW394", "UNGUT"],
+            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233", "WW391", "WW393", "WW394", "UNGUT"],
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
@@ -1890,7 +1890,7 @@
             "icao": "BALAD3K",
             "name": "Balad Three Kilo Transition",
             "entryPoints": {
-                "BALAD": ["BALAD", "A080+"]
+                "BALAD": [["BALAD", "A080+"]]
             },
             "body": [["WW669", "A060+"], ["WW665", "A060+"], ["WW663", "A050+"], ["WW661", "A050+"], ["WW659", "A050+"], ["WW657", "A050+"], ["WW655", "A050+"], ["WW653", "A050+"], ["WW652", "A050+"], ["WW651", "A050+"]],
             "rwy": {
@@ -1904,7 +1904,7 @@
             "icao": "BALAD5L",
             "name": "Balad Five Lima Transition",
             "entryPoints": {
-                "BALAD": ["BALAD", "A080+"]
+                "BALAD": [["BALAD", "A080+"]]
             },
             "body": [["WW686", "A060+"], ["WW684", "A060+"], ["WW682", "A060+"], ["WW680", "A060+"], ["WW678", "A050+"], ["WW676", "A050+"], ["WW674", "A050+"], ["WW673", "A050+"], ["WW672", "A050+"], ["WW671", "A050+"]],
             "rwy": {
@@ -1918,7 +1918,7 @@
             "icao": "BALAD4M",
             "name": "Balad Four Mike Transition",
             "entryPoints": {
-                "BALAD": ["BALAD", "A080+"]
+                "BALAD": [["BALAD", "A080+"]]
             },
             "body": [["WW964", "A060+"], ["WW956", "A060+"], ["WW954", "A060+"], ["WW953", "A060+"], ["WW952", "A030+"], ["WW951", "A030+"]],
             "rwy": {
@@ -1932,7 +1932,7 @@
             "icao": "BALAD3N",
             "name": "Balad Three November Transition",
             "entryPoints": {
-                "BALAD": ["BALAD", "A080+"]
+                "BALAD": [["BALAD", "A080+"]]
             },
             "body": [["WW988", "A060+"], ["WW982", "A060+"], ["WW980", "A060+"], ["WW978", "A060+"], ["WW976", "A060+"], ["WW974", "A060+"], ["WW973", "A040+"], ["WW972", "A040+"], ["WW971", "A030+"]],
             "rwy": {
@@ -1946,7 +1946,7 @@
             "icao": "BALAD1U",
             "name": "Balad One Uniform Transition",
             "entryPoints": {
-                "BALAD": ["BALAD", "A080+"]
+                "BALAD": [["BALAD", "A080+"]]
             },
             "body": [["WW054", "A050+"], ["WW052", "A040+"]],
             "rwy": {
@@ -2023,7 +2023,7 @@
             "icao": "MABOD4K",
             "name": "Mabod Four Kilo Transition",
             "entryPoints": {
-                "MABOD": ["MABOD", "A060+"]
+                "MABOD": [["MABOD", "A060+"]]
             },
             "body": [["WW664", "A050+"], ["WW658", "A050+"], ["WW656", "A050+"], ["WW654", "A050+"], ["WW653", "A050+"], ["WW652", "A050+"], ["WW651", "A050+"]],
             "rwy": {
@@ -2037,7 +2037,7 @@
             "icao": "MABOD6L",
             "name": "Mabod Six Lima Transition",
             "entryPoints": {
-                "MABOD": ["MABOD", "A060+"]
+                "MABOD": [["MABOD", "A060+"]]
             },
             "body": [["WW692", "A060+"], ["WW688", "A060+"], ["WW680", "A060+"], ["WW678", "A050+"], ["WW676", "A050+"], ["WW674", "A050+"], ["WW673", "A050+"], ["WW672", "A050+"], ["WW671", "A050+"]],
             "rwy": {
@@ -2051,7 +2051,7 @@
             "icao": "MABOD5M",
             "name": "Mabod Five Mike Transition",
             "entryPoints": {
-                "MABOD": ["MABOD", "A060+"]
+                "MABOD": [["MABOD", "A060+"]]
             },
             "body": [["WW967", "A060+"], ["WW965", "A060+"], ["WW961", "A060+"], ["WW959", "A060+"], ["WW957", "A060+"], ["WW955", "A060+"], ["WW953", "A060+"], ["WW952", "A030+"], ["WW951", "A030+"]],
             "rwy": {
@@ -2065,7 +2065,7 @@
             "icao": "MABOD4N",
             "name": "Mabod Four November Transition",
             "entryPoints": {
-                "MABOD": ["MABOD", "A060+"]
+                "MABOD": [["MABOD", "A060+"]]
             },
             "body": [["WW987", "A060+"], ["WW985", "A060+"], ["WW983", "A060+"], ["WW981", "A060+"], ["WW979", "A060+"], ["WW977", "A060+"], ["WW975", "A060+"], ["WW974", "A060+"], ["WW973", "A040+"], ["WW972", "A040+"], ["WW971", "A030+"]],
             "rwy": {
@@ -2079,7 +2079,7 @@
             "icao": "MABOD1U",
             "name": "Nerdu Four November Transition",
             "entryPoints": {
-                "MABOD": ["MABOD", "A060+"]
+                "MABOD": [["MABOD", "A060+"]]
             },
             "body": [["WW055", "A050+"], ["WW053", "A040+"]],
             "rwy": {
@@ -2177,7 +2177,7 @@
             "icao": "NERDU4K",
             "name": "Nerdu Four Kilo Transition",
             "entryPoints": {
-                "NERDU": ["NERDU", "A060+"]
+                "NERDU": [["NERDU", "A060+"]]
             },
             "body": [["WW666", "A050+"], ["WW664", "A050+"], ["WW658", "A050+"], ["WW656", "A050+"], ["WW654", "A050+"], ["WW653", "A050+"], ["WW652", "A030+"], ["WW651", "A030+"]],
             "rwy": {
@@ -2191,7 +2191,7 @@
             "icao": "NERDU6L",
             "name": "Nerdu Six Lima Transition",
             "entryPoints": {
-                "NERDU": ["NERDU", "A060+"]
+                "NERDU": [["NERDU", "A060+"]]
             },
             "body": [["WW681", "A060+"], ["WW679", "A050+"], ["WW677", "A050+"], ["WW675", "A050+"], ["WW673", "A050+"], ["WW672", "A050+"], ["WW671", "A050+"]],
             "rwy": {
@@ -2205,7 +2205,7 @@
             "icao": "NERDU4M",
             "name": "Nerdu Four Mike Transition",
             "entryPoints": {
-                "NERDU": ["NERDU", "A060+"]
+                "NERDU": [["NERDU", "A060+"]]
             },
             "body": [["WW963", "A060+"], ["WW961", "A060+"], ["WW959", "A060+"], ["WW957", "A060+"], ["WW955", "A060+"], ["WW953", "A060+"], ["WW952", "A050+"], ["WW951", "A050+"]],
             "rwy": {
@@ -2219,7 +2219,7 @@
             "icao": "NERDU4N",
             "name": "Nerdu Four November Transition",
             "entryPoints": {
-                "NERDU": ["NERDU", "A060+"]
+                "NERDU": [["NERDU", "A060+"]]
             },
             "body": [["WW987", "A060+"], ["WW985", "A060+"], ["WW983", "A060+"], ["WW981", "A060+"], ["WW979", "A060+"], ["WW977", "A060+"], ["WW975", "A060+"], ["WW974", "A060+"], ["WW973", "A040+"], ["WW972", "A040+"], ["WW971", "A030+"]],
             "rwy": {
@@ -2233,7 +2233,7 @@
             "icao": "NERDU1U",
             "name": "Nerdu One Uniform Transition",
             "entryPoints": {
-                "NERDU": ["NERDU", "A060+"]
+                "NERDU": [["NERDU", "A060+"]]
             },
             "body": [["WW055", "A050+"], ["WW053", "A040+"]],
             "rwy": {
@@ -2289,7 +2289,7 @@
             "icao": "PESAT4K",
             "name": "Pesat Four Kilo Transition",
             "entryPoints": {
-                "PESAT": ["PESAT", "A060+"]
+                "PESAT": [["PESAT", "A060+"]]
             },
             "body": [["WW697", "A060+"], ["WW665", "A060+"], ["WW663", "A050+"], ["WW661", "A050+"], ["WW659", "A050+"], ["WW657", "A050+"], ["WW655", "A050+"], ["WW653", "A050+"], ["WW652", "A050+"], ["WW651", "A050+"]],
             "rwy": {
@@ -2303,7 +2303,7 @@
             "icao": "PESAT5L",
             "name": "Pesat Five Lima Transition",
             "entryPoints": {
-                "PESAT": ["PESAT", "A060+"]
+                "PESAT": [["PESAT", "A060+"]]
             },
             "body": [["WW684", "A060+"], ["WW682", "A060+"], ["WW680", "A060+"], ["WW678", "A050+"], ["WW676", "A050+"], ["WW674", "A050+"], ["WW673", "A050+"], ["WW672", "A050+"], ["WW671", "A050+"]],
             "rwy": {
@@ -2317,7 +2317,7 @@
             "icao": "PESAT4M",
             "name": "Pesat Four Mike Transition",
             "entryPoints": {
-                "PESAT": ["PESAT", "A060+"]
+                "PESAT": [["PESAT", "A060+"]]
             },
             "body": [["WW966", "A060+"], ["WW956", "A060+"], ["WW954", "A060+"], ["WW953", "A060+"], ["WW952", "A030+"], ["WW951", "A030+"]],
             "rwy": {
@@ -2331,7 +2331,7 @@
             "icao": "PESAT4N",
             "name": "Pesat Four November Transition",
             "entryPoints": {
-                "PESAT": ["PESAT", "A060+"]
+                "PESAT": [["PESAT", "A060+"]]
             },
             "body": [["WW991", "A060+"], ["WW989", "A060+"], ["WW981", "A060+"], ["WW979", "A060+"], ["WW977", "A060+"], ["WW975", "A060+"], ["WW974", "A060+"], ["WW973", "A040+"], ["WW972", "A040+"], ["WW971", "A030+"]],
             "rwy": {
@@ -2345,7 +2345,7 @@
             "icao": "PESAT1U",
             "name": "Pesat One Uniform Transition",
             "entryPoints": {
-                "PESAT": ["PESAT", "A060+"]
+                "PESAT": [["PESAT", "A060+"]]
             },
             "body": [["WW054", "A050+"], ["WW052", "A040+"]],
             "rwy": {
@@ -2380,7 +2380,7 @@
             "icao": "TOVKA2W",
             "name": "Tovka Two Whiskey",
             "entryPoints": {
-                "TOVKA": [["TOVKA", "A060+|A160-    "]]
+                "TOVKA": [["TOVKA", "A060+|A160-"]]
             },
             "body": [["WW400", "A060+"], ["WW440", "A060+"], ["MABOD", "A060+"]],
             "rwy": {
@@ -2430,12 +2430,12 @@
             "method": "random",
             "rate": 2.034,
             "airlines": [
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["ely/b738", 700],
                 ["eth/loww", 1300],
                 ["fdx/b752", 350],
-                ["foo/default", 786],
-                ["lzb/default", 500],
+                ["foo", 786],
+                ["lzb", 500],
                 ["msr/b738", 250],
                 ["pgt/b738", 1700],
                 ["qtr/a359", 1400],
@@ -2446,7 +2446,7 @@
                 ["thy/loww", 4000],
                 ["uae/loww", 1400],
                 ["ups/b763", 350],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -2469,12 +2469,12 @@
             "rate": 2.018,
             "airlines": [
                 ["aee/a320", 1100],
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["ewg/short", 4550],
                 ["msr/b738", 250],
                 ["sva/a320", 200],
                 ["tay/b737", 467],
-                ["wzz/default", 1100]
+                ["wzz", 1100]
             ]
         },   
         {
@@ -2489,23 +2489,23 @@
             "airlines": [
                 ["aar/cargo", 400],
                 ["aca/b789", 350],
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["baw/a320", 4100],
-                ["clx/default", 100],
+                ["clx", 100],
                 ["dlh/short", 4500],
                 ["ein/a320", 500],
-                ["eju/default", 1933],
+                ["eju", 1933],
                 ["ewg/short", 4550],
                 ["ezy/airbus", 833],
-                ["foo/default", 786],
+                ["foo", 786],
                 ["kal/b772", 467],
                 ["klm/short", 2100],
-                ["ldm/default", 733],
+                ["ldm/airbus", 733],
                 ["lgl/dh8d", 2500],
                 ["tay/b737", 467],
                 ["tra/short", 400],
                 ["ups/b763", 350],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -2530,14 +2530,14 @@
                 ["aar/cargo", 400],
                 ["aic/b788", 400],
                 ["ana/b789", 350],
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["aui/b738", 700],
                 ["azq/b747", 100],
-                ["clx/default", 100],
+                ["clx", 100],
                 ["eva/b77w", 350],
                 ["kal/b772", 700],
                 ["tha/b788", 600],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -2560,11 +2560,11 @@
             "rate": 1.762,
             "airlines": [
                 ["aca/b789", 350],
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["bel/short", 2000],
                 ["ein/a320", 500],
-                ["exs/b737", 700],
-                ["wzz/default", 1100]
+                ["exs/737", 700],
+                ["wzz", 1100]
             ]
         },   
         {
@@ -2580,14 +2580,14 @@
                 ["aar/cargo", 400],
                 ["afl/short", 2800],
                 ["ana/b789", 350],
-                ["aua/default", 8858],
-                ["bti/default", 1400],
+                ["aua", 8858],
+                ["bti", 1400],
                 ["cal/a359", 500],
                 ["cca/a332", 300],
                 ["eva/b77w", 350],
                 ["fin/a320", 1000],
                 ["kal/b772", 467],
-                ["ldm/default", 733],
+                ["ldm/airbus", 733],
                 ["lot/e190", 1400],
                 ["nax/b738", 400],
                 ["oe/fastGA", 78],
@@ -2611,15 +2611,15 @@
             "method": "random",
             "rate": 2.043,
             "airlines": [
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["dlh/short", 1500],
-                ["foo/default", 786],
-                ["ldm/default", 733],
+                ["foo", 786],
+                ["ldm/airbus", 733],
                 ["pev/e170", 2200],
                 ["swr/a320", 1650],
                 ["tap/loww", 600],
                 ["tvf/short", 450],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -2641,12 +2641,12 @@
             "method": "random",
             "rate": 2.211,
             "airlines": [
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["dlh/short", 1500],
                 ["ewg/short", 4550],
                 ["fdx/b752", 350],
-                ["foo/default", 786],
-                ["ldm/default", 733],
+                ["foo", 786],
+                ["ldm/airbus", 733],
                 ["swr/a320", 1650],
                 ["tvf/short", 450],
                 ["vlg/a320", 1200],
@@ -2671,12 +2671,12 @@
             "method": "random",
             "rate": 1.911,
             "airlines": [
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["azq/b747", 100],
-                ["eju/default", 1933],
+                ["eju", 1933],
                 ["ezy/airbus", 833],
-                ["foo/default", 786],
-                ["ldm/default", 733],
+                ["foo", 786],
+                ["ldm/airbus", 733],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -2698,10 +2698,10 @@
             "method": "random",
             "rate": 2.077,
             "airlines": [
-                ["amc/default", 450],
-                ["aua/default", 8858],
+                ["amc", 450],
+                ["aua", 8858],
                 ["ewg/short", 4550],
-                ["foo/default", 786],
+                ["foo", 786],
                 ["tay/b737", 467],
                 ["vlg/a320", 1200],
                 ["oe/fastGA", 78],
@@ -2726,17 +2726,17 @@
             "rate": 2.144,
             "airlines": [
                 ["afr/short", 2000],
-                ["aua/default", 8858],
-                ["eju/default", 1933],
-                ["ezs/default", 1100],
+                ["aua", 8858],
+                ["eju", 1933],
+                ["ezs", 1100],
                 ["ezy/airbus", 833],
-                ["foo/default", 786],
+                ["foo", 786],
                 ["ibe/a320", 2600],
                 ["kal/b772", 467],
-                ["ldm/default", 733],
+                ["ldm/airbus", 733],
                 ["tap/loww", 600],
                 ["vlg/a320", 1200],
-                ["wzz/default", 1100]
+                ["wzz", 1100]
             ]
         },   
         {
@@ -2749,8 +2749,8 @@
             "method": "random",
             "rate": 1.671,
             "airlines": [
-                ["amc/default", 450],
-                ["aua/default", 8858],
+                ["amc", 450],
+                ["aua", 8858],
                 ["ctn/dh8d", 1400],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
@@ -3059,12 +3059,12 @@
             "method": "random",
             "rate": 2.034,
             "airlines": [
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["ely/b738", 700],
                 ["eth/loww", 1300],
                 ["fdx/b752", 350],
-                ["foo/default", 786],
-                ["lzb/default", 500],
+                ["foo", 786],
+                ["lzb", 500],
                 ["msr/b738", 250],
                 ["pgt/b738", 1700],
                 ["qtr/a359", 1400],
@@ -3075,7 +3075,7 @@
                 ["thy/loww", 4000],
                 ["uae/loww", 1400],
                 ["ups/b763", 350],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -3098,14 +3098,14 @@
             "rate": 3.689,
             "airlines": [
                 ["aee/a320", 1100],
-                ["amc/default", 450],
-                ["aua/default", 17716],
+                ["amc", 450],
+                ["aua", 17716],
                 ["ctn/dh8d", 1400],
                 ["ewg/short", 4550],
                 ["msr/b738", 250],
                 ["sva/a320", 200],
                 ["tay/b737", 467],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -3130,25 +3130,25 @@
             "airlines": [
                 ["aar/cargo", 400],
                 ["aca/b789", 700],
-                ["aua/default", 17716],
+                ["aua", 17716],
                 ["baw/a320", 4100],
                 ["bel/short", 2000],
-                ["clx/default", 100],
+                ["clx", 100],
                 ["dlh/short", 4500],
                 ["ein/a320", 1000],
-                ["eju/default", 1933],
+                ["eju", 1933],
                 ["ewg/short", 4550],
                 ["exs/b737", 700],
                 ["ezy/airbus", 833],
-                ["foo/default", 786],
+                ["foo", 786],
                 ["kal/b772", 467],
                 ["klm/short", 2100],
-                ["ldm/default", 733],
+                ["ldm/airbus", 733],
                 ["lgl/dh8d", 2500],
                 ["tay/b737", 467],
                 ["tra/short", 400],
                 ["ups/b763", 350],
-                ["wzz/default", 2200],
+                ["wzz", 2200],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -3174,14 +3174,14 @@
                 ["aar/cargo", 400],
                 ["aic/b788", 400],
                 ["ana/b789", 350],
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["aui/b738", 700],
                 ["azq/b747", 100],
-                ["clx/default", 100],
+                ["clx", 100],
                 ["eva/b77w", 350],
                 ["kal/b772", 700],
                 ["tha/b788", 600],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -3207,14 +3207,14 @@
                 ["aar/cargo", 400],
                 ["afl/short", 2800],
                 ["ana/b789", 350],
-                ["aua/default", 8858],
-                ["bti/default", 1400],
+                ["aua", 8858],
+                ["bti", 1400],
                 ["cal/a359", 500],
                 ["cca/a332", 300],
                 ["eva/b77w", 350],
                 ["fin/a320", 1000],
                 ["kal/b772", 467],
-                ["ldm/default", 733],
+                ["ldm/airbus", 733],
                 ["lot/e190", 1400],
                 ["nax/b738", 400],
                 ["oe/fastGA", 78],
@@ -3239,18 +3239,18 @@
             "method": "random",
             "rate": 4.254,
             "airlines": [
-                ["aua/default", 17716],
+                ["aua", 17716],
                 ["dlh/short", 3000],
                 ["ewg/short", 4550],
                 ["fdx/b752", 350],
-                ["foo/default", 1572],
-                ["ldm/default", 1466],
+                ["foo", 1572],
+                ["ldm/airbus", 1466],
                 ["pev/e170", 2200],
                 ["swr/a320", 3300],
                 ["tap/loww", 600],
                 ["tvf/short", 900],
                 ["vlg/a320", 1200],
-                ["wzz/default", 1100],
+                ["wzz", 1100],
                 ["oe/fastGA", 156],
                 ["d/fastGA", 66],
                 ["n/fastGA", 44],
@@ -3267,12 +3267,12 @@
             "method": "random",
             "rate": 1.911,
             "airlines": [
-                ["aua/default", 8858],
+                ["aua", 8858],
                 ["azq/b747", 100],
-                ["eju/default", 1933],
+                ["eju", 1933],
                 ["ezy/airbus", 833],
-                ["foo/default", 786],
-                ["ldm/default", 733],
+                ["foo", 786],
+                ["ldm/airbus", 733],
                 ["oe/fastGA", 78],
                 ["d/fastGA", 33],
                 ["n/fastGA", 22],
@@ -3294,10 +3294,10 @@
             "method": "random",
             "rate": 2.077,
             "airlines": [
-                ["amc/default", 450],
-                ["aua/default", 8858],
+                ["amc", 450],
+                ["aua", 8858],
                 ["ewg/short", 4550],
-                ["foo/default", 786],
+                ["foo", 786],
                 ["tay/b737", 467],
                 ["vlg/a320", 1200],
                 ["oe/fastGA", 78],
@@ -3322,57 +3322,59 @@
             "rate": 2.144,
             "airlines": [
                 ["afr/short", 2000],
-                ["aua/default", 8858],
-                ["eju/default", 1933],
-                ["ezs/default", 1100],
+                ["aua", 8858],
+                ["eju", 1933],
+                ["ezs", 1100],
                 ["ezy/airbus", 833],
-                ["foo/default", 786],
+                ["foo", 786],
                 ["ibe/a320", 2600],
                 ["kal/b772", 467],
-                ["ldm/default", 733],
+                ["ldm/airbus", 733],
                 ["tap/loww", 600],
                 ["vlg/a320", 1200],
-                ["wzz/default", 1100]
+                ["wzz", 1100]
             ]
         },
+
+
         {
-            "origin": "LZIB",
+            "origin": "",
             "destination": "",
-            "category": "arrival",
+            "category": "overflight",
             "route": "_LZIBOKR..TOVKA..WGM..MASUR..VENEN..DEXIT",
             "altitude": 1200,
             "speed": 250,
             "method": "random",
             "rate": 0.035,
             "airlines": [
-                ["ryr/default"]
+                ["ryr"]
             ]
         },
         {
-            "origin": "LZIB",
+            "origin": "",
             "destination": "",
-            "category": "arrival",
+            "category": "overflight",
             "route": "_LZIBOKR..TOVKA..NERDU..KOVEL..DITIS..NEPUX",
             "altitude": 1200,
             "speed": 250,
             "method": "random",
             "rate": 0.232,
             "airlines": [
-                ["ryr/default", 32],
+                ["ryr", 32],
                 ["bcs/b752", 7]
             ]
         },
         {
-            "origin": "LZIB",
+            "origin": "",
             "destination": "",
-            "category": "arrival",
+            "category": "overflight",
             "route": "_LZIBOKR..TOVKA..TUN..SITNI..NIMDU",
             "altitude": 1200,
             "speed": 250,
             "method": "random",
             "rate": 0.012,
             "airlines": [
-                ["ryr/default"]
+                ["ryr"]
             ]
         }
     ],
