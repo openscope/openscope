@@ -215,6 +215,7 @@
         "SFO"  : ["N37d37.17", "W122d22.43"],
         "SGD"  : ["N38d10.76", "W122d22.39"],
         "SHAKE": ["N37d45.24", "W122d16.98"],
+        "SIDBY": ["N37d22.09", "W122d06.96"],
         "SIPLY": ["N37d35.12", "W122d14.01"],
         "SKUNK": ["N37d00.46", "W122d01.99"],
         "SNORA": ["N37d38.73", "W119d48.38"],
@@ -225,7 +226,6 @@
         "STLER": ["N37d42.08", "W122d42.66"],
         "SUPER": ["N37d18.16", "W123d48.78"],
         "SUSEY": ["N36d25.95", "W121d03.80"],
-        "SWELS": ["N37d22.09", "W122d06.96"],
         "SXC"  : ["N33d22.50", "W118d25.19"],
         "SYRAH": ["N37d59.46", "W121d06.19"],
         "TAMMM": ["N37d59.29", "W122d08.87"],
@@ -812,13 +812,13 @@
             "entryPoints": {
                 "SERFR": []
             },
-            "body": ["SERFR", ["NRRLI", "A200+|S280"], ["WWAVS", "A150+|A190-|S280"], ["EPICK", "A100+|A150-|S280"], ["EDDYY", "A60+|S240"], ["SWELS", "A47+"], ["MENLO", "A40|S230"]],
+            "body": ["SERFR", ["NRRLI", "A200+|S280"], ["WWAVS", "A150+|A190-|S280"], ["EPICK", "A100+|A150-|S280"], ["EDDYY", "A60+|S240"], ["SIDBY", "A47+"], ["MENLO", "A40|S230"]],
             "rwy": {
                 "KSFO28L": [],
                 "KSFO28R": []
             },
             "draw": [
-                ["SERFR", "NRRLI", "WWAVS", "EPICK", "EDDYY", "SWELS", "MENLO"]
+                ["SERFR", "NRRLI", "WWAVS", "EPICK", "EDDYY", "SIDBY", "MENLO"]
             ]
         },
         "STINS3": {
