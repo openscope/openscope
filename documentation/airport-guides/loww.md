@@ -4,8 +4,8 @@ Vienna (Wien) Schwechat International Airport is the largest airport in Austria,
 The Airport was originally built in 1938 as a military design and production complex. There was just one runway (11/29), which was expanded in 1959, and a second runway (16/34) was built in 1972. In 2006 a new control tower was opened which allows for overview of the entire airport.
 
 ### Statistics for LOWW, 2018
-27.037.292 passengers
-295.427 tonnes of cargo
+27.037.292 passengers handled
+295.427 tonnes of cargo handled
 241.004 aircraft movements
 
 ### Airspace
@@ -62,7 +62,6 @@ Vöslau Köttingbrunn Airfield is located in the town of Köttingbrunn, near Vö
 Runway 13/31, 950m (3117ft), Asphalt
 Runway 13/31 Grass, 650m (2132ft), Grass
 
-
 ### Videomap
 The video map includes a top down view of LOWW airport.
 
@@ -70,7 +69,7 @@ The videomap also contains:
 * Top down view of LOAN Wiener Neustadt Ost Airfield
 * Top down view of LOAV Vöslau Köttingbrunn Airfield
 * All VOR navaids within the controlled airspace
-* 20 ile ILS Centerlines
+* 20 mile ILS centerlines
 
 
 ### Additional Resources and Charts
