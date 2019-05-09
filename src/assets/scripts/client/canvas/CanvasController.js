@@ -2310,5 +2310,6 @@ export default class CanvasController {
         this.theme = THEME[themeName];
         // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
+        this._markDeepRender();
     }
 }

@@ -2504,70 +2504,30 @@
             "altitude": 31000,
             "speed": 280,
             "method": "random",
-            "rate": 5.2,
+            "rate": 10.4,
             "airlines": [
+                ["abw/b747", 5],
                 ["afl", 2],
                 ["ana", 1],
+                ["box", 10],
                 ["bru", 1],
                 ["bti", 1],
                 ["cal", 1],
                 ["cao", 2],
+                ["cca/b747", 3],
                 ["cpa", 1],
-                ["dlh/eddf25R", 30],
-                ["gec/eddf25R", 3],
-                ["hvn", 1],
-                ["kzr", 1]
-
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "TADUV.T173.KERAX.KERAX25S.EDDF25L",
-            "altitude": 31000,
-            "speed": 280,
-            "method": "random",
-            "rate": 1.3,
-            "airlines": [
-                ["dlh/eddf25L", 30],
-                ["gec/eddf25L", 3],
-                ["abw/b747", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "HLZ.T157.KERAX.KERAX25N.EDDF25R",
-            "altitude": 33000,
-            "speed": 250,
-            "method": "random",
-            "rate": 3.25,
-            "airlines": [
-                ["box", 10],
+                ["dlh/eddf25L", 35],
                 ["dlh/eddf25R", 35],
                 ["fin", 1],
-                ["gec/eddf25R", 3],
-                ["lot", 2],
-                ["sas", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "HLZ.T157.KERAX.KERAX25S.EDDF25L",
-            "altitude": 33000,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.65,
-            "airlines": [
-                ["dlh/eddf25L", 35],
                 ["gec/eddf25L", 3],
+                ["gec/eddf25R", 3],
+                ["hvn", 1],
                 ["kal/b747", 1],
-                ["tha/a380", 1],
-                ["cca/b747", 3]
+                ["kzr", 1],
+                ["lot", 2],
+                ["sas", 1],
+                ["tha/a380", 1]
+
             ]
         },
         {
@@ -2578,19 +2538,26 @@
             "altitude": 27000,
             "speed": 280,
             "method": "random",
-            "rate": 3.9,
+            "rate": 9.75,
             "airlines": [
                 ["aee", 1],
                 ["aic", 1],
                 ["aua", 1],
                 ["aza", 1],
+                ["box", 10],
                 ["box", 6],
+                ["cfg", 4],
+                ["dlh/cityline", 35],
+                ["dlh/eddf25L", 40],
                 ["dlh/eddf25R", 35],
                 ["eth", 1],
+                ["ezy", 3],
                 ["fcb", 1],
                 ["fdx", 3],
+                ["gec/eddf25L", 3],
                 ["gec/eddf25R", 3],
                 ["gfa", 1],
+                ["kzr", 1],
                 ["mgx", 1],
                 ["mld", 1],
                 ["msr", 1],
@@ -2598,60 +2565,13 @@
                 ["pgt", 1],
                 ["qtr", 1],
                 ["rja", 1],
-                ["sia/b777", 1],
-                ["sxd", 1],
-                ["thy", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "ERNAS.Y101.ERMEL.UQ162.PSA.PSA25S.EDDF25L",
-            "altitude": 27000,
-            "speed": 280,
-            "method": "random",
-            "rate": 2.6,
-            "airlines": [
-                ["dlh/eddf25L", 40],
-                ["gec/eddf25L", 3],
-                ["sia/a380", 1],
-                ["uae/a380", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "RENKA.L610.IBAGA.Z104.PSA.PSA25N.EDDF25R",
-            "altitude": 30000,
-            "speed": 250,
-            "method": "random",
-            "rate": 2.6,
-            "airlines": [
-                ["box", 10],
-                ["cfg", 4],
-                ["dlh/cityline", 35],
-                ["ezy", 3],
-                ["gec/eddf25R", 3],
-                ["kzr", 1],
                 ["rot", 2],
-                ["swr", 1]
-
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "RENKA.L610.IBAGA.Z104.PSA.PSA25S.EDDF25L",
-            "altitude": 30000,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.65,
-            "airlines": [
-                ["gec/eddf25L", 3]
-
+                ["sia/a380", 1],
+                ["sia/b777", 1],
+                ["swr", 1],
+                ["sxd", 1],
+                ["thy", 2],
+                ["uae/a380", 1]
             ]
         },
         {
@@ -2662,16 +2582,20 @@
             "altitude": 20000,
             "speed": 300,
             "method": "random",
-            "rate": 6.5,
+            "rate": 9.1,
             "airlines": [
                 ["aca", 1],
+                ["afr", 8],
                 ["baw", 3],
                 ["bmr", 3],
                 ["box", 10],
                 ["cfg", 2],
                 ["dal/long", 3],
+                ["dlh/eddf25L", 40],
                 ["dlh/eddf25R", 40],
+                ["fdx/eddf25L", 3],
                 ["fdx/eddf25R", 3],
+                ["gec/eddf25L", 3],
                 ["gec/eddf25R", 3],
                 ["ice", 1],
                 ["klm", 1],
@@ -2683,98 +2607,28 @@
             "origin": "",
             "destination": "EDDF",
             "category": "arrival",
-            "route": "LIPMI.T150.ROLIS.ROLIS25S.EDDF25L",
-            "altitude": 20000,
-            "speed": 300,
-            "method": "random",
-            "rate": 1.3,
-            "airlines": [
-                ["dlh/eddf25L", 40],
-                ["fdx/eddf25L", 3],
-                ["gec/eddf25L", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "IDOVI.Z658.ROLIS.ROLIS25N.EDDF25R",
-            "altitude": 13000,
-            "speed": 280,
-            "method": "random",
-            "rate": 1.3,
-            "airlines": [
-                ["afr", 8],
-                ["fdx/eddf25R", 3],
-                ["gec/eddf25R", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
             "route": "SPI.UT180.PESOV.T180.UNOKO.UNOKO25N.EDDF25R",
             "altitude": 14000,
             "speed": 300,
             "method": "random",
-            "rate": 3.9,
+            "rate": 9.75,
             "airlines": [
                 ["afr", 8],
                 ["baw", 4],
                 ["box", 10],
-                ["dlh/eddf25R", 65],
-                ["ein", 2],
-                ["fdx/eddf25R", 3],
-                ["gec/eddf25R", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "SPI.UT180.PESOV.T180.UNOKO.UNOKO25S.EDDF25L",
-            "altitude": 14000,
-            "speed": 300,
-            "method": "random",
-            "rate": 1.3,
-            "airlines": [
-                ["dlh/eddf25L", 65],
-                ["fdx/eddf25L", 3],
-                ["gec/eddf25L", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "DIK.UT856.ADUSU.T856.NIVNU.T180.UNOKO.UNOKO25N.EDDF25R",
-            "altitude": 18000,
-            "speed": 300,
-            "method": "random",
-            "rate": 3.9,
-            "airlines": [
                 ["cfg", 4],
                 ["dah", 1],
-                ["dlh/eddf25R", 50],
+                ["dlh/eddf25L", 65],
+                ["dlh/eddf25R", 65],
+                ["ein", 2],
+                ["fdx/eddf25L", 3],
+                ["fdx/eddf25R", 3],
+                ["gec/eddf25L", 3],
                 ["gec/eddf25R", 3],
                 ["ibe", 1],
                 ["tam", 1],
                 ["tap", 1],
                 ["tui", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDF",
-            "category": "arrival",
-            "route": "DIK.UT856.ADUSU.T856.NIVNU.T180.UNOKO.UNOKO25N.EDDF25R",
-            "altitude": 18000,
-            "speed": 300,
-            "method": "random",
-            "rate": 0.65,
-            "airlines": [
-                ["dlh/eddf25L", 50],
-                ["gec/eddf25L", 3]
             ]
         }
     ],

@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
@@ -18,10 +18,11 @@ import {
     COMMAND_CONTEXT,
     KEY_CODES,
     LEGACY_KEY_CODES,
+    MOUSE_BUTTON_NAMES,
     MOUSE_EVENT_CODE,
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
-import { SELECTORS } from './constants/selectors';
+import { SELECTORS, CLASSNAMES } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
@@ -329,6 +330,11 @@ export default class InputController {
      * @private
      */
     _onKeydown(event) {
+        if (this._isDialog(event.target)) {
+            // ignore input for dialogs
+            return;
+        }
+
         const currentCommandInputValue = this.$commandInput.val();
 
         let code = event.originalEvent.code;
@@ -477,6 +483,25 @@ export default class InputController {
             default:
                 this.$commandInput.focus();
         }
+    }
+
+    /**
+     * Returns true if $element is part of a dialog
+     *
+     * @for InputController
+     * @method _isDialog
+     * @param element {jquery element}
+     * @return {boolean}
+     * @private
+     */
+    _isDialog($element) {
+        if ($element.classList.contains(CLASSNAMES.DIALOG)) {
+            return true;
+        }
+
+        const { parentElement } = $element;
+
+        return parentElement && this._isDialog(parentElement);
     }
 
     /**
@@ -800,14 +825,7 @@ export default class InputController {
      * @private
      */
     _onRightMousePress(event) {
-        const mousePositionX = event.pageX - CanvasStageModel._panX;
-        const mousePositionY = event.pageY - CanvasStageModel._panY;
-        // Record mouse down position for panning
-        this._mouseDownScreenPosition = [
-            mousePositionX,
-            mousePositionY
-        ];
-        this.input.isMouseDown = true;
+        this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
     }
 
     /**
@@ -831,6 +849,7 @@ export default class InputController {
 
         if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
             this.deselectAircraft();
+            this._markMousePressed(event, MOUSE_BUTTON_NAMES.LEFT);
         } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
             const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
             this.input.command = newCommandValue;
@@ -840,5 +859,33 @@ export default class InputController {
         } else if (aircraftModel) {
             this.selectAircraft(aircraftModel);
         }
+    }
+
+    /**
+     * Method to initiate a mouse click and drag. Checks whether or not
+     * the correct button is pressed, records the position, and marks the
+     * mouse as down.
+     *
+     * @for InputController
+     * @method _markMousePressed
+     * @param {String} mouseButton
+     */
+    _markMousePressed(event, mouseButton) {
+        const canvasDragButton = GameController.getGameOption(GAME_OPTION_NAMES.MOUSE_CLICK_DRAG);
+        const mousePositionX = event.pageX - CanvasStageModel._panX;
+        const mousePositionY = event.pageY - CanvasStageModel._panY;
+
+        // The mouse button that's been pressed isn't the one
+        // that drags the canvas, so we return.
+        if (mouseButton !== canvasDragButton) {
+            return;
+        }
+
+        // Record mouse down position for panning
+        this._mouseDownScreenPosition = [
+            mousePositionX,
+            mousePositionY
+        ];
+        this.input.isMouseDown = true;
     }
 }

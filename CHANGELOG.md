@@ -1,13 +1,44 @@
-# 6.12.0 (April 1, 2019)
+# 6.13.0 (May 1, 2019)
 ### New Features
 
 
 ### Bugfixes
-- [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons when window loses and regains focus.
+- [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft Not Squawking Assigned Code
 
 
 ### Enhancements & Refactors
-- [#10](https://github.com/openscope/openscope/issues/10) - Command for crossing restrictions (only altitude)
+
+
+# 6.12.3 (April 22, 2019)
+### Hotfixes
+- [#1366](https://github.com/openscope/openscope/issues/1366) - Remove/combine conflicting spawn patterns from multiple airports
+
+
+# 6.12.2 (April 15, 2019)
+### Hotfixes
+- [#943](https://github.com/openscope/openscope/issues/943) - Fix random spawn calculations to ensure arrivals are available quickly
+- [#1355](https://github.com/openscope/openscope/issues/1355) - Ensure LSZH arrivals descend properly
+
+
+# 6.12.1 (April 4, 2019)
+### Hotfixes
+- [#1358](https://github.com/openscope/openscope/issues/1358) - Ensure traffic resumes spawning after a spawn pattern is turned off and back on
+
+
+# 6.12.0 (April 1, 2019)
+### New Features
+- [#804](https://github.com/openscope/openscope/issues/804) - Add ability to view changelog for the current version
+- [#1330](https://github.com/openscope/openscope/issues/1330) - Allow user to choose which mouse button drags the canvas
+- [#16](https://github.com/openscope/openscope/issues/16) - Add traffic volume scaling controls
+
+### Bugfixes
+- [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons
+- [#1341](https://github.com/openscope/openscope/issues/1341) - Fix CID number generation bug when generated CID is already in use
+- [#1183](https://github.com/openscope/openscope/issues/1183) - Ensure a deep render occurs when changing themes
+
+### Enhancements & Refactors
+- [#10](https://github.com/openscope/openscope/issues/10) - Add command for altitude restrictions at fixes ("cr")
+- [#598](https://github.com/openscope/openscope/issues/598) - Add linting (`lint-diff`) to Travis CI task list
 
 
 # 6.11.0 (March 4, 2019)

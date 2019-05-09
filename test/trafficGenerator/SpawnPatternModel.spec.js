@@ -85,6 +85,24 @@ ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) =>
     t.true(typeof result === 'number');
 });
 
+ava('#id returns #_id', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
+    const expectedResult = 'some-value';
+    model._id = expectedResult;
+    const result = model.id;
+
+    t.true(result === expectedResult);
+});
+
+ava('#positionModel returns #_positionModel', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
+    const expectedResult = 'some-value';
+    model._positionModel = expectedResult;
+    const result = model.positionModel;
+
+    t.true(result === expectedResult);
+});
+
 ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
     const cycleStartTimeMock = 42;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
@@ -108,9 +126,6 @@ ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
 
 ava('.getNextDelayValue() returns a random number between minimumDelay and maximumDelay', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
-    model._minimumDelay = 0;
-    model._maximumDelay = 3;
-
     const result = model.getNextDelayValue();
 
     t.true(typeof result === 'number');
@@ -219,14 +234,6 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a str
 
     t.true(model._minimumAltitude === 23000);
     t.true(model._maximumAltitude === 23000);
-});
-
-ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
-    const expectedResult = 360;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
-    const result = model._calculateMaximumDelayFromSpawnRate();
-
-    t.true(result === expectedResult);
 });
 
 ava('._initializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
