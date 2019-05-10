@@ -43,7 +43,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      *    +----------+------------------------+
      *    |   Hard   |    More than 60 AcpH   |
      *    +----------+------------------------+
-     * - `AIRPORT_NAME` is the name of the airport (ex: San Francisco International Airport)
+     * - `AIRPORT_NAME` is the official English name of the airport (ex: San Francisco International Airport)
      * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
      *
      * @property AIRPORT_LOAD_LIST
@@ -72,7 +72,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'eddf',
             level: 'hard',
-            name: 'Flughafen Frankfurt am Main',
+            name: 'Frankfurt Airport',
             premium: false
         },
         {
@@ -84,7 +84,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'eddl',
             level: 'hard',
-            name: 'Flughafen Düsseldorf',
+            name: 'Düsseldorf Airport',
             premium: false
         },
         {
@@ -162,7 +162,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'engm',
             level: 'easy',
-            name: 'Oslo Gardermoen International Airport',
+            name: 'Oslo Gardermoen Airport',
             premium: false
         },
         // {
@@ -366,13 +366,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'lkpr',
             level: 'easy',
-            name: 'Vaclav Havel International Airport',
+            name: 'Václav Havel Airport Prague',
             premium: false
         },
         {
             icao: 'lrop',
             level: 'medium',
-            name: 'Bucharest Henri Coanda International Airport',
+            name: 'Bucharest Henri Coandă International Airport',
             premium: false
         },
         {
@@ -390,7 +390,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'ltba',
             level: 'hard',
-            name: 'Atatürk International Airport',
+            name: 'Istanbul Atatürk Airport',
             premium: false
         },
         // },
@@ -421,7 +421,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'othh',
             level: 'easy',
-            name: 'Doha Hamad International Airport',
+            name: 'Hamad International Airport',
             premium: false
         },
         // {
