@@ -184,6 +184,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
+            icao: 'kase',
+            level: 'beginner',
+            name: 'Aspen-Pitkin Co./Sardy Field Airport',
+            premium: false
+        },
+        {
             icao: 'katl',
             level: 'hard',
             name: 'Hartsfield–Jackson Atlanta Int\'l',
