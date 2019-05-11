@@ -93,7 +93,7 @@ export const headingParser = (args) => {
 
             return [direction, heading, isIncremental];
         case 2:
-            isIncremental = args[1].length === 2;
+            isIncremental = args[1].length === 2 || args[1].length === 1;
             direction = directionNormalizer(args[0]);
             heading = convertStringToNumber(args[1]);
 
