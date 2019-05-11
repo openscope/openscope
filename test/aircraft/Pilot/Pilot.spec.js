@@ -1076,7 +1076,7 @@ ava('.maintainHeading() returns a success message when incremental is true and d
     const result = aircraftModel.pilot.maintainHeading(aircraftModel, 5, directionMock, true);
 
     t.deepEqual(result, expectedResult);
-});    
+});
 
 ava('.maintainHeading() returns a success message when incremental is false and direction is provided', (t) => {
     const directionMock = 'right';
