@@ -418,9 +418,9 @@ export default class SpawnPatternModel extends BaseModel {
             return 'overflight';
         }
 
-        return this.isArrival() ?
-            this.destination :
-            this.origin;
+        return this.isArrival()
+            ? this.destination
+            : this.origin;
     }
 
     /**
