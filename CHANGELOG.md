@@ -7,6 +7,7 @@
 
 
 ### Enhancements & Refactors
+- [#1230](https://github.com/openscope/openscope/issues/1230) - Upgrades from `cedar-14` to `heroku-14` stack and simplifies build commands
 
 
 # 6.12.3 (April 22, 2019)
