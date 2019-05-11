@@ -1048,7 +1048,7 @@ ava('.maintainHeading() returns a success message when incremental is true and d
     t.deepEqual(result, expectedResult);
 });
 
-ava('.maintainHeading() returns a success message when incremental is true and direction is right', (t) => {
+ava('.maintainHeading() returns a success message when incremental is true, direction is right, and a 2-digit numeral is used for the increment', (t) => {
     const directionMock = 'right';
     const expectedResult = [
         true,
@@ -1062,6 +1062,21 @@ ava('.maintainHeading() returns a success message when incremental is true and d
 
     t.deepEqual(result, expectedResult);
 });
+
+ava('.maintainHeading() returns a success message when incremental is true and direction is right, and a 1-digit numeral is used for the increment', (t) => {
+    const directionMock = 'right';
+    const expectedResult = [
+        true,
+        {
+            log: 'turn 5 degrees right',
+            say: 'turn 5 degrees right'
+        }
+    ];
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const result = aircraftModel.pilot.maintainHeading(aircraftModel, 5, directionMock, true);
+
+    t.deepEqual(result, expectedResult);
+});    
 
 ava('.maintainHeading() returns a success message when incremental is false and direction is provided', (t) => {
     const directionMock = 'right';
