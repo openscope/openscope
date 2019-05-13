@@ -277,10 +277,11 @@ Altitude also accepts an `expedite` or `x` argument which can be used as the las
 
 _Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
 
-## Fly Present Heading
+### Fly Present Heading
+
 _Aliases -_ `fph`
 
-_Information -_ This command has the aircraft fly at the present heading, disregarding the passing of any waypoints. 
+_Information -_ This command has the aircraft fly straight ahead, regardless of assigned routing. 
 
 _Syntax -_ `AAL123 fph`
 
