@@ -43,7 +43,7 @@ Lets look at some examples before we continue:
 {
     "origin": "",
     "destination": "",
-    "category": "arrival",
+    "category": "overflight",
     "route": "DAG.V21.MLF",
     "altitude": 9000,
     "speed": 320,
