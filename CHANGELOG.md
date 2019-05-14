@@ -3,7 +3,8 @@
 
 
 ### Bugfixes
-- [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft Not Squawking Assigned Code
+- [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft not squawking assigned code
+- [#1351](https://github.com/openscope/openscope/issues/1351) - Fix turn command with incremental turns of less than 10 degrees
 
 
 ### Enhancements & Refactors
