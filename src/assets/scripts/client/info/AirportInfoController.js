@@ -289,7 +289,7 @@ export default class AirportInfoController {
         const minGustStrength = 5;
         const { speed } = wind;
         const { angle } = wind;
-        const newAngle = leftPad((angle || 360), 3);
+        const newAngle = leftPad(Math.floor((angle || 360)), 3);
         const newSpeed = leftPad(speed, 2);
         // Creates a fake "gusting" speed
         const gustStrength = speed * Math.random();

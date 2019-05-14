@@ -659,6 +659,10 @@ export default class AirportModel {
         const currentWind = nextWind;
         const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(currentWind);
 
+        if (this.arrivalRunwayModel != this.getRunway(bestRunwayForWind)) {
+            console.warn('Winds have now changed enough to warrant a runway change. Suggested runway: ' + `'${bestRunwayForWind}'`);
+        }
+
         this.setArrivalRunway(bestRunwayForWind);
         this.setDepartureRunway(bestRunwayForWind);
     }
