@@ -25,6 +25,7 @@
 
 ['Basic Control Instruction' Commands](#'basic-control-instruction'-commands)
 - [Altitude](#altitude)
+- [Fly Present Heading](#fly-present-heading)
 - [Heading](#heading)
 - [Speed](#speed)
 
@@ -275,6 +276,14 @@ Airplanes will not descend below 1000 feet (unless locked on ILS).
 Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
 
 _Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
+
+### Fly Present Heading
+
+_Aliases -_ `fph`
+
+_Information -_ This command has the aircraft fly straight ahead, regardless of assigned routing. 
+
+_Syntax -_ `AAL123 fph`
 
 ### Heading
 _Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
