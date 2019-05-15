@@ -14,9 +14,9 @@ export const GAME_OPTION_NAMES = {
     PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
-    INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
-    MOUSE_CLICK_DRAG: 'mouseClickDrag'
+    MOUSE_CLICK_DRAG: 'mouseClickDrag',
+    RANGE_RINGS: 'rangeRings'
 };
 
 /**
@@ -154,20 +154,62 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS,
-        defaultValue: 'no',
-        description: 'Include WIP Airports',
-        help: 'Will include all available airports including those marked as Work In Progress.',
+        name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
+        defaultValue: 'right',
+        description: 'Panning Button',
+        help: 'Which mouse button (left or right) should drag the canvas when held',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: 'Yes',
-                value: 'yes'
+                displayLabel: 'Left Click',
+                value: 'left'
             },
             {
-                displayLabel: 'No',
-                value: 'no'
+                displayLabel: 'Right Click',
+                value: 'right'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.RANGE_RINGS,
+        defaultValue: 'default',
+        description: 'Range rings',
+        help: 'Radius of range rings, in nautical miles',
+        type: 'select',
+        onChangeEventHandler: EVENT.RANGE_RINGS_CHANGE,
+        optionList: [
+            {
+                displayLabel: 'Default',
+                value: 'default'
+            },
+            {
+                displayLabel: 'Off',
+                value: 'off'
+            },
+            {
+                displayLabel: '1 nm',
+                value: 1
+            },
+            {
+                displayLabel: '2 nm',
+                value: 2
+            },
+            {
+                displayLabel: '5 nm',
+                value: 5
+            },
+            {
+                displayLabel: '10 nm',
+                value: 10
+            },
+            {
+                displayLabel: '15 nm',
+                value: 15
+            },
+            {
+                displayLabel: '20 nm',
+                value: 20
             }
         ]
     }

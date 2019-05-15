@@ -1,0 +1,15 @@
+{
+    "icao": "ujx",
+    "name": "AtlasGlobal Ukraine",
+    "callsign": {
+        "name": "Atlas Ukraine",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 2]
+        ]
+    }
+}

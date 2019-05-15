@@ -10,7 +10,7 @@ import { TIME, REGEX } from '../constants/globalConstants';
  * @type {number}
  * @final
  */
-const DECIMAL_RADIX = 10;
+export const DECIMAL_RADIX = 10;
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -158,6 +158,17 @@ export const ft_km = (ft = 0) => {
 export const kn_ms = (kn = 0) => {
     return kn * UNIT_CONVERSION_CONSTANTS.KN_MS;
 };
+
+/**
+ * nautical miles to feet
+ *
+ * @function nm_ft
+ * @param nm {number}
+ * @return {number}
+ */
+export const nm_ft = (nm) => {
+    return nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
+}
 
 /**
  * convert radians to degrees

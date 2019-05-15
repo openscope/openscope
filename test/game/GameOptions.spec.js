@@ -17,7 +17,8 @@ ava('sets #_options on instantiation', (t) => {
         'ptlLength',
         'drawProjectedPaths',
         'softCeiling',
-        'includeWipAirports'
+        'mouseClickDrag',
+        'rangeRings'
     ];
 
     const model = new GameOptions();

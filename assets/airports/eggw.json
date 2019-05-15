@@ -11,8 +11,11 @@
     "ctr_ceiling": 19500,
     "initial_alt": 5000,
     "position": ["N51d52m29", "W000d22m06", "526ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N51d52m29", "W000d22m06"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N51d52m29", "W000d22m06"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 247,
@@ -2091,60 +2094,11 @@
             "altitude": 26000,
             "speed": 300,
             "method": "random",
-            "rate": 2,
+            "rate": 3,
             "airlines": [
                 ["ezy/a20n", 5],
                 ["ezy/a319", 37],
                 ["ezy/a320", 20],
-                ["ryr", 10],
-                ["wzz/a320", 30],
-                ["wzz/a321", 9]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGGW",
-            "category": "arrival",
-            "route": "ORTAC.L980.AVANT.LOREL4C.EGGW26",
-            "altitude": 19000,
-            "speed": 280,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["ezy/a20n", 5],
-                ["ezy/a319", 37],
-                ["ezy/a320", 20],
-                ["ryr", 10],
-                ["tom/b738", 1],
-                ["vlg/a320", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGGW",
-            "category": "arrival",
-            "route": "BANVA.LOREL4Q.EGGW26",
-            "altitude": 22000,
-            "speed": 300,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["mnb/a306", 1],
-                ["ryr", 10],
-                ["wzz/a320", 30],
-                ["wzz/a321", 9]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGGW",
-            "category": "arrival",
-            "route": "IDESI.ABBOT1C.EGGW26",
-            "altitude": 18000,
-            "speed": 280,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
                 ["mnb/a306", 1],
                 ["ryr", 10],
                 ["wzz/a320", 30],
@@ -2159,12 +2113,17 @@
             "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 1,
+            "rate": 3,
             "airlines": [
+                ["ezy/a20n", 5],
                 ["ezy/a319", 37],
                 ["ezy/a320", 20],
+                ["mnb/a306", 1],
                 ["ryr", 10],
-                ["vlg/a320", 3]
+                ["tom/b738", 1],
+                ["vlg/a320", 3],
+                ["wzz/a320", 30],
+                ["wzz/a321", 9]
             ]
         }
     ],

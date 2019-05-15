@@ -234,23 +234,6 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Calculate the heading from the first waypoint to the second waypoint
-     *
-     * This is used to determine the heading of newly spawned aircraft
-     *
-     * @for RouteModel
-     * @method calculateSpawnHeading
-     * @return {number} heading, in radians
-     */
-    calculateSpawnHeading() {
-        const firstWaypointPositionModel = this.waypoints[0].positionModel;
-        const secondWaypointPositionModel = this.waypoints[1].positionModel;
-        const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
-
-        return heading;
-    }
-
-    /**
     * Return an array of waypoints in the flight plan that have altitude restrictions
     *
     * @for RouteModel
@@ -341,9 +324,9 @@ export default class RouteModel extends BaseModel {
             return null;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._findSidLeg();
 
-        return this._legCollection[sidLegIndex].getDepartureRunwayAirportIcao();
+        return sidLegModel.getDepartureRunwayAirportIcao();
     }
 
     /**
@@ -375,9 +358,9 @@ export default class RouteModel extends BaseModel {
             return null;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._findSidLeg();
 
-        return this._legCollection[sidLegIndex].getDepartureRunwayName();
+        return sidLegModel.getDepartureRunwayName();
     }
 
     /**
@@ -434,7 +417,9 @@ export default class RouteModel extends BaseModel {
 
     /**
     * Returns the full route string, with airports removed
-    * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
+    *
+    * Example:
+    * - `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
     *
     * @for RouteModel
     * @method getFullRouteStringWithoutAirportsWithSpaces
@@ -447,12 +432,18 @@ export default class RouteModel extends BaseModel {
         });
 
         return this._combineRouteStrings(legRouteStringsWithoutAirports)
-        .replace(REGEX.DOUBLE_DOT, ' ')
-        .replace(REGEX.SINGLE_DOT, ' ');
+            .replace(REGEX.DOUBLE_DOT, ' ')
+            .replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
      * Return `#fullRouteString` with spaces between elements instead of dot notation
+     *
+     * Example:
+     * - `KSEA16L.BANGR9.PANGL` --> `KSEA16L BANGR9 PANGL`
+     *
+     * Used mostly for representing the route string in the view, like
+     * an aircraft strip, etc.
      *
      * @for RouteModel
      * @method getFullRouteStringWithSpaces
@@ -480,6 +471,9 @@ export default class RouteModel extends BaseModel {
     /**
      * Return `#routeString` with spaces between elements instead of dot notation
      *
+     * Example:
+     * - `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
+     *
      * @for RouteModel
      * @method getRouteStringWithSpaces
      * @return {string}
@@ -488,6 +482,31 @@ export default class RouteModel extends BaseModel {
         const routeString = this.getRouteString();
 
         return routeString.replace(REGEX.DOUBLE_DOT, ' ').replace(REGEX.SINGLE_DOT, ' ');
+    }
+
+    /**
+     * Returns exit waypoint for a departure aircraft, to be used in datablock
+     *
+     * When a SID procedure is defined, this will return the exit waypoint
+     * Example:
+     * - `KLAS07R.BOACH6.TNP` -> `TNP`
+     *
+     * When no SID procedure is defined, this will return the first fix in the route
+     * Example:
+     * - `OAL..MLF..PGS` -> `OAL`
+     *
+     * @for RouteModel
+     * @method getFlightPlanEntry
+     * @returns {string} First fix in flightPlan or exit fix of SID
+     */
+    getFlightPlanEntry() {
+        if (!this.hasSidLeg()) {
+            return this.getFullRouteString().split('..')[0];
+        }
+
+        const sidLegModel = this._findSidLeg();
+
+        return sidLegModel.getExitFixName();
     }
 
     /**
@@ -502,7 +521,7 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getProcedureIcao();
     }
@@ -519,9 +538,28 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getProcedureName();
+    }
+
+    /**
+     * Return the initial altitude of the SID or the airport
+     *
+     * @for RouteModel
+     * @method getInitialClimbClearance
+     * @return {number}
+     */
+    getInitialClimbClearance() {
+        const sidLegModel = this._findSidLeg();
+
+        if (sidLegModel && sidLegModel.altitude) {
+            return sidLegModel.altitude;
+        }
+
+        const airport = AirportController.airport_get();
+
+        return airport.initial_alt;
     }
 
     /**
@@ -666,8 +704,7 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         if (!sidLegModel) {
             return true;
@@ -769,29 +806,20 @@ export default class RouteModel extends BaseModel {
      * @for RouteModel
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @return {boolean} whether operation was successful
+     * @return {array} [success of operation, response]
      */
     replaceDepartureProcedure(routeString) {
-        let sidLegModel;
+        let routeModel;
 
         try {
-            sidLegModel = new LegModel(routeString);
+            routeModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
-            return false;
+            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
-        // if no SID leg exists, insert the new one as the new first leg
-        if (!this.hasSidLeg()) {
-            this._legCollection.unshift(sidLegModel);
-
-            return true;
-        }
-
-        this._legCollection[this._findSidLegIndex()] = sidLegModel;
-
-        return true;
+        return this.absorbRouteModel(routeModel);
     }
 
     /**
@@ -849,8 +877,7 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
@@ -861,38 +888,26 @@ export default class RouteModel extends BaseModel {
     * @for RouteModel
     * @method updateStarLegForArrivalRunwayModel
     * @param runwayModel {RunwayModel}
-    * @return {array} [success of operation, response]
     */
     updateStarLegForArrivalRunwayModel(runwayModel) {
         if (!this.hasStarLeg()) {
             return;
         }
 
+        if (!this.isRunwayModelValidForStar(runwayModel)) {
+            console.error(`Received Runway ${runwayModel.name}, which is not valid for the assigned STAR. ` +
+                'The runway should have been validated before passing it to this method!');
+
+            return;
+        }
+
         const originalCurrentWaypointName = this.currentWaypoint.name;
         const nextExitName = `${this.getArrivalRunwayAirportIcao().toUpperCase()}${runwayModel.name}`;
         const starLegIndex = this._findStarLegIndex();
-        const starLegModel = this._legCollection[starLegIndex];
-
-        if (!starLegModel.procedureHasExit(nextExitName)) {
-            const procedureIcao = starLegModel.getProcedureIcao();
-            const procedureName = starLegModel.getProcedureName();
-            const readback = {};
-            readback.log = `unable, Runway ${runwayModel.name} is not valid for the ${procedureIcao} arrival`;
-            readback.say = `unable, Runway ${runwayModel.getRadioName()} is not valid for the ${procedureName} arrival`;
-
-            return [false, readback];
-        }
-
         const amendedStarLegModel = this._createAmendedStarLegUsingDifferentExitName(nextExitName, starLegIndex);
         this._legCollection[starLegIndex] = amendedStarLegModel;
 
         this.skipToWaypointName(originalCurrentWaypointName);
-
-        const readback = {};
-        readback.log = `expecting Runway ${runwayModel.name}`;
-        readback.say = `expecting Runway ${runwayModel.getRadioName()}`;
-
-        return [true, readback];
     }
 
     // ------------------------------ PRIVATE ------------------------------
@@ -932,8 +947,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${divergentLeg.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**
@@ -1465,6 +1479,20 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Return the SID leg
+     *
+     * If for some reason there are multiple, this returns the first one.
+     * This search does NOT include legs in the `#_previousLegCollection`.
+     *
+     * @for RouteModel
+     * @method findSidLeg
+     * @return {ProcedureModel}
+     */
+    _findSidLeg() {
+        return this._legCollection.find((legModel) => legModel.isSidLeg);
+    }
+
+    /**
      * Return the index of the STAR leg within the `#_legCollection`
      *
      * If for some reason there are multiple, this returns the first one.
@@ -1587,8 +1615,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${convergentLegModel.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**

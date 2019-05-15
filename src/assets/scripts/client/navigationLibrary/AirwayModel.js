@@ -1,7 +1,7 @@
 import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
-import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
+import NavigationLibrary from './NavigationLibrary';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
@@ -59,8 +59,7 @@ export default class AirwayModel {
         _forEach(fixNames, (fixName) => {
             if (!NavigationLibrary.hasFixName(fixName)) {
                 throw new TypeError(`Expected to find fix "${fixName}" for ` +
-                    `airway "${this._icao}", but it is not a defined fix!`
-                );
+                    `airway "${this._icao}", but it is not a defined fix!`);
             }
         });
     }

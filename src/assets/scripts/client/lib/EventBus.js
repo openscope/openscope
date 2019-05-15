@@ -95,6 +95,8 @@ class EventBus {
      *
      * @for EventBus
      * @method trigger
+     * @param eventName {string}
+     * @param args {rest parameter}
      */
     trigger(eventName, ...args) {
         if (!this.has(eventName)) {

@@ -23,6 +23,8 @@ const INVALID_ARG_LENGTH = `${INVALID_ARG} length`;
 export const ERROR_MESSAGE = {
     ZERO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly zero arguments`,
     SINGLE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly one argument`,
+    TWO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly two arguments`,
+    THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly three arguments`,
     ZERO_OR_ONE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected zero or one argument`,
     ZERO_TO_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected zero to three arguments`,
     ONE_OR_MORE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or more arguments`,

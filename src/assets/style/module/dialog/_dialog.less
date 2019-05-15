@@ -1,0 +1,126 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    max-height: ~"calc(100% - 2*36px - 2*7px)";
+    width: 600px;
+    margin: auto;
+    padding: 0px 10px 10px 10px;
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+    background-color: @dark-06;
+    color: @light-gray;
+    font-size: 12px;
+    border: 6px solid @blue-medium;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 0 50px -10px rgba(0,0,0,.3);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 200;
+}
+
+.dialog select {
+    width: 100%;
+    padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
+    background-color: #141414;
+    color: @light-gray;
+    font-family: inherit;
+    line-height: 25px;
+    border: 0;
+    border-radius: 3px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.dialog select:focus {
+    outline: none;
+}
+
+.dialog-body {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: @spacing-1x @spacing-1x;
+    background-color: @dark;
+    color: @light-gray;
+    font-size: 100%;
+    border: 2px solid @blue-medium;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.dialog-footer {
+    color: @gray-40;
+    display: inline-block;
+    font-style: italic;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.dialog.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dialog-title {
+    padding: @spacing-2x 0 7px 0;
+    font-size: 170%;
+    text-align: center;
+}
+
+.form-element {
+    display: flex;
+}
+
+.form-element input[type="range"] {
+    display: block;
+    flex-grow: 1;
+}
+
+.form-element + .form-element {
+    margin-top: 2px;
+}
+
+.form-label {
+    display: block;
+    flex-grow: 1;
+    box-sizing: border-box;
+    width: 65%;
+    padding-right: 10px;
+    line-height: 25px;
+}
+
+.form-type-select {
+    position: relative;
+    width: 35%;
+    display: inline-block;
+    color: inherit;
+}
+
+.form-type-select::after {
+    position: absolute;
+    right: 0;
+    font-size: 8px;
+    line-height: 25px;
+    content: "\25BC";
+    pointer-events: none;
+}
+
+.form-value {
+    line-height: 25px;
+    padding: 0px 5px;
+    width: 30px;
+    overflow: hidden;
+}
+
+input[type=number].form-input {
+    /* ensure number steppers are visible */
+    min-width: 50px;
+}

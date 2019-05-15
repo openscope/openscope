@@ -125,6 +125,14 @@ export const RADAR_TARGET_THEME = {
     RING_VIOLATION: COLOR.RED,
 
     /**
+     * Color of halo
+     *
+     * @memberof RADAR_TARGET_THEME
+     * @property HALO
+     */
+    HALO: COLOR.GREEN_LIGHT,
+
+    /**
      * Whether or not the small line behind aircraft established on an
      * instrument approach should be drawn
      *

@@ -18,13 +18,17 @@ import {
     fixValidator,
     headingValidator,
     holdValidator,
-    squawkValidator
+    squawkValidator,
+    optionalAltitudeValidator,
+    crossingValidator
 } from './argumentValidators';
 import {
     altitudeParser,
     headingParser,
     holdParser,
-    timewarpParser
+    timewarpParser,
+    optionalAltitudeParser,
+    crossingParser
 } from './argumentParsers';
 
 /**
@@ -49,6 +53,10 @@ const noop = (args) => args;
  */
 const ZERO_ARG_AIRCRAFT_COMMANDS = {
     // system commands
+    airac: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
     auto: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -75,19 +83,11 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    climbViaSid: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
     debug: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
     delete: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
-    descendViaStar: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
@@ -145,17 +145,11 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    rate: {
-        validate: singleArgumentValidator,
-        // calling method is expecting an array with values that will get spread later, thus we purposly
-        // return an array here
-        parse: (args) => [convertStringToNumber(args)]
-    },
-    expectArrivalRunway: {
+    direct: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    direct: {
+    expectArrivalRunway: {
         validate: singleArgumentValidator,
         parse: noop
     },
@@ -172,11 +166,17 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    route: {
+    rate: {
+        validate: singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (args) => [convertStringToNumber(args)]
+    },
+    reroute: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    reroute: {
+    route: {
         validate: singleArgumentValidator,
         parse: noop
     },
@@ -211,12 +211,20 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroOrOneArgumentValidator,
         parse: noop
     },
+    cancelHold: {
+        validate: zeroOrOneArgumentValidator,
+        parse: noop
+    },
 
     // these commands have specific argument requirements and may need to be parsed
     // into the correct type (sting -> number)
     altitude: {
         validate: altitudeValidator,
         parse: altitudeParser
+    },
+    cross: {
+        validate: crossingValidator,
+        parse: crossingParser
     },
     fix: {
         validate: fixValidator,
@@ -237,6 +245,14 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     timewarp: {
         validate: zeroOrOneArgumentValidator,
         parse: timewarpParser
+    },
+    descendViaStar: {
+        validate: optionalAltitudeValidator,
+        parse: optionalAltitudeParser
+    },
+    climbViaSid: {
+        validate: optionalAltitudeValidator,
+        parse: optionalAltitudeParser
     }
 };
 

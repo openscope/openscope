@@ -12,7 +12,9 @@ import {
     fixValidator,
     headingValidator,
     holdValidator,
-    squawkValidator
+    squawkValidator,
+    optionalAltitudeValidator,
+    crossingValidator
 } from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentValidators';
 
 // TODO: import ERROR_MESSAGE and use actual values to test against
@@ -132,6 +134,30 @@ ava('.altitudeValidator() returns a string when passed anything other than exped
 
     result = altitudeValidator(['100', '']);
     t.true(result === 'Invalid argument. Altitude accepts only "expedite" or "x" as a second argument');
+});
+
+ava('.optionalAltitudeValidator() returns undefined when no value is passed', t => {
+    const result = optionalAltitudeValidator([]);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.optionalAltitudeValidator() returns undefined when passed a valid altitude', t => {
+    let result = optionalAltitudeValidator(['100']);
+    t.true(typeof result === 'undefined');
+
+    result = optionalAltitudeValidator(['300']);
+    t.true(typeof result === 'undefined');
+
+    result = optionalAltitudeValidator(['aa']);
+    t.true(result === 'Invalid argument. Altitude must be a number');
+});
+
+ava('.optionalAltitudeValidator() returns a string when passed the wrong number of arguments', t => {
+    let result = optionalAltitudeValidator(['100', 'expedite']);
+    t.true(result === 'Invalid argument length. Expected zero or one argument');
+
+    result = optionalAltitudeValidator(['', '', '']);
+    t.true(result === 'Invalid argument length. Expected zero or one argument');
 });
 
 ava('.fixValidator() returns undefined when it receives at least one valid argument', (t) => {
@@ -269,4 +295,48 @@ ava('.squawkValidator() returns string when passed invalid squawk', t => {
 
     result = squawkValidator(['1a11']);
     t.true(result === 'Invalid argument. Expected \'0000\'-\'7777\' for the transponder code.');
+});
+
+ava('.crossingValidator() returns a string when passed the wrong number of arguments', t => {
+    let result = crossingValidator();
+    t.true(result === 'Invalid argument length. Expected exactly two arguments');
+
+    result = crossingValidator([]);
+    t.true(result === 'Invalid argument length. Expected exactly two arguments');
+
+    result = crossingValidator(['', '', '']);
+    t.true(result === 'Invalid argument length. Expected exactly two arguments');
+});
+
+ava('.crossingValidator() returns undefined when passed valid arguments', t => {
+    let result = crossingValidator(['LEMDY', '50']);
+    t.true(typeof result === 'undefined');
+
+    result = crossingValidator(['BLUB', '100']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.crossingValidator() returns an error when fixname is not a string', t => {
+    let result = crossingValidator([50, '50']);
+    t.true(result === 'Invalid argument. Must be a string');
+
+    result = crossingValidator([{}, '100']);
+    t.true(result === 'Invalid argument. Must be a string');
+
+    result = crossingValidator([[], '100']);
+    t.true(result === 'Invalid argument. Must be a string');
+});
+
+ava('.crossingValidator() returns an error when altitude is not a number', t => {
+    let result = crossingValidator(['LEMDY', 'xx']);
+    t.true(result === 'Invalid argument. Altitude must be a number');
+
+    result = crossingValidator(['LEMDY', '']);
+    t.true(result === 'Invalid argument. Altitude must be a number');
+
+    result = crossingValidator(['LEMDY', []]);
+    t.true(result === 'Invalid argument. Altitude must be a number');
+
+    result = crossingValidator(['LEMDY', {}]);
+    t.true(result === 'Invalid argument. Altitude must be a number');
 });

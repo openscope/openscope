@@ -16,6 +16,7 @@
 [Routing Commands](#routing-commands)
 - [~~Fix~~](#fix)
 - [Hold](#hold)
+- [Exit Hold](#exit-hold)
 - [Proceed Direct](#proceed-direct)
 - [Route](#route)
 - [Reroute](#reroute)
@@ -24,8 +25,12 @@
 
 ['Basic Control Instruction' Commands](#'basic-control-instruction'-commands)
 - [Altitude](#altitude)
+- [Fly Present Heading](#fly-present-heading)
 - [Heading](#heading)
 - [Speed](#speed)
+
+[Conditional / Pilot's Discretion Commands](#conditional-/-pilot's-discretion-commands)
+- [Cross](#cross)
 
 [Aircraft Query Commands](#aircraft-query-commands)
 - [Say Altitude](#say-altitude)
@@ -68,9 +73,10 @@ _Aliases -_ `cvs`
 _Information -_ Authorizes the aircraft to climb in accordance with the
 SID that is currently in their flightplan. They will climb to their filed
 cruise altitude, whilst complying with all altitude and speed restrictions
-posted in the procedure.
+posted in the procedure. Optionally, an altitude may be specified to dictate
+the altitude to be climbed to.
 
-_Syntax -_ `AAL123 cvs`
+_Syntax -_ `AAL123 cvs` or `AAL123 cvs [alt]`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -87,11 +93,10 @@ _Syntax -_ `AAL123 cto`
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
 
-_Information -_ This command tells the specified plane to taxi to a
-runway; if a runway is not included they will continue to the runway
-with the largest headwind.
+_Information -_ This command tells the specified plane to taxi to and hold short
+of specified runway.
 
-_Syntax -_ `AAL123 taxi [Runway]`
+_Syntax -_ `AAL123 taxi [runway]`
 
 # Arrival Commands
 These commands are only used by arrival aircraft.
@@ -105,7 +110,7 @@ runway assignment. In cases where their STAR says to follow a different series
 of waypoints dependent upon their runway, we can use this command to have an
 aircraft follow the desired branch of the STAR toward the desired runway.
 
-_Syntax -_ `AAL123 e 26r`
+_Syntax -_ `AAL123 e [runway]`
 
 ### Descend via STAR
 _Aliases -_ `dvs`
@@ -114,9 +119,10 @@ _Information -_ Authorizes the aircraft to descend in accordance with the
 STAR that is currently in their flightplan. They will descend to the lowest
 altitude required by the STAR, and after no further altitude and/or speed
 restrictions are listed, will maintain their altitude and speed until
-receiving further instructions from ATC.
+receiving further instructions from ATC. Optionally, an altitude may be
+specified to dictate the altitude to be descended to.
 
-_Syntax -_ `AAL123 dvs`
+_Syntax -_ `AAL123 dvs` or `AAL123 dvs [alt]`
 
 ### ILS
 _Aliases -_ `ils` / `i`
@@ -130,7 +136,7 @@ the glideslope and land.
 
 Note: This replaces the old `land` / `l` command.
 
-_Syntax -_ `AAL123 i [rwy]`
+_Syntax -_ `AAL123 i [runway]`
 
 # Routing Commands
 These commands allow you to manipulate the route in the aircraft's FMS.
@@ -158,6 +164,18 @@ with simply `[fixname]`. Any combination of these arguments provided in
 any order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
+
+### Exit Hold
+_Aliases -_ `cancelhold` `continue` `exithold` `nohold` `xh`
+
+_Information -_ This command instructs the aircraft to leave a holding
+pattern and resume its flight plan.
+
+_Parameters -_ Optionally, you may specify the fix at which to cancel the hold,
+by specifying the fix at the end of the command: `AAL123 cancelhold [fixname]`.
+This can be useful if multiple holds exist.
+
+_Syntax -_ `AAL123 continue` or `AAL123 xh BOTON`
 
 ### Proceed Direct
 _Aliases -_ `direct` / `pd` / `dct`
@@ -259,6 +277,14 @@ Altitude also accepts an `expedite` or `x` argument which can be used as the las
 
 _Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
 
+### Fly Present Heading
+
+_Aliases -_ `fph`
+
+_Information -_ This command has the aircraft fly straight ahead, regardless of assigned routing. 
+
+_Syntax -_ `AAL123 fph`
+
 ### Heading
 _Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
 
@@ -284,6 +310,17 @@ to. It takes some time to increase and reduce speed. Remember that speed is
 always expressed in knots.
 
 _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+
+# Conditional / Pilot's Discretion Commands
+These commands are used to give instructions which pilots are free to determine how to operate
+the airplane, as long as they comply with the restrictions given.
+
+## Cross
+_Aliases -_ `cross`, `cr`
+
+_Information -_ This command has the aircraft cross a specified point along their route at a specified altitude. The altitude must be entered in hundreds of feet (eg `130` for 13,000 feet).
+
+_Syntax -_ `AAL123 cr aubrn 130`
 
 # Aircraft Query Commands
 These commands are used to ask the aircraft some basic questions.

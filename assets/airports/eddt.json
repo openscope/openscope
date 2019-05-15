@@ -11,8 +11,11 @@
     "ctr_ceiling": 15000,
     "initial_alt": 4000,
     "position": ["N52d33m33.53", "E13d17m16.82", "122.0ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N52d33m33.53", "E13d17m16.82"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N52d33m33.53", "E13d17m16.82"],
+        "radius_nm": 5.0
+    },
     "has_terrain": false,
     "wind": {
         "angle": 280,

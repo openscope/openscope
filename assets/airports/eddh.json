@@ -11,8 +11,11 @@
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
     "position": ["N53.63038909430396", "E9.988220226736836", "53ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N53.63038909430396", "E9.988220226736836"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [53.63038909430396, 9.988220226736836],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 280,
@@ -1349,8 +1352,9 @@
             "altitude": 10000,
             "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 5.5,
             "airlines": [
+                ["aee", 1],
                 ["aee", 1],
                 ["afr", 3],
                 ["baw", 5],
@@ -1360,62 +1364,15 @@
                 ["ein", 4],
                 ["ewg", 17],
                 ["ezy", 9],
-                ["gmi", 3],
                 ["gwi", 12],
                 ["ibe", 1],
                 ["klm", 6],
-                ["n/fastGA", 5],
                 ["ldm", 4],
-                ["ryr", 13],
-                ["swr", 3],
-                ["tap", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDH",
-            "category": "arrival",
-            "route": "OSN..NDO..RIBSO.RIBSO23.EDDH23",
-            "altitude": 10000,
-            "speed": 320,
-            "method": "random",
-            "rate": 2.5,
-            "airlines": [
-                ["aee", 1],
-                ["afr", 3],
-                ["baw", 5],
-                ["bel", 3],
-                ["cfg", 3],
-                ["dlh", 10],
-                ["ein", 4],
-                ["ewg", 17],
-                ["ezy", 9],
-                ["gmi", 3],
-                ["gwi", 12],
-                ["ibe", 1],
-                ["klm", 6],
                 ["n/fastGA", 5],
-                ["ldm", 4],
                 ["ryr", 13],
-                ["swr", 3],
-                ["tap", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EDDH",
-            "category": "arrival",
-            "route": "BAVTA..LUTIR..MEBUS..OSTOR..RIBSO.RIBSO23.EDDH23",
-            "altitude": 10000,
-            "speed": 320,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["dlh", 5],
-                ["ewg", 3],
-                ["n/fastGA", 5],
-                ["ryr", 3],
                 ["sas", 5],
+                ["swr", 3],
+                ["tap", 2],
                 ["ual/long", 3]
             ]
         }

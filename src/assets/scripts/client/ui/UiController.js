@@ -1,36 +1,16 @@
 import $ from 'jquery';
-import _forEach from 'lodash/forEach';
-import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
-import AirportController from './airport/AirportController';
-import EventBus from './lib/EventBus';
-import GameController from './game/GameController';
-import { speech_toggle } from './speech';
-import { EVENT } from './constants/eventNames';
-import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
-import { INVALID_NUMBER } from './constants/globalConstants';
-import { SELECTORS } from './constants/selectors';
-
-/**
- * @property UI_SETTINGS_MODAL_TEMPLATE
- * @type {string}
- * @final
- */
-const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
-
-/**
- * @property UI_OPTION_CONTAINER_TEMPLATE
- * @type {string}
- * @final
- */
-const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
-
-/**
- * @property UI_OPTION_SELECTOR_TEMPLATE
- * @type {string}
- * @final
- */
-const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
+import AirportController from '../airport/AirportController';
+import EventBus from '../lib/EventBus';
+import EventTracker from '../EventTracker';
+import GameController from '../game/GameController';
+import SettingsController from './SettingsController';
+import TrafficRateController from './TrafficRateController';
+import TutorialView from './TutorialView';
+import { speech_toggle } from '../speech';
+import { EVENT } from '../constants/eventNames';
+import { SELECTORS } from '../constants/selectors';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 /**
  * @class UiController
@@ -40,13 +20,15 @@ class UiController {
      * @constructor
      */
     constructor() {
-        this._eventBus = EventBus;
+        this._eventBus = null;
+        this.tutorialView = null;
+        this.settingsController = null;
 
         this.$element = null;
-        this.$airportList = null;
-        this.$airportListNotes = null;
-        this.$tutorialDialog = null;
+        this.$airportDialog = null;
+        this.$airportDialogBody = null;
         this.$fastForwards = null;
+        this.$githubLinkElement = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
         this.$speechToggle = null;
@@ -56,8 +38,10 @@ class UiController {
         this.$toggleSids = null;
         this.$toggleStars = null;
         this.$toggleTerrain = null;
+        this.$toggleTutorial = null;
         this.$toggleOptions = null;
         this.$toggleVideoMap = null;
+        this.$toggleTraffic = null;
     }
 
     /**
@@ -70,26 +54,29 @@ class UiController {
      * @param $element {jQuery Element}
      */
     init($element) {
-        this.$element = $element;
+        this._eventBus = EventBus;
+        this.tutorialView = new TutorialView($element);
+        this.settingsController = new SettingsController($element);
+        this.trafficRateController = new TrafficRateController($element);
 
-        this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
-        this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
+        this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
-        this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
+        this.$airportDialogBody = this.$airportDialog.find(SELECTORS.DOM_SELECTORS.DIALOG_BODY);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
-        // TODO: Make the options dialog findable by ID, not just by class
-        this.$optionsDialog = this.$element.find(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
+        this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
-        this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+        this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
         this.$switchAirport = this.$element.find(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT);
         this.$toggleLabels = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS);
         this.$toggleRestrictedAreas = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS);
         this.$toggleSids = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS);
         this.$toggleStars = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STARS);
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
+        this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
+        this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
 
         return this.setupHandlers()
             .enable();
@@ -113,11 +100,11 @@ class UiController {
      * @method enable
      */
     enable() {
-        this.$tutorialDialog.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
+        // TODO: move these to properly bound handler methods
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
         this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
-
         this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.onToggleAirportList(event));
         this.$toggleLabels.on('click', (event) => this.onToggleLabels(event));
@@ -125,8 +112,10 @@ class UiController {
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
         this.$toggleStars.on('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
+        this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
+        this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
 
         return this;
     }
@@ -138,18 +127,21 @@ class UiController {
      * @method disable
      */
     disable() {
-        this.$tutorialDialog.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
         this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
-
         this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.onToggleAirportList(event));
         this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
         this.$toggleRestrictedAreas.off('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
+        this.$toggleStars.off('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
+        this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
+        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
+        this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
 
         return this.destroy();
     }
@@ -161,11 +153,15 @@ class UiController {
      * @method destroy
      */
     destroy() {
+        this._eventBus = null;
+        this.tutorialView = null;
+        this.settingsController = null;
+
         this.$element = null;
-        this.$airportList = null;
-        this.$airportListNotes = null;
-        this.$tutorialDialog = null;
+        this.$airportDialog = null;
+        this.$airportDialogBody = null;
         this.$fastForwards = null;
+        this.$githubLinkElement = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
         this.$speechToggle = null;
@@ -173,11 +169,12 @@ class UiController {
         this.$toggleLabels = null;
         this.$toggleRestrictedAreas = null;
         this.$toggleSids = null;
+        this.$toggleStars = null;
         this.$toggleTerrain = null;
+        this.$toggleTutorial = null;
         this.$toggleOptions = null;
-
-        this.ui = {};
-        this.ui.scale = INVALID_NUMBER;
+        this.$toggleVideoMap = null;
+        this.$onToggleTraffic = null;
 
         return this;
     }
@@ -187,21 +184,8 @@ class UiController {
      * @method ui_init
      */
     ui_init() {
+        this.tutorialView.tutorial_init_pre();
         this.$fastForwards.prop('title', 'Set time warp to 2');
-
-        const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
-        const descriptions = GameController.game.option.getDescriptions();
-
-        _forEach(descriptions, (opt) => {
-            if (opt.type !== 'select') {
-                return;
-            }
-
-            const $container = this._buildOptionTemplate(opt);
-            $options.append($container);
-        });
-
-        $('body').append($options);
     }
 
     /**
@@ -212,13 +196,15 @@ class UiController {
      */
     closeAllDialogs() {
         if (this.isTutorialDialogOpen()) {
-            // TODO: Close the tutorial, once it is moved from `InputController` to `UiController`
+            this.tutorialView.tutorial_close();
         }
 
-        // TODO: Currently this will always be false because _init() is failing to find
-        // the options dialog by class name.
-        if (this.isOptionsDialogOpen()) {
+        if (this.settingsController.isDialogOpen()) {
             this.onToggleOptions();
+        }
+
+        if (this.trafficRateController.isDialogOpen()) {
+            this.onToggleTraffic();
         }
 
         if (this.isAirportSelectionDialogOpen()) {
@@ -238,91 +224,14 @@ class UiController {
     }
 
     /**
-     * Returns whether the airport selection dialog is open
-     *
-     * @for UiController
-     * @method isOptionsDialogOpen
-     * @return {boolean}
-     */
-    isOptionsDialogOpen() {
-        return this.$optionsDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
-    }
-
-    /**
-     * Returns whether the airport selection dialog is open
+     * Returns whether the tutorial dialog is open
      *
      * @for UiController
      * @method isTutorialDialogOpen
      * @return {boolean}
      */
     isTutorialDialogOpen() {
-        return this.$tutorialDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
-    }
-
-    /**
-     * Build the html for a game option and its cooresponding value elements.
-     *
-     * @for UiController
-     * @method _buildOptionTemplate
-     * @param option {object}
-     * @return $container {jquery Element}
-     * @private
-     */
-    _buildOptionTemplate(option) {
-        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
-        $container.append(`<span class="option-description">${option.description}</span>`);
-
-        const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
-        const $selector = $(`<select name="${option.name}"></select>`);
-        const selectedOption = GameController.game.option.getOptionByName(option.name);
-
-        // this could me done with a _map(), but verbosity here makes the code easier to read
-        for (let i = 0; i < option.optionList.length; i++) {
-            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.optionList[i], selectedOption);
-
-            $selector.append($optionSelectTempalate);
-        }
-
-        // TODO: this should be moved to proper event handler method and only assigned here.
-        $selector.change((event) => {
-            const $currentTarget = $(event.currentTarget);
-
-            GameController.game.option.setOptionByName($currentTarget.attr('name'), $currentTarget.val());
-
-            if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
-                this._buildAirportList();
-            }
-        });
-
-        $optionSelector.append($selector);
-        $container.append($optionSelector);
-
-        return $container;
-    }
-
-    /**
-     * Build the html for a select option.
-     *
-     * @for UiController
-     * @method _buildOptionTemplate
-     * @param optionData {array<string>}
-     * @param selectedOption {string}
-     * @return optionSelectTempalate {HTML Element}
-     * @private
-     */
-    _buildOptionSelectTemplate(optionData, selectedOption) {
-        // the `selectedOption` coming in to this method will always be a string (due to existing api) but
-        // could contain valid numbers. here we test for valid number and build `parsedSelectedOption` accordingly.
-        const parsedSelectedOption = !_isNaN(parseFloat(selectedOption))
-            ? parseFloat(selectedOption)
-            : selectedOption;
-        let optionSelectTempalate = `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
-
-        if (optionData.value === parsedSelectedOption) {
-            optionSelectTempalate = `<option value="${optionData.value}" selected>${optionData.displayLabel}</option>`;
-        }
-
-        return optionSelectTempalate;
+        return this.$toggleTutorial.hasClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
     /**
@@ -349,34 +258,22 @@ class UiController {
      * Loop through each airport defined in the `AirportController` and build
      * a list item that can be appended to the #airport-list element.
      *
-     * Includes a switch to conditionally include WIP airports based on a user setting
-     *
      * @for UiController
      * @method _buildAirportList
      * @private
      */
     _buildAirportList() {
         // clear out the contents of this element
-        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
-        this.$airportList.empty();
+        this.$airportDialogBody.empty();
 
         const airports = _keys(AirportController.airports).sort();
-        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
-        const flagIcon = '\u25CA';
 
         for (let i = 0; i < airports.length; i++) {
-            const { name, icao, level, wip } = AirportController.airports[airports[i]];
-
-            if (!shouldShowWipAirports && wip) {
-                continue;
-            }
+            const { name, icao, level } = AirportController.airports[airports[i]];
 
             difficulty = this._buildAirportListIconForDifficultyLevel(level);
-            const reliabilityFlag = wip
-                ? ''
-                : flagIcon;
-            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
+            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
@@ -387,10 +284,8 @@ class UiController {
                 }
             });
 
-            this.$airportList.append($airportListItem);
+            this.$airportDialogBody.append($airportListItem);
         }
-
-        this._buildAirportListFooter(flagIcon);
     }
 
     /**
@@ -437,45 +332,16 @@ class UiController {
      * @param icao {string}
      * @param difficulty {string}
      * @param name {string}
-     * @param reliabilityFlag {string}
      * @return {DOM element|string}
      */
-    _buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
-        return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
-                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
-                    `<span class="icao">${icao.toUpperCase()}</span>` +
-                    `<span class="symbol">${reliabilityFlag}</span>` +
-                    `<span class="name">${name}</span>` +
-                '</li>';
-    }
-
-    /**
-     * Build the markup for the airport list footer
-     *
-     * This is changed based on a user setting
-     *
-     * @for UiController
-     * @method _buildAirportListFooter
-     * @param flagIcon {string}
-     */
-    _buildAirportListFooter(flagIcon) {
-        // clear out the contents of this element
-        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
-        this.$airportListNotes.empty();
-
-        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
-
-        if (!shouldShowWipAirports) {
-            const notes = $('<span class="words">Additional work-in-progress airports ' +
-                'can be activated in the settings menu</span>');
-            this.$airportListNotes.append(notes);
-
-            return;
-        }
-
-        const notes = $(`<span class="words">${flagIcon} indicates airport is fully reliable</span>`);
-
-        this.$airportListNotes.append(notes);
+    _buildAirportListItemTemplate(icao, difficulty, name) {
+        return `
+            <li class="airport-list-item icao-${icao.toLowerCase()}">
+                <span style="font-size: 7pt" class="difficulty">${difficulty}</span>
+                <span class="icao">${icao.toUpperCase()}</span>
+                <span class="name">${name}</span>
+            </li>
+        `;
     }
 
     /**
@@ -487,6 +353,7 @@ class UiController {
 
         if (warn) {
             html.addClass(SELECTORS.CLASSNAMES.WARN);
+            EventTracker.recordEvent(TRACKABLE_EVENT.UI_LOG, 'error', message);
         }
 
         const $log = $(SELECTORS.DOM_SELECTORS.LOG);
@@ -507,9 +374,10 @@ class UiController {
      * @method _onClickOpenAirportDialog
      */
     _onClickOpenAirportDialog() {
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
-        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
+        const $previousActiveAirport = this.$airportDialogBody.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         // Remove the active class from a no-longer-selected airport in the list.
         if ($previousActiveAirport.length !== 0) {
@@ -528,6 +396,7 @@ class UiController {
      * @private
      */
     _onClickCloseAirportDialog() {
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'close');
         this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
@@ -552,8 +421,14 @@ class UiController {
      * @param {jquery event}
      */
     onToggleLabels(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        const labelButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'fix-runway-labels',
+            `${labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this._eventBus.trigger(EVENT.TOGGLE_LABELS);
     }
 
@@ -562,10 +437,29 @@ class UiController {
      * @method onToggleRestrictedAreas
      */
     onToggleRestrictedAreas(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL)
-            .toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
+        const restrictedButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        restrictedButtonElement.toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'restricted',
+            `${restrictedButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
         this._eventBus.trigger(EVENT.TOGGLE_RESTRICTED_AREAS);
+    }
+
+    /**
+    * @for UiController
+    * @method onToggleOptions
+    */
+    onToggleOptions() {
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.SETTINGS,
+            'toggle-dialog',
+            `${this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.settingsController.toggleDialog();
     }
 
     /**
@@ -574,8 +468,10 @@ class UiController {
      * @param event {jquery event}
      */
     onToggleSids(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        const $sisdButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        $sisdButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'sids', `${$sisdButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
     }
 
@@ -585,8 +481,14 @@ class UiController {
      * @param event {jquery event}
      */
     onToggleStars(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        const $starsButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        $starsButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'stars',
+            `${$starsButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
         this._eventBus.trigger(EVENT.TOGGLE_STAR_MAP);
     }
 
@@ -596,9 +498,32 @@ class UiController {
      * @param event {jquery event}
      */
     onToggleTerrain(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        const $terrainButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        $terrainButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'terrain',
+            `${$terrainButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
         this._eventBus.trigger(EVENT.TOGGLE_TERRAIN);
+    }
+
+    /**
+    * @for UiController
+    * @method onToggleTutorial
+    * @param event {jquery event}
+    */
+    onToggleTutorial(event) {
+        const $tutorialButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
+
+        $tutorialButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'tutorial',
+            `${$tutorialButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
     }
 
     /**
@@ -607,25 +532,43 @@ class UiController {
      * @param event {jquery event}
      */
     onToggleVideoMap(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        const $videoMapButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        $videoMapButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'video-map',
+            `${$videoMapButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
     }
 
     /**
+     * Provides a hook to track a click event for ga
+     *
      * @for UiController
-     * @method onToggleOptions
+     * @method onClickGithubLink
+     * @param event {jquery event}
      */
-    onToggleOptions() {
-        const $optionsDialog = $(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
+    onClickGithubLink(event) {
+        EventTracker.recordClickOnOutboundLink(event.target.href);
+    }
 
-        if ($optionsDialog.hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-            $optionsDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
-            $optionsDialog.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
-        } else {
-            $optionsDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
-            $optionsDialog.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-        }
+    /**
+     * Handler for toggling the traffic volume view
+     *
+     * @for UiController
+     * @method onToggleTraffic
+     * @param event {jquery event}
+     */
+    onToggleTraffic(event) {
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'traffic',
+            `${!this.$toggleTraffic.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this.$toggleTraffic.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.trafficRateController.toggleDialog();
     }
 }
 

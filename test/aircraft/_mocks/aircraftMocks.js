@@ -13,7 +13,7 @@ export const AIRCRAFT_DEFINITION_MOCK = {
         number: 2,
         type: 'J'
     },
-    weightclass: 'L',
+    weightClass: 'L',
     category: {
         srs: 3,
         lahso: 8,
@@ -44,6 +44,82 @@ export const AIRCRAFT_DEFINITION_MOCK = {
     }
 };
 
+export const AIRCRAFT_DEFINITION_MOCK_HEAVY = {
+    name: 'Boeing 787-9 Dreamliner',
+    icao: 'B789',
+    engines: {
+        number: 2,
+        type: 'J'
+    },
+    weightClass: 'H',
+    category: {
+        srs: 3,
+        lahso: 7,
+        recat: 'B'
+    },
+    ceiling: 43000,
+    rate: {
+        climb: 2700,
+        descent: 2800,
+        accelerate: 7,
+        decelerate: 4
+    },
+    runway: {
+        takeoff: 2.900,
+        landing: 1.738
+    },
+    speed: {
+        min: 120,
+        landing: 130,
+        cruise: 487,
+        cruiseM: 0.85,
+        max: 516,
+        maxM: 0.90
+    },
+    capability: {
+        ils: true,
+        fix: true
+    }
+};
+
+export const AIRCRAFT_DEFINITION_MOCK_SUPER = {
+    name: 'Airbus A380-800',
+    icao: 'A388',
+    engines: {
+        number: 4,
+        type: 'J'
+    },
+    weightClass: 'J',
+    category: {
+        srs: 3,
+        lahso: 10,
+        recat: 'A'
+    },
+    ceiling: 43000,
+    rate: {
+        climb:      2500,
+        descent:    2000,
+        accelerate: 6,
+        decelerate: 4
+    },
+    runway: {
+        takeoff: 3.000,
+        landing: 3.000
+    },
+    speed:{
+        min:     125,
+        landing: 135,
+        cruiseM: 0.85,
+        cruise:  560,
+        max:     595,
+        maxM:    0.89
+    },
+    capability: {
+        ils: true,
+        fix: true
+    }
+};
+
 export const AIRCRAFT_DEFINITION_LIST_MOCK = [
     AIRCRAFT_DEFINITION_MOCK,
     {
@@ -53,7 +129,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
             number: 2,
             type: 'J'
         },
-        weightclass: 'L',
+        weightClass: 'L',
         category: {
             srs: 3,
             lahso: 7,
@@ -88,7 +164,8 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '1567',
-    destination: 'KLAS',
+    destination: '',
+    origin: 'KLAS',
     fleet: 'default',
     airline: 'ual',
     airlineCallsign: 'speedbird',
@@ -112,10 +189,19 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
 
 export const DEPARTURE_AIRCRAFT_MODEL_MOCK = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
+export const DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = Object.assign(
+    {},
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    {
+        routeString: 'KLAS25R.TRALR6.MLF'
+    }
+);
+
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '432',
     destination: 'KLAS',
+    origin: '',
     fleet: 'default',
     airline: 'aal',
     airlineCallsign: 'speedbird',
@@ -127,6 +213,42 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     model: AIRCRAFT_DEFINITION_MOCK,
     positionModel: POSITION_MODEL_MOCK,
     routeString: 'DAG.KEPEC3.KLAS07R'
+};
+
+export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_HEAVY = {
+    transponderCode: 1356,
+    callsign: '99',
+    destination: 'KATL',
+    origin: '',
+    fleet: 'default',
+    airline: 'ual',
+    airlineCallsign: 'united',
+    altitude: 27000,
+    speed: 375,
+    category: 'arrival',
+    icao: 'b789',
+    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
+    model: AIRCRAFT_DEFINITION_MOCK_HEAVY,
+    positionModel: POSITION_MODEL_MOCK,
+    routeString: 'DAG.KEPEC3.KLAS07R'  //TODO: this is an invalid route for KATL, but I used it because valid routes weren't working
+};
+
+export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_SUPER = {
+    transponderCode: 6375,
+    callsign: '11',
+    destination: 'OMDB',
+    origin: '',
+    fleet: 'default',
+    airline: 'uae',
+    airlineCallsign: 'emirates',
+    altitude: 18000,
+    speed: 375,
+    category: 'arrival',
+    icao: 'a388',
+    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
+    model: AIRCRAFT_DEFINITION_MOCK_SUPER,
+    positionModel: POSITION_MODEL_MOCK,
+    routeString: 'DAG.KEPEC3.KLAS07R'  //TODO: this is an invalid route for KATL, but I used it because valid routes weren't working
 };
 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = Object.assign(
@@ -154,6 +276,8 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = 
 // };
 
 export const ARRIVAL_AIRCRAFT_MODEL_MOCK = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+export const ARRIVAL_AIRCRAFT_MODEL_MOCK_HEAVY = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_HEAVY, navigationLibraryFixture);
+export const ARRIVAL_AIRCRAFT_MODEL_MOCK_SUPER = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_SUPER, navigationLibraryFixture);
 
 // export const HOLD_WAYPOINT_MOCK = {
 //     turnDirection: 'left',

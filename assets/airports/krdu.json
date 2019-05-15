@@ -11,8 +11,11 @@
     "ctr_ceiling": 12000,
     "initial_alt": 7000,
     "position": ["N35.87764533903037", "W78.78749083843593", "435ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N35.87764533903037", "W78.78749083843593"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [35.87764533903037, -78.78749083843593],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 230,
@@ -662,7 +665,7 @@
             "draw": [
                 ["COUPN*", "GOLLI", "DUFFI", "ARGAL"],
                 ["HPW*", "PILOE", "AGUYA", "DEMVE"],
-                ["SBY*", "JAMIE", "BOGPE", "CEBET", "DOYAS"],
+                ["SBY*", "JAMIE", "BOGPE", "CEBET", "DOYAS", "ARGAL"],
                 ["SWL*", "JAMIE"]
             ]
         },
@@ -927,8 +930,8 @@
             "destination": "KRDU",
             "category": "arrival",
             "route": "ROA.ALDAN2.KRDU23R",
-            "altitude": [25000, 31000],
-            "speed": 320,
+            "altitude": 25000,
+            "speed": 280,
             "method": "random",
             "rate": 4.8,
             "airlines": [
@@ -955,8 +958,8 @@
             "destination": "KRDU",
             "category": "arrival",
             "route": "ILM.BLOGS2.KRDU23R",
-            "altitude": [30000, 36000],
-            "speed": 320,
+            "altitude": 23000,
+            "speed": 280,
             "method": "random",
             "rate": 0.4,
             "airlines": [
@@ -982,9 +985,9 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "HPW.KAROO2.KRDU23R",
-            "altitude": [28000, 34000],
-            "speed": 320,
+            "route": "SBY.KAROO2.KRDU23R",
+            "altitude": 32000,
+            "speed": 280,
             "method": "random",
             "rate": 3.7,
             "airlines": [
@@ -1013,8 +1016,8 @@
             "destination": "KRDU",
             "category": "arrival",
             "route": "IRQ.MALNR3.KRDU23R",
-            "altitude": [33000, 39000],
-            "speed": 320,
+            "altitude": 35000,
+            "speed": 280,
             "method": "random",
             "rate": 3.2,
             "airlines": [

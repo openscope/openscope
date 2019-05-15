@@ -1,4 +1,5 @@
 {
+    "airac": 1802,
     "radio": {
         "twr": "Saint Louis Tower",
         "app": "Saint Louis Approach",
@@ -11,8 +12,11 @@
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
     "position": ["N38d44m55.31", "W90d22m12.01", "618ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N38d44m55.31", "W90d22m12.01"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N38d44m55.31", "W90d22m12.01"],
+        "radius_nm": 5.0
+    },
     "has_terrain": false,
     "wind": {
         "angle": 290,
@@ -536,7 +540,7 @@
             "draw": [
                 ["CSX", "TWILA"],
                 ["TOY", "TWILA"],
-                ["STL", "TWILA"], 
+                ["STL", "TWILA"],
                 ["BIB*"],
                 ["VHP*"],
                 ["CREEP*"],
@@ -1431,45 +1435,6 @@
             "category": "arrival",
             "route": "SPI.VLA9.KSTL30R",
             "altitude": [10000, 14000],
-            "speed": 180,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["kap", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kstl",
-            "category": "arrival",
-            "route": "PXV.QBALL1.KSTL29",
-            "altitude": [8000, 11000],
-            "speed": 180,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["kap", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kstl",
-            "category": "arrival",
-            "route": "SGF.KOOOP1.KSTL29",
-            "altitude": [7000, 10000],
-            "speed": 180,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["kap", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kstl",
-            "category": "arrival",
-            "route": "IRK.RIVRS5.KSTL30R",
-            "altitude": [8000, 11000],
             "speed": 180,
             "method": "random",
             "rate": 1,

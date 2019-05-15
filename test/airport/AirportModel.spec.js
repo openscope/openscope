@@ -23,7 +23,7 @@ ava('does not call .setCurrentPosition() when airportData does not have a positi
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
-    model.parse(invalidAirportJsonMock);
+    model.init(invalidAirportJsonMock);
 
     t.false(setCurrentPositionSpy.called);
 });
@@ -32,7 +32,7 @@ ava('calls .setCurrentPosition() when airportData has a position value', (t) => 
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
-    model.parse(AIRPORT_JSON_KLAS_MOCK);
+    model.init(AIRPORT_JSON_KLAS_MOCK);
 
     t.true(setCurrentPositionSpy.calledOnce);
 });

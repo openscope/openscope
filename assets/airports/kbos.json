@@ -1,4 +1,5 @@
 {
+    "airac": 1802,
     "radio": {
         "twr": "Boston Tower",
         "app": "Boston Approach",
@@ -11,11 +12,14 @@
     "ctr_ceiling": 14000,
     "initial_alt": 5000,
     "position": ["N42.362972", "W71.006417", "19ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N42.362972", "W71.006417"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [42.362972, -71.006417],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
-        "angle": 230,
+        "angle": 240,
         "speed": 18
     },
     "arrivalRunway": "22L",
@@ -1025,31 +1029,11 @@
             "origin": "",
             "destination": "kbos",
             "category": "arrival",
-            "route": "FERNZ.OOSHN5.KBOS27",
-            "altitude": [28000, 32000],
-            "speed": 320,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["aal", 10],
-                ["dal", 7],
-                ["jbu", 40],
-                ["nax", 1],
-                ["nks", 10],
-                ["rpa", 3],
-                ["swa", 5],
-                ["ual", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kbos",
-            "category": "arrival",
             "route": "JFK.ROBUC3.KBOS27",
             "altitude": [37000, 41000],
             "speed": 320,
             "method": "random",
-            "rate": 12,
+            "rate": 15,
             "airlines": [
                 ["aal", 10],
                 ["amx", 3],
@@ -1057,7 +1041,7 @@
                 ["asq", 2],
                 ["dal", 7],
                 ["jbu", 40],
-                ["nks", 5],
+                ["nks", 10],
                 ["rpa", 5],
                 ["swa", 10],
                 ["ual", 8]

@@ -1,6 +1,5 @@
 {{#extend "layout"}}
     {{#content "body" mode="append" }}
-        <div id="clock" class="notSelectable"></div>
         <div id="canvases"></div>
         <div id="log"></div>
 
@@ -13,6 +12,8 @@
             any other modals defined with in the JS (Settings, Tutorial, etc)
         --}}
         {{> _airportSwitch}}
+
+        {{> _changelog}}
 
         {{> _paused}}
 

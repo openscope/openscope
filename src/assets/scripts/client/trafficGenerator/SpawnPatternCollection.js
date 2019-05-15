@@ -14,22 +14,7 @@ import { isEmptyObject } from '../utilities/validatorUtilities';
  * @class SpawnPatternCollection
  * @extends BaseCollection
  */
-export default class SpawnPatternCollection extends BaseCollection {
-    /**
-     * @constructor
-     * @for SpawnPatternCollection
-     * @param airportJson {object}
-     */
-    constructor(airportJson) {
-        super(airportJson);
-
-        if (typeof airportJson === 'undefined' || isEmptyObject(airportJson)) {
-            throw new TypeError('Invalid airportJson passed to SpawnPatternCollection');
-        }
-
-        this.init(airportJson);
-    }
-
+class SpawnPatternCollection extends BaseCollection {
     /**
      * Public property that gives access to the current value of `_items`
      *
@@ -62,6 +47,10 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @param airportJson {object}
      */
     init(airportJson) {
+        if (typeof airportJson === 'undefined' || isEmptyObject(airportJson)) {
+            throw new TypeError('Invalid airportJson passed to SpawnPatternCollection');
+        }
+
         this._buildSpawnPatternModels(airportJson.spawnPatterns);
     }
 
@@ -146,6 +135,18 @@ export default class SpawnPatternCollection extends BaseCollection {
     }
 
     /**
+     * Gather a list of `SpawnPatternModel` objects by their flight category.
+     *
+     * @for SpawnPatternCollection
+     * @method findSpawnPatternsByCategory
+     * @param flightCategory {FLIGHT_CATEGORY}
+     * @return {array<SpawnPatternModel>}
+     */
+    findSpawnPatternsByCategory(flightCategory) {
+        return _filter(this._items, { category: flightCategory });
+    }
+
+    /**
      * Loop through spawnPatterns, as defined in airport json, and create
      * a `SpawnPatternModel` for each. Then add it to the collection.
      *
@@ -166,3 +167,5 @@ export default class SpawnPatternCollection extends BaseCollection {
         });
     }
 }
+
+export default new SpawnPatternCollection();
