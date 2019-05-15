@@ -3,7 +3,7 @@
 		"twr": "Minneapolis Tower",
 		"app": "Minneapolis Approach",
 		"dep": "Minneapolis Departure"
-  },
+    },
 	"icao": "KMSP",
 	"iata": "MSP",
 	"magnetic_north": 0.4,
@@ -17,16 +17,18 @@
 	"wind": {
         "angle": 135,
         "speed": 9
-   },
-   "airspace": [
+    },
+    "arrivalRunway": "12R",
+    "departureRunway": "12L",
+    "airspace": [
         {
     		"floor": 0,
     		"ceiling": 100,
     		"airspace_class": "E",
     		"poly": [
-    			  ["N45.502083", "W093.462200"],
-    			  ["N45.459890", "W093.642233"],
-    			  ["N45.177850", "W094.096218"],
+    			["N45.502083", "W093.462200"],
+    			["N45.459890", "W093.642233"],
+    		    ["N45.177850", "W094.096218"],
     		  	["N44.761165", "W094.125297"],
     		  	["N44.635247", "W094.062902"],
     		  	["N44.481884", "W093.879056"],
@@ -36,8 +38,8 @@
     		  	["N44.981592", "W092.327799"],
     		  	["N45.083115", "W092.365449"],
     		  	["N45.464828", "W092.770544"]
-    		  ]
-    	  }
+    		]
+    	}
     ],
     "restricted": [
         {
@@ -57,7 +59,28 @@
         }
     ],
     "fixes": {
-
+        "_MSP105007": ["N44d51.73", "W93d4.78"],
+        "_MSP120007": ["N44d50.08", "W93d5.85"],
+        "_MSP360007": ["N45d0.79", "W93d13.84"],
+        "_RWY17BDOGG217": ["N44d50.12", "W93d13.62"],
+        "ABR": ["N45d25.04", "W098d22.12"],
+        "BBERD": ["N43d19.58", "W094d28.88"],
+        "BDOGG": ["N44d48.53", "W093d15.31"],
+        "COULT": ["N44d33.40", "W092d12.51"],
+        "DABOY": ["N41d53.32", "W094d27.57"],
+        "DLL"  : ["N43d33.05", "W089d45.82"],
+        "DWN": ["N45d05.25", "W094d27.23"],
+        "GEP"  : ["N45d08.74", "W093d22.39"],
+        "HITTL": ["N44d34.94", "W093d27.80"],
+        "HSTIN": ["N44d00.13", "W093d57.67"],
+        "INUNE": ["N45d01.01", "W093d59.54"],
+        "LMFRY": ["N44d22.24", "W091d51.03"],
+        "MNDEE": ["N44d44.25", "W093d19.41"],
+        "NANCZ": ["N44d24.87", "W093d36.47"],
+        "PRAMN": ["N44d40.05", "W093d23.39"],
+        "TAXEE": ["N44d42.15", "W092d29.56"],
+        "YUPER": ["N43d11.53", "W094d08.42"],
+        "ZZEEE": ["N42d06.35", "W095d24.23"]
     },
     "runways": [
         {
@@ -107,12 +130,12 @@
                 "KMSP30R": [["_MSP360007", "A35+"], "#360"],
                 "KMSP35": ["#360"]
             },
-            "body": ["GEP", "TAXEE", "COUTL"],
+            "body": ["GEP", "TAXEE", "COULT"],
             "exitPoints": {
                 "DLL": ["LMFRY", "DLL"]
             },
             "draw": [
-                ["GEP", "TAXEE", "COUTL", "LMFRY", "DLL*"]
+                ["GEP", "TAXEE", "COULT", "LMFRY", "DLL*"]
             ]
         },
         "DWN7": {
@@ -142,13 +165,13 @@
             "rwy": {
                 "KMSP17": []
             },
-            "body": ["_RWY17BDOGG217", ["MNDEE", "A40+|A70-"], "PRAMN", ["HITTL", "A80+|A170-"], ["NANCZ", "A110+|A170-"], "HSTIN"],
+            "body": ["_RWY17BDOGG217", "BDOGG", ["MNDEE", "A40+|A70-"], "PRAMN", ["HITTL", "A80+|A170-"], ["NANCZ", "A110+|A170-"], "HSTIN"],
             "exitPoints": {
                 "DABOY": ["YUPER", "DABOY"],
                 "ZZEEE": ["BBERD", "ZZEEE"]
             },
             "draw": [
-                ["_RWY17BDOGG217", "MNDEE", "PRAMN", "HITTL", "NANCZ", "HSTIN", "YUPER", "DABOY*"],
+                ["_RWY17BDOGG217", "BDOGG", "MNDEE", "PRAMN", "HITTL", "NANCZ", "HSTIN", "YUPER", "DABOY*"],
                 ["HSTIN", "BBERD", "ZZEEE*"]
             ]
         }
@@ -161,7 +184,7 @@
             "origin": "KMSP",
             "destination": "",
             "category": "departure",
-            "route": "KMSP.HSTIN3.DABOY",
+            "route": "KMSP17.HSTIN4.DABOY",
             "altitude": null,
             "speed": null,
             "method": "random",
