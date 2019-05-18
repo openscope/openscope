@@ -27,7 +27,7 @@ export default class ScopeModel {
          * @type {EventBus}
          * @private
          */
-        this._eventBus = null;
+        this._eventBus = EventBus;
 
         /**
          * Length of PTL lines (aka "vector lines") for all aircraft
@@ -62,7 +62,7 @@ export default class ScopeModel {
          * @type {object}
          * @private
          */
-        this._theme = null;
+        this._theme = THEME.DEFAULT;
 
         /**
          * Collection of all radar targets observed by this scope
@@ -71,7 +71,7 @@ export default class ScopeModel {
          * @property radarTargetCollection
          * @type {RadarTargetCollection}
          */
-        this.radarTargetCollection = null;
+        this.radarTargetCollection = new RadarTargetCollection(this._theme);
 
         this.init()
             .enable();
@@ -87,32 +87,11 @@ export default class ScopeModel {
      * @chainable
      */
     init() {
-        this._eventBus = EventBus;
-        this._theme = THEME.DEFAULT;
-        this.radarTargetCollection = new RadarTargetCollection(this._theme);
-
         return this;
     }
 
     /**
-     * Reset the instance to its empty state
-     *
-     * @for ScopeModel
-     * @method _reset
-     * @chainable
-     */
-    reset() {
-        this._eventBus = null;
-        this._ptlLength = 0;
-        this._sectorCollection = null;
-        this._theme = null;
-        this.radarTargetCollection = null;
-
-        return this;
-    }
-
-    /**
-    * Disable handlers
+    * Enable handlers
     *
     * @for ScopeModel
     * @method enable
@@ -122,7 +101,7 @@ export default class ScopeModel {
     }
 
     /**
-    * Enable handlers
+    * Disable handlers
     *
     * @for ScopeModel
     * @method disable
@@ -131,6 +110,13 @@ export default class ScopeModel {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
 
+    /**
+     * Bind event handlers to this
+     *
+     * @for ScopeModel
+     * @method _setupHandlers
+     * @private
+     */
     _setupHandlers() {
         this._onPtlDecreaseLengthHandler = this.decreasePtlLength.bind(this);
     }
@@ -145,7 +131,7 @@ export default class ScopeModel {
      * @param radarTargetModel {RadarTargetModel}
      * @return result {array} [success of operation, system's response]
      */
-    acceptHandoff(radarTargetModel) {
+    acceptHandoff(/* radarTargetModel */) {
         return [false, 'acceptHandoff command not yet available'];
     }
 
@@ -165,62 +151,53 @@ export default class ScopeModel {
     }
 
     /**
-     * Decrease the length of the PTL lines for all aircraft
+     * Increase or decrease the PTL length by one step
      *
      * @for ScopeModel
-     * @method decreasePtlLength
+     * @method changePtlLength
+     * @param {number} direction - either -1 or 1 to indicate increment direction
      */
-    decreasePtlLength() {
-        switch (this._ptlLength) {
-            case 1:
-                this._ptlLength = PTL_LENGTHS['0'];
+    changePtlLength(direction) {
+        const validValues = Object.keys(PTL_LENGTHS);
+        const currentIndex = validValues.indexOf(this._ptlLength);
+        const nextIndex = currentIndex + Math.sign(direction);
 
-                break;
-            case 2:
-                this._ptlLength = PTL_LENGTHS['1'];
+        if (nextIndex < 0) {
+            this._ptlLength = 0;
 
-                break;
-            case 4:
-                this._ptlLength = PTL_LENGTHS['2'];
-
-                break;
-            case 8:
-                this._ptlLength = PTL_LENGTHS['4'];
-
-                break;
-            default:
-                break;
+            return;
         }
+
+        if (nextIndex >= validValues.length) {
+            return;
+        }
+
+        this._ptlLength = validValues[nextIndex];
     }
 
     /**
      * Decrease the length of the PTL lines for all aircraft
      *
      * @for ScopeModel
+     * @method decreasePtlLength
+     */
+    decreasePtlLength() {
+        const direction = -1;
+
+        this.changePtlLength(direction);
+    }
+
+    /**
+     * Increase the length of the PTL lines for all aircraft
+     *
+     * @for ScopeModel
      * @method increasePtlLength
      */
     increasePtlLength() {
-        switch (this._ptlLength) {
-            case 0:
-                this._ptlLength = PTL_LENGTHS['1'];
+        const direction = 1;
 
-                break;
-            case 1:
-
-                this._ptlLength = PTL_LENGTHS['2'];
-                break;
-            case 2:
-
-                this._ptlLength = PTL_LENGTHS['4'];
-                break;
-            case 4:
-
-                this._ptlLength = PTL_LENGTHS['8'];
-
-                break;
-            default:
-                break;
-    };
+        this.changePtlLength(direction);
+    }
 
     /**
      * Initiate a handoff to another sector
@@ -231,7 +208,7 @@ export default class ScopeModel {
      * @param sectorCode {string} the handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
-    initiateHandoff(radarTargetModel, sectorCode) {
+    initiateHandoff(/* radarTargetModel, sectorCode */) {
         return [false, 'initiateHandoff command not yet available'];
     }
 
@@ -258,7 +235,7 @@ export default class ScopeModel {
      * @param sectorCode {string} handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
-    propogateDataBlock(radarTargetModel, sectorCode) {
+    propogateDataBlock(/* radarTargetModel, sectorCode */) {
         return [false, 'propogateDataBlock command not yet available'];
     }
 
@@ -271,7 +248,7 @@ export default class ScopeModel {
      * @param routeString {string}
      * @return result {array} [success of operation, system's response]
      */
-    route(radarTargetModel, routeString) {
+    route(/* radarTargetModel, routeString */) {
         return [false, 'route command not yet available'];
     }
 
@@ -306,14 +283,14 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method setPtlLength
-     * @param {number} length - length of PTL line, in minutes
+     * @param {number} minutes - length of PTL line, in minutes
      */
-    setPtlLength(length) {
-        if (!_has(PTL_LENGTHS, length)) {
+    setPtlLength(minutes) {
+        if (!_has(PTL_LENGTHS, minutes)) {
             return;
         }
 
-        this._ptlLength = length;
+        this._ptlLength = minutes;
     }
 
     /**
