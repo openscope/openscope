@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
+import _values from 'lodash/values';
 import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
@@ -158,11 +159,11 @@ export default class ScopeModel {
      * @param {number} direction - either -1 or 1 to indicate increment direction
      */
     changePtlLength(direction) {
-        const validValues = Object.keys(PTL_LENGTHS);
+        const validValues = _values(PTL_LENGTHS);
         const currentIndex = validValues.indexOf(this._ptlLength);
         const nextIndex = currentIndex + Math.sign(direction);
 
-        if (nextIndex < 0) {
+        if (nextIndex < 0 || currentIndex < 0) {
             this._ptlLength = 0;
 
             return;
