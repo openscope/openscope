@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
-import _values from 'lodash/values';
+import GameController from '../game/GameController';
 import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
-import { PTL_LENGTHS } from '../constants/scopeConstants';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { THEME } from '../constants/themes';
 import { DECIMAL_RADIX } from '../utilities/unitConverters';
 
@@ -115,17 +115,6 @@ export default class ScopeModel {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
 
-    /**
-     * Bind event handlers to this
-     *
-     * @for ScopeModel
-     * @method _setupHandlers
-     * @private
-     */
-    _setupHandlers() {
-        this._onPtlDecreaseLengthHandler = this.decreasePtlLength.bind(this);
-    }
-
     // ------------------------------ PUBLIC ------------------------------
 
     /**
@@ -163,11 +152,13 @@ export default class ScopeModel {
      * @param {number} direction - either -1 or 1 to indicate increment direction
      */
     changePtlLength(direction) {
-        const validValues = _values(PTL_LENGTHS);
+        const validValues = GameController.getGameOption(GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTHS)
+            .split('-')
+            .map((val) => parseFloat(val));
         const currentIndex = validValues.indexOf(this._ptlLength);
         const nextIndex = currentIndex + Math.sign(direction);
 
-        if (nextIndex < 0 || currentIndex < 0) {
+        if (nextIndex < 0) {
             this._ptlLength = 0;
             this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
 
@@ -283,21 +274,6 @@ export default class ScopeModel {
         // call the appropriate function, and explode the array of arguments
         // this allows any number of arguments to be accepted by the receiving method
         return this[functionName](radarTargetModel, ...functionArguments);
-    }
-
-    /**
-     * Set the length of the PTL lines for all aircraft
-     *
-     * @for ScopeModel
-     * @method setPtlLength
-     * @param {number} minutes - length of PTL line, in minutes
-     */
-    setPtlLength(minutes) {
-        if (!_has(PTL_LENGTHS, minutes)) {
-            return;
-        }
-
-        this._ptlLength = minutes;
     }
 
     /**

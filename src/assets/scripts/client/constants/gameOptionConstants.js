@@ -11,7 +11,7 @@ import { EVENT } from './eventNames';
 export const GAME_OPTION_NAMES = {
     THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
-    PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
+    PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
@@ -86,31 +86,23 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH,
-        defaultValue: 'from-theme',
-        description: 'Projected Track Line (PTL)',
+        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTHS,
+        defaultValue: '1-2-4-8',
+        description: 'Projected Track Line (PTL) increments, in minutes',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: 'From Theme',
-                value: 'from-theme'
+                displayLabel: '1-2-4-8',
+                value: '1-2-4-8'
             },
             {
-                displayLabel: 'Off',
-                value: 0
+                displayLabel: '1-2-4-6-8-10-12-14-16',
+                value: '1-2-4-6-8-10-12-14-16'
             },
             {
-                displayLabel: '30sec',
-                value: 0.5
-            },
-            {
-                displayLabel: '1min',
-                value: 1
-            },
-            {
-                displayLabel: '2min',
-                value: 2
+                displayLabel: '1-2-3-4-5-6-7-8',
+                value: '1-2-3-4-5-6-7-8'
             }
         ]
     },
