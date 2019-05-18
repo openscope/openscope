@@ -78,6 +78,10 @@ export default class ScopeModel {
             .enable();
     }
 
+    get ptlLength() {
+        return this._ptlLength;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -165,6 +169,7 @@ export default class ScopeModel {
 
         if (nextIndex < 0 || currentIndex < 0) {
             this._ptlLength = 0;
+            this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
 
             return;
         }
@@ -174,6 +179,7 @@ export default class ScopeModel {
         }
 
         this._ptlLength = validValues[nextIndex];
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
     }
 
     /**

@@ -44,10 +44,10 @@ export const EVENT = {
      * This should only occur as a result of a user action
      *
      * @memberof EVENT
-     * @property MARK_CANVAS_DIRTY
+     * @property MARK_SHALLOW_RENDER
      * @type {string}
      */
-    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+    MARK_SHALLOW_RENDER: 'mark-shallow-render',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
