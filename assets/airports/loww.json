@@ -250,10 +250,113 @@
     ],
 
 
+    "restricted": [
+        {
+            "name": "LO R-01",
+            "height": "1500ft",
+            "coordinates": [
+                ["N47d58m19", "E016d30m30"],
+                ["N47d58m36", "E016d30m54"],
+                ["N47d58m48", "E016d30m36"],
+                ["N47d58m36", "E016d30m05"]
+            ]
+        },
+        {
+            "name": "LO R-02A",
+            "height": "1800ft",
+            "coordinates": [
+                ["N47d53m25", "E016d16m48"],
+                ["N47d52m42", "E016d16m51"],
+                ["N47d52m19", "E016d19m11"],
+                ["N47d53m07", "E016d19m57"],
+                ["N47d53m58", "E016d19m41"]
+            ]
+        },
+        {
+            "name": "LO R-02B",
+            "height": "20000ft",
+            "coordinates": [
+                ["N47d54m13", "E016d16m11"],
+                ["N47d53m25", "E016d16m48"],
+                ["N47d53m58", "E016d19m41"],
+                ["N47d54m13", "E016d20m56"],
+                ["N47d55m19", "E016d22m13"],
+                ["N47d55m52", "E016d20m15"],
+                ["N47d55m52", "E016d19m32"]
+            ]
+        },
+        {
+            "name": "LO R-02C",
+            "height": "20000ft",
+            "coordinates": [
+                ["N47d54m13", "E016d16m11"],
+                ["N47d53m25", "E016d16m48"],
+                ["N47d53m07", "E016d15m13"],
+                ["N47d53m40", "E016d15m06"]
+            ]
+        },
+        {
+            "name": "LO R-15",
+            "height": "10000ft",
+            "coordinates": [
+                ["N48d16m59", "E016d29m06"],
+                ["N48d12m00", "E016d32m56"],
+                ["N48d09m59", "E016d29m48"],
+                ["N48d08m18", "E016d24m20"],
+                ["N48d09m32", "E016d13m02"],
+                ["N48d16m22", "E016d17m37"],
+                ["N48d17m03", "E016d22m59"]
+            ]
+        },
+        {
+            "name": "LO R-16",
+            "height": "1500ft",
+            "coordinates": [
+                ["N47d53m32", "E016d40m06"],
+                ["N47d56m22", "E016d44m38"],
+                ["N47d57m24", "E016d49m38"],
+                ["N47d52m46", "E016d56m32"],
+                ["N47d43m32", "E016d56m10"],
+                ["N47d41m16", "E016d54m42"],
+                ["N47d41m23", "E016d52m23"],
+                ["N47d43m27", "E016d52m01"],
+                ["N47d42m15", "E016d50m28"],
+                ["N47d40m56", "E016d49m39"],
+                ["N47d40m58", "E016d44m48"],
+                ["N47d44m11", "E016d43m03"],
+                ["N47d44m32", "E016d40m04"]
+            ]
+        },
+        {
+            "name": "LO R-4",
+            "height": "2500ft",
+            "coordinates": [
+                ["N47d59m57", "E016d42m19"],
+                ["N47d58m40", "E016d42m04"],
+                ["N47d57m44", "E016d44m25"],
+                ["N47d59m12", "E016d48m48"],
+                ["N48d00m32", "E016d48m29"],
+                ["N48d00m59", "E016d45m58"]
+            ]
+        },
+        {
+            "name": "LO R-6",
+            "height": "12500ft",
+            "coordinates": [
+                ["N48d35m27", "E015d26m58"],
+                ["N48d45m06", "E015d09m32"],
+                ["N48d45m31", "E015d10m46"],
+                ["N48d44m32", "E015d21m56"],
+                ["N48d41m33", "E015d31m31"],
+                ["N48d37m30", "E015d33m53"]
+            ]
+        }
+    ],
+
+
     "fixes": {
-        "_LOWW291000": ["N48d07m53.00", "E16d30m23.00"],
+        "_LOWW291000": ["N48d07m39.00", "E16d31m04.00"],
         "_LOWW341600": ["N48d08m36.00", "E16d34m08.00"], 
-        "_LZIBOKR"  : ["N48d13.40", "E17d17.40"],
 
         "_LOAV" : ["N47d57m87.00", "E16d15m57.00"],
         "_LOAN" : ["N47d50m60.00", "E16d15m62.00"],
@@ -342,7 +445,6 @@
         "VAPUS": ["N48d54m30.00", "E18d20m34.00"],
         "VAMET": ["N46d46.43", "E15d18.46"],
         "VEDER": ["N47d50.78", "E17d58.83"],
-        "VELAT": ["N47d25m14.00", "E18d33m93.00"],
         "VENEN": ["N48d33m59.59", "E14d32m28.84"],
         "XENAK": ["N48d07.17", "E17d17.98"],
 
@@ -600,7 +702,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW397", "WW387", "AGMIM"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW395", "WW397", "WW387", "AGMIM"],
             "exitPoints": {
                 "KOXER": ["KOXER"]
             },
@@ -645,7 +747,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW375", "WW370", "WW405"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW375", "WW370", "WW405"],
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
@@ -675,7 +777,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW397", "WW387", "ASPIB"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW395", "WW397", "WW387", "ASPIB"],
             "exitPoints": {
                 "ADAMA": ["ADAMA"]
             },
@@ -720,7 +822,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW293", ["WW230", "A040+"], "WW266", "WW171", "WW181"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW293", ["WW230", "A040+"], "WW266", "WW171", "WW181"],
             "exitPoints": {
                 "DITIS": ["DITIS"]
             },
@@ -750,7 +852,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW396", "WW406", "ELSIS"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW395", "WW396", "WW406", "ELSIS"],
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
@@ -780,7 +882,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW395", "WW396", "WW406", "EMKOG"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW395", "WW396", "WW406", "EMKOG"],
             "exitPoints": {
                 "STEIN": ["STEIN"]
             },
@@ -825,7 +927,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "IMVOB"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "IMVOB"],
             "exitPoints": {
                 "OSPEN": ["OSPEN"]
             },
@@ -870,7 +972,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "IRGOT"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "IRGOT"],
             "exitPoints": {
                 "RUPET": ["RUPET"]
             },
@@ -930,7 +1032,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW286", "WW387"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW286", "WW387"],
             "exitPoints": {
                 "KOXER": ["KOXER"]
             },
@@ -990,7 +1092,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW293", "WW230", "WW266", "WW171"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW293", "WW230", "WW266", "WW171"],
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
@@ -1050,7 +1152,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW293", ["WW230", "A040+"], "WW266"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW293", ["WW230", "A040+"], "WW266"],
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
@@ -1125,7 +1227,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW293", "WW232", ["WW231", "A040+"]],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW293", "WW232", ["WW231", "A040+"]],
             "exitPoints": {
                 "LUGEM": ["LUGEM"]
             },
@@ -1200,7 +1302,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW293", "WW232", ["WW231", "A040+"]],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW293", "WW232", ["WW231", "A040+"]],
             "exitPoints": {
                 "MEDIX": ["MEDIX"]
             },
@@ -1245,7 +1347,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "ODSUD"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "ODSUD"],
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
@@ -1290,7 +1392,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW398", "OSMOD"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "WW398", "OSMOD"],
             "exitPoints": {
                 "LUGEM": ["LUGEM"]
             },
@@ -1365,7 +1467,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW172"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "WW172"],
             "exitPoints": {
                 "OSPEN": ["OSPEN"]
             },
@@ -1395,7 +1497,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW398", "OTGAR"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "WW398", "OTGAR"],
             "exitPoints": {
                 "MEDIX": ["MEDIX"]
             },
@@ -1470,7 +1572,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW383", "WW172"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW383", "WW172"],
             "exitPoints": {
                 "RUPET": ["RUPET"]
             },
@@ -1530,7 +1632,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296"],
             "exitPoints": {
                 "SNU": ["SNU"]
             },
@@ -1605,7 +1707,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW295", ["WW233", "A040+"]],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW295", ["WW233", "A040+"]],
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
@@ -1635,7 +1737,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW233"],
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
@@ -1680,7 +1782,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW375", "WW370", "WW405"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW375", "WW370", "WW405"],
             "exitPoints": {
                 "STEIN": ["STEIN"]
             },
@@ -1710,7 +1812,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233", "WW391", "WW392", "UMSUM"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW233", "WW391", "WW392", "UMSUM"],
             "exitPoints": {
                 "DITIS": ["DITIS"]
             },
@@ -1725,7 +1827,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233", "WW391", "WW393", "UNGUT"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW233", "WW391", "WW393", "UNGUT"],
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
@@ -1740,7 +1842,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010|S205-"], "WW296", "WW233", "WW391", "WW393", "WW394", "UNGUT"],
+            "body": [["_LOWW291000", "A010+|S205-"], "WW296", "WW233", "WW391", "WW393", "WW394", "UNGUT"],
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
@@ -2377,34 +2479,33 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.034,
+            "rate": 3.146,
             "airlines": [
-                ["aua", 8858],
-                ["ely/b738", 700],
-                ["eth/loww", 1300],
-                ["fdx/b752", 350],
-                ["foo", 786],
-                ["lzb", 500],
-                ["msr/b738", 250],
-                ["pgt/b738", 1700],
-                ["qtr/a359", 1400],
-                ["rja/e190", 400],
-                ["rot/shortJet", 1200],
-                ["sva/a320", 200],
-                ["sxs/b738", 1100],
-                ["thy/loww", 4000],
-                ["uae/loww", 1400],
-                ["ups/b763", 350],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aua", 88583],
+                ["ely/b738", 7000],
+                ["eth/b787", 13000],
+                ["fdx/b752", 9333],
+                ["foo", 7857],
+                ["lzb/loww", 5000],
+                ["msr/b738", 2500],
+                ["pgt/b738", 17000],
+                ["qtr/a359", 14000],
+                ["rja/e190", 4000],
+                ["rot/shortJet", 12000],
+                ["sva/a320", 2000],
+                ["sxs/b738", 11000],
+                ["thy/loww", 40000],
+                ["uae/loww", 14000],
+                ["ups/b763", 3500],
+                ["wzz", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },  
         {
@@ -2415,15 +2516,15 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.018,
+            "rate": 1.968,
             "airlines": [
-                ["aee/a320", 1100],
-                ["aua", 8858],
-                ["ewg/short", 4550],
-                ["msr/b738", 250],
-                ["sva/a320", 200],
-                ["tay/b737", 467],
-                ["wzz", 1100]
+                ["aee/a320", 11000],
+                ["aua", 88583],
+                ["ewg/short", 45500],
+                ["msr/b738", 2500],
+                ["sva/a320", 2000],
+                ["tay/b737", 4667],
+                ["wzz", 11000]
             ]
         },   
         {
@@ -2434,36 +2535,36 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.558,
+            "rate": 3.924,
             "airlines": [
-                ["aar/cargo", 400],
-                ["aca/b789", 350],
-                ["aua", 8858],
-                ["baw/a320", 4100],
-                ["clx", 100],
-                ["dlh/short", 4500],
-                ["ein/a320", 500],
-                ["eju", 1933],
-                ["ewg/short", 4550],
-                ["ezy/airbus", 833],
-                ["foo", 786],
-                ["kal/b772", 467],
-                ["klm/short", 2100],
-                ["ldm/airbus", 733],
-                ["lgl/dh8d", 2500],
-                ["tay/b737", 467],
-                ["tra/short", 400],
-                ["ups/b763", 350],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aar/cargo", 4000],
+                ["aca/b789", 3500],
+                ["aua", 88583],
+                ["baw/a320", 41000],
+                ["clx", 1000],
+                ["dlh/short", 15000],
+                ["ein/a320", 5000],
+                ["eju", 19333],
+                ["ewg/short", 45500],
+                ["ezy", 8333],
+                ["fdx/b752", 9333],
+                ["foo", 7857],
+                ["kal/cargo", 2200],
+                ["klm/short", 21000],
+                ["ldm/default", 7333],
+                ["lgl/dh8d", 25000],
+                ["tay/b737", 4667],
+                ["tra/short", 4000],
+                ["ups/b763", 3500],
+                ["wzz", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2474,29 +2575,28 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.842,
+            "rate": 1.662,
             "airlines": [
-                ["aar/cargo", 400],
-                ["adr", 600],
-                ["aic/b788", 400],
-                ["ana/b789", 350],
-                ["aua", 8858],
-                ["aui/b738", 700],
-                ["azq/b747", 100],
-                ["clx", 100],
-                ["eva/b77w", 350],
-                ["kal/b772", 700],
-                ["tha/b788", 600],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aar/cargo", 4000],
+                ["adr", 6000],
+                ["aic/b788", 4000],
+                ["ana/b789", 3500],
+                ["aua", 88583],
+                ["aui/b738", 7000],
+                ["azq/b747", 1000],
+                ["clx", 1000],
+                ["eva/b77w", 3500],
+                ["kal/b772", 1500],
+                ["tha/b788", 6000],
+                ["wzz", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2507,14 +2607,22 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.762,
+            "rate": 1.638,
             "airlines": [
-                ["aca/b789", 350],
-                ["aua", 8858],
-                ["bel/short", 2000],
-                ["ein/a320", 500],
-                ["exs/b737", 700],
-                ["wzz", 1100]
+                ["aca/b789", 3500],
+                ["aua", 88583],
+                ["bel/short", 20000],
+                ["ein/a320", 5000],
+                ["exs/b737", 7000],
+                ["wzz", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2525,30 +2633,30 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.842,
+            "rate": 2.274,
             "airlines": [
-                ["aar/cargo", 400],
-                ["afl/short", 2800],
-                ["ana/b789", 350],
-                ["aua", 8858],
-                ["bti", 1400],
-                ["cal/a359", 500],
-                ["cca/a332", 300],
-                ["eva/b77w", 350],
-                ["fin/a320", 1000],
-                ["kal/b772", 467],
-                ["ldm/airbus", 733],
-                ["lot/e190", 1400],
-                ["nax/b738", 400],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aar/cargo", 4000],
+                ["afl/short", 28000],
+                ["ana/b789", 3500],
+                ["aua", 88583],
+                ["bti", 14000],
+                ["cal/a359", 5000],
+                ["cca/a332", 3000],
+                ["eva/b77w", 3500],
+                ["fin/a320", 10000],
+                ["kal/b772", 1500],
+                ["kal/cargo", 2200],
+                ["ldm", 7333],
+                ["lot/e190", 14000],
+                ["nax/b738", 4000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2559,26 +2667,17 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.043,
+            "rate": 2.128,
             "airlines": [
-                ["aua", 8858],
-                ["dlh/short", 1500],
-                ["foo", 786],
-                ["ldm/airbus", 733],
-                ["pev", 2200],
-                ["swr/a320", 1650],
-                ["tap/loww", 600],
-                ["tvf/short", 450],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aua", 88583],
+                ["dlh/short", 15000],
+                ["foo", 7857],
+                ["ldm", 7333],
+                ["pev", 22000],
+                ["swr/a320", 16500],
+                ["tap/loww", 6000],
+                ["tvf/short", 4500],
+                ["wzz", 11000]
             ]
         },   
         {
@@ -2589,26 +2688,26 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.211,
+            "rate": 2.514,
             "airlines": [
-                ["aua", 8858],
-                ["dlh/short", 1500],
-                ["ewg/short", 4550],
-                ["fdx/b752", 350],
-                ["foo", 786],
-                ["ldm/airbus", 733],
-                ["swr/a320", 1650],
-                ["tvf/short", 450],
-                ["vlg/a320", 1200],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aua", 88583],
+                ["dlh/short", 15000],
+                ["ewg/short", 45500],
+                ["fdx/b752", 9333],
+                ["foo", 7857],
+                ["kal/cargo", 2200],
+                ["ldm", 7333],
+                ["swr/a320", 16500],
+                ["tvf/short", 4500],
+                ["vlg/a320", 12000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2619,24 +2718,16 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.911,
+            "rate": 1.674,
             "airlines": [
-                ["adr", 600],
-                ["aua", 8858],
-                ["azq/b747", 100],
-                ["eju", 1933],
-                ["ezy/airbus", 833],
-                ["foo", 786],
-                ["ldm/airbus", 733],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["adr", 6000],
+                ["aua", 88583],
+                ["azq/b747", 1000],
+                ["eju", 19333],
+                ["ezy", 8333],
+                ["foo", 7857],
+                ["kal/cargo", 2200],
+                ["ldm", 7333]
             ]
         },   
         {
@@ -2647,24 +2738,23 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.077,
+            "rate": 2.042,
             "airlines": [
-                ["adr", 600],
-                ["amc", 450],
-                ["aua", 8858],
-                ["ewg/short", 4550],
-                ["foo", 786],
-                ["tay/b737", 467],
-                ["vlg/a320", 1200],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["adr", 6000],
+                ["amc", 4500],
+                ["aua", 88583],
+                ["ewg/short", 45500],
+                ["foo", 7857],
+                ["tay/b737", 4667],
+                ["vlg/a320", 12000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2675,20 +2765,28 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.144,
+            "rate": 2.644,
             "airlines": [
-                ["afr/short", 2000],
-                ["aua", 8858],
-                ["eju", 1933],
-                ["ezs", 1100],
-                ["ezy/airbus", 833],
-                ["foo", 786],
-                ["ibe/a320", 2600],
-                ["kal/b772", 467],
-                ["ldm/airbus", 733],
-                ["tap/loww", 600],
-                ["vlg/a320", 1200],
-                ["wzz", 1100]
+                ["afr/short", 20000],
+                ["aua/", 88583],
+                ["eju", 19333],
+                ["ezs", 11000],
+                ["ezy", 8333],
+                ["foo", 7857],
+                ["ibe/a320", 26000],
+                ["kal/cargo", 2200],
+                ["ldm", 7333],
+                ["tap/loww", 6000],
+                ["vlg/a320", 12000],
+                ["wzz/", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2699,44 +2797,20 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.671,
+            "rate": 1.376,
             "airlines": [
-                ["adr", 600],
-                ["amc", 450],
-                ["aua", 8858],
-                ["ctn/dh8d", 1400],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
-            ]
-        },
-        {
-            "origin": "LOWW",
-            "destination": "",
-            "category": "departure",
-            "route": "LOWW29.SNU2C.SNU..BALAD..GRZ..VAMET..RADLY",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.030,
-            "airlines": [
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["g/fastGA", 20],
-                ["ok/fastGA", 20],
-                ["hb/fastGA", 20],
-                ["9a/fastGA", 20],
-                ["i/fastGA", 20],
-                ["oe/lightGA", 5],
-                ["d/lightGA", 5],
-                ["n/cessna", 5]
+                ["adr", 6000],
+                ["amc", 4500],
+                ["aua", 88583],
+                ["ctn/dh8d", 14000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },
 
@@ -2745,38 +2819,37 @@
             "origin": "",
             "destination": "LOWW",
             "category": "arrival",
-            "route": "GYR..NATEX.NATEX1W.LOWW34",
+            "route": "GILEP..GYR..NATEX.NATEX1W.LOWW34",
             "altitude": 14000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 2.034,
+            "rate": 3.146,
             "airlines": [
-                ["aua", 8858],
-                ["ely/b738", 700],
-                ["eth/loww", 1300],
-                ["fdx/b752", 350],
-                ["foo", 786],
-                ["lzb", 500],
-                ["msr/b738", 250],
-                ["pgt/b738", 1700],
-                ["qtr/a359", 1400],
-                ["rja/e190", 400],
-                ["rot/shortJet", 1200],
-                ["sva/a320", 200],
-                ["sxs/b738", 1100],
-                ["thy/loww", 4000],
-                ["uae/loww", 1400],
-                ["ups/b763", 350],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aua", 88583],
+                ["ely/b738", 7000],
+                ["eth/b787", 13000],
+                ["fdx/b752", 9333],
+                ["foo", 7857],
+                ["lzb/loww", 5000],
+                ["msr/b738", 2500],
+                ["pgt/b738", 17000],
+                ["qtr/a359", 14000],
+                ["rja/e190", 4000],
+                ["rot/shortJet", 12000],
+                ["sva/a320", 2000],
+                ["sxs/b738", 11000],
+                ["thy/loww", 40000],
+                ["uae/loww", 14000],
+                ["ups/b763", 3500],
+                ["wzz", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },  
         {
@@ -2785,30 +2858,28 @@
             "category": "arrival",
             "route": "ZAG..OBUTI.OBUTI1W.LOWW34",
             "altitude": 18000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 3.689,
+            "rate": 3.344,
             "airlines": [
-                ["adr", 600],
-                ["aee/a320", 1100],
-                ["amc", 450],
-                ["aua", 17716],
-                ["ctn/dh8d", 1400],
-                ["ewg/short", 4550],
-                ["msr/b738", 250],
-                ["sva/a320", 200],
-                ["tay/b737", 467],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["ok/fastGA", 20],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+            ["adr", 6000],
+            ["aee/a320", 11000],
+            ["amc", 4500],
+            ["aua", 177166],
+            ["ctn/dh8d", 14000],
+            ["ewg/short", 45500],
+            ["msr/b738", 2500],
+            ["sva/a320", 2000],
+            ["tay/b737", 4667],
+            ["wzz", 11000],
+            ["oe/fastGA", 778],
+            ["d/fastGA", 333],
+            ["n/fastGA", 222],
+            ["f/fastGA", 222],
+            ["g/fastGA", 222],
+            ["m/fastGA", 222],
+            ["t7/fastGA", 222],
+            ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2817,41 +2888,40 @@
             "category": "arrival",
             "route": "TABEM..OKF..LANUX.LANUX6W.LOWW34",
             "altitude": 15000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 4.320,
+            "rate": 5.562,
             "airlines": [
-                ["aar/cargo", 400],
-                ["aca/b789", 700],
-                ["aua", 17716],
-                ["baw/a320", 4100],
-                ["bel/short", 2000],
-                ["clx", 100],
-                ["dlh/short", 4500],
-                ["ein/a320", 1000],
-                ["eju", 1933],
-                ["ewg/short", 4550],
-                ["exs/b737", 700],
-                ["ezy/airbus", 833],
-                ["foo", 786],
-                ["kal/b772", 467],
-                ["klm/short", 2100],
-                ["ldm/airbus", 733],
-                ["lgl/dh8d", 2500],
-                ["tay/b737", 467],
-                ["tra/short", 400],
-                ["ups/b763", 350],
-                ["wzz", 2200],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["ok/fastGA", 20],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+            ["aar/cargo", 4000],
+            ["aca/b789", 7000],
+            ["aua", 177166],
+            ["baw/a320", 41000],
+            ["bel/short", 20000],
+            ["clx", 1000],
+            ["dlh/short", 15000],
+            ["ein/a320", 10000],
+            ["eju", 19333],
+            ["ewg/short", 45500],
+            ["exs/b737", 7000],
+            ["ezy", 8333],
+            ["fdx/b752", 9333],
+            ["foo", 7857],
+            ["kal/cargo", 2200],
+            ["klm/short", 21000],
+            ["ldm/default", 7333],
+            ["lgl/dh8d", 25000],
+            ["tay/b737", 4667],
+            ["tra/short", 4000],
+            ["ups/b763", 3500],
+            ["wzz", 22000],
+            ["oe/fastGA", 1556],
+            ["d/fastGA", 666],
+            ["n/fastGA", 444],
+            ["f/fastGA", 444],
+            ["g/fastGA", 444],
+            ["m/fastGA", 444],
+            ["t7/fastGA", 444],
+            ["ok/fastGA", 444]
             ]
         },   
         {
@@ -2860,32 +2930,30 @@
             "category": "arrival",
             "route": "JAN..TOVKA.TOVKA2W.LOWW34",
             "altitude": 16000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 1.842,
+            "rate": 1.662,
             "airlines": [
-                ["aar/cargo", 400],
-                ["adr", 600],
-                ["aic/b788", 400],
-                ["ana/b789", 350],
-                ["aua", 8858],
-                ["aui/b738", 700],
-                ["azq/b747", 100],
-                ["clx", 100],
-                ["eva/b77w", 350],
-                ["kal/b772", 700],
-                ["tha/b788", 600],
-                ["wzz", 1100],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["ok/fastGA", 20],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aar/cargo", 4000],
+                ["adr", 6000],
+                ["aic/b788", 4000],
+                ["ana/b789", 3500],
+                ["aua", 88583],
+                ["aui/b738", 7000],
+                ["azq/b747", 1000],
+                ["clx", 1000],
+                ["eva/b77w", 3500],
+                ["kal/b772", 1500],
+                ["tha/b788", 6000],
+                ["wzz", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },
         {
@@ -2894,33 +2962,32 @@
             "category": "arrival",
             "route": "ADISU..MIKOV.MIKOV7W.LOWW34",
             "altitude": 17000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 1.842,
+            "rate": 2.274,
             "airlines": [
-                ["aar/cargo", 400],
-                ["afl/short", 2800],
-                ["ana/b789", 350],
-                ["aua", 8858],
-                ["bti", 1400],
-                ["cal/a359", 500],
-                ["cca/a332", 300],
-                ["eva/b77w", 350],
-                ["fin/a320", 1000],
-                ["kal/b772", 467],
-                ["ldm/airbus", 733],
-                ["lot/e190", 1400],
-                ["nax/b738", 400],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["ok/fastGA", 20],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["aar/cargo", 4000],
+                ["afl/short", 28000],
+                ["ana/b789", 3500],
+                ["aua", 88583],
+                ["bti", 14000],
+                ["cal/a359", 5000],
+                ["cca/a332", 3000],
+                ["eva/b77w", 3500],
+                ["fin/a320", 10000],
+                ["kal/b772", 1500],
+                ["kal/cargo", 2200],
+                ["ldm", 7333],
+                ["lot/e190", 14000],
+                ["nax/b738", 4000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -2929,26 +2996,31 @@
             "category": "arrival",
             "route": "VENEN.VENEN2W.LOWW34",
             "altitude": 17000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 4.254,
+            "rate": 4.642,
             "airlines": [
-                ["aua", 17716],
-                ["dlh/short", 3000],
-                ["ewg/short", 4550],
-                ["fdx/b752", 350],
-                ["foo", 1572],
-                ["ldm/airbus", 1466],
-                ["pev", 2200],
-                ["swr/a320", 3300],
-                ["tap/loww", 600],
-                ["tvf/short", 900],
-                ["vlg/a320", 1200],
-                ["wzz", 1100],
-                ["oe/fastGA", 156],
-                ["d/fastGA", 66],
-                ["n/fastGA", 44],
-                ["ok/fastGA", 20]
+            ["aua", 177166],
+            ["dlh/short", 30000],
+            ["ewg/short", 45500],
+            ["fdx/b752", 9333],
+            ["foo", 15714],
+            ["kal/cargo", 2200],
+            ["ldm", 14666],
+            ["pev", 22000],
+            ["swr/a320", 33000],
+            ["tap/loww", 6000],
+            ["tvf/short", 9000],
+            ["vlg/a320", 12000],
+            ["wzz", 11000],
+            ["oe/fastGA", 778],
+            ["d/fastGA", 333],
+            ["n/fastGA", 222],
+            ["f/fastGA", 222],
+            ["g/fastGA", 222],
+            ["m/fastGA", 222],
+            ["t7/fastGA", 222],
+            ["ok/fastGA", 222]
             ]
         },     
         {
@@ -2957,26 +3029,18 @@
             "category": "arrival",
             "route": "ABTAN.ABTAN1W.LOWW34",
             "altitude": 18000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 1.911,
+            "rate": 1.674,
             "airlines": [
-                ["adr", 600],
-                ["aua", 8858],
-                ["azq/b747", 100],
-                ["eju", 1933],
-                ["ezy/airbus", 833],
-                ["foo", 786],
-                ["ldm/airbus", 733],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["adr", 6000],
+                ["aua", 88583],
+                ["azq/b747", 1000],
+                ["eju", 19333],
+                ["ezy", 8333],
+                ["foo", 7857],
+                ["kal/cargo", 2200],
+                ["ldm", 7333]
             ]
         },   
         {
@@ -2985,26 +3049,25 @@
             "category": "arrival",
             "route": "LAPNA.LAPNA1W.LOWW34",
             "altitude": 18000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 2.077,
+            "rate": 2.042,
             "airlines": [
-                ["adr", 600],
-                ["amc", 450],
-                ["aua", 8858],
-                ["ewg/short", 4550],
-                ["foo", 786],
-                ["tay/b737", 467],
-                ["vlg/a320", 1200],
-                ["oe/fastGA", 78],
-                ["d/fastGA", 33],
-                ["n/fastGA", 22],
-                ["f/fastGA", 15],
-                ["t7/fastGA", 15],
-                ["hs/fastGA", 15],
-                ["ur/fastGA", 15],
-                ["g/fastGA", 15],
-                ["m/fastGA", 15]
+                ["adr", 6000],
+                ["amc", 4500],
+                ["aua", 88583],
+                ["ewg/short", 45500],
+                ["foo", 7857],
+                ["tay/b737", 4667],
+                ["vlg/a320", 12000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         },   
         {
@@ -3013,64 +3076,30 @@
             "category": "arrival",
             "route": "NEMAL.NEMAL1W.LOWW34",
             "altitude": 17000,
-            "speed": 270,
+            "speed": 271,
             "method": "random",
-            "rate": 2.144,
+            "rate": 2.644,
             "airlines": [
-                ["afr/short", 2000],
-                ["aua", 8858],
-                ["eju", 1933],
-                ["ezs", 1100],
-                ["ezy/airbus", 833],
-                ["foo", 786],
-                ["ibe/a320", 2600],
-                ["kal/b772", 467],
-                ["ldm/airbus", 733],
-                ["tap/loww", 600],
-                ["vlg/a320", 1200],
-                ["wzz", 1100]
-            ]
-        },
-
-
-        {
-            "origin": "",
-            "destination": "",
-            "category": "overflight",
-            "route": "_LZIBOKR..TOVKA..WGM..MASUR..VENEN..DEXIT",
-            "altitude": 1200,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.035,
-            "airlines": [
-                ["ryr"]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "",
-            "category": "overflight",
-            "route": "_LZIBOKR..TOVKA..NERDU..KOVEL..DITIS..NEPUX",
-            "altitude": 1200,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.232,
-            "airlines": [
-                ["ryr", 32],
-                ["bcs/b752", 7]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "",
-            "category": "overflight",
-            "route": "_LZIBOKR..TOVKA..TUN..SITNI..NIMDU",
-            "altitude": 1200,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.012,
-            "airlines": [
-                ["ryr"]
+                ["afr/short", 20000],
+                ["aua/", 88583],
+                ["eju", 19333],
+                ["ezs", 11000],
+                ["ezy", 8333],
+                ["foo", 7857],
+                ["ibe/a320", 26000],
+                ["kal/cargo", 2200],
+                ["ldm", 7333],
+                ["tap/loww", 6000],
+                ["vlg/a320", 12000],
+                ["wzz/", 11000],
+                ["oe/fastGA", 778],
+                ["d/fastGA", 333],
+                ["n/fastGA", 222],
+                ["f/fastGA", 222],
+                ["g/fastGA", 222],
+                ["m/fastGA", 222],
+                ["t7/fastGA", 222],
+                ["ok/fastGA", 222]
             ]
         }
     ],
@@ -3363,11 +3392,12 @@
             ["N48d19m50", "E016d22m20", "N48d20m35", "E016d34m39"],
             ["N48d24m30", "E016d32m55", "N48d20m35", "E016d34m39"],
 
-            ["N47d58m45", "E16d47m27", "N47d59m12", "E16d48m48"],
-            ["N47d59m12", "E16d48m48", "N48d00m32", "E16d48m29"], 
-            ["N48d00m32", "E16d48m29", "N48d00m59", "E16d45m58"],
-            ["N48d00m59", "E16d45m58", "N47d59m57", "E16d42m19"],
-            ["N47d59m57", "E16d42m19", "N47d58m45", "E16d47m27"],
+            ["N47d59m57", "E016d42m19", "N47d58m40", "E016d42m04"],
+            ["N47d58m40", "E016d42m04", "N47d57m44", "E016d44m25"],
+            ["N47d57m44", "E016d44m25", "N47d59m12", "E016d48m48"],
+            ["N47d59m12", "E016d48m48", "N48d00m32", "E016d48m29"],
+            ["N48d00m32", "E016d48m29", "N48d00m59", "E016d45m58"],
+            ["N48d00m59", "E016d45m58", "N47d59m57", "E016d42m19"],
 
             ["N47d55m52", "E16d19m32", "N47d54m13", "E16d16m11"],
             ["N47d54m13", "E16d16m11", "N47d53m40", "E16d15m06"],
@@ -3385,6 +3415,21 @@
             ["N47d54m13", "E16d16m11", "N47d53m25", "E16d16m48"],
 
             ["N47d53m25", "E16d16m48", "N47d53m58", "E16d19m41"],
+
+            ["N48d45m06", "E015d09m32", "N48d45m31", "E015d10m46"],
+            ["N48d45m31", "E015d10m46", "N48d44m32", "E015d21m56"],
+            ["N48d44m32", "E015d21m56", "N48d41m33", "E015d31m31"],
+            ["N48d41m33", "E015d31m31", "N48d39m59", "E015d36m03"],
+            ["N48d39m59", "E015d36m03", "N48d36m00", "E015d39m27"],
+            ["N48d36m00", "E015d39m27", "N48d35m27", "E015d26m58"],
+
+            ["N48d41m33", "E015d31m31", "N48d37m30", "E015d33m53"],
+            ["N48d37m30", "E015d33m53", "N48d35m27", "E015d26m58"],
+
+            ["N47d58m19", "E016d30m30", "N47d58m36", "E016d30m54"],
+            ["N47d58m36", "E016d30m54", "N47d58m48", "E016d30m36"],
+            ["N47d58m48", "E016d30m36", "N47d58m36", "E016d30m05"],
+            ["N47d58m36", "E016d30m05", "N47d58m19", "E016d30m30"],
 
 [48.10978354037, 16.63330169135, 48.10511370056, 16.6373205425],
 [48.10511370056, 16.6373205425, 48.10044430935, 16.63330094802],
