@@ -855,7 +855,7 @@ ava('.initiateHoldingPattern() returns correct readback when hold implemented su
     t.deepEqual(result, expectedResult);
 });
 
-ava.skip('.maintainAltitude() returns early responding that they are unable to maintain the requested altitude', (t) => {
+ava('.maintainAltitude() returns early responding that they are unable to maintain the requested altitude', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 90000;
     const shouldExpediteMock = false;
