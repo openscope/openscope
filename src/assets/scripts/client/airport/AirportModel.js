@@ -660,7 +660,6 @@ export default class AirportModel {
         const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(currentWind);
 
         if (this.arrivalRunwayModel != this.getRunway(bestRunwayForWind)) {
-            console.warn('Winds have now changed enough to warrant a runway change. Suggested runway: ' + `'${bestRunwayForWind}'`);
             UiController.ui_log(
                 'Winds have now changed enough to warrant a runway change. Suggested runway: ' + `'${bestRunwayForWind}'`,
                 isWarning

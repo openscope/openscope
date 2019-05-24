@@ -141,6 +141,7 @@ export default class AirportWindModel {
         this.angle = degrees_normalize(_round(angle, 10));
 
         this._eventBus.trigger(EVENT.AIRPORT_WIND_CHANGE);
+        this._eventBus.trigger(EVENT.AIRPORT_UPDATE_RUNWAY);
     }
 
     /**
