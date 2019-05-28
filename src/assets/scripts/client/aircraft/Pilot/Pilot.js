@@ -44,8 +44,8 @@ export default class Pilot {
         }
 
         if (!(modeController instanceof ModeController)) {
-            throw new TypeError('Expected modeController to an instance of '
-                + `ModeController, but received ${typeof modeController}`);
+            throw new TypeError('Expected modeController to an instance of ' +
+                `ModeController, but received ${typeof modeController}`);
         }
 
         /**
@@ -386,8 +386,8 @@ export default class Pilot {
 
         this.hasApproachClearance = false;
 
-        const readback = 'cancel approach clearance, fly present heading, '
-            + 'maintain last assigned altitude and speed';
+        const readback = 'cancel approach clearance, fly present heading, ' +
+            'maintain last assigned altitude and speed';
 
         return [true, readback];
     }
@@ -711,10 +711,10 @@ export default class Pilot {
         if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
             const readback = {};
 
-            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum `
-                + `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
-            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum `
-                + `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
 
             return [false, readback];
         }

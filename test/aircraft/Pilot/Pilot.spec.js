@@ -66,7 +66,7 @@ function buildPilotWithComplexRoute() {
 let sandbox;
 /* eslint-disable no-unused-vars, no-undef */
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 
 ava.afterEach(() => {
@@ -1017,20 +1017,6 @@ ava('.maintainHeading() calls .cancelHoldingPattern()', (t) => {
     aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
 
     t.true(cancelHoldingPatternSpy.calledWithExactly());
-});
-
-ava('.maintainHeading() returns a success message when incremental is false and no direction is provided', (t) => {
-    const expectedResult = [
-        true,
-        {
-            log: 'fly heading 180',
-            say: 'fly heading one eight zero'
-        }
-    ];
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const result = aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
-
-    t.deepEqual(result, expectedResult);
 });
 
 ava('.maintainHeading() returns a success message when incremental is true and direction is left', (t) => {

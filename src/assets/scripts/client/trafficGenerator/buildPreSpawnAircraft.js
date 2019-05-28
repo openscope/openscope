@@ -156,8 +156,8 @@ export function _calculateIdealSpawnAltitudeAtOffset(
     const distanceToFirstAltitudeRestriction = firstAltitudeRestriction[indexOfDistance] - offsetDistance;
     const minutesToFirstAltitudeRestriction = distanceToFirstAltitudeRestriction / spawnSpeed * TIME.ONE_HOUR_IN_MINUTES;
     const assumedDescentRate = 1000;
-    const highestAcceptableAltitude = firstAltitudeRestriction[indexOfAltitude]
-        + (assumedDescentRate * minutesToFirstAltitudeRestriction);
+    const highestAcceptableAltitude = firstAltitudeRestriction[indexOfAltitude] +
+        (assumedDescentRate * minutesToFirstAltitudeRestriction);
 
     if (_isArray(spawnAltitude)) {
         spawnAltitude = _random(spawnAltitude[0] / 1000, spawnAltitude[1] / 1000) * 1000;

@@ -1269,9 +1269,9 @@ export default class CanvasController {
             match = true;
         }
 
-        let white = aircraftModel.isControllable
-            ? this.theme.DATA_BLOCK.TEXT_IN_RANGE
-            : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        let white = aircraftModel.isControllable ?
+            this.theme.DATA_BLOCK.TEXT_IN_RANGE :
+            this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
         if (match) {
             white = this.theme.DATA_BLOCK.TEXT_SELECTED;
@@ -1279,7 +1279,7 @@ export default class CanvasController {
 
         cc.textBaseline = 'middle';
 
-        let dataBlockLeaderDirection = radarTargetModel.dataBlockLeaderDirection;
+        let { dataBlockLeaderDirection } = radarTargetModel;
 
         if (dataBlockLeaderDirection === INVALID_NUMBER) {
             dataBlockLeaderDirection = this.theme.DATA_BLOCK.LEADER_DIRECTION;
@@ -1338,9 +1338,9 @@ export default class CanvasController {
             row2text = radarTargetModel.buildDataBlockRowTwoSecondaryInfo();
         }
 
-        const fillStyle = aircraftModel.isControllable
-            ? this.theme.DATA_BLOCK.TEXT_IN_RANGE
-            : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        const fillStyle = aircraftModel.isControllable ?
+            this.theme.DATA_BLOCK.TEXT_IN_RANGE :
+            this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
         cc.fillStyle = fillStyle;
 
@@ -1724,8 +1724,8 @@ export default class CanvasController {
         cc.lineWidth = 1;
 
         const offset = 10;
-        const width = CanvasStageModel.width;
-        const height = CanvasStageModel.height;
+        const { width } = CanvasStageModel;
+        const { height } = CanvasStageModel;
         const box_width = 30;
         const box_height = 5;
 
@@ -1861,9 +1861,9 @@ export default class CanvasController {
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
-            const height = area.height === Infinity
-                ? 'UNL'
-                : `FL ${Math.ceil(area.height / 1000) * 10}`;
+            const height = area.height === Infinity ?
+                'UNL' :
+                `FL ${Math.ceil(area.height / 1000) * 10}`;
             let height_shift = 0;
 
             if (area.name) {
@@ -1976,14 +1976,14 @@ export default class CanvasController {
 
             if (p) {
                 const markLen = (alpha % 5 === 0 ?
-                    (alpha % 10 === 0
-                        ? 16
-                        : 12)
-                    : 8
+                    (alpha % 10 === 0 ?
+                        16 :
+                        12) :
+                    8
                 );
-                const markWeight = (alpha % 30 === 0
-                    ? 2
-                    : 1
+                const markWeight = (alpha % 30 === 0 ?
+                    2 :
+                    1
                 );
 
                 const dx = -markLen * dir[0];
@@ -2000,17 +2000,18 @@ export default class CanvasController {
                 cc.stroke();
 
                 if (alpha % 10 === 0) {
-                    cc.font = alpha % 30 === 0
-                        ? 'bold 10px monoOne, monospace'
-                        : BASE_CANVAS_FONT;
+                    cc.font = alpha % 30 === 0 ?
+                        'bold 10px monoOne, monospace' :
+                        BASE_CANVAS_FONT;
 
-                    const text = '' + alpha;
+                    const text = `${alpha}`;
                     const textWidth = cc.measureText(text).width;
 
                     cc.fillText(
                         text,
                         markX - dir[0] * (textWidth / 2 + 4),
-                        markY - dir[1] * 7);
+                        markY - dir[1] * 7
+                    );
                 }
             }
         }

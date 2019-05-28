@@ -16,7 +16,7 @@ import {
 let sandbox;
 
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     createNavigationLibraryFixture();
 });
 

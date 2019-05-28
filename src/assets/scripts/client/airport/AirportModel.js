@@ -651,8 +651,8 @@ export default class AirportModel {
             return;
         }
 
-        console.warn('Did not expect a query for runway that applies to aircraft of category '
-            + `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
+        console.warn('Did not expect a query for runway that applies to aircraft of category ' +
+            `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
 
         return this.arrivalRunwayModel;
     }

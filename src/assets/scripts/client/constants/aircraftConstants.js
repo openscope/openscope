@@ -190,7 +190,7 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894,   // appx. 500 feet
+    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894, // appx. 500 feet
 
     /**
      * Maximum angular differce from the approach course heading to consider the aircraft close
@@ -229,7 +229,7 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    TURN_RATE: 0.0523598776,    // 3 degrees
+    TURN_RATE: 0.0523598776, // 3 degrees
 
     /**
      * Proportion of the maximum capable descent rate that aircraft will use by default

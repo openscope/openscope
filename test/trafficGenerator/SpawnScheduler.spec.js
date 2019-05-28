@@ -23,7 +23,7 @@ ava.beforeEach(() => {
     createAirportControllerFixture();
     SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     aircraftControllerStub = {
         createAircraftWithSpawnPatternModel: sinon.stub(),
         createPreSpawnAircraftWithSpawnPatternModel: sinon.stub()
@@ -58,6 +58,9 @@ ava('.createSchedulesFromList() calls .createNextSchedule() for each SpawnPatter
 
     t.true(createSchedulesFromListSpy.called);
     t.true(createNextScheduleSpy.callCount === expectedCallCount);
+
+    createSchedulesFromListSpy.restore();
+    createNextScheduleSpy.restore();
 });
 
 ava('.createSchedulesFromList() calls aircraftController.createPreSpawnAircraftWithSpawnPatternModel() if preSpawnAircraftList has items', (t) => {
@@ -99,6 +102,8 @@ ava('.createAircraftAndRegisterNextTimeout() calls .createNextSchedule()', (t) =
     SpawnScheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
 
     t.true(createNextScheduleSpy.calledOnce);
+
+    createNextScheduleSpy.restore();
 });
 
 ava('.resetTimer() returns early when SpawnPatternModel has no #scheduleId', (t) => {
@@ -114,6 +119,8 @@ ava('.resetTimer() returns early when SpawnPatternModel has no #scheduleId', (t)
     SpawnScheduler.resetTimer(spawnPatternModel);
 
     t.true(destroyTimerStub.notCalled);
+
+    destroyTimerStub.restore();
 });
 
 ava('.resetTimer() destroys existing timers but does not create a new spawn schedule when SpawnPatternModel has a non-positive spawn rate', (t) => {
@@ -132,6 +139,9 @@ ava('.resetTimer() destroys existing timers but does not create a new spawn sche
 
     t.true(destroyTimerStub.calledTwice);
     t.true(getNextDelayValueStub.notCalled);
+
+    destroyTimerStub.restore();
+    getNextDelayValueStub.restore();
 });
 
 // ava('.resetTimer() updates remaining time when timer has not yet expired', (t) => {

@@ -14,6 +14,7 @@
 - [#1378](https://github.com/openscope/openscope/issues/1378) - Change KBOS wind to permit usage of Runway 27
 - [#1375](https://github.com/openscope/openscope/issues/1375) - Correct overflight example in spawnPatternReadme
 - [#1338](https://github.com/openscope/openscope/issues/1338) - Add `fph` command to aircraft command documentation
+- [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues 
 
 
 # 6.12.3 (April 22, 2019)

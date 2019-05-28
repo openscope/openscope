@@ -1,12 +1,11 @@
 sudo: false
 language: node_js
 node_js:
-- '10'
 - '11'
 
 # must specify this for allow_failures to work on env key
 # https://docs.travis-ci.com/user/customizing-the-build#rows-that-are-allowed-to-fail
-env: 
+env:
 
 git:
   depth: 3

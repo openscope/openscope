@@ -75,8 +75,8 @@ export default class AircraftController {
     constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. '
-                + `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
+                `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive

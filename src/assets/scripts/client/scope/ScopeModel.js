@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
 import RadarTargetCollection from './RadarTargetCollection';
