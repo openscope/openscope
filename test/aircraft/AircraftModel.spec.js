@@ -323,26 +323,26 @@ ava('.isOnFinal() returns true when both on the selected course and within the f
     distanceToPositionStub.restore();
 });
 
-// TODO: this test is suddenly failing entirely
-// ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
-//     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-//     const expectedResult = 3994.129742601768;
+ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const runwayElevationMock = 2157;
+    const expectedResult = 2261.980164261595 + runwayElevationMock;
+    model.fms.arrivalRunwayModel._positionModel.elevation = runwayElevationMock;
 
-//     t.true(model.fms.arrivalRunwayModel.name === '07R');
+    t.true(model.fms.arrivalRunwayModel.name === '07R');
 
-//     // TODO: why does this not work?
-//     // const arrivalRunwayModel = model.fms.arrivalRunwayModel;
-//     // const distanceOnFinalNm = 7;
-//     // model.positionModel.setCoordinates(arrivalRunwayModel.positionModel.gps);
-//     // model.positionModel.setCoordinatesByBearingAndDistance(arrivalRunwayModel.oppositeAngle, distanceOnFinalNm);
+    const { arrivalRunwayModel } = model.fms;
+    const distanceOnFinalNm = 7;
+    const runwayPositionModel = arrivalRunwayModel.positionModel;
+    const magneticBearingFromRunway = arrivalRunwayModel.oppositeAngle;
 
-//     // using this direct coordinate instead of calculating it above
-//     model.positionModel.setCoordinates([36.0383336961, -115.26973855167]);
+    model.positionModel.setCoordinates(runwayPositionModel.gps);
+    model.positionModel.setCoordinatesByBearingAndDistance(magneticBearingFromRunway, distanceOnFinalNm);
 
-//     const result = model._calculateArrivalRunwayModelGlideslopeAltitude();
+    const result = model._calculateArrivalRunwayModelGlideslopeAltitude();
 
-//     t.true(result === expectedResult);
-// });
+    t.true(result === expectedResult);
+});
 
 ava('.matchCallsign() returns false when passed a flightnumber that is not included in #callsign', (t) => {
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
