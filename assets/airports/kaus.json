@@ -1,4 +1,5 @@
 {
+    "airac": 1906,
     "radio": {
         "twr": "Austin Tower",
         "app": "Austin Approach",
@@ -387,8 +388,8 @@
         }
     },
     "stars": {
-        "BITER8": {
-            "icao": "BITER8",
+        "BITER9": {
+            "icao": "BITER9",
             "name": "Biter Eight",
             "entryPoints": {
                 "HUB": ["HUB", "BOCCK"],
@@ -547,15 +548,15 @@
             "rate": 1.46,
             "airlines": [
                 ["aal/short", 8],
-                ["baw/b789", 1],
+                ["baw/b744", 1],
                 ["dal/short", 3],
                 ["eny", 1],
                 ["fft", 3],
                 ["n/fastGA", 1],
+                ["nks", 2],
                 ["nax/long", 1],
                 ["skw", 2],
-                ["swa", 12],
-                ["sry/e145", 3]
+                ["swa", 12]
           ]
         },
         {
@@ -599,16 +600,16 @@
                 ["aal/short", 4],
                 ["aay", 3],
                 ["ash", 3],
-                ["cfg/long", 1],
                 ["dal/short", 15],
+                ["dlh/a333", 1],
                 ["edv", 2],
                 ["fdx/eddf25l", 2],
                 ["fft", 5],
                 ["jbu", 5],
                 ["n/fastGA", 1],
+                ["nks", 2],
                 ["rpa", 2],
                 ["swa", 25],
-                ["sry/e145", 1],
                 ["ual/short", 5],
                 ["ups", 1]
           ]
@@ -695,7 +696,7 @@
             "method": "random",
             "rate": 0.167,
             "airlines": [
-                ["amx/short", 1],
+                ["sli", 1],
                 ["swa", 1],
                 ["ups", 1],
                 ["xa/fastGA", 1]
@@ -744,8 +745,8 @@
                 ["aca/short", 1],
                 ["ash", 1],
                 ["baw/b789", 1],
-                ["cfg/long", 1],
                 ["dal/short", 6],
+                ["dlh/a333", 1],
                 ["edv", 1],
                 ["eny", 1],
                 ["fdx/eddf25l", 2],
@@ -754,7 +755,6 @@
                 ["n/fastGA", 5],
                 ["nax/long", 1],
                 ["rpa", 2],
-                ["sry/e145", 4],
                 ["swa", 25],
                 ["ual/short", 10]
           ]
@@ -814,6 +814,7 @@
                 ["fft", 1],
                 ["jbu", 2],
                 ["n/fastGA", 1],
+                ["nks", 4],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 2],
