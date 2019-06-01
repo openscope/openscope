@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
+import GameController from '../game/GameController';
 import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
-import { DECIMAL_RADIX } from '../utilities/unitConverters';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { THEME } from '../constants/themes';
+import { DECIMAL_RADIX } from '../utilities/unitConverters';
 
 /**
  * Scope belonging to a Player
@@ -27,6 +29,17 @@ export default class ScopeModel {
          * @private
          */
         this._eventBus = EventBus;
+
+        /**
+         * Length of PTL lines (aka "vector lines") for all aircraft
+         *
+         * @for ScopeModel
+         * @property _ptlLength
+         * @type {number} length in minutes
+         * @default 0
+         * @private
+         */
+        this._ptlLength = 0;
 
         // TODO: Use this!
         /**
@@ -58,30 +71,32 @@ export default class ScopeModel {
          * @for ScopeModel
          * @property radarTargetCollection
          * @type {RadarTargetCollection}
-         * @private
          */
-        this.radarTargetCollection = null;
+        this.radarTargetCollection = new RadarTargetCollection(this._theme);
 
-        this._init()
+        this.init()
             .enable();
     }
+
+    get ptlLength() {
+        return this._ptlLength;
+    }
+
+    // ------------------------------ LIFECYCLE ------------------------------
 
     /**
      * Complete initialization tasks
      *
      * @for ScopeModel
-     * @method _init
-     * @private
+     * @method init
      * @chainable
      */
-    _init() {
-        this.radarTargetCollection = new RadarTargetCollection(this._theme);
-
+    init() {
         return this;
     }
 
     /**
-    * Disable handlers
+    * Enable handlers
     *
     * @for ScopeModel
     * @method enable
@@ -91,7 +106,7 @@ export default class ScopeModel {
     }
 
     /**
-    * Enable handlers
+    * Disable handlers
     *
     * @for ScopeModel
     * @method disable
@@ -99,6 +114,8 @@ export default class ScopeModel {
     disable() {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
+
+    // ------------------------------ PUBLIC ------------------------------
 
     /**
      * Accept a pending handoff from another sector
@@ -108,7 +125,7 @@ export default class ScopeModel {
      * @param radarTargetModel {RadarTargetModel}
      * @return result {array} [success of operation, system's response]
      */
-    acceptHandoff(radarTargetModel) {
+    acceptHandoff(/* radarTargetModel */) {
         return [false, 'acceptHandoff command not yet available'];
     }
 
@@ -128,6 +145,59 @@ export default class ScopeModel {
     }
 
     /**
+     * Increase or decrease the PTL length by one step
+     *
+     * @for ScopeModel
+     * @method changePtlLength
+     * @param {number} direction - either -1 or 1 to indicate increment direction
+     */
+    changePtlLength(direction) {
+        const validValues = GameController.getGameOption(GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTHS)
+            .split('-')
+            .map((val) => parseFloat(val));
+        const currentIndex = validValues.indexOf(this._ptlLength);
+        const nextIndex = currentIndex + Math.sign(direction);
+
+        if (nextIndex < 0) {
+            this._ptlLength = 0;
+            this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+
+            return;
+        }
+
+        if (nextIndex >= validValues.length) {
+            return;
+        }
+
+        this._ptlLength = validValues[nextIndex];
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+    }
+
+    /**
+     * Decrease the length of the PTL lines for all aircraft
+     *
+     * @for ScopeModel
+     * @method decreasePtlLength
+     */
+    decreasePtlLength() {
+        const direction = -1;
+
+        this.changePtlLength(direction);
+    }
+
+    /**
+     * Increase the length of the PTL lines for all aircraft
+     *
+     * @for ScopeModel
+     * @method increasePtlLength
+     */
+    increasePtlLength() {
+        const direction = 1;
+
+        this.changePtlLength(direction);
+    }
+
+    /**
      * Initiate a handoff to another sector
      *
      * @for ScopeModel
@@ -136,7 +206,7 @@ export default class ScopeModel {
      * @param sectorCode {string} the handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
-    initiateHandoff(radarTargetModel, sectorCode) {
+    initiateHandoff(/* radarTargetModel, sectorCode */) {
         return [false, 'initiateHandoff command not yet available'];
     }
 
@@ -163,7 +233,7 @@ export default class ScopeModel {
      * @param sectorCode {string} handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
-    propogateDataBlock(radarTargetModel, sectorCode) {
+    propogateDataBlock(/* radarTargetModel, sectorCode */) {
         return [false, 'propogateDataBlock command not yet available'];
     }
 
@@ -176,7 +246,7 @@ export default class ScopeModel {
      * @param routeString {string}
      * @return result {array} [success of operation, system's response]
      */
-    route(radarTargetModel, routeString) {
+    route(/* radarTargetModel, routeString */) {
         return [false, 'route command not yet available'];
     }
 
@@ -249,6 +319,8 @@ export default class ScopeModel {
 
         return radarTargetModel.setHalo(radius);
     }
+
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
      * Change theme to the specified name

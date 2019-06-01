@@ -1,5 +1,6 @@
 # 6.13.0 (May 1, 2019)
 ### New Features
+- [#1313](https://github.com/openscope/openscope/issues/1313) - Add F1/F2 shortcut to decrease/increase length of PTLs
 
 
 ### Bugfixes
