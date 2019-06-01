@@ -12,6 +12,8 @@ import { DECIMAL_RADIX } from '../utilities/unitConverters';
 /**
  * Scope belonging to a Player
  *
+ * NOTE: Many methods are just placeholders for future use, hence why their params are commented out
+ *
  * @class ScopeModel
  */
 export default class ScopeModel {
@@ -120,6 +122,8 @@ export default class ScopeModel {
     /**
      * Accept a pending handoff from another sector
      *
+     * NOTE: This is just a placeholder for future use, hence why the params are commented out
+     *
      * @for ScopeModel
      * @method acceptHandoff
      * @param radarTargetModel {RadarTargetModel}
@@ -158,18 +162,20 @@ export default class ScopeModel {
         const currentIndex = validValues.indexOf(this._ptlLength);
         const nextIndex = currentIndex + Math.sign(direction);
 
+        if (nextIndex >= validValues.length) {
+            return;
+        }
+
         if (nextIndex < 0) {
             this._ptlLength = 0;
+
             this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
 
             return;
         }
 
-        if (nextIndex >= validValues.length) {
-            return;
-        }
-
         this._ptlLength = validValues[nextIndex];
+
         this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
     }
 
@@ -200,6 +206,8 @@ export default class ScopeModel {
     /**
      * Initiate a handoff to another sector
      *
+     * NOTE: This is just a placeholder for future use, hence why the params are commented out
+     *
      * @for ScopeModel
      * @method initiateHandoff
      * @param radarTargetModel {RadarTargetModel}
@@ -227,6 +235,8 @@ export default class ScopeModel {
      * Toggle visibility of the data block of a given `RadarTargetModel`, on this
      * sector's scope, or the scope of another sector
      *
+     * NOTE: This is just a placeholder for future use, hence why the params are commented out
+     *
      * @for ScopeModel
      * @method propogateDataBlock
      * @param radarTargetModel {RadarTargetModel}
@@ -239,6 +249,8 @@ export default class ScopeModel {
 
     /**
      * Amend the route stored in the scope for a given `RadarTargetModel`
+     *
+     * NOTE: This is just a placeholder for future use, hence why the params are commented out
      *
      * @for ScopeModel
      * @method route
