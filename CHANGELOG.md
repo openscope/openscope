@@ -16,6 +16,7 @@
 - [#1375](https://github.com/openscope/openscope/issues/1375) - Correct overflight example in spawnPatternReadme
 - [#1338](https://github.com/openscope/openscope/issues/1338) - Add `fph` command to aircraft command documentation
 - [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues 
+- [#1319](https://github.com/openscope/openscope/issues/1319) - Addresses lint errors in documentation files
 
 
 # 6.12.3 (April 22, 2019)
