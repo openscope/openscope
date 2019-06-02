@@ -1,4 +1,5 @@
 {
+    "airac": 1813,
     "radio": {
         "twr": "Miami Tower",
         "app": "Miami Approach",
@@ -725,9 +726,9 @@
                 ["MTH*", "DVALL"]
             ]
         },
-        "FLIPR5": {
-            "icao": "FLIPR5",
-            "name": "Flipper Five",
+        "FLIPR6": {
+            "icao": "FLIPR6",
+            "name": "Flipper Six",
             "entryPoints": {
                 "HODGY": ["HODGY", "JAYEE", "PEKRE", "TINKY", "LUCSS"],
                 "URSUS": ["URSUS", "ZOLLA"],
@@ -804,9 +805,9 @@
                 ["ZFP*", "STAPL"]
             ]
         },
-        "SSCOT4": {
-            "icao": "SSCOT4",
-            "name": "Scott Four",
+        "SSCOT5": {
+            "icao": "SSCOT5",
+            "name": "Scott Five",
             "entryPoints": {
                 "BAGGS": ["BAGGS"],
                 "JUULI": ["JUULI"]
@@ -1217,7 +1218,7 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route": "BAGGS.SSCOT4.KMIA9",
+            "route": "BAGGS.SSCOT5.KMIA9",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -1241,7 +1242,7 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route": "URSUS.FLIPR5.KMIA9",
+            "route": "URSUS.FLIPR6.KMIA9",
             "altitude": 12000,
             "speed": 280,
             "method": "random",
