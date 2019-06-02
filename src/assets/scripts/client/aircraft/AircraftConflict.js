@@ -30,8 +30,8 @@ export default class AircraftConflict {
         this.violations = {};
 
         if (this.isAlreadyKnown()) {
-            console.warn(`Duplicate conflict between ${this.aircraft[0].callsign} `
-                + `and ${this.aircraft[1].callsign}! Scoring may be inaccurate!`);
+            console.warn(`Duplicate conflict between ${this.aircraft[0].callsign} ` +
+                `and ${this.aircraft[1].callsign}! Scoring may be inaccurate!`);
             return;
         }
 
@@ -139,7 +139,7 @@ export default class AircraftConflict {
      */
     checkCollision() {
         if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
-            return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIED A/C
+            return; // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIED A/C
         }
 
         // TODO: enumerate the magic numbers.
@@ -210,7 +210,7 @@ export default class AircraftConflict {
         violation = this.distance < applicableLatSepMin;
         // TODO: enumerate the magic number.
         // TODO: this should be another class method
-        conflict = (this.distance < applicableLatSepMin + 1.852 && !disableNotices) || violation;  // +1.0nm
+        conflict = (this.distance < applicableLatSepMin + 1.852 && !disableNotices) || violation; // +1.0nm
 
         // "Passing & Diverging" Rules (the "exception" to all of the above rules)
         // test the below only if separation is currently considered insufficient
@@ -236,13 +236,13 @@ export default class AircraftConflict {
                     const dx = a2.relativePosition[0] - a1.relativePosition[0];
                     const dy = a2.relativePosition[1] - a1.relativePosition[1];
                     const det = bd[0] * ad[1] - bd[1] * ad[0];
-                    const u = (dy * bd[0] - dx * bd[1]) / det;  // a1's distance from point of convergence
-                    const v = (dy * ad[0] - dx * ad[1]) / det;  // a2's distance from point of convergence
+                    const u = (dy * bd[0] - dx * bd[1]) / det; // a1's distance from point of convergence
+                    const v = (dy * ad[0] - dx * ad[1]) / det; // a2's distance from point of convergence
 
                     // TODO: this should be a helper function that live in one of the math/ files
                     if ((u < 0) || (v < 0)) { // check if either a/c has passed the point of convergence
-                        conflict = false;  // targets are diverging
-                        violation = false;  // targets are diverging
+                        conflict = false; // targets are diverging
+                        violation = false; // targets are diverging
                     }
                     // Reference: FAA JO 7110.65, section 5-5-7-a-1:
                     // (a) Aircraft are on opposite/reciprocal courses and you have observed

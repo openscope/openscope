@@ -494,9 +494,9 @@ export default class AircraftModel {
          */
         this.pilot = new Pilot(this.fms, this.mcp);
 
-        this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
-            ? TimeKeeper.accumulatedDeltaTime
-            : null;
+        this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL ?
+            TimeKeeper.accumulatedDeltaTime :
+            null;
 
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
@@ -734,8 +734,8 @@ export default class AircraftModel {
         // in troposphere
         if (this.altitude < 36152) {
             // TODO: break this assignemnt up into smaller parts and holy magic numbers! enumerate the magic numbers
-            cr_uncorr = rate * 420.7 * ((1.232 * (((518.6 - 0.00356 * altitude) / 518.6) ** 5.256))
-                / (518.6 - 0.00356 * altitude));
+            cr_uncorr = rate * 420.7 * ((1.232 * (((518.6 - 0.00356 * altitude) / 518.6) ** 5.256)) /
+                (518.6 - 0.00356 * altitude));
             cr_current = cr_uncorr - (altitude / ceiling * cr_uncorr) + (altitude / ceiling * serviceCeilingClimbRate);
         } else {
             // in lower stratosphere
@@ -934,8 +934,9 @@ export default class AircraftModel {
      */
     isEstablishedOnGlidepath() {
         const glideslopeAltitude = this._calculateArrivalRunwayModelGlideslopeAltitude();
+        const glideslopeAltitudeDifference = abs(glideslopeAltitude - this.altitude);
 
-        return abs(glideslopeAltitude - this.altitude) <= PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
+        return glideslopeAltitudeDifference <= PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
     }
 
     // TODO: the logic here should be moved to the `AirportModel`
@@ -1038,9 +1039,9 @@ export default class AircraftModel {
      * @method isTaxiing
      */
     isTaxiing() {
-        return this.flightPhase === FLIGHT_PHASE.APRON
-            || this.flightPhase === FLIGHT_PHASE.TAXI
-            || this.flightPhase === FLIGHT_PHASE.WAITING;
+        return this.flightPhase === FLIGHT_PHASE.APRON ||
+            this.flightPhase === FLIGHT_PHASE.TAXI ||
+            this.flightPhase === FLIGHT_PHASE.WAITING;
     }
 
     // TODO: The function description and what it actually does do not match
@@ -1581,8 +1582,8 @@ export default class AircraftModel {
                 return this._calculateTargetedHeadingToInterceptCourse();
 
             default:
-                console.warn('Expected MCP heading mode of "OFF", "HOLD", "LNAV", or "VOR", '
-                    + `but received "${this.mcp.headingMode}"`);
+                console.warn('Expected MCP heading mode of "OFF", "HOLD", "LNAV", or "VOR", ' +
+                    `but received "${this.mcp.headingMode}"`);
                 return this.heading;
         }
     }
@@ -1610,9 +1611,9 @@ export default class AircraftModel {
             case MCP_MODE.SPEED.HOLD:
                 return this._calculateLegalSpeed(this.mcp.speed);
 
-            // future functionality
-            // case MCP_MODE.SPEED.LEVEL_CHANGE:
-            //     return;
+                // future functionality
+                // case MCP_MODE.SPEED.LEVEL_CHANGE:
+                //     return;
 
             case MCP_MODE.SPEED.N1:
                 return this._calculateLegalSpeed(this.model.speed.max);
@@ -1624,8 +1625,8 @@ export default class AircraftModel {
             }
 
             default:
-                console.warn('Expected MCP speed mode of "OFF", "HOLD", "LEVEL_CHANGE", "N1", or "VNAV", but '
-                    + `received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
+                console.warn('Expected MCP speed mode of "OFF", "HOLD", "LEVEL_CHANGE", "N1", or "VNAV", but ' +
+                    `received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
                 return this._calculateLegalSpeed(this.speed);
         }
     }
@@ -1673,21 +1674,21 @@ export default class AircraftModel {
             case MCP_MODE.ALTITUDE.APPROACH:
                 return this._calculateTargetedAltitudeToInterceptGlidepath();
 
-            // future functionality
-            // case MCP_MODE.ALTITUDE.LEVEL_CHANGE:
-            //     return;
+                // future functionality
+                // case MCP_MODE.ALTITUDE.LEVEL_CHANGE:
+                //     return;
 
-            // future functionality
-            // case MCP_MODE.ALTITUDE.VERTICAL_SPEED:
-            //     return;
+                // future functionality
+                // case MCP_MODE.ALTITUDE.VERTICAL_SPEED:
+                //     return;
 
             case MCP_MODE.ALTITUDE.VNAV: {
                 return this._calculateTargetedAltitudeVnav();
             }
 
             default:
-                console.warn('Expected MCP altitude mode of "OFF", "HOLD", "APPROACH", "LEVEL_CHANGE", '
-                    + `"VERTICAL_SPEED", or "VNAV", but received "${this.mcp[MCP_MODE_NAME.ALTITUDE]}"`);
+                console.warn('Expected MCP altitude mode of "OFF", "HOLD", "APPROACH", "LEVEL_CHANGE", ' +
+                    `"VERTICAL_SPEED", or "VNAV", but received "${this.mcp[MCP_MODE_NAME.ALTITUDE]}"`);
                 break;
         }
     }
@@ -1740,8 +1741,8 @@ export default class AircraftModel {
         const distanceCoveredDuringTurn = turningRadius * abs(headingDifference);
         const distanceToLocalizer = lateralDistanceFromCourseNm / sin(headingDifference); // dist from localizer intercept, nm
         const distanceEarly = 0.5; // start turn early, to avoid overshoots from tailwind
-        const shouldAttemptIntercept = (distanceToLocalizer > 0
-            && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
+        const shouldAttemptIntercept = (distanceToLocalizer > 0 &&
+            distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
         const inTheWindow = abs(angleAwayFromLocalizer) < degreesToRadians(1.5); // move to loc regardless of assigned heading
 
         if (!shouldAttemptIntercept && !inTheWindow) {
@@ -1830,8 +1831,8 @@ export default class AircraftModel {
             const nextWaypointPosition = currentWaypoint.positionModel;
 
             if (_isNil(nextWaypointPosition)) {
-                console.warn('Expected a valid PositionModel object for waypoint '
-                    + `"${currentWaypoint.name}", but received ${nextWaypointPosition}`);
+                console.warn('Expected a valid PositionModel object for waypoint ' +
+                    `"${currentWaypoint.name}", but received ${nextWaypointPosition}`);
             }
 
             return this.positionModel.bearingToPosition(nextWaypointPosition);

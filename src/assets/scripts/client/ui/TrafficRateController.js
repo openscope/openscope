@@ -1,12 +1,14 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import EventBus from '../lib/EventBus';
+import EventTracker from '../EventTracker';
 import SpawnPatternCollection from '../trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from '../trafficGenerator/SpawnScheduler';
 import { SELECTORS, CLASSNAMES } from '../constants/selectors';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { REGEX } from '../constants/globalConstants';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -175,7 +177,6 @@ export default class TrafficRateController {
         for (const category of Object.values(FLIGHT_CATEGORY)) {
             this._rates[category] = 1;
             this._elements[category] = [];
-
             const $formElement = this._buildSlider(category, category, category, this._onChangeFlightCategoryRate);
 
             this.$dialogBody.append($formElement);
@@ -190,13 +191,10 @@ export default class TrafficRateController {
 
             _forEach(spawnPatterns, (spawnPattern) => {
                 const label = spawnPattern.routeString.replace(REGEX.SINGLE_DOT, ' ');
-
                 this._rates[spawnPattern.id] = spawnPattern.rate;
-
                 const $formElement = this._buildInputField(spawnPattern.id, label, spawnPattern, this._onChangeSpawnPatternRate);
 
                 this.$dialogBody.append($formElement);
-
                 this._elements[category].push({ spawnPattern, $formElement });
             });
         }
@@ -267,10 +265,11 @@ export default class TrafficRateController {
         const value = $target.val();
         const category = event.data.rateKey;
         const elements = this._elements[category];
-
+        const { airportIcao } = elements[0].spawnPattern;
         this._rates[category] = parseFloat(value);
 
         $output.text(value);
+        EventTracker.recordEvent(TRACKABLE_EVENT.CHANGE_SPAWN_PATTERN, 'flight-category', `${airportIcao}:${category}:${value}`);
 
         for (const { spawnPattern, $formElement } of elements) {
             const $childOutput = $formElement.children(`.${CLASSNAMES.FORM_VALUE}`);
@@ -291,9 +290,14 @@ export default class TrafficRateController {
         const $output = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
         const value = $target.val();
         const spawnPattern = event.data.rateKey;
+        const nextRate = parseFloat(value);
+        this._rates[spawnPattern.id] = nextRate;
 
-        this._rates[spawnPattern.id] = parseFloat(value);
-
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.CHANGE_SPAWN_PATTERN,
+            'spawn-pattern',
+            `${spawnPattern.airportIcao}:${spawnPattern.routeString}:${spawnPattern.rate}:${nextRate}`
+        );
         this._updateRate(spawnPattern, $output);
     }
 
@@ -307,7 +311,6 @@ export default class TrafficRateController {
      */
     _updateRate(spawnPattern, $output) {
         const { category } = spawnPattern;
-
         spawnPattern.rate = this._rates[category] * this._rates[spawnPattern.id];
 
         $output.text(spawnPattern.rate);

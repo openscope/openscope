@@ -103,6 +103,33 @@ ava('#positionModel returns #_positionModel', (t) => {
     t.true(result === expectedResult);
 });
 
+ava('#airportIcao returns the airport icao when type is arrival', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
+    const expectedResult = 'KLAS';
+    const result = model.airportIcao;
+
+    t.true(result === expectedResult);
+});
+
+ava('#airportIcao returns the airport icao when type is departure', (t) => {
+    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
+    const expectedResult = 'KLAS';
+    const result = model.airportIcao;
+
+    t.true(result === expectedResult);
+});
+
+ava('#airportIcao returns the airport icao when type is overflight', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
+    const isOverflightStub = sinon.stub(model, 'isOverflight').returns(true);
+    const expectedResult = 'overflight';
+    const result = model.airportIcao;
+
+    t.true(result === expectedResult);
+
+    isOverflightStub.restore();
+});
+
 ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
     const cycleStartTimeMock = 42;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);

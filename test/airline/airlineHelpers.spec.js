@@ -74,7 +74,7 @@ ava('.randomAirlineSelectionHelper() returns an object with two keys: name and f
     t.true(result.fleet === '');
 });
 
-ava('.randomAirlineSelectionHelper() returns an object with two keys: name and fleet', t => {
+ava('.randomAirlineSelectionHelper() returns an object with two keys: name and fleet when passed aline with separator', t => {
     const result = randomAirlineSelectionHelper(AIRLINE_LIST_WITHOUT_SEPERATOR_MOCK);
 
     t.true(typeof result === 'object');

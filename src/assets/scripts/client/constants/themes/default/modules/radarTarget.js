@@ -43,14 +43,6 @@ export const RADAR_TARGET_THEME = {
     HISTORY_LENGTH: 7,
 
     /**
-     * Initial length of PTLs, in minutes
-     *
-     * @memberof RADAR_TARGET_THEME
-     * @property PROJECTED_TRACK_LINE_LENGTH
-     */
-    PROJECTED_TRACK_LINE_LENGTH: 0,
-
-    /**
      * Color of projected track lines
      *
      * @memberof RADAR_TARGET_THEME

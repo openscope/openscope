@@ -366,10 +366,10 @@ export default class AircraftCommander {
         if (_isNil(runwayModel)) {
             const previousRunwayModel = aircraft.fms.arrivalRunwayModel;
             const readback = {};
-            readback.log = `unable to find Runway ${runwayName} on our charts, `
-                + `expecting Runway ${previousRunwayModel.name} instead`;
-            readback.say = `unable to find Runway ${radio_runway(runwayName)} on our `
-                + `charts, expecting Runway ${previousRunwayModel.getRadioName()} instead`;
+            readback.log = `unable to find Runway ${runwayName} on our charts, ` +
+                `expecting Runway ${previousRunwayModel.name} instead`;
+            readback.say = `unable to find Runway ${radio_runway(runwayName)} on our ` +
+                `charts, expecting Runway ${previousRunwayModel.getRadioName()} instead`;
 
             return [false, readback];
         }
@@ -676,10 +676,10 @@ export default class AircraftCommander {
 
         // see #1154, we may have been rerouted since we started taxiing.
         if (!aircraft.fms.isRunwayModelValidForSid(runway)) {
-            readback.log = `according to our charts, Runway ${runway.name} `
-                + `is not valid for the ${aircraft.fms.getSidIcao()} departure`;
-            readback.say = `according to our charts, Runway ${runway.getRadioName()} `
-                + `is not valid for the ${aircraft.fms.getSidName()} departure`;
+            readback.log = `according to our charts, Runway ${runway.name} ` +
+                `is not valid for the ${aircraft.fms.getSidIcao()} departure`;
+            readback.say = `according to our charts, Runway ${runway.getRadioName()} ` +
+                `is not valid for the ${aircraft.fms.getSidName()} departure`;
 
             return [false, readback];
         }
@@ -687,13 +687,13 @@ export default class AircraftCommander {
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.takeoff(runway);
 
-        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, `
-            + `Runway ${runway.name}, cleared for takeoff`;
+        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, ` +
+            `Runway ${runway.name}, cleared for takeoff`;
 
         // We have to make it say winned to make it sound like "Wind" and not "Whined"
-        readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at `
-            + `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, `
-            + 'cleared for takeoff';
+        readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
+            `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, ` +
+            'cleared for takeoff';
 
         return [true, readback];
     }

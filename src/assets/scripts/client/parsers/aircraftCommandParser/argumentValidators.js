@@ -176,10 +176,10 @@ export const fixValidator = (args = []) => {
  * @return {boolean}
  */
 export const isValidDirectionString = (value) => {
-    return value === 'left'
-        || value === 'l'
-        || value === 'right'
-        || value === 'r';
+    return value === 'left' ||
+        value === 'l' ||
+        value === 'right' ||
+        value === 'r';
 };
 
 /**

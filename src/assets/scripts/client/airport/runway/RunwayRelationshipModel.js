@@ -113,7 +113,7 @@ export default class RunwayRelationshipModel {
      * @return applicableLatSepMin {number}
      */
     calculateSeparationMinimums() {
-        let applicableLatSepMin = SEPARATION.STANDARD_LATERAL_KM;  // 3.0nm
+        let applicableLatSepMin = SEPARATION.STANDARD_LATERAL_KM; // 3.0nm
         const runwaySeparationDistanceFeet = km_ft(this.lateral_dist);
 
         if (runwaySeparationDistanceFeet >= 2500 && runwaySeparationDistanceFeet <= 3600) {

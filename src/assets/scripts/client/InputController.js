@@ -445,6 +445,18 @@ export default class InputController {
                 this.onCommandInputChangeHandler();
 
                 break;
+            case KEY_CODES.F1:
+            case LEGACY_KEY_CODES.F1:
+                event.preventDefault();
+                this._scopeModel.decreasePtlLength();
+
+                break;
+            case KEY_CODES.F2:
+            case LEGACY_KEY_CODES.F2:
+                event.preventDefault();
+                this._scopeModel.increasePtlLength();
+
+                break;
             case KEY_CODES.F7:
             case LEGACY_KEY_CODES.F7:
                 if (this.commandBarContext !== COMMAND_CONTEXT.SCOPE) {

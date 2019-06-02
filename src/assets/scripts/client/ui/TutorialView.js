@@ -1,4 +1,4 @@
-/* eslint-disable max-len, indent */
+/* eslint-disable max-len, indent, no-undef, prefer-destructuring */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import AirportController from '../airport/AirportController';
@@ -14,13 +14,13 @@ import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 const tutorial = {};
 
-const TUTORIAL_TEMPLATE = ''
-    + '<div id="tutorial">'
-    + '   <h1></h1>'
-    + '   <main></main>'
-    + '   <div class="prev"><img src="assets/images/prev.png" title="Previous step" /></div>'
-    + '   <div class="next"><img src="assets/images/next.png" title="Next step" /></div>'
-    + '</div>';
+const TUTORIAL_TEMPLATE = '' +
+    '<div id="tutorial">' +
+    '   <h1></h1>' +
+    '   <main></main>' +
+    '   <div class="prev"><img src="assets/images/prev.png" title="Previous step" /></div>' +
+    '   <div class="next"><img src="assets/images/next.png" title="Next step" /></div>' +
+    '</div>';
 
 /**
  * @class TutorialView

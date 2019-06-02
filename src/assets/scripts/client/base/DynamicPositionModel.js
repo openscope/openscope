@@ -273,9 +273,9 @@ export default class DynamicPositionModel {
      */
     generateCoordinatesFromBearingAndDistance(bearing, distance) {
         const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
-        const θ = bearing + this._magneticNorth;    // true bearing, in radians
+        const θ = bearing + this._magneticNorth; // true bearing, in radians
         const d = distance;
-        const δ = d / R;    // angular distance, in earth laps
+        const δ = d / R; // angular distance, in earth laps
         const φ1 = degreesToRadians(this.latitude);
         const λ1 = degreesToRadians(this.longitude);
         const φ2 = Math.asin(Math.sin(φ1) * Math.cos(δ) + Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));

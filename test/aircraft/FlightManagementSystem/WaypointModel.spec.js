@@ -12,7 +12,7 @@ import { DEFAULT_HOLD_PARAMETERS } from '../../../src/assets/scripts/client/cons
 let sandbox;
 
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     createNavigationLibraryFixture();
 });
 

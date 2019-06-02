@@ -6,11 +6,12 @@ import EventTracker from './EventTracker';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
-import { VOICES,
-         LOWER_PITCH,
-         HIGHER_PITCH,
-         NORMAL_SPEED,
-         FASTER_SPEED
+import {
+    VOICES,
+    LOWER_PITCH,
+    HIGHER_PITCH,
+    NORMAL_SPEED,
+    FASTER_SPEED
 } from './constants/speechConstants';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
 

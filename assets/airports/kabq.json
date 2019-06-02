@@ -1,5 +1,5 @@
 {
-    "airac": 1711,
+    "airac": 1813,
     "radio": {
         "twr": "Albuquerque Tower",
         "app": "Albuquerque Approach",
@@ -200,14 +200,6 @@
             "end": [
                 ["N35d02m36.72", "W106d37m14.71", "5312ft"],
                 ["N35d01m59.5", "W106d36m18.53", "5314ft"]
-            ],
-            "ils": [false, false]
-        },
-        {
-            "name": ["17", "35"],
-            "end": [
-                ["N35d03m27.83", "W106d36m39.6", "5312ft"],
-                ["N35d01m49.12", "W106d36m46.68", "5314ft"]
             ],
             "ils": [false, false]
         }

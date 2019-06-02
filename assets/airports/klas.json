@@ -1,4 +1,5 @@
 {
+    "airac": 1813,
     "radio": {
         "twr": "Las Vegas Tower",
         "app": "Las Vegas Approach",
@@ -606,27 +607,27 @@
                 ["LUXOR", "BAMAA", "LAS"]
             ]
         },
-        "SITEE2": {
-            "icao": "SITEE2",
-            "name": "City Two",
+        "SITEE3": {
+            "icao": "SITEE3",
+            "name": "City Three",
             "entryPoints": {
-                "GGAPP": ["GGAPP"],
+                "GGAPP": [["GGAPP", "A230+"]],
                 "MPIRE": ["MPIRE"],
-                "SINNN": ["SINNN", "FRBET", "HOLDM"]
+                "SINNN": ["SINNN", "FRBET", ["HOLDM", "A190+"]]
             },
-            "body": ["KSINO", ["WYYNN", "A120|S250"], ["SITEE", "A100"]],
+            "body": [["KSINO", "A160+"], ["WYYNN", "A120|S250"], ["SITEE", "A100"]],
             "rwy": {
-                "KLAS19L": [["HEREI", "A80+|S210"], ["AAMMM", "A60+"], ["LOOSN", "A60"], "GRMPS", "#261"],
-                "KLAS19R": [["HEREI", "A80+|S210"], ["AAMMM", "A60+"], ["LOOSN", "A60"], "GRMPS", "#261"],
+                "KLAS19L": [["HEREI", "A80+|S210"], ["AAMMM", "A60+"], ["LOOSN", "A60"], ["GRMPS", "A60"], "#261"],
+                "KLAS19R": [["HEREI", "A80+|S210"], ["AAMMM", "A60+"], ["LOOSN", "A60"], ["GRMPS", "A60"], "#261"],
                 "KLAS26L": ["ARVDD", ["PRINO", "A80|S210"], "#259"],
                 "KLAS26R": ["ARVDD", ["FLYES", "A80+|S210"], "#259"]
             },
             "draw": [
-                ["GGAPP", "KSINO", "WYYNN", "SITEE", "HEREI", "AAMMM", "LOOSN", "GRMPS"],
-                ["SINNN", "FRBET", "HOLDM", "KSINO"],
+                ["GGAPP*", "KSINO", "WYYNN", "SITEE", "HEREI", "AAMMM", "LOOSN", "GRMPS"],
+                ["SINNN*", "FRBET", "HOLDM", "KSINO"],
                 ["SITEE", "ARVDD", "FLYES"],
                 ["ARVDD", "PRINO"],
-                ["MPIRE", "KSINO"]
+                ["MPIRE*", "KSINO"]
             ]
         },
         "SUNST4": {
@@ -831,7 +832,7 @@
             "origin": "",
             "destination": "KLAS",
             "category": "arrival",
-            "route": "GGAPP.SITEE2.KLAS26L",
+            "route": "GGAPP.SITEE3.KLAS26L",
             "altitude": [23000, 38000],
             "speed": 280,
             "method": "random",
