@@ -1,12 +1,10 @@
-# 6.13.0 (May 1, 2019)
+# 6.13.0 (June 1, 2019)
 ### New Features
 - [#1313](https://github.com/openscope/openscope/issues/1313) - Add F1/F2 shortcut to decrease/increase length of PTLs
-
 
 ### Bugfixes
 - [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft not squawking assigned code
 - [#1351](https://github.com/openscope/openscope/issues/1351) - Fix turn command with incremental turns of less than 10 degrees
-
 
 ### Enhancements & Refactors
 - [#1230](https://github.com/openscope/openscope/issues/1230) - Upgrade from `cedar-14` to `heroku-14` stack and simplifies build commands
@@ -15,7 +13,7 @@
 - [#1378](https://github.com/openscope/openscope/issues/1378) - Change KBOS wind to permit usage of Runway 27
 - [#1375](https://github.com/openscope/openscope/issues/1375) - Correct overflight example in spawnPatternReadme
 - [#1338](https://github.com/openscope/openscope/issues/1338) - Add `fph` command to aircraft command documentation
-- [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues 
+- [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues
 - [#1319](https://github.com/openscope/openscope/issues/1319) - Addresses lint errors in documentation files
 - [#1260](https://github.com/openscope/openscope/issues/1260) - Update all airports to AIRAC 1813
 
