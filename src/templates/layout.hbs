@@ -2,7 +2,7 @@
 <!--
     Build information
     Version: {{version}}
-    Date: {{date}}
+    Build Date: {{buildDate}}
 -->
 <html>
     <head>
@@ -39,11 +39,31 @@
         {{#block "styles"}}
         <link rel="stylesheet" href="assets/style/main.min.css?={{version}}" />
         {{/block}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91575400-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-91575400-1');
+        </script>
     </head>
     <body>
         {{#block "body"}}
         {{/block}}
 
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-57858722-1', 'auto');
+            ga('create', 'UA-91575400-1', { 'name': 'openscope' });
+
+            ga('send', 'pageview');
+            ga('openscope.send', 'pageview', location.host);
+        </script>
         <script>
             window.GLOBAL = {
                 VERSION: '{{version}}'
@@ -54,18 +74,5 @@
         <script src="assets/airports/airportLoadList.js"></script>
         <script src="assets/scripts/client/bundle.min.js?v={{version}}"></script>
         {{/block}}
-
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-57858722-1', 'auto');
-          ga('create', 'UA-91575400-1', { 'name': 'openscope' });
-
-          ga('send', 'pageview');
-          ga('openscope.send', 'pageview', location.host);
-        </script>
   </body>
 </html>

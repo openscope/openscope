@@ -21,7 +21,7 @@ The airport JSON file must be in "[assets/airports](https://github.com/openscope
 
 _Note: The code block shown below is an abbreviated version of [ksea.json](https://github.com/openscope/openscope/blob/develop/assets/airports/ksea.json)._
 
-```javascript
+```json
 {
     "airac": 1801,
     "radio": {
@@ -36,8 +36,11 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
     "position": ["N47d26.99m0", "W122d18.71m0"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N47d26.99m0", "W122d18.71m0"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N47d26.99m0", "W122d18.71m0"],
+        "radius_nm": 5.0,
+    },
     "has_terrain": true,
     "wind": {
         "angle": 150,
@@ -114,6 +117,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         "SUMMA1": {
             "icao": "SUMMA1",
             "name": "Summa One",
+            "altitude": 7000,
             "rwy": {
                 "KSEA16L": ["NEVJO"],
                 "KSEA16R": ["NEVJO"],
@@ -220,12 +224,12 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
 
 ### Base Airport Properties
 
-_all properties in this section are required_
+All properties in this section are required
 
 * **airac** ― AIRAC cycle from which data for the airport was taken. The airport must be fully compliant as of the specified cycle in order for this value to be changed.
 * **radio** ― The radio callsigns for each controller:
 
-```javascript
+```json
 "radio": {
     "twr": "Seatle Tower",
     "app": "Seattle Approach",
@@ -240,12 +244,15 @@ _all properties in this section are required_
 * **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
 * **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
 * **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
-* **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
-* **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
+* **rr_radius_nm** ― (deprecated) Use **rr.radius_nm** instead.
+* **rr_center** ― (deprecated) Use **rr.center** instead.
+* **rr.enabled** ― Whether or not range rings will be shown for this airport
+* **rr.radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
+* **rr.center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
 * **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](https://github.com/openscope/openscope/tree/develop/assets/airports/terrain).
 * **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
 
-```javascript
+```json
 "wind": {
     "angle": 150,
     "speed": 9
@@ -260,7 +267,7 @@ _all properties in this section are required_
 _All properties in this section are required for each airspace section_
 _At least one airspace definition is required for an airport_
 
-```javascript
+```json
 "airspace": [
     {
         "floor": 0,
@@ -286,9 +293,9 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 
 ### Fixes
 
-_All fixes listed within the Standard Routes need to be defined within this section_
+All fixes listed within the Standard Routes need to be defined within this section
 
-```javascript
+```json
 "fixes": {
     "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
     "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
@@ -313,7 +320,7 @@ _All fixes listed within the Standard Routes need to be defined within this sect
 
 Each navaid located within or around the airport airspace in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_.  Real life fixes are defined thusly:
 
-```javascript
+```json
 "AAYRR": ["N46d38.81m0", "W123d43.34m0"]
 ```
 
@@ -327,45 +334,49 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 
 * Any fixes located at runway thresholds should be named after the runway at which they are located.
 
-```javascript
+```json
 "_RWY33L": [42.354662, -70.991598]
 ```
 
 * Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as RNAV fixes (via the underscore prefix).
 
-```javascript
+```json
 "_AUTUM220015": [42.324333, -71.736833]
 ```
 
 * Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway whose departure path is aimed toward the fix, with the distance being measured from the departure end (denoted in the fix name as a two digit distance in nautical miles, then DME). So a fix named `_RWY1805DME` would be 5.0nm south of the end of Runway 18. All of these should be marked as RNAV fixes (via the underscore prefix).
 
-```javascript
+```json
 "_RWY33L01DME": [42.342838, -70.975751]
 ```
+
 * Any fixes that represent the intersection of a runway's inbound course and another course to a fix will be descried using the format below. Note that the runway whose _approach course_ intersects is the one to be used, not the runway whose _departure course_ intersects.
-```javascript
+
+```json
 "_RWY12BSTER081": []
 ```
+
 * Any fixes that represent the intersection of radials off of two fixes will be described by including each fix's _outbound_ radial.
-```javascript
+
+```json
 "_FIXXA030FIXXB180"
 ```
 
 * Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
 
-```javascript
+```json
 "_SIPLY233STINS324": ["N37.47860", "W122.60090"]
 ```
 
 * Fixes may be defined based on the intersection of a runway's outbound course and an outbound radial of any fix. For a point aligned with Runway 27's departure path and the XYZ VOR's outbound radial 180, we get `_RWY27XYZ180`. Note that if the intersection were to be on the arrival half of a given runway, the opposite runway should be used to keep with the convention of using the departure course.
 
-```javascript
+```json
 "_RWY19RPIE116": [27.848198, 82.546200]
 ```
 
 * Fixes may be defined based on the intersection of a fix's outbound radial and the DME arc of the specified distance from a separate fix. This is formatted like `_FIXXA050FIXXB05DME`, where the first fix has a three digit outbound radial, and the second fix has a two-digit distance in nm, followed by DME. Similarly, this can be done with runways using the same patterns as before, yielding `_RWY22LFIXXB05DME`.
 
-```javascript
+```json
 "_RWY09RLON02DME": ["N51d32m17.76", "W0d12m45.87"]
 ```
 
@@ -373,7 +384,7 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 
 Areas of restricted airspace may be added to the `restricted` property of the airport file. This is an array containing restricted areas such as the example below:
 
-```javascript
+```json
 "restricted": [
     {
         "name": "P-51",
@@ -393,7 +404,7 @@ Note that `height` represents the _top_ of the restricted area. Currently all re
 
 ### Runways
 
-```javascript
+```json
 "runways": [
     {
         "name": ["16L", "34R"],
@@ -420,7 +431,7 @@ Note that `height` represents the _top_ of the restricted area. Currently all re
 
 Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
 
-```javascript
+```json
 // Runway 16L
 {
     "name": "16L",
@@ -442,7 +453,7 @@ Runways are defined in pairs because a runway can be used from either direction.
 
 ### Airways
 
-```javascript
+```json
 "airways": {
     "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
     "J146": ["LAS", "NOOTN"],
@@ -469,7 +480,7 @@ This structure is used to work with both SIDs and STARs within the app.  Though 
 
 Fixes within a segment might include an instruction and/or restrictions.  Fixes can be defined in several different ways:
 
-```javascript
+```json
 // fix name only
 "16L": ["IMB", "SUNED", "YKM"]
 
@@ -496,13 +507,14 @@ These definitions can be used within any `Entry`, `Body` or `Exit` segment of a 
 
 ### SIDs
 
-_All properties in this section are required for each route definition_
+All properties in this section are required for each route definition
 
-```javascript
+```json
 "sids": {
     "SUMMA1": {
         "icao": "SUMMA1",
         "name": "Summa One",
+        "altitude": 7000,
         "rwy": {
             "KSEA16L": ["NEVJO"],
             "KSEA16R": ["NEVJO"],
@@ -528,13 +540,14 @@ SID is an acronym for _Standard Instrument Departure_.
 
 * **icao** - icao identifier of the route, should match the object key in spelling and casing
 
-```javascript
+```json
 "SUMMA1": {
     "icao": "SUMMA1"
 }
 ```
 
 * **name** - spoken name of the route used for read backs.
+* **altitude** - (number) initial climb clearance (optional).
 * **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment.
 * **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
@@ -545,9 +558,9 @@ SID is an acronym for _Standard Instrument Departure_.
 
 ### STARs
 
-_All properties in this section are required for each route definition_
+All properties in this section are required for each route definition
 
-```javascript
+```json
 "stars": {
     "CHINS2": {
         "icao": "CHINS2",
@@ -578,7 +591,7 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 
 * **icao** - icao identifier of the route, should match the object key in spelling and casing
 
-```javascript
+```json
 "CHINS2": {
     "icao": "CHINS2"
 }
@@ -594,7 +607,7 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 
 _At least one `spawnPattern` is required to get aircraft populating into the app_
 
-```javascript
+```json
 "spawnPatterns": [
     {
         "origin": "KSEA",
@@ -650,7 +663,7 @@ _see [spawnPatternReadme.md](spawnPatternReadme.md) for more detailed descriptio
 
 ### Maps
 
-```javascript
+```json
 "maps": {
     "base": [
         ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],

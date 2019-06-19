@@ -1,13 +1,125 @@
+# 6.14.0 (July 1, 2019)
+### New Features
+
+
+### Bugfixes
+
+
+### Enhancements & Refactors
+
+
+# 6.13.0 (June 1, 2019)
+### New Features
+- [#1313](https://github.com/openscope/openscope/issues/1313) - Add F1/F2 shortcut to decrease/increase length of PTLs
+
+### Bugfixes
+- [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft not squawking assigned code
+- [#1351](https://github.com/openscope/openscope/issues/1351) - Fix turn command with incremental turns of less than 10 degrees
+
+### Enhancements & Refactors
+- [#1230](https://github.com/openscope/openscope/issues/1230) - Upgrade from `cedar-14` to `heroku-14` stack and simplifies build commands
+- [#1344](https://github.com/openscope/openscope/issues/1344) - Add `EventTracking` calls to `TrafficRateController` and traffic rate concerns.
+- [#1072](https://github.com/openscope/openscope/issues/1072) - Overhaul of El Paso International Airport (KELP)
+- [#1378](https://github.com/openscope/openscope/issues/1378) - Change KBOS wind to permit usage of Runway 27
+- [#1375](https://github.com/openscope/openscope/issues/1375) - Correct overflight example in spawnPatternReadme
+- [#1338](https://github.com/openscope/openscope/issues/1338) - Add `fph` command to aircraft command documentation
+- [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues
+- [#1319](https://github.com/openscope/openscope/issues/1319) - Addresses lint errors in documentation files
+- [#1260](https://github.com/openscope/openscope/issues/1260) - Update all airports to AIRAC 1813
+
+
+# 6.12.3 (April 22, 2019)
+### Hotfixes
+- [#1366](https://github.com/openscope/openscope/issues/1366) - Remove/combine conflicting spawn patterns from multiple airports
+
+
+# 6.12.2 (April 15, 2019)
+### Hotfixes
+- [#943](https://github.com/openscope/openscope/issues/943) - Fix random spawn calculations to ensure arrivals are available quickly
+- [#1355](https://github.com/openscope/openscope/issues/1355) - Ensure LSZH arrivals descend properly
+
+
+# 6.12.1 (April 4, 2019)
+### Hotfixes
+- [#1358](https://github.com/openscope/openscope/issues/1358) - Ensure traffic resumes spawning after a spawn pattern is turned off and back on
+
+
+# 6.12.0 (April 1, 2019)
+### New Features
+- [#804](https://github.com/openscope/openscope/issues/804) - Add ability to view changelog for the current version
+- [#1330](https://github.com/openscope/openscope/issues/1330) - Allow user to choose which mouse button drags the canvas
+- [#16](https://github.com/openscope/openscope/issues/16) - Add traffic volume scaling controls
+
+### Bugfixes
+- [#1335](https://github.com/openscope/openscope/issues/1335) - Fix inconsistent state of control buttons
+- [#1341](https://github.com/openscope/openscope/issues/1341) - Fix CID number generation bug when generated CID is already in use
+- [#1183](https://github.com/openscope/openscope/issues/1183) - Ensure a deep render occurs when changing themes
+
+### Enhancements & Refactors
+- [#10](https://github.com/openscope/openscope/issues/10) - Add command for altitude restrictions at fixes ("cr")
+- [#598](https://github.com/openscope/openscope/issues/598) - Add linting (`lint-diff`) to Travis CI task list
+
+
+# 6.11.0 (March 4, 2019)
+### New Features
+- [#898](https://github.com/openscope/openscope/issues/898) - Add command to exit holding pattern
+- [#1272](https://github.com/openscope/openscope/issues/1272) - Add version number to settings menu
+
+### Bugfixes
+- [#1305](https://github.com/openscope/openscope/issues/1305) - Fix range rings center is undefined
+- [#1312](https://github.com/openscope/openscope/issues/1312) - Fix KRDU arrival descent problems to some extent
+- [#1329](https://github.com/openscope/openscope/issues/1329) - Free up CIDs after use
+- [#1324](https://github.com/openscope/openscope/issues/1324) - Restore support for numpad enter
+
+
+# 6.10.0 (February 1, 2019)
+### New Features
+- [#1032](https://github.com/openscope/openscope/issues/1032) - Add range ring options and toggle button
+- [#1234](https://github.com/openscope/openscope/issues/1234) - Add scope command for drawing halos around aircraft data blocks
+
+### Bugfixes
+- [#1292](https://github.com/openscope/openscope/issues/1292) - Ensure taxi instructions are ignored when aircraft is taking off
+- [#1309](https://github.com/openscope/openscope/issues/1309) - Fix GameController.game_interval calls continuously after it fires initially
+
+### Enhancements & Refactors
+- [#1247](https://github.com/openscope/openscope/issues/1247) - Determine initial climb altitude from the SID
+- [#1290](https://github.com/openscope/openscope/issues/1290) - Add Pull Reminders badge to repository readme
+- [#1286](https://github.com/openscope/openscope/issues/1286) - Update EDDF to AIRAC 1901
+- [#1288](https://github.com/openscope/openscope/issues/1288) - Update event tracking arguments sent to GA
+- [#1308](https://github.com/openscope/openscope/issues/1308) - Clarify that TimeKeeper and GameController.game_timeout are using seconds (not milliseconds)
+
+
+# 6.9.1 (January 4, 2019)
+### Hotfixes
+- [#1284](https://github.com/openscope/openscope/issues/1284) - Fixes overflow issues with tests
+
+
+# 6.9.0 (January 1, 2019)
+### Bugfixes
+- [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
+- [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
+- [#1259](https://github.com/openscope/openscope/issues/1259) - Fix speech synthesis's use of "heavy/super" in callsigns
+- [#1266](https://github.com/openscope/openscope/issues/1266) - Fix A380 speed definitions
+- [#1158](https://github.com/openscope/openscope/issues/1158) - Fix Firefox strip bay scrollbars are not working
+- [#1242](https://github.com/openscope/openscope/issues/1242) - Fix too-low glideslope intercept messages not showing
+- [#1279](https://github.com/openscope/openscope/issues/1279) - Fix erroneous altitudes appearing in flight strip
+
+### Enhancements & Refactors
+- [#1264](https://github.com/openscope/openscope/issues/1264) &[#1265](https://github.com/openscope/openscope/issues/1265) - Change the "super" weight class identifier from `U` to `J`
+- [#1269](https://github.com/openscope/openscope/issues/1269) - Updates [Google Analytics](https://developers.google.com/analytics/devguides/collection/gtagjs/migration) tracking function from `ga` to `gtag`
+- [#727](https://github.com/openscope/openscope/issues/727) &[#1265](https://github.com/openscope/openscope/issues/1265) - Updates to the tutorial
+- [#1238](https://github.com/openscope/openscope/issues/1238) - Grant IFR clearance when any type of route amendment is issued
+- [#1232](https://github.com/openscope/openscope/issues/1232) - Require proper application of separation with same-runway subsequent departures
+- [#1275](https://github.com/openscope/openscope/issues/1275) - Updates `buildMarkup` task to output date and time when generating the `index.html` file
+
+
 # 6.8.0 (December 1, 2018)
 ### New Features
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
-- [#985](https://github.com/openscope/openscope/issues/985) - Add London Heathrow Aiport (EGLL)
 - [#945](https://github.com/openscope/openscope/issues/945) - Add airport information panel to scope
 - [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to GitHub repo
-
-
-
-
+- [#1212](https://github.com/openscope/openscope/issues/1212) - Randomize pilot voice for each aircraft
+- [#1197](https://github.com/openscope/openscope/issues/1197) - Adds custom analytics event tracking
 
 ### Bugfixes
 - [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
@@ -16,10 +128,8 @@
 - [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 - [#1193](https://github.com/openscope/openscope/issues/1193) - Adds `SettingsController` instantiation to `UiController.init()`
 - [#1202](https://github.com/openscope/openscope/issues/1202) - Prevent pilot from responding with "say again, say again"
-
-
-
-
+- [#1154](https://github.com/openscope/openscope/issues/1154) - Ensure that the runway is valid for SID before takeoff
+- [#955](https://github.com/openscope/openscope/issues/955) - Fix `sid` command`
 
 ### Enhancements & Refactors
 - [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
@@ -32,9 +142,9 @@
 - [#1199](https://github.com/openscope/openscope/issues/1199) - Change taxi readback to "taxi to and hold short of Runway 1"
 - [#1208](https://github.com/openscope/openscope/issues/1208) - Update Thomas Cook callsign
 - [#1209](https://github.com/openscope/openscope/issues/1209) - Update TUI Airways callsign
-
-
-
+- [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
+- [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
+- [#1137](https://github.com/openscope/openscope/issues/1137) - Updates project dependencies
 
 
 # 6.7.0 (November 1, 2018)

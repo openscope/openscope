@@ -2,8 +2,6 @@ import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import UiController from '../../src/assets/scripts/client/ui/UiController';
-import GameController, { GAME_EVENTS } from '../../src/assets/scripts/client/game/GameController';
 import {
     createAirportControllerFixture,
     resetAirportControllerFixture,
@@ -32,7 +30,7 @@ const runwayNameMock = '19L';
 const runwayModelMock = airportModelFixture.getRunway(runwayNameMock);
 
 function moveAircraftToFix(aircraft, fixName) {
-    const fms = aircraft.fms;
+    const { fms } = aircraft;
 
     while (fms.currentWaypoint._name !== fixName) {
         if (!fms.hasNextWaypoint()) {
@@ -45,11 +43,10 @@ function moveAircraftToFix(aircraft, fixName) {
     aircraft.positionModel = NavigationLibrary.findFixByName(fixName).positionModel;
 }
 
-/* eslint-disable no-unused-vars, no-undef */
 ava.beforeEach(() => {
     createNavigationLibraryFixture();
     createAirportControllerFixture();
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 
 ava.afterEach(() => {
@@ -57,7 +54,6 @@ ava.afterEach(() => {
     resetAirportControllerFixture();
     sandbox.restore();
 });
-/* eslint-enable no-unused-vars, no-undef */
 
 ava('does not throw with valid parameters', (t) => {
     t.notThrows(() => new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK));
@@ -104,7 +100,7 @@ ava('.cancelLanding() configures MCP correctly when landing cancelled below the 
     const mcpSetHeadingFieldValueStub = sinon.spy(model.mcp, 'setHeadingFieldValue');
     const mcpSetHeadingHoldStub = sinon.spy(model.mcp, 'setHeadingHold');
     const setFlightPhaseStub = sinon.spy(model, 'setFlightPhase');
-    const radioCallStub = sandbox.stub(model, 'radioCall', (a) => a);
+    const radioCallStub = sandbox.stub(model, 'radioCall').returns((a) => a);
     model.hasApproachClearance = true;
     model.fms.arrivalRunwayModel._positionModel.elevation = 65;
     model.altitude = 1300;
@@ -121,20 +117,20 @@ ava('.cancelLanding() configures MCP correctly when landing cancelled below the 
     t.true(radioCallStub.calledWithExactly(expectedRadioTranscript, 'app', true));
 });
 
-ava('.getViewModel() includes an altitude that has not been rounded to the nearest foot', (t) => {
+ava('.getViewModel() includes an altitude that has not been rounded beyond the nearest foot', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     model.mcp.altitude = 7777.1234567;
 
     const { assignedAltitude: result } = model.getViewModel();
 
-    t.true(result === 77.77123456700001);
+    t.true(result === 77.77);
 });
 
 ava('.isAboveGlidepath() returns false when aircraft altitude is below glideslope altitude', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     model.altitude = 3000;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => 4137);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(4137);
 
     const result = model.isAboveGlidepath();
 
@@ -145,7 +141,7 @@ ava('.isAboveGlidepath() returns false when aircraft altitude is at glideslope a
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     model.altitude = 4137;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => 4137);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(4137);
 
     const result = model.isAboveGlidepath();
 
@@ -156,7 +152,7 @@ ava('.isAboveGlidepath() returns true when aircraft altitude is above glideslope
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     model.altitude = 5500;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => 4137);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(4137);
 
     const result = model.isAboveGlidepath();
 
@@ -171,48 +167,54 @@ ava('.isEstablishedOnCourse() returns false when no arrival runway has been assi
     t.false(result);
 });
 
+// using `sinon.stub` directly for these tests because the stubs via `sandbox` are not getting restored
+// in time for the next assertion that is also stubbing the same methods
 ava('.isEstablishedOnCourse() returns false when neither aligned with approach course nor on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse', () => false);
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading', () => false);
-
+    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(false);
+    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(false);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
+
+    isOnApproachCourseStub.restore();
+    isOnCorrectApproachHeadingStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns false when aligned with approach course but not on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse', () => true);
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading', () => false);
-
+    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(true);
+    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(false);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
+
+    isOnApproachCourseStub.restore();
+    isOnCorrectApproachHeadingStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns false when on approach heading but not aligned with approach course', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse', () => false);
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading', () => true);
-
+    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(false);
+    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(true);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
+
+    isOnApproachCourseStub.restore();
+    isOnCorrectApproachHeadingStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns true when aligned with approach course and on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse', () => true);
-    sandbox.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading', () => true);
-
+    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(true);
+    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(true);
     const result = model.isEstablishedOnCourse();
 
     t.true(result);
+
+    isOnApproachCourseStub.restore();
+    isOnCorrectApproachHeadingStub.restore();
 });
 
 ava('.isEstablishedOnGlidepath() returns false when too far above glideslope', (t) => {
@@ -220,7 +222,7 @@ ava('.isEstablishedOnGlidepath() returns false when too far above glideslope', (
     const glideslopeAltitude = 4000;
     model.altitude = glideslopeAltitude + PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH + 1;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => glideslopeAltitude);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(glideslopeAltitude);
 
     const result = model.isEstablishedOnGlidepath();
 
@@ -232,7 +234,7 @@ ava('.isEstablishedOnGlidepath() returns false when too far below glideslope', (
     const glideslopeAltitude = 4000;
     model.altitude = glideslopeAltitude - PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH - 1;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => glideslopeAltitude);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(glideslopeAltitude);
 
     const result = model.isEstablishedOnGlidepath();
 
@@ -244,7 +246,7 @@ ava('.isEstablishedOnGlidepath() returns true when an acceptable distance above 
     const glideslopeAltitude = 4000;
     model.altitude = glideslopeAltitude + PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => glideslopeAltitude);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(glideslopeAltitude);
 
     const result = model.isEstablishedOnGlidepath();
 
@@ -256,137 +258,86 @@ ava('.isEstablishedOnGlidepath() returns true when an acceptable distance below 
     const glideslopeAltitude = 4000;
     model.altitude = glideslopeAltitude - PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
 
-    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude', () => glideslopeAltitude);
+    sandbox.stub(model, '_calculateArrivalRunwayModelGlideslopeAltitude').returns(glideslopeAltitude);
 
     const result = model.isEstablishedOnGlidepath();
 
     t.true(result);
 });
 
+// using `sinon.stub` directly for these tests because the stubs via `sandbox` are not getting restored
+// in time for the next assertion that is also stubbing the same methods
 ava('.isOnFinal() returns false when neither on the selected course nor within the final approach fix distance', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isEstablishedOnCourse = false;
     const distanceToDatum = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM + 1;
-
-    sandbox.stub(model, 'isEstablishedOnCourse', () => isEstablishedOnCourse);
-    sandbox.stub(model.positionModel, 'distanceToPosition', () => distanceToDatum);
-
+    const isEstablishedOnCourseStub = sinon.stub(model, 'isEstablishedOnCourse').returns(isEstablishedOnCourse);
+    const distanceToPositionStub = sinon.stub(model.positionModel, 'distanceToPosition').returns(distanceToDatum);
     const result = model.isOnFinal();
 
     t.false(result);
+
+    isEstablishedOnCourseStub.restore();
+    distanceToPositionStub.restore();
 });
 
 ava('.isOnFinal() returns false when on the selected course but not within the final approach fix distance', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isEstablishedOnCourse = true;
     const distanceToDatum = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM + 1;
-
-    sandbox.stub(model, 'isEstablishedOnCourse', () => isEstablishedOnCourse);
-    sandbox.stub(model.positionModel, 'distanceToPosition', () => distanceToDatum);
-
+    const isEstablishedOnCourseStub = sinon.stub(model, 'isEstablishedOnCourse').returns(isEstablishedOnCourse);
+    const distanceToPositionStub = sinon.stub(model.positionModel, 'distanceToPosition').returns(distanceToDatum);
     const result = model.isOnFinal();
 
     t.false(result);
+
+    isEstablishedOnCourseStub.restore();
+    distanceToPositionStub.restore();
 });
 
 ava('.isOnFinal() returns false when within the final approach fix distance but not on the selected course', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isEstablishedOnCourse = false;
     const distanceToDatum = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM;
-
-    sandbox.stub(model, 'isEstablishedOnCourse', () => isEstablishedOnCourse);
-    sandbox.stub(model.positionModel, 'distanceToPosition', () => distanceToDatum);
-
+    const isEstablishedOnCourseStub = sinon.stub(model, 'isEstablishedOnCourse').returns(isEstablishedOnCourse);
+    const distanceToPositionStub = sinon.stub(model.positionModel, 'distanceToPosition').returns(distanceToDatum);
     const result = model.isOnFinal();
 
     t.false(result);
+
+    isEstablishedOnCourseStub.restore();
+    distanceToPositionStub.restore();
 });
 
 ava('.isOnFinal() returns true when both on the selected course and within the final approach fix distance', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isEstablishedOnCourse = true;
     const distanceToDatum = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM;
-
-    sandbox.stub(model, 'isEstablishedOnCourse', () => isEstablishedOnCourse);
-    sandbox.stub(model.positionModel, 'distanceToPosition', () => distanceToDatum);
-
+    const isEstablishedOnCourseStub = sinon.stub(model, 'isEstablishedOnCourse').returns(isEstablishedOnCourse);
+    const distanceToPositionStub = sinon.stub(model.positionModel, 'distanceToPosition').returns(distanceToDatum);
     const result = model.isOnFinal();
 
     t.true(result);
-});
 
-ava('.judgeLocalizerInterception() returns early when called for an aircraft projection', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    model.projected = true;
-    const penalizeLocalizerInterceptAltitudeStub = sandbox.stub(model, 'penalizeLocalizerInterceptAltitude');
-    const result = model.judgeLocalizerInterception();
-
-    t.true(typeof result === 'undefined');
-    t.true(penalizeLocalizerInterceptAltitudeStub.notCalled);
-});
-
-ava('.judgeLocalizerInterception() does not call .penalizeLocalizerInterceptAltitude() when at or below glideslope', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const penalizeLocalizerInterceptAltitudeStub = sandbox.stub(model, 'penalizeLocalizerInterceptAltitude');
-
-    sandbox.stub(model, 'isAboveGlidepath', () => false);
-
-    const result = model.judgeLocalizerInterception();
-
-    t.true(typeof result === 'undefined');
-    t.true(penalizeLocalizerInterceptAltitudeStub.notCalled);
-});
-
-ava('.judgeLocalizerInterception() calls .penalizeLocalizerInterceptAltitude() when above glideslope', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const penalizeLocalizerInterceptAltitudeStub = sandbox.stub(model, 'penalizeLocalizerInterceptAltitude');
-
-    sandbox.stub(model, 'isAboveGlidepath', () => true);
-
-    const result = model.judgeLocalizerInterception();
-
-    t.true(typeof result === 'undefined');
-    t.true(penalizeLocalizerInterceptAltitudeStub.calledWithExactly());
-});
-
-ava('.penalizeLocalizerInterceptAltitude() records an event and notifies the user of their error', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const uiControllerUiLogStub = sandbox.stub(UiController, 'ui_log');
-    const gameControllerRecordEventStub = sandbox.stub(GameController, 'events_recordNew');
-    const expectedLogMessage = `${model.getCallsign()} intercepted localizer above glideslope`;
-    const result = model.penalizeLocalizerInterceptAltitude();
-
-    t.true(typeof result === 'undefined');
-    t.true(uiControllerUiLogStub.calledWithExactly(expectedLogMessage, true));
-    t.true(gameControllerRecordEventStub.calledWithExactly(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE));
-});
-
-ava('.penalizeLocalizerInterceptAngle() records an event and notifies the user of their error', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const uiControllerUiLogStub = sandbox.stub(UiController, 'ui_log');
-    const gameControllerRecordEventStub = sandbox.stub(GameController, 'events_recordNew');
-    const expectedLogMessage = `${model.getCallsign()} approach course intercept angle was greater than 30 degrees`;
-    const result = model.penalizeLocalizerInterceptAngle();
-
-    t.true(typeof result === 'undefined');
-    t.true(uiControllerUiLogStub.calledWithExactly(expectedLogMessage, true));
-    t.true(gameControllerRecordEventStub.calledWithExactly(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE));
+    isEstablishedOnCourseStub.restore();
+    distanceToPositionStub.restore();
 });
 
 ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const expectedResult = 3994.129742601768;
+    const runwayElevationMock = 2157;
+    const expectedResult = 2261.980164261595 + runwayElevationMock;
+    model.fms.arrivalRunwayModel._positionModel.elevation = runwayElevationMock;
 
     t.true(model.fms.arrivalRunwayModel.name === '07R');
 
-    // TODO: why does this not work?
-    // const arrivalRunwayModel = model.fms.arrivalRunwayModel;
-    // const distanceOnFinalNm = 7;
-    // model.positionModel.setCoordinates(arrivalRunwayModel.positionModel.gps);
-    // model.positionModel.setCoordinatesByBearingAndDistance(arrivalRunwayModel.oppositeAngle, distanceOnFinalNm);
+    const { arrivalRunwayModel } = model.fms;
+    const distanceOnFinalNm = 7;
+    const runwayPositionModel = arrivalRunwayModel.positionModel;
+    const magneticBearingFromRunway = arrivalRunwayModel.oppositeAngle;
 
-    // using this direct coordinate instead of calculating it above
-    model.positionModel.setCoordinates([36.0383336961, -115.26973855167]);
+    model.positionModel.setCoordinates(runwayPositionModel.gps);
+    model.positionModel.setCoordinatesByBearingAndDistance(magneticBearingFromRunway, distanceOnFinalNm);
 
     const result = model._calculateArrivalRunwayModelGlideslopeAltitude();
 
@@ -460,6 +411,9 @@ ava('.updateTarget() causes departures to comply with AT altitude restriction', 
 
     moveAircraftToFix(model, 'ROPPR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -473,6 +427,9 @@ ava('.updateTarget() causes departures to comply with ABOVE altitude restriction
 
     moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -487,6 +444,9 @@ ava('.updateTarget() causes departures to comply with BELOW altitude restriction
 
     moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -511,10 +471,13 @@ ava('.updateTarget() causes departures to climb to cruise altitude if there is n
 
     moveAircraftToFix(model, 'TRALR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 31000);
+    t.true(model.target.altitude === 19000);
 });
 
 ava('.updateTarget() causes arrivals to descend to the assigned altitude if the minimal altitude restriction is above the assigned altitude', (t) => {
@@ -535,10 +498,13 @@ ava('.updateTarget() causes departures to climb to cruise altitude if the maximu
 
     moveAircraftToFix(model, 'BIKKR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 31000);
+    t.true(model.target.altitude === 19000);
 });
 
 ava('.updateTarget() causes arrivals to climb to comply with minimal altitude restriction', (t) => {
@@ -561,6 +527,9 @@ ava('.updateTarget() causes departures to descend to comply with maximum altitud
 
     moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
@@ -585,6 +554,9 @@ ava('.updateTarget() causes departures to prioritize clearance over restriction'
 
     moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
+
+    model.fms.departureAirportModel = airportModelFixture;
+
     model.pilot.climbViaSid(model, 7000);
     model.updateTarget();
 
@@ -592,7 +564,7 @@ ava('.updateTarget() causes departures to prioritize clearance over restriction'
 });
 
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
-    const expectedResult = [false, 'unable to taxi, we\'re airborne'];
+    const expectedResult = [false, 'unable to taxi, we\'re already airborne'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const arrivalResult = arrival.taxiToRunway(runwayModelMock);
 
@@ -605,6 +577,18 @@ ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
     t.deepEqual(departureResult, expectedResult);
 });
 
+ava('.taxiToRunway() returns an error when the aircraft is taking off', (t) => {
+    const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+
+    aircraftModel.fms.currentPhase = FLIGHT_PHASE.TAKEOFF;
+
+    const expectedResult = [false, 'unable to taxi, we\'re already taking off'];
+    const result = aircraftModel.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(result, expectedResult);
+    t.true(aircraftModel.flightPhase === FLIGHT_PHASE.TAKEOFF);
+});
+
 ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
     const expectedResult = [false, 'unable to taxi to runway, we have just landed'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
@@ -613,27 +597,6 @@ ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
     const arrivalResult = arrival.taxiToRunway(runwayModelMock);
 
     t.deepEqual(arrivalResult, expectedResult);
-});
-
-ava('.taxiToRunway() cancels IFR clearance if runway is invalid for the assigned SID', (t) => {
-    const expectedResult = [
-        true,
-        {
-            log: 'taxi to and hold short of Runway 01R',
-            say: 'taxi to and hold short of Runway zero one right'
-        }
-    ];
-    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
-    // BOACH6 is the only SID with an invalid runway
-    model.fms.replaceFlightPlanWithNewRoute('KLAS07R.BOACH6.HEC');
-    model.pilot.hasDepartureClearance = true;
-
-    const invalidRunway = airportModelFixture.getRunway('01R');
-
-    const result = model.taxiToRunway(invalidRunway);
-
-    t.deepEqual(result, expectedResult);
-    t.false(model.pilot.hasDepartureClearance);
 });
 
 ava('.taxiToRunway() returns a success message when finished', (t) => {

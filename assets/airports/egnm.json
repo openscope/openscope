@@ -11,8 +11,11 @@
     "ctr_ceiling": 8500,
     "initial_alt": 7000,
     "position": ["N53d51m57.69",  "W001d39m38.77", "681ft"],
-    "rr_radius_nm": 5,
-    "rr_center": ["N53d51m57.69",  "W001d39m38.77"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N53d51m57.69",  "W001d39m38.77"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "airspace": [
         {
@@ -603,19 +606,6 @@
             "origin": "",
             "destination": "EGNM",
             "category": "arrival",
-            "route": "CALDA..POL..LBA",
-            "altitude": 7000,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.5,
-            "airlines": [
-                ["bee", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGNM",
-            "category": "arrival",
             "route": "EMBOR..TNT..DENBY..LBA",
             "altitude": 8000,
             "speed": 250,
@@ -665,26 +655,13 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 1,
+            "rate": 2.5,
             "airlines": [
-                ["bee", 1],
+                ["bee", 5],
                 ["exs", 4],
                 ["ryr", 5],
+                ["stk/einRegional", 3],
                 ["tom", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGNM",
-            "category": "arrival",
-            "route": "WAL..BARTN..POL..LBA",
-            "altitude": 7000,
-            "speed": 250,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["ryr", 2],
-                ["stk/einRegional", 3]
             ]
         }
     ],

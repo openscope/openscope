@@ -221,6 +221,10 @@ export default class LegModel {
         return this._waypointCollection;
     }
 
+    get altitude() {
+        return this._procedureModel.altitude;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**

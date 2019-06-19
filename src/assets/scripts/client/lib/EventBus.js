@@ -95,13 +95,15 @@ class EventBus {
      *
      * @for EventBus
      * @method trigger
+     * @param eventName {string}
+     * @param args {rest parameter}
      */
     trigger(eventName, ...args) {
         if (!this.has(eventName)) {
             return;
         }
 
-        const observers = this._events[eventName].observers;
+        const { observers } = this._events[eventName];
 
         for (let i = 0; i < observers.length; i++) {
             observers[i](...args);

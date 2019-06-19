@@ -68,7 +68,7 @@ export default class RunwayModel extends BaseModel {
         this.name = '';
 
         /**
-         * Angle (heading) of the runway in radians
+         * Runway magnetic heading (from landing end to liftoff end), in radians
          *
          * @property angle
          * @type {number}
@@ -119,6 +119,15 @@ export default class RunwayModel extends BaseModel {
          */
         this.queue = [];
 
+        /**
+         * The flight number of the last aircraft that used the runway for takeoff.
+         *
+         * @property lastDepartedAircraftCallsign
+         * @type {string}
+         * @default null
+         */
+        this.lastDepartedAircraftCallsign = null;
+
         this._init(options, end, airportPositionModel);
     }
 
@@ -165,7 +174,7 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     * Opposite of runway's heading, in radians
+     * Reverse of runway magnetic heading, in radians
      *
      * @for RunwayModel
      * @property oppositeAngle
@@ -192,9 +201,9 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const farSideIndex = end === 0
-                ? 1
-                : 0;
+            const farSideIndex = end === 0 ?
+                1 :
+                0;
 
             const thisSide = new StaticPositionModel(
                 data.end[end],
@@ -265,7 +274,7 @@ export default class RunwayModel extends BaseModel {
      * @return {number} glideslope altitude in ft MSL
      */
     getGlideslopeAltitudeAtFinalApproachFix() {
-        return this.getGlideslopeAltitude(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM);
+        return this.getGlideslopeAltitude(km(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM));
     }
 
     /**
@@ -276,7 +285,7 @@ export default class RunwayModel extends BaseModel {
      * @return {number} glideslope altitude in ft MSL
      */
     getMinimumGlideslopeInterceptAltitude() {
-        const altitudeAtFinalApproachFix = this.getGlideslopeAltitude(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM);
+        const altitudeAtFinalApproachFix = this.getGlideslopeAltitudeAtFinalApproachFix();
         const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
 
         return minimumInterceptAltitude;

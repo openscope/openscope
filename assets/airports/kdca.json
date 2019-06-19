@@ -1,4 +1,5 @@
 {
+    "airac": 1813,
     "radio": {
         "twr": "Washington Tower",
         "app": "Potomac Approach",
@@ -11,8 +12,11 @@
     "ctr_ceiling": 7000,
     "initial_alt": 3000,
     "position": ["N38d51m05.20", "W077d02m15.80", "14.1ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N38d51m05.20", "W077d02m15.80"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N38d51m05.20", "W077d02m15.80"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 350,
@@ -1135,7 +1139,7 @@
         },
         "JDUBB2": {
             "icao": "JDUBB2",
-            "name": "Jaydubb One",
+            "name": "Jaydubb Two",
             "rwy": {
                 "KDCA1": ["_1006ADAXE334", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
@@ -1344,7 +1348,7 @@
             "entryPoints": {
                 "MXE": ["MXE", "NUGGY", "TROYZ", "BELAY", "TRISH"]
             },
-            "body": ["CLIPR", ["BAL", "S250"], "EYESS"],
+            "body": ["CLIPR", "BAL", "EYESS"],
             "rwy": {
                 "KDCA1": ["BRUNC", "FELTY", "HITEK", "^CAVDI", "#187"],
                 "KDCA19": ["EDDWD", "MEGGS", "^NAYES", "#327"]
@@ -1747,16 +1751,19 @@
             "altitude": 13000,
             "speed": 250,
             "method": "random",
-            "rate": 4.02,
+            "rate": 5,
             "airlines": [
                 ["aal", 6],
                 ["asq", 2],
                 ["edv", 2],
                 ["jbu", 4],
                 ["jia", 2],
+                ["jia", 2],
+                ["jza", 1],
                 ["jza", 1],
                 ["lof", 5],
-                ["rpa", 12]
+                ["rpa", 12],
+                ["skv", 2]
             ]
         },
         {
@@ -1809,23 +1816,6 @@
             "rate": 0.09,
             "airlines": [
                 ["rpa", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KDCA",
-            "category": "arrival",
-            "route": "PSB.SKILS4.KDCA1",
-            "altitude": 30000,
-            "speed": 300,
-            "method": "random",
-            "rate": 0.98,
-            "airlines": [
-                ["jia", 2],
-                ["jza", 1],
-                ["lof", 3],
-                ["rpa", 3],
-                ["skv", 2]
             ]
         },
         {

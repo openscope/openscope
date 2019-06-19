@@ -1,4 +1,5 @@
 {
+    "airac": 1905,
     "radio": {
         "twr": "El Paso Tower",
         "app": "El Paso Approach",
@@ -11,8 +12,11 @@
     "ctr_ceiling": 17000,
     "initial_alt": 7000,
     "position": ["N31.807327503657113", "W106.37640380404419", "3962ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N31.807327503657113", "W106.37640380404419"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N31.807327503657113", "W106.37640380404419"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 230,
@@ -538,9 +542,9 @@
             "icao": "ATKNN5",
             "name": "Atkin Five",
             "rwy": {
-                "8R": [["^_RWY8R04.08DME", "A60+"], ["JAPOD", "S220-"]],
-                "22": ["BIVKE"],
-                "26L": ["BIVKE"]
+                "KELP8R": [["^_RWY8R04.08DME", "A60+"], ["JAPOD", "S220-"]],
+                "KELP22": ["BIVKE"],
+                "KELP26L": ["BIVKE"]
             },
             "body": ["ATKNN"],
             "exitPoints": {
@@ -561,7 +565,7 @@
             "icao": "JCOXX2",
             "name": "Jaycox Two",
             "rwy": {
-                "4": [["^_RWY404.98DME", "A65+|S230-"]]
+                "KELP4": [["^_RWY404.98DME", "A65+|S230-"]]
             },
             "body": ["JCOXX"],
             "exitPoints": {
@@ -582,10 +586,10 @@
             "icao": "LATVE3",
             "name": "Latevee Three",
             "rwy": {
-                "4": ["KERGE", "DOTGE"],
-                "8R": ["MATLE", ["CATEG", "A110+|S250"]],
-                "22": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]],
-                "26L": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]]
+                "KELP4": ["KERGE", "DOTGE"],
+                "KELP8R": ["MATLE", ["CATEG", "A110+|S250"]],
+                "KELP22": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]],
+                "KELP26L": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]]
             },
             "body": ["LATVE"],
             "exitPoints": {
@@ -601,10 +605,10 @@
             "icao": "NEVUE3",
             "name": "Nevew Three",
             "rwy": {
-                "4": ["DAVNE", ["CABSI", "A70-"], "MREDD"],
-                "8R": ["DAVNE", ["CABSI", "A70-"], "MREDD"],
-                "22": ["AKADE", "FOBET"],
-                "26L": ["AKADE", "FOBET"]
+                "KELP4": ["DAVNE", ["CABSI", "A70-"], "MREDD"],
+                "KELP8R": ["DAVNE", ["CABSI", "A70-"], "MREDD"],
+                "KELP22": ["AKADE", "FOBET"],
+                "KELP26L": ["AKADE", "FOBET"]
             },
             "body": ["NEVUE"],
             "exitPoints": {
@@ -619,10 +623,10 @@
             "icao": "TDOWN3",
             "name": "Teedown Three",
             "rwy": {
-                "4": ["JIMBA", ["BUSEY", "A70-"]],
-                "8R": ["DAVNE", ["BUSEY", "A70-"]],
-                "22": ["AKADE", ["HIKEM", "A90+"]],
-                "26L": ["AKADE", ["HIKEM", "A90+"]]
+                "KELP4": ["JIMBA", ["BUSEY", "A70-"]],
+                "KELP8R": ["DAVNE", ["BUSEY", "A70-"]],
+                "KELP22": ["AKADE", ["HIKEM", "A90+"]],
+                "KELP26L": ["AKADE", ["HIKEM", "A90+"]]
             },
             "body": ["TDOWN"],
             "exitPoints": {
@@ -644,11 +648,11 @@
             },
             "body": [["UUTEP", "A120+|A140-"], "MYNRS", ["BEAHR", "A80|S210"]],
             "rwy": {
-                "4": [],
-                "8R": [],
-                "22": [],
-                "26L": [],
-                "26R": []
+                "KELP4": [],
+                "KELP8R": [],
+                "KELP22": [],
+                "KELP26L": [],
+                "KELP26R": []
             },
             "draw": [
                 ["TXSAS", "TELRE", "DLINE", "UUTEP", "MYNRS", "BEAHR"]
@@ -662,7 +666,7 @@
             },
             "body": [["HSKNS", "A130+"], ["FINAG", "A110+"], ["BECON", "A90|S210"]],
             "rwy": {
-                "4": []
+                "KELP4": []
             },
             "draw": [
                 ["DOHHN", "HSKNS", "FINAG", "BECON"]
@@ -677,11 +681,11 @@
             },
             "body": [["WANAB", "A140+|A170-"], "WOBEN", ["MOLLY", "A110+|A130-"]],
             "rwy": {
-                "4": [["KOACH", "A80|S210"]],
-                "8R": [["KOACH", "A80|S210"]],
-                "22": [["WIKKR", "A90|S210"]],
-                "26L": [["WIKKR", "A90|S210"]],
-                "26R": [["WIKKR", "A90|S210"]]
+                "KELP4": [["KOACH", "A80|S210"]],
+                "KELP8R": [["KOACH", "A80|S210"]],
+                "KELP22": [["WIKKR", "A90|S210"]],
+                "KELP26L": [["WIKKR", "A90|S210"]],
+                "KELP26R": [["WIKKR", "A90|S210"]]
             },
             "draw": [
                 ["TEEES", "JOMUB", "WANAB", "WOBEN", "MOLLY", "WIKKR"],
@@ -698,11 +702,11 @@
             },
             "body": [["SAMMR", "A90+|A100-"], ["SARRT", "A80|S210"]],
             "rwy": {
-                "4": [],
-                "8R": [],
-                "22": [],
-                "26L": [],
-                "26R": []
+                "KELP4": [],
+                "KELP8R": [],
+                "KELP22": [],
+                "KELP26L": [],
+                "KELP26R": []
             },
             "draw": [
                 ["LIFFT", "CABOL", "ZATSA", "SKIIR", "SAMMR", "SARRT"],
@@ -717,11 +721,11 @@
             },
             "body": [["WAZKO", "A110+|A130-"]],
             "rwy": {
-                "4": [["KOACH", "A80|S210"]],
-                "8R": [["KOACH", "A80|S210"]],
-                "22": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]],
-                "26L": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]],
-                "26R": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]]
+                "KELP4": [["KOACH", "A80|S210"]],
+                "KELP8R": [["KOACH", "A80|S210"]],
+                "KELP22": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]],
+                "KELP26L": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]],
+                "KELP26R": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]]
             },
             "draw": [
                 ["SLNNK", "BOATY", "SEKBE", "WAZKO", "KOACH"],
@@ -734,7 +738,7 @@
             "origin": "kelp",
             "destination": "",
             "category": "departure",
-            "route": "KELP.ATKNN5.FLOGS",
+            "route": "KELP22.ATKNN5.FLOGS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -753,7 +757,7 @@
             "origin": "kelp",
             "destination": "",
             "category": "departure",
-            "route": "KELP.LATVE3.CME",
+            "route": "KELP22.LATVE3.CME",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -775,7 +779,7 @@
             "origin": "kelp",
             "destination": "",
             "category": "departure",
-            "route": "KELP.NEVUE3.FST",
+            "route": "KELP22.NEVUE3.FST",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -793,7 +797,7 @@
             "origin": "kelp",
             "destination": "",
             "category": "departure",
-            "route": "KELP.TDOWN3.SFL",
+            "route": "KELP22.TDOWN3.SFL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -816,7 +820,7 @@
             "origin": "",
             "destination": "kelp",
             "category": "arrival",
-            "route": "TXSAS.BEAHR3.KELP",
+            "route": "TXSAS.BEAHR3.KELP22",
             "altitude": 32000,
             "speed": 350,
             "method": "random",
@@ -839,7 +843,7 @@
             "origin": "",
             "destination": "kelp",
             "category": "arrival",
-            "route": "TEEES.MOLLY4.KELP",
+            "route": "TEEES.MOLLY4.KELP22",
             "altitude": [33000, 41000],
             "speed": 350,
             "method": "random",
@@ -858,7 +862,7 @@
             "origin": "",
             "destination": "kelp",
             "category": "arrival",
-            "route": "LIFFT.SAMMR3.KELP",
+            "route": "LIFFT.SAMMR3.KELP22",
             "altitude": [20000, 33000],
             "speed": 350,
             "method": "random",
@@ -880,7 +884,7 @@
             "origin": "",
             "destination": "kelp",
             "category": "arrival",
-            "route": "SLNNK.WAZKO1.KELP",
+            "route": "SLNNK.WAZKO1.KELP22",
             "altitude": [20000, 38000],
             "speed": 350,
             "method": "random",

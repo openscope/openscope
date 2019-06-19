@@ -1,4 +1,5 @@
 {
+    "airac": 1813,
     "radio": {
         "twr": "Cincinnati Tower",
         "app": "Cincinnati Approach",
@@ -11,8 +12,11 @@
     "ctr_ceiling": 20000,
     "initial_alt": 6000,
     "position": ["N39d02m55.82", "W84d40m04.28", "896ft"],
-    "rr_radius_nm": 5,
-    "rr_center": ["N39d02m55.82", "W84d40m04.28"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N39d02m55.82", "W84d40m04.28"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 200,
@@ -65,6 +69,7 @@
         "APCOT": ["N38d22.60", "W86d19.70"],
         "APE"  : ["N40d09.06", "W82d35.30"],
         "ARBAS": ["N39d58.10", "W84d53.93"],
+        "ARRAY": ["N39d48.93", "W82d41.43"],
         "ARTUR": ["N36d31.97", "W83d47.12"],
         "AXC"  : ["N39d44.25", "W88d51.39"],
         "BACAS": ["N39d07.68", "W84d32.45"],
@@ -475,9 +480,9 @@
                 ["IIU", "SKINN", "BWG*"]
             ]
         },
-        "CVG4": {
-            "icao": "CVG4",
-            "name": "Cincinnati Four",
+        "CVG5": {
+            "icao": "CVG5",
+            "name": "Cincinnati Five",
             "rwy": {
                 "KCVG9": ["#094"],
                 "KCVG18L": ["^DRUSS", "#165"],
@@ -669,9 +674,9 @@
                 ["JODUB", "BKW*"]
             ]
         },
-        "ROCKT8": {
-            "icao": "ROCKT8",
-            "name": "Rocket Eight",
+        "ROCKT9": {
+            "icao": "ROCKT9",
+            "name": "Rocket Niner",
             "rwy": {
                 "KCVG18L": ["_RWY18LCAMUM168", "CAMUM", "ANTEO", "CODKO", "SLUBY", "MOIER"],
                 "KCVG18C": ["FLOEE", "ANTEO", "CODKO", "SLUBY", "MOIER"],
@@ -681,13 +686,13 @@
                 "KCVG36C": ["_RWY36CCIGMA325", "^CIGMA", "HOMIX", "CERPO"],
                 "KCVG36R": ["^HAGSS", "HOMIX", "CERPO"]
             },
-            "body": [["WADAL", "A80+"], ["FARUM", "A130+"], ["CIVLO", "A230-"], "ROCKT"],
+            "body": [["WADAL", "A80+"], "FARUM", "CIVLO", "ROCKT"],
             "exitPoints": {
                 "AHTIY": ["CADRE", "AHTIY"],
-                "TVT": ["TVT"]
+                "ARRAY": ["ARRAY"]
             },
             "draw": [
-                ["HOMIX", "CERPO", "WADAL", "FARUM", "CIVLO", "ROCKT", "TVT*"],
+                ["HOMIX", "CERPO", "WADAL", "FARUM", "CIVLO", "ROCKT", "ARRAY*"],
                 ["FANSA", "HIPAS", "JABDU", "TAPIE", "SLUBY"],
                 ["CODKO", "SLUBY", "MOIER", "WADAL"],
                 ["ROCKT", "CADRE", "AHTIY*"],
@@ -742,9 +747,9 @@
         }
     },
     "stars": {
-        "BRUSH2": {
-            "icao": "BRUSH2",
-            "name": "Brush Two",
+        "BRUSH3": {
+            "icao": "BRUSH3",
+            "name": "Brush Three",
             "entryPoints": {
                 "COLNS": ["COLNS", "STEVY"],
                 "HNN": []
@@ -790,9 +795,9 @@
                 ["JOT*", "CADIZ"]
             ]
         },
-        "CINCE7": {
-            "icao": "CINCE7",
-            "name": "Cincy Seven",
+        "CINCE8": {
+            "icao": "CINCE8",
+            "name": "Cincy Eight",
             "entryPoints": {
                 "APE": [],
                 "CTW": ["CTW"]
@@ -811,29 +816,6 @@
             "draw": [
                 ["APE*", "BOWRR", "ORLEE", "HEDEE", "JARSO", "TIGRR", "CHARZ", "CVG"],
                 ["CTW*", "APE"]
-            ]
-        },
-        "DEBAR5": {
-            "icao": "DEBAR5",
-            "name": "Debar Five",
-            "entryPoints": {
-                "FBC": ["FBC", "NADIR", "BOOKS"],
-                "FWA": ["FWA", "ZEKUS"]
-            },
-            "body": ["SHEAN", "DEBAR", "ARBAS", "RID", "DADKE", "MEEKR"],
-            "rwy": {
-                "KCVG9": [],
-                "KCVG18L": [],
-                "KCVG18C": [],
-                "KCVG18R": [],
-                "KCVG27": [],
-                "KCVG36L": [],
-                "KCVG36C": [],
-                "KCVG36R": []
-            },
-            "draw": [
-                ["FWA*", "ZEKUS", "SHEAN", "DEBAR", "ARBAS", "RID", "DADKE", "MEEKR"],
-                ["FBC*", "NADIR", "BOOKS", "SHEAN"]
             ]
         },
         "GAVNN4": {
@@ -859,9 +841,9 @@
                 ["COLNS*", "STEVY", "HNN"]
             ]
         },
-        "HARDU3": {
-            "icao": "HARDU3",
-            "name": "Hardu Three",
+        "HARDU4": {
+            "icao": "HARDU4",
+            "name": "Hardu Four",
             "entryPoints": {
                 "HMV": ["HMV", "PACKO"],
                 "VXV": ["VXV", "ARTUR"]
@@ -1234,7 +1216,7 @@
             "origin": "KCVG",
             "destination": "",
             "category": "departure",
-            "route": "KCVG18L.ROCKT8.AHTIY",
+            "route": "KCVG18L.ROCKT9.AHTIY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1297,10 +1279,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "COLNS.GAVNN4.KCVG18L",
-            "altitude": 18000,
+            "altitude": 34000,
             "speed": 280,
             "method": "random",
-            "rate": 2.9,
+            "rate": 1.5,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1315,36 +1297,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
-                ["pac", 5],
-                ["rpa", 8],
-                ["skw", 3],
-                ["swa", 6],
-                ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "ELANR.CEGRM5.KCVG18L",
-            "altitude": 18000,
-            "speed": 280,
-            "method": "random",
-            "rate": 1.2,
-            "airlines": [
-                ["aal", 1],
-                ["aay", 4],
-                ["abx", 10],
-                ["ash", 4],
-                ["cks", 10],
-                ["dal", 15],
-                ["edv", 24],
-                ["eny", 11],
-                ["fdx", 6],
-                ["fft", 10],
-                ["gjs", 5],
-                ["gti", 8],
-                ["jia", 10],
+                ["n/fastGA", 7],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1357,10 +1310,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "JOT.CEGRM5.KCVG18L",
-            "altitude": 18000,
+            "altitude": 31000,
             "speed": 280,
             "method": "random",
-            "rate": 0.6,
+            "rate": 2,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1375,6 +1328,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
+                ["n/fastGA", 7],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1387,10 +1341,10 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "VXV.JAKIE4.KCVG18L",
-            "altitude": 18000,
+            "altitude": 25000,
             "speed": 280,
             "method": "random",
-            "rate": 0.9,
+            "rate": 2.3,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1405,96 +1359,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
-                ["pac", 5],
-                ["rpa", 8],
-                ["skw", 3],
-                ["swa", 6],
-                ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "CUBIM.JAKIE4.KCVG18L",
-            "altitude": 18000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.7,
-            "airlines": [
-                ["aal", 1],
-                ["aay", 4],
-                ["abx", 10],
-                ["ash", 4],
-                ["cks", 10],
-                ["dal", 15],
-                ["edv", 24],
-                ["eny", 11],
-                ["fdx", 6],
-                ["fft", 10],
-                ["gjs", 5],
-                ["gti", 8],
-                ["jia", 10],
-                ["pac", 5],
-                ["rpa", 8],
-                ["skw", 3],
-                ["swa", 6],
-                ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "DOLLI.JAKIE4.KCVG18L",
-            "altitude": 18000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.5,
-            "airlines": [
-                ["aal", 1],
-                ["aay", 4],
-                ["abx", 10],
-                ["ash", 4],
-                ["cks", 10],
-                ["dal", 15],
-                ["edv", 24],
-                ["eny", 11],
-                ["fdx", 6],
-                ["fft", 10],
-                ["gjs", 5],
-                ["gti", 8],
-                ["jia", 10],
-                ["pac", 5],
-                ["rpa", 8],
-                ["skw", 3],
-                ["swa", 6],
-                ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "ENL.SARGO3.KCVG18L",
-            "altitude": 18000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.7,
-            "airlines": [
-                ["aal", 1],
-                ["aay", 4],
-                ["abx", 10],
-                ["ash", 4],
-                ["cks", 10],
-                ["dal", 15],
-                ["edv", 24],
-                ["eny", 11],
-                ["fdx", 6],
-                ["fft", 10],
-                ["gjs", 5],
-                ["gti", 8],
-                ["jia", 10],
+                ["n/fastGA", 7],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1507,7 +1372,37 @@
             "destination": "KCVG",
             "category": "arrival",
             "route": "PXV.SARGO3.KCVG18L",
-            "altitude": 18000,
+            "altitude": 19000,
+            "speed": 280,
+            "method": "random",
+            "rate": 1.8,
+            "airlines": [
+                ["aal", 1],
+                ["aay", 4],
+                ["abx", 10],
+                ["ash", 4],
+                ["cks", 10],
+                ["dal", 15],
+                ["edv", 24],
+                ["eny", 11],
+                ["fdx", 6],
+                ["fft", 10],
+                ["gjs", 5],
+                ["gti", 8],
+                ["jia", 10],
+                ["pac", 5],
+                ["rpa", 8],
+                ["skw", 3],
+                ["swa", 6],
+                ["ual", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "CTW.TIGRR2.KCVG18L",
+            "altitude": 22000,
             "speed": 280,
             "method": "random",
             "rate": 1.1,
@@ -1525,6 +1420,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
+                ["n/fastGA", 7],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1536,72 +1432,25 @@
             "origin": "",
             "destination": "KCVG",
             "category": "arrival",
-            "route": "APE.TIGRR2.KCVG18L",
-            "altitude": 18000,
+            "route": "COLNS.BRUSH3.KCVG18L",
+            "altitude": 12000,
             "speed": 280,
             "method": "random",
-            "rate": 0.9,
+            "rate": 0.2,
             "airlines": [
-                ["aal", 1],
-                ["aay", 4],
-                ["abx", 10],
-                ["ash", 4],
-                ["cks", 10],
-                ["dal", 15],
-                ["edv", 24],
-                ["eny", 11],
-                ["fdx", 6],
-                ["fft", 10],
-                ["gjs", 5],
-                ["gti", 8],
-                ["jia", 10],
-                ["pac", 5],
-                ["rpa", 8],
-                ["skw", 3],
-                ["swa", 6],
-                ["ual", 3]
+                ["n/fastGA", 7]
             ]
         },
         {
             "origin": "",
             "destination": "KCVG",
             "category": "arrival",
-            "route": "FWA.DEBAR5.KCVG18L",
-            "altitude": 18000,
+            "route": "CTW.CINCE8.KCVG18L",
+            "altitude": 12000,
             "speed": 280,
             "method": "random",
             "rate": 0.4,
             "airlines": [
-                ["aal", 1],
-                ["aay", 4],
-                ["abx", 10],
-                ["ash", 4],
-                ["cks", 10],
-                ["dal", 15],
-                ["edv", 24],
-                ["eny", 11],
-                ["fdx", 6],
-                ["fft", 10],
-                ["gjs", 5],
-                ["gti", 8],
-                ["jia", 10],
-                ["pac", 5],
-                ["rpa", 8],
-                ["skw", 3],
-                ["swa", 6],
-                ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "COLNS.BRUSH2.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.2,
-            "airlines": [
                 ["n/fastGA", 7]
             ]
         },
@@ -1609,33 +1458,7 @@
             "origin": "",
             "destination": "KCVG",
             "category": "arrival",
-            "route": "CTW.CINCE7.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.2,
-            "airlines": [
-                ["n/fastGA", 7]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "FBC.DEBAR5.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.1,
-            "airlines": [
-                ["n/fastGA", 7]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "HMV.HARDU3.KCVG18L",
+            "route": "HMV.HARDU4.KCVG18L",
             "altitude": 12000,
             "speed": 280,
             "method": "random",

@@ -11,8 +11,11 @@
     "ctr_ceiling": 18000,
     "initial_alt": 5000,
     "position": ["N44d52m52.73", "W063d30m33.62", "477.0ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N44d52m47.00", "W063d30m37.00"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N44d52m47.00", "W063d30m37.00"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 202,
@@ -1381,35 +1384,11 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "EBONY.FUNDY2.CYHZ23",
-            "altitude": [18000, 24000],
-            "speed": 250,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["aal", 1],
-                ["aca", 29],
-                ["dal", 1],
-                ["emb", 3],
-                ["fdx", 1],
-                ["fle", 2],
-                ["n/cessna", 8],
-                ["poe", 5],
-                ["pvl", 1],
-                ["ual", 1],
-                ["wen", 5],
-                ["wja", 15]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "CYHZ",
-            "category": "arrival",
             "route": "ALLEX.FUNDY2.CYHZ23",
             "altitude": [18000, 24000],
             "speed": 250,
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["aal", 1],
                 ["aca", 29],

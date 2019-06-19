@@ -39,7 +39,6 @@ export default class ProcedureModel {
          * any waypoints, provided that no combination of entry/exit would result
          * in fewer than two waypoints.
          *
-         * @for ProcedureModel
          * @property _body
          * @type {array<array<string>|<string>>}
          * @default []
@@ -56,7 +55,6 @@ export default class ProcedureModel {
          *     ['FIXXA', 'FIXXC']
          * ]
          *
-         * @for ProcedureModel
          * @property _draw
          * @type {array<array<string>>}
          * @default []
@@ -70,7 +68,6 @@ export default class ProcedureModel {
          * Each entry fix is a key in this property, whose value is a list of (restrictable)
          * fixes to follow on that entry in order to join the body of the procedure.
          *
-         * @for ProcedureModel
          * @property _entryPoints
          * @type {array<array<string>|<string>>}
          * @default {}
@@ -84,7 +81,6 @@ export default class ProcedureModel {
          * Each exit fix is a key in this property, whose value is a list of (restrictable)
          * fixes to follow on that exit in order to leave the procedure.
          *
-         * @for ProcedureModel
          * @property _exitPoints
          * @type {array<array<string>|<string>>}
          * @default {}
@@ -95,7 +91,6 @@ export default class ProcedureModel {
         /**
          * The ICAO identifier for this procedure
          *
-         * @for ProcedureModel
          * @property _icao
          * @type {string}
          * @default ''
@@ -109,7 +104,6 @@ export default class ProcedureModel {
          * Nonstandard spellings may be used to achieve the desired pronunciations,
          * since this is only used for speech synthesis.
          *
-         * @for ProcedureModel
          * @property _name
          * @type {string}
          * @default ''
@@ -120,13 +114,22 @@ export default class ProcedureModel {
         /**
          * The type of instrument procedure (must be one of `PROCEDURE_TYPE`)
          *
-         * @for ProcedureModel
          * @property _procedureType
          * @type {string}
          * @default ''
          * @private
          */
         this._procedureType = '';
+
+        /**
+         * The initial climb clearance (only for SIDs)
+         *
+         * @property _altitude
+         * @type {number}
+         * @default null
+         * @private
+         */
+        this._altitude = null;
 
         this.init(procedureType, data);
     }
@@ -175,6 +178,17 @@ export default class ProcedureModel {
         return this._procedureType;
     }
 
+    /**
+     * Return value of `#_altitude`
+     *
+     * @for ProcedureModel
+     * @property altitude
+     * @type {number}
+     */
+    get altitude() {
+        return this._altitude;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -191,6 +205,7 @@ export default class ProcedureModel {
         this._draw = data.draw;
         this._icao = data.icao;
         this._name = data.name;
+        this._altitude = data.altitude;
         this._procedureType = procedureType;
 
         if (this._procedureType === PROCEDURE_TYPE.SID) {
@@ -218,6 +233,7 @@ export default class ProcedureModel {
         this._icao = '';
         this._name = '';
         this._procedureType = '';
+        this._altitude = null;
 
         return this;
     }
@@ -293,6 +309,48 @@ export default class ProcedureModel {
         const randomIndex = _random(0, maxIndex);
 
         return exitNames[randomIndex];
+    }
+
+    /**
+     * Return the name of the first entry point in the list
+     *
+     * NOTE: Since this will return whichever element appears first in the object,
+     * it should only really be useful when we are trying to get ANY valid entry point.
+     *
+     * The above is exactly the use case for which this was created: When given a clearance
+     * with a route that is invalid for the planned departure runway, we need to apply that
+     * route using ANY runway which is valid. When the aircraft is taxiied to a runway and
+     * cleared for takeoff, they will verify the procedure's compatibility with that runway.
+     *
+     * @for ProcedureModel
+     * @method getFirstEntryPoint
+     * @return {string}
+     */
+    getFirstEntryPoint() {
+        const entryNames = Object.keys(this._entryPoints);
+
+        if (entryNames.length === 0) {
+            return null;
+        }
+
+        return entryNames[0];
+    }
+
+    /**
+     * Return the name of the first entry point if there is exactly one entry point.
+     *
+     * @for ProcedureModel
+     * @method getUniqueEntryPoint
+     * @return {string}
+     */
+    getUniqueEntryPoint() {
+        const entryNames = Object.keys(this._entryPoints);
+
+        if (entryNames.length !== 1) {
+            return '';
+        }
+
+        return entryNames[0];
     }
 
     /**

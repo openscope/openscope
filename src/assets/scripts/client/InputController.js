@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
@@ -9,6 +9,7 @@ import GameController from './game/GameController';
 import UiController from './ui/UiController';
 import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
+import EventTracker from './EventTracker';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -16,10 +17,13 @@ import { INVALID_NUMBER } from './constants/globalConstants';
 import {
     COMMAND_CONTEXT,
     KEY_CODES,
+    LEGACY_KEY_CODES,
+    MOUSE_BUTTON_NAMES,
     MOUSE_EVENT_CODE,
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
-import { SELECTORS } from './constants/selectors';
+import { SELECTORS, CLASSNAMES } from './constants/selectors';
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -326,31 +330,50 @@ export default class InputController {
      * @private
      */
     _onKeydown(event) {
+        if (this._isDialog(event.target)) {
+            // ignore input for dialogs
+            return;
+        }
+
         const currentCommandInputValue = this.$commandInput.val();
 
+        let code = event.originalEvent.code;
+
+        if (code === undefined) {
+            // fallback for legacy browsers like IE/Edge
+            code = event.originalEvent.keyCode;
+        }
+
         // TODO: this swtich can be simplified, there is a lot of repetition here
-        switch (event.which) {
+        switch (code) {
             case KEY_CODES.BAT_TICK:
+            case LEGACY_KEY_CODES.BAT_TICK:
                 this.$commandInput.val(`${currentCommandInputValue}\` `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.ENTER:
+            case KEY_CODES.NUM_ENTER:
+            case LEGACY_KEY_CODES.ENTER:
                 this.processCommand();
 
                 break;
             case KEY_CODES.PAGE_UP:
+            case LEGACY_KEY_CODES.PAGE_UP:
                 this.selectPreviousAircraft();
                 event.preventDefault();
 
                 break;
             case KEY_CODES.PAGE_DOWN:
+            case LEGACY_KEY_CODES.PAGE_DOWN:
                 this.selectNextAircraft();
                 event.preventDefault();
 
                 break;
+            // turning
             case KEY_CODES.LEFT_ARROW:
+            case LEGACY_KEY_CODES.LEFT_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} t l `);
                     event.preventDefault();
@@ -358,7 +381,18 @@ export default class InputController {
                 }
 
                 break;
+            case KEY_CODES.RIGHT_ARROW:
+            case LEGACY_KEY_CODES.RIGHT_ARROW:
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} t r `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
+
+                break;
+            // climb / descend
             case KEY_CODES.UP_ARROW:
+            case LEGACY_KEY_CODES.UP_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} c `);
                     event.preventDefault();
@@ -369,15 +403,8 @@ export default class InputController {
                 }
 
                 break;
-            case KEY_CODES.RIGHT_ARROW:
-                if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue} t r `);
-                    event.preventDefault();
-                    this.onCommandInputChangeHandler();
-                }
-
-                break;
             case KEY_CODES.DOWN_ARROW:
+            case LEGACY_KEY_CODES.DOWN_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} d `);
                     event.preventDefault();
@@ -388,49 +415,68 @@ export default class InputController {
                 }
 
                 break;
-            case KEY_CODES.MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue} * `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-            case KEY_CODES.ADD:
-                this.$commandInput.val(`${currentCommandInputValue} + `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-            case KEY_CODES.EQUALS: // mac + (actually `=`)
-                this.$commandInput.val(`${currentCommandInputValue} + `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-            case KEY_CODES.SUBTRACT:
-                this.$commandInput.val(`${currentCommandInputValue} - `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-            case KEY_CODES.DASH: // mac -
-                this.$commandInput.val(`${currentCommandInputValue} - `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-            case KEY_CODES.DIVIDE:
+            // takeoff / landing
+            case KEY_CODES.NUM_DIVIDE:
+            case LEGACY_KEY_CODES.NUM_DIVIDE:
                 this.$commandInput.val(`${currentCommandInputValue} takeoff `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
+            case KEY_CODES.NUM_MULTIPLY:
+            case LEGACY_KEY_CODES.NUM_MULTIPLY:
+                this.$commandInput.val(`${currentCommandInputValue} * `);
+                event.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
+            // speed up / slow down
+            case KEY_CODES.NUM_ADD:
+            case LEGACY_KEY_CODES.NUM_ADD:
+                this.$commandInput.val(`${currentCommandInputValue} + `);
+                event.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
+            case KEY_CODES.NUM_SUBTRACT:
+            case LEGACY_KEY_CODES.NUM_SUBTRACT:
+                this.$commandInput.val(`${currentCommandInputValue} - `);
+                event.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
+            case KEY_CODES.F1:
+            case LEGACY_KEY_CODES.F1:
+                event.preventDefault();
+                this._scopeModel.decreasePtlLength();
+
+                break;
+            case KEY_CODES.F2:
+            case LEGACY_KEY_CODES.F2:
+                event.preventDefault();
+                this._scopeModel.increasePtlLength();
+
+                break;
+            case KEY_CODES.F7:
+            case LEGACY_KEY_CODES.F7:
+                if (this.commandBarContext !== COMMAND_CONTEXT.SCOPE) {
+                    return;
+                }
+
+                this.$commandInput.val('QP_J ');
+                event.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
             case KEY_CODES.TAB:
+            case LEGACY_KEY_CODES.TAB:
                 this.$commandInput.val('');
                 event.preventDefault();
                 this._toggleCommandBarContext();
 
                 break;
-            case KEY_CODES.ESCAPE: {
+            case KEY_CODES.ESCAPE:
+            case LEGACY_KEY_CODES.ESCAPE:
                 UiController.closeAllDialogs();
 
                 const hasCallsign = _includes(currentCommandInputValue, this.input.callsign);
@@ -445,11 +491,29 @@ export default class InputController {
 
                 this.$commandInput.val(`${this.input.callsign} `);
 
-                return;
-            }
+                break;
             default:
                 this.$commandInput.focus();
         }
+    }
+
+    /**
+     * Returns true if $element is part of a dialog
+     *
+     * @for InputController
+     * @method _isDialog
+     * @param element {jquery element}
+     * @return {boolean}
+     * @private
+     */
+    _isDialog($element) {
+        if ($element.classList.contains(CLASSNAMES.DIALOG)) {
+            return true;
+        }
+
+        const { parentElement } = $element;
+
+        return parentElement && this._isDialog(parentElement);
     }
 
     /**
@@ -666,6 +730,7 @@ export default class InputController {
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
+                EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp-maunal-entry', `${nextTimewarpValue}`);
 
                 return true;
 
@@ -772,14 +837,7 @@ export default class InputController {
      * @private
      */
     _onRightMousePress(event) {
-        const mousePositionX = event.pageX - CanvasStageModel._panX;
-        const mousePositionY = event.pageY - CanvasStageModel._panY;
-        // Record mouse down position for panning
-        this._mouseDownScreenPosition = [
-            mousePositionX,
-            mousePositionY
-        ];
-        this.input.isMouseDown = true;
+        this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
     }
 
     /**
@@ -803,6 +861,7 @@ export default class InputController {
 
         if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
             this.deselectAircraft();
+            this._markMousePressed(event, MOUSE_BUTTON_NAMES.LEFT);
         } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
             const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
             this.input.command = newCommandValue;
@@ -812,5 +871,33 @@ export default class InputController {
         } else if (aircraftModel) {
             this.selectAircraft(aircraftModel);
         }
+    }
+
+    /**
+     * Method to initiate a mouse click and drag. Checks whether or not
+     * the correct button is pressed, records the position, and marks the
+     * mouse as down.
+     *
+     * @for InputController
+     * @method _markMousePressed
+     * @param {String} mouseButton
+     */
+    _markMousePressed(event, mouseButton) {
+        const canvasDragButton = GameController.getGameOption(GAME_OPTION_NAMES.MOUSE_CLICK_DRAG);
+        const mousePositionX = event.pageX - CanvasStageModel._panX;
+        const mousePositionY = event.pageY - CanvasStageModel._panY;
+
+        // The mouse button that's been pressed isn't the one
+        // that drags the canvas, so we return.
+        if (mouseButton !== canvasDragButton) {
+            return;
+        }
+
+        // Record mouse down position for panning
+        this._mouseDownScreenPosition = [
+            mousePositionX,
+            mousePositionY
+        ];
+        this.input.isMouseDown = true;
     }
 }

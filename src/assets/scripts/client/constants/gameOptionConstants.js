@@ -11,11 +11,12 @@ import { EVENT } from './eventNames';
 export const GAME_OPTION_NAMES = {
     THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
-    PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
+    PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
-    MOUSE_CLICK_DRAG: 'mouseClickDrag'
+    MOUSE_CLICK_DRAG: 'mouseClickDrag',
+    RANGE_RINGS: 'rangeRings'
 };
 
 /**
@@ -85,31 +86,23 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH,
-        defaultValue: 'from-theme',
-        description: 'Projected Track Line (PTL)',
+        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTHS,
+        defaultValue: '1-2-4-8',
+        description: 'Projected Track Line (PTL) increments, in minutes',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: 'From Theme',
-                value: 'from-theme'
+                displayLabel: '1-2-4-8',
+                value: '1-2-4-8'
             },
             {
-                displayLabel: 'Off',
-                value: 0
+                displayLabel: '1-2-4-6-8-10-12-14-16',
+                value: '1-2-4-6-8-10-12-14-16'
             },
             {
-                displayLabel: '30sec',
-                value: 0.5
-            },
-            {
-                displayLabel: '1min',
-                value: 1
-            },
-            {
-                displayLabel: '2min',
-                value: 2
+                displayLabel: '1-2-3-4-5-6-7-8',
+                value: '1-2-3-4-5-6-7-8'
             }
         ]
     },
@@ -149,6 +142,66 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'No',
                 value: 'no'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
+        defaultValue: 'right',
+        description: 'Panning Button',
+        help: 'Which mouse button (left or right) should drag the canvas when held',
+        type: 'select',
+        onChangeEventHandler: null,
+        optionList: [
+            {
+                displayLabel: 'Left Click',
+                value: 'left'
+            },
+            {
+                displayLabel: 'Right Click',
+                value: 'right'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.RANGE_RINGS,
+        defaultValue: 'default',
+        description: 'Range rings',
+        help: 'Radius of range rings, in nautical miles',
+        type: 'select',
+        onChangeEventHandler: EVENT.RANGE_RINGS_CHANGE,
+        optionList: [
+            {
+                displayLabel: 'Default',
+                value: 'default'
+            },
+            {
+                displayLabel: 'Off',
+                value: 'off'
+            },
+            {
+                displayLabel: '1 nm',
+                value: 1
+            },
+            {
+                displayLabel: '2 nm',
+                value: 2
+            },
+            {
+                displayLabel: '5 nm',
+                value: 5
+            },
+            {
+                displayLabel: '10 nm',
+                value: 10
+            },
+            {
+                displayLabel: '15 nm',
+                value: 15
+            },
+            {
+                displayLabel: '20 nm',
+                value: 20
             }
         ]
     }

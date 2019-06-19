@@ -44,10 +44,10 @@ export const EVENT = {
      * This should only occur as a result of a user action
      *
      * @memberof EVENT
-     * @property MARK_CANVAS_DIRTY
+     * @property MARK_SHALLOW_RENDER
      * @type {string}
      */
-    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+    MARK_SHALLOW_RENDER: 'mark-shallow-render',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
@@ -80,6 +80,24 @@ export const EVENT = {
      * @type {string}
      */
     PAUSE_UPDATE_LOOP: 'pause-update-loop',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_DECREASE_LENGTH
+     * @type {string}
+     */
+    PTL_DECREASE_LENGTH: 'ptl-decrease-length',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_INCREASE_LENGTH
+     * @type {string}
+     */
+    PTL_INCREASE_LENGTH: 'ptl-increase-length',
 
     /**
      * Remove an aircraft from the sim
@@ -192,6 +210,13 @@ export const EVENT = {
     TOGGLE_TERRAIN: 'toggle-terrain',
 
     /**
+     * @memberof EVENT
+     * @property TOGGLE_TRAFFIC
+     * @type {string}
+     */
+    TOGGLE_TRAFFIC: 'toggle-traffic',
+
+    /**
      * Open/close the tutorial modal
      *
      * @memberof EVENT
@@ -206,6 +231,13 @@ export const EVENT = {
      * @type {string}
      */
     TOGGLE_VIDEO_MAP: 'toggle-video-map',
+
+    /**
+     * @memberof EVENT
+     * @property RANGE_RINGS_CHANGE
+     * @type {string}
+     */
+    RANGE_RINGS_CHANGE: 'range-rings-change',
 
     /**
      * A click has been registered in the unpause button shown within the
@@ -225,4 +257,60 @@ export const EVENT = {
      * @type {string}
      */
     ZOOM_VIEWPORT: 'zoom-viewport'
+};
+
+export const AIRCRAFT_EVENT = {
+    /**
+     * Triggered when the aircraft received takeoff clearance.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property TAKEOFF
+     * @type {string}
+     */
+    TAKEOFF: 'takeoff',
+
+    /**
+     * Trigged when the aircraft enters the approach
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property APPROACH
+     * @type {string}
+     */
+    APPROACH: 'approach',
+
+    /**
+     * Trigged when the aircraft reaches its final approach
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property FINAL_APPROACH
+     * @type {string}
+     */
+    FINAL_APPROACH: 'final-approach',
+
+    /**
+     * FOR FUTURE USE. Should be trigged when the aircraft landed on the runway.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property LANDING
+     * @type {string}
+     */
+    LANDING: 'landing',
+
+    /**
+     * The aircraft landed and came to a fullstop.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property FULLSTOP
+     * @type {string}
+     */
+    FULLSTOP: 'fullstop',
+
+    /**
+     * Triggered when the aircraft exits the airspace.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property AIRSPACE_EXIT
+     * @type {string}
+     */
+    AIRSPACE_EXIT: 'airspace-exit'
 };

@@ -1,5 +1,5 @@
 {
-    "airac": 1711,
+    "airac": 1813,
     "radio": {
         "twr": "Albuquerque Tower",
         "app": "Albuquerque Approach",
@@ -12,8 +12,11 @@
     "ctr_ceiling": 20000,
     "initial_alt": 20000,
     "position": ["N35.03891707960476", "W106.60830688023069", "5355ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N35.03891707960476", "W106.60830688023069"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [35.03891707960476, -106.60830688023069],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 90,
@@ -197,14 +200,6 @@
             "end": [
                 ["N35d02m36.72", "W106d37m14.71", "5312ft"],
                 ["N35d01m59.5", "W106d36m18.53", "5314ft"]
-            ],
-            "ils": [false, false]
-        },
-        {
-            "name": ["17", "35"],
-            "end": [
-                ["N35d03m27.83", "W106d36m39.6", "5312ft"],
-                ["N35d01m49.12", "W106d36m46.68", "5314ft"]
             ],
             "ils": [false, false]
         }
@@ -781,35 +776,11 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "TCC.COLTR3.KABQ3",
-            "altitude": [34000, 42000],
-            "speed": 320,
-            "method": "random",
-            "rate": 0.5,
-            "airlines": [
-                ["aal", 3],
-                ["ash", 7],
-                ["asq", 3],
-                ["cpz", 3],
-                ["dal", 3],
-                ["eny", 2],
-                ["fdx", 1],
-                ["n/fastGA", 22],
-                ["rpa", 1],
-                ["skw", 8],
-                ["swa", 37],
-                ["ups", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kabq",
-            "category": "arrival",
             "route": "RECKN.COLTR3.KABQ3",
-            "altitude": [32000, 38000],
+            "altitude": 34000,
             "speed": 320,
             "method": "random",
-            "rate": 1.5,
+            "rate": 2,
             "airlines": [
                 ["aal", 3],
                 ["ash", 7],
@@ -829,8 +800,8 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "CABNO.KRKEE3.KABQ3",
-            "altitude": [29000, 33000],
+            "route": "SJN..CABNO.KRKEE3.KABQ3",
+            "altitude": 33000,
             "speed": 320,
             "method": "random",
             "rate": 2.3,
@@ -849,32 +820,11 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "GUP.LOWBO3.KABQ3",
-            "altitude": [29000, 33000],
+            "route": "RSK..BRMLY.LOWBO3.KABQ3",
+            "altitude": 31000,
             "speed": 320,
             "method": "random",
-            "rate": 0.7,
-            "airlines": [
-                ["aay", 1],
-                ["ash", 7],
-                ["asq", 3],
-                ["cpz", 3],
-                ["eny", 2],
-                ["n/fastGA", 22],
-                ["rpa", 1],
-                ["skw", 8],
-                ["swa", 37]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kabq",
-            "category": "arrival",
-            "route": "ROSEI.LOWBO3.KABQ3",
-            "altitude": [31000, 35000],
-            "speed": 320,
-            "method": "random",
-            "rate": 0.8,
+            "rate": 1.5,
             "airlines": [
                 ["aay", 1],
                 ["ash", 7],
@@ -892,7 +842,7 @@
             "destination": "kabq",
             "category": "arrival",
             "route": "CME.LZZRD3.KABQ3",
-            "altitude": [28000, 40000],
+            "altitude": 34000,
             "speed": 320,
             "method": "random",
             "rate": 0.7,
@@ -912,34 +862,10 @@
             "destination": "kabq",
             "category": "arrival",
             "route": "DATME.SNDIA3.KABQ3",
-            "altitude": [28000, 36000],
+            "altitude": 30000,
             "speed": 320,
             "method": "random",
-            "rate": 1.2,
-            "airlines": [
-                ["asa", 1],
-                ["ash", 7],
-                ["asq", 3],
-                ["cpz", 3],
-                ["dal", 3],
-                ["eny", 2],
-                ["jbu", 4],
-                ["n/fastGA", 22],
-                ["rpa", 1],
-                ["skw", 8],
-                ["swa", 37],
-                ["ual", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kabq",
-            "category": "arrival",
-            "route": "TAMEY.SNDIA3.KABQ3",
-            "altitude": [28000, 34000],
-            "speed": 320,
-            "method": "random",
-            "rate": 0.5,
+            "rate": 1.7,
             "airlines": [
                 ["asa", 1],
                 ["ash", 7],
