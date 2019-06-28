@@ -62,7 +62,7 @@ London City airport is an international airport located inside London, approxima
 
 ### Useful Additional Resources
 
-[NATS Page](www.ead.eurocontrol.int/eadbasic/eais-E89151B3C539313B4E86AD7E95B6927A/3QDXTD5E6YWTY/EN/2018-11-08-AIRAC/html/index-ead-en-GB.html?target=eAIP/EG-GEN-0.1-en-GB.html)
+[NATS AIP (AIRAC 1907)](https://www.aurora.nats.co.uk/htmlAIP/Publications/2019-06-20-AIRAC/html/index-en-GB.html)
 [NATS Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=94&Itemid=143.html)
-[Runway Alterantion Procedures](https://www.heathrow.com/noise/heathrow-operations/runway-alternation)
+[Runway Alternation Procedures](https://www.heathrow.com/noise/heathrow-operations/runway-alternation)
 [SkyVector Airport Info](https://skyvector.com/airport/EGLL/London-Heathrow-Airport)
