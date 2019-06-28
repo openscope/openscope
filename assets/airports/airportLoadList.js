@@ -123,12 +123,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'London City Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'egll',
-        //     level: 'hard',
-        //     name: 'London Heathrow Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'egll',
+            level: 'hard',
+            name: 'London Heathrow Airport',
+            premium: false
+        },
         {
             icao: 'egnm',
             level: 'beginner',
