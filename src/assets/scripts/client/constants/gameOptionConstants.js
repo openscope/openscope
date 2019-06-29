@@ -16,7 +16,8 @@ export const GAME_OPTION_NAMES = {
     SOFT_CEILING: 'softCeiling',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
     MOUSE_CLICK_DRAG: 'mouseClickDrag',
-    RANGE_RINGS: 'rangeRings'
+    RANGE_RINGS: 'rangeRings',
+    AUTO_TWR_CONTROL: 'autoTwrControl'
 };
 
 /**
@@ -202,6 +203,24 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: '20 nm',
                 value: 20
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.AUTO_TWR_CONTROL,
+        defaultValue: 'manual',
+        description: 'Tower and Ground Control',
+        help: 'Enables automatic taxi and takeoff clearances by the system, leaving the user to only worry about radar facilities (Approach, Departure)',
+        type: 'select',
+        onChangeEventHandler: null, //Todo
+        optionList: [
+            {
+                displayLabel: 'Manual',
+                value: 'manual'
+            },
+            {
+                displayLabel: 'Auto',
+                value: 'auto',
             }
         ]
     }
