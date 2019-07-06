@@ -1,0 +1,830 @@
+{
+    "radio": {
+        "twr": "Helsinki Tower",
+        "app": "Helsinki Radar",
+        "dep": "Helsinki Radar"
+    },
+    "icao": "EFHK",
+    "iata": "HEL",
+    "magnetic_north": 8.4,
+    "ctr_radius": 60,
+    "ctr_ceiling": 28500,
+    "initial_alt": 4000,
+    "position": ["N60d19m03", "E24d57m80", "180ft"],
+    "rr_radius_nm": 5,
+    "rr_center": ["N60d19m03", "E24d57m80"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 240,
+        "speed": 8
+    },
+    "arrivalRunway": "22L",
+    "departureRunway": "22R",
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 285,
+            "airspace_class": "B",
+            "poly": [
+
+                ["N60d49m13", "E24d46m56"],
+                ["N60d46m44", "E25d27m01"],
+                ["N60d41m32", "E25d50m30"],
+                ["N60d27m08", "E26d07m59"],
+                ["N60d08m00", "E26d33m00"],
+                ["N59d53m00", "E25d52m00"],
+                ["N59d54m30", "E25d20m00"],
+                ["N59d53m27", "E24d59m49"],
+                ["N59d53m00", "E24d51m00"],
+                ["N59d42m00", "E23d59m31"],
+                ["N59d38m53", "E23d45m09"],
+                ["N59d55m04", "E23d32m17"],
+                ["N60d00m22", "E23d41m34"],
+                ["N60d28m56", "E23d53m10"],
+                ["N60d36m06", "E24d03m48"],
+                ["N60d36m00", "E24d16m14"],
+                ["N60d44m33", "E24d29m08"],
+                ["N60d49m13", "E24d46m56"]
+            ]
+        }
+    ],
+    "fixes": {
+        "_RWY22R02.50DME": ["N60.30841d5", "E24.89421932"],
+        "ABSUT": ["N60d13m08.61", "E24d44m03.74"],
+        "ADBIX": ["N60d32m13.67", "E24d59m12.90"],
+        "ADIVO": ["N60d17m51.00", "E23d58m53.00"],
+        "AMROT": ["N60d29m63.00", "E23d42m55.00"],
+        "ARLOM": ["N60d47m42.00", "E27d43m88.00"],
+        "ARSAM": ["N59d26m85.00", "E25d21m42.00"],
+        "ARVEP": ["N60d14m58.00", "E26d23m57.00"],
+        "ATLUM": ["N59d45m91.00", "E27d40m14.00"],
+        "BALTI": ["N59d54m15.00", "E25d15m06.00"],
+        "BAMEB": ["N60d09m41.94", "E25d08m31.04"],
+        "BEKNA": ["N59d31m67.00", "E24d56m08.00"],
+        "BEVOM": ["N60d27m87.00", "E22d28m62.00"],
+        "BIMVU": ["N60d27m36.54", "E25d15m58.56"],
+        "DEGER": ["N60d15m59.00", "E25d12m33.00"],
+        "DIPMO": ["N60d12m06.79", "E24d41m48.99"],
+        "DIVAM": ["N59d50m54.00", "E23d35m37.00"],
+        "ELKUN": ["N60d27m23.11", "E24d50m04.30"],
+        "EMPEV": ["N60d14m17.68", "E24d44m25.00"],
+        "ENETI": ["N61d04m48.00", "E23d34m34.00"],
+        "ENUTO": ["N60d28m53.00", "E24d46m32.00"],
+        "ERNUT": ["N61d17m17.00", "E25d16m78.00"],
+        "EVADI": ["N59d20m38.00", "E21d51m43.00"],
+        "EXEVO": ["N60d15m10.22", "E24d48m29.31"],
+        "GEDLO": ["N60d10m15.28", "E24d37m46.68"],
+        "GEPTA": ["N59d34m80.00", "E25d29m23.00"],
+        "GESVO": ["N60d07m31.08", "E24d46m38.69"],
+        "GONOS": ["N58d56m55.00", "E25d34m62.00"],
+        "GUMVO": ["N60d23m38.10", "E25d07m08.03"],
+        "HAGIS": ["N60d12m31.00", "E24d54m00.00"],
+        "HK416": ["N60d23m52.55", "E25d07m40.07"],
+        "HK428": ["N60d16m05.52", "E24d46m21.17"],
+        "HK451": ["N60d18m16.80", "E24d46m54.99"],
+        "HK461": ["N60d19m05.74", "E24d46m25.05"],
+        "HK711": ["N60d16m19.79", "E25d05m53.91"],
+        "HK766": ["N60d15m53.05", "E25d04m54.92"],
+        "HK801": ["N60d10m19.01", "E24d35m45.88"],
+        "HK802": ["N60d13m59.34", "E24d28m59.21"],
+        "HK803": ["N60d05m14.38", "E24d24m48.13"],
+        "HK804": ["N60d06m06.13", "E24d43m29.98"],
+        "HK805": ["N60d06m48.00", "E25d15m00.00"],
+        "HK806": ["N59d58m49.93", "E25d19m00.76"],
+        "HK807": ["N60d25m04.20", "E25d25m13.30"],
+        "HK808": ["N60d02m54.00", "E24d59m15.00"],
+        "HK809": ["N60d19m31.00", "E24d23m09.00"],
+        "HK811": ["N60d08m13.32", "E24d33m22.43"],
+        "HK813": ["N60d05m08.86", "E24d26m44.41"],
+        "HK814": ["N60d04m32.54", "E24d40m06.94"],
+        "HK815": ["N60d18m16.00", "E24d21m22.00"],
+        "HK817": ["N60d21m18.87", "E25d07m37.09"],
+        "HK821": ["N60d30m02.93", "E24d47m18.66"],
+        "HK822": ["N60d32m18.26", "E24d56m19.98"],
+        "HK823": ["N60d29m00.05", "E24d33m21.53"],
+        "HK844": ["N60d09m05.85", "E25d19m59.81"],
+        "HK845": ["N60d04m52.00", "E25d24m24.00"],
+        "HK846": ["N60d04m36.34", "E25d02m09.32"],
+        "HK849": ["N60d18m22.65", "E24d35m33.61"],
+        "HK851": ["N60d12m40.65", "E24d23m12.59"],
+        "HK852": ["N60d08m17.70", "E24d31m23.33"],
+        "HK856": ["N60d14m55.80", "E24d45m48.21"],
+        "HK859": ["N60d17m08.95", "E25d00m36.11"],
+        "HK860": ["N60d14m39.61", "E24d47m22.35"],
+        "HK861": ["N60d06m51.40", "E25d11m03.96"],
+        "HK862": ["N60d21m23.87", "E24d44m56.59"],
+        "HK863": ["N60d19m52.61", "E25d09m05.02"],
+        "HK864": ["N60d17m49.22", "E24d54m17.87"],
+        "HK866": ["N60d21m14.14", "E25d01m49.34"],
+        "HK871": ["N60d26m02.64", "E24d30m13.81"],
+        "HK873": ["N60d15m04.40", "E24d18m42.97"],
+        "HK874": ["N60d12m28.95", "E24d10m09.16"],
+        "HK881": ["N60d25m44.97", "E25d26m51.58"],
+        "HK883": ["N60d29m59.29", "E25d19m06.04"],
+        "HK886": ["N60d29m36.92", "E24d34m00.61"],
+        "HK887": ["N60d33m34.24", "E25d12m30.34"],
+        "HK888": ["N60d35m18.64", "E25d08m27.32"],
+        "HK889": ["N60d42m46.80", "E25d16m48.67"],
+        "HK890": ["N60d35m53.50", "E25d17m15.10"],
+        "HK891": ["N60d18m53.92", "E25d11m34.98"],
+        "HK892": ["N60d34m35.11", "E25d31m38.51"],
+        "HK893": ["N60d35m17.34", "E25d31m01.19"],
+        "HK894": ["N60d08m35.87", "E24d48m55.85"],
+        "HK896": ["N60d25m32.74", "E24d51m15.25"],
+        "HK897": ["N60d24m48.12", "E24d52m35.91"],
+        "HK899": ["N60d12m24.52", "E24d25m34.18"],
+        "HK900": ["N60d13m52.08", "E25d03m57.07"],
+        "HK901": ["N60d04m16.70", "E25d02m18.99"],
+        "HK902": ["N60d41m31.66", "E25d16m53.49"],
+        "HK903": ["N60d24m22.06", "E24d56m47.14"],
+        "HK904": ["N60d29m37.07", "E25d20m28.09"],
+        "HK906": ["N60d25m55.07", "E25d27m14.27"],
+        "HK907": ["N60d33m37.33", "E25d13m06.06"],
+        "HK908": ["N60d26m04.00", "E24d44m46.00"],
+        "HK909": ["N60d20m24.20", "E24d40m51.75"],
+        "HK911": ["N60d30m25.00", "E24d52m08.00"],
+        "HK912": ["N60d20m24.00", "E25d22m33.00"],
+        "HK913": ["N60d14m09.00", "E25d22m35.00"],
+        "HK914": ["N60d17m02.37", "E25d15m59.45"],
+        "HK916": ["N60d25m11.00", "E25d45m44.00"],
+        "HK917": ["N60d18m44.00", "E25d20m45.00"],
+        "HK918": ["N60d39m48.00", "E25d00m29.00"],
+        "HK919": ["N60d21m21.00", "E25d21m15.00"],
+        "HK921": ["N60d13m45.00", "E24d53m50.00"],
+        "HK923": ["N60d08m56.94", "E24d48m16.01"],
+        "HK924": ["N60d12m14.00", "E24d58m38.00"],
+        "HK926": ["N60d14m38.00", "E24d29m03.00"],
+        "HK927": ["N60d06m36.41", "E24d23m34.42"],
+        "HK928": ["N60d17m50.00", "E24d39m43.00"],
+        "HK929": ["N60d04m12.00", "E24d34m29.00"],
+        "HK931": ["N60d24m39.00", "E24d36m07.00"],
+        "IBOSU": ["N61d37m20.00", "E25d17m72.00"],
+        "IBVUT": ["N60d21m58.00", "E21d20m67.00"],
+        "IDEPI": ["N60d42m39.00", "E25d47m39.00"],
+        "IDMOP": ["N60d24m03.00", "E25d03m09.00"],
+        "INTOR": ["N59d49m40.00", "E25d11m12.00"],
+        "IPMOT": ["N60d27m19.00", "E23d10m58.00"],
+        "KOIVU": ["N59d50m41.00", "E24d39m55.00"],
+        "KOLIS": ["N60d27m04.00", "E25d01m07.00"],
+        "KUDOP": ["N59d58m46.00", "E24d04m36.00"],
+        "KUVEM": ["N60d11m26.00", "E23d56m14.00"],
+        "LAKUT": ["N60d26m17.00", "E23d52m35.00"],
+        "LAVDI": ["N60d14m14.15", "E24d46m26.73"],
+        "LEDUN": ["N59d58m30.00", "E26d06m42.00"],
+        "LEDUN": ["N59d58m50.00", "E26d06m70.00"],
+        "LEMLA": ["N59d24m85.00", "E25d40m73.00"],
+        "LILJA": ["N60d19m26.00", "E25d12m31.00"],
+        "LINTU": ["N60d22m47.00", "E24d41m04.00"],
+        "LONSA": ["N59d04m93.00", "E23d50m07.00"],
+        "LULAB": ["N60d30m21.00", "E25d07m54.00"],
+        "LUSEP": ["N60d57m08.00", "E25d15m53.00"],
+        "LUVEX": ["N60d21m54.76", "E25d18m17.01"],
+        "MAMOP": ["N60d34m30.00", "E25d59m04.00"],
+        "MAROM": ["N60d26m52.00", "E24d02m37.00"],
+        "NAPRU": ["N61d35m07.00", "E26d05m67.00"],
+        "NAPUN": ["N60d49m41.00", "E25d16m22.00"],
+        "NAVOT": ["N59d20m60.00", "E24d24m85.00"],
+        "NEMVI": ["N60d16m01.45", "E24d33m23.97"],
+        "NEPEK": ["N60d44m33.00", "E24d29m08.00"],
+        "NIDAG": ["N60d11m51.00", "E24d50m50.00"],
+        "NIPIB": ["N59d40m95.00", "E23d00m80.00"],
+        "NODMO": ["N60d32m31.00", "E25d02m06.64"],
+        "NOKKA": ["N60d11m00.00", "E25d01m21.00"],
+        "NUNTO": ["N60d05m01.00", "E23d53m37.00"],
+        "OBONU": ["N60d09m31.66", "E25d08m21.74"],
+        "OBUPU": ["N60d24m47.89", "E24d52m44.68"],
+        "ODESO": ["N60d19m57.00", "E22d39m03.00"],
+        "OGELI": ["N60d13m51.00", "E24d59m16.00"],
+        "OTKAP": ["N61d04m76.00", "E27d23m38.00"],
+        "OTKIL": ["N60d28m50.00", "E21d22m06.00"],
+        "OTPAL": ["N61d16m13.00", "E25d40m54.00"],
+        "PEKUX": ["N60d24m32.00", "E22d37m53.00"],
+        "PENAD": ["N60d16m42.00", "E25d29m36.00"],
+        "PEXEN": ["N59d54m47.00", "E23d49m28.00"],
+        "PODOM": ["N60d12m20.89", "E24d40m10.57"],
+        "RASTI": ["N60d11m56.00", "E25d05m26.00"],
+        "RATLA": ["N60d51m50.00", "E28d20m30.00"],
+        "REDBO": ["N60d25m38.00", "E24d51m52.00"],
+        "RENKU": ["N59d53m09.00", "E24d53m48.10"],
+        "RIPVI": ["N60d16m24.00", "E24d35m07.00"],
+        "RIRIP": ["N60d12m17.00", "E21d26m05.00"],
+        "ROKVI": ["N60d51m65.00", "E27d01m38.00"],
+        "ROPAM": ["N60d07m59.00", "E25d36m06.00"],
+        "RUMEP": ["N59d30m75.00", "E22d25m93.00"],
+        "SORPA": ["N59d37m02.00", "E24d50m82.00"],
+        "TEDMU": ["N60d27m46.64", "E25d14m09.63"],
+        "TEVRU": ["N60d49m16.00", "E24d49m29.00"],
+        "TIXED": ["N60d25m44.59", "E25d11m49.01"],
+        "TLL": ["N59d24m80.00", "E24d49m95.00"],
+        "UREDA": ["N60d14m20.00", "E24d37m23.00"],
+        "UXADA": ["N60d51m00.00", "E22d36m80.00"],
+        "VALOX": ["N59d43m54.00", "E24d08m20.00"],
+        "VAVIS": ["N60d14m06.00", "E24d50m39.00"],
+        "VEGIK": ["N60d16m03.75", "E24d42m44.46"],
+        "VEPIN": ["N60d37m53.00", "E26d19m59.00"],
+        "VIBEP": ["N60d27m33.00", "E24d14m39.00"],
+        "XAXOL": ["N60d12m15.02", "E24d49m48.05"],
+        "XELBU": ["N60d23m36.37", "E25d04m53.30"]
+    },
+    "runways": [
+        {
+            "name": ["04L", "22R"],
+            "name_offset": [[0.9, 1], [0, 0]],
+            "end": [
+                ["N60d18m46.61", "E24d54m13.93", "133.6ft"],
+                ["N60d19m53.42", "E24d56m40.90", "179.9ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["04R", "22L"],
+            "name_offset": [[0.9, 1], [-0.8, -1]],
+            "end": [
+                ["N60d18m40.65", "E24d56m10.94", "153.2ft"],
+                ["N60d19m50.49", "E24d58m44.73", "148.6ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["15", "33"],
+            "name_offset": [[0, 0], [-0.7, 1]],
+            "end": [
+                ["N60d19m48.99", "E24d57m52.19", "162.9ft"],
+                ["N60d18m25.44", "E24d59m17.83", "147.1ft"]
+            ],
+            "ils": [true, false]
+        }
+    ],
+    "sids": {
+        "ADIVO": {
+            "icao": "ADIVO 1N",
+            "name": "Adivo One November",
+            "exitPoints": {
+                "ADIVO": ["ADIVO"]
+            },
+            "body": ["HK461"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK461", "ADIVO"]
+            ]
+        },
+        "ARVEP": {
+            "icao": "ARVEP 1N",
+            "name": "Arvep One November",
+            "exitPoints": {
+                "ARVEP": ["ARVEP"]
+            },
+            "body": ["HK461", "HK931", "ENUTO", "ARVEP"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK461", "HK931", "ENUTO", "ARVEP"]
+            ]
+        },
+        "IDEPI": {
+            "icao": "IDEPI 1N",
+            "name": "Idepi One November",
+            "exitPoints": {
+                "IDEPI": ["IDEPI"]
+            },
+            "body": ["HK461", "HK931", "ENUTO", "IDEPI"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK461", "HK931", "ENUTO", "IDEPI"]
+            ]
+        },
+        "KOIVU": {
+            "icao": "KOIVU 1N",
+            "name": "Koivu One November",
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "body": ["HK451", "HK926", "HK927", "KOIVU"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK451", "HK926", "HK927", "KOIVU"]
+            ]
+        },
+        "KUVEM": {
+            "icao": "KUVEM 1N",
+            "name": "Kuvem One November",
+            "exitPoints": {
+                "KUVEM": ["KUVEM"]
+            },
+            "body": ["HK451", "HK926", "KUVEM"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK451", "HK926", "KUVEM"]
+            ]
+        },
+        "NEPEK": {
+            "icao": "NEPEK 1N",
+            "name": "Nepek One November",
+            "exitPoints": {
+                "NEPEK": ["NEPEK"]
+            },
+            "body": ["HK461", "HK931", "NEPEK"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK461", "HK931", "NEPEK"]
+            ]
+        },
+        "NUNTO": {
+            "icao": "NUNTO 1N",
+            "name": "Nunto One November",
+            "exitPoints": {
+                "NUNTO": ["NUNTO"]
+            },
+            "body": ["HK451", "HK926", "NUNTO"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK451", "HK926", "NUNTO"]
+            ]
+        },
+        "RENKU": {
+            "icao": "RENKU 1N",
+            "name": "Renku One November",
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "body": ["HK451", "HK926", "HK927", "RENKU"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK451", "HK926", "HK927", "RENKU"]
+            ]
+        },
+        "TEVRU": {
+            "icao": "TEVRU 1N",
+            "name": "Tevry One November",
+            "exitPoints": {
+                "TEVRU": ["TEVRU"]
+            },
+            "body": ["HK461", "HK931", "TEVRU"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK461", "HK931", "TEVRU"]
+            ]
+        },
+        "VALOX": {
+            "icao": "VALOX 1N",
+            "name": "Valox One November",
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "body": ["HK461", "HK926", "HK927", "VALOX"],
+            "rwy": {
+                "EFHK22R": []
+            },
+            "draw": [
+                ["HK461", "HK926", "HK927", "VALOX"]
+            ]
+        }
+    },
+    "stars": {
+        "DIVAM": {
+            "icao": "DIVAM 2A",
+            "name": "Divam Two Alfa",
+            "entryPoints": {
+                "DIVAM": ["DIVAM"]
+            },
+            "body": ["PEXEN", "HK804", "HK891", "LUVEX", "HK906", "HK904", "BIMVU"],
+            "rwy": {
+                "EFHK22L": []
+            },
+            "draw": [
+                ["DIVAM", "PEXEN", "HK804", "HK891", "LUVEX", "HK906", "HK904", "BIMVU"]
+            ]
+        },
+        "INTOR": {
+            "icao": "INTOR 3A",
+            "name": "Intor Three Alfa",
+            "entryPoints": {
+                "INTOR": ["INTOR"]
+            },
+            "body": ["BALTI", "HK806", "HK891", "LUVEX", "HK906", "HK904", "BIMVU"],
+            "rwy": {
+                "EFHK22L": []
+            },
+            "draw": [
+                ["INTOR", "BALTI", "HK806", "HK891", "LUVEX", "HK906", "HK904", "BIMVU"]
+            ]
+        },
+        "LAKUT": {
+            "icao": "LAKUT 3A",
+            "name": "Lakut Three Alfa",
+            "entryPoints": {
+                "LAKUT": ["LAKUT"]
+            },
+            "body": ["MAROM", "HK886", "NODMO", "HK907", "HK904", "BIMVU"],
+            "rwy": {
+                "EFHK22L": []
+            },
+            "draw": [
+                ["LAKUT", "MAROM", "HK886", "NODMO", "HK907", "HK904", "BIMVU"]
+            ]
+        },
+        "LUSEP": {
+            "icao": "LUSEP 2A",
+            "name": "Lusep Two Alfa",
+            "entryPoints": {
+                "LUSEP": ["LUSEP"]
+            },
+            "body": ["NAPUN", "HK902", "HK907", "HK904", "BIMVU"],
+            "rwy": {
+                "EFHK22L": []
+            },
+            "draw": [
+                ["LUSEP", "NAPUN", "HK902", "HK907", "HK904", "BIMVU"]
+            ]
+        },
+        "ROPAM": {
+            "icao": "ROPAM 2A",
+            "name": "Ropam Two Alfa",
+            "entryPoints": {
+                "ROPAM": ["LEDUN"]
+            },
+            "body": ["ROPAM", "HK906", "HK904", "BIMVU"],
+            "rwy": {
+                "EFHK22L": []
+            },
+            "draw": [
+                ["ROPAM", "HK906", "HK904", "BIMVU"]
+            ]
+        },
+        "VEPIN": {
+            "icao": "VEPIN 2A",
+            "name": "Vepin Two Alfa",
+            "entryPoints": {
+                "VEPIN": ["VEPIN"]
+            },
+            "body": ["MAMOP", "HK892", "HK904", "BIMVU"],
+            "rwy": {
+                "EFHK22L": []
+            },
+            "draw": [
+                ["VEPIN", "MAMOP", "HK892", "HK904", "BIMVU"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "EVADI..RUMEP..NIPIB..DIVAM.DIVAM.EFHK22L",
+            "altitude": 29000,
+            "speed": 300,
+            "method": "random",
+            "rate": 3.6,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+                ["dlh", 8],
+                ["klm", 3],
+                ["ber", 3],
+                ["bti", 1],
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1]
+            ]
+
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "GONOS..ARSAM..INTOR.INTOR.EFHK22L",
+            "altitude": 29000,
+            "speed": 300,
+            "method": "random",
+            "rate": 0.6,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 1],
+                ["dlh", 8],
+                ["ber", 3],
+                ["thy", 3],
+                ["bti", 3],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["ibe", 1],
+                ["tap", 1],
+                ["qtr", 1],
+                ["fin/long", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "ENETI..AMROT..LAKUT.LAKUT.EFHK22L",
+            "altitude": 19000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.4,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+                ["baw", 1],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["fin/long", 20]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "IBOSU..ERNUT..LUSEP.LUSEP.EFHK22L",
+            "altitude": 19000,
+            "speed": 280,
+            "method": "random",
+            "rate": 2.2,
+            "airlines": [
+                ["fin/short", 65],
+                ["nax", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "ATLUM..LEDUN..ROPAM.ROPAM.EFHK22L",
+            "altitude": 23000,
+            "speed": 300,
+            "method": "random",
+            "rate": 1.2,
+            "airlines": [
+                ["fin/long", 20],
+                ["jal/long", 1],
+                ["fin/short", 10],
+                ["qtr", 1],
+                ["thy", 1],
+                ["afl", 1],
+                ["vkg", 1],
+                ["tom", 1],
+                ["tui", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "RATLA..ARLOM..VEPIN.VEPIN.EFHK22L",
+            "altitude": 25000,
+            "speed": 300,
+            "method": "random",
+            "rate": 0.2,
+            "airlines": [
+                ["fin/long", 20],
+                ["jal/long", 1],
+                ["fin/short", 10],
+                ["afl", 1],
+                ["vkg", 1],
+                ["tom", 1],
+                ["tui", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.ADIVO.ADIVO..IPMOT",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 0.6,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+                ["dlh", 2],
+                ["klm", 3],
+                ["ber", 2],
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.ARVEP.ARVEP..ATLUM",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 4.8,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 4],
+                ["dlh", 8],
+                ["klm", 3],
+                ["ber", 3],
+                ["thy", 3],
+                ["bti", 3],
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1],
+                ["qtr", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.IDEPI.IDEPI..NAPRU",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 1.4,
+            "airlines": [
+                ["fin/long", 4],
+                ["jal/long", 1],
+                ["nax", 12],
+                ["sas", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.KOIVU.KOIVU..GONOS",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 1.2,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 4],
+                ["dlh", 8],
+                ["klm", 3],
+                ["ber", 3],
+                ["thy", 3],
+                ["bti", 3],
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1],
+                ["qtr", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.KUVEM.KUVEM..RIRIP",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 1.8,
+            "airlines": [
+                ["fin/long", 20],
+                ["fin/short", 10],
+                ["vkg", 1],
+                ["tom", 1],
+                ["tui", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.NEPEK.NEPEK..ENETI",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 1.4,
+            "airlines": [
+                ["fin/short", 65],
+                ["nax", 5]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.NUNTO.NUNTO..RUMEP",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 0.3,
+            "airlines": [
+                ["fin/long", 20],
+                ["fin/short", 10],
+                ["jal/long", 1],
+                ["vkg", 1],
+                ["tom", 1],
+                ["tui", 1]
+            ]
+
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.RENKU.RENKU..ARSAM",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 0.4,
+            "airlines": [
+                ["fin/long", 20],
+                ["fin/short", 10],
+                ["jal/long", 1],
+                ["vkg", 1],
+                ["tom", 1],
+                ["tui", 1]
+            ]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.TEVRU.TEVRU..IBOSU",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 0.9,
+            "airlines": [
+                ["fin/short", 10]
+            ]
+
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK22R.VALOX.VALOX..LONSA",
+            "altitude": "25000",
+            "speed": 250,
+            "method": "random",
+            "rate": 2.3,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+                ["dlh", 8],
+                ["klm", 3],
+                ["ber", 3],
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1]
+            ]
+        }
+    ],
+    "maps": {
+        "base": [[]]
+    }
+}
