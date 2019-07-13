@@ -6,7 +6,6 @@ const srcAssetsDir = path.join(src, 'assets');
 const srcMarkup = path.join(src, 'templates');
 const scrScriptsFonts = path.join(srcAssetsDir, 'fonts');
 const srcScriptsDir = path.join(srcAssetsDir, 'scripts');
-const srcScriptsServerDir = path.join(srcScriptsDir, 'server');
 const srcScriptsClientDir = path.join(srcScriptsDir, 'client');
 const srcStylesDir = path.join(srcAssetsDir, 'style');
 const srcImagesDir = path.join(srcAssetsDir, 'images');
@@ -26,7 +25,6 @@ options.DIR = {
     SRC_MARKUP: srcMarkup,
     SRC_SCRIPTS: srcScriptsDir,
 
-    SRC_SCRIPTS_SERVER: srcScriptsServerDir,
     SRC_SCRIPTS_CLIENT: srcScriptsClientDir,
     SRC_STYLE: srcStylesDir,
     SRC_IMAGES: srcImagesDir,
@@ -47,14 +45,12 @@ options.DIR = {
     DIST_FONT: path.join(distAssets, 'fonts'),
     DIST_IMAGES: path.join(distAssets, 'images'),
     DIST_SCRIPTS_CLIENT: path.join(distAssets, 'scripts/client'),
-    DIST_SCRIPTS_SERVER: path.join(distAssets, 'scripts/server'),
     DIST_STYLE: path.join(distAssets, 'style')
 };
 
 // for specific files
 options.FILE = {
     JS_ENTRY_CLIENT: path.join(options.DIR.SRC_SCRIPTS_CLIENT, 'index.js'),
-    JS_ENTRY_SERVER: path.join(options.DIR.SRC_SCRIPTS_SERVER, 'index.js'),
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.less'),
     PKG_JSON: path.join(options.ROOT, 'package.json'),
     AIRCRAFT_JSON: path.join(options.DIR.ASSETS_AIRCRAFT, 'aircraft.json'),
@@ -79,7 +75,6 @@ options.GLOB = {
 options.TASKS = {
     BUILD: {
         SCRIPTS: 'build:scripts',
-        SERVER: 'build:server',
         STYLES: 'build:styles',
         DEFAULT: 'build'
     },
@@ -105,6 +100,6 @@ options.TASKS = {
         SCRIPTS: 'watch:scripts',
         STYLES: 'watch:styles'
     }
-}
+};
 
 module.exports = options;

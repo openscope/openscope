@@ -18,7 +18,6 @@ gulp.task(OPTIONS.TASKS.MARKDOWN.CHANGELOG, gulp.series(copyChangelog));
 
 const buildAndMarkup = gulp.parallel(
     OPTIONS.TASKS.BUILD.SCRIPTS,
-    OPTIONS.TASKS.BUILD.SERVER,
     OPTIONS.TASKS.BUILD.STYLES,
     OPTIONS.TASKS.MARKUP
 );
