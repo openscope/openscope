@@ -195,7 +195,25 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'katl',
             level: 'hard',
+            name: 'Hartsfield–Jackson Atlanta Int\'l',
+            premium: false
+        },
+        {
+            icao: 'atl1',
+            level: 'hard',
             name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 7 MIT',
+            premium: false
+        },
+        {
+            icao: 'atl2',
+            level: 'hard',
+            name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 9 MIT',
+            premium: false
+        },
+        {
+            icao: 'atl3',
+            level: 'hard',
+            name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 12 MIT',
             premium: false
         // },
         // {
@@ -214,6 +232,30 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     icao: 'kcvg',
         //     level: 'beginner',
         //     name: 'Cincinnati-Northern Kentucky International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kdca',
+        //     level: 'easy',
+        //     name: 'Ronald Reagan Washington National Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kaus',
+        //     level: 'easy',
+        //     name: 'Austin-Bergstrom International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kbos',
+        //     level: 'hard',
+        //     name: 'Boston Logan International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kcvg',
+        //     level: 'beginner',
+        //     name: 'Cincinnati-Northern Kentucky Int\'l Airport',
         //     premium: false
         // },
         // {
