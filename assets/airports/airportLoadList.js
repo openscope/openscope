@@ -54,12 +54,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      * @final
      */
     return [
-        {
-            icao: 'cyhz',
-            level: 'beginner',
-            name: 'Halifax Stanfield International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'cyhz',
+        //     level: 'beginner',
+        //     name: 'Halifax Stanfield International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'cyow',
         //     level: 'easy',
@@ -72,42 +72,42 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Brussels-National',
         //     premium: false
         // },
-        {
-            icao: 'eddf',
-            level: 'hard',
-            name: 'Frankfurt Main Airport',
-            premium: false
-        },
-        {
-            icao: 'eddh',
-            level: 'beginner',
-            name: 'Hamburg Airport',
-            premium: false
-        },
-        {
-            icao: 'eddl',
-            level: 'hard',
-            name: 'Düsseldorf Airport',
-            premium: false
-        },
-        {
-            icao: 'eddm',
-            level: 'hard',
-            name: 'Munich Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'eddf',
+        //     level: 'hard',
+        //     name: 'Frankfurt Main Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'eddh',
+        //     level: 'beginner',
+        //     name: 'Hamburg Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'eddl',
+        //     level: 'hard',
+        //     name: 'Düsseldorf Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'eddm',
+        //     level: 'hard',
+        //     name: 'Munich Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'eddt',
         //     level: 'medium',
         //     name: 'Berlin Tegel Airport',
         //     premium: false
         // },
-        {
-            icao: 'egcc',
-            level: 'easy',
-            name: 'Manchester Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'egcc',
+        //     level: 'easy',
+        //     name: 'Manchester Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'eggw',
         //     level: 'easy',
@@ -132,48 +132,48 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'London Heathrow Airport',
         //     premium: false
         // },
-        {
-            icao: 'egnm',
-            level: 'beginner',
-            name: 'Leeds Bradford Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'egnm',
+        //     level: 'beginner',
+        //     name: 'Leeds Bradford Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'eham',
         //     level: 'medium',
         //     name: 'Amsterdam Airport Schiphol',
         //     premium: false
         // },
-        {
-            icao: 'eick',
-            level: 'beginner',
-            name: 'Cork Airport',
-            premium: false
-        },
-        {
-            icao: 'eidw',
-            level: 'medium',
-            name: 'Dublin Airport',
-            premium: false
-        },
-        {
-            icao: 'einn',
-            level: 'beginner',
-            name: 'Shannon Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'eick',
+        //     level: 'beginner',
+        //     name: 'Cork Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'eidw',
+        //     level: 'medium',
+        //     name: 'Dublin Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'einn',
+        //     level: 'beginner',
+        //     name: 'Shannon Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'ekch',
         //     level: 'medium',
         //     name: 'Copenhagen Kastrup Airport',
         //     premium: false
         // },
-        {
-            icao: 'engm',
-            level: 'easy',
-            name: 'Oslo Gardermoen Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'engm',
+        //     level: 'easy',
+        //     name: 'Oslo Gardermoen Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'espa',
         //     level: 'easy',
@@ -186,42 +186,42 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Lanzarote Airport',
         //     premium: false
         // },
-        {
-            icao: 'kabq',
-            level: 'beginner',
-            name: 'Albuquerque International Sunport',
-            premium: false
-        },
+        // {
+        //     icao: 'kabq',
+        //     level: 'beginner',
+        //     name: 'Albuquerque International Sunport',
+        //     premium: false
+        // },
         {
             icao: 'katl',
             level: 'hard',
-            name: 'Hartsfield–Jackson Atlanta International Airport',
+            name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 7 MIT',
             premium: false
-        },
-        {
-            icao: 'kaus',
-            level: 'easy',
-            name: 'Austin-Bergstrom International Airport',
-            premium: false
-        },
-        {
-            icao: 'kbos',
-            level: 'hard',
-            name: 'Boston Logan International Airport',
-            premium: false
-        },
-        {
-            icao: 'kcvg',
-            level: 'beginner',
-            name: 'Cincinnati-Northern Kentucky International Airport',
-            premium: false
-        },
-        {
-            icao: 'kdca',
-            level: 'easy',
-            name: 'Ronald Reagan Washington National Airport',
-            premium: false
-        },
+        // },
+        // {
+        //     icao: 'kaus',
+        //     level: 'easy',
+        //     name: 'Austin-Bergstrom International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kbos',
+        //     level: 'hard',
+        //     name: 'Boston Logan International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kcvg',
+        //     level: 'beginner',
+        //     name: 'Cincinnati-Northern Kentucky International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kdca',
+        //     level: 'easy',
+        //     name: 'Ronald Reagan Washington National Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'kdfw',
         //     level: 'hard',
@@ -234,60 +234,60 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Detroit Metropolitan Wayne County Airport',
         //     premium: false
         // },
-        {
-            icao: 'kelp',
-            level: 'easy',
-            name: 'El Paso International Airport',
-            premium: false
-        },
-        {
-            icao: 'kgso',
-            level: 'easy',
-            name: 'Piedmont Triad International Airport',
-            premium: false
-        },
-        {
-            icao: 'kiad',
-            level: 'hard',
-            name: 'Washington Dulles International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'kelp',
+        //     level: 'easy',
+        //     name: 'El Paso International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kgso',
+        //     level: 'easy',
+        //     name: 'Piedmont Triad International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kiad',
+        //     level: 'hard',
+        //     name: 'Washington Dulles International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'kjax',
         //     level: 'easy',
         //     name: 'Jacksonville International Airport',
         //     premium: false
         // },
-        {
-            icao: 'kjfk',
-            level: 'hard',
-            name: 'John F. Kennedy International Airport',
-            premium: false
-        },
-        {
-            icao: 'klas',
-            level: 'hard',
-            name: 'Las Vegas McCarran International Airport',
-            premium: false
-        },
-        {
-            icao: 'klax',
-            level: 'hard',
-            name: 'Los Angeles International Airport',
-            premium: false
-        },
-        {
-            icao: 'kmci',
-            level: 'beginner',
-            name: 'Kansas City International Airport',
-            premium: false
-        },
-        {
-            icao: 'kmia',
-            level: 'hard',
-            name: 'Miami International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'kjfk',
+        //     level: 'hard',
+        //     name: 'John F. Kennedy International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'klas',
+        //     level: 'hard',
+        //     name: 'Las Vegas McCarran International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'klax',
+        //     level: 'hard',
+        //     name: 'Los Angeles International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kmci',
+        //     level: 'beginner',
+        //     name: 'Kansas City International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kmia',
+        //     level: 'hard',
+        //     name: 'Miami International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'kmsp',
         //     level: 'hard',
@@ -300,36 +300,36 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Chicago O\'Hare International Airport',
         //     premium: false
         // },
-        {
-            icao: 'kpdx',
-            level: 'easy',
-            name: 'Portland International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'kpdx',
+        //     level: 'easy',
+        //     name: 'Portland International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'kphx',
         //     level: 'easy',
         //     name: 'Phoenix Sky Harbor International Airport',
         //     premium: false
         // },
-        {
-            icao: 'kpit',
-            level: 'beginner',
-            name: 'Pittsburgh International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'kpit',
+        //     level: 'beginner',
+        //     name: 'Pittsburgh International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'kpvd',
         //     level: 'beginner',
         //     name: 'Theodore Francis Green Memorial State Airport',
         //     premium: false
         // },
-        {
-            icao: 'krdu',
-            level: 'easy',
-            name: 'Raleigh–Durham International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'krdu',
+        //     level: 'easy',
+        //     name: 'Raleigh–Durham International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'ksdf',
         //     level: 'easy',
@@ -342,24 +342,24 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'San Diego International Airport',
         //     premium: false
         // },
-        {
-            icao: 'ksea',
-            level: 'hard',
-            name: 'Seattle-Tacoma International Airport',
-            premium: false
-        },
-        {
-            icao: 'ksfo',
-            level: 'hard',
-            name: 'San Francisco International Airport',
-            premium: false
-        },
-        {
-            icao: 'kstl',
-            level: 'medium',
-            name: 'St. Louis Lambert International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'ksea',
+        //     level: 'hard',
+        //     name: 'Seattle-Tacoma International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'ksfo',
+        //     level: 'hard',
+        //     name: 'San Francisco International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'kstl',
+        //     level: 'medium',
+        //     name: 'St. Louis Lambert International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'ktpa',
         //     level: 'easy',
@@ -372,42 +372,42 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Tucson International Airport',
         //     premium: false
         // },
-        {
-            icao: 'lipz',
-            level: 'easy',
-            name: 'Venice Marco Polo Airport',
-            premium: false
-        },
-        {
-            icao: 'lkpr',
-            level: 'easy',
-            name: 'Václav Havel Airport Prague',
-            premium: false
-        },
-        {
-            icao: 'loww',
-            level: 'easy',
-            name: 'Vienna Schwechat International Airport',
-            premium: false
-        },
-        {
-            icao: 'lrop',
-            level: 'medium',
-            name: 'Bucharest Henri Coandă Airport',
-            premium: false
-        },
-        {
-            icao: 'lszh',
-            level: 'medium',
-            name: 'Zürich Airport',
-            premium: false
-        },
-        {
-            icao: 'ltba',
-            level: 'hard',
-            name: 'Istanbul Atatürk International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'lipz',
+        //     level: 'easy',
+        //     name: 'Venice Marco Polo Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'lkpr',
+        //     level: 'easy',
+        //     name: 'Václav Havel Airport Prague',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'loww',
+        //     level: 'easy',
+        //     name: 'Vienna Schwechat International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'lrop',
+        //     level: 'medium',
+        //     name: 'Bucharest Henri Coandă Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'lszh',
+        //     level: 'medium',
+        //     name: 'Zürich Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'ltba',
+        //     level: 'hard',
+        //     name: 'Istanbul Atatürk International Airport',
+        //     premium: false
+        // },
         // },
         // {
         //     icao: 'mdsd',
@@ -415,30 +415,30 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Aeropuerto Internacional Las Américas',
         //     premium: false
         // },
-        {
-            icao: 'omaa',
-            level: 'easy',
-            name: 'Abu Dhabi International Airport',
-            premium: false
-        },
-        {
-            icao: 'omdb',
-            level: 'hard',
-            name: 'Dubai International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'omaa',
+        //     level: 'easy',
+        //     name: 'Abu Dhabi International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'omdb',
+        //     level: 'hard',
+        //     name: 'Dubai International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'osdi',
         //     level: 'easy',
         //     name: 'Damascus International Airport',
         //     premium: false
         // },
-        {
-            icao: 'othh',
-            level: 'easy',
-            name: 'Doha Hamad International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'othh',
+        //     level: 'easy',
+        //     name: 'Doha Hamad International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'panc',
         //     level: 'easy',
@@ -457,12 +457,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Tokyo Narita International Airport',
         //     premium: false
         // },
-        {
-            icao: 'rjss',
-            level: 'beginner',
-            name: 'Sendai Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'rjss',
+        //     level: 'beginner',
+        //     name: 'Sendai Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'rjtt',
         //     level: 'hard',
@@ -475,24 +475,24 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Incheon International Airport',
         //     premium: false
         // },
-        {
-            icao: 'saez',
-            level: 'easy',
-            name: 'Ezeiza Ministro Pistarini International Airport',
-            premium: false
-        },
-        {
-            icao: 'same',
-            level: 'beginner',
-            name: 'Mendoza El Plumerillo International Airport',
-            premium: false
-        },
-        {
-            icao: 'sawh',
-            level: 'beginner',
-            name: 'Malvinas Argentinas Ushuaia International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'saez',
+        //     level: 'easy',
+        //     name: 'Ezeiza Ministro Pistarini International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'same',
+        //     level: 'beginner',
+        //     name: 'Mendoza El Plumerillo International Airport',
+        //     premium: false
+        // },
+        // {
+        //     icao: 'sawh',
+        //     level: 'beginner',
+        //     name: 'Malvinas Argentinas Ushuaia International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'sbgl',
         //     level: 'beginner',
@@ -505,23 +505,23 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Aeroporto Internacional São Paulo-Guarulhos',
         //     premium: false
         // },
-        {
-            icao: 'sumu',
-            level: 'beginner',
-            name: 'Montevideo Carrasco International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'sumu',
+        //     level: 'beginner',
+        //     name: 'Montevideo Carrasco International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'tjsj',
         //     level: 'easy',
         //     name: 'Luis Muñoz Marín International Airport',
         //     premium: false
         // },
-        {
-            icao: 'tncm',
-            level: 'beginner',
-            name: 'Princess Juliana International Airport',
-            premium: false
+        // {
+        //     icao: 'tncm',
+        //     level: 'beginner',
+        //     name: 'Princess Juliana International Airport',
+        //     premium: false
         // },
         // {
         //     icao: 'uudd',
