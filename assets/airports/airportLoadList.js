@@ -199,19 +199,19 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
-            icao: 'atl1',
+            icao: '1atl',
             level: 'hard',
             name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 7 MIT',
             premium: false
         },
         {
-            icao: 'atl2',
+            icao: '2atl',
             level: 'hard',
             name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 9 MIT',
             premium: false
         },
         {
-            icao: 'atl3',
+            icao: '3atl',
             level: 'hard',
             name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 12 MIT',
             premium: false

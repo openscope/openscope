@@ -109,4 +109,4 @@ export const AIRPORT_CONTROL_POSITION_NAME = {
  * @type {string}
  * @final
  */
-export const DEFAULT_AIRPORT_ICAO = 'atl1';
+export const DEFAULT_AIRPORT_ICAO = '1atl';

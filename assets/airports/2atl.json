@@ -4,7 +4,7 @@
         "app": "Atlanta Approach",
         "dep": "Atlanta Departure"
     },
-    "icao": "ATL3",
+    "icao": "2ATL",
     "iata": "ATL",
     "magnetic_north": -4.9,
     "ctr_radius": 80,
@@ -406,16 +406,16 @@
             "icao": "ATL9",
             "name": "Atlanta Nine",
             "rwy": {
-                "ATL38L": ["#095"],
-                "ATL38R": ["#095"],
-                "ATL39L": ["#095"],
-                "ATL39R": ["#095"],
-                "ATL310": ["#095"],
-                "ATL326L": ["#275"],
-                "ATL326R": ["#275"],
-                "ATL327L": ["#275"],
-                "ATL327R": ["#275"],
-                "ATL328": ["#275"]
+                "2ATL8L": ["#095"],
+                "2ATL8R": ["#095"],
+                "2ATL9L": ["#095"],
+                "2ATL9R": ["#095"],
+                "2ATL10": ["#095"],
+                "2ATL26L": ["#275"],
+                "2ATL26R": ["#275"],
+                "2ATL27L": ["#275"],
+                "2ATL27R": ["#275"],
+                "2ATL28": ["#275"]
             },
             "body": [],
             "exitPoints": {
@@ -443,16 +443,16 @@
             "icao": "BANNG2",
             "name": "Bang Two",
             "rwy": {
-                "ATL38L": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
-                "ATL38R": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"]],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"]],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"]],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
+                "2ATL8L": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL8R": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
             },
             "body": ["BANNG"],
             "exitPoints": {
@@ -472,16 +472,16 @@
             "icao": "CUTTN2",
             "name": "Cotton Two",
             "rwy": {
-                "ATL38L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL38R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
-                "ATL327L": ["SLAWW", "WESEK"],
-                "ATL327R": ["SLAWW", "WESEK"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", "SOTRE"]
+                "2ATL8L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL8R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
+                "2ATL27L": ["SLAWW", "WESEK"],
+                "2ATL27R": ["SLAWW", "WESEK"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", "SOTRE"]
             },
             "body": ["CUTTN"],
             "exitPoints": {
@@ -499,16 +499,16 @@
             "icao": "GAIRY2",
             "name": "Gary Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", "IGEBE"],
-                "ATL38R": ["_RWY08RRONII082", "RONII", "IGEBE"],
-                "ATL39L": ["LIDAS", "ERWIN"],
-                "ATL39R": ["LIDAS", "ERWIN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG"],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG"],
-                "ATL327L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
-                "ATL327R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", "IGEBE"],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", "IGEBE"],
+                "2ATL9L": ["LIDAS", "ERWIN"],
+                "2ATL9R": ["LIDAS", "ERWIN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG"],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG"],
+                "2ATL27L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
+                "2ATL27R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
             },
             "body": ["GAIRY"],
             "exitPoints": {
@@ -527,16 +527,16 @@
             "icao": "HAALO2",
             "name": "Haylo Two",
             "rwy": {
-                "ATL38L": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
-                "ATL38R": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"]],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"]],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"]],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
+                "2ATL8L": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL8R": ["SKNNR", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"]],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
             },
             "body": ["HAALO"],
             "exitPoints": {
@@ -552,16 +552,16 @@
             "icao": "JACCC2",
             "name": "Jack Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", "IGEBE"],
-                "ATL38R": ["_RWY08RRONII082", "RONII", "IGEBE"],
-                "ATL39L": ["LIDAS", "ERWIN"],
-                "ATL39R": ["LIDAS", "ERWIN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG"],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG"],
-                "ATL327L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
-                "ATL327R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", "IGEBE"],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", "IGEBE"],
+                "2ATL9L": ["LIDAS", "ERWIN"],
+                "2ATL9R": ["LIDAS", "ERWIN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG"],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG"],
+                "2ATL27L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
+                "2ATL27R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
             },
             "body": ["JACCC"],
             "exitPoints": {
@@ -580,16 +580,16 @@
             "icao": "KAJIN2",
             "name": "Cajun Two",
             "rwy": {
-                "ATL38L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL38R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
-                "ATL327L": ["SLAWW", "WESEK"],
-                "ATL327R": ["SLAWW", "WESEK"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", "SOTRE"]
+                "2ATL8L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL8R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
+                "2ATL27L": ["SLAWW", "WESEK"],
+                "2ATL27R": ["SLAWW", "WESEK"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", "SOTRE"]
             },
             "body": ["KAJIN"],
             "exitPoints": {
@@ -607,16 +607,16 @@
             "icao": "NASSA2",
             "name": "Nasa Two",
             "rwy": {
-                "ATL38L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL38R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
-                "ATL327L": ["SLAWW", "WESEK"],
-                "ATL327R": ["SLAWW", "WESEK"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", "SOTRE"]
+                "2ATL8L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL8R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
+                "2ATL27L": ["SLAWW", "WESEK"],
+                "2ATL27R": ["SLAWW", "WESEK"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", "SOTRE"]
             },
             "body": ["NASSA", "ENGNR"],
             "exitPoints": {
@@ -639,16 +639,16 @@
             "icao": "PADGT2",
             "name": "Padget Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"], "GRABA"],
-                "ATL38R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"], "GRABA"],
-                "ATL39L": ["PICKT", "RONII", ["HOYYT", "S250"], "GRABA"],
-                "ATL39R": ["PICKT", "RONII", ["HOYYT", "S250"], "GRABA"],
-                "ATL310": ["PICKT", "RONII", ["HOYYT", "S250"], "GRABA"],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"]],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"]],
-                "ATL327L": ["CPARK", "MPASS", ["ZELAN", "S250"]],
-                "ATL327R": ["CPARK", "MPASS", ["ZELAN", "S250"]],
-                "ATL328": ["CPARK", "MPASS", ["ZELAN", "S250"]]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"], "GRABA"],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"], "GRABA"],
+                "2ATL9L": ["PICKT", "RONII", ["HOYYT", "S250"], "GRABA"],
+                "2ATL9R": ["PICKT", "RONII", ["HOYYT", "S250"], "GRABA"],
+                "2ATL10": ["PICKT", "RONII", ["HOYYT", "S250"], "GRABA"],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"]],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"]],
+                "2ATL27L": ["CPARK", "MPASS", ["ZELAN", "S250"]],
+                "2ATL27R": ["CPARK", "MPASS", ["ZELAN", "S250"]],
+                "2ATL28": ["CPARK", "MPASS", ["ZELAN", "S250"]]
             },
             "body": ["PADGT"],
             "exitPoints": {
@@ -664,16 +664,16 @@
             "icao": "PENCL2",
             "name": "Pencil Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"]],
-                "ATL38R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"]],
-                "ATL39L": ["PICKT", "RONII", ["HOYYT", "S250"]],
-                "ATL39R": ["PICKT", "RONII", ["HOYYT", "S250"]],
-                "ATL310": ["PICKT", "RONII", ["HOYYT", "S250"]],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL327L": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL327R": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL328": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"]],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"]],
+                "2ATL9L": ["PICKT", "RONII", ["HOYYT", "S250"]],
+                "2ATL9R": ["PICKT", "RONII", ["HOYYT", "S250"]],
+                "2ATL10": ["PICKT", "RONII", ["HOYYT", "S250"]],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL27L": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL27R": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL28": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"]
             },
             "body": ["PENCL", "LEDRR"],
             "exitPoints": {
@@ -690,16 +690,16 @@
             "icao": "PHIIL2",
             "name": "Phil Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", "IGEBE"],
-                "ATL38R": ["_RWY08RRONII082", "RONII", "IGEBE"],
-                "ATL39L": ["LIDAS", "ERWIN"],
-                "ATL39R": ["LIDAS", "ERWIN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG"],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG"],
-                "ATL327L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF", "MCKLS"],
-                "ATL327R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF", "MCKLS"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF", "MCKLS"]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", "IGEBE"],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", "IGEBE"],
+                "2ATL9L": ["LIDAS", "ERWIN"],
+                "2ATL9R": ["LIDAS", "ERWIN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG"],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG"],
+                "2ATL27L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF", "MCKLS"],
+                "2ATL27R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF", "MCKLS"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF", "MCKLS"]
             },
             "body": ["PHIIL"],
             "exitPoints": {
@@ -717,16 +717,16 @@
             "icao": "PLMMR2",
             "name": "Plummer Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", "IGEBE"],
-                "ATL38R": ["_RWY08RRONII082", "RONII", "IGEBE"],
-                "ATL39L": ["LIDAS", "ERWIN"],
-                "ATL39R": ["LIDAS", "ERWIN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG", "DLLNN"],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG", "DLLNN"],
-                "ATL327L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
-                "ATL327R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", "IGEBE"],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", "IGEBE"],
+                "2ATL9L": ["LIDAS", "ERWIN"],
+                "2ATL9R": ["LIDAS", "ERWIN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", "DDUBB"],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG", "DLLNN"],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG", "DLLNN"],
+                "2ATL27L": ["_RWY27LFUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
+                "2ATL27R": ["_RWY27RFUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
             },
             "body": ["PLMMR"],
             "exitPoints": {
@@ -744,16 +744,16 @@
             "icao": "POUNC2",
             "name": "Pounce Two",
             "rwy": {
-                "ATL38L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL38R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
-                "ATL327L": ["SLAWW", "WESEK"],
-                "ATL327R": ["SLAWW", "WESEK"],
-                "ATL328": ["_RWY28WLSON249", "WLSON", "SOTRE"]
+                "2ATL8L": ["_RWY08LHRSHL075", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL8R": ["_RWY08RHRSHL072", "HRSHL", ["KLEGG", "S250"], "COBBB"],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TYRNN"],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "BDODD"],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "BDODD"],
+                "2ATL27L": ["SLAWW", "WESEK"],
+                "2ATL27R": ["SLAWW", "WESEK"],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", "SOTRE"]
             },
             "body": ["POUNC"],
             "exitPoints": {
@@ -772,16 +772,16 @@
             "icao": "SMKEY2",
             "name": "Smokey Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"], "CUMON"],
-                "ATL38R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"], "CUMON"],
-                "ATL39L": ["PICKT", "RONII", ["HOYYT", "S250"], "CUMON"],
-                "ATL39R": ["PICKT", "RONII", ["HOYYT", "S250"], "CUMON"],
-                "ATL310": ["PICKT", "RONII", ["HOYYT", "S250"], "CUMON"],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"]],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"]],
-                "ATL327L": ["CPARK", "MPASS", ["ZELAN", "S250"]],
-                "ATL327R": ["CPARK", "MPASS", ["ZELAN", "S250"]],
-                "ATL328": ["CPARK", "MPASS", ["ZELAN", "S250"]]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"], "CUMON"],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"], "CUMON"],
+                "2ATL9L": ["PICKT", "RONII", ["HOYYT", "S250"], "CUMON"],
+                "2ATL9R": ["PICKT", "RONII", ["HOYYT", "S250"], "CUMON"],
+                "2ATL10": ["PICKT", "RONII", ["HOYYT", "S250"], "CUMON"],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"]],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"]],
+                "2ATL27L": ["CPARK", "MPASS", ["ZELAN", "S250"]],
+                "2ATL27R": ["CPARK", "MPASS", ["ZELAN", "S250"]],
+                "2ATL28": ["CPARK", "MPASS", ["ZELAN", "S250"]]
             },
             "body": ["SMKEY"],
             "exitPoints": {
@@ -796,16 +796,16 @@
             "icao": "SMLTZ2",
             "name": "Smelts Two",
             "rwy": {
-                "ATL38L": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL38R": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
+                "2ATL8L": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL8R": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
             },
             "body": ["SMLTZ"],
             "exitPoints": {
@@ -820,16 +820,16 @@
             "icao": "VARNM2",
             "name": "Varnem Two",
             "rwy": {
-                "ATL38L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"]],
-                "ATL38R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"]],
-                "ATL39L": ["PICKT", "RONII", ["HOYYT", "S250"]],
-                "ATL39R": ["PICKT", "RONII", ["HOYYT", "S250"]],
-                "ATL310": ["PICKT", "RONII", ["HOYYT", "S250"]],
-                "ATL326L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL326R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL327L": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL327R": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
-                "ATL328": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"]
+                "2ATL8L": ["_RWY08LRONII083", "RONII", ["HOYYT", "S250"]],
+                "2ATL8R": ["_RWY08RRONII082", "RONII", ["HOYYT", "S250"]],
+                "2ATL9L": ["PICKT", "RONII", ["HOYYT", "S250"]],
+                "2ATL9R": ["PICKT", "RONII", ["HOYYT", "S250"]],
+                "2ATL10": ["PICKT", "RONII", ["HOYYT", "S250"]],
+                "2ATL26L": ["_RWY26LMPASS300", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL26R": ["_RWY26RMPASS299", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL27L": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL27R": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
+                "2ATL28": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"]
             },
             "body": ["VARNM"],
             "exitPoints": {
@@ -845,16 +845,16 @@
             "icao": "VRSTY2",
             "name": "Varsity Two",
             "rwy": {
-                "ATL38L": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL38R": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL39L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL39R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL310": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TROFY"],
-                "ATL326L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL326R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL327R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
-                "ATL328": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
+                "2ATL8L": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL8R": ["SKNNR", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL9L": ["_RWY09LGRITZ115", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL9R": ["_RWY09RGRITZ111", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL10": ["_RWY10GRITZ105", "GRITZ", ["HYZMN", "S250"], "TROFY"],
+                "2ATL26L": ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL26R": ["_RWY26RSNUFY287", "SNUFY", "SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27L": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL27R": ["SLAWW", "RIGGZ", ["RIVTT", "S250"]],
+                "2ATL28": ["_RWY28WLSON249", "WLSON", ["ZALLE", "S250"]]
             },
             "body": ["VRSTY"],
             "exitPoints": {
@@ -869,10 +869,10 @@
             "icao": "WIGLE2",
             "name": "Wiggle Two",
             "rwy": {
-                "ATL38L": ["_RWY08LTUANN083", "TUANN"],
-                "ATL38R": ["_RWY08RTUANN082", "TUANN"],
-                "ATL39L": ["LIDAS"],
-                "ATL39R": ["LIDAS"]
+                "2ATL8L": ["_RWY08LTUANN083", "TUANN"],
+                "2ATL8R": ["_RWY08RTUANN082", "TUANN"],
+                "2ATL9L": ["LIDAS"],
+                "2ATL9R": ["LIDAS"]
             },
             "body": ["BEECE", "WIGLE"],
             "exitPoints": {
@@ -897,7 +897,7 @@
             "icao": "ZELAN4",
             "name": "Zelan Four",
             "rwy": {
-                "ATL327R": []
+                "2ATL27R": []
             },
             "body": ["^CPARK", "MPASS", ["ZELAN", "A60+|S250"]],
             "exitPoints": {
@@ -932,16 +932,16 @@
             },
             "body": [],
             "rwy": {
-                "ATL38L": [["CHPPR", "A130"], "MRCHH", ["^JAGRR", "A90"], "#180"],
-                "ATL38R": [["CHPPR", "A130"], "MRCHH", ["^JAGRR", "A90"], "#180"],
-                "ATL39L": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["RYENN", "A70+"], ["AAKAY", "A60+"]],
-                "ATL39R": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["ANDIY", "A70+"], ["DFINS", "A60+"]],
-                "ATL310": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["^DROYD", "A80"], "#180"],
-                "ATL326L": [["CHPPR", "A130"], "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
-                "ATL326R": [["CHPPR", "A130"], "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
-                "ATL327L": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
-                "ATL327R": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
-                "ATL328": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
+                "2ATL8L": [["CHPPR", "A130"], "MRCHH", ["^JAGRR", "A90"], "#180"],
+                "2ATL8R": [["CHPPR", "A130"], "MRCHH", ["^JAGRR", "A90"], "#180"],
+                "2ATL9L": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["RYENN", "A70+"], ["AAKAY", "A60+"]],
+                "2ATL9R": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["ANDIY", "A70+"], ["DFINS", "A60+"]],
+                "2ATL10": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["^DROYD", "A80"], "#180"],
+                "2ATL26L": [["CHPPR", "A130"], "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
+                "2ATL26R": [["CHPPR", "A130"], "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
+                "2ATL27L": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
+                "2ATL27R": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
+                "2ATL28": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
             },
             "draw": [
                 ["LEMKE*", "CHPPR", "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "KEAVY"],
@@ -965,16 +965,16 @@
             },
             "body": ["GLAVN", "STHRN"],
             "rwy": {
-                "ATL38L": [["YABBA", "A90"], ["NAVVY", "A80+"], ["LARII", "A50+"], ["JAAJJ", "A50+"]],
-                "ATL38R": [["YABBA", "A90"], ["NAVVY", "A80+"], ["GPEAT", "A50+"], ["PEARI", "A50+"]],
-                "ATL39L": [["YABBA", "A90"], ["NAVVY", "A80+"], ["RYENN", "A70+"], ["AAKAY", "A60+"]],
-                "ATL39R": [["YABBA", "A90"], ["NAVVY", "A80+"], ["ANDIY", "A70+"], ["DFINS", "A60+"]],
-                "ATL310": [["YABBA", "A90"], ["NAVVY", "A80+"], ["^DROYD", "A80"], "#180"],
-                "ATL326L": ["HOGGG", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
-                "ATL326R": ["HOGGG", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
-                "ATL327L": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
-                "ATL327R": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
-                "ATL328": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
+                "2ATL8L": [["YABBA", "A90"], ["NAVVY", "A80+"], ["LARII", "A50+"], ["JAAJJ", "A50+"]],
+                "2ATL8R": [["YABBA", "A90"], ["NAVVY", "A80+"], ["GPEAT", "A50+"], ["PEARI", "A50+"]],
+                "2ATL9L": [["YABBA", "A90"], ["NAVVY", "A80+"], ["RYENN", "A70+"], ["AAKAY", "A60+"]],
+                "2ATL9R": [["YABBA", "A90"], ["NAVVY", "A80+"], ["ANDIY", "A70+"], ["DFINS", "A60+"]],
+                "2ATL10": [["YABBA", "A90"], ["NAVVY", "A80+"], ["^DROYD", "A80"], "#180"],
+                "2ATL26L": ["HOGGG", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
+                "2ATL26R": ["HOGGG", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
+                "2ATL27L": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
+                "2ATL27R": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
+                "2ATL28": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
             },
             "draw": [
                 ["MGRIF*", "DENST", "AAARN", "GLAVN", "STHRN", "HOGGG", "RAIIN"],
@@ -1002,11 +1002,11 @@
             },
             "body": ["SMAWG", ["GNDLF", "A110+|S250"], ["HALRR", "A100+|S250"], ["SHULR", "A80"], "JNGLE", "^QUBIT", "#005"],
             "rwy": {
-                "ATL38L": [],
-                "ATL38R": [],
-                "ATL39L": [],
-                "ATL39R": [],
-                "ATL310": []
+                "2ATL8L": [],
+                "2ATL8R": [],
+                "2ATL9L": [],
+                "2ATL9R": [],
+                "2ATL10": []
             },
             "draw": [
                 ["DRSDN*", "SMAWG", "GNDLF", "HALRR", "SHULR", "JNGLE", "QUBIT"],
@@ -1038,11 +1038,11 @@
             },
             "body": [["SMAWG", "A170+"], ["HOBTT", "A140+"], ["ENSLL", "A120"]],
             "rwy": {
-                "ATL326L": ["RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
-                "ATL326R": ["RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
-                "ATL327L": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
-                "ATL327R": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
-                "ATL328": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
+                "2ATL26L": ["RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
+                "2ATL26R": ["RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
+                "2ATL27L": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
+                "2ATL27R": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
+                "2ATL28": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
             },
             "draw": [
                 ["SMAWG", "HOBTT", "ENSLL", "RAIIN"],
@@ -1073,11 +1073,11 @@
             },
             "body": [["JJEDI", "A100+|S250"], ["DAFII", "A80"], "GRHAM", "^POOBA", "#004"],
             "rwy": {
-                "ATL326L": [],
-                "ATL326R": [],
-                "ATL327L": [],
-                "ATL327R": [],
-                "ATL328": []
+                "2ATL26L": [],
+                "2ATL26R": [],
+                "2ATL27L": [],
+                "2ATL27R": [],
+                "2ATL28": []
             },
             "draw": [
                 ["LAYUH*", "FLKNN", "CHWEE", "JJEDI", "DAFII", "GRHAM", "POOBA"],
@@ -1101,16 +1101,16 @@
             },
             "body": ["LGC", "HONIE", "TIROE", "ATL"],
             "rwy": {
-                "ATL38L": [],
-                "ATL38R": [],
-                "ATL39L": [],
-                "ATL39R": [],
-                "ATL310": [],
-                "ATL326L": [],
-                "ATL326R": [],
-                "ATL327L": [],
-                "ATL327R": [],
-                "ATL328": []
+                "2ATL8L": [],
+                "2ATL8R": [],
+                "2ATL9L": [],
+                "2ATL9R": [],
+                "2ATL10": [],
+                "2ATL26L": [],
+                "2ATL26R": [],
+                "2ATL27L": [],
+                "2ATL27R": [],
+                "2ATL28": []
             },
             "draw": [
                 ["MGM*", "YARBE", "TIMMY", "LGC", "HONIE", "TIROE", "ATL"],
@@ -1132,16 +1132,16 @@
             },
             "body": ["STRWY"],
             "rwy": {
-                "ATL38L": [["ONDRE", "A130"], "SMELY", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
-                "ATL38R": [["ONDRE", "A130"], "SMELY", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
-                "ATL39L": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL39R": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL310": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL326L": [["ONDRE", "A130"], "SMELY", ["^VOLTS", "A90"], "#175"],
-                "ATL326R": [["ONDRE", "A130"], "SMELY", ["^VOLTS", "A90"], "#175"],
-                "ATL327L": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
-                "ATL327R": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
-                "ATL328": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
+                "2ATL8L": [["ONDRE", "A130"], "SMELY", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
+                "2ATL8R": [["ONDRE", "A130"], "SMELY", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
+                "2ATL9L": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL9R": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL10": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL26L": [["ONDRE", "A130"], "SMELY", ["^VOLTS", "A90"], "#175"],
+                "2ATL26R": [["ONDRE", "A130"], "SMELY", ["^VOLTS", "A90"], "#175"],
+                "2ATL27L": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "2ATL27R": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
+                "2ATL28": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
             },
             "draw": [
                 ["STRWY*", "ONDRE", "SMELY", "ANVAL", "POSEY", "BLUFF"],
@@ -1168,16 +1168,16 @@
             },
             "body": ["WINNG", "OZZZI", "HAARY"],
             "rwy": {
-                "ATL38L": ["KILRR", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
-                "ATL38R": ["KILRR", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
-                "ATL39L": ["KILRR", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL39R": ["KILRR", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL310": ["KILRR", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL326L": [["CALLA", "A90"], ["POSEY", "A80+"], ["JIRRI", "A50+"], ["BOYKN", "A50+"]],
-                "ATL326R": [["CALLA", "A90"], ["POSEY", "A80+"], ["ZELOW", "A50+"], ["HAINZ", "A50+"]],
-                "ATL327L": [["CALLA", "A90"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
-                "ATL327R": [["CALLA", "A90"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
-                "ATL328": [["CALLA", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
+                "2ATL8L": ["KILRR", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
+                "2ATL8R": ["KILRR", "GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
+                "2ATL9L": ["KILRR", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL9R": ["KILRR", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL10": ["KILRR", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL26L": [["CALLA", "A90"], ["POSEY", "A80+"], ["JIRRI", "A50+"], ["BOYKN", "A50+"]],
+                "2ATL26R": [["CALLA", "A90"], ["POSEY", "A80+"], ["ZELOW", "A50+"], ["HAINZ", "A50+"]],
+                "2ATL27L": [["CALLA", "A90"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "2ATL27R": [["CALLA", "A90"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
+                "2ATL28": [["CALLA", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
             },
             "draw": [
                 ["FLASK*", "YEOLD", "SCHUL", "TDUNN", "WLLSN", "MHONY"],
@@ -1200,16 +1200,16 @@
             },
             "body": ["RMG", "ERLIN", "DALAS", "ATL"],
             "rwy": {
-                "ATL38L": [],
-                "ATL38R": [],
-                "ATL39L": [],
-                "ATL39R": [],
-                "ATL310": [],
-                "ATL326L": [],
-                "ATL326R": [],
-                "ATL327L": [],
-                "ATL327R": [],
-                "ATL328": []
+                "2ATL8L": [],
+                "2ATL8R": [],
+                "2ATL9L": [],
+                "2ATL9R": [],
+                "2ATL10": [],
+                "2ATL26L": [],
+                "2ATL26R": [],
+                "2ATL27L": [],
+                "2ATL27R": [],
+                "2ATL28": []
             },
             "draw": [
                 ["BWG*", "DRAKK", "NEUTO", "RMG", "ERLIN", "DALAS", "ATL"],
@@ -1229,16 +1229,16 @@
             },
             "body": ["SINCA", "CANUK", "HUSKY", "ATL"],
             "rwy": {
-                "ATL38L": [],
-                "ATL38R": [],
-                "ATL39L": [],
-                "ATL39R": [],
-                "ATL310": [],
-                "ATL326L": [],
-                "ATL326R": [],
-                "ATL327L": [],
-                "ATL327R": [],
-                "ATL328": []
+                "2ATL8L": [],
+                "2ATL8R": [],
+                "2ATL9L": [],
+                "2ATL9R": [],
+                "2ATL10": [],
+                "2ATL26L": [],
+                "2ATL26R": [],
+                "2ATL27L": [],
+                "2ATL27R": [],
+                "2ATL28": []
             },
             "draw": [
                 ["IRQ*", "BEYLO", "SINCA", "CANUK", "HUSKY", "ATL"],
@@ -1262,11 +1262,11 @@
             },
             "body": [["SITTH", "A140+"], ["TIZZY", "A120"]],
             "rwy": {
-                "ATL38L": ["GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
-                "ATL38R": ["GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
-                "ATL39L": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL39R": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "ATL310": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"]
+                "2ATL8L": ["GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
+                "2ATL8R": ["GAASS", "KLOWD", "KUNFU", "TRAPE", "^SNEVE", "#275"],
+                "2ATL9L": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL9R": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
+                "2ATL10": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"]
             },
             "draw": [
                 ["LAYUH*", "SITTH", "TIZZY", "GAASS"],
@@ -1291,16 +1291,16 @@
             },
             "body": ["ODF", "RUBIE", "WHINZ", ["VICTU", "A40+"]],
             "rwy": {
-                "ATL38L": [],
-                "ATL38R": [],
-                "ATL39L": [],
-                "ATL39R": [],
-                "ATL310": [],
-                "ATL326L": [],
-                "ATL326R": [],
-                "ATL327L": [],
-                "ATL327R": [],
-                "ATL328": []
+                "2ATL8L": [],
+                "2ATL8R": [],
+                "2ATL9L": [],
+                "2ATL9R": [],
+                "2ATL10": [],
+                "2ATL26L": [],
+                "2ATL26R": [],
+                "2ATL27L": [],
+                "2ATL27R": [],
+                "2ATL28": []
             },
             "draw": [
                 ["SOT*", "ODF", "RUBIE", "WHINZ", "VICTU"],
@@ -1312,7 +1312,7 @@
     "spawnPatterns": [
         {
             "origin": "",
-            "destination": "ATL3",
+            "destination": "2ATL",
             "category": "arrival",
             "route": "ENSLL..EAGYL..SHURT..YURII",
             "altitude": 7000,
@@ -1336,7 +1336,7 @@
         },
         {
             "origin": "",
-            "destination": "ATL3",
+            "destination": "2ATL",
             "category": "arrival",
             "route": "STHRN..HOGGG..RAIIN..KEAVY",
             "altitude": 7000,
