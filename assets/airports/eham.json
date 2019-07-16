@@ -1,6 +1,6 @@
 {
     "radio": {
-        "twr": "Lagerhaus Tower",
+        "twr": "Schiphol Tower",
         "app": "Schiphol Approach",
         "dep": "Schiphol Departure"
     },
@@ -55,7 +55,11 @@
             ]
         }
     ],
+
+
     "fixes": {
+        "EHAM22": ["N52.29310052419", "E004.77315165612"],
+        
         "AMGOD": ["N52d58m30.79", "E003d41m07.40"],
         "ANDIK": ["N52d44m21.85", "E005d16m13.76"],
         "ARNEM": ["N52d05m47.21", "E006d04m35.77"],
@@ -226,6 +230,8 @@
         "WISPA": ["N52d39m57.34", "E004d22m19.84"],
         "WOODY": ["N51d24m20.38", "E004d21m59.33"]
     },
+
+
     "runways": [
         {
             "name": ["04", "22"],
@@ -276,12 +282,62 @@
             "glideslope": [3.00]
         }
     ],
+
+
     "sids": {
+        "ANDIK2E": {
+            "icao": "ANDIK2E",
+            "name": "Andik Two Echo",
+            "rwy": {
+                "EHAM18L": []
+            },
+            "body": ["EH037", "EH024", "PAM"],
+            "exitPoints": {
+                "ANDIK": ["ANDIK"]
+            },
+            "draw": [
+                ["EH037", "EH024", "PAM", "ANDIK"]
+            ]
+        },
+        "ANDIK2F": {
+            "icao": "ANDIK2F",
+            "name": "Andik Two Foxtrot",
+            "rwy": {
+                "EHAM04": []
+            },
+            "body": ["EH019", "EH020", "EH043"],
+            "exitPoints": {
+                "ANDIK": ["ANDIK"]
+            },
+            "draw": [
+                ["EH019", "EH020", "EH043", "ANDIK"]
+            ]
+        },
+        "ANDIK2G": {
+            "icao": "ANDIK2G",
+            "name": "Andik Two Golf",
+            "rwy": {
+                "EHAM22": []
+            },
+            "body": ["EH019", "EH020", "EH043"],
+            "exitPoints": {
+                "ANDIK": ["ANDIK"]
+            },
+            "draw": [
+                ["EH019", "EH020", "EH043", "ANDIK"]
+            ]
+        },
     },
+
+    
     "stars": {
     },
+
+
     "spawnPatterns": [
-    ],    
+    ],   
+    
+    
     "maps": {
         "base": [
             ["N52d18m12", "E005d36m32", "N52d01m52", "E005d23m51"],
