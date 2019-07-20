@@ -466,6 +466,14 @@ export default class AircraftModel {
             speed: 0
         };
 
+        // TODO: Move all target properties here in order to utilize getters/setters
+        // this._targetAltitude = 0;
+        // this._targetAltitudeExpedite = false;
+        this._targetHeading = null;
+        this._targetGroundTrack = null;
+        // this._targetTurnDirection = null;
+        // this._targetIndicatedAirspeed = 0;
+
         /**
          * @for AircraftModel
          * @property model
@@ -526,6 +534,24 @@ export default class AircraftModel {
                 this.speed
             );
         }
+    }
+
+    get targetHeading() {
+        return this._targetHeading;
+    }
+
+    set targetHeading(heading) {
+        this._targetHeading = heading;
+        this._targetGroundTrack = null;
+    }
+
+    get targetGroundTrack() {
+        return this._targetGroundTrack;
+    }
+
+    set targetGroundTrack(groundTrack) {
+        this._targetGroundTrack = groundTrack;
+        this._targetHeading = null;
     }
 
     /**
@@ -616,7 +642,7 @@ export default class AircraftModel {
         this.destination = _get(data, 'destination', this.destination);
 
         this.target.altitude = this.altitude;
-        this.target.heading = this.heading;
+        this.targetHeading = this.heading;
         this.target.speed = this.speed;
 
         // This assumes and arrival spawns outside the airspace
@@ -1332,7 +1358,7 @@ export default class AircraftModel {
     updateTarget() {
         this.target.expedite = _defaultTo(this.fms.currentWaypoint.expedite, false);
         this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
-        this.target.heading = _defaultTo(this._calculateTargetedHeading(), this.target.heading);
+        this.targetHeading = _defaultTo(this._calculateTargetedHeading(), this.targetHeading);
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
 
         // TODO: this method may not be needed but could be leveraged for housekeeping if deemed appropriate
@@ -1349,7 +1375,7 @@ export default class AircraftModel {
                 // TODO: Is this needed?
                 // this.target.altitude = this.altitude;
                 // this.target.expedite = false;
-                // this.target.heading = this.heading;
+                // this.targetHeading = this.heading;
                 // this.target.speed = 0;
 
                 break;
@@ -1358,7 +1384,7 @@ export default class AircraftModel {
                 // TODO: Is this needed?
                 // this.target.altitude = this.altitude;
                 // this.target.expedite = false;
-                // this.target.heading = this.heading;
+                // this.targetHeading = this.heading;
                 // this.target.speed = 0;
 
                 break;
@@ -1367,7 +1393,7 @@ export default class AircraftModel {
                 // TODO: Is this needed?
                 // this.target.altitude = this.altitude;
                 // this.target.expedite = false;
-                // this.target.heading = this.heading;
+                // this.targetHeading = this.heading;
                 // this.target.speed = 0;
 
                 break;
@@ -1380,7 +1406,7 @@ export default class AircraftModel {
                 }
 
                 this.target.expedite = false;
-                this.target.heading = this.heading;
+                this.targetHeading = this.heading;
                 this.target.speed = this.model.speed.min;
 
                 if (this.mcp.heading === INVALID_NUMBER) {
@@ -2077,7 +2103,7 @@ export default class AircraftModel {
 
         if (distanceOnFinal_nm > 0) {
             const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runwayModel.positionModel);
-
+            
             return bearingFromAircaftToRunway;
         }
 
@@ -2252,19 +2278,19 @@ export default class AircraftModel {
      * @method updateAircraftTurnPhysics
      */
     updateAircraftTurnPhysics() {
-        if (this.isOnGround() || this.heading === this.target.heading) {
+        if (this.isOnGround() || this.heading === this.targetHeading) {
             this.target.turn = null;
 
             return;
         }
 
         const secondsElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
-        const angle_diff = angle_offset(this.target.heading, this.heading);
+        const angle_diff = angle_offset(this.targetHeading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
 
         // TODO: clean this up if possible, there is a lot of branching logic here
         if (abs(angle_diff) <= angle_change) {
-            this.heading = this.target.heading;
+            this.heading = this.targetHeading;
         } else if (this.target.turn) {
             if (this.target.turn === 'left') {
                 this.heading = radians_normalize(this.heading - angle_change);
