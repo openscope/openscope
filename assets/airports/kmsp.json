@@ -63,21 +63,41 @@
         "_MSP120007": ["N44d50.08", "W93d5.85"],
         "_MSP360007": ["N45d0.79", "W93d13.84"],
         "_RWY17BDOGG217": ["N44d50.12", "W93d13.62"],
-        "ABR": ["N45d25.04", "W098d22.12"],
+        "ABR"  : ["N45d25.04", "W098d22.12"],
         "BBERD": ["N43d19.58", "W094d28.88"],
         "BDOGG": ["N44d48.53", "W093d15.31"],
         "COULT": ["N44d33.40", "W092d12.51"],
         "DABOY": ["N41d53.32", "W094d27.57"],
+        "DLH"  : ["N46d48.13", "W092d12.17"],
         "DLL"  : ["N43d33.05", "W089d45.82"],
-        "DWN": ["N45d05.25", "W094d27.23"],
+        "DSM"  : ["N41d26.26", "W093d38.91"],
+        "DWN"  : ["N45d05.25", "W094d27.23"],
+        "FAR"  : ["N46d45.20", "W096d51.08"],
+        "FCM"  : ["N44d49.52", "W093d26.56"],
+        "FGT"  : ["N44d37.86", "W093d10.92"],
+        "FOD"  : ["N42d36.67", "W094d17.69"],
+        "FSD"  : ["N43d38.97", "W096d46.87"],
         "GEP"  : ["N45d08.74", "W093d22.39"],
+        "GRB"  : ["N44d33.31", "W088d11.69"],
         "HITTL": ["N44d34.94", "W093d27.80"],
+        "HOMUR": ["N45d25.09", "W094d04.61"],
+        "HRBEK": ["N45d18.87", "W093d48.42"],
         "HSTIN": ["N44d00.13", "W093d57.67"],
+        "HUSHH": ["N44d50.30", "W093d13.77"],
         "INUNE": ["N45d01.01", "W093d59.54"],
+        "KBREW": ["N45d35.06", "W094d30.89"],
         "LMFRY": ["N44d22.24", "W091d51.03"],
+        "MCI"  : ["N39d17.12", "W094d44.22"],
         "MNDEE": ["N44d44.25", "W093d19.41"],
+        "MSP"  : ["N44d53.79", "W93d14.19"],
         "NANCZ": ["N44d24.87", "W093d36.47"],
+        "ODI"  : ["N43d54.74", "W091d28.05"],
+        "ONL"  : ["N42d28.23", "W098d41.22"],
+        "OVR"  : ["N41d10.03", "W095d44.21"],
         "PRAMN": ["N44d40.05", "W093d23.39"],
+        "RAP"  : ["N43d58.56", "W103d00.74"],
+        "RST"  : ["N43d46.97", "W092d35.82"],
+        "STJ"  : ["N39d57.63", "W094d55.51"],
         "TAXEE": ["N44d42.15", "W092d29.56"],
         "YUPER": ["N43d11.53", "W094d08.42"],
         "ZZEEE": ["N42d06.35", "W095d24.23"]
@@ -174,6 +194,73 @@
                 ["_RWY17BDOGG217", "BDOGG", "MNDEE", "PRAMN", "HITTL", "NANCZ", "HSTIN", "YUPER", "DABOY*"],
                 ["HSTIN", "BBERD", "ZZEEE*"]
             ]
+        },
+        "KBREW1": {
+            "icao": "KBREW1",
+            "name": "K Brew 1",
+            "rwy": {
+                "KMSP4": ["#280"],
+                "KMSP12L": ["#090"],
+                "KMSP12R": ["#120"],
+                "KMSP17": ["#280"],
+                "KMSP22": ["#280"],
+                "KMSP30L": ["#280"],
+                "KMSP30R": ["#280"],
+                "KMSP35": ["#280"]
+            },
+            "body": ["GEP", "HRBEK", "HOMUR", ["KBREW", "A140+"]],
+            "exitPoints": {
+                "FAR": ["FAR"]
+            },
+            "draw": [
+                ["GEP", "HRBEK", "HOMUR", "KBREW", "FAR*"]
+            ]
+        },
+        "MEDOW4": {
+            "icao": "MEDOW4",
+            "name": "Meadow Lake Four",
+            "rwy": {
+                "KMSP17": ["HUSHH", "#245"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ABR": ["ABR"],
+                "DLH": ["DLH"],
+                "DLL": ["DLL"],
+                "DSM": ["DSM"],
+                "FAR": ["FAR"],
+                "FCM": ["FCM"],
+                "FGT": ["FGT"],
+                "FOD": ["FOD"],
+                "FSD": ["FSD"],
+                "GRB": ["GRB"],
+                "MCI": ["MCI"],
+                "ODI": ["ODI"],
+                "ONL": ["ONL"],
+                "OVR": ["OVR"],
+                "RAP": ["RAP"],
+                "RST": ["RST"],
+                "STJ": ["STJ"]
+            },
+            "draw": [
+                ["ABR*"],
+                ["DLH*"],
+                ["DLL*"],
+                ["DSM*"],
+                ["FAR*"],
+                ["FCM*"],
+                ["FGT*"],
+                ["FOD*"],
+                ["FSD*"],
+                ["GRB*"],
+                ["MCI*"],
+                ["ODI*"],
+                ["ONL*"],
+                ["OVR*"],
+                ["RAP*"],
+                ["RST*"],
+                []
+            ]
         }
 	},
 	"stars": {
@@ -184,17 +271,13 @@
             "origin": "KMSP",
             "destination": "",
             "category": "departure",
-            "route": "KMSP17.HSTIN4.DABOY",
-            "altitude": null,
-            "speed": null,
+            "route": "KMSP17.COULT7.DLL",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 25,
+            "rate": 0.18,
             "airlines": [
-                ["dal", 51],
-                ["skw", 10],
-                ["flg", 7],
-                ["aal", 6],
-                ["swa", 6]
+                ["aal/short", 4]
             ]
         }
     ],
