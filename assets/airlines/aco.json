@@ -1,0 +1,15 @@
+{
+    "icao": "aco",
+    "name": "Air Choice One",
+    "callsign": {
+        "name": "Weber",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C208", 12]
+        ]
+    }
+}

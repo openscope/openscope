@@ -19,7 +19,7 @@
         "speed": 9
     },
     "arrivalRunway": "12R",
-    "departureRunway": "12L",
+    "departureRunway": "17",
     "airspace": [
         {
     		"floor": 0,
@@ -64,42 +64,78 @@
         "_MSP360007": ["N45d0.79", "W93d13.84"],
         "_RWY17BDOGG217": ["N44d50.12", "W93d13.62"],
         "ABR"  : ["N45d25.04", "W098d22.12"],
+        "ALO"  : ["N42d33.39", "W092d23.94"],
+        "ARREX": ["N44d25.54", "W094d08.57"],
         "BBERD": ["N43d19.58", "W094d28.88"],
         "BDOGG": ["N44d48.53", "W093d15.31"],
+        "BOTNE": ["N44d56.05", "W094d01.52"],
+        "CLIKR": ["N44d44.98", "W093d21.36"],
+        "CORDY": ["N44d07.42", "W092d49.79"],
         "COULT": ["N44d33.40", "W092d12.51"],
         "DABOY": ["N41d53.32", "W094d27.57"],
         "DLH"  : ["N46d48.13", "W092d12.17"],
         "DLL"  : ["N43d33.05", "W089d45.82"],
+        "DOKTR": ["N44d15.48", "W092d55.35"],
         "DSM"  : ["N41d26.26", "W093d38.91"],
+        "DWIYT": ["N45d18.20", "W092d17.25"],
         "DWN"  : ["N45d05.25", "W094d27.23"],
+        "EYHUX": ["N42d26.13", "W095d01.16"],
         "FAR"  : ["N46d45.20", "W096d51.08"],
         "FCM"  : ["N44d49.52", "W093d26.56"],
         "FGT"  : ["N44d37.86", "W093d10.92"],
+        "FOBUG": ["N44d25.33", "W093d02.18"],
         "FOD"  : ["N42d36.67", "W094d17.69"],
         "FSD"  : ["N43d38.97", "W096d46.87"],
         "GEP"  : ["N45d08.74", "W093d22.39"],
+        "GOOLD": ["N42d57.52", "W094d42.85"],
         "GRB"  : ["N44d33.31", "W088d11.69"],
         "HITTL": ["N44d34.94", "W093d27.80"],
         "HOMUR": ["N45d25.09", "W094d04.61"],
         "HRBEK": ["N45d18.87", "W093d48.42"],
         "HSTIN": ["N44d00.13", "W093d57.67"],
+        "HUGIR": ["N44d42.07", "W093d36.95"],
         "HUSHH": ["N44d50.30", "W093d13.77"],
         "INUNE": ["N45d01.01", "W093d59.54"],
+        "JEDET": ["N44d27.68", "W092d43.68"],
+        "JURNY": ["N44d36.52", "W093d28.34"],
         "KBREW": ["N45d35.06", "W094d30.89"],
+        "KEYPR": ["N44d40.71", "W093d33.91"],
+        "KUUGL": ["N44d56.90", "W094d21.28"],
+        "LEINY": ["N45d02.27", "W097d36.67"],
         "LMFRY": ["N44d22.24", "W091d51.03"],
         "MCI"  : ["N39d17.12", "W094d44.22"],
+        "MCONL": ["N44d35.01", "W093d50.54"],
         "MNDEE": ["N44d44.25", "W093d19.41"],
-        "MSP"  : ["N44d53.79", "W93d14.19"],
+        "MSP"  : ["N44d53.79", "W093d14.19"],
         "NANCZ": ["N44d24.87", "W093d36.47"],
+        "OBH"  : ["N41d22.54", "W098d21.22"],
         "ODI"  : ["N43d54.74", "W091d28.05"],
         "ONL"  : ["N42d28.23", "W098d41.22"],
+        "ONTIJ": ["N43d17.86", "W094d30.77"],
+        "ORSKY": ["N43d40.19", "W094d13.38"],
+        "OTG"  : ["N43d38.82", "W095d34.92"],
         "OVR"  : ["N41d10.03", "W095d44.21"],
+        "PAGOZ": ["N45d11.29", "W094d17.26"],
+        "PEDLN": ["N44d12.16", "W093d48.02"],
         "PRAMN": ["N44d40.05", "W093d23.39"],
         "RAP"  : ["N43d58.56", "W103d00.74"],
         "RST"  : ["N43d46.97", "W092d35.82"],
+        "RUMLE": ["N44d25.28", "W093d37.47"],
+        "SCHEP": ["N44d14.84", "W094d28.73"],
+        "SIMJI": ["N42d49.56", "W094d47.52"],
+        "SLAYR": ["N44d25.10", "W094d08.88"],
+        "SMERF": ["N45d55.26", "W097d34.14"],
+        "SNINE": ["N45d15.11", "W092d39.05"],
         "STJ"  : ["N39d57.63", "W094d55.51"],
         "TAXEE": ["N44d42.15", "W092d29.56"],
+        "TEYOU": ["N43d17.50", "W096d16.42"],
+        "TODDO": ["N41d50.54", "W095d21.52"],
+        "TONCA": ["N44d54.96", "W093d38.03"],
+        "TTOSS": ["N43d55.70", "W095d05.52"],
+        "WLSTN": ["N45d28.44", "W091d00.92"],
         "YUPER": ["N43d11.53", "W094d08.42"],
+        "ZMBRO": ["N44d20.50", "W092d26.91"],
+        "ZOGAP": ["N45d05.28", "W093d52.55"],
         "ZZEEE": ["N42d06.35", "W095d24.23"]
     },
     "runways": [
@@ -216,6 +252,27 @@
                 ["GEP", "HRBEK", "HOMUR", "KBREW", "FAR*"]
             ]
         },
+        "LEINY6": {
+            "icao": "LEINY6",
+            "name": "LEINY6",
+            "rwy": {
+                "KMSP4": ["#280"],
+                "KMSP12L": ["#090"],
+                "KMSP12R": ["#120"],
+                "KMSP17": ["#280"],
+                "KMSP22": ["#280"],
+                "KMSP30L": ["#280"],
+                "KMSP30R": ["#280"],
+                "KMSP35": ["#280"]
+            },
+            "body": ["TONCA", "BOTNE", ["KUUGL", "A60+"]],
+            "exitPoints": {
+                "LEINY": ["LEINY"]
+            },
+            "draw": [
+                ["TONCA", "BOTNE", "KUUGL", "LEINY*"]
+            ]
+        },
         "MEDOW4": {
             "icao": "MEDOW4",
             "name": "Meadow Lake Four",
@@ -258,8 +315,203 @@
                 ["ONL*"],
                 ["OVR*"],
                 ["RAP*"],
-                ["RST*"],
-                []
+                ["RST*"]
+            ]
+        },
+        "MSP8": {
+            "icao": "MSP8",
+            "name": "Minneapolis Eight",
+            "rwy": {
+                "KMSP4": ["#045"],
+                "KMSP12L": [["_MSP105007", "A35+"], "#105"],
+                "KMSP12R": [["_MSP120007", "A35+"], "#120"],
+                "KMSP17": ["#120"],
+                "KMSP22": ["#360"],
+                "KMSP30L": [["_MSP360007", "A35+"], "#360"],
+                "KMSP30R": [["_MSP360007", "A35+"], "#360"],
+                "KMSP35": ["#360"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ABR": ["ABR"],
+                "DLH": ["DLH"],
+                "DLL": ["DLL"],
+                "DSM": ["DSM"],
+                "FAR": ["FAR"],
+                "FCM": ["FCM"],
+                "FGT": ["FGT"],
+                "FOD": ["FOD"],
+                "FSD": ["FSD"],
+                "GRB": ["GRB"],
+                "MCI": ["MCI"],
+                "ODI": ["ODI"],
+                "ONL": ["ONL"],
+                "OVR": ["OVR"],
+                "RAP": ["RAP"],
+                "RST": ["RST"],
+                "STJ": ["STJ"]
+            },
+            "draw": [
+                ["ABR*"],
+                ["DLH*"],
+                ["DLL*"],
+                ["DSM*"],
+                ["FAR*"],
+                ["FCM*"],
+                ["FGT*"],
+                ["FOD*"],
+                ["FSD*"],
+                ["GRB*"],
+                ["MCI*"],
+                ["ODI*"],
+                ["ONL*"],
+                ["OVR*"],
+                ["RAP*"],
+                ["RST*"]
+            ]
+        },
+        "ORSKY2": {
+            "icao": "ORSKY2",
+            "name": "Or Ski Two",
+            "rwy": {
+                "KMSP4": ["#045"],
+                "KMSP12L": [["_MSP105007", "A35+"], "#105"],
+                "KMSP12R": [["_MSP120007", "A35+"], "#120"],
+                "KMSP17": ["#120"],
+                "KMSP22": ["#360"],
+                "KMSP30L": [["_MSP360007", "A35+"], "#360"],
+                "KMSP30R": [["_MSP360007", "A35+"], "#360"],
+                "KMSP35": ["#360"]
+            },
+            "body": ["JURNY", "RUMLE", "PEDLN", "ORSKY"],
+            "exitPoints": {
+                "FOD": ["FOD"],
+                "OVR": ["ONTIJ", "GOOLD", "SIMJI", "EYHUX", "TODDO", "OVR"]
+            },
+            "draw": [
+                ["JURNY", "RUMLE", "PEDLN", "ORSKY", "FOD*"],
+                ["ORSKY", "ONTIJ", "GOOLD", "SIMJI", "EYHUX", "TODDO", "OVR*"]
+            ]
+        },
+        "RST1": {
+            "icao": "RST1",
+            "name": "Rochester One",
+            "rwy": {
+                "KMSP4": ["#280"],
+                "KMSP12L": ["#090"],
+                "KMSP12R": ["#120"],
+                "KMSP17": ["#280"],
+                "KMSP22": ["#280"],
+                "KMSP30L": ["#280"],
+                "KMSP30R": ["#280"],
+                "KMSP35": ["#280"]
+            },
+            "body": ["FGT", ["FOBUG", "A40+"], "DOKTR", "CORDY", "RST"],
+            "exitPoints": {
+                "ALO": ["ALO"]
+            },
+            "draw": [
+                ["FGT", "FOBUG", "DOKTR", "CORDY", "RST", "ALO*"]
+            ]
+        },
+        "SCHEP9": {
+            "icao": "SCHEP9",
+            "name": "Schep Nine",
+            "rwy": {
+                "KMSP4": ["#280"],
+                "KMSP12L": ["#090"],
+                "KMSP12R": ["#120"],
+                "KMSP17": ["#280"],
+                "KMSP22": ["#280"],
+                "KMSP30L": ["#280"],
+                "KMSP30R": ["#280"],
+                "KMSP35": ["#280"]
+            },
+            "body": ["HUGIR", "MCONL", ["ARREX", "A31+"], ["SCHEP", "A70+"], "OTG"],
+            "exitPoints": {
+                "OBH": ["OBH"],
+                "ONL": ["ONL"]
+            },
+            "draw": [
+                ["HUGIR", "MCONL", "ARREX", "SCHEP", "OTG", "OBH*"],
+                ["OTG", "ONL*"]
+            ]
+        },
+        "SLAYR4": {
+            "icao": "SLAYR4",
+            "name": "Slayer Four",
+            "rwy": {
+                "KMSP17": []
+            },
+            "body": ["_RWY17BDOGG217", "BDOGG", ["CLIKR", "A30+|A50-"], ["KEYPR", "A80+|A170-"], ["MCONL", "A110+|A170-"], "SLAYR", "TTOSS"],
+            "exitPoints": {
+                "TEYOU": ["TEYOU"]
+            },
+            "draw": [
+                ["_RWY17BDOGG217", "BDOGG", "CLIKR", "KEYPR", "MCONL", "SLAYR", "TTOSS", "TEYOU*"]
+            ]
+        },
+        "SMERF7": {
+            "icao": "SMERF7",
+            "name": "Smurf Seven",
+            "rwy": {
+                "KMSP4": ["#045"],
+                "KMSP12L": [["_MSP105007", "A35+"], "#105"],
+                "KMSP12R": [["_MSP120007", "A35+"], "#120"],
+                "KMSP17": ["#120"],
+                "KMSP22": ["#360"],
+                "KMSP30L": [["_MSP360007", "A35+"], "#360"],
+                "KMSP30R": [["_MSP360007", "A35+"], "#360"],
+                "KMSP35": ["#360"]
+            },
+            "body": [["ZOGAP", "A50+"], "PAGOZ"],
+            "exitPoints": {
+                "SMERF": ["SMERF"]
+            },
+            "draw": [
+                ["ZOGAP", "PAGOZ", "SMERF*"]
+            ]
+        },
+        "WLSTN7": {
+            "icao": "WLSTN7",
+            "name": "Walston Seven",
+            "rwy": {
+                "KMSP4": ["#280"],
+                "KMSP12L": ["#090"],
+                "KMSP12R": ["#120"],
+                "KMSP17": ["#280"],
+                "KMSP22": ["#280"],
+                "KMSP30L": ["#280"],
+                "KMSP30R": ["#280"],
+                "KMSP35": ["#280"]
+            },
+            "body": ["SNINE", "DWIYT", "WLSTN"],
+            "exitPoints": {
+                "GRB": ["GRB"]
+            },
+            "draw": [
+                ["SNINE", "DWIYT", "WLSTN", "GRB*"]
+            ]
+        },
+        "ZMBRO7": {
+            "icao": "ZMBRO7",
+            "name": "Zmbro Seven",
+            "rwy": {
+                "KMSP4": ["#280"],
+                "KMSP12L": ["#090"],
+                "KMSP12R": ["#120"],
+                "KMSP17": ["#280"],
+                "KMSP22": ["#280"],
+                "KMSP30L": ["#280"],
+                "KMSP30R": ["#280"],
+                "KMSP35": ["#280"]
+            },
+            "body": [["JEDET", "A40+"], "ZMBRO"],
+            "exitPoints": {
+                "ODI": ["ODI"]
+            },
+            "draw": [
+                ["JEDET", "ZMBRO", "ODI*"]
             ]
         }
 	},
@@ -275,9 +527,108 @@
             "altitude": "",
             "speed": "",
             "method": "random",
+            "rate": 0.41,
+            "airlines": [
+                ["aal/short", 7],
+                ["rpa", 3]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.ZMBRO7.ODI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["aal/short", 3]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.RST1.ALO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.33,
+            "airlines": [
+                ["aal/short", 1],
+                ["aco", 1],
+                ["asq", 2],
+                ["eny", 1],
+                ["rpa", 3]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.SCHEP9.ONL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
             "rate": 0.18,
             "airlines": [
-                ["aal/short", 4]
+                ["aal/short", 3],
+                ["skw", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.ORSKY2.OVR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.30,
+            "airlines": [
+                ["aal/short", 6],
+                ["asa", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.WLSTN7.GRB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.21,
+            "airlines": [
+                ["aal/short", 3],
+                ["aco", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP12R.WLSTN7.GRB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.04,
+            "airlines": [
+                ["afr/b772", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.DWN7.ABR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["asa", 3]
             ]
         }
     ],
