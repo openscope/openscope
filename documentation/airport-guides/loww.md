@@ -44,8 +44,7 @@ Aircraft descending into Vienna are funneled onto the ILS by RNAV transitions. E
 
 ### Sectors Available in openScope
 ```
-Wien Radar (Departure)
-Wien Radar (Approach)
+Wien Radar (Approach & Departure)
 Wien Director (Final Approach)
 ```
 
@@ -63,7 +62,7 @@ Runway 13/31, 950m (3117ft), Asphalt
 Runway 13/31 Grass, 650m (2132ft), Grass
 
 ##### LOXT - Tulln Brumowski Air Base
-Brumowski Air Base is located about 3 miles outside the town of Tulln and about 22 miles northeast of Vienna International Airport. It is an Austrian Air Force (German: Österreichische Luftstreitkräft) base and was opened in October of 1939. The base was under American control from 1945 to 1955, and was handed then over to the Austrian police, since Austria did not have an Air Force at the time.
+Brumowski Air Base is located about 3 miles outside the town of Tulln and about 22 miles northeast of Vienna International Airport. It is an Austrian Air Force (German: Österreichische Luftstreitkräft) base and was opened in October of 1939. The base was under American control from 1945 to 1955, and was then over to the Austrian police, since Austria did not have an Air Force at the time.
 
 Runway 08/26, 1400m (4593ft), Asphalt
 Runway 08R/26L, 930m (3050ft), Grass
@@ -73,7 +72,7 @@ Runway 05/23, 1000m (3280ft), Grass
 ##### LZIB - Bratislava M. R. Stefanik
 Bratislava Airport is the main international airport in Slovakia, and serves the capital Bratislava. The Airport first opened in 1951 and now serves as a hub for Ryanair and Smartwings Slovakia.
 
-Aircraft departing the airport westbound often cross through airspace controlled by Wien Radar. This is the case for many flights going to the UK, Spain or France.
+Aircraft departing the airport westbound cross through airspace controlled by Wien Radar. This is the case for some flights going to the UK, Spain or France.
 
 Runway 04/22, 2900m (9515ft), Concrete
 Runway 13/31, 3190m (10466ft), Concrete
@@ -90,4 +89,4 @@ The videomap also contains:
 
 
 ### Additional Resources and Charts
-[vACC Austria](https://www.vacc-austria.org/?page=content/chartlist&icao=LOWW)
+[AustroControl](https://eaip.austrocontrol.at/lo/190719/ad_2_loww.htm)
