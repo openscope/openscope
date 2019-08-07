@@ -231,6 +231,8 @@ export default class CanvasController {
      * @private
      */
     _setupHandlers() {
+        this._onSelectAircraftStripHandler = this._onSelectAircraftStrip.bind(this);
+        this._onDeselectAircraftStripHandler = this._onDeselectAircraftStrip.bind(this);
         this._onCenterPointInViewHandler = this._onCenterPointInView.bind(this);
         this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
         this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
@@ -256,6 +258,8 @@ export default class CanvasController {
      * @chainable
      */
     enable() {
+        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStripHandler);
+        this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectAircraftStripHandler);
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
@@ -281,6 +285,8 @@ export default class CanvasController {
      * @method disable
      */
     disable() {
+        this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStripHandler);
+        this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectAircraftStripHandler);
         this._eventBus.off(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
@@ -2403,6 +2409,13 @@ export default class CanvasController {
         this._shouldDeepRender = true;
 
         this._markShallowRender();
+    }
+
+    _onSelectAircraftStrip() {
+        this._markDeepRender();
+    }
+    _onDeselectAircraftStrip() {
+        this._markDeepRender();
     }
 
     /**
