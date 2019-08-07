@@ -1,4 +1,4 @@
-# 6.14.0 (July 1, 2019)
+# 6.14.0 (September 1, 2019)
 ### New Features
 
 
@@ -6,6 +6,7 @@
 
 
 ### Enhancements & Refactors
+- [#1410](https://github.com/openscope/openscope/issues/1410) - Restore functionality of local server from `npm run start`
 
 
 # 6.13.0 (June 1, 2019)
