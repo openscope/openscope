@@ -58,7 +58,12 @@
 
 
     "fixes": {
-        "EHAM22": ["N52.29310052419", "E004.77315165612"],
+        "_EHAM04": ["N52d18m01.34", "E004d47m00.54"],
+        "_EHAM22": ["N52d18m50.49", "E004d48m10.89"],
+
+        "_SPL103005": ["N52d18m53", "E004d52m32"],
+        "_SPL116004": ["N52d17m51", "E004d52m15"],
+        "_SPL135006": ["N52d15m47", "E004d51m51"],
         
         "AMGOD": ["N52d58m30.79", "E003d41m07.40"],
         "ANDIK": ["N52d44m21.85", "E005d16m13.76"],
@@ -175,6 +180,7 @@
         "INBAM": ["N52d21m11.20", "E005d15m10.74"],
         "IVLUT": ["N52d14m38.81", "E005d15m25.06"],
         "KUBAT": ["N53d20m11.00", "E006d59m37.00"],
+        "KUDAD": ["N51.667481", "E004.567614"],
         "LAMSO": ["N52d43m58.43", "E002d59m39.68"],
         "LANSU": ["N52d24m50.45", "E004d56m47.95"],
         "LARAS": ["N51d50m04.46", "E004d41m50.37"],
@@ -232,6 +238,36 @@
     },
 
 
+    
+    "_fixesV2": {
+        "SIDs": ["RWY04", "RWY22"],
+
+        "ANDIK": [],
+        "ARNEM": [],
+        "BERGI": [],
+        "EH019": [],
+        "EH020": [],
+        "EH036": [],
+        "EH043": [],
+        "EH059": [],
+        "EH060": [],
+        "EH061": [],
+        "EH072": [],
+        "EH090": [],
+        "EH091": [],
+        "EH094": [],
+        "IDRID": [],
+        "IVLUT": [],
+        "KUDAD": [],
+        "LEKKO": [],
+        "LOPIK": [],
+        "LUNIX": [],
+        "NYKER": [],
+        "OGINA": [],
+        "SPY":   [],
+        "VOLLA": []
+    },
+
     "runways": [
         {
             "name": ["04", "22"],
@@ -285,51 +321,107 @@
 
 
     "sids": {
-        "ANDIK2E": {
-            "icao": "ANDIK2E",
-            "name": "Andik Two Echo",
-            "rwy": {
-                "EHAM18L": []
-            },
-            "body": ["EH037", "EH024", "PAM"],
-            "exitPoints": {
-                "ANDIK": ["ANDIK"]
-            },
-            "draw": [
-                ["EH037", "EH024", "PAM", "ANDIK"]
-            ]
-        },
         "ANDIK2F": {
             "icao": "ANDIK2F",
             "name": "Andik Two Foxtrot",
             "rwy": {
                 "EHAM04": []
             },
-            "body": ["EH019", "EH020", "EH043"],
+            "body": [["EH019", "S220-"], "EH020", "EH043"],
             "exitPoints": {
                 "ANDIK": ["ANDIK"]
             },
             "draw": [
-                ["EH019", "EH020", "EH043", "ANDIK"]
+                ["_EHAM22", "EH019", "EH020", "EH043", "ANDIK"]
             ]
         },
-        "ANDIK2G": {
-            "icao": "ANDIK2G",
-            "name": "Andik Two Golf",
+        "ARNEM2F": {
+            "icao": "ARNEM2F",
+            "name": "Arnem Two Foxtrot",
             "rwy": {
-                "EHAM22": []
+                "EHAM04": []
             },
-            "body": ["EH019", "EH020", "EH043"],
+            "body": [["_SPL103005", "S220-"], ["EH060", "S220-"], "IVLUT", "NYKER", "ELPAT"],
             "exitPoints": {
-                "ANDIK": ["ANDIK"]
+                "ARNEM": ["ARNEM"]
             },
             "draw": [
-                ["EH019", "EH020", "EH043", "ANDIK"]
+                ["_EHAM22", "_SPL103005", "EH060", "IVLUT", "NYKER", "ELPAT", "ARNEM"]
+            ]
+        },
+        "BERGI1F": {
+            "icao": "BERGI1F",
+            "name": "Bergi One Foxtrot",
+            "rwy": {
+                "EHAM04": []
+            },
+            "body": [["EH019", "S220-"], "SPY", "BERGI"],
+            "exitPoints": {
+                "BERGI": ["BERGI"]
+            },
+            "draw": [
+                ["_EHAM22", "EH019", "SPY", "BERGI"]
+            ]
+        },
+        "KUDAD1F": {
+            "icao": "KUDAD1F",
+            "name": "Kudad One Foxtrot",
+            "rwy": {
+                "EHAM04": []
+            },
+            "body": [["_SPL103005", "S220-"], "_SPL116004", "EH036", "EH072", "LEKKO"],
+            "exitPoints": {
+                "KUDAD": ["KUDAD"]
+            },
+            "draw": [
+                ["_EHAM22", "_SPL103005", "_SPL116004", "EH036", "EH072", "LEKKO", "KUDAD"]
+            ]
+        },
+        "LOPIK1F": {
+            "icao": "LOPIK1F",
+            "name": "Lopik One Foxtrot",
+            "rwy": {
+                "EHAM04": []
+            },
+            "body": ["_SPL103005", "_SPL116004", ["_SPL135006", "S220-"], "EH061", "OGINA"],
+            "exitPoints": {
+                "LOPIK": ["LOPIK"]
+            },
+            "draw": [
+                ["_EHAM22", "_SPL103005", "_SPL116004", "_SPL135006", "EH061", "OGINA", "LOPIK"]
+            ]
+        },
+        "RENDI1F": {
+            "icao": "RENDI1F",
+            "name": "Rendi One Foxtrot",
+            "rwy": {
+                "EHAM04": []
+            },
+            "body": ["_SPL103005", ["EH060", "S220-"], "IVLUT"],
+            "exitPoints": {
+                "RENDI": ["RENDI"]
+            },
+            "draw": [
+                ["_EHAM22", "_SPL103005", "EH060", "IVLUT", "RENDI"]
+            ]
+        },
+        "VOLLA1F": {
+            "icao": "VOLLA1F",
+            "name": "Volla One Foxtrot",
+            "rwy": {
+                "EHAM04": []
+            },
+            "body": [["EH019", "S220-"], "EH094", "EH090", "EH091", "VOLLA"],
+            "exitPoints": {
+                "IDRID": ["IDRID"]
+            },
+            "draw": [
+                ["_EHAM22", "_SPL103005", "EH060", "IVLUT", "VOLLA", "IDRID"]
             ]
         }
     },
 
-    
+
     "stars": {
     },
 
