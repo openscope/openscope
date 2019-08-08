@@ -767,7 +767,9 @@
             "exitPoints": {
                 "ADAMA": ["ADAMA"]
             },
-            "draw": [[]]
+            "draw": [
+                ["ADAMA"]
+            ]
         },
         "ADAMA2C": {
             "icao": "ADAMA2C",
@@ -840,7 +842,9 @@
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
-            "draw": [[]]
+            "draw": [
+                ["ARSIN"]
+            ]
         },
         "ARSIN1B": {
             "icao": "ARSIN1B",
@@ -928,7 +932,9 @@
             "exitPoints": {
                 "DITIS": ["DITIS"]
             },
-            "draw": [[]]
+            "draw": [
+                ["DITIS"]
+            ]
         },
         "DITIS2B": {
             "icao": "DITIS2B",
@@ -956,7 +962,9 @@
             "exitPoints": {
                 "DITIS": ["DITIS"]
             },
-            "draw": [[]]
+            "draw": [
+                ["DITIS"]
+            ]
         },
         "DITIS1C": {
             "icao": "DITIS1C",
@@ -1179,7 +1187,9 @@
             "exitPoints": {
                 "KOXER": ["KOXER"]
             },
-            "draw": [[]]
+            "draw": [
+                ["KOXER"]
+            ]
         },
         "KOXER1C": {
             "icao": "KOXER1C",
@@ -1237,7 +1247,9 @@
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
-            "draw": [[]]
+            "draw": [
+                ["LANUX"]
+            ]
         },
         "LANUX5B": {
             "icao": "LANUX5B",
@@ -1265,7 +1277,9 @@
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
-            "draw": [[]]
+            "draw": [
+                ["LANUX"]
+            ]
         },
         "LANUX2C": {
             "icao": "LANUX2C",
@@ -1323,7 +1337,9 @@
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
-            "draw": [[]]
+            "draw": [
+                ["LEDVA"]
+            ]
         },
         "LEDVA2B": {
             "icao": "LEDVA2B",
@@ -1351,7 +1367,9 @@
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
-            "draw": [[]]
+            "draw": [
+                ["LEDVA"]
+            ]
         },
         "LEDVA3C": {
             "icao": "LEDVA3C",
@@ -1409,7 +1427,9 @@
             "exitPoints": {
                 "LUGEM": ["LUGEM"]
             },
-            "draw": [[]]
+            "draw": [
+                ["LUGEM"]
+            ]
         },
         "LUGEM2B": {
             "icao": "LUGEM2B",
@@ -1482,7 +1502,9 @@
             "exitPoints": {
                 "MEDIX": ["MEDIX"]
             },
-            "draw": [[]]
+            "draw": [
+                ["MEDIX"]
+            ]
         },
         "MEDIX2B": {
             "icao": "MEDIX2B",
@@ -1645,7 +1667,9 @@
             "exitPoints": {
                 "OSPEN": ["OSPEN"]
             },
-            "draw": [[]]
+            "draw": [
+                ["OSPEN"]
+            ]
         },
         "OSPEN5B": {
             "icao": "OSPEN5B",
@@ -1748,7 +1772,9 @@
             "exitPoints": {
                 "RUPET": ["RUPET"]
             },
-            "draw": [[]]
+            "draw": [
+                ["RUPET"]
+            ]
         },
         "RUPET2B": {
             "icao": "RUPET2B",
@@ -1881,7 +1907,9 @@
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
-            "draw": [[]]
+            "draw": [
+                ["SOVIL"]
+            ]
         },
         "SOVIL2B": {
             "icao": "SOVIL2B",
@@ -1954,7 +1982,9 @@
             "exitPoints": {
                 "STEIN": ["STEIN"]
             },
-            "draw": [[]]
+            "draw": [
+                ["STEIN"]
+            ]
         },
         "STEIN4B": {
             "icao": "STEIN4B",
