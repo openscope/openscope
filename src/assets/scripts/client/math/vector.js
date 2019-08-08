@@ -96,6 +96,16 @@ export const vectorize2dFromRadians = (heading_angle) => {
         cos(heading_angle)
     ];
 };
+/**
+ * Alias of the vectorize_2d_from_radians
+ * Kept for backwards compatibility
+ *
+ * Get a 2D unit vector corresponding to a heading in radians
+ *
+ * @param  heading_angle    float    the heading angle, in radians
+ * @return array    an array of the x and y components of the vector
+ */
+export const vectorize_2d = vectorize_2d_from_radians;
 
 /**
  * Get a 2D unit vector corresponding to a heading in degrees

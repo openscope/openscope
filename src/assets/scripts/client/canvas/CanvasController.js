@@ -2230,20 +2230,31 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _toCanvasPosition
-     * @param positionFromScope     array   an array of the x and y componentsof a
+     * @param positionFromScope     array   an array of the x and y components of a
      *                                      position relative to the scope center
      */
     _toCanvasPosition(positionFromScope) {
-        // translate to kilometers and negate the y component of the given position
+        // positionFromScope is given in kilometers so it needs to be translated
+        // to pixels first
+        //
+        // use the opposite of the y component of the aircraft position because
+        // the vertical axes are not oriented in the same direction in the
+        // scope (aircraft) frame of reference versus the canvas frame of reference
         positionFromScope = [
             CanvasStageModel.translateKilometersToPixels(positionFromScope[0]),
             -CanvasStageModel.translateKilometersToPixels(positionFromScope[1])
         ];
 
+        // We want to compute a position relative to the canvas from a position relative to
+        // the scope. To do that, we will create a vector "vCanvasToScope" describing the
+        // position of the canvas relative to the scope, so we can simply add it to the
+        // given position to get our final result.
+
         // the position of the scope relative to the view (center of the canvas)
         const vViewToScope = [CanvasStageModel._panX, CanvasStageModel._panY];
-        // the position of the view relative to the canvas origin (top left corner)
+        // the position of the view relative to the canvas origin
         const vCanvasToView = [CanvasStageModel.halfWidth, CanvasStageModel.halfHeight];
+
         // the position of the scope relative to the canvas origin
         const vCanvasToScope = vadd(vCanvasToView, vViewToScope);
 
