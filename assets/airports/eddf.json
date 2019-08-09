@@ -2525,7 +2525,6 @@
             "airlines": [
                 ["aca/long", 1],
                 ["baw/short", 3],
-                ["bmr", 3],
                 ["cfg", 2],
                 ["dal/long", 3],
                 ["dlh", 81],
@@ -2546,7 +2545,6 @@
             "airlines": [
                 ["afr/short", 8],
                 ["baw/short", 3],
-                ["bmr", 3],
                 ["dlh", 81],
                 ["dlh/cityline", 27]
             ]
