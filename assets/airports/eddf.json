@@ -1,5 +1,5 @@
 {
-    "airac": 1906,
+    "airac": 1908,
     "radio": {
         "twr": "Frankfurt Tower",
         "app": "Langen Radar",
@@ -1363,6 +1363,34 @@
             },
             "draw": [
                 ["DF975", "DF976", "DF198", "ROSIG", "DONAB", "SOBRA"]
+            ]
+        },
+        "SOBRA1X": {
+            "icao": "SOBRA1X",
+            "name": "Sobra One X-Ray",
+            "rwy": {
+                "EDDF07C": []
+            },
+            "body": ["DF967", ["DF966", "S220-"], ["DF964", "S250-"], "DF157", ["ROSIG", "A90+"], "DONAB"],
+            "exitPoints": {
+                "SOBRA": ["SOBRA"]
+            },
+            "draw": [
+                ["DF967", "DF966", "DF964", "DF157", "ROSIG", "DONAB", "SOBRA"]
+            ]
+        },
+        "SOBRA1Y": {
+            "icao": "SOBRA1Y",
+            "name": "Sobra One Yankee",
+            "rwy": {
+                "EDDF07R": []
+            },
+            "body": [["DF960", "A10+"], "DF969", "DF967", ["DF966", "S220-"], ["DF964", "S250-"], "DF157", ["ROSIG", "A90+"], "DONAB"],
+            "exitPoints": {
+                "SOBRA": ["SOBRA"]
+            },
+            "draw": [
+                ["DF960", "DF969", "DF967", "DF966", "DF964", "DF157", "ROSIG", "DONAB", "SOBRA"]
             ]
         },
         "SOBRA5P": {
