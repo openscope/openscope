@@ -3,7 +3,6 @@
 
 
 ### Bugfixes
-- [#1418](https://github.com/openscope/openscope/issues/1418) - Fix invalid route in spawnPattern after #1388
 
 
 ### Enhancements & Refactors
