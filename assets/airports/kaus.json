@@ -1,5 +1,5 @@
 {
-    "airac": 1906,
+    "airac": 1908,
     "radio": {
         "twr": "Austin Tower",
         "app": "Austin Approach",
@@ -103,7 +103,6 @@
         "HOOKK": ["N30d21.60", "W97d12.18"],
         "HOOLR": ["N28d55.82", "W98d18.10"],
         "HOUKM": ["N30d25.74", "W97d45.15"],
-        "HUB"  : ["N29d39.34", "W95d16.60"],
         "IAH"  : ["N29d57.42", "W95d20.74"],
         "IDU"  : ["N29d57.36", "W96d33.73"],
         "ILEXY": ["N30d21.16", "W97d4.76"],
@@ -178,20 +177,20 @@
     },
     "runways": [
         {
-            "name": ["17R", "35L"],
+            "name": ["17L", "35R"],
             "end": [
-                ["N30d12.82", "W97d40.76", "541ft"],
-                ["N30d10.80", "W97d40.71", "487ft"]
+                ["N30d12.23", "W97d39.47", "491ft"],
+                ["N30d10.75", "W97d39.43", "473ft"]
            ],
             "ils": [true, true],
             "ils_distance": [25, 25],
             "loc_maxDist": [28, 28]
         },
         {
-            "name": ["17L", "35R"],
+            "name": ["17R", "35L"],
             "end": [
-                ["N30d12.23", "W97d39.47", "491ft"],
-                ["N30d10.75", "W97d39.43", "473ft"]
+                ["N30d12.82", "W97d40.76", "541ft"],
+                ["N30d10.80", "W97d40.71", "487ft"]
            ],
             "ils": [true, true],
             "ils_distance": [25, 25],
@@ -211,7 +210,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-            "body": ["AMUSE", "AEROZ"],
+            "body": [["AMUSE", "A50+"], "AEROZ"],
             "exitPoints": {
                 "SJT": ["SJT"]
             },
@@ -251,7 +250,7 @@
         },
         "BNDIA2": {
             "icao": "BNDIA2",
-            "name": "Ben Dia Two",
+            "name": "Buen Día Dos",
             "rwy": {
                 "KAUS17L": ["#175"],
                 "KAUS17R": ["#175"],
@@ -390,9 +389,8 @@
     "stars": {
         "BITER9": {
             "icao": "BITER9",
-            "name": "Biter Eight",
+            "name": "Biter Nine",
             "entryPoints": {
-                "HUB": ["HUB", "BOCCK"],
                 "IAH": ["IAH", "SHYNR", "BOCCK"],
                 "IDU": [],
                 "LFK": ["LFK", "BOCCK"]
@@ -405,7 +403,6 @@
                 "KAUS35R": []
             },
             "draw": [
-                ["HUB*", "BOCCK"],
                 ["IAH*", "SHYNR", "BOCCK", "IDU"],
                 ["IDU*", "WLEEE", "BITER", "ISHOV", "BASTO"],
                 ["LFK*", "BOCCK"]
