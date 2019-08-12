@@ -383,7 +383,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
-        return aircraft.pilot.maintainPresentHeading(aircraft.heading);
+        return aircraft.pilot.maintainPresentHeading(aircraft);
     }
 
     /**

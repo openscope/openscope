@@ -950,7 +950,6 @@ export default class AircraftModel {
      * @method isEstablishedOnCourse
      * @return {boolean}
      */
-    // FIXME: SOMEWHERE THIS IS BEING USED TO SEND PEOPLE AROUND WITH NO NOTIFICATION TO THE USER
     isEstablishedOnCourse() {
         const runwayModel = this.fms.arrivalRunwayModel;
 
@@ -1386,8 +1385,9 @@ export default class AircraftModel {
     updateTarget() {
         this.target.expedite = _defaultTo(this.fms.currentWaypoint.expedite, false);
         this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
-        // FIXME: ASSIGNED HEADINGS SHOULD NOT BE TREATED AS A GROUND TRACK TYPE TARGET
-        this.targetGroundTrack = _defaultTo(this._calculateTargetedHeading(), this.targetGroundTrack);
+
+        this._updateTargetedDirectionality();
+
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
 
         // TODO: this method may not be needed but could be leveraged for housekeeping if deemed appropriate
@@ -1643,39 +1643,52 @@ export default class AircraftModel {
     }
 
     /**
-     * Calculate the aircraft's targeted heading
+     * Determine the appropriate heading, or ground track, that the aircraft should be attempting to follow
+     * Then, you can use #targetHeading and/or #targetGroundTrack to retrieve the desired information
      *
      * @for AircraftModel
-     * @method _calculateTargetedHeading
+     * @method _updateTargetedDirectionality
      * @private
      */
-    _calculateTargetedHeading() {
+    _updateTargetedDirectionality() {
         if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
             return;
         }
 
         if (this.flightPhase === FLIGHT_PHASE.LANDING) {
-            return this._calculateTargetedGroundTrackDuringLanding();
+            this.targetGroundTrack = this._calculateTargetedGroundTrackDuringLanding();
+
+            return;
         }
 
         switch (this.mcp.headingMode) {
-            case MCP_MODE.HEADING.OFF:
-                return this.heading;
+            case MCP_MODE.HEADING.OFF: {
+                this.targetHeading = this.heading;
 
-            case MCP_MODE.HEADING.HOLD:
-                return this.mcp.heading;
-
-            case MCP_MODE.HEADING.LNAV: {
-                return this._calculateTargetedHeadingLnav();
+                break;
             }
 
-            case MCP_MODE.HEADING.VOR_LOC:
-                return this._calculateTargetedHeadingToInterceptCourse();
+            case MCP_MODE.HEADING.HOLD: {
+                this.targetHeading = this.mcp.heading;
+
+                break;
+            }
+
+            case MCP_MODE.HEADING.LNAV: {
+                this.targetGroundTrack = this._calculateTargetedGroundTrackLnav();
+
+                break;
+            }
+
+            case MCP_MODE.HEADING.VOR_LOC: {
+                this.targetGroundTrack = this._calculateTargetedHeadingToInterceptCourse();
+
+                break;
+            }
 
             default:
                 console.warn('Expected MCP heading mode of "OFF", "HOLD", "LNAV", or "VOR", ' +
                     `but received "${this.mcp.headingMode}"`);
-                return this.heading;
         }
     }
 
@@ -1874,9 +1887,9 @@ export default class AircraftModel {
      * This will update the FIX for the aircraft and will change the aircraft's heading
      *
      * @for AircraftModel
-     * @method _calculateTargetedHeadingLnav
+     * @method _calculateTargetedGroundTrackLnav
      */
-    _calculateTargetedHeadingLnav() {
+    _calculateTargetedGroundTrackLnav() {
         if (!this.fms.currentWaypoint) {
             return new Error('Unable to utilize LNAV, because there are no waypoints in the FMS');
         }
@@ -1891,7 +1904,7 @@ export default class AircraftModel {
 
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
-        const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
+        const groundTrackToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
         const turnInitiationDistance = calculateTurnInitiationDistance(this, waypointPosition);
         const isTimeToStartTurning = distanceToWaypoint < turnInitiationDistance;
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
@@ -1908,7 +1921,7 @@ export default class AircraftModel {
                 // we've hit this block because and aircraft is about to fly over the last waypoint in its flightPlan
                 this.pilot.maintainPresentHeading(this);
 
-                return this.heading;
+                return this.groundTrack;
             }
 
             this.fms.moveToNextWaypoint();
@@ -1929,7 +1942,7 @@ export default class AircraftModel {
             return this.positionModel.bearingToPosition(nextWaypointPosition);
         }
 
-        return headingToWaypoint;
+        return groundTrackToWaypoint;
     }
 
     /**
