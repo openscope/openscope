@@ -22,6 +22,7 @@ import {
     round
 } from '../math/core';
 import {
+    vectorize_2d,
     vlen,
     vsub,
     vadd,
@@ -555,6 +556,7 @@ export default class AirportModel {
         this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
 
+    // FIXME: Remove all uses of me in favor of .getWindAtAltitude()!
     /**
      * @for AirportModel
      * @method getWind
@@ -578,6 +580,28 @@ export default class AirportModel {
     }
 
     /**
+     * Get the wind at the specified altitude.
+     * When the altitude is not specified, the airport's surface wind is given.
+     *
+     * @for AirportModel
+     * @method getWindAtAltitude
+     * @param {number} altitude
+     * @returns {object<angle, speed>}
+     */
+    getWindAtAltitude(altitude = this.elevation) {
+        const windIncreaseFactorPerFoot = 0.00002; // 2.00% per thousand feet
+        const windTravelSpeedAtSurface = this.wind.speed;
+        const altitudeAboveSurface = altitude - this.elevation;
+        const windTravelSpeedAtAltitude = windTravelSpeedAtSurface * (1 + (altitudeAboveSurface * windIncreaseFactorPerFoot));
+        const wind = {
+            angle: this.wind.angle,
+            speed: windTravelSpeedAtAltitude
+        };
+
+        return wind;
+    }
+
+    /**
      * @for AirportModel
      * @method getWindForRunway
      * @param runway {runwayModel}
@@ -590,6 +614,23 @@ export default class AirportModel {
             cross: sin(crosswindAngle) * this.wind.speed,
             head: cos(crosswindAngle) * this.wind.speed
         };
+    }
+
+    /**
+     * Generates a vector representation of the wind at a given altitude.
+     * When the altitude is not specified, the airport elevation is used as the assumed altitude.
+     *
+     * @for AirportModel
+     * @method getWindVectorAtAltitude
+     * @param {number} altitude
+     * @returns {array<number, number>}
+     */
+    getWindVectorAtAltitude(altitude) {
+        const { angle, speed } = this.getWindAtAltitude(altitude);
+        const windTravelDirection = angle + Math.PI;
+        const windVector = vscale(vectorize_2d(windTravelDirection), speed);
+
+        return windVector;
     }
 
     /**

@@ -203,6 +203,7 @@ export default class AircraftModel {
 
         /**
          * Indicated Airspeed (IAS), knots
+         * Not to be confused with #trueAirspeed
          *
          * @property speed
          * @type {number}
@@ -239,6 +240,16 @@ export default class AircraftModel {
          * @default 0
          */
         this.takeoffTime = 0;
+
+        /**
+         * True Airspeed, not to be confused with indicated airspeed (#speed)
+         *
+         * @for AircraftModel
+         * @property trueAirspeed
+         * @type {number}
+         * @default 0
+         */
+        this.trueAirspeed = 0;
 
         /**
          * Azimuth from airport center to aircraft, in radians
@@ -537,6 +548,14 @@ export default class AircraftModel {
     }
 
     get targetHeading() {
+        if (_isNil(this._targetHeading)) {
+            if (_isNil(this._targetGroundTrack)) {
+                throw new TypeError('Expected a targetHeading OR targetGroundTrack, but neither has been set!');
+            }
+
+            return this._calculateCrabHeadingForGroundTrack(this._targetGroundTrack);
+        }
+
         return this._targetHeading;
     }
 
@@ -546,6 +565,14 @@ export default class AircraftModel {
     }
 
     get targetGroundTrack() {
+        if (_isNil(this._targetGroundTrack)) {
+            if (_isNil(this._targetHeading)) {
+                throw new TypeError('Expected a targetHeading OR targetGroundTrack, but neither has been set!');
+            }
+
+            return this._calculateGroundTrackForHeading(this._targetHeading);
+        }
+
         return this._targetGroundTrack;
     }
 
@@ -923,6 +950,7 @@ export default class AircraftModel {
      * @method isEstablishedOnCourse
      * @return {boolean}
      */
+    // FIXME: SOMEWHERE THIS IS BEING USED TO SEND PEOPLE AROUND WITH NO NOTIFICATION TO THE USER
     isEstablishedOnCourse() {
         const runwayModel = this.fms.arrivalRunwayModel;
 
@@ -934,7 +962,7 @@ export default class AircraftModel {
         // is refactored (#291 - https://github.com/openscope/openscope/issues/291)
         // TODO: The methods called here should be moved to the AircraftModel,
         // so that it can also be used for non-runway course interception
-        return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachHeading(this.heading);
+        return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachGroundTrack(this.groundTrack);
 
         // TODO: Use this instead
         // const courseDatum = this.mcp.nav1Datum;
@@ -1358,7 +1386,8 @@ export default class AircraftModel {
     updateTarget() {
         this.target.expedite = _defaultTo(this.fms.currentWaypoint.expedite, false);
         this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
-        this.targetHeading = _defaultTo(this._calculateTargetedHeading(), this.targetHeading);
+        // FIXME: ASSIGNED HEADINGS SHOULD NOT BE TREATED AS A GROUND TRACK TYPE TARGET
+        this.targetGroundTrack = _defaultTo(this._calculateTargetedHeading(), this.targetGroundTrack);
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
 
         // TODO: this method may not be needed but could be leveraged for housekeeping if deemed appropriate
@@ -1578,6 +1607,42 @@ export default class AircraftModel {
     }
 
     /**
+     * Calculate the heading needed in order for the aircraft to move along a specified angle across the ground
+     * https://www.cliffsnotes.com/study-guides/trigonometry/vectors/vector-operations (see example 2)
+     *
+     * @for AircraftModel
+     * @method _calculateCrabHeadingForGroundTrack
+     * @param {number} groundTrackHeading
+     * @returns {number} magnetic heading, in radians
+     * @private
+     */
+    _calculateCrabHeadingForGroundTrack(groundTrackHeading) {
+        const windVector = AirportController.airport_get().getWindVectorAtAltitude(this.altitude);
+        const windAngle = vradial(windVector);
+        const angleDifference = groundTrackHeading - windAngle;
+        const crabAngle = Math.asin((vlen(windVector) * sin(angleDifference)) / this.trueAirspeed);
+
+        return groundTrackHeading + crabAngle;
+    }
+
+    /**
+     * Calculate the angle across the ground which results from the aircraft's heading and the wind
+     *
+     * @for AircraftModel
+     * @method _calculateGroundTrackForHeading
+     * @param {number} heading
+     * @returns {number} magnetic heading, in radians
+     * @priate
+     */
+    _calculateGroundTrackForHeading(heading) {
+        const headingVector = vscale(vectorize_2d(heading), this.trueAirspeed);
+        const windVector = AirportController.airport_get().getWindVectorAtAltitude(this.altitude);
+        const groundTrackHeading = vradial(vadd(headingVector, windVector));
+
+        return radians_normalize(groundTrackHeading);
+    }
+
+    /**
      * Calculate the aircraft's targeted heading
      *
      * @for AircraftModel
@@ -1590,7 +1655,7 @@ export default class AircraftModel {
         }
 
         if (this.flightPhase === FLIGHT_PHASE.LANDING) {
-            return this._calculateTargetedHeadingDuringLanding();
+            return this._calculateTargetedGroundTrackDuringLanding();
         }
 
         switch (this.mcp.headingMode) {
@@ -2093,17 +2158,17 @@ export default class AircraftModel {
      * Calculates the heading for a landing aircraft
      *
      * @for AircraftModel
-     * @method _calculateTargetedHeadingDuringLanding
+     * @method _calculateTargetedGroundTrackDuringLanding
      * @return {number}
      */
-    _calculateTargetedHeadingDuringLanding() {
+    _calculateTargetedGroundTrackDuringLanding() {
         const runwayModel = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
         if (distanceOnFinal_nm > 0) {
             const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runwayModel.positionModel);
-            
+
             return bearingFromAircaftToRunway;
         }
 
@@ -2428,18 +2493,18 @@ export default class AircraftModel {
         const trueAirspeed = indicatedAirspeed * (1 + (this.altitude * trueAirspeedIncreaseFactorPerFoot));
         const flightThroughAirVector = vscale(vectorize_2d(this.heading), trueAirspeed);
 
-        // Calculate wind vector
-        const windIncreaseFactorPerFoot = 0.00002; // 2.00% per thousand feet
-        const { wind } = AirportController.airport_get();
-        const windTravelDirection = wind.angle + Math.PI;
-        const windTravelSpeedAtSurface = wind.speed;
-        const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
-        const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
-
         // Calculate ground speed and direction
+        const windVector = AirportController.airport_get().getWindVectorAtAltitude(this.altitude);
         const flightPathVector = vadd(flightThroughAirVector, windVector);
-        const groundTrack = vradial(flightPathVector);
         const groundSpeed = vlen(flightPathVector);
+        let groundTrack = vradial(flightPathVector);
+
+        // Prevent aircraft on the ground from being blown off runway centerline when too slow to crab sufficiently
+        if (this.isOnGround()) {
+            // TODO: Aircraft crabbing into the wind will show an increase in groundspeed after they reduce to slower than
+            // the wind speed. This should be corrected so their groundspeed gradually reduces from touchdown spd to 0.
+            groundTrack = this.targetGroundTrack;
+        }
 
         // Calculate new position
         const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
@@ -2449,48 +2514,7 @@ export default class AircraftModel {
 
         this.groundTrack = groundTrack;
         this.groundSpeed = groundSpeed;
-
-        // TODO: is this needed anymore?
-        // TODO: Fix this to prevent drift (being blown off course)
-        // if (this.isOnGround()) {
-        //     vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
-        // } else {
-        //     let crab_angle = 0;
-        //
-        //     // Compensate for crosswind while tracking a fix or on ILS
-        //     if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.flightPhase === FLIGHT_PHASE.LANDING) {
-        //         // TODO: this should be abstracted to a helper function
-        //         const offset = angle_offset(this.heading, wind.angle + Math.PI);
-        //         crab_angle = Math.asin((wind.speed * sin(offset)) / indicatedAirspeed);
-        //     }
-        //
-        //     // TODO: this should be abstracted to a helper function
-        //     vector = vadd(vscale(
-        //         vturn(wind.angle + Math.PI),
-        //         wind.speed * 0.000514444 * TimeKeeper.getDeltaTimeForGameStateAndTimewarp()),
-        //         vscale(vturn(angle + crab_angle), trueAirSpeed)
-        //     );
-        // }
-    }
-
-    // NOTE: Remove after 5/1/2017
-    /**
-     * This uses the current speed information to update the ground speed and position
-     *
-     * @for AircraftModel
-     * @method updateSimpleGroundSpeedPhysics
-     * @param scaleSpeed
-     * @deprecated
-     */
-    updateSimpleGroundSpeedPhysics() {
-        // const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
-        // const distanceTraveled_nm = this.speed * hoursElapsed;
-        //
-        // this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);
-        //
-        // // TODO: Is this nonsense actually needed, or can we remove it?
-        // this.groundSpeed = this.speed;
-        // this.groundTrack = this.heading;
+        this.trueAirspeed = trueAirspeed;
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
