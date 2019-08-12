@@ -172,7 +172,7 @@ export default class ScoreController {
      */
     _scoreWind(aircraftModel, action) {
         const isWarning = true;
-        const wind = aircraftModel.getWind();
+        const wind = aircraftModel.getWindComponents();
 
         // TODO: these two if blocks could be done in a single switch statement
         if (wind.cross >= 20) {

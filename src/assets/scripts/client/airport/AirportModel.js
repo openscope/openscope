@@ -556,29 +556,6 @@ export default class AirportModel {
         this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
 
-    // FIXME: Remove all uses of me in favor of .getWindAtAltitude()!
-    /**
-     * @for AirportModel
-     * @method getWind
-     * @return wind {number}
-     */
-    getWind() {
-        return this.wind;
-
-        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        // const wind = Object.assign({}, this.wind);
-        // let s = 1;
-        // const angle_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // // TODO: why is this var getting reassigned to a magic number?
-        // s = 100;
-        // const speed_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-        //
-        // return wind;
-    }
-
     /**
      * Get the wind at the specified altitude.
      * When the altitude is not specified, the airport's surface wind is given.

@@ -635,7 +635,7 @@ export default class AircraftCommander {
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = this._aircraftController.findAircraftById(runway.queue[spotInQueue - 1]);
-        const wind = airport.getWind();
+        const wind = airport.getWindAtAltitude();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
         const readback = {};
