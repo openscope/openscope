@@ -1,5 +1,5 @@
 {
-    "airac": 1702,
+    "airac": 1908,
     "radio": {
         "twr": "München Tower",
         "app": "München Radar",
@@ -62,9 +62,6 @@
         }
     ],
     "fixes":{
-        "LEVBU": ["N49d00.42", "E010d27.40"],
-        "NESES": ["N47d32.88", "E010d33.28"],
-        "VESUB": ["N49d25.16", "E012d59.85"],
         "_RWY08LDMN02DME": [48.368771, 11.843736],
         "_RWY08LMIQ128"  : [48.375479, 11.931400],
         "_RWY08RDMS02.6DME": [48.34744217696, 11.8423690916],
@@ -202,6 +199,7 @@
         "LASMI": ["N48d32.50", "E011d43.00"],
         "LELTA": ["N48d29.58", "E010d57.32"],
         "LEVBU": ["N49d00.4", "E010d27.4"],
+        "LEVBU": ["N49d00.42", "E010d27.40"],
         "LITLI": ["N48d57.9", "E012d51.8"],
         "LULAR": ["N49d22.0", "E012d45.5"],
         "LUPOX": ["N48d55.33", "E010d50.82"],
@@ -216,9 +214,9 @@
         "MNW"  : ["N48d22.46", "E011d54.85"],
         "MSE"  : ["N48d20.0", "E011d39.2"],
         "MSW"  : ["N48d21.14", "E011d54.23"],
-        "MUN"  : ["N48d10.8", "E011d49.0"],
         "NAPSA": ["N48d08.6", "E012d20.7"],
         "NELBI": ["N48d21.9", "E012d04.5"],
+        "NESES": ["N47d32.88", "E010d33.28"],
         "NETES": ["N48d54.4", "E012d37.6"],
         "NINUR": ["N47d44.15", "E011d15.03"],
         "NIRGO": ["N49d19.9", "E013d07.9"],
@@ -228,6 +226,7 @@
         "OLASO": ["N48d12.5", "E010d13.9"],
         "OSDER": ["N47d41.00", "E010d53.50"],
         "OSTES": ["N48d42.4", "E012d40.7"],
+        "OTT"  : ["N48d10.8", "E011d49.0"],
         "PELOG": ["N48d13.68", "E009d40.50"],
         "PIGAB": ["N49d11.9", "E010d08.6"],
         "RATGI": ["N48d14.1", "E012d20.2"],
@@ -246,6 +245,7 @@
         "USEMI": ["N49d06.5", "E012d58.1"],
         "VAVOR": ["N47d56.0", "E012d09.3"],
         "VESIX": ["N48d41.6", "E012d18.7"],
+        "VESUB": ["N49d25.16", "E012d59.85"],
         "VESUB": ["N49d25.2", "E012d59.8"],
         "WLD"  : ["N48d34.8", "E011d07.8"],
         "XERUM": ["N48d48.7", "E010d46.1"]
@@ -398,6 +398,64 @@
         }
     ],
     "sids": {
+        "AKINI1E": {
+            "icao": "AKINI1E",
+            "name": "Akini One Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM020", ["DM021", "S240-"], "DM017", ["AKINI", "S250-"]],
+            "exitPoints": {
+                "AKINI": []
+            },
+            "draw": [
+                ["DM020", "DM021", "DM017"],
+                ["AKINI"]
+            ]
+        },
+        "AKINI1N": {
+            "icao": "AKINI1N",
+            "name": "Akini One November",
+            "rwy": {
+                "EDDM26R": []
+            },
+            "body": ["DM040", ["DM041", "S220-"], "DM043", ["DM044", "S250-"], "EMGEP", ["AKINI", "S250-"]],
+            "exitPoints": {
+                "AKINI": []
+            },
+            "draw": [
+                ["DM040", "DM041", "DM043", "DM044", "EMGEP", "AKINI"]
+            ]
+        },
+        "AKINI1Q": {
+            "icao": "AKINI1Q",
+            "name": "Akini One Quebec",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": [["DM010", "A19+"], ["DM011", "S210-"], "DM013", "DM014", ["DM015", "S250-"], "DM017", ["AKINI", "S250-"]],
+            "exitPoints": {
+                "AKINI": []
+            },
+            "draw": [
+                ["DM010", "DM011", "DM013", "DM014", "DM015", "DM017", "AKINI"]
+            ]
+        },
+        "AKINI1S": {
+            "icao": "AKINI1S",
+            "name": "Akini One Sierra",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["DM030", "A19+"], ["DM031", "S220-"], "DM043", ["DM044", "S250-"], "EMGEP", ["AKINI", "S250-"]],
+            "exitPoints": {
+                "AKINI": []
+            },
+            "draw": [
+                ["DM030", "DM031", "DM043", "DM044"],
+                ["AKINI"]
+            ]
+        },
         "ALG2E": {
             "icao": "ALG2E",
             "name": "Allgäu Two Echo",
@@ -413,20 +471,6 @@
                 ["ALG"]
             ]
         },
-        "ALG2Q": {
-            "icao": "ALG2Q",
-            "name": "Allgäu Two Quebec",
-            "rwy": {
-                "EDDM08L": []
-            },
-            "body": ["DM071", ["DM094", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"], "ALG"],
-            "exitPoints": {
-                "ALG": []
-            },
-            "draw": [
-                ["DM071", "DM094", "LAKOL", "OBAXA", "MERSI", "ALG"]
-            ]
-        },
         "ALG2N": {
             "icao": "ALG2N",
             "name": "Allgäu Two November",
@@ -440,6 +484,20 @@
             "draw": [
                 ["DM061", "AMEXO"],
                 ["ALG"]
+            ]
+        },
+        "ALG2Q": {
+            "icao": "ALG2Q",
+            "name": "Allgäu Two Quebec",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": ["DM071", ["DM094", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"], "ALG"],
+            "exitPoints": {
+                "ALG": []
+            },
+            "draw": [
+                ["DM071", "DM094", "LAKOL", "OBAXA", "MERSI", "ALG"]
             ]
         },
         "ALG2S": {
@@ -468,20 +526,6 @@
             },
             "draw": [
                 ["DM051", "DM056", "DM057", "ANKER"]
-            ]
-        },
-        "ANKER8Q": {
-            "icao": "ANKER8Q",
-            "name": "Anker Eight Quebec",
-            "rwy": {
-                "EDDM08L": []
-            },
-            "body": ["^DM070", "DM077", "DM079", ["ANKER", "S250-"]],
-            "exitPoints": {
-                "ANKER": []
-            },
-            "draw": [
-                ["DM070", "DM077", "DM079", "ANKER"]
             ]
         },
         "ANKER9E": {
@@ -513,6 +557,20 @@
                 ["ANKER"]
             ]
         },
+        "ANKER9Q": {
+            "icao": "ANKER9Q",
+            "name": "Anker Niner Quebec",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": [["^DM070", "A19+"], "DM077", "DM079", ["ANKER", "S250-"]],
+            "exitPoints": {
+                "ANKER": []
+            },
+            "draw": [
+                ["DM070", "DM077", "DM079", "ANKER"]
+            ]
+        },
         "BIBAG2E": {
             "icao": "BIBAG2E",
             "name": "Bibag Two Echo",
@@ -525,48 +583,6 @@
             },
             "draw": [
                 ["DM080", "RATGI"],
-                ["BIBAG"]
-            ]
-        },
-        "BIBAG2N": {
-            "icao": "BIBAG2N",
-            "name": "Bibag Two November",
-            "rwy": {
-                "EDDM26R": []
-            },
-            "body": [["DM067", "S210-"], "DM050", ["MUN", "S250-"], ["MEBEK", "S250-"], "BIBAG"],
-            "exitPoints": {
-                "BIBAG": []
-            },
-            "draw": [
-                ["BIBAG"]
-            ]
-        },
-        "BIBAG2S": {
-            "icao": "BIBAG2S",
-            "name": "Bibag Two Sierra",
-            "rwy": {
-                "EDDM26L": []
-            },
-            "body": [["DM049", "S210-"], ["DM050", "S210-"], "MUN", ["MEBEK", "S250-"], "BIBAG"],
-            "exitPoints": {
-                "BIBAG": []
-            },
-            "draw": [
-                ["MEBEK", "BIBAG"]
-            ]
-        },
-        "BIBAG2W": {
-            "icao": "BIBAG2W",
-            "name": "Bibag Two Whiskey",
-            "rwy": {
-                "EDDM26L": []
-            },
-            "body": [["MSE", "S220-"], "^DM058", ["DM059", "S250-"], "MUN", "MEBEK", "BIBAG"],
-            "exitPoints": {
-                "BIBAG": []
-            },
-            "draw": [
                 ["BIBAG"]
             ]
         },
@@ -584,13 +600,55 @@
                 ["DM071", "RATGI", "BIBAG"]
             ]
         },
-        "EVIVA3E": {
-            "icao": "EVIVA3E",
-            "name": "Eviva Three Echo",
+        "BIBAG3N": {
+            "icao": "BIBAG3N",
+            "name": "Bibag Three November",
+            "rwy": {
+                "EDDM26R": []
+            },
+            "body": [["DM067", "A19+|S210-"], "DM050", ["OTT", "S250-"], ["MEBEK", "S250-"], "BIBAG"],
+            "exitPoints": {
+                "BIBAG": []
+            },
+            "draw": [
+                ["DM067", "DM050", "OTT", "MEBEK", "BIBAG"]
+            ]
+        },
+        "BIBAG3S": {
+            "icao": "BIBAG3S",
+            "name": "Bibag Three Sierra",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["DM049", "A19+|S210-"], ["DM050", "S210-"], "OTT", ["MEBEK", "S250-"], "BIBAG"],
+            "exitPoints": {
+                "BIBAG": []
+            },
+            "draw": [
+                ["BIBAG"]
+            ]
+        },
+        "BIBAG3W": {
+            "icao": "BIBAG3W",
+            "name": "Bibag Three Whiskey",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["MSE", "S220-"], "^DM058", ["DM046", "S250-"], "OTT", "MEBEK", "BIBAG"],
+            "exitPoints": {
+                "BIBAG": []
+            },
+            "draw": [
+                ["BIBAG"]
+            ]
+        },
+        "EVIVA4E": {
+            "icao": "EVIVA4E",
+            "name": "Eviva Four Echo",
             "rwy": {
                 "EDDM08R": []
             },
-            "body": ["^DM084", "DM088", ["DM089", "S250-"], "EVIVA"],
+            "body": [["^DM084", "A19+"], "DM088", ["DM089", "S250-"], "EVIVA"],
             "exitPoints": {
                 "EVIVA": []
             },
@@ -599,13 +657,13 @@
                 ["EVIVA"]
             ]
         },
-        "EVIVA3Q": {
-            "icao": "EVIVA3Q",
-            "name": "Eviva Three Quebec",
+        "EVIVA4Q": {
+            "icao": "EVIVA4Q",
+            "name": "Eviva Four Quebec",
             "rwy": {
                 "EDDM08L": []
             },
-            "body": ["^DM070", "DM091", ["DM089", "S250-"], "EVIVA"],
+            "body": [["^DM070", "A19+"], "DM091", ["DM089", "S250-"], "EVIVA"],
             "exitPoints": {
                 "EVIVA": []
             },
@@ -613,9 +671,9 @@
                 ["DM070", "DM091", "DM089", "EVIVA"]
             ]
         },
-        "EVIVA3S": {
-            "icao": "EVIVA3S",
-            "name": "Eviva Three Sierra",
+        "EVIVA4S": {
+            "icao": "EVIVA4S",
+            "name": "Eviva Four Sierra",
             "rwy": {
                 "EDDM26L": []
             },
@@ -627,9 +685,9 @@
                 ["DM056", "LASMI", "EVIVA"]
             ]
         },
-        "EVIVA4N": {
-            "icao": "EVIVA4N",
-            "name": "Eviva Four November",
+        "EVIVA5N": {
+            "icao": "EVIVA5N",
+            "name": "Eviva Five November",
             "rwy": {
                 "EDDM26R": []
             },
@@ -656,13 +714,13 @@
                 ["DM060", "DM063", "GIVMI"]
             ]
         },
-        "GIVMI5E": {
-            "icao": "GIVMI5E",
-            "name": "Givmi Five Echo",
+        "GIVMI6E": {
+            "icao": "GIVMI6E",
+            "name": "Givmi Six Echo",
             "rwy": {
                 "EDDM08R": []
             },
-            "body": ["^DM084", "DM085", ["MIQ", "S250-"], "GIVMI"],
+            "body": [["^DM084", "A19+"], "DM085", ["MIQ", "S250-"], "GIVMI"],
             "exitPoints": {
                 "GIVMI": []
             },
@@ -671,13 +729,13 @@
                 ["GIVMI"]
             ]
         },
-        "GIVMI5Q": {
-            "icao": "GIVMI5Q",
-            "name": "Givmi Five Quebec",
+        "GIVMI6Q": {
+            "icao": "GIVMI6Q",
+            "name": "Givmi Six Quebec",
             "rwy": {
                 "EDDM08L": []
             },
-            "body": ["^DM070", "DM073", ["MIQ", "S250-"], "GIVMI"],
+            "body": [["^DM070", "A19+"], "DM073", ["MIQ", "S250-"], "GIVMI"],
             "exitPoints": {
                 "GIVMI": []
             },
@@ -699,21 +757,6 @@
                 ["DM052", "DM055", "GIVMI"]
             ]
         },
-        "INPUD2E": {
-            "icao": "INPUD2E",
-            "name": "Inpud Two Echo",
-            "rwy": {
-                "EDDM08R": []
-            },
-            "body": ["^DM084", "DM076", ["DM065", "S250-"], "INPUD"],
-            "exitPoints": {
-                "INPUD": []
-            },
-            "draw": [
-                ["DM084", "DM076", "DM065"],
-                ["INPUD"]
-            ]
-        },
         "INPUD2N": {
             "icao": "INPUD2N",
             "name": "Inpud Two November",
@@ -727,20 +770,6 @@
             "draw": [
                 ["DM064", "DM065"],
                 ["INPUD"]
-            ]
-        },
-        "INPUD2Q": {
-            "icao": "INPUD2Q",
-            "name": "Inpud Two Quebec",
-            "rwy": {
-                "EDDM08L": []
-            },
-            "body": ["^DM070", "DM073", ["DM065", "S250-"], "INPUD"],
-            "exitPoints": {
-                "INPUD": []
-            },
-            "draw": [
-                ["DM070", "DM073", "DM065", "INPUD"]
             ]
         },
         "INPUD2S": {
@@ -758,6 +787,35 @@
                 ["INPUD"]
             ]
         },
+        "INPUD3E": {
+            "icao": "INPUD3E",
+            "name": "Inpud Three Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": [["^DM084", "A19+"], "DM076", ["DM065", "S250-"], "INPUD"],
+            "exitPoints": {
+                "INPUD": []
+            },
+            "draw": [
+                ["DM084", "DM076", "DM065"],
+                ["INPUD"]
+            ]
+        },
+        "INPUD3Q": {
+            "icao": "INPUD3Q",
+            "name": "Inpud Three Quebec",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": [["^DM070", "A19+"], "DM073", ["DM065", "S250-"], "INPUD"],
+            "exitPoints": {
+                "INPUD": []
+            },
+            "draw": [
+                ["DM070", "DM073", "DM065", "INPUD"]
+            ]
+        },
         "KIRDI2E": {
             "icao": "KIRDI2E",
             "name": "Kirdi Two Echo",
@@ -765,20 +823,6 @@
                 "EDDM08R": []
             },
             "body": [["DM080", "S230-"], ["RATGI", "S250-"], "MEBEK", "KIRDI"],
-            "exitPoints": {
-                "KIRDI": []
-            },
-            "draw": [
-                ["KIRDI"]
-            ]
-        },
-        "KIRDI2N": {
-            "icao": "KIRDI2N",
-            "name": "Kirdi Two November",
-            "rwy": {
-                "EDDM26R": []
-            },
-            "body": [["DM067", "S210-"], "DM050", "MUN", ["MEBEK", "S250-"], "KIRDI"],
             "exitPoints": {
                 "KIRDI": []
             },
@@ -800,28 +844,13 @@
                 ["RATGI", "MEBEK", "KIRDI"]
             ]
         },
-        "KIRDI2S": {
-            "icao": "KIRDI2S",
-            "name": "Kirdi Two Sierra",
+        "KIRDI3N": {
+            "icao": "KIRDI3N",
+            "name": "Kirdi Three November",
             "rwy": {
-                "EDDM26L": []
+                "EDDM26R": []
             },
-            "body": [["DM049", "S210-"], ["DM050", "S210-"], "MUN", ["MEBEK", "S250-"], "KIRDI"],
-            "exitPoints": {
-                "KIRDI": []
-            },
-            "draw": [
-                ["MUN", "MEBEK"],
-                ["KIRDI"]
-            ]
-        },
-        "KIRDI2W": {
-            "icao": "KIRDI2W",
-            "name": "Kirdi Two Whiskey",
-            "rwy": {
-                "EDDM26L": []
-            },
-            "body": [["MSE", "S220-"], "^DM058", ["DM059", "S250-"], "MUN", "MEBEK", "KIRDI"],
+            "body": [["DM067", "A19+|S210-"], "DM050", "OTT", ["MEBEK", "S250-"], "KIRDI"],
             "exitPoints": {
                 "KIRDI": []
             },
@@ -829,33 +858,62 @@
                 ["KIRDI"]
             ]
         },
-        "MERSI1P": {
-            "icao": "MERSI1P",
-            "name": "Mersi One Papa",
+        "KIRDI3S": {
+            "icao": "KIRDI3S",
+            "name": "Kirdi Three Sierra",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["DM049", "A19+|S210-"], ["DM050", "S210-"], "OTT", ["MEBEK", "S250-"], "KIRDI"],
+            "exitPoints": {
+                "KIRDI": []
+            },
+            "draw": [
+                ["OTT", "MEBEK"],
+                ["KIRDI"]
+            ]
+        },
+        "KIRDI3W": {
+            "icao": "KIRDI3W",
+            "name": "Kirdi Three Whiskey",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["MSE", "S220-"], "^DM058", ["DM046", "S250-"], "OTT", "MEBEK", "KIRDI"],
+            "exitPoints": {
+                "KIRDI": []
+            },
+            "draw": [
+                ["KIRDI"]
+            ]
+        },
+        "MERSI2P": {
+            "icao": "MERSI2P",
+            "name": "Mersi Two Papa",
             "rwy": {
                 "EDDM08R": []
             },
-            "body": ["DM081", ["DM082", "S230-"], ["DM086", "A70+"], "MUN", "OBAXA", ["MERSI", "S250-"]],
+            "body": ["DM081", ["DM087", "S230-"], ["DM090", "A70+"], "OTT", "OBAXA", ["MERSI", "S250-"]],
             "exitPoints": {
                 "MERSI": []
             },
             "draw": [
-                ["DM081", "DM082", "DM086", "MUN"],
+                ["DM081", "DM087", "DM090", "OTT"],
                 ["MERSI"]
             ]
         },
-        "MERSI1T": {
-            "icao": "MERSI1T",
-            "name": "Mersi One Tango",
+        "MERSI2T": {
+            "icao": "MERSI2T",
+            "name": "Mersi Two Tango",
             "rwy": {
                 "EDDM08L": []
             },
-            "body": ["DM071", ["DM074", "S230-"], ["DM078", "A70+"], "MUN", "OBAXA", ["MERSI", "S250-"]],
+            "body": ["DM071", ["DM072", "S230-"], ["DM090", "A70+"], "OTT", "OBAXA", ["MERSI", "S250-"]],
             "exitPoints": {
                 "MERSI": []
             },
             "draw": [
-                ["DM071", "DM074", "DM078", "MUN", "OBAXA"],
+                ["DM071", "DM072", "DM090", "OTT", "OBAXA"],
                 ["MERSI"]
             ]
         },
@@ -887,21 +945,6 @@
                 ["MERSI"]
             ]
         },
-        "MERSI5N": {
-            "icao": "MERSI5N",
-            "name": "Mersi Five November",
-            "rwy": {
-                "EDDM26R": []
-            },
-            "body": [["MNE", "S220-"], ["DM061", "A70+|S250-"], "AMPEG", "MERSI"],
-            "exitPoints": {
-                "MERSI": []
-            },
-            "draw": [
-                ["DM061", "AMPEG"],
-                ["MERSI"]
-            ]
-        },
         "MERSI5S": {
             "icao": "MERSI5S",
             "name": "Mersi Five Sierra",
@@ -916,6 +959,21 @@
                 ["DM053", "AMPEG", "MERSI"]
             ]
         },
+        "MERSI6N": {
+            "icao": "MERSI6N",
+            "name": "Mersi Six November",
+            "rwy": {
+                "EDDM26R": []
+            },
+            "body": [["MNE", "S220-"], ["DM061", "A70+|S250-"], "AMPEG", "MERSI"],
+            "exitPoints": {
+                "MERSI": []
+            },
+            "draw": [
+                ["DM061", "AMPEG"],
+                ["MERSI"]
+            ]
+        },
         "MIQ8E": {
             "icao": "MIQ8E",
             "name": "Mike Eight Echo",
@@ -928,20 +986,6 @@
             },
             "draw": [
                 ["_RWY08RDMS02.6DME", "_RWY08RMIQ132", "MIQ"]
-            ]
-        },
-        "MIQ8Q": {
-            "icao": "MIQ8Q",
-            "name": "Mike Eight Quebec",
-            "rwy": {
-                "EDDM08L": []
-            },
-            "body": ["^_RWY08LDMN02DME", "_RWY08LMIQ128", ["MIQ", "S250-"]],
-            "exitPoints": {
-                "MIQ": []
-            },
-            "draw": [
-                ["_RWY08LDMN02DME", "_RWY08LMIQ128", "MIQ"]
             ]
         },
         "MIQ8S": {
@@ -972,27 +1016,27 @@
                 ["_RWY26RDMN03.5DME", "_RWY26RMIQ166", "MIQ"]
             ]
         },
-        "OBAXA1P": {
-            "icao": "OBAXA1P",
-            "name": "Obaxa One Papa",
-            "rwy": {
-                "EDDM08R": []
-            },
-            "body": ["DM081", ["DM082", "S230-"], ["DM086", "A70+"], "MUN", ["OBAXA", "S250-"]],
-            "exitPoints": {
-                "OBAXA": []
-            },
-            "draw": [
-                ["OBAXA"]
-            ]
-        },
-        "OBAXA1T": {
-            "icao": "OBAXA1T",
-            "name": "Obaxa One Tango",
+        "MIQ9Q": {
+            "icao": "MIQ9Q",
+            "name": "Mike Niner Quebec",
             "rwy": {
                 "EDDM08L": []
             },
-            "body": ["DM071", ["DM074", "S230-"], ["DM078", "A70+"], "MUN", ["OBAXA", "S250-"]],
+            "body": ["^_RWY08LDMN02DME", "_RWY08LMIQ128", ["MIQ", "S250-"]],
+            "exitPoints": {
+                "MIQ": []
+            },
+            "draw": [
+                ["_RWY08LDMN02DME", "_RWY08LMIQ128", "MIQ"]
+            ]
+        },
+        "OBAXA2P": {
+            "icao": "OBAXA2P",
+            "name": "Obaxa Two Papa",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["DM087", "S230-"], ["DM090", "A70+"], "OTT", ["OBAXA", "S250-"]],
             "exitPoints": {
                 "OBAXA": []
             },
@@ -1000,13 +1044,27 @@
                 ["OBAXA"]
             ]
         },
-        "OBAXA4N": {
-            "icao": "OBAXA4N",
-            "name": "Obaxa Four November",
+        "OBAXA2T": {
+            "icao": "OBAXA2T",
+            "name": "Obaxa Two Tango",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": ["DM071", ["DM072", "S230-"], ["DM090", "A70+"], "OTT", ["OBAXA", "S250-"]],
+            "exitPoints": {
+                "OBAXA": []
+            },
+            "draw": [
+                ["OBAXA"]
+            ]
+        },
+        "OBAXA5N": {
+            "icao": "OBAXA5N",
+            "name": "Obaxa Five November",
             "rwy": {
                 "EDDM26R": []
             },
-            "body": [["DM067", "S210-"], "DM068", "DM069", ["OBAXA", "S250-"]],
+            "body": [["DM067", "A19+|S210-"], "DM068", "DM069", ["OBAXA", "S250-"]],
             "exitPoints": {
                 "OBAXA": []
             },
@@ -1015,13 +1073,13 @@
                 ["OBAXA"]
             ]
         },
-        "OBAXA5S": {
-            "icao": "OBAXA5S",
-            "name": "Obaxa Five Sierra",
+        "OBAXA6S": {
+            "icao": "OBAXA6S",
+            "name": "Obaxa Six Sierra",
             "rwy": {
                 "EDDM26L": []
             },
-            "body": [["DM049", "S210-"], "DM068", "DM069", ["OBAXA", "S250-"]],
+            "body": [["DM049", "A19+|S210-"], "DM068", "DM069", ["OBAXA", "S250-"]],
             "exitPoints": {
                 "OBAXA": []
             },
@@ -1043,20 +1101,6 @@
                 ["OLASO"]
             ]
         },
-        "OLASO2Q": {
-            "icao": "OLASO2Q",
-            "name": "Olaso Two Quebec",
-            "rwy": {
-                "EDDM08L": []
-            },
-            "body": ["DM071", ["DM094", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"], "OLASO"],
-            "exitPoints": {
-                "OLASO": []
-            },
-            "draw": [
-                ["MERSI", "OLASO"]
-            ]
-        },
         "OLASO2N": {
             "icao": "OLASO2N",
             "name": "Olaso Two November",
@@ -1071,6 +1115,20 @@
                 ["DM061", "OLASO"]
             ]
         },
+        "OLASO2Q": {
+            "icao": "OLASO2Q",
+            "name": "Olaso Two Quebec",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": ["DM071", ["DM094", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"], "OLASO"],
+            "exitPoints": {
+                "OLASO": []
+            },
+            "draw": [
+                ["MERSI", "OLASO"]
+            ]
+        },
         "OLASO2S": {
             "icao": "OLASO2S",
             "name": "Olaso Two Sierra",
@@ -1083,34 +1141,6 @@
             },
             "draw": [
                 ["MSE", "DM053", "OLASO"]
-            ]
-        },
-        "RIDAR6E": {
-            "icao": "RIDAR6E",
-            "name": "Ridar Six Echo",
-            "rwy": {
-                "EDDM08R": []
-            },
-            "body": ["^DM084", "DM085", ["MIQ", "S250-"], "WLD", "RIDAR"],
-            "exitPoints": {
-                "RIDAR": []
-            },
-            "draw": [
-                ["RIDAR"]
-            ]
-        },
-        "RIDAR6Q": {
-            "icao": "RIDAR6Q",
-            "name": "Ridar Six Quebec",
-            "rwy": {
-                "EDDM08L": []
-            },
-            "body": ["^DM070", "DM073", ["MIQ", "S250-"], "WLD", "RIDAR"],
-            "exitPoints": {
-                "RIDAR": []
-            },
-            "draw": [
-                ["MIQ", "WLD", "RIDAR"]
             ]
         },
         "RIDAR6N": {
@@ -1141,13 +1171,41 @@
                 ["DM052", "DM053", "DM054", "RIDAR"]
             ]
         },
-        "ROTAX2N": {
-            "icao": "ROTAX2N",
-            "name": "Rotax Two November",
+        "RIDAR7E": {
+            "icao": "RIDAR7E",
+            "name": "Ridar Seven Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": [["^DM084", "A19+"], "DM085", ["MIQ", "S250-"], "WLD", "RIDAR"],
+            "exitPoints": {
+                "RIDAR": []
+            },
+            "draw": [
+                ["RIDAR"]
+            ]
+        },
+        "RIDAR7Q": {
+            "icao": "RIDAR7Q",
+            "name": "Ridar Seven Quebec",
+            "rwy": {
+                "EDDM08L": []
+            },
+            "body": [["^DM070", "A19+"], "DM073", ["MIQ", "S250-"], "WLD", "RIDAR"],
+            "exitPoints": {
+                "RIDAR": []
+            },
+            "draw": [
+                ["MIQ", "WLD", "RIDAR"]
+            ]
+        },
+        "ROTAX3N": {
+            "icao": "ROTAX3N",
+            "name": "Rotax Three November",
             "rwy": {
                 "EDDM26R": []
             },
-            "body": [["DM067", "S210-"], "DM050", ["MUN", "S250-"], "LAKOL", "VAVOR"],
+            "body": [["DM067", "A19+|S210-"], "DM050", ["OTT", "S250-"], "LAKOL", "ROTAX"],
             "exitPoints": {
                 "ROTAX": []
             },
@@ -1155,27 +1213,27 @@
                 ["ROTAX"]
             ]
         },
-        "ROTAX2S": {
-            "icao": "ROTAX2S",
-            "name": "Rotax Two Sierra",
+        "ROTAX3S": {
+            "icao": "ROTAX3S",
+            "name": "Rotax Three Sierra",
             "rwy": {
                 "EDDM26L": []
             },
-            "body": [["DM049", "S210-"], ["DM050", "S210-"], ["MUN", "S250-"], "LAKOL", "ROTAX"],
+            "body": [["DM049", "A19+|S210-"], ["DM050", "S210-"], ["OTT", "S250-"], "LAKOL", "ROTAX"],
             "exitPoints": {
                 "ROTAX": []
             },
             "draw": [
-                ["MUN", "LAKOL", "ROTAX"]
+                ["OTT", "LAKOL", "ROTAX"]
             ]
         },
-        "ROTAX2W": {
-            "icao": "ROTAX2W",
-            "name": "Rotax Two Whiskey",
+        "ROTAX3W": {
+            "icao": "ROTAX3W",
+            "name": "Rotax Three Whiskey",
             "rwy": {
                 "EDDM26L": []
             },
-            "body": [["MSE", "S220-"], "^DM058", ["DM059", "S250-"], "MUN", "LAKOL", "ROTAX"],
+            "body": [["MSE", "S220-"], "^DM058", ["DM046", "S250-"], "OTT", "LAKOL", "ROTAX"],
             "exitPoints": {
                 "ROTAX": []
             },
@@ -1183,9 +1241,9 @@
                 ["ROTAX"]
             ]
         },
-        "ROTAX3E": {
-            "icao": "ROTAX3E",
-            "name": "Rotax Three Echo",
+        "ROTAX4E": {
+            "icao": "ROTAX4E",
+            "name": "Rotax Four Echo",
             "rwy": {
                 "EDDM08R": []
             },
@@ -1198,9 +1256,9 @@
                 ["ROTAX"]
             ]
         },
-        "ROTAX3Q": {
-            "icao": "ROTAX3Q",
-            "name": "Rotax Three Quebec",
+        "ROTAX4Q": {
+            "icao": "ROTAX4Q",
+            "name": "Rotax Four Quebec",
             "rwy": {
                 "EDDM08L": []
             },
@@ -1210,21 +1268,6 @@
             },
             "draw": [
                 ["DM071", "DM093", "DM467", "ROTAX"]
-            ]
-        },
-        "TULSI1N": {
-            "icao": "TULSI1N",
-            "name": "Tulsi One November",
-            "rwy": {
-                "EDDM26R": []
-            },
-            "body": [["DM067", "S210-"], "DM050", ["MUN", "S250-"], "MANAL", "TULSI"],
-            "exitPoints": {
-                "TULSI": []
-            },
-            "draw": [
-                ["DM067", "DM050"],
-                ["TULSI"]
             ]
         },
         "TULSI1Q": {
@@ -1255,48 +1298,49 @@
                 ["TULSI"]
             ]
         },
-        "TULSI2W": {
-            "icao": "TULSI2W",
-            "name": "Tulsi Two Whiskey",
-            "rwy": {
-                "EDDM26L": []
-            },
-            "body": [["MSE", "S220-"], "^DM058", ["DM059", "S250-"], "MUN", "MANAL", "TULSI"],
-            "exitPoints": {
-                "TULSI": []
-            },
-            "draw": [
-                ["MSE", "DM058", "DM059", "MUN"],
-                ["TULSI"]
-            ]
-        },
-        "TULSI5S": {
-            "icao": "TULSI5S",
-            "name": "Tulsi Five Sierra",
-            "rwy": {
-                "EDDM26L": []
-            },
-            "body": [["DM049", "S210-"], ["DM050", "S210-"], ["MUN", "S250-"], "MANAL", "TULSI"],
-            "exitPoints": {
-                "TULSI": []
-            },
-            "draw": [
-                ["DM049", "DM050", "MUN", "MANAL"],
-                ["TULSI"]
-            ]
-        },
-        "TURBU5N": {
-            "icao": "TURBU5N",
-            "name": "Turbu Five November",
+        "TULSI2N": {
+            "icao": "TULSI2N",
+            "name": "Tulsi Two November",
             "rwy": {
                 "EDDM26R": []
             },
-            "body": [["DM067", "S210-"], "DM050", ["MUN", "S250-"], "TURBU"],
+            "body": [["DM067", "A19+|S210-"], "DM050", ["OTT", "S250-"], "MANAL", "TULSI"],
             "exitPoints": {
-                "TURBU": []
+                "TULSI": []
             },
             "draw": [
-                ["TURBU"]
+                ["DM067", "DM050"],
+                ["TULSI"]
+            ]
+        },
+        "TULSI3W": {
+            "icao": "TULSI3W",
+            "name": "Tulsi Three Whiskey",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["MSE", "S220-"], "^DM058", ["DM046", "S250-"], "OTT", "MANAL", "TULSI"],
+            "exitPoints": {
+                "TULSI": []
+            },
+            "draw": [
+                ["MSE", "DM058", "DM059", "OTT"],
+                ["TULSI"]
+            ]
+        },
+        "TULSI6S": {
+            "icao": "TULSI6S",
+            "name": "Tulsi Six Sierra",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["DM049", "A19+|S210-"], ["DM050", "S210-"], ["OTT", "S250-"], "MANAL", "TULSI"],
+            "exitPoints": {
+                "TULSI": []
+            },
+            "draw": [
+                ["DM049", "DM050", "OTT", "MANAL"],
+                ["TULSI"]
             ]
         },
         "TURBU6E": {
@@ -1313,27 +1357,13 @@
                 ["TURBU"]
             ]
         },
-        "TURBU6S": {
-            "icao": "TURBU6S",
-            "name": "Turbu Six Sierra",
+        "TURBU6N": {
+            "icao": "TURBU6N",
+            "name": "Turbu Six November",
             "rwy": {
-                "EDDM26L": []
+                "EDDM26R": []
             },
-            "body": [["DM049", "S210-"], ["DM050", "S210-"], ["MUN", "S250-"], "TURBU"],
-            "exitPoints": {
-                "TURBU": []
-            },
-            "draw": [
-                ["MUN", "TURBU"]
-            ]
-        },
-        "TURBU6W": {
-            "icao": "TURBU6W",
-            "name": "Turbu Six Whiskey",
-            "rwy": {
-                "EDDM26L": []
-            },
-            "body": [["MSE", "S220-"], "^DM058", ["DM059", "S250-"], "MUN", "TURBU"],
+            "body": [["DM067", "A19+|S210-"], "DM050", ["OTT", "S250-"], "TURBU"],
             "exitPoints": {
                 "TURBU": []
             },
@@ -1355,46 +1385,32 @@
                 ["LAKOL", "TURBU"]
             ]
         },
-        "VAVOR2N": {
-            "icao": "VAVOR2N",
-            "name": "Vavor Two November",
-            "rwy": {
-                "EDDM26R": []
-            },
-            "body": [["DM067", "S210-"], "DM050", ["MUN", "S250-"], "LAKOL", "VAVOR"],
-            "exitPoints": {
-                "VAVOR": []
-            },
-            "draw": [
-                ["VAVOR"]
-            ]
-        },
-        "VAVOR2S": {
-            "icao": "VAVOR2S",
-            "name": "Vavor Two Sierra",
+        "TURBU7S": {
+            "icao": "TURBU7S",
+            "name": "Turbu Seven Sierra",
             "rwy": {
                 "EDDM26L": []
             },
-            "body": [["DM049", "S210-"], ["DM050", "S210-"], ["MUN", "S250-"], "LAKOL", "VAVOR"],
+            "body": [["DM049", "A19+|S210-"], ["DM050", "S210-"], ["OTT", "S250-"], "TURBU"],
             "exitPoints": {
-                "VAVOR": []
+                "TURBU": []
             },
             "draw": [
-                ["LAKOL", "VAVOR"]
+                ["OTT", "TURBU"]
             ]
         },
-        "VAVOR2W": {
-            "icao": "VAVOR2W",
-            "name": "Vavor Two Whiskey",
+        "TURBU7W": {
+            "icao": "TURBU7W",
+            "name": "Turbu Seven Whiskey",
             "rwy": {
                 "EDDM26L": []
             },
-            "body": [["MSE", "S220-"], "^DM058", ["DM059", "S250-"], "MUN", "LAKOL", "VAVOR"],
+            "body": [["MSE", "S220-"], "^DM058", ["DM046", "S250-"], "OTT", "TURBU"],
             "exitPoints": {
-                "VAVOR": []
+                "TURBU": []
             },
             "draw": [
-                ["VAVOR"]
+                ["TURBU"]
             ]
         },
         "VAVOR3E": {
@@ -1412,6 +1428,20 @@
                 ["VAVOR"]
             ]
         },
+        "VAVOR3N": {
+            "icao": "VAVOR3N",
+            "name": "Vavor Three November",
+            "rwy": {
+                "EDDM26R": []
+            },
+            "body": [["DM067", "A19+|S210-"], "DM050", ["OTT", "S250-"], "LAKOL", "VAVOR"],
+            "exitPoints": {
+                "VAVOR": []
+            },
+            "draw": [
+                ["VAVOR"]
+            ]
+        },
         "VAVOR3Q": {
             "icao": "VAVOR3Q",
             "name": "Vavor Three Quebec",
@@ -1425,12 +1455,40 @@
             "draw": [
                 ["DM094", "EBEVO", "VAVOR"]
             ]
+        },
+        "VAVOR3S": {
+            "icao": "VAVOR3S",
+            "name": "Vavor Three Sierra",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["DM049", "A19+|S210-"], ["DM050", "S210-"], ["OTT", "S250-"], "LAKOL", "VAVOR"],
+            "exitPoints": {
+                "VAVOR": []
+            },
+            "draw": [
+                ["LAKOL", "VAVOR"]
+            ]
+        },
+        "VAVOR3W": {
+            "icao": "VAVOR3W",
+            "name": "Vavor Three Whiskey",
+            "rwy": {
+                "EDDM26L": []
+            },
+            "body": [["MSE", "S220-"], "^DM058", ["DM046", "S250-"], "OTT", "LAKOL", "VAVOR"],
+            "exitPoints": {
+                "VAVOR": []
+            },
+            "draw": [
+                ["VAVOR"]
+            ]
         }
     },
     "stars": {
-        "ABGAS3A": {
-            "icao": "ABGAS3A",
-            "name": "Abgas Three Alpha",
+        "ABGAS4A": {
+            "icao": "ABGAS4A",
+            "name": "Abgas Four Alpha",
             "entryPoints": {
                 "ABGAS": []
             },
@@ -1462,9 +1520,9 @@
                 ["AKANU", "LUPOX", "RENLO", "ROKIL", "MIQ"]
             ]
         },
-        "ANORA3A": {
-            "icao": "ANORA3A",
-            "name": "Anora Three Alpha",
+        "ANORA4A": {
+            "icao": "ANORA4A",
+            "name": "Anora Four Alpha",
             "entryPoints": {
                 "ANORA": []
             },
@@ -1479,9 +1537,9 @@
                 ["ANORA", "XERUM", "BURAM", "ROKIL", "MIQ"]
             ]
         },
-        "ARBAX3A": {
-            "icao": "ARBAX3A",
-            "name": "Arbax Three Alpha",
+        "ARBAX4A": {
+            "icao": "ARBAX4A",
+            "name": "Arbax Four Alpha",
             "entryPoints": {
                 "ARBAX": []
             },
@@ -1496,9 +1554,9 @@
                 ["ARBAX", "USEMI", "LITLI", "OSTES", "BINGU", "TUSTO", "LANDU", "MIQ"]
             ]
         },
-        "BAGMI4A": {
-            "icao": "BAGMI4A",
-            "name": "Bagmi Four Alpha",
+        "BAGMI5A": {
+            "icao": "BAGMI5A",
+            "name": "Bagmi Five Alpha",
             "entryPoints": {
                 "BAGMI": []
             },
@@ -1513,9 +1571,9 @@
                 ["BAGMI", "ODUDA", "NETES", "UNKOM", "MITNU", "TUSTO", "LANDU", "MIQ"]
             ]
         },
-        "BAMTA3A": {
-            "icao": "BAMTA3A",
-            "name": "Bamta Three Alpha",
+        "BAMTA4A": {
+            "icao": "BAMTA4A",
+            "name": "Bamta Four Alpha",
             "entryPoints": {
                 "BAMTA": []
             },
@@ -1530,9 +1588,9 @@
                 ["BAMTA", "ROSAB", "BINGU", "TUSTO", "LANDU", "MIQ"]
             ]
         },
-        "EXUSI3A": {
-            "icao": "EXUSI3A",
-            "name": "Exusi Three Alpha",
+        "EXUSI4A": {
+            "icao": "EXUSI4A",
+            "name": "Exusi Four Alpha",
             "entryPoints": {
                 "EXUSI": []
             },
@@ -1564,38 +1622,38 @@
                 ["GESLU", "LURER", "LELTA", "ROKIL", "MIQ"]
             ]
         },
-        "IRBIR4A": {
-            "icao": "IRBIR4A",
-            "name": "Irbir Four Alpha",
+        "IRBIR5A": {
+            "icao": "IRBIR5A",
+            "name": "Irbir Five Alpha",
             "entryPoints": {
                 "IRBIR": []
             },
             "body": ["IRBIR", "NINUR"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "MUN"],
-                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "MUN"],
-                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "MUN"],
-                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "MUN"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
             },
             "draw": [
-                ["IRBIR", "NINUR", "ANDEC", "BETOS", "MUN"]
+                ["IRBIR", "NINUR", "ANDEC", "BETOS", "OTT"]
             ]
         },
-        "KOGOL3A": {
-            "icao": "KOGOL3A",
-            "name": "Kogol Three Alpha",
+        "KOGOL4A": {
+            "icao": "KOGOL4A",
+            "name": "Kogol Four Alpha",
             "entryPoints": {
                 "KOGOL": []
             },
             "body": ["KOGOL"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "MUN"],
-                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "MUN"],
-                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "MUN"],
-                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "MUN"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
             },
             "draw": [
-                ["KOGOL", "ANDEC", "BETOS", "MUN"]
+                ["KOGOL", "ANDEC", "BETOS", "OTT"]
             ]
         },
         "KUNOD3A": {
@@ -1615,30 +1673,30 @@
                 ["KUNOD", "LURER", "LELTA", "ROKIL", "MIQ"]
             ]
         },
-        "MERSI3A": {
-            "icao": "MERSI3A",
-            "name": "Mersi Three Alpha",
+        "MERSI4A": {
+            "icao": "MERSI4A",
+            "name": "Mersi Four Alpha",
             "entryPoints": {
                 "MERSI": []
             },
             "body": ["MERSI"],
             "rwy": {
-                "EDDM08L": ["@BETOS", "MUN"],
-                "EDDM08R": ["@BETOS", "MUN"],
-                "EDDM26L": ["@BETOS", "MUN"],
-                "EDDM26R": ["@BETOS", "MUN"]
+                "EDDM08L": ["@BETOS", "OTT"],
+                "EDDM08R": ["@BETOS", "OTT"],
+                "EDDM26L": ["@BETOS", "OTT"],
+                "EDDM26R": ["@BETOS", "OTT"]
             },
             "draw": [
-                ["MERSI", "BETOS", "MUN"]
+                ["MERSI", "BETOS", "OTT"]
             ]
         },
-        "NAPSA2A": {
-            "icao": "NAPSA2A",
-            "name": "Napsa Two Alpha",
+        "NAPSA3A": {
+            "icao": "NAPSA3A",
+            "name": "Napsa Three Alpha",
             "entryPoints": {
                 "NAPSA": []
             },
-            "body": [["NAPSA", "A110-"], "MUN"],
+            "body": [["NAPSA", "A110-"], "OTT"],
             "rwy": {
                 "EDDM08L": [],
                 "EDDM08R": [],
@@ -1646,41 +1704,41 @@
                 "EDDM26R": []
             },
             "draw": [
-                ["NAPSA", "MUN"]
+                ["NAPSA", "OTT"]
             ]
         },
-        "OBAGA4A": {
-            "icao": "OBAGA4A",
-            "name": "Obaga Four Alpha",
+        "OBAGA5A": {
+            "icao": "OBAGA5A",
+            "name": "Obaga Five Alpha",
             "entryPoints": {
                 "OBAGA": []
             },
             "body": ["OBAGA", "NINUR"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "MUN"],
-                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "MUN"],
-                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "MUN"],
-                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "MUN"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
             },
             "draw": [
-                ["OBAGA", "NINUR", "ANDEC", "BETOS", "MUN"]
+                ["OBAGA", "NINUR", "ANDEC", "BETOS", "OTT"]
             ]
         },
-        "OSDER3A": {
-            "icao": "OSDER3A",
-            "name": "Osder Three Alpha",
+        "OSDER4A": {
+            "icao": "OSDER4A",
+            "name": "Osder Four Alpha",
             "entryPoints": {
                 "OSDER": []
             },
             "body": ["OSDER"],
             "rwy": {
-                "EDDM08L": [["DISUN", "A120-|S280-"], "@BETOS", "MUN"],
-                "EDDM08R": [["DISUN", "A120-|S280-"], "@BETOS", "MUN"],
-                "EDDM26L": [["DISUN", "A160-|S280-"], "@BETOS", "MUN"],
-                "EDDM26R": [["DISUN", "A160-|S280-"], "@BETOS", "MUN"]
+                "EDDM08L": [["DISUN", "A120-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["DISUN", "A120-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["DISUN", "A160-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["DISUN", "A160-|S280-"], "@BETOS", "OTT"]
             },
             "draw": [
-                ["OSDER", "DISUN", "BETOS", "MUN"]
+                ["OSDER", "DISUN", "BETOS", "OTT"]
             ]
         },
         "PELOG3A": {
@@ -1700,9 +1758,9 @@
                 ["PELOG", "LURER", "LELTA", "ROKIL", "MIQ"]
             ]
         },
-        "RIXED3A": {
-            "icao": "RIXED3A",
-            "name": "Rixed Three Alpha",
+        "RIXED4A": {
+            "icao": "RIXED4A",
+            "name": "Rixed Four Alpha",
             "entryPoints": {
                 "RIXED": []
             },
@@ -1717,71 +1775,121 @@
                 ["RIXED", "DODIL", "REDVO", "RIDAR", "LELTA", "ROKIL", "MIQ"]
             ]
         },
-        "ELMOX1C": {
-            "icao": "ELMOX1C",
-            "name": "Elmox One Charlie",
+        "BAGSI1C": {
+            "icao": "BAGSI1C",
+            "name": "Bagsi One Charlie",
+            "entryPoints": {
+                "BAGSI": []
+            },
+            "body": ["BAGSI", "MATIG", ["AMADI", "A130+|A190-|S280-"], ["NAPSA", "A130+|A170-|S250-"], "DM457", ["DM456", "A110+"], "DM455", ["DM454", "A90|S220-"], "DM453", "DM452", "DM451", "DM450", "#261"],
+            "rwy": {
+                "EDDM08L": [],
+                "EDDM08R": []
+            },
+            "draw": [
+                ["BAGSI", "MATIG", "AMADI", "NAPSA", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "ELMOX1D": {
+            "icao": "ELMOX1D",
+            "name": "Elmox One Delta",
             "entryPoints": {
                 "ELMOX": []
             },
             "body": [["ELMOX", "A320+|A370-"], ["PIGAB", "A270+|A310-"], "DKB", ["LEVBU", "A250+|A270-"], ["ANORA", "A220+|A260-"], "XERUM", ["BURAM", "A160+|A190-|S280-"], "ROKIL", ["DM421", "A170-|S240-"], "DM422", ["DM423", "A110+|S230-"], "DM424", ["DM425", "A90|S220-"], "DM426", "DM427", "DM428", "DM429", "#080"],
             "rwy": {
+                "EDDM26L": [],
                 "EDDM26R": []
             },
             "draw": [
                 ["ELMOX", "PIGAB", "DKB", "LEVBU", "ANORA", "XERUM", "BURAM", "ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
             ]
         },
-        "LEVBU1C": {
-            "icao": "LEVBU1C",
-            "name": "Levbu One Charlie",
+        "LEVBU1D": {
+            "icao": "LEVBU1D",
+            "name": "Levbu One Delta",
             "entryPoints": {
                 "LEVBU": []
             },
             "body": [["LEVBU", "A250+|A270-"], ["ANORA", "A220+|A260-"], "XERUM", ["BURAM", "A160+|A190-|S280-"], "ROKIL", ["DM421", "A170-|S240-"], "DM422", ["DM423", "A110+|S230-"], "DM424", ["DM425", "A90|S220-"], "DM426", "DM427", "DM428", "DM429", "#080"],
             "rwy": {
+                "EDDM26L": [],
                 "EDDM26R": []
             },
             "draw": [
                 ["LEVBU", "ANORA", "XERUM", "BURAM", "ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
             ]
         },
-        "LULAR1C": {
-            "icao": "LULAR1C",
-            "name": "Lular One Charlie",
+        "LULAR2C": {
+            "icao": "LULAR2C",
+            "name": "Lular Two Charlie",
             "entryPoints": {
                 "LULAR": []
             },
             "body": [["LULAR", "A230+|A270-"], "EXUSI", "RDG", "GOMAX", ["VESIX", "A160+|A190-|S280-"], "LANDU", ["DM428", "A170-|S250-"], "DM427", ["DM426", "A110+|S230-"], "DM425", ["DM424", "A90|S220-"], "DM423", "DM422", "DM421", "DM420", "#261"],
             "rwy": {
-                "EDDM08L": []
+                "EDDM08L": [],
+                "EDDM08R": []
             },
             "draw": [
                 ["LULAR", "EXUSI", "RDG", "GOMAX", "VESIX", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
             ]
         },
-        "NIRGO1C": {
-            "icao": "NIRGO1C",
-            "name": "Nirgo One Charlie",
+        "NIRGO2C": {
+            "icao": "NIRGO2C",
+            "name": "Nirgo Two Charlie",
             "entryPoints": {
                 "NIRGO": []
             },
             "body": [["NIRGO", "A250+|A290-"], "ARBAX", "USEMI", "LITLI", "OSTES", ["BINGU", "A160+|A190-|S280-"], ["DM428", "A170-|S250-"], "DM427", ["DM426", "A110+|S230-"], "DM425", ["DM424", "A90|S220-"], "DM423", "DM422", "DM421", "DM420", "#261"],
             "rwy": {
-                "EDDM08L": []
+                "EDDM08L": [],
+                "EDDM08R": []
             },
             "draw": [
                 ["NIRGO", "ARBAX", "USEMI", "LITLI", "OSTES", "BINGU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
             ]
         },
-        "VESUB1C": {
-            "icao": "VESUB1C",
-            "name": "Vesub One Charlie",
+        "RASTA1C": {
+            "icao": "RASTA1C",
+            "name": "Rasta One Charlie",
+            "entryPoints": {
+                "RASTA": []
+            },
+            "body": ["RASTA", ["REDBU", "A140+|A190-|S280-"], ["NAPSA", "A130+|A170-|S250-"], "DM457", ["DM456", "A110+"], "DM455", ["DM454", "A90|S220-"], "DM453", "DM452", "DM451", "DM450", "#261"],
+            "rwy": {
+                "EDDM08L": [],
+                "EDDM08R": []
+            },
+            "draw": [
+                ["RASTA", "REDBU", "NAPSA", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "VATET1C": {
+            "icao": "VATET1C",
+            "name": "Vatet One Charlie",
+            "entryPoints": {
+                "RASTA": []
+            },
+            "body": ["VATET", ["REDBU", "A140+|A190-|S280-"], ["NAPSA", "A130+|A170-|S250-"], "DM457", ["DM456", "A110+"], "DM455", ["DM454", "A90|S220-"], "DM453", "DM452", "DM451", "DM450", "#261"],
+            "rwy": {
+                "EDDM08L": [],
+                "EDDM08R": []
+            },
+            "draw": [
+                ["VATET", "REDBU", "NAPSA", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "VESUB2C": {
+            "icao": "VESUB2C",
+            "name": "Vesub Two Charlie",
             "entryPoints": {
                 "VESUB": []
             },
             "body": [["VESUB", "A250+|A290-"], "BAGMI", "ODUDA", "NETES", "UNKOM", ["MITNU", "A160+|A190-|S280-"], "TUSTO", ["DM428", "A170-|S250-"], "DM427", ["DM426", "A110+|S230-"], "DM425", ["DM424", "A90|S220-"], "DM423", "DM422", "DM421", "DM420", "#261"],
             "rwy": {
-                "EDDM08L": []
+                "EDDM08L": [],
+                "EDDM08R": []
             },
             "draw": [
                 ["VESUB", "BAGMI", "ODUDA", "NETES", "UNKOM", "MITNU", "TUSTO", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
