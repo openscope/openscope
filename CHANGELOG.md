@@ -8,6 +8,7 @@
 ### Enhancements & Refactors
 - [#1410](https://github.com/openscope/openscope/issues/1410) - Restore functionality of local server from `npm run start`
 - [#1387](https://github.com/openscope/openscope/issues/1387) - Update EDDF to AIRAC 1906
+- [#1387](https://github.com/openscope/openscope/issues/1387) - Update LOWW to AIRAC 1908
 
 
 # 6.13.0 (June 1, 2019)
