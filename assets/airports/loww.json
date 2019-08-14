@@ -2997,7 +2997,11 @@
             "category": "arrival",
             "route": "GILEP..NATEX.NATEX1W.LOWW34",
             "altitude": 14000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 2.360,
             "airlines": [
@@ -3034,7 +3038,11 @@
             "category": "arrival",
             "route": "RUDIK..ZAG..OBUTI.OBUTI1W.LOWW34",
             "altitude": 18000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 2.508,
             "airlines": [
@@ -3064,7 +3072,11 @@
             "category": "arrival",
             "route": "TABEM..OKF..LANUX.LANUX6W.LOWW34",
             "altitude": 15000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 4.172,
             "airlines": [
@@ -3106,7 +3118,11 @@
             "category": "arrival",
             "route": "SOMID..TOVKA.TOVKA2W.LOWW34",
             "altitude": 16000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 1.254,
             "airlines": [
@@ -3139,7 +3155,11 @@
             "category": "arrival",
             "route": "ADISU..MIKOV.MIKOV7W.LOWW34",
             "altitude": 17000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 1.701,
             "airlines": [
@@ -3174,7 +3194,11 @@
             "category": "arrival",
             "route": "VENEN.VENEN2W.LOWW34",
             "altitude": 17000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 3.482,
             "airlines": [
@@ -3206,8 +3230,13 @@
             "destination": "LOWW",
             "category": "arrival",
             "route": "ABTAN.ABTAN1W.LOWW34",
+<<<<<<< HEAD
             "altitude": 16000,
             "speed": 280,
+=======
+            "altitude": 18000,
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 1.256,
             "airlines": [
@@ -3226,8 +3255,13 @@
             "destination": "LOWW",
             "category": "arrival",
             "route": "LAPNA.LAPNA1W.LOWW34",
+<<<<<<< HEAD
             "altitude": 17000,
             "speed": 280,
+=======
+            "altitude": 18000,
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 1.532,
             "airlines": [
@@ -3254,7 +3288,11 @@
             "category": "arrival",
             "route": "NEMAL.NEMAL1W.LOWW34",
             "altitude": 17000,
+<<<<<<< HEAD
             "speed": 280,
+=======
+            "speed": 271,
+>>>>>>> 150dab7260ee4a5963a144e36eab1eeea5e310dc
             "method": "random",
             "rate": 1.983,
             "airlines": [

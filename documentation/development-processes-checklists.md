@@ -1,6 +1,9 @@
-#Development Processes Checklists
+# Development Processes Checklists
+
 ## Processes of Each Sprint
+
 **Note**: In order to complete all of the steps below a user will need:
+
 - to be a member of the `openscope-admins` team within the openScope team on GitHub
 - have access to the openScope pipeline on Heroku
 
@@ -24,21 +27,23 @@ In total, each sprint cycle will include the following actions in the following 
 
 ---
 
-### Sprint Closeout Procedure
+## Sprint Closeout Procedure
+
 1. Clean up sprint board and milestone.
     - Ensure they only contain resolved items.
     - Move any items that have not been resolved.
 1. Close sprint (Zube) and milestone (GitHub).
 
+## Before Development Phase Checklist
 
-### Before Development Phase Checklist
 1. Checkout `develop`.
 1. Attempt to merge `master` into `develop` with `git merge master`.
     - By design, develop should contain no changes, resulting in git replying `Already up-to-date`.
 1. If changes _were_ merged, push to origin.
 1. Delete _previous_ release branch, and leave only the _latest_ release branch.
 
-### Development Procedures
+## Development Procedures
+
 1. Merging feature and bugfix branches:
     - Use non-FF merges into `develop` via "the green button" or either of the below commands:
         - `git pull origin feature/###` (merges latest version of upstream branch)
@@ -58,7 +63,8 @@ In total, each sprint cycle will include the following actions in the following 
         - Include summary of `Merge hotfix/### (#[PRNumber]) from master`.
         - Include the same description in the second line.
 
-### Testing Phase Checklist
+## Testing Phase Checklist
+
 At least three days prior to the end of the sprint, we will create a `release` branch that represents the state of the simulator after the current sprint's work. This release branch is temporary and has a short lifespan.  It exists solely to provide a testing environment segregated from both the development and production versions of the app.
 
 1. Checkout `develop`.
@@ -69,12 +75,13 @@ At least three days prior to the end of the sprint, we will create a `release` b
 1. On Heroku, change staging app to point to this new release branch.
 1. Broadcast publishing of testing app and seek feedback and/or bug reports. Any bugs should be reported to the `#bugs` room in slack and will be triaged from there.
 1. Merge any applicable bugfix branches into `release/#.#.#`.
-    - Include summary of `Merge bugfix/### (#[PRNumber])`
+    - Include summary of `Merge bugfix/ (#[PRNumber])`
     - Then on `develop`, run `git merge release/#.#.#` (results in a FF) and push.
 
 _Only bugfix branches may be merged (to `release/#.#.# --> develop`) during this phase._
 
-### Release Procedure
+## Release Procedure
+
 1. Checkout `release/#.#.#`.
 1. Commit and push to origin the following finalizations to the release branch.
     - Set new release's version number in `package.json`.

@@ -517,27 +517,6 @@ class GameController {
         return this.game.option.getOptionByName(optionName);
     }
 
-    // TODO: This probably does not belong in the GameController.
-    /**
-     * Get the current `PROJECTED_TRACK_LINE_LENGTH` value and return a number.
-     *
-     * Used by the `CanvasController` to get a number value (this will be stored as a string
-     * due to existing api) that can be used when drawing the PTL for each aircraft.
-     *
-     * @for GameController
-     * @method getPtlLength
-     * @return {number}
-     */
-    getPtlLength() {
-        let userSettingsPtlLength = this.getGameOption(GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH);
-
-        if (userSettingsPtlLength === 'from-theme') {
-            userSettingsPtlLength = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINE_LENGTH;
-        }
-
-        return parseFloat(userSettingsPtlLength);
-    }
-
     /**
      * Check whether or not the trailing distance separator should be drawn.
      *
@@ -600,7 +579,6 @@ class GameController {
     }
 
 
-    // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
     /**
      * Change theme to the specified name
      *

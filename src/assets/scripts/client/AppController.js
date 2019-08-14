@@ -305,7 +305,7 @@ export default class AppController {
     updateViewControls() {
         const { current: airport } = AirportController;
 
-        this._eventBus.trigger(EVENT.MARK_DIRTY_CANVAS);
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(NavigationLibrary.hasSids);

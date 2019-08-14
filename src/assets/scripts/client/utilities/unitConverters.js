@@ -168,7 +168,7 @@ export const kn_ms = (kn = 0) => {
  */
 export const nm_ft = (nm) => {
     return nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
-}
+};
 
 /**
  * convert radians to degrees
