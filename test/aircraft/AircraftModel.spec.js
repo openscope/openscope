@@ -172,49 +172,49 @@ ava('.isEstablishedOnCourse() returns false when no arrival runway has been assi
 ava('.isEstablishedOnCourse() returns false when neither aligned with approach course nor on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(false);
-    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(false);
+    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(false);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
 
     isOnApproachCourseStub.restore();
-    isOnCorrectApproachHeadingStub.restore();
+    isOnCorrectApproachGroundTrackStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns false when aligned with approach course but not on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(true);
-    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(false);
+    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(false);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
 
     isOnApproachCourseStub.restore();
-    isOnCorrectApproachHeadingStub.restore();
+    isOnCorrectApproachGroundTrackStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns false when on approach heading but not aligned with approach course', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(false);
-    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(true);
+    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(true);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
 
     isOnApproachCourseStub.restore();
-    isOnCorrectApproachHeadingStub.restore();
+    isOnCorrectApproachGroundTrackStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns true when aligned with approach course and on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(true);
-    const isOnCorrectApproachHeadingStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachHeading').returns(true);
+    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(true);
     const result = model.isEstablishedOnCourse();
 
     t.true(result);
 
     isOnApproachCourseStub.restore();
-    isOnCorrectApproachHeadingStub.restore();
+    isOnCorrectApproachGroundTrackStub.restore();
 });
 
 ava('.isEstablishedOnGlidepath() returns false when too far above glideslope', (t) => {
@@ -377,6 +377,7 @@ ava('.matchCallsign() returns true when passed a mixed case callsign that matche
 ava('.updateTarget() causes arrivals to comply with AT altitude restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
+    model.targetGroundTrack = 1.5;
 
     moveAircraftToFix(model, 'KSINO');
     model.updateTarget();
@@ -387,6 +388,7 @@ ava('.updateTarget() causes arrivals to comply with AT altitude restriction', (t
 ava('.updateTarget() causes arrivals to comply with ABOVE altitude restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
+    model.targetGroundTrack = 1.5;
 
     moveAircraftToFix(model, 'LUXOR');
     model.updateTarget();
@@ -397,6 +399,7 @@ ava('.updateTarget() causes arrivals to comply with ABOVE altitude restriction',
 ava('.updateTarget() causes arrivals to comply with BELOW altitude restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
+    model.targetGroundTrack = 1.5;
 
     moveAircraftToFix(model, 'GRNPA');
     model.updateTarget();
@@ -483,6 +486,7 @@ ava('.updateTarget() causes departures to climb to cruise altitude if there is n
 ava('.updateTarget() causes arrivals to descend to the assigned altitude if the minimal altitude restriction is above the assigned altitude', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
+    model.targetGroundTrack = 1.5;
 
     moveAircraftToFix(model, 'TRROP');
     model.pilot.descendViaStar(model, 5000);
@@ -510,6 +514,7 @@ ava('.updateTarget() causes departures to climb to cruise altitude if the maximu
 ava('.updateTarget() causes arrivals to climb to comply with minimal altitude restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
+    model.targetGroundTrack = 1.5;
     model.altitude = 7000;
 
     moveAircraftToFix(model, 'LUXOR');
@@ -539,6 +544,7 @@ ava('.updateTarget() causes departures to descend to comply with maximum altitud
 ava('.updateTarget() causes arrivals to prioritize clearance over restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
+    model.targetGroundTrack = 1.5;
 
     moveAircraftToFix(model, 'GRNPA');
     model.pilot.descendViaStar(model, 15000);
