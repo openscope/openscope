@@ -547,6 +547,15 @@ export default class AircraftModel {
         }
     }
 
+    /**
+     * The magnetic heading to target while applying NO correction for the wind, in radians
+     * NOTE: This will not be the heading the aircraft moves along-- the wind will blow it off
+     *       course. For that heading, use #targetGroundTrack instead.
+     *
+     * @for AircraftModel
+     * @property targetHeading
+     * @type {number} heading, in radians magnetic
+     */
     get targetHeading() {
         if (_isNil(this._targetHeading)) {
             if (_isNil(this._targetGroundTrack)) {
@@ -564,6 +573,15 @@ export default class AircraftModel {
         this._targetGroundTrack = null;
     }
 
+    /**
+    * The magnetic heading to target, for which a/c SHOULD apply wind correction, in radians
+    * NOTE: This will not be the heading the aircraft is actually facing-- the aircraft will be crabbing into
+    *       the wind. For the heading the aircraft is physically pointing at, use #targetHeading instead.
+    *
+    * @for AircraftModel
+    * @property targetGroundTrack
+    * @type {number} heading, in radians magnetic
+    */
     get targetGroundTrack() {
         if (_isNil(this._targetGroundTrack)) {
             if (_isNil(this._targetHeading)) {
