@@ -1,0 +1,37 @@
+{
+    "name": "Embraer EMB-135BJ Legacy 600/650",
+    "icao": "E35L",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "E"
+    },
+    "ceiling": 37000,
+    "rate": {
+        "climb":      3500,
+        "descent":    1500,
+        "accelerate": 10,
+        "decelerate": 6
+    },
+    "runway": {
+        "takeoff": 1.580,
+        "landing": 1.130
+    },
+    "speed":{
+        "min":     125,
+        "landing": 130,
+        "cruise":  320,
+        "cruiseM": 0.76,
+        "max":     470,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
