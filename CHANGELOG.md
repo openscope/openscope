@@ -3,6 +3,7 @@
 
 
 ### Bugfixes
+- [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
 
 
 ### Enhancements & Refactors
