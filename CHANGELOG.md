@@ -4,6 +4,7 @@
 
 ### Bugfixes
 - [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
+- [#1395](https://github.com/openscope/openscope/issues/1395) - Fix aircraft's wind correction angle math (which was causing go-arounds)
 
 
 ### Enhancements & Refactors

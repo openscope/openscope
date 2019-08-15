@@ -1,6 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
+import AirportController from '../../src/assets/scripts/client/airport/AirportController';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import {
     createAirportControllerFixture,
@@ -17,6 +18,7 @@ import {
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK
 } from './_mocks/aircraftMocks';
+import { MCP_MODE } from '../../src/assets/scripts/client/aircraft/ModeControl/modeControlConstants';
 import {
     FLIGHT_PHASE,
     PERFORMANCE
@@ -57,6 +59,88 @@ ava.afterEach(() => {
 
 ava('does not throw with valid parameters', (t) => {
     t.notThrows(() => new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK));
+});
+
+ava('#targetHeading throws when neither #_targetHeading nor #_targetGroundTrack is not null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    model._targetHeading = null;
+    model._targetGroundTrack = null;
+
+    t.throws(() => model.targetHeading);
+});
+
+ava('#targetHeading calls and returns ._calculateCrabHeadingForGroundTrack() when #_targetGroundTrack is not null and #_targetHeading is null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const groundTrackMock = 1;
+    model._targetHeading = null;
+    model._targetGroundTrack = groundTrackMock;
+    const expectedResult = 2.157;
+    const calculateCrabHeadingForGroundTrackStub = sinon.stub(model, '_calculateCrabHeadingForGroundTrack').returns(expectedResult);
+    const result = model.targetHeading;
+
+    t.true(result === expectedResult);
+    t.true(calculateCrabHeadingForGroundTrackStub.calledWithExactly(groundTrackMock));
+});
+
+ava('#targetHeading returns #_targetHeading when #_targetHeading is not null and #_targetGroundTrack is null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const expectedResult = 2.157;
+    model._targetHeading = expectedResult;
+    model._targetGroundTrack = null;
+
+    t.true(model.targetHeading === expectedResult);
+});
+
+ava('#targetHeading setter sets #_targetHeading to the specified value and #_targetGroundTrack to null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = 2.157;
+    model._targetHeading = null;
+    model._targetGroundTrack = 1.648;
+    model.targetHeading = headingMock;
+
+    t.true(model._targetHeading === headingMock);
+    t.true(model._targetGroundTrack === null);
+});
+
+ava('#targetGroundTrack throws when neither #_targetHeading nor #_targetGroundTrack are null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    model._targetHeading = null;
+    model._targetGroundTrack = null;
+
+    t.throws(() => model.targetGroundTrack);
+});
+
+ava('#targetGroundTrack calls and returns ._calculateGroundTrackForHeading() when #_targetHeading is not null and #_targetGroundTrack is null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = 1;
+    model._targetHeading = headingMock;
+    model._targetGroundTrack = null;
+    const expectedResult = 2.157;
+    const calculateGroundTrackForHeadingStub = sinon.stub(model, '_calculateGroundTrackForHeading').returns(expectedResult);
+    const result = model.targetGroundTrack;
+
+    t.true(result === expectedResult);
+    t.true(calculateGroundTrackForHeadingStub.calledWithExactly(headingMock));
+});
+
+ava('#targetGroundTrack returns #_targetGroundTrack when #_targetGroundTrack is not null and #_targetHeading is null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const expectedResult = 2.157;
+    model._targetHeading = null;
+    model._targetGroundTrack = expectedResult;
+
+    t.true(model.targetGroundTrack === expectedResult);
+});
+
+ava('#targetGroundTrack setter sets #_targetGroundTrack to the specified value and #_targetHeading to null', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const groundTrackMock = 2.157;
+    model._targetHeading = 1.648;
+    model._targetGroundTrack = null;
+    model.targetGroundTrack = groundTrackMock;
+
+    t.true(model._targetHeading === null);
+    t.true(model._targetGroundTrack === groundTrackMock);
 });
 
 ava('.cancelLanding() returns early when called for an aircraft projection', (t) => {
@@ -619,4 +703,129 @@ ava('.taxiToRunway() returns a success message when finished', (t) => {
     t.deepEqual(result, expectedResult);
     t.deepEqual(model.flightPhase, FLIGHT_PHASE.TAXI);
     t.deepEqual(model.fms.departureRunwayModel, runwayModelMock);
+});
+
+ava('._calculateCrabHeadingForGroundTrack() returns the heading to face in order for the aircraft to achieve the specified ground track angle', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const groundTrackMock = Math.PI / 2; // 090 heading
+    model.trueAirspeed = 50;
+
+    sinon.stub(AirportController.airport_get(), 'getWindVectorAtAltitude').returns([0, -30]); // blowing toward 180 heading
+
+    const expectedResult = Math.atan(40 / 30);
+    const result = model._calculateCrabHeadingForGroundTrack(groundTrackMock);
+
+    t.true(result === expectedResult);
+    sinon.restore();
+});
+
+ava('._calculateGroundTrackForHeading() returns the ground track which results from the aircraft\'s heading and the current winds aloft at their altitude', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = Math.PI / 2; // 090 heading
+    model.trueAirspeed = 40;
+
+    sinon.stub(AirportController.airport_get(), 'getWindVectorAtAltitude').returns([0, 30]); // blowing toward 360 heading
+
+    const expectedResult = Math.atan(40 / 30);
+    const result = model._calculateGroundTrackForHeading(headingMock);
+
+    t.true(result === expectedResult);
+    sinon.restore();
+});
+
+ava('._updateTargetedDirectionality() returns early and does not edit #_targetHeading or #_targetGroundTrack when autopilot is off', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = 2.15;
+    model._targetHeading = headingMock;
+    model._targetGroundTrack = headingMock;
+    model.mcp.autopilotMode = MCP_MODE.AUTOPILOT.OFF;
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetHeading === headingMock);
+    t.true(model._targetGroundTrack === headingMock);
+});
+
+ava('._updateTargetedDirectionality() returns early and does not edit #_targetHeading or #_targetGroundTrack when MCP heading mode is not OFF/HOLD/LNAV/VOR_LOC', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = 2.15;
+    model._targetHeading = headingMock;
+    model._targetGroundTrack = headingMock;
+    model.mcp.autopilotMode = 'turbo boost mode';
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetHeading === headingMock);
+    t.true(model._targetGroundTrack === headingMock);
+});
+
+ava('._updateTargetedDirectionality() sets target ground track with value from ._calculateTargetedGroundTrackDuringLanding() when flight phase is LANDING', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const groundTrackMock = 2.15;
+
+    sinon.stub(model, '_calculateTargetedGroundTrackDuringLanding').returns(groundTrackMock);
+    model.setFlightPhase(FLIGHT_PHASE.LANDING);
+
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetGroundTrack === groundTrackMock);
+    t.true(model._targetHeading === null);
+    sinon.restore();
+});
+
+ava('._updateTargetedDirectionality() sets target heading to the aircraft\'s present heading when the MCP heading mode is off', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = 2.15;
+    model.heading = headingMock;
+    model.mcp.headingMode = MCP_MODE.HEADING.OFF;
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetGroundTrack === null);
+    t.true(model._targetHeading === headingMock);
+    sinon.restore();
+});
+
+ava('._updateTargetedDirectionality() sets target heading to the aircraft\'s MCP heading when the MCP heading mode is HOLD', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const headingMock = 2.15;
+    model.mcp.heading = headingMock;
+    model.mcp.headingMode = MCP_MODE.HEADING.HOLD;
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetGroundTrack === null);
+    t.true(model._targetHeading === headingMock);
+    sinon.restore();
+});
+
+ava('._updateTargetedDirectionality() sets target ground track with value from ._calculateTargetedGroundTrackLnav() when the MCP heading mode is LNAV', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const groundTrackMock = 2.15;
+    model.mcp.headingMode = MCP_MODE.HEADING.LNAV;
+
+    sinon.stub(model, '_calculateTargetedGroundTrackLnav').returns(groundTrackMock);
+
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetGroundTrack === groundTrackMock);
+    t.true(model._targetHeading === null);
+    sinon.restore();
+});
+
+ava('._updateTargetedDirectionality() sets target ground track with value from ._calculateTargetedHeadingToInterceptCourse() when the MCP heading mode is VOR_LOC', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const groundTrackMock = 2.15;
+    model.mcp.headingMode = MCP_MODE.HEADING.VOR_LOC;
+
+    sinon.stub(model, '_calculateTargetedHeadingToInterceptCourse').returns(groundTrackMock);
+
+    const result = model._updateTargetedDirectionality();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._targetGroundTrack === groundTrackMock);
+    t.true(model._targetHeading === null);
+    sinon.restore();
 });
