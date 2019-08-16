@@ -1,5 +1,5 @@
 {
-    "airac": 1908,
+    "airac": 1909,
     "radio": {
         "twr": "Austin Tower",
         "app": "Austin Approach",
@@ -159,7 +159,6 @@
         "THELM": ["N29d26.68", "W98d24.14"],
         "TNV"  : ["N30d17.31", "W96d3.49"],
         "TOONE": ["N30d5.41", "W97d29.85"],
-        "TPL"  : ["N31d12.56", "W97d25.50"],
         "TRPPN": ["N30d9.43", "W97d46.12"],
         "TRVSS": ["N30d27.91", "W97d52.71"],
         "UCOKA": ["N31d19.00", "W100d5.00"],
@@ -449,9 +448,9 @@
                 ["SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT"]
           ]
         },
-        "KALLA3": {
-            "icao": "KALLA3",
-            "name": "Kalla Three",
+        "KALLA4": {
+            "icao": "KALLA4",
+            "name": "Kalla Four",
             "entryPoints": {
                 "LLO": ["LLO"]
             },
@@ -822,7 +821,7 @@
             "origin": "",
             "destination": "KAUS",
             "category": "arrival",
-            "route": "TPL..CWK",
+            "route": "AGJ..CWK",
             "altitude": 8000,
             "speed": 180,
             "method": "random",
