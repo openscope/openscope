@@ -22,6 +22,7 @@ import {
     round
 } from '../math/core';
 import {
+    vectorize_2d,
     vlen,
     vsub,
     vadd,
@@ -31,6 +32,7 @@ import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
+import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -556,25 +558,25 @@ export default class AirportModel {
     }
 
     /**
+     * Get the wind at the specified altitude.
+     * When the altitude is not specified, the airport's surface wind is given.
+     *
      * @for AirportModel
-     * @method getWind
-     * @return wind {number}
+     * @method getWindAtAltitude
+     * @param {number} altitude
+     * @returns {object<angle, speed>}
      */
-    getWind() {
-        return this.wind;
+    getWindAtAltitude(altitude = this.elevation) {
+        const windTravelSpeedAtSurface = this.wind.speed;
+        const altitudeAboveSurface = altitude - this.elevation;
+        const windIncreaseFactor = altitudeAboveSurface * ENVIRONMENT.WIND_INCREASE_FACTOR_PER_FT;
+        const windTravelSpeedAtAltitude = windTravelSpeedAtSurface * (1 + windIncreaseFactor);
+        const wind = {
+            angle: this.wind.angle,
+            speed: windTravelSpeedAtAltitude
+        };
 
-        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        // const wind = Object.assign({}, this.wind);
-        // let s = 1;
-        // const angle_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // // TODO: why is this var getting reassigned to a magic number?
-        // s = 100;
-        // const speed_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-        //
-        // return wind;
+        return wind;
     }
 
     /**
@@ -590,6 +592,23 @@ export default class AirportModel {
             cross: sin(crosswindAngle) * this.wind.speed,
             head: cos(crosswindAngle) * this.wind.speed
         };
+    }
+
+    /**
+     * Generates a vector representation of the wind at a given altitude.
+     * When the altitude is not specified, the airport elevation is used as the assumed altitude.
+     *
+     * @for AirportModel
+     * @method getWindVectorAtAltitude
+     * @param {number} altitude
+     * @returns {array<number, number>}
+     */
+    getWindVectorAtAltitude(altitude) {
+        const { angle, speed } = this.getWindAtAltitude(altitude);
+        const windTravelDirection = angle + Math.PI;
+        const windVector = vscale(vectorize_2d(windTravelDirection), speed);
+
+        return windVector;
     }
 
     /**
