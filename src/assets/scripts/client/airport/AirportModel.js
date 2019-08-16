@@ -32,6 +32,7 @@ import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
+import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -566,10 +567,10 @@ export default class AirportModel {
      * @returns {object<angle, speed>}
      */
     getWindAtAltitude(altitude = this.elevation) {
-        const windIncreaseFactorPerFoot = 0.00002; // 2.00% per thousand feet
         const windTravelSpeedAtSurface = this.wind.speed;
         const altitudeAboveSurface = altitude - this.elevation;
-        const windTravelSpeedAtAltitude = windTravelSpeedAtSurface * (1 + (altitudeAboveSurface * windIncreaseFactorPerFoot));
+        const windIncreaseFactor = altitudeAboveSurface * ENVIRONMENT.WIND_INCREASE_FACTOR_PER_FT;
+        const windTravelSpeedAtAltitude = windTravelSpeedAtSurface * (1 + windIncreaseFactor);
         const wind = {
             angle: this.wind.angle,
             speed: windTravelSpeedAtAltitude

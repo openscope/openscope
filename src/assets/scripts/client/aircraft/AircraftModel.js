@@ -76,6 +76,7 @@ import {
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
+import { ENVIRONMENT } from '../constants/environmentConstants';
 
 /**
  * @property FLIGHT_RULES
@@ -2519,9 +2520,9 @@ export default class AircraftModel {
         // TODO: Much of this should be abstracted to helper functions
 
         // Calculate true air speed vector
-        const trueAirspeedIncreaseFactorPerFoot = 0.000016; // 0.16% per thousand feet
         const indicatedAirspeed = this.speed;
-        const trueAirspeed = indicatedAirspeed * (1 + (this.altitude * trueAirspeedIncreaseFactorPerFoot));
+        const trueAirspeedIncreaseFactor = this.altitude * ENVIRONMENT.DENSITY_ALT_INCREASE_FACTOR_PER_FT;
+        const trueAirspeed = indicatedAirspeed * (1 + trueAirspeedIncreaseFactor);
         const flightThroughAirVector = vscale(vectorize_2d(this.heading), trueAirspeed);
 
         // Calculate ground speed and direction
