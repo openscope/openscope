@@ -1,5 +1,5 @@
 {
-    "airac": 1908,
+    "airac": 1909,
     "radio": {
         "twr": "San Francisco Tower",
         "app": "NorCal Approach",
@@ -66,6 +66,8 @@
         "_SFO2811.5DME": ["N37d37.87", "W122d24.10"],
         "_SFO0901.5DME": ["N37d36.58", "W122d20.02"],
         "_SFO287007DME": ["N37d41.08", "W122d29.74"],
+        "_SENZY203WAMMY151": ["N37.44008", "W122.69721"],
+        "_SEPDY203WAMMY151": ["N37.41169", "W122.68973"],
         "_SIPLY233STINS324": ["N37.47860", "W122.60090"],
         "ADDMM": ["N37d46.26", "W121d42.52"],
         "AFIVA": ["N37d46.41", "W122d22.54"],
@@ -441,12 +443,12 @@
             "icao": "OFFSH2",
             "name": "Offshore Two",
             "rwy": {
-                "KSFO1L": ["_SFO3501.5DME", ["^SEPDY", "A16+"]],
-                "KSFO1R": ["_SFO3501.5DME", ["^SEPDY", "A16+"]],
-                "KSFO28L": ["_SFO2811.5DME", ["^SENZY", "A25+"]],
-                "KSFO28R": ["_SFO2811.5DME", ["^SENZY", "A25+"]]
+                "KSFO1L": ["_SFO3501.5DME", ["^SEPDY", "A16+"], "_SEPDY203WAMMY151"],
+                "KSFO1R": ["_SFO3501.5DME", ["^SEPDY", "A16+"], "_SEPDY203WAMMY151"],
+                "KSFO28L": ["_SFO2811.5DME", ["^SENZY", "A25+"], "_SENZY203WAMMY151"],
+                "KSFO28R": ["_SFO2811.5DME", ["^SENZY", "A25+"], "_SENZY203WAMMY151"]
             },
-            "body": ["WAMMY", ["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
+            "body": [["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
             "exitPoints": {
                 "FLW": ["MQO", "FLW"],
                 "GVO": ["MQO", "GVO"],
@@ -455,8 +457,8 @@
                 "SXC": ["DAISY", "BENET", "SXC"]
             },
             "draw": [
-                ["SENZY", "WAMMY", "SEGUL", "CYPRS", "MCKEY", "MQO", "FLW*"],
-                ["_SFO3501.5DME", "SEPDY", "WAMMY"],
+                ["_SFO2811.5DME", "SENZY", "_SENZY203WAMMY151", "_SEPDY203WAMMY151", "SEGUL", "CYPRS", "MCKEY", "MQO", "FLW*"],
+                ["_SFO3501.5DME", "SEPDY", "_SEPDY203WAMMY151"],
                 ["MCKEY", "DAISY", "BENET", "SXC*"],
                 ["MQO", "GVO*"],
                 ["MQO", "RZS*"]
@@ -692,11 +694,10 @@
                 ["ALWYS", "FLOWZ", "CEDES", "FRELY", "ARCHI"]
             ]
         },
-        "MOD8": {
-            "icao": "MOD8",
-            "name": "Modesto Eight",
+        "MOD9": {
+            "icao": "MOD9",
+            "name": "Modesto Nine",
             "entryPoints": {
-                "CZQ": ["CZQ", "LNNDA"],
                 "FMG": ["FMG", "TROSE"],
                 "MVA": ["MVA", "INYOE", "KYLLA", "TROSE"],
                 "OAL": ["OAL", "INYOE", "KYLLA", "TROSE"]
@@ -709,7 +710,6 @@
             "draw": [
                 ["FMG", "TROSE", "MOD", "LEEFF", "GROAN", "CEDES", "ARCHI", "MEHTA", "CEPIN"],
                 ["MVA", "INYOE", "KYLLA", "TROSE"],
-                ["CZQ", "LNNDA", "MOD"],
                 ["OAL", "INYOE"]
             ]
         },
