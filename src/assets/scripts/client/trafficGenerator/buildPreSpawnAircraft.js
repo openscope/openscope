@@ -4,7 +4,7 @@ import _isArray from 'lodash/isArray';
 import _isNil from 'lodash/isNil';
 import _random from 'lodash/random';
 import _without from 'lodash/without';
-import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
+import RouteStringModel from '../aircraft/FlightManagementSystem/RouteStringModel';
 import { TIME } from '../constants/globalConstants';
 import {
     isWithinAirspace,
@@ -333,8 +333,8 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const spawnSpeed = spawnPatternJson.speed;
     const spawnAltitude = spawnPatternJson.altitude;
     const entrailDistance = spawnSpeed / spawnPatternJson.rate;
-    const routeModel = new RouteModel(spawnPatternJson.route);
-    const waypointModelList = routeModel.waypoints;
+    const routeStringModel = new RouteStringModel(spawnPatternJson.route);
+    const waypointModelList = routeStringModel.waypoints;
     const totalDistance = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);

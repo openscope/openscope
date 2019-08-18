@@ -12,8 +12,8 @@ import { airportPositionFixtureKSFO } from './airportFixtures';
 // to get a fresh fixture for each test.
 // export const navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
 
-// export const arrivalRouteModelFixture = new RouteModel(arrivalProcedureRouteStringMock);
-// export const departureRouteModelFixture = new RouteModel(departureProcedureRouteStringMock);
+// export const arrivalRouteStringModelFixture = new RouteStringModel(arrivalProcedureRouteStringMock);
+// export const departureRouteStringModelFixture = new RouteStringModel(departureProcedureRouteStringMock);
 export const fixCollectionFixture = FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
 // In lieu of importing `navigationLibraryFixture` directly, when the test requires

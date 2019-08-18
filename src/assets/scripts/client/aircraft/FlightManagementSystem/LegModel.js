@@ -158,7 +158,7 @@ export default class LegModel {
     /**
      * Whether this leg is a SID Procedure leg
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property isSidLeg
      * @type {boolean}
      */
@@ -169,7 +169,7 @@ export default class LegModel {
     /**
      * Whether this leg is a STAR Procedure leg
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property isStarLeg
      * @type {boolean}
      */

@@ -1,7 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _floor from 'lodash/floor';
-import RouteModel from '../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteModel';
+import RouteStringModel from '../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteStringModel';
 import {
     _calculateOffsetsToEachWaypointInRoute,
     _calculateAltitudeOffsets,
@@ -26,8 +26,8 @@ ava.afterEach(() => {
 });
 
 ava('_calculateOffsetsToEachWaypointInRoute() returns array of distances between waypoints, ignoring vector waypoints', (t) => {
-    const routeModel = new RouteModel('PGS..MLF..OAL..KEPEC..BOACH..CHIPZ..#340');
-    const waypointModelList = routeModel.waypoints;
+    const routeStringModel = new RouteStringModel('PGS..MLF..OAL..KEPEC..BOACH..CHIPZ..#340');
+    const waypointModelList = routeStringModel.waypoints;
     const expectedResult = [
         0,
         166.20954056162077,
@@ -42,8 +42,8 @@ ava('_calculateOffsetsToEachWaypointInRoute() returns array of distances between
 });
 
 ava('_calculateAltitudeOffsets returns an array of the altitudes required and their ATDs', (t) => {
-    const routeModel = new RouteModel('PGS.TYSSN4.KLAS01L');
-    const waypointModelList = routeModel.waypoints;
+    const routeStringModel = new RouteStringModel('PGS.TYSSN4.KLAS01L');
+    const waypointModelList = routeStringModel.waypoints;
     const waypointOffsetMap = _calculateOffsetsToEachWaypointInRoute(waypointModelList);
     const expectedResult = [
         [18.958610430426404, 19000],

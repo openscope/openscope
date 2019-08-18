@@ -5,7 +5,7 @@ import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _random from 'lodash/random';
 import _round from 'lodash/round';
-import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
+import RouteStringModel from '../aircraft/FlightManagementSystem/RouteStringModel';
 import AirportController from '../airport/AirportController';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
@@ -175,16 +175,16 @@ export default class SpawnPatternModel extends BaseModel {
         this.preSpawnAircraftList = [];
 
         /**
-         * A local copy of the `RouteModel` that will exist in all aircraft spawned
+         * A local copy of the `RouteStringModel` that will exist in all aircraft spawned
          * from this spawn pattern. Note that this property IS NOT transferred or
          * copied or anything like that during aircraft spawn, but rather is included
          * here so we can ask questions about the route related to HOW we spawn traffic.
          *
          * @for SpawnPatternModel
-         * @property _routeModel
-         * @type {RouteModel}
+         * @property _routeStringModel
+         * @type {RouteStringModel}
          */
-        this._routeModel = null;
+        this._routeStringModel = null;
 
         // SPAWNING AIRCRAFT PROPERTIES
 
@@ -490,7 +490,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.rate = parseFloat(spawnPatternJson.rate);
         this.entrail = _get(spawnPatternJson, 'entrail', this.entrail);
 
-        this._routeModel = new RouteModel(spawnPatternJson.route);
+        this._routeStringModel = new RouteStringModel(spawnPatternJson.route);
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
         this._positionModel = this._generateSelfReferencedAirportPositionModel();
@@ -1040,7 +1040,7 @@ export default class SpawnPatternModel extends BaseModel {
             return;
         }
 
-        this._positionModel = this._routeModel.waypoints[0].positionModel;
+        this._positionModel = this._routeStringModel.waypoints[0].positionModel;
         this.heading = this._calculateSpawnHeading();
     }
 
@@ -1054,8 +1054,8 @@ export default class SpawnPatternModel extends BaseModel {
      * @return {number} heading, in radians
      */
     _calculateSpawnHeading() {
-        const firstWaypointPositionModel = this._routeModel.waypoints[0].positionModel;
-        const secondWaypointPositionModel = this._routeModel.waypoints[1].positionModel;
+        const firstWaypointPositionModel = this._routeStringModel.waypoints[0].positionModel;
+        const secondWaypointPositionModel = this._routeStringModel.waypoints[1].positionModel;
         const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
 
         return heading;

@@ -4,7 +4,7 @@ import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
-import RouteModel from './RouteModel';
+import RouteStringModel from './RouteStringModel';
 import AirportController from '../../airport/AirportController';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import RunwayModel from '../../airport/runway/RunwayModel';
@@ -123,11 +123,11 @@ export default class Fms {
          * Flight plan route for this aircraft, containing lateral and vertical guidance
          *
          * @for Fms
-         * @property _routeModel
-         * @type {RouteModel}
+         * @property _routeStringModel
+         * @type {RouteStringModel}
          * @private
          */
-        this._routeModel = null;
+        this._routeStringModel = null;
 
         this.init(aircraftInitProps);
     }
@@ -141,7 +141,7 @@ export default class Fms {
      * @type {LegModel}
      */
     get currentLeg() {
-        return this._routeModel.currentLeg;
+        return this._routeStringModel.currentLeg;
     }
 
     /**
@@ -153,7 +153,7 @@ export default class Fms {
      * @type {WaypointModel}
      */
     get currentWaypoint() {
-        return this._routeModel.currentWaypoint;
+        return this._routeStringModel.currentWaypoint;
     }
 
     /**
@@ -231,7 +231,7 @@ export default class Fms {
      * @type {WaypointModel}
      */
     get nextWaypoint() {
-        return this._routeModel.nextWaypoint;
+        return this._routeStringModel.nextWaypoint;
     }
 
     /**
@@ -242,7 +242,7 @@ export default class Fms {
      * @type {array<WaypointModel>}
      */
     get waypoints() {
-        return this._routeModel.waypoints;
+        return this._routeStringModel.waypoints;
     }
 
     // ------------------------------ LIFECYCLE ------------------------------
@@ -266,7 +266,7 @@ export default class Fms {
             routeString
         } = aircraftInitProps;
 
-        this._routeModel = new RouteModel(routeString);
+        this._routeStringModel = new RouteStringModel(routeString);
 
         this._verifyRouteContainsMultipleWaypoints();
         this._initializeFlightPhaseForCategory(category);
@@ -294,7 +294,7 @@ export default class Fms {
         this.departureAirportModel = null;
         this.departureRunwayModel = null;
         this.flightPlanAltitude = INVALID_NUMBER;
-        this._routeModel = null;
+        this._routeStringModel = null;
 
         return this;
     }
@@ -327,7 +327,7 @@ export default class Fms {
             return;
         }
 
-        const arrivalRunwayName = this._routeModel.getArrivalRunwayName();
+        const arrivalRunwayName = this._routeStringModel.getArrivalRunwayName();
 
         if (!arrivalRunwayName) {
             this.setArrivalRunway(this.arrivalAirportModel.arrivalRunwayModel);
@@ -368,7 +368,7 @@ export default class Fms {
             return;
         }
 
-        const departureRunwayName = this._routeModel.getDepartureRunwayName();
+        const departureRunwayName = this._routeStringModel.getDepartureRunwayName();
 
         if (!departureRunwayName) {
             return this.setDepartureRunway(this.departureAirportModel.departureRunwayModel);
@@ -445,7 +445,7 @@ export default class Fms {
             return this.moveToNextWaypoint();
         }
 
-        if (!this._routeModel.hasWaypointName(fixName)) {
+        if (!this._routeStringModel.hasWaypointName(fixName)) {
             throw new TypeError(`Expected initial fix to be in flight plan route, but received '${fixName}'`);
         }
 
@@ -455,7 +455,7 @@ export default class Fms {
     // ------------------------------ PUBLIC ------------------------------
 
     activateHoldForWaypointName(waypointName, holdParameters) {
-        if (!this._routeModel.hasWaypointName(waypointName)) {
+        if (!this._routeStringModel.hasWaypointName(waypointName)) {
             // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
             return [false, {
                 log: `unable to hold at ${waypointName}; it is not on our route!`,
@@ -463,7 +463,7 @@ export default class Fms {
             }];
         }
 
-        this._routeModel.activateHoldForWaypointName(waypointName, holdParameters);
+        this._routeStringModel.activateHoldForWaypointName(waypointName, holdParameters);
     }
 
     /**
@@ -475,17 +475,17 @@ export default class Fms {
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        let nextRouteModel;
+        let nextRouteStringModel;
 
         try {
-            nextRouteModel = new RouteModel(routeString);
+            nextRouteStringModel = new RouteStringModel(routeString);
         } catch (error) {
             console.error(error);
 
             return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
-        return this._routeModel.absorbRouteModel(nextRouteModel);
+        return this._routeStringModel.absorbRouteStringModel(nextRouteStringModel);
     }
 
     /**
@@ -597,7 +597,7 @@ export default class Fms {
      * @return {array<WaypointModel>}
      */
     getAltitudeRestrictedWaypoints() {
-        return this._routeModel.getAltitudeRestrictedWaypoints();
+        return this._routeStringModel.getAltitudeRestrictedWaypoints();
     }
 
     /**
@@ -608,7 +608,7 @@ export default class Fms {
      * @return {number}
      */
     getBottomAltitude() {
-        return this._routeModel.getBottomAltitude();
+        return this._routeStringModel.getBottomAltitude();
     }
 
     /**
@@ -619,7 +619,7 @@ export default class Fms {
      * @return {string}
      */
     getFullRouteStringWithoutAirportsWithSpaces() {
-        return this._routeModel.getFullRouteStringWithoutAirportsWithSpaces();
+        return this._routeStringModel.getFullRouteStringWithoutAirportsWithSpaces();
     }
 
     /**
@@ -633,7 +633,7 @@ export default class Fms {
      * @returns {string} First fix in flightPlan or exit fix of SID
      */
     getFlightPlanEntry() {
-        return this._routeModel.getFlightPlanEntry();
+        return this._routeStringModel.getFlightPlanEntry();
     }
 
     /**
@@ -668,7 +668,7 @@ export default class Fms {
      * @return {string}
      */
     getRouteString() {
-        return this._routeModel.getRouteString();
+        return this._routeStringModel.getRouteString();
     }
 
     /**
@@ -681,40 +681,40 @@ export default class Fms {
      * @return {string}
      */
     getRouteStringWithSpaces() {
-        return this._routeModel.getRouteStringWithSpaces();
+        return this._routeStringModel.getRouteStringWithSpaces();
     }
 
     /**
-     * Facade for #_routeModel.getSidIcao
+     * Facade for #_routeStringModel.getSidIcao
      *
      * @for Fms
      * @method getSidIcao
      * @return {string}
      */
     getSidIcao() {
-        return this._routeModel.getSidIcao();
+        return this._routeStringModel.getSidIcao();
     }
 
     /**
-     * Facade for #_routeModel.getSidName
+     * Facade for #_routeStringModel.getSidName
      *
      * @for Fms
      * @method getSidName
      * @return {string}
      */
     getSidName() {
-        return this._routeModel.getSidName();
+        return this._routeStringModel.getSidName();
     }
 
     /**
-     * Facade for #_routeModel.getInitialClimbClearance
+     * Facade for #_routeStringModel.getInitialClimbClearance
      *
      * @for Fms
      * @method getInitialClimbClearance
      * @return {number}
      */
     getInitialClimbClearance() {
-        return this._routeModel.getInitialClimbClearance();
+        return this._routeStringModel.getInitialClimbClearance();
     }
 
     /**
@@ -736,7 +736,7 @@ export default class Fms {
      * @return {number}
      */
     getTopAltitude() {
-        return this._routeModel.getTopAltitude();
+        return this._routeStringModel.getTopAltitude();
     }
 
     /**
@@ -747,7 +747,7 @@ export default class Fms {
      * @return {boolean}
      */
     hasNextWaypoint() {
-        return this._routeModel.hasNextWaypoint();
+        return this._routeStringModel.hasNextWaypoint();
     }
 
     /**
@@ -759,7 +759,7 @@ export default class Fms {
      * @return {boolean}
      */
     hasWaypointName(waypointName) {
-        return this._routeModel.hasWaypointName(waypointName);
+        return this._routeStringModel.hasWaypointName(waypointName);
     }
 
     /**
@@ -796,11 +796,11 @@ export default class Fms {
     }
 
     /**
-     * Facade for `#_routeModel.isRunwayModelValidForSid()`
+     * Facade for `#_routeStringModel.isRunwayModelValidForSid()`
      *
-     * Other classes will not have access to the `#_routeModel`, but can use this
+     * Other classes will not have access to the `#_routeStringModel`, but can use this
      * facade to determine whether or not a given runway assignment is allowable,
-     * given the departure procedure in the `#_routeModel`.
+     * given the departure procedure in the `#_routeStringModel`.
      *
      * @for Fms
      * @method isRunwayModelValidForSid
@@ -808,15 +808,15 @@ export default class Fms {
      * @return {boolean}
      */
     isRunwayModelValidForSid(runwayModel) {
-        return this._routeModel.isRunwayModelValidForSid(runwayModel);
+        return this._routeStringModel.isRunwayModelValidForSid(runwayModel);
     }
 
     /**
-     * Facade for `#_routeModel.isRunwayModelValidForStar()`
+     * Facade for `#_routeStringModel.isRunwayModelValidForStar()`
      *
-     * Other classes will not have access to the `#_routeModel`, but can use this
+     * Other classes will not have access to the `#_routeStringModel`, but can use this
      * facade to determine whether or not a given runway assignment is allowable,
-     * given the arrival procedure in the `#_routeModel`.
+     * given the arrival procedure in the `#_routeStringModel`.
      *
      * @for Fms
      * @method isRunwayModelValidForStar
@@ -824,7 +824,7 @@ export default class Fms {
      * @return {boolean}
      */
     isRunwayModelValidForStar(runwayModel) {
-        return this._routeModel.isRunwayModelValidForStar(runwayModel);
+        return this._routeStringModel.isRunwayModelValidForStar(runwayModel);
     }
 
     /**
@@ -837,7 +837,7 @@ export default class Fms {
      * @method moveToNextWaypoint
      */
     moveToNextWaypoint() {
-        return this._routeModel.moveToNextWaypoint();
+        return this._routeStringModel.moveToNextWaypoint();
     }
 
     /**
@@ -867,7 +867,7 @@ export default class Fms {
             return [false, `unknown procedure "${procedureId}"`];
         }
 
-        const wasSuccessful = this._routeModel.replaceArrivalProcedure(routeString);
+        const wasSuccessful = this._routeStringModel.replaceArrivalProcedure(routeString);
 
         if (wasSuccessful) {
             this._updateArrivalRunwayFromRoute();
@@ -931,7 +931,7 @@ export default class Fms {
         }
 
         const nextRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
-        const readback = this._routeModel.replaceDepartureProcedure(nextRouteString);
+        const readback = this._routeStringModel.replaceDepartureProcedure(nextRouteString);
 
         if (readback[0]) {
             this._updateDepartureRunwayFromRoute();
@@ -957,10 +957,10 @@ export default class Fms {
      */
     replaceFlightPlanWithNewRoute(routeString) {
         const currentWaypointName = this.currentWaypoint.name;
-        let nextRouteModel;
+        let nextRouteStringModel;
 
         try {
-            nextRouteModel = new RouteModel(routeString);
+            nextRouteStringModel = new RouteStringModel(routeString);
         } catch (error) {
             console.error(error);
 
@@ -971,7 +971,7 @@ export default class Fms {
             return [false, readback];
         }
 
-        this._routeModel = nextRouteModel;
+        this._routeStringModel = nextRouteStringModel;
 
         this.skipToWaypointName(currentWaypointName);
 
@@ -1016,7 +1016,7 @@ export default class Fms {
 
         this.departureRunwayModel = runwayModel;
 
-        this._routeModel.updateSidLegForDepartureRunwayModel(runwayModel);
+        this._routeStringModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
 
     /**
@@ -1045,7 +1045,7 @@ export default class Fms {
      * @param waypointName {string}
      */
     skipToWaypointName(waypointName) {
-        return this._routeModel.skipToWaypointName(waypointName);
+        return this._routeStringModel.skipToWaypointName(waypointName);
     }
 
     // ------------------------------ PRIVATE ------------------------------
@@ -1092,19 +1092,19 @@ export default class Fms {
             return [true, readback];
         }
 
-        if (!this._routeModel.isRunwayModelValidForStar(nextRunwayModel)) {
+        if (!this._routeStringModel.isRunwayModelValidForStar(nextRunwayModel)) {
             const readback = {};
             readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is ` +
-                `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
+                `not valid for the ${this._routeStringModel.getStarIcao()} arrival, expecting ` +
                 `Runway ${currentArrivalRunway.name} instead`;
             readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
-                `is not valid for the ${this._routeModel.getStarName()} arrival, expecting ` +
+                `is not valid for the ${this._routeStringModel.getStarName()} arrival, expecting ` +
                 `Runway ${currentArrivalRunway.getRadioName()} instead`;
 
             return [false, readback];
         }
 
-        this._routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
+        this._routeStringModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
         this.setArrivalRunway(nextRunwayModel);
 
         const readback = {};
@@ -1121,7 +1121,7 @@ export default class Fms {
      * @method _updateArrivalRunwayFromRoute
      */
     _updateArrivalRunwayFromRoute() {
-        const arrivalRunwayModel = this._routeModel.getArrivalRunwayModel();
+        const arrivalRunwayModel = this._routeStringModel.getArrivalRunwayModel();
 
         if (_isNil(arrivalRunwayModel)) {
             console.error('Expected route to have a valid arrival runway');
@@ -1139,7 +1139,7 @@ export default class Fms {
      * @method _updateArrivalRunwayFromRoute
      */
     _updateDepartureRunwayFromRoute() {
-        const departureRunwayModel = this._routeModel.getDepartureRunwayModel();
+        const departureRunwayModel = this._routeStringModel.getDepartureRunwayModel();
 
         if (_isNil(departureRunwayModel)) {
             console.error('Expected route to have a valid departure runway');

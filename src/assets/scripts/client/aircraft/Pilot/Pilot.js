@@ -285,8 +285,8 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${this._fms._routeModel.getStarIcao().toUpperCase()} arrival`;
-        readback.say = `cleared to ${airportName} via the ${this._fms._routeModel.getStarName().toUpperCase()} arrival`;
+        readback.log = `cleared to ${airportName} via the ${this._fms._routeStringModel.getStarIcao().toUpperCase()} arrival`;
+        readback.say = `cleared to ${airportName} via the ${this._fms._routeStringModel.getStarName().toUpperCase()} arrival`;
 
         return [true, readback];
     }

@@ -321,19 +321,19 @@ class NavigationLibrary {
     //  * @return {array<WaypointModel>}
     //  */
     // buildWaypointModelsForProcedure(procedureRouteSegment, runway, flightPhase) {
-    //     const routeModel = new RouteModel(procedureRouteSegment);
+    //     const routeStringModel = new RouteStringModel(procedureRouteSegment);
     //     let standardRouteWaypointModelList;
     //
     //     if (this.isGroundedFlightPhase(flightPhase)) {
     //         standardRouteWaypointModelList = this.sidCollection.generateFmsWaypointModelsForRoute(
-    //             routeModel.procedure,
+    //             routeStringModel.procedure,
     //             runway,
-    //             routeModel.exit
+    //             routeStringModel.exit
     //         );
     //     } else {
     //         standardRouteWaypointModelList = this.starCollection.generateFmsWaypointModelsForRoute(
-    //             routeModel.procedure,
-    //             routeModel.entry,
+    //             routeStringModel.procedure,
+    //             routeStringModel.entry,
     //             runway
     //         );
     //     }

@@ -84,16 +84,16 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => buildFmsForAircraftInApronPhaseWithRouteString(directOnlyRouteStringMock));
 });
 
-ava('#currentLeg returns #_routeModel.currentLeg', (t) => {
+ava('#currentLeg returns #_routeStringModel.currentLeg', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
 
-    t.deepEqual(fms.currentLeg, fms._routeModel.currentLeg);
+    t.deepEqual(fms.currentLeg, fms._routeStringModel.currentLeg);
 });
 
-ava('#currentWaypoint returns the first waypoint of the #_routeModel', (t) => {
+ava('#currentWaypoint returns the first waypoint of the #_routeStringModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
 
-    t.deepEqual(fms.currentWaypoint, fms._routeModel.waypoints[0]);
+    t.deepEqual(fms.currentWaypoint, fms._routeStringModel.waypoints[0]);
 });
 
 ava('#nextAltitudeRestrictedWaypoint returns undefined when there are no altitude restricted waypoints remaining', (t) => {
@@ -167,12 +167,12 @@ ava('#nextSpeedRestrictedWaypoint returns the next waypoint with any speed restr
     t.true(result.name === 'KADDY');
 });
 
-ava('#nextWaypoint returns #_routeModel.nextWaypoint', (t) => {
+ava('#nextWaypoint returns #_routeStringModel.nextWaypoint', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
 
     fms.moveToNextWaypoint();
 
-    t.deepEqual(fms.nextWaypoint, fms._routeModel.nextWaypoint);
+    t.deepEqual(fms.nextWaypoint, fms._routeStringModel.nextWaypoint);
 });
 
 ava('#waypoints returns an array containing all the WaypointModels in the route', (t) => {
@@ -185,7 +185,7 @@ ava('#waypoints returns an array containing all the WaypointModels in the route'
 
 ava('.activateHoldForWaypointName() returns failure message when the route does not contain the specified waypoint', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
+    const routeStringModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeStringModel, 'activateHoldForWaypointName');
     const unknownWaypointName = 'DINGBAT';
     const holdParametersMock = { turnDirection: 'left' };
     const expectedResult = [false, {
@@ -194,19 +194,19 @@ ava('.activateHoldForWaypointName() returns failure message when the route does 
     }];
     const result = fms.activateHoldForWaypointName(unknownWaypointName, holdParametersMock);
 
-    t.true(routeModelActivateHoldForWaypointNameSpy.notCalled);
+    t.true(routeStringModelActivateHoldForWaypointNameSpy.notCalled);
     t.deepEqual(result, expectedResult);
 });
 
-ava('.activateHoldForWaypointName() calls #_routeModel.activateHoldForWaypointName() with appropriate parameters', (t) => {
+ava('.activateHoldForWaypointName() calls #_routeStringModel.activateHoldForWaypointName() with appropriate parameters', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
+    const routeStringModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeStringModel, 'activateHoldForWaypointName');
     const holdWaypointName = 'OAL';
     const holdParametersMock = { turnDirection: 'left' };
     const result = fms.activateHoldForWaypointName(holdWaypointName, holdParametersMock);
 
     t.true(typeof result === 'undefined');
-    t.true(routeModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock));
+    t.true(routeStringModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock));
 });
 
 ava('.reset() resets all instance properties to appropriate default values', (t) => {
@@ -220,7 +220,7 @@ ava('.reset() resets all instance properties to appropriate default values', (t)
     t.true(!fms.departureAirportModel);
     t.true(!fms.departureRunwayModel);
     t.true(fms.flightPlanAltitude === INVALID_NUMBER);
-    t.true(!fms._routeModel);
+    t.true(!fms._routeStringModel);
 });
 
 ava('._initializeArrivalAirport() returns early when destination ICAO is an empty string', (t) => {
@@ -389,46 +389,46 @@ ava('._initializePositionInRouteToBeginAtFixName() calls .skipToWaypointName() w
 ava('.applyPartialRouteAmendment() returns error message without throwing when provided routestring is improperly formatted', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('TNP..BIKKR..OAL..MLF..PGS..DRK');
     const routeStringToApply = 'BIKKR.PGS';
-    const absorbRouteModelSpy = sinon.spy(fms._routeModel, 'absorbRouteModel');
+    const absorbRouteStringModelSpy = sinon.spy(fms._routeStringModel, 'absorbRouteStringModel');
     const expectedResult = [false, 'requested route of "BIKKR.PGS" is invalid'];
     const result = fms.applyPartialRouteAmendment(routeStringToApply);
 
     t.deepEqual(result, expectedResult);
-    t.true(absorbRouteModelSpy.notCalled);
+    t.true(absorbRouteStringModelSpy.notCalled);
 });
 
-ava('.applyPartialRouteAmendment() calls #_routeModel.absorbRouteModel() when provided routestring is properly formatted', (t) => {
+ava('.applyPartialRouteAmendment() calls #_routeStringModel.absorbRouteStringModel() when provided routestring is properly formatted', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('TNP..BIKKR..OAL..MLF..PGS..DRK');
     const routeStringToApply = 'BIKKR..PGS';
-    const absorbRouteModelSpy = sinon.spy(fms._routeModel, 'absorbRouteModel');
+    const absorbRouteStringModelSpy = sinon.spy(fms._routeStringModel, 'absorbRouteStringModel');
     const expectedResult = [true, { log: 'rerouting to: BIKKR PGS DRK', say: 'rerouting as requested' }];
     const result = fms.applyPartialRouteAmendment(routeStringToApply);
 
     t.deepEqual(result, expectedResult);
-    t.true(absorbRouteModelSpy.args[0].length === 1);
-    t.true(absorbRouteModelSpy.args[0][0].getRouteString() === routeStringToApply);
+    t.true(absorbRouteStringModelSpy.args[0].length === 1);
+    t.true(absorbRouteStringModelSpy.args[0][0].getRouteString() === routeStringToApply);
 });
 
-ava('.getAltitudeRestrictedWaypoints() returns #_routeModel.getAltitudeRestrictedWaypoints()', (t) => {
+ava('.getAltitudeRestrictedWaypoints() returns #_routeStringModel.getAltitudeRestrictedWaypoints()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
 
-    t.deepEqual(fms.getAltitudeRestrictedWaypoints(), fms._routeModel.getAltitudeRestrictedWaypoints());
+    t.deepEqual(fms.getAltitudeRestrictedWaypoints(), fms._routeStringModel.getAltitudeRestrictedWaypoints());
 });
 
-ava('.getBottomAltitude() returns #_routeModel.getBottomAltitude()', (t) => {
+ava('.getBottomAltitude() returns #_routeStringModel.getBottomAltitude()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
 
-    t.deepEqual(fms.getBottomAltitude(), fms._routeModel.getBottomAltitude());
+    t.deepEqual(fms.getBottomAltitude(), fms._routeStringModel.getBottomAltitude());
 });
 
-ava('.getFullRouteStringWithoutAirportsWithSpaces calls #_routeModel.getFullRouteStringWithoutAirportsWithSpaces()', (t) => {
+ava('.getFullRouteStringWithoutAirportsWithSpaces calls #_routeStringModel.getFullRouteStringWithoutAirportsWithSpaces()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString('KLAS07R.COWBY6.DRK');
-    const routeModelSpy = sinon.spy(fms._routeModel, 'getFullRouteStringWithoutAirportsWithSpaces');
+    const routeStringModelSpy = sinon.spy(fms._routeStringModel, 'getFullRouteStringWithoutAirportsWithSpaces');
     const expectedResult = 'COWBY6 DRK';
     const result = fms.getFullRouteStringWithoutAirportsWithSpaces();
 
     t.true(result === expectedResult);
-    t.true(routeModelSpy.calledWithExactly());
+    t.true(routeStringModelSpy.calledWithExactly());
 });
 
 ava('.getNextWaypointPositionModel() returns #nextWaypoint.positionModel', (t) => {
@@ -447,16 +447,16 @@ ava('.getRestrictedWaypoints() returns all waypoints in route that return true f
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
-ava('.getRouteString() returns #_routeModel.getRouteString()', (t) => {
+ava('.getRouteString() returns #_routeStringModel.getRouteString()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
 
-    t.deepEqual(fms.getRouteString(), fms._routeModel.getRouteString());
+    t.deepEqual(fms.getRouteString(), fms._routeStringModel.getRouteString());
 });
 
-ava('.getRouteStringWithSpaces() returns #_routeModel.getRouteStringWithSpaces()', (t) => {
+ava('.getRouteStringWithSpaces() returns #_routeStringModel.getRouteStringWithSpaces()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
 
-    t.deepEqual(fms.getRouteStringWithSpaces(), fms._routeModel.getRouteStringWithSpaces());
+    t.deepEqual(fms.getRouteStringWithSpaces(), fms._routeStringModel.getRouteStringWithSpaces());
 });
 
 ava('.getSpeedRestrictedWaypoints() returns array of all speed restricted waypoints in route', (t) => {
@@ -469,48 +469,48 @@ ava('.getSpeedRestrictedWaypoints() returns array of all speed restricted waypoi
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
-ava('.getSidIcao() returns #_routeModel.getSidIcao()', (t) => {
+ava('.getSidIcao() returns #_routeStringModel.getSidIcao()', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('DVC.GRNPA1.KLAS07R');
-    const expectedResult = fms._routeModel.getSidIcao();
+    const expectedResult = fms._routeStringModel.getSidIcao();
     const result = fms.getSidIcao();
 
     t.true(result === expectedResult);
 });
 
-ava('.getSidName() returns #_routeModel.getSidName()', (t) => {
+ava('.getSidName() returns #_routeStringModel.getSidName()', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('DVC.GRNPA1.KLAS07R');
-    const expectedResult = fms._routeModel.getSidName();
+    const expectedResult = fms._routeStringModel.getSidName();
     const result = fms.getSidName();
 
     t.true(result === expectedResult);
 });
 
-ava('.getTopAltitude() returns #_routeModel.getTopAltitude()', (t) => {
+ava('.getTopAltitude() returns #_routeStringModel.getTopAltitude()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
-    const routeModelGetTopAltitudeSpy = sinon.spy(fms._routeModel, 'getTopAltitude');
+    const routeStringModelGetTopAltitudeSpy = sinon.spy(fms._routeStringModel, 'getTopAltitude');
     const result = fms.getTopAltitude();
 
-    t.true(routeModelGetTopAltitudeSpy.calledWithExactly());
-    t.true(result === fms._routeModel.getTopAltitude());
+    t.true(routeStringModelGetTopAltitudeSpy.calledWithExactly());
+    t.true(result === fms._routeStringModel.getTopAltitude());
 });
 
-ava('.hasNextWaypoint() returns #_routeModel.hasNextWaypoint()', (t) => {
+ava('.hasNextWaypoint() returns #_routeStringModel.hasNextWaypoint()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
-    const routeModelHasNextWaypointSpy = sinon.spy(fms._routeModel, 'hasNextWaypoint');
+    const routeStringModelHasNextWaypointSpy = sinon.spy(fms._routeStringModel, 'hasNextWaypoint');
     const result = fms.hasNextWaypoint();
 
-    t.true(routeModelHasNextWaypointSpy.calledWithExactly());
-    t.true(result === fms._routeModel.hasNextWaypoint());
+    t.true(routeStringModelHasNextWaypointSpy.calledWithExactly());
+    t.true(result === fms._routeStringModel.hasNextWaypoint());
 });
 
-ava('.hasWaypointName() returns #_routeModel.hasWaypointName()', (t) => {
+ava('.hasWaypointName() returns #_routeStringModel.hasWaypointName()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const waypointNameMock = 'DRK';
-    const routeModelHasWaypointNameSpy = sinon.spy(fms._routeModel, 'hasWaypointName');
+    const routeStringModelHasWaypointNameSpy = sinon.spy(fms._routeStringModel, 'hasWaypointName');
     const result = fms.hasWaypointName(waypointNameMock);
 
-    t.true(routeModelHasWaypointNameSpy.calledWithExactly(waypointNameMock));
-    t.true(result === fms._routeModel.hasWaypointName(waypointNameMock));
+    t.true(routeStringModelHasWaypointNameSpy.calledWithExactly(waypointNameMock));
+    t.true(result === fms._routeStringModel.hasWaypointName(waypointNameMock));
 });
 
 ava('.isArrival() returns true for any arrival flight', (t) => {
@@ -533,13 +533,13 @@ ava('.isDeparture() returns false for any arriving flight', (t) => {
     t.false(fms.isDeparture());
 });
 
-ava('.moveToNextWaypoint() calls #_routeModel.moveToNextWaypoint()', (t) => {
+ava('.moveToNextWaypoint() calls #_routeStringModel.moveToNextWaypoint()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelMoveToNextWaypointSpy = sinon.spy(fms._routeModel, 'moveToNextWaypoint');
+    const routeStringModelMoveToNextWaypointSpy = sinon.spy(fms._routeStringModel, 'moveToNextWaypoint');
     const result = fms.moveToNextWaypoint();
 
-    t.true(routeModelMoveToNextWaypointSpy.calledWithExactly());
-    t.deepEqual(result, fms._routeModel.moveToNextWaypoint());
+    t.true(routeStringModelMoveToNextWaypointSpy.calledWithExactly());
+    t.deepEqual(result, fms._routeStringModel.moveToNextWaypoint());
 });
 
 ava('.replaceArrivalProcedure() returns early when passed a wrong-length route string', (t) => {
@@ -554,22 +554,22 @@ ava('.replaceArrivalProcedure() returns early when passed a wrong-length route s
 
 ava('.replaceArrivalProcedure() returns early when the specified procedure does not exist', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceArrivalProcedureSpy = sinon.spy(fms._routeModel, 'replaceArrivalProcedure');
+    const routeStringModelReplaceArrivalProcedureSpy = sinon.spy(fms._routeStringModel, 'replaceArrivalProcedure');
     const expectedResponse = [false, 'unknown procedure "KEPEC0"'];
     const responseForInvalidProcedure = fms.replaceArrivalProcedure('DAG.KEPEC0.KLAS07R');
 
-    t.true(routeModelReplaceArrivalProcedureSpy.notCalled);
+    t.true(routeStringModelReplaceArrivalProcedureSpy.notCalled);
     t.deepEqual(responseForInvalidProcedure, expectedResponse);
 });
 
 ava('.replaceArrivalProcedure() does not call ._updateArrivalRunwayFromRoute() when the arrival procedure is not applied successfully', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceArrivalProcedureStub = sinon.stub(fms._routeModel, 'replaceArrivalProcedure').returns(false);
+    const routeStringModelReplaceArrivalProcedureStub = sinon.stub(fms._routeStringModel, 'replaceArrivalProcedure').returns(false);
     const updateArrivalRunwayFromRouteSpy = sinon.spy(fms, '_updateArrivalRunwayFromRoute');
     const expectedResponse = [false, 'route of "DAG.KEPEC3.KLAS07R" is not valid'];
     const responseForInvalidProcedure = fms.replaceArrivalProcedure('DAG.KEPEC3.KLAS07R');
 
-    routeModelReplaceArrivalProcedureStub.restore();
+    routeStringModelReplaceArrivalProcedureStub.restore();
 
     t.true(updateArrivalRunwayFromRouteSpy.notCalled);
     t.deepEqual(responseForInvalidProcedure, expectedResponse);
@@ -595,22 +595,22 @@ ava('.replaceDepartureProcedure() returns early when passed a wrong-length route
 
 ava('.replaceDepartureProcedure() returns early when the specified procedure does not exist', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceDepartureProcedureSpy = sinon.spy(fms._routeModel, 'replaceDepartureProcedure');
+    const routeStringModelReplaceDepartureProcedureSpy = sinon.spy(fms._routeStringModel, 'replaceDepartureProcedure');
     const expectedResponse = [false, 'unknown procedure "BOACH0"'];
     const responseForInvalidProcedure = fms.replaceDepartureProcedure('KLAS07R.BOACH0.TNP');
 
-    t.true(routeModelReplaceDepartureProcedureSpy.notCalled);
+    t.true(routeStringModelReplaceDepartureProcedureSpy.notCalled);
     t.deepEqual(responseForInvalidProcedure, expectedResponse);
 });
 
 ava('.replaceDepartureProcedure() does not call ._updateDepartureRunwayFromRoute() when the departure procedure is not applied successfully', (t) => {
     const expectedResponse = [false, 'route of "KLAS07R.BOACH6.TNP" is not valid'];
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceDepartureProcedureStub = sinon.stub(fms._routeModel, 'replaceDepartureProcedure').returns(expectedResponse);
+    const routeStringModelReplaceDepartureProcedureStub = sinon.stub(fms._routeStringModel, 'replaceDepartureProcedure').returns(expectedResponse);
     const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const responseForInvalidProcedure = fms.replaceDepartureProcedure('KLAS07R.BOACH6.TNP');
 
-    routeModelReplaceDepartureProcedureStub.restore();
+    routeStringModelReplaceDepartureProcedureStub.restore();
 
     t.true(updateDepartureRunwayFromRouteSpy.notCalled);
     t.deepEqual(responseForInvalidProcedure, expectedResponse);
@@ -631,14 +631,14 @@ ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() and u
 ava('.replaceFlightPlanWithNewRoute() returns failure response and does not modify route when proposed route is not valid', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const invalidProposedRoute = 'KLAS07R.BOACH6.BOP';
-    const originalRouteModel = fms._routeModel;
+    const originalRouteStringModel = fms._routeStringModel;
     const skipToWaypointNameSpy = sinon.spy(fms, 'skipToWaypointName');
     const expectedResult = [false, { log: 'requested route of "KLAS07R.BOACH6.BOP" is invalid', say: 'that route is invalid' }];
     const result = fms.replaceFlightPlanWithNewRoute(invalidProposedRoute);
 
     t.deepEqual(result, expectedResult);
     t.true(skipToWaypointNameSpy.notCalled);
-    t.deepEqual(originalRouteModel, fms._routeModel);
+    t.deepEqual(originalRouteStringModel, fms._routeStringModel);
 });
 
 ava('.replaceFlightPlanWithNewRoute() returns correct response and replaces old route with new route when proposed route is valid', (t) => {
@@ -650,7 +650,7 @@ ava('.replaceFlightPlanWithNewRoute() returns correct response and replaces old 
 
     t.deepEqual(result, expectedResult);
     t.true(skipToWaypointNameSpy.calledWithExactly('BIKKR'));
-    t.true(fms._routeModel.getRouteString() === proposedRoute);
+    t.true(fms._routeStringModel.getRouteString() === proposedRoute);
 });
 
 ava('.setArrivalRunway() throws when passed something other than a RunwayModel instance', (t) => {
@@ -678,13 +678,13 @@ ava('.updateStarLegForArrivalRunway() throws when passed something other than a 
 ava('.updateStarLegForArrivalRunway() returns early when the specified runway is already the #arrivalRunwayModel', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const originalRunwayModel = fms.arrivalRunwayModel;
-    const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
+    const routeStringModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeStringModel, 'updateStarLegForArrivalRunwayModel');
 
     const expectedResult = [true, { log: `expect Runway ${originalRunwayModel.name}`, say: `expect Runway ${originalRunwayModel.getRadioName()}` }];
     const result = fms.updateStarLegForArrivalRunway(originalRunwayModel);
 
     t.deepEqual(result, expectedResult);
-    t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
+    t.true(routeStringModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
     t.deepEqual(fms.arrivalRunwayModel, originalRunwayModel);
 });
 
@@ -692,7 +692,7 @@ ava('.updateStarLegForArrivalRunway() returns early when the specified runway is
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const originalRunwayModel = fms.arrivalRunwayModel;
     const nextRunwayModel = airportModelFixture.getRunway('01R');
-    const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
+    const routeStringModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeStringModel, 'updateStarLegForArrivalRunwayModel');
     const expectedResult = [false, {
         log: 'unable, according to our charts, Runway 01R is not valid for the KEPEC3 arrival, expecting Runway 07R instead',
         say: 'unable, according to our charts, Runway zero one right is not valid for the Kepec Three arrival, expecting Runway zero seven right instead'
@@ -700,20 +700,20 @@ ava('.updateStarLegForArrivalRunway() returns early when the specified runway is
     const result = fms.updateStarLegForArrivalRunway(nextRunwayModel);
 
     t.deepEqual(result, expectedResult);
-    t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
+    t.true(routeStringModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
     t.deepEqual(fms.arrivalRunwayModel, originalRunwayModel);
 });
 
 ava('.updateStarLegForArrivalRunway() sets #arrivalRunwayModel to the specified RunwayModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const nextRunwayModel = airportModelFixture.getRunway('25R');
-    const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
+    const routeStringModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeStringModel, 'updateStarLegForArrivalRunwayModel');
 
     const expectedResult = [true, { log: `expecting Runway ${nextRunwayModel.name}`, say: `expecting Runway ${nextRunwayModel.getRadioName()}` }];
     const result = fms.updateStarLegForArrivalRunway(nextRunwayModel);
 
     t.deepEqual(result, expectedResult);
-    t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.calledWithExactly(nextRunwayModel));
+    t.true(routeStringModelUpdateStarLegForArrivalRunwayModelSpy.calledWithExactly(nextRunwayModel));
     t.deepEqual(fms.arrivalRunwayModel, nextRunwayModel);
 });
 
@@ -731,22 +731,22 @@ ava('.setDepartureRunway() throws when passed something other than a RunwayModel
 ava('.setDepartureRunway() returns early when the specified runway is already the #departureRunwayModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const originalRunwayModel = fms.departureRunwayModel;
-    const routeModelUpdateSidLegForDepartureRunwayModelSpy = sinon.spy(fms._routeModel, 'updateSidLegForDepartureRunwayModel');
+    const routeStringModelUpdateSidLegForDepartureRunwayModelSpy = sinon.spy(fms._routeStringModel, 'updateSidLegForDepartureRunwayModel');
 
     fms.setDepartureRunway(originalRunwayModel);
 
-    t.true(routeModelUpdateSidLegForDepartureRunwayModelSpy.notCalled);
+    t.true(routeStringModelUpdateSidLegForDepartureRunwayModelSpy.notCalled);
     t.deepEqual(fms.departureRunwayModel, originalRunwayModel);
 });
 
 ava('.setDepartureRunway() sets #departureRunwayModel to the specified RunwayModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const nextRunwayModel = airportModelFixture.getRunway('25R');
-    const routeModelUpdateSidLegForDepartureRunwayModelSpy = sinon.spy(fms._routeModel, 'updateSidLegForDepartureRunwayModel');
+    const routeStringModelUpdateSidLegForDepartureRunwayModelSpy = sinon.spy(fms._routeStringModel, 'updateSidLegForDepartureRunwayModel');
 
     fms.setDepartureRunway(nextRunwayModel);
 
-    t.true(routeModelUpdateSidLegForDepartureRunwayModelSpy.calledWithExactly(nextRunwayModel));
+    t.true(routeStringModelUpdateSidLegForDepartureRunwayModelSpy.calledWithExactly(nextRunwayModel));
     t.deepEqual(fms.departureRunwayModel, nextRunwayModel);
 });
 
@@ -771,14 +771,14 @@ ava('.setFlightPhase() sets #currentPhase to the specified flight phase', (t) =>
     t.true(fms.currentPhase === FLIGHT_PHASE.CRUISE);
 });
 
-ava('.skipToWaypointName() returns #_routeModel.skipToWaypointName()', (t) => {
+ava('.skipToWaypointName() returns #_routeStringModel.skipToWaypointName()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelSkipTowWaypointNameSpy = sinon.spy(fms._routeModel, 'skipToWaypointName');
+    const routeStringModelSkipTowWaypointNameSpy = sinon.spy(fms._routeStringModel, 'skipToWaypointName');
     const nextWaypointNameMock = 'MLF';
     const result = fms.skipToWaypointName(nextWaypointNameMock);
 
     t.true(result);
-    t.true(routeModelSkipTowWaypointNameSpy.calledWithExactly(nextWaypointNameMock));
+    t.true(routeStringModelSkipTowWaypointNameSpy.calledWithExactly(nextWaypointNameMock));
 });
 
 ava('._updateArrivalRunwayFromRoute() returns early when arrival runway cannot be deduced from route', (t) => {
@@ -822,7 +822,7 @@ ava('._updateDepartureRunwayFromRoute() calls .setDepartureRunway() IAW the rout
 ava('._verifyRouteContainsMultipleWaypoints() throws when route has zero waypoints', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
 
-    fms._routeModel.reset();
+    fms._routeStringModel.reset();
 
     t.true(fms.waypoints.length === 0);
     t.throws(() => fms._verifyRouteContainsMultipleWaypoints());

@@ -27,15 +27,15 @@ import { assembleProceduralRouteString } from '../../utilities/navigationUtiliti
  * Representation of an aircraft's flight plan route
  *
  * This object contains all of the legs and waypoints the FMS will use to navigate.
- * Each instance of an Aircraft has an FMS with a `RouteModel`, that it is able
+ * Each instance of an Aircraft has an FMS with a `RouteStringModel`, that it is able
  * to modify, including adding/removing legs/waypoints, adding/removing waypoint
- * restrictions, absorbing another `RouteModel`, etc.
+ * restrictions, absorbing another `RouteStringModel`, etc.
  *
- * @class RouteModel
+ * @class RouteStringModel
  */
-export default class RouteModel extends BaseModel {
+export default class RouteStringModel extends BaseModel {
     /**
-     * @for RouteModel
+     * @for RouteStringModel
      * @constructor
      * @param routeString {string}
      */
@@ -45,7 +45,7 @@ export default class RouteModel extends BaseModel {
         /**
          * Array of `LegModel`s on the route
          *
-         * @for RouteModel
+         * @for RouteStringModel
          * @property _legCollection
          * @type {array<LegModel>}
          * @private
@@ -60,7 +60,7 @@ export default class RouteModel extends BaseModel {
          * and proceed to the next leg in the `#_legCollection` until no more `LegModel`s
          * exist, at which point they will simply hold their last assigned heading and altitude.
          *
-         * @for RouteModel
+         * @for RouteStringModel
          * @property _previousLegCollection
          * @type {array<WaypointModel>}
          * @private
@@ -73,7 +73,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the current `LegModel`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property currentLeg
      * @type {LegModel}
      */
@@ -88,7 +88,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the current `WaypointModel`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property currentWaypoint
      * @type {WaypointModel}
      */
@@ -99,7 +99,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the current `#_legCollection`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property legCollection
      * @type {array<LegModel>}
      */
@@ -110,7 +110,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the next `LegModel`, if it exists
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property nextLeg
      * @type {LegModel}
      */
@@ -125,7 +125,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the next `WaypointModel`, from current or future leg
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property nextWaypoint
      * @type {WaypointModel}
      */
@@ -144,7 +144,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return an array of all waypoints in all legs of the route
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @property waypoints
      * @type {array<WaypointModel>}
      */
@@ -159,7 +159,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Initialize instance properties
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method init
      * @param routeString {string}
      * @chainable
@@ -173,7 +173,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Reset instance properties
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method reset
      * @chainable
      */
@@ -188,27 +188,27 @@ export default class RouteModel extends BaseModel {
     /**
      * Merge the provided route model into this route model, if possible
      *
-     * @for RouteModel
-     * @method absorbRouteModel
-     * @param routeModel {RouteModel}
+     * @for RouteStringModel
+     * @method absorbRouteStringModel
+     * @param routeStringModel {RouteStringModel}
      * @return {array} [success of operation, response]
      */
-    absorbRouteModel(routeModel) {
-        const firstWaypointName = _first(routeModel.waypoints).name;
-        const lastWaypointName = _last(routeModel.waypoints).name;
+    absorbRouteStringModel(routeStringModel) {
+        const firstWaypointName = _first(routeStringModel.waypoints).name;
+        const lastWaypointName = _last(routeStringModel.waypoints).name;
         const routesConverge = this.hasWaypointName(lastWaypointName);
         const routesDiverge = this.hasWaypointName(firstWaypointName);
 
         if (routesConverge && routesDiverge) {
-            return this._overwriteRouteBetweenWaypointNames(firstWaypointName, lastWaypointName, routeModel);
+            return this._overwriteRouteBetweenWaypointNames(firstWaypointName, lastWaypointName, routeStringModel);
         }
 
         if (routesConverge) {
-            return this._prependRouteModelEndingAtWaypointName(lastWaypointName, routeModel);
+            return this._prependRouteStringModelEndingAtWaypointName(lastWaypointName, routeStringModel);
         }
 
         if (routesDiverge) {
-            return this._appendRouteModelBeginningAtWaypointName(firstWaypointName, routeModel);
+            return this._appendRouteStringModelBeginningAtWaypointName(firstWaypointName, routeStringModel);
         }
 
         return [false, 'routes do not have continuity!'];
@@ -217,7 +217,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Mark the specified waypoint as a hold waypoint
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method activateHoldForWaypointName
      * @param waypointName {string} name of waypoint in route
      * @param holdParameters {object}
@@ -236,7 +236,7 @@ export default class RouteModel extends BaseModel {
     /**
     * Return an array of waypoints in the flight plan that have altitude restrictions
     *
-    * @for RouteModel
+    * @for RouteStringModel
     * @method getAltitudeRestrictedWaypoints
     * @return {array<WaypointModel>}
     */
@@ -264,7 +264,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the `AirportModel` at whose runway this route will terminate
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getArrivalRunwayAirportModel
      * @return {AirportModel}
      */
@@ -298,7 +298,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the `RunwayModel` at which this route will terminate
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getArrivalRunwayModel
      * @return {RunwayModel}
      */
@@ -332,7 +332,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the `AirportModel` for the airport at whose runway this route originates
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getDepartureRunwayAirportModel
      * @return {AirportModel}
      */
@@ -366,7 +366,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the `RunwayModel` at which this route originates
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getDepartureRunwayModel
      * @return {RunwayModel}
      */
@@ -383,7 +383,7 @@ export default class RouteModel extends BaseModel {
     /**
     * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
     *
-    * @for RouteModel
+    * @for RouteStringModel
     * @method getBottomAltitude
     * @return {number}
     */
@@ -404,7 +404,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Generate a route string for all legs in the `#_previousLegCollection` an `#_legCollection`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getRouteString
      * @return {string}
      */
@@ -421,7 +421,7 @@ export default class RouteModel extends BaseModel {
     * Example:
     * - `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
     *
-    * @for RouteModel
+    * @for RouteStringModel
     * @method getFullRouteStringWithoutAirportsWithSpaces
     * @return {string}
     */
@@ -445,7 +445,7 @@ export default class RouteModel extends BaseModel {
      * Used mostly for representing the route string in the view, like
      * an aircraft strip, etc.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getFullRouteStringWithSpaces
      * @return {string}
      */
@@ -458,7 +458,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Generate a route string for all legs in the `#_legCollection`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getRouteString
      * @return {string}
      */
@@ -474,7 +474,7 @@ export default class RouteModel extends BaseModel {
      * Example:
      * - `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getRouteStringWithSpaces
      * @return {string}
      */
@@ -495,7 +495,7 @@ export default class RouteModel extends BaseModel {
      * Example:
      * - `OAL..MLF..PGS` -> `OAL`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getFlightPlanEntry
      * @returns {string} First fix in flightPlan or exit fix of SID
      */
@@ -512,7 +512,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the ICAO identifier of the SID in use (if any)
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getSidIcao
      * @return {string}
      */
@@ -529,7 +529,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the name of the SID in use (if any)
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getSidName
      * @return {string}
      */
@@ -546,7 +546,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the initial altitude of the SID or the airport
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getInitialClimbClearance
      * @return {number}
      */
@@ -565,7 +565,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the ICAO identifier of the STAR in use (if any)
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getStarIcao
      * @return {string}
      */
@@ -582,7 +582,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the name of the STAR in use (if any)
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method getStarName
      * @return {string}
      */
@@ -599,7 +599,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
     *
-    * @for RouteModel
+    * @for RouteStringModel
     * @method getTopAltitude
     * @return {number}
     */
@@ -620,7 +620,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Whether the route has another leg after the current one
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method hasNextLeg
      * @return {boolean}
      */
@@ -633,7 +633,7 @@ export default class RouteModel extends BaseModel {
      *
      * This includes waypoints in the current and future legs
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method hasNextWaypoint
      * @return {boolean}
      */
@@ -652,7 +652,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return whether the route has a SID leg
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method hasSidLeg
      * @return {boolean}
      */
@@ -663,7 +663,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return whether the route has a STAR leg
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method hasStarLeg
      * @return {boolean}
      */
@@ -674,7 +674,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return whether the route contains a waypoint with the specified name
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method hasWaypointName
      * @param waypointName {string}
      * @return {boolean}
@@ -694,7 +694,7 @@ export default class RouteModel extends BaseModel {
      *
      * If there is no SID, there is no issue with changing runways, so we would treat this as "valid"
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method isRunwayModelValidForSid
      * @param runwayModel {RunwayModel}
      * @return {boolean}
@@ -721,7 +721,7 @@ export default class RouteModel extends BaseModel {
      *
      * If there is no STAR, there is no issue with changing runways, so we would treat this as "valid"
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method isRunwayModelValidForStar
      * @param runwayModel {RunwayModel}
      * @return {boolean}
@@ -750,7 +750,7 @@ export default class RouteModel extends BaseModel {
      * If there are no more waypoints in the `#currentLeg`, this will also cause
      * us to skip to the next leg.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method moveToNextWaypoint
      */
     moveToNextWaypoint() {
@@ -768,7 +768,7 @@ export default class RouteModel extends BaseModel {
      * exists, replace that leg with the new one. Else, add the new one at the end
      * of the #_legCollection.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method replaceArrivalProcedure
      * @param routeString {string}
      * @return {boolean} whether operation was successful
@@ -803,23 +803,23 @@ export default class RouteModel extends BaseModel {
      * exists, replace that leg with the new one. Else, add the new one at the
      * beginning of the #_legCollection.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method replaceDepartureProcedure
      * @param routeString {string}
      * @return {array} [success of operation, response]
      */
     replaceDepartureProcedure(routeString) {
-        let routeModel;
+        let routeStringModel;
 
         try {
-            routeModel = new RouteModel(routeString);
+            routeStringModel = new RouteStringModel(routeString);
         } catch (error) {
             console.error(error);
 
             return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
-        return this.absorbRouteModel(routeModel);
+        return this.absorbRouteStringModel(routeStringModel);
     }
 
     /**
@@ -827,7 +827,7 @@ export default class RouteModel extends BaseModel {
      *
      * This also results in the `#nextLeg` becoming the `#currentLeg`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method moveToNextLeg
      */
     moveToNextLeg() {
@@ -843,7 +843,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Skip ahead to the waypoint with the specified name, if it exists
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method skipToWaypointName
      * @param waypointName {string}
      * @return {boolean} success of operation
@@ -868,7 +868,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Ensure the SID leg has the specified departure runway as the entry point
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method updateSidLegForDepartureRunwayModel
      * @param runwayModel {RunwayModel}
      */
@@ -885,7 +885,7 @@ export default class RouteModel extends BaseModel {
     /**
     * Ensure the STAR leg has the specified arrival runway as the exit point
     *
-    * @for RouteModel
+    * @for RouteStringModel
     * @method updateStarLegForArrivalRunwayModel
     * @param runwayModel {RunwayModel}
     */
@@ -913,37 +913,37 @@ export default class RouteModel extends BaseModel {
     // ------------------------------ PRIVATE ------------------------------
 
     /**
-     * Append a provided route model onto the end of this RouteModel
+     * Append a provided route model onto the end of this RouteStringModel
      *
      * This method only serves to call the method that contains the appropriate logic
      * based on the type of leg in which the divergent waypoint resides, since this
      * heavily weighs in to how the merging of the routes should be done. Note that
      * the #_legCollection will be mutated in this process.
      *
-     * @for RouteModel
-     * @method _appendRouteModelBeginningAtWaypointName
+     * @for RouteStringModel
+     * @method _appendRouteStringModelBeginningAtWaypointName
      * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      * @return {array} [success of operation, readback]
      */
-    _appendRouteModelBeginningAtWaypointName(divergentWaypointName, routeModel) {
+    _appendRouteStringModelBeginningAtWaypointName(divergentWaypointName, routeStringModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const divergentLeg = this._legCollection[indexOfDivergentLeg];
 
         if (divergentLeg.isAirwayLeg) {
-            return this._appendRouteModelOutOfAirwayLeg(divergentWaypointName, routeModel);
+            return this._appendRouteStringModelOutOfAirwayLeg(divergentWaypointName, routeStringModel);
         }
 
         if (divergentLeg.isDirectLeg) {
-            return this._appendRouteModelOutOfDirectLeg(divergentWaypointName, routeModel);
+            return this._appendRouteStringModelOutOfDirectLeg(divergentWaypointName, routeStringModel);
         }
 
         if (divergentLeg.isSidLeg) {
-            return this._appendRouteModelOutOfSidLeg(divergentWaypointName, routeModel);
+            return this._appendRouteStringModelOutOfSidLeg(divergentWaypointName, routeStringModel);
         }
 
         if (divergentLeg.isStarLeg) {
-            return this._appendRouteModelOutOfStarLeg(divergentWaypointName, routeModel);
+            return this._appendRouteStringModelOutOfStarLeg(divergentWaypointName, routeStringModel);
         }
 
         throw new TypeError(`Expected known leg type, but received "${divergentLeg.legType}" ` +
@@ -951,17 +951,17 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Append a provided route model into this RouteModel when the divergent waypoint is in an airway leg
+     * Append a provided route model into this RouteStringModel when the divergent waypoint is in an airway leg
      *
-     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     * This should only ever be called by `._appendRouteStringModelBeginningAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _appendRouteModelOutOfAirwayLeg
+     * @for RouteStringModel
+     * @method _appendRouteStringModelOutOfAirwayLeg
      * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      * @return {array} [success of operation, readback]
      */
-    _appendRouteModelOutOfAirwayLeg(divergentWaypointName, routeModel) {
+    _appendRouteStringModelOutOfAirwayLeg(divergentWaypointName, routeStringModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const amendedAirwayLeg = this._createAmendedAirwayLegUsingDifferentExitName(
             divergentWaypointName,
@@ -973,7 +973,7 @@ export default class RouteModel extends BaseModel {
         this._legCollection = [
             ...this._legCollection,
             amendedAirwayLeg,
-            ...routeModel.legCollection
+            ...routeStringModel.legCollection
         ];
 
         const readback = {};
@@ -984,21 +984,21 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Append a provided route model into this RouteModel when the divergent waypoint is in a direct leg
+     * Append a provided route model into this RouteStringModel when the divergent waypoint is in a direct leg
      *
-     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     * This should only ever be called by `._appendRouteStringModelBeginningAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _appendRouteModelOutOfDirectLeg
+     * @for RouteStringModel
+     * @method _appendRouteStringModelOutOfDirectLeg
      * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      * @return {array} [success of operation, readback]
      */
-    _appendRouteModelOutOfDirectLeg(divergentWaypointName, routeModel) {
+    _appendRouteStringModelOutOfDirectLeg(divergentWaypointName, routeStringModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
 
         this._legCollection.splice(indexOfDivergentLeg);
-        this._legCollection = this._legCollection.concat(routeModel.legCollection);
+        this._legCollection = this._legCollection.concat(routeStringModel.legCollection);
 
         const readback = {};
         readback.log = `rerouting to: ${this.getRouteStringWithSpaces()}`;
@@ -1008,17 +1008,17 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Append a provided route model into this RouteModel when the divergent waypoint is in a SID leg
+     * Append a provided route model into this RouteStringModel when the divergent waypoint is in a SID leg
      *
-     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     * This should only ever be called by `._appendRouteStringModelBeginningAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _appendRouteModelOutOfSidLeg
+     * @for RouteStringModel
+     * @method _appendRouteStringModelOutOfSidLeg
      * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      * @return {array} [success of operation, readback]
      */
-    _appendRouteModelOutOfSidLeg(divergentWaypointName, routeModel) {
+    _appendRouteStringModelOutOfSidLeg(divergentWaypointName, routeStringModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const remainingLegWaypointsAsLegs = this._createLegsFromSidWaypointsBeforeWaypointName(
             divergentWaypointName,
@@ -1030,7 +1030,7 @@ export default class RouteModel extends BaseModel {
         this._legCollection = [
             ...this._legCollection,
             ...remainingLegWaypointsAsLegs,
-            ...routeModel.legCollection
+            ...routeStringModel.legCollection
         ];
 
         const readback = {};
@@ -1041,17 +1041,17 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Append a provided route model into this RouteModel when the divergent waypoint is in a STAR leg
+     * Append a provided route model into this RouteStringModel when the divergent waypoint is in a STAR leg
      *
-     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     * This should only ever be called by `._appendRouteStringModelBeginningAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _appendRouteModelOutOfSidLeg
+     * @for RouteStringModel
+     * @method _appendRouteStringModelOutOfSidLeg
      * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      * @return {array} [success of operation, readback]
      */
-    _appendRouteModelOutOfStarLeg(divergentWaypointName, routeModel) {
+    _appendRouteStringModelOutOfStarLeg(divergentWaypointName, routeStringModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const divergentLegModel = this._legCollection[indexOfDivergentLeg];
 
@@ -1066,7 +1066,7 @@ export default class RouteModel extends BaseModel {
             this._legCollection = [
                 ...this._legCollection,
                 amendedStarLeg,
-                ...routeModel.legCollection
+                ...routeStringModel.legCollection
             ];
 
             const readback = {};
@@ -1086,7 +1086,7 @@ export default class RouteModel extends BaseModel {
         this._legCollection = [
             ...this._legCollection,
             ...remainingLegWaypointsAsLegs,
-            ...routeModel._legCollection
+            ...routeStringModel._legCollection
         ];
 
         const readback = {};
@@ -1103,7 +1103,7 @@ export default class RouteModel extends BaseModel {
     * may be a portion of the `#_legCollection` or of the `#_previousLegCollection`,
     * or any combination thereof, including manipulated route strings.
     *
-    * @for RouteModel
+    * @for RouteStringModel
     * @method _combineRouteStrings
     * @param legRouteStrings {array<string>}
     * @return {string}
@@ -1135,12 +1135,12 @@ export default class RouteModel extends BaseModel {
      *
      * NOTE: this assumes the entry fix provided has already been verified as valid for this airway
      *
-     * We know that `_createAmendedConvergentLeg()` and `_prependRouteModelIntoAirwayLeg()` both
+     * We know that `_createAmendedConvergentLeg()` and `_prependRouteStringModelIntoAirwayLeg()` both
      * are called only in situations where a requested route amendment ends at a fix that was already
      * included in the #_waypointCollection of an airway leg of the previous route. If this method is
      * called by either of them, we can be confident that the `entryFixName` is on the airway.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createAmendedAirwayLegUsingDifferentEntryName
      * @param entryFixName {string} name of airway entry to use for the new airway leg
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1161,7 +1161,7 @@ export default class RouteModel extends BaseModel {
      *
      * NOTE: this assumes the exit fix provided has already been verified as valid for this airway
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createAmendedAirwayLegUsingDifferentExitName
      * @param exitFixName {string} name of airway exit to use for the new airway leg
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1178,12 +1178,12 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Amend the leg from #_legCollection at which a provided RouteModel converges with this model, such
+     * Amend the leg from #_legCollection at which a provided RouteStringModel converges with this model, such
      * that the amended leg begins at the point of convergence.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createAmendedConvergentLeg
-     * @param indexOfConvergentLegModel {number} index of leg which intersects with the provided RouteModel
+     * @param indexOfConvergentLegModel {number} index of leg which intersects with the provided RouteStringModel
      * @param endWaypointName {string} name of the waypoint within that leg at which the routes converge
      * @return {array<LegModel>}
      */
@@ -1226,12 +1226,12 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Amend the leg from #_legCollection at which a provided RouteModel diverges from this model, such
+     * Amend the leg from #_legCollection at which a provided RouteStringModel diverges from this model, such
      * that the amended leg ends at the point of divergence.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createAmendedDivergentLeg
-     * @param indexOfDivergentLegModel {number} index of leg which intersects with the provided RouteModel
+     * @param indexOfDivergentLegModel {number} index of leg which intersects with the provided RouteStringModel
      * @param startWaypointName {string} name of the waypoint within that leg at which the routes diverge
      * @return {array<LegModel>}
      */
@@ -1276,7 +1276,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Accept a SID leg, and explode it into direct legs, including only waypoints before the specified one
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createLegsFromSidWaypointsBeforeWaypointName
      * @param waypointName {string} name of waypoint where we begin to discard waypoints
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1293,7 +1293,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Accept a STAR leg, and explode it into direct legs, including only waypoints after the specified one
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createLegsFromStarWaypointsAfterWaypointName
      * @param waypointName {string} name of waypoint after which we begin to keep waypoints
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1310,7 +1310,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Accept a STAR leg, and explode it into direct legs, including only waypoints before the specified one
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createLegsFromStarWaypointsBeforeWaypointName
      * @param waypointName {string} name of waypoint where we begin to discard waypoints
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1327,7 +1327,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return a STAR leg based on the provided leg, except with the new specified entry
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createAmendedStarLegUsingDifferentEntryName
      * @param entryFixName {string} name of STAR entry to use for the new STAR leg
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1346,7 +1346,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return a STAR leg based on the provided leg, except with the new specified exit
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createAmendedStarLegUsingDifferentExitName
      * @param exitFixName {string} name of STAR exit to use for the new STAR leg
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1365,7 +1365,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Accept a SID leg, and explode it into direct legs, including only waypoints after the specified one
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createLegsFromSidWaypointsAfterWaypointName
      * @param waypointName {string} name of waypoint where we begin to keep waypoints
      * @param legIndex {number} index of leg in the #_legCollection
@@ -1383,7 +1383,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return an array of direct LegModels, one for each of the proided WaypointModels
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _createLegModelsFromWaypointModels
      * @param waypointModels {array<WaypointModel>} waypoint models to convert to direct legs
      * @return {array<LegModel>}
@@ -1395,7 +1395,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Divide a long route string into segments that can be individually represented by a `LegModel`
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _divideRouteStringIntoSegments
      * @param routeString {string}
      * @return {array<string>}
@@ -1440,14 +1440,14 @@ export default class RouteModel extends BaseModel {
     * Return the name of the first waypoint at which this route and the specified route converge
     * For routes that do not have continuity, this function will return undefined.
     *
-    * @for RouteModel
-    * @method _findConvergentWaypointNameWithRouteModel
-    * @param routeModel {RouteModel}
+    * @for RouteStringModel
+    * @method _findConvergentWaypointNameWithRouteStringModel
+    * @param routeStringModel {RouteStringModel}
     * @return {string} name of the first waypoint where the routes converge
     */
-    _findConvergentWaypointNameWithRouteModel(routeModel) {
+    _findConvergentWaypointNameWithRouteStringModel(routeStringModel) {
         const currentRouteWaypointNames = _map(this.waypoints, (waypointModel) => waypointModel.name);
-        const nextRouteWaypointNames = _map(routeModel.waypoints, (waypointModel) => waypointModel.name);
+        const nextRouteWaypointNames = _map(routeStringModel.waypoints, (waypointModel) => waypointModel.name);
 
         return _first(_intersection(currentRouteWaypointNames, nextRouteWaypointNames));
     }
@@ -1455,7 +1455,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return the index of the leg in the #_legCollection that contains the specified waypoint name
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _findIndexOfLegContainingWaypointName
      * @return {number}
      */
@@ -1469,7 +1469,7 @@ export default class RouteModel extends BaseModel {
      * If for some reason there are multiple, this returns the first one.
      * This search does NOT include legs in the `#_previousLegCollection`.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _findSidLegIndex
      * @return {number}
      * @private
@@ -1484,7 +1484,7 @@ export default class RouteModel extends BaseModel {
      * If for some reason there are multiple, this returns the first one.
      * This search does NOT include legs in the `#_previousLegCollection`.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method findSidLeg
      * @return {ProcedureModel}
      */
@@ -1498,7 +1498,7 @@ export default class RouteModel extends BaseModel {
      * If for some reason there are multiple, this returns the first one.
      * This search does NOT include legs in the `#_previousLegCollection`.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _findStarLegIndex
      * @return {number}
      * @private
@@ -1510,7 +1510,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Generate an array of `LegModel`s according to the provided route string
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _generateLegsFromRouteString
      * @param routeString {string}
      * @return {array<LegModel>}
@@ -1528,7 +1528,7 @@ export default class RouteModel extends BaseModel {
     /**
      * Return a single continuous array containing the #_previousLegCollection AND #_legCollection
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _getPastAndPresentLegModels
      * @return {array<LegModel>}
      */
@@ -1540,22 +1540,22 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Remove portions of the route between the specified waypoint names, and insert the provided RouteModel
+     * Remove portions of the route between the specified waypoint names, and insert the provided RouteStringModel
      *
      * This will also result in amending (or exploding into direct legs) any leg with which
-     * the provided RouteModel intersects in the middle. For example, if the provided RouteModel
+     * the provided RouteStringModel intersects in the middle. For example, if the provided RouteStringModel
      * intersects an airway leg at a waypoint somewhere other than the entry or exit of that airway
      * leg, this method will change the entry/exit of the airway leg such that it aligns with the
-     * provided RouteModel.
+     * provided RouteStringModel.
      *
-     * @for RouteModel
+     * @for RouteStringModel
      * @method _overwriteRouteBetweenWaypointNames
      * @param startWaypointName {string}
      * @param endWaypointName {string}
-     * @param routeModel {RouteModel}
+     * @param routeStringModel {RouteStringModel}
      * @return {array} [success of operation, readback]
      */
-    _overwriteRouteBetweenWaypointNames(startWaypointName, endWaypointName, routeModel) {
+    _overwriteRouteBetweenWaypointNames(startWaypointName, endWaypointName, routeStringModel) {
         const legCollection = this._legCollection.slice(0);
         const indexOfDivergentLegModel = this._findIndexOfLegContainingWaypointName(startWaypointName);
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(endWaypointName);
@@ -1570,7 +1570,7 @@ export default class RouteModel extends BaseModel {
         this._legCollection = [
             ...beginningLegCollection,
             ...amendedDivergentLegModels,
-            ...routeModel.legCollection,
+            ...routeStringModel.legCollection,
             ...amendedConvergentLegModels,
             ...endingLegCollection
         ];
@@ -1583,35 +1583,35 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Prepend a provided route model into this RouteModel
+     * Prepend a provided route model into this RouteStringModel
      *
      * This method only serves to call the method that contains the appropriate logic
      * based on the type of leg in which the convergent waypoint resides, since this
      * heavily weighs in to how the merging of the routes should be done.
      *
-     * @for RouteModel
-     * @method _prependRouteModelEndingAtWaypointName
+     * @for RouteStringModel
+     * @method _prependRouteStringModelEndingAtWaypointName
      * @param convergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      */
-    _prependRouteModelEndingAtWaypointName(convergentWaypointName, routeModel) {
+    _prependRouteStringModelEndingAtWaypointName(convergentWaypointName, routeStringModel) {
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(convergentWaypointName);
         const convergentLegModel = this._legCollection[indexOfConvergentLegModel];
 
         if (convergentLegModel.isAirwayLeg) {
-            return this._prependRouteModelIntoAirwayLeg(convergentWaypointName, routeModel);
+            return this._prependRouteStringModelIntoAirwayLeg(convergentWaypointName, routeStringModel);
         }
 
         if (convergentLegModel.isDirectLeg) {
-            return this._prependRouteModelIntoDirectLeg(convergentWaypointName, routeModel);
+            return this._prependRouteStringModelIntoDirectLeg(convergentWaypointName, routeStringModel);
         }
 
         if (convergentLegModel.isSidLeg) {
-            return this._prependRouteModelIntoSidLeg(convergentWaypointName, routeModel);
+            return this._prependRouteStringModelIntoSidLeg(convergentWaypointName, routeStringModel);
         }
 
         if (convergentLegModel.isStarLeg) {
-            return this._prependRouteModelIntoStarLeg(convergentWaypointName, routeModel);
+            return this._prependRouteStringModelIntoStarLeg(convergentWaypointName, routeStringModel);
         }
 
         throw new TypeError(`Expected known leg type, but received "${convergentLegModel.legType}" ` +
@@ -1619,16 +1619,16 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Prepend a provided route model into this RouteModel when the convergent waypoint is in an airway leg
+     * Prepend a provided route model into this RouteStringModel when the convergent waypoint is in an airway leg
      *
-     * This should only ever be called by `._prependRouteModelEndingAtWaypointName()`
+     * This should only ever be called by `._prependRouteStringModelEndingAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _prependRouteModelIntoAirwayLeg
+     * @for RouteStringModel
+     * @method _prependRouteStringModelIntoAirwayLeg
      * @param convergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      */
-    _prependRouteModelIntoAirwayLeg(convergentWaypointName, routeModel) {
+    _prependRouteStringModelIntoAirwayLeg(convergentWaypointName, routeStringModel) {
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(convergentWaypointName);
         const amendedAirwayLeg = this._createAmendedAirwayLegUsingDifferentEntryName(
             convergentWaypointName,
@@ -1636,7 +1636,7 @@ export default class RouteModel extends BaseModel {
         );
 
         this._legCollection = [
-            ...routeModel.legCollection,
+            ...routeStringModel.legCollection,
             amendedAirwayLeg,
             ...this._legCollection.splice(indexOfConvergentLegModel + 1)
         ];
@@ -1649,20 +1649,20 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Prepend a provided route model into this RouteModel when the convergent waypoint is in a direct leg
+     * Prepend a provided route model into this RouteStringModel when the convergent waypoint is in a direct leg
      *
-     * This should only ever be called by `._prependRouteModelEndingAtWaypointName()`
+     * This should only ever be called by `._prependRouteStringModelEndingAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _prependRouteModelIntoDirectLeg
+     * @for RouteStringModel
+     * @method _prependRouteStringModelIntoDirectLeg
      * @param convergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      */
-    _prependRouteModelIntoDirectLeg(convergentWaypointName, routeModel) {
+    _prependRouteStringModelIntoDirectLeg(convergentWaypointName, routeStringModel) {
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(convergentWaypointName);
 
         this._legCollection = [
-            ...routeModel.legCollection,
+            ...routeStringModel.legCollection,
             ...this._legCollection.splice(indexOfConvergentLegModel + 1)
         ];
 
@@ -1674,16 +1674,16 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Prepend a provided route model into this RouteModel when the convergent waypoint is in a SID leg
+     * Prepend a provided route model into this RouteStringModel when the convergent waypoint is in a SID leg
      *
-     * This should only ever be called by `._prependRouteModelEndingAtWaypointName()`
+     * This should only ever be called by `._prependRouteStringModelEndingAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _prependRouteModelIntoSidLeg
+     * @for RouteStringModel
+     * @method _prependRouteStringModelIntoSidLeg
      * @param convergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      */
-    _prependRouteModelIntoSidLeg(convergentWaypointName, routeModel) {
+    _prependRouteStringModelIntoSidLeg(convergentWaypointName, routeStringModel) {
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(convergentWaypointName);
         const remainingLegWaypointsAsLegs = this._createLegsFromSidWaypointsAfterWaypointName(
             convergentWaypointName,
@@ -1691,7 +1691,7 @@ export default class RouteModel extends BaseModel {
         );
 
         this._legCollection = [
-            ...routeModel.legCollection,
+            ...routeStringModel.legCollection,
             ...remainingLegWaypointsAsLegs,
             ...this._legCollection.splice(indexOfConvergentLegModel + 1)
         ];
@@ -1704,16 +1704,16 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Prepend a provided route model into this RouteModel when the convergent waypoint is in a STAR leg
+     * Prepend a provided route model into this RouteStringModel when the convergent waypoint is in a STAR leg
      *
-     * This should only ever be called by `._prependRouteModelEndingAtWaypointName()`
+     * This should only ever be called by `._prependRouteStringModelEndingAtWaypointName()`
      *
-     * @for RouteModel
-     * @method _prependRouteModelIntoStarLeg
+     * @for RouteStringModel
+     * @method _prependRouteStringModelIntoStarLeg
      * @param convergentWaypointName {string} name of waypoint at which the two routes have continuity
-     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @param routeStringModel {RouteStringModel} the RouteStringModel to be absorbed into this
      */
-    _prependRouteModelIntoStarLeg(convergentWaypointName, routeModel) {
+    _prependRouteStringModelIntoStarLeg(convergentWaypointName, routeStringModel) {
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(convergentWaypointName);
         const convergentLegModel = this._legCollection[indexOfConvergentLegModel];
 
@@ -1724,7 +1724,7 @@ export default class RouteModel extends BaseModel {
             );
 
             this._legCollection = [
-                ...routeModel.legCollection,
+                ...routeStringModel.legCollection,
                 amendedStarLeg,
                 ...this._legCollection.splice(indexOfConvergentLegModel + 1)
             ];
@@ -1742,7 +1742,7 @@ export default class RouteModel extends BaseModel {
         );
 
         this._legCollection = [
-            ...routeModel.legCollection,
+            ...routeStringModel.legCollection,
             ...remainingLegWaypointsAsLegs,
             ...this._legCollection.splice(indexOfConvergentLegModel + 1)
         ];
