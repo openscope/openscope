@@ -81,16 +81,6 @@ export const vnorm = (v, length) => {
 };
 
 /**
- * Get a 2D unit vector corresponding to a heading in degrees
- *
- * @param  heading_angle    float    the heading angle, in degrees
- * @return array    an array of the x and y components of the vector
- */
-export const vectorize_2d_from_degrees = (heading_angle) => {
-    return vectorize_2d_from_radians(degreesToRadians(heading_angle))
-}
-
-/**
  * Get a 2D unit vector corresponding to a heading in radians
  *
  * @param  heading_angle    float    the heading angle, in radians
@@ -102,6 +92,17 @@ export const vectorize_2d_from_radians = (heading_angle) => {
         cos(heading_angle)
     ];
 };
+
+/**
+ * Get a 2D unit vector corresponding to a heading in degrees
+ *
+ * @param  heading_angle    float    the heading angle, in degrees
+ * @return array    an array of the x and y components of the vector
+ */
+export const vectorize_2d_from_degrees = (heading_angle) => {
+    return vectorize_2d_from_radians(degreesToRadians(heading_angle));
+};
+
 /**
  * Alias of the vectorize_2d_from_radians
  * Kept for backwards compatibility

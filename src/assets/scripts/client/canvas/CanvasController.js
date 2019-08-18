@@ -12,8 +12,6 @@ import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
 import {
-    sin,
-    cos,
     round,
     clamp
 } from '../math/core';
@@ -22,8 +20,7 @@ import {
     vectorize_2d,
     vectorize_2d_from_degrees,
     vadd,
-    vscale,
-    vnorm
+    vscale
 } from '../math/vector';
 import {
     degreesToRadians,
@@ -2135,14 +2132,13 @@ export default class CanvasController {
         // aircraft at a given heading angle and the canvas boundaries, for
         // each heading angle between 0 and 360 (by 1 degree increment)
         for (let heading = 0; heading < 360; heading++) {
-
             // compute the 2D unit vector representing the ray direction using the given
             // heading angle
             const rayUnitVector = vectorize_2d_from_degrees(heading);
 
             // Use the opposite of the y component of the vector because of the vertical
             // axes of the reference frames being oriented in opposite directions
-            rayUnitVector[1] = -rayUnitVector[1]
+            rayUnitVector[1] = -rayUnitVector[1];
 
             // compute the intersection point between the ray and the canvas
             const intersection = positive_intersection_with_rect(
@@ -2154,15 +2150,15 @@ export default class CanvasController {
             // minor marks on headings multiple of 5 degrees
             // major marks on headings multiple of 10 degrees
             if (intersection) {
-
                 // set mark length and weight for standard, minor and major marks
-                const markLen = (heading % 5 === 0 ?
-                    (heading % 10 === 0 ?
-                        16 :
-                        12) :
-                    8
-                );
-                const markWeight = (heading % 30 === 0 ? 2 : 1 );
+                let markLen;
+
+                if (heading % 5 === 0) {
+                    markLen = (heading % 10 === 0 ? 16 : 12);
+                } else {
+                    markLen = 8;
+                }
+                const markWeight = (heading % 30 === 0 ? 2 : 1);
 
                 // use the opposite of the length to draw toward the inside of the canvas
                 const markVector = vscale(rayUnitVector, -markLen);
@@ -2223,7 +2219,6 @@ export default class CanvasController {
      *                                      position relative to the scope center
      */
     _toCanvasPosition(positionFromScope) {
-
         // positionFromScope is given in kilometers so it needs to be translated
         // to pixels first
         //
