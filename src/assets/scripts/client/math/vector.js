@@ -87,6 +87,13 @@ export const vnorm = (v, length) => {
  * @return array    an array of the x and y components of the vector
  */
 export const vectorize_2d_from_radians = (heading_angle) => {
+    // keep the angle in the [0, 2*PI[ range
+    while (heading_angle < 0) {
+        heading_angle += 2 * Math.PI;
+    }
+    while (heading_angle >= 2 * Math.PI) {
+        heading_angle -= 2 * Math.PI;
+    }
     return [
         sin(heading_angle),
         cos(heading_angle)
