@@ -12,7 +12,61 @@ import {
 } from '../../src/assets/scripts/client/math/vector';
 import { airportModelFixture } from '../fixtures/airportFixtures';
 
-ava('.vectorize2dFromRadians() returns the 2D unit vector for a heading in radians', (t) => {
+/**
+ * Test if a value is within EPSILON of an expected value
+ *
+ * this is necessary because of approximation due to the floating point arithmetics (i think)
+ * For example: Math.cos(Math.PI/2) returns 6.123233995736766e-17 instead of 0
+ *
+ * @param number   value            the value we want to test
+ * @param number   expectedValue    the value we want to test against
+ *
+ * @return boolean  true if the value is within EPSILON of the expected value, false otherwise
+ */
+const is_within_epsilon = (value, expectedValue) => {
+    if (
+        (value <= expectedValue + Number.EPSILON) &&
+        (value >= expectedValue - Number.EPSILON)
+    ) {
+        return true;
+    }
+
+    return false;
+};
+
+ava('.is_within_epsilon() returns true if value is within EPSILON of an expected value', (t) => {
+    const tests = [{
+        number: 0,
+        withinEpsilonOf: 0
+    }, {
+        number: 1,
+        withinEpsilonOf: 1
+    }, {
+        number: -1,
+        withinEpsilonOf: -1
+    }];
+
+    for (const { number, withinEpsilonOf } of tests) {
+        // test the numbers plus and minus EPSILON
+        // should pass
+        for (const numberVariant of [number, number + Number.EPSILON, number - Number.EPSILON]) {
+            t.true(
+                is_within_epsilon(numberVariant, withinEpsilonOf),
+                `${numberVariant} should be within EPSILON of ${withinEpsilonOf}`
+            );
+        }
+        // test the numbers plus and minus 2 times EPSILON
+        // should fail
+        for (const numberVariant of [number + 2 * Number.EPSILON, number - 2 * Number.EPSILON]) {
+            t.false(
+                is_within_epsilon(numberVariant, withinEpsilonOf),
+                `${numberVariant} should NOT be within EPSILON of ${withinEpsilonOf}`
+            );
+        }
+    }
+});
+
+ava('.vectorize_2d_from_radians() returns the 2D unit vector for a heading in radians', (t) => {
     // will need to use that later with different values
     let message;
 
