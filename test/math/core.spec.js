@@ -1,4 +1,4 @@
-import ava from 'ava'
+import ava from 'ava';
 
 import {
     isWithin,
@@ -12,17 +12,18 @@ ava('.isWithin() returns true if value is within (inclusive) two given values', 
     // we want to test the function opperates correctly in the negative
     // range, the positive range, as well as right in the middle.
     const tests = [{
-        number: 0,
+        number: 0
     }, {
-        number: 1,
+        number: 1
     }, {
-        number: -1,
+        number: -1
     }];
 
     // we will test providing the 'limit1' and 'limit2' both
     // ways since the function is supposed to work that way
     for (const { number } of tests) {
-        let limit1, limit2;
+        let limit1;
+        let limit2;
 
         // should pass
         limit1 = number - Number.EPSILON;
