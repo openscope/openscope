@@ -84,7 +84,7 @@ export function s(i) {
  */
 export function isWithin(value, limit1, limit2) {
     if (limit1 > limit2) {
-        [limit2, limit1] = [limit1, limit2]
+        [limit2, limit1] = [limit1, limit2];
     }
 
     return limit1 <= value && value <= limit2;
