@@ -1,10 +1,80 @@
 import ava from 'ava'
 
 import {
+    isWithin,
+    isWithinEpsilon,
     calculateMiddle,
     clamp,
     generateRandomOctalWithLength
 } from '../../src/assets/scripts/client/math/core';
+
+ava('.isWithin() returns true if value is within (inclusive) two given values', (t) => {
+    // we want to test the function opperates correctly in the negative
+    // range, the positive range, as well as right in the middle.
+    const tests = [{
+        number: 0,
+    }, {
+        number: 1,
+    }, {
+        number: -1,
+    }];
+
+    // we will test providing the 'limit1' and 'limit2' both
+    // ways since the function is supposed to work that way
+    for (const { number } of tests) {
+        let limit1, limit2;
+
+        // should pass
+        limit1 = number - Number.EPSILON;
+        limit2 = number + Number.EPSILON;
+        t.true(isWithin(number, limit1, limit2), `${number} should be within ${limit1} and ${limit2}`);
+        t.true(isWithin(number, limit2, limit1), `${number} should be within ${limit2} and ${limit1}`);
+
+        // should fail
+        limit1 = number - Number.EPSILON;
+        limit2 = number - 2 * Number.EPSILON;
+        t.false(isWithin(number, limit1, limit2), `${number} should NOT be within ${limit1} and ${limit2}`);
+        t.false(isWithin(number, limit2, limit1), `${number} should NOT be within ${limit2} and ${limit1}`);
+
+        // should fail too
+        limit1 = number + Number.EPSILON;
+        limit2 = number + 2 * Number.EPSILON;
+        t.false(isWithin(number, limit1, limit2), `${number} should NOT be within ${limit1} and ${limit2}`);
+        t.false(isWithin(number, limit2, limit1), `${number} should NOT be within ${limit2} and ${limit1}`);
+    }
+});
+
+ava('.isWithinEpsilon() returns true if value is within EPSILON of an expected value', (t) => {
+    const tests = [{
+        number: 0,
+        withinEpsilonOf: 0
+    }, {
+        number: 1,
+        withinEpsilonOf: 1
+    }, {
+        number: -1,
+        withinEpsilonOf: -1
+    }];
+
+    for (const { number, withinEpsilonOf } of tests) {
+        // test the numbers plus and minus EPSILON
+        // should pass
+        for (const numberVariant of [number, number + Number.EPSILON, number - Number.EPSILON]) {
+            t.true(
+                isWithinEpsilon(numberVariant, withinEpsilonOf),
+                `${numberVariant} should be within EPSILON of ${withinEpsilonOf}`
+            );
+        }
+        // test the numbers plus and minus 2 times EPSILON
+        // should fail
+        for (const numberVariant of [number + 2 * Number.EPSILON, number - 2 * Number.EPSILON]) {
+            t.false(
+                isWithinEpsilon(numberVariant, withinEpsilonOf),
+                `${numberVariant} should NOT be within EPSILON of ${withinEpsilonOf}`
+            );
+        }
+    }
+});
 
 ava('.calculateMiddle() returns a number the is the mid-point of a given number, rounded up', t => {
     t.throws(() => calculateMiddle('10'));

@@ -84,12 +84,29 @@ export function s(i) {
  */
 export function isWithin(value, limit1, limit2) {
     if (limit1 > limit2) {
-        const oldLimit1 = limit1;
-        limit1 = limit2;
-        limit2 = oldLimit1;
+        [limit2, limit1] = [limit1, limit2]
     }
 
-    return limit1 <= value && value >= limit2;
+    return limit1 <= value && value <= limit2;
+}
+
+/**
+ * Test if a value is within EPSILON of an expected value
+ *
+ * this is necessary because of approximation due to the floating point arithmetics (i think)
+ * For example: Math.cos(Math.PI/2) returns 6.123233995736766e-17 instead of 0
+ * In this case iswithinEpsilon(Math.cos(Math.PI/2), 0) would return true
+ *
+ * @param {number}   value            the value we want to test
+ * @param {number}   expectedValue    the value we want to test against
+ *
+ * @return boolean  true if the value is within EPSILON of the expected value, false otherwise
+ */
+export function isWithinEpsilon(value, expectedValue) {
+    const lowerBound = expectedValue - Number.EPSILON;
+    const upperBound = expectedValue + Number.EPSILON;
+
+    return isWithin(value, lowerBound, upperBound);
 }
 
 // TODO: add a divisor paramater that defaults to `2`

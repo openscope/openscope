@@ -6,6 +6,7 @@ import {
     abs,
     clamp
 } from './core';
+import { radians_normalize } from './circle';
 import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
@@ -86,14 +87,10 @@ export const vnorm = (v, length) => {
  * @param  heading_angle    float    the heading angle, in radians
  * @return array    an array of the x and y components of the vector
  */
-export const vectorize_2d_from_radians = (heading_angle) => {
-    // keep the angle in the [0, 2*PI[ range
-    while (heading_angle < 0) {
-        heading_angle += 2 * Math.PI;
-    }
-    while (heading_angle >= 2 * Math.PI) {
-        heading_angle -= 2 * Math.PI;
-    }
+export const vectorize2dFromRadians = (heading_angle) => {
+    // normalize the angle beetween 0 and 2*PI
+    heading_angle = radians_normalize(heading_angle);
+
     return [
         sin(heading_angle),
         cos(heading_angle)
@@ -106,12 +103,12 @@ export const vectorize_2d_from_radians = (heading_angle) => {
  * @param  heading_angle    float    the heading angle, in degrees
  * @return array    an array of the x and y components of the vector
  */
-export const vectorize_2d_from_degrees = (heading_angle) => {
-    return vectorize_2d_from_radians(degreesToRadians(heading_angle));
+export const vectorize2dFromDegrees = (heading_angle) => {
+    return vectorize2dFromRadians(degreesToRadians(heading_angle));
 };
 
 /**
- * Alias of the vectorize_2d_from_radians
+ * Alias of the vectorize2dFromRadians
  * Kept for backwards compatibility
  *
  * Get a 2D unit vector corresponding to a heading in radians
@@ -119,7 +116,7 @@ export const vectorize_2d_from_degrees = (heading_angle) => {
  * @param  heading_angle    float    the heading angle, in radians
  * @return array    an array of the x and y components of the vector
  */
-export const vectorize_2d = vectorize_2d_from_radians;
+export const vectorize_2d = vectorize2dFromRadians;
 
 /**
  * Adds Vectors (all dimensions)

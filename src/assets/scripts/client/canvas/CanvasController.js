@@ -18,7 +18,7 @@ import {
 import {
     positive_intersection_with_rect,
     vectorize_2d,
-    vectorize_2d_from_degrees,
+    vectorize2dFromDegrees,
     vadd,
     vscale
 } from '../math/vector';
@@ -2134,7 +2134,7 @@ export default class CanvasController {
         for (let heading = 0; heading < 360; heading++) {
             // compute the 2D unit vector representing the ray direction using the given
             // heading angle
-            const rayUnitVector = vectorize_2d_from_degrees(heading);
+            const rayUnitVector = vectorize2dFromDegrees(heading);
 
             // Use the opposite of the y component of the vector because of the vertical
             // axes of the reference frames being oriented in opposite directions
