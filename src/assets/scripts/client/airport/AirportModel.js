@@ -15,6 +15,7 @@ import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
+import { getCircularCoordinates } from '../utilities/navigationUtilities';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import {
     sin,
@@ -475,6 +476,8 @@ export default class AirportModel {
             return;
         }
 
+        const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
+
         _forEach(restrictedAreas, (area) => {
             // TODO: find a better name for `obj`
             const obj = {};
@@ -484,26 +487,32 @@ export default class AirportModel {
             }
 
             obj.height = parseElevation(area.height);
-            obj.coordinates = _map(
-                area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
-            );
 
-            let coords_max = obj.coordinates[0];
-            let coords_min = obj.coordinates[0];
+            if (area.radius && area.center) {
+                obj.center = DynamicPositionModel.calculateRelativePosition(area.center, ...airportPositionAndDeclination);
+                obj.coordinates = getCircularCoordinates(area.center, area.radius, airportPositionAndDeclination);
+            } else {
+                obj.coordinates = _map(
+                    area.coordinates,
+                    (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+                );
 
-            _forEach(obj.coordinates, (v) => {
-                coords_max = [
-                    Math.max(v[0], coords_max[0]),
-                    Math.max(v[1], coords_max[1])
-                ];
-                coords_min = [
-                    Math.min(v[0], coords_min[0]),
-                    Math.min(v[1], coords_min[1])
-                ];
-            });
+                let coords_max = obj.coordinates[0];
+                let coords_min = obj.coordinates[0];
 
-            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+                _forEach(obj.coordinates, (v) => {
+                    coords_max = [
+                        Math.max(v[0], coords_max[0]),
+                        Math.max(v[1], coords_max[1])
+                    ];
+                    coords_min = [
+                        Math.min(v[0], coords_min[0]),
+                        Math.min(v[1], coords_min[1])
+                    ];
+                });
+
+                obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+            }
 
             this.restricted_areas.push(obj);
         });

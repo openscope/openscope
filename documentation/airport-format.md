@@ -400,6 +400,18 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 ],
 ```
 
+An area may be defined as an array of points as in example above, or as a circle with known center and radius (in nm):
+```javascript
+"restricted": [
+    {
+        "name": "ULP7",
+        "height": "6000m",
+        "radius": 2.7,
+        "center": ["N59d50.00", "E029d20.00"]
+    }
+],
+```
+
 Note that `height` represents the _top_ of the restricted area. Currently all restricted areas are assumed to begin at sea level.
 
 ### Runways
