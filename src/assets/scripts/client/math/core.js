@@ -99,7 +99,6 @@ export function isWithin(value, limit1, limit2) {
  *
  * @param {number}   value            the value we want to test
  * @param {number}   expectedValue    the value we want to test against
- *
  * @return boolean  true if the value is within EPSILON of the expected value, false otherwise
  */
 export function isWithinEpsilon(value, expectedValue) {
