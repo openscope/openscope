@@ -40,34 +40,28 @@ ava('.isWithin() returns true if value is within (inclusive) two given values', 
 });
 
 ava('.isWithinEpsilon() returns true if value is within EPSILON of an expected value', (t) => {
-    const tests = [{
-        number: 0,
-        withinEpsilonOf: 0
-    }, {
-        number: 1,
-        withinEpsilonOf: 1
-    }, {
-        number: -1,
-        withinEpsilonOf: -1
-    }];
+    // we want to test the function opperates correctly in the negative
+    // range, the positive range, as well as right in the middle.
+    const tests = [0, 1, -1];
 
-    for (const { number, withinEpsilonOf } of tests) {
+    for (const number of tests) {
+        let numberVariant1;
+        let numberVariant2;
+
         // test the numbers plus and minus EPSILON
         // should pass
-        for (const numberVariant of [number, number + Number.EPSILON, number - Number.EPSILON]) {
-            t.true(
-                isWithinEpsilon(numberVariant, withinEpsilonOf),
-                `${numberVariant} should be within EPSILON of ${withinEpsilonOf}`
-            );
-        }
-        // test the numbers plus and minus 2 times EPSILON
+        numberVariant1 = number - Number.EPSILON;
+        numberVariant2 = number + Number.EPSILON;
+        t.true(isWithinEpsilon(number, number), `${number} should be within EPSILON of ${number}`);
+        t.true(isWithinEpsilon(numberVariant1, number), `${numberVariant1} should be within EPSILON of ${number}`);
+        t.true(isWithinEpsilon(numberVariant2, number), `${numberVariant2} should be within EPSILON of ${number}`);
+
+        // test the numbers plus and minus *2 times* EPSILON
         // should fail
-        for (const numberVariant of [number + 2 * Number.EPSILON, number - 2 * Number.EPSILON]) {
-            t.false(
-                isWithinEpsilon(numberVariant, withinEpsilonOf),
-                `${numberVariant} should NOT be within EPSILON of ${withinEpsilonOf}`
-            );
-        }
+        numberVariant1 = number - 2 * Number.EPSILON;
+        numberVariant2 = number + 2 * Number.EPSILON;
+        t.false(isWithinEpsilon(numberVariant1, number), `${numberVariant1} should NOT be within EPSILON of ${number}`);
+        t.false(isWithinEpsilon(numberVariant2, number), `${numberVariant2} should NOT be within EPSILON of ${number}`);
     }
 });
 
