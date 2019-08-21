@@ -9,12 +9,12 @@ import {
 } from '../../src/assets/scripts/client/math/core';
 
 ava('.isWithin() returns true if value is within (inclusive) two given values', (t) => {
-    // we want to test the function opperates correctly in the negative
+    // we want to test the function operates correctly in the negative
     // range, the positive range, as well as right in the middle.
     const tests = [0, 1, -1];
 
     // we will test providing the 'limit1' and 'limit2' both
-    // ways since the function is supposed to work that way
+    // ways since the function is supposed to work both ways
     for (const number of tests) {
         let limit1;
         let limit2;
@@ -40,7 +40,7 @@ ava('.isWithin() returns true if value is within (inclusive) two given values', 
 });
 
 ava('.isWithinEpsilon() returns true if value is within EPSILON of an expected value', (t) => {
-    // we want to test the function opperates correctly in the negative
+    // we want to test the function operates correctly in the negative
     // range, the positive range, as well as right in the middle.
     const tests = [0, 1, -1];
 
