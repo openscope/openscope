@@ -349,7 +349,7 @@ class GameController {
     /**
      * @for GameController
      * @method game_paused
-     * @return
+     * @return {boolean}
      */
     game_paused() {
         return !this.game.focused || TimeKeeper.isPaused;
@@ -358,7 +358,7 @@ class GameController {
     /**
      * @for GameController
      * @method game_speedup
-     * @return
+     * @return {number}
      */
     game_speedup() {
         return !this.game_paused() ? TimeKeeper.simulationRate : 0;
@@ -367,11 +367,11 @@ class GameController {
     /**
      * @for GameController
      * @method game_timeout
-     * @param func {function}
-     * @param delay {number}
+     * @param func {function} called when timeout is triggered
+     * @param delay {number} in seconds
      * @param that
      * @param data
-     * @return gameTimeout
+     * @return {array} gameTimeout
      */
     game_timeout(functionToCall, delay, that, data) {
         const timerDelay = TimeKeeper.accumulatedDeltaTime + delay;
@@ -385,11 +385,11 @@ class GameController {
     /**
      * @for GameController
      * @method game_interval
-     * @param func {function}
-     * @param delay {number}
+     * @param func {function} called when timeout is triggered
+     * @param delay {number} in seconds
      * @param that
      * @param data
-     * @return to
+     * @return {array} to
      */
     game_interval(func, delay, that, data) {
         const to = [func, TimeKeeper.accumulatedDeltaTime + delay, data, delay, true, that];
@@ -400,12 +400,14 @@ class GameController {
     }
 
     /**
+     * Destroys a specific timer.
+     *
      * @for GameController
-     * @method game_clear_timeout
-     * @param gameTimeout
+     * @method destroyTimer
+     * @param timer {array} the timer to destroy
      */
-    game_clear_timeout(gameTimeout) {
-        this.game.timeouts.splice(this.game.timeouts.indexOf(gameTimeout), 1);
+    destroyTimer(timer) {
+        this.game.timeouts.splice(this.game.timeouts.indexOf(timer), 1);
     }
 
     /**
@@ -470,7 +472,7 @@ class GameController {
             let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
             const callback = timeout[0];
-            let delayFireTime = timeout[1];
+            const delayFireTime = timeout[1];
             const callbackArguments = timeout[2];
             const delayInterval = timeout[3];
             const shouldRepeat = timeout[4];
@@ -480,7 +482,7 @@ class GameController {
                 willRemoveTimerFromList = true;
 
                 if (shouldRepeat) {
-                    delayFireTime += delayInterval;
+                    timeout[1] = delayFireTime + delayInterval;
                     willRemoveTimerFromList = false;
                 }
             }
@@ -515,27 +517,6 @@ class GameController {
         return this.game.option.getOptionByName(optionName);
     }
 
-    // TODO: This probably does not belong in the GameController.
-    /**
-     * Get the current `PROJECTED_TRACK_LINE_LENGTH` value and return a number.
-     *
-     * Used by the `CanvasController` to get a number value (this will be stored as a string
-     * due to existing api) that can be used when drawing the PTL for each aircraft.
-     *
-     * @for GameController
-     * @method getPtlLength
-     * @return {number}
-     */
-    getPtlLength() {
-        let userSettingsPtlLength = this.getGameOption(GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH);
-
-        if (userSettingsPtlLength === 'from-theme') {
-            userSettingsPtlLength = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINE_LENGTH;
-        }
-
-        return parseFloat(userSettingsPtlLength);
-    }
-
     /**
      * Check whether or not the trailing distance separator should be drawn.
      *
@@ -566,10 +547,18 @@ class GameController {
      */
     _onWindowBlur(event) {
         this.game.focused = false;
+
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
         TimeKeeper.updateSimulationRate(1);
         TimeKeeper.setPause(true);
+
+        // update visual state of the timewarp control button for consistency
+        const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+
+        $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
+        $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
+        $fastForwards.prop('title', 'Set time warp to 2');
     }
 
     /**
@@ -581,11 +570,15 @@ class GameController {
     _onWindowFocus(event) {
         this.game.focused = true;
 
+        // if was already manually paused when lost focus, respect that
+        if ($('html').hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
+            return;
+        }
+
         TimeKeeper.setPause(false);
     }
 
 
-    // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
     /**
      * Change theme to the specified name
      *

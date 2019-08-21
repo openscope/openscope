@@ -96,3 +96,24 @@ ava('.calculateSameRunwaySeparationDistanceInFeet() returns 6000ft when the prev
 
     t.true(distance === 6000);
 });
+
+ava('.getRadioWeightClass() returns heavy for heavy aircrafts', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightClass = 'H';
+
+    t.true(model.getRadioWeightClass() === 'heavy');
+});
+
+ava('.getRadioWeightClass() returns super for super aircrafts', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightClass = 'J';
+
+    t.true(model.getRadioWeightClass() === 'super');
+});
+
+ava('.getRadioWeightClass() returns empty string if aircraft is neither super nor heavy', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightClass = 'L';
+
+    t.true(model.getRadioWeightClass() === '');
+});

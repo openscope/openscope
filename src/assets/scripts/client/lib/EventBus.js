@@ -103,7 +103,7 @@ class EventBus {
             return;
         }
 
-        const observers = this._events[eventName].observers;
+        const { observers } = this._events[eventName];
 
         for (let i = 0; i < observers.length; i++) {
             observers[i](...args);

@@ -436,7 +436,7 @@ ava('.getRouteStringWithoutAirports() returns route string without airport for S
     t.true(result === expectedResult);
 });
 
-ava('.getRouteStringWithoutAirports() returns route string without airport for SID leg', (t) => {
+ava('.getRouteStringWithoutAirports() returns route string without airport for STAR leg', (t) => {
     const model = new LegModel('DAG.KEPEC3.KLAS19R');
     const expectedResult = 'DAG.KEPEC3';
     const result = model.getRouteStringWithoutAirports();

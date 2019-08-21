@@ -14,9 +14,10 @@ ava('sets #_options on instantiation', (t) => {
         'theme',
         'controlMethod',
         'drawIlsDistanceSeparator',
-        'ptlLength',
+        'ptlLengths',
         'drawProjectedPaths',
         'softCeiling',
+        'mouseClickDrag',
         'rangeRings'
     ];
 

@@ -59,6 +59,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runClimbViaSID',
         isSystemCommand: false
     },
+    cross: {
+        aliases: ['cross', 'cr'],
+        functionName: 'runCross',
+        isSystemCommand: false
+    },
     delete: {
         aliases: ['del', 'delete', 'kill'],
         functionName: 'runDelete',
@@ -72,6 +77,11 @@ export const AIRCRAFT_COMMAND_MAP = {
     direct: {
         aliases: ['dct', 'direct', 'pd'],
         functionName: 'runDirect',
+        isSystemCommand: false
+    },
+    cancelHold: {
+        aliases: ['exithold', 'cancelhold', 'continue', 'nohold', 'xh'],
+        functionName: 'runCancelHoldingPattern',
         isSystemCommand: false
     },
     expectArrivalRunway: {

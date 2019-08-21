@@ -148,7 +148,7 @@ class AirportController {
         icao = icao.toLowerCase();
 
         if (!this.airports[icao]) {
-            console.log(`${icao}: no such airport`);
+            console.warn(`${icao}: no such airport`);
 
             return;
         }

@@ -606,19 +606,6 @@
             "origin": "",
             "destination": "EGNM",
             "category": "arrival",
-            "route": "CALDA..POL..LBA",
-            "altitude": 7000,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.5,
-            "airlines": [
-                ["bee", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGNM",
-            "category": "arrival",
             "route": "EMBOR..TNT..DENBY..LBA",
             "altitude": 8000,
             "speed": 250,
@@ -668,26 +655,13 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 1,
+            "rate": 2.5,
             "airlines": [
-                ["bee", 1],
+                ["bee", 5],
                 ["exs", 4],
                 ["ryr", 5],
+                ["stk/einRegional", 3],
                 ["tom", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGNM",
-            "category": "arrival",
-            "route": "WAL..BARTN..POL..LBA",
-            "altitude": 7000,
-            "speed": 250,
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["ryr", 2],
-                ["stk/einRegional", 3]
             ]
         }
     ],

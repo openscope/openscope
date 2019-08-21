@@ -210,7 +210,7 @@ export function calculateTurnInitiationDistance(aircraft, currentWaypointPositio
     // use the target heading instead of the actual heading to take into account
     // that we might be already turning and there might be no need to initiate
     // a turn at the moment. see #935
-    let targetHeading = aircraft.target.heading;
+    let { targetHeading } = aircraft;
 
     if (targetHeading < 0) {
         targetHeading += tau();

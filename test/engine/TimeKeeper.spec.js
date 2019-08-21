@@ -5,18 +5,18 @@ ava.afterEach(() => {
     TimeKeeper.reset();
 });
 
-ava('throws when attempting to instantiate', (t) => {
+ava.serial('throws when attempting to instantiate', (t) => {
     t.throws(() => new TimeKeeper());
 });
 
-ava('#deltaTime is the product of #_frameDeltaTime and #_simulationRate', (t) => {
+ava.serial('#deltaTime is the product of #_frameDeltaTime and #_simulationRate', (t) => {
     TimeKeeper._frameDeltaTime = 33;
     TimeKeeper._simulationRate = 1;
 
     t.true(TimeKeeper.deltaTime === 33);
 });
 
-ava('#deltaTime returns a max value of 100', (t) => {
+ava.serial('#deltaTime returns a max value of 100', (t) => {
     TimeKeeper._frameDeltaTime = 33;
     TimeKeeper._simulationRate = 10;
 
@@ -63,13 +63,13 @@ ava.skip('#accumulatedDeltaTime is the sum of each deltaTime value from instanti
     t.true(sum === TimeKeeper.accumulatedDeltaTime);
 });
 
-ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (t) => {
+ava.serial('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (t) => {
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(true);
 
     t.true(result === 0);
 });
 
-ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp is 1', (t) => {
+ava.serial('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp is 1', (t) => {
     TimeKeeper._frameDeltaTime = 2;
     TimeKeeper._simulationRate = 1;
 
@@ -78,13 +78,13 @@ ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #t
     t.true(result === 0);
 });
 
-ava('.getDeltaTimeForGameStateAndTimewarp() returns #deltaTime when if conditions are not met', (t) => {
+ava.serial('.getDeltaTimeForGameStateAndTimewarp() returns #deltaTime when if conditions are not met', (t) => {
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
 
     t.true(result === TimeKeeper.deltaTime);
 });
 
-ava('.saveDeltaTimeBeforeFutureTrackCalculation() ', (t) => {
+ava.serial('.saveDeltaTimeBeforeFutureTrackCalculation() ', (t) => {
     TimeKeeper._frameDeltaTime = 3;
 
     TimeKeeper.saveDeltaTimeBeforeFutureTrackCalculation();
@@ -93,7 +93,7 @@ ava('.saveDeltaTimeBeforeFutureTrackCalculation() ', (t) => {
     t.true(TimeKeeper._frameDeltaTime === 5);
 });
 
-ava('.restoreDeltaTimeAfterFutureTrackCalculation() ', (t) => {
+ava.serial('.restoreDeltaTimeAfterFutureTrackCalculation() ', (t) => {
     TimeKeeper._frameDeltaTime = 5;
     TimeKeeper._futureTrackDeltaTimeCache = 3;
 
@@ -117,7 +117,7 @@ ava.serial('.setPause() updates #_isPaused when nextPause is a different value',
     t.true(TimeKeeper._isPaused);
 });
 
-ava('.update() increments #_elapsedFrameCount by 1', (t) => {
+ava.serial('.update() increments #_elapsedFrameCount by 1', (t) => {
     t.true(TimeKeeper._elapsedFrameCount === 0);
 
     TimeKeeper.update();
@@ -125,14 +125,14 @@ ava('.update() increments #_elapsedFrameCount by 1', (t) => {
     t.true(TimeKeeper._elapsedFrameCount === 1);
 });
 
-ava('.update() resets #_frameStartTimestamp to #currentTime when elapsed time is > frameDelay', (t) => {
+ava.serial('.update() resets #_frameStartTimestamp to #currentTime when elapsed time is > frameDelay', (t) => {
     TimeKeeper._frameStartTimestamp = 10;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStartTimestamp === TimeKeeper._previousFrameTimestamp);
 });
 
-ava('.update() recalculates the #_frameStep value based on the current #_simulationRate value', (t) => {
+ava.serial('.update() recalculates the #_frameStep value based on the current #_simulationRate value', (t) => {
     TimeKeeper._simulationRate = 1;
     TimeKeeper.update();
 
@@ -159,7 +159,7 @@ ava('.update() recalculates the #_frameStep value based on the current #_simulat
     t.true(TimeKeeper._frameStep === 1);
 });
 
-ava('.updateTimescale() only accepts positive numbers', (t) => {
+ava.serial('.updateTimescale() only accepts positive numbers', (t) => {
     TimeKeeper._simulationRate = 1;
 
     TimeKeeper.updateSimulationRate(-3);
@@ -167,7 +167,7 @@ ava('.updateTimescale() only accepts positive numbers', (t) => {
     t.true(TimeKeeper._simulationRate === 1);
 });
 
-ava('.updateTimescale() updates #timescale value', (t) => {
+ava.serial('.updateTimescale() updates #timescale value', (t) => {
     TimeKeeper._simulationRate = 1;
 
     TimeKeeper.updateSimulationRate(3);

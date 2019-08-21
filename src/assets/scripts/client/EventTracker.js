@@ -1,3 +1,5 @@
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
+
 /**
  * Provide methods to send tracking events to google analytics
  *
@@ -32,23 +34,23 @@ class EventTracker {
      */
     recordEvent(category, action, label, value = null) {
         if (!this._isEnabled()) {
-            console.error('Event tracking is disabled because we couldn\'t find `ga` on the window');
+            console.error('Event tracking is disabled because we couldn\'t find `gtag` on the window');
 
             return;
         }
 
+        // using underscores here to match google analytics api
         const event = {
-            hitType: 'event',
-            eventCategory: category,
-            eventAction: action,
-            eventLabel: label
+            event_category: category,
+            event_action: action,
+            event_label: label
         };
 
         if (value) {
             event.value = value;
         }
 
-        return this._gtag('send', event);
+        return this._gtag('event', event.event_category, event);
     }
 
     /**
@@ -60,19 +62,19 @@ class EventTracker {
      */
     recordClickOnOutboundLink(url) {
         if (!this._isEnabled()) {
-            console.error('Event tracking is disabled because we couldn\'t find `ga` on the window');
+            console.error('Event tracking is disabled because we couldn\'t find `gtag` on the window');
 
             return;
         }
 
+        // using underscores here to match google analytics api
         const event = {
-            hitType: 'Outbound Link',
-            eventCategory: 'click',
-            eventAction: url,
-            beacon: true
+            event_category: TRACKABLE_EVENT.OUTBOUND,
+            event_label: url,
+            transport_type: 'beacon'
         };
 
-        return this._gtag('send', event);
+        return this._gtag('event', 'click', event);
     }
 
     /**

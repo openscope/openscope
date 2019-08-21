@@ -33,9 +33,15 @@ ava('throws when called with an invalid command', (t) => {
 });
 
 ava('throws when called with invalid arguments', (t) => {
+    const expectedResult = 'Invalid argument length. Expected exactly zero arguments';
     const commandStringMock = buildCommandString(TAKEOFF_MOCK, 'threeve');
 
-    t.throws(() => new AircraftCommandParser(commandStringMock));
+    try {
+        // eslint-disable-next-line no-unused-vars
+        const model = new AircraftCommandParser(commandStringMock);
+    } catch (e) {
+        t.true(e === expectedResult);
+    }
 });
 
 ava('does not throw when called without parameters', t => {

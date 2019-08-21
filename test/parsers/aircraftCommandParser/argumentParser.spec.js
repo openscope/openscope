@@ -8,7 +8,8 @@ import {
     findHoldCommandByType,
     holdParser,
     timewarpParser,
-    optionalAltitudeParser
+    optionalAltitudeParser,
+    crossingParser
 } from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
@@ -156,4 +157,12 @@ ava('.timewarpParser() returns an array with 50 as a value when provided as an a
     const result = timewarpParser([50]);
 
     t.true(result[0] === 50);
+});
+
+
+ava('.crossingParser() returns an array with the correct values', (t) => {
+    const result = crossingParser(['LEMDY', '50']);
+
+    t.true(result[0] === 'LEMDY');
+    t.true(result[1] === 5000);
 });

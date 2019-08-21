@@ -54,11 +54,3 @@ ava('.calculateSeparationMinimums() returns 5.556 when #lateral_dist is grerater
 
     t.true(result === 5.556);
 });
-
-ava('.calculateSeparationMinimums() returns 5.556 when #lateral_dist is grerater than 9001', (t) => {
-    const model = new RunwayRelationshipModel(runwayModel07lFixture, runwayModel07rFixture);
-    model.lateral_dist = 5;
-    const result = model.calculateSeparationMinimums();
-
-    t.true(result === 5.556);
-});
