@@ -1,5 +1,6 @@
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
+import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
@@ -497,6 +498,11 @@ export default class SpawnPatternModel extends BaseModel {
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
         this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson);
+
+        // ONLY PRESPAWN ONE AIRCRAFT
+        if (this.method === SPAWN_METHOD.SURGE) {
+            this.preSpawnAircraftList = [_head(this.preSpawnAircraftList)];
+        }
 
         this._calculateSurgePatternInitialDelayValues(spawnPatternJson);
         this._setCyclePeriodAndOffset(spawnPatternJson);
