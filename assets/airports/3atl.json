@@ -13,7 +13,7 @@
     "position": ["N33.6367", "W84.427864", "1026ft"],
     "rangeRings": {
         "enabled": true,
-        "center": [33.6367, -84.427864],
+        "center": [33.631832, -84.418441],
         "radius_nm": 5.0
     },
     "has_terrain": true,
