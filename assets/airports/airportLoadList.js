@@ -195,25 +195,43 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'katl',
             level: 'hard',
-            name: 'Hartsfield–Jackson Atlanta Int\'l',
+            name: 'Hartsfield–Jackson Atlanta Int\'l (unmodified)',
             premium: false
         },
         {
             icao: '1atl',
             level: 'hard',
-            name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 7 MIT',
+            name: 'KATL: Finals Practice: 7 MIT',
             premium: false
         },
         {
             icao: '2atl',
             level: 'hard',
-            name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 9 MIT',
+            name: 'KATL: Finals Practice: 9 MIT',
             premium: false
         },
         {
             icao: '3atl',
             level: 'hard',
-            name: 'Hartsfield–Jackson Atlanta Int\'l: Finals Practice: 12 MIT',
+            name: 'KATL: Finals Practice: 12 MIT',
+            premium: false
+        },
+        {
+            icao: '4atl',
+            level: 'hard',
+            name: 'KATL: Converging Streams: 6 MIT --> 10 MIT',
+            premium: false
+        },
+        {
+            icao: '5atl',
+            level: 'hard',
+            name: 'KATL: Converging Streams: 6 MIT --> 11.5 MIT',
+            premium: false
+        },
+        {
+            icao: '6atl',
+            level: 'hard',
+            name: 'KATL: Prop vs Jet (each 15 MIT)',
             premium: false
         // },
         // {
