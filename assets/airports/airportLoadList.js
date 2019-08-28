@@ -339,12 +339,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Seattle-Tacoma International Airport',
             premium: false
         },
-        // {
-        //     icao: 'ksfo',
-        //     level: 'medium',
-        //     name: 'San Francisco International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'ksfo',
+            level: 'hard',
+            name: 'San Francisco International Airport',
+            premium: false
+        },
         {
             icao: 'kstl',
             level: 'medium',
