@@ -1282,7 +1282,7 @@
             "altitude": 34000,
             "speed": 280,
             "method": "random",
-            "rate": 1.5,
+            "rate": 1.7,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1297,7 +1297,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
-                ["n/fastGA", 7],
+                ["n/fastGA", 14],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1313,7 +1313,7 @@
             "altitude": 31000,
             "speed": 280,
             "method": "random",
-            "rate": 2,
+            "rate": 2.2,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1328,7 +1328,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
-                ["n/fastGA", 7],
+                ["n/fastGA", 14],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1344,7 +1344,7 @@
             "altitude": 25000,
             "speed": 280,
             "method": "random",
-            "rate": 2.3,
+            "rate": 2.5,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1359,7 +1359,7 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
-                ["n/fastGA", 7],
+                ["n/fastGA", 14],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
@@ -1405,7 +1405,7 @@
             "altitude": 22000,
             "speed": 280,
             "method": "random",
-            "rate": 1.1,
+            "rate": 1.5,
             "airlines": [
                 ["aal", 1],
                 ["aay", 4],
@@ -1420,64 +1420,12 @@
                 ["gjs", 5],
                 ["gti", 8],
                 ["jia", 10],
-                ["n/fastGA", 7],
+                ["n/fastGA", 14],
                 ["pac", 5],
                 ["rpa", 8],
                 ["skw", 3],
                 ["swa", 6],
                 ["ual", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "COLNS.BRUSH3.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.2,
-            "airlines": [
-                ["n/fastGA", 7]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "CTW.CINCE8.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.4,
-            "airlines": [
-                ["n/fastGA", 7]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "HMV.HARDU4.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.2,
-            "airlines": [
-                ["n/fastGA", 7]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KCVG",
-            "category": "arrival",
-            "route": "BVT.SHB6.KCVG18L",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0.2,
-            "airlines": [
-                ["n/fastGA", 7]
             ]
         }
     ],
