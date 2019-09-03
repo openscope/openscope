@@ -193,7 +193,7 @@ export const PERFORMANCE = {
     MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894, // appx. 500 feet
 
     /**
-     * Maximum angular differce from the approach course heading to consider the aircraft close
+     * Maximum angular difference from the approach course heading to consider the aircraft close
      * to be "established on the approach course", which is an important condition for applying
      * rules of separation.
      *
@@ -202,6 +202,16 @@ export const PERFORMANCE = {
      * @final
      */
     MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0872665, // appx. 5 degrees
+
+    /**
+     * Maximum angular difference from the hold inbound heading to consider the aircraft close
+     * to be "established on the hold course".
+     *
+     * @property MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE: 0.000017453, // appx. 0.001 degrees
 
     /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.

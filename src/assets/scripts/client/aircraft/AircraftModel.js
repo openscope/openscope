@@ -1983,6 +1983,7 @@ export default class AircraftModel {
 
         const { inboundHeading } = holdParameters;
         const outboundHeading = radians_normalize(inboundHeading + Math.PI);
+        const groundTrack = radians_normalize(this.groundTrack);
         const offset = getOffset(this, waypointRelativePosition, inboundHeading);
         const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
         const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
@@ -2001,7 +2002,7 @@ export default class AircraftModel {
 
         let nextTargetHeading = outboundHeading;
 
-        if (this.heading === outboundHeading && !isTimerSet) {
+        if (abs(groundTrack - outboundHeading) < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE && !isTimerSet) {
             currentWaypoint.setHoldTimer(gameTime + holdLegDurationInSeconds);
         }
 
