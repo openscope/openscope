@@ -177,6 +177,7 @@
         "HDR":   ["N52d54m24.68", "E004d45m56.60"],
         "HELEN": ["N51d14m07.13", "E003d52m10.96"],
         "HSD":   ["N51d43.40000", "E003d51.50000"],
+        "IDRID": ["N51d59.77", "E003d29.77"],
         "INBAM": ["N52d21m11.20", "E005d15m10.74"],
         "IVLUT": ["N52d14m38.81", "E005d15m25.06"],
         "KUBAT": ["N53d20m11.00", "E006d59m37.00"],
@@ -272,50 +273,32 @@
         {
             "name": ["04", "22"],
             "end":    [["N52d18m01.34", "E004d47m00.54", "-13.0ft"], ["N52d18m50.49", "E004d48m10.89", "-13.8ft"]],
-            "ils": [false, true],
-            "ils_distance":[20],
-            "loc_maxDist": [20],
-            "glideslope": [3.00]
+            "ils": [false, true]
         },
         {
             "name": ["06","24"],
             "end": [["N52d17m20.87", "E004d44m14.25", "-10.9ft"], ["N52d18m16.49", "E004d46m39.06", "-11.6ft"]],
-            "ils": [true, false],
-            "ils_distance":[20],
-            "loc_maxDist": [20],
-            "glideslope": [3.00]
+            "ils": [true, false]
         },
         {
             "name": ["09", "27"],
             "end": [["N52d19m00.008", "E004d44m51.58", "-12.0ft"], ["N52d19m06.15", "E004d47m48.81", "-12.1ft"]],
-            "ils": [false, true],
-            "ils_distance":[20],
-            "loc_maxDist": [20],
-            "glideslope": [3.00]
+            "ils": [false, true]
         },
         {
             "name": ["18C","36C"],
             "end": [["N52d19m53.03", "E004d44m24.11", "-12.0ft"], ["N52d18m20.99", "E004d44m15.66", "-12.0ft"]],
-            "ils": [true, true],
-            "ils_distance":[20, 20],
-            "loc_maxDist": [20, 20],
-            "glideslope": [3.00, 3.00]
+            "ils": [true, true]
         },
         {
             "name": ["18L", "36R"],
             "end": [["N52d18m58.14", "E004d46m46.89", "-12.0ft"], ["N52d17m26.97", "E004d46m38.45", "-11.1ft"]],
-            "ils": [false, true],
-            "ils_distance":[20],
-            "loc_maxDist": [20],
-            "glideslope": [3.00]
+            "ils": [false, true]
         },
         {
             "name": ["18R","36L"],
             "end": [["N52d21m36.93", "E004d42m42.21", "-13.0ft"], ["N52d19m42.89", "E004d42m31.81", "-11.9ft"]],
-            "ils": [true, false],
-            "ils_distance":[20],
-            "loc_maxDist": [20],
-            "glideslope": [3.00]
+            "ils": [true, false]
         }
     ],
 
