@@ -153,6 +153,7 @@
         }
     ],
     "fixes": {
+        "_RWY2401DME": ["N52.682843", "W8.964802"],
         "ABAGU": ["N52.50334923058855", "W7.64666748659988"],
         "ADARA": ["N51.49996638721290", "W14.9999999977787"],
         "ADARU": ["N52.59381645739372", "W8.93096924436742"],
@@ -374,46 +375,67 @@
         }
     ],
     "sids": {
-        "ABAGU": {
-            "icao": "ABAGU",
-            "name": "Abahgoo",
-            "suffix": {"06":"2A", "24":"2B"},
+        "ABAG3A": {
+            "icao": "ABAG3A",
+            "name": "Abahgoo Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"]],
-                "24": [["BEVES", "A18+"], ["ADARU", "A33+"]]
+                "EINN06": [["SHA", "A5+|S185-"], ["OL", "A20+|S185-"]]
             },
             "body": [],
             "exitPoints": {
                 "ABAGU": ["ABAGU"]
             },
             "draw": [
-                ["OL", "ABAGU"],
+                ["OL", "ABAGU"]
+            ]
+        },
+        "ABAG3B": {
+            "icao": "ABAG3B",
+            "name": "Abahgoo Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["ADARU", "A33+|S185-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ABAGU": [["ABAGU", "S250-"]]
+            },
+            "draw": [
                 ["BEVES", "ADARU", "ABAGU"]
             ]
         },
-        "AGINI": {
-            "icao": "AGINI",
-            "name": "Aginee",
-            "suffix": {"06":"2A", "24":"2B"},
+        "AGIN3A": {
+            "icao": "AGIN3A",
+            "name": "Aginee Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"]],
-                "24": [["BEVES", "A18+"], ["DISUR", "A33+"], "GORTO"]
+                "EINN06": [["SHA", "A5+"], ["OL", "A20+"]]
             },
             "body": [],
             "exitPoints": {
                 "AGINI": ["AGINI"]
             },
             "draw": [
-                ["OL", "AGINI"],
+                ["OL", "AGINI"]
+            ]
+        },
+        "AGIN3B": {
+            "icao": "AGIN3B",
+            "name": "Aginee Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["DISUR", "A33+|S185-"], ["GORTO", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "AGINI": [["AGINI", "S250-"]]
+            },
+            "draw": [
                 ["BEVES", "DISUR", "GORTO", "AGINI"]
             ]
         },
-        "BUNON": {
-            "icao": "BUNON",
-            "name": "Boonon",
-            "suffix": {"24":"2B"},
+        "BUNO3B": {
+            "icao": "BUNO3B",
+            "name": "Boonon Three Bravo",
             "rwy": {
-                "24": [["BEVES", "A18+"]]
+                "EINN24": [["_RWY2401DME", "A6+"], ["BEVES", "A18+"]]
             },
             "body": [],
             "exitPoints": {
@@ -423,12 +445,11 @@
                 ["BEVES", "BUNON"]
             ]
         },
-        "DIGAN": {
-            "icao": "DIGAN",
-            "name": "Digan",
-            "suffix": {"06":"2A"},
+        "DIGA3A": {
+            "icao": "DIGA3A",
+            "name": "Digan Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"]]
+                "EINN06": [["SHA", "A5+"], ["OL", "A20+"]]
             },
             "body": [],
             "exitPoints": {
@@ -438,63 +459,95 @@
                 ["OL", "DIGAN"]
             ]
         },
-        "ERABI": {
-            "icao": "ERABI",
-            "name": "Ehrabee",
-            "suffix": {"06":"2A", "24":"2B"},
+        "ERAB3A": {
+            "icao": "ERAB3A",
+            "name": "Ehrabee Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"], ["NEPOG", "A34+"]],
-                "24": [["BEVES", "A18+"], ["DISUR", "A33+"]]
+                "EINN06": [["SHA", "A5+|S185-"], ["OL", "A20+|S185-"], ["NEPOG", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
-                "ERABI": ["ERABI"]
+                "ERABI": [["ERABI", "S250-"]]
             },
             "draw": [
-                ["OL", "NEPOG", "ERABI"],
+                ["OL", "NEPOG", "ERABI"]
+            ]
+        },
+        "ERAB3B": {
+            "icao": "ERAB3B",
+            "name": "Ehrabee Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["DISUR", "A33+|S185-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ERABI": [["ERABI", "S250-"]]
+            },
+            "draw": [
                 ["DISUR", "ERABI"]
             ]
         },
-        "KURUM": {
-            "icao": "KURUM",
-            "name": "Kooroom",
-            "suffix": {"06":"2A", "24":"2B"},
+        "KURUM3A": {
+            "icao": "KURUM3A",
+            "name": "Kooroom Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"], ["GATLO", "A34+"]],
-                "24": [["BEVES", "A18+"], ["ADARU", "A33+"]]
+                "EINN06": [["SHA", "A5+|S185-"], ["OL", "A20+|S185-"], ["GATLO", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
-                "KURUM": ["KURUM"]
+                "KURUM": [["KURUM", "S250-"]]
             },
             "draw": [
-                ["OL", "GATLO", "KURUM"],
+                ["OL", "GATLO", "KURUM"]
+            ]
+        },
+        "KURU3B": {
+            "icao": "KURU3B",
+            "name": "Kooroom Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["ADARU", "A33+|S185-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KURUM": [["KURUM", "S250-"]]
+            },
+            "draw": [
                 ["ADARU", "KURUM"]
             ]
         },
-        "LUNIG": {
-            "icao": "LUNIG",
-            "name": "Lunig",
-            "suffix": {"06":"2A", "24":"2B"},
+        "LUNI3A": {
+            "icao": "LUNI3A",
+            "name": "Lunig Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"], ["GATLO", "A34+"]],
-                "24": [["BEVES", "A18+"], ["ADARU", "A33+"]]
+                "EINN06": [["SHA", "A5+|S185-"], ["OL", "A20+|S185-"], ["GATLO", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
-                "LUNIG": ["LUNIG"]
+                "LUNIG": [["LUNIG", "S250-"]]
             },
             "draw": [
-                ["GATLO", "LUNIG"],
+                ["GATLO", "LUNIG"]
+            ]
+        },
+        "LUNI3B": {
+            "icao": "LUNI3B",
+            "name": "Lunig Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["ADARU", "A33+|S185-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "LUNIG": [["LUNIG", "S250-"]]
+            },
+            "draw": [
                 ["ADARU", "LUNIG"]
             ]
         },
-        "LUPOR": {
-            "icao": "LUPOR",
-            "name": "Loopor",
-            "suffix": {"24":"2B"},
+        "LUPO3B": {
+            "icao": "LUPO3B",
+            "name": "Loopor Three Bravo",
             "rwy": {
-                "24": [["BEVES", "A18+"]]
+                "EINN24": [["_RWY2401DME", "A6+"], ["BEVES", "A18+"]]
             },
             "body": [],
             "exitPoints": {
@@ -504,59 +557,67 @@
                 ["BEVES", "LUPOR"]
             ]
         },
-        "MOMIN": {
-            "icao": "MOMIN",
-            "name": "Momin",
-            "suffix": {"06":"2A", "24":"2B"},
+        "MOMI3A": {
+            "icao": "MOMI3A",
+            "name": "Momin Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"], ["NEPOG", "A34+"]],
-                "24": [["BEVES", "A18+"], ["DISUR", "A33+"]]
+                "EINN06": [["SHA", "A5+|S185-"], ["OL", "A20+|S185-"], ["NEPOG", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
                 "MOMIN": ["MOMIN"]
             },
             "draw": [
-                ["NEPOG", "MOMIN"],
-                ["DISUR", "MOMIN"]
+                ["NEPOG", "MOMIN"]
             ]
         },
-        "OSGAR": {
-            "icao": "OSGAR",
-            "name": "Osgar",
-            "suffix": {"24":"2B"},
+        "MOMI3B": {
+            "icao": "MOMI3B",
+            "name": "Momin Three Alpha",
             "rwy": {
-                "24": [["BEVES", "A18+"], ["DISUR", "A33+"], "GORTO", "AGINI"]
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["DISUR", "A33+|S185-"]]
             },
             "body": [],
             "exitPoints": {
-                "OSGAR": ["OSGAR"]
+                "MOMIN": ["MOMIN"]
+            },
+            "draw": [
+                ["DISUR", "MOMIN"]
+            ]
+        },
+        "OSGA3B": {
+            "icao": "OSGA3B",
+            "name": "Osgar Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["DISUR", "A33+|S185-"], ["GORTO", "S250-"], ["AGINI", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "OSGAR": [["OSGAR", "S250-"]]
             },
             "draw": [
                 ["AGINI", "OSGAR"]
             ]
         },
-        "PELIG": {
-            "icao": "PELIG",
-            "name": "Pelig",
-            "suffix": {"24":"2B"},
+        "PELI3B": {
+            "icao": "PELI3B",
+            "name": "Pelig Three Bravo",
             "rwy": {
-                "24": [["BEVES", "A18+"], ["DISUR", "A33+"], "GORTO", "AGINI"]
+                "EINN24": [["_RWY2401DME", "A6+|S185-"], ["BEVES", "A18+|S185-"], ["DISUR", "A33+|S185-"], ["GORTO", "S250-"], ["AGINI", "S250-"]]
             },
             "body": [],
             "exitPoints": {
-                "PELIG": ["PELIG"]
+                "PELIG": [["PELIG", "S250-"]]
             },
             "draw": [
                 ["AGINI", "PELIG"]
             ]
         },
-        "TOMTO": {
-            "icao": "TOMTO",
-            "name": "Tomtoe",
-            "suffix": {"06":"2A"},
+        "TOMT3A": {
+            "icao": "TOMT3A",
+            "name": "Tomtoe Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"]]
+                "EINN06": [["SHA", "A5+"], ["OL", "A20+"]]
             },
             "body": [],
             "exitPoints": {
@@ -566,192 +627,313 @@
                 ["OL", "TOMTO"]
             ]
         },
-        "UNBEG": {
-            "icao": "UNBEG",
-            "name": "Unbeg",
-            "suffix": {"06":"2A", "24":"2B"},
+        "UNBE3A": {
+            "icao": "UNBE3A",
+            "name": "Unbeg Three Alpha",
             "rwy": {
-                "06": [["OL", "A20+"], ["NEPOG", "A34+"]],
-                "24": [["BEVES", "A18+"]]
+                "EINN06": [["SHA", "A5+|S185-"], ["OL", "A20+|S185-"], ["NEPOG", "A34+|S185-"], ["GULTU", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "UNBEG": [["UNBEG", "S250-"]]
+            },
+            "draw": [
+                ["NEPOG", "UNBEG", "GULTU"]
+            ]
+        },
+        "UNBE3B": {
+            "icao": "UNBE3B",
+            "name": "Unbeg Three Bravo",
+            "rwy": {
+                "EINN24": [["_RWY2401DME", "A6+"], ["BEVES", "A18+"]]
             },
             "body": [],
             "exitPoints": {
                 "UNBEG": ["UNBEG"]
             },
             "draw": [
-                ["NEPOG", "UNBEG"],
                 ["BEVES", "UNBEG"]
             ]
         }
     },
     "stars": {
-        "AGIN": {
-            "icao": "AGIN",
-            "name": "Aginee",
-            "suffix": {"06":"2E", "24":"2D"},
+        "AGIN2D": {
+            "icao": "AGIN2D",
+            "name": "Aginee Two Delta",
             "entryPoints": {
-                "AGINI": [["AGINI", "A80+"]]
+                "AGINI": [["AGINI", "A80+|S250-"]]
             },
             "rwy": {
-                "06": ["ULSIT", ["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": [["OGONO", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN24": [["OGONO", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
             },
             "body": [],
             "draw": [
-                ["AGINI", "ULSIT", "TERDU", "ELPOM"],
                 ["AGINI", "OGONO", "DERAG"]
             ]
         },
-        "BUNO": {
-            "icao": "BUNO",
-            "name": "Boonon",
-            "suffix": {"06":"2E", "24":"2D"},
+        "AGIN2E": {
+            "icao": "AGIN2E",
+            "name": "Aginee Two Echo",
             "entryPoints": {
-                "BUNON": [["BUNON", "A80+"]]
+                "AGINI": [["AGINI", "A80+|S250-"]]
             },
             "rwy": {
-                "06": [["ELPOM", "A30+|S220-"]],
-                "24": ["ENS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN06": ["ULSIT", ["TERDU", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
             },
             "body": [],
             "draw": [
-                ["BUNON", "ENS", "TOBRI", "DERAG"],
+                ["AGINI", "ULSIT", "TERDU", "ELPOM"]
+            ]
+        },
+        "BUNO2E": {
+            "icao": "BUNO2E",
+            "name": "Boonon Two Echo",
+            "entryPoints": {
+                "BUNON": [["BUNON", "A80+|S250-"]]
+            },
+            "rwy": {
+                "EINN06": [["@ELPOM", "A30+|A140-|S220-"]]
+            },
+            "body": [],
+            "draw": [
                 ["BUNON", "ELPOM"]
             ]
         },
-        "DIGA": {
-            "icao": "DIGA",
-            "name": "Digan",
-            "suffix": {"06":"2E", "24":"2D"},
+        "BUNO3D": {
+            "icao": "BUNO3D",
+            "name": "Boonon Three Delta",
             "entryPoints": {
-                "DIGAN": [["DIGAN", "A80+"]]
+                "BUNON": [["BUNON", "A80+|S250-"]]
+            },
+            "rwy": {
+                "EINN24": ["ENS", ["TOBRI", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
+            },
+            "body": [],
+            "draw": [
+                ["BUNON", "ENS", "TOBRI", "DERAG"]
+            ]
+        },
+        "DIGA2D": {
+            "icao": "DIGA2D",
+            "name": "Digan Two Delta",
+            "entryPoints": {
+                "DIGAN": [["DIGAN", "A80+|S250-"]]
             },
             "body": [],
             "rwy": {
-                "06": ["ULSIT", ["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": [["OGONO", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN24": [["OGONO", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["DIGAN", "ULSIT"],
                 ["DIGAN", "OGONO"]
             ]
         },
-        "ERAB": {
-            "icao": "ERAB",
-            "name": "Ehrabee",
-            "suffix": {"06":"2E", "24":"2D"},
+        "DIGA2E": {
+            "icao": "DIGA2E",
+            "name": "Digan Two Echo",
+            "entryPoints": {
+                "DIGAN": [["DIGAN", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN06": ["ULSIT", ["TERDU", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
+            },
+            "draw": [
+                ["DIGAN", "ULSIT"]
+            ]
+        },
+        "ERAB2E": {
+            "icao": "ERAB2E",
+            "name": "Ehrabee Two Echo",
             "entryPoints": {
                 "ERABI": [["ERABI", "A80+"]]
             },
             "body": [],
             "rwy": {
-                "06": [["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": ["ENS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN06": [["TERDU", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["ERABI", "TERDU"],
-                ["ERABI", "ENS"]
+                ["ERABI", "TERDU"]
             ]
         },
-        "KURU": {
-            "icao": "KURU",
-            "name": "Kooroom",
-            "suffix": {"06":"2E", "24":"2D"},
+        "ERAB3D": {
+            "icao": "ERAB3D",
+            "name": "Ehrabee Three Delta",
             "entryPoints": {
-                "KURUM": [["KURUM", "A80+"]]
+                "ERABI": [["ERABI", "A80+"]]
             },
             "body": [],
             "rwy": {
-                "06": [["RERKA", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": [["GILOG", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN24": ["ENS", ["TOBRI", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["KURUM", "RERKA", "ELPOM"],
+                ["ERABI", "ENS"]
+            ]
+        },
+        "KURU2D": {
+            "icao": "KURU2D",
+            "name": "Kooroom Two Delta",
+            "entryPoints": {
+                "KURUM": [["KURUM", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN24": [["GILOG", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
+            },
+            "draw": [
                 ["KURUM", "GILOG", "DERAG"]
             ]
         },
-        "LUPO": {
-            "icao": "LUPO",
-            "name": "Loopor",
-            "suffix": {"06":"2E", "24":"2D"},
+        "KURU2E": {
+            "icao": "KURU2E",
+            "name": "Kooroom Two Echo",
+            "entryPoints": {
+                "KURUM": [["KURUM", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN06": [["RERKA", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
+            },
+            "draw": [
+                ["KURUM", "RERKA", "ELPOM"]
+            ]
+        },
+        "LUPO2E": {
+            "icao": "LUPO2E",
+            "name": "Loopor Two Echo",
+            "entryPoints": {
+                "LUPOR": [["LUPOR", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN06": [["@ELPOM", "A30+|A140-|S220-"]]
+            },
+            "draw": [
+                ["LUPOR", "ELPOM"]
+            ]
+        },
+        "LUPO3D": {
+            "icao": "LUPO3D",
+            "name": "Loopor Three Delta",
             "entryPoints": {
                 "LUPOR": [["LUPOR", "A80+"]]
             },
             "body": [],
             "rwy": {
-                "06": [["ELPOM", "A30+|S220-"]],
-                "24": ["ENS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN24": ["ENS", ["TOBRI", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["LUPOR", "ELPOM"],
                 ["LUPOR", "ENS"]
             ]
         },
-        "MOMI": {
-            "icao": "MOMI",
-            "name": "Momin",
-            "suffix": {"06":"2E", "24":"2D"},
+        "MOMI2E": {
+            "icao": "MOMI2E",
+            "name": "Momin Two Echo",
             "entryPoints": {
-                "MOMIN": [["MOMIN", "A80+"]]
+                "MOMIN": [["MOMIN", "A80+|S250-"]]
             },
             "body": [],
             "rwy": {
-                "06": [["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": ["ENS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN06": [["TERDU", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["MOMIN", "TERDU"],
+                ["MOMIN", "TERDU"]
+            ]
+        },
+        "MOMI3D": {
+            "icao": "MOMI3D",
+            "name": "Momin Three Delta",
+            "entryPoints": {
+                "MOMIN": [["MOMIN", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN24": ["ENS", ["TOBRI", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
+            },
+            "draw": [
                 ["MOMIN", "ENS"]
             ]
         },
-        "RIKU": {
-            "icao": "RIKU",
-            "name": "Ricool",
-            "suffix": {"06":"2E", "24":"2D"},
+        "RIKU2D": {
+            "icao": "RIKU2D",
+            "name": "Ricool Two Delta",
             "entryPoints": {
-                "RIKUL": [["RIKUL", "A80+"]]
+                "RIKUL": [["RIKUL", "A80+|S250-"]]
             },
             "body": [],
             "rwy": {
-                "06": ["ULSIT", ["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": [["OGONO", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN24": [["OGONO", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["RIKUL", "ULSIT"],
                 ["RIKUL", "OGONO"]
             ]
         },
-        "TIPU": {
-            "icao": "TIPU",
-            "name": "Tipoor",
-            "suffix": {"06":"2E", "24":"2D"},
+        "RIKU2E": {
+            "icao": "RIKU2E",
+            "name": "Ricool Two Echo",
             "entryPoints": {
-                "TIPUR": [["TIPUR", "A80+"]]
+                "RIKUL": [["RIKUL", "A80+|S250-"]]
             },
             "body": [],
             "rwy": {
-                "06": [["RERKA", "A60+"], ["ELPOM", "A30+|S220-"]],
-                "24": [["GILOG", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN06": ["ULSIT", ["TERDU", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["TIPUR", "RERKA"],
+                ["RIKUL", "ULSIT"]
+            ]
+        },
+        "TIPU2D": {
+            "icao": "TIPU2D",
+            "name": "Tipoor Two Delta",
+            "entryPoints": {
+                "TIPUR": [["TIPUR", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN24": [["GILOG", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
+            },
+            "draw": [
                 ["TIPUR", "GILOG"]
             ]
         },
-        "UNBE": {
-            "icao": "UNBE",
-            "name": "Unbeg",
-            "suffix": {"06":"2E", "24":"2D"},
+        "TIPU2E": {
+            "icao": "TIPU2E",
+            "name": "Tipoor Two Echo",
             "entryPoints": {
-                "UNBEG": [["UNBEG", "A80+"]]
+                "TIPUR": [["TIPUR", "A80+|S250-"]]
             },
             "body": [],
             "rwy": {
-                "06": [["ELPOM", "A30+|S220-"]],
-                "24": ["ENS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
+                "EINN06": [["RERKA", "A60+"], ["@ELPOM", "A30+|A140-|S220-"]]
             },
             "draw": [
-                ["UNBEG", "ELPOM"],
+                ["TIPUR", "RERKA"]
+            ]
+        },
+        "UNBE2E": {
+            "icao": "UNBE2E",
+            "name": "Unbeg Twp Echo",
+            "entryPoints": {
+                "UNBEG": [["UNBEG", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN06": [["@ELPOM", "A30+|A140-|S220-"]]
+            },
+            "draw": [
+                ["UNBEG", "ELPOM"]
+            ]
+        },
+        "UNBE3D": {
+            "icao": "UNBE3D",
+            "name": "Unbeg Three Delta",
+            "entryPoints": {
+                "UNBEG": [["UNBEG", "A80+|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EINN24": ["ENS", ["TOBRI", "A60+"], ["@DERAG", "A30+|A140-|S220-"]]
+            },
+            "draw": [
                 ["UNBEG", "ENS"]
             ]
         }
@@ -761,7 +943,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.OSGAR.OSGAR",
+            "route": "EINN24.OSGA3B.OSGAR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -777,7 +959,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.ABAGU.ABAGU",
+            "route": "EINN24.ABAG3B.ABAGU",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -793,7 +975,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.LUNIG.LUNIG..NORLA",
+            "route": "EINN24.LUNI3B.LUNIG..NORLA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -810,7 +992,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.KURUM.KURUM..CRK",
+            "route": "EINN24.KURU3B.KURUM..CRK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -827,7 +1009,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.LUPOR.LUPOR..LIMRI",
+            "route": "EINN24.LUPO3B.LUPOR..LIMRI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -847,7 +1029,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.BUNON.BUNON..BEDRA",
+            "route": "EINN24.BUNO3B.BUNON..BEDRA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -867,7 +1049,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.UNBEG.UNBEG..DOGAL",
+            "route": "EINN24.UNBE3B.UNBEG..DOGAL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -887,7 +1069,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.ERABI.ERABI..RESNO",
+            "route": "EINN24.ERAB3B.ERABI..RESNO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -907,7 +1089,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN.MOMIN.MOMIN..SUNOT",
+            "route": "EINN24.MOMI3B.MOMIN..SUNOT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -927,7 +1109,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "DUB..PELIG..ENOKU..DIGAN.DIGA.EINN",
+            "route": "DUB..PELIG..ENOKU..DIGAN.DIGA2D.EINN24",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -943,7 +1125,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "SLANY..ABAGU..TIPUR.TIPU.EINN",
+            "route": "SLANY..ABAGU..TIPUR.TIPU2D.EINN24",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -961,7 +1143,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "LEDGO..ERTER..CRK..KURUM.KURU.EINN",
+            "route": "LEDGO..ERTER..CRK..KURUM.KURU2D.EINN24",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -978,7 +1160,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "SOMAX..ATSUR..BUNON.BUNO.EINN",
+            "route": "SOMAX..ATSUR..BUNON.BUNO3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -996,7 +1178,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "LIMRI..XETBO..LUPOR.LUPO.EINN",
+            "route": "LIMRI..XETBO..LUPOR.LUPO3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1014,7 +1196,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "MALOT..GISTI..UNBEG.UNBE.EINN",
+            "route": "MALOT..GISTI..UNBEG.UNBE3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1032,7 +1214,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "VENER..KOKIB..ERABI.ERAB.EINN",
+            "route": "VENER..KOKIB..ERABI.ERAB3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1050,7 +1232,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "PIKIL..SOVED..MOMIN.MOMI.EINN",
+            "route": "PIKIL..SOVED..MOMIN.MOMI3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
