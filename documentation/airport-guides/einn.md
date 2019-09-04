@@ -4,10 +4,11 @@ Shannon Airport is an international airport serving the Mid-West of Ireland. It 
 
 The airport was initially know as Rineanna when it opened in 1936, when the Irish Government realised that a permanent runway would be required, and selected a site across the estuary from the Foynes flying boat terminal. The airport is owned by the Irish Government and is operated as a commercial entity as Shannon Group Plc.
 
-The airport and runways have increase in size since its foundation, having the longest runway in Ireland, which was a designated landing site for the US Space Shuttle, although only the 06-24 runway is now in use. 
+The airport and runways have increased in size since its foundation, having the longest runway in Ireland which was a designated landing site for the US Space Shuttle. Only the 06-24 runway is now in use.
 
 ### Statistcs
 1,751,500 passengers in 2017, up 0.1% from 2016
+
 19,296 aircraft movements in 2017, up 0.8% from 2016
 
 ### About the Shannon Area Control Centre
