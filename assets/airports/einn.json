@@ -1,4 +1,5 @@
 {
+    "airac": "1909",
     "radio": {
         "twr": "Shannon Tower",
         "app": "Shannon Approach",
@@ -6,7 +7,7 @@
     },
     "icao": "EINN",
     "iata": "SNN",
-    "magnetic_north": -5.3,
+    "magnetic_north": -3.5,
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
