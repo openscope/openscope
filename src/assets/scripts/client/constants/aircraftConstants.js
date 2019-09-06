@@ -204,14 +204,14 @@ export const PERFORMANCE = {
     MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0872665, // appx. 5 degrees
 
     /**
-     * Maximum angular difference from the hold inbound heading to consider the aircraft close
+     * Maximum angular difference from the hold outbound heading to consider the aircraft close
      * to be "established on the hold course".
      *
      * @property MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE
      * @type {number}
      * @final
      */
-    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE: 0.000017453, // appx. 0.001 degrees
+    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE: 0.0017453, // appx. 0.1 degrees
 
     /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.
