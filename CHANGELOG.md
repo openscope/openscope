@@ -6,6 +6,7 @@
 - [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
 - [#1395](https://github.com/openscope/openscope/issues/1395) - Fix aircraft's wind correction angle math (which was causing go-arounds)
 - [#1420](https://github.com/openscope/openscope/issues/1420) - Spawn pre-spawned aircraft on correct heading instead of 360 heading
+- [#1432](https://github.com/openscope/openscope/issues/1432) - Prevent aircraft from leaving their holding patterns
 
 
 ### Enhancements & Refactors
