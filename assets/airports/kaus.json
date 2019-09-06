@@ -1,4 +1,5 @@
 {
+    "airac": 1909,
     "radio": {
         "twr": "Austin Tower",
         "app": "Austin Approach",
@@ -102,7 +103,6 @@
         "HOOKK": ["N30d21.60", "W97d12.18"],
         "HOOLR": ["N28d55.82", "W98d18.10"],
         "HOUKM": ["N30d25.74", "W97d45.15"],
-        "HUB"  : ["N29d39.34", "W95d16.60"],
         "IAH"  : ["N29d57.42", "W95d20.74"],
         "IDU"  : ["N29d57.36", "W96d33.73"],
         "ILEXY": ["N30d21.16", "W97d4.76"],
@@ -159,7 +159,6 @@
         "THELM": ["N29d26.68", "W98d24.14"],
         "TNV"  : ["N30d17.31", "W96d3.49"],
         "TOONE": ["N30d5.41", "W97d29.85"],
-        "TPL"  : ["N31d12.56", "W97d25.50"],
         "TRPPN": ["N30d9.43", "W97d46.12"],
         "TRVSS": ["N30d27.91", "W97d52.71"],
         "UCOKA": ["N31d19.00", "W100d5.00"],
@@ -177,20 +176,20 @@
     },
     "runways": [
         {
-            "name": ["17R", "35L"],
+            "name": ["17L", "35R"],
             "end": [
-                ["N30d12.82", "W97d40.76", "541ft"],
-                ["N30d10.80", "W97d40.71", "487ft"]
+                ["N30d12.23", "W97d39.47", "491ft"],
+                ["N30d10.75", "W97d39.43", "473ft"]
            ],
             "ils": [true, true],
             "ils_distance": [25, 25],
             "loc_maxDist": [28, 28]
         },
         {
-            "name": ["17L", "35R"],
+            "name": ["17R", "35L"],
             "end": [
-                ["N30d12.23", "W97d39.47", "491ft"],
-                ["N30d10.75", "W97d39.43", "473ft"]
+                ["N30d12.82", "W97d40.76", "541ft"],
+                ["N30d10.80", "W97d40.71", "487ft"]
            ],
             "ils": [true, true],
             "ils_distance": [25, 25],
@@ -210,7 +209,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-            "body": ["AMUSE", "AEROZ"],
+            "body": [["AMUSE", "A50+"], "AEROZ"],
             "exitPoints": {
                 "SJT": ["SJT"]
             },
@@ -250,7 +249,7 @@
         },
         "BNDIA2": {
             "icao": "BNDIA2",
-            "name": "Ben Dia Two",
+            "name": "Buen Día Dos",
             "rwy": {
                 "KAUS17L": ["#175"],
                 "KAUS17R": ["#175"],
@@ -387,11 +386,10 @@
         }
     },
     "stars": {
-        "BITER8": {
-            "icao": "BITER8",
-            "name": "Biter Eight",
+        "BITER9": {
+            "icao": "BITER9",
+            "name": "Biter Nine",
             "entryPoints": {
-                "HUB": ["HUB", "BOCCK"],
                 "IAH": ["IAH", "SHYNR", "BOCCK"],
                 "IDU": [],
                 "LFK": ["LFK", "BOCCK"]
@@ -404,7 +402,6 @@
                 "KAUS35R": []
             },
             "draw": [
-                ["HUB*", "BOCCK"],
                 ["IAH*", "SHYNR", "BOCCK", "IDU"],
                 ["IDU*", "WLEEE", "BITER", "ISHOV", "BASTO"],
                 ["LFK*", "BOCCK"]
@@ -451,9 +448,9 @@
                 ["SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT"]
           ]
         },
-        "KALLA3": {
-            "icao": "KALLA3",
-            "name": "Kalla Three",
+        "KALLA4": {
+            "icao": "KALLA4",
+            "name": "Kalla Four",
             "entryPoints": {
                 "LLO": ["LLO"]
             },
@@ -547,15 +544,15 @@
             "rate": 1.46,
             "airlines": [
                 ["aal/short", 8],
-                ["baw/b789", 1],
+                ["baw/b744", 1],
                 ["dal/short", 3],
                 ["eny", 1],
                 ["fft", 3],
                 ["n/fastGA", 1],
+                ["nks", 2],
                 ["nax/long", 1],
                 ["skw", 2],
-                ["swa", 12],
-                ["sry/e145", 3]
+                ["swa", 12]
           ]
         },
         {
@@ -599,16 +596,16 @@
                 ["aal/short", 4],
                 ["aay", 3],
                 ["ash", 3],
-                ["cfg/long", 1],
                 ["dal/short", 15],
+                ["dlh/a333", 1],
                 ["edv", 2],
                 ["fdx/eddf25l", 2],
                 ["fft", 5],
                 ["jbu", 5],
                 ["n/fastGA", 1],
+                ["nks", 2],
                 ["rpa", 2],
                 ["swa", 25],
-                ["sry/e145", 1],
                 ["ual/short", 5],
                 ["ups", 1]
           ]
@@ -695,7 +692,7 @@
             "method": "random",
             "rate": 0.167,
             "airlines": [
-                ["amx/short", 1],
+                ["sli", 1],
                 ["swa", 1],
                 ["ups", 1],
                 ["xa/fastGA", 1]
@@ -744,8 +741,8 @@
                 ["aca/short", 1],
                 ["ash", 1],
                 ["baw/b789", 1],
-                ["cfg/long", 1],
                 ["dal/short", 6],
+                ["dlh/a333", 1],
                 ["edv", 1],
                 ["eny", 1],
                 ["fdx/eddf25l", 2],
@@ -754,7 +751,6 @@
                 ["n/fastGA", 5],
                 ["nax/long", 1],
                 ["rpa", 2],
-                ["sry/e145", 4],
                 ["swa", 25],
                 ["ual/short", 10]
           ]
@@ -814,6 +810,7 @@
                 ["fft", 1],
                 ["jbu", 2],
                 ["n/fastGA", 1],
+                ["nks", 4],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 2],
@@ -824,7 +821,7 @@
             "origin": "",
             "destination": "KAUS",
             "category": "arrival",
-            "route": "TPL..CWK",
+            "route": "AGJ..CWK",
             "altitude": 8000,
             "speed": 180,
             "method": "random",

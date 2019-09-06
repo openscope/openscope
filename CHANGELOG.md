@@ -12,6 +12,7 @@
 - [#1410](https://github.com/openscope/openscope/issues/1410) - Restore functionality of local server from `npm run start`
 - [#1387](https://github.com/openscope/openscope/issues/1387) - Update EDDF to AIRAC 1906
 - [#1327](https://github.com/openscope/openscope/issues/1327) - Airport Revival: San Francisco International Airport
+- [#1390](https://github.com/openscope/openscope/issues/1390) - Update KAUS to AIRAC 1909
 
 
 # 6.13.0 (June 1, 2019)
