@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
 import AirportController from '../../src/assets/scripts/client/airport/AirportController';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import TimeKeeper from '../../src/assets/scripts/client/engine/TimeKeeper';
 import {
     createAirportControllerFixture,
     resetAirportControllerFixture,
@@ -24,6 +25,8 @@ import {
     PERFORMANCE
 } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../../src/assets/scripts/client/constants/airportConstants';
+import { TIME } from '../../src/assets/scripts/client/constants/globalConstants';
+import { DEFAULT_HOLD_PARAMETERS } from '../../src/assets/scripts/client/constants/waypointConstants';
 
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
 
@@ -730,6 +733,33 @@ ava('._calculateGroundTrackForHeading() returns the ground track which results f
     const result = model._calculateGroundTrackForHeading(headingMock);
 
     t.true(result === expectedResult);
+    sinon.restore();
+});
+
+ava('._calculateTargetedHeadingHold() sets hold timer when !#_isEstablishedOnHoldingPattern and the aircraft reaches the outbound heading', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const currentWaypointModel = model.fms.currentWaypoint;
+    const gameTimeMock = 50;
+    const inboundHeadingMock = 0;
+    const outboundHeadingMock = inboundHeadingMock + Math.PI;
+    const legLengthMinutesMock = '2.5min';
+    const legLengthSecondsMock = 150;
+    const maxAcceptableHeadingMock = outboundHeadingMock;// + PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE - 0.00000001;
+    currentWaypointModel._holdParameters = DEFAULT_HOLD_PARAMETERS;
+    currentWaypointModel._holdParameters.inboundHeading = inboundHeadingMock;
+    currentWaypointModel._holdParameters.legLength = legLengthMinutesMock;
+    currentWaypointModel._isHoldWaypoint = true;
+    model.groundTrack = maxAcceptableHeadingMock;
+
+    sinon.stub(model, '_isEstablishedOnHoldingPattern').get(() => true);
+    sinon.stub(TimeKeeper, 'accumulatedDeltaTime').get(() => gameTimeMock);
+    const setHoldTimerStub = sinon.stub(currentWaypointModel, 'setHoldTimer');
+    const expectedTimerTime = gameTimeMock + legLengthSecondsMock;
+
+    model._calculateTargetedHeadingHold();
+
+    t.true(setHoldTimerStub.calledOnce);
+    t.true(setHoldTimerStub.calledWithExactly(expectedTimerTime));
     sinon.restore();
 });
 
