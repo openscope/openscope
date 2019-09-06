@@ -47,13 +47,32 @@ Aircraft arriving from airways should expect the following arrivals
 | 24 | 2D, 3D | RNAV Standard Arrival Chart RWY 24 – ICAO | [EINN AD 2.24-8](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-8_en.pdf) | 31 Jan 2019 |
 
 ### Other aerodromes of interest
-The videomap includes the position of the following aerodromes within the Shannon CTA, including:
+The videomap includes the position of the following aerodromes within or around the Shannon CTA, including:
 * Coonagh Aerodrome (EICN)
+* Cork Airport (EICK)
+* Galway Airport (EICM)
+* Kerry Airport (EIKY)
 
 ##### Coonagh Aerodrome, EICN
 A privately owned airfield, and home of Limerick Flying Club.
 
 Runway 10/28, Bituminous, 416 m (1,365 ft)
+
+##### Cork Airport, EICK
+The second largest of the three principal airports in Ireland, it is located 7 km from Cork city centre.
+
+Runway 16/34, Asphalt, 2,133 m (6,998 ft)
+Runway 07/25, Concrete/Asphalt, 1,310 m (4,298 ft)
+
+##### Galway Airport, EICN
+Located in Carnmore, 7 km from Galway city centre. No scheduled passenger service has operated out of the aiport since 2011, and due to its short runway it can only handle turboprops, business jets and GA aircraft. It is home to Galway Flying Club.
+
+Runway 08/26, Asphalt, 1,289 m (4,230 ft)
+
+##### Kerry Airport
+Located in Farranfore, 13 km from Killarney.
+
+Runway 08/26, Asphalt, 2,000 m (6,562 ft)
 
 ### Restricted Airspace
 
@@ -62,7 +81,7 @@ Runway 10/28, Bituminous, 416 m (1,365 ft)
 | EIP09| A circle 1 nm radius centred at 5265883N, 00861686W| SFC - 2,000 ft | Limerick City Prison |
 
 ### Videomap
-Provided with the videomap is a atop down view of the airport's runways. The vertical marks on the  extended centreline represents a fix used on ILS charts.
+Provided with the videomap is a atop down view of the airport's runways, the Shannon CTA, the South West coastline and nearby airfields. Every dash on an extended centreline represents one (1) nautical mile, with each small 'T' representing four (4) miles.
 
 All restricted airspaces are plotted too.
 
