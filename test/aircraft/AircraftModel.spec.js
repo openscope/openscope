@@ -25,7 +25,6 @@ import {
     PERFORMANCE
 } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../../src/assets/scripts/client/constants/airportConstants';
-import { TIME } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_HOLD_PARAMETERS } from '../../src/assets/scripts/client/constants/waypointConstants';
 
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
