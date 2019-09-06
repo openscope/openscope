@@ -194,7 +194,12 @@ function _calculateSpawnPositionsAndAltitudes(
     for (let i = 0; i < spawnOffsets.length; i++) {
         const spawnOffset = spawnOffsets[i];
         const nextWaypointIndex = _findIndex(waypointOffsetMap, (distanceToWaypoint) => {
-            return distanceToWaypoint >= spawnOffset;
+            // Purposefully using strict comparison:
+            // If we return true here when distanceToWaypoint is equal to spawnOffset,
+            // the previousWaypointModel and the nextWaypointModel will be the same for
+            // the last item (the spawn point) resulting in the incapacity to compute a
+            // heading.
+            return distanceToWaypoint > spawnOffset;
         });
         const nextWaypointModel = waypointModelList[nextWaypointIndex];
         const previousWaypointIndex = Math.max(0, nextWaypointIndex - 1);
