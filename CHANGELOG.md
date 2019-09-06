@@ -1,10 +1,11 @@
-# 6.14.0 (September 1, 2019)
+# 6.14.0 (October 1, 2019)
 ### New Features
 
 
 ### Bugfixes
 - [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
 - [#1395](https://github.com/openscope/openscope/issues/1395) - Fix aircraft's wind correction angle math (which was causing go-arounds)
+- [#1420](https://github.com/openscope/openscope/issues/1420) - Spawn pre-spawned aircraft on correct heading instead of 360 heading
 
 
 ### Enhancements & Refactors
