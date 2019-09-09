@@ -11,6 +11,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MapLayerModel from './MapLayerModel';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
@@ -162,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * Dictionary of polys that make up any airport video maps
+         * List of map layers that make up any airport video maps
          *
          * @property maps
-         * @type {object}
+         * @type {array}
          * @default {}
          */
-        this.maps = {};
+        this.maps = [];
 
         /**
          * @property restricted_areas
@@ -441,27 +442,14 @@ export default class AirportModel {
         }
 
         _forEach(maps, (map, key) => {
-            this.maps[key] = [];
-
-            const outputMap = this.maps[key];
-            const lines = map;
-
-            _forEach(lines, (line) => {
-                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
-                const lineStartCoordinates = [line[0], line[1]];
-                const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineStartCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const endPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineEndCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-
-                outputMap.push(lineVerticesRelativePositions);
-            });
+          if (!('lines' in map)) {
+            // Handle the existing map dictionary format too
+            map = {
+              'name': 'Legacy-' + key,
+              'lines': map
+            };
+          }
+          this.maps.push(new MapLayerModel(map, this.positionModel, this.magneticNorth));
         });
     }
 

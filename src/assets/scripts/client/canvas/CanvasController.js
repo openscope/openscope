@@ -1910,16 +1910,22 @@ export default class CanvasController {
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
-        for (let i = 0; i < airportModel.maps.base.length; i++) {
-            const mapItem = airportModel.maps.base[i];
-            cc.moveTo(
-                CanvasStageModel.translateKilometersToPixels(mapItem[0]),
-                -CanvasStageModel.translateKilometersToPixels(mapItem[1])
-            );
-            cc.lineTo(
-                CanvasStageModel.translateKilometersToPixels(mapItem[2]),
-                -CanvasStageModel.translateKilometersToPixels(mapItem[3])
-            );
+        for (let map of airportModel.maps) {
+            if (!map || !map.lines.length || map.hidden) {
+                continue;
+            }
+            const lines = map.lines;
+            for (let i = 0; i < lines.length; i++) {
+                const mapItem = lines[i];
+                cc.moveTo(
+                    CanvasStageModel.translateKilometersToPixels(mapItem[0]),
+                    -CanvasStageModel.translateKilometersToPixels(mapItem[1])
+                );
+                cc.lineTo(
+                    CanvasStageModel.translateKilometersToPixels(mapItem[2]),
+                    -CanvasStageModel.translateKilometersToPixels(mapItem[3])
+                );
+            }
         }
 
         cc.stroke();
