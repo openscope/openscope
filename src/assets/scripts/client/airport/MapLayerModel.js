@@ -7,7 +7,12 @@ import DynamicPositionModel from '../base/DynamicPositionModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 
 /**
- * A collection of lines that represent a map layer.
+ * A videomap layer, containing a collection of map lines
+ *
+ * Defines a videomap layer referenced by an `AirportModel` that
+ * contains the map lines to be drawn by the `CanvasController`,
+ * as well as a name describing the map contents and a flag
+ * allowing rendering of the layer to be suppressed.
  *
  * @class MapLayerModel
  */
