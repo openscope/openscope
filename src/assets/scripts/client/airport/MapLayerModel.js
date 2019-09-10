@@ -31,11 +31,11 @@ export default class MapLayerModel extends BaseModel {
          * A flag indicating whether the layer should be hidden
          *
          * @for MapLayerModel
-         * @property hidden
+         * @property isHidden
          * @type {boolean}
          * @default false
          */
-        this.hidden = false;
+        this.isHidden = false;
 
         /**
          * List of lat/long coordinates pairs that define a line
@@ -71,7 +71,7 @@ export default class MapLayerModel extends BaseModel {
      * @private
      */
     _init(map, airportPosition, magneticNorth) {
-        this.hidden = map.hidden === true;
+        this.isHidden = map.isHidden === true;
         this.name = map.name;
         this._buildMapLines(map.lines, airportPosition, magneticNorth);
 
@@ -111,7 +111,7 @@ export default class MapLayerModel extends BaseModel {
      * @method reset
      */
     reset() {
-        this.hidden = true;
+        this.isHidden = false;
         this.lines = [];
         this.name = '';
     }

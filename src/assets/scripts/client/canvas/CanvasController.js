@@ -1911,7 +1911,7 @@ export default class CanvasController {
         cc.beginPath();
 
         for (let map of airportModel.maps) {
-            if (!map || !map.lines.length || map.hidden) {
+            if (!map || !map.lines.length || map.isHidden) {
                 continue;
             }
             const lines = map.lines;
