@@ -163,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * List of map layers that make up any airport video maps
+         * List of `MapLayerModel`s that make up any airport video maps
          *
-         * @property maps
-         * @type {array}
+         * @property mapModelList
+         * @type {array<MapLayerModel>}
          * @default {}
          */
-        this.maps = [];
+        this.mapModelList = [];
 
         /**
          * @property restricted_areas
@@ -442,14 +442,14 @@ export default class AirportModel {
         }
 
         _forEach(maps, (map, key) => {
-          if (!('lines' in map)) {
-            // Handle the existing map dictionary format too
-            map = {
-              'name': 'Legacy-' + key,
-              'lines': map
-            };
-          }
-          this.maps.push(new MapLayerModel(map, this.positionModel, this.magneticNorth));
+            if (!('lines' in map)) {
+                // Handle the existing map dictionary format too
+                map = {
+                    name: `Legacy-${key}`,
+                    lines: map
+                };
+            }
+            this.mapModelList.push(new MapLayerModel(map, this.positionModel, this.magneticNorth));
         });
     }
 
