@@ -793,6 +793,7 @@ export default class CanvasController {
         cc.fillStyle = this.theme.SCOPE.STAR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
+        cc.textAlign = 'right';
 
         for (let i = 0; i < starLines.length; i++) {
             const star = starLines[i];
@@ -858,10 +859,11 @@ export default class CanvasController {
      */
     _drawText(cc, position, labels) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+        const dx = cc.textAlign === 'right' ? -10 : 10;
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
-            const positionX = positionInPx.x + 10;
+            const positionX = positionInPx.x + dx;
             const positionY = positionInPx.y + (15 * k);
 
             cc.fillText(textItem, positionX, positionY);
