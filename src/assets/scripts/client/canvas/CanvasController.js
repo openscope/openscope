@@ -1914,9 +1914,12 @@ export default class CanvasController {
             if (!map || !map.lines.length || map.isHidden) {
                 continue;
             }
-            const lines = map.lines;
+
+            const { lines } = map;
+
             for (let i = 0; i < lines.length; i++) {
                 const mapItem = lines[i];
+
                 cc.moveTo(
                     CanvasStageModel.translateKilometersToPixels(mapItem[0]),
                     -CanvasStageModel.translateKilometersToPixels(mapItem[1])

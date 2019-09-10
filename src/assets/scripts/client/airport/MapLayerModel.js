@@ -23,8 +23,9 @@ export default class MapLayerModel extends BaseModel {
         super();
 
         if (!map || !airportPosition || !_isNumber(magneticNorth)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError('Invalid parameter, expected map, airportPosition and magneticNorth to be defined');
+            throw new TypeError(
+                'Invalid parameter, expected map, airportPosition and magneticNorth to be defined'
+            );
         }
 
         /**
@@ -65,7 +66,7 @@ export default class MapLayerModel extends BaseModel {
      *
      * @for MapLayerModel
      * @method _init
-     * @param map {object}
+     * @param lines {array}
      * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      * @private
@@ -73,6 +74,7 @@ export default class MapLayerModel extends BaseModel {
     _init(map, airportPosition, magneticNorth) {
         this.isHidden = map.isHidden === true;
         this.name = map.name;
+
         this._buildMapLines(map.lines, airportPosition, magneticNorth);
 
         return this;
