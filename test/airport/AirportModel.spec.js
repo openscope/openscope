@@ -150,6 +150,14 @@ ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid cat
     t.true(result.name === model.arrivalRunwayModel.name);
 });
 
+ava('.mapCollection is valid', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+
+    t.true(model.hasMapCollection);
+    t.true(model.mapCollection.hasMaps);
+    t.true(model.mapCollection.hasVisibleMaps);
+})
+
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const removeAircraftFromAllRunwayQueuesSpy = sinon.spy(model._runwayCollection, 'removeAircraftFromAllRunwayQueues');
