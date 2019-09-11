@@ -51,8 +51,41 @@ export default class MapCollection extends BaseCollection {
     }
 
     /**
+     * A flag indicating whether the `MapCollection` has any maps.
+     *
+     * @for MapCollection
+     * @property hasMaps
+     * @return {boolean}
+     */
+    get hasMaps() {
+        return this.length !== 0;
+    }
+
+    /**
+     * A flag indicating whether the `MapCollection` has any visible maps.
+     *
+     * @for MapCollection
+     * @property hasMaps
+     * @return {boolean}
+     */
+    get hasVisibleMaps() {
+        // for means we can return on finding the first match, rather
+        // than walking the whole array
+        for (let i = 0; i < this.length; i++) {
+            const map = this._items[i];
+
+            if (!map.isHidden && map.lines.length !== 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Public fascade for `#_items`
      *
+     * @for MapCollection
      * @property maps
      * @return {array<MapModel>}
      */
@@ -61,17 +94,35 @@ export default class MapCollection extends BaseCollection {
     }
 
     /**
+     * A list of all the map lines for the visible maps in the `MapCollection`
+     *
      * @for MapCollection
      * @method getVisibleMapLines
-     * @return {array<array<object>>}
+     * @return {array<object>}
      */
     getVisibleMapLines() {
-        const filtered = this._items.filter((map) => {
-            return !map.isHidden && map.lines.length
-        });
+        return this._items.reduce((sum, map) => {
+            if (map.isHidden || map.lines.length === 0) {
+                return sum;
+            }
         
-        return filtered.map((map) => {
-            return map.lines;
+            return [
+                ...map.lines,
+                ...sum
+            ];
+        }, []);
+    }
+
+    /**
+     * A list of all the `MapModel` names in the `MapCollection`
+     *
+     * @for MapCollection
+     * @method getMapNames
+     * @returns {array<string>}
+     */
+    getMapNames() {
+        return this._items.map((map) => {
+            return map.name;
         });
     }
 
