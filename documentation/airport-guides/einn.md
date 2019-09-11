@@ -1,4 +1,3 @@
-
 ### About Shannon
 Shannon Airport is an international airport serving the Mid-West of Ireland. It is located 27 km from Limerick city centre, on a peninsula jutting out from the northern shore of the Shannon estuary.
 
@@ -81,7 +80,7 @@ Runway 08/26, Asphalt, 2,000 m (6,562 ft)
 | EIP09| A circle 1 nm radius centred at 5265883N, 00861686W| SFC - 2,000 ft | Limerick City Prison |
 
 ### Videomap
-Provided with the videomap is a atop down view of the airport's runways, the Shannon CTA, the South West coastline and nearby airfields. Every dash on an extended centreline represents one (1) nautical mile, with each small 'T' representing four (4) miles.
+Provided with the videomap is a a top down view of the airport's runways, the Shannon CTA, the South West coastline and nearby airfields. Every dash on an extended centreline represents one (1) nautical mile, with each small 'T' representing four (4) miles.
 
 All restricted airspaces are plotted too.
 
