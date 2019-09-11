@@ -47,22 +47,6 @@ export default class MapCollection extends BaseCollection {
          * @default #_items.length
          */
 
-        /**
-         * @property _airportPositionModel
-         * @type {StaticPositionModel}
-         * @default null
-         * @private
-         */
-        this._airportPositionModel = null;
-
-        /**
-         * @property _magneticNorth
-         * @type {number}
-         * @default null
-         * @private
-         */
-        this._magneticNorth = null;
-
         this._init(mapJson, airportPositionModel, magneticNorth);
     }
 
@@ -101,10 +85,7 @@ export default class MapCollection extends BaseCollection {
      * @param magneticNorth {number}
      */
     _init(mapJson, airportPositionModel, magneticNorth) {
-        this._airportPositionModel = airportPositionModel;
-        this._magneticNorth = magneticNorth;
-
-        this._buildMapModels(mapJson);
+        this._buildMapModels(mapJson, airportPositionModel, magneticNorth);
     }
 
     /**
@@ -114,15 +95,16 @@ export default class MapCollection extends BaseCollection {
      * @method destroy
      */
     destroy() {
-        this._airportPositionModel = null;
     }
 
     /**
      * @for MapCollection
      * @method _buildMapModels
      * @param mapJson {object}
+     * @param airportPositionModel {StaticPositionModel}
+     * @param magneticNorth {number}
      */
-    _buildMapModels(mapJson) {
+    _buildMapModels(mapJson, airportPositionModel, magneticNorth) {
         // Need to use forEach, as the value being passed can be either
         // an array of map objects, or a dictionary of key -> object[]
         _forEach(mapJson, (map, key) => {
@@ -134,7 +116,7 @@ export default class MapCollection extends BaseCollection {
                 };
             }
             
-            this._items.push(new MapModel(map, this._airportPositionModel, this._magneticNorth));
+            this._items.push(new MapModel(map, airportPositionModel, magneticNorth));
         });
     }
 }
