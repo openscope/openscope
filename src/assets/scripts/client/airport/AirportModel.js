@@ -11,7 +11,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import MapModel from './MapModel';
+import MapCollection from './MapCollection';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
@@ -163,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * List of `MapModel`s that make up any airport video maps
+         * Collection of all `MapModel` objects that make up the airport's video map
          *
          * @property mapCollection
-         * @type {array<MapModel>}
-         * @default {}
+         * @type {MapCollection}
+         * @default null
          */
-        this.mapCollection = [];
+        this.mapCollection = null;
 
         /**
          * @property restricted_areas
@@ -441,16 +441,7 @@ export default class AirportModel {
             return;
         }
 
-        _forEach(maps, (map, key) => {
-            if (!('lines' in map)) {
-                // Handle the existing map dictionary format too
-                map = {
-                    name: `Legacy-${key}`,
-                    lines: map
-                };
-            }
-            this.mapCollection.push(new MapModel(map, this.positionModel, this.magneticNorth));
-        });
+        this.mapCollection = new MapCollection(maps, this.positionModel, this.magneticNorth);
     }
 
     /**

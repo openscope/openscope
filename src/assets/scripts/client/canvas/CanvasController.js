@@ -1910,7 +1910,7 @@ export default class CanvasController {
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
-        for (const map of airportModel.mapCollection) {
+        for (const map of airportModel.mapCollection.maps) {
             if (!map || !map.lines.length || map.isHidden) {
                 continue;
             }
