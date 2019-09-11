@@ -1897,7 +1897,7 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'mapCollection') || !this._shouldDrawVideoMap) {
+        if (!airportModel.hasMapCollection || !this._shouldDrawVideoMap) {
             return;
         }
 
