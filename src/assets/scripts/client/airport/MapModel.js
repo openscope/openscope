@@ -95,7 +95,7 @@ export default class MapModel extends BaseModel {
      * @private
      */
     _buildMapLines(lines, airportPosition, magneticNorth) {
-        _forEach(lines, (line) => {
+        this.lines = lines.map((line) => {
             const airportPositionAndDeclination = [airportPosition, magneticNorth];
             const lineStartCoordinates = [line[0], line[1]];
             const lineEndCoordinates = [line[2], line[3]];
@@ -107,9 +107,8 @@ export default class MapModel extends BaseModel {
                 lineEndCoordinates,
                 ...airportPositionAndDeclination
             );
-            const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-    
-            this.lines.push(lineVerticesRelativePositions);
+
+            return [...startPosition, ...endPosition];
         });
     }
 
