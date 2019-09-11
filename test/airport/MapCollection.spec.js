@@ -47,6 +47,7 @@ ava('accepts a map array that is used to set the instance properties', t => {
     t.is(model.length, MAP_MOCK.length);
     t.is(model.getMapNames().length, model.length);
     t.true(model.hasVisibleMaps);
+    t.is(model.getVisibleMapLines().length, MAP_MOCK[0].lines.length)
 
     const first = model.maps[0];
 
