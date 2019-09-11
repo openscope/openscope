@@ -11,7 +11,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import MapLayerModel from './MapLayerModel';
+import MapModel from './MapModel';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
@@ -163,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * List of `MapLayerModel`s that make up any airport video maps
+         * List of `MapModel`s that make up any airport video maps
          *
-         * @property mapModelList
-         * @type {array<MapLayerModel>}
+         * @property mapCollection
+         * @type {array<MapModel>}
          * @default {}
          */
-        this.mapModelList = [];
+        this.mapCollection = [];
 
         /**
          * @property restricted_areas
@@ -449,7 +449,7 @@ export default class AirportModel {
                     lines: map
                 };
             }
-            this.mapModelList.push(new MapLayerModel(map, this.positionModel, this.magneticNorth));
+            this.mapCollection.push(new MapModel(map, this.positionModel, this.magneticNorth));
         });
     }
 

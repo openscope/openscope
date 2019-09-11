@@ -1897,7 +1897,7 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'mapModelList') || !this._shouldDrawVideoMap) {
+        if (!_has(airportModel, 'mapCollection') || !this._shouldDrawVideoMap) {
             return;
         }
 
@@ -1910,7 +1910,7 @@ export default class CanvasController {
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
-        for (const map of airportModel.mapModelList) {
+        for (const map of airportModel.mapCollection) {
             if (!map || !map.lines.length || map.isHidden) {
                 continue;
             }

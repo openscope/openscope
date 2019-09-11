@@ -7,18 +7,18 @@ import DynamicPositionModel from '../base/DynamicPositionModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 
 /**
- * A videomap layer, containing a collection of map lines
+ * A video map item, containing a collection of map lines
  *
- * Defines a videomap layer referenced by an `AirportModel` that
+ * Defines a vide omap layer referenced by an `AirportModel` that
  * contains the map lines to be drawn by the `CanvasController`,
  * as well as a name describing the map contents and a flag
  * allowing rendering of the layer to be suppressed.
  *
- * @class MapLayerModel
+ * @class MapModel
  */
-export default class MapLayerModel extends BaseModel {
+export default class MapModel extends BaseModel {
     /**
-     * @for MapLayerModel
+     * @for MapModel
      * @constructor
      * @param map {object}
      * @param airportPosition {StaticPositionModel}
@@ -36,7 +36,7 @@ export default class MapLayerModel extends BaseModel {
         /**
          * A flag indicating whether the layer should be hidden
          *
-         * @for MapLayerModel
+         * @for MapModel
          * @property isHidden
          * @type {boolean}
          * @default false
@@ -46,7 +46,7 @@ export default class MapLayerModel extends BaseModel {
         /**
          * List of lat/long coordinates pairs that define a line
          *
-         * @for MapLayerModel
+         * @for MapModel
          * @property lines
          * @type {array}
          * @default []
@@ -56,7 +56,7 @@ export default class MapLayerModel extends BaseModel {
         /**
          * Name of the map layer.
          *
-         * @for MapLayerModel
+         * @for MapModel
          * @property name
          * @type {string}
          * @default ''
@@ -69,7 +69,7 @@ export default class MapLayerModel extends BaseModel {
     /**
      * Initialize the model
      *
-     * @for MapLayerModel
+     * @for MapModel
      * @method _init
      * @param lines {array}
      * @param airportPosition {StaticPositionModel}
@@ -87,7 +87,7 @@ export default class MapLayerModel extends BaseModel {
 
     /**
      * Create the array of map lines
-     * @for MapLayerModel
+     * @for MapModel
      * @method _buildMapLines
      * @param map {object}
      * @param airportPosition {StaticPositionModel}
@@ -114,7 +114,7 @@ export default class MapLayerModel extends BaseModel {
     }
 
     /**
-     * @for MapLayerModel
+     * @for MapModel
      * @method reset
      */
     reset() {
