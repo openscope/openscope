@@ -616,6 +616,7 @@
         }
     ],
     "fixes": {
+        "_RWY0601DME": ["N52.720195", "W8.886070"],
         "_RWY2401DME": ["N52.682843", "W8.964802"],
         "ABAGU": ["N52.50334923058855", "W7.64666748659988"],
         "ADARA": ["N51.49996638721290", "W14.9999999977787"],
@@ -844,14 +845,14 @@
             "icao": "ABAGU3A",
             "name": "Abahgoo Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+|S185-"]]
+                "EINN06": [["_RWY0601DME", "A6+|S185-"]]
             },
             "body": [],
             "exitPoints": {
                 "ABAGU": ["ABAGU"]
             },
             "draw": [
-                ["SHA", "ABAGU"]
+                ["_RWY0601DME", "ABAGU"]
             ]
         },
         "ABAGU3B": {
@@ -872,14 +873,14 @@
             "icao": "AGINI3A",
             "name": "Aginee Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+"]]
+                "EINN06": [["_RWY0601DME", "A6+"]]
             },
             "body": [],
             "exitPoints": {
                 "AGINI": ["AGINI"]
             },
             "draw": [
-                ["SHA", "AGINI"]
+                ["_RWY0601DME", "AGINI"]
             ]
         },
         "AGINI3B": {
@@ -914,28 +915,28 @@
             "icao": "DIGAN3A",
             "name": "Digan Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+"]]
+                "EINN06": [["_RWY0601DME", "A6+"]]
             },
             "body": [],
             "exitPoints": {
                 "DIGAN": ["DIGAN"]
             },
             "draw": [
-                ["SHA", "DIGAN"]
+                ["_RWY0601DME", "DIGAN"]
             ]
         },
         "ERABI3A": {
             "icao": "ERABI3A",
             "name": "Ehrabee Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+|S185-"], ["NEPOG", "A34+|S185-"]]
+                "EINN06": [["_RWY0601DME", "A6+|S185-"], ["NEPOG", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
                 "ERABI": [["ERABI", "S250-"]]
             },
             "draw": [
-                ["SHA", "NEPOG", "ERABI"]
+                ["_RWY0601DME", "NEPOG", "ERABI"]
             ]
         },
         "ERABI3B": {
@@ -956,14 +957,14 @@
             "icao": "KURUM3A",
             "name": "Kooroom Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+|S185-"], ["GATLO", "A34+|S185-"]]
+                "EINN06": [["_RWY0601DME", "A6+|S185-"], ["GATLO", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
                 "KURUM": [["KURUM", "S250-"]]
             },
             "draw": [
-                ["SHA", "GATLO", "KURUM"]
+                ["_RWY0601DME", "GATLO", "KURUM"]
             ]
         },
         "KURUM3B": {
@@ -984,7 +985,7 @@
             "icao": "LUNIG3A",
             "name": "Lunig Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+|S185-"], ["GATLO", "A34+|S185-"]]
+                "EINN06": [["_RWY0601DME", "A6+|S185-"], ["GATLO", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
@@ -1026,7 +1027,7 @@
             "icao": "MOMIN3A",
             "name": "Momin Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+|S185-"], ["NEPOG", "A34+|S185-"]]
+                "EINN06": [["_RWY0601DME", "A6+|S185-"], ["NEPOG", "A34+|S185-"]]
             },
             "body": [],
             "exitPoints": {
@@ -1082,21 +1083,21 @@
             "icao": "TOMTO3A",
             "name": "Tomtoe Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+"]]
+                "EINN06": [["_RWY0601DME", "A6+"]]
             },
             "body": [],
             "exitPoints": {
                 "TOMTO": ["TOMTO"]
             },
             "draw": [
-                ["SHA", "TOMTO"]
+                ["_RWY0601DME", "TOMTO"]
             ]
         },
         "UNBEG3A": {
             "icao": "UNBEG3A",
             "name": "Unbeg Three Alpha",
             "rwy": {
-                "EINN06": [["SHA", "A5+|S185-"], ["NEPOG", "A34+|S185-"], ["GULTU", "S250-"]]
+                "EINN06": [["_RWY0601DME", "A6+|S185-"], ["NEPOG", "A34+|S185-"], ["GULTU", "S250-"]]
             },
             "body": [],
             "exitPoints": {
