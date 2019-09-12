@@ -116,6 +116,26 @@ export default class MapCollection extends BaseCollection {
     }
 
     /**
+     * A list of names of all the visible maps in the `MapCollection`
+     *
+     * @for MapCollection
+     * @method getVisibleMapLines
+     * @return {array<object>}
+     */
+    getVisibleMapNames() {
+        return this._items.reduce((sum, map) => {
+            if (map.isHidden) {
+                return sum;
+            }
+
+            return [
+                ...sum,
+                map.name
+            ];
+        }, []);
+    }
+
+    /**
      * A list of all the `MapModel` names in the `MapCollection`
      *
      * @for MapCollection
@@ -125,6 +145,19 @@ export default class MapCollection extends BaseCollection {
     getMapNames() {
         return this._items.map((map) => {
             return map.name;
+        });
+    }
+
+    /**
+     * Sets which maps should be rendered on the `CanvasController`
+     *
+     * @for MapCollection
+     * @method setVisibleMaps
+     * @param names {array<string>}
+     */
+    setVisibleMaps(names) {
+        this._items.forEach((map) => {
+            map.isHidden = !names.includes(map.name);
         });
     }
 
@@ -140,15 +173,6 @@ export default class MapCollection extends BaseCollection {
      */
     _init(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
         this._buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth);
-    }
-
-    /**
-     * Tear down the instance and destroy any instance property values
-     *
-     * @for MapCollection
-     * @method destroy
-     */
-    destroy() {
     }
 
     /**
