@@ -1913,9 +1913,7 @@ export default class CanvasController {
 
         const lines = airportModel.mapCollection.getVisibleMapLines();
 
-        for (let i = 0; i < lines.length; i++) {
-            const mapItem = lines[i];
-
+        lines.forEach((mapItem) => {
             cc.moveTo(
                 CanvasStageModel.translateKilometersToPixels(mapItem[0]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[1])
@@ -1924,7 +1922,7 @@ export default class CanvasController {
                 CanvasStageModel.translateKilometersToPixels(mapItem[2]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[3])
             );
-        }
+        });
 
         cc.stroke();
         cc.restore();
