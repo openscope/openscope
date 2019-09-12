@@ -77,7 +77,7 @@ export default class MapCollection extends BaseCollection {
         for (let i = 0; i < this.length; i++) {
             const map = this._items[i];
 
-            if (!map.isHidden && map.hasLines) {
+            if (!map.isHidden) {
                 return true;
             }
         }
@@ -105,7 +105,7 @@ export default class MapCollection extends BaseCollection {
      */
     getVisibleMapLines() {
         return this._items.reduce((sum, map) => {
-            if (map.isHidden || !map.hasLines) {
+            if (map.isHidden) {
                 return sum;
             }
         

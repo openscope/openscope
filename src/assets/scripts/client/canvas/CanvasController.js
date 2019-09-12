@@ -1898,7 +1898,7 @@ export default class CanvasController {
         const airportModel = AirportController.airport_get();
 
         // Don't bother with the canvas set up if the airport has no visible maps
-        if (!airportModel.hasMapCollection || !airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
+        if (!airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
             return;
         }
 

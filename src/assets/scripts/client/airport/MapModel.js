@@ -77,17 +77,6 @@ export default class MapModel extends BaseModel {
     }
 
     /**
-     * A flag indicating whether the `MapModel` has any lines.
-     *
-     * @for MapModel
-     * @property hasLines
-     * @return {boolean}
-     */
-    get hasLines() {
-        return this.lines !== 0;
-    }
-
-    /**
      * Initialize the model
      *
      * @for MapModel

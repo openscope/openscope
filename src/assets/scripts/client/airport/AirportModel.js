@@ -266,17 +266,6 @@ export default class AirportModel {
     }
 
     /**
-     * A flag indicating whether the airport has a valid
-     * `MapCollection`
-     *
-     * @property hasMapCollection
-     * @return {boolean}
-     */
-    get hasMapCollection() {
-      return this.mapCollection != null;
-    }
-
-    /**
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
