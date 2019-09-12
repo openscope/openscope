@@ -18,19 +18,28 @@ export default class MapCollection extends BaseCollection {
     /**
      * @constructor
      * @param mapJson {object}
+     * @param defaultMaps {array<string>}
      * @param airportPositionModel {StaticPositionModel}
      * @param magneticNorth {number}
      */
-    constructor(mapJson, airportPositionModel, magneticNorth) {
+    constructor(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
         super();
 
         if (!_isArray(mapJson)) {
             throw new TypeError(
-                `Invalid parameter passed to MapCollection. Expected an array but found ${typeof mapJson}`
+                `Invalid mapJson parameter passed to MapCollection. Expected an array but found ${typeof mapJson}`
+            );
+        } else if (!_isArray(defaultMaps)) {
+            throw new TypeError(
+                `Invalid defaultMaps parameter passed to MapCollection. Expected an array but found ${typeof defaultMaps}`
+            );
+        } else if (defaultMaps.length === 0) {
+            throw new TypeError(
+                'Invalid defaultMaps parameter passed to MapCollection. Expected an array with at least one element'
             );
         } else if (mapJson.length === 0) {
             throw new TypeError(
-                'Invalid parameter passed to MapCollection. Expected an array with at least one element'
+                'Invalid mapJson parameter passed to MapCollection. Expected an array with at least one element'
             );
         }
 
@@ -50,7 +59,7 @@ export default class MapCollection extends BaseCollection {
          * @default #_items.length
          */
 
-        this._init(mapJson, airportPositionModel, magneticNorth);
+        this._init(mapJson, defaultMaps, airportPositionModel, magneticNorth);
     }
 
     /**
@@ -125,11 +134,12 @@ export default class MapCollection extends BaseCollection {
      * @for MapCollection
      * @method _init
      * @param mapJson {object}
+     * @param defaultMaps {array<string>}
      * @param airportPositionModel {StaticPositionModel}
      * @param magneticNorth {number}
      */
-    _init(mapJson, airportPositionModel, magneticNorth) {
-        this._buildMapModels(mapJson, airportPositionModel, magneticNorth);
+    _init(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
+        this._buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth);
     }
 
     /**
@@ -145,12 +155,17 @@ export default class MapCollection extends BaseCollection {
      * @for MapCollection
      * @method _buildMapModels
      * @param mapJson {object}
+     * @param defaultMaps {array<string>}
      * @param airportPositionModel {StaticPositionModel}
      * @param magneticNorth {number}
      */
-    _buildMapModels(mapJson, airportPositionModel, magneticNorth) {
-        this._items = mapJson.map((map) => {
-            return new MapModel(map, airportPositionModel, magneticNorth);
+    _buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
+        this._items = mapJson.map((item) => {
+            const map = new MapModel(item, airportPositionModel, magneticNorth);
+
+            map.isHidden = !defaultMaps.includes(map.name);
+
+            return map;
         });
     }
 }

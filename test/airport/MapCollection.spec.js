@@ -2,7 +2,13 @@ import ava from 'ava';
 
 import MapCollection from '../../src/assets/scripts/client/airport/MapCollection';
 import StaticPositionModel from '../../src/assets/scripts/client/base/StaticPositionModel';
-import { MAP_MOCK, MAP_MOCK_LEGACY, MAP_MOCK_EMPTY } from './_mocks/mapCollectionlMocks';
+import {
+    MAP_MOCK,
+    MAP_MOCK_LEGACY,
+    MAP_MOCK_EMPTY,
+    DEFAULT_MAPS_MOCK,
+    DEFAULT_MAPS_MOCK_EMPTY
+} from './_mocks/mapCollectionlMocks';
 
 const currentPosition = ['N44.879722', 'W063.510278', '2181ft'];
 const magneticNorth = -18;
@@ -11,25 +17,31 @@ const airportPositionFixtureKCYHZ = new StaticPositionModel(currentPosition, nul
 ava('throws if called with invalid parameters', t => {
     t.throws(() => new MapCollection());
     t.throws(() => new MapCollection(MAP_MOCK));
-    t.throws(() => new MapCollection(null, airportPositionFixtureKCYHZ, magneticNorth));
-    t.throws(() => new MapCollection(MAP_MOCK, null, magneticNorth));
-    t.throws(() => new MapCollection(MAP_MOCK, airportPositionFixtureKCYHZ));
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK));
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ));
+    t.throws(() => new MapCollection(null, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
+    t.throws(() => new MapCollection(MAP_MOCK, null, airportPositionFixtureKCYHZ, magneticNorth));
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, null, magneticNorth));
 });
 
 ava('throws if called with a legacy map', t => {
-    t.throws(() => new MapCollection(MAP_MOCK_LEGACY, airportPositionFixtureKCYHZ, magneticNorth));
+    t.throws(() => new MapCollection(MAP_MOCK_LEGACY, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
 });
 
 ava('throws if called with an empty map array', t => {
-    t.throws(() => new MapCollection(MAP_MOCK_EMPTY, airportPositionFixtureKCYHZ, magneticNorth));
+    t.throws(() => new MapCollection(MAP_MOCK_EMPTY, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
+});
+
+ava('throws if called with an empty defaultMaps array', t => {
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK_EMPTY, airportPositionFixtureKCYHZ, magneticNorth));
 });
 
 ava('does not throw when instantiated with a 0 magneticNorth', t => {
-    t.notThrows(() => new MapCollection(MAP_MOCK, airportPositionFixtureKCYHZ, 0));
+    t.notThrows(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, 0));
 });
 
 ava('accepts a map array that is used to set the instance properties', t => {
-    const model = new MapCollection(MAP_MOCK, airportPositionFixtureKCYHZ, magneticNorth);
+    const model = new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth);
 
     t.not(typeof model._id, 'undefined');
     t.is(model.length, MAP_MOCK.length);

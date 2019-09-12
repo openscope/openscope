@@ -35,7 +35,7 @@ export default class MapModel extends BaseModel {
             );
         } else if (!_isArray(map.lines) || map.lines.length === 0) {
             throw new TypeError(
-                'Invalid parameter, map.lines property must be an array with at least one element'
+                'Invalid parameter, map.lines must be an array with at least one element'
             );
         } else if (!_isString(map.name)) {
             throw new TypeError(

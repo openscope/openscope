@@ -375,7 +375,7 @@ export default class AirportModel {
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
-        this.buildAirportMaps(data.maps);
+        this.buildAirportMaps(data.maps, data.defaultMaps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
     }
@@ -434,14 +434,11 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method buildAirportMaps
-     * @param maps {object}
+     * @param maps {array<object>}
+     * @param defaultMaps {array<string>}
      */
-    buildAirportMaps(maps) {
-        if (!maps) {
-            return;
-        }
-
-        this.mapCollection = new MapCollection(maps, this.positionModel, this.magneticNorth);
+    buildAirportMaps(maps, defaultMaps) {
+        this.mapCollection = new MapCollection(maps, defaultMaps, this.positionModel, this.magneticNorth);
     }
 
     /**

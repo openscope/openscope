@@ -23,6 +23,7 @@
     },
     "arrivalRunway": "23",
     "departureRunway": "23",
+    "defaultMaps": ["Base Map", "Extended Runway Centrelines"],
     "airspace": [
         {
             "floor": 125,
@@ -2418,7 +2419,6 @@
         },
         {
             "name": "Coastline",
-            "isHidden": true,
             "lines": [
                 ["N47.17178069", "W065.18585743", "N47.10057201", "W065.33145098"],
                 ["N47.10057201", "W065.33145098", "N47.09463125", "W065.36754310"],
