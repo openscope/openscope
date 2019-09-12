@@ -163,7 +163,7 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * Collection of all `MapModel` objects that make up the airport's video map
+         * Collection of all `MapModel`s available to be displayed on the scope
          *
          * @property mapCollection
          * @type {MapCollection}

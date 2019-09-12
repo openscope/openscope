@@ -5,9 +5,9 @@ import BaseCollection from '../base/BaseCollection';
 import MapModel from './MapModel';
 
 /**
- * Collection of `MapModel` objects
+ * Collection of `MapModel`s available to be displayed on the scope
  *
- * Provides methods to create `MapModel` objects, used by `AirportModel`
+ * Provides methods to create `MapModel`s, used by `AirportModel`
  * and to extract video map line data to be rendered by the
  * `CanvasController`
  *
