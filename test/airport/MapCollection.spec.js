@@ -2,7 +2,7 @@ import ava from 'ava';
 
 import MapCollection from '../../src/assets/scripts/client/airport/MapCollection';
 import StaticPositionModel from '../../src/assets/scripts/client/base/StaticPositionModel';
-import { MAP_MOCK, MAP_MOCK_LEGACY } from './_mocks/mapCollectionlMocks';
+import { MAP_MOCK, MAP_MOCK_LEGACY, MAP_MOCK_EMPTY } from './_mocks/mapCollectionlMocks';
 
 const currentPosition = ['N44.879722', 'W063.510278', '2181ft'];
 const magneticNorth = -18;
@@ -14,6 +14,14 @@ ava('throws if called with invalid parameters', t => {
     t.throws(() => new MapCollection(null, airportPositionFixtureKCYHZ, magneticNorth));
     t.throws(() => new MapCollection(MAP_MOCK, null, magneticNorth));
     t.throws(() => new MapCollection(MAP_MOCK, airportPositionFixtureKCYHZ));
+});
+
+ava('throws if called with a legacy map', t => {
+    t.throws(() => new MapCollection(MAP_MOCK_LEGACY, airportPositionFixtureKCYHZ, magneticNorth));
+});
+
+ava('throws if called with an empty map array', t => {
+    t.throws(() => new MapCollection(MAP_MOCK_EMPTY, airportPositionFixtureKCYHZ, magneticNorth));
 });
 
 ava('does not throw when instantiated with a 0 magneticNorth', t => {
@@ -33,21 +41,5 @@ ava('accepts a map array that is used to set the instance properties', t => {
 
     t.is(first.name, MAP_MOCK[0].name);
     t.is(first.lines.length, MAP_MOCK[0].lines.length);
-    t.true(first.hasLines);
-});
-
-ava('accepts a legacy map object that is used to set the instance properties', t => {
-    const model = new MapCollection(MAP_MOCK_LEGACY, airportPositionFixtureKCYHZ, magneticNorth);
-
-    t.not(typeof model._id, 'undefined');
-    t.is(model.length, Object.keys(MAP_MOCK_LEGACY).length);
-    t.is(model.getMapNames().length, model.length);
-    t.true(model.hasMaps);
-    t.true(model.hasVisibleMaps);
-
-    const first = model.maps[0];
-
-    t.is(first.name, `Legacy-${Object.keys(MAP_MOCK_LEGACY)[0]}`);
-    t.is(first.lines.length, MAP_MOCK_LEGACY.base.length);
     t.true(first.hasLines);
 });

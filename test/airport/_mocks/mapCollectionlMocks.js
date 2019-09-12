@@ -906,6 +906,8 @@ export const MAP_MOCK = [
     }
 ];
 
+export const MAP_MOCK_EMPTY = [];
+
 export const MAP_MOCK_LEGACY = {
   "base": [
       ["N43.94055556", "W065.02166667", "N43.91432752", "W065.08129395"],

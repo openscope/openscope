@@ -1,7 +1,6 @@
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isArray from 'lodash/isArray';
-import _isObject from 'lodash/isObject';
 import BaseCollection from '../base/BaseCollection';
 import MapModel from './MapModel';
 
@@ -25,9 +24,13 @@ export default class MapCollection extends BaseCollection {
     constructor(mapJson, airportPositionModel, magneticNorth) {
         super();
 
-        if (!_isArray(mapJson) && !_isObject(mapJson)) {
+        if (!_isArray(mapJson)) {
             throw new TypeError(
-                `Invalid parameter passed to MapCollection. Expected an array or object but found ${typeof mapJson}`
+                `Invalid parameter passed to MapCollection. Expected an array but found ${typeof mapJson}`
+            );
+        } else if (mapJson.length === 0) {
+            throw new TypeError(
+                'Invalid parameter passed to MapCollection. Expected an array with at least one element'
             );
         }
 
@@ -156,18 +159,8 @@ export default class MapCollection extends BaseCollection {
      * @param magneticNorth {number}
      */
     _buildMapModels(mapJson, airportPositionModel, magneticNorth) {
-        // Need to use forEach, as the value being passed can be either
-        // an array of map objects, or a dictionary of key -> object[]
-        _forEach(mapJson, (map, key) => {
-            if (!_has(map, 'lines')) {
-                // Handle the existing map dictionary format too
-                map = {
-                    name: `Legacy-${key}`,
-                    lines: map
-                };
-            }
-            
-            this._items.push(new MapModel(map, airportPositionModel, magneticNorth));
+        this._items = mapJson.map((map) => {
+            return new MapModel(map, airportPositionModel, magneticNorth);
         });
     }
 }
