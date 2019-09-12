@@ -1,6 +1,8 @@
 import _forEach from 'lodash/forEach';
+import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 import _isNumber from 'lodash/isNumber';
+import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
@@ -30,6 +32,14 @@ export default class MapModel extends BaseModel {
         if (!map || !airportPosition || !_isNumber(magneticNorth)) {
             throw new TypeError(
                 'Invalid parameter, expected map, airportPosition and magneticNorth to be defined'
+            );
+        } else if (!_isArray(map.lines) || map.lines.length === 0) {
+            throw new TypeError(
+                'Invalid parameter, map.lines property must be an array with at least one element'
+            );
+        } else if (!_isString(map.name)) {
+            throw new TypeError(
+                `Invalid parameter, map.name must be a string, but found ${typeof map.name}`
             );
         }
 
