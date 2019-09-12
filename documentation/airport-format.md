@@ -48,6 +48,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     },
     "arrivalRunway": "16R",
     "departureRunway": "16L",
+    "defaultMaps": ["Base Map"],
     "airspace": [
         {
             "floor": 0,
@@ -208,15 +209,18 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
             ]
         }
     ],
-    "maps": {
-        "base": [
-            ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
-            ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
-            ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
-            ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
-            ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
-        ]
-    }
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
+                ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
+                ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
+                ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
+                ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
+                ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
+            ]
+        }
+    ]
 }
 ```
 
@@ -261,6 +265,7 @@ All properties in this section are required
 
 * **arrivalRunway** ― The default runway to use for arrivals.
 * **departureRunway** ― The default runway to use for departures.
+* **defaultMaps** ― The names of the maps that should be rendered by default.
 
 ### Airspace
 
@@ -663,16 +668,21 @@ _see [spawnPatternReadme.md](spawnPatternReadme.md) for more detailed descriptio
 
 ### Maps
 
+_At least one `map` is required for the airport to be loaded into the simulation._ In addition to the maps, a `defaultMaps` property is required to have at least one `name` referenced. An maps not listed in `defaultMaps` will not be rendered by default.
+
 ```json
-"maps": {
-    "base": [
-        ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
-        ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
-        ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
-        ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
-        ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
-    ]
-}
+"maps": [
+    {
+        "name": "Base Map",
+        "lines": [
+            ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
+            ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
+            ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
+            ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
+            ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
+        ]
+    }
+]
 ```
 
 Markings on the scope that depict various characteristics of the airspace. When available, this will be an actual Radar Video Map used by the real-world facility.
