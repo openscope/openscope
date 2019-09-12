@@ -1,5 +1,3 @@
-import _forEach from 'lodash/forEach';
-import _has from 'lodash/has';
 import _isArray from 'lodash/isArray';
 import BaseCollection from '../base/BaseCollection';
 import MapModel from './MapModel';
@@ -63,21 +61,10 @@ export default class MapCollection extends BaseCollection {
     }
 
     /**
-     * A flag indicating whether the `MapCollection` has any maps.
-     *
-     * @for MapCollection
-     * @property hasMaps
-     * @return {boolean}
-     */
-    get hasMaps() {
-        return this.length !== 0;
-    }
-
-    /**
      * A flag indicating whether the `MapCollection` has any visible maps.
      *
      * @for MapCollection
-     * @property hasMaps
+     * @property hasVisibleMaps
      * @return {boolean}
      */
     get hasVisibleMaps() {
@@ -107,7 +94,7 @@ export default class MapCollection extends BaseCollection {
             if (map.isHidden) {
                 return sum;
             }
-        
+
             return [
                 ...map.lines,
                 ...sum
@@ -119,7 +106,7 @@ export default class MapCollection extends BaseCollection {
      * A list of names of all the visible maps in the `MapCollection`
      *
      * @for MapCollection
-     * @method getVisibleMapLines
+     * @method getVisibleMapNames
      * @return {array<object>}
      */
     getVisibleMapNames() {
@@ -143,9 +130,7 @@ export default class MapCollection extends BaseCollection {
      * @returns {array<string>}
      */
     getMapNames() {
-        return this._items.map((map) => {
-            return map.name;
-        });
+        return this._items.map((map) => map.name);
     }
 
     /**

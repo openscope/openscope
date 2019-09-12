@@ -1,12 +1,8 @@
-import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
-import _isEqual from 'lodash/isEqual';
 import _isNumber from 'lodash/isNumber';
 import _isString from 'lodash/isString';
-import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
-import StaticPositionModel from '../base/StaticPositionModel';
 
 /**
  * A video map item, containing a collection of map lines
