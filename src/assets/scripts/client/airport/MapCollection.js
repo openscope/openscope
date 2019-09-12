@@ -72,17 +72,7 @@ export default class MapCollection extends BaseCollection {
      * @return {boolean}
      */
     get hasVisibleMaps() {
-        // for means we can return on finding the first match, rather
-        // than walking the whole array
-        for (let i = 0; i < this.length; i++) {
-            const map = this._items[i];
-
-            if (!map.isHidden) {
-                return true;
-            }
-        }
-
-        return false;
+        return this._items.some((map) => !map.isHidden);
     }
 
     /**
