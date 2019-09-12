@@ -97,6 +97,7 @@ export default class MapModel extends BaseModel {
 
     /**
      * Create the array of map lines
+     *
      * @for MapModel
      * @method _buildMapLines
      * @param map {object}
