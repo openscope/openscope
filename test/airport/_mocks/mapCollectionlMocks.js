@@ -2,6 +2,10 @@ export const DEFAULT_MAPS_MOCK = ["Base Map"];
 
 export const DEFAULT_MAPS_MOCK_EMPTY = [];
 
+export const MAP_NAMES_MOCK = ["Base Map"];
+
+export const MAP_NAMES_MOCK_EMPTY = [];
+
 export const MAP_MOCK = [
     {
         "name": "Base Map",
