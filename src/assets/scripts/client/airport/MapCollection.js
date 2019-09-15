@@ -157,7 +157,7 @@ export default class MapCollection extends BaseCollection {
      * @param magneticNorth {number}
      */
     _init(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
-        this._buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth);
+        this._items = this._buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth);
     }
 
     /**
@@ -167,9 +167,10 @@ export default class MapCollection extends BaseCollection {
      * @param defaultMaps {array<string>}
      * @param airportPositionModel {StaticPositionModel}
      * @param magneticNorth {number}
+     * @returns {array<MapModel>}
      */
     _buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
-        this._items = mapJson.map((item) => {
+        return mapJson.map((item) => {
             const map = new MapModel(item, airportPositionModel, magneticNorth);
 
             map.isHidden = !defaultMaps.includes(map.name);

@@ -5,15 +5,6 @@ import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
 import { FLIGHT_CATEGORY } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
-ava('.buildAirportMaps() throws when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
-    model.maps = null;
-
-    t.throws(() => model.buildAirportMaps());
-    t.throws(() => model.buildAirportMaps(AIRPORT_JSON_KLAS_MOCK.maps, null));
-    t.throws(() => model.buildAirportMaps(null, AIRPORT_JSON_KLAS_MOCK.defaultMaps));
-});
-
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK));
 });

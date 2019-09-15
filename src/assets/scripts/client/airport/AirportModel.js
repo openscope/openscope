@@ -371,11 +371,11 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
+        this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
-        this.buildAirportMaps(data.maps, data.defaultMaps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
     }
@@ -429,16 +429,6 @@ export default class AirportModel {
                 )
             ))
         );
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildAirportMaps
-     * @param maps {array<object>}
-     * @param defaultMaps {array<string>}
-     */
-    buildAirportMaps(maps, defaultMaps) {
-        this.mapCollection = new MapCollection(maps, defaultMaps, this.positionModel, this.magneticNorth);
     }
 
     /**
