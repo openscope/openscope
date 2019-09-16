@@ -580,95 +580,13 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.41,
+            "rate": 2.96,
             "airlines": [
                 ["aal/short", 7],
-                ["rpa", 3]
-            ]
-        },
-        {
-            "origin": "KMSP",
-            "destination": "",
-            "category": "departure",
-            "route": "KMSP17.ZMBRO7.ODI",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.12,
-            "airlines": [
-                ["aal/short", 3]
-            ]
-        },
-        {
-            "origin": "KMSP",
-            "destination": "",
-            "category": "departure",
-            "route": "KMSP17.RST1.ALO",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.33,
-            "airlines": [
-                ["aal/short", 1],
-                ["aco", 1],
-                ["asq", 2],
-                ["eny", 1],
-                ["rpa", 3]
-            ]
-        },
-        {
-            "origin": "KMSP",
-            "destination": "",
-            "category": "departure",
-            "route": "KMSP17.SCHEP9.ONL",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.18,
-            "airlines": [
-                ["aal/short", 3],
-                ["skw", 1]
-            ]
-        },
-        {
-            "origin": "KMSP",
-            "destination": "",
-            "category": "departure",
-            "route": "KMSP17.ORSKY2.OVR",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.30,
-            "airlines": [
-                ["aal/short", 6],
-                ["asa", 1]
-            ]
-        },
-        {
-            "origin": "KMSP",
-            "destination": "",
-            "category": "departure",
-            "route": "KMSP17.WLSTN7.GRB",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.21,
-            "airlines": [
-                ["aal/short", 3],
-                ["aco", 1]
-            ]
-        },
-        {
-            "origin": "KMSP",
-            "destination": "",
-            "category": "departure",
-            "route": "KMSP12R.WLSTN7.GRB",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.04,
-            "airlines": [
-                ["afr/b772", 1]
+                ["dal/short", 49],
+                ["edv", 4],
+                ["rpa", 3],
+                ["skw", 8]
             ]
         },
         {
@@ -679,9 +597,179 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.12,
+            "rate": 0.21,
             "airlines": [
-                ["asa", 3]
+                ["asa", 3],
+                ["dal/short", 2]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.KBREW1.FAR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.63,
+            "airlines": [
+                ["dal/short", 6],
+                ["edv", 1],
+                ["gjs", 2],
+                ["skw", 6]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.LEINY6.LEINY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.42,
+            "airlines": [
+                ["dal/short", 6],
+                ["skw", 4]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.ORSKY2.FOD",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.46,
+            "airlines": [
+                ["dal/short", 9],
+                ["skw", 2]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.ORSKY2.OVR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.33,
+            "airlines": [
+                ["aal/short", 6],
+                ["asa", 1],
+                ["dal/short", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.RST1.ALO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.12,
+            "airlines": [
+                ["aal/short", 1],
+                ["aco", 1],
+                ["asq", 2],
+                ["dal/short", 14],
+                ["edv", 4],
+                ["eny", 1],
+                ["rpa", 3],
+                ["skw", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.SCHEP9.ONL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.71,
+            "airlines": [
+                ["aal/short", 3],
+                ["dal/short", 37],
+                ["skw", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP12R.SCHEP9.ONL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["dal/long", 2]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.SMERF7.SMERF",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.75,
+            "airlines": [
+                ["dal/short", 15],
+                ["skw", 3]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.WLSTN7.GRB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.96,
+            "airlines": [
+                ["aal/short", 3],
+                ["aco", 1],
+                ["dal/short", 12],
+                ["edv", 3],
+                ["skw", 4]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP12R.WLSTN7.GRB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.21,
+            "airlines": [
+                ["afr/b772", 1],
+                ["dal/long", 3],
+                ["klm/long", 1]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP17.ZMBRO7.ODI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.42,
+            "airlines": [
+                ["aal/short", 3],
+                ["dal/short", 29],
+                ["gjs", 1],
+                ["skw", 1]
             ]
         }
     ],
