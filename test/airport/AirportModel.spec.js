@@ -145,7 +145,7 @@ ava('.mapCollection is valid', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
 
     t.true(model.mapCollection.hasVisibleMaps);
-})
+});
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);

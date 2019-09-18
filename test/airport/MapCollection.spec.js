@@ -49,7 +49,7 @@ ava('accepts a map array that is used to set the instance properties', t => {
     t.is(model.length, MAP_MOCK.length);
     t.is(model.getMapNames().length, MAP_MOCK.length);
     t.true(model.hasVisibleMaps);
-    t.is(model.getVisibleMapLines().length, MAP_MOCK[0].lines.length)
+    t.is(model.getVisibleMapLines().length, MAP_MOCK[0].lines.length);
 
     const first = model.maps[0];
 
@@ -60,9 +60,9 @@ ava('accepts a map array that is used to set the instance properties', t => {
 ava('accepts a string array that is used to set the visible maps', t => {
     const model = new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth);
 
-    t.notThrows(() => model.setVisibleMaps(MAP_NAMES_MOCK))
-    t.is(model.getVisibleMapNames().length, MAP_NAMES_MOCK.length)
+    t.notThrows(() => model.setVisibleMaps(MAP_NAMES_MOCK));
+    t.is(model.getVisibleMapNames().length, MAP_NAMES_MOCK.length);
 
-    t.notThrows(() => model.setVisibleMaps(MAP_NAMES_MOCK_EMPTY))
-    t.is(model.getVisibleMapLines().length, MAP_NAMES_MOCK_EMPTY.length)
+    t.notThrows(() => model.setVisibleMaps(MAP_NAMES_MOCK_EMPTY));
+    t.is(model.getVisibleMapLines().length, MAP_NAMES_MOCK_EMPTY.length);
 });
