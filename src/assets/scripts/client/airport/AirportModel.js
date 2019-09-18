@@ -11,6 +11,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MapCollection from './MapCollection';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
@@ -162,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * Dictionary of polys that make up any airport video maps
+         * Collection of all `MapModel`s available to be displayed on the scope
          *
-         * @property maps
-         * @type {object}
-         * @default {}
+         * @property mapCollection
+         * @type {MapCollection}
+         * @default null
          */
-        this.maps = {};
+        this.mapCollection = null;
 
         /**
          * @property restricted_areas
@@ -370,11 +371,11 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
+        this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
-        this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
     }
@@ -428,41 +429,6 @@ export default class AirportModel {
                 )
             ))
         );
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildAirportMaps
-     * @param maps {object}
-     */
-    buildAirportMaps(maps) {
-        if (!maps) {
-            return;
-        }
-
-        _forEach(maps, (map, key) => {
-            this.maps[key] = [];
-
-            const outputMap = this.maps[key];
-            const lines = map;
-
-            _forEach(lines, (line) => {
-                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
-                const lineStartCoordinates = [line[0], line[1]];
-                const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineStartCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const endPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineEndCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-
-                outputMap.push(lineVerticesRelativePositions);
-            });
-        });
     }
 
     /**

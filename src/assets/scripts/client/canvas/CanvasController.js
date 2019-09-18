@@ -1897,7 +1897,8 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'maps') || !this._shouldDrawVideoMap) {
+        // Don't bother with the canvas set up if the airport has no visible maps
+        if (!airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
             return;
         }
 
@@ -1910,8 +1911,9 @@ export default class CanvasController {
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
-        for (let i = 0; i < airportModel.maps.base.length; i++) {
-            const mapItem = airportModel.maps.base[i];
+        const lines = airportModel.mapCollection.getVisibleMapLines();
+
+        lines.forEach((mapItem) => {
             cc.moveTo(
                 CanvasStageModel.translateKilometersToPixels(mapItem[0]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[1])
@@ -1920,7 +1922,7 @@ export default class CanvasController {
                 CanvasStageModel.translateKilometersToPixels(mapItem[2]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[3])
             );
-        }
+        });
 
         cc.stroke();
         cc.restore();
