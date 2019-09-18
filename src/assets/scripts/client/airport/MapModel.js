@@ -72,12 +72,14 @@ export default class MapModel extends BaseModel {
         return this._init(map, airportPosition, magneticNorth);
     }
 
+    // ------------------------------ LIFECYCLE ------------------------------
+
     /**
      * Initialize the model
      *
      * @for MapModel
      * @method _init
-     * @param lines {array}
+     * @param map {object}
      * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      * @private
@@ -90,6 +92,20 @@ export default class MapModel extends BaseModel {
 
         return this;
     }
+
+    /**
+     * @for MapModel
+     * @method reset
+     */
+    reset() {
+        this.isHidden = false;
+        this.lines = [];
+        this.name = '';
+    }
+
+    // ------------------------------ PUBLIC ------------------------------
+
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
      * Create the array of map lines
@@ -117,15 +133,5 @@ export default class MapModel extends BaseModel {
 
             return [...startPosition, ...endPosition];
         });
-    }
-
-    /**
-     * @for MapModel
-     * @method reset
-     */
-    reset() {
-        this.isHidden = false;
-        this.lines = [];
-        this.name = '';
     }
 }

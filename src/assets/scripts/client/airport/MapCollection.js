@@ -1,6 +1,6 @@
 import _isArray from 'lodash/isArray';
-import BaseCollection from '../base/BaseCollection';
 import MapModel from './MapModel';
+import BaseCollection from '../base/BaseCollection';
 
 /**
  * Collection of `MapModel`s available to be displayed on the scope
@@ -82,6 +82,24 @@ export default class MapCollection extends BaseCollection {
         return this._items;
     }
 
+    // ------------------------------ LIFECYCLE ------------------------------
+
+    /**
+     * Initialize the instance
+     *
+     * @for MapCollection
+     * @method _init
+     * @param mapJson {object}
+     * @param defaultMaps {array<string>}
+     * @param airportPositionModel {StaticPositionModel}
+     * @param magneticNorth {number}
+     */
+    _init(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
+        this._items = this._buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth);
+    }
+
+    // ------------------------------ PUBLIC ------------------------------
+
     /**
      * A list of all the map lines for the visible maps in the `MapCollection`
      *
@@ -146,19 +164,7 @@ export default class MapCollection extends BaseCollection {
         });
     }
 
-    /**
-     * Initialize the instance
-     *
-     * @for MapCollection
-     * @method _init
-     * @param mapJson {object}
-     * @param defaultMaps {array<string>}
-     * @param airportPositionModel {StaticPositionModel}
-     * @param magneticNorth {number}
-     */
-    _init(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
-        this._items = this._buildMapModels(mapJson, defaultMaps, airportPositionModel, magneticNorth);
-    }
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
      * @for MapCollection
