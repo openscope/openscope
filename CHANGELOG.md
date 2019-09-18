@@ -1,5 +1,6 @@
 # 6.15.0 (November 1, 2019)
 ### New Features
+- [#1105](https://github.com/openscope/openscope/issues/1105) - Adds in-sim Airport Guide accessible via footer button
 
 ### Bugfixes
 

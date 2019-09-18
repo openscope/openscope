@@ -13,6 +13,8 @@ import { SELECTORS } from '../constants/selectors';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 /**
+ * Listens for events that occur in the UI and delegates work to the correct place
+ *
  * @class UiController
  */
 class UiController {
@@ -20,28 +22,242 @@ class UiController {
      * @constructor
      */
     constructor() {
+        /**
+         * Local reference to `EventBus` singleton
+         *
+         * @for UiController
+         * @property _eventBus
+         * @type {EventBus}
+         * @default null
+         */
         this._eventBus = null;
+
+        /**
+         * @for UiController
+         * @property tutorialView
+         * @type {TutorialView}
+         * @default null
+         */
         this.tutorialView = null;
+
+        /**
+         * @for UiController
+         * @property settingsController
+         * @type {SettingsController}
+         * @default null
+         */
         this.settingsController = null;
 
-        this.$element = null;
+
+        /**
+         * Element of the airport selection dialog
+         *
+         * @for UiController
+         * @property $airportDialog
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$airportDialog = null;
+
+        /**
+         * Element of the body of the airport selection dialog
+         *
+         * @for UiController
+         * @property $airportDialogBody
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$airportDialogBody = null;
+
+        /**
+         * Element of the airport guide dialog
+         *
+         * @for UiController
+         * @property $airportDialog
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$airportGuideDialog = null;
+
+        /**
+         * Root element used to find all other DOM elements needed by this class
+         *
+         * @for UiController
+         * @property $element
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$element = null;
+
+        /**
+         * Footer button element used to toggle fast-forward mode on/off
+         *
+         * @for UiController
+         * @property $fastForwards
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$fastForwards = null;
+
+        /**
+         * Footer button element which opens the openScope github page in a new tab
+         *
+         * @for UiController
+         * @property $githubLinkElement
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$githubLinkElement = null;
-        this.$pauseToggle = null;
+
+        /**
+         * Element in center of screen to unpause when paused
+         *
+         * @for UiController
+         * @property $pausedImg
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$pausedImg = null;
-        this.$speechToggle = null;
+
+        /**
+         * Footer button element used to pause when the sim is running
+         *
+         * @for UiController
+         * @property $togglePause
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$togglePause = null;
+
+        /**
+         * Footer button element used to toggle speech synthesis on/off
+         *
+         * @for UiController
+         * @property $toggleSpeech
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleSpeech = null;
+
+        /**
+         * Footer button element used to toggle the airport selection dialog on/off
+         *
+         * @for UiController
+         * @property $switchAirport
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$switchAirport = null;
+
+        /**
+         * Footer button element used to toggle the airport guide on/off
+         *
+         * @for UiController
+         * @property $toggleAirportGuide
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleAirportGuide = null;
+
+        /**
+         * Footer button element used to toggle fix and runway labels on/off
+         *
+         * @for UiController
+         * @property $toggleLabels
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$toggleLabels = null;
-        this.$toggleRestrictedAreas = null;
-        this.$toggleSids = null;
-        this.$toggleStars = null;
-        this.$toggleTerrain = null;
-        this.$toggleTutorial = null;
+
+        /**
+         * Footer button element used to toggle the options menu on/off
+         *
+         * @for UiController
+         * @property $toggleOptions
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$toggleOptions = null;
-        this.$toggleVideoMap = null;
+
+        /**
+         * Footer button element used to toggle restricted areas on/off
+         *
+         * @for UiController
+         * @property $toggleRestrictedAreas
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleRestrictedAreas = null;
+
+        /**
+         * Footer button element used to toggle SIDs on/off
+         *
+         * @for UiController
+         * @property $toggleSids
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleSids = null;
+
+        /**
+         * Footer button element used to toggle STARs on/off
+         *
+         * @for UiController
+         * @property $toggleStars
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleStars = null;
+
+        /**
+         * Footer button element used to toggle terrain on/off
+         *
+         * @for UiController
+         * @property $toggleTerrain
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleTerrain = null;
+
+        /**
+         * Footer button element used to toggle the traffic rate menu on/off
+         *
+         * @for UiController
+         * @property $toggleTraffic
+         * @type {Jquery|Element}
+         * @default null
+         */
         this.$toggleTraffic = null;
+
+        /**
+         * Footer button element used to toggle the tutoral on/off
+         *
+         * @for UiController
+         * @property $toggleTutorial
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleTutorial = null;
+
+        /**
+         * Footer button element used to toggle the video map on/off
+         *
+         * @for UiController
+         * @property $toggleVideoMap
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleVideoMap = null;
+
+        /**
+         * Footer button element used as a hook to
+         * activate/show option
+         *
+         * @property $tutorialDialog
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$tutorialDialog = null;
     }
 
     /**
@@ -62,19 +278,22 @@ class UiController {
         this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$airportDialogBody = this.$airportDialog.find(SELECTORS.DOM_SELECTORS.DIALOG_BODY);
+        this.$airportGuideDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_GUIDE_CONTAINER);
+        this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
-        this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
-        this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
         this.$switchAirport = this.$element.find(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT);
+        this.$toggleAirportGuide = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRPORT_GUIDE);
         this.$toggleLabels = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS);
+        this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
+        this.$togglePause = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_PAUSE);
         this.$toggleRestrictedAreas = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS);
         this.$toggleSids = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS);
+        this.$toggleSpeech = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
         this.$toggleStars = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STARS);
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
-        this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
         this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
 
@@ -101,15 +320,17 @@ class UiController {
      */
     enable() {
         // TODO: move these to properly bound handler methods
+        this.$tutorialDialog.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
-        this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
-        this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.onToggleAirportList(event));
+        this.$toggleAirportGuide.on('click', (event) => this.onToggleAirportGuide(event));
         this.$toggleLabels.on('click', (event) => this.onToggleLabels(event));
+        this.$togglePause.on('click', (event) => GameController.game_pause_toggle(event));
         this.$toggleRestrictedAreas.on('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
+        this.$toggleSpeech.on('click', (event) => speech_toggle(event));
         this.$toggleStars.on('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
@@ -127,15 +348,17 @@ class UiController {
      * @method disable
      */
     disable() {
+        this.$tutorialDialog.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
-        this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
-        this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.onToggleAirportList(event));
+        this.$toggleAirportGuide.off('click', (event) => this.onToggleAirportGuide(event));
         this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
+        this.$togglePause.off('click', (event) => GameController.game_pause_toggle(event));
         this.$toggleRestrictedAreas.off('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
+        this.$toggleSpeech.off('click', (event) => speech_toggle(event));
         this.$toggleStars.off('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
@@ -160,19 +383,22 @@ class UiController {
         this.$element = null;
         this.$airportDialog = null;
         this.$airportDialogBody = null;
+        this.$airportGuideDialog = null;
+        this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
-        this.$pauseToggle = null;
         this.$pausedImg = null;
-        this.$speechToggle = null;
         this.$switchAirport = null;
+        this.$toggleAirportGuide = null;
         this.$toggleLabels = null;
+        this.$toggleOptions = null;
+        this.$togglePause = null;
         this.$toggleRestrictedAreas = null;
         this.$toggleSids = null;
+        this.$toggleSpeech = null;
         this.$toggleStars = null;
         this.$toggleTerrain = null;
         this.$toggleTutorial = null;
-        this.$toggleOptions = null;
         this.$toggleVideoMap = null;
         this.$onToggleTraffic = null;
 
@@ -210,6 +436,10 @@ class UiController {
         if (this.isAirportSelectionDialogOpen()) {
             this.onToggleAirportList();
         }
+
+        if (this.isAirportGuideDialogOpen()) {
+            this.onToggleAirportGuide();
+        }
     }
 
     /**
@@ -221,6 +451,18 @@ class UiController {
      */
     isAirportSelectionDialogOpen() {
         return this.$airportDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    // FIXME: NO REASON TO HAVE "AIRPORT_GUIDE_IS_OPEN" CLASS. JUST USE "OPEN" LIKE EVERYBODY ELSE.
+    /**
+     * Returns whether the airport guide dialog is open
+     *
+     * @for UiController
+     * @method isAirportGuideDialogOpen
+     * @return {boolean}
+     */
+    isAirportGuideDialogOpen() {
+        return this.$airportGuideDialog.hasClass(SELECTORS.CLASSNAMES.AIRPORT_GUIDE_IS_OPEN);
     }
 
     /**
@@ -401,6 +643,7 @@ class UiController {
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
+    // FIXME: not in use
     /**
      * @for UiController
      * @method onToggleAirportList
@@ -413,6 +656,18 @@ class UiController {
         }
 
         this._onClickOpenAirportDialog();
+    }
+
+    /**
+     * @for UiController
+     * @method onToggleAirportGuide
+     */
+    onToggleAirportGuide() {
+        const labelButtonElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_AIRPORT_GUIDE);
+
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'airport-guide', `airport-guide:${labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
+        labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this._eventBus.trigger(EVENT.TOGGLE_AIRPORT_GUIDE);
     }
 
     /**
