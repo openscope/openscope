@@ -1820,11 +1820,9 @@ export default class CanvasController {
 
         cc.restore();
 
-        if (max_elevation === 0) {
-            return;
+        if (max_elevation !== 0) {
+            this._drawTerrainElevationLegend(cc, max_elevation);
         }
-
-        this._drawTerrainElevationLegend(cc, max_elevation);
 
         cc.restore();
     }
