@@ -71,6 +71,7 @@
         "BDOGG": ["N44d48.53", "W093d15.31"],
         "BOTNE": ["N44d56.05", "W094d01.52"],
         "BRNVL": ["N44d48.28", "W93d18.99"],
+        "BRNRD": ["N46d20.90", "W94d1.56"],
         "CLIKR": ["N44d44.98", "W093d21.36"],
         "COLDD": ["N46d44.66", "W92d17.80"],
         "CORDY": ["N44d07.42", "W092d49.79"],
@@ -580,13 +581,13 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.96,
+            "rate": 3.00,
             "airlines": [
                 ["aal/short", 7],
                 ["dal/short", 49],
                 ["edv", 4],
                 ["rpa", 3],
-                ["skw", 8]
+                ["skw", 9]
             ]
         },
         {
@@ -597,10 +598,24 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.21,
+            "rate": 0.5,
             "airlines": [
                 ["asa", 3],
-                ["dal/short", 2]
+                ["dal/short", 2],
+                ["skw", 7]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "GEP..BRNRD",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["skw", 2]
             ]
         },
         {
@@ -611,12 +626,25 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.63,
+            "rate": 0.79,
             "airlines": [
-                ["dal/short", 6],
+                ["dal/short", 10],
                 ["edv", 1],
                 ["gjs", 2],
                 ["skw", 6]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP12R.KBREW1.FAR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["dal/long", 2]
             ]
         },
         {
@@ -655,11 +683,11 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.33,
+            "rate": 0.46,
             "airlines": [
                 ["aal/short", 6],
                 ["asa", 1],
-                ["dal/short", 1]
+                ["dal/short", 4]
             ]
         },
         {
@@ -670,12 +698,12 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.12,
+            "rate": 1.16,
             "airlines": [
                 ["aal/short", 1],
                 ["aco", 1],
                 ["asq", 2],
-                ["dal/short", 14],
+                ["dal/short", 15],
                 ["edv", 4],
                 ["eny", 1],
                 ["rpa", 3],
@@ -690,10 +718,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.71,
+            "rate": 1.92,
             "airlines": [
                 ["aal/short", 3],
-                ["dal/short", 37],
+                ["dal/short", 42],
                 ["skw", 1]
             ]
         },
@@ -705,9 +733,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.08,
+            "rate": 0.12,
             "airlines": [
-                ["dal/long", 2]
+                ["dal/long", 3]
             ]
         },
         {
@@ -718,10 +746,23 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.75,
+            "rate": 1.12,
             "airlines": [
-                ["dal/short", 15],
+                ["dal/short", 24],
                 ["skw", 3]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP12R.SMERF7.SMERF",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["dal/long", 3]
             ]
         },
         {
@@ -732,13 +773,13 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.96,
+            "rate": 1.13,
             "airlines": [
                 ["aal/short", 3],
                 ["aco", 1],
-                ["dal/short", 12],
+                ["dal/short", 13],
                 ["edv", 3],
-                ["skw", 4]
+                ["skw", 7]
             ]
         },
         {
@@ -749,10 +790,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.21,
+            "rate": 0.29,
             "airlines": [
                 ["afr/b772", 1],
-                ["dal/long", 3],
+                ["dal/long", 5],
                 ["klm/long", 1]
             ]
         },
@@ -764,12 +805,25 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.42,
+            "rate": 1.71,
             "airlines": [
                 ["aal/short", 3],
-                ["dal/short", 29],
+                ["dal/short", 33],
                 ["gjs", 1],
-                ["skw", 1]
+                ["skw", 4]
+            ]
+        },
+        {
+            "origin": "KMSP",
+            "destination": "",
+            "category": "departure",
+            "route": "KMSP12R.ZMBRO7.ODI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.04,
+            "airlines": [
+                ["dal/long", 1]
             ]
         }
     ],
