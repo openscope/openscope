@@ -12,6 +12,7 @@ import {
     FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
+import { DEFAULT_HOLD_PARAMETERS } from '../constants/waypointConstants';
 import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
 import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
@@ -308,18 +309,31 @@ export default class AircraftCommander {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        let inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        const holdModel = AirportController.current.holdCollection.findHoldByName(fixName);
 
-        // Radial is given as the outbound course, so it needs to be inverted
+        // Rather than the argumentParser setting the default values, we'll use DEFAULT_HOLD_PARAMETERS
+        const holdParameters = Object.assign(
+            {},
+            DEFAULT_HOLD_PARAMETERS,
+            holdModel ? holdModel.holdParameters : {}
+        );
+
+        // Prefer values provided by the argumentParser
+        if (turnDirection !== null) {
+            holdParameters.turnDirection = turnDirection;
+        }
+        if (legLength !== null) {
+            holdParameters.legLength = legLength;
+        }
         if (radial !== null) {
-            inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
+            // Radial is given as the outbound course, so it needs to be inverted
+            holdParameters.inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
         }
 
-        const holdParameters = {
-            turnDirection,
-            legLength,
-            inboundHeading
-        };
+        // inboundHeading is required, so if no HoldModel is available then use the course to the fix
+        if (holdParameters.inboundHeading == null) {
+            holdParameters.inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        }
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
     }
