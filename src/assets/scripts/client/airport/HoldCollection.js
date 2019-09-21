@@ -77,11 +77,11 @@ export default class HoldCollection extends BaseCollection {
      * Find a `HoldModel` by `fixName` if it exists within the collection.
      *
      * @for HoldCollection
-     * @method findFixByName
+     * @method findHoldByName
      * @param fixName {string}
      * @return {HoldModel|null}
      */
-    findFixByName(fixName) {
+    findHoldByName(fixName) {
         if (!fixName) {
             return null;
         }

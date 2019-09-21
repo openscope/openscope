@@ -246,7 +246,7 @@ export default class WaypointModel {
         this._name = fixName.replace('@', '').replace('^', '');
 
         // TODO: I'm pretty sure there's a better way than this...
-        const holdModel = AirportController.current.holdCollection.findFixByName(this.name);
+        const holdModel = AirportController.current.holdCollection.findHoldByName(this.name);
         if (holdModel != null) {
             this.setHoldParameters(holdModel.holdParameters);
         }
