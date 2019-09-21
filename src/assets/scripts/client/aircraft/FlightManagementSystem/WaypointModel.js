@@ -1,6 +1,7 @@
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isNumber from 'lodash/isNumber';
+import AirportController from '../../airport/AirportController';
 import FixCollection from '../../navigationLibrary/FixCollection';
 import {
     INVALID_INDEX,
@@ -243,6 +244,12 @@ export default class WaypointModel {
         }
 
         this._name = fixName.replace('@', '').replace('^', '');
+
+        // TODO: I'm pretty sure there's a better way than this...
+        const holdModel = AirportController.current.holdCollection.findFixByName(this.name);
+        if (holdModel != null) {
+            this.setHoldParameters(holdModel.holdParameters);
+        }
 
         this._initSpecialWaypoint(fixName);
         this._applyRestrictions(restrictions);
