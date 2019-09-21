@@ -637,6 +637,32 @@
         "WOD"  : ["N51d27m10.02", "W000d52m43.68"],
         "XAMAN": ["N51d47m05", "E002d13m27"]
     },
+    "holds": [
+        {
+            "fixName": "ABBOT",
+            "turnDirection": "right",
+            "legLength": "1min",
+            "inboundHeading": 265
+        },
+        {
+            "fixName": "ASKEY",
+            "turnDirection": "left",
+            "legLength": "1min",
+            "inboundHeading": 161
+        },
+        {
+            "fixName": "CASEY",
+            "turnDirection": "right",
+            "legLength": "1min",
+            "inboundHeading": 239
+        },
+        {
+            "fixName": "LOREL",
+            "turnDirection": "left",
+            "legLength": "1min",
+            "inboundHeading": 188
+        }
+    ],
     "restricted": [
         {
             "name": "EG R063",
