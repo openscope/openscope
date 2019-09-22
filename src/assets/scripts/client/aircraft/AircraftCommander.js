@@ -12,6 +12,7 @@ import {
     FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
+import { degrees_normalize } from '../math/circle';
 import { round } from '../math/core';
 import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
 import { speech_say } from '../speech';
@@ -523,7 +524,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayHeading(aircraft) {
-        const heading = _round(radiansToDegrees(aircraft.heading));
+        const heading = degrees_normalize(_round(radiansToDegrees(aircraft.heading)));
         const readback = {};
 
         readback.log = `heading ${heading}`;
@@ -543,7 +544,7 @@ export default class AircraftCommander {
             return [false, 'we haven\'t been assigned a heading'];
         }
 
-        const heading = _round(radiansToDegrees(aircraft.mcp.heading));
+        const heading = degrees_normalize(_round(radiansToDegrees(aircraft.mcp.heading)));
         const readback = {};
 
         readback.log = `assigned heading ${heading}`;
