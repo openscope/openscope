@@ -577,7 +577,7 @@ export default class AircraftController {
         }
 
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
-        const transponderCode = this._generateUniqueTransponderCode();
+        const transponderCode = this._generateUniqueTransponderCode(AirportController.airport_get().icao);
 
         return {
             fleet,
@@ -621,23 +621,24 @@ export default class AircraftController {
      * Generate a unique `transponderCode`
      *
      * This method should only be run while building props for a
-     * soon-to-be-instantiated `AircraftModel`
+     * soon-to-be-instantiated `AircraftModel` at the specified
+     * `icao` airport code
      *
      * @for AircraftController
      * @method _generateUniqueTransponderCode
+     * @param icao {sting}
      * @return {string}
      * @private
      */
-    _generateUniqueTransponderCode() {
-        let transponderCode = generateTransponderCode();
-        const { icao } = AirportController.airport_get();
+    _generateUniqueTransponderCode(icao) {
+        const transponderCode = generateTransponderCode();
 
         if (!isDiscreteTransponderCode(icao, transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
-            // the value generated is already in use, recurse back through this method and try again
-            transponderCode = this._generateUniqueTransponderCode();
-        } else {
-            this._addTransponderCodeToInUse(transponderCode);
+            // the value generated isn't valid or is already in use, recurse back through this method and try again
+            return this._generateUniqueTransponderCode(icao);
         }
+
+        this._addTransponderCodeToInUse(transponderCode);
 
         return transponderCode;
     }
