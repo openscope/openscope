@@ -3,6 +3,16 @@ import { randint } from '../math/core';
 import { REGEX } from '../constants/globalConstants';
 
 /**
+ * The highest decimal value allowed for a 4-digit
+ * octal transponder code
+ *
+ * @property MAX_TRANSPONDER_CODE
+ * @type {number}
+ * @final
+ */
+const MAX_TRANSPONDER_CODE = 4095;
+
+/**
  * List of transponder codes that are reserved
  *
  * This enum should be used only during the generation of
@@ -11,11 +21,11 @@ import { REGEX } from '../constants/globalConstants';
  * The codes listed should still be assignable at the
  * controler's discretion
  *
- * @property SQUAWK_CODES
+ * @property TRANSPONDER_CODES
  * @type {array<object>}
  * @final
  */
-const SQUAWK_CODES = [
+const TRANSPONDER_CODES = [
     {
         // ICAO
         prefix: null,
@@ -115,7 +125,7 @@ const SQUAWK_CODES = [
  * @returns {array}
  */
 function _getCodes(icao) {
-    return SQUAWK_CODES.filter((item) => {
+    return TRANSPONDER_CODES.filter((item) => {
         return item.prefix === null || item.prefix.test(icao);
     });
 }
@@ -145,7 +155,7 @@ function _isMatch(transponderCode, testAgainst) {
  * @returns {string}
  */
 export const generateTransponderCode = () => {
-    const code = randint(0, 4095).toString(8);
+    const code = randint(0, MAX_TRANSPONDER_CODE).toString(8);
     return leftPad(code, 4);
 };
 
