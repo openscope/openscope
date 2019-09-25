@@ -140,30 +140,23 @@ export default class RadarTargetCollection extends BaseCollection {
         return radarTargetModel;
     }
 
-    // TODO: Allow us to choose an aircraft by its CID
     /**
      * Get the radar target model object for the specified aircraft
      *
      * @for RadarTargetCollection
      * @method findRadarTargetModelForAircraftReference
      * @param aircraftReference {string} the CID, squawk code, or callsign assigned to an aircraft
-     * @return radarTargetModel {RadarTargetModel}
+     * @return radarTargetModel {RadarTargetModel|undefined}
      */
     findRadarTargetModelForAircraftReference(aircraftReference) {
-        // Store variable because `this` within lodash `_filter` has different scope
-        const radarTargetModels = this._items;
-        const results = _filter(radarTargetModels, ({ aircraftModel }) => {
+        const targets = this._items.filter(({ aircraftModel }) => {
             return aircraftModel.transponderCode === aircraftReference ||
-                aircraftModel.callsign === aircraftReference;
+                aircraftModel.callsign === aircraftReference ||
+                aircraftModel.cid === aircraftReference;
         });
 
-        if (results.length > 1) {
-            return;
-        }
-
-        const radarTargetModel = results[0];
-
-        return radarTargetModel;
+        // Don't return a result if an ambigious match is made
+        return targets.length === 1 ? targets[0] : undefined;
     }
 
     /**

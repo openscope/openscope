@@ -5,6 +5,7 @@ import StripViewCollection from './StripViewCollection';
 import StripViewModel from './StripViewModel';
 import { INVALID_INDEX } from '../../constants/globalConstants';
 import { SELECTORS } from '../../constants/selectors';
+import { leftPad } from '../../utilities/generalUtilities';
 
 /**
  * The highest number allowed for a cid value
@@ -71,7 +72,7 @@ export default class StripViewController {
 
         /**
          * @property _cidNumbersInUse
-         * @type {array<number>}
+         * @type {array<string>}
          * @private
          */
         this._cidNumbersInUse = [];
@@ -159,6 +160,10 @@ export default class StripViewController {
 
             if (typeof stripViewModel === 'undefined') {
                 stripViewModel = this.createStripView(aircraftModel);
+
+                // TODO: This is a bit hacky - it sets the CID for the AircraftModel
+                // and will be unset when the strip is removed
+                aircraftModel.cid = stripViewModel.cid;
             }
 
             stripViewModel.update(aircraftModel);
@@ -243,6 +248,20 @@ export default class StripViewController {
     }
 
     /**
+     * Find a `AircraftModel` in the collection by an `cid`
+     *
+     * @for StripViewController
+     * @method findAircraftByCid
+     * @param cid {string}
+     * @return {AircraftModel|undefined}
+     */
+    findAircraftByCid(cid) {
+        const strip = this._collection.findStripByAircraftId(cid);
+
+        return strip === undefined ? undefined : strip.aircraftModel;
+    }
+
+    /**
      * Remove a `StripViewModel` from the `$stripViewList`
      *
      * @for StripViewController
@@ -260,6 +279,9 @@ export default class StripViewController {
 
             return;
         }
+
+        // TODO: This is a bit hacky - it usets the CID for the AircraftModel
+        aircraftModel.cid = null;
 
         this._removeCidFromUse(stripViewModel.cid);
         this._collection.removeItem(stripViewModel);
@@ -322,11 +344,11 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method _generateCidNumber
-     * @return nextCid {number}
+     * @return nextCid {string}
      * @private
      */
     _generateCidNumber() {
-        const nextCid = _random(1, CID_UPPER_BOUND);
+        const nextCid = leftPad(_random(1, CID_UPPER_BOUND).toString(10), 3);
 
         if (this._cidNumbersInUse.indexOf(nextCid) !== INVALID_INDEX) {
             return this._generateCidNumber();

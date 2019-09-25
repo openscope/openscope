@@ -99,4 +99,16 @@ export default class StripViewCollection extends BaseCollection {
     findStripByAircraftId(aircraftId) {
         return _find(this._items, { aircraftId: aircraftId });
     }
+
+    /**
+     * Find a `StripViewModel` in the collection by an `cid`
+     *
+     * @for StripViewCollection
+     * @method findStripByCid
+     * @param cid {string}
+     * @return {StripViewModel|undefined}
+     */
+    findStripByCid(cid) {
+        return this._items.find((strip) => strip.cid === cid);
+    }
 }

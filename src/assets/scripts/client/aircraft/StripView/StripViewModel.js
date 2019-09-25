@@ -28,7 +28,7 @@ export default class StripViewModel extends BaseModel {
     /**
      * @constructor
      * @param aircraftModel {object}
-     * @param cidValue {number}
+     * @param cidValue {string}
      */
     constructor(aircraftModel, cidValue) {
         super('stripViewModel');
@@ -155,27 +155,14 @@ export default class StripViewModel extends BaseModel {
          *
          * Currently only numeric, but could be made alpha-numberic
          *
-         * Padded with leading zeros in `#cidString` for display purposes
-         *
          * @property cid
-         * @type {number}
+         * @type {string}
          * @default cidValue
          */
         this.cid = cidValue;
 
         /**
-         * A string version of `#cid` for display purposes
-         * Has been padded with leading zeros so that it is always
-         * displayed as three digits
-         *
-         * @property cidString
-         * @type {string}
-         * @default cidValue
-         */
-        this.cidString = leftPad(cidValue, 3);
-
-        /**
-         * HTML Element that holds `#_cidValue`
+         * HTML Element that holds `#cid`
          *
          * @property $cidView
          * @type {JQuery Element}
@@ -506,7 +493,7 @@ export default class StripViewModel extends BaseModel {
     _redraw() {
         this.$callsignView.text(this._callsign);
         this.$aircraftTypeView.text(this._aircraftType);
-        this.$cidView.text(this.cidString);
+        this.$cidView.text(this.cid);
         this.$transponderView.text(this._transponder);
         this.$assignedAltitudeView.text(this._assignedAltitude);
         this.$flightPlanAltitudeView.text(this._flightPlanAltitude);
@@ -554,8 +541,7 @@ export default class StripViewModel extends BaseModel {
         this.$callsignView = null;
         this._aircraftType = '';
         this.$aircraftTypeView = null;
-        this.cid = INVALID_NUMBER;
-        this.cidString = '';
+        this.cid = '';
         this.$cidView = null;
         this._transponder = 1200;
         this.$transponderView = null;

@@ -112,6 +112,17 @@ export default class AircraftModel {
         this.id = _uniqueId('aircraft-');
 
         /**
+         * The Computer assigned ID, assigned by the StripView
+         *
+         * @for AircraftModel
+         * @property _cid
+         * @private
+         * @type {string}
+         * @default null
+         */
+        this._cid = null;
+
+        /**
          * Aircraft's DynamicPositionModel
          *
          * @for AircraftModel
@@ -546,6 +557,28 @@ export default class AircraftModel {
                 this.speed
             );
         }
+    }
+
+    /**
+     * The Computer Assigned ID, assigned by the StripView
+     *
+     * @for AircraftModel
+     * @property cid
+     * @type {string}
+     */
+    get cid() {
+        return this._cid;
+    }
+
+    /**
+     * The Computer Assigned ID, assigned by the StripView
+     *
+     * @for AircraftModel
+     * @property cid
+     * @type {cid}
+     */
+    set cid(cid) {
+        this._cid = cid;
     }
 
     /**
