@@ -1,3 +1,5 @@
+import { leftPad } from './generalUtilities';
+import { randint } from '../math/core';
 import { REGEX } from '../constants/globalConstants';
 
 /**
@@ -43,7 +45,8 @@ const SQUAWK_CODES = [
         // Canda
         prefix: /^c/,
         reserved: [
-
+            // VFR
+            '1200'
         ]
     },
     {
@@ -97,7 +100,8 @@ const SQUAWK_CODES = [
         // Australia
         prefix: /^y/,
         reserved: [
-            // Flights operating at aerodromes (in lieu of codes 1200, 2000 or 3000 when assigned by ATC or noted in the Enroute Supplement)
+            // Flights operating at aerodromes (in lieu of codes 1200, 2000 or 3000 when assigned
+            // by ATC or noted in the Enroute Supplement)
             '0100'
         ]
     }
@@ -136,6 +140,16 @@ function _isMatch(transponderCode, testAgainst) {
 }
 
 /**
+ * Helper used to generate a new 4 digit octal transponder code
+ *
+ * @returns {string}
+ */
+export const generateTransponderCode = () => {
+    const code = randint(0, 4095).toString(8);
+    return leftPad(code, 4);
+};
+
+/**
  * Helper used to determine if a given `transponderCode` is reserved
  * in the country or region of the specified `icao` airport code
  *
@@ -164,7 +178,7 @@ export const isValidTransponderCode = (transponderCode) => {
 
 /**
  * Helper used to determine if a given `transponderCode` is both
- * valid and not in reserved in the country or region of the
+ * valid and not reserved in the country or region of the
  * specified `icao` airport code
  *
  * @method isDiscreteTransponderCode
