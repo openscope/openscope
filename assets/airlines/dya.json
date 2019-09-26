@@ -1,0 +1,14 @@
+{
+    "icao": "dya",
+    "name": "Dynamic Airways",
+    "callsign": {
+        "name": "Dynamic Air",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B762", 3],
+            ["B763", 3]
+        ]
+    }
+}
