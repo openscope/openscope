@@ -123,6 +123,7 @@ const TRANSPONDER_CODES = [
  * @method _getCodes
  * @param icao {string}
  * @returns {array}
+ * @private
  */
 function _getCodes(icao) {
     return TRANSPONDER_CODES.filter((item) => {
@@ -136,6 +137,7 @@ function _getCodes(icao) {
  *
  * @param transponderCode {string}
  * @param testAgainst {string|RegExp}
+ * @private
  */
 function _isMatch(transponderCode, testAgainst) {
     if (testAgainst instanceof RegExp) {
@@ -150,16 +152,6 @@ function _isMatch(transponderCode, testAgainst) {
 }
 
 /**
- * Helper used to generate a new 4 digit octal transponder code
- *
- * @returns {string}
- */
-export const generateTransponderCode = () => {
-    const code = randint(0, MAX_TRANSPONDER_CODE).toString(8);
-    return leftPad(code, 4);
-};
-
-/**
  * Helper used to determine if a given `transponderCode` is reserved
  * in the country or region of the specified `icao` airport code
  *
@@ -167,11 +159,22 @@ export const generateTransponderCode = () => {
  * @param icao {string}
  * @param transponderCode {string}
  * @returns {boolean}
+ * @private
  */
-export const isReserved = (icao, transponderCode) => {
+function _isReserved(icao, transponderCode) {
     return _getCodes(icao).some((item) => {
         return item.reserved.some((test) => _isMatch(transponderCode, test));
     });
+}
+
+/**
+ * Helper used to generate a new 4 digit octal transponder code
+ *
+ * @returns {string}
+ */
+export const generateTransponderCode = () => {
+    const code = randint(0, MAX_TRANSPONDER_CODE).toString(8);
+    return leftPad(code, 4);
 };
 
 /**
@@ -205,5 +208,5 @@ export const isDiscreteTransponderCode = (icao, transponderCode) => {
         return false;
     }
 
-    return !isReserved(icao, transponderCode);
+    return !_isReserved(icao, transponderCode);
 };
