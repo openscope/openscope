@@ -1,4 +1,5 @@
 {
+    "airac": 1910,
     "radio": {
         "twr": "Kennedy Tower",
         "app": "New York Approach",
@@ -23,6 +24,22 @@
     },
     "arrivalRunway": "31R",
     "departureRunway": "31L",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 170,
+            "airspace_class": "B",
+            "poly": [
+                [40.014333, -73.666667],
+                [40.496500, -72.983500],
+                [40.932667, -73.292500],
+                [40.857833, -73.565583],
+                [40.563333, -74.008000],
+                [40.113167, -74.046500]
+            ]
+        }
+    ],
     "fixes": {
         "JFK"  : ["N40.6328889", "W73.7713889"],
         "_RWY13RDEP": ["N40.56", "W73.660167"],
