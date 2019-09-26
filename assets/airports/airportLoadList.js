@@ -173,11 +173,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Washington-Dulles International Airport',
             wip: true
         },
-         {
-             icao: 'kjfk',
-             level: 'hard',
-             name: 'John F Kennedy International Airport',
-             wip: true
+        {
+            icao: 'kjfk',
+            level: 'hard',
+            name: 'John F Kennedy International Airport',
+            wip: true
         },
         {
             icao: 'klas',
