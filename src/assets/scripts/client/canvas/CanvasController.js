@@ -1804,8 +1804,8 @@ export default class CanvasController {
 
             const terrainLevel = airportTerrain[elevation];
 
-            if (elevation < 1000 && !this._hasSeenTerrainWarning) {
-                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
+            if (elevation < 0 && !this._hasSeenTerrainWarning) {
+                console.warn(`${airport.icao}.geojson contains 'terrain' ` +
                     ' below sea level, which is not supported!');
 
                 this._hasSeenTerrainWarning = true;
@@ -1820,11 +1820,9 @@ export default class CanvasController {
 
         cc.restore();
 
-        if (max_elevation === 0) {
-            return;
+        if (max_elevation !== 0) {
+            this._drawTerrainElevationLegend(cc, max_elevation);
         }
-
-        this._drawTerrainElevationLegend(cc, max_elevation);
 
         cc.restore();
     }
