@@ -1229,8 +1229,8 @@
             "destination": "KSFO",
             "category": "arrival",
             "route": "AMAKR.BDEGA3.KSFO28L",
-            "altitude": [37000, 41000],
-            "speed": 320,
+            "altitude": 33000,
+            "speed": 300,
             "method": "random",
             "rate": 10,
             "airlines": [
@@ -1265,8 +1265,8 @@
             "destination": "KSFO",
             "category": "arrival",
             "route": "INYOE.DYAMD5.KSFO28R",
-            "altitude": [30000, 40000],
-            "speed": 320,
+            "altitude": 34000,
+            "speed": 300,
             "method": "random",
             "rate": 12,
             "airlines": [
@@ -1290,8 +1290,8 @@
             "destination": "KSFO",
             "category": "arrival",
             "route": "PAINT.PIRAT2.KSFO28L",
-            "altitude": [24000, 32000],
-            "speed": 320,
+            "altitude": 31000,
+            "speed": 300,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1313,8 +1313,8 @@
             "destination": "KSFO",
             "category": "arrival",
             "route": "SERFR.SERFR3.KSFO28R",
-            "altitude": [24000, 32000],
-            "speed": 320,
+            "altitude": 26000,
+            "speed": 300,
             "method": "random",
             "rate": 8,
             "airlines": [

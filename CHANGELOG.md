@@ -11,6 +11,7 @@
 - [#1432](https://github.com/openscope/openscope/issues/1432) - Prevent aircraft from leaving their holding patterns
 - [#1440](https://github.com/openscope/openscope/issues/1440) - Add missing "b738"-fleet to TUI Airways
 - [#23](https://github.com/openscope/openscope/issues/23) - Ensure focus remains on the text input box in MS Edge
+- [#1448](https://github.com/openscope/openscope/issues/1448) - Lower spawn altitudes of KSFO arrivals so can comply with STAR restrictions
 
 
 ### Enhancements & Refactors
