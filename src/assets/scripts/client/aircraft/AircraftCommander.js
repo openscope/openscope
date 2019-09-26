@@ -309,7 +309,8 @@ export default class AircraftCommander {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        const holdModel = AirportController.current.holdCollection.findHoldByName(fixName);
+        // TODO: Get the current procedure that the aircraft is flying (if present)
+        const holdModel = AirportController.airport_get().holdCollection.findHoldByFix(fixName);
 
         // Rather than the argumentParser setting the default values, we'll use DEFAULT_HOLD_PARAMETERS
         const holdParameters = Object.assign(

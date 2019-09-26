@@ -1,4 +1,5 @@
 import BaseModel from '../base/BaseModel';
+import { degreesToRadians } from '../utilities/unitConverters';
 import { DEFAULT_HOLD_PARAMETERS } from '../constants/waypointConstants';
 
 /**
@@ -21,7 +22,7 @@ export default class HoldModel extends BaseModel {
         /**
          * Name of the Fix
          *
-         * @property name
+         * @property fixName
          * @type {string}
          * @default ''
          */
@@ -35,6 +36,15 @@ export default class HoldModel extends BaseModel {
          * @default DEFAULT_HOLD_PARAMETERS
          */
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
+
+        /**
+         * The names of the procedures that the hold applies to
+         *
+         * @property procedures
+         * @type {array<string>}
+         * @default []
+         */
+        this.procedures = [];
 
         this._init(holdJson);
     }
@@ -53,10 +63,12 @@ export default class HoldModel extends BaseModel {
         this.fixName = holdJson.fixName;
 
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, {
-            inboundHeading: holdJson.inboundHeading * Math.PI / 180,
+            inboundHeading: degreesToRadians(holdJson.inboundHeading),
             legLength: holdJson.legLength,
             turnDirection: holdJson.turnDirection
         });
+
+        this.procedures = holdJson.procedures || [];
 
         return this;
     }
@@ -68,5 +80,6 @@ export default class HoldModel extends BaseModel {
     reset() {
         this.fixName = '';
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
+        this.procedures = [];
     }
 }

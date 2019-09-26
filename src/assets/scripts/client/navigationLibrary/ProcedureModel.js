@@ -5,6 +5,7 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
+import AirportController from '../airport/AirportController';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
 /**
@@ -429,6 +430,29 @@ export default class ProcedureModel {
     // ------------------------------ PRIVATE ------------------------------
 
     /**
+     * Generate a `WaupointMode` for the specified data
+     *
+     * @for ProcedureModel
+     * @method _generateWaypoint
+     * @param data {string|array<string>}
+     * @returns {WaypointModel}
+     * @private
+     */
+    _generateWaypoint(data) {
+        const waypoint = new WaypointModel(data);
+
+        const holdModel = AirportController.airport_get().holdCollection.findHoldByFixAndProcedure(
+            waypoint.name, this.icao
+        );
+
+        if (holdModel != null) {
+            waypoint.setHoldParameters(holdModel.holdParameters);
+        }
+
+        return waypoint;
+    }
+
+    /**
     * Generate new `WaypointModel`s for the body portion of the procedure
     *
     * @for ProcedureModel
@@ -437,7 +461,7 @@ export default class ProcedureModel {
     * @private
     */
     _generateWaypointsForBody() {
-        return _map(this._body, (waypoint) => new WaypointModel(waypoint));
+        return _map(this._body, (waypoint) => this._generateWaypoint(waypoint));
     }
 
     /**
@@ -454,7 +478,7 @@ export default class ProcedureModel {
             throw new TypeError(`Expected valid entry of ${this._icao}, but received ${entryPoint}`);
         }
 
-        return _map(this._entryPoints[entryPoint], (waypoint) => new WaypointModel(waypoint));
+        return _map(this._entryPoints[entryPoint], (waypoint) => this._generateWaypoint(waypoint));
     }
 
     /**
@@ -471,7 +495,7 @@ export default class ProcedureModel {
             throw new TypeError(`Expected valid exit of ${this._icao}, but received ${exitPoint}`);
         }
 
-        return _map(this._exitPoints[exitPoint], (waypoint) => new WaypointModel(waypoint));
+        return _map(this._exitPoints[exitPoint], (waypoint) => this._generateWaypoint(waypoint));
     }
 
     /**

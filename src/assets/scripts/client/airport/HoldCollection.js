@@ -74,19 +74,43 @@ export default class HoldCollection extends BaseCollection {
     // ------------------------------ PUBLIC ------------------------------
 
     /**
-     * Find a `HoldModel` by `fixName` if it exists within the collection.
+     * Find a `HoldModel` by `fixName` if it exists within the collection
      *
      * @for HoldCollection
-     * @method findHoldByName
+     * @method findHoldByFix
      * @param fixName {string}
      * @return {HoldModel|null}
      */
-    findHoldByName(fixName) {
+    findHoldByFix(fixName) {
         if (!fixName) {
             return null;
         }
 
-        // if a fix is not found, _find() returns `undefined` so we specifically return null here if a fix is not found
-        return this._items.find((hold) => hold.fixName === fixName.toUpperCase()) || null;
+        // if a fix is not found, find() returns `undefined` so we specifically return null here if a fix is not found
+        return this._items.find((hold) => {
+            return hold.fixName === fixName.toUpperCase() && hold.procedures.length === 0;
+        }) || null;
+    }
+
+    /**
+     * Find a `HoldModel` by `fixName` and `procedureName`
+     * if it exists within the collection
+     *
+     * @for HoldCollection
+     * @method findHoldByFixAndProcedure
+     * @param fixName {string}
+     * @param procedureName {string}
+     * @return {HoldModel|null}
+     */
+    findHoldByFixAndProcedure(fixName, procedureName) {
+        if (!fixName || !procedureName) {
+            return null;
+        }
+
+        // if a fix is not found, find() returns `undefined` so we specifically return null here if a fix is not found
+        return this._items.find((hold) => {
+            return hold.fixName === fixName.toUpperCase() &&
+                hold.procedures.some((proc) => proc === procedureName);
+        }) || null;
     }
 }
