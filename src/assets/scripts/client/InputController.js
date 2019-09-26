@@ -307,6 +307,11 @@ export default class InputController {
         this.input.callsign = aircraftModel.callsign;
         this.input.command = '';
         this.$commandInput.val(`${aircraftModel.callsign} `);
+
+        if (!this.$commandInput.is(':focus')) {
+            this.$commandInput.focus();
+        }
+
         this._eventBus.trigger(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, aircraftModel);
     };
 
