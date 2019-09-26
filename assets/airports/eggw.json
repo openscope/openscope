@@ -645,6 +645,13 @@
             "inboundHeading": 265
         },
         {
+            "fixName": "ABBOT",
+            "procedures": ["ABBOT1D"],
+            "turnDirection": "left",
+            "legLength": "1min",
+            "inboundHeading": 265
+        },
+        {
             "fixName": "ASKEY",
             "turnDirection": "left",
             "legLength": "1min",
