@@ -30,33 +30,18 @@ const TRANSPONDER_CODES = [
         // ICAO
         prefix: null,
         reserved: [
-            // Use in Mode S environment
-            '1000',
-            // When entering SSR area from non-SSR as uncontrolled IFR
-            '2000',
-            // VFR when no other code has been assigned (eg 1200 is used in the USA)
-            '7000',
-            // hijack
-            '7500',
-            // communication failure
-            '7600',
-            // emergency
-            '7700'
         ]
     },
     {
         // Europe
         prefix: /^([elb])/,
         reserved: [
-            '0000'
         ]
     },
     {
         // Canda
         prefix: /^c/,
         reserved: [
-            // VFR
-            '1200'
         ]
     },
     {
@@ -98,8 +83,6 @@ const TRANSPONDER_CODES = [
         // USA
         prefix: /^k/,
         reserved: [
-            // Military intercept
-            '0000',
             // VFR - 12xx
             /^12[0-7][0-7]$/,
             // Military & for testing stations
@@ -110,9 +93,6 @@ const TRANSPONDER_CODES = [
         // Australia
         prefix: /^y/,
         reserved: [
-            // Flights operating at aerodromes (in lieu of codes 1200, 2000 or 3000 when assigned
-            // by ATC or noted in the Enroute Supplement)
-            '0100'
         ]
     }
 ];
@@ -127,7 +107,8 @@ const TRANSPONDER_CODES = [
  */
 function _getCodes(icao) {
     return TRANSPONDER_CODES.filter((item) => {
-        return item.prefix === null || item.prefix.test(icao);
+        return (item.prefix === null || item.prefix.test(icao)) &&
+            item.reserved.length !== 0;
     });
 }
 
