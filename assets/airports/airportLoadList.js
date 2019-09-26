@@ -147,12 +147,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Dublin Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'einn',
-        //     level: 'beginner',
-        //     name: 'Shannon Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'einn',
+            level: 'beginner',
+            name: 'Shannon Airport',
+            premium: false
+        },
         // {
         //     icao: 'ekch',
         //     level: 'medium',

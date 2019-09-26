@@ -17,6 +17,7 @@
 - [#1327](https://github.com/openscope/openscope/issues/1327) - Airport Revival: San Francisco International Airport
 - [#1390](https://github.com/openscope/openscope/issues/1390) - Update KAUS to AIRAC 1909
 - [#1231](https://github.com/openscope/openscope/issues/1231) - Draw STAR labels left of fix to prevent text overlap with SID labels
+- [#1434](https://github.com/openscope/openscope/issues/1434) - Update EINN to AIRAC 1909
 
 
 # 6.13.0 (June 1, 2019)
