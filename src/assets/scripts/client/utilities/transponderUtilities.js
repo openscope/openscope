@@ -21,6 +21,8 @@ const MAX_TRANSPONDER_CODE = 4095;
  * The codes listed should still be assignable at the
  * controler's discretion
  *
+ * Source: https://en.wikipedia.org/wiki/List_of_transponder_codes
+ *
  * @property TRANSPONDER_CODES
  * @type {array<object>}
  * @final
@@ -48,7 +50,9 @@ const TRANSPONDER_CODES = [
         // Belgium
         prefix: /^eb/,
         reserved: [
-            /^00(4[1-6]|5[0-7])$/,
+            // Assigned for VFR traffic under Flight Information Services (BXL FIC)
+            // 0041–0057
+            /^00(4[1-7]|5[0-7])$/,
             // For testing stations
             '7777'
         ]
@@ -76,7 +80,11 @@ const TRANSPONDER_CODES = [
         prefix: /^eg/,
         reserved: [
             // Parachute drop
-            '0033'
+            '0033',
+            // Sudden military climb out from low-level operations
+            '7001',
+            // Aerobatic & displays
+            '7004'
         ]
     },
     {
@@ -85,14 +93,48 @@ const TRANSPONDER_CODES = [
         reserved: [
             // VFR - 12xx
             /^12[0-7][0-7]$/,
+            // Reserved for use by SR-71, YF-12, U-2 and B-57, pressure suit flights,
+            // and aircraft operations above FL600. And many others
+            // 4400–4477
+            /^44[0-7]{2}$/,
+            // Reserved for use by Continental NORAD Region (CONR)
+            // 7501–7577
+            /^75(0[1-7]|[1-7][0-7])$/,
+            // Reserved for special use by FAA
+            // 7601–7607, 7701–7707
+            /^7[67]0[1-7]$/,
+            // External ARTCC subsets (Discrete codes of blocks only except for first primary
+            // block, which is used as the ARTCC's non-discrete code if all discrete codes are assigned)
+            // Not reserved as it implies they are useable
+            // 7610–7676, 7710–7776
+            // /^7[67]([1-6][0-7]|7[1-6])$/,
             // Military & for testing stations
             '7777'
+        ]
+    },
+    // {
+    //     // Washington DC
+    //     prefix: /^k/,
+    //     reserved: [
+    //         // Reserved for special use by Potomac TRACON
+    //         // 5061–5062
+    //         /^506[12]$/
+    //     ]
+    // },
+    {
+        // France
+        prefix: /^lf/,
+        reserved: [
+            // VFR
+            '7001'
         ]
     },
     {
         // Australia
         prefix: /^y/,
         reserved: [
+            // Civil flights engaged in littoral surveillance
+            '7615'
         ]
     }
 ];
