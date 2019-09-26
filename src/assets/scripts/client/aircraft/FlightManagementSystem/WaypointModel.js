@@ -245,14 +245,9 @@ export default class WaypointModel {
 
         this._name = fixName.replace('@', '').replace('^', '');
 
-        // TODO: I'm pretty sure there's a better way than this...
-        const holdModel = AirportController.current.holdCollection.findHoldByName(this.name);
-        if (holdModel != null) {
-            this.setHoldParameters(holdModel.holdParameters);
-        }
-
         this._initSpecialWaypoint(fixName);
         this._applyRestrictions(restrictions);
+        this._initializeHoldParameters();
         this._initializePosition();
     }
 
@@ -691,6 +686,22 @@ export default class WaypointModel {
 
         if (this._isVectorWaypoint || waypointModel.isVectorWaypoint) {
             throw new TypeError('Expected .calculateBearingToWaypoint() to never be called with vector waypoints!');
+        }
+    }
+
+    /**
+     * Initialize the waypoint's hold parameters based on #_name
+     *
+     * @for WaypointModel
+     * @method _initializeHoldParameters
+     */
+    _initializeHoldParameters() {
+        // TODO: I'm pretty sure there's a better way than this...
+        // Possibly a static HoldCollection like FixCollection below
+        const holdModel = AirportController.airport_get().holdCollection.findHoldByFix(this.name);
+
+        if (holdModel != null) {
+            this.setHoldParameters(holdModel.holdParameters);
         }
     }
 
