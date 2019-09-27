@@ -1,5 +1,5 @@
 import _defaultTo from 'lodash/defaultTo';
-import { isValidDirectionString } from './argumentValidators';
+import { isValidCourseString, isValidDirectionString } from './argumentValidators';
 import { INVALID_INDEX } from '../../constants/globalConstants';
 import {
     convertToThousands,
@@ -19,7 +19,8 @@ import {
 const HOLD_COMMAND_ARG_NAMES = {
     TURN_DIRECTION: 'turnDirection',
     LEG_LENGTH: 'legLength',
-    FIX_NAME: 'fixName'
+    FIX_NAME: 'fixName',
+    INBOUND_HEADING: 'inboundHeading'
 };
 
 /**
@@ -154,6 +155,12 @@ export const findHoldCommandByType = (type, args) => {
                 }
 
                 return arg;
+            case HOLD_COMMAND_ARG_NAMES.INBOUND_HEADING:
+                if (!isValidCourseString(arg)) {
+                    continue;
+                }
+
+                return convertStringToNumber(arg);
             default:
                 return null;
         }
@@ -184,8 +191,12 @@ export const holdParser = (args) => {
         findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args),
         '1min'
     );
+    const inboundHeading = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.INBOUND_HEADING, args),
+        null
+    );
 
-    return [turnDirection, legLength, fixName];
+    return [turnDirection, legLength, fixName, inboundHeading];
 };
 
 /**

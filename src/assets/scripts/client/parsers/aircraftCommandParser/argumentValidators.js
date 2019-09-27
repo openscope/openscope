@@ -169,6 +169,23 @@ export const fixValidator = (args = []) => {
 };
 
 /**
+ * Returns true if the value is exactly a 3 digit decimal number
+ *
+ * @function isValidCourseString
+ * @param value {string}
+ * @returns {boolean}
+ */
+export const isValidCourseString = (value) => {
+    // Can't rely on parseInt/convertStringToNumber as it'll parse 1min => 1
+    if (!/^[0-9]{3}$/.test(value)) {
+        return false;
+    }
+
+    const course = convertStringToNumber(value);
+    return course >= 0 && course <= 360;
+};
+
+/**
  * Returns true if value is one of `left / l / right / r`
  *
  * @function isValidDirectionString
@@ -245,6 +262,7 @@ export const headingValidator = (args = []) => {
  * - ['dumba', 'left', '2nm']
  * - ['dumba', 'right', '2min']
  * - ['dumba', 'right', '2nm']
+ * - ['dumba', 'right', '2nm', '265']
  * ```
  *
  * @function holdValidator
@@ -252,8 +270,8 @@ export const headingValidator = (args = []) => {
  * @return {array<string>}
  */
 export const holdValidator = (args = []) => {
-    if (args.length > 3) {
-        return ERROR_MESSAGE.ZERO_TO_THREE_ARG_LENGTH;
+    if (args.length > 4) {
+        return ERROR_MESSAGE.ZERO_TO_FOUR_ARG_LENGTH;
     }
 
     for (let i = 0; i < args.length; i++) {

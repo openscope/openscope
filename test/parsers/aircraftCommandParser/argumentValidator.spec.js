@@ -212,8 +212,8 @@ ava('.headingValidator() returns undefined when passed a string and a number as 
 });
 
 ava('.holdValidator() returns a string when passed the wrong number of arguments', t => {
-    const result = holdValidator(['', 'left', 1, '']);
-    t.true(result === 'Invalid argument length. Expected zero to three arguments');
+    const result = holdValidator(['', 'left', 1, '', '']);
+    t.true(result === 'Invalid argument length. Expected zero to four arguments');
 });
 
 ava('.holdValidator() returns undefined when passed zero arguments', t => {

@@ -21,7 +21,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import { heading_to_string, radiansToDegrees } from '../utilities/unitConverters';
+import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 /**
  *
@@ -300,9 +300,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
-        const turnDirection = data[0];
-        const legLength = data[1];
-        const fixName = data[2];
+        const [turnDirection, legLength, fixName, inboundHeading] = data;
         const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {
@@ -312,7 +310,9 @@ export default class AircraftCommander {
         const holdParameters = {
             turnDirection,
             legLength,
-            inboundHeading: fixModel.positionModel.bearingFromPosition(aircraft.positionModel)
+            inboundHeading: inboundHeading === null ?
+                fixModel.positionModel.bearingFromPosition(aircraft.positionModel) :
+                degreesToRadians(inboundHeading)
         };
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);

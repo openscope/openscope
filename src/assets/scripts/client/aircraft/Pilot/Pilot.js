@@ -757,6 +757,7 @@ export default class Pilot {
      * @return {array} [success of operation, readback]
      */
     initiateHoldingPattern(fixName, holdParameters) {
+        const radial = heading_to_string(holdParameters.inboundHeading);
         const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
         const problematicResponse = this._fms.activateHoldForWaypointName(fixName, holdParameters);
 
@@ -765,11 +766,13 @@ export default class Pilot {
         }
 
         const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
+        const radialReadbackLog = `on the ${radial} radial`;
+        const radialReadbackSay = `on the ${radio_heading(radial)} radial`;
 
         // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
         return [true, {
-            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()}, ${holdParametersReadback}`,
-            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()}, ${holdParametersReadback}`
+            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()} ${radialReadbackLog}, ${holdParametersReadback}`,
+            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()} ${radialReadbackSay}, ${holdParametersReadback}`
         }];
     }
 
