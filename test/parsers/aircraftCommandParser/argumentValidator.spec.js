@@ -12,6 +12,7 @@ import {
     fixValidator,
     headingValidator,
     holdValidator,
+    isValidCourseString,
     squawkValidator,
     optionalAltitudeValidator,
     crossingValidator
@@ -226,9 +227,10 @@ ava('.holdValidator() returns undefined when passed zero arguments', t => {
 
 ava('.holdValidator() returns a string when passed the wrong type of arguments', t => {
     t.true(holdValidator([false]) === 'Invalid argument. Must be a string');
-    t.true(holdValidator([false, '42', '1min']) === 'Invalid argument. Must be a string');
-    t.true(holdValidator(['42', false, '1min']) === 'Invalid argument. Must be a string');
-    t.true(holdValidator(['42', 'left', false]) === 'Invalid argument. Must be a string');
+    t.true(holdValidator([false, '42', '1min', '090']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', false, '1min', '090']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', 'left', false, '090']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', 'left', '1min', false]) === 'Invalid argument. Must be a string');
 });
 
 ava('.holdValidator() returns undefined when passed a string as an argument', t => {
@@ -245,6 +247,9 @@ ava('.holdValidator() returns undefined when two strings as arguments', t => {
 
     result = holdValidator(['l', 'dumba']);
     t.true(typeof result === 'undefined');
+
+    result = holdValidator(['090', 'dumba']);
+    t.true(typeof result === 'undefined');
 });
 
 ava('.holdValidator() returns undefined when passed three strings as arguments', t => {
@@ -259,6 +264,44 @@ ava('.holdValidator() returns undefined when passed three strings as arguments',
 
     result = holdValidator(['dumba', 'right', '1nm']);
     t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', '1min', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', '1nm', '090']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.holdValidator() returns undefined when passed four strings as arguments', t => {
+    let result = holdValidator(['dumba', 'left', '1min', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1nm', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1min', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1nm', '090']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.isValidCourseString() returns true when passed a 3 digit course', (t) => {
+    t.true(isValidCourseString('000'));
+    t.true(isValidCourseString('090'));
+    t.true(isValidCourseString('360'));
+});
+
+ava('.isValidCourseString() returns false when passed an invalid course', (t) => {
+    t.false(isValidCourseString('1min'));
+    t.false(isValidCourseString('5'));
+    t.false(isValidCourseString('50'));
+    t.false(isValidCourseString('370'));
+    t.false(isValidCourseString('-10'));
+    t.false(isValidCourseString('1000'));
 });
 
 ava('.squawkValidator() returns undefined when passed a valid squawk', t => {
