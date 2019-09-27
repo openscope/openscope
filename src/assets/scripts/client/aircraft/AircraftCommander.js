@@ -12,6 +12,7 @@ import {
     FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
+import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
 import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
 import { speech_say } from '../speech';
@@ -300,19 +301,22 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
-        const [turnDirection, legLength, fixName, inboundHeading] = data;
+        const [turnDirection, legLength, fixName, radial] = data;
         const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
+        // Radial is given as the outbound course, so it needs to be inverted
+        const inboundHeading = radial === null ?
+            fixModel.positionModel.bearingFromPosition(aircraft.positionModel) :
+            radians_normalize(degreesToRadians(radial) + Math.PI);
+
         const holdParameters = {
             turnDirection,
             legLength,
-            inboundHeading: inboundHeading === null ?
-                fixModel.positionModel.bearingFromPosition(aircraft.positionModel) :
-                degreesToRadians(inboundHeading)
+            inboundHeading: inboundHeading
         };
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);

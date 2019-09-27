@@ -20,7 +20,7 @@ const HOLD_COMMAND_ARG_NAMES = {
     TURN_DIRECTION: 'turnDirection',
     LEG_LENGTH: 'legLength',
     FIX_NAME: 'fixName',
-    INBOUND_HEADING: 'inboundHeading'
+    RADIAL: 'radial'
 };
 
 /**
@@ -155,7 +155,7 @@ export const findHoldCommandByType = (type, args) => {
                 }
 
                 return arg;
-            case HOLD_COMMAND_ARG_NAMES.INBOUND_HEADING:
+            case HOLD_COMMAND_ARG_NAMES.RADIAL:
                 if (!isValidCourseString(arg)) {
                     continue;
                 }
@@ -191,12 +191,12 @@ export const holdParser = (args) => {
         findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args),
         '1min'
     );
-    const inboundHeading = _defaultTo(
-        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.INBOUND_HEADING, args),
+    const radial = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.RADIAL, args),
         null
     );
 
-    return [turnDirection, legLength, fixName, inboundHeading];
+    return [turnDirection, legLength, fixName, radial];
 };
 
 /**

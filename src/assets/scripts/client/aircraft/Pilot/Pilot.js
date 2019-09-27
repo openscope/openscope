@@ -757,7 +757,7 @@ export default class Pilot {
      * @return {array} [success of operation, readback]
      */
     initiateHoldingPattern(fixName, holdParameters) {
-        const radial = heading_to_string(holdParameters.inboundHeading);
+        const radial = heading_to_string(holdParameters.inboundHeading + Math.PI);
         const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
         const problematicResponse = this._fms.activateHoldForWaypointName(fixName, holdParameters);
 

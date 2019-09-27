@@ -175,14 +175,14 @@ pattern until further notice. The direction (left/right) may be specified,
 as well as the leg length (in minutes), as well as the fix to hold over.
 But you may also omit those specifications, in which case, the aircraft
 will enter a standard holding pattern over their present position (right
-turns, 1 minute legs, using the current bearing to the fix as the inbound
+turns, 1 minute legs, using the reciprocal bearing to the fix as the outbound
 radial). To clear the aircraft out of the hold, either clear it direct to
 a fix or assign it a new heading.
 
 _Parameters -_ Specify the direction of turns during the hold with `right`
 or `left`, the leg length, with `[time]min`, the fix to hold over
 with simply `[fixname]` and the `radial` (a 3-digit course, eg. 009) which
-defines the inbound leg. Any combination of these arguments provided in any
+defines the outbound leg. Any combination of these arguments provided in any
 order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min [radial]` or `AAL123 hold`
