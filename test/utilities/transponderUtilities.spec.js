@@ -6,6 +6,16 @@ import {
 const USA_ICAO = 'klax';
 const UK_ICAO = 'egll';
 
+ava('isDiscreteTransponderCode returns false for all non-discrete codes', (t) => {
+    // Loops are not ideal, but it saves writing 64 identical tests!
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            const squawk = `${i}${j}00`;
+            t.false(isDiscreteTransponderCode(squawk));
+        }
+    }
+});
+
 ava('generateTransponderCode returns a valid transponder code', (t) => {
     // This is basically pointless, as we're testing random output...
     const code = generateTransponderCode();
