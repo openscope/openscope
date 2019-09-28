@@ -308,15 +308,17 @@ export default class AircraftCommander {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
+        let inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+
         // Radial is given as the outbound course, so it needs to be inverted
-        const inboundHeading = radial === null ?
-            fixModel.positionModel.bearingFromPosition(aircraft.positionModel) :
-            radians_normalize(degreesToRadians(radial) + Math.PI);
+        if (radial !== null) {
+            inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
+        }
 
         const holdParameters = {
             turnDirection,
             legLength,
-            inboundHeading: inboundHeading
+            inboundHeading
         };
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);

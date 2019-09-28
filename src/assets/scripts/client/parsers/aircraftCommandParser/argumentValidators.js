@@ -169,7 +169,8 @@ export const fixValidator = (args = []) => {
 };
 
 /**
- * Returns true if the value is exactly a 3 digit decimal number
+ * Tests if value is exactly a 3 digit decimal number
+ * between 000 and 360
  *
  * @function isValidCourseString
  * @param value {string}
@@ -177,11 +178,12 @@ export const fixValidator = (args = []) => {
  */
 export const isValidCourseString = (value) => {
     // Can't rely on parseInt/convertStringToNumber as it'll parse 1min => 1
-    if (!/^[0-9]{3}$/.test(value)) {
+    if (!REGEX.THREE_DIGIT_NUMBER.test(value)) {
         return false;
     }
 
     const course = convertStringToNumber(value);
+
     return course >= 0 && course <= 360;
 };
 
