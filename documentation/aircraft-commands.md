@@ -181,7 +181,7 @@ a fix or assign it a new heading.
 
 _Parameters -_ Specify the direction of turns during the hold with `right`
 or `left`, the leg length, with `[time]min`, the fix to hold over
-with simply `[fixname]` and the `radial` (a 3-digit course, eg. 009) which
+with simply `[fixname]` and the `radial` (a 3-digit course, eg. 001 to 360) which
 defines the outbound leg. Any combination of these arguments provided in any
 order is acceptable, as long as the command `hold` comes first.
 

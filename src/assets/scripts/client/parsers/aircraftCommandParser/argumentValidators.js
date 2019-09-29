@@ -170,7 +170,7 @@ export const fixValidator = (args = []) => {
 
 /**
  * Tests if value is exactly a 3 digit decimal number
- * between 000 and 360
+ * between 001 and 360
  *
  * @function isValidCourseString
  * @param value {string}
@@ -184,7 +184,7 @@ export const isValidCourseString = (value) => {
 
     const course = convertStringToNumber(value);
 
-    return course >= 0 && course <= 360;
+    return course >= 1 && course <= 360;
 };
 
 /**

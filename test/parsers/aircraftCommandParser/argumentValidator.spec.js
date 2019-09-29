@@ -290,12 +290,13 @@ ava('.holdValidator() returns undefined when passed four strings as arguments', 
 });
 
 ava('.isValidCourseString() returns true when passed a 3 digit course', (t) => {
-    t.true(isValidCourseString('000'));
+    t.true(isValidCourseString('001'));
     t.true(isValidCourseString('090'));
     t.true(isValidCourseString('360'));
 });
 
 ava('.isValidCourseString() returns false when passed an invalid course', (t) => {
+    t.false(isValidCourseString('000'));
     t.false(isValidCourseString('1min'));
     t.false(isValidCourseString('5'));
     t.false(isValidCourseString('50'));
