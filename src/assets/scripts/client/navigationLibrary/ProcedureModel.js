@@ -6,6 +6,7 @@ import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import AirportController from '../airport/AirportController';
+import HoldCollection from '../airport/HoldCollection';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
 /**
@@ -98,6 +99,16 @@ export default class ProcedureModel {
          * @private
          */
         this._icao = '';
+
+        /**
+         * The collection of holds for this procedure
+         *
+         * @property _holdCollection
+         * @type {HoldCollection}
+         * @default null
+         * @private
+         */
+        this._holdCollection = '';
 
         /**
          * The verbally spoken name of the procedure
@@ -204,6 +215,7 @@ export default class ProcedureModel {
     init(procedureType, data) {
         this._body = data.body;
         this._draw = data.draw;
+        this._holdCollection = new HoldCollection(data.holds);
         this._icao = data.icao;
         this._name = data.name;
         this._altitude = data.altitude;
@@ -441,12 +453,10 @@ export default class ProcedureModel {
     _generateWaypoint(data) {
         const waypoint = new WaypointModel(data);
 
-        const holdModel = AirportController.airport_get().holdCollection.findHoldByFixAndProcedure(
-            waypoint.name, this.icao
-        );
+        const holdParameters = this._holdCollection.findHoldParametersByFix(waypoint.name);
 
-        if (holdModel != null) {
-            waypoint.setHoldParameters(holdModel.holdParameters);
+        if (holdParameters != null) {
+            waypoint.setHoldParameters(holdParameters);
         }
 
         return waypoint;

@@ -14,6 +14,7 @@ import {
     PROCEDURE_TYPE,
     PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
 } from '../../constants/routeConstants';
+import AirportController from '../../airport/AirportController';
 
 /**
  * A portion of a navigation route containing one or more `WaypointModel` objects.
@@ -314,6 +315,27 @@ export default class LegModel {
     }
 
     /**
+     * Generate a `WaupointMode` for the specified data
+     *
+     * @for LegModel
+     * @method _generateWaypoint
+     * @param data {string|array<string>}
+     * @returns {WaypointModel}
+     * @private
+     */
+    _generateWaypoint(data) {
+        const waypoint = new WaypointModel(data);
+
+        const holdParameters = AirportController.airport_get().holdCollection.findHoldParametersByFix(waypoint.name);
+
+        if (holdParameters != null) {
+            waypoint.setHoldParameters(holdParameters);
+        }
+
+        return waypoint;
+    }
+
+    /**
      * Generate an array of `WaypointModel`s an aircraft's FMS will need in order to
      * navigate along this leg instance.
      *
@@ -325,7 +347,7 @@ export default class LegModel {
      */
     _generateWaypointCollection(entryOrFixName, exit) {
         if (this._legType === LEG_TYPE.DIRECT) {
-            return [new WaypointModel(entryOrFixName)];
+            return [this._generateWaypoint(entryOrFixName)];
         }
 
         if (this._legType === LEG_TYPE.AIRWAY) {

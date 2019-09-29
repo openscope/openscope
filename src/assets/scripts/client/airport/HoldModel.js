@@ -16,7 +16,7 @@ export default class HoldModel extends BaseModel {
      * @constructor
      * @param holdJson {object}
      */
-    constructor(holdJson) {
+    constructor(fixName, holdJson) {
         super();
 
         /**
@@ -24,9 +24,9 @@ export default class HoldModel extends BaseModel {
          *
          * @property fixName
          * @type {string}
-         * @default ''
+         * @default fixName
          */
-        this.fixName = '';
+        this.fixName = fixName;
 
         /**
          * The parameters of the hold
@@ -36,15 +36,6 @@ export default class HoldModel extends BaseModel {
          * @default DEFAULT_HOLD_PARAMETERS
          */
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
-
-        /**
-         * The names of the procedures that the hold applies to
-         *
-         * @property procedures
-         * @type {array<string>}
-         * @default []
-         */
-        this.procedures = [];
 
         this._init(holdJson);
     }
@@ -60,15 +51,11 @@ export default class HoldModel extends BaseModel {
      * @private
      */
     _init(holdJson) {
-        this.fixName = holdJson.fixName;
-
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, {
             inboundHeading: degreesToRadians(holdJson.inboundHeading),
             legLength: holdJson.legLength,
             turnDirection: holdJson.turnDirection
         });
-
-        this.procedures = holdJson.procedures || [];
 
         return this;
     }
@@ -80,6 +67,5 @@ export default class HoldModel extends BaseModel {
     reset() {
         this.fixName = '';
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
-        this.procedures = [];
     }
 }

@@ -1,4 +1,4 @@
-import _isArray from 'lodash/isArray';
+import _isObject from 'lodash/isObject';
 import HoldModel from './HoldModel';
 import BaseCollection from '../base/BaseCollection';
 
@@ -20,9 +20,9 @@ export default class HoldCollection extends BaseCollection {
         super();
 
         // holdsJson is permitted to be null/undefined/empty, but if valid must be an array
-        if (holdJson && !_isArray(holdJson)) {
+        if (holdJson && !_isObject(holdJson)) {
             throw new TypeError(
-                `Invalid holdJson parameter passed to HoldCollection. Expected an array but found ${typeof holdJson}`
+                `Invalid holdJson parameter passed to HoldCollection. Expected an object but found ${typeof holdJson}`
             );
         }
 
@@ -63,54 +63,35 @@ export default class HoldCollection extends BaseCollection {
      *
      * @for HoldCollection
      * @method _init
-     * @param holdJson {array}
+     * @param holdJson {object}
      */
     _init(holdJson) {
-        if (holdJson) {
-            this._items = holdJson.map((hold) => new HoldModel(hold));
+        if (!holdJson) {
+            return;
         }
+
+        this._items = Object.keys(holdJson).map((fixName) => {
+            return new HoldModel(fixName, holdJson[fixName]);
+        });
     }
 
     // ------------------------------ PUBLIC ------------------------------
 
     /**
-     * Find a `HoldModel` by `fixName` if it exists within the collection
+     * Find a holdParameters by `fixName` if it exists within the collection
      *
      * @for HoldCollection
-     * @method findHoldByFix
+     * @method findHoldParametersByFix
      * @param fixName {string}
-     * @return {HoldModel|null}
+     * @return {object|null}
      */
-    findHoldByFix(fixName) {
+    findHoldParametersByFix(fixName) {
         if (!fixName) {
             return null;
         }
 
-        // if a fix is not found, find() returns `undefined` so we specifically return null here if a fix is not found
-        return this._items.find((hold) => {
-            return hold.fixName === fixName.toUpperCase() && hold.procedures.length === 0;
-        }) || null;
-    }
+        const model = this._items.find((hold) => hold.fixName === fixName.toUpperCase());
 
-    /**
-     * Find a `HoldModel` by `fixName` and `procedureName`
-     * if it exists within the collection
-     *
-     * @for HoldCollection
-     * @method findHoldByFixAndProcedure
-     * @param fixName {string}
-     * @param procedureName {string}
-     * @return {HoldModel|null}
-     */
-    findHoldByFixAndProcedure(fixName, procedureName) {
-        if (!fixName || !procedureName) {
-            return null;
-        }
-
-        // if a fix is not found, find() returns `undefined` so we specifically return null here if a fix is not found
-        return this._items.find((hold) => {
-            return hold.fixName === fixName.toUpperCase() &&
-                hold.procedures.some((proc) => proc === procedureName);
-        }) || null;
+        return model ? model.holdParameters : null;
     }
 }
