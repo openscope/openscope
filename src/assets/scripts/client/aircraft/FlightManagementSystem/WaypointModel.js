@@ -38,8 +38,8 @@ export default class WaypointModel {
 
         this.altitudeMaximum = INVALID_NUMBER;
         this.altitudeMinimum = INVALID_NUMBER;
-        this.speedMaximum = INVALID_NUMBER;
-        this.speedMinimum = INVALID_NUMBER;
+        this._speedMaximum = INVALID_NUMBER;
+        this._speedMinimum = INVALID_NUMBER;
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -220,6 +220,29 @@ export default class WaypointModel {
         return this._positionModel.relativePosition;
     }
 
+    /**
+     * The maxmimum speed allowed for the Waypoint, or hold if `#isHoldwaypoint`
+     *
+     * @returns {number}
+     */
+    get speedMaximum() {
+        if (this.isHoldWaypoint && this._holdParameters.speed !== undefined) {
+            // TODO: Should this be the minimum of _speedMaximum and speed?
+            return this._holdParameters.speed;
+        }
+
+        return this._speedMaximum;
+    }
+
+    /**
+     * The minimum speed allowed for the Waypoint
+     *
+     * @returns {number}
+     */
+    get speedMinimum() {
+        return this._speedMinimum;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -259,8 +282,8 @@ export default class WaypointModel {
     reset() {
         this.altitudeMaximum = INVALID_NUMBER;
         this.altitudeMinimum = INVALID_NUMBER;
-        this.speedMaximum = INVALID_NUMBER;
-        this.speedMinimum = INVALID_NUMBER;
+        this._speedMaximum = INVALID_NUMBER;
+        this._speedMinimum = INVALID_NUMBER;
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -448,7 +471,9 @@ export default class WaypointModel {
      * @return {boolean}
      */
     hasMaximumSpeedAtOrBelow(speed) {
-        return this.speedMaximum !== INVALID_NUMBER && this.speedMaximum <= speed;
+        const speedMax = this.speedMaximum;
+
+        return speedMax !== INVALID_NUMBER && speedMax <= speed;
     }
 
     /**
@@ -646,19 +671,19 @@ export default class WaypointModel {
         const speed = parseInt(restriction, 10);
 
         if (restriction.indexOf('+') !== INVALID_INDEX) {
-            this.speedMinimum = speed;
+            this._speedMinimum = speed;
 
             return;
         }
 
         if (restriction.indexOf('-') !== INVALID_INDEX) {
-            this.speedMaximum = speed;
+            this._speedMaximum = speed;
 
             return;
         }
 
-        this.speedMaximum = speed;
-        this.speedMinimum = speed;
+        this._speedMaximum = speed;
+        this._speedMinimum = speed;
     }
 
     /**

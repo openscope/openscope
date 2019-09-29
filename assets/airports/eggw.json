@@ -1529,9 +1529,10 @@
             "body": [["LAPRA", "A120|S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
                 "ABBOT":{
-                    "turnDirection": "right",
+                    "inboundHeading": 265,
                     "legLength": "1min",
-                    "inboundHeading": 265
+                    "speed": 220,
+                    "turnDirection": "right"
                 }
             },
             "rwy": {
@@ -1551,9 +1552,10 @@
             "body": [["CLN", "S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
                 "ABBOT":{
-                    "turnDirection": "right",
+                    "inboundHeading": 265,
                     "legLength": "1min",
-                    "inboundHeading": 265
+                    "speed": 220,
+                    "turnDirection": "right"
                 }
             },
             "rwy": {
@@ -1573,9 +1575,10 @@
             "body": [["_DET001032", "S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
                 "ABBOT":{
-                    "turnDirection": "right",
+                    "inboundHeading": 265,
                     "legLength": "1min",
-                    "inboundHeading": 265
+                    "speed": 220,
+                    "turnDirection": "right"
                 }
             },
             "rwy": {
@@ -1595,9 +1598,10 @@
             "body": [["MEGEL", "A220"], "DITOB", ["LAPRA", "A120|S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
                 "ABBOT":{
-                    "turnDirection": "right",
+                    "inboundHeading": 265,
                     "legLength": "1min",
-                    "inboundHeading": 265
+                    "speed": 150,
+                    "turnDirection": "right"
                 }
             },
             "rwy": {
@@ -1815,9 +1819,10 @@
             "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
                 "ABBOT":{
-                    "turnDirection": "right",
+                    "inboundHeading": 265,
                     "legLength": "1min",
-                    "inboundHeading": 265
+                    "speed": 220,
+                    "turnDirection": "right"
                 }
             },
             "rwy": {

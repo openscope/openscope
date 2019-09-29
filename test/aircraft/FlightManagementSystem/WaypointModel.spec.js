@@ -485,6 +485,23 @@ ava('#hasSpeedRestriction returns true when a minimum or maximum speed restricti
     t.true(modelWithRangedRestriction.hasSpeedRestriction);
 });
 
+
+ava('#hasSpeedRestriction returns true when a hold with a speed restriction is set', (t) => {
+    const modelWithHold = new WaypointModel('@BOACH');
+    const holdParametersMock = {
+        inboundHeading: 3.14,
+        legLength: '2min',
+        speed: 220,
+        turnDirection: 'left'
+    };
+
+    modelWithHold.setHoldParameters(
+        holdParametersMock
+    );
+
+    t.true(modelWithHold.hasSpeedRestriction);
+});
+
 ava('#hasSpeedRestriction returns false when neither a minimum nor maximum speed restriction exists', (t) => {
     const model = new WaypointModel('BOACH');
 
@@ -503,6 +520,7 @@ ava('#holdParameters returns object with appropriate contents when #_isHoldWaypo
     const expectedResult = {
         inboundHeading: undefined,
         legLength: '1min',
+        speed: undefined,
         timer: INVALID_NUMBER,
         turnDirection: 'right'
     };
@@ -592,6 +610,38 @@ ava('#relativePosition returns #_positionModel.relativePosition for non-vector w
     const result = waypointModel.relativePosition;
 
     t.deepEqual(result, expectedResult);
+});
+
+ava('#speedMaximum returns expected value when hold with speed restriction is inactive', (t) => {
+    const modelWithHold = new WaypointModel(['BOACH', 'S250-']);
+    const holdParametersMock = {
+        inboundHeading: 3.14,
+        legLength: '2min',
+        speed: 220,
+        turnDirection: 'left'
+    };
+
+    modelWithHold.setHoldParameters(
+        holdParametersMock
+    );
+
+    t.is(modelWithHold.speedMaximum, 250);
+});
+
+ava('#speedMaximum returns expected value when hold with speed restriction is active', (t) => {
+    const modelWithHold = new WaypointModel(['@BOACH', 'S250-']);
+    const holdParametersMock = {
+        inboundHeading: 3.14,
+        legLength: '2min',
+        speed: 220,
+        turnDirection: 'left'
+    };
+
+    modelWithHold.setHoldParameters(
+        holdParametersMock
+    );
+
+    t.is(modelWithHold.speedMaximum, holdParametersMock.speed);
 });
 
 ava('.activateHold() sets #_isHoldWaypoint to true', (t) => {
@@ -814,11 +864,13 @@ ava('.setHoldParameters() sets #_holdParameters according to provided parameters
     const holdParametersMock = {
         inboundHeading: 3.14,
         legLength: '2min',
+        speed: 220,
         turnDirection: 'left'
     };
     const expectedResult = {
         inboundHeading: 3.14,
         legLength: '2min',
+        speed: 220,
         timer: -1,
         turnDirection: 'left'
     };

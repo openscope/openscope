@@ -54,6 +54,7 @@ export default class HoldModel extends BaseModel {
         this.holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, {
             inboundHeading: degreesToRadians(holdJson.inboundHeading),
             legLength: holdJson.legLength,
+            speed: holdJson.speed || undefined,
             turnDirection: holdJson.turnDirection
         });
 
