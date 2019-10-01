@@ -1981,16 +1981,26 @@ export default class AircraftModel {
             holdParameters.inboundHeading = bearingToHoldFix;
         }
 
-        const { inboundHeading } = holdParameters;
+        const { inboundHeading, legLength } = holdParameters;
         const outboundHeading = radians_normalize(inboundHeading + Math.PI);
         const groundTrack = radians_normalize(this.groundTrack);
         const offset = getOffset(this, waypointRelativePosition, inboundHeading);
-        const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
-        const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
         const isTimerExpired = isTimerSet && gameTime > holdParameters.timer;
+
+        let holdLegDurationInSeconds;
+        if (legLength.indexOf('min') !== -1) {
+            const holdLegDurationInMinutes = legLength.replace('min', '');
+            holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
+        } else {
+            // TODO: I've been told to use GS, but should we be using the mcp speed? In theory, the
+            // a/c should have slowed to maximum speed for the hold at this stage so it should be irrelevent
+            // Leg is a distance, use the ground speed to determine the duration
+            const holdLegDistance = legLength.replace('nm', '');
+            holdLegDurationInSeconds = (holdLegDistance / this.groundSpeed) * TIME.ONE_HOUR_IN_SECONDS;
+        }
 
         if (isPastFix && !this._isEstablishedOnHoldingPattern) {
             this._isEstablishedOnHoldingPattern = true;
@@ -2018,8 +2028,6 @@ export default class AircraftModel {
         this.target.turn = holdParameters.turnDirection;
 
         return nextTargetHeading;
-
-        // TODO: add distance based hold
     }
 
     /**
