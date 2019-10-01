@@ -3,7 +3,6 @@
 - [#1436](https://github.com/openscope/openscope/issues/1436) - Add support for multiple video maps (no toggling yet)
 - [#420](https://github.com/openscope/openscope/issues/420) - Include water in terrain files
 
-
 ### Bugfixes
 - [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
 - [#1395](https://github.com/openscope/openscope/issues/1395) - Fix aircraft's wind correction angle math (which was causing go-arounds)
@@ -13,7 +12,6 @@
 - [#23](https://github.com/openscope/openscope/issues/23) - Ensure focus remains on the text input box in MS Edge
 - [#1448](https://github.com/openscope/openscope/issues/1448) - Lower spawn altitudes of KSFO arrivals so can comply with STAR restrictions
 - [#1446](https://github.com/openscope/openscope/issues/1446) - Ensure `sh`/`sah` commands return headings within 001-360
-
 
 ### Enhancements & Refactors
 - [#1410](https://github.com/openscope/openscope/issues/1410) - Restore functionality of local server from `npm run start`
