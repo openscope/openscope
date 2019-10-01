@@ -21,7 +21,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import { radiansToDegrees } from '../utilities/unitConverters';
+import { heading_to_string, radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  *
@@ -523,7 +523,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayHeading(aircraft) {
-        const heading = _round(radiansToDegrees(aircraft.heading));
+        const heading = heading_to_string(aircraft.heading);
         const readback = {};
 
         readback.log = `heading ${heading}`;
@@ -543,7 +543,7 @@ export default class AircraftCommander {
             return [false, 'we haven\'t been assigned a heading'];
         }
 
-        const heading = _round(radiansToDegrees(aircraft.mcp.heading));
+        const heading = heading_to_string(aircraft.mcp.heading);
         const readback = {};
 
         readback.log = `assigned heading ${heading}`;
