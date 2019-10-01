@@ -21,7 +21,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import { radiansToDegrees } from '../utilities/unitConverters';
+import { heading_to_string, radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  *
@@ -383,7 +383,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
-        return aircraft.pilot.maintainPresentHeading(aircraft.heading);
+        return aircraft.pilot.maintainPresentHeading(aircraft);
     }
 
     /**
@@ -523,7 +523,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayHeading(aircraft) {
-        const heading = _round(radiansToDegrees(aircraft.heading));
+        const heading = heading_to_string(aircraft.heading);
         const readback = {};
 
         readback.log = `heading ${heading}`;
@@ -543,7 +543,7 @@ export default class AircraftCommander {
             return [false, 'we haven\'t been assigned a heading'];
         }
 
-        const heading = _round(radiansToDegrees(aircraft.mcp.heading));
+        const heading = heading_to_string(aircraft.mcp.heading);
         const readback = {};
 
         readback.log = `assigned heading ${heading}`;
@@ -635,7 +635,7 @@ export default class AircraftCommander {
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = this._aircraftController.findAircraftById(runway.queue[spotInQueue - 1]);
-        const wind = airport.getWind();
+        const wind = airport.getWindAtAltitude();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
         const readback = {};

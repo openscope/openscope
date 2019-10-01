@@ -793,6 +793,7 @@ export default class CanvasController {
         cc.fillStyle = this.theme.SCOPE.STAR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
+        cc.textAlign = 'right';
 
         for (let i = 0; i < starLines.length; i++) {
             const star = starLines[i];
@@ -858,10 +859,11 @@ export default class CanvasController {
      */
     _drawText(cc, position, labels) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+        const dx = cc.textAlign === 'right' ? -10 : 10;
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
-            const positionX = positionInPx.x + 10;
+            const positionX = positionInPx.x + dx;
             const positionY = positionInPx.y + (15 * k);
 
             cc.fillText(textItem, positionX, positionY);
@@ -1802,8 +1804,8 @@ export default class CanvasController {
 
             const terrainLevel = airportTerrain[elevation];
 
-            if (elevation < 1000 && !this._hasSeenTerrainWarning) {
-                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
+            if (elevation < 0 && !this._hasSeenTerrainWarning) {
+                console.warn(`${airport.icao}.geojson contains 'terrain' ` +
                     ' below sea level, which is not supported!');
 
                 this._hasSeenTerrainWarning = true;
@@ -1818,11 +1820,9 @@ export default class CanvasController {
 
         cc.restore();
 
-        if (max_elevation === 0) {
-            return;
+        if (max_elevation !== 0) {
+            this._drawTerrainElevationLegend(cc, max_elevation);
         }
-
-        this._drawTerrainElevationLegend(cc, max_elevation);
 
         cc.restore();
     }
@@ -1895,7 +1895,8 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'maps') || !this._shouldDrawVideoMap) {
+        // Don't bother with the canvas set up if the airport has no visible maps
+        if (!airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
             return;
         }
 
@@ -1908,8 +1909,9 @@ export default class CanvasController {
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
-        for (let i = 0; i < airportModel.maps.base.length; i++) {
-            const mapItem = airportModel.maps.base[i];
+        const lines = airportModel.mapCollection.getVisibleMapLines();
+
+        lines.forEach((mapItem) => {
             cc.moveTo(
                 CanvasStageModel.translateKilometersToPixels(mapItem[0]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[1])
@@ -1918,7 +1920,7 @@ export default class CanvasController {
                 CanvasStageModel.translateKilometersToPixels(mapItem[2]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[3])
             );
-        }
+        });
 
         cc.stroke();
         cc.restore();

@@ -2,6 +2,7 @@ export const TERRAIN_THEME = {
     BORDER_OPACITY: 1,
     FILL_OPACITY: 0.1,
     COLOR: {
+        0: '199, 100%, 30%',
         1000: '139, 70%, 35%',
         2000: '104, 46%, 56%',
         3000: '60, 25%, 100%',
