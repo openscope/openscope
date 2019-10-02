@@ -179,37 +179,44 @@ ava('.fixValidator() returns a string when passed anything other than a string',
 
 ava('.headingValidator() returns a string when passed the wrong number of arguments', t => {
     let result = headingValidator(['042']);
-    t.true(typeof result === 'undefined');
+    t.is(result, undefined);
 
     result = headingValidator(['l', '42']);
-    t.true(typeof result === 'undefined');
+    t.is(result, undefined);
 
     result = headingValidator();
-    t.true(result === 'Invalid argument length. Expected one or two arguments');
+    t.is(result, 'Invalid argument length. Expected one or two arguments');
 
     result = headingValidator([]);
-    t.true(result === 'Invalid argument length. Expected one or two arguments');
+    t.is(result, 'Invalid argument length. Expected one or two arguments');
 
     result = headingValidator(['l', '42', 'threeve']);
-    t.true(result === 'Invalid argument length. Expected one or two arguments');
+    t.is(result, 'Invalid argument length. Expected one or two arguments');
 });
 
 ava('.headingValidator() returns a string when passed the wrong type of arguments', t => {
-    t.true(headingValidator(['threeve']) === 'Invalid argument. Heading must be a number');
-    t.true(headingValidator(['42', '42']) === 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
-    t.true(headingValidator(['l', 'threeve']) === 'Invalid argument. Heading must be a number');
-    t.true(headingValidator(['42', '42']) === 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
-    t.true(headingValidator(['l', 'threeve']) === 'Invalid argument. Heading must be a number');
+    t.is(headingValidator(['threeve']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['42', '42']), 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
+    t.is(headingValidator(['l', 'threeve']), 'Invalid argument. Heading must be a number');
+    t.is(headingValidator(['42', '42']), 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
+    t.is(headingValidator(['l', 'threeve']), 'Invalid argument. Heading must be a number');
+    t.is(headingValidator(['000']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['361']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['l', '000']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['l', '361']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['l', '0']), 'Invalid argument. Incremental heading must be positive');
+    t.is(headingValidator(['l', '-9']), 'Invalid argument. Incremental heading must be positive');
 });
 
 ava('.headingValidator() returns undefined when passed a number as a single argument', t => {
     const result = headingValidator(['042']);
-    t.true(typeof result === 'undefined');
+    t.is(result, undefined);
 });
 
 ava('.headingValidator() returns undefined when passed a string and a number as arguments', t => {
-    const result = headingValidator(['l', '042']);
-    t.true(typeof result === 'undefined');
+    t.is(headingValidator(['l', '2']), undefined);
+    t.is(headingValidator(['l', '42']), undefined);
+    t.is(headingValidator(['l', '042']), undefined);
 });
 
 ava('.holdValidator() returns a string when passed the wrong number of arguments', t => {
