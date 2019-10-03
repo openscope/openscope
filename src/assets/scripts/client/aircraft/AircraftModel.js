@@ -1989,16 +1989,6 @@ export default class AircraftModel {
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
         const isTimerExpired = isTimerSet && gameTime > holdParameters.timer;
-        let holdLegDurationInSeconds;
-
-        if (legLength.indexOf('min') !== -1) {
-            const holdLegDurationInMinutes = legLength.replace('min', '');
-            holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
-        } else {
-            // Leg is a distance, use the ground speed to determine the duration
-            const holdLegDistance = legLength.replace('nm', '');
-            holdLegDurationInSeconds = (holdLegDistance / this.groundSpeed) * TIME.ONE_HOUR_IN_SECONDS;
-        }
 
         if (isPastFix && !this._isEstablishedOnHoldingPattern) {
             this._isEstablishedOnHoldingPattern = true;
@@ -2011,6 +2001,17 @@ export default class AircraftModel {
         let nextTargetHeading = outboundHeading;
 
         if (abs(groundTrack - outboundHeading) < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE && !isTimerSet) {
+            let holdLegDurationInSeconds;
+
+            if (legLength.indexOf('min') !== -1) {
+                const holdLegDurationInMinutes = legLength.replace('min', '');
+                holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
+            } else {
+                // Leg is a distance, use the ground speed to determine the duration
+                const holdLegDistance = legLength.replace('nm', '');
+                holdLegDurationInSeconds = (holdLegDistance / this.groundSpeed) * TIME.ONE_HOUR_IN_SECONDS;
+            }
+
             currentWaypoint.setHoldTimer(gameTime + holdLegDurationInSeconds);
         }
 
