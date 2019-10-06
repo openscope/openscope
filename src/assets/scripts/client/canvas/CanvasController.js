@@ -415,6 +415,7 @@ export default class CanvasController {
         this._clearCanvasContext(dynamicCanvasCtx);
         this._drawRadarTargetList(dynamicCanvasCtx);
         this._drawAircraftDataBlocks(dynamicCanvasCtx);
+        this._drawMeasureTool(dynamicCanvasCtx);
 
         this._shouldShallowRender = false;
         this._shouldDeepRender = false;
@@ -1215,6 +1216,144 @@ export default class CanvasController {
         // this.canvas_draw_future_track_fixes(cc, twin, future_track);
 
         cc.restore();
+    }
+
+    /**
+     * Draw the `MeasureTool` path and text labels
+     *
+     * @for CanvasController
+     * @method _drawMeasureTool
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawMeasureTool(cc) {
+        const { measureTool } = prop.input;
+
+        if (!measureTool.hasLegs) {
+            return;
+        }
+
+        const pathInfo = measureTool.getPathInfo();
+
+        this._drawMeasureToolPath(cc, pathInfo);
+        this._drawMeasureToolLabels(cc, pathInfo);
+
+        cc.restore();
+    }
+
+    /**
+     * Draw the `MeasureTool` text labels
+     *
+     * @for CanvasController
+     * @method _drawMeasureToolLabels
+     * @param cc {HTMLCanvasContext}
+     * @param pathInfo {object} as returned by `MeasureTools.getPointsAndLabels()`
+     * @private
+     */
+    _drawMeasureToolLabels(cc, pathInfo) {
+        let leg = pathInfo.firstLeg.next;
+        const values = [];
+
+        // This way the points are translated only once
+        while (leg != null) {
+            const p = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+
+            values.push({
+                x: p.x,
+                y: p.y,
+                labels: leg.labels
+            });
+
+            leg = leg.next;
+        }
+
+        // Label backgrounds
+        cc.fillStyle = this.theme.DATA_BLOCK.BACKGROUND_SELECTED;
+
+        values.forEach((item) => {
+            const { x, y, labels } = item;
+            const height = 10 + (12 * labels.length);
+            const width = 150;
+
+            cc.fillRect(x, y, width, height);
+        });
+
+        // Label text
+        cc.fillStyle = 'orange';
+        cc.font = '10px monoOne, monospace';
+
+        values.forEach((item) => {
+            const { labels } = item;
+            const x = item.x + 5;
+            const y = item.y + 15;
+
+            labels.forEach((line, index) => {
+                cc.fillText(line, x, y + (12 * index));
+            });
+        });
+    }
+
+    /**
+     * Draw the `MeasureTool` path
+     *
+     * @for CanvasController
+     * @method _drawMeasureToolPath
+     * @param cc {HTMLCanvasContext}
+     * @param pathInfo {object} as returned by `MeasureTools.getPointsAndLabels()`
+     * @private
+     */
+    _drawMeasureToolPath(cc, pathInfo) {
+        const { initialTurn, firstLeg } = pathInfo;
+        let leg = firstLeg.next; // We start enumerating from the 2nd leg (the first complete leg)
+        const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(firstLeg.endPoint);
+        const firstMidPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+        // TODO: Colours should be move to themes
+        cc.strokeStyle = 'orange';
+
+        cc.beginPath();
+
+        // If available, this draws the arc the a/c will fly to intercept the course to the
+        // first fix
+        if (initialTurn !== null) {
+            const {
+                isRHT, center, entryAngle, exitAngle, turnRadius
+            } = initialTurn;
+            const p = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(center);
+            const radius = CanvasStageModel.translateKilometersToPixels(turnRadius);
+
+            // The angles calculated in the `MeasureTool` are magnetic, and have to be shifted CCW 90°
+            cc.arc(p.x, p.y, radius, entryAngle - Math.PI / 2, exitAngle - Math.PI / 2, !isRHT);
+        }
+
+        // Draw up to the first midpoint
+        cc.moveTo(firstPoint.x, firstPoint.y);
+        cc.lineTo(firstMidPoint.x, firstMidPoint.y);
+
+        // Iterate through the linked list
+        while (leg != null) {
+            const { next } = leg;
+            const radius = CanvasStageModel.translateKilometersToPixels(leg.radius);
+            const p0 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.endPoint);
+
+            if (next === null) {
+                // This is the last leg, so simply draw to the end point
+                cc.lineTo(p0.x, p0.y);
+            } else {
+                // Draw an arc'd line to the next midpoint
+                const p1 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(next.midPoint);
+
+                cc.arcTo(p0.x, p0.y, p1.x, p1.y, radius);
+                cc.lineTo(p1.x, p1.y);
+            }
+
+            leg = next;
+        }
+
+        cc.stroke();
     }
 
     /**

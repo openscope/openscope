@@ -20,6 +20,10 @@ export const COMMAND_CONTEXT = {
  */
 export const KEY_CODES = {
 
+    CONTROL_LEFT: 'ControlLeft',
+    CONTROL_RIGHT: 'ControlRight',
+    SHIFT_LEFT: 'ShiftLeft',
+    SHIFT_RIGHT: 'ShiftRight',
     ENTER: 'Enter',
     ESCAPE: 'Escape',
     TAB: 'Tab',
