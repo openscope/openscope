@@ -10,6 +10,8 @@ import UiController from './ui/UiController';
 import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
 import EventTracker from './EventTracker';
+import MeasureTool from './measurement/MeasureTool';
+import FixCollection from './navigationLibrary/FixCollection';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -61,6 +63,7 @@ export default class InputController {
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
+        this.input.measureTool = new MeasureTool();
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
         this._init();
@@ -85,6 +88,7 @@ export default class InputController {
      */
     setupHandlers() {
         this.onKeydownHandler = this._onKeydown.bind(this);
+        this.onKeyupHandler = this._onKeyup.bind(this);
         this.onCommandInputChangeHandler = this._onCommandInputChange.bind(this);
         this.onMouseScrollHandler = this._onMouseScroll.bind(this);
         this.onMouseClickAndDragHandler = this._onMouseClickAndDrag.bind(this);
@@ -102,6 +106,7 @@ export default class InputController {
      */
     enable() {
         this.$window.on('keydown', this.onKeydownHandler);
+        this.$window.on('keyup', this.onKeyupHandler);
         this.$commandInput.on('input', this.onCommandInputChangeHandler);
         // TODO: these are non-standard events and will be deprecated soon. this should be moved
         // over to the `wheel` event. This should also be moved over to `.on()` instead of `.bind()`
@@ -127,6 +132,7 @@ export default class InputController {
      */
     disable() {
         this.$window.off('keydown', this.onKeydownHandler);
+        this.$window.off('keyup', this.onKeyupHandler);
         this.$commandInput.off('input', this.onCommandInputChangeHandler);
         // uncomment only after `.on()` for this event has been implemented.
         // this.$commandInput.off('DOMMouseScroll mousewheel', this.onMouseScrollHandler);
@@ -161,6 +167,7 @@ export default class InputController {
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
+        this.input.measureTool = null;
 
         return this;
     }
@@ -207,6 +214,91 @@ export default class InputController {
     }
 
     /**
+     * Adds a point to the measuring tool
+     *
+     * @for InputController
+     * @method _addMeasurePoint
+     * @param event {jquery Event}
+     * @param doReplaceLast {boolean} Indicates whether this will replace the last point
+     * @private
+     */
+    _addMeasurePoint(event, doReplaceLast = false) {
+        const currentMousePosition = CanvasStageModel.translateMousePositionToCanvasPosition(
+            event.pageX, event.pageY
+        );
+        const { x, y } = currentMousePosition;
+        const { measureTool } = this.input;
+        const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToMousePosition(x, y);
+        const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToMousePosition(x, y);
+        let distance;
+        let modelToUse;
+
+        // Which model is closest
+        if (distanceFromFix < distanceFromAircraft) {
+            distance = distanceFromFix;
+            modelToUse = fixModel;
+        } else {
+            distance = distanceFromAircraft;
+            modelToUse = aircraftModel;
+        }
+
+        if (distance > CanvasStageModel.translatePixelsToKilometers(20)) {
+            // Nothing's near the cursor, so we'll use the cursor point
+            modelToUse = this._translatePointToKilometers(x, y);
+        }
+
+        if (!measureTool.hasStarted) {
+            measureTool.startMeasuring(modelToUse);
+        } else if (doReplaceLast) {
+            measureTool.updateLastPoint(modelToUse);
+        } else {
+            measureTool.addPoint(modelToUse);
+        }
+
+        // Mark for shallow render so the draw motion is smooth
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+    }
+
+    /**
+     * Removes the last point in the measuring tool
+     *
+     * @for InputController
+     * @method _removeLastMeasurePoint
+     * @private
+     */
+    _removeLastMeasurePoint() {
+        this.input.measureTool.removeLastPoint();
+
+        // Mark for shallow render so the feedback is immediate
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+    }
+
+    /**
+     * Starts the measuring tool
+     *
+     * @for InputController
+     * @method _startMeasuring
+     * @private
+     */
+    _startMeasuring() {
+        this.input.measureTool.isMeasuring = true;
+    }
+
+    /**
+     * Stops the measuring tool
+     *
+     * @for InputController
+     * @method _stopMeasuring
+     * @private
+     */
+    _stopMeasuring() {
+        this.input.measureTool.reset();
+
+        // Mark for shallow render so the feedback is immediate
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+    }
+
+    /**
      * @for InputController
      * @method _onMouseScroll
      * @param event {jquery Event}
@@ -227,6 +319,13 @@ export default class InputController {
      * @param event {jquery Event}
      */
     _onMouseClickAndDrag(event) {
+        const { measureTool } = this.input;
+
+        if (measureTool.isMeasuring && measureTool.hasStarted) {
+            this._addMeasurePoint(event, true);
+            return this;
+        }
+
         if (!this.input.isMouseDown) {
             return this;
         }
@@ -351,6 +450,11 @@ export default class InputController {
 
         // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (code) {
+            case KEY_CODES.SHIFT_LEFT:
+            case KEY_CODES.SHIFT_RIGHT:
+                this._startMeasuring();
+
+                break;
             case KEY_CODES.BAT_TICK:
             case LEGACY_KEY_CODES.BAT_TICK:
                 this.$commandInput.val(`${currentCommandInputValue}\` `);
@@ -499,6 +603,31 @@ export default class InputController {
                 break;
             default:
                 this.$commandInput.focus();
+        }
+    }
+
+
+    /**
+     * @for InputController
+     * @method _onKeydown
+     * @param event {jquery Event}
+     * @private
+     */
+    _onKeyup(event) {
+        let { code } = event.originalEvent;
+
+        if (code === undefined) {
+            // fallback for legacy browsers like IE/Edge
+            code = event.originalEvent.keyCode;
+        }
+
+        switch (code) {
+            case KEY_CODES.SHIFT_LEFT:
+            case KEY_CODES.SHIFT_RIGHT:
+                this._stopMeasuring();
+
+                break;
+            default:
         }
     }
 
@@ -828,10 +957,27 @@ export default class InputController {
      * @private
      */
     _findClosestAircraftAndDistanceToMousePosition(x, y) {
-        return this._aircraftController.aircraft_get_nearest([
-            CanvasStageModel.translatePixelsToKilometers(x - CanvasStageModel._panX),
-            CanvasStageModel.translatePixelsToKilometers(y + CanvasStageModel._panY)
-        ]);
+        return this._aircraftController.aircraft_get_nearest(
+            this._translatePointToKilometers(x, y)
+        );
+    }
+
+    /**
+     * Facade for `FixCollection.getNearest`
+     *
+     * Accepts current mouse position in canvas coordinates x, y
+     *
+     * @for InputController
+     * @method _findClosestFixAndDistanceToMousePosition
+     * @param x {number}
+     * @param y {number}
+     * @returns [FixModel, number]
+     * @private
+     */
+    _findClosestFixAndDistanceToMousePosition(x, y) {
+        return FixCollection.getNearestFix(
+            this._translatePointToKilometers(x, y)
+        );
     }
 
     /**
@@ -842,7 +988,11 @@ export default class InputController {
      * @private
      */
     _onRightMousePress(event) {
-        this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
+        if (this.input.measureTool.isMeasuring) {
+            this._removeLastMeasurePoint();
+        } else {
+            this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
+        }
     }
 
     /**
@@ -858,6 +1008,12 @@ export default class InputController {
      * @private
      */
     _onLeftMouseButtonPress(event) {
+        if (this.input.measureTool.isMeasuring) {
+            this._addMeasurePoint(event);
+
+            return;
+        }
+
         const currentMousePosition = CanvasStageModel.translateMousePositionToCanvasPosition(event.pageX, event.pageY);
         const [aircraftModel, distanceFromPosition] = this._findClosestAircraftAndDistanceToMousePosition(
             currentMousePosition.x,
@@ -904,5 +1060,22 @@ export default class InputController {
             mousePositionY
         ];
         this.input.isMouseDown = true;
+    }
+
+    /**
+     * Translate the specified x, y pixel coordinates to map kilometers
+     *
+     * @for InputController
+     * @method _translatePointToKilometers
+     * @param x {number}
+     * @param y {number}
+     * @returns {array<number>}
+     * @private
+     */
+    _translatePointToKilometers(x, y) {
+        return [
+            CanvasStageModel.translatePixelsToKilometers(x - CanvasStageModel._panX),
+            CanvasStageModel.translatePixelsToKilometers(y + CanvasStageModel._panY)
+        ];
     }
 }
