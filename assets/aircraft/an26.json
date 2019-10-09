@@ -1,0 +1,37 @@
+{
+    "name": "Antonov 26",
+    "icao": "AN26",
+    "engines": {
+        "number": 2,
+        "type": "T"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "D"
+    },
+    "ceiling": 26000,
+    "rate": {
+        "climb":      1500,
+        "descent":    1500,
+        "accelerate": 5,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.200,
+        "landing": 0.700
+    },
+    "speed":{
+        "min":     105,
+        "landing": 115,
+        "cruise":  240,
+        "cruiseM": null,
+        "max":     291,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

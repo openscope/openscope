@@ -1,0 +1,19 @@
+{
+    "icao": "ktk",
+    "name": "Azur Air",
+    "callsign": {
+        "name": "Azur Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 4],
+            ["B739", 2],
+            ["B752", 8],
+            ["B763", 11],
+            ["B77W", 4]
+        ]
+    }
+}

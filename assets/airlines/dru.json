@@ -1,15 +1,16 @@
 {
-    "icao": "iza",
-    "name": "Izhavia",
+    "icao": "dru",
+    "name": "ALROSA",
     "callsign": {
-        "name": "Izhavia",
+        "name": "Mirny",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["YK42", 8]
+            ["B737", 2],
+            ["B738", 4]
         ]
     }
 }
