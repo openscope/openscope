@@ -1,0 +1,17 @@
+{
+    "icao": "elb",
+    "name": "Ellinair",
+    "callsign": {
+        "name": "Ellinair",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2],
+            ["A320", 6],
+            ["B733", 2]
+        ]
+    }
+}

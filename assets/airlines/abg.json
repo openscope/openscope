@@ -1,0 +1,18 @@
+{
+    "icao": "abg",
+    "name": "Royal Flight",
+    "callsign": {
+        "name": "Royal Flight",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 3],
+            ["B752", 7],
+            ["B763", 3],
+            ["B77W", 3]
+        ]
+    }
+}
