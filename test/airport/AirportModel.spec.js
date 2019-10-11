@@ -23,7 +23,7 @@ ava('does not call .setCurrentPosition() when airportData does not have a positi
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
-    model.parse(invalidAirportJsonMock);
+    model.init(invalidAirportJsonMock);
 
     t.false(setCurrentPositionSpy.called);
 });
@@ -32,7 +32,7 @@ ava('calls .setCurrentPosition() when airportData has a position value', (t) => 
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
-    model.parse(AIRPORT_JSON_KLAS_MOCK);
+    model.init(AIRPORT_JSON_KLAS_MOCK);
 
     t.true(setCurrentPositionSpy.calledOnce);
 });
@@ -53,15 +53,6 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
     model.buildAirportAirspace();
 
     t.true(!model.airspace);
-});
-
-ava('.buildAirportMaps() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
-    model.maps = null;
-
-    model.buildAirportMaps();
-
-    t.true(!model.maps);
 });
 
 ava('.buildRestrictedAreas() returns early when passed a null or undefined argument', (t) => {
@@ -148,6 +139,12 @@ ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid cat
     const result = model.getActiveRunwayForCategory('threeve');
 
     t.true(result.name === model.arrivalRunwayModel.name);
+});
+
+ava('.mapCollection is valid', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+
+    t.true(model.mapCollection.hasVisibleMaps);
 });
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {

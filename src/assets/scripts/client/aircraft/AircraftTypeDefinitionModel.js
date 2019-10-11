@@ -274,4 +274,23 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     isSameRunwaySeparationCatThree() {
         return typeof this.category.srs === 'undefined' || this.category.srs === 3;
     }
+
+    /**
+     * Get the weight classifier for an aircraft's callsign, as spoken over the radio
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method getRadioWeightClass
+     * @return {string}
+     */
+    getRadioWeightClass() {
+        if (this.weightClass === HEAVY_LETTER) {
+            return 'heavy';
+        }
+
+        if (this.weightClass === SUPER_LETTER) {
+            return 'super';
+        }
+
+        return '';
+    }
 }

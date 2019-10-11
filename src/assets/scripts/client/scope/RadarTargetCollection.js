@@ -152,10 +152,10 @@ export default class RadarTargetCollection extends BaseCollection {
     findRadarTargetModelForAircraftReference(aircraftReference) {
         // Store variable because `this` within lodash `_filter` has different scope
         const radarTargetModels = this._items;
-        const results = _filter(radarTargetModels, ({ aircraftModel }) =>
-            aircraftModel.transponderCode === aircraftReference ||
-            aircraftModel.callsign === aircraftReference
-        );
+        const results = _filter(radarTargetModels, ({ aircraftModel }) => {
+            return aircraftModel.transponderCode === aircraftReference ||
+                aircraftModel.callsign === aircraftReference;
+        });
 
         if (results.length > 1) {
             return;
@@ -174,9 +174,9 @@ export default class RadarTargetCollection extends BaseCollection {
      * @param aircraftModel {AircraftModel}
      */
     removeRadarTargetModelForAircraftModel = (aircraftModel) => {
-        const collectionWithAircraftRemoved = _filter(this._items, (radarTargetModel) =>
-            radarTargetModel.aircraftModel.id !== aircraftModel.id
-        );
+        const collectionWithAircraftRemoved = _filter(this._items, (radarTargetModel) => {
+            return radarTargetModel.aircraftModel.id !== aircraftModel.id;
+        });
 
         this._items = collectionWithAircraftRemoved;
     };

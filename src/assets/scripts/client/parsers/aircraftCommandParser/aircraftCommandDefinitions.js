@@ -19,14 +19,16 @@ import {
     headingValidator,
     holdValidator,
     squawkValidator,
-    optionalAltitudeValidator
+    optionalAltitudeValidator,
+    crossingValidator
 } from './argumentValidators';
 import {
     altitudeParser,
     headingParser,
     holdParser,
     timewarpParser,
-    optionalAltitudeParser
+    optionalAltitudeParser,
+    crossingParser
 } from './argumentParsers';
 
 /**
@@ -143,17 +145,11 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    rate: {
-        validate: singleArgumentValidator,
-        // calling method is expecting an array with values that will get spread later, thus we purposly
-        // return an array here
-        parse: (args) => [convertStringToNumber(args)]
-    },
-    expectArrivalRunway: {
+    direct: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    direct: {
+    expectArrivalRunway: {
         validate: singleArgumentValidator,
         parse: noop
     },
@@ -170,11 +166,17 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    route: {
+    rate: {
+        validate: singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (args) => [convertStringToNumber(args)]
+    },
+    reroute: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    reroute: {
+    route: {
         validate: singleArgumentValidator,
         parse: noop
     },
@@ -209,12 +211,20 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroOrOneArgumentValidator,
         parse: noop
     },
+    cancelHold: {
+        validate: zeroOrOneArgumentValidator,
+        parse: noop
+    },
 
     // these commands have specific argument requirements and may need to be parsed
     // into the correct type (sting -> number)
     altitude: {
         validate: altitudeValidator,
         parse: altitudeParser
+    },
+    cross: {
+        validate: crossingValidator,
+        parse: crossingParser
     },
     fix: {
         validate: fixValidator,

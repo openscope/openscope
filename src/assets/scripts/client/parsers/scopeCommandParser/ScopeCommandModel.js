@@ -8,7 +8,7 @@ import {
     EXPLICIT_COMMANDS,
     COMMAND_FUNCTIONS
 } from './scopeCommandMap';
-import { DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR } from '../../constants/scopeCommandConstants';
+import { DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR } from '../../constants/scopeConstants';
 
 // TODO: Replace dummy sector codes with a proper `SectorCollection`
 const SECTOR_HANDOFF_CODES = ['18', '19', '10', '12'];
@@ -65,7 +65,7 @@ export default class ScopeCommandModel {
      * @param command {string}
      */
     _init(command) {
-        const pieces = command.toUpperCase().split(' ');
+        const pieces = _without(command.toUpperCase().split(' '), '');
 
         this.aircraftReference = _last(pieces);
         this.commandFunction = this._extractCommandFunction(pieces);

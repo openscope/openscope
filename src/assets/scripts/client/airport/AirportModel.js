@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import _ceil from 'lodash/ceil';
 import _chunk from 'lodash/chunk';
+import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -10,6 +11,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MapCollection from './MapCollection';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
@@ -21,6 +23,7 @@ import {
     round
 } from '../math/core';
 import {
+    vectorize_2d,
     vlen,
     vsub,
     vadd,
@@ -30,6 +33,7 @@ import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
+import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -159,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * Dictionary of polys that make up any airport video maps
+         * Collection of all `MapModel`s available to be displayed on the scope
          *
-         * @property maps
-         * @type {object}
-         * @default {}
+         * @property mapCollection
+         * @type {MapCollection}
+         * @default null
          */
-        this.maps = {};
+        this.mapCollection = null;
 
         /**
          * @property restricted_areas
@@ -223,34 +227,34 @@ export default class AirportModel {
         };
 
         /**
+         * @for AirportModel
          * @property ctr_radius
          * @type {nunmber}
-         * @default DEFAULT_CTR_RADIUS_KM
          */
-        this.ctr_radius = DEFAULT_CTR_RADIUS_KM;
+        this.ctr_radius = null;
 
         /**
+         * @for AirportModel
          * @property ctr_ceiling
          * @type {nunmber}
-         * @default DEFAULT_CTR_CEILING_FT
          */
-        this.ctr_ceiling = DEFAULT_CTR_CEILING_FT;
+        this.ctr_ceiling = null;
 
         /**
+         * @for AirportModel
          * @property initial_alt
          * @type {nunmber}
-         * @default DEFAULT_INITIAL_ALTITUDE_FT
          */
-        this.initial_alt = DEFAULT_INITIAL_ALTITUDE_FT;
+        this.initial_alt = null;
 
         /**
+         * @for AirportModel
          * @property rangeRings
          * @type {object}
-         * @default DEFAULT_RANGE_RINGS
          */
-        this.rangeRings = DEFAULT_RANGE_RINGS;
+        this.rangeRings = null;
 
-        this.parse(options);
+        this.init(options);
     }
 
     /**
@@ -343,10 +347,10 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method parse
+     * @method init
      * @param data {object}
      */
-    parse(data) {
+    init(data) {
         this.name = _get(data, 'name', this.name);
         this.icao = _get(data, 'icao', this.icao).toLowerCase();
         this.level = _get(data, 'level', this.level);
@@ -365,13 +369,13 @@ export default class AirportModel {
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
-        this.rangeRings = _get(data, 'rangeRings');
+        this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
+        this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
-        this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
     }
@@ -415,52 +419,16 @@ export default class AirportModel {
         this.perimeter = _head(this.airspace);
         this.ctr_radius = Math.max(
             ..._map(this.perimeter.poly, (vertexPosition) => vlen(
-                    vsub(
-                        vertexPosition.relativePosition,
-                        DynamicPositionModel.calculateRelativePosition(
-                            this.rangeRings.center,
-                            this._positionModel,
-                            this.magneticNorth
-                        )
+                vsub(
+                    vertexPosition.relativePosition,
+                    DynamicPositionModel.calculateRelativePosition(
+                        this.rangeRings.center,
+                        this._positionModel,
+                        this.magneticNorth
                     )
                 )
-            )
+            ))
         );
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildAirportMaps
-     * @param maps {object}
-     */
-    buildAirportMaps(maps) {
-        if (!maps) {
-            return;
-        }
-
-        _forEach(maps, (map, key) => {
-            this.maps[key] = [];
-
-            const outputMap = this.maps[key];
-            const lines = map;
-
-            _forEach(lines, (line) => {
-                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
-                const lineStartCoordinates = [line[0], line[1]];
-                const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineStartCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const endPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineEndCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-
-                outputMap.push(lineVerticesRelativePositions);
-            });
-        });
     }
 
     /**
@@ -508,6 +476,18 @@ export default class AirportModel {
     }
 
     /**
+     * Return an altitude clamped within the min/max assignable altitudes for this airport
+     *
+     * @for AirportModel
+     * @method clampWithinAssignableAltitudes
+     * @param altitude
+     * @return {number}
+     */
+    clampWithinAssignableAltitudes(altitude) {
+        return _clamp(altitude, this.minAssignableAltitude, this.maxAssignableAltitude);
+    }
+
+    /**
      * @for AirportModel
      * @method updateCurrentWind
      * @param currentWind
@@ -544,25 +524,25 @@ export default class AirportModel {
     }
 
     /**
+     * Get the wind at the specified altitude.
+     * When the altitude is not specified, the airport's surface wind is given.
+     *
      * @for AirportModel
-     * @method getWind
-     * @return wind {number}
+     * @method getWindAtAltitude
+     * @param {number} altitude
+     * @returns {object<angle, speed>}
      */
-    getWind() {
-        return this.wind;
+    getWindAtAltitude(altitude = this.elevation) {
+        const windTravelSpeedAtSurface = this.wind.speed;
+        const altitudeAboveSurface = altitude - this.elevation;
+        const windIncreaseFactor = altitudeAboveSurface * ENVIRONMENT.WIND_INCREASE_FACTOR_PER_FT;
+        const windTravelSpeedAtAltitude = windTravelSpeedAtSurface * (1 + windIncreaseFactor);
+        const wind = {
+            angle: this.wind.angle,
+            speed: windTravelSpeedAtAltitude
+        };
 
-        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        // const wind = Object.assign({}, this.wind);
-        // let s = 1;
-        // const angle_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // // TODO: why is this var getting reassigned to a magic number?
-        // s = 100;
-        // const speed_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-        //
-        // return wind;
+        return wind;
     }
 
     /**
@@ -578,6 +558,23 @@ export default class AirportModel {
             cross: sin(crosswindAngle) * this.wind.speed,
             head: cos(crosswindAngle) * this.wind.speed
         };
+    }
+
+    /**
+     * Generates a vector representation of the wind at a given altitude.
+     * When the altitude is not specified, the airport elevation is used as the assumed altitude.
+     *
+     * @for AirportModel
+     * @method getWindVectorAtAltitude
+     * @param {number} altitude
+     * @returns {array<number, number>}
+     */
+    getWindVectorAtAltitude(altitude) {
+        const { angle, speed } = this.getWindAtAltitude(altitude);
+        const windTravelDirection = angle + Math.PI;
+        const windVector = vscale(vectorize_2d(windTravelDirection), speed);
+
+        return windVector;
     }
 
     /**
@@ -766,17 +763,14 @@ export default class AirportModel {
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
-        })
-        // TODO: change to onSuccess and onError handler abstractions
-        .done((data) => {
+        }).done((data) => { // TODO: change to onSuccess and onError handler abstractions
             try {
                 // eslint-disable-next-line no-undef
                 this.parseTerrain(data);
             } catch (e) {
                 throw new Error(e.message);
             }
-        })
-        .fail((jqXHR, textStatus, errorThrown) => {
+        }).fail((jqXHR, textStatus, errorThrown) => {
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
 
             this.loading = false;
@@ -809,9 +803,8 @@ export default class AirportModel {
         zlsa.atc.loadAsset({
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
-        })
-        .done((response) => this.onLoadAirportSuccess(response))
-        .fail((...args) => this.onLoadAirportError(...args));
+        }).done((response) => this.onLoadAirportSuccess(response))
+            .fail((...args) => this.onLoadAirportError(...args));
     }
 
     /**
@@ -824,7 +817,7 @@ export default class AirportModel {
         this.loading = false;
         this.loaded = true;
 
-        this.parse(response);
+        this.init(response);
         this.eventBus.trigger(EVENT.AIRPORT_CHANGE, this.data);
         this.set();
     };
@@ -859,7 +852,7 @@ export default class AirportModel {
         this.loading = false;
         this.loaded = true;
 
-        this.parse(response);
+        this.init(response);
         this.set();
     }
 }

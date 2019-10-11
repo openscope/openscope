@@ -188,7 +188,10 @@ ava('.activateHoldForWaypointName() returns failure message when the route does 
     const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
     const unknownWaypointName = 'DINGBAT';
     const holdParametersMock = { turnDirection: 'left' };
-    const expectedResult = [false, `unable to hold at ${unknownWaypointName}; it is not on our route!`];
+    const expectedResult = [false, {
+        log: `unable to hold at ${unknownWaypointName}; it is not on our route!`,
+        say: `unable to hold at ${unknownWaypointName.toLowerCase()}; it is not on our route!`
+    }];
     const result = fms.activateHoldForWaypointName(unknownWaypointName, holdParametersMock);
 
     t.true(routeModelActivateHoldForWaypointNameSpy.notCalled);
@@ -561,7 +564,7 @@ ava('.replaceArrivalProcedure() returns early when the specified procedure does 
 
 ava('.replaceArrivalProcedure() does not call ._updateArrivalRunwayFromRoute() when the arrival procedure is not applied successfully', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceArrivalProcedureStub = sinon.stub(fms._routeModel, 'replaceArrivalProcedure', () => false);
+    const routeModelReplaceArrivalProcedureStub = sinon.stub(fms._routeModel, 'replaceArrivalProcedure').returns(false);
     const updateArrivalRunwayFromRouteSpy = sinon.spy(fms, '_updateArrivalRunwayFromRoute');
     const expectedResponse = [false, 'route of "DAG.KEPEC3.KLAS07R" is not valid'];
     const responseForInvalidProcedure = fms.replaceArrivalProcedure('DAG.KEPEC3.KLAS07R');

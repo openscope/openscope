@@ -1,6 +1,6 @@
 ### About this facility
 
-Austin ATCT (AUS), Austin, TX, USA  
+Austin Approach/Departure (AUS), Austin, TX, USA  
 199,632 aircraft movements in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Airport.asp))
 
 This is the Control Tower position at AUS, serving Austin-Bergstrom International Airport, the main airport for Austin, TX.
@@ -14,10 +14,10 @@ Class C airspace extends to 17,000 feet above sea level, encompassing the area a
 ##### Austin-Bergstrom International Airport has 7 STAR procedures, and 9 SID procedures. 
 
 ##### STARs
-- BITER8 (Biter), and WLEEE5 (Willie) STARs take aircraft from the east to the airport, uses 17L/35R.
+- BITER9 (Biter), and WLEEE5 (Willie) STARs take aircraft from the east to the airport, uses 17L/35R.
 - BLEWE4 (Blew), and SEWZY4 (Suzie) take aircraft from the north to the airport, uses 17L/35R.
 - DXEEE1 (Dixie) takes aircraft from the south to the airport, uses 17L/35R.
-- KALLA3 (Kalla), and LAIKS2 (Lakes) take aircraft from the west to the airport, uses 17L/35R.
+- KALLA4 (Kalla), and LAIKS2 (Lakes) take aircraft from the west to the airport, uses 17L/35R.
 
 ##### SIDs
 - AUS5 (Austin) takes aircraft to the west, uses 17L/35R.

@@ -44,10 +44,10 @@ export const EVENT = {
      * This should only occur as a result of a user action
      *
      * @memberof EVENT
-     * @property MARK_CANVAS_DIRTY
+     * @property MARK_SHALLOW_RENDER
      * @type {string}
      */
-    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+    MARK_SHALLOW_RENDER: 'mark-shallow-render',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
@@ -80,6 +80,24 @@ export const EVENT = {
      * @type {string}
      */
     PAUSE_UPDATE_LOOP: 'pause-update-loop',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_DECREASE_LENGTH
+     * @type {string}
+     */
+    PTL_DECREASE_LENGTH: 'ptl-decrease-length',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_INCREASE_LENGTH
+     * @type {string}
+     */
+    PTL_INCREASE_LENGTH: 'ptl-increase-length',
 
     /**
      * Remove an aircraft from the sim
@@ -192,6 +210,13 @@ export const EVENT = {
     TOGGLE_TERRAIN: 'toggle-terrain',
 
     /**
+     * @memberof EVENT
+     * @property TOGGLE_TRAFFIC
+     * @type {string}
+     */
+    TOGGLE_TRAFFIC: 'toggle-traffic',
+
+    /**
      * Open/close the tutorial modal
      *
      * @memberof EVENT
@@ -288,5 +313,4 @@ export const AIRCRAFT_EVENT = {
      * @type {string}
      */
     AIRSPACE_EXIT: 'airspace-exit'
-
-}
+};

@@ -58,7 +58,9 @@ options.FILE = {
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.less'),
     PKG_JSON: path.join(options.ROOT, 'package.json'),
     AIRCRAFT_JSON: path.join(options.DIR.ASSETS_AIRCRAFT, 'aircraft.json'),
-    AIRLINES_JSON: path.join(options.DIR.ASSETS_AIRLINES, 'airlines.json')
+    AIRLINES_JSON: path.join(options.DIR.ASSETS_AIRLINES, 'airlines.json'),
+    CHANGELOG_SOURCE: path.join(options.ROOT, 'CHANGELOG.md'),
+    CHANGELOG_DEST: path.join(options.DIR.DIST_ASSETS, 'changelog.json')
 };
 
 options.GLOB = {
@@ -91,6 +93,9 @@ options.TASKS = {
     },
     DEFAULT: 'default',
     MARKUP: 'markup',
+    MARKDOWN: {
+        CHANGELOG: 'markdown:changelog'
+    },
     JSON: {
         ASSEMBLE: 'json:assemble',
         MINIFY: 'json:minify'

@@ -1,0 +1,16 @@
+{
+    "icao": "sli",
+    "name": "Aeromexico Connect",
+    "callsign": {
+        "name": "Costera",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E170", 10],
+            ["E190", 47]
+        ]
+    }
+}
