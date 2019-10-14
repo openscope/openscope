@@ -5,6 +5,7 @@ import EventBus from '../lib/EventBus';
 import EventTracker from '../EventTracker';
 import GameController from '../game/GameController';
 import SettingsController from './SettingsController';
+import StatsController from './StatsController';
 import TrafficRateController from './TrafficRateController';
 import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
@@ -40,6 +41,7 @@ class UiController {
         this.$toggleTerrain = null;
         this.$toggleTutorial = null;
         this.$toggleOptions = null;
+        this.$toggleStats = null;
         this.$toggleVideoMap = null;
         this.$toggleTraffic = null;
     }
@@ -57,6 +59,7 @@ class UiController {
         this._eventBus = EventBus;
         this.tutorialView = new TutorialView($element);
         this.settingsController = new SettingsController($element);
+        this.statsController = new StatsController($element);
         this.trafficRateController = new TrafficRateController($element);
 
         this.$element = $element;
@@ -75,6 +78,7 @@ class UiController {
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
+        this.$toggleStats = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STATS);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
         this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
 
@@ -114,6 +118,7 @@ class UiController {
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
+        this.$toggleStats.on('click', (event) => this.onToggleStats(event));
         this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
         this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
 
@@ -140,6 +145,7 @@ class UiController {
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
+        this.$toggleStats.off('click', (event) => this.onToggleStats(event));
         this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
         this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
 
@@ -173,6 +179,7 @@ class UiController {
         this.$toggleTerrain = null;
         this.$toggleTutorial = null;
         this.$toggleOptions = null;
+        this.$toggleStats = null;
         this.$toggleVideoMap = null;
         this.$onToggleTraffic = null;
 
@@ -490,6 +497,20 @@ class UiController {
             `${$starsButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
         this._eventBus.trigger(EVENT.TOGGLE_STAR_MAP);
+    }
+
+    /**
+    * @for UiController
+    * @method onToggleStats
+    */
+    onToggleStats() {
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.SETTINGS,
+            'toggle-dialog',
+            `${this.$toggleStats.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this.$toggleStats.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.statsController.toggleDialog();
     }
 
     /**
