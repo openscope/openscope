@@ -1,3 +1,8 @@
+# 6.14.2 (October 17, 2019)
+### Hotfixes
+- [#1463](https://github.com/openscope/openscope/issues/1463) - Fix travis build notifications
+
+
 # 6.14.0 (October 1, 2019)
 ### New Features
 - [#1436](https://github.com/openscope/openscope/issues/1436) - Add support for multiple video maps (no toggling yet)
