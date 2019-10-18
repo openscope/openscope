@@ -1,6 +1,7 @@
 # 6.14.2 (October 17, 2019)
 ### Hotfixes
 - [#1463](https://github.com/openscope/openscope/issues/1463) - Fix travis build notifications
+- [#1453](https://github.com/openscope/openscope/issues/1453) - Fix EINN video maps format which was causing sim to crash
 
 
 # 6.14.0 (October 1, 2019)
