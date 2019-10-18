@@ -8,6 +8,7 @@ import SettingsController from './SettingsController';
 import TrafficRateController from './TrafficRateController';
 import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
+import { record_voice_toggle } from '../speechControl';
 import { EVENT } from '../constants/eventNames';
 import { SELECTORS } from '../constants/selectors';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
@@ -137,6 +138,16 @@ class UiController {
          * @default null
          */
         this.$togglePause = null;
+
+        /**
+         * Footer button element used to enable/disable voice input
+         *
+         * @for UiController
+         * @property $toggleRecordVoice
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleRecordVoice = null;
 
         /**
          * Footer button element used to toggle speech synthesis on/off
@@ -309,6 +320,7 @@ class UiController {
         this.$toggleLabels = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
         this.$togglePause = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_PAUSE);
+        this.$toggleRecordVoice = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_RECORD_SPEECH);
         this.$toggleRestrictedAreas = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS);
         this.$toggleSids = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS);
         this.$toggleSpeech = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
@@ -349,6 +361,7 @@ class UiController {
         this.$toggleChangelog.on('click', (event) => this.onToggleChangelog(event));
         this.$toggleLabels.on('click', (event) => this.onToggleLabels(event));
         this.$togglePause.on('click', (event) => GameController.game_pause_toggle(event));
+        this.$toggleRecordVoice.on('click', (event) => record_voice_toggle(event));
         this.$toggleRestrictedAreas.on('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
         this.$toggleSpeech.on('click', (event) => speech_toggle(event));
@@ -377,6 +390,7 @@ class UiController {
         this.$toggleChangelog.off('click', (event) => this.onToggleChangelog(event));
         this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
         this.$togglePause.off('click', (event) => GameController.game_pause_toggle(event));
+        this.$toggleRecordVoice.off('click', (event) => record_voice_toggle(event));
         this.$toggleRestrictedAreas.off('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
         this.$toggleSpeech.off('click', (event) => speech_toggle(event));

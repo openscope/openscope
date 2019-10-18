@@ -80,6 +80,7 @@ export const CLASSNAMES = {
     TOGGLE_LABELS: 'toggle-labels',
     TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',
     TOGGLE_PAUSE: 'toggle-pause',
+    TOGGLE_RECORD_SPEECH: 'record-voice',
     TOGGLE_SIDS: 'toggle-sids',
     TOGGLE_SPEECH: 'toggle-speech',
     TOGGLE_STARS: 'toggle-stars',
