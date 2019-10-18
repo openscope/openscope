@@ -129,5 +129,4 @@ The videomap also contains:
 
 
 ### Additional Resources
-[Emirates vACC (VATSIM) OMDB SOP](https://vatame.org/policy/101)  
 [UAE AIP (free registration required)](https://www.gcaa.gov.ae/en/ais/pages/aip.aspx)
