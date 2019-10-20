@@ -46,21 +46,37 @@ export default class AirportGuideView {
          */
         this._$airportGuideView = null;
 
-        return this.init()
-            ._createChildren($element)
-            .enable();
+        return this.init();
     }
 
+    // ------------------------------ LIFECYCLE ------------------------------
+
     /**
-     * Lifecycle method
-     *
-     * Should be called once on instantiation
+     * Initialize the instance
      *
      * @for AirportGuideView
      * @method init
      * @chainable
      */
-    init() {
+    init($element) {
+        this._createChildren($element);
+        this.update(this._airportGuideMarkup);
+
+        return this;
+    }
+
+    /**
+     * Reset the instance
+     *
+     * @for AirportGuideView
+     * @method reset
+     * @chainable
+     */
+    reset() {
+        this._airportGuideMarkup = null;
+        this._$element = null;
+        this._$airportGuideView = null;
+
         return this;
     }
 
@@ -82,31 +98,7 @@ export default class AirportGuideView {
         return this;
     }
 
-    /**
-     * Enable the instance
-     *
-     * @for AirportGuideView
-     * @method enable
-     * @private
-     * @chainable
-     */
-    enable() {
-        this.update(this._airportGuideMarkup);
-
-        return this;
-    }
-
-    /**
-     * Destroys the instance
-     *
-     * @for AirportGuideView
-     * @method disable
-     */
-    disable() {
-        this._airportGuideMarkup = null;
-        this._$element = null;
-        this._$airportGuideView = null;
-    }
+    // ------------------------------ PUBLIC ------------------------------
 
     /**
      * Updates the text in the view.
@@ -119,7 +111,7 @@ export default class AirportGuideView {
     update(nextAirportMarkup) {
         this._airportGuideMarkup = nextAirportMarkup;
 
-        // TODO: determine if this needs to be sanitized
+        // FIXME: determine if this needs to be sanitized
         this._$airportGuideView.html(this._airportGuideMarkup);
     }
 
