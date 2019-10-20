@@ -5,6 +5,8 @@
 
 ### Enhancements & Refactors
 - [#1451](https://github.com/openscope/openscope/issues/1451) - Add ability to specify the radial with the `hold` command
+- [#1458](https://github.com/openscope/openscope/issues/1458) - Add support for holding patterns with distance-based legs
+
 
 # 6.14.2 (October 17, 2019)
 ### Hotfixes
