@@ -63,7 +63,6 @@ export default class InputController {
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
-        this.input.measureTool = new MeasureTool();
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
         this._init();
@@ -167,7 +166,6 @@ export default class InputController {
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
-        this.input.measureTool = null;
 
         return this;
     }
@@ -227,7 +225,6 @@ export default class InputController {
             event.pageX, event.pageY
         );
         const { x, y } = currentMousePosition;
-        const { measureTool } = this.input;
         const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToMousePosition(x, y);
         const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToMousePosition(x, y);
         let distance;
@@ -247,12 +244,12 @@ export default class InputController {
             modelToUse = this._translatePointToKilometers(x, y);
         }
 
-        if (!measureTool.hasStarted) {
-            measureTool.startMeasuring(modelToUse);
+        if (!MeasureTool.hasStarted) {
+            MeasureTool.startMeasuring(modelToUse);
         } else if (doReplaceLast) {
-            measureTool.updateLastPoint(modelToUse);
+            MeasureTool.updateLastPoint(modelToUse);
         } else {
-            measureTool.addPoint(modelToUse);
+            MeasureTool.addPoint(modelToUse);
         }
 
         // Mark for shallow render so the draw motion is smooth
@@ -267,7 +264,7 @@ export default class InputController {
      * @private
      */
     _removeLastMeasurePoint() {
-        this.input.measureTool.removeLastPoint();
+        MeasureTool.removeLastPoint();
 
         // Mark for shallow render so the feedback is immediate
         this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
@@ -281,7 +278,7 @@ export default class InputController {
      * @private
      */
     _startMeasuring() {
-        this.input.measureTool.isMeasuring = true;
+        MeasureTool.isMeasuring = true;
     }
 
     /**
@@ -292,7 +289,7 @@ export default class InputController {
      * @private
      */
     _stopMeasuring() {
-        this.input.measureTool.reset();
+        MeasureTool.reset();
 
         // Mark for shallow render so the feedback is immediate
         this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
@@ -319,9 +316,7 @@ export default class InputController {
      * @param event {jquery Event}
      */
     _onMouseClickAndDrag(event) {
-        const { measureTool } = this.input;
-
-        if (measureTool.isMeasuring && measureTool.hasStarted) {
+        if (MeasureTool.isMeasuring && MeasureTool.hasStarted) {
             this._addMeasurePoint(event, true);
             return this;
         }
@@ -988,7 +983,7 @@ export default class InputController {
      * @private
      */
     _onRightMousePress(event) {
-        if (this.input.measureTool.isMeasuring) {
+        if (MeasureTool.isMeasuring) {
             this._removeLastMeasurePoint();
         } else {
             this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
@@ -1008,7 +1003,7 @@ export default class InputController {
      * @private
      */
     _onLeftMouseButtonPress(event) {
-        if (this.input.measureTool.isMeasuring) {
+        if (MeasureTool.isMeasuring) {
             this._addMeasurePoint(event);
 
             return;

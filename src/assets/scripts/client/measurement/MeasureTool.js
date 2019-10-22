@@ -17,7 +17,7 @@ import { TIME } from '../constants/globalConstants';
  * accept user input and build a list of `MeasureLegModels`
  * which calculate distances, durations and bearings
  */
-export default class MeasureTool {
+class MeasureTool {
     /**
      * @for MeasureLeg
      * @constructor
@@ -360,3 +360,8 @@ export default class MeasureTool {
         return point.relativePosition || point;
     }
 }
+
+/**
+ * The static instance of the `MeasureTool` class
+ */
+export default new MeasureTool();

@@ -7,6 +7,7 @@ import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MeasureTool from '../measurement/MeasureTool';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
@@ -1227,13 +1228,11 @@ export default class CanvasController {
      * @private
      */
     _drawMeasureTool(cc) {
-        const { measureTool } = prop.input;
-
-        if (!measureTool.hasLegs) {
+        if (!MeasureTool.hasLegs) {
             return;
         }
 
-        const pathInfo = measureTool.getPathInfo();
+        const pathInfo = MeasureTool.getPathInfo();
 
         this._drawMeasureToolPath(cc, pathInfo);
         this._drawMeasureToolLabels(cc, pathInfo);
