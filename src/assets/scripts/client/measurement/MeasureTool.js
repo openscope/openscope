@@ -126,7 +126,6 @@ export default class MeasureTool {
         const { aircraft } = this;
         const groundSpeed = aircraft === null ? null : aircraft.groundSpeed;
         const initialTurn = this._getInitialTurnParameters();
-        const turnRadius = initialTurn !== null ? initialTurn.turnRadius : 0;
         const pointsList = [...this._points]; // Shallow copy as the first point may be replaced
 
         // These are the values used when reducing the points array
@@ -161,7 +160,7 @@ export default class MeasureTool {
             let { totalDistance, totalDuration } = lastValues;
             const leg = new MeasureLegModel(
                 this._getRelativePosition(point),
-                turnRadius,
+                0, // don't radius the vertices
                 previousLeg
             );
             const distance = nm(leg.distance);
