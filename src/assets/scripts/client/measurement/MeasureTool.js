@@ -1,3 +1,5 @@
+import GameController from '../game/GameController';
+import EventBus from '../lib/EventBus';
 import { radians_normalize } from '../math/circle';
 import { bearingToPoint } from '../math/flightMath';
 import { distance2d } from '../math/distance';
@@ -8,7 +10,18 @@ import {
 } from '../utilities/unitConverters';
 import MeasureLegModel from './MeasureLegModel';
 import AircraftModel from '../aircraft/AircraftModel';
+import { EVENT } from '../constants/eventNames';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { TIME } from '../constants/globalConstants';
+
+/**
+ * Style enumeration of available render styles
+ */
+export const MEASURE_TOOL_STYLE = {
+    STRAIGHT: 0,
+    INITIAL_TURN: 1,
+    ARCED: 2
+};
 
 /**
  * Defines a `MeasureTool`
@@ -24,9 +37,17 @@ class MeasureTool {
      */
     constructor() {
         /**
+         * @for MeasureTool
+         * @property _eventBus
+         * @type {EventBus}
+         * @private
+         */
+        this._eventBus = EventBus;
+
+        /**
          * Indicates whether the tool should be receiving input
          *
-         * @for `MeasureTool`
+         * @for MeasureTool
          * @property isMeasuring
          * @type {boolean}
          * @default false
@@ -38,13 +59,28 @@ class MeasureTool {
          * This can be an object with a `#relativePosition` property,
          * or a array of numbers that represent a `relativePosition`
          *
-         * @for `MeasureTool`
+         * @for MeasureTool
          * @property _points
          * @type {AircraftModel|FixModel|array<number>}
          * @default []
          * @private
          */
         this._points = [];
+
+        /**
+         * The style of how the path is rendered
+         *
+         * @for MeasureTool
+         * @property _style
+         * @type {number}
+         * @default MEASURE_TOOL_STYLE.STRAIGHT
+         * @private
+         */
+        this._style = MEASURE_TOOL_STYLE.STRAIGHT;
+
+        this._init()
+            ._setupHandlers()
+            .enable();
     }
 
     /** Gets the aircraft at the beginning of the path
@@ -84,6 +120,52 @@ class MeasureTool {
     }
 
     // ------------------------------ LIFECYCLE ------------------------------
+
+    /**
+     * @for MeasureTools
+     * @method _init
+     * @chainable
+     * @private
+     */
+    _init() {
+        this._style = GameController.getGameOption(GAME_OPTION_NAMES.MEASURE_TOOL_PATH);
+
+        return this;
+    }
+
+    /**
+     * @for MeasureTool
+     * @method _setupHandlers
+     * @chainable
+     * @private
+     */
+    _setupHandlers() {
+        this._onMeasureToolStyleChangeHandler = this._onMeasureToolStyleChange.bind(this);
+
+        return this;
+    }
+
+    /**
+     * @for MeasureTool
+     * @method disable
+     * @chainable
+     */
+    disable() {
+        this._eventBus.off(EVENT.MEASURE_TOOL_STYLE_CHANGE, this._onMeasureToolStyleChangeHandler);
+
+        return this;
+    }
+
+    /**
+     * @for MeasureTool
+     * @method enable
+     * @chainable
+     */
+    enable() {
+        this._eventBus.on(EVENT.MEASURE_TOOL_STYLE_CHANGE, this._onMeasureToolStyleChangeHandler);
+
+        return this;
+    }
 
     /**
      * @for MeasureTool
@@ -127,6 +209,11 @@ class MeasureTool {
         const groundSpeed = aircraft === null ? null : aircraft.groundSpeed;
         const initialTurn = this._getInitialTurnParameters();
         const pointsList = [...this._points]; // Shallow copy as the first point may be replaced
+        let radius = 0;
+
+        if (initialTurn !== null && this._hasStyle(MEASURE_TOOL_STYLE.ARCED)) {
+            radius = initialTurn.turnRadius;
+        }
 
         // These are the values used when reducing the points array
         const initialValues = {
@@ -160,7 +247,7 @@ class MeasureTool {
             let { totalDistance, totalDuration } = lastValues;
             const leg = new MeasureLegModel(
                 this._getRelativePosition(point),
-                0, // don't radius the vertices
+                radius,
                 previousLeg
             );
             const distance = nm(leg.distance);
@@ -248,6 +335,19 @@ class MeasureTool {
     // ------------------------------ PRIVATE ------------------------------
 
     /**
+     * Returns a flag indicating whether the specified style should be used
+     *
+     * @for MeasureTools
+     * @method _hasStyle
+     * @param flag {MEASURE_TOOL_STYLE}
+     * @returns {boolean}
+     */
+    _hasStyle(flag) {
+        /* eslint-disable no-bitwise */
+        return (this._style & flag) !== 0;
+    }
+
+    /**
      * Gets the initial turn parameters that are needed to fly to the first fix
      *
      * @for MeasureTools
@@ -256,6 +356,10 @@ class MeasureTool {
      * @private
      */
     _getInitialTurnParameters() {
+        if (!this._hasStyle(MEASURE_TOOL_STYLE.INITIAL_TURN)) {
+            return null;
+        }
+
         const { aircraft } = this;
 
         if (aircraft === null) {
@@ -319,6 +423,8 @@ class MeasureTool {
      * Get the text label that displays the distance and
      * optional duration and bearings
      *
+     * @for MeasureTools
+     * @method _getLabel
      * @param distance {number}
      * @param duration {number}
      * @param bearing {number|null}
@@ -341,6 +447,8 @@ class MeasureTool {
     /**
      * Gets the relative position for the point at the specified index.
      *
+     * @for MeasureTools
+     * @method _getRelativePositionAtIndex
      * @param index {number}
      * @returns {array<number>}
      */
@@ -353,11 +461,27 @@ class MeasureTool {
     /**
      * Gets the relative position for the point at the specified index.
      *
+     * @for MeasureTools
+     * @method _getRelativePosition
      * @param point {AircraftModel|FixModel|array<number>}
      * @returns {array<number>}
      */
     _getRelativePosition(point) {
         return point.relativePosition || point;
+    }
+
+    /**
+     * Update the `#_style` property
+     *
+     * This method should only be called via the `EventBus`
+     *
+     * @for MeasureTools
+     * @method _onMeasureToolStyleChange
+     * @param style {MEASURE_TOOL_STYLE}
+     * @private
+     */
+    _onMeasureToolStyleChange(style) {
+        this._style = style;
     }
 }
 

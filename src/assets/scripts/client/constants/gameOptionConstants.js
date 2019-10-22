@@ -16,7 +16,8 @@ export const GAME_OPTION_NAMES = {
     SOFT_CEILING: 'softCeiling',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
     MOUSE_CLICK_DRAG: 'mouseClickDrag',
-    RANGE_RINGS: 'rangeRings'
+    RANGE_RINGS: 'rangeRings',
+    MEASURE_TOOL_PATH: 'measureToolPath'
 };
 
 /**
@@ -202,6 +203,28 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: '20 nm',
                 value: 20
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.MEASURE_TOOL_PATH,
+        defaultValue: '0',
+        description: 'Measure path style',
+        help: 'How the path is rendered when measuring vectors',
+        type: 'select',
+        onChangeEventHandler: EVENT.MEASURE_TOOL_STYLE_CHANGE,
+        optionList: [
+            {
+                displayLabel: 'Straight Lines',
+                value: 0
+            },
+            {
+                displayLabel: 'Straight with initial turn',
+                value: 1
+            },
+            {
+                displayLabel: 'Arced with initial turn',
+                value: 3
             }
         ]
     }

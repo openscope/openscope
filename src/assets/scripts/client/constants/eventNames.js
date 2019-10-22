@@ -254,6 +254,13 @@ export const EVENT = {
     RANGE_RINGS_CHANGE: 'range-rings-change',
 
     /**
+     * @memberof EVENT
+     * @property MEASURE_TOOL_STYLE_CHANGE
+     * @type {string}
+     */
+    MEASURE_TOOL_STYLE_CHANGE: 'measure-tool-style-change',
+
+    /**
      * A click has been registered in the unpause button shown within the
      * screen overlay whil the app is paused
      *
