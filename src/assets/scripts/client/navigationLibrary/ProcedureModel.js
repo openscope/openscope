@@ -5,7 +5,6 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
-import AirportController from '../airport/AirportController';
 import HoldCollection from '../airport/HoldCollection';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
