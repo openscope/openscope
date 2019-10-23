@@ -70,60 +70,10 @@ export default class AirportGuideViewController {
          */
         this._guideData = airportGuideData;
 
-        return this.init()
-            ._createChildren($element)
-            ._setupHandlers()
-            .enable();
+        return this.init($element);
     }
 
-    /**
-     * Initialize the instance
-     *
-     * Should only be run once on instantiation
-     *
-     * @for airportGuideViewController
-     * @method init
-     * @chainable
-     */
-    init() {
-        this._eventBus = EventBus;
-
-        return this;
-    }
-
-    /**
-     * Create child elements
-     *
-     * Should be run only once on instantiation
-     *
-     * @for AirportGuideViewController
-     * @method _createChildren
-     * @param {Jquery Element} $element
-     * @chainable
-     * @private
-     */
-    _createChildren($element) {
-        const activeAirportGuide = this.getAirportGuide(this._initialIcao);
-        this._airportGuideView = new AirportGuideView($element, activeAirportGuide);
-
-        return this;
-    }
-
-    /**
-     * Bind method handlers
-     *
-     * Should only be run once on instantiation
-     *
-     * @for airportGuideViewController
-     * @method _setupHandlers
-     * @chainable
-     */
-    _setupHandlers() {
-        this._onAirportChangeHandler = this._onAirportChange.bind(this);
-        this._onToggleViewHandler = this._onToggleView.bind(this);
-
-        return this;
-    }
+    // ------------------------------ LIFECYCLE ------------------------------
 
     /**
      * Enable handlers
@@ -154,50 +104,92 @@ export default class AirportGuideViewController {
     }
 
     /**
+     * Initialize the instance
+     *
+     * Should only be run once on instantiation
+     *
+     * @for airportGuideViewController
+     * @method init
+     * @chainable
+     */
+    init($element) {
+        this._eventBus = EventBus;
+
+        this._initAirportGuideView($element);
+        this._setupHandlers();
+        this.enable();
+
+        return this;
+    }
+
+    /**
      * Reset the instance
      *
      * @for airportGuideViewController
-     * @method destroy
+     * @method reset
      * @chainable
      */
-    destroy() {
+    reset() {
+        this._resetHandlers();
+
         this._eventBus = null;
         this._$element = null;
         this._initialIcao = null;
         this._airportGuideView = null;
         this._guideData = null;
+
+        return this;
+    }
+
+    /**
+     * Initialize the `AirportGuideView` instance
+     *
+     * @for AirportGuideViewController
+     * @method _initAirportGuideView
+     * @param {Jquery Element} $element
+     * @chainable
+     * @private
+     */
+    _initAirportGuideView($element) {
+        const activeAirportGuide = this.getAirportGuide(this._initialIcao);
+        this._airportGuideView = new AirportGuideView($element, activeAirportGuide);
+
+        return this;
+    }
+
+    /**
+     * Bind method handlers
+     *
+     * Should only be run once on instantiation
+     *
+     * @for airportGuideViewController
+     * @method _setupHandlers
+     * @chainable
+     */
+    _setupHandlers() {
+        this._onAirportChangeHandler = this._onAirportChange.bind(this);
+        this._onToggleViewHandler = this._onToggleView.bind(this);
+
+        return this;
+    }
+
+    /**
+     * Reset method handlers
+     *
+     * Should only be run once on instantiation
+     *
+     * @for airportGuideViewController
+     * @method _resetHandlers
+     * @chainable
+     */
+    _resetHandlers() {
         this._onAirportChangeHandler = null;
         this._onToggleViewHandler = null;
 
         return this;
     }
 
-    /**
-     * Event handler for when the `airportGuideView` instance is clicked
-     *
-     * @for airportGuideViewController
-     * @method _onToggleView
-     * @param event {JQueryEventObject}
-     * @private
-     */
-    _onToggleView() {
-        this._airportGuideView.toggleView();
-    }
-
-    /**
-     * Event handler for when an airport is changed.
-     *
-     * @for AirportGuideViewController
-     * @method _onAirportChange
-     * @param {object} nextAirportJson
-     * @private
-     */
-    _onAirportChange(nextAirportJson) {
-        const nextIcao = nextAirportJson.icao.toLowerCase();
-        const airportGuideMarkupString = this.getAirportGuide(nextIcao);
-
-        this._airportGuideView.update(airportGuideMarkupString);
-    }
+    // ------------------------------ PUBLIC ------------------------------
 
     /**
      * Main getter method for an airport guide, identified by ICAO
@@ -228,5 +220,34 @@ export default class AirportGuideViewController {
      */
     hasAirportGuide(icao) {
         return _has(this._guideData, icao);
+    }
+
+    // ------------------------------ PRIVATE ------------------------------
+
+    /**
+     * Event handler for when an airport is changed.
+     *
+     * @for AirportGuideViewController
+     * @method _onAirportChange
+     * @param {object} nextAirportJson
+     * @private
+     */
+    _onAirportChange(nextAirportJson) {
+        const nextIcao = nextAirportJson.icao.toLowerCase();
+        const airportGuideMarkupString = this.getAirportGuide(nextIcao);
+
+        this._airportGuideView.update(airportGuideMarkupString);
+    }
+
+    /**
+     * Event handler for when the `airportGuideView` instance is clicked
+     *
+     * @for airportGuideViewController
+     * @method _onToggleView
+     * @param event {JQueryEventObject}
+     * @private
+     */
+    _onToggleView() {
+        this._airportGuideView.toggleView();
     }
 }
