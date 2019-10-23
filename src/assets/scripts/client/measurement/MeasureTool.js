@@ -10,6 +10,7 @@ import {
 } from '../utilities/unitConverters';
 import MeasureLegModel from './MeasureLegModel';
 import AircraftModel from '../aircraft/AircraftModel';
+import FixModel from '../navigationLibrary/FixModel';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { TIME } from '../constants/globalConstants';
@@ -189,6 +190,9 @@ class MeasureTool {
      * @param value {AircraftModel|FixModel|array<number>}
      */
     addPoint(value) {
+        this._throwIfNotMeasuring();
+        this._throwIfPointInvalid(value);
+
         this._points.push(value);
     }
 
@@ -291,6 +295,8 @@ class MeasureTool {
      * @method removeLastPoint
      */
     removeLastPoint() {
+        this._throwIfNotMeasuring();
+
         // The "last" point is actually the 2nd last item in _points
         // This means the path will end at the cursor position when redrawn
         const { length } = this._points;
@@ -301,21 +307,6 @@ class MeasureTool {
     }
 
     /**
-     * Starts the measure tools for the specifeid aircraft
-     * and adds an initial leg
-     *
-     * The startValue can be an object with a `#relativePosition` property,
-     * or a array of numbers that represent a `relativePosition`
-     *
-     * @for MeasureTool
-     * @method startMeasuring
-     * @param startValue {AircraftModel|FixModel|array<number>}
-     */
-    startMeasuring(startValue) {
-        this._points.push(startValue);
-    }
-
-    /**
      * Updates the last point in the path
      *
      * The value can be an object with a `#relativePosition` property,
@@ -323,9 +314,12 @@ class MeasureTool {
      *
      * @for MeasureTool
      * @method updateEndPoint
-     * @param value {array<number>}
+     * @param value {AircraftModel|FixModel|array<number>}
      */
     updateLastPoint(value) {
+        this._throwIfNotMeasuring();
+        this._throwIfPointInvalid(value);
+
         if (!this.hasLegs) {
             this.addPoint(value);
 
@@ -485,6 +479,31 @@ class MeasureTool {
      */
     _onMeasureToolStyleChange(style) {
         this._style = style;
+    }
+
+    /**
+     * Facade for throwing a TypeError if a point value is not a valid type
+     *
+     * @for MeasureTool
+     * @method _throwIfPointInvalid
+     * @param value {AircraftModel|FixModel|array<number>}
+    */
+    _throwIfPointInvalid(value) {
+        if (!(value instanceof Array || value instanceof AircraftModel || value instanceof FixModel)) {
+            throw new TypeError(`value cannot be ${typeof value}. An Array, AircraftModel or FixModel is expected.`);
+        }
+    }
+
+    /**
+     * Facade for throwing an Error if the `#isMeasuring` flag is not set
+     *
+     * @for MeasureTool
+     * @method _throwIfNotMeasuring
+     */
+    _throwIfNotMeasuring() {
+        if (!this.isMeasuring) {
+            throw Error(`Cannot add point when MeasureTool.isMeasuring is ${this.isMeasuring}`);
+        }
     }
 }
 

@@ -244,9 +244,7 @@ export default class InputController {
             modelToUse = this._translatePointToKilometers(x, y);
         }
 
-        if (!MeasureTool.hasStarted) {
-            MeasureTool.startMeasuring(modelToUse);
-        } else if (shouldReplaceLastPoint) {
+        if (MeasureTool.hasStarted && shouldReplaceLastPoint) {
             MeasureTool.updateLastPoint(modelToUse);
         } else {
             MeasureTool.addPoint(modelToUse);
