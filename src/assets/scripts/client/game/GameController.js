@@ -207,7 +207,7 @@ class GameController {
 
     // TODO: usages of this method should move to use EventBus
     /**
-     * Record a game event to this.game.events, and update this.game.score
+     * Record a game event to this.game.events, and update this.game.score and stats
      *
      * @for GameController
      * @method events_recordNew
@@ -221,6 +221,7 @@ class GameController {
         this.game.events[gameEvent] += 1;
         this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
 
+        this.game_updateStats();
         this.game_updateScore();
     }
 
@@ -445,6 +446,17 @@ class GameController {
         }
 
         this.game.last_score = this.game.score;
+    }
+
+    /**
+     * @for GameController
+     * @method game_updateStats
+     */
+    game_updateStats() {
+        _forEach(GAME_EVENTS, (gameEvent, key) => {
+            const $statsItem = $(`#stats-value-${key}`);
+            $statsItem.text(this.game.events[key]);
+        });
     }
 
     /**
