@@ -72,12 +72,12 @@ class MeasureTool {
          * The style of how the path is rendered
          *
          * @for MeasureTool
-         * @property _style
+         * @property style
          * @type {number}
          * @default MEASURE_TOOL_STYLE.STRAIGHT
          * @private
          */
-        this._style = MEASURE_TOOL_STYLE.STRAIGHT;
+        this.style = MEASURE_TOOL_STYLE.STRAIGHT;
 
         this._init()
             ._setupHandlers()
@@ -129,7 +129,7 @@ class MeasureTool {
      * @private
      */
     _init() {
-        this._style = GameController.getGameOption(GAME_OPTION_NAMES.MEASURE_TOOL_PATH);
+        this.style = GameController.getGameOption(GAME_OPTION_NAMES.MEASURE_TOOL_PATH);
 
         return this;
     }
@@ -464,7 +464,7 @@ class MeasureTool {
      */
     _hasStyle(flag) {
         /* eslint-disable no-bitwise */
-        return (this._style & flag) !== 0;
+        return (this.style & flag) !== 0;
     }
 
     /**
@@ -478,7 +478,7 @@ class MeasureTool {
      * @private
      */
     _onMeasureToolStyleChange(style) {
-        this._style = style;
+        this.style = style;
     }
 
     /**
