@@ -232,6 +232,8 @@ export default class MeasureLegModel {
     /**
      * Returns a flag that indicates whether the radius is valid for this leg
      *
+     * The arcTo command gives strange results when the relative radius is too large
+     *
      * @for MeasureLegMode
      * @method _hasValidRadius
      * @returns {boolean}
@@ -244,34 +246,15 @@ export default class MeasureLegModel {
             return false;
         }
 
-        // The arcTo command gives strange results when the relative radius is too large
-        // TODO: This isn't working fully, it still passes some geometries
-        // Granted they're not realistic ones, but still...
-
-        // A quick check to see if the angle is too acute (< 30°), before calculating
-        // distances, which is more expensive
+        // Test if the angle required to fillet the corner (ensuring the fillet
+        // doesn't extend pass the midpoint of the shortest line) is smaller
+        // than the angle between the two lines
         const a1 = this.bearing;
         const a2 = this.next.bearing + Math.PI;
+        const halfLength = Math.min(this.distance, nextLeg.distance) / 2;
         const angularDifference = Math.abs(angle_offset(a1, a2));
-        const minAngle = Math.PI / 6;
+        const filletAngle = 2 * Math.atan2(this._radius, halfLength);
 
-        if (angularDifference < minAngle) {
-            return false;
-        }
-
-        // The simplest method is to ensure that the diameter of the turning circle is less
-        // than the following:
-        // * distance between any midpoints and control points
-        // * the length either of the legs
-        const diameter = this._radius * 2;
-        const minLength = Math.min(
-            distance2d(this.midPoint, nextLeg.midPoint),
-            distance2d(this.midPoint, nextLeg.endPoint),
-            distance2d(this.startPoint, nextLeg.midPoint),
-            this.distance,
-            nextLeg.distance
-        );
-
-        return minLength >= diameter;
+        return angularDifference >= filletAngle;
     }
 }
