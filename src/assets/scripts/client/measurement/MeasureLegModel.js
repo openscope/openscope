@@ -169,14 +169,14 @@ export default class MeasureLegModel {
      * @type {number}
      */
     get radius() {
-        const response = this._radius;
+        const radius = this._radius;
 
-        // No point in validating if the radius isn't present
-        if (response === 0) {
-            return response;
+        // No point in validating if the radius is empty
+        if (radius === 0) {
+            return radius;
         }
 
-        return this._hasValidRadius() ? response : 0;
+        return this._hasValidRadius() ? radius : 0;
     }
 
     /**

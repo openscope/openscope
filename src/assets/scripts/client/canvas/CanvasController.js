@@ -1232,7 +1232,7 @@ export default class CanvasController {
             return;
         }
 
-        const pathInfo = MeasureTool.getPathInfo();
+        const pathInfo = MeasureTool.buildPathInfo();
 
         this._drawMeasureToolPath(cc, pathInfo);
         this._drawMeasureToolLabels(cc, pathInfo);
@@ -1255,11 +1255,11 @@ export default class CanvasController {
 
         // This way the points are translated only once
         while (leg != null) {
-            const p = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+            const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
 
             values.push({
-                x: p.x,
-                y: p.y,
+                x: position.x,
+                y: position.y,
                 labels: leg.labels
             });
 
@@ -1321,11 +1321,11 @@ export default class CanvasController {
             const {
                 isRHT, center, entryAngle, exitAngle, turnRadius
             } = initialTurn;
-            const p = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(center);
+            const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(center);
             const radius = CanvasStageModel.translateKilometersToPixels(turnRadius);
 
             // The angles calculated in the `MeasureTool` are magnetic, and have to be shifted CCW 90°
-            cc.arc(p.x, p.y, radius, entryAngle - Math.PI / 2, exitAngle - Math.PI / 2, !isRHT);
+            cc.arc(position.x, position.y, radius, entryAngle - Math.PI / 2, exitAngle - Math.PI / 2, !isRHT);
         }
 
         // Draw up to the first midpoint
@@ -1336,17 +1336,17 @@ export default class CanvasController {
         while (leg != null) {
             const { next } = leg;
             const radius = CanvasStageModel.translateKilometersToPixels(leg.radius);
-            const p0 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.endPoint);
+            const position1 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.endPoint);
 
             if (next === null) {
                 // This is the last leg, so simply draw to the end point
-                cc.lineTo(p0.x, p0.y);
+                cc.lineTo(position1.x, position1.y);
             } else {
                 // Draw an arc'd line to the next midpoint
-                const p1 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(next.midPoint);
+                const position2 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(next.midPoint);
 
-                cc.arcTo(p0.x, p0.y, p1.x, p1.y, radius);
-                cc.lineTo(p1.x, p1.y);
+                cc.arcTo(position1.x, position1.y, position2.x, position2.y, radius);
+                cc.lineTo(position2.x, position2.y);
             }
 
             leg = next;

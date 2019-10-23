@@ -217,10 +217,10 @@ export default class InputController {
      * @for InputController
      * @method _addMeasurePoint
      * @param event {jquery Event}
-     * @param doReplaceLast {boolean} Indicates whether this will replace the last point
+     * @param shouldReplaceLastPoint {boolean} Indicates whether this will replace the last point
      * @private
      */
-    _addMeasurePoint(event, doReplaceLast = false) {
+    _addMeasurePoint(event, shouldReplaceLastPoint = false) {
         const currentMousePosition = CanvasStageModel.translateMousePositionToCanvasPosition(
             event.pageX, event.pageY
         );
@@ -246,7 +246,7 @@ export default class InputController {
 
         if (!MeasureTool.hasStarted) {
             MeasureTool.startMeasuring(modelToUse);
-        } else if (doReplaceLast) {
+        } else if (shouldReplaceLastPoint) {
             MeasureTool.updateLastPoint(modelToUse);
         } else {
             MeasureTool.addPoint(modelToUse);
@@ -318,6 +318,7 @@ export default class InputController {
     _onMouseClickAndDrag(event) {
         if (MeasureTool.isMeasuring && MeasureTool.hasStarted) {
             this._addMeasurePoint(event, true);
+
             return this;
         }
 
@@ -436,9 +437,9 @@ export default class InputController {
 
         const currentCommandInputValue = this.$commandInput.val();
 
-        let code = event.originalEvent.code;
+        let { code } = event.originalEvent;
 
-        if (code === undefined) {
+        if (code == null) {
             // fallback for legacy browsers like IE/Edge
             code = event.originalEvent.keyCode;
         }
@@ -611,7 +612,7 @@ export default class InputController {
     _onKeyup(event) {
         let { code } = event.originalEvent;
 
-        if (code === undefined) {
+        if (code == null) {
             // fallback for legacy browsers like IE/Edge
             code = event.originalEvent.keyCode;
         }

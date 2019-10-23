@@ -90,11 +90,11 @@ class MeasureTool {
      * @type {AircraftModel|null}
      */
     get aircraft() {
-        if (this.hasStarted && this._points[0] instanceof AircraftModel) {
-            return this._points[0];
+        if (!this.hasStarted || !(this._points[0] instanceof AircraftModel)) {
+            return null;
         }
 
-        return null;
+        return this._points[0];
     }
 
     /**
@@ -196,10 +196,10 @@ class MeasureTool {
      * Gets the information for the path that should be drawn on the `CanvasController`
      *
      * @for MeasureTool
-     * @method getPathInfo
+     * @method buildPathInfo
      * @returns {object}
      */
-    getPathInfo() {
+    buildPathInfo() {
         if (!this.hasLegs) {
             return [];
         }
@@ -207,7 +207,7 @@ class MeasureTool {
         // Ground speed is only known if the first point is an AircraftModel
         const { aircraft } = this;
         const groundSpeed = aircraft === null ? null : aircraft.groundSpeed;
-        const initialTurn = this._getInitialTurnParameters();
+        const initialTurn = this._buildInitialTurnParameters();
         const pointsList = [...this._points]; // Shallow copy as the first point may be replaced
         let radius = 0;
 
@@ -259,14 +259,14 @@ class MeasureTool {
             }
 
             const labels = [
-                this._getLabel(distance, duration, bearing)
+                this._buildLabel(distance, duration, bearing)
             ];
 
             totalDistance += distance;
             totalDuration += duration;
 
             if (totalDistance !== distance) {
-                labels.push(this._getLabel(totalDistance, totalDuration));
+                labels.push(this._buildLabel(totalDistance, totalDuration));
             }
 
             leg.labels = labels;
@@ -294,6 +294,7 @@ class MeasureTool {
         // The "last" point is actually the 2nd last item in _points
         // This means the path will end at the cursor position when redrawn
         const { length } = this._points;
+
         if (length > 2) {
             this._points.splice(length - 2, 1);
         }
@@ -311,7 +312,7 @@ class MeasureTool {
      * @param startValue {AircraftModel|FixModel|array<number>}
      */
     startMeasuring(startValue) {
-        this._points = [startValue];
+        this._points.push(startValue);
     }
 
     /**
@@ -325,37 +326,26 @@ class MeasureTool {
      * @param value {array<number>}
      */
     updateLastPoint(value) {
-        if (this.hasLegs) {
-            this._points[this._points.length - 1] = value;
-        } else {
+        if (!this.hasLegs) {
             this.addPoint(value);
+
+            return;
         }
+
+        this._points[this._points.length - 1] = value;
     }
 
     // ------------------------------ PRIVATE ------------------------------
 
     /**
-     * Returns a flag indicating whether the specified style should be used
+     * Builds the initial turn parameters that are needed to fly to the first fix
      *
      * @for MeasureTools
-     * @method _hasStyle
-     * @param flag {MEASURE_TOOL_STYLE}
-     * @returns {boolean}
-     */
-    _hasStyle(flag) {
-        /* eslint-disable no-bitwise */
-        return (this._style & flag) !== 0;
-    }
-
-    /**
-     * Gets the initial turn parameters that are needed to fly to the first fix
-     *
-     * @for MeasureTools
-     * @method _getInitialTurnParameters
+     * @method _buildInitialTurnParameters
      * @returns {object}
      * @private
      */
-    _getInitialTurnParameters() {
+    _buildInitialTurnParameters() {
         if (!this._hasStyle(MEASURE_TOOL_STYLE.INITIAL_TURN)) {
             return null;
         }
@@ -420,17 +410,17 @@ class MeasureTool {
     }
 
     /**
-     * Get the text label that displays the distance and
+     * Builds the text label that displays the distance and
      * optional duration and bearings
      *
      * @for MeasureTools
-     * @method _getLabel
-     * @param distance {number}
-     * @param duration {number}
-     * @param bearing {number|null}
+     * @method _buildLabel
+     * @param distance {number} The distance (in NM) that the leg covers
+     * @param duration {number} The length of time (in seconds) that flying the leg will take
+     * @param bearing {number|null} The bearing (degrees magnetic) along the leg
      * @private
      */
-    _getLabel(distance, duration, bearing = null) {
+    _buildLabel(distance, duration, bearing = null) {
         let label = `${distance.toFixed(1)} NM`;
 
         if (duration !== 0) {
@@ -468,6 +458,19 @@ class MeasureTool {
      */
     _getRelativePosition(point) {
         return point.relativePosition || point;
+    }
+
+    /**
+     * Returns a flag indicating whether the specified style should be used
+     *
+     * @for MeasureTools
+     * @method _hasStyle
+     * @param flag {MEASURE_TOOL_STYLE}
+     * @returns {boolean}
+     */
+    _hasStyle(flag) {
+        /* eslint-disable no-bitwise */
+        return (this._style & flag) !== 0;
     }
 
     /**
