@@ -79,6 +79,16 @@ ava.serial('.reset() clears the flags to their initial state', (t) => {
     t.is(MeasureTool.isMeasuring, false);
 });
 
+ava.serial('buildPathInfo returns null when there are no valid legs', (t) => {
+    const bakrr = FixCollection.findFixByName('BAKRR');
+
+    MeasureTool.isMeasuring = true;
+    MeasureTool.addPoint(bakrr);
+    const pathInfo = MeasureTool.buildPathInfo();
+
+    t.is(pathInfo, null);
+});
+
 ava.serial('.buildPathInfo builds a correct MeasureLegModel from FixModel points', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
     const dbige = FixCollection.findFixByName('DBIGE');
@@ -93,6 +103,7 @@ ava.serial('.buildPathInfo builds a correct MeasureLegModel from FixModel points
     t.is(initialTurn, null);
     t.true(firstLeg instanceof MeasureLegModel);
     t.is(firstLeg.previous, null);
+    t.is(firstLeg.startPoint, null);
     t.is(leg1.next, null);
 
     t.deepEqual(leg1.startPoint, bakrr.relativePosition);
@@ -128,4 +139,19 @@ ava.serial('.buildPathInfo builds a correct MeasureLegModel from mixed points', 
     t.not(initialTurn.turnRadius, 0);
     t.not(leg1.radius, 0);
     t.is(leg2.radius, 0);
+});
+
+ava.serial('.removeLastPoint() removes a point as expected', (t) => {
+    MeasureTool.isMeasuring = true;
+    MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
+    MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
+    MeasureTool.addPoint(CURSOR_POSITION);
+
+    t.is(MeasureTool._points.length, 3);
+
+    MeasureTool.removeLastPoint();
+    t.is(MeasureTool._points.length, 2);
+
+    MeasureTool.removeLastPoint();
+    t.is(MeasureTool._points.length, 2);
 });

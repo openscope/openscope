@@ -205,7 +205,7 @@ class MeasureTool {
      */
     buildPathInfo() {
         if (!this.hasLegs) {
-            return [];
+            return null;
         }
 
         // Ground speed is only known if the first point is an AircraftModel
