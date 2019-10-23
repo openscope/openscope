@@ -46,7 +46,7 @@ export default class AirportGuideView {
          */
         this._$airportGuideView = null;
 
-        return this.init();
+        return this.init($element);
     }
 
     // ------------------------------ LIFECYCLE ------------------------------
@@ -124,6 +124,6 @@ export default class AirportGuideView {
      * @method toggleView
      */
     toggleView() {
-        this._$element.toggleClass(SELECTORS.CLASSNAMES.AIRPORT_GUIDE_IS_OPEN);
+        this._$element.toggleClass(SELECTORS.CLASSNAMES.OPEN);
     }
 }

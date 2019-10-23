@@ -1,5 +1,9 @@
 import _mapValues from 'lodash/mapValues';
 
+// TODO: Why are SO many element-specific selectors classes instead of IDs?
+// We are for some reason defining an ID, and sometimes finding the element by
+// searching the ID name, and other times we are searching by the id-specific
+// class name that is also assigned to that specific element... why?
 /**
  * CSS classnames used throught the app.
  *
@@ -10,10 +14,7 @@ import _mapValues from 'lodash/mapValues';
 export const CLASSNAMES = {
     ACTIVE: 'active',
     AIRCRAFT: 'aircraft',
-    AIRPORT_GUIDE: 'airportGuide-bd',
-    AIRPORT_GUIDE_CONTAINER: 'airportGuide-container',
     AIRPORT_GUIDE_VIEW: 'js-airportGuide-view',
-    AIRPORT_GUIDE_IS_OPEN: 'airportGuide-container_isOpen',
     AIRPORT_LIST: 'airport-list',
     AIRPORT_LIST_ITEM: 'airport-list-item',
     AIRPORT_LIST_ITEM_IS_ACTIVE: 'mix-airport-list-item_isActive',
@@ -100,6 +101,8 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
+    AIRPORT_GUIDE: 'airportGuide-bd',
+    AIRPORT_GUIDE_CONTAINER: 'airportGuide-container',
     AIRPORT_SWITCH: 'airport-switch',
     CANVASES: 'canvases',
     CLOCK: 'clock',

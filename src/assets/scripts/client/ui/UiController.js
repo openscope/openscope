@@ -453,7 +453,6 @@ class UiController {
         return this.$airportDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
-    // FIXME: NO REASON TO HAVE "AIRPORT_GUIDE_IS_OPEN" CLASS. JUST USE "OPEN" LIKE EVERYBODY ELSE.
     /**
      * Returns whether the airport guide dialog is open
      *
@@ -462,7 +461,7 @@ class UiController {
      * @return {boolean}
      */
     isAirportGuideDialogOpen() {
-        return this.$airportGuideDialog.hasClass(SELECTORS.CLASSNAMES.AIRPORT_GUIDE_IS_OPEN);
+        return this.$airportGuideDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
     /**
