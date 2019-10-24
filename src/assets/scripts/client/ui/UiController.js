@@ -341,7 +341,6 @@ class UiController {
      */
     enable() {
         // TODO: move these to properly bound handler methods
-        this.$tutorialDialog.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
@@ -370,7 +369,6 @@ class UiController {
      * @method disable
      */
     disable() {
-        this.$tutorialDialog.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
@@ -506,7 +504,7 @@ class UiController {
      * @return {boolean}
      */
     isTutorialDialogOpen() {
-        return this.$toggleTutorial.hasClass(SELECTORS.CLASSNAMES.ACTIVE);
+        return this.$tutorialDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
     /**
@@ -813,13 +811,9 @@ class UiController {
     * @param event {jquery event}
     */
     onToggleTutorial(event) {
-        const $tutorialButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
-
-        $tutorialButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         EventTracker.recordEvent(
             TRACKABLE_EVENT.OPTIONS,
-            'tutorial',
-            `${$tutorialButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+            'tutorial'
         );
         this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
     }
