@@ -7,9 +7,10 @@ import {
     createNavigationLibraryFixture
 } from '../fixtures/navigationLibraryFixtures';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
-import MeasureTool, { MEASURE_TOOL_STYLE } from '../../src/assets/scripts/client/measurement/MeasureTool';
+import MeasureTool from '../../src/assets/scripts/client/measurement/MeasureTool';
 import FixCollection from '../../src/assets/scripts/client/navigationLibrary/FixCollection';
 import MeasureLegModel from '../../src/assets/scripts/client/measurement/MeasureLegModel';
+import { MEASURE_TOOL_STYLE } from '../../src/assets/scripts/client/constants/inputConstants';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../aircraft/_mocks/aircraftMocks';
 
 const CURSOR_POSITION = [500, 20];
@@ -122,7 +123,7 @@ ava.serial('.buildPathInfo builds a correct MeasureLegModel from mixed points', 
 
     MeasureTool.isMeasuring = true;
     /* eslint-disable no-bitwise */
-    MeasureTool.style = MEASURE_TOOL_STYLE.INITIAL_TURN | MEASURE_TOOL_STYLE.ARCED;
+    MeasureTool.setStyle(MEASURE_TOOL_STYLE.ALL_ARCED);
     MeasureTool.addPoint(aircraft);
     MeasureTool.addPoint(bakrr);
     MeasureTool.addPoint(CURSOR_POSITION);

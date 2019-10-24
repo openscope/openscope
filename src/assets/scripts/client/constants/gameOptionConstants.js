@@ -1,4 +1,5 @@
 import { EVENT } from './eventNames';
+import { MEASURE_TOOL_STYLE } from './inputConstants';
 
 /* eslint-disable max-len, import/prefer-default-export */
 /**
@@ -9,15 +10,15 @@ import { EVENT } from './eventNames';
  * @final
  */
 export const GAME_OPTION_NAMES = {
-    THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
-    PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
-    SOFT_CEILING: 'softCeiling',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
+    MEASURE_TOOL_PATH: 'measureToolPath',
     MOUSE_CLICK_DRAG: 'mouseClickDrag',
+    PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
     RANGE_RINGS: 'rangeRings',
-    MEASURE_TOOL_PATH: 'measureToolPath'
+    SOFT_CEILING: 'softCeiling',
+    THEME: 'theme'
 };
 
 /**
@@ -210,21 +211,21 @@ export const GAME_OPTION_VALUES = [
         name: GAME_OPTION_NAMES.MEASURE_TOOL_PATH,
         defaultValue: '0',
         description: 'Measure path style',
-        help: 'How the path is rendered when measuring vectors',
+        help: 'How the path is rendered when using the range/bearing measuring tool',
         type: 'select',
         onChangeEventHandler: EVENT.MEASURE_TOOL_STYLE_CHANGE,
         optionList: [
             {
-                displayLabel: 'Straight Lines',
-                value: 0
+                displayLabel: 'Straight lines only',
+                value: MEASURE_TOOL_STYLE.STRAIGHT
             },
             {
-                displayLabel: 'Straight with initial turn',
-                value: 1
+                displayLabel: 'Arc to next fix, then straight',
+                value: MEASURE_TOOL_STYLE.ARC_TO_NEXT
             },
             {
-                displayLabel: 'Arced with initial turn',
-                value: 3
+                displayLabel: 'All lines arced',
+                value: MEASURE_TOOL_STYLE.ALL_ARCED
             }
         ]
     }

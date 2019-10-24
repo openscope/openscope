@@ -225,23 +225,28 @@ export default class InputController {
             event.pageX, event.pageY
         );
         const { x, y } = currentMousePosition;
-        const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToMousePosition(x, y);
-        const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToMousePosition(x, y);
-        let distance;
-        let modelToUse;
+        let modelToUse = this._translatePointToKilometers(x, y);
 
-        // Which model is closest
-        if (distanceFromFix < distanceFromAircraft) {
-            distance = distanceFromFix;
-            modelToUse = fixModel;
-        } else {
-            distance = distanceFromAircraft;
-            modelToUse = aircraftModel;
-        }
+        // Snapping should only be done when the shift key is depressed
+        if (event.originalEvent.shiftKey) {
+            const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToMousePosition(x, y);
+            const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToMousePosition(x, y);
+            let distance;
+            let nearestModel;
 
-        if (distance > CanvasStageModel.translatePixelsToKilometers(20)) {
-            // Nothing's near the cursor, so we'll use the cursor point
-            modelToUse = this._translatePointToKilometers(x, y);
+            // Which model is closest
+            if (distanceFromFix < distanceFromAircraft) {
+                distance = distanceFromFix;
+                nearestModel = fixModel;
+            } else {
+                distance = distanceFromAircraft;
+                nearestModel = aircraftModel;
+            }
+
+            // Only snap if the distance is with 50px, otherwise the behaviour is jarring
+            if (distance < CanvasStageModel.translatePixelsToKilometers(50)) {
+                modelToUse = nearestModel;
+            }
         }
 
         if (MeasureTool.hasStarted && shouldReplaceLastPoint) {
@@ -444,8 +449,8 @@ export default class InputController {
 
         // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (code) {
-            case KEY_CODES.SHIFT_LEFT:
-            case KEY_CODES.SHIFT_RIGHT:
+            case KEY_CODES.CONTROL_LEFT:
+            case KEY_CODES.CONTROL_RIGHT:
                 this._startMeasuring();
 
                 break;
@@ -616,8 +621,8 @@ export default class InputController {
         }
 
         switch (code) {
-            case KEY_CODES.SHIFT_LEFT:
-            case KEY_CODES.SHIFT_RIGHT:
+            case KEY_CODES.CONTROL_LEFT:
+            case KEY_CODES.CONTROL_RIGHT:
                 this._stopMeasuring();
 
                 break;

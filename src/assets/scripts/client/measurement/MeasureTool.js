@@ -1,4 +1,4 @@
-import GameController from '../game/GameController';
+import _round from 'lodash/round';
 import EventBus from '../lib/EventBus';
 import { radians_normalize } from '../math/circle';
 import { bearingToPoint } from '../math/flightMath';
@@ -10,19 +10,12 @@ import {
 } from '../utilities/unitConverters';
 import MeasureLegModel from './MeasureLegModel';
 import AircraftModel from '../aircraft/AircraftModel';
+import GameController from '../game/GameController';
 import FixModel from '../navigationLibrary/FixModel';
 import { EVENT } from '../constants/eventNames';
+import { MEASURE_TOOL_STYLE } from '../constants/inputConstants';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { TIME } from '../constants/globalConstants';
-
-/**
- * Style enumeration of available render styles
- */
-export const MEASURE_TOOL_STYLE = {
-    STRAIGHT: 0,
-    INITIAL_TURN: 1,
-    ARCED: 2
-};
 
 /**
  * Defines a `MeasureTool`
@@ -72,12 +65,12 @@ class MeasureTool {
          * The style of how the path is rendered
          *
          * @for MeasureTool
-         * @property style
-         * @type {number}
-         * @default MEASURE_TOOL_STYLE.STRAIGHT
+         * @property _style
+         * @type {MEASURE_TOOL_STYLE}
+         * @default null;
          * @private
          */
-        this.style = MEASURE_TOOL_STYLE.STRAIGHT;
+        this._style = null;
 
         this._init()
             ._setupHandlers()
@@ -120,6 +113,31 @@ class MeasureTool {
         return this._points.length !== 0;
     }
 
+    /**
+     * Gets a flag indicating whether the '#style' indicates that
+     * the initial turn should be used when building the path
+     *
+     * @for MeasureTool
+     * @property hasStyleInitialTurn
+     * @returns {boolean}
+     */
+    get hasStyleInitialTurn() {
+        return this._style === MEASURE_TOOL_STYLE.ARC_TO_NEXT ||
+            this._style === MEASURE_TOOL_STYLE.ALL_ARCED;
+    }
+
+    /**
+     * Gets a flag indicating whether the '#style' indicates that
+     * the arcs should be used when building the path
+     *
+     * @for MeasureTool
+     * @property hasStyleArced
+     * @returns {boolean}
+     */
+    get hasStyleArced() {
+        return this._style === MEASURE_TOOL_STYLE.ALL_ARCED;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -129,7 +147,7 @@ class MeasureTool {
      * @private
      */
     _init() {
-        this.style = GameController.getGameOption(GAME_OPTION_NAMES.MEASURE_TOOL_PATH);
+        this.setStyle(GameController.getGameOption(GAME_OPTION_NAMES.MEASURE_TOOL_PATH));
 
         return this;
     }
@@ -215,7 +233,7 @@ class MeasureTool {
         const pointsList = [...this._points]; // Shallow copy as the first point may be replaced
         let radius = 0;
 
-        if (initialTurn !== null && this._hasStyle(MEASURE_TOOL_STYLE.ARCED)) {
+        if (initialTurn !== null && this.hasStyleArced) {
             radius = initialTurn.turnRadius;
         }
 
@@ -232,7 +250,7 @@ class MeasureTool {
         if (initialTurn !== null) {
             const { exitPoint, arcLength } = initialTurn;
             const distance = nm(arcLength);
-            const duration = Math.round((distance / groundSpeed) * TIME.ONE_HOUR_IN_SECONDS);
+            const duration = _round((distance / groundSpeed) * TIME.ONE_HOUR_IN_MINUTES, 1);
 
             initialValues.lastPoint = exitPoint;
             initialValues.totalDistance = distance;
@@ -259,7 +277,7 @@ class MeasureTool {
             let duration = 0;
 
             if (groundSpeed !== null) {
-                duration = Math.round((distance / groundSpeed) * TIME.ONE_HOUR_IN_SECONDS);
+                duration = _round((distance / groundSpeed) * TIME.ONE_HOUR_IN_MINUTES, 1);
             }
 
             const labels = [
@@ -267,7 +285,7 @@ class MeasureTool {
             ];
 
             totalDistance += distance;
-            totalDuration += duration;
+            totalDuration = _round(totalDuration + duration, 1);
 
             if (totalDistance !== distance) {
                 labels.push(this._buildLabel(totalDistance, totalDuration));
@@ -307,6 +325,30 @@ class MeasureTool {
     }
 
     /**
+     * Sets the style that should be used for path generation and rendering
+     *
+     * If an invalid valid for MEASURE_TOOL_STYLE is passed, it will default to
+     * `MEASURE_TOOL_STYLE.STRAIGHT`
+     *
+     * @for MeasureTools
+     * @method setStyle
+     * @param style {MEASURE_TOOL_STYLE}
+     */
+    setStyle(style) {
+        switch (style) {
+            case MEASURE_TOOL_STYLE.ARC_TO_NEXT:
+            case MEASURE_TOOL_STYLE.ALL_ARCED:
+                this._style = style;
+
+                break;
+            default:
+                this._style = MEASURE_TOOL_STYLE.STRAIGHT;
+
+                break;
+        }
+    }
+
+    /**
      * Updates the last point in the path
      *
      * The value can be an object with a `#relativePosition` property,
@@ -340,7 +382,7 @@ class MeasureTool {
      * @private
      */
     _buildInitialTurnParameters() {
-        if (!this._hasStyle(MEASURE_TOOL_STYLE.INITIAL_TURN)) {
+        if (!this.hasStyleInitialTurn) {
             return null;
         }
 
@@ -410,15 +452,15 @@ class MeasureTool {
      * @for MeasureTools
      * @method _buildLabel
      * @param distance {number} The distance (in NM) that the leg covers
-     * @param duration {number} The length of time (in seconds) that flying the leg will take
+     * @param duration {number} The length of time (in minutes) that flying the leg will take
      * @param bearing {number|null} The bearing (degrees magnetic) along the leg
      * @private
      */
     _buildLabel(distance, duration, bearing = null) {
-        let label = `${distance.toFixed(1)} NM`;
+        let label = `${distance.toPrecision(3)} NM`;
 
         if (duration !== 0) {
-            label += `, ${duration.toLocaleString()} s`;
+            label += `, ${duration.toFixed(1)} min`;
         }
 
         if (bearing !== null) {
@@ -455,19 +497,6 @@ class MeasureTool {
     }
 
     /**
-     * Returns a flag indicating whether the specified style should be used
-     *
-     * @for MeasureTools
-     * @method _hasStyle
-     * @param flag {MEASURE_TOOL_STYLE}
-     * @returns {boolean}
-     */
-    _hasStyle(flag) {
-        /* eslint-disable no-bitwise */
-        return (this.style & flag) !== 0;
-    }
-
-    /**
      * Update the `#_style` property
      *
      * This method should only be called via the `EventBus`
@@ -478,7 +507,7 @@ class MeasureTool {
      * @private
      */
     _onMeasureToolStyleChange(style) {
-        this.style = style;
+        this.setStyle(style);
     }
 
     /**

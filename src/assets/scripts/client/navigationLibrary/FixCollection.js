@@ -105,15 +105,15 @@ class FixCollection extends BaseCollection {
      *
      * @for FixCollection
      * @method getNearestFix
-     * @param position {StaticPositionModel}
-     * @param allowRnavFixes {boolean} A flag indicating whether RNAV fixes should be used
+     * @param position {array<number>} These are x, y canvas units (km)
+     * @param hiddenFixes {boolean} A flag indicating whether hidden fixes should be used
      */
-    getNearestFix(position, allowRnavFixes = false) {
+    getNearestFix(position, hiddenFixes = false) {
         return this._items.reduce((lastResult, fix) => {
             let [nearest, distance] = lastResult;
             const d = distance2d(fix.relativePosition, position);
 
-            if ((fix.isRealFix || allowRnavFixes) && d < distance) {
+            if ((fix.isRealFix || hiddenFixes) && d < distance) {
                 nearest = fix;
                 distance = d;
             }

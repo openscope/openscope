@@ -99,6 +99,15 @@ export const LEGACY_KEY_CODES = {
 };
 
 /**
+ * Enumeration of the render styles used by `MeasureTool`
+ */
+export const MEASURE_TOOL_STYLE = {
+    STRAIGHT: 'straight',
+    ARC_TO_NEXT: 'initial_turn',
+    ALL_ARCED: 'arced'
+};
+
+/**
  * Enumeration of the mouse button names
  *
  * @property MOUSE_BUTTON_NAMES

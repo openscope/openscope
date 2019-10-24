@@ -165,7 +165,7 @@ export default class MeasureLegModel {
      * The turn radius (in km)
      *
      * @for MeasureLegModel
-     * @property _radius
+     * @property radius
      * @type {number}
      */
     get radius() {
@@ -183,7 +183,7 @@ export default class MeasureLegModel {
      * The start point of this leg
      *
      * @for MeasureLegModel
-     * @property midPoint
+     * @property startPoint
      * @type {array<number>|null}
      */
     get startPoint() {
