@@ -248,18 +248,11 @@ class MeasureTool {
      * @param style {MEASURE_TOOL_STYLE}
      */
     setStyle(style) {
-        switch (style) {
-            case MEASURE_TOOL_STYLE.ARC_TO_NEXT:
-            case MEASURE_TOOL_STYLE.ALL_ARCED:
-            case MEASURE_TOOL_STYLE.STRAIGHT:
-                break;
-            default:
-                style = MEASURE_TOOL_STYLE.STRAIGHT;
+        const isValid = Object.keys(MEASURE_TOOL_STYLE).some((k) => {
+            return MEASURE_TOOL_STYLE[k] === style;
+        });
 
-                break;
-        }
-
-        this._style = style;
+        this._style = isValid ? style : MEASURE_TOOL_STYLE.STRAIGHT;
 
         this._paths.forEach((path) => path.setStyle(style));
     }

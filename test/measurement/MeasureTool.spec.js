@@ -88,7 +88,7 @@ ava.serial('.reset() clears the flags to their initial state', (t) => {
     t.is(MeasureTool.isMeasuring, false);
 });
 
-ava.serial('buildPathInfo returns an empty array when there are no valid legs', (t) => {
+ava.serial('.buildPathInfo() returns an empty array when there are no valid legs', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
 
     MeasureTool.startNewPath();
@@ -100,7 +100,7 @@ ava.serial('buildPathInfo returns an empty array when there are no valid legs', 
     t.deepEqual(pathInfo, []);
 });
 
-ava.serial('.buildPathInfo builds a correct MeasureLegModel from FixModel points', (t) => {
+ava.serial('.buildPathInfo() builds a correct MeasureLegModel from FixModel points', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
     const dbige = FixCollection.findFixByName('DBIGE');
 
@@ -128,7 +128,7 @@ ava.serial('.buildPathInfo builds a correct MeasureLegModel from FixModel points
     t.is(leg1.radius, 0);
 });
 
-ava.serial('.buildPathInfo builds a correct MeasureLegModel from mixed points', (t) => {
+ava.serial('.buildPathInfo() builds a correct MeasureLegModel from mixed points', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
     const aircraft = createAircaft();
     aircraft.groundSpeed = 180;
@@ -168,4 +168,18 @@ ava.serial('.removeLastPoint() removes a point as expected', (t) => {
 
     MeasureTool.removeLastPoint();
     t.is(MeasureTool._currentPath._points.length, 2);
+});
+
+ava.serial('.setStyle() correctly sets the _style property', (t) => {
+    MeasureTool.setStyle(MEASURE_TOOL_STYLE.STRAIGHT);
+    t.is(MeasureTool._style, MEASURE_TOOL_STYLE.STRAIGHT);
+
+    MeasureTool.setStyle(MEASURE_TOOL_STYLE.ARC_TO_NEXT);
+    t.is(MeasureTool._style, MEASURE_TOOL_STYLE.ARC_TO_NEXT);
+
+    MeasureTool.setStyle(MEASURE_TOOL_STYLE.ALL_ARCED);
+    t.is(MeasureTool._style, MEASURE_TOOL_STYLE.ALL_ARCED);
+
+    MeasureTool.setStyle('a random value');
+    t.is(MeasureTool._style, MEASURE_TOOL_STYLE.STRAIGHT);
 });
