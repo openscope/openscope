@@ -41,7 +41,7 @@ ava.serial('.updateLastPoint() throws when #isMeasuring is not set', (t) => {
 });
 
 ava.serial('.addPoint() throws when point value is invalid', (t) => {
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
 
     t.throws(() => MeasureTool.addPoint({}));
     t.throws(() => MeasureTool.addPoint(null));
@@ -51,7 +51,7 @@ ava.serial('.addPoint() throws when point value is invalid', (t) => {
 });
 
 ava.serial('.updateLastPoint() throws when point value is invalid', (t) => {
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
 
     t.throws(() => MeasureTool.updateLastPoint({}));
     t.throws(() => MeasureTool.updateLastPoint(null));
@@ -61,44 +61,56 @@ ava.serial('.updateLastPoint() throws when point value is invalid', (t) => {
 });
 
 ava.serial('.addPoint() sets the correct flags', (t) => {
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
+
+    t.true(MeasureTool.isMeasuring);
+    t.false(MeasureTool.hasStarted);
+
     MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
 
-    t.is(MeasureTool.hasStarted, true);
-    t.is(MeasureTool.hasLegs, false);
-    t.is(MeasureTool.isMeasuring, true);
+    t.true(MeasureTool.isMeasuring);
+    t.true(MeasureTool.hasStarted);
+
+    MeasureTool.endPath();
+
+    t.false(MeasureTool.isMeasuring);
+    t.false(MeasureTool.hasStarted);
 });
 
 ava.serial('.reset() clears the flags to their initial state', (t) => {
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
     MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
     MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
+    MeasureTool.endPath();
     MeasureTool.reset();
 
     t.is(MeasureTool.hasStarted, false);
-    t.is(MeasureTool.hasLegs, false);
     t.is(MeasureTool.isMeasuring, false);
 });
 
-ava.serial('buildPathInfo returns null when there are no valid legs', (t) => {
+ava.serial('buildPathInfo returns an empty array when there are no valid legs', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
 
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
     MeasureTool.addPoint(bakrr);
+    MeasureTool.endPath();
+
     const pathInfo = MeasureTool.buildPathInfo();
 
-    t.is(pathInfo, null);
+    t.deepEqual(pathInfo, []);
 });
 
 ava.serial('.buildPathInfo builds a correct MeasureLegModel from FixModel points', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
     const dbige = FixCollection.findFixByName('DBIGE');
 
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
     MeasureTool.addPoint(bakrr);
     MeasureTool.addPoint(dbige);
+    MeasureTool.endPath();
 
-    const { initialTurn, firstLeg } = MeasureTool.buildPathInfo();
+    const [pathInfo] = MeasureTool.buildPathInfo();
+    const { initialTurn, firstLeg } = pathInfo;
     const leg1 = firstLeg.next;
 
     t.is(initialTurn, null);
@@ -121,14 +133,15 @@ ava.serial('.buildPathInfo builds a correct MeasureLegModel from mixed points', 
     const aircraft = createAircaft();
     aircraft.groundSpeed = 180;
 
-    MeasureTool.isMeasuring = true;
-    /* eslint-disable no-bitwise */
+    MeasureTool.startNewPath();
     MeasureTool.setStyle(MEASURE_TOOL_STYLE.ALL_ARCED);
     MeasureTool.addPoint(aircraft);
     MeasureTool.addPoint(bakrr);
     MeasureTool.addPoint(CURSOR_POSITION);
+    MeasureTool.endPath();
 
-    const { initialTurn, firstLeg } = MeasureTool.buildPathInfo();
+    const [pathInfo] = MeasureTool.buildPathInfo();
+    const { initialTurn, firstLeg } = pathInfo;
     const leg1 = firstLeg.next;
     const leg2 = leg1.next;
 
@@ -143,16 +156,16 @@ ava.serial('.buildPathInfo builds a correct MeasureLegModel from mixed points', 
 });
 
 ava.serial('.removeLastPoint() removes a point as expected', (t) => {
-    MeasureTool.isMeasuring = true;
+    MeasureTool.startNewPath();
     MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
     MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
     MeasureTool.addPoint(CURSOR_POSITION);
 
-    t.is(MeasureTool._points.length, 3);
+    t.is(MeasureTool._currentPath._points.length, 3);
 
     MeasureTool.removeLastPoint();
-    t.is(MeasureTool._points.length, 2);
+    t.is(MeasureTool._currentPath._points.length, 2);
 
     MeasureTool.removeLastPoint();
-    t.is(MeasureTool._points.length, 2);
+    t.is(MeasureTool._currentPath._points.length, 2);
 });

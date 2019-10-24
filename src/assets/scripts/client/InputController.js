@@ -274,6 +274,24 @@ export default class InputController {
     }
 
     /**
+     * Resets the measuring tool, clearing existing paths
+     *
+     * @for InputController
+     * @method _resetMeasuring
+     * @private
+     */
+    _resetMeasuring() {
+        const { hasPaths } = MeasureTool;
+
+        MeasureTool.reset();
+
+        // Mark for shallow render so the feedback is immediate
+        if (hasPaths) {
+            this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+        }
+    }
+
+    /**
      * Starts the measuring tool
      *
      * @for InputController
@@ -281,7 +299,7 @@ export default class InputController {
      * @private
      */
     _startMeasuring() {
-        MeasureTool.isMeasuring = true;
+        MeasureTool.startNewPath();
     }
 
     /**
@@ -292,10 +310,7 @@ export default class InputController {
      * @private
      */
     _stopMeasuring() {
-        MeasureTool.reset();
-
-        // Mark for shallow render so the feedback is immediate
-        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
+        MeasureTool.endPath();
     }
 
     /**
@@ -319,7 +334,7 @@ export default class InputController {
      * @param event {jquery Event}
      */
     _onMouseClickAndDrag(event) {
-        if (MeasureTool.isMeasuring && MeasureTool.hasStarted) {
+        if (MeasureTool.hasStarted) {
             this._addMeasurePoint(event, true);
 
             return this;
@@ -585,6 +600,9 @@ export default class InputController {
                 break;
             case KEY_CODES.ESCAPE:
             case LEGACY_KEY_CODES.ESCAPE:
+                // TODO: Probably should have its own cancel button
+                this._resetMeasuring();
+
                 UiController.closeAllDialogs();
 
                 const hasCallsign = _includes(currentCommandInputValue, this.input.callsign);
@@ -989,9 +1007,11 @@ export default class InputController {
     _onRightMousePress(event) {
         if (MeasureTool.isMeasuring) {
             this._removeLastMeasurePoint();
-        } else {
-            this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
+
+            return;
         }
+
+        this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
     }
 
     /**

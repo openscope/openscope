@@ -1228,14 +1228,19 @@ export default class CanvasController {
      * @private
      */
     _drawMeasureTool(cc) {
-        if (!MeasureTool.hasLegs) {
+        if (!MeasureTool.hasPaths) {
             return;
         }
 
-        const pathInfo = MeasureTool.buildPathInfo();
+        const pathInfoList = MeasureTool.buildPathInfo();
 
-        this._drawMeasureToolPath(cc, pathInfo);
-        this._drawMeasureToolLabels(cc, pathInfo);
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+        pathInfoList.forEach((pathInfo) => {
+            this._drawMeasureToolPath(cc, pathInfo);
+            this._drawMeasureToolLabels(cc, pathInfo);
+        });
 
         cc.restore();
     }
@@ -1255,13 +1260,16 @@ export default class CanvasController {
 
         // This way the points are translated only once
         while (leg != null) {
-            const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+            // Ignore empty labels
+            if (leg.labels !== null && leg.labels.length !== 0) {
+                const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
 
-            values.push({
-                x: position.x,
-                y: position.y,
-                labels: leg.labels
-            });
+                values.push({
+                    x: position.x,
+                    y: position.y,
+                    labels: leg.labels
+                });
+            }
 
             leg = leg.next;
         }
@@ -1306,9 +1314,6 @@ export default class CanvasController {
         let leg = firstLeg.next; // We start enumerating from the 2nd leg (the first complete leg)
         const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(firstLeg.endPoint);
         const firstMidPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
-
-        cc.save();
-        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
         // TODO: Colours should be move to themes
         cc.strokeStyle = 'orange';
