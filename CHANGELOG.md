@@ -1,13 +1,12 @@
 # 6.15.0 (November 1, 2019)
 ### New Features
-- [#1105](https://github.com/openscope/openscope/issues/1105) - Adds in-sim Airport Guide accessible via footer button
+- <a href="https://github.com/openscope/openscope/issues/1105" target="_blank">#1105</a> - Add in-sim Airport Guide accessible via footer button
 
 ### Bugfixes
 
 ### Enhancements & Refactors
-- [#1451](https://github.com/openscope/openscope/issues/1451) - Add ability to specify the radial with the `hold` command
-- [#1458](https://github.com/openscope/openscope/issues/1458) - Add support for holding patterns with distance-based legs
-
+- <a href="https://github.com/openscope/openscope/issues/1451" target="_blank">#1451</a> - Add ability to specify the radial with the `hold` command
+- <a href="https://github.com/openscope/openscope/issues/1458" target="_blank">#1458</a> - Add support for holding patterns with distance-based legs
 
 # 6.14.2 (October 17, 2019)
 ### Hotfixes

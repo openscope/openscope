@@ -174,6 +174,13 @@ export const EVENT = {
 
     /**
      * @memberof EVENT
+     * @property TOGGLE_CHANGELOG
+     * @type {string}
+     */
+    TOGGLE_CHANGELOG: 'toggle-changelog',
+
+    /**
+     * @memberof EVENT
      * @property TOGGLE_LABELS
      * @type {string}
      */
