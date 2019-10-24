@@ -279,7 +279,7 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_get_nearest
-     * @param position {StaticPositionModel}
+     * @param position {array<number>} These are x, y canvas units (km)
      */
     aircraft_get_nearest(position) {
         let nearest = null;
