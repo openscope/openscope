@@ -455,7 +455,7 @@ export default class ProcedureModel {
         const holdParameters = this._holdCollection.findHoldParametersByFix(waypoint.name);
 
         if (holdParameters != null) {
-            waypoint.setHoldParameters(holdParameters);
+            waypoint.setDefaultHoldParameters(holdParameters);
         }
 
         return waypoint;

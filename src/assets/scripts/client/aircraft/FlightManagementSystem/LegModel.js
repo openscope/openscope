@@ -329,7 +329,7 @@ export default class LegModel {
         const holdParameters = AirportController.airport_get().holdCollection.findHoldParametersByFix(waypoint.name);
 
         if (holdParameters != null) {
-            waypoint.setHoldParameters(holdParameters);
+            waypoint.setDefaultHoldParameters(holdParameters);
         }
 
         return waypoint;

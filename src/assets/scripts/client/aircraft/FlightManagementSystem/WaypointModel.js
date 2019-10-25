@@ -40,6 +40,7 @@ export default class WaypointModel {
         this.altitudeMinimum = INVALID_NUMBER;
         this._speedMaximum = INVALID_NUMBER;
         this._speedMinimum = INVALID_NUMBER;
+        this._defaultHoldParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -284,6 +285,7 @@ export default class WaypointModel {
         this.altitudeMinimum = INVALID_NUMBER;
         this._speedMaximum = INVALID_NUMBER;
         this._speedMinimum = INVALID_NUMBER;
+        this._defaultHoldParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -561,6 +563,29 @@ export default class WaypointModel {
     }
 
     /**
+     * Set default parameters for the planned holding pattern at this waypoint, and will
+     * set both `#_defaultHoldParameters` and `#_holdParameters` properties
+     *
+     * This should only be called immedately after creating a new `WaypointModel`
+     *
+     * @for WaypointModel
+     * @method setDefaultHoldParameters
+     * @param holdParameters {object}
+     */
+    setDefaultHoldParameters(holdParameters) {
+        // The rationale behind having both _defaultHoldParameters and _holdParameters is:
+        // * Without this, once a hold command is executed with specific options (eg. HOLD BPK left 225),
+        //   it could overwrite the parameters for a procedural hold
+        // * This would mean that if the hold was cancelled and re-requested without any specific options (eg. HOLD BPK)
+        //   it would still use "left 225", and not the expected defaults from the pocedure
+
+        // These can't be the same reference, as we don't want any changes to made _holdParameters
+        // (eg. timer) to be passed onto _defaultHoldParameters
+        this._defaultHoldParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, holdParameters);
+        this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, holdParameters);
+    }
+
+    /**
      * Set parameters for the planned holding pattern at this waypoint. This does NOT
      * inherently make this a hold waypoint, but simply describes the holding pattern
      * aircraft should follow IF they are told to hold at this waypoint
@@ -571,7 +596,7 @@ export default class WaypointModel {
      * @returns {object} The hold parameters set for the `WaypointModel`
      */
     setHoldParameters(holdParameters) {
-        const params = Object.assign({}, this._holdParameters, holdParameters);
+        const params = Object.assign({}, this._defaultHoldParameters, holdParameters);
 
         if (params.inboundHeading == null) {
             params.inboundHeading = params.fallbackHeading;
