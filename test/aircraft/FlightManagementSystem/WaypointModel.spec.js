@@ -877,7 +877,7 @@ ava('.setHoldParameters() sets #_holdParameters according to provided parameters
 
     const result = model.setHoldParameters(holdParametersMock);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.deepEqual(model._holdParameters, expectedResult);
 });
 
@@ -903,7 +903,7 @@ ava('.setHoldParametersAndActivateHold() calls .setHoldParameters() and .activat
     };
     const result = model.setHoldParametersAndActivateHold(holdParametersMock);
 
-    t.true(typeof result === 'undefined');
+    t.not(typeof result, 'undefined');
     t.true(setHoldParametersSpy.calledWithExactly(holdParametersMock));
     t.true(activateHoldSpy.calledWithExactly());
 });

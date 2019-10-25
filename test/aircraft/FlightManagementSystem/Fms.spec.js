@@ -205,7 +205,7 @@ ava('.activateHoldForWaypointName() calls #_routeModel.activateHoldForWaypointNa
     const holdParametersMock = { turnDirection: 'left' };
     const result = fms.activateHoldForWaypointName(holdWaypointName, holdParametersMock);
 
-    t.true(typeof result === 'undefined');
+    t.not(typeof result, 'undefined');
     t.true(routeModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock));
 });
 

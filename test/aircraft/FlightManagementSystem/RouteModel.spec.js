@@ -243,7 +243,7 @@ ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName()
     const holdParametersMock = { turnDirection: 'left' };
     const result = model.activateHoldForWaypointName('KEPEC', holdParametersMock);
 
-    t.true(typeof result === 'undefined');
+    t.not(typeof result, 'undefined');
     t.true(activateHoldForWaypointNameSpy1.notCalled);
     t.true(activateHoldForWaypointNameSpy2.calledWithExactly('KEPEC', holdParametersMock));
 });

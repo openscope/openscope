@@ -238,7 +238,7 @@ ava('.activateHoldForWaypointName() calls .setHoldParametersAndActivateHold() wi
     const holdParametersMock = { turnDirection: 'left' };
     const result = model.activateHoldForWaypointName('KEPEC', holdParametersMock);
 
-    t.true(typeof result === 'undefined');
+    t.not(typeof result, 'undefined');
     t.true(setHoldParametersAndActivateHoldSpy.calledWithExactly(holdParametersMock));
 });
 
