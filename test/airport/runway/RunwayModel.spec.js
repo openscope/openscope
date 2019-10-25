@@ -119,7 +119,7 @@ ava('.isAircraftNextInQueue() returns true only when an aircraftId is at index 0
 ava.todo('.isOnApproachCourse()');
 
 // need an aircraftModel to be able to test
-ava.todo('.isOnCorrectApproachHeading()');
+ava.todo('.isOnCorrectApproachGroundTrack()');
 
 ava('.removeAircraftFromQueue() removes an aircraft#id from the queue', (t) => {
     const aircraftIdMock = 'aircraft-221';

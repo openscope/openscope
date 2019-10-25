@@ -130,7 +130,9 @@ class NavigationLibrary {
      * @method init
      */
     init(airportJson) {
-        const { airways, fixes, sids, stars } = airportJson;
+        const {
+            airways, fixes, sids, stars
+        } = airportJson;
 
         this._initializeReferencePosition(airportJson);
         this._initializeFixCollection(fixes);
@@ -444,9 +446,9 @@ class NavigationLibrary {
     * @return {array<ProcedureModel>}
     */
     getProceduresByType(procedureType) {
-        return _filter(this._procedureCollection, (procedureModel) =>
-            !_isEmpty(procedureModel) && procedureModel.procedureType === procedureType
-        );
+        return _filter(this._procedureCollection, (procedureModel) => {
+            return !_isEmpty(procedureModel) && procedureModel.procedureType === procedureType;
+        });
     }
 
     /**

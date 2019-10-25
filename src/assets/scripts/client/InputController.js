@@ -307,6 +307,11 @@ export default class InputController {
         this.input.callsign = aircraftModel.callsign;
         this.input.command = '';
         this.$commandInput.val(`${aircraftModel.callsign} `);
+
+        if (!this.$commandInput.is(':focus')) {
+            this.$commandInput.focus();
+        }
+
         this._eventBus.trigger(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, aircraftModel);
     };
 
@@ -443,6 +448,18 @@ export default class InputController {
                 this.$commandInput.val(`${currentCommandInputValue} - `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
+
+                break;
+            case KEY_CODES.F1:
+            case LEGACY_KEY_CODES.F1:
+                event.preventDefault();
+                this._scopeModel.decreasePtlLength();
+
+                break;
+            case KEY_CODES.F2:
+            case LEGACY_KEY_CODES.F2:
+                event.preventDefault();
+                this._scopeModel.increasePtlLength();
 
                 break;
             case KEY_CODES.F7:

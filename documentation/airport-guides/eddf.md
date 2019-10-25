@@ -27,7 +27,7 @@ Runways 18 and 25C are preferred for takeoff.
 | N         | MARUN                    | 25C              |
 | NE        | TOBAK                    | 25C              |
 | SW        | SOBRA, ULKIG             | 18               |
-| SE        | AKONI                    | 18               |
+| SE        | CINDY                    | 18               |
 | E         | SULUS                    | 18               |
 
 There are also rules as to how the runways should be used:
@@ -54,7 +54,7 @@ Frankfurt has a variety of departures. However, there are certain rules as to wh
 | Ried (RID)         | Special permission required, non RNAV equipped aircraft only                                                      |
 | SOBRA              | For flights intending to proceed via Y180/Y181 airways                                                            |
 | SULUS              | Not for flights terminating within the EDDN area                                                                  |
-| Taunus (TAU)       | Special permission required; non RNAV equipped aircraft only                                                      |
+| Taunus (TAI)       | Special permission required; non RNAV equipped aircraft only                                                      |
 | TOBAK              | Not for flights proceeding via airway Z10                                                                         |
 | ULKIG              | For flights intending to proceed via Y180/Y181 airways                                                            |
 

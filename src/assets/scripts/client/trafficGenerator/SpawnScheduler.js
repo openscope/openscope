@@ -2,7 +2,6 @@ import _forEach from 'lodash/forEach';
 import SpawnPatternCollection from './SpawnPatternCollection';
 import TimeKeeper from '../engine/TimeKeeper';
 import GameController from '../game/GameController';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 
 /**
@@ -74,8 +73,7 @@ class SpawnScheduler {
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
 
             // TODO: abstract this to a class method on the `SpawnPatternModel`
-            if (spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
-                && spawnPatternModel.preSpawnAircraftList.length > 0) {
+            if (spawnPatternModel.isAirborneAtSpawn() && spawnPatternModel.preSpawnAircraftList.length > 0) {
                 this.aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
             }
         });

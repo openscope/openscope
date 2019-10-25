@@ -147,12 +147,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Dublin Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'einn',
-        //     level: 'beginner',
-        //     name: 'Shannon Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'einn',
+            level: 'beginner',
+            name: 'Shannon Airport',
+            premium: false
+        },
         // {
         //     icao: 'ekch',
         //     level: 'medium',
@@ -225,12 +225,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Detroit Metropolitan Wayne County Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'kelp',
-        //     level: 'easy',
-        //     name: 'El Paso International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'kelp',
+            level: 'easy',
+            name: 'El Paso International Airport',
+            premium: false
+        },
         // {
         //     icao: 'kiad',
         //     level: 'hard',
@@ -339,12 +339,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Seattle-Tacoma International Airport',
             premium: false
         },
-        // {
-        //     icao: 'ksfo',
-        //     level: 'medium',
-        //     name: 'San Francisco International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'ksfo',
+            level: 'hard',
+            name: 'San Francisco International Airport',
+            premium: false
+        },
         {
             icao: 'kstl',
             level: 'medium',

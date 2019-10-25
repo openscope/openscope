@@ -12,6 +12,7 @@ import {
     FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
+import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
 import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
 import { speech_say } from '../speech';
@@ -21,7 +22,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import { radiansToDegrees } from '../utilities/unitConverters';
+import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 /**
  *
@@ -300,19 +301,24 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
-        const turnDirection = data[0];
-        const legLength = data[1];
-        const fixName = data[2];
+        const [turnDirection, legLength, fixName, radial] = data;
         const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
+        let inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+
+        // Radial is given as the outbound course, so it needs to be inverted
+        if (radial !== null) {
+            inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
+        }
+
         const holdParameters = {
             turnDirection,
             legLength,
-            inboundHeading: fixModel.positionModel.bearingFromPosition(aircraft.positionModel)
+            inboundHeading
         };
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
@@ -366,10 +372,10 @@ export default class AircraftCommander {
         if (_isNil(runwayModel)) {
             const previousRunwayModel = aircraft.fms.arrivalRunwayModel;
             const readback = {};
-            readback.log = `unable to find Runway ${runwayName} on our charts, `
-                + `expecting Runway ${previousRunwayModel.name} instead`;
-            readback.say = `unable to find Runway ${radio_runway(runwayName)} on our `
-                + `charts, expecting Runway ${previousRunwayModel.getRadioName()} instead`;
+            readback.log = `unable to find Runway ${runwayName} on our charts, ` +
+                `expecting Runway ${previousRunwayModel.name} instead`;
+            readback.say = `unable to find Runway ${radio_runway(runwayName)} on our ` +
+                `charts, expecting Runway ${previousRunwayModel.getRadioName()} instead`;
 
             return [false, readback];
         }
@@ -383,7 +389,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
-        return aircraft.pilot.maintainPresentHeading(aircraft.heading);
+        return aircraft.pilot.maintainPresentHeading(aircraft);
     }
 
     /**
@@ -523,7 +529,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayHeading(aircraft) {
-        const heading = _round(radiansToDegrees(aircraft.heading));
+        const heading = heading_to_string(aircraft.heading);
         const readback = {};
 
         readback.log = `heading ${heading}`;
@@ -543,7 +549,7 @@ export default class AircraftCommander {
             return [false, 'we haven\'t been assigned a heading'];
         }
 
-        const heading = _round(radiansToDegrees(aircraft.mcp.heading));
+        const heading = heading_to_string(aircraft.mcp.heading);
         const readback = {};
 
         readback.log = `assigned heading ${heading}`;
@@ -635,7 +641,7 @@ export default class AircraftCommander {
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = this._aircraftController.findAircraftById(runway.queue[spotInQueue - 1]);
-        const wind = airport.getWind();
+        const wind = airport.getWindAtAltitude();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
         const readback = {};
@@ -676,10 +682,10 @@ export default class AircraftCommander {
 
         // see #1154, we may have been rerouted since we started taxiing.
         if (!aircraft.fms.isRunwayModelValidForSid(runway)) {
-            readback.log = `according to our charts, Runway ${runway.name} `
-                + `is not valid for the ${aircraft.fms.getSidIcao()} departure`;
-            readback.say = `according to our charts, Runway ${runway.getRadioName()} `
-                + `is not valid for the ${aircraft.fms.getSidName()} departure`;
+            readback.log = `according to our charts, Runway ${runway.name} ` +
+                `is not valid for the ${aircraft.fms.getSidIcao()} departure`;
+            readback.say = `according to our charts, Runway ${runway.getRadioName()} ` +
+                `is not valid for the ${aircraft.fms.getSidName()} departure`;
 
             return [false, readback];
         }
@@ -687,13 +693,13 @@ export default class AircraftCommander {
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.takeoff(runway);
 
-        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, `
-            + `Runway ${runway.name}, cleared for takeoff`;
+        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, ` +
+            `Runway ${runway.name}, cleared for takeoff`;
 
         // We have to make it say winned to make it sound like "Wind" and not "Whined"
-        readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at `
-            + `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, `
-            + 'cleared for takeoff';
+        readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
+            `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, ` +
+            'cleared for takeoff';
 
         return [true, readback];
     }

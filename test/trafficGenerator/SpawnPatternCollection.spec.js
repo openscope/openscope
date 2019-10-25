@@ -15,7 +15,7 @@ import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
 
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 
     createNavigationLibraryFixture();
     createAirportControllerFixture();
@@ -52,6 +52,8 @@ ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
 
     SpawnPatternCollection.addItems();
     t.false(addItemSpy.called);
+
+    addItemSpy.restore();
 });
 
 ava('.addItems() calls .addItem() for each item in the list passed as an argument', (t) => {
@@ -62,6 +64,8 @@ ava('.addItems() calls .addItem() for each item in the list passed as an argumen
     SpawnPatternCollection.addItems([spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture]);
 
     t.true(addItemSpy.calledTwice);
+
+    addItemSpy.restore();
 });
 
 ava('.addItem() throws if anything other than a SpawnPatternModel is passed as an argument', (t) => {
@@ -98,6 +102,5 @@ ava('.findSpawnPatternsByCategory() returns all SpawnPatternModels in the collec
     const categoryMock = 'arrival';
     const result = SpawnPatternCollection.findSpawnPatternsByCategory(categoryMock);
 
-    t.true(result.length === 1);
     t.true(result.every((spawnPatternModel) => spawnPatternModel.category === categoryMock));
 });

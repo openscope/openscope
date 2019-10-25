@@ -37,16 +37,15 @@ on adjacent final approach courses. Aircraft are considered to be fully
 approach course. At this point, the lower lateral separation requirements
 will be applied, allowing the aircraft to go under 3nm separation, all the
 way down to the appropriate value (depends on distance between runway
-centerlines):  
+centerlines):
 
-  Reduced Separation on Adjacent Final Approach Courses  
-  See FAA JO 7110.65, para. 5-9-6  
+  Reduced Separation on Adjacent Final Approach Courses
+  See FAA JO 7110.65, para. 5-9-6
 
-
-  | Dist btwn ctrln (ft) | Separation Minima  |   
-  |:--------------------:|:------------------:|   
-  | < 2,500'             | Standard Sep (3nm) |   
-  | 2,500' --> 3,600'    | 1.0 nautical mile  |   
-  | 3,601' --> 4,300'    | 1.5 nautical miles |   
+  | Dist btwn ctrln (ft) | Separation Minima  |
+  |:--------------------:|:------------------:|
+  | < 2,500'             | Standard Sep (3nm) |
+  | 2,500' --> 3,600'    | 1.0 nautical mile  |
+  | 3,601' --> 4,300'    | 1.5 nautical miles |
   | 4,301' --> 9,000'    | 2.0 nautical miles |
   | > 9,000'             | Standard Sep (3nm) |
