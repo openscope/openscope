@@ -757,14 +757,19 @@ export default class Pilot {
      * @return {array} [success of operation, readback]
      */
     initiateHoldingPattern(fixName, holdParameters) {
-        const radialText = heading_to_string(holdParameters.inboundHeading + Math.PI);
-        const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
-        const problematicResponse = this._fms.activateHoldForWaypointName(fixName, holdParameters);
+        const [success, responseValue] = this._fms.activateHoldForWaypointName(fixName, holdParameters);
 
-        if (typeof problematicResponse !== 'undefined') {
-            return problematicResponse;
+        if (!success) {
+            return [success, responseValue];
         }
 
+        // When successful, the responseValue contains the actual holdParameters used by the
+        // `WaypointModel`. This means that we can send partial holdParameters, to patch
+        // the `WaypointModel`s _holdParameters property
+        holdParameters = responseValue;
+
+        const radialText = heading_to_string(holdParameters.inboundHeading + Math.PI);
+        const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
         const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
         const radialReadbackLog = `on the ${radialText} radial`;
         const radialReadbackSay = `on the ${radio_heading(radialText)} radial`;

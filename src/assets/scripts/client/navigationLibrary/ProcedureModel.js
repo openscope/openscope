@@ -107,7 +107,7 @@ export default class ProcedureModel {
          * @default null
          * @private
          */
-        this._holdCollection = '';
+        this._holdCollection = null;
 
         /**
          * The verbally spoken name of the procedure
@@ -441,7 +441,7 @@ export default class ProcedureModel {
     // ------------------------------ PRIVATE ------------------------------
 
     /**
-     * Generate a `WaupointMode` for the specified data
+     * Generate a `WaypointModel` for the specified data
      *
      * @for ProcedureModel
      * @method _generateWaypoint

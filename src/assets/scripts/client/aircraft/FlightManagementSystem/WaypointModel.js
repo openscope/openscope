@@ -568,9 +568,18 @@ export default class WaypointModel {
      * @for WaypointModel
      * @method setHoldParameters
      * @param holdParameters {object}
+     * @returns {object} The hold parameters set for the `WaypointModel`
      */
     setHoldParameters(holdParameters) {
-        this._holdParameters = Object.assign({}, this._holdParameters, holdParameters);
+        const params = Object.assign({}, this._holdParameters, holdParameters);
+
+        if (params.inboundHeading == null) {
+            params.inboundHeading = params.fallbackHeading;
+        }
+
+        this._holdParameters = params;
+
+        return params;
     }
 
     /**
@@ -581,10 +590,14 @@ export default class WaypointModel {
      * @param inboundHeading {number} in radians
      * @param turnDirection {string} either left or right
      * @param legLength {string} length of the hold leg in minutes or nm
+     * @returns {object} The hold parameters set
      */
     setHoldParametersAndActivateHold(holdParameters) {
-        this.setHoldParameters(holdParameters);
+        const params = this.setHoldParameters(holdParameters);
+
         this.activateHold();
+
+        return params;
     }
 
     /**

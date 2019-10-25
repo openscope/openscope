@@ -221,6 +221,7 @@ export default class RouteModel extends BaseModel {
      * @method activateHoldForWaypointName
      * @param waypointName {string} name of waypoint in route
      * @param holdParameters {object}
+     * @returns {object} The hold parameters set for the `WaypointModel`
      */
     activateHoldForWaypointName(waypointName, holdParameters) {
         if (!this.hasWaypointName(waypointName)) {
@@ -230,7 +231,7 @@ export default class RouteModel extends BaseModel {
         const legIndex = this._findIndexOfLegContainingWaypointName(waypointName);
         const legModel = this._legCollection[legIndex];
 
-        legModel.activateHoldForWaypointName(waypointName, holdParameters);
+        return legModel.activateHoldForWaypointName(waypointName, holdParameters);
     }
 
     /**

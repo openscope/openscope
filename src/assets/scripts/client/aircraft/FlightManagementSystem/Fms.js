@@ -463,7 +463,7 @@ export default class Fms {
             }];
         }
 
-        this._routeModel.activateHoldForWaypointName(waypointName, holdParameters);
+        return [true, this._routeModel.activateHoldForWaypointName(waypointName, holdParameters)];
     }
 
     /**

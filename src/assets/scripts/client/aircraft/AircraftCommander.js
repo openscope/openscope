@@ -12,7 +12,6 @@ import {
     FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
-import { DEFAULT_HOLD_PARAMETERS } from '../constants/waypointConstants';
 import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
 import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
@@ -309,17 +308,11 @@ export default class AircraftCommander {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        // TODO: Get the current procedure that the aircraft is flying (if present)
-        const holdModel = AirportController.airport_get().holdCollection.findHoldByFix(fixName);
+        const holdParameters = {};
 
-        // Rather than the argumentParser setting the default values, we'll use DEFAULT_HOLD_PARAMETERS
-        const holdParameters = Object.assign(
-            {},
-            DEFAULT_HOLD_PARAMETERS,
-            holdModel ? holdModel.holdParameters : {}
-        );
-
-        // Prefer values provided by the argumentParser
+        // Instead of using DEFAULT_HOLD_PARAMETERS here, we only pass the values
+        // provided by the player. These then are used to patch the _holdParameters as
+        // specified in the `WaypointModel`
         if (turnDirection !== null) {
             holdParameters.turnDirection = turnDirection;
         }
@@ -329,11 +322,11 @@ export default class AircraftCommander {
         if (radial !== null) {
             // Radial is given as the outbound course, so it needs to be inverted
             holdParameters.inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
-        }
-
-        // inboundHeading is required, so if no HoldModel is available then use the course to the fix
-        if (holdParameters.inboundHeading == null) {
-            holdParameters.inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        } else {
+            // As radial has not been explicitly requested, we need to pass a "fallback"
+            // inboundHeading, as it's possible that a default inboundHeading doesn't exist for
+            // the `WaypointModel`s _holdParameters (eg. if the procedure JSON has no holds)
+            holdParameters.fallbackHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
         }
 
         return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);

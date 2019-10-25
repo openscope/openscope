@@ -315,7 +315,7 @@ export default class LegModel {
     }
 
     /**
-     * Generate a `WaupointMode` for the specified data
+     * Generate a `WaypointModel` for the specified data
      *
      * @for LegModel
      * @method _generateWaypoint
@@ -370,6 +370,7 @@ export default class LegModel {
      * @method activateHoldForWaypointName
      * @param waypointName {string} name of waypoint in route
      * @param holdParameters {object}
+     * @returns {object} The hold parameters set for the `WaypointModel`
      */
     activateHoldForWaypointName(waypointName, holdParameters) {
         if (!this.hasWaypointName(waypointName)) {
@@ -379,7 +380,7 @@ export default class LegModel {
         const waypointIndex = this._findIndexOfWaypointName(waypointName);
         const waypointModel = this._waypointCollection[waypointIndex];
 
-        waypointModel.setHoldParametersAndActivateHold(holdParameters);
+        return waypointModel.setHoldParametersAndActivateHold(holdParameters);
     }
 
     /**
