@@ -637,32 +637,14 @@
         "WOD"  : ["N51d27m10.02", "W000d52m43.68"],
         "XAMAN": ["N51d47m05", "E002d13m27"]
     },
-    "_holds": [
-        {
-            "fixName": "ABBOT",
+    "_holds": {
+        "HEMEL": {
             "turnDirection": "right",
             "legLength": "1min",
-            "inboundHeading": 265
-        },
-        {
-            "fixName": "ASKEY",
-            "turnDirection": "left",
-            "legLength": "1min",
-            "inboundHeading": 161
-        },
-        {
-            "fixName": "CASEY",
-            "turnDirection": "right",
-            "legLength": "1min",
-            "inboundHeading": 239
-        },
-        {
-            "fixName": "LOREL",
-            "turnDirection": "left",
-            "legLength": "1min",
-            "inboundHeading": 188
+            "inboundHeading": 90,
+            "speed": 150
         }
-    ],
+    },
     "restricted": [
         {
             "name": "EG R063",
@@ -1600,7 +1582,7 @@
                 "ABBOT":{
                     "inboundHeading": 265,
                     "legLength": "1min",
-                    "speed": 150,
+                    "speed": 220,
                     "turnDirection": "right"
                 }
             },
