@@ -1,46 +1,113 @@
-#controls > * {
-    width: 36px;
-    display: inline-block;
-}
-
-.control {
+ul {
+    list-style-type: none;
     margin: 0;
-    transition: box-shadow 0.05s ease;
+    padding: 0;
+    overflow: hidden;
+    z-index: 2;
 }
 
-.control > a {
+li {
+    float: left;
+}
+
+.dropup {
     display: inline-block;
 }
 
-.control img {
-    opacity: 0.5;
-    transition: opacity 0.1s ease;
+.dropup:hover .dropup-icon,
+.dropup-icon:hover {
+    box-shadow: inset 0 4px 0 @dark-gray;
 }
 
-.control:hover img {
+.dropup:hover .dropup-icon img,
+.dropup-icon:hover img {
     opacity: 0.9;
     cursor: pointer;
 }
 
-.control:active img {
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+.dropup-icon {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.dropup-icon img {
+    opacity: 0.5;
+    transition: opacity 0.1s ease;
+}
+
+.dropup-icon:active img {
     opacity: 0.6;
 }
 
-.control:hover {
-    box-shadow: inset 0 4px 0 @dark-gray;
+.dropup-icon.active {
+    margin-left: 0;
 }
 
-.control.speed-2,
+.dropup-content {
+    display: none;
+    position: absolute;
+    background-color: @dark-gray;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    bottom: @command-bar-height;
+    float: right;
+}
+
+.dropup-content a {
+    color: @light-gray;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    clear: both;
+    padding-right: calc(@command-bar-height / 4);
+
+    /*disable text selection*/
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+    border-bottom-color: @medium-gray;
+    border-bottom-width: 1px;
+    border-bottom-style: inset;
+}
+
+.dropup-content a img {
+    float: left;
+}
+
+.dropup-content a span {
+    line-height: @command-bar-height;
+}
+
+.dropup-content a:hover,
+.dropup-content a.active:hover {
+    background-color: @gray-40;
+}
+
+.dropup-content a.active {
+    margin: 0;
+    background-color: @dark;
+    box-shadow: inset 10px 0 1px -6px @blue-light
+}
+
+.dropup-icon.speed-2,
 .active {
     box-shadow: inset 0 4px 0 @blue-light;
 }
 
-.control.speed-5,
+.dropup-icon.speed-5,
 .warning-button {
     box-shadow: inset 0 4px 0 @red
 }
 
-.control.speed-5:hover,
+.dropup-icon.speed-5:hover,
 .warning-button:hover {
     box-shadow: inset 0 4px 0 rgba(255, 119, 102, .5);
 }
