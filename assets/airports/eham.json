@@ -61,14 +61,28 @@
     "fixes": {
         "ANDIK": ["N52d44.36", "E5d16.23"],
         "ARNEM": ["N52d5.79", "E6d4.59"],
+        "EDUPO": ["N51d58.53", "E5d50.16"],
         "EH008": ["N52d12.50", "E4d46.00"],
         "EH026": ["N52d10.28", "E4d52.18"],
+        "EH039": ["N52d9.62", "E4d45.43"],
+        "EH050": ["N52d9.32", "E4d55.08"],
         "EH095": ["N52d16.62", "E4d42.34"],
+        "EH096": ["N52d16.44", "E4d40.37"],
+        "EH097": ["N52d19.25", "E4d38.53"],
         "EH125": ["N52d15.61", "E4d41.23"],
+        "EH126": ["N52d14.46", "E4d41.50"],
         "EH127": ["N52d13.69", "E4d42.67"],
+        "EHAM" : ["N52d18.48", "E4d45.85"],
         "IVLUT": ["N52d14.64", "E5d15.42"],
+        "KUDAD": ["N51d40.05", "E4d34.06"],
+        "LEKKO": ["N51d55.45", "E4d46.04"],
+        "LOPIK": ["N51d55.85", "E5d7.75"],
+        "LUNIX": ["N52d6.59", "E5d33.92"],
         "NYKER": ["N52d13.82", "E5d31.73"],
-        "PAM"  : ["N52d20.09", "E5d5.53"]
+        "PAM"  : ["N52d20.09", "E5d5.53"],
+        "RENDI": ["N52d3.69", "E5d40.53"],
+        "SPY"  : ["N52d32.42", "E4d51.23"],
+        "WOODY": ["N51d24.34", "E4d21.99"]
     },
 
     "runways": [
@@ -106,8 +120,8 @@
 
 
     "sids": {
-        "ANDIK1SY": {
-            "icao": "ANDIK1SY",
+        "AND1SY": {
+            "icao": "AND1SY",
             "name": "Andik One Sierra Yankee",
             "altitude": 6000,
             "rwy": {
@@ -121,8 +135,8 @@
                 ["EH095", "EH125", "EH127", "EH008", "EH026", "PAM", "ANDIK*"]
             ]
         },
-        "ARNEM2SY": {
-            "icao": "ARNEM2SY",
+        "ARN2SY": {
+            "icao": "ARN2SY",
             "name": "Arnem Two Sierra Yankee",
             "altitude": 6000,
             "rwy": {
@@ -134,6 +148,66 @@
             },
             "draw": [
                 ["EH095", "EH125", "EH127", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM*"]
+            ]
+        },
+        "KUD1SY": {
+            "icao": "KUD1SY",
+            "name": "Kudad One Sierra Yankee",
+            "altitude": 6000,
+            "rwy": {
+                "EHAM24": ["EH095", "EH125", ["EH126", "S220-"]]
+            },
+            "body": ["EH039", "LEKKO", "KUDAD"],
+            "exitPoints": {
+                "WOODY": ["WOODY"]
+            },
+            "draw": [
+                ["EH095", "EH125", "EH126", "EH039", "LEKKO", "KUDAD", "WOODY*"]
+            ]
+        },
+        "LOP2SY": {
+            "icao": "LOP2SY",
+            "name": "Lopik Two Sierra Yankee",
+            "altitude": 6000,
+            "rwy": {
+                "EHAM24": ["EH095", "EH125", ["EH127", "S220-"]]
+            },
+            "body": ["EH008", "EH050"],
+            "exitPoints": {
+                "LOPIK": ["LOPIK"]
+            },
+            "draw": [
+                ["EH095", "EH125", "EH127", "EH008", "EH050", "LOPIK"]
+            ]
+        },
+        "REN1SY": {
+            "icao": "REN1SY",
+            "name": "Rendi One Sierra Yankee",
+            "altitude": 6000,
+            "rwy": {
+                "EHAM24": ["EH095", "EH125", ["EH127", "S220-"]]
+            },
+            "body": ["EH008", "EH026", "IVLUT", "LUNIX"],
+            "exitPoints": {
+                "EDUPO": ["RENDI", "EDUPO"]
+            },
+            "draw": [
+                ["EH095", "EH125", "EH127", "EH008", "EH026", "IVLUT", "LUNIX", "RENDI", "EDUPO*"]
+            ]
+        },
+        "SPY3KY": {
+            "icao": "SPY3KY",
+            "name": "Spijkerboor Three Kilo Yankee",
+            "altitude": 6000,
+            "rwy": {
+                "EHAM24": ["EH095", "EH096", ["EH097", "S220-"]]
+            },
+            "body": ["SPY"],
+            "exitPoints": {
+                "ANDIK": ["ANDIK"]
+            },
+            "draw": [
+                ["EH095", "EH096", "EH097", "SPY", "ANDIK*"]
             ]
         }
     },
