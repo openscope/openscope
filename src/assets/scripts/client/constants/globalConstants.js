@@ -32,6 +32,7 @@ export const REGEX = {
     DOUBLE_DOT: /\.\./g,
     HOLD_DISTANCE: /^([1-9]|1[0-9])(nm|min)$/i,
     LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
+    SPEED_RESTRICTION: /^S([0-9]{3})([+-])$/,
     SW: /[SW]/,
     SINGLE_DOT: /\./g,
     THREE_DIGIT_NUMBER: /^[0-9]{3}$/,

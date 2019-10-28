@@ -491,7 +491,7 @@ ava('#hasSpeedRestriction returns true when a hold with a speed restriction is s
     const holdParametersMock = {
         inboundHeading: 3.14,
         legLength: '2min',
-        speed: 220,
+        speedMaximum: 220,
         turnDirection: 'left'
     };
 
@@ -520,7 +520,7 @@ ava('#holdParameters returns object with appropriate contents when #_isHoldWaypo
     const expectedResult = {
         inboundHeading: undefined,
         legLength: '1min',
-        speed: undefined,
+        speedMaximum: undefined,
         timer: INVALID_NUMBER,
         turnDirection: 'right'
     };
@@ -633,7 +633,7 @@ ava('#speedMaximum returns expected value when hold with speed restriction is ac
     const holdParametersMock = {
         inboundHeading: 3.14,
         legLength: '2min',
-        speed: 220,
+        speedMaximum: 220,
         turnDirection: 'left'
     };
 
@@ -641,7 +641,7 @@ ava('#speedMaximum returns expected value when hold with speed restriction is ac
         holdParametersMock
     );
 
-    t.is(modelWithHold.speedMaximum, holdParametersMock.speed);
+    t.is(modelWithHold.speedMaximum, holdParametersMock.speedMaximum);
 });
 
 ava('.activateHold() sets #_isHoldWaypoint to true', (t) => {
@@ -864,13 +864,13 @@ ava('.setHoldParameters() sets #_holdParameters according to provided parameters
     const holdParametersMock = {
         inboundHeading: 3.14,
         legLength: '2min',
-        speed: 220,
+        speedMaximum: 220,
         turnDirection: 'left'
     };
     const expectedResult = {
         inboundHeading: 3.14,
         legLength: '2min',
-        speed: 220,
+        speedMaximum: 220,
         timer: -1,
         turnDirection: 'left'
     };

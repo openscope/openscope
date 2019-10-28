@@ -638,12 +638,7 @@
         "XAMAN": ["N51d47m05", "E002d13m27"]
     },
     "_holds": {
-        "HEMEL": {
-            "turnDirection": "right",
-            "legLength": "1min",
-            "inboundHeading": 90,
-            "speed": 150
-        }
+        "HEMEL": "270|right|1min|S150-"
     },
     "restricted": [
         {
@@ -1510,12 +1505,7 @@
             },
             "body": [["LAPRA", "A120|S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
-                "ABBOT":{
-                    "inboundHeading": 265,
-                    "legLength": "1min",
-                    "speed": 220,
-                    "turnDirection": "right"
-                }
+                "ABBOT": "085|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1533,12 +1523,7 @@
             },
             "body": [["CLN", "S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
-                "ABBOT":{
-                    "inboundHeading": 265,
-                    "legLength": "1min",
-                    "speed": 220,
-                    "turnDirection": "right"
-                }
+                "ABBOT": "085|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1556,12 +1541,7 @@
             },
             "body": [["_DET001032", "S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
-                "ABBOT":{
-                    "inboundHeading": 265,
-                    "legLength": "1min",
-                    "speed": 220,
-                    "turnDirection": "right"
-                }
+                "ABBOT": "085|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1579,12 +1559,7 @@
             },
             "body": [["MEGEL", "A220"], "DITOB", ["LAPRA", "A120|S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "holds":{
-                "ABBOT":{
-                    "inboundHeading": 265,
-                    "legLength": "1min",
-                    "speed": 220,
-                    "turnDirection": "right"
-                }
+                "ABBOT": "085|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1602,11 +1577,7 @@
             },
             "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1624,11 +1595,7 @@
             },
             "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1646,11 +1613,7 @@
             },
             "body": ["TABIS", "BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1668,11 +1631,7 @@
             },
             "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1690,11 +1649,7 @@
             },
             "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1712,11 +1667,7 @@
             },
             "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1734,11 +1685,7 @@
             },
             "body": ["NIGIT", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1756,11 +1703,7 @@
             },
             "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1778,11 +1721,7 @@
             },
             "body": ["OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1800,12 +1739,7 @@
             },
             "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ABBOT":{
-                    "inboundHeading": 265,
-                    "legLength": "1min",
-                    "speed": 220,
-                    "turnDirection": "right"
-                }
+                "ABBOT": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1823,11 +1757,7 @@
             },
             "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1845,11 +1775,7 @@
             },
             "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "holds":{
-                "ASKEY":{
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 161
-                }
+                "ASKEY": "341|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1867,11 +1793,7 @@
             },
             "body": [["LAPRA", "A120|S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "holds":{
-                "CASEY":{
-                    "turnDirection": "right",
-                    "legLength": "1min",
-                    "inboundHeading": 239
-                }
+                "CASEY": "059|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1889,11 +1811,7 @@
             },
             "body": [["CLN", "S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "holds":{
-                "CASEY":{
-                    "turnDirection": "right",
-                    "legLength": "1min",
-                    "inboundHeading": 239
-                }
+                "CASEY": "059|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1911,11 +1829,7 @@
             },
             "body": [["_DET360032", "S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "holds":{
-                "CASEY":{
-                    "turnDirection": "right",
-                    "legLength": "1min",
-                    "inboundHeading": 239
-                }
+                "CASEY": "059|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1933,11 +1847,7 @@
             },
             "body": [["MEGEL", "A220"], "DITOB", ["LAPRA", "A120|S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "holds":{
-                "CASEY":{
-                    "turnDirection": "right",
-                    "legLength": "1min",
-                    "inboundHeading": 239
-                }
+                "CASEY": "059|right|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1955,11 +1865,7 @@
             },
             "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1977,11 +1883,7 @@
             },
             "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -1999,11 +1901,7 @@
             },
             "body": ["TABIS", "BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2021,11 +1919,7 @@
             },
             "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2043,11 +1937,7 @@
             },
             "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2065,11 +1955,7 @@
             },
             "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2087,11 +1973,7 @@
             },
             "body": ["NIGIT", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2108,11 +1990,7 @@
                 "MCT": ["MCT"]
             },
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
@@ -2131,11 +2009,7 @@
             },
             "body": ["OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2153,11 +2027,7 @@
             },
             "body": ["UNDUG", ["MAY", "A200"], "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2175,11 +2045,7 @@
             },
             "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2197,11 +2063,7 @@
             },
             "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
@@ -2219,11 +2081,7 @@
             },
             "body": ["VATON", ["BPK", "S250-"], ["BKY", "S220-"], ["^BUSTA", "S220-"], ["@LOREL", "A70|S220-"]],
             "holds": {
-                "LOREL": {
-                    "turnDirection": "left",
-                    "legLength": "1min",
-                    "inboundHeading": 188
-                }
+                "LOREL": "008|left|1min|S220-"
             },
             "rwy": {
                 "EGGW08": [],
