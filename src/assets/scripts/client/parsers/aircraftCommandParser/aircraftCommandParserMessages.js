@@ -35,6 +35,8 @@ export const ERROR_MESSAGE = {
     ALTITUDE_MUST_BE_NUMBER: `${INVALID_ARG}. Altitude must be a number`,
     ALTITUDE_EXPEDITE_ARG: `${INVALID_ARG}. Altitude accepts only "expedite" or "x" as a second argument`,
     HEADING_MUST_BE_NUMBER: `${INVALID_ARG}. Heading must be a number`,
+    HEADING_MUST_BE_VALID_COURSE: `${INVALID_ARG}. Heading must be between 001 and 360`,
+    INCREMENTAL_HEADING_MUST_BE_POSITIVE: `${INVALID_ARG}. Incremental heading must be positive`,
     MUST_BE_STRING: `${INVALID_ARG}. Must be a string`,
     INVALID_DIRECTION_STRING: `${INVALID_ARG}. Expected one of 'left / l / right / r' as the first argument when passed three arguments`,
     HEADING_ACCEPTS_BOOLEAN_AS_THIRD_ARG: `${INVALID_ARG}. Heading accepts a boolean for the third argument when passed three arguments`,

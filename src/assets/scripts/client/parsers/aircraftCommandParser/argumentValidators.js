@@ -228,10 +228,8 @@ export const headingValidator = (args = []) => {
 
     switch (length) {
         case 1:
-            numberFromString = convertStringToNumber(args[0]);
-
-            if (_isNaN(numberFromString)) {
-                return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
+            if (!isValidCourseString(args[0])) {
+                return ERROR_MESSAGE.HEADING_MUST_BE_VALID_COURSE;
             }
 
             break;
@@ -242,8 +240,16 @@ export const headingValidator = (args = []) => {
                 return ERROR_MESSAGE.INVALID_DIRECTION_STRING;
             }
 
+            if (args[1].length === 3 && !isValidCourseString(args[1])) {
+                return ERROR_MESSAGE.HEADING_MUST_BE_VALID_COURSE;
+            }
+
             if (_isNaN(numberFromString)) {
                 return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
+            }
+
+            if (numberFromString < 1) {
+                return ERROR_MESSAGE.INCREMENTAL_HEADING_MUST_BE_POSITIVE;
             }
 
             break;
