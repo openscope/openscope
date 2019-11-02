@@ -320,7 +320,7 @@ export default class AircraftCommander {
         if (legLength !== null) {
             holdParameters.legLength = legLength;
         }
-        
+
         if (radial !== null) {
             // Radial is given as the outbound course, so it needs to be inverted
             holdParameters.inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
