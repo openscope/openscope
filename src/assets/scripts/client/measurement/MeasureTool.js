@@ -227,11 +227,11 @@ class MeasureTool {
      * @method startNewPath
      */
     startNewPath() {
-        const path = new MeasurePath(this._style);
-
-        if (this._currentPath !== null) {
-            this.endPath();
+        if (this.isMeasuring) {
+            return;
         }
+
+        const path = new MeasurePath(this._style);
 
         this._paths.push(path);
         this._currentPath = path;
