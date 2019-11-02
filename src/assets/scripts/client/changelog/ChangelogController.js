@@ -48,15 +48,6 @@ export default class ChangelogController {
         this.$changelogData = null;
 
         /**
-         * The link at the bottom of the container to
-         * dismiss the changelog.
-         *
-         * @property $changelogDismiss
-         * @type {JQuery|HTMLElement}
-         */
-        this.$changelogDismiss = null;
-
-        /**
          * Toggle selector for the changelog
          * You know, the button thing
          *
@@ -89,9 +80,7 @@ export default class ChangelogController {
         this._eventBus = EventBus;
 
         this._createChildren();
-
         this.$changelogData.html(this.content);
-
         this._createHandlers();
         this.enable();
         this.loadChangelogContent();
@@ -105,15 +94,13 @@ export default class ChangelogController {
      * @chainable
      */
     reset() {
-        this._eventBus = null;
         this.content = null;
         this.contentQueue = null;
         this.$changelogContainer = null;
         this.$changelogData = null;
-        this.$changelogDismiss = null;
         this.$changelogToggle = null;
+        this._eventBus = null;
 
-        this._resetChildren();
         this._resetHandlers();
         this.disable();
 
@@ -126,7 +113,6 @@ export default class ChangelogController {
      */
     enable() {
         this._eventBus.on(EVENT.TOGGLE_CHANGELOG, this._onChangelogToggleHandler);
-        this.$changelogDismiss.on(EVENT.TOGGLE_CHANGELOG, this._onChangelogToggleHandler);
     }
 
     /**
@@ -135,7 +121,6 @@ export default class ChangelogController {
      */
     disable() {
         this.$changelogToggle.off(EVENT.TOGGLE_CHANGELOG, this._onChangelogToggleHandler);
-        this.$changelogDismiss.off(EVENT.TOGGLE_CHANGELOG, this._onChangelogToggleHandler);
     }
 
     /**
@@ -149,7 +134,6 @@ export default class ChangelogController {
     _createChildren() {
         this.$changelogContainer = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTAINER);
         this.$changelogData = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTENT);
-        this.$changelogDismiss = $(SELECTORS.DOM_SELECTORS.CHANGELOG_DISMISS);
         this.$changelogToggle = $(SELECTORS.DOM_SELECTORS.TOGGLE_CHANGELOG);
 
         return this;
@@ -169,22 +153,6 @@ export default class ChangelogController {
         return this;
     }
 
-    /**
-     * Sets up the DOM class properties
-     *
-     * @for ChangelogController
-     * @method _resetChildren
-     * @private
-     * @chainable
-     */
-    _resetChildren() {
-        this.$changelogContainer = null;
-        this.$changelogData = null;
-        this.$changelogDismiss = null;
-        this.$changelogToggle = null;
-
-        return this;
-    }
 
     /**
      * Sets up the event handlers

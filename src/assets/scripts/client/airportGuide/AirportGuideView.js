@@ -19,16 +19,6 @@ export default class AirportGuideView {
      */
     constructor($element, data) {
         /**
-         * The HTML view container of the data (formatted)
-         *
-         * @property _$element
-         * @type {JQuery|HTMLElement}
-         * @default null
-         * @private
-         */
-        this._$element = null;
-
-        /**
          * Local instance of the airport guide data
          *
          * @property _airportGuideMarkup
@@ -45,6 +35,16 @@ export default class AirportGuideView {
          * @private
          */
         this._$airportGuideView = null;
+
+        /**
+         * The HTML view container of the data (formatted)
+         *
+         * @property _$element
+         * @type {JQuery|HTMLElement}
+         * @default null
+         * @private
+         */
+        this._$element = null;
 
         return this.init($element);
     }
@@ -74,8 +74,8 @@ export default class AirportGuideView {
      */
     reset() {
         this._airportGuideMarkup = null;
-        this._$element = null;
         this._$airportGuideView = null;
+        this._$element = null;
 
         return this;
     }
@@ -111,7 +111,6 @@ export default class AirportGuideView {
     update(nextAirportMarkup) {
         this._airportGuideMarkup = nextAirportMarkup;
 
-        // FIXME: determine if this needs to be sanitized
         this._$airportGuideView.html(this._airportGuideMarkup);
     }
 

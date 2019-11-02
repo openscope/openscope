@@ -21,34 +21,6 @@ export default class AirportGuideViewController {
      */
     constructor($element, airportGuideData, initialIcao) {
         /**
-         * Local reference to the EventBus
-         *
-         * @property _eventBus
-         * @type {EventBus}
-         * @private
-         */
-        this._eventBus = EventBus;
-
-        /**
-         * Root DOM element
-         *
-         * @property _$element
-         * @type {JQuery|HTMLElement}
-         * @default null
-         * @private
-         */
-        this._$element = null;
-
-        /**
-         * The ICAO of the initial airport.
-         *
-         * @property _initialIcao
-         * @type {string}
-         * @private
-         */
-        this._initialIcao = initialIcao.toLowerCase();
-
-        /**
          * View instance model
          *
          * Used to show, hide, update the airportGuide view
@@ -61,6 +33,25 @@ export default class AirportGuideViewController {
         this._airportGuideView = null;
 
         /**
+         * Root DOM element
+         *
+         * @property _$element
+         * @type {JQuery|HTMLElement}
+         * @default null
+         * @private
+         */
+        this._$element = null;
+
+        /**
+         * Local reference to the EventBus
+         *
+         * @property _eventBus
+         * @type {EventBus}
+         * @private
+         */
+        this._eventBus = null;
+
+        /**
          * Contains an object with keys of icao idents and values
          * of the airport guides from the documentation folder.
          *
@@ -69,6 +60,15 @@ export default class AirportGuideViewController {
          * @private
          */
         this._guideData = airportGuideData;
+
+        /**
+         * The ICAO of the initial airport.
+         *
+         * @property _initialIcao
+         * @type {string}
+         * @private
+         */
+        this._initialIcao = initialIcao.toLowerCase();
 
         return this.init($element);
     }
@@ -240,7 +240,7 @@ export default class AirportGuideViewController {
     }
 
     /**
-     * Event handler for when the `airportGuideView` instance is clicked
+     * Event handler for toggling visibility of the airport guide view
      *
      * @for airportGuideViewController
      * @method _onToggleView

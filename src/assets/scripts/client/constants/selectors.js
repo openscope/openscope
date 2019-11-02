@@ -25,7 +25,6 @@ export const CLASSNAMES = {
     CALLSIGN: 'callsign',
     CHANGELOG_CONTAINER: 'js-changelogContainer',
     CHANGELOG_CONTENT: 'js-changelog',
-    CHANGELOG_DISMISS: 'js-dismissChangelog',
     CHANGELOG_VERSION: 'changelog-version',
     CONTROL: 'control',
     DEPARTURE: 'departure',

@@ -465,7 +465,6 @@ class UiController {
         }
 
         if (this.isChangelogDialogOpen()) {
-            console.log(1);
             this.onToggleChangelog();
         }
     }
@@ -674,7 +673,6 @@ class UiController {
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
-    // FIXME: not in use
     /**
      * @for UiController
      * @method onToggleAirportList
