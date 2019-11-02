@@ -539,7 +539,7 @@ export default class TutorialView {
             text: ['If you\'ve gone through this entire tutorial, you should do pretty well with the pressure.',
                    'In the TRACON, minimum separation is 3 miles laterally or 1000 feet vertically. Keep them separated,',
                    'keep them moving, and you\'ll be a controller in no time!',
-                   'A full list of commands can be found <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md">here</a>.'
+                   'A full list of commands can be found <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md" target="_blank">here</a>.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
