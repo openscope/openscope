@@ -1,5 +1,7 @@
+# S46 - Seattle TRACON
+
 ### About this facility
-Seattle TRACON (S46), Seattle, Washington, USA
+Seattle, Washington, USA
 582,394 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
 
 Located less than a quarter mile west of SeaTac's Runway 16R-34L, this consolidated approach control facility works all traffic in the Seattle metropolitan area. The facility is fairly new, with a large, open control floor sporting about 15-20 STARS scopes, and an in-house Traffic Management Unit.

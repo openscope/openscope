@@ -22,6 +22,8 @@ class EventTracker {
         this._gtag = window.gtag;
     }
 
+    // TODO: UiController.onToggleTerrain() and other toggle methods seem to be expecting a
+    // different order to these arguments, possibly screwing up the way events are reported to GA
     /**
      * Send a custom event to google analytics
      *
