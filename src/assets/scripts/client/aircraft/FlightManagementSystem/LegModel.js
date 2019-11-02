@@ -325,7 +325,6 @@ export default class LegModel {
      */
     _generateWaypoint(data) {
         const waypoint = new WaypointModel(data);
-
         const holdParameters = AirportController.airport_get().holdCollection.findHoldParametersByFix(waypoint.name);
 
         if (holdParameters != null) {

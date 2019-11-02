@@ -228,7 +228,6 @@ export default class WaypointModel {
      */
     get speedMaximum() {
         if (this.isHoldWaypoint && this._holdParameters.speedMaximum !== undefined) {
-            // TODO: Should this be the minimum of _speedMaximum and speed?
             return this._holdParameters.speedMaximum;
         }
 

@@ -637,9 +637,6 @@
         "WOD"  : ["N51d27m10.02", "W000d52m43.68"],
         "XAMAN": ["N51d47m05", "E002d13m27"]
     },
-    "_holds": {
-        "HEMEL": "270|right|1min|S150-"
-    },
     "restricted": [
         {
             "name": "EG R063",
