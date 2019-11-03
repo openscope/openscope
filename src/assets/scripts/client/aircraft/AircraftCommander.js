@@ -309,6 +309,7 @@ export default class AircraftCommander {
         }
 
         const holdParameters = {};
+        let fallbackInboundHeading;
 
         // Instead of using DEFAULT_HOLD_PARAMETERS here, we only pass the values
         // provided by the player. These then are used to patch the _holdParameters as
@@ -328,10 +329,10 @@ export default class AircraftCommander {
             // As radial has not been explicitly requested, we need to pass a "fallback"
             // inboundHeading, as it's possible that a default inboundHeading doesn't exist for
             // the `WaypointModel`s _holdParameters (eg. if the procedure JSON has no holds)
-            holdParameters.fallbackHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+            fallbackInboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
         }
 
-        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
+        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters, fallbackInboundHeading);
     }
 
     /**

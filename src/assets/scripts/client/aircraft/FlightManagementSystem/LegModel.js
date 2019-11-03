@@ -369,9 +369,10 @@ export default class LegModel {
      * @method activateHoldForWaypointName
      * @param waypointName {string} name of waypoint in route
      * @param holdParameters {object}
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
      * @returns {object} The hold parameters set for the `WaypointModel`
      */
-    activateHoldForWaypointName(waypointName, holdParameters) {
+    activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this.hasWaypointName(waypointName)) {
             return;
         }
@@ -379,7 +380,7 @@ export default class LegModel {
         const waypointIndex = this._findIndexOfWaypointName(waypointName);
         const waypointModel = this._waypointCollection[waypointIndex];
 
-        return waypointModel.setHoldParametersAndActivateHold(holdParameters);
+        return waypointModel.setHoldParametersAndActivateHold(holdParameters, fallbackInboundHeading);
     }
 
     /**

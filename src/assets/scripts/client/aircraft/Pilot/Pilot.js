@@ -754,10 +754,11 @@ export default class Pilot {
      * @method initiateHoldingPattern
      * @param fixName {string} name of the fix to hold over
      * @param holdParameters {object} parameters to apply to WaypointModel._holdParameters
+     * @param fallbackInboundHeading {number} the inboundHeading that is used if no default is available
      * @return {array} [success of operation, readback]
      */
-    initiateHoldingPattern(fixName, holdParameters) {
-        const [success, responseValue] = this._fms.activateHoldForWaypointName(fixName, holdParameters);
+    initiateHoldingPattern(fixName, holdParameters, fallbackInboundHeading) {
+        const [success, responseValue] = this._fms.activateHoldForWaypointName(fixName, holdParameters, fallbackInboundHeading);
 
         if (!success) {
             return [success, responseValue];
