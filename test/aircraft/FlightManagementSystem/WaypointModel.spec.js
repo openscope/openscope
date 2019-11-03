@@ -904,7 +904,7 @@ ava('.setHoldParametersAndActivateHold() calls .setHoldParameters() and .activat
     const result = model.setHoldParametersAndActivateHold(holdParametersMock);
 
     t.not(typeof result, 'undefined');
-    t.true(setHoldParametersSpy.calledWithExactly(holdParametersMock));
+    t.true(setHoldParametersSpy.calledWith(holdParametersMock));
     t.true(activateHoldSpy.calledWithExactly());
 });
 

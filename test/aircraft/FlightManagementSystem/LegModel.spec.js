@@ -239,7 +239,7 @@ ava('.activateHoldForWaypointName() calls .setHoldParametersAndActivateHold() wi
     const result = model.activateHoldForWaypointName('KEPEC', holdParametersMock);
 
     t.not(typeof result, 'undefined');
-    t.true(setHoldParametersAndActivateHoldSpy.calledWithExactly(holdParametersMock));
+    t.true(setHoldParametersAndActivateHoldSpy.calledWith(holdParametersMock));
 });
 
 ava('.getAllWaypointModelsAfterWaypointName() returns an array of all waypoint models after and excluding the specified one', (t) => {
