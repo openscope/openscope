@@ -1274,9 +1274,8 @@ export default class CanvasController {
             leg = leg.next;
         }
 
-        // TODO: Create its own color in theme
         // Label backgrounds
-        cc.fillStyle = this.theme.SCOPE.RUNWAY_EXTENDED_CENTERLINE;
+        cc.fillStyle = this.theme.SCOPE.MEASURE_BACKGROUND;
 
         values.forEach((item) => {
             const { x, y, labels } = item;
@@ -1286,10 +1285,9 @@ export default class CanvasController {
             cc.fillRect(x, y, width, height);
         });
 
-        // TODO: Add to theme customization
         // Label text
-        cc.fillStyle = 'white';
-        cc.font = '10px monoOne, monospace';
+        cc.fillStyle = this.theme.SCOPE.MEASURE_TEXT;
+        cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
 
         values.forEach((item) => {
             const { labels } = item;
@@ -1317,8 +1315,7 @@ export default class CanvasController {
         const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(firstLeg.endPoint);
         const firstMidPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
 
-        // TODO: Colours should be move to themes
-        cc.strokeStyle = 'rgba(64, 127, 143, 1.0)';
+        cc.strokeStyle = this.theme.SCOPE.MEASURE_LINE;
 
         cc.beginPath();
 
