@@ -180,15 +180,10 @@ export default class MeasurePath {
 
         // If there is an initialTurn (eg. a turn onto the first leg), then the exit point is used
         // as the first point in the path
-        // We also calculate the distance and time take to fly the turn
         if (initialTurn !== null) {
-            const { exitPoint, arcLength } = initialTurn;
-            const distance = nm(arcLength);
-            const duration = _round((distance / groundSpeed) * TIME.ONE_HOUR_IN_MINUTES, 1);
+            const { exitPoint } = initialTurn;
 
             initialValues.lastPoint = exitPoint;
-            initialValues.totalDistance = distance;
-            initialValues.totalDuration = duration;
 
             pointsList[0] = exitPoint;
         }
@@ -198,7 +193,7 @@ export default class MeasurePath {
         const firstLeg = new MeasureLegModel(firstPoint);
         initialValues.previousLeg = firstLeg;
 
-        pointsList.reduce((lastValues, point) => {
+        pointsList.reduce((lastValues, point, index) => {
             const { previousLeg } = lastValues;
             let { totalDistance, totalDuration } = lastValues;
             const leg = new MeasureLegModel(
@@ -206,9 +201,14 @@ export default class MeasurePath {
                 radius,
                 previousLeg
             );
-            const distance = nm(leg.distance);
             const bearing = heading_to_string(leg.bearing);
+            let distance = nm(leg.distance);
             let duration = 0;
+
+            // If there's an initial turn, include the length of that in the first leg
+            if (index === 0 && initialTurn !== null) {
+                distance += nm(initialTurn.arcLength);
+            }
 
             if (groundSpeed !== null) {
                 duration = _round((distance / groundSpeed) * TIME.ONE_HOUR_IN_MINUTES, 1);
