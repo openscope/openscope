@@ -232,7 +232,7 @@ class MeasureTool {
      */
     startNewPath() {
         if (this.isMeasuring) {
-            return;
+            throw new Error('Cannot start a new path. The current path hasn\'t been ended.');
         }
 
         const path = new MeasurePath(this._style);

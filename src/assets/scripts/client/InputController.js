@@ -299,6 +299,10 @@ export default class InputController {
      * @private
      */
     _startMeasuring() {
+        if (MeasureTool.isMeasuring) {
+            return;
+        }
+
         MeasureTool.startNewPath();
     }
 

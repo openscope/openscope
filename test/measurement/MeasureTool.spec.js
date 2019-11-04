@@ -50,6 +50,11 @@ ava.serial('.addPoint() throws when point value is invalid', (t) => {
     t.notThrows(() => MeasureTool.addPoint(CURSOR_POSITION));
 });
 
+ava.serial('.startNewPath() throws when the current path hasn\'t been ended.', (t) => {
+    t.notThrows(() => MeasureTool.startNewPath());
+    t.throws(() => MeasureTool.startNewPath());
+});
+
 ava.serial('.updateLastPoint() throws when point value is invalid', (t) => {
     MeasureTool.startNewPath();
 
