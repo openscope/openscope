@@ -65,6 +65,14 @@ ava.serial('.updateLastPoint() throws when point value is invalid', (t) => {
     t.notThrows(() => MeasureTool.updateLastPoint(CURSOR_POSITION));
 });
 
+ava.serial('hasPaths returns correct value', (t) => {
+    t.false(MeasureTool.hasPaths);
+
+    MeasureTool.startNewPath();
+
+    t.true(MeasureTool.hasPaths);
+});
+
 ava.serial('.addPoint() sets the correct flags', (t) => {
     MeasureTool.startNewPath();
 
@@ -80,17 +88,6 @@ ava.serial('.addPoint() sets the correct flags', (t) => {
 
     t.false(MeasureTool.isMeasuring);
     t.false(MeasureTool.hasStarted);
-});
-
-ava.serial('.reset() clears the flags to their initial state', (t) => {
-    MeasureTool.startNewPath();
-    MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
-    MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
-    MeasureTool.endPath();
-    MeasureTool.reset();
-
-    t.is(MeasureTool.hasStarted, false);
-    t.is(MeasureTool.isMeasuring, false);
 });
 
 ava.serial('.buildPathInfo() returns an empty array when there are no saved points', (t) => {
@@ -189,6 +186,17 @@ ava.serial('.removePreviousPoint() removes the second-to-last point in the curre
     t.deepEqual(MeasureTool._currentPath._points, [bakrr, CURSOR_POSITION]);
 });
 
+ava.serial('.reset() clears the flags to their initial state', (t) => {
+    MeasureTool.startNewPath();
+    MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
+    MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
+    MeasureTool.endPath();
+    MeasureTool.reset();
+
+    t.is(MeasureTool.hasStarted, false);
+    t.is(MeasureTool.isMeasuring, false);
+});
+
 ava.serial('.setStyle() correctly sets the _style property', (t) => {
     MeasureTool.setStyle(MEASURE_TOOL_STYLE.STRAIGHT);
     t.is(MeasureTool._style, MEASURE_TOOL_STYLE.STRAIGHT);
@@ -201,4 +209,21 @@ ava.serial('.setStyle() correctly sets the _style property', (t) => {
 
     MeasureTool.setStyle('a random value');
     t.is(MeasureTool._style, MEASURE_TOOL_STYLE.STRAIGHT);
+});
+
+ava.serial('.updateLastPoint() adds a new point if there is no point to update', (t) => {
+    MeasureTool.startNewPath();
+    MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
+    MeasureTool.updateLastPoint(CURSOR_POSITION);
+
+    t.is(MeasureTool._currentPath._points.length, 2);
+});
+
+ava.serial('.updateLastPoint() updates the last point', (t) => {
+    MeasureTool.startNewPath();
+    MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
+    MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
+    MeasureTool.updateLastPoint(CURSOR_POSITION);
+
+    t.is(MeasureTool._currentPath._points.length, 2);
 });
