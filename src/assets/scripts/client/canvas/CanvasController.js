@@ -1255,7 +1255,7 @@ export default class CanvasController {
      * @private
      */
     _drawMeasureToolLabels(cc, pathInfo) {
-        let leg = pathInfo.firstLeg.next;
+        let leg = pathInfo.firstLeg;
         const values = [];
 
         // This way the points are translated only once
@@ -1310,9 +1310,9 @@ export default class CanvasController {
      * @private
      */
     _drawMeasureToolPath(cc, pathInfo) {
-        const { initialTurn, firstLeg } = pathInfo;
-        let leg = firstLeg.next; // We start enumerating from the 2nd leg (the first complete leg)
-        const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(firstLeg.endPoint);
+        const { initialTurn } = pathInfo;
+        let leg = pathInfo.firstLeg;
+        const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.startPoint);
         const firstMidPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
 
         cc.strokeStyle = this.theme.SCOPE.MEASURE_LINE;

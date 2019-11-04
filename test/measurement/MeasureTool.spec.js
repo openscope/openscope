@@ -125,21 +125,20 @@ ava.serial('.buildPathInfo() builds a correct MeasureLegModel from FixModel poin
 
     const [pathInfo] = MeasureTool.buildPathInfo();
     const { initialTurn, firstLeg } = pathInfo;
-    const leg1 = firstLeg.next;
 
     t.is(initialTurn, null);
     t.true(firstLeg instanceof MeasureLegModel);
-    t.is(firstLeg.previous, null);
-    t.is(firstLeg.startPoint, null);
-    t.is(leg1.next, null);
+    t.not(firstLeg.previous, null);
+    t.not(firstLeg.startPoint, null);
+    t.is(firstLeg.next, null);
 
-    t.deepEqual(leg1.startPoint, bakrr.relativePosition);
-    t.deepEqual(leg1.endPoint, dbige.relativePosition);
-    t.not(leg1.midPoint, null);
-    t.not(leg1.bearing, 0);
-    t.not(leg1.distance, 0);
-    t.is(leg1.labels.length, 1);
-    t.is(leg1.radius, 0);
+    t.deepEqual(firstLeg.startPoint, bakrr.relativePosition);
+    t.deepEqual(firstLeg.endPoint, dbige.relativePosition);
+    t.not(firstLeg.midPoint, null);
+    t.not(firstLeg.bearing, 0);
+    t.not(firstLeg.distance, 0);
+    t.is(firstLeg.labels.length, 1);
+    t.is(firstLeg.radius, 0);
 });
 
 ava.serial('.buildPathInfo() builds a correct MeasureLegModel from mixed points', (t) => {
@@ -158,16 +157,14 @@ ava.serial('.buildPathInfo() builds a correct MeasureLegModel from mixed points'
     const [pathInfo] = MeasureTool.buildPathInfo();
     const { initialTurn, firstLeg } = pathInfo;
     const leg1 = firstLeg.next;
-    const leg2 = leg1.next;
 
     t.not(initialTurn, null);
     t.true(firstLeg instanceof MeasureLegModel);
-    t.is(firstLeg.previous, null);
-    t.is(leg2.next, null);
+    t.is(leg1.next, null);
 
     t.not(initialTurn.turnRadius, 0);
-    t.not(leg1.radius, 0);
-    t.is(leg2.radius, 0);
+    t.not(firstLeg.radius, 0);
+    t.is(leg1.radius, 0);
 });
 
 ava.serial('.removePreviousPoint() removes the second-to-last point in the current path', (t) => {

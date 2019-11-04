@@ -188,10 +188,10 @@ export default class MeasurePath {
             pointsList[0] = exitPoint;
         }
 
-        // The first leg is just an end point
+        // The initial leg is just an end point
         const firstPoint = this._getRelativePosition(pointsList.shift());
-        const firstLeg = new MeasureLegModel(firstPoint);
-        initialValues.previousLeg = firstLeg;
+        const initialLeg = new MeasureLegModel(firstPoint);
+        initialValues.previousLeg = initialLeg;
 
         pointsList.reduce((lastValues, point, index) => {
             const { previousLeg } = lastValues;
@@ -239,7 +239,7 @@ export default class MeasurePath {
 
         return {
             initialTurn,
-            firstLeg
+            firstLeg: initialLeg.next
         };
     }
 
