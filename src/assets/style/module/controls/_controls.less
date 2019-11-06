@@ -48,13 +48,13 @@
 .control-item-content {
     display: none;
     position: absolute;
-    background-color: @dark-gray;
+    background-color: @dark;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     bottom: @command-bar-height;
 }
 
 .control-item-content a {
-    color: @light-gray;
+    color: @medium-light-gray;
     text-decoration: none;
     display: block;
     text-align: left;
@@ -84,12 +84,13 @@
 
 .control-item-content a:hover,
 .control-item-content a.active:hover {
-    background-color: @gray-40;
+    background-color: @medium-gray;
 }
 
 .control-item-content a.active {
+    color: @light-gray;
     margin: 0;
-    background-color: @dark;
+    background-color: @dark-gray;
     box-shadow: inset 10px 0 1px -6px @blue-light
 }
 
