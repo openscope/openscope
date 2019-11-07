@@ -3,7 +3,8 @@ import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixMo
 import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import {
     FIXNAME_MOCK,
-    FIX_COORDINATE_MOCK
+    FIX_COORDINATE_MOCK,
+    REAL_FIXNAME_MOCK
 } from './_mocks/fixMocks';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
@@ -64,6 +65,14 @@ ava('.init() sets name in upperCase', t => {
 
     model = new FixModel('u443rcas3', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'U443RCAS3');
+});
+
+ava('.isRealFix returns correct value', (t) => {
+    let model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    t.false(model.isRealFix);
+
+    model = new FixModel(REAL_FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    t.true(model.isRealFix);
 });
 
 ava('.clonePosition() returns a DynamicPositionModel with the position information of the FixModel', t => {

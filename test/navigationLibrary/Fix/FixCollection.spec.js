@@ -8,7 +8,7 @@ import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIX_LIST_MOCK,
     SMALL_FIX_LIST_MOCK
-} from '../Fix/_mocks/fixMocks';
+} from './_mocks/fixMocks';
 
 ava.before(() => {
     FixCollection.removeItems();
@@ -82,6 +82,15 @@ ava.serial('.getFixRelativePosition() returns null if a FixModel does not exist 
     const result = FixCollection.getFixRelativePosition('');
 
     t.true(!result);
+});
+
+ava.serial('.getNearestFix() returns a fix and distance', t => {
+    // In reality, this isnt the nearest fix to KSFO, but is the nearest in the mocks
+    const expectedFix = FixCollection.findFixByName('OAL');
+    const [fix, distance] = FixCollection.getNearestFix(airportPositionFixtureKSFO.relativePosition);
+
+    t.is(fix, expectedFix);
+    t.not(distance, Infinity);
 });
 
 ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prepending thier name', t => {
