@@ -200,6 +200,10 @@ class MeasureTool {
     endPath() {
         this._throwIfNotMeasuring();
 
+        // Discard the point which is attached to the cursor, and keep
+        // only those points which have been clicked into place
+        this._currentPath.removeLastPoint();
+
         // If the path isn't valid, then don't keep it
         if (!this._currentPath.hasLegs) {
             this._paths.pop();
@@ -209,15 +213,15 @@ class MeasureTool {
     }
 
     /**
-     * Removes the last point from the current path
+     * Removes the second-to-last point from the current path
      *
      * @for MeasureTool
-     * @method removeLastPoint
+     * @method removePreviousPoint
      */
-    removeLastPoint() {
+    removePreviousPoint() {
         this._throwIfNotMeasuring();
 
-        this._currentPath.removeLastPoint();
+        this._currentPath.removePreviousPoint();
     }
 
     /**

@@ -245,11 +245,22 @@ export default class MeasurePath {
 
     /**
      * Removes the last point from the path
+     * Note: This "last" point is the one that follows the cursor position
      *
      * @for MeasurePath
      * @method removeLastPoint
      */
     removeLastPoint() {
+        this._points.pop();
+    }
+
+    /**
+     * Removes the second-to-last point from the path
+     *
+     * @for MeasurePath
+     * @method removePreviousPoint
+     */
+    removePreviousPoint() {
         // The "last" point is actually the 2nd last item in _points
         // This means the path will end at the cursor position when redrawn
         const { length } = this._points;

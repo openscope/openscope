@@ -263,11 +263,11 @@ export default class InputController {
      * Removes the last point in the measuring tool
      *
      * @for InputController
-     * @method _removeLastMeasurePoint
+     * @method _removePreviousMeasurePoint
      * @private
      */
-    _removeLastMeasurePoint() {
-        MeasureTool.removeLastPoint();
+    _removePreviousMeasurePoint() {
+        MeasureTool.removePreviousPoint();
 
         // Mark for shallow render so the feedback is immediate
         this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
@@ -1006,7 +1006,7 @@ export default class InputController {
      */
     _onRightMousePress(event) {
         if (MeasureTool.isMeasuring) {
-            this._removeLastMeasurePoint();
+            this._removePreviousMeasurePoint();
 
             return;
         }

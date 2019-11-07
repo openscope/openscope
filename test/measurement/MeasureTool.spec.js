@@ -32,8 +32,8 @@ ava.serial('.addPoint() throws when #isMeasuring is not set', (t) => {
     t.throws(() => MeasureTool.addPoint(CURSOR_POSITION));
 });
 
-ava.serial('.removeLastPoint() throws when #isMeasuring is not set', (t) => {
-    t.throws(() => MeasureTool.removeLastPoint());
+ava.serial('.removePreviousPoint() throws when #isMeasuring is not set', (t) => {
+    t.throws(() => MeasureTool.removePreviousPoint());
 });
 
 ava.serial('.updateLastPoint() throws when #isMeasuring is not set', (t) => {
@@ -88,11 +88,24 @@ ava.serial('.reset() clears the flags to their initial state', (t) => {
     t.is(MeasureTool.isMeasuring, false);
 });
 
-ava.serial('.buildPathInfo() returns an empty array when there are no valid legs', (t) => {
+ava.serial('.buildPathInfo() returns an empty array when there are no saved points', (t) => {
     const bakrr = FixCollection.findFixByName('BAKRR');
 
     MeasureTool.startNewPath();
     MeasureTool.addPoint(bakrr);
+    MeasureTool.endPath();
+
+    const pathInfo = MeasureTool.buildPathInfo();
+
+    t.deepEqual(pathInfo, []);
+});
+
+ava.serial('.buildPathInfo() returns an empty array when there is only one saved point', (t) => {
+    const bakrr = FixCollection.findFixByName('BAKRR');
+
+    MeasureTool.startNewPath();
+    MeasureTool.addPoint(bakrr);
+    MeasureTool.addPoint(CURSOR_POSITION);
     MeasureTool.endPath();
 
     const pathInfo = MeasureTool.buildPathInfo();
@@ -107,6 +120,7 @@ ava.serial('.buildPathInfo() builds a correct MeasureLegModel from FixModel poin
     MeasureTool.startNewPath();
     MeasureTool.addPoint(bakrr);
     MeasureTool.addPoint(dbige);
+    MeasureTool.addPoint(CURSOR_POSITION);
     MeasureTool.endPath();
 
     const [pathInfo] = MeasureTool.buildPathInfo();
@@ -137,7 +151,8 @@ ava.serial('.buildPathInfo() builds a correct MeasureLegModel from mixed points'
     MeasureTool.setStyle(MEASURE_TOOL_STYLE.ALL_ARCED);
     MeasureTool.addPoint(aircraft);
     MeasureTool.addPoint(bakrr);
-    MeasureTool.addPoint(CURSOR_POSITION);
+    MeasureTool.addPoint(CURSOR_POSITION); // will be kept
+    MeasureTool.addPoint(CURSOR_POSITION); // will be removed
     MeasureTool.endPath();
 
     const [pathInfo] = MeasureTool.buildPathInfo();
@@ -155,19 +170,21 @@ ava.serial('.buildPathInfo() builds a correct MeasureLegModel from mixed points'
     t.is(leg2.radius, 0);
 });
 
-ava.serial('.removeLastPoint() removes a point as expected', (t) => {
+ava.serial('.removePreviousPoint() removes the second-to-last point in the current path', (t) => {
+    const bakrr = FixCollection.findFixByName('BAKRR');
+    const dbige = FixCollection.findFixByName('DBIGE');
+
     MeasureTool.startNewPath();
-    MeasureTool.addPoint(FixCollection.findFixByName('BAKRR'));
-    MeasureTool.addPoint(FixCollection.findFixByName('DBIGE'));
+    MeasureTool.addPoint(bakrr);
+    MeasureTool.addPoint(dbige);
     MeasureTool.addPoint(CURSOR_POSITION);
 
     t.is(MeasureTool._currentPath._points.length, 3);
 
-    MeasureTool.removeLastPoint();
-    t.is(MeasureTool._currentPath._points.length, 2);
+    MeasureTool.removePreviousPoint();
 
-    MeasureTool.removeLastPoint();
     t.is(MeasureTool._currentPath._points.length, 2);
+    t.deepEqual(MeasureTool._currentPath._points, [bakrr, CURSOR_POSITION]);
 });
 
 ava.serial('.setStyle() correctly sets the _style property', (t) => {
