@@ -1257,6 +1257,7 @@ export default class CanvasController {
     _drawMeasureToolLabels(cc, pathInfo) {
         let leg = pathInfo.firstLeg;
         const values = [];
+        const labelPadding = 5;
 
         // This way the points are translated only once
         while (leg != null) {
@@ -1274,24 +1275,34 @@ export default class CanvasController {
             leg = leg.next;
         }
 
+        // Shortcut if there are no labels (line is too short)
+        if (values.length === 0) {
+            return;
+        }
+
         // Label backgrounds
         cc.fillStyle = this.theme.SCOPE.MEASURE_BACKGROUND;
+        cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
 
         values.forEach((item) => {
             const { x, y, labels } = item;
-            const height = 10 + (12 * labels.length);
-            const width = 150;
+            const height = (2 * labelPadding) + (12 * labels.length);
+            const maxLabelWidth = labels.reduce((lastWidth, label) => {
+                const newWidth = cc.measureText(label).width;
+
+                return Math.max(lastWidth, newWidth);
+            }, 0);
+            const width = (2 * labelPadding) + maxLabelWidth;
 
             cc.fillRect(x, y, width, height);
         });
 
         // Label text
         cc.fillStyle = this.theme.SCOPE.MEASURE_TEXT;
-        cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
 
         values.forEach((item) => {
             const { labels } = item;
-            const x = item.x + 5;
+            const x = item.x + labelPadding;
             const y = item.y + 15;
 
             labels.forEach((line, index) => {
