@@ -1,7 +1,8 @@
 # 6.15.0 (November 1, 2019)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1105" target="_blank">#1105</a> - Add in-sim Airport Guide accessible via footer button
-- <a href="https://github.com/openscope/openscope/issues/1191" target="_blank">#1105</a> - Consolidate command bar buttons
+- <a href="https://github.com/openscope/openscope/issues/1191" target="_blank">#1191</a> - Consolidate command bar buttons
+- <a href="https://github.com/openscope/openscope/issues/45" target="_blank">#45</a> - Add range/bearing measurement tool via Control button
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1456" target="_blank">#1456</a> - Only allow headings between 001 and 360
