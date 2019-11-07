@@ -642,6 +642,7 @@ export default class InputController {
             case KEY_CODES.CONTROL_LEFT:
             case KEY_CODES.CONTROL_RIGHT:
                 this._stopMeasuring();
+                this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
 
                 break;
             default:
