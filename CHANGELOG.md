@@ -7,6 +7,8 @@
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1456" target="_blank">#1456</a> - Only allow headings between 001 and 360
 - <a href="https://github.com/openscope/openscope/issues/1474" target="_blank">#1474</a> - Fix crash at KAUS from missing FDX fleet
+- <a href="https://github.com/openscope/openscope/issues/1476" target="_blank">#1476</a> - Fix missing terrain at KSTL
+
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1451" target="_blank">#1451</a> - Add ability to specify the radial with the `hold` command
