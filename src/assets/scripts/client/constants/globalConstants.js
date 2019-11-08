@@ -28,11 +28,12 @@ export const TIME = {
  * @final
  */
 export const REGEX = {
+    ALTITUDE_RESTRICTION: /^A([0-9]{1,3})([+-]?)$/,
     COMPASS_DIRECTION: /^[NESW]/,
     DOUBLE_DOT: /\.\./g,
     HOLD_DISTANCE: /^([1-9]|1[0-9])(nm|min)$/i,
     LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
-    SPEED_RESTRICTION: /^S([0-9]{3})([+-])$/,
+    SPEED_RESTRICTION: /^S([1-9][0-9]{2})([+-]?)$/,
     SW: /[SW]/,
     SINGLE_DOT: /\./g,
     THREE_DIGIT_NUMBER: /^[0-9]{3}$/,

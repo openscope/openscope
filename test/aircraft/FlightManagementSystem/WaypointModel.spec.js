@@ -41,6 +41,17 @@ ava('throws when instantiated with an array containing improperly formatted rest
     t.throws(() => new WaypointModel(['BOACH', '100A']));
 });
 
+ava('throws when instantiated with an array containing improperly formatted altitude restrictions', (t) => {
+    t.throws(() => new WaypointModel(['BOACH', 'A1000']));
+    t.throws(() => new WaypointModel(['BOACH', 'A150@']));
+});
+
+ava('throws when instantiated with an array containing improperly formatted speed restrictions', (t) => {
+    t.throws(() => new WaypointModel(['BOACH', 'S50+']));
+    t.throws(() => new WaypointModel(['BOACH', 'S1000+']));
+    t.throws(() => new WaypointModel(['BOACH', 'S150@']));
+});
+
 ava('does not throw when instantiated with string containing known fix', (t) => {
     t.notThrows(() => new WaypointModel('BOACH'));
 });
@@ -928,7 +939,7 @@ ava('.setHoldTimer() sets #_holdParameters.timer to the specified value', (t) =>
 
 ava('._applyAltitudeRestriction() sets #altitudeMinimum to specified value (x100) when restriction has "+" character', (t) => {
     const model = new WaypointModel('BOACH');
-    const restrictionMock = '65+';
+    const restrictionMock = 'A65+';
     const result = model._applyAltitudeRestriction(restrictionMock);
 
     t.true(typeof result === 'undefined');
@@ -938,7 +949,7 @@ ava('._applyAltitudeRestriction() sets #altitudeMinimum to specified value (x100
 
 ava('._applyAltitudeRestriction() sets #altitudeMaximum to specified value (x100) when restriction has "-" character', (t) => {
     const model = new WaypointModel('BOACH');
-    const restrictionMock = '65-';
+    const restrictionMock = 'A65-';
     const result = model._applyAltitudeRestriction(restrictionMock);
 
     t.true(typeof result === 'undefined');
@@ -948,7 +959,7 @@ ava('._applyAltitudeRestriction() sets #altitudeMaximum to specified value (x100
 
 ava('._applyAltitudeRestriction() sets #altitudeMinimum and #altitudeMaximum to specified value (x100) when restriction has neither "+" or "-" characters', (t) => {
     const model = new WaypointModel('BOACH');
-    const restrictionMock = '65';
+    const restrictionMock = 'A65';
     const result = model._applyAltitudeRestriction(restrictionMock);
 
     t.true(typeof result === 'undefined');
@@ -981,13 +992,13 @@ ava('._applyRestrictions() calls ._applyAltitudeRestriction() and ._applySpeedRe
     const result = model._applyRestrictions('A125|S210');
 
     t.true(typeof result === 'undefined');
-    t.true(applyAltitudeRestrictionSpy.calledWithExactly('125'));
-    t.true(applySpeedRestrictionSpy.calledWithExactly('210'));
+    t.true(applyAltitudeRestrictionSpy.calledWithExactly('A125'));
+    t.true(applySpeedRestrictionSpy.calledWithExactly('S210'));
 });
 
 ava('._applySpeedRestriction() sets #speedMinimum to specified value when restriction has "+" character', (t) => {
     const model = new WaypointModel('BOACH');
-    const restrictionMock = '210+';
+    const restrictionMock = 'S210+';
     const result = model._applySpeedRestriction(restrictionMock);
 
     t.true(typeof result === 'undefined');
@@ -997,7 +1008,7 @@ ava('._applySpeedRestriction() sets #speedMinimum to specified value when restri
 
 ava('._applySpeedRestriction() sets #speedMaximum to specified value when restriction has "-" character', (t) => {
     const model = new WaypointModel('BOACH');
-    const restrictionMock = '210-';
+    const restrictionMock = 'S210-';
     const result = model._applySpeedRestriction(restrictionMock);
 
     t.true(typeof result === 'undefined');
@@ -1007,7 +1018,7 @@ ava('._applySpeedRestriction() sets #speedMaximum to specified value when restri
 
 ava('._applySpeedRestriction() sets #speedMinimum and #speedMaximum to specified value when restriction has neither "+" or "-" characters', (t) => {
     const model = new WaypointModel('BOACH');
-    const restrictionMock = '210';
+    const restrictionMock = 'S210';
     const result = model._applySpeedRestriction(restrictionMock);
 
     t.true(typeof result === 'undefined');

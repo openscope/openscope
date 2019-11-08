@@ -3,8 +3,8 @@ import BaseModel from '../base/BaseModel';
 import { radians_normalize } from '../math/circle';
 import { isValidCourseString, isValidDirectionString } from '../parsers/aircraftCommandParser/argumentValidators';
 import { directionNormalizer, isLegLengthArg } from '../parsers/aircraftCommandParser/argumentParsers';
+import { parseSpeedRestriction } from '../utilities/navigationUtilities';
 import { degreesToRadians } from '../utilities/unitConverters';
-import { REGEX } from '../constants/globalConstants';
 
 /**
  * Defines a navigational `HoldModel`
@@ -97,7 +97,7 @@ export default class HoldModel extends BaseModel {
         const holdParameters = {};
 
         const [radial, turn, length, speed] = holdString.split('|');
-        const parsedSpeed = this._parseSpeed(speed);
+        const [parsedSpeed, limit] = parseSpeedRestriction(speed);
 
         if (!isValidCourseString(radial)) {
             throw new Error(`Invalid radial parameter for Fix '${this.fixName}': ${radial} is not valid`);
@@ -111,7 +111,7 @@ export default class HoldModel extends BaseModel {
             throw new Error(`Invalid legLength parameter for Fix '${this.fixName}': ${length} is not valid`);
         }
 
-        if (!parsedSpeed) {
+        if (parsedSpeed == null || limit !== '-') {
             throw new Error(`Invalid speedMaximum parameter for Fix '${this.fixName}': ${speed} is not valid`);
         }
 
@@ -122,34 +122,5 @@ export default class HoldModel extends BaseModel {
         holdParameters.speedMaximum = parsedSpeed;
 
         return holdParameters;
-    }
-
-    /**
-     * Parses a speed argument
-     *
-     * @for HoldModel
-     * @method _parseSpeed
-     * @param value {string}
-     * @returns {number|undefined}
-     * @private
-     */
-    _parseSpeed(value) {
-        if (value == null) {
-            return;
-        }
-
-        const match = value.match(REGEX.SPEED_RESTRICTION);
-
-        if (match == null) {
-            return;
-        }
-
-        const [, parsedSpeed, limit] = match;
-
-        if (limit !== '-') {
-            return;
-        }
-
-        return parseInt(parsedSpeed, 10);
     }
 }

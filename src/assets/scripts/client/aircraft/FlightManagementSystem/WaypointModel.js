@@ -12,6 +12,7 @@ import {
     RNAV_WAYPOINT_PREFIX
 } from '../../constants/waypointConstants';
 // import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import { parseAltitudeRestriction, parseSpeedRestriction } from '../../utilities/navigationUtilities';
 import {
     degreesToRadians,
     DECIMAL_RADIX
@@ -652,15 +653,19 @@ export default class WaypointModel {
      * @param restriction {string}
      */
     _applyAltitudeRestriction(restriction) {
-        const altitude = parseInt(restriction, 10) * 100;
+        const [altitude, limit] = parseAltitudeRestriction(restriction);
 
-        if (restriction.indexOf('+') !== INVALID_INDEX) {
+        if (altitude == null) {
+            throw new Error(`Expected valid altitude restriction, but received ${restriction}`);
+        }
+
+        if (limit === '+') {
             this.altitudeMinimum = altitude;
 
             return;
         }
 
-        if (restriction.indexOf('-') !== INVALID_INDEX) {
+        if (limit === '-') {
             this.altitudeMaximum = altitude;
 
             return;
@@ -689,9 +694,9 @@ export default class WaypointModel {
 
             // looking at the first letter of a restriction
             if (restriction[0] === 'A') {
-                this._applyAltitudeRestriction(restriction.substr(1));
+                this._applyAltitudeRestriction(restriction);
             } else if (restriction[0] === 'S') {
-                this._applySpeedRestriction(restriction.substr(1));
+                this._applySpeedRestriction(restriction);
             } else {
                 throw new TypeError('Expected "A" or "S" prefix on restriction, ' +
                     `but received prefix '${restriction[0]}'`);
@@ -707,15 +712,19 @@ export default class WaypointModel {
      * @param restriction {string}
      */
     _applySpeedRestriction(restriction) {
-        const speed = parseInt(restriction, 10);
+        const [speed, limit] = parseSpeedRestriction(restriction);
 
-        if (restriction.indexOf('+') !== INVALID_INDEX) {
+        if (speed == null) {
+            throw new Error(`Expected valid speed restriction, but received ${restriction}`);
+        }
+
+        if (limit === '+') {
             this._speedMinimum = speed;
 
             return;
         }
 
-        if (restriction.indexOf('-') !== INVALID_INDEX) {
+        if (limit === '-') {
             this._speedMaximum = speed;
 
             return;
