@@ -32,7 +32,7 @@ ava('accepts a hold string that is used to set the instance properties', (t) => 
     t.deepEqual(model.holdParameters, EXPECTED_HOLD_PARAMETERS);
 });
 
-ava('reset() clears the instance properties', (t) => {
+ava('.reset() clears the instance properties', (t) => {
     const model = new HoldModel(FIX_NAME_MOCK_VALID, HOLD_STRING_MOCK_VALID);
     model.reset();
 

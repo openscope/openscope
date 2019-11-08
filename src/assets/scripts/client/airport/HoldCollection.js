@@ -14,7 +14,7 @@ import BaseCollection from '../base/BaseCollection';
 export default class HoldCollection extends BaseCollection {
     /**
      * @constructor
-     * @param holdJson {array}
+     * @param holdJson {object}
      */
     constructor(holdJson) {
         super();
@@ -66,13 +66,7 @@ export default class HoldCollection extends BaseCollection {
      * @param holdJson {object}
      */
     _init(holdJson) {
-        if (!holdJson) {
-            return;
-        }
-
-        this._items = Object.keys(holdJson).map((fixName) => {
-            return new HoldModel(fixName, holdJson[fixName]);
-        });
+        this.populateHolds(holdJson);
     }
 
     /**
@@ -88,7 +82,25 @@ export default class HoldCollection extends BaseCollection {
     // ------------------------------ PUBLIC ------------------------------
 
     /**
-     * Find a holdParameters by `fixName` if it exists within the collection
+     * Returns a flag indicating whether the `fixName` exists within the collection
+     *
+     * @for HoldCollection
+     * @method containsHoldForFix
+     * @param fixName {string}
+     * @return {boolean}
+     */
+    containsHoldForFix(fixName) {
+        if (!fixName) {
+            return false;
+        }
+
+        fixName = fixName.toUpperCase();
+
+        return this._items.some((hold) => hold.fixName === fixName);
+    }
+
+    /**
+     * Find holdParameters by `fixName` if it exists within the collection
      *
      * @for HoldCollection
      * @method findHoldParametersByFix
@@ -100,8 +112,33 @@ export default class HoldCollection extends BaseCollection {
             return null;
         }
 
-        const model = this._items.find((hold) => hold.fixName === fixName.toUpperCase());
+        fixName = fixName.toUpperCase();
+
+        const model = this._items.find((hold) => hold.fixName === fixName);
 
         return model ? model.holdParameters : null;
+    }
+
+    /**
+     * Populates the hold collection with the specified holds object
+     *
+     * @for HoldCollection
+     * @method populateHolds
+     * @param holdJson {object}
+     */
+    populateHolds(holdJson) {
+        if (!holdJson) {
+            return;
+        }
+
+        // Check for duplicate fixName as multiple collections may have to be combined
+        // by the `NavigationLibrary` in the future
+        Object.keys(holdJson).forEach((fixName) => {
+            if (this.containsHoldForFix(fixName)) {
+                return;
+            }
+
+            this._items.push(new HoldModel(fixName, holdJson[fixName]));
+        });
     }
 }

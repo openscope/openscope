@@ -202,6 +202,9 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "ils": [true, false]
         }
     ],
+    "holds": {
+        "BAKRR": "360|right|4nm|S230-"
+    },
     "airways": {
         "V394": ["DAG", "DISBE", "CHRLT", "CLARR", "OASYS", "LAS", "SUVIE", "MMM"],
         "J11": ["BCE", "FREDD", "CORKR", "NAVHO", "KIDDR", "DRK"]

@@ -14,7 +14,6 @@ import {
     PROCEDURE_TYPE,
     PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
 } from '../../constants/routeConstants';
-import AirportController from '../../airport/AirportController';
 
 /**
  * A portion of a navigation route containing one or more `WaypointModel` objects.
@@ -325,7 +324,7 @@ export default class LegModel {
      */
     _generateWaypoint(data) {
         const waypoint = new WaypointModel(data);
-        const holdParameters = AirportController.airport_get().holdCollection.findHoldParametersByFix(waypoint.name);
+        const holdParameters = NavigationLibrary.findHoldParametersByFix(waypoint.name);
 
         if (holdParameters != null) {
             waypoint.setDefaultHoldParameters(holdParameters);

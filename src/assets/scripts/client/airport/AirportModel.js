@@ -11,7 +11,6 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import HoldCollection from './HoldCollection';
 import MapCollection from './MapCollection';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
@@ -162,15 +161,6 @@ export default class AirportModel {
          * @default null
          */
         this._runwayCollection = null;
-
-        /**
-         * Collection of all `HoldModel`s for the airport region
-         *
-         * @property holdCollection
-         * @type {HoldCollection}
-         * @default null
-         */
-        this.holdCollection = null;
 
         /**
          * Collection of all `MapModel`s available to be displayed on the scope
@@ -381,7 +371,6 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
-        this.holdCollection = new HoldCollection(data.holds);
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
         this.loadTerrain();
