@@ -1,5 +1,5 @@
 import ava from 'ava';
-import HoldCollection from '../../src/assets/scripts/client/airport/HoldCollection';
+import HoldCollection from '../../src/assets/scripts/client/navigationLibrary/HoldCollection';
 
 import {
     FIX_NAME_WITHOUT_HOLD,

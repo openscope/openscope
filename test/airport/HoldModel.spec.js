@@ -1,5 +1,5 @@
 import ava from 'ava';
-import HoldModel from '../../src/assets/scripts/client/airport/HoldModel';
+import HoldModel from '../../src/assets/scripts/client/navigationLibrary/HoldModel';
 
 import {
     FIX_NAME_MOCK_EMPTY,

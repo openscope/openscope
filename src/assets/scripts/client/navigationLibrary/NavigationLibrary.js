@@ -8,7 +8,7 @@ import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
 import AirwayModel from './AirwayModel';
 import FixCollection from './FixCollection';
-import HoldCollection from '../airport/HoldCollection';
+import HoldCollection from './HoldCollection';
 import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
