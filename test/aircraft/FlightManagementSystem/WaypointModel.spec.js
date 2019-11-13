@@ -628,7 +628,7 @@ ava('#speedMaximum returns expected value when hold with speed restriction is in
     const holdParametersMock = {
         inboundHeading: 3.14,
         legLength: '2min',
-        speed: 220,
+        speedMaximum: 220,
         turnDirection: 'left'
     };
 

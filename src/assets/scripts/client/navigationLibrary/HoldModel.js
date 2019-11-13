@@ -96,30 +96,51 @@ export default class HoldModel extends BaseModel {
     _buildHoldParameters(holdString) {
         const holdParameters = {};
 
-        const [radial, turn, length, speed] = holdString.split('|');
-        const [parsedSpeed, limit] = parseSpeedRestriction(speed);
+        holdString.split('|').forEach((item) => {
+            if (holdParameters.inboundHeading == null && isValidCourseString(item)) {
+                holdParameters.inboundHeading = radians_normalize(degreesToRadians(180 + parseInt(item, 10)));
 
-        if (!isValidCourseString(radial)) {
-            throw new Error(`Invalid radial parameter for Fix '${this.fixName}': ${radial} is not valid`);
+                return;
+            }
+
+            if (holdParameters.turnDirection == null && isValidDirectionString(item)) {
+                holdParameters.turnDirection = directionNormalizer(item);
+
+                return;
+            }
+
+            if (holdParameters.legLength == null && isLegLengthArg(item)) {
+                holdParameters.legLength = item;
+
+                return;
+            }
+
+            // The speed limit can be optional, but it tends to imply ICAO speed restrictions
+            const [value, limit] = parseSpeedRestriction(item);
+            if (value != null) {
+                if (limit !== '-') {
+                    throw new Error(`Invalid speedMaximum parameter for Fix '${this.fixName}': ${item} is not valid`);
+                }
+
+                holdParameters.speedMaximum = value;
+
+                return;
+            }
+
+            throw new Error(`Unexpected parameter for Fix '${this.fixName}': ${item}`);
+        });
+
+        if (holdParameters.inboundHeading == null) {
+            throw new Error(`Missing radial parameter for Fix '${this.fixName}': ${holdString}`);
         }
 
-        if (!isValidDirectionString(turn)) {
-            throw new Error(`Invalid turnDirection parameter for Fix '${this.fixName}': ${turn} is not valid`);
+        if (holdParameters.turnDirection == null) {
+            throw new Error(`Missing turnDirection parameter for Fix '${this.fixName}': ${holdString}`);
         }
 
-        if (!isLegLengthArg(length)) {
-            throw new Error(`Invalid legLength parameter for Fix '${this.fixName}': ${length} is not valid`);
+        if (holdParameters.legLength == null) {
+            throw new Error(`Missing legLength parameter for Fix '${this.fixName}': ${holdString}`);
         }
-
-        if (parsedSpeed == null || limit !== '-') {
-            throw new Error(`Invalid speedMaximum parameter for Fix '${this.fixName}': ${speed} is not valid`);
-        }
-
-        // Heading is given as the radial in degrees, so invert to get inboundHeading
-        holdParameters.inboundHeading = radians_normalize(degreesToRadians(180 + parseInt(radial, 10)));
-        holdParameters.turnDirection = directionNormalizer(turn);
-        holdParameters.legLength = length;
-        holdParameters.speedMaximum = parsedSpeed;
 
         return holdParameters;
     }
