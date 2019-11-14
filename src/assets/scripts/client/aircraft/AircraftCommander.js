@@ -302,6 +302,11 @@ export default class AircraftCommander {
      */
     runHold(aircraft, data) {
         const [turnDirection, legLength, fixName, radial] = data;
+
+        if (!fixName) {
+            return [false, 'unable to hold over present position, we can only hold over fixes'];
+        }
+
         const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {

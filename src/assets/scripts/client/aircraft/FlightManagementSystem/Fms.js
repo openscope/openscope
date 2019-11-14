@@ -454,7 +454,17 @@ export default class Fms {
 
     // ------------------------------ PUBLIC ------------------------------
 
-    activateHoldForWaypointName(waypointName, holdParameters) {
+    /**
+     * Mark the specified waypoint as a hold waypoint
+     *
+     * @for Fms
+     * @method activateHoldForWaypointName
+     * @param waypointName {string} name of waypoint in route
+     * @param holdParameters {object}
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
+     * @returns {array} [success of operation, readback-error OR holdParameters ]
+     */
+    activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this._routeModel.hasWaypointName(waypointName)) {
             // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
             return [false, {
@@ -463,7 +473,7 @@ export default class Fms {
             }];
         }
 
-        return [true, this._routeModel.activateHoldForWaypointName(waypointName, holdParameters)];
+        return [true, this._routeModel.activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading)];
     }
 
     /**
