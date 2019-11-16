@@ -302,26 +302,42 @@ export default class AircraftCommander {
      */
     runHold(aircraft, data) {
         const [turnDirection, legLength, fixName, radial] = data;
+
+        if (!fixName) {
+            return [false, 'unable to hold over present position, we can only hold over fixes'];
+        }
+
         const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        let inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        const holdParameters = {};
+        let fallbackInboundHeading;
 
-        // Radial is given as the outbound course, so it needs to be inverted
-        if (radial !== null) {
-            inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
+        // Instead of using DEFAULT_HOLD_PARAMETERS here, we only pass the values
+        // provided by the player. These then are used to patch the _holdParameters as
+        // specified in the `WaypointModel`
+        if (turnDirection !== null) {
+            holdParameters.turnDirection = turnDirection;
         }
 
-        const holdParameters = {
-            turnDirection,
-            legLength,
-            inboundHeading
-        };
+        if (legLength !== null) {
+            holdParameters.legLength = legLength;
+        }
 
-        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
+        if (radial !== null) {
+            // Radial is given as the outbound course, so it needs to be inverted
+            holdParameters.inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
+        } else {
+            // As radial has not been explicitly requested, we need to pass a "fallback"
+            // inboundHeading, as it's possible that a default inboundHeading doesn't exist for
+            // the `WaypointModel`s _holdParameters (eg. if the procedure JSON has no holds)
+            fallbackInboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        }
+
+        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters, fallbackInboundHeading);
     }
 
     /**

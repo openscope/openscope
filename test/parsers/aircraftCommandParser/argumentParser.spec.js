@@ -6,6 +6,7 @@ import {
     headingParser,
     findHoldCommandByType,
     holdParser,
+    isLegLengthArg,
     timewarpParser,
     optionalAltitudeParser,
     crossingParser
@@ -115,19 +116,46 @@ ava('.findHoldCommandByType() returns a fixName when passed a valid fixName', (t
     t.is(findHoldCommandByType('fixName', argsMock), 'dumba');
 });
 
+ava('.isLegLengthArg() returns false when passed an invalid leg length', (t) => {
+    t.false(isLegLengthArg('1'));
+    t.false(isLegLengthArg('0min'));
+    t.false(isLegLengthArg('0nm'));
+    t.false(isLegLengthArg('20min'));
+    t.false(isLegLengthArg('20nm'));
+    t.false(isLegLengthArg('1km'));
+});
+
+ava('.isLegLengthArg() returns true when passed a valid leg length', (t) => {
+    t.true(isLegLengthArg('1min'));
+    t.true(isLegLengthArg('2min'));
+    t.true(isLegLengthArg('19min'));
+    t.true(isLegLengthArg('1nm'));
+    t.true(isLegLengthArg('2nm'));
+    t.true(isLegLengthArg('19nm'));
+});
+
 ava('.holdParser() returns an array of length 4 when passed a fixname as the only argument', t => {
-    const expectedResult = ['right', '1min', 'dumba', null];
+    const expectedResult = [null, null, 'dumba', null];
     const result = holdParser(['dumba']);
 
     t.deepEqual(result, expectedResult);
 });
 
 ava('.holdParser() returns an array of length 4 when passed a direction and fixname as arguments', t => {
-    const expectedResult = ['left', '1min', 'dumba', null];
+    const expectedResult = ['left', null, 'dumba', null];
     let result = holdParser(['dumba', 'left']);
     t.deepEqual(result, expectedResult);
 
     result = holdParser(['left', 'dumba']);
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.holdParser() returns an array of length 4 when passed a legLength and fixname as arguments', t => {
+    const expectedResult = [null, '1min', 'dumba', null];
+    let result = holdParser(['dumba', '1min']);
+    t.deepEqual(result, expectedResult);
+
+    result = holdParser(['1min', 'dumba']);
     t.deepEqual(result, expectedResult);
 });
 
