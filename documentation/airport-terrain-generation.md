@@ -1,12 +1,46 @@
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Terrain Generation](#terrain-generation)
+  * [Introduction](#introduction)
+  * [Initial setup (QGIS 2.18)](#initial-setup-qgis-218)
+    + [Install QGIS version 2.18](#install-qgis-version-218)
+    + [Install Zonal Statistics plugin](#install-zonal-statistics-plugin)
+    + [Create a folder to dump all your files into](#create-a-folder-to-dump-all-your-files-into)
+    + [Obtain elevation data](#obtain-elevation-data)
+    + [Obtain airspace coordinates](#obtain-airspace-coordinates)
+  * [QGIS](#qgis)
+    + [Build Raster](#build-raster)
+    + [Import Airspace](#import-airspace)
+    + [Trim Raster](#trim-raster)
+    + [Build Contours](#build-contours)
+    + [Process Contours](#process-contours)
+    + [Prepare for Export](#prepare-for-export)
+    + [Export Terrain](#export-terrain)
+  * [Final Steps](#final-steps)
+  * [Congratulations](#congratulations)
+- [Terrain Generation (QGIS 3.4+)](#terrain-generation-qgis-34)
+  * [Initial setup (QGIS 3.4+)](#initial-setup-qgis-34)
+- [Manual generation of river water polygons](#manual-generation-of-river-water-polygons)
+  * [Preamble](#preamble)
+  * [Load the existing aiport terrain](#load-the-existing-aiport-terrain)
+  * [Load the WDBII rivers](#load-the-wdbii-rivers)
+  * [Convert the rivers to polygons](#convert-the-rivers-to-polygons)
+  * [Merge all the rivers into the water layer](#merge-all-the-rivers-into-the-water-layer)
+  * [Tidy up the generated polygons](#tidy-up-the-generated-polygons)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # Terrain Generation
 
 ## Introduction
 
 This guide will show you how to generate a terrain file for any airport in openScope. This is mainly done using QGIS, a free and open source Geographic Information System. The process can be quite tedious and often frustrating, so if you get stuck somewhere, you can talk to us on [Slack](http://slack.openscope.co/), where we will be happy to help you!
 
-## Initial setup
+## Initial setup (QGIS 2.18)
 
-### Install QGIS version 2.18 from the [QGIS website](http://www.qgis.org/en/site/forusers/download.html)
+### Install QGIS version 2.18
+
+Download and install QGIS from the [QGIS website](http://www.qgis.org/en/site/forusers/download.html)
 
 *Note: QGIS version 3 is not compatible with the Zonal Statistics plugin.*
 
@@ -183,3 +217,83 @@ This guide will show you how to generate a terrain file for any airport in openS
 If you've made it this far, you have successfully generated a terrain file for openScope. Give yourself a break now, you deserve it!
 
 If you're having any problems while following this guide, you can talk to us on [Slack](http://slack.openscope.co/), where we will be happy to help you!
+
+# Terrain Generation (QGIS 3.4+)
+
+## Initial setup (QGIS 3.4+)
+
+Using QGIS 3.4 and above, there is now a plugin - [qgsopenscope](https://github.com/openscope/qgsopenscope) that:
+
+* Loads the airport.json files
+* Automates the terrain generation process described above
+* Generates water polygons from the NOAA's [Global Self-consistent, Hierarchical, High-resolution Geography Database (GSHHG)](https://www.ngdc.noaa.gov/mgg/shorelines/) database.
+
+Intructions on how to install and use the plugin are located in the repository, as well as some videos (no audio, but subtitled) on YouTube that demonstrate the usage:
+
+* [The qgsopenscope repository](https://github.com/openscope/qgsopenscope)
+* Video - [Installing and using the QgsOpenScope plugin for QGIS](https://youtu.be/V0A83VNzLCU)
+* Video - [Reshaping water polygons to match the video map](https://youtu.be/5-rSBTLS3kA)
+* Video - [Adding River Polygons to openScope terrain](https://youtu.be/WHJtp36RYck)
+
+# Manual generation of river water polygons
+
+## Preamble
+
+The GSHHG database only contains coastlines and lakes. In order to generate river polygons, the lines can be imported from the [CIA World DataBank II (Rivers and Political Boundaries)](https://www.evl.uic.edu/pape/data/WDB/). If you've already downloaded the shapefiles required by the qgsopenscope plugin, then you will have these files. Otherwise, [downloaded the shapefile archive](https://www.ngdc.noaa.gov/mgg/shorelines/data/gshhg/latest/), and unpack it.
+
+## Load the existing aiport terrain
+
+There are a few ways of loading the existing terrain:
+
+1. Generate the terrain using the qgsopenscope plugin
+This will generate the airspace an terrain for the current airport data.
+2. Open the QGIS project file from the [airport-modeling](https://github.com/openscope/airport-modeling) repository
+If you do this, make sure that the project airspace matches the current airport data.
+3. Add the existing aiport.geoson file into a new QGIS project. You will also need to load the airspace to determine the bounds.
+
+**Note**: Ensure the project CRS is `WGS84` (`EPSG: 4326`)
+
+## Load the WDBII rivers
+
+This is a relatively arbitrary process and you will have to decide which rivers to include. The CIA World DataBank II (WDBII) databases contains 11 levels of waterways. Levels 1, 2 and 3 should be sufficient. The levels we're mainly interested in are:
+
+The _"fine"_ data should be of a sufficient quality, so add the following layers into QGIS:
+
+* WDBII_shp/f/WDBII_river_f_L01.shp - Double-lined rivers (river-lakes)
+* WDBII_shp/f/WDBII_river_f_L02.shp - Permanent major rivers
+* WDBII_shp/f/WDBII_river_f_L03.shp - Additional major rivers
+
+1. Also add the OpenStreetMap layer to the project, and use this to determine which rivers should be used. A rough rule is to include rivers at least 200m wide.
+2. Select the features that you want to use
+3. Paste the features as a new Temporary Scratch Layer (`Ctrl+Alt+V`) and call it "Rivers"
+4. Hide all the "WDBII*" layers (we don't want to accidentally modify them)
+5. Toggle editing on the "Rivers" layer and select all the features.
+6. Select all the segments for each river, and use the `Merge Selected Features` tool.
+6. Use the `Simplify Features` tool, set the tolerance to `0.0005` and select `Map Units`.
+7. Toggle editing and save any changes.
+
+## Convert the rivers to polygons
+
+Open the `Processing Toolbox` (`Ctrl+Alt+T`), and then for each river:
+
+1. Select the feaures
+2. Open the `Measure Line` tool (`Ctrl+Shift+M`) to measure the width agains the OpenStreeMap layer, using the _units as degrees_.
+3. Open the `Vector Geometry -> Multi-ring Buffer` tool
+4. Use "Rivers" as the `Input Layer`
+5. Check the `Selected Features Only` box
+6. `Number of Rings` should be 1.
+7. Enter the measurement from Step # 1 into the `Distance between Rings` box.
+8. And run.
+
+## Merge all the rivers into the water layer
+
+1. Copy all the new river polygons into the terrain or water layer.
+2. Toggle editing on the "Water" layer
+3. Select all the rivers, and use the `Modify Attributes` tool to ensure each polygon's `elevation` attributes is `0`
+4. Save changes to the layer
+
+## Tidy up the generated polygons
+
+* Use the `Merge Selected Features` tool to merge any water polygons that intersect.
+* Remove any extraneous nodes.
+* Use the `Reshape Features` tool to remove any segments that are outside the airspace.
