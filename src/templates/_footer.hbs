@@ -1,59 +1,102 @@
 <div class="footer">
     <input id="command"
-        placeholder="enter aircraft command"
-        autocapitalize="off"
-        autocorrect="off"
-        autocomplete="off"
-        spellcheck="false"
-        autofocus />
+           placeholder="enter aircraft command"
+           autocapitalize="off"
+           autocorrect="off"
+           autocomplete="off"
+           spellcheck="false"
+           autofocus />
     {{!-- move to ul li.hlist --}}
-    <ul id="controls">
-        <li class="control toggle-labels" title="Toggle fix and runway labels">
-            <img src="assets/images/icons/labels.png" />
-        </li>
-        <li class="control toggle-sids" title="Toggle SID display">
-            <img src="assets/images/icons/sids.png" />
-        </li>
-        <li class="control toggle-stars" title="Toggle STAR display">
-            <img src="assets/images/icons/stars.png" />
-        </li>
-        <li class="control toggle-restricted-areas" title="Toggle Restricted Areas">
-            <img src="assets/images/icons/restricted.png" />
-        </li>
-        <li class="control toggle-terrain active" title="Toggle Terrain">
-            <img src="assets/images/icons/terrain.png" />
-        </li>
-        <li class="control toggle-video-map active" title="Toggle Video Map">
-            <img src="assets/images/icons/map.png" />
-        </li>
-        <li class="control fast-forwards" title="Set time warp to 2">
-            <img src="assets/images/icons/fast-forwards.png" />
-        </li>
-        <li class="control pause-toggle" title="Pause simulation">
-            <img src="assets/images/icons/pause.png" />
-        </li>
-        <li class="control toggle-speech" title="Enable speech synthesis (experimental)">
-            <img src="assets/images/icons/speech.png" />
-        </li>
-        <li class="control toggle-traffic" title="Adjust traffic rate">
-            <img src="assets/images/icons/traffic.png" />
-        </li>
-        <li class="control switch-airport" title="Switch airport">
-            <img src="assets/images/icons/airport.png" />
-        </li>
-        <li class="control toggle-tutorial" title="Open tutorial">
-            <img src="assets/images/icons/tutorial.png" />
-        </li>
-        <li class="control" id="toggle-options" title="Open options">
-            <img src="assets/images/icons/cog.png" />
-        </li>
-        <li class="control js-changelogToggle" title="Open changelog">
-            <img src="assets/images/icons/changelog.png" />
-        </li>
-        <li class="control" title="View on GitHub">
-            <a href="https://github.com/openscope/openscope" id="js-github-external-link" target="_blank">
-                <img src="assets/images/GitHub-Mark-Light-32px.png" class="github-logo" />
+
+    <ul class="controls-menu">
+        <li class="control-item">
+            <a class="control-icon fast-forwards">
+                <img src="assets/images/icons/fast-forwards.png" />
             </a>
+        </li>
+        <li class="control-item">
+            <a class="control-icon toggle-pause" title="Pause simulation">
+                <img src="assets/images/icons/pause.png" />
+            </a>
+        </li>
+        <li class="control-item">
+            <a class="control-icon switch-airport" title="Switch airport">
+                <img src="assets/images/icons/airport.png" />
+            </a>
+        </li>
+        <li class="control-item">
+            <a class="control-icon">
+                <img src="assets/images/icons/scope.png" />
+            </a>
+            <div class="control-item-content">
+                <a class="control toggle-labels">
+                    <img src="assets/images/icons/labels.png" />
+                    <span>Fixes & Runways</span>
+                </a>
+                <a class="control toggle-sids">
+                    <img src="assets/images/icons/sids.png" />
+                    <span>SID display</span>
+                </a>
+                <a class="control toggle-stars">
+                    <img src="assets/images/icons/stars.png" />
+                    <span>STAR display</span>
+                </a>
+                <a class="control toggle-restricted-areas">
+                    <img src="assets/images/icons/restricted.png" />
+                    <span>Restricted Areas</span>
+                </a>
+                <a class="control toggle-terrain active">
+                    <img src="assets/images/icons/terrain.png" />
+                    <span>Terrain</span>
+                </a>
+                <a class="control toggle-video-map active">
+                    <img src="assets/images/icons/map.png" />
+                    <span>Video Map</span>
+                </a>
+                </a>
+            </div>
+        </li>
+        <li class="control-item">
+            <a class="control-icon">
+                <img src="assets/images/icons/cog.png" />
+            </a>
+            <div class="control-item-content">
+                <a class="control" id="toggle-options">
+                    <img src="assets/images/icons/cog.png" />
+                    <span>Settings</span>
+                </a>
+                <a class="control toggle-speech">
+                    <img src="assets/images/icons/speech.png" />
+                    <span>Speech</span>
+                </a>
+                <a class="control toggle-traffic">
+                    <img src="assets/images/icons/traffic.png" />
+                    <span>Traffic</span>
+                </a>
+            </div>
+        </li>
+        <li class="control-item">
+            <a class="control-icon">
+                <img src="assets/images/icons/questionmark.png" />
+            </a>
+            <div class="control-item-content">
+                <a class="control toggle-airport-guide">
+                    <img src="assets/images/icons/airport-guide.png" />
+                    <span>Airport Guide</span>
+                </a>
+                <a class="control toggle-tutorial">
+                    <img src="assets/images/icons/tutorial.png" />
+                    <span>Tutorial</span>
+                </a>
+                <a class="control js-changelogToggle">
+                    <img src="assets/images/icons/changelog.png" />
+                    <span>Changelog</span>
+                </a>
+                <a class="control" href="https://github.com/openscope/openscope" id="js-github-external-link" target="_blank">
+                    <img src="assets/images/GitHub-Mark-Light-32px.png" class="github-logo" />
+                    <span>GitHub</span>
+                </a>
+            </div>
         </li>
     </ul>
     <div id="score" title="Score">-</div>

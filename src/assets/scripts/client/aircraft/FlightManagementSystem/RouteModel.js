@@ -221,8 +221,10 @@ export default class RouteModel extends BaseModel {
      * @method activateHoldForWaypointName
      * @param waypointName {string} name of waypoint in route
      * @param holdParameters {object}
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
+     * @returns {object} The hold parameters set for the `WaypointModel`
      */
-    activateHoldForWaypointName(waypointName, holdParameters) {
+    activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this.hasWaypointName(waypointName)) {
             return;
         }
@@ -230,7 +232,21 @@ export default class RouteModel extends BaseModel {
         const legIndex = this._findIndexOfLegContainingWaypointName(waypointName);
         const legModel = this._legCollection[legIndex];
 
-        legModel.activateHoldForWaypointName(waypointName, holdParameters);
+        // This calculates the inbound heading to the fix from the preceding waypoint,
+        // and uses that as the fallbackInboundHeading.
+        // If no preceding waypoing exists, then the original fallbackInboundHeading passed is used
+        [fallbackInboundHeading] = this.waypoints.reduce((last, wpt) => {
+            let [heading] = last;
+            const [, lastWpt] = last;
+
+            if (lastWpt !== null && wpt.name === waypointName.toUpperCase()) {
+                heading = wpt.positionModel.bearingFromPosition(lastWpt.positionModel);
+            }
+
+            return [heading, wpt];
+        }, [fallbackInboundHeading, null]);
+
+        return legModel.activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading);
     }
 
     /**

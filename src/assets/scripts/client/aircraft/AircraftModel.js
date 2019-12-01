@@ -1981,12 +1981,10 @@ export default class AircraftModel {
             holdParameters.inboundHeading = bearingToHoldFix;
         }
 
-        const { inboundHeading } = holdParameters;
+        const { inboundHeading, legLength } = holdParameters;
         const outboundHeading = radians_normalize(inboundHeading + Math.PI);
         const groundTrack = radians_normalize(this.groundTrack);
         const offset = getOffset(this, waypointRelativePosition, inboundHeading);
-        const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
-        const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
@@ -2003,6 +2001,17 @@ export default class AircraftModel {
         let nextTargetHeading = outboundHeading;
 
         if (abs(groundTrack - outboundHeading) < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE && !isTimerSet) {
+            let holdLegDurationInSeconds;
+
+            if (legLength.indexOf('min') !== -1) {
+                const holdLegDurationInMinutes = legLength.replace('min', '');
+                holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
+            } else {
+                // Leg is a distance, use the ground speed to determine the duration
+                const holdLegDistance = legLength.replace('nm', '');
+                holdLegDurationInSeconds = (holdLegDistance / this.groundSpeed) * TIME.ONE_HOUR_IN_SECONDS;
+            }
+
             currentWaypoint.setHoldTimer(gameTime + holdLegDurationInSeconds);
         }
 
@@ -2018,8 +2027,6 @@ export default class AircraftModel {
         this.target.turn = holdParameters.turnDirection;
 
         return nextTargetHeading;
-
-        // TODO: add distance based hold
     }
 
     /**

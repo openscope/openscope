@@ -203,10 +203,11 @@ ava('.activateHoldForWaypointName() calls #_routeModel.activateHoldForWaypointNa
     const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
     const holdWaypointName = 'OAL';
     const holdParametersMock = { turnDirection: 'left' };
-    const result = fms.activateHoldForWaypointName(holdWaypointName, holdParametersMock);
+    const fallbackInboundHeading = 1.2;
+    const result = fms.activateHoldForWaypointName(holdWaypointName, holdParametersMock, fallbackInboundHeading);
 
-    t.true(typeof result === 'undefined');
-    t.true(routeModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock));
+    t.not(typeof result, 'undefined');
+    t.true(routeModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock, fallbackInboundHeading));
 });
 
 ava('.reset() resets all instance properties to appropriate default values', (t) => {

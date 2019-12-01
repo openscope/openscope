@@ -35,6 +35,7 @@ export const BELOW_SYMBOL = '-';
 export const DEFAULT_HOLD_PARAMETERS = {
     inboundHeading: undefined,
     legLength: '1min',
+    speedMaximum: undefined,
     timer: -1,
     turnDirection: 'right'
 };

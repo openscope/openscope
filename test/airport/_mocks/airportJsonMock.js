@@ -202,6 +202,9 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "ils": [true, false]
         }
     ],
+    "holds": {
+        "BAKRR": "360|right|4nm|S230-"
+    },
     "airways": {
         "V394": ["DAG", "DISBE", "CHRLT", "CLARR", "OASYS", "LAS", "SUVIE", "MMM"],
         "J11": ["BCE", "FREDD", "CORKR", "NAVHO", "KIDDR", "DRK"]
@@ -355,6 +358,29 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS07R": [],
                 "KLAS19L": [],
                 "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
+            },
+            "draw": [[]]
+        },
+        // not a real route. used here to test procedural hold parameters
+        "GRNPA8": {
+            "icao": "GRNPA8",
+            "name": "Grandpa 8",
+            "entryPoints": {
+                "DAG": ["DAG", ["MISEN", "A240"]],
+                "TNP": ["TNP", "JOTNU", ["ZELMA", "A310-"]]
+            },
+            "body": [["CLARR", "A130|S250"], "SKEBR", ["KEPEC", "A130"], ["IPUMY", "A110|S230"], ["NIPZO", "A90"], ["SUNST", "A80|S210"], ["KIMME", "A80|S210"], ["CHIPZ", "A80|S170"], "POKRR", "PRINO"],
+            "holds": {
+                "IPUMY" : "270|left|1min|S220-"
+            },
+            "rwy": {
+                "KLAS01L": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": ['LEFFT'],
+                "KLAS19R": ['RIGHT'],
                 "KLAS25L": [],
                 "KLAS25R": []
             },

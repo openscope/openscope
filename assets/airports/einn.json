@@ -1347,6 +1347,9 @@
                 "EINN24": [["OGONO", "A60+"], ["DERAG", "A30+|S220-"]]
             },
             "body": [],
+            "holds": {
+                "DERAG": "057|right|1min|S220-"
+            },
             "draw": [
                 ["AGINI", "OGONO", "DERAG"]
             ]
@@ -1361,6 +1364,9 @@
                 "EINN06": ["ULSIT", ["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]]
             },
             "body": [],
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["AGINI", "ULSIT", "TERDU", "ELPOM"]
             ]
@@ -1375,6 +1381,9 @@
                 "EINN06": [["ELPOM", "A30+|S220-"]]
             },
             "body": [],
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["BUNON", "ELPOM"]
             ]
@@ -1389,6 +1398,10 @@
                 "EINN24": ["EKNIS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
             },
             "body": [],
+            "holds": {
+                "DERAG": "057|right|1min|S220-",
+                "EKNIS": "254|left|1min"
+            },
             "draw": [
                 ["BUNON", "EKNIS", "TOBRI", "DERAG"]
             ]
@@ -1402,6 +1415,9 @@
             "body": [],
             "rwy": {
                 "EINN24": [["OGONO", "A60+"], ["DERAG", "A30+|S220-"]]
+            },
+            "holds": {
+                "DERAG": "057|right|1min|S220-"
             },
             "draw": [
                 ["DIGAN", "OGONO"]
@@ -1417,6 +1433,9 @@
             "rwy": {
                 "EINN06": ["ULSIT", ["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]]
             },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["DIGAN", "ULSIT"]
             ]
@@ -1430,6 +1449,9 @@
             "body": [],
             "rwy": {
                 "EINN06": [["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]]
+            },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
             },
             "draw": [
                 ["ERABI", "TERDU"]
@@ -1445,6 +1467,10 @@
             "rwy": {
                 "EINN24": ["EKNIS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
             },
+            "holds": {
+                "DERAG": "057|right|1min|S220-",
+                "EKNIS": "254|left|1min"
+            },
             "draw": [
                 ["ERABI", "EKNIS"]
             ]
@@ -1458,6 +1484,9 @@
             "body": [],
             "rwy": {
                 "EINN24": [["GILOG", "A60+"], ["DERAG", "A30+|S220-"]]
+            },
+            "holds": {
+                "DERAG": "057|right|1min|S220-"
             },
             "draw": [
                 ["KURUM", "GILOG", "DERAG"]
@@ -1473,6 +1502,9 @@
             "rwy": {
                 "EINN06": [["RERKA", "A60+"], ["ELPOM", "A30+|S220-"]]
             },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["KURUM", "RERKA", "ELPOM"]
             ]
@@ -1486,6 +1518,9 @@
             "body": [],
             "rwy": {
                 "EINN06": [["ELPOM", "A30+|S220-"]]
+            },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
             },
             "draw": [
                 ["LUPOR", "ELPOM"]
@@ -1501,6 +1536,10 @@
             "rwy": {
                 "EINN24": ["EKNIS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
             },
+            "holds": {
+                "DERAG": "057|right|1min|S220-",
+                "EKNIS": "254|left|1min"
+            },
             "draw": [
                 ["LUPOR", "EKNIS"]
             ]
@@ -1514,6 +1553,9 @@
             "body": [],
             "rwy": {
                 "EINN06": [["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]]
+            },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
             },
             "draw": [
                 ["MOMIN", "TERDU"]
@@ -1529,6 +1571,10 @@
             "rwy": {
                 "EINN24": ["EKNIS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
             },
+            "holds": {
+                "DERAG": "057|right|1min|S220-",
+                "EKNIS": "254|left|1min"
+            },
             "draw": [
                 ["MOMIN", "EKNIS"]
             ]
@@ -1542,6 +1588,9 @@
             "body": [],
             "rwy": {
                 "EINN24": [["OGONO", "A60+"], ["DERAG", "A30+|S220-"]]
+            },
+            "holds": {
+                "DERAG": "057|right|1min|S220-"
             },
             "draw": [
                 ["RIKUL", "OGONO"]
@@ -1557,6 +1606,9 @@
             "rwy": {
                 "EINN06": ["ULSIT", ["TERDU", "A60+"], ["ELPOM", "A30+|S220-"]]
             },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["RIKUL", "ULSIT"]
             ]
@@ -1570,6 +1622,9 @@
             "body": [],
             "rwy": {
                 "EINN24": [["GILOG", "A60+"], ["DERAG", "A30+|S220-"]]
+            },
+            "holds": {
+                "DERAG": "057|right|1min|S220-"
             },
             "draw": [
                 ["TIPUR", "GILOG"]
@@ -1585,6 +1640,9 @@
             "rwy": {
                 "EINN06": [["RERKA", "A60+"], ["ELPOM", "A30+|S220-"]]
             },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["TIPUR", "RERKA"]
             ]
@@ -1599,6 +1657,9 @@
             "rwy": {
                 "EINN06": [["ELPOM", "A30+|S220-"]]
             },
+            "holds": {
+                "ELPOM": "236|left|1min|S220-"
+            },
             "draw": [
                 ["UNBEG", "ELPOM"]
             ]
@@ -1612,6 +1673,10 @@
             "body": [],
             "rwy": {
                 "EINN24": ["EKNIS", ["TOBRI", "A60+"], ["DERAG", "A30+|S220-"]]
+            },
+            "holds": {
+                "DERAG": "057|right|1min|S220-",
+                "EKNIS": "254|left|1min"
             },
             "draw": [
                 ["UNBEG", "EKNIS"]

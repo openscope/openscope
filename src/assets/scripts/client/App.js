@@ -127,18 +127,20 @@ export default class App {
     loadAirlinesAndAircraft(airportLoadList, initialAirportIcao, initialAirportResponse) {
         const airlineListPromise = $.getJSON('assets/airlines/airlines.json');
         const aircraftListPromise = $.getJSON('assets/aircraft/aircraft.json');
+        const airportGuideListPromise = $.getJSON('assets/guides/guides.json');
 
         // This is provides a way to get async data from several sources in the app before anything else runs
         // we need to resolve data from two sources before the app can proceede. This data should always
         // exist, if it doesn't, something has gone terribly wrong.
-        $.when(airlineListPromise, aircraftListPromise)
-            .done((airlineResponse, aircraftResponse) => {
+        $.when(airlineListPromise, aircraftListPromise, airportGuideListPromise)
+            .done((airlineResponse, aircraftResponse, airportGuideResponse) => {
                 this.setupChildrenHandler(
                     airportLoadList,
                     initialAirportIcao,
                     initialAirportResponse,
                     airlineResponse[0].airlines,
-                    aircraftResponse[0].aircraft
+                    aircraftResponse[0].aircraft,
+                    airportGuideResponse[0]
                 );
             });
     }
@@ -159,14 +161,23 @@ export default class App {
      * @param initialAirportData {object}     Airport json for the initial airport, could be default or stored airport
      * @param airlineList {array}             List of all Airline definitions
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
+     * @param airportGuides {object}          Airport guide JSON
      */
-    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(
+        airportLoadList,
+        initialAirportIcao,
+        initialAirportData,
+        airlineList,
+        aircraftTypeDefinitionList,
+        airportGuides
+    ) {
         this._appController.setupChildren(
             airportLoadList,
             initialAirportIcao,
             initialAirportData,
             airlineList,
-            aircraftTypeDefinitionList
+            aircraftTypeDefinitionList,
+            airportGuides
         );
 
         this.enable();

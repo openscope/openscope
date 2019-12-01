@@ -39,6 +39,13 @@ export default class TutorialView {
         this._eventBus = EventBus;
 
         /**
+         * @property tutorial
+         * @type {}
+         * @private
+         */
+        this.tutorial = null;
+
+        /**
          * Root DOM element
          *
          * @property $element
@@ -74,6 +81,16 @@ export default class TutorialView {
          */
         this.$tutorialNext = null;
 
+
+        /**
+         * Command bar button to toggle the tutorial on/off
+         *
+         * @for TutorialView
+         * @property $toggleTutorial
+         * @type {jquery|HTML Element}
+         */
+        this.$toggleTutorial = null;
+
         this._init()
             ._setupHandlers()
             .layout()
@@ -93,8 +110,8 @@ export default class TutorialView {
         this.$tutorialView = $(TUTORIAL_TEMPLATE);
         this.$tutorialPrevious = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.PREV);
         this.$tutorialNext = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.NEXT);
+        this.$toggleTutorial = $(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
 
-        prop.tutorial = tutorial;
         this.tutorial = tutorial;
         this.tutorial.steps = [];
         this.tutorial.step = 0;
@@ -133,7 +150,7 @@ export default class TutorialView {
             throw new Error('Expected $element to be defined. `body` tag does not exist in the DOM');
         }
 
-        prop.tutorial.html = this.$tutorialView;
+        this.tutorial.html = this.$tutorialView;
         this.$element.append(this.$tutorialView);
 
         return this;
@@ -193,6 +210,17 @@ export default class TutorialView {
     }
 
     /**
+     * Return whether the tutorial dialog is currently open
+     *
+     * @for TutorialView
+     * @method isTutorialDialogOpen
+     * @return {boolean}
+     */
+    isTutorialDialogOpen() {
+        return this.$tutorialView.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
      * Reloads the tutorial when the airport is changed.
      *
      * @for TutorialView
@@ -208,10 +236,9 @@ export default class TutorialView {
      * @method tutorial_init_pre
      */
     tutorial_init_pre() {
-        prop.tutorial = {};
-        prop.tutorial.steps = [];
-        prop.tutorial.step = 0;
-        prop.tutorial.open = false;
+        this.tutorial = {};
+        this.tutorial.steps = [];
+        this.tutorial.step = 0;
 
         const tutorial_position = [0.1, 0.85];
         const departureAircraft = prop.aircraft.list.filter((aircraftModel) => aircraftModel.isDeparture())[0];
@@ -512,7 +539,7 @@ export default class TutorialView {
             text: ['If you\'ve gone through this entire tutorial, you should do pretty well with the pressure.',
                    'In the TRACON, minimum separation is 3 miles laterally or 1000 feet vertically. Keep them separated,',
                    'keep them moving, and you\'ll be a controller in no time!',
-                   'A full list of commands can be found <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md">here</a>.'
+                   'A full list of commands can be found <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md" target="_blank">here</a>.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -528,7 +555,7 @@ export default class TutorialView {
      * @method tutorial_toggle
      */
     tutorial_toggle() {
-        if (prop.tutorial.open) {
+        if (this.isTutorialDialogOpen()) {
             this.tutorial_close();
 
             return;
@@ -542,10 +569,10 @@ export default class TutorialView {
      */
     tutorial_get(step = null) {
         if (!step) {
-            step = prop.tutorial.step;
+            step = this.tutorial.step;
         }
 
-        return prop.tutorial.steps[step];
+        return this.tutorial.steps[step];
     }
 
     /**
@@ -571,7 +598,7 @@ export default class TutorialView {
      * @method tutorial_step
      */
     tutorial_step(options) {
-        prop.tutorial.steps.push(new TutorialStep(options));
+        this.tutorial.steps.push(new TutorialStep(options));
     }
 
     /**
@@ -597,9 +624,8 @@ export default class TutorialView {
      * @method tutorial_open
      */
     tutorial_open() {
-        prop.tutorial.open = true;
-
         this.$tutorialView.addClass(SELECTORS.CLASSNAMES.OPEN);
+        this.$toggleTutorial.addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this.tutorial_update_content();
     }
@@ -608,9 +634,8 @@ export default class TutorialView {
      * @method tutorial_close
      */
     tutorial_close() {
-        prop.tutorial.open = false;
-
         this.$tutorialView.removeClass(SELECTORS.CLASSNAMES.OPEN);
+        this.$toggleTutorial.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this.tutorial_move();
     }
@@ -631,15 +656,15 @@ export default class TutorialView {
      * @method tutorial_next
      */
     tutorial_next() {
-        if (prop.tutorial.step === prop.tutorial.steps.length - 1) {
+        if (this.tutorial.step === this.tutorial.steps.length - 1) {
             this.tutorial_close();
 
             return;
         }
 
-        prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
+        this.tutorial.step = clamp(0, this.tutorial.step + 1, this.tutorial.steps.length - 1);
 
-        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'next', `${prop.tutorial.step}`);
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'next', `${this.tutorial.step}`);
         this.tutorial_update_content();
     }
 
@@ -647,9 +672,9 @@ export default class TutorialView {
      * @method tutorial_prev
      */
     tutorial_prev() {
-        prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
+        this.tutorial.step = clamp(0, this.tutorial.step - 1, this.tutorial.steps.length - 1);
 
-        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${prop.tutorial.step}`);
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${this.tutorial.step}`);
         this.tutorial_update_content();
     }
 }

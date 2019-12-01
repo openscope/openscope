@@ -12,6 +12,7 @@ import {
     FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
+import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
 import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
 import { speech_say } from '../speech';
@@ -21,7 +22,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import { heading_to_string, radiansToDegrees } from '../utilities/unitConverters';
+import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 /**
  *
@@ -300,22 +301,43 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
-        const turnDirection = data[0];
-        const legLength = data[1];
-        const fixName = data[2];
+        const [turnDirection, legLength, fixName, radial] = data;
+
+        if (!fixName) {
+            return [false, 'unable to hold over present position, we can only hold over fixes'];
+        }
+
         const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {
             return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        const holdParameters = {
-            turnDirection,
-            legLength,
-            inboundHeading: fixModel.positionModel.bearingFromPosition(aircraft.positionModel)
-        };
+        const holdParameters = {};
+        let fallbackInboundHeading;
 
-        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
+        // Instead of using DEFAULT_HOLD_PARAMETERS here, we only pass the values
+        // provided by the player. These then are used to patch the _holdParameters as
+        // specified in the `WaypointModel`
+        if (turnDirection !== null) {
+            holdParameters.turnDirection = turnDirection;
+        }
+
+        if (legLength !== null) {
+            holdParameters.legLength = legLength;
+        }
+
+        if (radial !== null) {
+            // Radial is given as the outbound course, so it needs to be inverted
+            holdParameters.inboundHeading = radians_normalize(degreesToRadians(radial) + Math.PI);
+        } else {
+            // As radial has not been explicitly requested, we need to pass a "fallback"
+            // inboundHeading, as it's possible that a default inboundHeading doesn't exist for
+            // the `WaypointModel`s _holdParameters (eg. if the procedure JSON has no holds)
+            fallbackInboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        }
+
+        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters, fallbackInboundHeading);
     }
 
     /**
