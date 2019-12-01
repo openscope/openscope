@@ -1,3 +1,10 @@
+# 6.16.0 (January 1, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
 # 6.15.0 (December 1, 2019)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1105" target="_blank">#1105</a> - Add in-sim Airport Guide accessible via footer button
