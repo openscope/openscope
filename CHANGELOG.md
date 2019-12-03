@@ -1,9 +1,7 @@
-# 6.16.0 (January 1, 2020)
-### New Features
+# 6.15.1 (December 2, 2020)
+### Hotfixes
+- <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
 
-### Bugfixes
-
-### Enhancements & Refactors
 
 # 6.15.0 (December 1, 2019)
 ### New Features
