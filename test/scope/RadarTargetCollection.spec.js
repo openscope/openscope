@@ -111,6 +111,19 @@ ava('.findRadarTargetModelForAircraftReference() returns radar target for corres
     t.deepEqual(result.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
+ava('.findRadarTargetModelForAircraftReference() returns radar target for corresponding supplied radar cid', (t) => {
+    const collection = new RadarTargetCollection(THEME.DEFAULT);
+    const aircraftReference = 'AAL432';
+    const cid = '123';
+
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection._stripviews[cid] = aircraftReference;
+
+    const result = collection.findRadarTargetModelForAircraftReference(cid);
+
+    t.deepEqual(result.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+});
+
 ava('.removeRadarTargetModelForAircraftModel() makes no changes when the specified aircraft does not have a corresponding radar target', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 

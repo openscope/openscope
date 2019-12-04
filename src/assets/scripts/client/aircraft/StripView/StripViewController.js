@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import _random from 'lodash/random';
-import _without from 'lodash/without';
 import StripViewCollection from './StripViewCollection';
 import StripViewModel from './StripViewModel';
+import { leftPad } from '../../utilities/generalUtilities';
 import { INVALID_INDEX } from '../../constants/globalConstants';
 import { SELECTORS } from '../../constants/selectors';
 
@@ -71,7 +71,7 @@ export default class StripViewController {
 
         /**
          * @property _cidNumbersInUse
-         * @type {array<number>}
+         * @type {array<string>}
          * @private
          */
         this._cidNumbersInUse = [];
@@ -214,7 +214,9 @@ export default class StripViewController {
      */
     deselectStripView(stripViewModel) {
         if (!(stripViewModel instanceof StripViewModel)) {
-            throw new TypeError(`Expected stripViewModel to be an instance of StripViewModel but instead found ${typeof stripViewModel}`);
+            throw new TypeError(
+                `Expected stripViewModel to be an instance of StripViewModel but instead found ${typeof stripViewModel}`
+            );
         }
 
         stripViewModel.removeActiveState();
@@ -322,11 +324,11 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method _generateCidNumber
-     * @return nextCid {number}
+     * @return nextCid {string}
      * @private
      */
     _generateCidNumber() {
-        const nextCid = _random(1, CID_UPPER_BOUND);
+        const nextCid = leftPad(_random(1, CID_UPPER_BOUND).toString(10), 3);
 
         if (this._cidNumbersInUse.indexOf(nextCid) !== INVALID_INDEX) {
             return this._generateCidNumber();
@@ -344,16 +346,14 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method _removeCidFromUse
-     * @param cid {number}
+     * @param cid {string}
      * @private
      */
     _removeCidFromUse(cid) {
         const cidIndex = this._cidNumbersInUse.indexOf(cid);
 
-        if (cidIndex === INVALID_INDEX) {
-            return;
+        if (cidIndex !== INVALID_INDEX) {
+            this._cidNumbersInUse.splice(cidIndex, 1);
         }
-
-        this._cidNumbersInUse = _without(this._cidNumbersInUse, cid);
     }
 }

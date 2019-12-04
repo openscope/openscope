@@ -30,6 +30,17 @@ export default class RadarTargetCollection extends BaseCollection {
         this._eventBus = EventBus;
 
         /**
+         * Collection of stripview [cid, callsign] tuples
+         * used for finding an aircraft by cid
+         *
+         * @for RadarTargetModel
+         * @property _stripviews
+         * @type {map<string, string>}
+         * @private
+         */
+        this._stripviews = {};
+
+        /**
          * Current theme, updated via event bus events
          *
          * @for RadarTargetCollection
@@ -74,6 +85,8 @@ export default class RadarTargetCollection extends BaseCollection {
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelForAircraftModel);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+        this._eventBus.on(EVENT.ADD_STRIPVIEW, this._addStripViewLink);
+        this._eventBus.on(EVENT.REMOVE_STRIPVIEW, this._removeStripViewLink);
     }
 
     /**
@@ -85,6 +98,8 @@ export default class RadarTargetCollection extends BaseCollection {
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelForAircraftModel);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+        this._eventBus.off(EVENT.ADD_STRIPVIEW, this._addStripViewLink);
+        this._eventBus.off(EVENT.REMOVE_STRIPVIEW, this._removeStripViewLink);
     }
 
     /**
@@ -140,30 +155,26 @@ export default class RadarTargetCollection extends BaseCollection {
         return radarTargetModel;
     }
 
-    // TODO: Allow us to choose an aircraft by its CID
     /**
      * Get the radar target model object for the specified aircraft
      *
      * @for RadarTargetCollection
      * @method findRadarTargetModelForAircraftReference
      * @param aircraftReference {string} the CID, squawk code, or callsign assigned to an aircraft
-     * @return radarTargetModel {RadarTargetModel}
+     * @return radarTargetModel {RadarTargetModel|undefined}
      */
     findRadarTargetModelForAircraftReference(aircraftReference) {
-        // Store variable because `this` within lodash `_filter` has different scope
-        const radarTargetModels = this._items;
-        const results = _filter(radarTargetModels, ({ aircraftModel }) => {
+        // The callsign of the aircraft, from the cid
+        const callsign = this._stripviews[aircraftReference];
+
+        const radarTargets = this._items.filter(({ aircraftModel }) => {
             return aircraftModel.transponderCode === aircraftReference ||
-                aircraftModel.callsign === aircraftReference;
+                aircraftModel.callsign === aircraftReference ||
+                aircraftModel.callsign === callsign;
         });
 
-        if (results.length > 1) {
-            return;
-        }
-
-        const radarTargetModel = results[0];
-
-        return radarTargetModel;
+        // Don't allow ambiguous matches to be successful
+        return radarTargets.length === 1 ? radarTargets[0] : undefined;
     }
 
     /**
@@ -189,6 +200,7 @@ export default class RadarTargetCollection extends BaseCollection {
     */
     reset() {
         this._items = [];
+        this._stripviews = {};
     }
 
     /**
@@ -203,6 +215,28 @@ export default class RadarTargetCollection extends BaseCollection {
         for (let i = 0; i < radarTargetModels.length; i++) {
             radarTargetModels[i].reset();
         }
+    }
+
+    /**
+     * Add a soft-link for the stripview `cid` to the `aircraftModel` id
+     *
+     * @for RadarTargetCollection
+     * @method _addStripViewLink
+     * @private
+     */
+    _addStripViewLink = (stripView) => {
+        this._stripviews[stripView.cid] = stripView.callsign;
+    }
+
+    /**
+     * Removes the soft-link for the stripview `cid`
+     *
+     * @for RadarTargetCollection
+     * @method _removeStripViewLink
+     * @private
+     */
+    _removeStripViewLink = (cid) => {
+        delete this._stripviews[cid];
     }
 
     /**

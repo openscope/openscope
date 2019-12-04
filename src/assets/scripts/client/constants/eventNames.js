@@ -20,6 +20,15 @@ export const EVENT = {
     ADD_AIRCRAFT: 'add-aircraft',
 
     /**
+     * Add a stripview to the scope
+     *
+     * @memberof EVENT
+     * @property ADD_STRIPVIEW
+     * @type {string}
+     */
+    ADD_STRIPVIEW: 'add-stripview',
+
+    /**
      * @memberof EVENT
      * @property AIRPORT_CHANGE
      * @type {string}
@@ -100,6 +109,15 @@ export const EVENT = {
      * @type {string}
      */
     REMOVE_AIRCRAFT: 'remove-aircraft',
+
+    /**
+     * Remove a stripview from the scope
+     *
+     * @memberof EVENT
+     * @property REMOVE_STRIPVIEW
+     * @type {string}
+     */
+    REMOVE_STRIPVIEW: 'remove-stripview',
 
     /**
      * Remove an `AircraftConflict` for an aircraft

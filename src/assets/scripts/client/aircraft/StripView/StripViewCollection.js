@@ -1,6 +1,8 @@
 import _find from 'lodash/find';
 import _without from 'lodash/without';
 import BaseCollection from '../../base/BaseCollection';
+import EventBus from '../../lib/EventBus';
+import { EVENT } from '../../constants/eventNames';
 
 /**
  * Collection used to manage `StripViewModel` objects
@@ -24,6 +26,15 @@ export default class StripViewCollection extends BaseCollection {
          * @default []
          * @private
          */
+
+        /**
+         * Local reference to the event bus
+         *
+         * @for RadarTargetModel
+         * @property _eventBus
+         * @type {EventBus}
+         */
+        this._eventBus = EventBus;
 
         /**
          * Inherited from `BaseCollection`
@@ -63,6 +74,9 @@ export default class StripViewCollection extends BaseCollection {
      */
     addItem(stripViewModel) {
         this._items.push(stripViewModel);
+
+        // Let the RadarTargetCollection know that a stripview has been added
+        this._eventBus.trigger(EVENT.ADD_STRIPVIEW, stripViewModel);
     }
 
     /**
@@ -73,6 +87,9 @@ export default class StripViewCollection extends BaseCollection {
      */
     removeItem(stripViewModel) {
         this._items = _without(this._items, stripViewModel);
+
+        // Let the RadarTargetCollection know that a stripview has been removed
+        this._eventBus.trigger(EVENT.REMOVE_STRIPVIEW, stripViewModel.cid);
     }
 
     /**
