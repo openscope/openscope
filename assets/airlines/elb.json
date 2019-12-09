@@ -1,0 +1,14 @@
+{
+    "icao": "elb",
+    "name": "Ellinair",
+    "callsign": {
+        "name": "ELLINAIR HELLAS",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2 ],
+            ["A320", 1 ]
+        ]
+    }
+}

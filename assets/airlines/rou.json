@@ -1,0 +1,18 @@
+{
+    "icao": "rou",
+    "name": "Air Canada Rouge",
+    "callsign": {
+        "name": "ROUGE",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+          ["A319", 20],
+          ["A321", 6]
+        ],
+        "long": [
+
+            ["B763", 24]
+        ]
+    }
+}
