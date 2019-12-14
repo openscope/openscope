@@ -15,8 +15,8 @@
     "rate": {
         "climb":      1250,
         "descent":    1500,
-        "accelerate": 1,
-        "decelerate": 1
+        "accelerate": 3,
+        "decelerate": 2
     },
     "runway": {
         "takeoff": 1.200,
