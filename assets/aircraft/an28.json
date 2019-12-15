@@ -1,0 +1,37 @@
+{
+    "name": "Antonov An-28",
+    "icao": "AN28",
+    "engines": {
+        "number": 2,
+        "type": "T"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 20000,
+    "rate": {
+        "climb":      700,
+        "descent":    800,
+        "accelerate": 2,
+        "decelerate": 1
+    },
+    "runway": {
+        "takeoff": 0.400,
+        "landing": 0.210
+    },
+    "speed":{
+        "min":     120,
+        "landing": 90,
+        "cruise":  170,
+        "cruiseM": null,
+        "max":     220,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
