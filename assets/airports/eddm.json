@@ -1582,10 +1582,10 @@
             },
             "body": ["ABGAS"],
             "rwy": {
-                "EDDM08L": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1604,10 +1604,10 @@
             },
             "body": [["AKANU", "A250-"], "LUPOX"],
             "rwy": {
-                "EDDM08L": [["RENLO", "A130|S280-"], "@ROKIL", "MIQ"],
-                "EDDM08R": [["RENLO", "A130|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26L": [["RENLO", "A150|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26R": [["RENLO", "A150|S280-"], "@ROKIL", "MIQ"]
+                "EDDM08L": [["RENLO", "A130-|S280-"], "@ROKIL", "MIQ"],
+                "EDDM08R": [["RENLO", "A130-|S280-"], "@ROKIL", "MIQ"],
+                "EDDM26L": [["RENLO", "A150-|S280-"], "@ROKIL", "MIQ"],
+                "EDDM26R": [["RENLO", "A150-|S280-"], "@ROKIL", "MIQ"]
             },
             "holds":{
                 "ROKIL": "306|right|1min",
@@ -1625,10 +1625,10 @@
             },
             "body": [["ANORA", "A250-"], "XERUM"],
             "rwy": {
-                "EDDM08L": [["BURAM", "A130|S280-"], "@ROKIL", "MIQ"],
-                "EDDM08R": [["BURAM", "A130|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26L": [["BURAM", "A150|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26R": [["BURAM", "A150|S280-"], "@ROKIL", "MIQ"]
+                "EDDM08L": [["BURAM", "A130-|S280-"], "@ROKIL", "MIQ"],
+                "EDDM08R": [["BURAM", "A130-|S280-"], "@ROKIL", "MIQ"],
+                "EDDM26L": [["BURAM", "A150-|S280-"], "@ROKIL", "MIQ"],
+                "EDDM26R": [["BURAM", "A150-|S280-"], "@ROKIL", "MIQ"]
             },
             "holds":{
                 "XERUM": "311|left|1min",
@@ -1647,10 +1647,10 @@
             },
             "body": ["ARBAX", "USEMI", "LITLI"],
             "rwy": {
-                "EDDM08L": [["OSTES", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM08R": [["OSTES", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26L": [["OSTES", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26R": [["OSTES", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"]
+                "EDDM08L": [["OSTES", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
+                "EDDM08R": [["OSTES", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
+                "EDDM26L": [["OSTES", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
+                "EDDM26R": [["OSTES", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1668,10 +1668,10 @@
             },
             "body": ["BAGMI", "ODUDA", "NETES", "UNKOM"],
             "rwy": {
-                "EDDM08L": [["MITNU", "A150|S280-"], "TUSTO", "@LANDU", "MIQ"],
-                "EDDM08R": [["MITNU", "A150|S280-"], "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26L": [["MITNU", "A110|S280-"], "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26R": [["MITNU", "A110|S280-"], "TUSTO", "@LANDU", "MIQ"]
+                "EDDM08L": [["MITNU", "A150-|S280-"], "TUSTO", "@LANDU", "MIQ"],
+                "EDDM08R": [["MITNU", "A150-|S280-"], "TUSTO", "@LANDU", "MIQ"],
+                "EDDM26L": [["MITNU", "A110-|S280-"], "TUSTO", "@LANDU", "MIQ"],
+                "EDDM26R": [["MITNU", "A110-|S280-"], "TUSTO", "@LANDU", "MIQ"]
             },
             "holds":{
                 "NETES": "022|right|1min",
@@ -1690,10 +1690,10 @@
             },
             "body": ["BAMTA"],
             "rwy": {
-                "EDDM08L": [["ROSAB", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM08R": [["ROSAB", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26L": [["ROSAB", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26R": [["ROSAB", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"]
+                "EDDM08L": [["ROSAB", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
+                "EDDM08R": [["ROSAB", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
+                "EDDM26L": [["ROSAB", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
+                "EDDM26R": [["ROSAB", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1711,10 +1711,10 @@
             },
             "body": ["EXUSI", "RDG", "GOMAX"],
             "rwy": {
-                "EDDM08L": [["VESIX", "A150|S280-"], "@LANDU", "MIQ"],
-                "EDDM08R": [["VESIX", "A150|S280-"], "@LANDU", "MIQ"],
-                "EDDM26L": [["VESIX", "A110|S280-"], "@LANDU", "MIQ"],
-                "EDDM26R": [["VESIX", "A110|S280-"], "@LANDU", "MIQ"]
+                "EDDM08L": [["VESIX", "A150-|S280-"], "@LANDU", "MIQ"],
+                "EDDM08R": [["VESIX", "A150-|S280-"], "@LANDU", "MIQ"],
+                "EDDM26L": [["VESIX", "A110-|S280-"], "@LANDU", "MIQ"],
+                "EDDM26R": [["VESIX", "A110-|S280-"], "@LANDU", "MIQ"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1732,10 +1732,10 @@
             },
             "body": [["GESLU", "A250-"]],
             "rwy": {
-                "EDDM08L": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1754,10 +1754,10 @@
             },
             "body": ["IRBIR", "NINUR"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["ANDEC", "A130|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["ANDEC", "A150|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["ANDEC", "A150|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
             },
             "holds":{
                 "BETOS": "247|right|1min",
@@ -1775,10 +1775,10 @@
             },
             "body": ["KOGOL"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["ANDEC", "A130|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["ANDEC", "A150|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["ANDEC", "A150|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
             },
             "holds":{
                 "BETOS": "247|right|1min",
@@ -1796,10 +1796,10 @@
             },
             "body": [["KUNOD", "A250-"]],
             "rwy": {
-                "EDDM08L": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1860,10 +1860,10 @@
             },
             "body": ["OBAGA", "NINUR"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["ANDEC", "A130|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["ANDEC", "A150|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["ANDEC", "A150|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
             },
             "holds":{
                 "OBAGA": "180|right|1min",
@@ -1882,10 +1882,10 @@
             },
             "body": ["OSDER"],
             "rwy": {
-                "EDDM08L": [["DISUN", "A120|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["DISUN", "A120|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["DISUN", "A160|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["DISUN", "A160|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["DISUN", "A120-|S280-"], "@BETOS", "OTT"],
+                "EDDM08R": [["DISUN", "A120-|S280-"], "@BETOS", "OTT"],
+                "EDDM26L": [["DISUN", "A160-|S280-"], "@BETOS", "OTT"],
+                "EDDM26R": [["DISUN", "A160-|S280-"], "@BETOS", "OTT"]
             },
             "holds":{
                 "OSDER": "237|left|1min",
@@ -1904,10 +1904,10 @@
             },
             "body": [["PELOG", "A250-"]],
             "rwy": {
-                "EDDM08L": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1926,10 +1926,10 @@
             },
             "body": [["RIXED", "A250-"], "DODIL", "REDVO"],
             "rwy": {
-                "EDDM08L": [["RIDAR", "A130|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["RIDAR", "A130|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["RIDAR", "A150|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["RIDAR", "A150|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["RIDAR", "A130-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM08R": [["RIDAR", "A130-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26L": [["RIDAR", "A150-|S280-"], "LELTA", "@ROKIL", "MIQ"],
+                "EDDM26R": [["RIDAR", "A150-|S280-"], "LELTA", "@ROKIL", "MIQ"]
             },
             "holds":{
                 "ROKIL": "306|right|1min",
