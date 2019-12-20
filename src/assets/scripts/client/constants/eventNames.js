@@ -44,10 +44,10 @@ export const EVENT = {
      * This should only occur as a result of a user action
      *
      * @memberof EVENT
-     * @property MARK_CANVAS_DIRTY
+     * @property MARK_SHALLOW_RENDER
      * @type {string}
      */
-    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+    MARK_SHALLOW_RENDER: 'mark-shallow-render',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
@@ -61,15 +61,6 @@ export const EVENT = {
     PAN_VIEWPORT: 'pan-viewport',
 
     /**
-     * Pause/unpause the game loop
-     *
-     * @memberof EVENT
-     * @property PAUSE_TOGGLE
-     * @type {string}
-     */
-    PAUSE_TOGGLE: 'pause-toggle',
-
-    /**
      * Fired when the update loop should be either paused or resumed.
      *
      * Usually called when airport data is changing (ie, when a new airport
@@ -80,6 +71,24 @@ export const EVENT = {
      * @type {string}
      */
     PAUSE_UPDATE_LOOP: 'pause-update-loop',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_DECREASE_LENGTH
+     * @type {string}
+     */
+    PTL_DECREASE_LENGTH: 'ptl-decrease-length',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_INCREASE_LENGTH
+     * @type {string}
+     */
+    PTL_INCREASE_LENGTH: 'ptl-increase-length',
 
     /**
      * Remove an aircraft from the sim
@@ -158,10 +167,33 @@ export const EVENT = {
 
     /**
      * @memberof EVENT
+     * @property TOGGLE_AIRPORT_GUIDE
+     * @type {string}
+     */
+    TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_CHANGELOG
+     * @type {string}
+     */
+    TOGGLE_CHANGELOG: 'toggle-changelog',
+
+    /**
+     * @memberof EVENT
      * @property TOGGLE_LABELS
      * @type {string}
      */
     TOGGLE_LABELS: 'toggle-labels',
+
+    /**
+     * Pause/unpause the game loop
+     *
+     * @memberof EVENT
+     * @property TOGGLE_PAUSE
+     * @type {string}
+     */
+    TOGGLE_PAUSE: 'toggle-pause',
 
     /**
      * @memberof EVENT
@@ -220,6 +252,13 @@ export const EVENT = {
      * @type {string}
      */
     RANGE_RINGS_CHANGE: 'range-rings-change',
+
+    /**
+     * @memberof EVENT
+     * @property MEASURE_TOOL_STYLE_CHANGE
+     * @type {string}
+     */
+    MEASURE_TOOL_STYLE_CHANGE: 'measure-tool-style-change',
 
     /**
      * A click has been registered in the unpause button shown within the

@@ -1,6 +1,6 @@
 import _defaultTo from 'lodash/defaultTo';
-import { isValidDirectionString } from './argumentValidators';
-import { INVALID_INDEX } from '../../constants/globalConstants';
+import { isValidCourseString, isValidDirectionString } from './argumentValidators';
+import { REGEX } from '../../constants/globalConstants';
 import {
     convertToThousands,
     convertStringToNumber
@@ -19,7 +19,8 @@ import {
 const HOLD_COMMAND_ARG_NAMES = {
     TURN_DIRECTION: 'turnDirection',
     LEG_LENGTH: 'legLength',
-    FIX_NAME: 'fixName'
+    FIX_NAME: 'fixName',
+    RADIAL: 'radial'
 };
 
 /**
@@ -59,7 +60,7 @@ export const optionalAltitudeParser = (args) => {
  * @param direction {string}
  * @return normalizedDirection {string}
  */
-const directionNormalizer = (direction) => {
+export const directionNormalizer = (direction) => {
     let normalizedDirection = direction;
 
     if (direction === 'l') {
@@ -93,7 +94,7 @@ export const headingParser = (args) => {
 
             return [direction, heading, isIncremental];
         case 2:
-            isIncremental = args[1].length === 2;
+            isIncremental = args[1].length === 2 || args[1].length === 1;
             direction = directionNormalizer(args[0]);
             heading = convertStringToNumber(args[1]);
 
@@ -112,7 +113,7 @@ export const headingParser = (args) => {
  * @param arg {string}
  * @return {boolean}
  */
-const isLegLengthArg = (arg) => arg.indexOf('min') !== INVALID_INDEX || arg.indexOf('nm') !== INVALID_INDEX;
+export const isLegLengthArg = (arg) => REGEX.HOLD_DISTANCE.test(arg);
 
 /**
  * Given a type and an argument list, find the first occurance of `type` from within the argument list.
@@ -154,6 +155,12 @@ export const findHoldCommandByType = (type, args) => {
                 }
 
                 return arg;
+            case HOLD_COMMAND_ARG_NAMES.RADIAL:
+                if (!isValidCourseString(arg)) {
+                    continue;
+                }
+
+                return convertStringToNumber(arg);
             default:
                 return null;
         }
@@ -178,14 +185,18 @@ export const holdParser = (args) => {
     const fixName = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.FIX_NAME, args);
     const turnDirection = _defaultTo(
         findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args),
-        'right'
+        null
     );
     const legLength = _defaultTo(
         findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args),
-        '1min'
+        null
+    );
+    const radial = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.RADIAL, args),
+        null
     );
 
-    return [turnDirection, legLength, fixName];
+    return [turnDirection, legLength, fixName, radial];
 };
 
 /**

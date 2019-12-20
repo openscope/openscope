@@ -44,8 +44,8 @@ export default class Pilot {
         }
 
         if (!(modeController instanceof ModeController)) {
-            throw new TypeError('Expected modeController to an instance of '
-                + `ModeController, but received ${typeof modeController}`);
+            throw new TypeError('Expected modeController to an instance of ' +
+                `ModeController, but received ${typeof modeController}`);
         }
 
         /**
@@ -386,8 +386,8 @@ export default class Pilot {
 
         this.hasApproachClearance = false;
 
-        const readback = 'cancel approach clearance, fly present heading, '
-            + 'maintain last assigned altitude and speed';
+        const readback = 'cancel approach clearance, fly present heading, ' +
+            'maintain last assigned altitude and speed';
 
         return [true, readback];
     }
@@ -711,10 +711,10 @@ export default class Pilot {
         if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
             const readback = {};
 
-            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum `
-                + `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
-            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum `
-                + `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
 
             return [false, readback];
         }
@@ -754,22 +754,31 @@ export default class Pilot {
      * @method initiateHoldingPattern
      * @param fixName {string} name of the fix to hold over
      * @param holdParameters {object} parameters to apply to WaypointModel._holdParameters
+     * @param fallbackInboundHeading {number} the inboundHeading that is used if no default is available
      * @return {array} [success of operation, readback]
      */
-    initiateHoldingPattern(fixName, holdParameters) {
-        const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
-        const problematicResponse = this._fms.activateHoldForWaypointName(fixName, holdParameters);
+    initiateHoldingPattern(fixName, holdParameters, fallbackInboundHeading) {
+        const [success, responseValue] = this._fms.activateHoldForWaypointName(fixName, holdParameters, fallbackInboundHeading);
 
-        if (typeof problematicResponse !== 'undefined') {
-            return problematicResponse;
+        if (!success) {
+            return [success, responseValue];
         }
 
+        // When successful, the responseValue contains the actual holdParameters used by the
+        // `WaypointModel`. This means that we can send partial holdParameters, to patch
+        // the `WaypointModel`s _holdParameters property
+        holdParameters = responseValue;
+
+        const radialText = heading_to_string(holdParameters.inboundHeading + Math.PI);
+        const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
         const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
+        const radialReadbackLog = `on the ${radialText} radial`;
+        const radialReadbackSay = `on the ${radio_heading(radialText)} radial`;
 
         // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
         return [true, {
-            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()}, ${holdParametersReadback}`,
-            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()}, ${holdParametersReadback}`
+            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()} ${radialReadbackLog}, ${holdParametersReadback}`,
+            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()} ${radialReadbackSay}, ${holdParametersReadback}`
         }];
     }
 

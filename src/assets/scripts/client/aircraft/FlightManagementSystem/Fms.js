@@ -454,16 +454,26 @@ export default class Fms {
 
     // ------------------------------ PUBLIC ------------------------------
 
-    activateHoldForWaypointName(waypointName, holdParameters) {
+    /**
+     * Mark the specified waypoint as a hold waypoint
+     *
+     * @for Fms
+     * @method activateHoldForWaypointName
+     * @param waypointName {string} name of waypoint in route
+     * @param holdParameters {object}
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
+     * @returns {array} [success of operation, readback-error OR holdParameters ]
+     */
+    activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this._routeModel.hasWaypointName(waypointName)) {
-            // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+            // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
             return [false, {
-                log: `unable to hold at ${waypointName}; it is not on our route!`,
+                log: `unable to hold at ${waypointName.toUpperCase()}; it is not on our route!`,
                 say: `unable to hold at ${waypointName.toLowerCase()}; it is not on our route!`
             }];
         }
 
-        this._routeModel.activateHoldForWaypointName(waypointName, holdParameters);
+        return [true, this._routeModel.activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading)];
     }
 
     /**
@@ -1094,12 +1104,12 @@ export default class Fms {
 
         if (!this._routeModel.isRunwayModelValidForStar(nextRunwayModel)) {
             const readback = {};
-            readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is `
-                + `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting `
-                + `Runway ${currentArrivalRunway.name} instead`;
-            readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} `
-                + `is not valid for the ${this._routeModel.getStarName()} arrival, expecting `
-                + `Runway ${currentArrivalRunway.getRadioName()} instead`;
+            readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is ` +
+                `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
+                `Runway ${currentArrivalRunway.name} instead`;
+            readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
+                `is not valid for the ${this._routeModel.getStarName()} arrival, expecting ` +
+                `Runway ${currentArrivalRunway.getRadioName()} instead`;
 
             return [false, readback];
         }
@@ -1163,8 +1173,8 @@ export default class Fms {
      */
     _verifyRouteContainsMultipleWaypoints() {
         if (this.waypoints.length < 2) {
-            throw new TypeError('Expected flight plan route to have at least two '
-                + `waypoints, but only found ${this.waypoints.length} waypoints`);
+            throw new TypeError('Expected flight plan route to have at least two ' +
+                `waypoints, but only found ${this.waypoints.length} waypoints`);
         }
     }
 }

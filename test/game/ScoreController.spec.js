@@ -10,7 +10,7 @@ let sandbox; // using the sinon sandbox ensures stubs are restored after each te
 
 /* eslint-disable no-unused-vars, no-undef */
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 
 ava.afterEach.always(() => {
@@ -25,11 +25,14 @@ ava('._penalizeLocalizerInterceptAltitude() records an event and notifies the us
     const gameControllerRecordEventStub = sandbox.stub(GameController, 'events_recordNew');
     const expectedLogMessage = `${aircraftModel.getCallsign()} intercepted localizer above glideslope`;
 
-    sandbox.stub(aircraftModel, 'isAboveGlidepath', () => true);
+    sandbox.stub(aircraftModel, 'isAboveGlidepath').returns(true);
     scoreController._penalizeLocalizerInterceptAltitude(aircraftModel);
 
     t.true(uiControllerUiLogStub.calledWithExactly(expectedLogMessage, true));
     t.true(gameControllerRecordEventStub.calledWithExactly(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE));
+
+    uiControllerUiLogStub.restore();
+    gameControllerRecordEventStub.restore();
 });
 
 ava('._penalizeLocalizerInterceptAltitude() does not record an event when at or below glideslope', (t) => {
@@ -38,11 +41,14 @@ ava('._penalizeLocalizerInterceptAltitude() does not record an event when at or 
     const uiControllerUiLogSpy = sandbox.spy(UiController, 'ui_log');
     const gameControllerRecordEventSpy = sandbox.spy(GameController, 'events_recordNew');
 
-    sandbox.stub(aircraftModel, 'isAboveGlidepath', () => false);
+    sandbox.stub(aircraftModel, 'isAboveGlidepath').returns(false);
     scoreController._penalizeLocalizerInterceptAltitude(aircraftModel);
 
     t.true(uiControllerUiLogSpy.notCalled);
     t.true(gameControllerRecordEventSpy.notCalled);
+
+    uiControllerUiLogSpy.restore();
+    gameControllerRecordEventSpy.restore();
 });
 
 ava('._penalizeLocalizerInterceptAngle() records an event and notifies the user of their error', (t) => {

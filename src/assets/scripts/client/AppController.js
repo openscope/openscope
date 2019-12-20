@@ -4,6 +4,7 @@ import AircraftCommander from './aircraft/AircraftCommander';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
+import AirportGuideViewController from './airportGuide/AirportGuideViewController';
 import CanvasController from './canvas/CanvasController';
 import AirportInfoController from './info/AirportInfoController';
 import ChangelogController from './changelog/ChangelogController';
@@ -54,6 +55,7 @@ export default class AppController {
         this.contentQueue = null;
         this.airlineCollection = null;
         this.aircraftCommander = null;
+        this.airportGuideController = null;
         this.inputController = null;
         this.canvasController = null;
         this.changelogController = null;
@@ -122,6 +124,7 @@ export default class AppController {
         this.contentQueue = null;
         this.airlineCollection = null;
         this.aircraftCommander = null;
+        this.airportGuideController = null;
         this.inputController = null;
         this.canvasController = null;
 
@@ -141,8 +144,16 @@ export default class AppController {
      * @param initialAirportData {object}
      * @param airlineList {array<object>}
      * @param aircraftTypeDefinitionList {array<object>}
+     * @param airportGuideData {object}
      */
-    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(
+        airportLoadList,
+        initialAirportIcao,
+        initialAirportData,
+        airlineList,
+        aircraftTypeDefinitionList,
+        airportGuideData
+    ) {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'initial-load', initialAirportIcao);
 
         this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
@@ -181,6 +192,7 @@ export default class AppController {
         this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
         this.airportInfoController = new AirportInfoController(this.$element);
+        this.airportGuideController = new AirportGuideViewController(this.$element, airportGuideData, initialAirportData.icao);
         this.changelogController = new ChangelogController(this.contentQueue);
 
         this.updateViewControls();
@@ -305,7 +317,7 @@ export default class AppController {
     updateViewControls() {
         const { current: airport } = AirportController;
 
-        this._eventBus.trigger(EVENT.MARK_DIRTY_CANVAS);
+        this._eventBus.trigger(EVENT.MARK_SHALLOW_RENDER);
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(NavigationLibrary.hasSids);

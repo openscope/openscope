@@ -186,9 +186,9 @@ export default class SettingsController {
     _buildOptionSelectTemplate(optionData, selectedOption) {
         // the `selectedOption` coming in to this method will always be a string (due to existing api) but
         // could contain valid numbers. here we test for valid number and build `parsedSelectedOption` accordingly.
-        const parsedSelectedOption = !_isNaN(parseFloat(selectedOption))
-            ? parseFloat(selectedOption)
-            : selectedOption;
+        const parsedSelectedOption = !_isNaN(parseFloat(selectedOption)) ?
+            parseFloat(selectedOption) :
+            selectedOption;
 
         if (optionData.value === parsedSelectedOption) {
             return `<option value="${optionData.value}" selected>${optionData.displayLabel}</option>`;

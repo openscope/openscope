@@ -7,6 +7,7 @@ import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MeasureTool from '../measurement/MeasureTool';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
@@ -258,7 +259,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
-        this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvasHandler);
+        this._eventBus.on(EVENT.MARK_SHALLOW_RENDER, this._onMarkDirtyCanvasHandler);
         this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
         this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
         this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
@@ -283,7 +284,7 @@ export default class CanvasController {
         this._eventBus.off(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
-        this._eventBus.off(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
+        this._eventBus.off(EVENT.MARK_SHALLOW_RENDER, this._onMarkDirtyCanvas);
         this._eventBus.off(EVENT.TOGGLE_LABELS, this._onToggleLabels);
         this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
         this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
@@ -415,6 +416,7 @@ export default class CanvasController {
         this._clearCanvasContext(dynamicCanvasCtx);
         this._drawRadarTargetList(dynamicCanvasCtx);
         this._drawAircraftDataBlocks(dynamicCanvasCtx);
+        this._drawMeasureTool(dynamicCanvasCtx);
 
         this._shouldShallowRender = false;
         this._shouldDeepRender = false;
@@ -793,6 +795,7 @@ export default class CanvasController {
         cc.fillStyle = this.theme.SCOPE.STAR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
+        cc.textAlign = 'right';
 
         for (let i = 0; i < starLines.length; i++) {
             const star = starLines[i];
@@ -858,10 +861,11 @@ export default class CanvasController {
      */
     _drawText(cc, position, labels) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+        const dx = cc.textAlign === 'right' ? -10 : 10;
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
-            const positionX = positionInPx.x + 10;
+            const positionX = positionInPx.x + dx;
             const positionY = positionInPx.y + (15 * k);
 
             cc.fillText(textItem, positionX, positionY);
@@ -1079,8 +1083,8 @@ export default class CanvasController {
         cc.fillStyle = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINES;
         cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINES;
 
-        const ptlLengthMultiplier = GameController.getPtlLength();
-        const lineLengthInHours = ptlLengthMultiplier * TIME.ONE_MINUTE_IN_HOURS;
+        const lineLengthInMinutes = this._scopeModel.ptlLength;
+        const lineLengthInHours = lineLengthInMinutes * TIME.ONE_MINUTE_IN_HOURS;
         const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
         const groundTrackVector = vectorize_2d(aircraft.groundTrack);
         const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
@@ -1216,6 +1220,157 @@ export default class CanvasController {
     }
 
     /**
+     * Draw the `MeasureTool` path and text labels
+     *
+     * @for CanvasController
+     * @method _drawMeasureTool
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawMeasureTool(cc) {
+        if (!MeasureTool.hasPaths) {
+            return;
+        }
+
+        const pathInfoList = MeasureTool.buildPathInfo();
+
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+        pathInfoList.forEach((pathInfo) => {
+            this._drawMeasureToolPath(cc, pathInfo);
+            this._drawMeasureToolLabels(cc, pathInfo);
+        });
+
+        cc.restore();
+    }
+
+    /**
+     * Draw the `MeasureTool` text labels
+     *
+     * @for CanvasController
+     * @method _drawMeasureToolLabels
+     * @param cc {HTMLCanvasContext}
+     * @param pathInfo {object} as returned by `MeasureTools.getPointsAndLabels()`
+     * @private
+     */
+    _drawMeasureToolLabels(cc, pathInfo) {
+        let leg = pathInfo.firstLeg;
+        const values = [];
+        const labelPadding = 5;
+
+        // This way the points are translated only once
+        while (leg != null) {
+            // Ignore empty labels
+            if (leg.labels !== null && leg.labels.length !== 0) {
+                const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+
+                values.push({
+                    x: position.x,
+                    y: position.y,
+                    labels: leg.labels
+                });
+            }
+
+            leg = leg.next;
+        }
+
+        // Shortcut if there are no labels (line is too short)
+        if (values.length === 0) {
+            return;
+        }
+
+        // Label backgrounds
+        cc.fillStyle = this.theme.SCOPE.MEASURE_BACKGROUND;
+        cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
+
+        values.forEach((item) => {
+            const { x, y, labels } = item;
+            const height = (2 * labelPadding) + (12 * labels.length);
+            const maxLabelWidth = labels.reduce((lastWidth, label) => {
+                const newWidth = cc.measureText(label).width;
+
+                return Math.max(lastWidth, newWidth);
+            }, 0);
+            const width = (2 * labelPadding) + maxLabelWidth;
+
+            cc.fillRect(x, y, width, height);
+        });
+
+        // Label text
+        cc.fillStyle = this.theme.SCOPE.MEASURE_TEXT;
+
+        values.forEach((item) => {
+            const { labels } = item;
+            const x = item.x + labelPadding;
+            const y = item.y + 15;
+
+            labels.forEach((line, index) => {
+                cc.fillText(line, x, y + (12 * index));
+            });
+        });
+    }
+
+    /**
+     * Draw the `MeasureTool` path
+     *
+     * @for CanvasController
+     * @method _drawMeasureToolPath
+     * @param cc {HTMLCanvasContext}
+     * @param pathInfo {object} as returned by `MeasureTools.getPointsAndLabels()`
+     * @private
+     */
+    _drawMeasureToolPath(cc, pathInfo) {
+        const { initialTurn } = pathInfo;
+        let leg = pathInfo.firstLeg;
+        const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.startPoint);
+        const firstMidPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+
+        cc.strokeStyle = this.theme.SCOPE.MEASURE_LINE;
+
+        cc.beginPath();
+
+        // If available, this draws the arc the a/c will fly to intercept the course to the
+        // first fix
+        if (initialTurn !== null) {
+            const {
+                isRHT, center, entryAngle, exitAngle, turnRadius
+            } = initialTurn;
+            const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(center);
+            const radius = CanvasStageModel.translateKilometersToPixels(turnRadius);
+
+            // The angles calculated in the `MeasureTool` are magnetic, and have to be shifted CCW 90°
+            cc.arc(position.x, position.y, radius, entryAngle - Math.PI / 2, exitAngle - Math.PI / 2, !isRHT);
+        }
+
+        // Draw up to the first midpoint
+        cc.moveTo(firstPoint.x, firstPoint.y);
+        cc.lineTo(firstMidPoint.x, firstMidPoint.y);
+
+        // Iterate through the linked list
+        while (leg != null) {
+            const { next } = leg;
+            const radius = CanvasStageModel.translateKilometersToPixels(leg.radius);
+            const position1 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.endPoint);
+
+            if (next === null) {
+                // This is the last leg, so simply draw to the end point
+                cc.lineTo(position1.x, position1.y);
+            } else {
+                // Draw an arc'd line to the next midpoint
+                const position2 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(next.midPoint);
+
+                cc.arcTo(position1.x, position1.y, position2.x, position2.y, radius);
+                cc.lineTo(position2.x, position2.y);
+            }
+
+            leg = next;
+        }
+
+        cc.stroke();
+    }
+
+    /**
      * Draw the RADAR RETURN AND HISTORY DOTS ONLY of all radar target models
      *
      * @for CanvasController
@@ -1269,9 +1424,9 @@ export default class CanvasController {
             match = true;
         }
 
-        let white = aircraftModel.isControllable
-            ? this.theme.DATA_BLOCK.TEXT_IN_RANGE
-            : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        let white = aircraftModel.isControllable ?
+            this.theme.DATA_BLOCK.TEXT_IN_RANGE :
+            this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
         if (match) {
             white = this.theme.DATA_BLOCK.TEXT_SELECTED;
@@ -1279,7 +1434,7 @@ export default class CanvasController {
 
         cc.textBaseline = 'middle';
 
-        let dataBlockLeaderDirection = radarTargetModel.dataBlockLeaderDirection;
+        let { dataBlockLeaderDirection } = radarTargetModel;
 
         if (dataBlockLeaderDirection === INVALID_NUMBER) {
             dataBlockLeaderDirection = this.theme.DATA_BLOCK.LEADER_DIRECTION;
@@ -1338,9 +1493,9 @@ export default class CanvasController {
             row2text = radarTargetModel.buildDataBlockRowTwoSecondaryInfo();
         }
 
-        const fillStyle = aircraftModel.isControllable
-            ? this.theme.DATA_BLOCK.TEXT_IN_RANGE
-            : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        const fillStyle = aircraftModel.isControllable ?
+            this.theme.DATA_BLOCK.TEXT_IN_RANGE :
+            this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
         cc.fillStyle = fillStyle;
 
@@ -1724,8 +1879,8 @@ export default class CanvasController {
         cc.lineWidth = 1;
 
         const offset = 10;
-        const width = CanvasStageModel.width;
-        const height = CanvasStageModel.height;
+        const { width } = CanvasStageModel;
+        const { height } = CanvasStageModel;
         const box_width = 30;
         const box_height = 5;
 
@@ -1802,8 +1957,8 @@ export default class CanvasController {
 
             const terrainLevel = airportTerrain[elevation];
 
-            if (elevation < 1000 && !this._hasSeenTerrainWarning) {
-                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
+            if (elevation < 0 && !this._hasSeenTerrainWarning) {
+                console.warn(`${airport.icao}.geojson contains 'terrain' ` +
                     ' below sea level, which is not supported!');
 
                 this._hasSeenTerrainWarning = true;
@@ -1818,11 +1973,9 @@ export default class CanvasController {
 
         cc.restore();
 
-        if (max_elevation === 0) {
-            return;
+        if (max_elevation !== 0) {
+            this._drawTerrainElevationLegend(cc, max_elevation);
         }
-
-        this._drawTerrainElevationLegend(cc, max_elevation);
 
         cc.restore();
     }
@@ -1861,9 +2014,9 @@ export default class CanvasController {
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
-            const height = area.height === Infinity
-                ? 'UNL'
-                : `FL ${Math.ceil(area.height / 1000) * 10}`;
+            const height = area.height === Infinity ?
+                'UNL' :
+                `FL ${Math.ceil(area.height / 1000) * 10}`;
             let height_shift = 0;
 
             if (area.name) {
@@ -1895,7 +2048,8 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'maps') || !this._shouldDrawVideoMap) {
+        // Don't bother with the canvas set up if the airport has no visible maps
+        if (!airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
             return;
         }
 
@@ -1908,8 +2062,9 @@ export default class CanvasController {
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
-        for (let i = 0; i < airportModel.maps.base.length; i++) {
-            const mapItem = airportModel.maps.base[i];
+        const lines = airportModel.mapCollection.getVisibleMapLines();
+
+        lines.forEach((mapItem) => {
             cc.moveTo(
                 CanvasStageModel.translateKilometersToPixels(mapItem[0]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[1])
@@ -1918,7 +2073,7 @@ export default class CanvasController {
                 CanvasStageModel.translateKilometersToPixels(mapItem[2]),
                 -CanvasStageModel.translateKilometersToPixels(mapItem[3])
             );
-        }
+        });
 
         cc.stroke();
         cc.restore();
@@ -1976,14 +2131,14 @@ export default class CanvasController {
 
             if (p) {
                 const markLen = (alpha % 5 === 0 ?
-                    (alpha % 10 === 0
-                        ? 16
-                        : 12)
-                    : 8
+                    (alpha % 10 === 0 ?
+                        16 :
+                        12) :
+                    8
                 );
-                const markWeight = (alpha % 30 === 0
-                    ? 2
-                    : 1
+                const markWeight = (alpha % 30 === 0 ?
+                    2 :
+                    1
                 );
 
                 const dx = -markLen * dir[0];
@@ -2000,17 +2155,18 @@ export default class CanvasController {
                 cc.stroke();
 
                 if (alpha % 10 === 0) {
-                    cc.font = alpha % 30 === 0
-                        ? 'bold 10px monoOne, monospace'
-                        : BASE_CANVAS_FONT;
+                    cc.font = alpha % 30 === 0 ?
+                        'bold 10px monoOne, monospace' :
+                        BASE_CANVAS_FONT;
 
-                    const text = '' + alpha;
+                    const text = `${alpha}`;
                     const textWidth = cc.measureText(text).width;
 
                     cc.fillText(
                         text,
                         markX - dir[0] * (textWidth / 2 + 4),
-                        markY - dir[1] * 7);
+                        markY - dir[1] * 7
+                    );
                 }
             }
         }

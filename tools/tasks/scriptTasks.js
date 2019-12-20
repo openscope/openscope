@@ -33,7 +33,7 @@ module.exports = function(gulp, config) {
             .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));
     }
 
-    const buildServer = () => gulp.src([path.join(OPTIONS.DIR.SRC_SCRIPTS_SERVER, '**/*.js')])
+    const buildServer = () => gulp.src('**/*.js', {cwd: OPTIONS.DIR.SRC_SCRIPTS_SERVER})
         .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_SERVER));
 
     gulp.task(OPTIONS.TASKS.BUILD.SCRIPTS, gulp.series(buildScripts));

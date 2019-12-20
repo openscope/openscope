@@ -3,7 +3,7 @@
 Airlines specify a name, radio call sign, flight number generation
 parameters and one or more fleets of aircraft.
 
-##  Example
+## Example
 
 This specifies the airline Air Canada with a default fleet, a
 long haul and a short haul fleet.
@@ -73,7 +73,8 @@ An easy weighting to use is the simple count of aircraft in the
 operator's fleet.
 
 Example:
-```javascript
+
+```json
 ...
     "fleets": {
         "default": [
@@ -93,18 +94,19 @@ haul fleet is specified which will always spawn an A388.
 
 ## Other options
 
-#### Name
+### Name
 
 The common name for the airline
 
 Example: `"name": "American Airlines"`
 
-#### Callsign
+### Callsign
 
 Specifies the radio identifier and the composition of the alphanumerical callsign.
 
 Example:
-```javascript
+
+```json
 "icao": "baw",
 ...
 "callsign": {
@@ -119,12 +121,13 @@ Example:
 }
 ```
 
-With each `#` indicating a random number and each `@` indicating a random letter.  
+With each `#` indicating a random number and each `@` indicating a random letter.
+
 - `####` will give give you a callsign with 4 random numbers: `BAW3845` `BAW6544` `BAW1028`
 - `###@` will give give you a callsign with 3 random numbers and one random letter at the end: `BAW384H` `BAW654X` `BAW102M`
 - `#@@` will give give you a callsign with 1 random number and two random letters at the end: `BAW3AH` `BAW6YX` `BAW1WM`
 
-#### ICAO (optional)
+### ICAO (optional)
 
 The 3 letter ICAO designator for the airline.
 

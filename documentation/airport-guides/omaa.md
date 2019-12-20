@@ -38,5 +38,4 @@ All restricted airspaces are displayed on the map, alongside key waypoints on th
 
 
 ### Additional Resources
-[Emirates vACC (VATSIM) OMAA SOP](http://uae-vacc.net/documents/OMAA_SOP.pdf)
 [UAE AIP (free registration required)](https://www.gcaa.gov.ae/en/ais/pages/aip.aspx)

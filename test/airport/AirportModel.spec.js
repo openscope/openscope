@@ -55,15 +55,6 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
     t.true(!model.airspace);
 });
 
-ava('.buildAirportMaps() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
-    model.maps = null;
-
-    model.buildAirportMaps();
-
-    t.true(!model.maps);
-});
-
 ava('.buildRestrictedAreas() returns early when passed a null or undefined argument', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.restricted_areas = null;
@@ -148,6 +139,12 @@ ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid cat
     const result = model.getActiveRunwayForCategory('threeve');
 
     t.true(result.name === model.arrivalRunwayModel.name);
+});
+
+ava('.mapCollection is valid', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+
+    t.true(model.mapCollection.hasVisibleMaps);
 });
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {

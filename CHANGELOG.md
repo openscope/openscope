@@ -1,12 +1,75 @@
-# 6.13.0 (May 1, 2019)
-### New Features
+# 6.15.1 (December 2, 2020)
+### Hotfixes
+- <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
 
+
+# 6.15.0 (December 1, 2019)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1105" target="_blank">#1105</a> - Add in-sim Airport Guide accessible via footer button
+- <a href="https://github.com/openscope/openscope/issues/1191" target="_blank">#1191</a> - Consolidate command bar buttons
+- <a href="https://github.com/openscope/openscope/issues/45" target="_blank">#45</a> - Add range/bearing measurement tool via Control button
 
 ### Bugfixes
-- [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft Not Squawking Assigned Code
-
+- <a href="https://github.com/openscope/openscope/issues/1456" target="_blank">#1456</a> - Only allow headings between 001 and 360
+- <a href="https://github.com/openscope/openscope/issues/1474" target="_blank">#1474</a> - Fix crash at KAUS from missing FDX fleet
+- <a href="https://github.com/openscope/openscope/issues/1476" target="_blank">#1476</a> - Fix missing terrain at KSTL
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1451" target="_blank">#1451</a> - Add ability to specify the radial with the `hold` command
+- <a href="https://github.com/openscope/openscope/issues/1458" target="_blank">#1458</a> - Add support for holding patterns with distance-based legs
+- <a href="https://github.com/openscope/openscope/issues/1431" target="_blank">#1431</a> - Expand capabilities for predefined holding patterns in airport files
+- <a href="https://github.com/openscope/openscope/issues/1402" target="_blank">#1402</a> - Prevent assignment of reserved/nondiscrete beacon codes
+- <a href="https://github.com/openscope/openscope/issues/1472" target="_blank">#1472</a> - Add water polygons to airport terrain files
+
+
+# 6.14.2 (October 17, 2019)
+### Hotfixes
+- [#1463](https://github.com/openscope/openscope/issues/1463) - Fix travis build notifications
+- [#1453](https://github.com/openscope/openscope/issues/1453) - Fix EINN video maps format which was causing sim to crash
+
+
+# 6.14.0 (October 1, 2019)
+### New Features
+- [#1436](https://github.com/openscope/openscope/issues/1436) - Add support for multiple video maps (no toggling yet)
+- [#420](https://github.com/openscope/openscope/issues/420) - Include water in terrain files
+
+### Bugfixes
+- [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
+- [#1395](https://github.com/openscope/openscope/issues/1395) - Fix aircraft's wind correction angle math (which was causing go-arounds)
+- [#1420](https://github.com/openscope/openscope/issues/1420) - Spawn pre-spawned aircraft on correct heading instead of 360 heading
+- [#1432](https://github.com/openscope/openscope/issues/1432) - Prevent aircraft from leaving their holding patterns
+- [#1440](https://github.com/openscope/openscope/issues/1440) - Add missing "b738"-fleet to TUI Airways
+- [#23](https://github.com/openscope/openscope/issues/23) - Ensure focus remains on the text input box in MS Edge
+- [#1448](https://github.com/openscope/openscope/issues/1448) - Lower spawn altitudes of KSFO arrivals so can comply with STAR restrictions
+- [#1446](https://github.com/openscope/openscope/issues/1446) - Ensure `sh`/`sah` commands return headings within 001-360
+
+### Enhancements & Refactors
+- [#1410](https://github.com/openscope/openscope/issues/1410) - Restore functionality of local server from `npm run start`
+- [#1387](https://github.com/openscope/openscope/issues/1387) - Update EDDF to AIRAC 1906
+- [#1327](https://github.com/openscope/openscope/issues/1327) - Airport Revival: San Francisco International Airport
+- [#1390](https://github.com/openscope/openscope/issues/1390) - Update KAUS to AIRAC 1909
+- [#1231](https://github.com/openscope/openscope/issues/1231) - Draw STAR labels left of fix to prevent text overlap with SID labels
+- [#1434](https://github.com/openscope/openscope/issues/1434) - Update EINN to AIRAC 1909
+
+
+# 6.13.0 (June 1, 2019)
+### New Features
+- [#1313](https://github.com/openscope/openscope/issues/1313) - Add F1/F2 shortcut to decrease/increase length of PTLs
+
+### Bugfixes
+- [#1363](https://github.com/openscope/openscope/issues/1363) - Fix aircraft not squawking assigned code
+- [#1351](https://github.com/openscope/openscope/issues/1351) - Fix turn command with incremental turns of less than 10 degrees
+
+### Enhancements & Refactors
+- [#1230](https://github.com/openscope/openscope/issues/1230) - Upgrade from `cedar-14` to `heroku-14` stack and simplifies build commands
+- [#1344](https://github.com/openscope/openscope/issues/1344) - Add `EventTracking` calls to `TrafficRateController` and traffic rate concerns.
+- [#1072](https://github.com/openscope/openscope/issues/1072) - Overhaul of El Paso International Airport (KELP)
+- [#1378](https://github.com/openscope/openscope/issues/1378) - Change KBOS wind to permit usage of Runway 27
+- [#1375](https://github.com/openscope/openscope/issues/1375) - Correct overflight example in spawnPatternReadme
+- [#1338](https://github.com/openscope/openscope/issues/1338) - Add `fph` command to aircraft command documentation
+- [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues
+- [#1319](https://github.com/openscope/openscope/issues/1319) - Addresses lint errors in documentation files
+- [#1260](https://github.com/openscope/openscope/issues/1260) - Update all airports to AIRAC 1813
 
 
 # 6.12.3 (April 22, 2019)

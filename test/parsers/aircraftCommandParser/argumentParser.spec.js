@@ -1,12 +1,12 @@
-/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
+/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies */
 import ava from 'ava';
-import _isEqual from 'lodash/isEqual';
 
 import {
     altitudeParser,
     headingParser,
     findHoldCommandByType,
     holdParser,
+    isLegLengthArg,
     timewarpParser,
     optionalAltitudeParser,
     crossingParser
@@ -98,53 +98,98 @@ ava('.headingParser() parses three digit heading as a generic heading', t => {
 
 ava('.findHoldCommandByType() returns a turnDirection when passed a variation of left or right', (t) => {
     const argsMock = ['dumba', 'l', '3nm'];
-    t.true(findHoldCommandByType('turnDirection', argsMock) === 'left');
+    t.is(findHoldCommandByType('turnDirection', argsMock), 'left');
 });
 
 ava('.findHoldCommandByType() returns a legLength when passed a valid legLength in min', (t) => {
     const argsMock = ['dumba', 'l', '3min'];
-    t.true(findHoldCommandByType('legLength', argsMock) === '3min');
+    t.is(findHoldCommandByType('legLength', argsMock), '3min');
 });
 
 ava('.findHoldCommandByType() returns a legLength when passed a valid legLength in nm', (t) => {
     const argsMock = ['dumba', 'l', '3nm'];
-    t.true(findHoldCommandByType('legLength', argsMock) === '3nm');
+    t.is(findHoldCommandByType('legLength', argsMock), '3nm');
 });
 
 ava('.findHoldCommandByType() returns a fixName when passed a valid fixName', (t) => {
     const argsMock = ['dumba', 'l', '3nm'];
-    t.true(findHoldCommandByType('fixName', argsMock) === 'dumba');
+    t.is(findHoldCommandByType('fixName', argsMock), 'dumba');
 });
 
-ava('.holdParser() returns an array of length 3 when passed a fixname as the only argument', t => {
-    const expectedResult = ['right', '1min', 'dumba'];
+ava('.isLegLengthArg() returns false when passed an invalid leg length', (t) => {
+    t.false(isLegLengthArg('1'));
+    t.false(isLegLengthArg('0min'));
+    t.false(isLegLengthArg('0nm'));
+    t.false(isLegLengthArg('20min'));
+    t.false(isLegLengthArg('20nm'));
+    t.false(isLegLengthArg('1km'));
+});
+
+ava('.isLegLengthArg() returns true when passed a valid leg length', (t) => {
+    t.true(isLegLengthArg('1min'));
+    t.true(isLegLengthArg('2min'));
+    t.true(isLegLengthArg('19min'));
+    t.true(isLegLengthArg('1nm'));
+    t.true(isLegLengthArg('2nm'));
+    t.true(isLegLengthArg('19nm'));
+});
+
+ava('.holdParser() returns an array of length 4 when passed a fixname as the only argument', t => {
+    const expectedResult = [null, null, 'dumba', null];
     const result = holdParser(['dumba']);
 
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 });
 
-ava('.holdParser() returns an array of length 3 when passed a direction and fixname as arguments', t => {
-    const expectedResult = ['left', '1min', 'dumba'];
+ava('.holdParser() returns an array of length 4 when passed a direction and fixname as arguments', t => {
+    const expectedResult = ['left', null, 'dumba', null];
     let result = holdParser(['dumba', 'left']);
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 
     result = holdParser(['left', 'dumba']);
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 });
 
-ava('.holdParser() returns an array of length 3 when passed a direction, legLength and fixname as arguments', t => {
-    const expectedResult = ['left', '1min', 'dumba'];
+ava('.holdParser() returns an array of length 4 when passed a legLength and fixname as arguments', t => {
+    const expectedResult = [null, '1min', 'dumba', null];
+    let result = holdParser(['dumba', '1min']);
+    t.deepEqual(result, expectedResult);
+
+    result = holdParser(['1min', 'dumba']);
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.holdParser() returns an array of length 4 when passed a direction, legLength and fixname as arguments', t => {
+    const expectedResult = ['left', '1min', 'dumba', null];
     let result = holdParser(['dumba', 'left', '1min']);
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 
     result = holdParser(['left', '1min', 'dumba']);
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 
     result = holdParser(['1min', 'left', 'dumba']);
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 
     result = holdParser(['left', 'dumba', '1min']);
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.holdParser() returns an array of length 4 when passed a direction, legLength, fixname and radial as arguments', t => {
+    const expectedResult = ['left', '1min', 'dumba', 7];
+    let result = holdParser(['dumba', 'left', '1min', '007']);
+    t.deepEqual(result, expectedResult);
+
+    result = holdParser(['left', '1min', 'dumba', '007']);
+    t.deepEqual(result, expectedResult);
+
+    result = holdParser(['1min', 'left', 'dumba', '007']);
+    t.deepEqual(result, expectedResult);
+
+    result = holdParser(['left', 'dumba', '1min', '007']);
+    t.deepEqual(result, expectedResult);
+
+    result = holdParser(['left', 'dumba', '007', '1min']);
+    t.deepEqual(result, expectedResult);
 });
 
 ava('.timewarpParser() returns an array with 0 as a value when provided no args', (t) => {
