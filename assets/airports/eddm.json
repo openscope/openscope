@@ -1584,10 +1584,10 @@
             },
             "body": ["ABGAS"],
             "rwy": {
-                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1606,10 +1606,10 @@
             },
             "body": [["AKANU", "A250-"], "LUPOX"],
             "rwy": {
-                "EDDM08L": [["RENLO", "A130-|S280-"], "@ROKIL", "MIQ"],
-                "EDDM08R": [["RENLO", "A130-|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26L": [["RENLO", "A150-|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26R": [["RENLO", "A150-|S280-"], "@ROKIL", "MIQ"]
+                "EDDM08L": [["RENLO", "A130-|S280-"], "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["RENLO", "A130-|S280-"], "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["RENLO", "A150-|S280-"], "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["RENLO", "A150-|S280-"], "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "ROKIL": "306|right|1min",
@@ -1627,10 +1627,10 @@
             },
             "body": [["ANORA", "A250-"], "XERUM"],
             "rwy": {
-                "EDDM08L": [["BURAM", "A130-|S280-"], "@ROKIL", "MIQ"],
-                "EDDM08R": [["BURAM", "A130-|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26L": [["BURAM", "A150-|S280-"], "@ROKIL", "MIQ"],
-                "EDDM26R": [["BURAM", "A150-|S280-"], "@ROKIL", "MIQ"]
+                "EDDM08L": [["BURAM", "A130-|S280-"], "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["BURAM", "A130-|S280-"], "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["BURAM", "A150-|S280-"], "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["BURAM", "A150-|S280-"], "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "XERUM": "311|left|1min",
@@ -1649,10 +1649,10 @@
             },
             "body": ["ARBAX", "USEMI", "LITLI"],
             "rwy": {
-                "EDDM08L": [["OSTES", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM08R": [["OSTES", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26L": [["OSTES", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26R": [["OSTES", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"]
+                "EDDM08L": [["OSTES", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["OSTES", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["OSTES", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["OSTES", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1670,10 +1670,10 @@
             },
             "body": ["BAGMI", "ODUDA", "NETES", "UNKOM"],
             "rwy": {
-                "EDDM08L": [["MITNU", "A150-|S280-"], "TUSTO", "@LANDU", "MIQ"],
-                "EDDM08R": [["MITNU", "A150-|S280-"], "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26L": [["MITNU", "A110-|S280-"], "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26R": [["MITNU", "A110-|S280-"], "TUSTO", "@LANDU", "MIQ"]
+                "EDDM08L": [["MITNU", "A150-|S280-"], "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["MITNU", "A150-|S280-"], "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["MITNU", "A110-|S280-"], "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["MITNU", "A110-|S280-"], "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "NETES": "022|right|1min",
@@ -1692,10 +1692,10 @@
             },
             "body": ["BAMTA"],
             "rwy": {
-                "EDDM08L": [["ROSAB", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM08R": [["ROSAB", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26L": [["ROSAB", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"],
-                "EDDM26R": [["ROSAB", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "MIQ"]
+                "EDDM08L": [["ROSAB", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["ROSAB", "A150-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["ROSAB", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["ROSAB", "A110-|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1713,10 +1713,10 @@
             },
             "body": ["EXUSI", "RDG", "GOMAX"],
             "rwy": {
-                "EDDM08L": [["VESIX", "A150-|S280-"], "@LANDU", "MIQ"],
-                "EDDM08R": [["VESIX", "A150-|S280-"], "@LANDU", "MIQ"],
-                "EDDM26L": [["VESIX", "A110-|S280-"], "@LANDU", "MIQ"],
-                "EDDM26R": [["VESIX", "A110-|S280-"], "@LANDU", "MIQ"]
+                "EDDM08L": [["VESIX", "A150-|S280-"], "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["VESIX", "A150-|S280-"], "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["VESIX", "A110-|S280-"], "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["VESIX", "A110-|S280-"], "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1734,10 +1734,10 @@
             },
             "body": [["GESLU", "A250-"]],
             "rwy": {
-                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1756,10 +1756,10 @@
             },
             "body": ["IRBIR", "NINUR"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"]
             },
             "holds":{
                 "BETOS": "247|right|1min",
@@ -1777,10 +1777,10 @@
             },
             "body": ["KOGOL"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"]
             },
             "holds":{
                 "BETOS": "247|right|1min",
@@ -1798,10 +1798,10 @@
             },
             "body": [["KUNOD", "A250-"]],
             "rwy": {
-                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1818,12 +1818,12 @@
             "entryPoints": {
                 "MERSI": []
             },
-            "body": ["MERSI"],
+            "body": ["MERSI", "@BETOS"],
             "rwy": {
-                "EDDM08L": ["@BETOS", "OTT"],
-                "EDDM08R": ["@BETOS", "OTT"],
-                "EDDM26L": ["@BETOS", "OTT"],
-                "EDDM26R": ["@BETOS", "OTT"]
+                "EDDM08L": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM08R": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM26L": ["DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
+                "EDDM26R": ["DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"]
             },
             "holds":{
                 "BETOS": "247|right|1min",
@@ -1839,12 +1839,12 @@
             "entryPoints": {
                 "NAPSA": []
             },
-            "body": [["@NAPSA", "A110-"], "OTT"],
+            "body": [["@NAPSA", "A110-"]],
             "rwy": {
-                "EDDM08L": [],
-                "EDDM08R": [],
-                "EDDM26L": [],
-                "EDDM26R": []
+                "EDDM08L": ["DM458", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM08R": ["DM458", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM26L": ["DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
+                "EDDM26R": ["DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"]
             },
             "holds":{
                 "NAPSA": "093|left|1min",
@@ -1862,10 +1862,10 @@
             },
             "body": ["OBAGA", "NINUR"],
             "rwy": {
-                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["ANDEC", "A130-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM08R": [["ANDEC", "A130-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM26L": [["ANDEC", "A150-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
+                "EDDM26R": [["ANDEC", "A150-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"]
             },
             "holds":{
                 "OBAGA": "180|right|1min",
@@ -1884,10 +1884,10 @@
             },
             "body": ["OSDER"],
             "rwy": {
-                "EDDM08L": [["DISUN", "A120-|S280-"], "@BETOS", "OTT"],
-                "EDDM08R": [["DISUN", "A120-|S280-"], "@BETOS", "OTT"],
-                "EDDM26L": [["DISUN", "A160-|S280-"], "@BETOS", "OTT"],
-                "EDDM26R": [["DISUN", "A160-|S280-"], "@BETOS", "OTT"]
+                "EDDM08L": [["DISUN", "A120-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM08R": [["DISUN", "A120-|S280-"], "@BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
+                "EDDM26L": [["DISUN", "A160-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
+                "EDDM26R": [["DISUN", "A160-|S280-"], "@BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"]
             },
             "holds":{
                 "OSDER": "237|left|1min",
@@ -1906,10 +1906,10 @@
             },
             "body": [["PELOG", "A250-"]],
             "rwy": {
-                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["LURER", "A140-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["LURER", "A160-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LURER": "290|right|1min",
@@ -1928,10 +1928,10 @@
             },
             "body": [["RIXED", "A250-"], "DODIL", "REDVO"],
             "rwy": {
-                "EDDM08L": [["RIDAR", "A130-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM08R": [["RIDAR", "A130-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26L": [["RIDAR", "A150-|S280-"], "LELTA", "@ROKIL", "MIQ"],
-                "EDDM26R": [["RIDAR", "A150-|S280-"], "LELTA", "@ROKIL", "MIQ"]
+                "EDDM08L": [["RIDAR", "A130-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["RIDAR", "A130-|S280-"], "LELTA", "@ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["RIDAR", "A150-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["RIDAR", "A150-|S280-"], "LELTA", "@ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "ROKIL": "306|right|1min",
@@ -2067,7 +2067,7 @@
             "entryPoints": {
                 "BETOS": []
             },
-            "body": ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80+"], "DM452", "DM451", "DM450", "#261"],
+            "body": ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
             "rwy": {
                 "EDDM08L": [],
                 "EDDM08R": []
@@ -2086,7 +2086,7 @@
             "entryPoints": {
                 "BETOS": []
             },
-            "body": ["BETOS", "DM452", "DM453", "DM454", ["DM455", "A80+"], "DM456", "DM457", "DM458", "DM459", "#081"],
+            "body": ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
             "rwy": {
                 "EDDM26L": [],
                 "EDDM26R": []
@@ -2105,7 +2105,7 @@
             "entryPoints": {
                 "LANDU": []
             },
-            "body": ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80+"], "DM422", "DM421", "DM420", "#261"],
+            "body": ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
             "rwy": {
                 "EDDM08L": [],
                 "EDDM08R": []
@@ -2124,7 +2124,7 @@
             "entryPoints": {
                 "LANDU": []
             },
-            "body": ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80-"], "DM426", "DM427", "DM428", "DM429", "#080"],
+            "body": ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
             "rwy": {
                 "EDDM26L": [],
                 "EDDM26R": []
@@ -2143,7 +2143,7 @@
             "entryPoints": {
                 "NAPSA": []
             },
-            "body": ["NAPSA", "DM458", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80+"], "DM452", "DM451", "DM450", "#261"],
+            "body": ["NAPSA", "DM458", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450", "#261"],
             "rwy": {
                 "EDDM08L": [],
                 "EDDM08R": []
@@ -2162,7 +2162,7 @@
             "entryPoints": {
                 "NAPSA": []
             },
-            "body": ["NAPSA", "DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", ["DM455", "A80+"], "DM456", "DM457", "DM458", "DM459", "#081"],
+            "body": ["NAPSA", "DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459", "#080"],
             "rwy": {
                 "EDDM26L": [],
                 "EDDM26R": []
@@ -2181,7 +2181,7 @@
             "entryPoints": {
                 "ROKIL": []
             },
-            "body": ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80+"], "DM422", "DM421", "DM420", "#261"],
+            "body": ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
             "rwy": {
                 "EDDM08L": [],
                 "EDDM08R": []
@@ -2200,7 +2200,7 @@
             "entryPoints": {
                 "ROKIL": []
             },
-            "body": ["ROKIL", "DM421", "DM422", "DM423", "DM424", ["DM425", "A80-"], "DM426", "DM427", "DM428", "DM429", "#080"],
+            "body": ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
             "rwy": {
                 "EDDM26L": [],
                 "EDDM26R": []
