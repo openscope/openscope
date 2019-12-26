@@ -1,0 +1,185 @@
+{
+    "airac": 2001, 
+    "radio": {
+        "twr": "Newark Tower",
+        "app": "New York Approach",
+        "dep": "New York Departure"
+    }, 
+    "icao": "KEWR", 
+    "iata": "EWR", 
+    "magnetic north": -12.39, 
+    "ctr_radius": 90, 
+    "ctr_ceiling": 18000, 
+    "initial alt": 2500, 
+    "position": [40.69278, -74.185278], 
+    "rangeRings": {
+        "enabled": true, 
+        "center": [40.69278, -74.185278], 
+        "radius_nm": 5.0, 
+    }, 
+    "has_terrain": false, 
+    "wind": {
+        "angle": 20, 
+        "speed": 7
+    }, 
+    "arrivalRunway": "4R", 
+    "departureRunway": "4L"
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": "0",
+            "ceiling": "70",
+            "airspace_class": "B",
+            "poly": [
+                [40.7593, -74.1621], 
+                [40.7546, -74.1415], 
+                [40.7483, -74.1216], 
+                [40.7395, -74.1038], 
+                [40.7256, -74.0907], 
+                [40.7109, -74.0818], 
+                [40.6949, -74.0776], 
+                [40.6792, -74.0811], 
+                [40.6636, -74.0866], 
+                [40.6495, -74.0976], 
+                [40.6391, -74.1140], 
+                [40.6302, -74.1319], 
+                [40.6261, -74.1525], 
+                [40.6255, -74.1751], 
+                [40.6281, -74.1971], 
+                [40.6349, -74.2163], 
+                [40.6464, -74.2315], 
+                [40.6609, -74.2431], 
+                [40.6766, -74.2521], 
+                [40.6932, -74.2527], 
+                [40.7105, -74.2507], 
+                [40.7261, -74.2424], 
+                [40.7380, -74.2280], 
+                [40.7489, -74.2115], 
+                [40.7552, -74.1916]
+            ]
+        }
+    ],
+    "fixes": {
+        "na": ["na", "na"]
+    }, 
+    "restricted": [
+        {
+            "name": "na",
+            "height": "na",
+            "coordinates": [
+                ["na", "na"], 
+            ]
+        }
+    ], 
+    "runways":[
+        {
+            "name": ["4L", "22R"], 
+            "end": [
+                [40.682306, -74.175028, "10ft"], 
+                [40.698287, -74.164862, "9ft"]
+            ], 
+            "ils": [true, true], 
+        }, 
+        {
+            "name": ["4R", "22L"], 
+            "end": [
+                [40.681177, -74.171954, "11ft"], 
+                [40.697132, -74.161798, "9ft"]
+            ], 
+            "ils": [true, true], 
+        }, 
+        {
+            "name": ["11", "29"], 
+            "end": [
+                [40.702752, -74.179856, "17ft"], 
+                [40.701303, -74.158222, "10ft"]
+            ], 
+            "ils": [true, false], 
+        }, 
+    ],
+    "sids": {
+        "LIB4": {
+            "icao": "LIB4", 
+            "name": "Liberty Four", 
+            "altitude": 2500, 
+            "rwy": {
+                "KEWR22L": ["#239"], 
+                "KEWR22R": ["#239"]
+            }, 
+            "body": [], 
+            "exitPoints": {
+                "BAYYS": ["BAYYS"], 
+                "BIGGY": ["BIGGY"], 
+                "BREZY": ["BREZY"], 
+                "COATE": ["COATE"], 
+                "DIXIE": ["DIXIE"], 
+                "ELIOT": ["ELIOT"], 
+                "ELVAE": ["ELVAE"], 
+                "GAYEL": ["GAYEL"], 
+                "GREKI": ["GREKI"], 
+                "HAAYS": ["HAAYS"], 
+                "LANNA": ["LANNA"], 
+                "MERIT": ["MERIT"], 
+                "NEION": ["NEION"], 
+                "NEWEL": ["NEWEL"], 
+                "PARKE": ["PARKE"], 
+                "WAVEY": ["WAVEY"], 
+                "WHITE": ["WHITE"], 
+                "ZIMMZ": ["ZIMMZ"]
+            },
+            "draw": [[]]
+        }, 
+        "EWR4": {
+            "icao": "EWR4", 
+            "name": "Newark Four", 
+            "altitude": 2500, 
+            "rwy": {
+                "KEWR4L": [], 
+                "KEWR4R": [], 
+                "KEWR11": [], 
+                "KEWR22L": [], 
+                "KEWR22R": [], 
+                "KEWR29": [], 
+            }, 
+            "body": [], 
+            "exitPoints": {
+            }, 
+            "draw": [[]]
+        }, 
+        "PORTT4": {
+            "icao": "PORTT4", 
+            "name": "Port Four", 
+            "altitude": 2500
+            "rwy": {
+                "KEWR22L": []
+                "KEWR22R": []
+            "body": [["BAGGA", "S220-"], "PORTT"]
+            "exitPoints": {
+                "BAYYS": ["BAYYS"], 
+                "BIGGY": ["RIETA", "SBJ", "BIGGY"], 
+                "BREZY": ["BREZY"], 
+                "COATE": ["COATE"], 
+                "DIXIE": ["DIXIE"], 
+                "ELIOT": ["SIRLY", "FENLY", "ELIOT"], 
+                "ELVAE": ["ELVAE"], 
+                "GAYEL": ["GAYEL"], 
+                "GREKI": ["GREKI"], 
+                "HAAYS": ["HAAYS"], 
+                "LANNA": ["RIETA", "SBJ", "LANNA"], 
+                "MERIT": ["MERIT"], 
+                "NEION": ["NEION"], 
+                "PARKE": ["RIETA", "SBJ", "PARKE"], 
+                "PORTT": [], 
+                "WAVEY": ["WAVEY"], 
+                "WHITE": ["WHITE"]
+            }, 
+            "draw": [
+                ["BAGGA", "PORTT"], 
+                ["PORTT", "SIRLY", "FENLY", "ELIOT"], 
+                ["PORTT", "RIETA", "SBJ"], 
+                ["SBJ", "LANNA"], 
+                ["SBJ", "PARKE"], 
+                ["SBJ", "BIGGY"]
+            ]
+        }
+    }, 
