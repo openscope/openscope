@@ -27,8 +27,8 @@
     "defaultMaps": ["na"],
     "airspace": [
         {
-            "floor": na,
-            "ceiling": na,
+            "floor": "na",
+            "ceiling": "na",
             "airspace_class": "na",
             "poly": [
                 ["na", "na"]
@@ -40,8 +40,8 @@
     }, 
     "restricted": [
         {
-            "name": "P-51",
-            "height": "2500ft",
+            "name": "na",
+            "height": "na",
             "coordinates": [
                 ["na", "na"], 
             ]
@@ -54,6 +54,22 @@
                 ["N40.682306", "W74.175028", "10ft"], 
                 ["N40.698287", "W74.164862", "9ft"]
             ], 
-            "ils":
-        }
+            "ils": [true, true], 
+        }, 
+        {
+            "name": ["4R", "22L"], 
+            "end": [
+                ["N40.681177", "W74.171954", "11ft"], 
+                ["N40.697132", "W74.161798", "9ft"]
+            ], 
+            "ils": [true, true], 
+        }, 
+        {
+            "name": ["11", "29"], 
+            "end": [
+                ["N40.702752", "W74.179856", "17ft"], 
+                ["N40.701303", "W74.158222", "10ft"]
+            ], 
+            "ils": [true, false], 
+        }, 
     ],
