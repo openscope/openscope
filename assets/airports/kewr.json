@@ -1,26 +1,59 @@
 {
-  "airac": 2001, 
-  "radio": {
-    "twr": "Newark Tower",
-    "app": "New York Approach",
-    "dep": "New York Departure"
-  }, 
-  "icao": "KEWR", 
-  "iata": "EWR", 
-  "magnetic north": -12.39, 
-  "ctr_radius": 100, 
-  "ctr_ceiling": 15000, 
-  "initial alt": 2500, 
-  "position": ["N40.69278", "W74.185278"], 
-  "rangeRings": {
-    "enabled": true, 
-    "center": ["N40.69278", "W74.185278"], 
-    "radius_nm": 5.0, 
-  }, 
-  "has_terrain": false, 
-  "wind": {
-    "angle": 20, 
-    "speed": 7
-  }, 
-  "arrivalRunway": "4R", 
-  "departureRunway": "4L"
+    "airac": 2001, 
+    "radio": {
+        "twr": "Newark Tower",
+        "app": "New York Approach",
+        "dep": "New York Departure"
+    }, 
+    "icao": "KEWR", 
+    "iata": "EWR", 
+    "magnetic north": -12.39, 
+    "ctr_radius": 90, 
+    "ctr_ceiling": 18000, 
+    "initial alt": 2500, 
+    "position": ["N40.69278", "W74.185278"], 
+    "rangeRings": {
+        "enabled": true, 
+        "center": ["N40.69278", "W74.185278"], 
+        "radius_nm": 5.0, 
+    }, 
+    "has_terrain": false, 
+    "wind": {
+        "angle": 20, 
+        "speed": 7
+    }, 
+    "arrivalRunway": "4R", 
+    "departureRunway": "4L"
+    "defaultMaps": ["na"],
+    "airspace": [
+        {
+            "floor": na,
+            "ceiling": na,
+            "airspace_class": "na",
+            "poly": [
+                ["na", "na"]
+            ]
+        }
+    ],
+    "fixes": {
+        "na": ["na", "na"]
+    }, 
+    "restricted": [
+        {
+            "name": "P-51",
+            "height": "2500ft",
+            "coordinates": [
+                ["na", "na"], 
+            ]
+        }
+    ], 
+    "runways":[
+        {
+            "name": ["4L", "22R"], 
+            "end": [
+                ["N40.682306", "W74.175028", "10ft"], 
+                ["N40.698287", "W74.164862", "9ft"]
+            ], 
+            "ils":
+        }
+    ],
