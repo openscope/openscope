@@ -1,3 +1,12 @@
+# 6.16.0 (January 31, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
+
+
 # 6.15.1 (December 2, 2020)
 ### Hotfixes
 - <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
