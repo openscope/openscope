@@ -18,2077 +18,663 @@
     },
     "has_terrain": false,
     "wind": {
-        "angle": 230,
-        "speed": 6
+        "angle": 20,
+        "speed": 8
     },
-    "arrivalRunway": "22",
-    "departureRunway": "22",
+    "arrivalRunway": "06",
+    "departureRunway": "36C",
+    "defaultMaps": ["Base Map"],
     "airspace": [
         {
-            "floor":             0,
-            "ceiling":         9500,
-            "airspace_class":    "D",
-            "poly":
-            [
-                ["N52d48m20.00", "E005d20m00.00"],
-                ["N52d25m45.00", "E005d40m52.00"],
-                ["N52d22m41.00", "E005d40m05.00"],
-                ["N52d18m11.00", "E005d36m33.00"],
-                ["N52d01m52.00", "E005d23m53.00"],
-                ["N51d53m11.00", "E005d05m47.00"],
-                ["N51d53m11.00", "E005d05m47.00"],
-                ["N51d53m11.00", "E004d49m40.00"],
-                ["N51d56m10.00", "E004d21m15.00"],
-                ["N51d59m20.00", "E004d06m40.00"],
-                ["N52d17m06.00", "E003d59m10.00"],
-                ["N52d17m06.00", "E003d59m10.00"],
-                ["N52d17m29.00", "E003d41m47.00"],
-                ["N52d54m00.00", "E004d07m04.00"],
-                ["N52d45m25.00", "E004d28m03.00"],
-                ["N52d43m30.00", "E004d33m40.00"],
-                ["N52d48m20.00", "E005d20m00.00"]
+            "floor": 0,
+            "ceiling": 9500,
+            "airspace_class": "D",
+            "poly": [
+                ["N52d18m12", "E005d36m32"],
+                ["N52d01m52", "E005d23m51"],
+                ["N51d57m45", "E005d15m15"],
+                ["N51d53m09", "E005d05m44"],
+                ["N51d53m10", "E004d49m41"],
+                ["N51d54m23", "E004d38m15"],
+                ["N51d56m07", "E004d21m15"],
+                ["N51d57m54", "E004d13m16"],
+                ["N51d59m18", "E004d06m44"],
+                ["N52d17m05", "E003d59m13"],
+                ["N52d17m28", "E003d41m45"],
+                ["N52d54m01", "E004d07m04"],
+                ["N52d51m43", "E004d12m41"],
+                ["N52d50m04", "E004d16m45"],
+                ["N52d48m20", "E004d20m58"],
+                ["N52d45m28", "E004d27m55"],
+                ["N52d43m30", "E004d33m35"],
+                ["N52d44m09", "E004d39m52"],
+                ["N52d46m02", "E004d57m20"],
+                ["N52d46m58", "E005d06m17"],
+                ["N52d48m20", "E005d19m59"],
+                ["N52d25m47", "E005d40m47"],
+                ["N52d22m40", "E005d40m04"]
             ]
         }
     ],
-    "_comment": "Source: http://www.ais-netherlands.nl/aim/2016-07-07-AIRAC/eAIP/html/index-en-GB.html ENR4.4 & AD2 EHAM AMSTERDAM/Schiphol",
+
+
     "fixes": {
-        "AMGOD": ["N52d58m30.79", "E003d41m07.40"],
-        "ANDIK": ["N52d44m21.85", "E005d16m13.76"],
-        "ARNEM": ["N52d05m47.21", "E006d04m35.77"],
-        "ARTIP": ["N52d30m40.37", "E005d34m08.69"],
-        "BEDUM": ["N53d20m53.41", "E006d35m19.92"],
-        "BERGI": ["N52d44m55.50", "E004d21m32.15"],
-        "BETUS": ["N52d41m17.31", "E005d09m45.19"],
-        "CH":    ["N52d13m14.22", "E004d33m27.36"],
-        "COA":   ["N51d20.90000", "E003d21.30000"],
-        "DENAG": ["N52d04m56.59", "E003d53m26.87"],
-        "DENUT": ["N51d14m10.00", "E003d39m27.00"],
-        "DOBAK": ["N53d12m48.00", "E007d13m01.00"],
-        "EDUPO": ["N51d58m31.89", "E005d50m09.37"],
-        "EEL":   ["N53d09.80000", "E006d40.00000"],
-        "EH001": ["N52d16m31.00", "E004d42m04.00"],
-        "EH005": ["N52d15m25.78", "E004d41m50.99"],
-        "EH006": ["N52d35m26.65", "E004d32m46.44"],
-        "EH008": ["N52d12m30.00", "E004d46m00.00"],
-        "EH009": ["N52d13m25.00", "E004d33m16.00"],
-        "EH010": ["N52d22m41.00", "E004d46m09.00"],
-        "EH012": ["N52d25m13.00", "E004d43m03.00"],
-        "EH013": ["N52d32m41.00", "E004d43m46.00"],
-        "EH014": ["N52d20m16.00", "E004d51m50.00"],
-        "EH015": ["N52d35m27.19", "E004d44m04.33"],
-        "EH016": ["N52d23m55.00", "E004d24m52.00"],
-        "EH017": ["N52d11m06.00", "E004d56m29.00"],
-        "EH018": ["N52d19m13.00", "E004d49m07.00"],
-        "EH019": ["N52d20m17.00", "E004d50m14.00"],
-        "EH020": ["N52d20m13.00", "E004d55m44.00"],
-        "EH021": ["N52d28m36.00", "E004d39m21.00"],
-        "EH022": ["N52d40m50.00", "E004d31m19.00"],
-        "EH023": ["N52d15m21.00", "E004d50m53.00"],
-        "EH024": ["N52d15m11.00", "E004d58m50.00"],
-        "EH025": ["N52d12m25.00", "E004d44m24.00"],
-        "EH026": ["N52d10m16.94", "E004d52m11.23"],
-        "EH027": ["N52d15m03.00", "E005d01m34.00"],
-        "EH028": ["N52d21m28.05", "E004d25m15.71"],
-        "EH029": ["N52d11m16.00", "E004d49m14.00"],
-        "EH030": ["N52d15m42.00", "E004d48m05.00"],
-        "EH032": ["N52d15m51.00", "E004d35m19.00"],
-        "EH033": ["N52d23m19.00", "E004d47m04.00"],
-        "EH034": ["N52d31m04.00", "E004d34m36.00"],
-        "EH036": ["N52d15m25.00", "E004d50m52.00"],
-        "EH037": ["N52d15m28.00", "E004d46m28.00"],
-        "EH038": ["N52d10m12.00", "E004d57m39.00"],
-        "EH039": ["N52d09m37.00", "E004d45m26.00"],
-        "EH040": ["N52d06m24.00", "E004d28m03.00"],
-        "EH041": ["N52d19m22.00", "E004d25m36.00"],
-        "EH042": ["N52d17m44.00", "E004d57m44.00"],
-        "EH043": ["N52d25m31.00", "E005d07m54.00"],
-        "EH044": ["N52d26m06.00", "E004d51m49.00"],
-        "EH045": ["N52d20m20.00", "E004d49m27.00"],
-        "EH046": ["N52d13m04.00", "E004d43m47.00"],
-        "EH047": ["N52d25m52.00", "E004d43m06.00"],
-        "EH048": ["N52d16m12.00", "E004d44m04.00"],
-        "EH049": ["N52d17m21.00", "E004d36m45.00"],
-        "EH050": ["N52d09m19.00", "E004d55m05.00"],
-        "EH051": ["N52d14m38.00", "E004d39m04.00"],
-        "EH052": ["N52d19m27.00", "E004d53m59.00"],
-        "EH053": ["N52d23m14.00", "E004d47m23.00"],
-        "EH055": ["N52d19m15.00", "E004d52m00.00"],
-        "EH056": ["N52d19m46.00", "E004d39m03.00"],
-        "EH057": ["N52d22m16.00", "E004d41m27.00"],
-        "EH058": ["N52d19m48.00", "E004d40m33.00"],
-        "EH059": ["N52d20m49.00", "E004d51m00.00"],
-        "EH060": ["N52d18m19.00", "E004d54m25.00"],
-        "EH061": ["N52d13m30.00", "E004d53m22.00"],
-        "EH062": ["N52d15m33.00", "E004d43m28.00"],
-        "EH063": ["N52d16m31.00", "E004d44m51.00"],
-        "EH064": ["N52d15m04.00", "E004d47m23.00"],
-        "EH069": ["N52d09m06.00", "E004d55m45.00"],
-        "EH070": ["N52d21m59.00", "E004d51m01.00"],
-        "EH072": ["N52d01m14.00", "E004d50m35.00"],
-        "EH073": ["N52d12m51.00", "E004d48m28.00"],
-        "EH074": ["N52d09m58.00", "E004d45m25.00"],
-        "EH075": ["N52d09m22.00", "E004d45m27.00"],
-        "EH080": ["N52d17m29.00", "E004d44m11.00"],
-        "EH081": ["N52d25m25.00", "E004d50m44.00"],
-        "EH082": ["N52d25m27.00", "E004d59m20.00"],
-        "EH084": ["N52d23m43.00", "E004d42m55.00"],
-        "EH087": ["N52d28m48.00", "E004d46m20.00"],
-        "EH088": ["N52d29m15.00", "E004d54m55.00"],
-        "EH090": ["N52d28m02.00", "E004d32m04.00"],
-        "EH091": ["N52d25m22.00", "E004d29m20.00"],
-        "EH094": ["N52d27m58.00", "E004d39m41.00"],
-        "EH600": ["N52d35m44.00", "E005d10m49.00"],
-        "EH601": ["N52d41m17.00", "E004d50m57.00"],
-        "EH602": ["N52d41m18.00", "E004d40m48.00"],
-        "EH603": ["N52d41m17.00", "E004d30m48.00"],
-        "EH604": ["N52d35m22.00", "E004d50m14.00"],
-        "EH605": ["N52d03m59.00", "E004d06m58.00"],
-        "EH606": ["N52d25m20.79", "E004d23m16.49"],
-        "EH607": ["N52d35m02.00", "E004d38m49.00"],
-        "EH608": ["N52d32m22.00", "E004d43m41.00"],
-        "EH609": ["N52d14m04.00", "E004d35m45.00"],
-        "EH610": ["N52d12m19.00", "E004d13m18.00"],
-        "EH611": ["N52d19m53.00", "E004d40m58.00"],
-        "EH612": ["N52d19m41.00", "E004d22m33.00"],
-        "EH613": ["N52d12m33.00", "E004d27m45.00"],
-        "EH614": ["N52d12m29.00", "E004d31m37.00"],
-        "EH616": ["N52d15m13.00", "E004d38m43.00"],
-        "EH621": ["N52d27m45.73", "E004d43m15.95"],
-        "EH636": ["N52d11m18.00", "E004d46m04.00"],
-        "EH665": ["N52d14m47.00", "E005d02m30.00"],
-        "EH667": ["N52d06m38.00", "E004d54m34.00"],
-        "EH668": ["N52d06m38.00", "E004d48m05.00"],
-        "EH669": ["N52d09m19.00", "E004d45m53.00"],
-        "ELPAT": ["N52d07m38.71", "E005d57m04.11"],
-        "GORLO": ["N51d55m26.64", "E003d10m18.61"],
-        "HDR":   ["N52d54m24.68", "E004d45m56.60"],
-        "HELEN": ["N51d14m07.13", "E003d52m10.96"],
-        "HSD":   ["N51d43.40000", "E003d51.50000"],
-        "INBAM": ["N52d21m11.20", "E005d15m10.74"],
-        "IVLUT": ["N52d14m38.81", "E005d15m25.06"],
-        "KUBAT": ["N53d20m11.00", "E006d59m37.00"],
-        "LAMSO": ["N52d43m58.43", "E002d59m39.68"],
-        "LANSU": ["N52d24m50.45", "E004d56m47.95"],
-        "LARAS": ["N51d50m04.46", "E004d41m50.37"],
-        "LEKKO": ["N51d55m27.03", "E004d46m02.39"],
-        "LILSI": ["N52d28m23.75", "E005d20m54.00"],
-        "LOPIK": ["N51d55m50.98", "E005d07m44.96"],
-        "LUGUM": ["N53d18m26.00", "E007d04m04.14"],
-        "LUNIX": ["N52d06m35.40", "E005d33m55.45"],
-        "LUTEX": ["N52d40m53.16", "E003d28m06.77"],
-        "MOLIX": ["N52d49m19.20", "E003d04m07.21"],
-        "MONIL": ["N52d45m38.72", "E003d44m47.91"],
-        "NARIX": ["N52d39m09.86", "E004d58m34.08"],
-        "NARSO": ["N52d42m55.15", "E006d42m34.36"],
-        "NIDOP": ["N52d45m33.51", "E004d53m01.59"],
-        "NIRSI": ["N52d35m01.96", "E004d30m48.14"],
-        "NOPSU": ["N52d35m12.97", "E004d57m02.89"],
-        "NORKU": ["N52d12m56.00", "E006d58m35.00"],
-        "NOVEN": ["N52d42m36.77", "E005d53m54.43"],
-        "NV":    ["N52d09m05.02", "E004d45m53.40"],
-        "NYKER": ["N52d13m49.40", "E005d31m43.69"],
-        "OA":    ["N52d28m12.87", "E004d45m11.78"],
-        "OGINA": ["N52d05m50.92", "E005d03m16.68"],
-        "OLGAX": ["N52d10m22.40", "E004d43m31.88"],
-        "OMORU": ["N52d21m10.41", "E005d16m20.16"],
-        "OSKUR": ["N52d29m25.64", "E006d01m26.48"],
-        "PAM":   ["N52d20m05.11", "E005d05m31.79"],
-        "PEPEL": ["N52d35m06.44", "E003d24m51.04"],
-        "PESER": ["N51d36m52.73", "E004d31m36.53"],
-        "PEVOS": ["N52d29m35.51", "E004d43m26.02"],
-        "PUTTY": ["N51d21m57.07", "E004d20m15.41"],
-        "REDFA": ["N52d06m52.51", "E002d29m16.61"],
-        "RENDI": ["N52d03m41.56", "E005d40m31.53"],
-        "RIVER": ["N51d54m45.95", "E004d07m57.34"],
-        "RKN":   ["N52d08m00.00", "E006d45m48.00"],
-        "ROBIS": ["N52d28m07.00", "E006d28m02.00"],
-        "ROBVI": ["N52d34m17.93", "E003d46m35.21"],
-        "ROVEN": ["N51d57m46.52", "E005d06m53.46"],
-        "RTM":   ["N51d58m25.31", "E004d28m51.49"],
-        "SOKSI": ["N52d14m14.56", "E004d21m51.96"],
-        "SOMPO": ["N53d23m56.00", "E006d56m58.00"],
-        "SONEB": ["N52d01m25.00", "E006d45m51.00"],
-        "SONSA": ["N52d19m51.22", "E006d44m44.11"],
-        "SPL":   ["N52d19m55.72", "E004d44m59.58"],
-        "SPY":   ["N52d32m25.01", "E004d51m13.61"],
-        "STD":   ["N51d44.50000", "E004d14.60000"],
-        "SUGOL": ["N52d31m31.84", "E003d58m02.46"],
-        "SULUT": ["N52d26m52.53", "E003d25m15.83"],
-        "TEMLU": ["N53d28m28.00", "E006d51m49.00"],
-        "TOPPA": ["N53d24m09.33", "E003d33m41.28"],
-        "TORGA": ["N52d35m54.83", "E005d12m11.51"],
-        "VALKO": ["N52d04m16.84", "E003d50m23.39"],
-        "VOLLA": ["N52d18m51.05", "E004d09m22.32"],
-        "WISPA": ["N52d39m57.34", "E004d22m19.84"],
-        "WOODY": ["N51d24m20.38", "E004d21m59.33"]
+        "ANDIK": ["N52d44.36", "E5d16.23"],
+        "ARNEM": ["N52d5.79", "E6d4.59"],
+        "EDUPO": ["N51d58.53", "E5d50.16"],
+        "EH008": ["N52d12.50", "E4d46.00"],
+        "EH026": ["N52d10.28", "E4d52.18"],
+        "EH039": ["N52d9.62", "E4d45.43"],
+        "EH050": ["N52d9.32", "E4d55.08"],
+        "EH095": ["N52d16.62", "E4d42.34"],
+        "EH096": ["N52d16.44", "E4d40.37"],
+        "EH097": ["N52d19.25", "E4d38.53"],
+        "EH125": ["N52d15.61", "E4d41.23"],
+        "EH126": ["N52d14.46", "E4d41.50"],
+        "EH127": ["N52d13.69", "E4d42.67"],
+        "EHAM" : ["N52d18.48", "E4d45.85"],
+        "IVLUT": ["N52d14.64", "E5d15.42"],
+        "KUDAD": ["N51d40.05", "E4d34.06"],
+        "LEKKO": ["N51d55.45", "E4d46.04"],
+        "LOPIK": ["N51d55.85", "E5d7.75"],
+        "LUNIX": ["N52d6.59", "E5d33.92"],
+        "NYKER": ["N52d13.82", "E5d31.73"],
+        "PAM"  : ["N52d20.09", "E5d5.53"],
+        "RENDI": ["N52d3.69", "E5d40.53"],
+        "SPY"  : ["N52d32.42", "E4d51.23"],
+        "WOODY": ["N51d24.34", "E4d21.99"]
     },
+
     "runways": [
         {
             "name": ["04", "22"],
-            "name_offset": [[0, 0], [0, 0]],
             "end":    [["N52d18m01.34", "E004d47m00.54", "-13.0ft"], ["N52d18m50.49", "E004d48m10.89", "-13.8ft"]],
-            "delay": [30, 50],
-            "ils": [false, false]
+            "ils": [false, true]
         },
         {
             "name": ["06","24"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N52d17m20.87", "E004d44m14.25", "-10.9ft"], ["N52d18m16.49", "E004d46m39.06", "-11.6ft"]],
-            "delay": [30, 10],
-            "ils": [true, false],
-            "loc_maxDist": [28, 20]
+            "ils": [true, false]
         },
         {
             "name": ["09", "27"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N52d19m00.008", "E004d44m51.58", "-12.0ft"], ["N52d19m06.15", "E004d47m48.81", "-12.1ft"]],
-            "delay": [40, 50],
-            "ils": [false, true],
-            "loc_maxDist": [40, 28]
+            "ils": [false, true]
         },
         {
             "name": ["18C","36C"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N52d19m53.03", "E004d44m24.11", "-12.0ft"], ["N52d18m20.99", "E004d44m15.66", "-12.0ft"]],
-            "delay": [50, 70],
-            "ils": [true, true],
-            "loc_maxDist": [28, 28]
+            "ils": [true, true]
         },
         {
             "name": ["18L", "36R"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N52d18m58.14", "E004d46m46.89", "-12.0ft"], ["N52d17m26.97", "E004d46m38.45", "-11.1ft"]],
-            "delay": [40, 30],
-            "ils": [false, true],
-            "loc_maxDist": [40, 28]
+            "ils": [false, true]
         },
         {
             "name": ["18R","36L"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N52d21m36.93", "E004d42m42.21", "-13.0ft"], ["N52d19m42.89", "E004d42m31.81", "-11.9ft"]],
-            "delay": [80, 120],
-            "ils": [true, false],
-            "loc_maxDist": [28, 20]
+            "ils": [true, false]
         }
     ],
+
+
     "sids": {
-        "ANDIK": {
-            "icao": "ANDIK",
-            "name": "Andik",
-            "suffix": {"04":"2F", "22":"2G", "06":"2R", "24":"1S", "09":"1N", "18L":"2E"},
+        "AND1SY": {
+            "icao": "AND1SY",
+            "name": "Andik One Sierra Yankee",
+            "altitude": 6000,
             "rwy": {
-                "04":  ["EH019", "EH020", "EH043", "ANDIK"],
-                "22":  [["EH023", "S220"], "EH027", "PAM", "ANDIK"],
-                "06":  ["EH014", "EH020", "EH043", "ANDIK"],
-                "24":  ["EH005", ["EH008", "S220"], "EH026", "PAM", "ANDIK"],
-                "09":  ["EH052", "EH043", "ANDIK"],
-                "18L": [["EH037", "S220"], "EH024", "PAM", "ANDIK"]
+                "EHAM24": ["EH095", "EH125", ["EH127", "S220-"]]
             },
-            "draw": []
-        },
-        "ARNEM": {
-            "icao": "ARNEM",
-            "name": "Arnem",
-            "suffix": {"04":"2F", "22":"3G", "06":"2R", "24":"2S", "09":"2N", "27":"2P", "18L":"3E", "36L":"1V"},
-            "rwy": {
-                "04":  [["EH060", "S220"], "IVLUT", "NYKER", "ARNEM"],
-                "22":  [["EH023", "S220"], "IVLUT", "NYKER", "ARNEM"],
-                "06":  ["EH018", "IVLUT", "NYKER", "ARNEM"],
-                "24":  ["EH005", ["EH008", "S220"], "EH026", "IVLUT", "NYKER", "ARNEM"],
-                "09":  ["EH005", "EH042", "IVLUT", "NYKER", "ARNEM"],
-                "27":  ["EH056", ["EH032", "S220"], "NV", "IVLUT", "NYKER", "ARNEM"],
-                "18L": [["EH037", "S220"], "IVLUT", "NYKER", "ARNEM"],
-                "36L": ["EH012", "EH087", "EH088", "PAM", "ARNEM"]
-            },
-            "draw": [
-                ["EH060", "IVLUT", "NYKER", "ARNEM"],
-                ["EH023", "IVLUT"],
-                ["EH018", "IVLUT"],
-                ["EH005", "EH008", "EH026", "IVLUT"],
-                ["EH005", "EH042", "IVLUT"],
-                ["EH056", "EH032", "NV", "IVLUT"],
-                ["EH037", "IVLUT"],
-                ["EH012", "EH087", "EH088", "PAM", "ARNEM"]
-            ]
-        },
-        "BERGI": {
-            "icao": "BERGI",
-            "name": "Bergi",
-            "suffix": {"04":"1F", "22":"1G", "06":"2R", "24":"1S", "09":"2N", "27":"1P", "18L":"3E", "36L":"3V"},
-            "rwy": {
-                "04":  ["EH019", "SPY", "BERGI"],
-                "22":  [["EH063", "S220"], "EH041", "BERGI"],
-                "06":  [["EH014", "S220"], "EH094", "EH022", "BERGI"],
-                "24":  ["EH001", "EH051", ["EH009", "A25+"], "EH028", "BERGI"],
-                "09":  [["EH053", "S220"], ["EH094", "A25+"], "EH022", "BERGI"],
-                "27":  ["EH058", "EH041", "BERGI"],
-                "18L": [["EH029", "S220"], ["EH009", "A25+"], "EH028", "BERGI"],
-                "36L": ["EH047", ["EH094", "A25+"], "EH034", "BERGI"]
-            },
-            "draw": [
-                ["EH019", "SPY", "BERGI"],
-                ["EH063", "EH041", "BERGI"],
-                ["EH014", "EH094", "EH022", "BERGI"],
-                ["EH001", "EH051", "EH009", "EH028", "BERGI"],
-                ["EH053", "EH094"],
-                ["EH058", "EH041"],
-                ["EH029", "EH009"],
-                ["EH047", "EH094"]
-            ]
-        },
-        "LEKKO": {
-            "icao": "LEKKO",
-            "name": "Lekko",
-            "suffix": {"04":"1F", "22":"1G", "06":"1R", "24":"1S", "09":"1N", "27":"1P", "18L":"3E", "36L":"3V"},
-            "rwy": {
-                "04":  [["EH036", "S220"], "EH072", "LEKKO"],
-                "22":  [["EH064", "S220"], "EH073", "LEKKO"],
-                "06":  [["EH036", "S220"], "EH072", "LEKKO"],
-                "24":  ["EH005", ["EH039", "S220"], "LEKKO"],
-                "09":  [["EH036", "S220"], "EH072", "LEKKO"],
-                "27":  ["EH056", ["EH032", "S220"], "EH075", "LEKKO"],
-                "18L": ["EH073", "LEKKO"],
-                "36L": ["EH084", ["EH045", "S220"], "EH036", "EH072", "LEKKO"]
-            },
-            "draw": [
-                ["EH036", "EH072", "LEKKO"],
-                ["EH064", "EH073", "LEKKO"],
-                ["EH005", "EH039", "LEKKO"],
-                ["EH056", "EH032", "EH075", "LEKKO"],
-                ["EH084", "EH045", "EH036"],
-                ["LEKKO"]
-            ]
-        },
-        "GORLO": {
-            "icao": "GORLO",
-            "name": "Gorlo",
-            "suffix": {"04":"2F", "06":"2R", "09":"2N", "27":"1P", "36L":"3V"},
-            "rwy": {
-                "04":  [["EH059", "S220"], "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
-                "06":  [["EH014", "S220"], "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
-                "09":  [["EH053", "S220"], "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
-                "27":  ["EH058", "VOLLA", "GORLO"],
-                "36L": ["EH047", "EH094", "EH090", "EH091", "VOLLA", "GORLO"]
-            },
-            "draw": [
-                ["EH059", "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
-                ["EH014", "EH094"],
-                ["EH053", "EH094"],
-                ["EH058", "VOLLA"],
-                ["EH047", "EH094"],
-                ["GORLO"]
-            ]
-        },
-        "LOPIK": {
-            "icao": "LOPIK",
-            "name": "Lopik",
-            "suffix": {"04":"1F", "22":"1G", "06":"1R", "24":"2S", "09":"1N", "27":"1P", "18L":"3E", "36L":"3V"},
-            "rwy": {
-                "04":  [["EH061", "S220"], "OGINA", "LOPIK"],
-                "22":  [["EH064", "S220"], "EH029", "EH050", "LOPIK"],
-                "06":  [["EH036", "S220"], "OGINA", "LOPIK"],
-                "24":  ["EH005", ["EH008", "S220"], "EH050", "LOPIK"],
-                "09":  [["EH036", "S220"], "OGINA", "LOPIK"],
-                "27":  ["EH056", ["EH032", "S220"], "NV", "LOPIK"],
-                "18L": ["EH029", "EH050", "LOPIK"],
-                "36L": ["EH084", ["EH045", "S220"], "EH036", "OGINA", "LOPIK"]
-            },
-            "draw": [
-                ["EH061", "OGINA", "LOPIK"],
-                ["EH064", "EH029", "EH050", "LOPIK"],
-                ["EH036", "OGINA"],
-                ["EH005", "EH008", "EH050"] ,
-                ["EH056", "EH032", "NV", "LOPIK"],
-                ["EH029", "EH050"],
-                ["EH084", "EH045", "EH036"],
-                ["LOPIK"]
-            ]
-        },
-        "LUNIX": {
-            "icao": "LUNIX",
-            "name": "Lunix",
-            "suffix": {"04":"1F", "22":"1G", "24":"1S", "09":"1N", "27":"1P", "18L":"1E", "36L":"1V"},
-            "exitPoints": {
-                "EDUPO": ["RENDI", "EDUPO"]
-            },
-            "rwy": {
-                "04":  [["EH060", "S220"], "IVLUT", "LUNIX"],
-                "22":  [["EH023", "S220"], "IVLUT", "LUNIX"],
-                "06":  ["EH018", "IVLUT", "LUNIX"],
-                "24":  ["EH005", ["EH008", "S220"], "EH026", "IVLUT", "LUNIX"],
-                "09":  ["EH055", "EH042", "IVLUT", "LUNIX"],
-                "27":  ["EH056", ["EH032", "S220"], "NV", "IVLUT", "LUNIX"],
-                "18L": [["EH037", "S220"], "IVLUT", "LUNIX"],
-                "36L": ["EH012", "EH087", "EH088", "PAM", "IVLUT", "LUNIX"]
-            },
-            "draw": [
-                ["IVLUT", "LUNIX", "EDUPO*"],
-                ["EH055", "EH042"],
-                ["PAM", "IVLUT"]
-            ]
-        },
-        "VALKO": {
-            "icao": "VALKO",
-            "name": "Valko",
-            "suffix": {"09":"1N", "22":"1G", "24":"1S", "18L":"3E"},
-            "rwy": {
-                "09":  [["EH030", "S220"], "EH025", "EH040", "VALKO"],
-                "22":  ["EH062", ["EH009", "A25+"], "VALKO"],
-                "24":  ["EH001", "EH051", ["EH009", "A25+"], "VALKO"],
-                "18L": [["EH029", "S220"], ["EH009", "A25+"], "VALKO"]
-            },
-            "draw": [
-                ["EH030", "EH025", "EH040", "VALKO"],
-                ["EH062", "EH009", "VALKO"],
-                ["EH001", "EH051"],
-                ["VALKO"]
-            ]
-        },
-        "SPY": {
-            "icao": "SPY",
-            "name": "Spijkerboor",
-            "suffix": {"24":"2K", "27":"1P", "36L":"2V"},
+            "body": ["EH008", "EH026", "PAM"],
             "exitPoints": {
                 "ANDIK": ["ANDIK"]
             },
-            "rwy": {
-                "24":  ["EH001", ["EH049", "S220"], "SPY"],
-                "27":  [["EH057", "S220"], "SPY"],
-                "36L": ["EH013", "NOPSU"]
-            },
             "draw": [
-                ["EH001", "EH049", "SPY"],
-                ["EH057", "SPY"],
-                ["EH013", "NOPSU", "SPY", "ANDIK*"]
+                ["EH095", "EH125", "EH127", "EH008", "EH026", "PAM", "ANDIK*"]
             ]
         },
-        "ARNEM1Z": {
-            "icao": "ARNEM1Z",
-            "name": "Arnem One Zulu",
+        "ARN2SY": {
+            "icao": "ARN2SY",
+            "name": "Arnem Two Sierra Yankee",
+            "altitude": 6000,
             "rwy": {
-                "36L":  ["EH013", "SPY", "PAM", "ARNEM"]
+                "EHAM24": ["EH095", "EH125", ["EH127", "S220-"]]
             },
-            "draw": [
-                ["EH013", "SPY", "PAM"],
-                ["ARNEM"]
-            ]
-        },
-        "BERGI1Z": {
-            "icao": "BERGI1Z",
-            "name": "Bergi One Zulu",
-            "rwy": {
-                "36L":  ["EH015", "BERGI"]
-            },
-            "draw": [["EH015", "BERGI"]]
-        },
-        "GORLO1Z": {
-            "icao": "GORLO1Z",
-            "name": "Gorlo One Zulu",
-            "rwy": {
-                "36L":  ["EH015", "EH006", "EH016", "VOLLA", "GORLO"]
-            },
-            "draw": [
-                ["EH015", "EH006", "EH016", "VOLLA"],
-                ["GORLO"]
-            ]
-        },
-        "LEKKO1Z": {
-            "icao": "LEKKO1Z",
-            "name": "Lekko One Zulu",
-            "rwy": {
-                "36L":  ["EH013", "SPY", "EH072", "LEKKO"]
-            },
-            "draw": [
-                ["SPY", "EH072"],
-                ["LEKKO"]
-            ]
-        },
-        "LOPIK1Z": {
-            "icao": "LOPIK1Z",
-            "name": "Lopik One Zulu",
-            "rwy": {
-                "36L":  ["EH013", "SPY", "LOPIK"]
-            },
-            "draw": [
-                ["SPY", "LOPIK"]
-            ]
-        },
-        "LUNIX1Z": {
-            "icao": "LUNIX1Z",
-            "name": "Lunix One Zulu",
-            "exitPoints": {
-                "EDUPO": ["RENDI", "EDUPO"]
-            },
-            "rwy": {
-                "36L":  ["EH013", "SPY", "PAM", "IVLUT", "LUNIX"]
-            },
-            "draw": [
-                ["EDUPO*"]
-            ]
-        },
-        "ANDIK1T": {
-            "icao": "ANDIK1T",
-            "name": "Andik One Tango",
-            "rwy": {
-                "06":  [["EH014", "S220"], "EH021", "SPY", "ANDIK"]
-            },
-            "draw": [
-                ["EH014", "EH021", "SPY", "ANDIK"]
-            ]
-        },
-        "ARNEM2T": {
-            "icao": "ARNEM2T",
-            "name": "Arnem Two Tango",
-            "rwy": {
-                "06":  [["EH036", "S220"], "EH017", "IVLUT", "NYKER", "ARNEM"]
-            },
-            "draw": [
-                ["EH036", "EH017", "IVLUT"],
-                ["ARNEM"]
-            ]
-        },
-        "BETUS3Y": {
-            "icao": "BETUS3Y",
-            "name": "Betus Three Yankee",
-            "rwy": {
-                "18C":  ["EH048", ["EH049", "S220"], "SPY", "BETUS"]
-            },
-            "draw": [
-                ["EH048", "EH049"],
-                ["SPY", "BETUS"]
-            ]
-        },
-        "DENAG3X": {
-            "icao": "DENAG3X",
-            "name": "Denag Three Xray",
-            "exitPoints": {
-                "VALKO": ["VALKO"]
-            },
-            "rwy": {
-                "18C":  ["EH080", "EH051", ["EH009", "A25+"], "DENAG"]
-            },
-            "draw": [
-                ["EH080", "EH051"],
-                ["EH009", "DENAG", "VALKO*"]
-            ]
-        },
-        "EDUPO2X": {
-            "icao": "EDUPO2X",
-            "name": "Edupo Two Xray",
-            "rwy": {
-                "18C":  ["EH046", "EH026", "IVLUT", "LUNIX", "RENDI", "EDUPO"]
-            },
-            "draw": [
-                ["EH046", "EH026"],
-                ["EDUPO"]
-            ]
-        },
-        "ELPAT2X": {
-            "icao": "ELPAT2X",
-            "name": "Elpat Two Xray",
+            "body": ["EH008", "EH026", "IVLUT", "NYKER"],
             "exitPoints": {
                 "ARNEM": ["ARNEM"]
             },
-            "rwy": {
-                "18C":  ["EH046", "EH026", "IVLUT", "NYKER", "ELPAT"]
-            },
             "draw": [
-                ["NYKER", "ELPAT"]
+                ["EH095", "EH125", "EH127", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM*"]
             ]
         },
-        "LARAS1X": {
-            "icao": "LARAS1X",
-            "name": "Laras One Xray",
+        "KUD1SY": {
+            "icao": "KUD1SY",
+            "name": "Kudad One Sierra Yankee",
+            "altitude": 6000,
             "rwy": {
-                "18C":  ["EH046", "EH074", "LEKKO", "LARAS"]
+                "EHAM24": ["EH095", "EH125", ["EH126", "S220-"]]
+            },
+            "body": ["EH039", "LEKKO", "KUDAD"],
+            "exitPoints": {
+                "WOODY": ["WOODY"]
             },
             "draw": [
-                ["EH046", "EH074", "LEKKO", "LARAS"]
+                ["EH095", "EH125", "EH126", "EH039", "LEKKO", "KUDAD", "WOODY*"]
             ]
         },
-        "ROVEN2X": {
-            "icao": "ROVEN2X",
-            "name": "Roven Two Xray",
+        "LOP2SY": {
+            "icao": "LOP2SY",
+            "name": "Lopik Two Sierra Yankee",
+            "altitude": 6000,
+            "rwy": {
+                "EHAM24": ["EH095", "EH125", ["EH127", "S220-"]]
+            },
+            "body": ["EH008", "EH050"],
             "exitPoints": {
                 "LOPIK": ["LOPIK"]
             },
-            "rwy": {
-                "18C":  ["EH046", "EH069", "ROVEN"]
-            },
             "draw": [
-                ["EH046", "EH069", "ROVEN", "LOPIK*"]
+                ["EH095", "EH125", "EH127", "EH008", "EH050", "LOPIK"]
             ]
         },
-        "TORGA1X": {
-            "icao": "TORGA1X",
-            "name": "Torga One Xray",
-            "exitPoints": {
-                "ANDIK": ["ANDIK"]
-            },
+        "REN1SY": {
+            "icao": "REN1SY",
+            "name": "Rendi One Sierra Yankee",
+            "altitude": 6000,
             "rwy": {
-                "18C":  ["EH046", "EH026", "PAM", "TORGA"]
+                "EHAM24": ["EH095", "EH125", ["EH127", "S220-"]]
             },
-            "draw": [
-                ["PAM", "TORGA", "ANDIK*"]
-            ]
-        },
-        "WISPA1X": {
-            "icao": "WISPA1X",
-            "name": "Wispa One Xray",
-            "exitPoints": {
-                "BERGI": ["BERGI"]
-            },
-            "rwy": {
-                "18C":  ["EH080", "EH051", ["EH009", "A25+"], "EH028", "WISPA"]
-            },
-            "draw": [
-                ["EH028", "WISPA", "BERGI*"]
-            ]
-        },
-        "IVLUT2W": {
-            "icao": "IVLUT2W",
-            "name": "Ivlut Two Whiskey",
+            "body": ["EH008", "EH026", "IVLUT", "LUNIX"],
             "exitPoints": {
                 "EDUPO": ["RENDI", "EDUPO"]
             },
-            "rwy": {
-                "36C":  ["EH033", "EH081", "EH082", "PAM", "IVLUT"]
-            },
             "draw": [
-                ["EH033", "EH081", "EH082", "PAM"],
-                ["IVLUT", "RENDI"],
-                ["EDUPO*"]
+                ["EH095", "EH125", "EH127", "EH008", "EH026", "IVLUT", "LUNIX", "RENDI", "EDUPO*"]
             ]
         },
-        "NOPSU1W": {
-            "icao": "NOPSU1W",
-            "name": "Nopsu One Whiskey",
+        "SPY3KY": {
+            "icao": "SPY3KY",
+            "name": "Spijkerboor Three Kilo Yankee",
+            "altitude": 6000,
+            "rwy": {
+                "EHAM24": ["EH095", "EH096", ["EH097", "S220-"]]
+            },
+            "body": ["SPY"],
             "exitPoints": {
                 "ANDIK": ["ANDIK"]
             },
-            "rwy": {
-                "36C":  ["EH033", "EH044", "SPY", "NOPSU"]
-            },
             "draw": [
-                ["EH033", "EH044", "SPY", "NOPSU", "ANDIK*"]
-            ]
-        },
-        "NYKER3W": {
-            "icao": "NYKER3W",
-            "name": "Nyker Three Whiskey",
-            "exitPoints": {
-                "ARNEM": ["ARNEM"]
-            },
-            "rwy": {
-                "36C":  ["EH033", "EH081", "EH082", "PAM", "NYKER"]
-            },
-            "draw": [
-                ["PAM", "NYKER"],
-                ["ARNEM*"]
-            ]
-        },
-        "OGINA2W": {
-            "icao": "OGINA2W",
-            "name": "Ogina Two Whiskey",
-            "exitPoints": {
-                "LOPIK": ["LOPIK"]
-            },
-            "rwy": {
-                "36C":  ["EH010", ["EH070", "S220"], "EH036", "OGINA"]
-            },
-            "draw": [
-                ["EH010", "EH070", "EH036"],
-                ["LOPIK*"]
-            ]
-        },
-        "WOODY1W": {
-            "icao": "WOODY1W",
-            "name": "Woody One Whiskey",
-            "rwy": {
-                "36C":  ["EH010", ["EH070", "S220"], "EH036", "EH072", "LEKKO", "WOODY"]
-            },
-            "draw": [
-                ["LEKKO", "WOODY"]
-            ]
-        },
-        "LEKKO1T": {
-            "icao": "LEKKO1T",
-            "name": "Lekko One Tango",
-            "rwy": {
-                "06":  [["EH036", "S220"], "EH038", "LEKKO"]
-            },
-            "draw": [
-                ["EH036", "EH038", "LEKKO"]
-            ]
-        },
-        "LUNIX1T": {
-            "icao": "LUNIX1T",
-            "name": "Lunix One Tango",
-            "exitPoints": {
-                "EDUPO": ["RENDI", "EDUPO"]
-            },
-            "rwy": {
-                "06":  [["EH036", "S220"], "EH017", "IVLUT", "LUNIX"]
-            },
-            "draw": [
-                ["EDUPO*"]
+                ["EH095", "EH096", "EH097", "SPY", "ANDIK*"]
             ]
         }
     },
+
+
     "stars": {
-        "REDFA1A": {
-            "icao": "REDFA1A",
-            "name": "Redfa One Alfa",
-            "entryPoints": {
-                "REDFA": ["REDFA"]
-            },
-            "body": ["SULUT", "SUGOL"],
-            "draw": [
-                ["REDFA", "SULUT", "SUGOL"]
-            ]
-        },
-        "LAMSO1A": {
-            "icao": "LAMSO1A",
-            "name": "Lamso One Alfa",
-            "entryPoints": {
-                "LAMSO": ["LAMSO"]
-            },
-            "body": ["PEPEL", "SUGOL"],
-            "draw": [
-                ["LAMSO", "PEPEL", "SUGOL"]
-            ]
-        },
-        "MOLIX2A": {
-            "icao": "MOLIX2A",
-            "name": "Molix Two Alfa",
-            "entryPoints": {
-                "MOLIX": ["MOLIX"]
-            },
-            "body": ["LUTEX", "SUGOL"],
-            "draw": [
-                ["MOLIX", "LUTEX", "SUGOL"]
-            ]
-        },
-        "TOPPA2A": {
-            "icao": "TOPPA2A",
-            "name": "Toppa Two Alfa",
-            "entryPoints": {
-                "TOPPA": ["TOPPA"]
-            },
-            "body": ["MONIL", "ROBVI", "SUGOL"],
-            "draw": [
-                ["TOPPA", "MONIL", "ROBVI", "SUGOL"]
-            ]
-        },
-        "EEL1A": {
-            "icao": "EEL1A",
-            "name": "Eelde One Alfa",
-            "entryPoints": {
-                "EEL": ["EEL"]
-            },
-            "body": ["NOVEN", "ARTIP"],
-            "draw": [
-                ["DOBAK*", "EEL"],
-                ["LUGUM*", "EEL"],
-                ["KUBAT*", "EEL"],
-                ["SOMPO*", "EEL"],
-                ["TEMLU*", "EEL"],
-                ["BEDUM*", "EEL"],
-                ["EEL", "NOVEN", "ARTIP"]
-            ]
-        },
-        "EEL1B": {
-            "icao": "EEL1B",
-            "name": "Eelde One Bravo",
-            "entryPoints": {
-                "EEL": ["EEL"]
-            },
-            "body": ["NARSO", "ARTIP"],
-            "draw": [
-                ["DOBAK*", "EEL"],
-                ["LUGUM*", "EEL"],
-                ["KUBAT*", "EEL"],
-                ["SOMPO*", "EEL"],
-                ["TEMLU*", "EEL"],
-                ["BEDUM*", "EEL"],
-                ["EEL", "NARSO", "ARTIP"]
-            ]
-        },
-        "RKN2A": {
-            "icao": "RKN2A",
-            "name": "Rekken Two Alfa",
-            "entryPoints": {
-                "REKKEN": ["RKN"]
-            },
-            "body": ["OSKUR", "ARTIP"],
-            "draw": [
-                ["RKN", "OSKUR", "ARTIP"]
-            ]
-        },
-        "RKN2B": {
-            "icao": "RKN2B",
-            "name": "Rekken Two Bravo",
-            "entryPoints": {
-                "REKKEN": ["RKN"]
-            },
-            "body": ["SONSA", "NARSO", "ARTIP"],
-            "draw": [
-                ["RKN", "SONSA", "NARSO", "ARTIP"]
-            ]
-        },
-        "NORKU2A": {
-            "icao": "NORKU2A",
-            "name": "Norku Two Alfa",
-            "entryPoints": {
-                "NORKU": ["NORKU"]
-            },
-            "body": ["SONSA", "ROBIS", "OSKUR", "ARTIP"],
-            "draw": [
-                ["NORKU", "SONSA", "ROBIS", "OSKUR", "ARTIP"]
-            ]
-        },
-        "NORKU2B": {
-            "icao": "NORKU2B",
-            "name": "Norku Two Bravo",
-            "entryPoints": {
-                "NORKU": ["NORKU"]
-            },
-            "body": ["SONSA", "NARSO", "ARTIP"],
-            "draw": [
-                ["NORKU", "SONSA", "NARSO", "ARTIP"]
-            ]
-        },
-        "DENUT1A": {
-            "icao": "DENUT1A",
-            "name": "Denut One Alfa",
-            "entryPoints": {
-                "DENUT": ["DENUT"]
-            },
-            "body": ["HSD", "RIVER"],
-            "draw": [
-                ["DENUT", "HSD", "RIVER"]
-            ]
-        },
-        "HELEN1A": {
-            "icao": "HELEN1A",
-            "name": "Helen One Alfa",
-            "entryPoints": {
-                "HELEN": ["HELEN"]
-            },
-            "body": ["HSD", "RIVER"],
-            "draw": [
-                ["HELEN", "HSD", "RIVER"]
-            ]
-        },
-        "PUTTY1A": {
-            "icao": "PUTTY1A",
-            "name": "Putty One Alfa",
-            "entryPoints": {
-                "PUTTY": ["PUTTY"]
-            },
-            "body": ["HSD", "RIVER"],
-            "draw": [
-                ["PUTTY", "HSD", "RIVER"]
-            ]
-        },
-        "PESER2A": {
-            "icao": "PESER2A",
-            "name": "Peser Two Alfa",
-            "entryPoints": {
-                "PESER": ["PESER"]
-            },
-            "body": ["STD", "RIVER"],
-            "draw": [
-                ["PESER", "STD", "RIVER"]
-            ]
-        },
-        "ARTIP1X": {
-            "_comment": "ARTIP1X is a day transition for 36R",
-            "icao": "ARTIP1X",
-            "name": "Artip One Xray",
-            "entryPoints": {
-                "ARTIP": [["ARTIP", "A100|S250"]]
-            },
-            "body": ["INBAM", ["EH665", "S220"], "EH667", ["EH668", "S180"], ["EH669", "A20"], ["EH636", "A20"]],
-            "draw": [
-                ["ARTIP", "PAM", "EH611", "EH612", "SOKSI", "EH613", "EH614", "EH609"]
-            ]
-        },
-        "ARTIP2A": {
-            "_comment_": "Beyond this point are the instrument approach procedures/transitions for night usage",
-            "icao": "ARTIP2A",
-            "name": "Artip Two Alfa",
-            "entryPoints": {
-                "ARTIP": [["ARTIP", "A100|S250"]]
-            },
-            "body": ["PAM", ["EH611", "A70"], "EH612", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"], "EH616"],
-            "draw": [
-                ["ARTIP", "PAM", "EH611", "EH612", "SOKSI", "EH613", "EH614", "EH609", "EH616"]
-            ]
-        },
-        "SOKSI1A": {
-            "icao": "SOKSI1A",
-            "name": "Soksi One Alfa",
-            "entryPoints": {
-                "SOKSI": [["SOKSI", "A40|S220"]]
-            },
-            "body": ["EH613", ["EH614", "A29"], ["EH609", "A20"], "EH616"],
-            "draw": [
-                ["SOKSI", "EH613", "EH614", "EH609", "EH616"]
-            ]
-        },
-        "RIVER2A": {
-            "icao": "RIVER2A",
-            "name": "River Two Alfa",
-            "entryPoints": {
-                "RIVER": [["RIVER", "A100|S250"]]
-            },
-            "body": ["EH605", "EH610", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"]],
-            "draw": [
-                ["RIVER", "EH605", "EH610", "SOKSI", "EH613", "EH614", "EH609"]
-            ]
-        },
-        "SUGOL2A": {
-            "icao": "SUGOL2A",
-            "name": "Sugol Two Alfa",
-            "entryPoints": {
-                "SUGOL": [["SUGOL", "A100|S250"]]
-            },
-            "body": ["EH606", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"]],
-            "draw": [
-                ["SUGOL", "EH606", "SOKSI", "EH613", "EH614", "EH609"]
-            ]
-        },
-        "ARTIP3B": {
-            "icao": "ARTIP3B",
-            "name": "Artip Three Bravo",
-            "entryPoints": {
-                "ARTIP": [["ARTIP", "A100|S250"]]
-            },
-            "body": [["EH601", "A70"], ["EH602", "A70"], "EH603", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
-            "draw": [
-                ["ARTIP", "EH601", "EH602", "EH603", "NIRSI", "EH607", "EH608", "EH621"]
-            ]
-        },
-        "NIRSI1B": {
-            "icao": "NIRSI1B",
-            "name": "Nirsi One Bravo",
-            "entryPoints": {
-                "NIRSI": [["NIRSI", "A55|S220"]]
-            },
-            "body": ["EH607", ["EH608", "A34"], ["EH621", "A20"]],
-            "draw": [
-                ["NIRSI", "EH601", "EH602", "EH603", "NIRSI", "EH607", "EH608", "EH621"]
-            ]
-        },
-        "ARTIP2C": {
-            "icao": "ARTIP2C",
-            "name": "Artip Two Charlie",
-            "entryPoints": {
-                "ARTIP": [["ARTIP", "A100|S250"]]
-            },
-            "body": [["EH600", "A70"], ["NARIX", "A60|S250"], ["EH604", "A40|S220"], ["EH608", "A34"], ["EH621", "A20"]],
-            "draw": [
-                ["ARTIP", "EH600", "NARIX", "EH604", "EH608", "EH621"]
-            ]
-        },
-        "NARIX1C": {
-            "icao": "NARIX1C",
-            "name": "Narix One Charlie",
-            "entryPoints": {
-                "ARTIP": [["NARIX", "A60|S250"]]
-            },
-            "body": [["EH604", "A40|S220"], ["EH608", "A34"], ["EH621", "A20"]],
-            "draw": [
-                ["NARIX", "EH604", "EH608", "EH621"]
-            ]
-        },
-        "RIVER3B": {
-            "icao": "RIVER3B",
-            "name": "River Three Bravo",
-            "entryPoints": {
-                "RIVER": [["RIVER", "A100|S250"]]
-            },
-            "body": ["EH605", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
-            "draw": [
-                ["RIVER", "EH605", "NIRSI", "EH607", "EH608", "EH621"]
-            ]
-        },
-        "SUGOL3B": {
-            "icao": "SUGOL3B",
-            "name": "Sugol Three Bravo",
-            "entryPoints": {
-                "SUGOL": [["SUGOL", "A100|S250"]]
-            },
-            "body": ["EH606", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
-            "draw": [
-                ["SUGOL", "EH606", "NIRSI", "EH607", "EH608", "EH621"]
-            ]
-        }
     },
+
+
     "spawnPatterns": [
+    ],   
+    
+    
+    "maps": [
         {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.ANDIK.ANDIK",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.ARNEM.ARNEM",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.BERGI.BERGI",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.LEKKO.LEKKO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.GORLO.GORLO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.LOPIK.LOPIK",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.LUNIX.LUNIX",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.VALKO.VALKO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "EHAM",
-            "destination": "",
-            "category": "departure",
-            "route": "EHAM.SPY.SPY",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 3,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["ein",   2],
-                ["afl",   1],
-                ["amx",   1],
-                ["aca",   1],
-                ["afr",   6],
-                ["amc",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aal",   1],
-                ["aua",   1],
-                ["baw",   3],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["bee",   8],
-                ["gia",   1],
-                ["ibs",   1],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["ryr",   1],
-                ["sas",   3],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["tap",   2],
-                ["rot",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["vlg",  16],
-                ["clx",   1],
-                ["cwc",   3],
-                ["ckk",   3],
-                ["fdx",   2],
-                ["mas",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["sqc",   9],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "REDFA.REDFA1A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["ein",   2],
-                ["amx",   1],
-                ["aca",   1],
-                ["amc",   1],
-                ["aal",   1],
-                ["baw",   3],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["bee",   8],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["mph",  20],
-                ["ryr",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tfl",  53],
-                ["ual",   4],
-                ["fdx",   2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "LAMSO.LAMSO1A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["ein",   2],
-                ["amx",   1],
-                ["aca",   1],
-                ["amc",   1],
-                ["aal",   1],
-                ["baw",   3],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["bee",   8],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["mph",  20],
-                ["ryr",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tfl",  53],
-                ["ual",   4],
-                ["fdx",   2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "MOLIX.MOLIX2A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["ein",   2],
-                ["amx",   1],
-                ["aca",   1],
-                ["amc",   1],
-                ["aal",   1],
-                ["baw",   3],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["bee",   8],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["mph",  20],
-                ["ryr",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tfl",  53],
-                ["ual",   4],
-                ["fdx",   2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "TOPPA.TOPPA2A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["ein",   2],
-                ["amx",   1],
-                ["aca",   1],
-                ["amc",   1],
-                ["aal",   1],
-                ["baw",   3],
-                ["cnd",  15],
-                ["bcy",   1],
-                ["dal",   9],
-                ["ezy",  40],
-                ["bee",   8],
-                ["exs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["mph",  20],
-                ["ryr",   1],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tfl",  53],
-                ["ual",   4],
-                ["fdx",   2],
-                ["sas",   3],
-                ["nax",   3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "EEL.EEL1A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["afl",   1],
-                ["asl",   1],
-                ["lzb",   2],
-                ["cpa",   5],
-                ["ces",   1],
-                ["csn",   6],
-                ["cnd",  15],
-                ["cal",   5],
-                ["ctn",   1],
-                ["csa",   1],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["eva",   2],
-                ["gia",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["lot",   1],
-                ["dlh",   3],
-                ["mph",  20],
-                ["nax",   3],
-                ["pgt",   2],
-                ["rja",   2],
-                ["sas",   3],
-                ["sxd",   2],
-                ["rot",   1],
-                ["tra",  88],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["aui",   1],
-                ["ual",   4],
-                ["ckk",   3],
-                ["nca",   1],
-                ["azq",   1],
-                ["yzr",   4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "NORKU.NORKU2A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aua",   1],
-                ["lzb",   2],
-                ["cnd",  15],
-                ["ctn",   1],
-                ["ezy",  40],
-                ["ely",   1],
-                ["uae",   4],
-                ["etd",   5],
-                ["ewg",   2],
-                ["gia",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["kal",   2],
-                ["dlh",   3],
-                ["mph",  20],
-                ["pgt",   2],
-                ["qtr",   3],
-                ["rja",   2],
-                ["sia",   1],
-                ["sxd",   2],
-                ["swr",   1],
-                ["rot",   1],
-                ["tra",  88],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53],
-                ["mas",   3],
-                ["sqc",   9]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "REKKEN.RKN2A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["adr",   2],
-                ["aee",   1],
-                ["asl",   1],
-                ["aza",   2],
-                ["aua",   1],
-                ["lzb",   2],
-                ["cnd",  15],
-                ["ctn",   1],
-                ["ezy",  40],
-                ["ely",   1],
-                ["ewg",   2],
-                ["klm", 138],
-                ["klc",  44],
-                ["dlh",   3],
-                ["mph",  20],
-                ["swr",   1],
-                ["rot",   1],
-                ["tra",  88],
-                ["tar",   1],
-                ["thy",   5],
-                ["tfl",  53]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "DENUT.DENUT1A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["cnd",  15],
-                ["ezy",  40],
-                ["ibs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["mph",  20],
-                ["tap",   2],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tfl",  53],
-                ["vlg",  16]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "HELEN.HELEN1A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["cnd",  15],
-                ["ezy",  40],
-                ["ibs",   1],
-                ["klm", 138],
-                ["klc",  44],
-                ["mph",  20],
-                ["tap",   2],
-                ["tcx",   3],
-                ["tra",  88],
-                ["tvf",   1],
-                ["tfl",  53],
-                ["vlg",  16]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "PUTTY.PUTTY1A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["clx",   1],
-                ["dlh",   3],
-                ["sxd",   1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EHAM",
-            "category": "arrival",
-            "route": "PESER.PESER2A.EHAM",
-            "altitude": 9500,
-            "speed": 250,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["clx",   1],
-                ["dlh",   3],
-                ["sxd",   1]
-            ]
+            "name": "Base Map",
+            "lines": [
+                ["N52d18m12", "E005d36m32", "N52d01m52", "E005d23m51"],
+                ["N52d01m52", "E005d23m51", "N51d57m45", "E005d15m15"],
+                ["N51d57m45", "E005d15m15", "N51d53m09", "E005d05m44"],
+                ["N51d53m09", "E005d05m44", "N51d53m10", "E004d49m41"],
+                ["N51d53m10", "E004d49m41", "N51d54m23", "E004d38m15"],
+                ["N51d54m23", "E004d38m15", "N51d56m07", "E004d21m15"],
+                ["N51d56m07", "E004d21m15", "N51d57m54", "E004d13m16"],
+                ["N51d57m54", "E004d13m16", "N51d59m18", "E004d06m44"],
+                ["N51d59m18", "E004d06m44", "N52d17m05", "E003d59m13"],
+                ["N52d17m05", "E003d59m13", "N52d17m28", "E003d41m45"],
+                ["N52d17m28", "E003d41m45", "N52d54m01", "E004d07m04"],
+                ["N52d54m01", "E004d07m04", "N52d51m43", "E004d12m41"],
+                ["N52d51m43", "E004d12m41", "N52d50m04", "E004d16m45"],
+                ["N52d50m04", "E004d16m45", "N52d48m20", "E004d20m58"],
+                ["N52d48m20", "E004d20m58", "N52d45m28", "E004d27m55"],
+                ["N52d45m28", "E004d27m55", "N52d43m30", "E004d33m35"],
+                ["N52d43m30", "E004d33m35", "N52d44m09", "E004d39m52"],
+                ["N52d44m09", "E004d39m52", "N52d46m02", "E004d57m20"],
+                ["N52d46m02", "E004d57m20", "N52d46m58", "E005d06m17"],
+                ["N52d46m58", "E005d06m17", "N52d48m20", "E005d19m59"],
+                ["N52d48m20", "E005d19m59", "N52d25m47", "E005d40m47"],
+                ["N52d25m47", "E005d40m47", "N52d22m40", "E005d40m04"],
+                ["N52d22m40", "E005d40m04", "N52d18m12", "E005d36m32"],
+                
+                ["N52d18m12", "E005d36m32", "N52d01m52", "E005d23m51"],
+                ["N52d01m52", "E005d23m51", "N51d57m45", "E005d15m15"],
+                ["N51d57m45", "E005d15m15", "N51d53m09", "E005d05m44"],
+                ["N51d53m09", "E005d05m44", "N51d53m10", "E004d49m41"],
+                ["N51d53m10", "E004d49m41", "N51d54m23", "E004d38m15"],
+                ["N51d54m23", "E004d38m15", "N51d56m07", "E004d21m15"],
+                ["N51d56m07", "E004d21m15", "N51d57m54", "E004d13m16"],
+                ["N51d57m54", "E004d13m16", "N51d59m18", "E004d06m44"],
+                ["N51d59m18", "E004d06m44", "N52d17m05", "E003d59m13"],
+                ["N52d17m05", "E003d59m13", "N52d17m28", "E003d41m45"],
+                ["N52d17m28", "E003d41m45", "N52d54m01", "E004d07m04"],
+                ["N52d54m01", "E004d07m04", "N52d51m43", "E004d12m41"],
+                ["N52d51m43", "E004d12m41", "N52d50m04", "E004d16m45"],
+                ["N52d50m04", "E004d16m45", "N52d48m20", "E004d20m58"],
+                ["N52d48m20", "E004d20m58", "N52d45m28", "E004d27m55"],
+                ["N52d45m28", "E004d27m55", "N52d43m30", "E004d33m35"],
+                ["N52d43m30", "E004d33m35", "N52d44m09", "E004d39m52"],
+                ["N52d44m09", "E004d39m52", "N52d46m02", "E004d57m20"],
+                ["N52d46m02", "E004d57m20", "N52d46m58", "E005d06m17"],
+                ["N52d46m58", "E005d06m17", "N52d48m20", "E005d19m59"],
+                ["N52d48m20", "E005d19m59", "N52d25m47", "E005d40m47"],
+                ["N52d25m47", "E005d40m47", "N52d22m40", "E005d40m04"],
+                ["N52d22m40", "E005d40m04", "N52d18m12", "E005d36m32"],
+
+                ["N52d51m43", "E004d12m41", "N52d45m39", "E004d12m41"],
+                ["N52d45m39", "E004d12m41", "N52d43m40", "E004d17m40"],
+                ["N52d43m40", "E004d17m40", "N52d42m10", "E004d21m20"],
+                ["N52d42m10", "E004d21m20", "N52d43m02", "E004d29m09"],
+                ["N52d43m02", "E004d29m09", "N52d43m30", "E004d33m35"],
+                ["N52d44m09", "E004d39m52", "N52d42m21", "E004d31m56"],
+                ["N52d42m21", "E004d31m56", "N52d43m02", "E004d29m09"],
+                ["N52d43m02", "E004d29m09", "N52d44m22", "E004d23m48"],
+                ["N52d44m22", "E004d23m48", "N52d46m28", "E004d19m37"],
+                ["N52d46m28", "E004d19m37", "N52d47m49", "E004d16m53"],
+                ["N52d47m49", "E004d16m53", "N52d50m04", "E004d16m45"],
+                ["N52d48m20", "E004d20m58", "N52d46m28", "E004d19m37"],
+                ["N52d46m28", "E004d19m37", "N52d43m40", "E004d17m40"],
+                ["N52d43m40", "E004d17m40", "N52d41m38", "E004d16m14"],
+                ["N52d41m38", "E004d16m14", "N52d17m05", "E003d59m13"],
+                ["N52d41m38", "E004d16m14", "N52d42m10", "E004d21m20"],
+                ["N52d46m02", "E004d57m20", "N52d45m32", "E004d57m28"],
+                ["N52d45m32", "E004d57m28", "N52d46m33", "E005d06m13"],
+                ["N52d46m33", "E005d06m13", "N52d46m58", "E005d06m17"],
+                ["N51d53m10", "E004d49m41", "N52d11m44", "E005d04m24"],
+                ["N52d11m44", "E005d04m24", "N52d12m17", "E005d07m09"],
+                ["N52d12m17", "E005d07m09", "N52d15m57", "E005d25m13"],
+                ["N52d15m57", "E005d25m13", "N52d18m12", "E005d36m32"],
+                ["N52d15m57", "E005d25m13", "N52d06m32", "E005d11m43"],
+                ["N52d06m32", "E005d11m43", "N52d03m27", "E005d09m39"],
+                ["N52d03m27", "E005d09m39", "N51d57m45", "E005d15m15"],
+                ["N52d11m44", "E005d04m24", "N52d11m16", "E005d07m05"],
+                ["N52d11m16", "E005d07m05", "N52d12m17", "E005d07m09"],
+                ["N52d11m16", "E005d07m05", "N52d10m00", "E005d13m56"],
+                ["N52d10m00", "E005d13m56", "N52d06m32", "E005d11m43"],
+                ["N52d06m32", "E005d11m43", "N52d02m55", "E005d06m28"],
+                ["N52d02m55", "E005d06m28", "N51d53m09", "E005d05m44"],
+                ["N52d02m55", "E005d06m28", "N52d11m16", "E005d07m05"],
+
+                ["N52d26m22", "E004d48m04", "N52d28m01", "E004d48m15"],
+                ["N52d28m01", "E004d48m15", "N52d34m02", "E004d48m48"],
+                ["N52d34m02", "E004d48m48", "N52d34m04", "E004d36m30"],
+                ["N52d34m04", "E004d36m30", "N52d25m55", "E004d33m28"],
+                ["N52d25m55", "E004d33m28", "N52d19m23", "E004d32m54"],
+
+                ["N52d28m01", "E004d48m15", "N52d28m22", "E004d38m27"],
+                ["N52d28m22", "E004d38m27", "N52d24m55", "E004d38m05"],
+
+                ["N52d26m22", "E004d48m04", 52.438215800, 4.809572300],
+                [52.438215800, 4.809572300, 52.436576200, 4.820684400],
+                [52.436576200, 4.820684400, 52.434581900, 4.831638200],
+                [52.434581900, 4.831638200, 52.432238700, 4.842403000],
+                [52.432238700, 4.842403000, 52.429553200, 4.852948800],
+                [52.429553200, 4.852948800, 52.426533100, 4.863246500],
+                [52.426533100, 4.863246500, 52.423187100, 4.873267400],
+                [52.423187100, 4.873267400, 52.419524700, 4.882984000],
+                [52.419524700, 4.882984000, 52.415556400, 4.892369400],
+                [52.415556400, 4.892369400, 52.411293200, 4.901398100],
+                [52.411293200, 4.901398100, 52.406747400, 4.910045300],
+                [52.406747400, 4.910045300, 52.401931600, 4.918287500],
+                [52.401931600, 4.918287500, 52.396859400, 4.926102500],
+                [52.396859400, 4.926102500, 52.391544900, 4.933469300],
+                [52.391544900, 4.933469300, 52.386002900, 4.940368000],
+                [52.386002900, 4.940368000, 52.380248900, 4.946780400],
+                [52.380248900, 4.946780400, 52.374298800, 4.952689300],
+                [52.374298800, 4.952689300, 52.368168800, 4.958079200],
+                [52.368168800, 4.958079200, 52.361876000, 4.962935800],
+                [52.361876000, 4.962935800, 52.355437600, 4.967246700],
+                [52.355437600, 4.967246700, 52.348871000, 4.971000500],
+                [52.348871000, 4.971000500, 52.342194200, 4.974187600],
+                [52.342194200, 4.974187600, 52.335425500, 4.976799800],
+                [52.335425500, 4.976799800, 52.328583200, 4.978830600],
+                [52.328583200, 4.978830600, 52.321685800, 4.980274900],
+                [52.321685800, 4.980274900, 52.314751900, 4.981129100],
+                [52.314751900, 4.981129100, 52.307800300, 4.981391300],
+                [52.307800300, 4.981391300, 52.300849900, 4.981061100],
+                [52.300849900, 4.981061100, 52.293919200, 4.980139700],
+                [52.293919200, 4.980139700, 52.287027200, 4.978629700],
+                [52.287027200, 4.978629700, 52.280192200, 4.976535400],
+                [52.280192200, 4.976535400, 52.273432800, 4.973862500],
+                [52.273432800, 4.973862500, 52.266767400, 4.970618300],
+                [52.266767400, 4.970618300, 52.260213900, 4.966811500],
+                [52.260213900, 4.966811500, 52.253790000, 4.962452500],
+                [52.253790000, 4.962452500, 52.247513300, 4.957552800],
+                [52.247513300, 4.957552800, 52.241400700, 4.952125800],
+                [52.241400700, 4.952125800, 52.235469000, 4.946185900],
+                [52.235469000, 4.946185900, 52.229734300, 4.939749000],
+                [52.229734300, 4.939749000, 52.224212400, 4.932832500],
+                [52.224212400, 4.932832500, 52.218918400, 4.925454900],
+                [52.218918400, 4.925454900, 52.213867000, 4.917636300],
+                [52.213867000, 4.917636300, 52.209071900, 4.909397400],
+                [52.209071900, 4.909397400, 52.204546500, 4.900760800],
+                [52.204546500, 4.900760800, 52.200303500, 4.891749700],
+                [52.200303500, 4.891749700, 52.196354500, 4.882388600],
+                [52.196354500, 4.882388600, 52.192710600, 4.872702900],
+                [52.192710600, 4.872702900, 52.189382000, 4.862719100],
+                [52.189382000, 4.862719100, 52.186378100, 4.852464300],
+                [52.186378100, 4.852464300, 52.183707300, 4.841966700],
+                [52.183707300, 4.841966700, 52.181377100, 4.831254900],
+                [52.181377100, 4.831254900, 52.179394200, 4.820358400],
+                [52.179394200, 4.820358400, 52.177764000, 4.809307000],
+                [52.177764000, 4.809307000, 52.176491300, 4.798131300],
+                [52.176491300, 4.798131300, 52.175579600, 4.786861900],
+                [52.175579600, 4.786861900, 52.175031600, 4.775530000],
+                [52.175031600, 4.775530000, 52.174848700, 4.764166700],
+                [52.174848700, 4.764166700, 52.175031600, 4.752803400],
+                [52.175031600, 4.752803400, 52.175579600, 4.741471400],
+                [52.175579600, 4.741471400, 52.176491300, 4.730202100],
+                [52.176491300, 4.730202100, 52.177764000, 4.719026400],
+                [52.177764000, 4.719026400, 52.179394200, 4.707975000],
+                [52.179394200, 4.707975000, 52.181377100, 4.697078400],
+                [52.181377100, 4.697078400, 52.183707300, 4.686366700],
+                [52.183707300, 4.686366700, 52.186378100, 4.675869000],
+                [52.186378100, 4.675869000, 52.189382000, 4.665614200],
+                [52.189382000, 4.665614200, 52.192710600, 4.655630400],
+                [52.192710600, 4.655630400, 52.196354500, 4.645944800],
+                [52.196354500, 4.645944800, 52.200303500, 4.636583600],
+                [52.200303500, 4.636583600, 52.204546500, 4.627572600],
+                [52.204546500, 4.627572600, 52.209071900, 4.618935900],
+                [52.209071900, 4.618935900, 52.213866900, 4.610697100],
+                [52.213866900, 4.610697100, 52.218918400, 4.602878400],
+                [52.218918400, 4.602878400, 52.224212400, 4.595500800],
+                [52.224212400, 4.595500800, 52.229734300, 4.588584300],
+                [52.229734300, 4.588584300, 52.235469000, 4.582147400],
+                [52.235469000, 4.582147400, 52.241400700, 4.576207600],
+                [52.241400700, 4.576207600, 52.247513300, 4.570780500],
+                [52.247513300, 4.570780500, 52.253790000, 4.565880900],
+                [52.253790000, 4.565880900, 52.260213900, 4.561521800],
+                [52.260213900, 4.561521800, 52.266767400, 4.557715000],
+                [52.266767400, 4.557715000, 52.273432800, 4.554470800],
+                [52.273432800, 4.554470800, 52.280192200, 4.551797900],
+                [52.280192200, 4.551797900, 52.287027200, 4.549703600],
+                [52.287027200, 4.549703600, 52.293919200, 4.548193600],
+                [52.293919200, 4.548193600, 52.300849900, 4.547272200],
+                [52.300849900, 4.547272200, 52.307800300, 4.546942000],
+                [52.307800300, 4.546942000, 52.314751900, 4.547204300],
+                [52.314751900, 4.547204300, 52.321685800, 4.548058500],
+                [52.321685800, 4.548058500, 52.328583200, 4.549502700],
+                [52.328583200, 4.549502700, 52.335425500, 4.551533500],
+                [52.335425500, 4.551533500, 52.342194200, 4.554145700],
+                [52.342194200, 4.554145700, 52.348871000, 4.557332900],
+                [52.348871000, 4.557332900, 52.355437600, 4.561086700],
+                [52.355437600, 4.561086700, 52.361876000, 4.565397500],
+                [52.361876000, 4.565397500, 52.368168800, 4.570254200],
+                [52.368168800, 4.570254200, 52.374298800, 4.575644100],
+                [52.374298800, 4.575644100, 52.380248900, 4.581552900],
+                [52.380248900, 4.581552900, 52.386002900, 4.587965300],
+                [52.386002900, 4.587965300, 52.391544900, 4.594864000],
+                [52.391544900, 4.594864000, 52.396859400, 4.602230800],
+                [52.396859400, 4.602230800, 52.401931600, 4.610045800],
+                [52.401931600, 4.610045800, 52.406747400, 4.618288100],
+                [52.406747400, 4.618288100, 52.411293200, 4.626935300],
+                [52.411293200, 4.626935300, "N52d24m55", "E004d38m05"],
+
+                ["N52d10m47", "E004d49m18", "N52d04m02", "E004d48m39"],
+                ["N52d04m02", "E004d48m39", "N52d04m03", "E004d33m26"],
+                ["N52d04m03", "E004d33m26", "N52d16m08", "E004d33m26"],
+
+                [52.090156200, 4.437166700, 52.089972300, 4.448508700],
+                [52.089972300, 4.448508700, 52.089420900, 4.459818900],
+                [52.089420900, 4.459818900, 52.088503800, 4.471065400],
+                [52.088503800, 4.471065400, 52.087223500, 4.482216900],
+                [52.087223500, 4.482216900, 52.085583700, 4.493242100],
+                [52.085583700, 4.493242100, 52.083589300, 4.504110000],
+                [52.083589300, 4.504110000, 52.081245800, 4.514790500],
+                [52.081245800, 4.514790500, 52.078560000, 4.525253800],
+                [52.078560000, 4.525253800, 52.075539700, 4.535470700],
+                [52.075539700, 4.535470700, 52.072193500, 4.545413000],
+                [52.072193500, 4.545413000, 52.068530900, 4.555053400],
+                [52.068530900, 4.555053400, 52.064562200, 4.564365300],
+                [52.064562200, 4.564365300, 52.060298800, 4.573323100],
+                [52.060298800, 4.573323100, 52.055752600, 4.581902500],
+                [52.055752600, 4.581902500, 52.050936600, 4.590080100],
+                [52.050936600, 4.590080100, 52.045864100, 4.597833700],
+                [52.045864100, 4.597833700, 52.040549300, 4.605142700],
+                [52.040549300, 4.605142700, 52.035007200, 4.611987300],
+                [52.035007200, 4.611987300, 52.029253000, 4.618349300],
+                [52.029253000, 4.618349300, 52.023302700, 4.624211900],
+                [52.023302700, 4.624211900, 52.017172500, 4.629559500],
+                [52.017172500, 4.629559500, 52.010879600, 4.634378200],
+                [52.010879600, 4.634378200, 52.004440900, 4.638655300],
+                [52.004440900, 4.638655300, 51.997874200, 4.642379800],
+                [51.997874200, 4.642379800, 51.991197400, 4.645542100],
+                [51.991197400, 4.645542100, 51.984428500, 4.648134100],
+                [51.984428500, 4.648134100, 51.977586100, 4.650149200],
+                [51.977586100, 4.650149200, 51.970688600, 4.651582500],
+                [51.970688600, 4.651582500, 51.963754600, 4.652430300],
+                [51.963754600, 4.652430300, 51.956802800, 4.652690900],
+                [51.956802800, 4.652690900, 51.949852200, 4.652363800],
+                [51.949852200, 4.652363800, 51.942921400, 4.651450100],
+                [51.942921400, 4.651450100, 51.936029100, 4.649952400],
+                [51.936029100, 4.649952400, 51.929194000, 4.647875000],
+                [51.929194000, 4.647875000, 51.922434400, 4.645223700],
+                [51.922434400, 4.645223700, 51.915768700, 4.642005400],
+                [51.915768700, 4.642005400, "N51d54m23", "E004d38m15"],
+
+                ["N51d57m54", "E004d13m16", 51.970688600, 4.222750900],
+                [51.970688600, 4.222750900, 51.977586100, 4.224184100],
+                [51.977586100, 4.224184100, 51.984428500, 4.226199200],
+                [51.984428500, 4.226199200, 51.991197400, 4.228791200],
+                [51.991197400, 4.228791200, 51.997874200, 4.231953500],
+                [51.997874200, 4.231953500, 52.004440900, 4.235678000],
+                [52.004440900, 4.235678000, 52.010879600, 4.239955200],
+                [52.010879600, 4.239955200, 52.017172500, 4.244773800],
+                [52.017172500, 4.244773800, 52.023302600, 4.250121500],
+                [52.023302600, 4.250121500, 52.029253000, 4.255984000],
+                [52.029253000, 4.255984000, 52.035007200, 4.262346000],
+                [52.035007200, 4.262346000, 52.040549400, 4.269190600],
+                [52.040549400, 4.269190600, 52.045864100, 4.276499600],
+                [52.045864100, 4.276499600, 52.050936600, 4.284253300],
+                [52.050936600, 4.284253300, 52.055752600, 4.292430900],
+                [52.055752600, 4.292430900, 52.060298800, 4.301010200],
+                [52.060298800, 4.301010200, 52.064562200, 4.309968100],
+                [52.064562200, 4.309968100, 52.068530800, 4.319279900],
+                [52.068530800, 4.319279900, 52.072193500, 4.328920300],
+                [52.072193500, 4.328920300, 52.075539700, 4.338862600],
+                [52.075539700, 4.338862600, 52.078560100, 4.349079600],
+                [52.078560100, 4.349079600, 52.081245800, 4.359542800],
+                [52.081245800, 4.359542800, 52.083589300, 4.370223400],
+                [52.083589300, 4.370223400, 52.085583700, 4.381091200],
+                [52.085583700, 4.381091200, 52.087223500, 4.392116500],
+                [52.087223500, 4.392116500, 52.088503800, 4.403267900],
+                [52.088503800, 4.403267900, 52.089420900, 4.414514500],
+                [52.089420900, 4.414514500, 52.089972300, 4.425824600],
+                [52.089972300, 4.425824600, 52.090156200, 4.437166700],
+
+                ["N52d18m01.34", "E004d47m00.54", "N52d18m50.49", "E004d48m10.89"],
+                ["N52d17m20.87", "E004d44m14.25", "N52d18m16.49", "E004d46m39.06"],
+                ["N52d19m00.008", "E004d44m51.58", "N52d19m06.15", "E004d47m48.81"],
+                ["N52d19m53.03", "E004d44m24.11", "N52d18m20.99", "E004d44m15.66"],
+                ["N52d18m58.14", "E004d46m46.89", "N52d17m26.97", "E004d46m38.45"],
+                ["N52d21m36.93", "E004d42m42.21", "N52d19m42.89", "E004d42m31.81"],
+
+                [52.3202809434341,4.811979907050724,52.32653685593196,4.820936124020799],
+                [52.332792753525325,4.829893619692909,52.33904866671798,4.838852337770717],
+                [52.34530456532269,4.84781233489268,52.351560449463385,4.856773611294936],
+                [52.357816349619306,4.865736110702944,52.364072235616305,4.874699889755464],
+                [52.37032813790441,4.883664892216373,52.3765840263182,4.892631174724774],
+                [52.37111178391756,4.902874747380925,52.38205364162838,4.882382597641707],
+                [52.38283990098158,4.901598737517587,52.38909579235195,4.910567524320995],
+                [52.39535167027732,4.919537591773921,52.40160752172715,4.92850896462719],
+                [52.407863403439265,4.937481537606503,52.41411927214445,4.9464553918222665],
+                [52.420375114790566,4.955430552076592,52.42663095784096,4.964406969499696],
+                [52.43288677512167,4.973384693366777,52.43914257992428,4.982363699361232],
+                [52.43367037710831,4.9926217453010295,52.44461217064961,4.972100660391234],
+                [52.445398446134554,4.991343850127191,52.451654256759994,5.000325364377735],
+                [52.45791005531567,5.009308161401189,52.464165872237324,5.0182921848690345],
+                [52.4704216774252,5.027277491421171,52.476677471002965,5.036264081297217],
+                [52.482933253115235,5.045251954697774,52.48918905415025,5.054241055351144],
+                [52.49544484402568,5.0632314398977485,52.50170062286518,5.072223108577762],
+                [52.49622842772434,5.082495635510177,52.50717009880948,5.061945425445122],
+                [52.50795642104386,5.081216005119881,52.51421220849267,5.090210186164658],
+                [52.520467985335216,5.0992056519529045,52.526723781933406,5.108202346213744],
+                [52.53297956823159,5.117200325587758,52.53923530089614,5.126199671555392],
+                [52.54549106694915,5.135200221900655,52.55174680988861,5.144202082737266],
+                [52.558002556327104,5.153205204771264,52.56425827991162,5.162209637764037],
+                [52.55878609234947,5.172496699060534,52.569727730367276,5.1519173842982395],
+
+                [52.28471403019456,4.725790264098035,52.280297533979116,4.714289972514161],
+                [52.27588102122126,4.702790837630613,52.271464519327,4.6912928311742625],
+                [52.267048028254976,4.6797959528912,52.262631520367044,4.668300230694809],
+                [52.25821502310173,4.656805636287666,52.25379850885337,4.645312197544551],
+                [52.24938193333346,4.633819959362323,52.244965412303806,4.622328803340254],
+                [52.25200878308848,4.6151074678727735,52.23792071573274,4.6295455844874756],
+                [52.24054882994036,4.610838847341,52.236132301900376,4.5993499730942915],
+                [52.231715712364824,4.587862298434288,52.227299132834375,4.576375750148245],
+                [52.22288260747734,4.564890282900072,52.218466020384,4.5534060145807915],
+                [52.214049487198466,4.541922826993476,52.20963291970671,4.530440809771103],
+                [52.205216378402156,4.518959900957371,52.2007998025972,4.507480162112482],
+                [52.20784320795838,4.50026594035253,52.193755070883775,4.51468983447971],
+                [52.196383208674256,4.496001576248337,52.191966624174114,4.484524115006513],
+                [52.18755009318291,4.473047733171732,52.18313349981173,4.461572548519453],
+                [52.17871691556202,4.450098487918214,52.17430038457242,4.4386255061131745],
+                [52.16988379096176,4.42715372083651,52.16546720623201,4.415683058978582],
+                [52.161050602779945,4.404213548355008,52.15663400810794,4.392745160669858],
+                [52.16367746554596,4.385538079392598,52.14958924913195,4.399947763037925],
+                [52.15221739454683,4.3812779238005595,52.14780078960446,4.36981180945138],
+                [52.14338419323959,4.358346817371114,52.13896757773669,4.346882975476154],
+                [52.13455097061199,4.335420255471011,52.13013437182418,4.3239586571048365],
+                [52.12571778129398,4.312498180165489,52.121301171294846,4.30103885256963],
+                [52.116884569354056,4.289580646022253,52.11246797543028,4.278123560272932],
+                [52.11951147289651,4.2709235699200025,52.105423166224305,4.28531905165865],
+
+                [52.31884681002739,4.810449652036812,52.319318710586785,4.824007773281601],
+                [52.31979061286654,4.83756603858307,52.320262509756645,4.851124448603655],
+                [52.320734411628564,4.864683002385994,52.32120631158006,4.878241700574301],
+                [52.321678209596875,4.891800543173313,52.32215011260298,4.9053595295457075],
+                [52.32262201022725,4.918918660656732,52.323093909371934,4.932477935870015],
+                [52.3147856302654,4.933253014362189,52.33140216119806,4.931702269008096],
+                [52.323565810051576,4.946037355188673,52.32403771226633,4.959596918617151],
+                [52.324509612554536,4.973156626480273,52.32498151090914,4.986716478782101],
+                [52.32545341079198,5.000276475205672,52.325925312210416,5.013836615754767],
+                [52.32639721170295,5.027396900754204,52.3268691127241,5.040957329887687],
+                [52.32734101181965,5.054517903479365,52.32781291244407,5.06807862121294],
+                [52.31950464110787,5.068853813396952,52.33612116099909,5.067302968985942],
+                [52.32828481114322,5.081639483412561,52.32875671137146,5.095200489761937],
+                [52.329228609674786,5.108761640585208,52.32970050950745,5.122322935566087],
+                [52.3301724108768,5.135884374708356,52.3306443103217,5.149445958336832],
+                [52.331116211296305,5.163007686135226,52.33158811034676,5.176569558427687],
+                [52.33206001092716,5.190131574897919,52.33253190958374,5.20369373587007],
+                [52.324223645012054,5.2044690130672615,52.340840150370774,5.2029179698966015],
+                [52.333003809770524,5.2172560410278495,52.33347571149485,5.230818490375046],
+                [52.33394761129583,5.244381084236476,52.33441950916641,5.257943822616209],
+                [52.3348914120286,5.271506704876924,52.33536330951424,5.2850697319838815],
+                [52.33583521198446,5.29863290298035,52.336307109078525,5.312196218830918],
+                [52.336779011157326,5.325759678578859,52.33725091132112,5.339323282868397],
+                [52.32894265236842,5.3400986124021115,52.34555914352356,5.338547379793826],
+
+                [52.297521829537075,4.73692069063139,52.28921309243316,4.736158187283267],
+                [52.28090434507499,4.735395782978722,52.27259558370124,4.734633586609062],
+                [52.26428681238384,4.733871480104932,52.25597803048684,4.733109481810987],
+                [52.24766923487933,4.732347682297247,52.23936042900348,4.731585981800272],
+                [52.23105160940961,4.730824480088065,52.222742779541235,4.730063077392987],
+                [52.22320722984944,4.716533560651523,52.2222736519681,4.743592024903145],
+                [52.21443393939427,4.729301773756861,52.20612508520256,4.728540678042577],
+                [52.19781622104358,4.727779672204687,52.189507342832336,4.727018874289877],
+                [52.18119845433187,4.72625817538548,52.1728895520878,4.725497675265446],
+                [52.164580639548205,4.7247372741605504,52.156271716708986,4.723976972113515],
+                [52.147962780115286,4.723216868852187,52.13965383321732,4.722456864606064],
+                [52.14011833203394,4.708952541570834,52.13918474515384,4.735960627912217],
+                [52.13134487224172,4.721697068266891,52.1230359009559,4.7209373709358955],
+                [52.11472691967143,4.720177763544218,52.10641792429833,4.719418364059752],
+                [52.098108918606265,4.718659063583812,52.08979989913421,4.717899961893503],
+                [52.081490869336974,4.7171409592161435,52.073181828894526,4.7163820647047485],
+                [52.06487277497731,4.715623359865881,52.05656371041019,4.714864763149722],
+                [52.057028234718985,4.701385509873928,52.05609464067432,4.7283434621470875],
+                [52.048254632360965,4.714106356110587,52.03994554365573,4.7133480571908315],
+                [52.03163644460646,4.71258985732279,52.023327331748355,4.7118318562402175],
+                [52.015018208541505,4.711073954168775,52.00670907151848,4.710316250883959],
+                [51.998399923824834,4.709558655703304,51.99009076608821,4.708801150481036],
+                [51.98178159420865,4.708043853140444,51.9734724122816,4.707286645716117],
+                [51.97393693538861,4.693832338713133,51.97300333605891,4.7207403991992525],
+                [52.3397059090761,4.740793503857174,52.34801458386267,4.741556610789521],
+                [52.356323248729446,4.742319807599316,52.36463189992849,4.7430832031961305],
+                [52.37294054058348,4.743846706975377,52.38124917132677,4.744610300646942],
+                [52.38955778809783,4.745374102271067,52.39786639464924,4.746138002912968],
+                [52.40617498755139,4.746902102339536,52.41448357023998,4.747666300786838],
+                [52.41401777866653,4.761254150805737,52.414944553802385,4.734077869306507],
+                [52.42279213928676,4.748430698017844,52.43110069812616,4.749195194269501],
+                [52.439409246444,4.749959798758045,52.447717781446585,4.750724592849648],
+                [52.45602630593501,4.751489495145913,52.464334816800125,4.7522545962236284],
+                [52.47264331778837,4.753019787140044,52.48095180827002,4.753785086304288],
+                [52.48926028482391,4.754550593435914,52.49756875150983,4.755316190400919],
+                [52.49710298059391,4.768929639418813,52.49802974753585,4.741702161427348],
+                [52.50587720459068,4.756081986152227,52.51418564717877,4.756847890118957],
+                [52.52249407648493,4.757613983672784,52.5308024953044,4.758380185448747],
+                [52.53911090053395,4.759146586005664,52.54741929559859,4.759913085587652],
+                [52.555727680499714,4.760679684231765,52.56403605182183,4.761446481659188],
+                [52.572344412987924,4.762213378111377,52.58065276058254,4.762980473345419],
+                [52.58018698201759,4.776619644048968,52.581113745855745,4.749340719458071],
+                [52.588961097711866,4.763747676812906,52.59726942127724,4.764515079061707],
+                [52.6055777350145,4.765282571126055,52.6138860348797,4.76605027118753],
+                [52.622194324607605,4.766818070273561,52.630502604199584,4.767585968422536],
+                [52.63881086993063,4.768354074572582,52.647119125848754,4.769122270529123],
+                [52.65542736822883,4.76989066527054,52.66373560017122,4.770659168262884],
+                [52.66326988516234,4.7843241933342915,52.66419664109247,4.756993569433404],
+                
+                [52.36856716616272,4.712482997965388,52.37687598887656,4.713241100079128],
+                [52.38518480131812,4.713999301254035,52.39349360008267,4.714757701220748],
+                [52.40180238858236,4.715516200210601,52.410111163412466,4.716274897991442],
+                [52.41841992798384,4.7170336947951865,52.426728682297785,4.717792590661216],
+                [52.43503742264207,4.718551694427269,52.4433461527365,4.719310897215891],
+                [52.442883771303144,4.73290793733104,52.44380396447538,4.705713300911794],
+                [52.45165486949058,4.720070289682191,52.4599635756898,4.720829790290482],
+                [52.46827226824519,4.721589489686246,52.476580950562926,4.722349288107386],
+                [52.484889622644374,4.72310918559192,52.49319828078183,4.723869290989158],
+                [52.50150692900155,4.724629486286313,52.50981556359555,4.7253898803757854],
+                [52.51812418765593,4.726150382618306,52.5264327980982,4.726911083648692],
+                [52.52597037552285,4.740533761710815,52.52689046058863,4.713287830633854],
+                [52.53474139832396,4.727671883706639,52.543049988334616,4.728432782829108],
+                [52.551358564738,4.729193880741922,52.559667130933725,4.729955077681781],
+                [52.56797568352964,4.730716473410645,52.576284225613094,4.7314779773069136],
+                [52.58459275410422,4.7322396799917446,52.592901272711025,4.733001472562327],
+                [52.60120978081289,4.733763373344341,52.609518275333436,4.734525472913501],
+                [52.60905587503709,4.74817392029843,52.6099759567685,4.7208764528116],
+                [52.6178267596675,4.735287671512148,52.6261352304276,4.736050068900308],
+                [52.63444369100742,4.736812565317838,52.64275213770976,4.73757526967785],
+                [52.65106057454909,4.738338063911192,52.65936900090476,4.739100966369017],
+                [52.66767741370499,4.739864067614522,52.67598581634001,4.740627267891628],
+                [52.68429420542694,4.741390666959118,52.692602584354866,4.7421541650576575],
+                [52.6921401770877,4.755828505493292,52.69306025387033,4.728479248650612],
+
+                [52.28251648390231,4.776578183805118,52.27420795632165,4.775809281309011],
+                [52.26589941853835,4.775040477854296,52.25759086675443,4.7742718824023],
+                [52.249282305084066,4.7735033767355395,52.240973729405496,4.772735079072594],
+                [52.23266514351295,4.771966880418698,52.224356543926255,4.771198880540121],
+                [52.216047934119295,4.770430979675319,52.2077393140879,4.769663177865925],
+                [52.20820782005077,4.756138588670577,52.207266067605865,4.7831871872916105],
+                [52.19943068035139,4.768895574833068,52.191122036385764,4.768128070814123],
+                [52.182813378386236,4.767360774782586,52.17450471047292,4.766593568550053],
+                [52.166196031998666,4.76582647058461,52.1578873398011,4.765059571390684],
+                [52.14957863735945,4.7642927712081775,52.1412699211869,4.763526169801796],
+                [52.13296119476409,4.762759667407275,52.12465245460296,4.761993363790071],
+                [52.125121023039064,4.7484939461632285,52.12417936285353,4.775492223155853],
+                [52.11634370418543,4.761227159184593,52.10803494318597,4.760461062829162],
+                [52.09972616843747,4.759695165244871,52.09141738374514,4.758929357478569],
+                [52.083108584974646,4.758163757685458,52.07479977593299,4.7573982568971305],
+                [52.066490956615816,4.756632855162468,52.05818212353112,4.755867652205657],
+                [52.049873279844974,4.7551025574407655,52.041564422705456,4.754337652265998],
+                [52.04203292737894,4.740863272965408,52.04109125816526,4.767811462267019],
+                [52.0332555549582,4.753572855284361,52.024946673750165,4.752808247897375],
+                [52.01663778192827,4.752043748700111,52.008328879809966,4.751279348551183],
+                [52.00001996389853,4.750515147179723,51.991711037686,4.749751044815325],
+                [51.98340209735162,4.748987150398036,51.97509314703154,4.748223345813868],
+                [51.96678418607847,4.747459649453404,51.958475211635594,4.746696142700491],
+                [51.95894372851939,4.73324668775646,51.95800205238531,4.760145031430232] 
+            ]         
         }
     ]
 }
