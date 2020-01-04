@@ -377,7 +377,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'loww',
-            level: 'medium',
+            level: 'easy',
             name: 'Vienna Schwechat International Airport',
             premium: false
         },
