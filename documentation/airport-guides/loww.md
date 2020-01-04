@@ -32,7 +32,7 @@ Aircraft taking off from Vienna follow RNAV SIDs. Each SID has a suffix that cor
 | R      | Noise Abatement |
 
 #### Arrivals
-Aircraft descending into Vienna are funneled onto the ILS by RNAV transitions. Each transition has a suffix that corresponds to a specific runway.
+Aircraft descending into Vienna are funneled onto the Approach by RNAV transitions. Each transition has a suffix that corresponds to a specific runway.
 
 | Suffix | Runway             |
 |:------:|:------------------:|
@@ -40,7 +40,7 @@ Aircraft descending into Vienna are funneled onto the ILS by RNAV transitions. E
 | L      | 16                 |
 | M      | 29                 |
 | N      | 34                 |
-| U      | 29 Noise Abatement |
+| U      | 29 RNAV            |
 
 ### Sectors Available in openScope
 ```
@@ -62,7 +62,7 @@ Runway 13/31, 950m (3117ft), Asphalt
 Runway 13/31 Grass, 650m (2132ft), Grass
 
 ##### LOXT - Tulln Brumowski Air Base
-Brumowski Air Base is located about 3 miles outside the town of Tulln and about 22 miles northeast of Vienna International Airport. It is an Austrian Air Force (German: Österreichische Luftstreitkräft) base and was opened in October of 1939. The base was under American control from 1945 to 1955, and was then over to the Austrian police, since Austria did not have an Air Force at the time.
+Brumowski Air Base is located about 3 miles outside the town of Tulln and about 22 miles northeast of Vienna International Airport. It is an Austrian Air Force (German: Österreichische Luftstreitkräft) base and was opened in October of 1939. The base was under American control from 1945 to 1955, and was then handed over to the Austrian police, since Austria did not have an Air Force at the time.
 
 Runway 08/26, 1400m (4593ft), Asphalt
 Runway 08R/26L, 930m (3050ft), Grass
@@ -89,4 +89,4 @@ The videomap also contains:
 
 
 ### Additional Resources and Charts
-[AustroControl](https://eaip.austrocontrol.at/lo/190719/ad_2_loww.htm)
+[AustroControl](https://eaip.austrocontrol.at/)
