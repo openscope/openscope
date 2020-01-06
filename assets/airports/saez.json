@@ -1516,8 +1516,9 @@
                 "SAEZ11": ["EZE"]
             },
             "draw": [
-                ["UGIMI", "ESLAN*", "PTA"],
-                ["GATOS", "ESLAN"]
+                ["UGIMI", "ESLAN", "PTA"],
+                ["GATOS", "ESLAN"],
+                ["ESLAN*"]
             ]
         },
         "UGIMI6B": {
@@ -1573,64 +1574,13 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 11,
             "airlines": [
-                ["aal/long", 12],
-                ["aca/long", 2],
-                ["amx/long", 3],
-                ["arg", 40],
-                ["aut", 29],
-                ["ava/long", 3],
-                ["bov", 2],
-                ["cmp", 8],
-                ["dal/long", 3],
-                ["dsm", 7],
-                ["lan", 3],
-                ["lne", 2],
-                ["lpe", 4],
-                ["ual/long", 3]
-            ]
-        },
-        {
-            "origin": "SAEZ",
-            "destination": "",
-            "category": "departure",
-            "route": "SAEZ11.BIVAM2A.BIVAM..UGALA..PAR",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["aal/long", 12],
-                ["aca/long", 2],
-                ["amx/long", 3],
-                ["arg", 40],
-                ["aut", 29],
-                ["ava/long", 3],
-                ["bov", 2],
-                ["cmp", 8],
-                ["dal/long", 3],
-                ["dsm", 7],
-                ["lan", 3],
-                ["lne", 2],
-                ["lpe", 4],
-                ["ual/long", 3]
-            ]
-        },
-        {
-            "origin": "SAEZ",
-            "destination": "",
-            "category": "departure",
-            "route": "SAEZ11.GBE6.GBE..VOTRA..MDP",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["anz/long", 2],
-                ["arg", 40],
-                ["aut", 29],
-                ["dsm", 7]
+                ["aal/long", 1],
+                ["amx/long", 2],
+                ["arg/short", 3],
+                ["aut", 4],
+                ["ual/long", 1]
             ]
         },
         {
@@ -1641,22 +1591,35 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 10,
             "airlines": [
-                ["aal/long", 12],
-                ["aca/long", 2],
-                ["amx/long", 3],
-                ["arg", 40],
-                ["aut", 29],
+                ["aal/long", 1],
+                ["arg/long", 1],
+                ["arg/short", 1],
+                ["aut", 3],
+                ["azp", 2],
+                ["lan/short", 2]
+            ]
+        },
+        {
+            "origin": "SAEZ",
+            "destination": "",
+            "category": "departure",
+            "route": "SAEZ11.BIVAM2A.BIVAM..UGALA..PAR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 24,
+            "airlines": [
+                ["aal/long", 3],
+                ["arg/long", 4],
+                ["arg/short", 3],
                 ["ava/long", 3],
-                ["bov", 2],
-                ["cmp", 8],
-                ["dal/long", 3],
-                ["dsm", 7],
-                ["lan", 3],
-                ["lne", 2],
-                ["lpe", 4],
-                ["ual/long", 3]
+                ["bov/long", 2],
+                ["cmp", 3],
+                ["dal/long", 1],
+                ["lan/short", 3],
+                ["lan/long", 2]
             ]
         },
         {
@@ -1667,43 +1630,99 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 49,
             "airlines": [
-                ["aea/long", 3],
-                ["afr/long", 4],
-                ["arg", 40],
-                ["aut", 29],
-                ["aza/long", 3],
-                ["azu", 2],
-                ["baw/long", 3],
-                ["dlh/long", 2],
-                ["dsm", 7],
-                ["glo", 20],
-                ["ibe/long", 6],
-                ["klm/long", 3],
-                ["qtr/long", 3],
-                ["tam", 9],
-                ["thy/long", 3],
-                ["uae", 3]
+                ["aea/long", 1],
+                ["afr/b772", 1],
+                ["arg/long", 2],
+                ["arg/short", 14],
+                ["aut", 2],
+                ["aza/long", 1],
+                ["azu/a20n", 2],
+                ["dlh/b747", 1],
+                ["edw/long", 1],
+                ["gec", 1],
+                ["glo", 7],
+                ["ibe/long", 3],
+                ["klm/b789", 1],
+                ["lan/short", 8],
+                ["nax/long", 1],
+                ["qtr/long", 1],
+                ["thy/long", 1],
+                ["uae/b777", 1]
             ]
         },
         {
             "origin": "SAEZ",
             "destination": "",
             "category": "departure",
-            "route": "SAEZ11.TORUL1.ASADA..BODIR..IRASU..GPI",
+            "route": "SAEZ11.PTA6B.KUKEN..TILDA..PUMIL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 12,
+            "airlines": [
+                ["aea/long", 1],
+                ["afr/long", 1],
+                ["arg/long", 1],
+                ["arg/short", 1],
+                ["azu/a20n", 2],
+                ["baw/long", 1],
+                ["gec", 1],
+                ["glo", 1],
+                ["ibe/long", 2],
+                ["klm/b789", 1]
+            ]
+        },
+        {
+            "origin": "SAEZ",
+            "destination": "",
+            "category": "departure",
+            "route": "SAEZ11.TORUL1.URINO..NIN..NUXIM..LYE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 19,
+            "airlines": [
+                ["aca/long", 1],
+                ["arg/short", 4],
+                ["aut", 2],
+                ["gti", 1],
+                ["klm/b789", 1],
+                ["lan/short", 5],
+                ["lan/long", 2],
+                ["sku", 3]
+            ]
+        },
+        {
+            "origin": "SAEZ",
+            "destination": "",
+            "category": "departure",
+            "route": "SAEZ11.TORUL1.TORUL..SIKAR..BIXIM",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["aca/long", 2],
-                ["arg", 40],
-                ["aut", 29],
-                ["dsm", 7],
-                ["klm/long", 3],
-                ["lan", 3],
-                ["sku", 5]
+                ["anz/long", 1],
+                ["arg/short", 1],
+                ["lan/short", 1]
+            ]
+        },
+        {
+            "origin": "SAEZ",
+            "destination": "",
+            "category": "departure",
+            "route": "SAEZ11.GBE6.GBE..VOTRA..MDP",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["anz/long", 1],
+                ["arg/short", 2],
+                ["aut", 1],
+                ["lan/short", 1]
             ]
         },
         {

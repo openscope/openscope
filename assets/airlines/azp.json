@@ -1,16 +1,15 @@
 {
-    "icao": "sku",
-    "name": "Sky Airline",
+    "icao": "azp",
+    "name": "Paranair",
     "callsign": {
-        "name": "Aerosky",
+        "name": "Guaraní",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A319", 9],
-            ["A20N", 17]
+            ["CRJ2", 4]
         ]
     }
 }
