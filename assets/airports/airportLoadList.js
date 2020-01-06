@@ -279,12 +279,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Miami International Airport',
             premium: false
         },
-        // {
-        //     icao: 'kmsp',
-        //     level: 'hard',
-        //     name: 'Minneapolis/St. Paul International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'kmsp',
+            level: 'hard',
+            name: 'Minneapolis/St. Paul International Airport',
+            premium: false,
+            wip: true
+        },
         // {
         //     icao: 'kord',
         //     level: 'hard',
