@@ -1649,7 +1649,11 @@
                 ["arg/short", 1],
                 ["aut", 3],
                 ["azp", 2],
-                ["lan/short", 2]
+                ["dsm/short", 3],
+                ["etr/long", 1],
+                ["lap", 1],
+                ["lne", 1],
+                ["lpe/short", 1]
             ]
         },
         {
@@ -1668,9 +1672,13 @@
                 ["ava/long", 3],
                 ["bov/long", 2],
                 ["cmp", 3],
+                ["cub/long", 1],
                 ["dal/long", 1],
-                ["lan/long", 2],
-                ["lan/short", 3]
+                ["dsm/long", 2],
+                ["dsm/short", 3],
+                ["lap", 1],
+                ["lne", 1],
+                ["lpe", 1]
             ]
         },
         {
@@ -1691,15 +1699,17 @@
                 ["aza/long", 1],
                 ["azu/a20n", 2],
                 ["dlh/b747", 1],
+                ["dsm/short", 4],
                 ["edw/long", 1],
                 ["eth/long", 1],
                 ["gec", 1],
                 ["glo", 7],
                 ["ibe/long", 3],
                 ["klm/b789", 1],
-                ["lan/short", 8],
                 ["nax/long", 1],
+                ["nrs", 1],
                 ["qtr/long", 1],
+                ["tam/short", 5],
                 ["thy/long", 1],
                 ["uae/b777", 1]
             ]
@@ -1723,7 +1733,8 @@
                 ["gec", 1],
                 ["glo", 1],
                 ["ibe/long", 2],
-                ["klm/b789", 1]
+                ["klm/b789", 1],
+                ["mph", 1]
             ]
         },
         {
@@ -1743,6 +1754,9 @@
                 ["klm/b789", 1],
                 ["lan/long", 2],
                 ["lan/short", 5],
+                ["lco", 1],
+                ["lne", 1],
+                ["lpe", 1],
                 ["sku", 3]
             ]
         },
@@ -1758,7 +1772,7 @@
             "airlines": [
                 ["anz/long", 1],
                 ["arg/short", 1],
-                ["lan/short", 1]
+                ["dsm/short", 1]
             ]
         },
         {
@@ -1774,7 +1788,7 @@
                 ["anz/long", 1],
                 ["arg/short", 2],
                 ["aut", 1],
-                ["lan/short", 1]
+                ["dsm/short", 1]
             ]
         },
         {
@@ -1795,9 +1809,12 @@
                 ["ava/long", 3],
                 ["bov/long", 2],
                 ["cmp", 3],
+                ["cub/long", 1],
                 ["dal/long", 1],
-                ["lan/long", 3],
-                ["lan/short", 3]
+                ["dsm/long", 3],
+                ["dsm/short", 3],
+                ["lne", 1],
+                ["lpe", 1]
             ]
         },
         {
@@ -1814,7 +1831,10 @@
                 ["aut", 2],
                 ["azp", 2],
                 ["dal/long", 1],
-                ["lan/short", 1]
+                ["dsm/short", 1],
+                ["etr/long", 1],
+                ["lap", 1]
+
             ]
         },
         {
@@ -1833,6 +1853,7 @@
                 ["klm/b789", 1],
                 ["lan/long", 2],
                 ["lan/short", 5],
+                ["lco", 1],
                 ["sku", 3]
             ]
         },
@@ -1854,12 +1875,13 @@
                 ["aza/b772", 1],
                 ["azu/a20n", 4],
                 ["dlh/b747", 1],
+                ["dsm/short", 4],
                 ["edw/long", 1],
                 ["eth/long", 1],
                 ["glo", 8],
                 ["ibe/long", 3],
-                ["lan/short", 8],
                 ["qtr/long", 1],
+                ["tam/short", 5],
                 ["thy/long", 1],
                 ["uae/b777", 1]
             ]
@@ -1877,10 +1899,13 @@
                 ["afr/long", 1],
                 ["aut", 1],
                 ["baw/long", 1],
+                ["dsm/short", 1],
                 ["glo", 1],
                 ["klm/b789", 1],
-                ["lan/short", 1],
-                ["nax/long", 1]
+                ["mph", 1],
+                ["nax/long", 1],
+                ["nrs", 1],
+                ["tam/short", 1]
             ]
         },
         {
@@ -1909,7 +1934,7 @@
             "airlines": [
                 ["arg/short", 1],
                 ["aut", 1],
-                ["lan/short", 1]
+                ["dsm/short", 1]
             ]
         },
         {

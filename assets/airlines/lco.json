@@ -1,15 +1,15 @@
 {
-    "icao": "mph",
-    "name": "Martinair",
+    "icao": "lco",
+    "name": "LATAM Cargo Chile",
     "callsign": {
-        "name": "Martinair",
+        "name": "Lan Cargo",
         "callsignFormats": [
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B744", 1]
+            ["B763", 2]
         ]
     }
 }

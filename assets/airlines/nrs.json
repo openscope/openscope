@@ -1,15 +1,15 @@
 {
-    "icao": "mph",
-    "name": "Martinair",
+    "icao": "nrs",
+    "name": "Norwegian Air UK",
     "callsign": {
-        "name": "Martinair",
+        "name": "Rednose",
         "callsignFormats": [
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B744", 1]
+            ["B789", 13]
         ]
     }
 }
