@@ -2,13 +2,13 @@
     "airac": 2001,
     "radio": {
         "twr": "Ezeiza Tower",
-        "app": "Baires Center",
+        "app": "Ezeiza Approach",
         "dep": "Baires Center"
     },
     "icao": "SAEZ",
     "iata": "EZE",
-    "magnetic_north": -8,
-    "ctr_radius": 102,
+    "magnetic_north": -9,
+    "ctr_radius": 100,
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
     "position": ["S34.82416666666667", "W58.53527777777778", "67.0ft"],
@@ -1125,7 +1125,7 @@
             "name": ["17", "35"],
             "end": [
                 ["S34d48m29.75", "W58d32m02.21", "62ft"],
-                ["S34d50m06.76", "W58d31m28.51", "67ft"]
+                ["S34d49m57.32", "W58d31m31.79", "67ft"]
             ],
             "ils": [false, true]
         }
@@ -1337,10 +1337,10 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ11": ["AER52", "ARSOT", "EZE"]
+                "SAEZ11": ["AER52", "ARSOT"]
             },
             "draw": [
-                ["ASADA*", "AER52", "ARSOT", "EZE"]
+                ["ASADA*", "AER52", "ARSOT"]
             ]
         },
         "ASADA6B": {
@@ -1351,10 +1351,10 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ35": ["AER60", "EZE66", "GESTA", "EZE"]
+                "SAEZ35": ["AER60", "EZE66", "GESTA"]
             },
             "draw": [
-                ["ASADA*", "AER60", "EZE66", "GESTA", "EZE"]
+                ["ASADA*", "AER60", "EZE66", "GESTA"]
             ]
         },
         "GBE6A": {
@@ -1365,7 +1365,7 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ11": ["EZE50", "AER52", "ARSOT", "EZE"]
+                "SAEZ11": ["EZE50", "AER52", "ARSOT"]
             },
             "draw": [
                 ["GBE*", "EZE50", "AER52"]
@@ -1379,7 +1379,7 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ35": ["EZE66", "GESTA", "EZE"]
+                "SAEZ35": ["EZE66", "GESTA"]
             },
             "draw": [
                 ["GBE*", "EZE66"]
@@ -1407,11 +1407,11 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ35": ["GESTA", "EZE"]
+                "SAEZ35": ["GESTA"]
             },
             "draw": [
                 ["KOVUK*"],
-                ["PTA", "GESTA", "EZE"]
+                ["PTA", "GESTA"]
             ]
         },
         "KUKEN6A": {
@@ -1450,7 +1450,7 @@
             },
             "body": ["VANAR"],
             "rwy": {
-                "SAEZ11": ["ENO", "ARSOT", "EZE"]
+                "SAEZ11": ["ENO", "ARSOT"]
             },
             "draw": [
                 ["PAGON*", "VANAR", "ENO", "ARSOT"]
@@ -1507,7 +1507,7 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ11": ["ARSOT", "EZE"]
+                "SAEZ11": ["ARSOT"]
             },
             "draw": [
                 ["SNT*", "ARSOT"]
@@ -1549,7 +1549,7 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ35": ["PTA", "GESTA", "EZE"]
+                "SAEZ35": ["PTA", "GESTA"]
             },
             "draw": [
                 ["TENIL*"]
@@ -1581,7 +1581,7 @@
             },
             "body": ["ESLAN", "PTA"],
             "rwy": {
-                "SAEZ35": ["GESTA", "EZE"]
+                "SAEZ35": ["GESTA"]
             },
             "draw": [
                 ["ESLAN*"]
@@ -1595,7 +1595,7 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ11": ["GEBEM", "EZE50", "AER52", "ARSOT", "EZE"]
+                "SAEZ11": ["GEBEM", "EZE50", "AER52", "ARSOT"]
             },
             "draw": [
                 ["VALOS*", "GEBEM", "EZE50"]
@@ -1609,7 +1609,7 @@
             },
             "body": [],
             "rwy": {
-                "SAEZ35": ["AER61", "AER60", "EZE66", "GESTA", "EZE"]
+                "SAEZ35": ["AER61", "AER60", "EZE66", "GESTA"]
             },
             "draw": [
                 ["VALOS*", "AER61", "AER60"]
