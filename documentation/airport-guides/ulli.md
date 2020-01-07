@@ -1,4 +1,4 @@
-Pulkovo Airport, formally Fyodor Dostoyevsky International Airport (IATA: LED, ICAO: ULLI) is an international airport serving St. Petersburg, Russia's second largest city. With slightly above [18 mln](https://en.wikipedia.org/wiki/List_of_the_busiest_airports_in_Russia) passengers served in 2018, it is Russia's 4th busiest airport. Pulkovo is the only airport in Russia that uses QNH and altitudes in feet below TRL (others use QFE and meters).
+Pulkovo Airport, formally Fyodor Dostoyevsky International Airport (IATA: LED, ICAO: ULLI) is an international airport serving St. Petersburg, Russia's second largest city. With just over [18 million](https://en.wikipedia.org/wiki/List_of_the_busiest_airports_in_Russia) passengers served in 2018, it is Russia's 4th busiest airport. Pulkovo is the only airport in Russia that uses QNH and altitudes in feet below TRL (others use QFE and meters).
 
 Pulkovo serves as the hub for Rossiya Airlines (ICAO: SDM).
 
@@ -22,11 +22,29 @@ The airport has two parallel runways: 10L/28R and 10R/28L. With both runways in 
 
 Aircraft normally follow one of the published SIDs. Initial climb is 3500 ft.
 
+There are seven exit fixes used in the SIDs: KERIS, PETAP, RELNI, RUMOL, SUGIN, TURAL and UTETA. SIDs are named after these fixes and have the following suffixes:
+
+| Runway |  Suffix  |
+|:------:|:--------:|
+|   10L  | D        |
+|   10R  | C        |
+|   28L  | B        |
+|   28R  | A        |
+
 #### Arrivals
 
 Aircraft usually descend according to published STARs though may be directed to initial fix if traffic permits.
 
 [Point merge system](https://www.eurocontrol.int/concept/point-merge) (PMS) is used to reduce the need for vectoring: aircraft are instructed to proceed direct to the merge point (OBARI/ARNAT for 28X runways, LEPTO/GEBKA for 10X runways) from one of sequencing legs.
+
+There are five entrance fixes used in the STARs: AKARU, BEPOL, GENPA, KOLET and OBANA. STARs are named after these fixes and have the following suffixes:
+
+| Runway    |  Suffix  |
+|:---------:|:--------:|
+| 10L, 10R  | A        |
+| 28L, 28R  | B        |
+
+There are special STARs with V and W suffixes that are used only for fuel calculation and not for actual approaches.
 
 All runways allow ILS approach:
 - 10L: ILS CAT IIIA
