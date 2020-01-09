@@ -78,7 +78,7 @@
     "lodash": "4.17.13",
     "mkdirp": "0.5.1",
     "raf": "3.4.1",
-    "showdown": "1.9.0",
+    "showdown": "1.9.1",
     "yargs": "13.2.2"
   },
   "devDependencies": {
