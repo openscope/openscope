@@ -6,9 +6,10 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
 - <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
+- <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport
 
 
-# 6.15.1 (December 2, 2020)
+# 6.15.1 (December 2, 2019)
 ### Hotfixes
 - <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
 
