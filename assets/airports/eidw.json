@@ -58,150 +58,6 @@
         }
     ],
     "fixes": {
-        "_BAL1": ["N53.516188800", "W6.319345800"],
-        "_BAL10": ["N53.535910700", "W6.364793300"],
-        "_BAL11": ["N53.536316400", "W6.371251600"],
-        "_BAL12": ["N53.536316400", "W6.377746100"],
-        "_BAL13": ["N53.535910700", "W6.384204400"],
-        "_BAL14": ["N53.535104000", "W6.390554500"],
-        "_BAL15": ["N53.533905400", "W6.396726200"],
-        "_BAL16": ["N53.532328600", "W6.402650800"],
-        "_BAL17": ["N53.530391600", "W6.408263100"],
-        "_BAL18": ["N53.528116100", "W6.413501400"],
-        "_BAL19": ["N53.525527700", "W6.418308800"],
-        "_BAL2": ["N53.519530900", "W6.322570100"],
-        "_BAL20": ["N53.522655300", "W6.422633100"],
-        "_BAL21": ["N53.519530900", "W6.426427600"],
-        "_BAL22": ["N53.516188800", "W6.429651900"],
-        "_BAL23": ["N53.512665700", "W6.432271700"],
-        "_BAL24": ["N53.509000100", "W6.434259500"],
-        "_BAL25": ["N53.505231800", "W6.435594300"],
-        "_BAL26": ["N53.501401700", "W6.436262400"],
-        "_BAL3": ["N53.522655400", "W6.326364600"],
-        "_BAL4": ["N53.525527800", "W6.330688900"],
-        "_BAL5": ["N53.528116100", "W6.335496200"],
-        "_BAL6": ["N53.530391600", "W6.340734600"],
-        "_BAL7": ["N53.532328600", "W6.346346900"],
-        "_BAL8": ["N53.533905400", "W6.352271500"],
-        "_BAL9": ["N53.535104000", "W6.358443100"],
-        "_BATED1": ["N53.342173000", "W6.175542100"],
-        "_BATED10": ["N53.321350200", "W6.115311100"],
-        "_BATED11": ["N53.321350200", "W6.107283400"],
-        "_BATED12": ["N53.321853300", "W6.099300000"],
-        "_BATED13": ["N53.322853700", "W6.091449500"],
-        "_BATED14": ["N53.324340000", "W6.083818700"],
-        "_BATED15": ["N53.326295500", "W6.076491600"],
-        "_BATED16": ["N53.328698100", "W6.069548600"],
-        "_BATED163":["N53.386501327", "W6.041907244"],
-        "_BATED17": ["N53.331520700", "W6.063065800"],
-        "_BATED18": ["N53.334731800", "W6.057113700"],
-        "_BATED19": ["N53.338295800", "W6.051756500"],
-        "_BATED2": ["N53.338295700", "W6.170838000"],
-        "_BATED20": ["N53.342173000", "W6.047052400"],
-        "_BATED21": ["N53.346321100", "W6.043051400"],
-        "_BATED22": ["N53.350694600", "W6.039796500"],
-        "_BATED23": ["N53.355245800", "W6.037322200"],
-        "_BATED24": ["N53.359925500", "W6.035655000"],
-        "_BATED25": ["N53.364682900", "W6.034812500"],
-        "_BATED26": ["N53.369466700", "W6.034803900"],
-        "_BATED27": ["N53.374225100", "W6.035629600"],
-        "_BATED28": ["N53.378906900", "W6.037281200"],
-        "_BATED29": ["N53.383461100", "W6.039741600"],
-        "_BATED3": ["N53.334731800", "W6.165480900"],
-        "_BATED4": ["N53.331520700", "W6.159528700"],
-        "_BATED5": ["N53.328698100", "W6.153045900"],
-        "_BATED6": ["N53.326295500", "W6.146102900"],
-        "_BATED7": ["N53.324340000", "W6.138775800"],
-        "_BATED8": ["N53.322853700", "W6.131145000"],
-        "_BATED9": ["N53.321853300", "W6.123294500"],
-        "_DEXEN1": ["N53.430194300", "W6.432158300"],
-        "_DEXEN10": ["N53.414663600", "W6.483069500"],
-        "_DEXEN11": ["N53.411365100", "W6.486640400"],
-        "_DEXEN12": ["N53.407863300", "W6.489613600"],
-        "_DEXEN13": ["N53.404196700", "W6.491957600"],
-        "_DEXEN14": ["N53.400404900", "W6.493647900"],
-        "_DEXEN15": ["N53.396529300", "W6.494666700"],
-        "_DEXEN16": ["N53.392611600", "W6.495003600"],
-        "_DEXEN17": ["N53.388694300", "W6.494655300"],
-        "_DEXEN18": ["N53.384819700", "W6.493625400"],
-        "_DEXEN19": ["N53.381029600", "W6.491925200"],
-        "_DEXEN2": ["N53.429987300", "W6.438748700"],
-        "_DEXEN20": ["N53.377365300", "W6.489572600"],
-        "_DEXEN21": ["N53.373866200", "W6.486592600"],
-        "_DEXEN22": ["N53.370570900", "W6.483017000"],
-        "_DEXEN23": ["N53.367515400", "W6.478884000"],
-        "_DEXEN24": ["N53.364733400", "W6.474238100"],
-        "_DEXEN25": ["N53.362255700", "W6.469129500"],
-        "_DEXEN26": ["N53.360110000", "W6.463613500"],
-        "_DEXEN27": ["N53.358320400", "W6.457750300"],
-        "_DEXEN28": ["N53.356907000", "W6.451604400"],
-        "_DEXEN29": ["N53.355885700", "W6.445243200"],
-        "_DEXEN292":["N53.355154998", "W6.436575426"],
-        "_DEXEN3": ["N53.429368900", "W6.445265700"],
-        "_DEXEN4": ["N53.428345900", "W6.451636900"],
-        "_DEXEN5": ["N53.426930200", "W6.457791500"],
-        "_DEXEN6": ["N53.425137800", "W6.463661300"],
-        "_DEXEN7": ["N53.422988900", "W6.469182000"],
-        "_DEXEN8": ["N53.420507900", "W6.474293200"],
-        "_DEXEN9": ["N53.417722400", "W6.478939000"],
-        "_DUB276": ["N53.501639791", "W6.418639634"],
-        "_KISHA1": ["N53.520547700", "W6.322739600"],
-        "_KISHA10": ["N53.556259900", "W6.313308600"],
-        "_KISHA11": ["N53.559507800", "W6.308908400"],
-        "_KISHA12": ["N53.562465400", "W6.303959000"],
-        "_KISHA13": ["N53.565099800", "W6.298514100"],
-        "_KISHA14": ["N53.567381400", "W6.292632800"],
-        "_KISHA15": ["N53.569284600", "W6.286379300"],
-        "_KISHA16": ["N53.570787800", "W6.279822700"],
-        "_KISHA17": ["N53.571874000", "W6.273035200"],
-        "_KISHA18": ["N53.572530700", "W6.266092400"],
-        "_KISHA19": ["N53.572750500", "W6.259071200"],
-        "_KISHA2": ["N53.524571800", "W6.324551300"],
-        "_KISHA20": ["N53.572530700", "W6.252050100"],
-        "_KISHA21": ["N53.571874000", "W6.245107200"],
-        "_KISHA22": ["N53.570787800", "W6.238319800"],
-        "_KISHA23": ["N53.569284600", "W6.231763100"],
-        "_KISHA24": ["N53.567381400", "W6.225509700"],
-        "_KISHA25": ["N53.565099800", "W6.219628400"],
-        "_KISHA26": ["N53.562465400", "W6.214183400"],
-        "_KISHA27": ["N53.559507800", "W6.209234100"],
-        "_KISHA3": ["N53.528685900", "W6.325648800"],
-        "_KISHA4": ["N53.532845100", "W6.326020300"],
-        "_KISHA5": ["N53.537004800", "W6.325661800"],
-        "_KISHA6": ["N53.541120000", "W6.324576800"],
-        "_KISHA7": ["N53.545146100", "W6.322776500"],
-        "_KISHA8": ["N53.549039400", "W6.320279600"],
-        "_KISHA9": ["N53.552757600", "W6.317112500"],
-        "_LIFFY1": ["N53.430441800", "W6.432608700"],
-        "_LIFFY10": ["N53.449602000", "W6.476755000"],
-        "_LIFFY11": ["N53.453026500", "W6.479308500"],
-        "_LIFFY12": ["N53.456590200", "W6.481249100"],
-        "_LIFFY13": ["N53.460254300", "W6.482556200"],
-        "_LIFFY14": ["N53.463979300", "W6.483216000"],
-        "_LIFFY15": ["N53.467724800", "W6.483221300"],
-        "_LIFFY16": ["N53.471450400", "W6.482571900"],
-        "_LIFFY17": ["N53.475115800", "W6.481274400"],
-        "_LIFFY18": ["N53.478681300", "W6.479342300"],
-        "_LIFFY19": ["N53.482108200", "W6.476795900"],
-        "_LIFFY2": ["N53.431225300", "W6.438771000"],
-        "_LIFFY20": ["N53.485359100", "W6.473662000"],
-        "_LIFFY21": ["N53.488398200", "W6.469974000"],
-        "_LIFFY22": ["N53.491192100", "W6.465771100"],
-        "_LIFFY23": ["N53.493709800", "W6.461098700"],
-        "_LIFFY24": ["N53.495923100", "W6.456007400"],
-        "_LIFFY25": ["N53.497807300", "W6.450552700"],
-        "_LIFFY26": ["N53.499340900", "W6.444794500"],
-        "_LIFFY27": ["N53.500506800", "W6.438796300"],
-        "_LIFFY28": ["N53.501291500", "W6.432624400"],
-        "_LIFFY29": ["N53.501686100", "W6.426347600"],
-        "_LIFFY3": ["N53.432389200", "W6.444760600"],
-        "_LIFFY30": ["N53.501686100", "W6.420035500"],
-        "_LIFFY4": ["N53.433920600", "W6.450511700"],
-        "_LIFFY5": ["N53.435802000", "W6.455961100"],
-        "_LIFFY6": ["N53.438012400", "W6.461049200"],
-        "_LIFFY7": ["N53.440526900", "W6.465720500"],
-        "_LIFFY8": ["N53.443317700", "W6.469924500"],
-        "_LIFFY9": ["N53.446353800", "W6.473615800"],
         "ABDOX": ["N53.28804124", "W6.15467833"],
         "ABIDO": ["N52d28m44.00", "W5d47m44.00"],
         "ABLIN": ["N52d46m58.00", "W4d59m33.00"],
@@ -240,6 +96,9 @@
         "DODIG": ["N53d57m46.00", "W6d29m34.00"],
         "DUB"  : ["N53d29m57.80", "W6d18m25.60"],
         "DUNLO": ["N53d19m48.00", "W5d30m00.00"],
+        "DW001": ["N53d18m41.00", "W6d08m46.40"],
+        "DW002": ["N53d20m51.00", "W6d10m50.00"],
+        "DW004": ["N53d14m06.00", "W6d25m04.00"],
         "DW551": ["N53d24m44.50", "W6d06m31.40"],
         "DW554": ["N53d24m38.80", "W6d04m51.60"],
         "DW555": ["N53d20m13.70", "W5d53m44.00"],
@@ -260,10 +119,7 @@
         "DWN27": ["N53.62676507", "W6.62139128"],
         "DWN28": ["N53.57028799", "W6.42219542"],
         "DWN29": ["N53d45m21.00", "W6d16m21.00"],
-        "DWS77": ["N53d20m51.50", "W6d10m50.30"],
-        "DWS78": ["N53d14m06.00", "W6d25m04.00"],
         "DWS80": ["N53.27026412", "W6.18056486"],
-        "DWS81": ["N53d18m41.30", "W6d08m46.50"],
         "DWW02": ["N53.40474272", "W6.53034209"],
         "DWW04": ["N53d44m17.90", "W6d52m52.90"],
         "DWW06": ["N53.55423300", "W6.62402343"],
@@ -1123,7 +979,7 @@
             "name": "Bepan Two Mike",
             "altitude": 9000,
             "rwy": {
-                "EIDW16": [["^DW002", "A30+"], "DW001"]
+                "EIDW16": [["^DW002", "A30+"], "^DW001"]
             },
             "body": ["NEPOD"],
             "exitPoints": {
@@ -1463,14 +1319,41 @@
                 ["DWN26", "BATED", "LIFFY*"]
             ]
         },
-        "NEVRI": {
-          "icao": "NEVRI",
-            "name": "Nevri",
-            "suffix": {"10":"6E", "16":"5M", "28":"1A", "34":"1G"},
+        "NEVRI1A": {
+          "icao": "NEVRI1A",
+            "name": "Nevri One Alpha",
+            "altitude": 9000,
             "rwy": {
-                "EIDW10": [["^DW551", "A30+"], "LEMTA"],
-                "EIDW16": [["^DWS77", "A30+"], "BATED", "ERUDA"],
-                "EIDW28": [["^OE", "A30+"], "DWN29"],
+                "EIDW28": [["^OE", "A30+"], "DWN29"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEVRI": ["NEVRI"]
+            },
+            "draw": [
+                ["OE", "DWN29", "NEVRI*"]
+            ]
+        },
+        "NEVRI1B": {
+            "icao": "NEVRI1B",
+            "name": "Nevri One Bravo",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW28": ["DUB", "DWN29"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEVRI": ["NEVRI"]
+            },
+            "draw": [
+                ["DUB", "DWN29", "NEVRI*"]
+            ]
+        },
+        "NEVRI1G": {
+          "icao": "NEVRI1G",
+            "name": "Nevri One Golf",
+            "altitude": 9000,
+            "rwy": {
                 "EIDW34": [["^DWN26", "A30+"], "DWN29"]
             },
             "body": [],
@@ -1478,19 +1361,14 @@
                 "NEVRI": ["NEVRI"]
             },
             "draw": [
-                ["DW551", "LEMTA", "NEVRI"],
-                ["DWS77", "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "NEVRI"],
-                ["_KISHA6", "DWN29", "NEVRI"]
+                ["DWN26", "DWN29", "NEVRI*"]
             ]
         },
-        "NEVRI(AB)": {
-            "icao": "NEVRI(AB)",
-            "name": "Nevri",
-            "suffix": {"10":"6F", "16":"5P", "28":"1B", "34":"1H"},
+        "NEVRI1H": {
+            "icao": "NEVRI1H",
+            "name": "Nevri One Hotel",
+            "altitude": 4000,
             "rwy": {
-                "EIDW10": ["DW931", "LEMTA"],
-                "EIDW16": ["OP", "BATED", "ERUDA"],
-                "EIDW28": ["DUB", "DWN29"],
                 "EIDW34": ["DUB", "DWN29"]
             },
             "body": [],
@@ -1498,17 +1376,119 @@
                 "NEVRI": ["NEVRI"]
             },
             "draw": [
-                ["NEVRI"]
+                ["DUB", "DWN29", "NEVRI*"]
             ]
         },
-        "OLONO": {
-            "icao": "OLONO",
-            "name": "Olono",
-            "suffix": {"10":"2E", "16":"1M", "28":"5A", "34":"5G"},
+        "NEVRI5P": {
+            "icao": "NEVRI5P",
+            "name": "Nevri Five Papa",
+            "altitude": 4000,
             "rwy": {
-                "EIDW10": [["^DW554", "A30+"], "IRDEX", "ERVAD"],
-                "EIDW16": [["^DWS77", "A30+"], "DWS81"],
-                "EIDW28": [["^OE", "A30+"], "BAL"],
+                "EIDW16": ["OP", "BATED", "ERUDA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEVRI": ["NEVRI"]
+            },
+            "draw": [
+                ["OP", "BATED", "ERUDA", "NEVRI*"]
+            ]
+        },
+        "NEVRI6E": {
+          "icao": "NEVRI6E",
+            "name": "Nevri Six Echo",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW10": [["^DW551", "A30+"], "LEMTA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEVRI": ["NEVRI"]
+            },
+            "draw": [
+                ["DW551", "LEMTA", "NEVRI*"]
+            ]
+        },
+        "NEVRI6F": {
+            "icao": "NEVRI6F",
+            "name": "Nevri Six Foxtrot",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW10": ["DW931", "LEMTA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEVRI": ["NEVRI"]
+            },
+            "draw": [
+                ["DW931", "LEMTA", "NEVRI*"]
+            ]
+        },
+        "NEVRI6M": {
+          "icao": "NEVRI6M",
+            "name": "Nevri Six Mike",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW16": [["^DW002", "A30+|S185-"], ["^BATED", "S185-"], "ERUDA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEVRI": ["NEVRI"]
+            },
+            "draw": [
+                ["DW002", "BATED", "ERUDA", "NEVRI*"]
+            ]
+        },
+        "OLONO5A": {
+            "icao": "OLONO5A",
+            "name": "Olono Five Alpha",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW28": [["^OE", "A30+"], "BAL"]
+            },
+            "body": ["NEPOD"],
+            "exitPoints": {
+                "OLONO": ["OLONO"]
+            },
+            "draw": [
+                ["OE", "BAL", "NEPOD", "OLONO*"]
+            ]
+        },
+        "OLONO2E": {
+            "icao": "OLONO2E",
+            "name": "Olono Two Echo",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW10": [["^DW554", "A30+"], "IRDEX", "ERVAD"]
+            },
+            "body": ["NEPOD"],
+            "exitPoints": {
+                "OLONO": ["OLONO"]
+            },
+            "draw": [
+                ["DW554", "IRDEX", "ERVAD", "NEPOD", "OLONO*"]
+            ]
+        },
+        "OLONO2M": {
+            "icao": "OLONO2M",
+            "name": "Olono Two Mike",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW16": [["^DW002", "A30+"], "^DW001"]
+            },
+            "body": ["NEPOD"],
+            "exitPoints": {
+                "OLONO": ["OLONO"]
+            },
+            "draw": [
+                ["DW002", "DW001", "NEPOD", "OLONO*"]
+            ]
+        },
+        "OLONO5G": {
+            "icao": "OLONO5G",
+            "name": "Olono Five Golf",
+            "altitude": 9000,
+            "rwy": {
                 "EIDW34": [["^DWN26", "A30+"], "BAL"]
             },
             "body": ["NEPOD"],
@@ -1516,34 +1496,89 @@
                 "OLONO": ["OLONO"]
             },
             "draw": [
-                ["NEPOD", "OLONO"]
+                ["DWN26", "BAL", "NEPOD", "OLONO*"]
             ]
         },
-        "OLONO(AB)": {
-            "icao": "OLONO(AB)",
-            "name": "Olono",
-            "suffix": {"10":"2F", "16":"1P", "28":"1B", "34":"5H"},
+        "OLONO1B": {
+            "icao": "OLONO1B",
+            "name": "Olono One Bravo",
+            "altitude": 4000,
             "rwy": {
-                "EIDW10": ["DW679", "IRDEX", "ERVAD"],
-                "EIDW16": ["DWS81"],
-                "EIDW28": ["DWS80", "DW682"],
-                "EIDW34": ["OE", "DWW02", "BAL"]
+                "EIDW28": ["DWS80", "DW682"]
             },
             "body": ["NEPOD"],
             "exitPoints": {
                 "OLONO": ["OLONO"]
             },
             "draw": [
-                ["OLONO"]
+                ["DWS80", "DW682", "NEPOD", "OLONO*"]
             ]
         },
-        "PELIG": {
-            "icao": "PELIG",
-            "name": "Pelig",
-            "suffix": {"16":"5M", "28":"5A", "34":"5G"},
+        "OLONO2F": {
+            "icao": "OLONO2F",
+            "name": "Olono Two Foxtrot",
+            "altitude": 4000,
             "rwy": {
-                "EIDW16": [["^DWS77", "A30+"], "DWS78"],
-                "EIDW28": [["^OE", "A30+"]],
+                "EIDW10": ["DW679", "IRDEX", "ERVAD"]
+            },
+            "body": ["NEPOD"],
+            "exitPoints": {
+                "OLONO": ["OLONO"]
+            },
+            "draw": [
+                ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO*"]
+            ]
+        },
+        "OLONO2P": {
+            "icao": "OLONO2P",
+            "name": "Olono Two Papa",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW16": ["DW001"]
+            },
+            "body": ["NEPOD"],
+            "exitPoints": {
+                "OLONO": ["OLONO"]
+            },
+            "draw": [
+                ["DW001", "NEPOD", "OLONO*"]
+            ]
+        },
+        "OLONO5H": {
+            "icao": "OLONO5H",
+            "name": "Olono Five Hotel",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW34": ["OE", ["DWW02", "A40+"], "BAL"]
+            },
+            "body": ["NEPOD"],
+            "exitPoints": {
+                "OLONO": ["OLONO"]
+            },
+            "draw": [
+                ["OE", "DWW02", "BAL", "NEPOD", "OLONO*"]
+            ]
+        },
+        "PELIG5A": {
+            "icao": "PELIG5A",
+            "name": "Pelig Five Alpha",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW28": [["^OE", "A30+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "PELIG": ["PELIG"]
+            },
+            "draw": [
+                ["OE", "PELIG*"]
+            ]
+        },
+        "PELIG5G": {
+            "icao": "PELIG5G",
+            "name": "Pelig Five Golf",
+            "altitude": 9000,
+            "rwy": {
                 "EIDW34": [["^DWN26", "A30+"]]
             },
             "body": [],
@@ -1551,15 +1586,13 @@
                 "PELIG": ["PELIG"]
             },
             "draw": [
-                ["_DEXEN5", "PELIG"],
-                ["DWS78", "PELIG"],
-                ["_BAL17", "PELIG"]
+                ["DWN26", "PELIG*"]
             ]
         },
-        "PELIG(AB)": {
-            "icao": "PELIG(AB)",
-            "name": "Pelig",
-            "suffix": {"34":"5H"},
+        "PELIG5H": {
+            "icao": "PELIG5H",
+            "name": "Pelig Five Hotel",
+            "altitude": 4000,
             "rwy": {
                 "EIDW34": ["OE", ["DWW02", "A40+"]]
             },
@@ -1568,17 +1601,74 @@
                 "PELIG": ["PELIG"]
             },
             "draw": [
-                ["PELIG"]
+                ["OE", "DWW02", "PELIG*"]
             ]
         },
-        "PESIT": {
-            "icao": "PESIT",
-            "name": "Pesit",
-            "suffix": {"10":"2E", "16":"1M", "28":"5A", "34":"5G"},
+        "PELIG6M": {
+            "icao": "PELIG6M",
+            "name": "Pelig Six Mike",
+            "altitude": 9000,
             "rwy": {
-                "EIDW10": [["^DW554", "A30+"], "IRDEX", "ERVAD"],
-                "EIDW16": [["^DWS77", "A30+"], "DWS81", "NEPOD"],
-                "EIDW28": [["^OE", "A30+"], "BAL", "NEPOD"],
+                "EIDW16": [["^DW002", "A30+|S185-"], "DWW04"]
+            },
+            "body": [],
+            "exitPoints": {
+                "PELIG": ["PELIG"]
+            },
+            "draw": [
+                ["DW002", "DWW04", "PELIG*"]
+            ]
+        },
+        "PESIT5A": {
+            "icao": "PESIT5A",
+            "name": "Pesit Five Alpha",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW28": [["^OE", "A30+"], "BAL", "NEPOD"]
+            },
+            "body": [],
+            "exitPoints": {
+                "PESIT": ["PESIT"]
+            },
+            "draw": [
+                ["OE", "BAL", "NEPOD", "PESIT*"]
+            ]
+        },
+        "PESIT2E": {
+            "icao": "PESIT2E",
+            "name": "Pesit Two Echo",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW10": [["^DW554", "A30+"], "IRDEX", "ERVAD"]
+            },
+            "body": [],
+            "exitPoints": {
+                "PESIT": ["PESIT"]
+            },
+            "draw": [
+                ["DW554", "IRDEX", "ERVAD", "PESIT*"]
+            ]
+        },
+        "PESIT2M": {
+            "icao": "PESIT2M",
+            "name": "Pesit Two Mike",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW16": [["^DW002", "A30+"], "^DW001", "NEPOD"]
+            },
+            "body": [],
+            "exitPoints": {
+                "PESIT": ["PESIT"]
+            },
+            "draw": [
+                ["DW002", "DW001", "NEPOD", "PESIT*"]
+            ]
+        },
+        "PESIT5G": {
+            "icao": "PESIT5G",
+            "name": "Pesit Five Golf",
+            "altitude": 9000,
+            "rwy": {
                 "EIDW34": [["^DWN26", "A30+"], "BAL", "NEPOD"]
             },
             "body": [],
@@ -1586,20 +1676,44 @@
                 "PESIT": ["PESIT"]
             },
             "draw": [
-                ["ERVAD", "PESIT"],
-                ["DWS80", "DW682"],
-                ["OE", "DWW02", "BAL"],
-                ["NEPOD", "PESIT"]
+                ["DWN26", "BAL", "NEPOD", "PESIT*"]
             ]
         },
-        "ROTEV": {
-            "icao": "ROTEV",
-            "name": "Rotev",
-            "suffix": {"10":"6E", "16":"5M", "28":"1A", "34":"1G"},
+        "ROTEV1A": {
+            "icao": "ROTEV1A",
+            "name": "Rotev One Alpha",
+            "altitude": 9000,
             "rwy": {
-                "EIDW10": [["^DW551", "A30+"], "LEMTA"],
-                "EIDW16": [["^DWS77", "A30+"], "BATED", "ERUDA"],
-                "EIDW28": [["^OE", "A30+"], "DWN29"],
+                "EIDW28": [["^OE", "A30+"], "DWN29"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ROTEV": ["ROTEV"]
+            },
+            "draw": [
+                ["OE", "DWN29", "ROTEV*"]
+            ]
+        },
+        "ROTEV1B": {
+            "icao": "ROTEV1B",
+            "name": "Rotev One Bravo",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW28": ["DUB", "DWN29"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ROTEV": ["ROTEV"]
+            },
+            "draw": [
+                ["DUB", "DWN29", "ROTEV*"]
+            ]
+        },
+        "ROTEV1G": {
+            "icao": "ROTEV1G",
+            "name": "Rotev One Golf",
+            "altitude": 9000,
+            "rwy": {
                 "EIDW34": [["^DWN26", "A30+"], "DWN29"]
             },
             "body": [],
@@ -1607,20 +1721,14 @@
                 "ROTEV": ["ROTEV"]
             },
             "draw": [
-                ["LEMTA", "ROTEV"],
-                ["_LIFFY21", "DWN29"],
-                ["ERUDA", "ROTEV"],
-                ["DWN29", "ROTEV"]
+                ["DWN26", "DWN29", "ROTEV*"]
             ]
         },
-        "ROTEV(AB)": {
-            "icao": "ROTEV(AB)",
-            "name": "Rotev",
-            "suffix": {"10":"6F", "16":"5P", "28":"1B", "34":"1H"},
+        "ROTEV1H": {
+            "icao": "ROTEV1H",
+            "name": "Rotev One Hotel",
+            "altitude": 4000,
             "rwy": {
-                "EIDW10": ["DW931", "LEMTA"],
-                "EIDW16": ["OP", "BATED", "ERUDA"],
-                "EIDW28": ["DUB", "DWN29"],
                 "EIDW34": ["DUB", "DWN29"]
             },
             "body": [],
@@ -1628,17 +1736,104 @@
                 "ROTEV": ["ROTEV"]
             },
             "draw": [
-                ["ROTEV"]
+                ["DUB", "DWN29", "ROTEV*"]
             ]
         },
-        "SUROX": {
-            "icao": "SUROX",
-            "name": "Surox",
-            "suffix": {"10":"6E", "16":"5M", "28":"1A", "34":"1G"},
+        "ROTEV5P": {
+            "icao": "ROTEV5P",
+            "name": "Rotev Five Papa",
+            "altitude": 4000,
             "rwy": {
-                "EIDW10": [["^DW551", "A30+"], "LEMTA", "DODIG"],
-                "EIDW16": [["^DWS77", "A30+"], "BATED", "ERUDA", "DODIG"],
-                "EIDW28": [["^OE", "A30+"], "DWW04"],
+                "EIDW16": ["OP", "BATED", "ERUDA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ROTEV": ["ROTEV"]
+            },
+            "draw": [
+                ["OP", "BATED", "ERUDA", "ROTEV*"]
+            ]
+        },
+        "ROTEV6E": {
+            "icao": "ROTEV6E",
+            "name": "Rotev Six Echo",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW10": [["^DW551", "A30+"], "LEMTA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ROTEV": ["ROTEV"]
+            },
+            "draw": [
+                ["DW551", "LEMTA", "ROTEV*"]
+            ]
+        },
+        "ROTEV6F": {
+            "icao": "ROTEV6F",
+            "name": "Rotev Six Foxtrot",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW10": ["DW931", "LEMTA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ROTEV": ["ROTEV"]
+            },
+            "draw": [
+                ["DW931", "LEMTA", "ROTEV*"]
+            ]
+        },
+        "ROTEV6M": {
+            "icao": "ROTEV6M",
+            "name": "Rotev Six Mike",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW16": [["^DW002", "A30+|S185-"], ["^BATED", "S185-"], "ERUDA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ROTEV": ["ROTEV"]
+            },
+            "draw": [
+                ["DW002", "BATED", "ERUDA", "ROTEV*"]
+            ]
+        },
+        "SUROX1A": {
+            "icao": "SUROX1A",
+            "name": "Surox One Alpha",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW28": [["^OE", "A30+"], "DWW04"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SUROX": ["SUROX"]
+            },
+            "draw": [
+                ["OE", "DWW04", "SUROX*"]
+            ]
+        },
+        "SUROX1B": {
+            "icao": "SUROX1B",
+            "name": "Surox One Bravo",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW28": ["DUB", "DWN28", "DWW04"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SUROX": ["SUROX"]
+            },
+            "draw": [
+                ["DUB", "DWN28", "DWW04", "SUROX*"]
+            ]
+        },
+        "SUROX1G": {
+            "icao": "SUROX1G",
+            "name": "Surox One Golf",
+            "altitude": 9000,
+            "rwy": {
                 "EIDW34": [["^DWN26", "A30+"], "DWW06", "DWW04"]
             },
             "body": [],
@@ -1646,20 +1841,14 @@
                 "SUROX": ["SUROX"]
             },
             "draw": [
-                ["ERUDA", "DODIG", "SUROX"],
-                ["OP", "BATED"],
-                ["DUB", "DWN28", "DWW04"],
-                ["_LIFFY10", "DWW04", "SUROX"]
+                ["DWN26", "DWW06", "DWW04", "SUROX*"]
             ]
         },
-        "SUROX(AB)": {
-            "icao": "SUROX(AB)",
-            "name": "Surox",
-            "suffix": {"10":"6F", "16":"5P", "28":"1B", "34":"1H"},
+        "SUROX1H": {
+            "icao": "SUROX1H",
+            "name": "Surox One Hotel",
+            "altitude": 4000,
             "rwy": {
-                "EIDW10": ["DW931", "LEMTA", "DODIG"],
-                "EIDW16": ["OP", "BATED", "ERUDA", "DODIG"],
-                "EIDW28": ["DUB", "DWN28", "DWW04"],
                 "EIDW34": ["DUB", "DWN28", "DWW04"]
             },
             "body": [],
@@ -1667,8 +1856,67 @@
                 "SUROX": ["SUROX"]
             },
             "draw": [
-                ["DW931", "LEMTA"],
-                ["SUROX"]
+                ["DUB", "DWN28", "DWW04", "SUROX*"]
+            ]
+        },
+        "SUROX5P": {
+            "icao": "SUROX5P",
+            "name": "Surox Five Papa",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW16": ["OP", "BATED", "ERUDA", "DODIG"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SUROX": ["SUROX"]
+            },
+            "draw": [
+                ["OP", "BATED", "ERUDA", "DODIG", "SUROX*"]
+            ]
+        },
+        "SUROX6E": {
+            "icao": "SUROX6E",
+            "name": "Surox Six Echo",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW10": [["^DW551", "A30+"], "LEMTA", "DODIG"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SUROX": ["SUROX"]
+            },
+            "draw": [
+                ["DW551", "LEMTA", "DODIG", "SUROX*"]
+            ]
+        },
+        "SUROX6F": {
+            "icao": "SUROX6F",
+            "name": "Surox Six Foxtrot",
+            "altitude": 4000,
+            "rwy": {
+                "EIDW10": ["DW931", "LEMTA", "DODIG"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SUROX": ["SUROX"]
+            },
+            "draw": [
+                ["DW931", "LEMTA", "DODIG", "SUROX*"]
+            ]
+        },
+        "SUROX6M": {
+            "icao": "SUROX6M",
+            "name": "Surox Six Mike",
+            "altitude": 9000,
+            "rwy": {
+                "EIDW16": [["^DW002", "A30+|S185-"], ["^BATED", "S185-"], "ERUDA", "DODIG"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SUROX": ["SUROX"]
+            },
+            "draw": [
+                ["DW002", "BATED", "ERUDA", "DODIG", "SUROX*"]
             ]
         }
     },
