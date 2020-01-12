@@ -1,5 +1,5 @@
 {
-	"airac": 2001,
+    "airac": 2001,
     "radio": {
         "twr": "Dublin Tower",
         "app": "Dublin Approach",
@@ -20,7 +20,7 @@
     "has_terrain": true,
     "wind": {
         "angle": 250,
-        "speed": 11
+        "speed": 20
     },
     "arrivalRunway": "28",
     "departureRunway": "28",
@@ -2736,62 +2736,30 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW28.SUROX1A.SUROX..ENULA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["aal/long", 5],
-                ["aca/long", 3],
-                ["dal/long", 3],
-                ["ein/long", 5],
-                ["eth/long", 3],
-                ["n/fastGA", 5],
-                ["ual/long", 3],
-                ["wja", 2]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.SUROX1B.SUROX..ENULA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["stk", 5]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
             "route": "EIDW28.LIFFY5A.LIFFY..IDEXA..GINIS",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5,
+            "rate": 4.83,
             "airlines": [
-                ["baw", 10],
-                ["bcy", 10],
-                ["dlh", 5],
-                ["ein", 20],
-                ["etd/long", 3],
-                ["ewg", 3],
-                ["n/fastGA", 3],
-                ["klm", 5],
-                ["lgl", 1],
-                ["lzb", 1],
-                ["mld", 2],
-                ["nax", 3],
-                ["ryr", 30],
-                ["sas", 5],
-                ["sbi", 2],
-                ["tom", 2],
-                ["ups", 1]
+                ["afl/short", 1],
+                ["baw/short", 7],
+                ["bcy/rj85", 2],
+                ["blx/short", 1],
+                ["bms", 1],
+                ["bti", 1],
+                ["ctn/a319", 1],
+                ["dlh/short", 4],
+                ["ein/short", 15],
+                ["etd/b77w", 1],
+                ["ewg/a320", 1],
+                ["fia", 1],
+                ["klm/e190", 2],
+                ["klm/short", 2],
+                ["ldm/short", 1],
+                ["mld/a321", 1],
+                ["ryr/b738", 46],
+                ["tui", 1]
             ]
         },
         {
@@ -2802,94 +2770,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 0.69,
             "airlines": [
-                ["bee", 5],
-                ["stk", 15]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.BEPAN5A.BEPAN..DIMUS..BANBA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["aea", 1],
-                ["afr", 3],
-                ["bcy", 10],
-                ["ein", 20],
-                ["n/fastGA", 3],
-                ["fdx", 1],
-                ["fpo", 1],
-                ["ibs", 5],
-                ["ryr", 30],
-                ["tom", 2],
-                ["tvf", 2],
-                ["tvs", 1],
-                ["vlg", 2]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.BEPAN1B.BEPAN..DIMUS..BANBA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["stk", 15]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.BAMLI1B.BAMLI..EGT",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["stk", 5]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.INKUR5A.INKUR..KORAK..RIKUL..SHA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["aal/long", 5],
-                ["aca/long", 3],
-                ["dal/long", 3],
-                ["ein/long", 5],
-                ["eth/long", 3],
-                ["n/fastGA", 5],
-                ["ual/long", 3],
-                ["wja", 2]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.INKUR5B.INKUR..KORAK..RIKUL..SHA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["stk", 5]
+                ["bee/dh8d", 3],
+                ["stk/einRegional", 9]
             ]
         },
         {
@@ -2900,130 +2784,18 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5,
+            "rate": 2.7,
             "airlines": [
                 ["aee", 1],
-                ["baw", 10],
-                ["bcy", 10],
-                ["dlh", 5],
-                ["ein", 20],
-                ["eth/long", 3],
-                ["ewg", 3],
-                ["n/fastGA", 3],
-                ["klm", 5],
-                ["lgl", 1],
-                ["lzb", 1],
-                ["mld", 2],
-                ["ryr", 30],
-                ["sbi", 2],
-                ["tay", 1],
-                ["thy", 4],
-                ["tom", 2],
-                ["uae", 5]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.OLONO5A.OLONO..CML..TISMO..CRK",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["aal/long", 5],
-                ["dal/long", 3],
-                ["ein", 20],
-                ["ein/long", 5],
-                ["eth/long", 3],
-                ["n/fastGA", 3],
-                ["ryr", 30],
-                ["tom", 2],
-                ["ual/long", 3],
-                ["ups", 1]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.OLONO1B.OLONO..CML..TISMO..CRK",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["stk", 15]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.ROTEV1A.ROTEV..GOTNA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["ein", 20],
-                ["n/fastGA", 3],
-                ["nax", 3],
-                ["ryr", 30],
-                ["sas", 5],
-                ["tom", 2]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.ROTEV1B.ROTEV..GOTNA",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["bee", 5],
-                ["stk", 15]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.NEVRI1A.NEVRI..ABSUN..BEL",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["aal/long", 5],
-                ["aca/long", 3],
-                ["dal/long", 3],
-                ["ein", 20],
-                ["ein/long", 5],
-                ["eth/long", 3],
-                ["n/fastGA", 3],
-                ["nax", 3],
-                ["ryr", 30],
-                ["sas", 5],
-                ["ual/long", 3]
-            ]
-        },
-        {
-            "origin": "EIDW",
-            "destination": "",
-            "category": "departure",
-            "route": "EIDW28.NEVRI1B.NEVRI..ABSUN..BEL",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["bee", 5],
-                ["stk", 15]
+                ["bel/short", 1],
+                ["bms", 1],
+                ["dlh/short", 2],
+                ["ein/short", 8],
+                ["qtr/b788", 1],
+                ["ryr/b738", 29],
+                ["thy/short", 2],
+                ["tui", 1],
+                ["uae/b777", 2]
             ]
         },
         {
@@ -3034,40 +2806,162 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 1.33,
             "airlines": [
-                ["aea", 1],
-                ["aee", 1],
-                ["afr", 3],
-                ["baw", 10],
-                ["bcy", 10],
-                ["ein", 20],
-                ["n/fastGA", 3],
+                ["afr/cargo", 1],
+                ["afr/short", 3],
+                ["ein/short", 9],
+                ["eth/long", 1],
                 ["fpo", 1],
-                ["ibs", 5],
-                ["ryr", 30],
-                ["swr", 3],
-                ["tay", 1],
-                ["thy", 4],
-                ["tvf", 2],
-                ["tvs", 1],
-                ["vlg", 2]
+                ["ryr/b738", 6],
+                ["swr/short", 1],
+                ["tvf", 1],
+                ["vlg", 1]
             ]
         },
         {
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW28.ABIDO1B.PESIT..BAKUR..STU",
+            "route": "EIDW28.BEPAN5A.BEPAN..DIMUS..BANBA",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 0.64,
             "airlines": [
-                ["bee", 5],
-                ["stk", 15]
+                ["blx/short", 1],
+                ["ein/short", 4],
+                ["ibs", 1],
+                ["mac", 1],
+                ["ryr/b738", 5]
             ]
         },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.OLONO5A.OLONO..CML..TISMO..CRK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.81,
+            "airlines": [
+                ["ein/short", 5],
+                ["ryr/b738", 7],
+                ["tap/airbusShort", 2]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.INKUR5A.INKUR..KORAK..RIKUL..SHA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.06,
+            "airlines": [
+                ["aal/long", 1],
+                ["wja/eidw", 1]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.INKUR5B.INKUR..KORAK..RIKUL..SHA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["stk/einRegional", 2]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.SUROX1A.SUROX..ENULA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.98,
+            "airlines": [
+                ["aal/long", 1],
+                ["abr/aerLingus", 1],
+                ["aca/long", 1],
+                ["dal/long", 1],
+                ["ein/a21n", 2],
+                ["ein/long", 6],
+                ["eth/long", 3],
+                ["ice", 1],
+                ["tsc/eidw", 1],
+                ["ual/long", 1],
+                ["wja/eidw", 1]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.BAMLI1B.BAMLI..EGT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["stk/einRegional", 2]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.NEVRI1A.NEVRI..ABSUN..BEL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["ein/long", 2],
+                ["wja/eidw", 1],
+                ["wja/eidw", 1]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.ROTEV1A.ROTEV..GOTNA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.64,
+            "airlines": [
+                ["cpa", 1],
+                ["fin/airbusShort", 2],
+                ["nax/short", 2],
+                ["ryr/b738", 8],
+                ["sas/airbusShort", 2]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW28.ROTEV1B.ROTEV..GOTNA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.47,
+            "airlines": [
+                ["log", 2],
+                ["stk/einRegional", 6]
+            ]
+        },
+        
+
         {
             "origin": "",
             "destination": "EIDW",
