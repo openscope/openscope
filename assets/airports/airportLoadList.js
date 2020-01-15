@@ -423,13 +423,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Doha Hamad International Airport',
             premium: false
-        // },
-        // {
-        //     icao: 'panc',
-        //     level: 'easy',
-        //     name: 'Ted Stevens Anchorage International Airport',
-        //     premium: false
-        // },
+        },
+        {
+            icao: 'panc',
+            level: 'easy',
+            name: 'Ted Stevens Anchorage International Airport',
+            premium: false
+        }
         // {
         //     icao: 'rjbb',
         //     level: 'hard',
@@ -573,6 +573,6 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     level: 'hard',
         //     name: 'Shanghai Pudong International Airport',
         //     premium: false
-        }
+        // }
     ];
 })();
