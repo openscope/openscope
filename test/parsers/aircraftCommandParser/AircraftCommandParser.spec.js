@@ -136,8 +136,8 @@ ava('when passed hold LAM it creates the correct command with the correct argume
     const model = new AircraftCommandParser(commandStringMock);
 
     t.true(model.args[0][0] === 'hold');
-    t.true(model.args[0][1] === 'right');
-    t.true(model.args[0][2] === '1min');
+    t.true(model.args[0][1] === null);
+    t.true(model.args[0][2] === null);
     t.true(model.args[0][3] === 'lam');
 });
 

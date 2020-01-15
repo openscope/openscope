@@ -10,7 +10,7 @@ The airport was initially known as Ringway Airport when it opened in 1938. It wa
 ### About the Manchester Area Control Centre
 The Manchester Area Control Centre controls most aircraft over the north of England, the Midlands and North Wales between 2,500ft and FL285. It is located in the operations centre of NATS in Prestwick, hence the callsign "Scottish Control". The west sector is available for you to control within openScope.
 
-The file "MAN West and East xxxx_xx.pdf" from [here](https://vatsim.uk/download/info/?downloadID=00200) may be useful to understand the MACC.
+The file "MAN West and East xxxx_xx.pdf" from <a href="https://vatsim.uk/download/info/?downloadID=00200" target="_blank">here</a> may be useful to understand the MACC.
 
 
 ### Standard Operating Procedures

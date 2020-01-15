@@ -1,9 +1,41 @@
-# 6.15.0 (November 1, 2019)
+# 6.16.0 (January 31, 2020)
 ### New Features
 
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
+- <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
+
+
+# 6.15.1 (December 2, 2020)
+### Hotfixes
+- <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
+
+
+# 6.15.0 (December 1, 2019)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1105" target="_blank">#1105</a> - Add in-sim Airport Guide accessible via footer button
+- <a href="https://github.com/openscope/openscope/issues/1191" target="_blank">#1191</a> - Consolidate command bar buttons
+- <a href="https://github.com/openscope/openscope/issues/45" target="_blank">#45</a> - Add range/bearing measurement tool via Control button
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1456" target="_blank">#1456</a> - Only allow headings between 001 and 360
+- <a href="https://github.com/openscope/openscope/issues/1474" target="_blank">#1474</a> - Fix crash at KAUS from missing FDX fleet
+- <a href="https://github.com/openscope/openscope/issues/1476" target="_blank">#1476</a> - Fix missing terrain at KSTL
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1451" target="_blank">#1451</a> - Add ability to specify the radial with the `hold` command
+- <a href="https://github.com/openscope/openscope/issues/1458" target="_blank">#1458</a> - Add support for holding patterns with distance-based legs
+- <a href="https://github.com/openscope/openscope/issues/1431" target="_blank">#1431</a> - Expand capabilities for predefined holding patterns in airport files
+- <a href="https://github.com/openscope/openscope/issues/1402" target="_blank">#1402</a> - Prevent assignment of reserved/nondiscrete beacon codes
+- <a href="https://github.com/openscope/openscope/issues/1472" target="_blank">#1472</a> - Add water polygons to airport terrain files
+
+
+# 6.14.2 (October 17, 2019)
+### Hotfixes
+- [#1463](https://github.com/openscope/openscope/issues/1463) - Fix travis build notifications
+- [#1453](https://github.com/openscope/openscope/issues/1453) - Fix EINN video maps format which was causing sim to crash
 
 
 # 6.14.0 (October 1, 2019)

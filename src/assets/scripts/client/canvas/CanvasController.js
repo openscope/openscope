@@ -7,6 +7,7 @@ import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MeasureTool from '../measurement/MeasureTool';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
@@ -415,6 +416,7 @@ export default class CanvasController {
         this._clearCanvasContext(dynamicCanvasCtx);
         this._drawRadarTargetList(dynamicCanvasCtx);
         this._drawAircraftDataBlocks(dynamicCanvasCtx);
+        this._drawMeasureTool(dynamicCanvasCtx);
 
         this._shouldShallowRender = false;
         this._shouldDeepRender = false;
@@ -1215,6 +1217,157 @@ export default class CanvasController {
         // this.canvas_draw_future_track_fixes(cc, twin, future_track);
 
         cc.restore();
+    }
+
+    /**
+     * Draw the `MeasureTool` path and text labels
+     *
+     * @for CanvasController
+     * @method _drawMeasureTool
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawMeasureTool(cc) {
+        if (!MeasureTool.hasPaths) {
+            return;
+        }
+
+        const pathInfoList = MeasureTool.buildPathInfo();
+
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+        pathInfoList.forEach((pathInfo) => {
+            this._drawMeasureToolPath(cc, pathInfo);
+            this._drawMeasureToolLabels(cc, pathInfo);
+        });
+
+        cc.restore();
+    }
+
+    /**
+     * Draw the `MeasureTool` text labels
+     *
+     * @for CanvasController
+     * @method _drawMeasureToolLabels
+     * @param cc {HTMLCanvasContext}
+     * @param pathInfo {object} as returned by `MeasureTools.getPointsAndLabels()`
+     * @private
+     */
+    _drawMeasureToolLabels(cc, pathInfo) {
+        let leg = pathInfo.firstLeg;
+        const values = [];
+        const labelPadding = 5;
+
+        // This way the points are translated only once
+        while (leg != null) {
+            // Ignore empty labels
+            if (leg.labels !== null && leg.labels.length !== 0) {
+                const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+
+                values.push({
+                    x: position.x,
+                    y: position.y,
+                    labels: leg.labels
+                });
+            }
+
+            leg = leg.next;
+        }
+
+        // Shortcut if there are no labels (line is too short)
+        if (values.length === 0) {
+            return;
+        }
+
+        // Label backgrounds
+        cc.fillStyle = this.theme.SCOPE.MEASURE_BACKGROUND;
+        cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
+
+        values.forEach((item) => {
+            const { x, y, labels } = item;
+            const height = (2 * labelPadding) + (12 * labels.length);
+            const maxLabelWidth = labels.reduce((lastWidth, label) => {
+                const newWidth = cc.measureText(label).width;
+
+                return Math.max(lastWidth, newWidth);
+            }, 0);
+            const width = (2 * labelPadding) + maxLabelWidth;
+
+            cc.fillRect(x, y, width, height);
+        });
+
+        // Label text
+        cc.fillStyle = this.theme.SCOPE.MEASURE_TEXT;
+
+        values.forEach((item) => {
+            const { labels } = item;
+            const x = item.x + labelPadding;
+            const y = item.y + 15;
+
+            labels.forEach((line, index) => {
+                cc.fillText(line, x, y + (12 * index));
+            });
+        });
+    }
+
+    /**
+     * Draw the `MeasureTool` path
+     *
+     * @for CanvasController
+     * @method _drawMeasureToolPath
+     * @param cc {HTMLCanvasContext}
+     * @param pathInfo {object} as returned by `MeasureTools.getPointsAndLabels()`
+     * @private
+     */
+    _drawMeasureToolPath(cc, pathInfo) {
+        const { initialTurn } = pathInfo;
+        let leg = pathInfo.firstLeg;
+        const firstPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.startPoint);
+        const firstMidPoint = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.midPoint);
+
+        cc.strokeStyle = this.theme.SCOPE.MEASURE_LINE;
+
+        cc.beginPath();
+
+        // If available, this draws the arc the a/c will fly to intercept the course to the
+        // first fix
+        if (initialTurn !== null) {
+            const {
+                isRHT, center, entryAngle, exitAngle, turnRadius
+            } = initialTurn;
+            const position = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(center);
+            const radius = CanvasStageModel.translateKilometersToPixels(turnRadius);
+
+            // The angles calculated in the `MeasureTool` are magnetic, and have to be shifted CCW 90°
+            cc.arc(position.x, position.y, radius, entryAngle - Math.PI / 2, exitAngle - Math.PI / 2, !isRHT);
+        }
+
+        // Draw up to the first midpoint
+        cc.moveTo(firstPoint.x, firstPoint.y);
+        cc.lineTo(firstMidPoint.x, firstMidPoint.y);
+
+        // Iterate through the linked list
+        while (leg != null) {
+            const { next } = leg;
+            const radius = CanvasStageModel.translateKilometersToPixels(leg.radius);
+            const position1 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(leg.endPoint);
+
+            if (next === null) {
+                // This is the last leg, so simply draw to the end point
+                cc.lineTo(position1.x, position1.y);
+            } else {
+                // Draw an arc'd line to the next midpoint
+                const position2 = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(next.midPoint);
+
+                cc.arcTo(position1.x, position1.y, position2.x, position2.y, radius);
+                cc.lineTo(position2.x, position2.y);
+            }
+
+            leg = next;
+        }
+
+        cc.stroke();
     }
 
     /**

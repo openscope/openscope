@@ -1,0 +1,77 @@
+#airportGuide-container {
+    background-color: @dark-085;
+    border: 6px solid @blue-medium;
+    border-radius: 8px;
+    box-shadow: 0 0 50px -10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    height: auto;
+    margin: auto;
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    max-height: ~"calc(85% - 2.3em - 20px)";
+    max-width: 80%;
+    position: absolute;
+    transition: opacity 0.5s ease;
+    left: -99999px;
+    opacity: 0;
+    overflow-y: auto;
+    pointer-events: none;
+    width: fit-content;
+    z-index: 200;
+}
+
+#airportGuide-container.open {
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    pointer-events: auto;
+    right: 0;
+    top: 0;
+}
+
+#airportGuide-bd {
+    color: @light-gray;
+    font-size: 12px;
+    padding: 10px 15px;
+}
+
+/*
+    markup here is driven by markdown files converted to html.
+    we cannot control classnames any deeper than the container
+    so everything must be styled via attributes.
+ */
+#airportGuide-bd h1,
+#airportGuide-bd h2,
+#airportGuide-bd h3,
+#airportGuide-bd h4,
+#airportGuide-bd h5,
+#airportGuide-bd h6 {
+    font-size: 16px;
+    padding-top: 15px;
+}
+
+#airportGuide-bd p {
+    padding: 15px 0;
+}
+
+#airportGuide-bd p + p {
+    padding: 5px 0;
+}
+
+#airportGuide-bd a {
+    color: @light-gray;
+}
+
+#airportGuide-bd table,
+#airportGuide-bd th,
+#airportGuide-bd td {
+    border: 1px solid #666666;
+    border-collapse: collapse;
+}
+
+#airportGuide-bd th {
+    padding: 5px;
+}
+
+#airportGuide-bd td {
+    padding: 3px;
+}

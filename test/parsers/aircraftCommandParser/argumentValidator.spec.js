@@ -12,6 +12,7 @@ import {
     fixValidator,
     headingValidator,
     holdValidator,
+    isValidCourseString,
     squawkValidator,
     optionalAltitudeValidator,
     crossingValidator
@@ -178,42 +179,49 @@ ava('.fixValidator() returns a string when passed anything other than a string',
 
 ava('.headingValidator() returns a string when passed the wrong number of arguments', t => {
     let result = headingValidator(['042']);
-    t.true(typeof result === 'undefined');
+    t.is(result, undefined);
 
     result = headingValidator(['l', '42']);
-    t.true(typeof result === 'undefined');
+    t.is(result, undefined);
 
     result = headingValidator();
-    t.true(result === 'Invalid argument length. Expected one or two arguments');
+    t.is(result, 'Invalid argument length. Expected one or two arguments');
 
     result = headingValidator([]);
-    t.true(result === 'Invalid argument length. Expected one or two arguments');
+    t.is(result, 'Invalid argument length. Expected one or two arguments');
 
     result = headingValidator(['l', '42', 'threeve']);
-    t.true(result === 'Invalid argument length. Expected one or two arguments');
+    t.is(result, 'Invalid argument length. Expected one or two arguments');
 });
 
 ava('.headingValidator() returns a string when passed the wrong type of arguments', t => {
-    t.true(headingValidator(['threeve']) === 'Invalid argument. Heading must be a number');
-    t.true(headingValidator(['42', '42']) === 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
-    t.true(headingValidator(['l', 'threeve']) === 'Invalid argument. Heading must be a number');
-    t.true(headingValidator(['42', '42']) === 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
-    t.true(headingValidator(['l', 'threeve']) === 'Invalid argument. Heading must be a number');
+    t.is(headingValidator(['threeve']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['42', '42']), 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
+    t.is(headingValidator(['l', 'threeve']), 'Invalid argument. Heading must be a number');
+    t.is(headingValidator(['42', '42']), 'Invalid argument. Expected one of \'left / l / right / r\' as the first argument when passed three arguments');
+    t.is(headingValidator(['l', 'threeve']), 'Invalid argument. Heading must be a number');
+    t.is(headingValidator(['000']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['361']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['l', '000']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['l', '361']), 'Invalid argument. Heading must be between 001 and 360');
+    t.is(headingValidator(['l', '0']), 'Invalid argument. Incremental heading must be positive');
+    t.is(headingValidator(['l', '-9']), 'Invalid argument. Incremental heading must be positive');
 });
 
 ava('.headingValidator() returns undefined when passed a number as a single argument', t => {
     const result = headingValidator(['042']);
-    t.true(typeof result === 'undefined');
+    t.is(result, undefined);
 });
 
 ava('.headingValidator() returns undefined when passed a string and a number as arguments', t => {
-    const result = headingValidator(['l', '042']);
-    t.true(typeof result === 'undefined');
+    t.is(headingValidator(['l', '2']), undefined);
+    t.is(headingValidator(['l', '42']), undefined);
+    t.is(headingValidator(['l', '042']), undefined);
 });
 
 ava('.holdValidator() returns a string when passed the wrong number of arguments', t => {
-    const result = holdValidator(['', 'left', 1, '']);
-    t.true(result === 'Invalid argument length. Expected zero to three arguments');
+    const result = holdValidator(['', 'left', 1, '', '']);
+    t.true(result === 'Invalid argument length. Expected zero to four arguments');
 });
 
 ava('.holdValidator() returns undefined when passed zero arguments', t => {
@@ -226,9 +234,10 @@ ava('.holdValidator() returns undefined when passed zero arguments', t => {
 
 ava('.holdValidator() returns a string when passed the wrong type of arguments', t => {
     t.true(holdValidator([false]) === 'Invalid argument. Must be a string');
-    t.true(holdValidator([false, '42', '1min']) === 'Invalid argument. Must be a string');
-    t.true(holdValidator(['42', false, '1min']) === 'Invalid argument. Must be a string');
-    t.true(holdValidator(['42', 'left', false]) === 'Invalid argument. Must be a string');
+    t.true(holdValidator([false, '42', '1min', '090']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', false, '1min', '090']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', 'left', false, '090']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', 'left', '1min', false]) === 'Invalid argument. Must be a string');
 });
 
 ava('.holdValidator() returns undefined when passed a string as an argument', t => {
@@ -245,6 +254,9 @@ ava('.holdValidator() returns undefined when two strings as arguments', t => {
 
     result = holdValidator(['l', 'dumba']);
     t.true(typeof result === 'undefined');
+
+    result = holdValidator(['090', 'dumba']);
+    t.true(typeof result === 'undefined');
 });
 
 ava('.holdValidator() returns undefined when passed three strings as arguments', t => {
@@ -259,6 +271,45 @@ ava('.holdValidator() returns undefined when passed three strings as arguments',
 
     result = holdValidator(['dumba', 'right', '1nm']);
     t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', '1min', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', '1nm', '090']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.holdValidator() returns undefined when passed four strings as arguments', t => {
+    let result = holdValidator(['dumba', 'left', '1min', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1nm', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1min', '090']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1nm', '090']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.isValidCourseString() returns true when passed a 3 digit course', (t) => {
+    t.true(isValidCourseString('001'));
+    t.true(isValidCourseString('090'));
+    t.true(isValidCourseString('360'));
+});
+
+ava('.isValidCourseString() returns false when passed an invalid course', (t) => {
+    t.false(isValidCourseString('000'));
+    t.false(isValidCourseString('1min'));
+    t.false(isValidCourseString('5'));
+    t.false(isValidCourseString('50'));
+    t.false(isValidCourseString('370'));
+    t.false(isValidCourseString('-10'));
+    t.false(isValidCourseString('1000'));
 });
 
 ava('.squawkValidator() returns undefined when passed a valid squawk', t => {

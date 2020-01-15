@@ -127,7 +127,7 @@ class GameController {
      */
     createChildren() {
         // see comment in constructor. tl;dr these props should be used but are not because they break tests
-        // this._$pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+        // this._$pauseToggleElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_PAUSE);
         // this._$fastForwardElement = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         // this._$scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
 
@@ -309,7 +309,7 @@ class GameController {
     game_pause() {
         TimeKeeper.setPause(true);
 
-        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_PAUSE);
 
         $pauseToggleElement.addClass(SELECTORS.CLASSNAMES.ACTIVE);
         $pauseToggleElement.attr('title', 'Resume simulation');
@@ -323,7 +323,7 @@ class GameController {
     game_unpause() {
         TimeKeeper.setPause(false);
 
-        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_PAUSE);
 
         $pauseToggleElement.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         $pauseToggleElement.attr('title', 'Pause simulation');
