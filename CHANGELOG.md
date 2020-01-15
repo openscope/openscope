@@ -6,7 +6,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
 - <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
-- <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport
+- <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport (EDDM)
 
 
 # 6.15.1 (December 2, 2019)
