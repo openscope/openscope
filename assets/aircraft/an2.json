@@ -1,0 +1,37 @@
+{
+    "name": "Antonov An-2",
+    "icao": "AN2",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 1,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 15000,
+    "rate": {
+        "climb":      650,
+        "descent":    500,
+        "accelerate": 1,
+        "decelerate": 1
+    },
+    "runway": {
+        "takeoff": 0.150,
+        "landing": 0.170
+    },
+    "speed":{
+        "min":     120,
+        "landing": 55,
+        "cruise":  100,
+        "cruiseM": null,
+        "max":     120,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
