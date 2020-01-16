@@ -141,12 +141,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Amsterdam Airport Schiphol',
         //     premium: false
         // },
-        // {
-        //     icao: 'eidw',
-        //     level: 'medium',
-        //     name: 'Dublin Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'eidw',
+            level: 'medium',
+            name: 'Dublin Airport',
+            premium: false
+        },
         {
             icao: 'einn',
             level: 'beginner',
