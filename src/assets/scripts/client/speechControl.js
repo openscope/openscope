@@ -90,7 +90,7 @@ function analyzeResult(transcript) {
 /**
  * starts the speed recognition and handle the events
  */
-function listen() {
+export function listen() {
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     // eslint-disable-next-line no-undef
     const recognition = new SpeechRecognition();

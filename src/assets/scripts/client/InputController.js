@@ -26,6 +26,7 @@ import {
 } from './constants/inputConstants';
 import { SELECTORS, CLASSNAMES } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
+import { listen } from './speechControl';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -469,10 +470,11 @@ export default class InputController {
         // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (code) {
             case KEY_CODES.CONTROL_LEFT:
+                    this._startMeasuring();
+        
+                    break;
             case KEY_CODES.CONTROL_RIGHT:
-                this._startMeasuring();
-
-                break;
+                listen();
             case KEY_CODES.BAT_TICK:
             case LEGACY_KEY_CODES.BAT_TICK:
                 this.$commandInput.val(`${currentCommandInputValue}\` `);

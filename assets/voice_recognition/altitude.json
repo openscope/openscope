@@ -2,9 +2,21 @@
     "meaning": "altitude",
     "transcriptions":  [
         "altitude",
-        "descend to",
+        "descend and maintain",
+            "descent and maintain",
+            "listen to and maintain",
+            "to send and maintain",
+        "descend maintain",
+            "descent maintain",
+            "listen to maintain",
+            "to send maintain",
+            "listen to",
         "descend",
-        "climb to",
+            "descent",
+            "listen to",
+            "to send",
+        "climb and maintain",
+        "climb maintain", 
         "climb"
     ]
 }
