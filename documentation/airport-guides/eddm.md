@@ -54,7 +54,7 @@ EDDM has a variety of standard instrument departures. However, there are certain
 
 \* Preferred departure route  
 ¹ Non-jet aircraft  
-² For aircraft unable to comply with restrictions of the "sierra" departure route
+² For aircraft unable to comply with restrictions of the "S"-suffix SID
 
 
 #### Arrivals
@@ -69,8 +69,7 @@ EDDM offers a variety of standard terminal arrival routes that lead to one of th
 |     BETOS    |       08R/26L       |   BETOS26  | BETOS08 |
 
 Note: To clear e.g. DLH123 onto the transition from ROKIL to runway 26R, the command would be `DLH123 route ROKIL.ROKIL26.EDDM26R`.  
-Since this command can be too time-consuming in high traffic situations, the airport file has been modified in order to make it possible to clear an aircraft for the according transition using the `xh` command.  
-In the above-noted example: `DLH123 xh`
+Since this command can be too time-consuming in high traffic situations, the airport file has been modified in order to make it possible to clear an aircraft for the according transition using the `xh` command: `DLH123 xh`
 
 ### Sectors Available in openScope
 
