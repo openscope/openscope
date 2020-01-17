@@ -1992,20 +1992,6 @@
                 ["ABLIN*", "IRKUM", "LIPGO", "PEKOK", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"]
             ]
         },
-        "ABLIN1X": {
-            "icao": "ABLIN1X",
-            "name": "Ablin One X-Ray",
-            "entryPoints": {
-                "ABLIN": [["ABLIN", "A150+|A180-"], ["IRKUM", "A90+"], ["LIPGO", "S240-"]]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": [["PEKOK", "A70"], ["SIVNA", "A70|S230-"], "SOPEP", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["ABLIN*", "IRKUM", "LIPGO", "PEKOK", "SIVNA", "SOPEP", "LAPMO"]
-            ]
-        },
         "BAGSO1K": {
             "icao": "BAGSO1K",
             "name": "Bagso One Kilo",
@@ -2052,34 +2038,6 @@
                 ["BAGSO*", "EKREN", "ELBON", "ASDER", "AKIVA", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"]
             ]
         },
-        "BAGSO1X": {
-            "icao": "BAGSO1X",
-            "name": "Bagso One X-Ray",
-            "entryPoints": {
-                "BAGSO": [["BAGSO", "A100-|S250-"]]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["ADSIS", ["KERAV", "A80|S230-"], ["^KOGAX", "A80"], "NARMU", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["BAGSO*", "ADSIS", "KERAV", "KOGAX", "NARMU", "LAPMO"]
-            ]
-        },
-        "BAGSO1Z": {
-            "icao": "BAGSO1Z",
-            "name": "Bagso One Zulu",
-            "entryPoints": {
-                "BAGSO": ["BAGSO"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["EKREN", "ELBON", ["ASDER", "A80|S230-"], ["AKIVA", "A80|S230-"], ["NEKIL", "A40+"]]
-            },
-            "draw": [
-                ["BAGSO*", "EKREN", "ELBON", "ASDER", "AKIVA", "NEKIL"]
-            ]
-        },
         "BAMLI1K": {
             "icao": "BAMLI1K",
             "name": "Bamli One Kilo",
@@ -2120,34 +2078,6 @@
             },
             "draw": [
                 ["BAMLI*", "EPIDU", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"]
-            ]
-        },
-        "BAMLI1X": {
-            "icao": "BAMLI1X",
-            "name": "Bamli One X-Ray",
-            "entryPoints": {
-                "BAMLI": ["BAMLI"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["RONON", "ORVEN", "GIRAS", ["KERAV", "A80|S230-"], ["^KOGAX", "A80"], "NARMU", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["BAMLI*", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "NARMU", "LAPMO"]
-            ]
-        },
-        "BAMLI1Z": {
-            "icao": "BAMLI1Z",
-            "name": "Bamli One Zulu",
-            "entryPoints": {
-                "BAMLI": ["BAMLI"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": [["EPIDU", "S230-"], ["ADNAL", "A80"], ["APRUT", "A80"], ["NEKIL", "A40+"]]
-            },
-            "draw": [
-                ["BAMLI*", "EPIDU", "ADNAL", "APRUT", "NEKIL"]
             ]
         },
         "BOYNE1K": {
@@ -2196,34 +2126,6 @@
                 ["BOYNE*", "EKREN", "ELBON", "ASDER", "AKIVA", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"]
             ]
         },
-        "BOYNE1X": {
-            "icao": "BOYNE1X",
-            "name": "Boyne One X-Ray",
-            "entryPoints": {
-                "BOYNE": ["BOYNE"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["ADSIS", ["KERAV", "A80|S230-"], ["^KOGAX", "A80"], "NARMU", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["BOYNE*", "ADSIS", "KERAV", "KOGAX", "NARMU", "LAPMO"]
-            ]
-        },
-        "BOYNE1Z": {
-            "icao": "BOYNE1Z",
-            "name": "Boyne One Zulu",
-            "entryPoints": {
-                "BOYNE": ["BOYNE"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["EKREN", "ELBON", ["ASDER", "A80|S230-"], ["AKIVA", "A80|S230-"], ["NEKIL", "A40+"]]
-            },
-            "draw": [
-                ["BOYNE*", "EKREN", "ELBON", "ASDER", "AKIVA", "NEKIL"]
-            ]
-        },
         "BUNED1L": {
             "icao": "BUNED1L",
             "name": "Buned One Lima",
@@ -2264,34 +2166,6 @@
             },
             "draw": [
                 ["BUNED*", "DIRUM", "KEPOR", "ARVOK", "SORIN"]
-            ]
-        },
-        "BUNED1X": {
-            "icao": "BUNED1X",
-            "name": "Buned One X-Ray",
-            "entryPoints": {
-                "BUNED": ["BUNED"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["DIRUM", "KEPOR", "ARVOK", ["SORIN", "A70|S230-"], ["SIVNA", "A70|S230-"], "SOPEP", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["BUNED*", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SOPEP", "LAPMO"]
-            ]
-        },
-        "BUNED1Z": {
-            "icao": "BUNED1Z",
-            "name": "Buned One Zulu",
-            "entryPoints": {
-                "BUNED": [["BUNED", "A200-"]]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["DIRUM", ["KANUS", "S230-"], ["BABON", "A70|S230-"], ["BIVDI", "A70|S230-"], ["OSLEX", "A50+"]]
-            },
-            "draw": [
-                ["BUNED*", "DIRUM", "KANUS", "BABON", "BIVDI", "OSLEX"]
             ]
         },
         "BUNED5U": {
@@ -2337,20 +2211,6 @@
             },
             "draw": [
                 ["LIPGO*", "SORIN"]
-            ]
-        },
-        "LIPGO1Z": {
-            "icao": "LIPGO1Z",
-            "name": "Lipgo One Zulu",
-            "entryPoints": {
-                "LIPGO": ["LIPGO"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["RUBAR", "DETAX", ["BERMO", "A70|S230-"], ["BABON", "A70|S230-"], ["OSLEX", "A50+"]]
-            },
-            "draw": [
-                ["LIPGO*", "RUBAR", "DETAX", "BERMO", "BABON", "OSLEX"]
             ]
         },
         "LIPGO2U": {
@@ -2413,34 +2273,6 @@
                 ["NIMAT*", "EKREN", "ELBON", "ASDER", "AKIVA", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"]
             ]
         },
-        "NIMAT1X": {
-            "icao": "NIMAT1X",
-            "name": "Nimat One X-Ray",
-            "entryPoints": {
-                "NIMAT": ["NIMAT"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": [["KERAV", "A80|S230-"], ["^KOGAX", "A80"], "NARMU", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["NIMAT*", "KERAV", "KOGAX", "NARMU", "LAPMO"]
-            ]
-        },
-        "NIMAT1Z": {
-            "icao": "NIMAT1Z",
-            "name": "Nimat One Zulu",
-            "entryPoints": {
-                "NIMAT": ["NIMAT"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["EKREN", "ELBON", ["ASDER", "A80|S230-"], ["AKIVA", "A80|S230-"], ["NEKIL", "A40+"]]
-            },
-            "draw": [
-                ["NIMAT*", "EKREN", "ELBON", "ASDER", "AKIVA", "NEKIL"]
-            ]
-        },
         "OLAPO1K": {
             "icao": "OLAPO1K",
             "name": "Olapo One Kilo",
@@ -2481,34 +2313,6 @@
             },
             "draw": [
                 ["OLAPO*", "EPIDU", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"]
-            ]
-        },
-        "OLAPO1X": {
-            "icao": "OLAPO1X",
-            "name": "Olapo One X-Ray",
-            "entryPoints": {
-                "OLAPO": ["OLAPO"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["RONON", "ORVEN", "GIRAS", ["KERAV", "A80|S230-"], ["^KOGAX", "A80"], "NARMU", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["OLAPO*", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "NARMU", "LAPMO"]
-            ]
-        },
-        "OLAPO1Z": {
-            "icao": "OLAPO1Z",
-            "name": "Olapo One Zulu",
-            "entryPoints": {
-                "OLAPO": [["OLAPO", "A170-"]]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": [["EPIDU", "S230-"], ["ADNAL", "A80"], ["APRUT", "A80"], ["NEKIL", "A40+"]]
-            },
-            "draw": [
-                ["OLAPO*", "EPIDU", "ADNAL", "APRUT", "NEKIL"]
             ]
         },
         "OLAPO4U": {
@@ -2570,34 +2374,6 @@
                 ["OSGAR*", "DIRUM", "KEPOR", "ARVOK", "SORIN"]
             ]
         },
-        "OSGAR1X": {
-            "icao": "OSGAR1X",
-            "name": "Osgar One X-Ray",
-            "entryPoints": {
-                "OSGAR": ["OSGAR"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["DIRUM", "KEPOR", "ARVOK", ["SORIN", "A70|S230-"], ["SIVNA", "A70|S230-"], "SOPEP", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["OSGAR*", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SOPEP", "LAPMO"]
-            ]
-        },
-        "OSGAR1Z": {
-            "icao": "OSGAR1Z",
-            "name": "Osgar One Zulu",
-            "entryPoints": {
-                "OSGAR": [["OSGAR", "A200-"]]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["DIRUM", ["KANUS", "S230-"], ["BABON", "A70|S230-"], ["BIVDI", "A70|S230-"], ["OSLEX", "A50+"]]
-            },
-            "draw": [
-                ["OSGAR*", "DIRUM", "KANUS", "BABON", "BIVDI", "OSLEX"]
-            ]
-        },
         "OSGAR5U": {
             "icao": "OSGAR5U",
             "name": "Osgar Five Uniform",
@@ -2657,34 +2433,6 @@
                 ["SUTEX*", "DIRUM", "KEPOR", "ARVOK", "SORIN"]
             ]
         },
-        "SUTEX1X": {
-            "icao": "SUTEX1X",
-            "name": "Sutex One X-Ray",
-            "entryPoints": {
-                "SUTEX": ["SUTEX"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": ["DIRUM", "KEPOR", "ARVOK", ["SORIN", "A70|S230-"], ["SIVNA", "A70|S230-"], "SOPEP", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["SUTEX*", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SOPEP", "LAPMO"]
-            ]
-        },
-        "SUTEX1Z": {
-            "icao": "SUTEX1Z",
-            "name": "Sutex One Zulu",
-            "entryPoints": {
-                "SUTEX": [["SUTEX", "A200-"]]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["DIRUM", ["KANUS", "S230-"], ["BABON", "A70|S230-"], ["BIVDI", "A70|S230-"], ["OSLEX", "A50+"]]
-            },
-            "draw": [
-                ["SUTEX*", "DIRUM", "KANUS", "BABON", "BIVDI", "OSLEX"]
-            ]
-        },
         "SUTEX5U": {
             "icao": "SUTEX5U",
             "name": "Sutex Five Uniform",
@@ -2742,34 +2490,6 @@
             },
             "draw": [
                 ["VATRY*", "SORIN"]
-            ]
-        },
-        "VATRY1X": {
-            "icao": "VATRY1X",
-            "name": "Vatry One X-Ray",
-            "entryPoints": {
-                "VATRY": ["VATRY"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW28": [["SORIN", "A70|S230-"], ["SIVNA", "A70|S230-"], "SOPEP", ["LAPMO", "A30+|S180-"]]
-            },
-            "draw": [
-                ["VATRY*", "SORIN", "SIVNA", "SOPEP", "LAPMO"]
-            ]
-        },
-        "VATRY1Z": {
-            "icao": "VATRY1Z",
-            "name": "Vatry One Zulu",
-            "entryPoints": {
-                "VATRY": ["VATRY"]
-            },
-            "body": [],
-            "rwy": {
-                "EIDW10": ["RUBAR", "DETAX", ["BERMO", "A70|S230-"], ["BABON", "A70|S230-"], ["OSLEX", "A50+"]]
-            },
-            "draw": [
-                ["VATRY*", "RUBAR", "DETAX", "BERMO", "BABON", "OSLEX"]
             ]
         },
         "VATRY2U": {
