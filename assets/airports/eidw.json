@@ -55,6 +55,10 @@
         }
     ],
     "fixes": {
+        "_RWY10": ["N53d25m20.75", "W6d17m24.27"],
+        "_DEXEN272034": [53.35234189087, -6.43715643032],
+        "_BAL339005": [53.3751266051, -6.5071353067],
+        "_DUB276003": [53.50109769678, -6.39078885882],
         "ABDOX": ["N53.28804124", "W6.15467833"],
         "ABGEP": ["N53d25.65", "W04d51.67"],
         "ABIDO": ["N52d28m44.00", "W5d47m44.00"],
@@ -867,7 +871,7 @@
             "name": "Abido One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": ["DWS80", "DW682", "NEPOD"]
+                "EIDW28": ["^_RWY10", "DWS80", "DW682", "NEPOD"]
             },
             "body": [],
             "exitPoints": {
@@ -987,7 +991,7 @@
             "name": "Bepan One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": ["DWS80", "DW682"]
+                "EIDW28": ["^_RWY10", "DWS80", "DW682"]
             },
             "body": ["NEPOD"],
             "exitPoints": {
@@ -1062,7 +1066,7 @@
             "name": "Bepan Five Alpha",
             "altitude": 9000,
             "rwy": {
-                "EIDW28": [["^OE", "A30+"], "BAL"]
+                "EIDW28": [["^OE", "A30+"], "_BAL339005", "BAL"]
             },
             "body": ["NEPOD"],
             "exitPoints": {
@@ -1107,14 +1111,14 @@
             "name": "Dexen One Alpha",
             "altitude": 9000,
             "rwy": {
-                "EIDW28": [["^OE", "A30+"]]
+                "EIDW28": [["^OE", "A30+"], "_DEXEN272034"]
             },
             "body": [],
             "exitPoints": {
                 "DEXEN": [["DEXEN", "A120+"]]
             },
             "draw": [
-                ["OE", "DEXEN*"]
+                ["OE", "_DEXEN272034", "DEXEN*"]
             ]
         },
         "DEXEN2E": {
@@ -1182,7 +1186,7 @@
             "name": "Inkur Five Bravo",
             "altitude": 3000,
             "rwy": {
-                "EIDW28": ["DUB", "DWN28"]
+                "EIDW28": ["^_RWY10", "DUB", "DWN28"]
             },
             "body": [],
             "exitPoints": {
@@ -1257,7 +1261,7 @@
             "name": "Keeshah One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": []
+                "EIDW28": ["^_RWY10"]
             },
             "body": [],
             "exitPoints": {
@@ -1317,7 +1321,7 @@
             "name": "Liffey Five Alpha",
             "altitude": 9000,
             "rwy": {
-                "EIDW28": [["^OE", "A30+"], "DUB"]
+                "EIDW28": [["^OE", "A30+"], "_DUB276003", "DUB"]
             },
             "body": [],
             "exitPoints": {
@@ -1392,7 +1396,7 @@
             "name": "Nevri One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": ["DUB", "DWN29"]
+                "EIDW28": ["^_RWY10", "DUB", "DWN29"]
             },
             "body": [],
             "exitPoints": {
@@ -1497,7 +1501,7 @@
             "name": "Olono Five Alpha",
             "altitude": 9000,
             "rwy": {
-                "EIDW28": [["^OE", "A30+"], "BAL"]
+                "EIDW28": [["^OE", "A30+"], "_BAL339005", "BAL"]
             },
             "body": ["NEPOD"],
             "exitPoints": {
@@ -1557,7 +1561,7 @@
             "name": "Olono One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": ["DWS80", "DW682"]
+                "EIDW28": ["^_RWY10", "DWS80", "DW682"]
             },
             "body": ["NEPOD"],
             "exitPoints": {
@@ -1677,7 +1681,7 @@
             "name": "Pesit Five Alpha",
             "altitude": 9000,
             "rwy": {
-                "EIDW28": [["^OE", "A30+"], "BAL", "NEPOD"]
+                "EIDW28": [["^OE", "A30+"], "_BAL339005", "BAL", "NEPOD"]
             },
             "body": [],
             "exitPoints": {
@@ -1752,7 +1756,7 @@
             "name": "Rotev One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": ["DUB", "DWN29"]
+                "EIDW28": ["^_RWY10", "DUB", "DWN29"]
             },
             "body": [],
             "exitPoints": {
@@ -1872,7 +1876,7 @@
             "name": "Surox One Bravo",
             "altitude": 4000,
             "rwy": {
-                "EIDW28": ["DUB", "DWN28", "DWW04"]
+                "EIDW28": ["^_RWY10", "DUB", "DWN28", "DWW04"]
             },
             "body": [],
             "exitPoints": {
