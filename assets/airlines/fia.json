@@ -1,0 +1,16 @@
+{
+    "icao": "fia",
+    "name": "FLYONE ",
+    "callsign": {
+        "name": "Foxtrot India Alpha",
+        "callsignFormats": [
+            "###"             
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A320", 4]
+        ]
+    }
+}
