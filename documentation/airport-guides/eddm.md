@@ -11,13 +11,13 @@ Munich Airport (German: Flughafen München) is the international airport of Muni
 There are four Area Control Centers in Germany: Bremen, Langen, Karlsruhe and München, operated by the Deutsche Flugsicherung (German Air Traffic Control). The terminal control service for EDDM is provided by the München ACC which is located at the airport. München ACC also provides terminal control services for Oberpfaffenhofen Airport (EDMO) and Augsburg Airport (EDMA) as well as air traffic services for en-route traffic within the München Flight Information Region (EDMM FIR).
 
 ### Airspace
-The airspace encompasses a large area around Munich up to FL195. Big parts of the airspace are classified as Class C airspace (equivalent to American class B airspace). As long as one approach radar system (ASR) is in operation 3nm horizontal separation may be applied.
+The airspace encompasses a large area around Munich up to FL195. Big parts of the airspace are classified as Class C airspace (equivalent to American class B airspace). As long as one approach radar system (ASR) is in operation, 3nm horizontal separation may be applied.
 
 ### Runways
-EDDM consists of two parallel concrete runways (08R/26L and 08L/26R). Both runways have equal length (4000m / 13123ft) and width (60m / 197ft) and are equipped with instrument landing systems in both directions. A third runway north-east of 08R/26L is planned but construction has not yet begun due to protests of residents.
+EDDM consists of two parallel concrete runways (08R/26L and 08L/26R). Both runways are equal in length (4000m / 13123ft) and width (60m / 197ft) and are equipped with instrument landing systems in both directions. A third runway north-east of 08R/26L is planned but construction has not yet begun due to protests by residents.
 
 #### Runway usage
-Runways 26L and 26R are preferentially used as long as the tailwind component does not exceed 5 knots. The runways are approved for independent departure and independent parallel approach operations. Radar separation of at least 3nm and/or 1000ft vertical separation has to be ensured until both aircraft are stabilized on the localizer.  
+Runways 26L and 26R are preferentially used as long as the tailwind component does not exceed 5 knots. The runways are approved for independent departure and independent parallel approach operations. Radar separation of at least 3nm and/or 1000ft vertical separation has to be maintained until both aircraft are established on the localizer.  
 
 * Departures/arrivals from/to the north are usually assigned to the northern runway (08L/26R).
 * Departures/arrivals from/to the south are usually assigned to the southern runway (08R/26L).
@@ -59,7 +59,7 @@ EDDM has a variety of standard instrument departures. However, there are certain
 
 #### Arrivals
 
-EDDM offers a variety of standard terminal arrival routes that lead to one of the four arrival gates: ROKIL, NAPSA, BETOS, LANDU. These waypoints are clearance limits. If no further clearance is issued by the controller aircraft have to enter the published holding. After the arrival gate transitions (e.g. ROKIL26), specific terminal waypoints (DMxxx) or radar vectors are used to guide the aircraft to the ILS.
+EDDM offers a variety of standard terminal arrival routes that lead to one of the four arrival gates: ROKIL, NAPSA, BETOS, LANDU. These waypoints are clearance limits. If no further clearance is issued by the controller aircraft have to enter the published hold. After the arrival gate transitions (e.g. ROKIL26), specific terminal waypoints (DMxxx) or radar vectors are used to guide the aircraft to the ILS.
 
 | Arrival gate | Preferential runway | Transition |         |
 |:------------:|:-------------------:|:----------:|:-------:|
