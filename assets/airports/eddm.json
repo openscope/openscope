@@ -1646,10 +1646,10 @@
             },
             "body": ["ARBAX", "USEMI", "LITLI"],
             "rwy": {
-                "EDDM08L": [["OSTES", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM08R": [["OSTES", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM26L": [["OSTES", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
-                "EDDM26R": [["OSTES", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
+                "EDDM08L": [["OSTES", "A150|S280-"], "BINGU", "TUSTO", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["OSTES", "A150|S280-"], "BINGU", "TUSTO", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["OSTES", "A110|S280-"], "BINGU", "TUSTO", "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["OSTES", "A110|S280-"], "BINGU", "TUSTO", "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1667,10 +1667,10 @@
             },
             "body": ["BAGMI", "ODUDA", "NETES", "UNKOM"],
             "rwy": {
-                "EDDM08L": [["MITNU", "A150|S280-"], "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM08R": [["MITNU", "A150|S280-"], "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM26L": [["MITNU", "A110|S280-"], "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
-                "EDDM26R": [["MITNU", "A110|S280-"], "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
+                "EDDM08L": [["MITNU", "A150|S280-"], "TUSTO", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["MITNU", "A150|S280-"], "TUSTO", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["MITNU", "A110|S280-"], "TUSTO", "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["MITNU", "A110|S280-"], "TUSTO", "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "NETES": "022|right|1min",
@@ -1689,10 +1689,10 @@
             },
             "body": ["BAMTA"],
             "rwy": {
-                "EDDM08L": [["ROSAB", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM08R": [["ROSAB", "A150|S280-"], "BINGU", "TUSTO", "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM26L": [["ROSAB", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
-                "EDDM26R": [["ROSAB", "A110|S280-"], "BINGU", "TUSTO", "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
+                "EDDM08L": [["ROSAB", "A150|S280-"], "BINGU", "TUSTO", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["ROSAB", "A150|S280-"], "BINGU", "TUSTO", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["ROSAB", "A110|S280-"], "BINGU", "TUSTO", "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["ROSAB", "A110|S280-"], "BINGU", "TUSTO", "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
@@ -1710,10 +1710,10 @@
             },
             "body": ["EXUSI", "RDG", "GOMAX"],
             "rwy": {
-                "EDDM08L": [["VESIX", "A150|S280-"], "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM08R": [["VESIX", "A150|S280-"], "@LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
-                "EDDM26L": [["VESIX", "A110|S280-"], "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
-                "EDDM26R": [["VESIX", "A110|S280-"], "@LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
+                "EDDM08L": [["VESIX", "A150|S280-"], "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM08R": [["VESIX", "A150|S280-"], "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420", "#261"],
+                "EDDM26L": [["VESIX", "A110|S280-"], "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"],
+                "EDDM26R": [["VESIX", "A110|S280-"], "LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429", "#080"]
             },
             "holds":{
                 "LANDU": "033|left|1min",
