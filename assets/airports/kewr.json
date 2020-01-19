@@ -97,3 +97,15 @@
             "ils": [true, false], 
         }, 
     ],
+    "sids": {
+        "EWR4": {
+            "icao": "EWR4"
+            "name": "Newark Four"
+            "rwy": {
+                "KEWR4L" : ["_RWY22R01DME", "
+                "KEWR4R" : ["_RWY22L01DME", "
+                "KEWR11" : 
+                "KEWR22L": 
+                "KEWR22R": 
+                "KEWR29" : 
+            
