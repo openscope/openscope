@@ -43,7 +43,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      *    +----------+------------------------+
      *    |   Hard   |    More than 60 AcpH   |
      *    +----------+------------------------+
-     * - `AIRPORT_NAME` is the official English name of the airport (ex: San Francisco International Airport)
+     * - `AIRPORT_NAME` is the official English name of the airport (ex: San Francisco International Airport) according to Jeppesen charts
      * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
      *
      * @property AIRPORT_LOAD_LIST
