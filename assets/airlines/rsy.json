@@ -1,0 +1,16 @@
+{
+    "icao": "rsy",
+    "name": "I-Fly",
+    "callsign": {
+        "name": "Russian Sky",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A332", 5]
+        ]
+    }
+}

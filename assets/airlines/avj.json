@@ -1,0 +1,16 @@
+{
+    "icao": "avj",
+    "name": "Avia Traffic Company",
+    "callsign": {
+        "name": "Atomic",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 2],
+            ["B733", 4]
+        ]
+    }
+}

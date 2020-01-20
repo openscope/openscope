@@ -1,0 +1,22 @@
+{
+    "icao": "uta",
+    "name": "Utair",
+    "callsign": {
+        "name": "Utair",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT75", 15],
+            ["B734", 6],
+            ["B735", 30],
+            ["B738", 10],
+            ["B762", 3]
+        ],
+        "b735": [
+            ["B735", 30]
+        ]
+    }
+}

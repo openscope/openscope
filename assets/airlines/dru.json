@@ -1,0 +1,16 @@
+{
+    "icao": "dru",
+    "name": "ALROSA",
+    "callsign": {
+        "name": "Mirny",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B737", 2],
+            ["B738", 4]
+        ]
+    }
+}

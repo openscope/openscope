@@ -1,0 +1,19 @@
+{
+    "icao": "vgv",
+    "name": "Vologda Air Company",
+    "callsign": {
+        "name": "Vologda Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AN2", 3],
+            ["YK40", 5]
+        ],
+        "yk40": [
+            ["YK40", 5]
+        ]
+    }
+}

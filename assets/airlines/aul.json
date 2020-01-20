@@ -1,0 +1,20 @@
+{
+    "icao": "aul",
+    "name": "Smartavia",
+    "callsign": {
+        "name": "Archangelsk Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B735", 6],
+            ["B737", 3],
+            ["B738", 6]
+        ],
+        "b735": [
+            ["B735", 6]
+        ]
+    }
+}

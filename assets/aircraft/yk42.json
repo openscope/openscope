@@ -1,0 +1,37 @@
+{
+    "name": "Yakovlev Yak-42",
+    "icao": "YK42",
+    "engines": {
+        "number": 3,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "D"
+    },
+    "ceiling": 31000,
+    "rate": {
+        "climb":      2500,
+        "descent":    3500,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 1.500,
+        "landing": 1.700
+    },
+    "speed":{
+        "min":     100,
+        "landing": 130,
+        "cruise":  400,
+        "cruiseM": 0.62,
+        "max":     437,
+        "maxM":    0.77
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

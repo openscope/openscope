@@ -1,0 +1,22 @@
+{
+    "icao": "iae",
+    "name": "IrAero",
+    "callsign": {
+        "name": "IrAero",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AN24", 7],
+            ["B772", 3],
+            ["SU9", 7],
+            ["CRJ2", 3],
+            ["AN26", 10]
+        ],
+        "su95": [
+            ["SU9", 7]
+        ]
+    }
+}

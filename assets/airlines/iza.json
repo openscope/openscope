@@ -1,0 +1,15 @@
+{
+    "icao": "iza",
+    "name": "Izhavia",
+    "callsign": {
+        "name": "Izhavia",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["YK42", 8]
+        ]
+    }
+}

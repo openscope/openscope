@@ -1,0 +1,15 @@
+{
+    "icao": "kmw",
+    "name": "Kostroma Air Enterprise",
+    "callsign": {
+        "name": "Kostroma",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AN26", 4]
+        ]
+    }
+}

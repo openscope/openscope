@@ -1,0 +1,19 @@
+{
+    "icao": "nws",
+    "name": "Nordwind Airlines",
+    "callsign": {
+        "name": "Nordland",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A321", 9],
+            ["A332", 2],
+            ["B738", 8],
+            ["B772", 6],
+            ["B77W", 2]
+        ]
+    }
+}

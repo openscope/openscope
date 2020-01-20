@@ -1,0 +1,17 @@
+{
+    "icao": "kar",
+    "name": "Pegas Fly",
+    "callsign": {
+        "name": "Krasjet",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 4],
+            ["B763", 6],
+            ["E190", 5]
+        ]
+    }
+}
