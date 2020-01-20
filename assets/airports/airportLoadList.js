@@ -72,7 +72,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'eddf',
             level: 'hard',
-            name: 'Frankfurt Airport',
+            name: 'Frankfurt Main Airport',
             premium: false
         },
         {
@@ -90,7 +90,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'eddm',
             level: 'hard',
-            name: 'Flughafen München',
+            name: 'Munich Airport',
             premium: false
         },
         // {
@@ -186,7 +186,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'katl',
             level: 'hard',
-            name: 'Hartsfield–Jackson Atlanta Int\'l',
+            name: 'Hartsfield–Jackson Atlanta International Airport',
             premium: false
         },
         {
@@ -204,7 +204,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'kcvg',
             level: 'beginner',
-            name: 'Cincinnati-Northern Kentucky Int\'l Airport',
+            name: 'Cincinnati-Northern Kentucky International Airport',
             premium: false
         },
         {
@@ -372,7 +372,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'lrop',
             level: 'medium',
-            name: 'Bucharest Henri Coandă International Airport',
+            name: 'Bucharest Henri Coandă Airport',
             premium: false
         },
         {
@@ -390,7 +390,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'ltba',
             level: 'hard',
-            name: 'Istanbul Atatürk Airport',
+            name: 'Istanbul Atatürk International Airport',
             premium: false
         },
         // },
