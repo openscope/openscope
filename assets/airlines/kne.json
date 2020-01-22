@@ -1,6 +1,6 @@
 {
     "icao": "kne",
-    "name": "flynas",
+    "name": "Flynas",
     "callsign": {
         "name": "Nas Express",
         "callsignFormats": [
@@ -11,8 +11,7 @@
         "default": [
             ["A319", 2],
             ["A320", 26],
-            ["B38M", 2],
-            ["B763", 1]
+            ["A20N", 3]
         ],
         "a319": [
             ["A319", 2]
