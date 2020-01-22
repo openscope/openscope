@@ -1,6 +1,6 @@
 {
-    "name": "Airbus A330-900neo",
-    "icao": "A339",
+    "name": "Airbus A330-800neo",
+    "icao": "A338",
     "engines": {
         "number": 2,
         "type": "J"
