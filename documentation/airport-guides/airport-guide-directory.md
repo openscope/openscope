@@ -5,6 +5,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [EDDF - Flughafen Frankfurt am Main](eddf.md)
 - [EDDH - Hamburg Airport](eddh.md)
 - [EDDL - Flughafen Düsseldorf](eddl.md)
+- [EDDM - Flughafen München](eddm.md)
 - [EGCC - Manchester Airport](egcc.md)
 - [EGNM - Leeds Bradford Airport](egnm.md)
 - [EIDW - Dublin Airport](eidw.md)

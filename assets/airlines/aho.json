@@ -1,0 +1,15 @@
+{
+    "icao": "aho",
+    "name": "Air Hamburg",
+    "callsign": {
+        "name": "Air Hamburg",
+        "callsignFormats": [
+            "###@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E35L", 17]
+        ]
+    }
+}
