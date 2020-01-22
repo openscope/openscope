@@ -9,7 +9,7 @@ The airport was originally built in 1938 as a military design and production com
 241,004 aircraft movements
 
 ### Airspace
-Wien Radar is located within the LOVV FIR, covering the area surrounding Vienna from SFC to FL245. It also controls a small area of the Budapest FIR from FL055 to FL245. 
+Wien Radar is located within the LOVV FIR, covering the area surrounding Vienna from SFC to FL245. It also controls a small area of the Budapest FIR from FL055 to FL245.
 
 Wien Radar is surrounded by the FIRs of Vienna (LOVV), Prague (LKAA), Bratislava (LZBB) and Budapest (LHCC).
 
@@ -89,4 +89,4 @@ The videomap also contains:
 
 
 ### Additional Resources and Charts
-[AustroControl](https://eaip.austrocontrol.at/)
+<a href="https://eaip.austrocontrol.at/" target="_blank">AustroControl</a>

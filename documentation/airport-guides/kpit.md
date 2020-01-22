@@ -1,8 +1,8 @@
 ### About this facility
 Pittsburgh Combined TRACON and ATCT (PIT), Pittsburgh, Pennsylvania, USA
-274,965 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+274,965 annual operations in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
-This level 9 combined TRACON/ATCT facility controls several airfields around "Steel City". Although the yearly operations have been decreasing for the last 15 years, the facility still handles a large amount of traffic in and out of the Pittsburgh area. 
+This level 9 combined TRACON/ATCT facility controls several airfields around "Steel City". Although the yearly operations have been decreasing for the last 15 years, the facility still handles a large amount of traffic in and out of the Pittsburgh area.
 
 ### Airspace
 The Pittsburgh TRACON airspace encompasses a thirty mile radius around Pittsburgh Airport and extends from the surface up to 15,000 feet.

@@ -40,7 +40,7 @@ There are also rules as to how the runways should be used:
 | 18 (runway northwest)      | North to South | Takeoffs in Southbound direction only               |
 
 Runway 18 *is a one way runway*. There are no markings at the opposite end of the runway.
-You can read more about why runway 18 is a one way runway on [StackExchange](https://aviation.stackexchange.com/a/20807).
+You can read more about why runway 18 is a one way runway on <a href="https://aviation.stackexchange.com/a/20807" target="_blank">StackExchange</a>.
 
 
 ### Instrument Procedures
@@ -103,4 +103,4 @@ The videomap also contains:
 
 
 ### Additional Resources
-[VATSIM Germany](http://www.vacc-sag.org/airport/EDDF)
+<a href="http://www.vacc-sag.org/airport/EDDF" target="_blank">VATSIM Germany</a>
