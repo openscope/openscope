@@ -8,7 +8,7 @@ Flughafen Dusseldorf (_English: Dusseldorf Airport_) is the main international a
 24,624,895 passengers
 221,635 aircraft movements
 
-[Source: ADV](http://adv.aero/wp-content/uploads/2018/02/12.2017-ADV-Monatsstatistik.pdf)
+<a href="http://adv.aero/wp-content/uploads/2018/02/12.2017-ADV-Monatsstatistik.pdf" target="_blank">Source: ADV</a>
 
 ### Standard Operating Procedures
 ##### Preferential Runways
@@ -63,4 +63,4 @@ It also includes:
 - Shelved airspace boundaries surrounding Dusseldorf and Cologne Bonn
 
 ### Additional Resources
-[VATSIM Germany](http://www.vacc-sag.org/airport/EDDL)
+<a href="http://www.vacc-sag.org/airport/EDDL" target="_blank">VATSIM Germany</a>

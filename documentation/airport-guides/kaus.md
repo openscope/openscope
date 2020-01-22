@@ -1,7 +1,7 @@
 ### About this facility
 
 Austin Approach/Departure (AUS), Austin, TX, USA  
-199,632 aircraft movements in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Airport.asp))
+199,632 aircraft movements in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 This is the Control Tower position at AUS, serving Austin-Bergstrom International Airport, the main airport for Austin, TX.
 
@@ -11,7 +11,7 @@ Class C airspace extends to 17,000 feet above sea level, encompassing the area a
 
 ### Instrument Procedures
 
-##### Austin-Bergstrom International Airport has 7 STAR procedures, and 9 SID procedures. 
+##### Austin-Bergstrom International Airport has 7 STAR procedures, and 9 SID procedures.
 
 ##### STARs
 - BITER9 (Biter), and WLEEE5 (Willie) STARs take aircraft from the east to the airport, uses 17L/35R.
@@ -80,5 +80,5 @@ This is another small, busy GA airport to the southwest of KAUS. Also has a flig
 
 ### Additional Resources
 
-[KAUS Charts](https://skyvector.com/airport/AUS/Austin-Bergstrom-International-Airport)  
-[VATSIM SOP](https://www.zhuartcc.org/files/SOP%20-%20Austin%20TRACON.pdf)
+<a href="https://skyvector.com/airport/AUS/Austin-Bergstrom-International-Airport" target="_blank">KAUS Charts</a>
+<a href="https://www.zhuartcc.org/files/SOP%20-%20Austin%20TRACON.pdf" target="_blank">VATSIM SOP</a>

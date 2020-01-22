@@ -49,14 +49,14 @@ Standard Instrument Departures in Dublin are divided into two categories; A/B an
 
 | Runway | Category | Suffix | Chart |
 | --- | -- | -- | --- |
-| 28 | A/B | B | [EIDW AD 2.24-9](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-9_en.pdf) |
-| 28 | C/D | A | [EIDW AD 2.24-10](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-10_en.pdf) |
-| 10 | A/B | F | [EIDW AD 2.24-11](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-11.1_en.pdf) |
-| 10 | C/D | E | [EIDW AD 2.24-12](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-12.1_en.pdf) |
-| 16 | A/B | P | [EIDW AD 2.24-13](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-13_en.pdf) |
-| 16 | C/D | M | [EIDW AD 2.24-14](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-14_en.pdf) |
-| 34 | A/B | H | [EIDW AD 2.24-15](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-15_en.pdf) |
-| 34 | C/D | G | [EIDW AD 2.24-16](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-16_en.pdf) |
+| 28 | A/B | B | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-9_en.pdf" target="_blank">EIDW AD 2.24-9</a> |
+| 28 | C/D | A | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-10_en.pdf" target="_blank">EIDW AD 2.24-10</a> |
+| 10 | A/B | F | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-11.1_en.pdf" target="_blank">EIDW AD 2.24-11</a> |
+| 10 | C/D | E | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-12.1_en.pdf" target="_blank">EIDW AD 2.24-12</a> |
+| 16 | A/B | P | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-13_en.pdf" target="_blank">EIDW AD 2.24-13</a> |
+| 16 | C/D | M | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-14_en.pdf" target="_blank">EIDW AD 2.24-14</a> |
+| 34 | A/B | H | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-15_en.pdf" target="_blank">EIDW AD 2.24-15</a> |
+| 34 | C/D | G | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-16_en.pdf" target="_blank">EIDW AD 2.24-16</a> |
 
 Note: PELIG departures are not often used due to active restricted military area (EIR16) Southwest of Dublin. INKUR and OLONO departures are used instead.
 
@@ -65,14 +65,14 @@ Dublin Airport was one of the first airports in the world to adopt a point merge
 
 | Runway | Suffix | Point Merge | Chart |
 | --- | -- | -- | --- |
-| 28 | L | Yes | [EIDW AD 2.24-17](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.1_en.pdf) |
-| 28 | X* | No | [EIDW AD 2.24-17](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.4_en.pdf) |
-| 10 | R | Yes | [EIDW AD 2.24-19](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.1_en.pdf) |
-| 10 | Z* | No | [EIDW AD 2.24-19](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.5_en.pdf) |
-| 16 | U | No | [EIDW AD 2.24-20](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-20_en.pdf) |
-| 16 | K | No | [EIDW AD 2.24-20](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-20_en.pdf) |
-| 34 | S | No | [EIDW AD 2.24-21](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21_en.pdf) |
-| 34 | K | No | [EIDW AD 2.24-21](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21_en.pdf) |
+| 28 | L | Yes | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.1_en.pdf" target="_blank">EIDW AD 2.24-17</a> |
+| 28 | X* | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.4_en.pdf" target="_blank">EIDW AD 2.24-17</a> |
+| 10 | R | Yes | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.1_en.pdf" target="_blank">EIDW AD 2.24-19</a> |
+| 10 | Z* | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.5_en.pdf" target="_blank">EIDW AD 2.24-19</a> |
+| 16 | U | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-20_en.pdf" target="_blank">EIDW AD 2.24-20</a> |
+| 16 | K | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-20_en.pdf" target="_blank">EIDW AD 2.24-20</a> |
+| 34 | S | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21_en.pdf" target="_blank">EIDW AD 2.24-21</a> |
+| 34 | K | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21_en.pdf" target="_blank">EIDW AD 2.24-21</a> |
 
 \*X and Z arrivals are not available in openScope as these are never used in real life. They are available for descent and fuel planning purposes only. If ATC wishes to shorten the approach, vectors and shortcuts can be given.
 

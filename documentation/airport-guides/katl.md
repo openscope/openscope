@@ -1,6 +1,6 @@
 ### About this facility
 Atlanta TRACON (A80), Peachtree City, Georgia, USA  
-1,193,710 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+1,193,710 annual operations in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 Located 20 miles southwest of KATL and almost 30 miles from Downtown Atlanta, The A80 TRACON is one of the busiest control facilities in the world. It controls a huge area over north-central Georgia, as well as portions of South Carolina and Alabama, covering over 200 airports, including the world’s busiest airport, Hartsfield–Jackson Atlanta International (KATL).
 
@@ -104,4 +104,4 @@ Dobbins Air Reserve Base
 Originally named Rickenbacker Field, the airport was used for flight training of naval aviators. In 1942, the Bell Aircraft Corporation opened an aircraft factory which manufactured a total of 668 B-29 Superfortresses before the plant closed in 1946. The airfield remained open after the war and became the home of Georgia Air National Guard (ANG) and Air Force Reserve. In 1951, Lockheed Aircraft Corporation took over the old plant to build B-47 Stratojets. Over the years, the Lockheed plant has constructed the C-140 JetStar, C-130 Hercules, C-141 Starlifter, and C-5 Galaxy. To this day, Lockheed Martin continues the production of the C-130 Hercules, F-22 Raptor and the Joint Strike Fighter at Dobbins ARB.
 
 ### Additional Resources
-[Charts](https://skyvector.com/airport/ATL/Hartsfield-Jackson-Atlanta-International-Airport)
+<a href="https://skyvector.com/airport/ATL/Hartsfield-Jackson-Atlanta-International-Airport" target="_blank">Charts</a>

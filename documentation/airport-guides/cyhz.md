@@ -11,8 +11,7 @@ Opened in June 1960, it is now a hub for Air Canada and Air Canada Express.
 80,278 aircraft movement in 2015-2016
 
 ## Positions
-
-Not much is known about Halifax due to lack of local knowledge, however from [LiveATC feeds](https://www.liveatc.net/search/?icao=CYHZ), we know that Halifax Terminal on frequency 119.200MHz is used most.
+Not much is known about Halifax due to lack of local knowledge, however from <a href="https://www.liveatc.net/search/?icao=CYHZ" target="_blank">LiveATC feeds</a>, we know that Halifax Terminal on frequency 119.200MHz is used most.
 
 |Callsign             | Frequency  | Remarks
 |---------------------|:----------:|:---------------------------------------------:|
@@ -30,7 +29,7 @@ Not much is known about Halifax due to lack of local knowledge, however from [Li
 
 NAVCanada outlines the airspace boundary around Halifax in their Designated Airspace Handbook. All radar positions (departure, arrival) surrounding Halifax have the callsign "Halifax Terminal". Aircraft leaving the Halifax TCA should be handed over to Moncton Centre.
 
-[This diagram](http://prntscr.com/hv4bf4) may assist in visualising the airspace around Halifax.
+<a href="http://prntscr.com/hv4bf4" target="_blank">This diagram</a> may assist in visualising the airspace around Halifax.
 
 ## Instrument Procedures
 
@@ -151,5 +150,5 @@ The videomap also contains:
 
 ## Additional Resources
 
-[Halifax Charts, Moncton FIR (VATCAN)](http://czqm.ca/Charts.aspx)
-[Designated Airspace Handbook](https://www.navcanada.ca/EN/products-and-services/Documents/DAH_Current_EN.pdf)
+<a href="http://czqm.ca/Charts.aspx" target="_blank">Halifax Charts, Moncton FIR (VATCAN)</a>
+<a href="https://www.navcanada.ca/EN/products-and-services/Documents/DAH_Current_EN.pdf" target="_blank">Designated Airspace Handbook</a>

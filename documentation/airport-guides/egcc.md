@@ -15,7 +15,7 @@ The file "MAN West and East xxxx_xx.pdf" from <a href="https://vatsim.uk/downloa
 
 ### Standard Operating Procedures
 ###### Preferential Runway
-Runways 23L and R should be used for all movements when the tailwind component is not greater than 5kt on the runway or at 2000ft. 
+Runways 23L and R should be used for all movements when the tailwind component is not greater than 5kt on the runway or at 2000ft.
 During dual-runway operations, 23L should be used for takeoffs and 23R for landing. Dual-runway operations should only be used during peak times or in exceptional circumstances. Otherwise, single-runway operations is in use where 23R is used for both takeoffs and landings, as runway 23L does not have an Instrument Landing System.
 
 ##### Noise Limits
@@ -136,7 +136,7 @@ Runway 13/31, Asphalt, 998m
 **Purpose**: To protect Devonshire Dock and BAE Systems
 
 ### Videomap
-Provided with the videomap is a top down view of the airport's taxiways and runways. Each horizontal line on the extended centreline represents one (1) nautical mile, with each vertical line representing four (4) nautical miles. 
+Provided with the videomap is a top down view of the airport's taxiways and runways. Each horizontal line on the extended centreline represents one (1) nautical mile, with each vertical line representing four (4) nautical miles.
 
 The lines representing radials on the videomap originating from the VHF omnidirectional range stations, Manchester, Honiley, Trent, Wallasey and Pole Hill each represent four (4) nautical miles.
 
@@ -144,8 +144,8 @@ All restricted airspaces are plotted too.
 
 
 ### Additional Resources
-[Manchester Aerodrome Charts (NATS)](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=99&Itemid=148.html)
-[The UK Intergrated Aeronautical Information Package](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=165&Itemid=3.html)
-[VATSIM UK](https://vatsim.uk/egcc)
-[VATSIM UK Manchester Virtual Manual of Air Traffic Services](https://vatsim.uk/download/info/?downloadID=00194)
-[VATSIM UK Manchester Cribsheet](https://vatsim.uk/download/info/?downloadID=00349)
+<a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=99&Itemid=148.html" target="_blank">Manchester Aerodrome Charts (NATS)</a>
+<a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=165&Itemid=3.html" target="_blank">The UK Intergrated Aeronautical Information Package</a>
+<a href="https://vatsim.uk/egcc" target="_blank">VATSIM UK</a>
+<a href="https://vatsim.uk/download/info/?downloadID=00194" target="_blank">VATSIM UK Manchester Virtual Manual of Air Traffic Services</a>
+<a href="https://vatsim.uk/download/info/?downloadID=00349" target="_blank">VATSIM UK Manchester Cribsheet</a>
