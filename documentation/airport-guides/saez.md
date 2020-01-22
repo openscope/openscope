@@ -37,5 +37,5 @@ El Palomar Airport
 El Palomar Airport was a military airfield located 18km West of Buenos Aires. The airport was temporarily used for commercial flights in 2010 while Aeroparque Jorge Newbery underwent runway maintenance and was converted for permanent commercial use in 2018, although military operations still take place daily. It serves as a hub for low-cost airlines FlyBondi, JetSmart, SKY Airline and Norwegian Air Shuttle, making it the first and only low-cost airport in Latin America.
 
 ## Additional Resources
-[Argentina AIP](http://ais.anac.gov.ar/aip)  
-[SAEZ Charts (VATSIM Argentina)](http://argentina.vatsur.org/site/index.php?r=cartas/view&id=11)  
+- <a href="http://ais.anac.gov.ar/aip" target="_blank">Argentina AIP</a>
+- <a href="http://argentina.vatsur.org/site/index.php?r=cartas/view&id=11" target="_blank">SAEZ Charts (VATSIM Argentina)</a>
