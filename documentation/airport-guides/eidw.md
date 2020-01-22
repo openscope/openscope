@@ -94,5 +94,5 @@ Located on the border between the counties of Kildare and Dublin, Weston Airport
 Baldonnel / Casement Aerodrome is a military airbase to the southwest of Dublin. Property of the Irish Department of Defence, it is the headquarters and the sole airfield of the Irish Air Corps and home of the Garda Air Support Unit.
 
 ## Additional Resources
-[Ireland AIP](http://iaip.iaa.ie/iaip/index.htm)  
-[EIDW Charts](http://iaip.iaa.ie/iaip/aip_eidw_charts.htm)  
+- <a href="http://iaip.iaa.ie/iaip/index.htm" target="_blank">Ireland AIP</a>
+- <a href="http://iaip.iaa.ie/iaip/aip_eidw_charts.htm" target="_blank">EIDW Charts</a>
