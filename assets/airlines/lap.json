@@ -1,15 +1,15 @@
 {
-    "icao": "mph",
-    "name": "Martinair",
+    "icao": "lap",
+    "name": "LATAM Airlines Paraguay",
     "callsign": {
-        "name": "Martinair",
+        "name": "Paraguaya",
         "callsignFormats": [
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B744", 1]
+            ["A320", 5]
         ]
     }
 }

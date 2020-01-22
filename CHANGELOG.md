@@ -8,6 +8,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
 - <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport (EDDM)
 - [#1387](https://github.com/openscope/openscope/issues/1387) - Update LOWW to AIRAC 1908
+- <a href="https://github.com/openscope/openscope/issues/1499" target="_blank">#1499</a> - Reintroduce Ministro Pistarini Airport (SAEZ)
 
 
 # 6.15.1 (December 2, 2019)

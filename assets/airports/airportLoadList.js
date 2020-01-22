@@ -423,7 +423,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Doha Hamad International Airport',
             premium: false
-        // },
+        },
         // {
         //     icao: 'panc',
         //     level: 'easy',
@@ -454,11 +454,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Incheon International Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'saez',
-        //     level: 'medium',
-        //     name: 'Aeropuerto Internacional Ministro Pistarini',
-        //     premium: false
+        {
+            icao: 'saez',
+            level: 'easy',
+            name: 'Ministro Pistarini International Airport',
+            premium: false
         // },
         // {
         //     icao: 'saez',
