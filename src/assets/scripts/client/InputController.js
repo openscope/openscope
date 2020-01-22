@@ -470,11 +470,13 @@ export default class InputController {
         // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (code) {
             case KEY_CODES.CONTROL_LEFT:
-                    this._startMeasuring();
-        
-                    break;
+                this._startMeasuring();
+
+                break;
             case KEY_CODES.CONTROL_RIGHT:
                 listen();
+
+                break;
             case KEY_CODES.BAT_TICK:
             case LEGACY_KEY_CODES.BAT_TICK:
                 this.$commandInput.val(`${currentCommandInputValue}\` `);
@@ -767,9 +769,8 @@ export default class InputController {
                 this.$commandInput.attr('placeholder', 'enter aircraft command');
                 this.$commandInput.css({ color: 'white' });
 
-                return;
+                break;
             default:
-                return;
         }
     }
 
@@ -884,7 +885,7 @@ export default class InputController {
                 let nextTimewarpValue = 0;
 
                 if (aircraftCommandParser.args) {
-                    nextTimewarpValue = aircraftCommandParser.args[0];
+                    [nextTimewarpValue] = aircraftCommandParser.args;
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
