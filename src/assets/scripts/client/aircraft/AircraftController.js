@@ -795,7 +795,7 @@ export default class AircraftController {
      */
     _updateAircraftVisibility(aircraftModel) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
-        if (aircraftModel.isArrival() && aircraftModel.isStopped()) {
+        if (aircraftModel.isArrival() && aircraftModel.isStopped() && !aircraftModel.hit) {
             EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
 
             UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
@@ -819,6 +819,7 @@ export default class AircraftController {
             UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
             aircraftModel.setIsFlightStripRemovable();
             aircraftModel.setIsRemovable();
+            this.aircraft_remove(aircraftModel);
 
             speech_say(
                 [

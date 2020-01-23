@@ -1067,10 +1067,10 @@ export default class AircraftModel {
         }
 
         const errorAllowanceInFeet = 5;
-        const nearRunwayAltitude = abs(this.altitude - runwayModel.elevation) < errorAllowanceInFeet;
-        const nearAirportAltitude = abs(this.altitude - airportModel.elevation) < errorAllowanceInFeet;
+        const isAtOrBelowRunwayAltitude = this.altitude - runwayModel.elevation < errorAllowanceInFeet;
+        const isAtOrBelowAirportAltitude = this.altitude - airportModel.elevation < errorAllowanceInFeet;
 
-        return nearRunwayAltitude || nearAirportAltitude;
+        return isAtOrBelowRunwayAltitude || isAtOrBelowAirportAltitude;
     }
 
     /**
