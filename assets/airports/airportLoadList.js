@@ -459,24 +459,18 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Ministro Pistarini International Airport',
             premium: false
-        // },
-        // {
-        //     icao: 'saez',
-        //     level: 'easy',
-        //     name: 'Aeropuerto Internacional Ministro Pistarini',
-        //     premium: false
-        // },
+        },
         // {
         //     icao: 'same',
         //     level: 'medium',
         //     name: 'Aeropuerto Internacional El Plumerillo',
         //     premium: false
         // },
-        // {
-        //     icao: 'sawh',
-        //     level: 'beginner',
-        //     name: 'Aeropuerto Internacional Malvinas Argentinas',
-        //     premium: false
+        {
+            icao: 'sawh',
+            level: 'beginner',
+            name: 'Aeropuerto Internacional Malvinas Argentinas',
+            premium: false
         // },
         // {
         //     icao: 'sbgl',
