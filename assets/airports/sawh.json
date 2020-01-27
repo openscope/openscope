@@ -29,7 +29,7 @@
         {
             "floor": 0,
             "ceiling": 450,
-            "airspace_class": "B",
+            "airspace_class": "C",
             "poly": [
                 ["S54.190080900", "W68.226163500"],
                 ["S54.192716200", "W68.168279200"],
@@ -165,15 +165,30 @@
         "_USU093GRA167": [-54.923115,-67.76128],
         "ALMIR": ["S54.00004499898609", "W69.80831670741122"],
         "AMVUK": ["S54.81776169384693", "W67.67552246629506"],
+        "ASGEN": ["S52d56.17", "W66d39.28"],
+        "ASKAS": ["S51d47.30", "W66d00.07"],
         "DABLI": ["S54.50004733240834", "W67.66786866304632"],
+        "DAGOK": ["S47d28.30", "W65d08.02"],
+        "DONBO": ["S48d02.23", "W66d13.28"],
         "EDPAN": ["S54.66358383905374", "W67.64974122124781"],
+        "GAL"  : ["S51d36.66", "W69d19.81"],
         "GRA"  : ["S53.78508950419373", "W67.76072144825874"],
+        "GUDUX": ["S52d44.83", "W67d16.08"],
         "KEXOP": ["S54.50004733240834", "W68.10977541089018"],
+        "KOTON": ["S49d37.60", "W65d56.97"],
+        "KUKAS": ["S47d35.62", "W66d07.98"],
+        "LOKEN": ["S53d24.50", "W68d25.28"],
+        "MUBES": ["S52d48.15", "W68d28.75"],
+        "NAS"  : ["S53.00354568044523", "W70.85375976418838"],
         "PWL"  : ["S54.92948064936479", "W67.62114014089683"],
         "ROMIV": ["S54.66800730096005", "W68.61053467196538"],
+        "SALVU": ["S48.26808158359496", "W64.03454589690510"],
         "SUNLI": ["S54.96300439137991", "W68.73669433992974"],
+        "TIRGA": ["S51d44.42", "W67d01.55"],
+        "TODRA": ["S54d44.58", "W68d40.62"],
         "UGIRA": ["S54.50004733240834", "W68.31783815953314"],
         "USU"  : ["S54.83806563867309", "W68.28420167323435"],
+        "UTNOS": ["S52d50.28", "W66d54.17"],
         "WH213": ["S54.73004760984458", "W67.64228882299615"],
         "WH214": ["S54.79640254056611", "W67.63503784627639"],
         "WH321": ["S54.91970022935944", "W68.34190737392117"],
@@ -194,6 +209,24 @@
             "glideslope": [3.00, 3.5]
         }
     ],
+    "airways": {
+        "G550": ["PWL", "WH326", "USU", "ROMIV", "ALMIR", "NAS"],
+        "T108": ["DABLI", "GRA", "GUDUX"],
+        "T662": ["GRA", "UTNOS", "ASKAS"],
+        "T704": ["DABLI", "ASGEN", "ASKAS"],
+        "UL670": ["PWL", "WH326", "USU", "ROMIV", "ALMIR", "NAS"],
+        "UT108": ["GRA", "GUDUX", "KOTON", "DAGOK"],
+        "UT662": ["GRA", "UTNOS", "ASKAS", "SALVU"],
+        "UT700": ["GRA", "GUDUX", "TIRGA", "DONBO", "KUKAS"],
+        "UT704": ["DABLI", "ASGEN", "ASKAS"],
+        "UV115": ["PWL", "SUNLI", "ALMIR", "NAS"],
+        "UW42": ["USU", "KEXOP", "GRA", "MUBES", "GAL"],
+        "UW63": ["USU", "UGIRA", "LOKEN", "MUBES", "GAL"],
+        "V115": ["PWL", "SUNLI", "ALMIR", "NAS"],
+        "W119": ["TODRA", "NAS"],
+        "W42": ["USU", "KEXOP", "GRA", "MUBES", "GAL"],
+        "W63": ["USU", "UGIRA", "LOKEN", "MUBES", "GAL"]
+    },
     "sids": {
         "USU2A": {
             "icao": "USU2A",
@@ -220,7 +253,7 @@
             "icao": "USU2B",
             "name": "Oosuahya Two Bravo",
             "rwy": {
-                "SAWH25" : [["^_RWY25", "A4+"], "_USU093006", ["^_USU093014", "A45+"]]
+                "SAWH25" : [["^_RWY07", "A4+"], "_USU093006", ["^_USU093014", "A45+"]]
             },
             "exitPoints": {
                 "GRA": ["_USU093GRA167", "GRA"],
@@ -241,7 +274,7 @@
             "icao": "PWL3",
             "name": "Williams Three",
             "rwy": {
-                "SAWH25" : [["^_RWY25", "A4+"], ["WH321", "A17+"], ["WH322", "A50+"], ["WH323", "A75+"], ["WH324", "A80+"]]
+                "SAWH25" : [["^_RWY07", "A4+"], ["WH321", "A17+"], ["WH322", "A50+"], ["WH323", "A75+"], ["WH324", "A80+"]]
             },
             "exitPoints": {
                 "DABLI": [["WH325", "A110+"], "DABLI"],
@@ -274,36 +307,141 @@
             "origin": "SAWH",
             "destination": "",
             "category": "departure",
-            "route": "SAWH25.USU2B.GRA",
+            "route": "SAWH25.USU2B.GRA.UT662.SALVU",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5,
+            "rate": 1.72,
             "airlines": [
-                ["arg", 5],
-                ["glo", 1],
-                ["lan", 2],
-                ["dsm", 3],
-                ["tam", 1],
-                ["n/fastGA", 3]
+                ["ans", 2],
+                ["arg/short", 35],
+                ["aut", 22],
+                ["dsm/short", 19],
+                ["jes/a320", 2],
+                ["lde/sf34", 2],
+                ["naa", 5]
+            ]
+        },
+        {
+            "origin": "SAWH",
+            "destination": "",
+            "category": "departure",
+            "route": "SAWH25.USU2B.KEXOP.W42.GRA.UT108.DAGOK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.72,
+            "airlines": [
+                ["ans", 2],
+                ["arg/short", 35],
+                ["aut", 22],
+                ["dsm/short", 19],
+                ["jes/a320", 2],
+                ["lde/sf34", 2],
+                ["naa", 5]
+            ]
+        },
+        {
+            "origin": "SAWH",
+            "destination": "",
+            "category": "departure",
+            "route": "SAWH25.USU2B.UGIRA.W63.GAL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.83,
+            "airlines": [
+                ["arg/short", 19],
+                ["dsm/short", 6],
+                ["lan/short", 7],
+                ["lde/sf34", 1]
+            ]
+        },
+        {
+            "origin": "SAWH",
+            "destination": "SCCI",
+            "category": "departure",
+            "route": "SAWH25.PWL3.USU.UL670.NAS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["dap/rj1h", 3]
+            ]
+        },
+        {
+            "origin": "SAWH",
+            "destination": "SAWG",
+            "category": "departure",
+            "route": "SAWH25.PWL3.USU.W63.MUBES",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["lde/sf34", 2]
+            ]
+        },
+        {
+            "origin": "SAWH",
+            "destination": "SAWE",
+            "category": "departure",
+            "route": "SAWH25.PWL3.DABLI.T108.GRA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.04,
+            "airlines": [
+                ["lde/sf34", 1]
             ]
         },
         {
             "origin": "",
             "destination": "SAWH",
             "category": "arrival",
-            "route": "GRA..DABLI.DABLI2.SAWH25",
-            "altitude": 25000,
+            "route": "SALVU.UT662.ASKAS.UT704.DABLI.DABLI2.SAWH25",
+            "altitude": [30000, 38000],
             "speed": 300,
             "method": "random",
-            "rate": 5,
+            "rate": 2.57,
             "airlines": [
-                ["arg", 5],
-                ["glo", 1],
-                ["lan", 2],
-                ["dsm", 3],
-                ["tam", 1],
-                ["n/fastGA", 3]
+                ["ans", 2],
+                ["arg/short", 35],
+                ["aut", 9],
+                ["dsm/short", 19],
+                ["jes/a320", 2],
+                ["naa", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SAWH",
+            "category": "arrival",
+            "route": "GRA.T108.DABLI.DABLI2.SAWH25",
+            "altitude": [12000, 25000],
+            "speed": 300,
+            "method": "random",
+            "rate": 1.82,
+            "airlines": [
+                ["arg/short", 19],
+                ["aut", 13],
+                ["dsm/short", 6],
+                ["lan/short", 7],
+                ["lde/sf34", 6]
+            ]
+        },
+        {
+            "origin": "SCCI",
+            "destination": "SAWH",
+            "category": "arrival",
+            "route": "ALMIR..DABLI.DABLI2.SAWH25",
+            "altitude": 27000,
+            "speed": 300,
+            "method": "random",
+            "rate": 0.11,
+            "airlines": [
+                ["dap/rj1h", 3]
             ]
         }
     ],
