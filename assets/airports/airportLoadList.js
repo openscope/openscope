@@ -469,7 +469,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'sawh',
             level: 'beginner',
-            name: 'Aeropuerto Internacional Malvinas Argentinas',
+            name: 'Malvinas Argentinas Ushuaia International Airport',
             premium: false
         // },
         // {
