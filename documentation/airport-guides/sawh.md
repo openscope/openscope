@@ -14,21 +14,21 @@ Due to the challenging terrain surrounding Ushuaia, all departure procedures tak
 `Ushuaia TMA` including areas from the `Río Grande TMA` and `Punta Arenas FIR` (delegated to Ushuaia TMA for arriving traffic)
 
 ## Restricted Airspace
-There is no restricted airspace within or in the vicinity of the Ushuaia TMA, but the terrain is enough of a challenge 
+There is no restricted airspace within or in the vicinity of the Ushuaia TMA, but the terrain is challenging enough.
 
 ## Airports of Interest
+
+### SAWO
+Base Aeronaval Ushuaia (Ushuaia Aeronautical Base)
+1nm North of SAWH  
+
+Although its runway proved to be inadequate for civil aviation, due to its size and orientation, Ushuaia's old airport is still used for military and GA traffic.
 
 ### SCGZ
 Guardiamarina Zañartu Airport 
 23nm East of SAWH  
 
 Guardiamarina Zañartu Airport is a Chilean military airfield serving the town of Puerto Williams, the southernmost city in the world. There is one commercial route serving the airport, a DAP flight to Punta Arenas (SCCI).
-
-### CC52
-Base Aeronaval Ushuaia (Ushuaia Aeronautical Base)
-1nm North of SAWH  
-
-Although it's runway proved to be inadequate for civil aviation, due to its size and orientation, this military airfield is still used for military and GA traffic.
 
 ## Additional Resources
 - <a href="http://ais.anac.gov.ar/aip" target="_blank">Argentina AIP</a>
