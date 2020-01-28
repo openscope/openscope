@@ -240,9 +240,9 @@
         }
     ],
     "sids": {
-        "ANC8": {
-            "icao": "ANC8",
-            "name": "Anchorage Eight",
+        "ANC9": {
+            "icao": "ANC9",
+            "name": "Anchorage Nine",
             "rwy": {
                 "PANC7L": ["_RWY7L04DME", "#199"],
                 "PANC7R": ["_RWY7R04DME", "#199"],
@@ -273,9 +273,9 @@
                 ["NODLE*"]
             ]
         },
-        "FFITZ3": {
-            "icao": "FFITZ3",
-            "name": "Fitz Three",
+        "FFITZ4": {
+            "icao": "FFITZ4",
+            "name": "Fitz Four",
             "rwy": {
                 "PANC25L": ["VUYWO", "OGOLY"],
                 "PANC25R": ["VUYWO", "OGOLY"],
@@ -311,9 +311,9 @@
                 ["NODLE*"]
             ]
         },
-        "NOEND3": {
-            "icao": "NOEND3",
-            "name": "No End Three",
+        "NOEND4": {
+            "icao": "NOEND4",
+            "name": "No End Four",
             "rwy": {
                 "PANC33": []
             },
@@ -325,9 +325,9 @@
                 ["EGKAJ", "LIFFE", "OUTER", "CRAFT", "RAMMA", "NOEND*"]
             ]
         },
-        "TURN7": {
-            "icao": "TURN7",
-            "name": "Turn Again Seven",
+        "TURNA8": {
+            "icao": "TURNA8",
+            "name": "Turn Again Eight",
             "rwy": {
                 "PANC33": []
             },
@@ -349,9 +349,9 @@
         }
     },
     "stars": {
-        "AMOTT3": {
-            "icao": "AMOTT3",
-            "name": "Amott Three",
+        "AMOTT4": {
+            "icao": "AMOTT4",
+            "name": "Amott Four",
             "entryPoints": {
                 "ENA": ["ENA"],
                 "HOM": ["HOM", "AKTEA", "IRERE"],
@@ -394,9 +394,9 @@
                 ["JOH", "TAZLI", "ELLAM"]
             ]
         },
-        "KROTO3": {
-            "icao": "KROTO3",
-            "name": "Kroto Three",
+        "KROTO4": {
+            "icao": "KROTO4",
+            "name": "Kroto Four",
             "entryPoints": {
                 "GKN": ["GKN", "IRONC", "TKA"],
                 "KKYLE": ["KKYLE", "AKMAX", "ROHHN"],
@@ -416,9 +416,9 @@
                 ["PUYVO", "AILEE", "TKA"]
             ]
         },
-        "NEELL5": {
-            "icao": "NEELL5",
-            "name": "Neil Five",
+        "NEELL6": {
+            "icao": "NEELL6",
+            "name": "Neil Six",
             "entryPoints": {
                 "AKGAS": [["AKGAS", "A250+"], ["GEDEE", "A160+"]],
                 "BAITT": [["BAITT", "A250+"], ["LEWYY", "A160+"]],
@@ -436,9 +436,9 @@
                 ["SHNKN", "AINKK"]
             ]
         },
-        "PTERS2": {
-            "icao": "PTERS2",
-            "name": "Peters Two",
+        "PTERS3": {
+            "icao": "PTERS3",
+            "name": "Peters Three",
             "entryPoints": {
                 "GKN": [["GKN", "A260+"]],
                 "JOH": ["JOH", "DENSN"],
@@ -485,9 +485,9 @@
                 ["GAL", "AKMAX", "ROHHN"]
             ]
         },
-        "WITTI3": {
-            "icao": "WITTI3",
-            "name": "Witty Three",
+        "WITTI4": {
+            "icao": "WITTI4",
+            "name": "Witty Four",
             "entryPoints": {
                 "JOH": ["JOH"],
                 "MDO": [["MDO", "A260+"]],
@@ -535,7 +535,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.ANC8.TED..BGQ..FAI",
+            "route": "PANC33.ANC9.TED..BGQ..FAI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -552,7 +552,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.ANC8.JOH",
+            "route": "PANC33.ANC9.JOH",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -577,7 +577,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.ANC8.MDO",
+            "route": "PANC33.ANC9.MDO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -602,7 +602,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.ANC8.SQA",
+            "route": "PANC33.ANC9.SQA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -620,7 +620,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.ANC8.TED..ODK",
+            "route": "PANC33.ANC9.TED..ODK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -638,7 +638,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.FFITZ3.FFITZ",
+            "route": "PANC33.FFITZ4.FFITZ",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -654,7 +654,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.NOEND3.NOEND",
+            "route": "PANC33.NOEND4.NOEND",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -681,7 +681,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.TURN7.BGQ..FAI",
+            "route": "PANC33.TURNA8.BGQ..FAI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -695,7 +695,7 @@
             "origin": "panc",
             "destination": "",
             "category": "departure",
-            "route": "PANC33.TURN7.ENA",
+            "route": "PANC33.TURNA8.ENA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -709,7 +709,7 @@
             "origin": "",
             "destination": "PANC",
             "category": "arrival",
-            "route": "HOM.AMOTT3.PANC7R",
+            "route": "HOM.AMOTT4.PANC7R",
             "altitude": [10000, 20000],
             "speed": 250,
             "method": "random",
@@ -725,7 +725,7 @@
             "origin": "",
             "destination": "PANC",
             "category": "arrival",
-            "route": "PUYVO.KROTO3.PANC7R",
+            "route": "PUYVO.KROTO4.PANC7R",
             "altitude": [25000, 39000],
             "speed": 320,
             "method": "random",
@@ -742,7 +742,7 @@
             "origin": "",
             "destination": "PANC",
             "category": "arrival",
-            "route": "HAMND.NEELL5.PANC7R",
+            "route": "HAMND.NEELL6.PANC7R",
             "altitude": [25000, 41000],
             "speed": 320,
             "method": "random",
@@ -778,7 +778,7 @@
             "origin": "",
             "destination": "PANC",
             "category": "arrival",
-            "route": "TMSON.WITTI3.PANC7R",
+            "route": "TMSON.WITTI4.PANC7R",
             "altitude": [26000, 40000],
             "speed": 320,
             "method": "random",
