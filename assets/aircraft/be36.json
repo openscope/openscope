@@ -1,11 +1,11 @@
 {
-    "name": "Beechcraft Bonanza",
-    "icao": "BE36",
+    "name": "Beechcraft Super King Air 200",
+    "icao": "BE20",
     "engines": {
-        "number": 1,
-        "type": "P"
+        "number": 2,
+        "type": "T"
     },
-    "weightClass": "S",
+    "weightClass": "S+",
     "category": {
         "srs": 1,
         "lahso": 2,
