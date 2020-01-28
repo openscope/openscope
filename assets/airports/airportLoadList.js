@@ -252,7 +252,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'klas',
             level: 'hard',
-            name: 'McCarran International Airport',
+            name: 'Las Vegas McCarran International Airport',
             premium: false
         },
         // {
@@ -457,7 +457,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'saez',
             level: 'easy',
-            name: 'Ministro Pistarini International Airport',
+            name: 'Ezeiza Ministro Pistarini International Airport',
             premium: false
         },
         // {
