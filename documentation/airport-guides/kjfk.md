@@ -1,22 +1,19 @@
 ### About this facility
 New York TRACON (N90), Westbury, New York, USA
-1,957,764 annual operations in 2019 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+1,957,764 annual operations in 2019 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 ### Airspace
 Widely considered to be the most complex airspace in the world, the New York TRACON (N90) includes three major airports: KJFK, KEWR, and KLGA. Combined, they accumulated 1.29 million aircraft movements in 2019, and an additional 667,000 movements from various New York area satellite airports. With only 9 miles and 14 miles separating KLGA from KJFK and KEWR (respectively), these powerhouse airports are extremely close together, making simultaneous operations with changing runway configurations and countless crossing flows highly difficult.
-
-### Instrument Procedures
-For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final. Aircraft are still manually vectored to the final approach course.
 
 ### Sectors Available in openScope
 N90 includes 5 different areas: Kennedy, LaGuardia, Newark, Islip, and Liberty. In this case, we are only simulating the Kennedy area, operating as the CAMRN sector, with all other Kennedy sectors combined at CAMRN.
 
 ```
 G - CAMRN (default)
-~~K - ROBER (unavailable)~~
-~~A - final (unavailable)~~
-~~S - satellite (unavailable)~~
-~~J - departure (unavailable)~~
+K - ROBER (unavailable)
+A - final (unavailable)
+S - satellite (unavailable)
+J - departure (unavailable)
 ```
 
 To the east, we overhang the Islip area (to acommodate descending the ROBER arrivals), and to the northwest, we overhang the LaGuardia and Newark areas (to accomodate descending the LENDY arrivals).
