@@ -4,6 +4,7 @@
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1389" target="_blank">#1389</a> - Prevent unfair penalty at KDCA on IRONS7 arrivals by deactivating R6601B/C
 - <a href="https://github.com/openscope/openscope/issues/1218" target="_blank">#1218</a> - Ensure proper removal of aircraft who collide with terrain/traffic
+- <a href="https://github.com/openscope/openscope/issues/1513" target="_blank">#1513</a> - Add missing fleets to AFR/LDM airlines that were crashing EDDM/EIDW
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
