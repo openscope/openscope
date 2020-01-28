@@ -1,0 +1,23 @@
+{
+    "icao": "lde",
+    "name": "LADE - Líneas Aéreas del Estado",
+    "callsign": {
+        "name": "LADE",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C130", 6],
+            ["DHC6", 7],
+            ["SF34", 2]
+        ],
+        "sf34": [
+            ["SF34", 2]
+        ],
+        "cargo": [
+            ["C130", 6]
+        ]
+    }
+}
