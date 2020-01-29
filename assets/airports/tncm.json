@@ -1,5 +1,5 @@
 {   
-    "airac": 2001,
+    "airac": 2002,
     "radio": {
         "twr": "Juliana Tower",
         "app": "Juliana Approach",
@@ -10,7 +10,7 @@
     "magnetic_north": -14,
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
-    "initial_alt": 5000,
+    "initial_alt": 15000,
     "position": ["N18d02m27.34", "W63d06m32.25", "14ft"],
     "rangeRings": {
         "enabled": true,
@@ -115,6 +115,7 @@
         "_ULUBA320007.5": [18.087466100, -63.398407400],
         "_ULUBA326007.5": [18.098390900, -63.389697400],
         "_ULUBA332007.4": [18.106812900, -63.378291300],
+        "ANNER": ["N16d14.20", "W64d56.58"],
         "ANU"  : ["N17d07.55", "W61d48.01"],
         "AVAKI": ["N18d00.85", "W63d17.69"],
         "BIMBO": ["N16d37.60", "W61d57.62"],
@@ -127,19 +128,28 @@
         "GUYRO": ["N18d40.27", "W64d06.53"],
         "ILORA": ["N17d59.47", "W63d27.88"],
         "JUICE": ["N18d07.86", "W63d40.00"],
+        "KOLAO": ["N19d18.33", "W65d26.15"],
         "LARPP": ["N18d12.32", "W64d06.53"],
         "LESOR": ["N18d01.61", "W63d12.46"],
         "MAPON": ["N18d02.07", "W63d09.24"],
         "MNOLO": ["N18d20.73", "W62d48.13"],
         "MODOR": ["N17d52.47", "W63d04.92"],
         "NEYDU": ["N18d58.36", "W62d09.15"],
+        "OBIKE": ["N19d20.48", "W61d46.03"],
         "ONBED": ["N17d50.58", "W62d50.05"],
+        "OPAUL": ["N21d51.40", "W63d50.79"],
         "OTMOT": ["N18d06.81", "W63d18.63"],
+        "PASIC": ["N18d17.69", "W64d39.00"],
         "PJE"  : ["N17d29.25", "W62d59.45"],
         "PJM"  : ["N18d02.29", "W63d07.10"],
+        "PLING": ["N19d59.53", "W66d47.88"],
         "PORQE": ["N17d09.60", "W64d00.87"],
+        "PPR"  : ["N16d15.91", "W61d32.41"],
+        "RAFEE": ["N16d06.55", "W65d04.21"],
+        "RKDIA": ["N21d00.00", "W60d00.00"],
         "SKB"  : ["N17d17.71", "W62d44.64"],
         "SLUGO": ["N18d23.37", "W63d40.00"],
+        "STT"  : ["N18d21.35", "W65d01.47"],
         "TRNKY": ["N18d25.22", "W63d11.38"],
         "ULUBA": ["N18d00.89", "W63d17.49"],
         "UMANA": ["N17d54.90", "W63d16.76"],
@@ -280,6 +290,15 @@
             "ils": [true, false]
         }
     ],
+    "airways": {
+        "A517": ["PPR", "BIMBO", "SKB", "ZPATA", "PJM"],
+        "A638": ["STT", "GUYRO", "SLUGO", "PJM"],
+        "B520": ["STT", "PASIC", "LARPP", "JUICE", "PJM", "ELOPO", "ANU"],
+        "L461": ["OPAUL", "YIYYO", "TRNKY", "PJM"],
+        "M576": ["RAFEE", "ANNER", "PORQE", "DANDE", "PJM", "MNOLO", "NEYDU", "OBIKE", "RKDIA"],
+        "R760": ["COY", "GOUDA", "PJM"],
+        "Y355": ["PLING", "KOLAO", "SLUGO"]
+    },
     "sids": {
         "BOPAT2": {
             "icao": "BOPAT2",
@@ -413,6 +432,7 @@
                 "TNCM10": []
             },
             "draw": [
+                ["ULUBA*"],
                 ["GOUDA*", "ILORA", "ULUBA", "PJM"],
                 ["DANDE*", "_PJM276DANDE040"],
                 ["ELOPO*", "_ULUBA238006", "_ULUBA243006.1", "_ULUBA248006.1", "_ULUBA253006", "_ULUBA257005.8", "_ULUBA262005.5", "_ULUBA266005.2", "_ULUBA270004.8", "_ULUBA272004.3", "_ULUBA274003.8", "_ULUBA276002.3"],
@@ -428,140 +448,313 @@
             "origin": "TNCM",
             "destination": "",
             "category": "departure",
-            "route": "TNCM10.MODOR2.ZPATA",
+            "route": "TNCM10.MODOR2.JUICE.B520.STT",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 10,
+            "rate": 1.56,
             "airlines": [
-                ["afr/long", 2],
-                ["aal", 4],
-                ["bwa", 4],
-                ["n/lightGA", 6],
-                ["n/fastGA", 6],
-                ["dal", 4],
-                ["jbu", 3],
+                ["aal/tncmLong", 6],
+                ["aal/tncmShort", 4],
+                ["bwa/b738", 2],
+                ["cey/crj2", 4],
+                ["dal/b73x", 4],
+                ["eja", 4],
+                ["n/fastGA", 1],
+                ["pj/fastGA", 1],
+                ["swg", 2],
+                ["wja/b73x", 2]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.BOPAT2.JUICE.B520.STT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.34,
+            "airlines": [
+                ["fdx/feeder", 3],
+                ["guy/at45", 3],
+                ["iwy", 3],
+                ["lia", 4],
+                ["n/lightGA", 1],
+                ["pj/lightGA", 1],
+                ["rsi/c402", 41],
+                ["wia", 14]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MODOR2.GOUDA.R760.COY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.22,
+            "airlines": [
+                ["cmp", 4],
+                ["pj/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MODOR2.DANDE.M576.RAFEE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.22,
+            "airlines": [
+                ["edr", 4],
+                ["pj/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.BOPAT2.DANDE.M576.RAFEE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.45,
+            "airlines": [
+                ["guy/at45", 5],
+                ["pj/lightGA", 1],
+                ["wia", 3]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MODOR2.ZPATA.A517.PPR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.06,
+            "airlines": [
+                ["fwi/long", 1],
+                ["pj/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MULLT2.ZPATA.A517.PPR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.11,
+            "airlines": [
+                ["fdx/feeder", 1],
+                ["guy/at45", 3],
+                ["lia", 4],
+                ["pj/lightGA", 1],
+                ["rsi/c402", 3],
+                ["wia", 28]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MODOR2.ELOPO.B520.ANU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.11,
+            "airlines": [
+                ["bwa", 2],
+                ["pj/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MULLT2.ELOPO.B520.ANU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.95,
+            "airlines": [
+                ["guy/at45", 5],
+                ["lia", 4],
+                ["pj/lightGA", 1],
+                ["wia", 8]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MODOR2.MNOLO.M576.RKDIA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.45,
+            "airlines": [
+                ["afr/a343", 4],
+                ["f/fastGA", 1],
+                ["fwi/long", 2],
                 ["klm/long", 2],
-                ["ual", 3],
-                ["fwi", 4],
-                ["inc", 3],
-                ["wia", 5]
+                ["ph/fastGA", 1],
+                ["pj/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "TNCM",
+            "destination": "",
+            "category": "departure",
+            "route": "TNCM10.MODOR2.TRNKY.L461.OPAUL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["dal/long", 2],
+                ["eja", 6],
+                ["jbu/long", 2],
+                ["n/fastGA", 1],
+                ["pj/fastGA", 1],
+                ["ual/short", 8]
             ]
         },
         {
             "origin": "",
             "destination": "TNCM",
             "category": "arrival",
-            "route": "GUYRO..SLUGO.ULUBA1.TNCM10",
-            "altitude": [10000, 15000],
+            "route": "PLING.Y355.SLUGO.ULUBA1.TNCM10",
+            "altitude": 13000,
             "speed": 250,
             "method": "random",
-            "rate": 5,
+            "rate": 4.9,
             "airlines": [
-                ["aal", 4],
-                ["bwa", 4],
-                ["n/fastGA", 6],
-                ["dal", 4],
-                ["jbu", 3],
-                ["ual", 3]
+                ["aal/tncmLong", 6],
+                ["aal/tncmShort", 4],
+                ["bwa/b738", 2],
+                ["cey/crj2", 4],
+                ["dal/b73x", 4],
+                ["eja", 4],
+                ["fdx/feeder", 3],
+                ["guy/at45", 3],
+                ["iwy", 3],
+                ["lia", 4],
+                ["n", 2],
+                ["pj", 2],
+                ["rsi/c402", 41],
+                ["swg", 2],
+                ["wia", 14],
+                ["wja/b73x", 2]
             ]
         },
         {
             "origin": "",
             "destination": "TNCM",
             "category": "arrival",
-            "route": "NEYDU..TRNKY.ULUBA1.TNCM10",
-            "altitude": [10000, 15000],
-            "speed": 250,
+            "route": "COY.R760.GOUDA.ULUBA1.TNCM10",
+            "altitude": 9000,
+            "speed": 240,
             "method": "random",
-            "rate": 5,
+            "rate": 0.22,
             "airlines": [
-                ["aal", 4],
-                ["bwa", 4],
-                ["n/fastGA", 6],
-                ["dal", 4],
-                ["jbu", 3],
-                ["ual", 3]
+                ["cmp", 4],
+                ["pj", 1]
             ]
         },
         {
             "origin": "",
             "destination": "TNCM",
             "category": "arrival",
-            "route": "NEYDU..MNOLO.ULUBA1.TNCM10",
-            "altitude": [10000, 15000],
+            "route": "RAFEE.M576.DANDE.ULUBA1.TNCM10",
+            "altitude": 13000,
             "speed": 250,
             "method": "random",
-            "rate": 10,
+            "rate": 0.67,
             "airlines": [
-                ["afr/long", 2],
+                ["edr", 4],
+                ["guy/at45", 5],
+                ["pj", 2],
+                ["wia", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "TNCM",
+            "category": "arrival",
+            "route": "PPR.A517.ZPATA.ULUBA1.TNCM10",
+            "altitude": 7000,
+            "speed": 230,
+            "method": "random",
+            "rate": 2.23,
+            "airlines": [
+                ["fdx/feeder", 1],
+                ["fwi/long", 1],
+                ["guy/at45", 3],
+                ["lia", 4],
+                ["pj", 2],
+                ["rsi/c402", 3],
+                ["wia", 28]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "TNCM",
+            "category": "arrival",
+            "route": "ANU.B520.ELOPO.ULUBA1.TNCM10",
+            "altitude": 13000,
+            "speed": 250,
+            "method": "random",
+            "rate": 1.06,
+            "airlines": [
+                ["bwa", 2],
+                ["guy/at45", 5],
+                ["lia", 4],
+                ["pj", 2],
+                ["wia", 8]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "TNCM",
+            "category": "arrival",
+            "route": "RKDIA.M576.MNOLO.ULUBA1.TNCM10",
+            "altitude": 13000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.45,
+            "airlines": [
+                ["afr/a343", 4],
+                ["f/fastGA", 1],
+                ["fwi/long", 2],
                 ["klm/long", 2],
-                ["fwi/long", 4]
+                ["ph/fastGA", 1],
+                ["pj/fastGA", 1]
             ]
         },
         {
             "origin": "",
             "destination": "TNCM",
             "category": "arrival",
-            "altitude": [10000, 15000],
-            "route": "SKB..ELOPO.ULUBA1.TNCM10",
+            "route": "OPAUL.L461.TRNKY.ULUBA1.TNCM10",
+            "altitude": 12000,
             "speed": 250,
             "method": "random",
-            "rate": 5,
+            "rate": 1,
             "airlines": [
-                ["bwa", 4],
-                ["n/fastGA", 6],
-                ["fwi", 4],
-                ["inc", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "TNCM",
-            "category": "arrival",
-            "route": "SKB..ZPATA.ULUBA1.TNCM10",
-            "altitude": [3000, 7000],
-            "speed": 250,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["bwa/short", 4],
-                ["n/lightGA", 6],
-                ["fwi/short", 4],
-                ["wia", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "TNCM",
-            "category": "arrival",
-            "route": "PORQE..DANDE.ULUBA1.TNCM10",
-            "altitude": [10000, 15000],
-            "speed": 250,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["bwa", 4],
-                ["n/fastGA", 6],
-                ["fwi", 4],
-                ["inc", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "TNCM",
-            "category": "arrival",
-            "route": "LARPP..JUICE..AVAKI",
-            "altitude": [7000, 10000],
-            "speed": 250,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["aal", 4],
-                ["bwa", 4],
-                ["n/fastGA", 6],
-                ["fwi", 4],
-                ["inc", 3]
+                ["dal/long", 2],
+                ["eja", 6],
+                ["jbu/long", 2],
+                ["n/fastGA", 1],
+                ["pj/fastGA", 1],
+                ["ual/short", 8]
             ]
         }
     ],

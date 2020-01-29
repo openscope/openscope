@@ -499,7 +499,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'tncm',
             level: 'easy',
-            name: 'St. Maarten Princess Juliana International Airport',
+            name: 'Princess Juliana International Airport',
             premium: false
         // },
         // {
