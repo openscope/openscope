@@ -24,7 +24,7 @@
     },
     "arrivalRunway": "10",
     "departureRunway": "10",
-    "defaultMaps": ["Runways", "Coast", "GEO", "Terminal Control Area", "Restricted Areas", "test"],
+    "defaultMaps": ["Runways", "Coast", "Airports", "Airspace", "Restricted Areas"],
     "airspace": [
         {
             "floor": 0,
@@ -604,7 +604,7 @@
                 ["afr/a343", 4],
                 ["f/fastGA", 1],
                 ["fwi/long", 2],
-                ["klm/long", 2],
+                ["klm/tncm", 2],
                 ["ph/fastGA", 1],
                 ["pj/fastGA", 1]
             ]
@@ -734,7 +734,7 @@
                 ["afr/a343", 4],
                 ["f/fastGA", 1],
                 ["fwi/long", 2],
-                ["klm/long", 2],
+                ["klm/tncm", 2],
                 ["ph/fastGA", 1],
                 ["pj/fastGA", 1]
             ]
@@ -2499,7 +2499,7 @@
             ]
         },
         {
-            "name": "GEO",
+            "name": "Airports",
             "lines": [
                 ["N17.90430", "W62.84051", "N17.90423", "W62.84372"],
                 ["N17.90423", "W62.84372", "N17.90423", "W62.84393"],
@@ -3303,7 +3303,7 @@
             ]
         },
         {
-            "name": "Terminal Control Area",
+            "name": "Airspace",
             "lines": [
                 ["N18.40958", "W62.85756", "N18.40988", "W63.66067"],
                 ["N18.40988", "W63.66067", "N17.60259", "W63.65986"],

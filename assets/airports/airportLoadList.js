@@ -498,7 +498,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         // },
         {
             icao: 'tncm',
-            level: 'easy',
+            level: 'beginner',
             name: 'Princess Juliana International Airport',
             premium: false
         // },
