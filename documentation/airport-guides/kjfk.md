@@ -18,6 +18,12 @@ J - departure (unavailable)
 
 To the east, we overhang the Islip area (to acommodate descending the ROBER arrivals), and to the northwest, we overhang the LaGuardia and Newark areas (to accomodate descending the LENDY arrivals).
 
+### Vectoring Departures
+
+With the exception of the SKORR4 departure, RNGRR transition, all departures will need to be vectored to join their route. When departing the 31s, due to airspace constraints (LGA/EWR traffic), all traffic will need a left turn to the west or south.
+
+Aircraft routed over RBV (usually routed `SKORR4.RNGRR..RBV`) are not impacted, but all other aircraft will be issued a southbound heading, climbed above any relevant arrival traffic, and turned toward their departure fix. Departures to north fixes will be climbed above landing traffic, and turned northeasbound across the LENDY arrival flow before being cleared on course.
+
 ### Airports of Interest
 
 #### KJFK (Primary Airport)

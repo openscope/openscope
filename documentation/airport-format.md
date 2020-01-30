@@ -35,7 +35,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
-    "position": ["N47d26.99m0", "W122d18.71m0"],
+    "position": ["N47d26.99m0", "W122d18.71m0", "432ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N47d26.99m0", "W122d18.71m0"],

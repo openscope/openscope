@@ -1,5 +1,5 @@
 {
-    "airac": 1910,
+    "airac": 2002,
     "radio": {
         "twr": "Kennedy Tower",
         "app": "New York Approach",
@@ -11,7 +11,7 @@
     "ctr_radius": 100,
     "ctr_ceiling": 17000,
     "initial_alt": 5000,
-    "position": ["N40.639926", "W73.778695"],
+    "position": ["N40.639926", "W73.778695", "13ft"],
     "rangeRings": {
         "enabled": true,
         "center": [40.639926, -73.778695],
@@ -256,6 +256,98 @@
         "Q818": ["GAYEL", "MSLIN", "STOMP", "BUFFY", "CFB"]
     },
     "sids": {
+        "BETTE6": {
+            "icao": "BETTE6",
+            "name": "Betty Six",
+            "rwy": {
+                "KJFK4L" : ["#099"],
+                "KJFK4R" : ["#099"],
+                "KJFK13L": ["#134"],
+                "KJFK13R": ["#134"],
+                "KJFK22L": ["#224"],
+                "KJFK22R": ["#224"],
+                "KJFK31L": ["CRI", ["_CRI176002", "A25+"], "#176"],
+                "KJFK31R": ["CRI", ["_CRI176002", "A25+"], "#176"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BETTE": ["BETTE"]
+            },
+            "draw": [
+                ["BETTE*"]
+            ]
+        },
+        "DEEZZ5": {
+            "icao": "DEEZZ5",
+            "name": "Deez Five",
+            "rwy": {
+                "KJFK4L" : ["_RWY22R01DME", "#099"],
+                "KJFK4R" : ["_RWY22L01DME", "#099"],
+                "KJFK13L": ["_RWY31R01DME", "#109"],
+                "KJFK13R": ["_RWY31L01DME", "#109"],
+                "KJFK22L": ["#224"],
+                "KJFK22R": ["#224"],
+                "KJFK31L": ["_RWY13RSKORR057", "SKORR", ["CESID", "A25+"], "YNKEE", "#172"],
+                "KJFK31R": ["_RWY13LSKORR062", "SKORR", ["CESID", "A25+"], "YNKEE", "#172"]
+            },
+            "body": ["DEEZZ", "HEERO"],
+            "exitPoints": {
+                "CANDR": ["KURNL", "CANDR"],
+                "HEERO": [],
+                "TOWIN": ["KURNL", "CANDR", "TOWIN"]
+            },
+            "draw": [
+                ["_RWY13RSKORR057", "SKORR"],
+                ["_RWY13LSKORR062", "SKORR"],
+                ["SKORR", "CESID", "YNKEE"],
+                ["DEEZZ", "HEERO*"],
+                ["HEERO", "KURNL", "CANDR*"],
+                ["CANDR", "TOWIN*"]
+            ]
+        },
+        "GREKI6": {
+            "icao": "GREKI6",
+            "name": "Greki Six",
+            "rwy": {
+                "KJFK4L" : ["#099"],
+                "KJFK4R" : ["#099"],
+                "KJFK13L": ["#134"],
+                "KJFK13R": ["#134"],
+                "KJFK22L": ["#224"],
+                "KJFK22R": ["#224"],
+                "KJFK31L": ["CRI", ["_CRI176002", "A25+"], "#176"],
+                "KJFK31R": ["CRI", ["_CRI176002", "A25+"], "#176"]
+            },
+            "body": ["GREKI"],
+            "exitPoints": {
+                "GREKI": [],
+                "JUDDS": ["JUDDS"]
+            },
+            "draw": [
+                ["GREKI*", "JUDDS*"]
+            ]
+        },
+        "HAPIE6": {
+            "icao": "HAPIE6",
+            "name": "Happy Six",
+            "rwy": {
+                "KJFK4L" : ["#099"],
+                "KJFK4R" : ["#099"],
+                "KJFK13L": ["#134"],
+                "KJFK13R": ["#134"],
+                "KJFK22L": ["#224"],
+                "KJFK22R": ["#224"],
+                "KJFK31L": ["CRI", ["_CRI176002", "A25+"], "#176"],
+                "KJFK31R": ["CRI", ["_CRI176002", "A25+"], "#176"]
+            },
+            "body": [],
+            "exitPoints": {
+                "HAPIE": ["HAPIE"]
+            },
+            "draw": [
+                ["HAPIE*"]
+            ]
+        },
         "JFK5": {
             "icao": "JFK5",
             "name": "Kennedy Five",
@@ -308,98 +400,6 @@
                 ["WHITE*"]
             ]
         },
-        "BETTE6": {
-            "icao": "BETTE6",
-            "name": "Betty Six",
-            "rwy": {
-                "KJFK4L" : ["#099"],
-                "KJFK4R" : ["#099"],
-                "KJFK13L": ["#134"],
-                "KJFK13R": ["#134"],
-                "KJFK22L": ["#224"],
-                "KJFK22R": ["#224"],
-                "KJFK31L": ["CRI", ["_CRI176002", "A25+"], "#176"],
-                "KJFK31R": ["CRI", ["_CRI176002", "A25+"], "#176"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BETTE": ["BETTE"]
-            },
-            "draw": [
-                ["BETTE*"]
-            ]
-        },
-        "DEEZZ5": {
-            "icao": "DEEZZ5",
-            "name": "Deez Five",
-            "rwy": {
-                "KJFK4L" : ["_RWY22R01DME", "#099"],
-                "KJFK4R" : ["_RWY22L01DME", "#099"],
-                "KJFK13L": ["_RWY31R01DME", "#109"],
-                "KJFK13R": ["_RWY31L01DME", "#109"],
-                "KJFK22L": ["#224"],
-                "KJFK22R": ["#224"],
-                "KJFK31L": ["_RWY13RSKORR057", "SKORR", ["CESID", "A25+"], "YNKEE", "#172"],
-                "KJFK31R": ["_RWY13LSKORR062", "SKORR", ["CESID", "A25+"], "YNKEE", "#172"]
-            },
-            "body": ["DEEZZ", "HEERO"],
-            "exitPoints": {
-                "CANDR": ["CANDR"],
-                "HEERO": ["HEERO"],
-                "TOWIN": ["TOWIN"]
-            },
-            "draw": [
-                ["_RWY13RSKORR057", "SKORR"],
-                ["_RWY13LSKORR062", "SKORR"],
-                ["SKORR", "CESID", "YNKEE"],
-                ["DEEZZ", "HEERO*"],
-                ["HEERO", "CANDR*"],
-                ["HEERO", "TOWIN*"]
-            ]
-        },
-        "GREKI6": {
-            "icao": "GREKI6",
-            "name": "Greki Six",
-            "rwy": {
-                "KJFK4L" : ["#099"],
-                "KJFK4R" : ["#099"],
-                "KJFK13L": ["#134"],
-                "KJFK13R": ["#134"],
-                "KJFK22L": ["#224"],
-                "KJFK22R": ["#224"],
-                "KJFK31L": ["CRI", ["_CRI176002", "A25+"], "#176"],
-                "KJFK31R": ["CRI", ["_CRI176002", "A25+"], "#176"]
-            },
-            "body": ["GREKI"],
-            "exitPoints": {
-                "GREKI": [],
-                "JUDDS": ["JUDDS"]
-            },
-            "draw": [
-                ["GREKI*", "JUDDS*"]
-            ]
-        },
-        "HAPIE6": {
-            "icao": "HAPIE6",
-            "name": "Happy Six",
-            "rwy": {
-                "KJFK4L" : ["#099"],
-                "KJFK4R" : ["#099"],
-                "KJFK13L": ["#134"],
-                "KJFK13R": ["#134"],
-                "KJFK22L": ["#224"],
-                "KJFK22R": ["#224"],
-                "KJFK31L": ["CRI", ["_CRI176002", "A25+"], "#176"],
-                "KJFK31R": ["CRI", ["_CRI176002", "A25+"], "#176"]
-            },
-            "body": [],
-            "exitPoints": {
-                "HAPIE": ["HAPIE"]
-            },
-            "draw": [
-                ["HAPIE*"]
-            ]
-        },
         "MERIT6": {
             "icao": "MERIT6",
             "name": "Merit Six",
@@ -416,10 +416,10 @@
             "body": ["MERIT"],
             "exitPoints": {
                 "MERIT": [],
-                "PUT": ["PUT"]
+                "PUT": ["HFD", "PUT"]
             },
             "draw": [
-                ["MERIT*", "PUT*"]
+                ["MERIT*", "HFD", "PUT*"]
             ]
         },
         "SKORR4": {
@@ -444,7 +444,7 @@
     "stars": {
         "CAMRN4": {
             "icao": "CAMRN4",
-            "name": "CAMRN FOUR",
+            "name": "Camrin Four",
             "entryPoints": {
               "SIE": ["SIE"]
             },
@@ -465,7 +465,7 @@
         },
         "IGN1": {
             "icao": "IGN1",
-            "name": "KINGSTON ONE",
+            "name": "Kingston One",
             "entryPoints": {
               "IGN": ["IGN"]
             },
@@ -486,7 +486,7 @@
         },
         "LENDY6": {
             "icao": "LENDY6",
-            "name": "LENDY SIX",
+            "name": "Lendy Six",
             "entryPoints": {
               "LVZ": ["LVZ"]
             },
@@ -505,9 +505,9 @@
                 ["LVZ*", "JENNO", "HARTY", "STW", "LENDY", "LGA"]
             ]
         },
-        "PARCH2": {
-            "icao": "PARCH2",
-            "name": "PARCH TWO",
+        "PARCH3": {
+            "icao": "PARCH3",
+            "name": "Parch Three",
             "entryPoints": {
               "ENE": ["ENE", "ASPEN", "PVD", "TRAIT"],
               "PLYMM": ["PLYMM", "PVD", "TRAIT"],
@@ -528,6 +528,33 @@
                 ["ENE*", "ASPEN", "PVD"],
                 ["PLYMM*", "PVD", "TRAIT", "PARCH"],
                 ["SEY*", "PARCH", "CCC", "ROBER"]
+            ]
+        },
+        "PWL2": {
+            "icao": "PWL2",
+            "name": "Pawling Two",
+            "entryPoints": {
+                "ALB": ["ALB", "ATHOS"],
+                "DNY": ["DNY", "PETER", "ATHOS"],
+                "PWL": [],
+                "RKA": ["RKA", "PETER", "ATHOS"]
+            },
+            "body": ["PWL", "LOVES", "BDR", "BELTT", "DPK"],
+            "rwy": {
+                "KJFK4L": [],
+                "KJFK4R": [],
+                "KJFK13L": [],
+                "KJFK13R": [],
+                "KJFK22L": [],
+                "KJFK22R": [],
+                "KJFK31L": [],
+                "KJFK31R": []
+            },
+            "draw": [
+                ["ALB", "ATHOS"],
+                ["DNY", "PETER", "ATHOS"],
+                ["RKA", "PETER", "ATHOS"],
+                ["ATHOS", "PWL", "LOVES", "BDR", "BELTT", "DPK"]
             ]
         },
         "ROBER2": {
@@ -624,8 +651,7 @@
                 ["aal", 7],
                 ["aca", 4],
                 ["fdx", 4],
-                ["eva/long", 1],
-                ["ber/long", 1]
+                ["eva/long", 1]
             ]
         },
         {
@@ -641,8 +667,7 @@
                 ["aal", 7],
                 ["aca", 4],
                 ["fdx", 4],
-                ["eva/long", 1],
-                ["ber/long", 1]
+                ["eva/long", 1]
             ]
         },
         {
@@ -658,8 +683,7 @@
                 ["aal", 7],
                 ["aca", 4],
                 ["fdx", 4],
-                ["eva/long", 1],
-                ["ber/long", 1]
+                ["eva/long", 1]
             ]
         },
         {
@@ -675,8 +699,7 @@
                 ["aal", 7],
                 ["aca", 4],
                 ["fdx", 4],
-                ["eva/long", 1],
-                ["ber/long", 1]
+                ["eva/long", 1]
             ]
         },
         {
@@ -692,8 +715,7 @@
                 ["aal", 7],
                 ["aca", 4],
                 ["fdx", 4],
-                ["eva/long", 1],
-                ["ber/long", 1]
+                ["eva/long", 1]
             ]
         },
         {
@@ -709,8 +731,7 @@
                 ["aal", 7],
                 ["aca", 4],
                 ["fdx", 4],
-                ["eva/long", 1],
-                ["ber/long", 1]
+                ["eva/long", 1]
             ]
         },
         {
@@ -784,7 +805,7 @@
             "origin": "",
             "destination": "kjfk",
             "category": "arrival",
-            "route": "ENE.PARCH2.KJFK31R",
+            "route": "ENE.PARCH3.KJFK31R",
             "altitude": 9000,
             "speed": 250,
             "method": "random",
@@ -799,7 +820,6 @@
                 ["aza/long", 4],
                 ["baw/long", 1],
                 ["bel/long", 1],
-                ["ber/long", 3],
                 ["bos", 1],
                 ["cks", 1],
                 ["dlh/long", 3],
