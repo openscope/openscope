@@ -244,7 +244,7 @@ export default class CanvasController {
         this._onToggleVideoMapHandler = this._onToggleVideoMap.bind(this);
         this._onRangeRingsChangeHandler = this._onRangeRingsChange.bind(this);
         this._onResizeHandler = this.canvas_resize.bind(this);
-        this._onSelectAircraft = this._onSelectAircraft.bind(this);
+        this._onToggleAircraft = this._onToggleAircraft.bind(this);
 
         this._setThemeHandler = this._setTheme.bind(this);
 
@@ -270,7 +270,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.RANGE_RINGS_CHANGE, this._onRangeRingsChangeHandler);
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
-        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
+        this._eventBus.on(EVENT.TOGGLE_COMPASS, this._onToggleAircraft);
         window.addEventListener('resize', this._onResizeHandler);
 
         this.$element.addClass(this.theme.CLASSNAME);
@@ -296,7 +296,7 @@ export default class CanvasController {
         this._eventBus.off(EVENT.RANGE_RINGS_CHANGE, this._onRangeRingsChangeHandler);
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
-        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
+        this._eventBus.off(EVENT.TOGGLE_COMPASS, this._onToggleAircraft);
         window.removeEventListener('resize', this._onResizeHandler);
 
         return this.destroy();
@@ -2381,10 +2381,10 @@ export default class CanvasController {
      * class via the `EventBus`
      *
      * @for CanvasController
-     * @method _onSelectAircraft
+     * @method _onToggleAircraft
      * @private
      */
-    _onSelectAircraft(){
+    _onToggleAircraft(){
         this._markDeepRender();
     }
 

@@ -209,7 +209,7 @@ export default class InputController {
         this.$commandInput.val('');
 
         this._eventBus.trigger(EVENT.DESELECT_ACTIVE_STRIP_VIEW, {});
-        this._eventBus.trigger(EVENT.SELECT_AIRCRAFT);
+        this._eventBus.trigger(EVENT.TOGGLE_COMPASS);
     }
 
     /**
@@ -431,7 +431,7 @@ export default class InputController {
         }
 
         this._eventBus.trigger(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, aircraftModel);
-        this._eventBus.trigger(EVENT.SELECT_AIRCRAFT);
+        this._eventBus.trigger(EVENT.TOGGLE_COMPASS);
     };
 
     /**
