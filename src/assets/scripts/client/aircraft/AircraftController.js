@@ -22,7 +22,6 @@ import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
 import { INVALID_INDEX } from '../constants/globalConstants';
-import { THEME } from '../constants/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
