@@ -79,9 +79,6 @@
                 [40.698287, -74.164862, "9ft"]
             ], 
             "ils": [true, true], 
-            "ils_distance": []
-            "loc_maxDist":  []
-            "glideslope":   []
         }, 
         {
             "name": ["4R", "22L"], 
@@ -90,9 +87,6 @@
                 [40.697132, -74.161798, "9ft"]
             ], 
             "ils": [true, true], 
-            "ils_distance": []
-            "loc_maxDist":  []
-            "glideslope":   []
         }, 
         {
             "name": ["11", "29"], 
@@ -101,9 +95,6 @@
                 [40.701303, -74.158222, "10ft"]
             ], 
             "ils": [true, false], 
-            "ils_distance": []
-            "loc_maxDist":  []
-            "glideslope":   []
         }, 
     ],
     "sids": {
