@@ -148,6 +148,24 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
+        name: GAME_OPTION_NAMES.RESET_ARRIVALS,
+        defaultValue: true,
+        description: 'Allow reset of arrivals upon change',
+        help: 'If set to yes, arrivals outside of the airspace will be reset when the arrival rate is changed. If set to no, arrivals will slowly begin arriving at the desired rate',
+        type: 'select',
+        onChangeEventHandler: EVENT.RESET_ARRIVALS_OPTION,
+        optionList: [
+            {
+                displayLabel: 'Yes',
+                value: true
+            },
+            {
+                displayLabel: 'No',
+                value: false
+            }
+        ]
+    },
+    {
         name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
         defaultValue: 'right',
         description: 'Panning Button',
