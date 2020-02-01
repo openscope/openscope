@@ -2384,7 +2384,7 @@ export default class CanvasController {
      * @method _onToggleAircraft
      * @private
      */
-    _onToggleAircraft(){
+    _onToggleAircraft() {
         this._markDeepRender();
     }
 
