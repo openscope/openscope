@@ -301,10 +301,11 @@ export default class AircraftController {
      * @for AircraftController
      * @method aircraft_remove_all_outside
      */
-    aircraft_remove_all_outside(){
+    aircraft_remove_all_outside() {
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            if(!aircraft.list[i].isControllable)
+            if (!aircraft.list[i].isControllable) {
                 this.aircraft_remove(this.aircraft.list[i]);
+            }
         }
     }
 

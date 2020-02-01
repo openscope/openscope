@@ -2,9 +2,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import EventBus from '../lib/EventBus';
 import EventTracker from '../EventTracker';
-import GameController from '../game/GameController';
 import SpawnPatternCollection from '../trafficGenerator/SpawnPatternCollection';
-import SpawnPatternModel from '../trafficGenerator/SpawnPatternModel';
 import SpawnScheduler from '../trafficGenerator/SpawnScheduler';
 import { SELECTORS, CLASSNAMES } from '../constants/selectors';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
@@ -183,7 +181,7 @@ export default class TrafficRateController {
      * @param {boolean} value
      * @method onArrivalSettingsChange
      */
-    onArrivalSettingsChange(value){
+    onArrivalSettingsChange(value) {
         this.canResetArrivals = value;
     }
 
@@ -301,8 +299,10 @@ export default class TrafficRateController {
             this._updateRate(spawnPattern, $childOutput);
         }
 
-        //Apply the reset to arrivals only if the arrivals category is changed
-        if(category == "arrival" && this.canResetArrivals == true){
+        /**
+         * Apply the reset to arrivals only if the arrivals category is changed
+         */
+        if (category === 'arrival' && this.canResetArrivals === true) {
             this._eventBus.trigger(EVENT.REMOVE_OUTSIDE_AIRCRAFT);
         }
     }
