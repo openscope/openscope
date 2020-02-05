@@ -1,5 +1,5 @@
 {
-	"airac": 2001,
+	"airac": 2002,
     "radio": {
         "twr": "Ushuaia Tower",
         "app": "Ushuaia Control",
@@ -251,6 +251,7 @@
             "rwy": {
                 "SAWH07" : ["_RWY07USU093", ["^_USU093014", "A45+"]]
             },
+            "body": [],
             "exitPoints": {
                 "GRA": ["_USU093GRA167", "GRA"],
                 "KEXOP": ["_USU103014", ["USU", "A80+"], "KEXOP"],
@@ -272,6 +273,7 @@
             "rwy": {
                 "SAWH25" : [["^_RWY07", "A4+"], "_USU093006", ["^_USU093014", "A45+"]]
             },
+            "body": [],
             "exitPoints": {
                 "GRA": ["_USU093GRA167", "GRA"],
                 "KEXOP": ["_USU103014", ["USU", "A80+"], "KEXOP"],
@@ -293,6 +295,7 @@
             "rwy": {
                 "SAWH25" : [["^_RWY07", "A4+"], ["WH321", "A17+"], ["WH322", "A50+"], ["WH323", "A75+"], ["WH324", "A80+"]]
             },
+            "body": [],
             "exitPoints": {
                 "DABLI": [["WH325", "A110+"], "DABLI"],
                 "USU": ["_WH326090010", ["WH326", "A110+"], "USU"]

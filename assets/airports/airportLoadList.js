@@ -460,12 +460,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Ezeiza Ministro Pistarini International Airport',
             premium: false
         },
-        // {
-        //     icao: 'same',
-        //     level: 'medium',
-        //     name: 'Aeropuerto Internacional El Plumerillo',
-        //     premium: false
-        // },
+        {
+            icao: 'same',
+            level: 'medium',
+            name: 'Aeropuerto Internacional El Plumerillo',
+            premium: false
+        },
         {
             icao: 'sawh',
             level: 'beginner',
