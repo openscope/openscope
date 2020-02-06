@@ -276,12 +276,12 @@
             "rwy": {
                 "LIPZ22L": []
             },
-            "body": [["_PZ461", "A15+"],"_PZ469129007",["_PZ469", "A90+"],"BASOG"],
+            "body": [["_PZ461", "A15+"],["_PZ461220004", "A30+"],"_PZ469129007",["_PZ469", "A90+"],"BASOG"],
             "exitPoints": {
                 "BASOG": []
             },
             "draw": [
-                ["_PZ461", "_PZ469", "BASOG"]
+                ["_PZ461", "_PZ461220004", "_PZ469", "BASOG"]
             ]
         },
         "BELOV7V": {
@@ -360,12 +360,12 @@
             "rwy": {
                 "LIPZ22L": []
             },
-            "body": [["_PZ461220004"],["_PZ461", "A15+"],["_PZ464358003"],"_PZ464",["CHI", "A60+"]],
+            "body": [["_PZ461", "A15+"],["_PZ461220004", "A30+"],"_PZ464358003","_PZ464",["CHI", "A60+"]],
             "exitPoints": {
                 "CHI": []
             },
             "draw": [
-                ["_PZ461", "_PZ464", "CHI"]
+                ["_PZ461", "_PZ461220004", "_PZ464358003", "_PZ464", "CHI"]
             ]
         },
         "CHI8Y": {
@@ -407,7 +407,7 @@
                 "LUMAV": []
             },
             "draw": [
-                ["LAREN", "LUMAV"]
+                ["LAREN", "_LUMAV215030", "LUMAV"]
             ]
         },
         "ROKIB5L": {
@@ -556,12 +556,12 @@
             "rwy": {
                 "LIPZ22L": []
             },
-            "body": [["_PZ461", "A15+"],"_PZ471120003",["_PZ471", "A50+"],"_PZ472",["_PZ474", "A110+"],"ROSKA"],
+            "body": [["_PZ461", "A15+"],["_PZ461220004", "A30+"],"_PZ471120003",["_PZ471", "A50+"],"_PZ472",["_PZ474", "A110+"],"ROSKA"],
             "exitPoints": {
                 "ROSKA": []
             },
             "draw": [
-                ["_PZ461", "_PZ471", "_PZ472", "_PZ474", "ROSKA"]
+                ["_PZ461", "_PZ461220004", "_PZ471", "_PZ472", "_PZ474", "ROSKA"]
             ]
         },
         "ROTAR8V": {
@@ -580,16 +580,16 @@
         },
         "ROTAR9D": {
             "icao": "ROTAR9D",
-            "name": "Rotar Nine Delta",
+            "name": "Rotar Niner Delta",
             "rwy": {
                 "LIPZ22L": []
             },
-            "body": [["_PZ461", "A15+"],["_PZ471120003"],["_PZ471", "A50+"],["_PZ473", "A90+"],"ROTAR"],
+            "body": [["_PZ461", "A15+"],["_PZ461220004", "A30+"],"_PZ471120003",["_PZ471", "A50+"],["_PZ473", "A90+"],"ROTAR"],
             "exitPoints": {
                 "ROTAR": []
             },
             "draw": [
-                ["_PZ461", "_PZ471", "_PZ473", "ROTAR"]
+                ["_PZ461", "_PZ461220004", "_PZ471", "_PZ473", "ROTAR"]
             ]
         },
         "VIC5D": {
@@ -706,7 +706,7 @@
         },
         "VIC9Y": {
             "icao": "VIC9Y",
-            "name": "Vicenza Nine Yankee",
+            "name": "Vicenza Niner Yankee",
             "rwy": {
                 "LIPZ04R": []
             },
@@ -820,7 +820,9 @@
             "icao": "CHI2W",
             "name": "Chioggia Two Whiskey",
             "entryPoints": {
-                "CHI": ["CHI", "A50+"]
+                "CHI": [
+                    ["CHI", "A50+"]
+                ]
             },
             "body": [["INDOD", "A50+"],["ERSAB", "A50+"]],
             "rwy": {
@@ -834,7 +836,9 @@
             "icao": "INDOD1W",
             "name": "Indod One Whiskey",
             "entryPoints": {
-                "INDOD": ["INDOD", "A40+"]
+                "INDOD": [
+                    ["INDOD", "A40+"]
+                ]
             },
             "body": [["ERSAB", "A40+"]],
             "rwy": {
@@ -880,7 +884,9 @@
             "icao": "OTGIG1P",
             "name": "Otgig One Papa",
             "entryPoints": {
-                "OTGIG": ["OTGIG", "A50+"]
+                "OTGIG": [
+                    ["OTGIG", "A50+"]
+                ]
             },
             "body": [["_OTGIG331012", "A50+"],["LAREN", "A40+"]],
             "rwy": {
@@ -894,7 +900,9 @@
             "icao": "OTGIG1R",
             "name": "Otgig One Romeo",
             "entryPoints": {
-                "OTGIG": ["OTGIG", "A50+"]
+                "OTGIG": [
+                    ["OTGIG", "A50+"]
+                ]
             },
             "body": [["CHI", "A50+"],["INDOD", "A50+"],["ERSAB", "A50+"]],
             "rwy": {
