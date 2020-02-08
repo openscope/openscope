@@ -501,6 +501,54 @@ export default class WaypointModel {
     }
 
     /**
+     * Set the #speedMinimum and #speedMaximum to the specified speed
+     *
+     * @for WaypointModel
+     * @method setSpeed
+     * @param speec {number} in knots
+     */
+    setSpeed(speed) {
+        this.setSpeedMinimum(speed);
+        this.setSpeedMaximum(speed);
+    }
+
+    /**
+     * Set the #_speedMaximum to the specified speed
+     *
+     * @for WaypointModel
+     * @method setSpeedMaximum
+     * @param speedMaximum {number} in knots
+     */
+    setSpeedMaximum(speedMaximum) {
+        if (!_isNumber(speedMaximum)) {
+            console.warn(`Expected number to set as max speed of waypoint '${this.name}', ` +
+                `but received '${speedMaximum}'`);
+
+            return;
+        }
+
+        this._speedMaximum = speedMaximum;
+    }
+
+    /**
+     * Set the #_speedMinimum to the specified speed
+     *
+     * @for WaypointModel
+     * @method setSpeedMinimum
+     * @param speedMinimum {number} in knots
+     */
+    setSpeedMinimum(speedMinimum) {
+        if (!_isNumber(speedMinimum)) {
+            console.warn(`Expected number to set as minimum speed of waypoint '${this.name}', ` +
+                `but received '${speedMinimum}'`);
+
+            return;
+        }
+
+        this._speedMinimum = speedMinimum;
+    }
+
+    /**
      * Set the #altitudeMinimum and #altitudeMaximum to the specified altitude
      *
      * @for WaypointModel
