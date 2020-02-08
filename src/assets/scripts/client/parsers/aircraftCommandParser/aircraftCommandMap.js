@@ -60,7 +60,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     cross: {
-        aliases: ['cross', 'cr'],
+        aliases: ['cross', 'cr', 'x'],
         functionName: 'runCross',
         isSystemCommand: false
     },
