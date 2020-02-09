@@ -793,10 +793,10 @@ export default class AircraftModel {
         let cr_uncorr;
         let cr_current;
         const { altitude } = this;
-        const rate = this.model.rate.climb;
+        const rate = this.model.rate.lowAltitudeClimb;
         const { ceiling } = this.model;
 
-        if (this.model.engines.type === 'J') {
+        if (this.model.isTurbojet()) {
             serviceCeilingClimbRate = 500;
         } else {
             serviceCeilingClimbRate = 100;
@@ -814,7 +814,7 @@ export default class AircraftModel {
             // re-do for lower stratosphere
             // Reference: https://www.grc.nasa.gov/www/k-12/rocket/atmos.html
             // also recommend using graphing calc from desmos.com
-            return this.model.rate.climb; // <-- NOT VALID! Just a placeholder!
+            return this.model.rate.machClimb; // <-- NOT VALID! Just a placeholder!
         }
 
         return cr_current;
@@ -906,7 +906,7 @@ export default class AircraftModel {
         const targetPosition = waypointModel.positionModel;
         const waypointDistance = this.positionModel.distanceToPosition(targetPosition);
         const altitudeChange = targetAltitude - this.altitude;
-        const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        const descentRate = -this.model.rate.descent;
         const descentTime = altitudeChange / descentRate;
         const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
 
@@ -1101,7 +1101,7 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isStalling() {
-        const isStalling = this.speed < this.model.speed.min && this.isAirborne();
+        const isStalling = this.speed < this.model.speed.threshold && this.isAirborne();
 
         return isStalling;
     }
@@ -1449,13 +1449,13 @@ export default class AircraftModel {
             case FLIGHT_PHASE.TAKEOFF: {
                 this.target.altitude = this.altitude;
 
-                if (this.speed >= this.model.speed.min) {
+                if (this.speed >= this.model.speed.rotation) {
                     this.target.altitude = this.model.ceiling;
                 }
 
                 this.target.expedite = false;
                 this.targetHeading = this.heading;
-                this.target.speed = this.model.speed.min;
+                this.target.speed = this.model.speed.initialClimb;
 
                 if (this.mcp.heading === INVALID_NUMBER) {
                     console.warn(`${this.callsign} took off with no directional instructions!`);
@@ -1504,12 +1504,12 @@ export default class AircraftModel {
             this.target.altitude = this.model.ceiling;
         }
 
-        if (this.target.speed > this.model.speed.max) {
-            this.target.speed = this.model.speed.max;
+        if (this.target.speed > this.model.speed.iasCruise) {
+            this.target.speed = this.model.speed.iasCruise;
         }
 
-        if (this.target.speed < this.model.speed.min && this.isAirborne()) {
-            this.target.speed = this.model.speed.min;
+        if (this.target.speed < this.model.speed.threshold && this.isAirborne()) {
+            this.target.speed = this.model.speed.threshold;
         }
     }
 
@@ -1739,7 +1739,7 @@ export default class AircraftModel {
                 //     return;
 
             case MCP_MODE.SPEED.N1:
-                return this._calculateLegalSpeed(this.model.speed.max);
+                return this._calculateLegalSpeed(this.model.speed.iasCruise);
 
             case MCP_MODE.SPEED.VNAV: {
                 const vnavSpeed = this._calculateTargetedSpeedVnav();
@@ -2240,7 +2240,7 @@ export default class AircraftModel {
             AIRPORT_CONSTANTS.LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM,
             distanceOnFinal_nm,
             AIRPORT_CONSTANTS.LANDING_ASSIGNED_SPEED_DISTANCE_NM,
-            this.model.speed.landing,
+            this.model.speed.threshold,
             startSpeed
         );
 
@@ -2421,7 +2421,7 @@ export default class AircraftModel {
 
         // TODO: Is this needed?
         // // TODO: abstract to class method
-        // if (this.speed <= this.model.speed.min && this.mcp.speedMode === MCP_MODE.SPEED.N1) {
+        // if (this.speed <= this.model.speed.threshold && this.mcp.speedMode === MCP_MODE.SPEED.N1) {
         //     return;
         // }
 
@@ -2441,10 +2441,10 @@ export default class AircraftModel {
     decreaseAircraftAltitude() {
         const altitude_diff = this.altitude - this.target.altitude;
         // TODO: this should be an available property on the `AircraftTypeDefinitionModel`
-        let descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        let descentRate = this.model.rate.descent;
 
         if (this.target.expedite) {
-            descentRate = this.model.rate.descent;
+            descentRate *= PERFORMANCE.EXPEDITE_DESCENT_FACTOR;
         }
 
         const feetPerSecond = descentRate * TIME.ONE_SECOND_IN_MINUTES;
@@ -2467,10 +2467,10 @@ export default class AircraftModel {
     */
     increaseAircraftAltitude() {
         const altitude_diff = this.altitude - this.target.altitude;
-        let climbRate = this.getClimbRate() * PERFORMANCE.TYPICAL_CLIMB_FACTOR;
+        let climbRate = this.getClimbRate();
 
         if (this.target.expedite) {
-            climbRate = this.model.rate.climb;
+            climbRate *= PERFORMANCE.EXPEDITE_CLIMB_FACTOR;
         }
 
         const feetPerSecond = climbRate * TIME.ONE_SECOND_IN_MINUTES;
@@ -2507,7 +2507,7 @@ export default class AircraftModel {
             }
         } else if (this.speed < this.target.speed) {
             speedChange = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
-            speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
+            speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.threshold, 2, 1);
         }
 
         this.speed += speedChange;

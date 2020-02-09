@@ -242,22 +242,22 @@ export const PERFORMANCE = {
     TURN_RATE: 0.0523598776, // 3 degrees
 
     /**
-     * Proportion of the maximum capable descent rate that aircraft will use by default
+     * Proportion of the typical descent rate that aircraft will use when asked to expedite descent
      *
-     * @property TYPICAL_DESCENT_FACTOR
+     * @property EXPEDITE_DESCENT_FACTOR
      * @type {number}
      * @final
      */
-    TYPICAL_DESCENT_FACTOR: 0.7,
+    EXPEDITE_DESCENT_FACTOR: 1.3,
 
     /**
-     * Proportion of the maximum capable climb rate that aircraft will use by default
+     * Proportion of the typical climb rate that aircraft will use when asked to expedite climb
      *
-     * @property TYPICAL_CLIMB_FACTOR
+     * @property EXPEDITE_CLIMB_FACTOR
      * @type {number}
      * @final
      */
-    TYPICAL_CLIMB_FACTOR: 0.7,
+    EXPEDITE_CLIMB_FACTOR: 1.3,
 
     /**
      * Standard pressure, the baseline used universally, is 1013.25 hPa, which is equivalent to 1013.25 mb or 29.92 inHg

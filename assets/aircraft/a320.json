@@ -1,37 +1,42 @@
 {
-    "name": "Airbus A320",
     "icao": "A320",
-    "engines": {
-        "number": 2,
-        "type": "J"
-    },
-    "weightClass": "L",
+    "typeCode": "L2J",
     "category": {
-        "srs": 3,
+        "approachCategory": "C",
         "lahso": 7,
-        "recat": "D"
+        "srs": 3
     },
-    "ceiling": 39000,
+    "name": "Airbus A320",
+    "ceiling": 41000,
+    "maxThrustLbs": 222000,
+    "maxTakeoffWeightLbs": 73900,
+    "range": 2700,
     "rate": {
-        "climb":      2500,
-        "descent":    3500,
-        "accelerate": 7,
-        "decelerate": 4
+                    "accelerate": 7,
+                    "decelerate": 4,
+        "initialClimb": 2500,
+        "lowAltitudeClimb": 2000,
+        "highAltitudeClimb": 1400,
+        "descent": 3500,
+        "approach": 1500
     },
-    "runway": {
-        "takeoff": 1.900,
-        "landing": 1.400
+    "speed": {
+        "rotation": 145,
+        "initialClimb": 175,
+        "lowAltitudeClimb": 290,
+        "highAltitudeClimb": 290,
+        "machClimb": 0.78,
+        "iasCruise": 450,
+        "machCruise": 0.79,
+        "machDescent": 0.78,
+        "descent": 290,
+        "approach": 250,
+        "threshold": 137
     },
-    "speed":{
-        "min":     115,
-        "landing": 130,
-        "cruise":  454,
-        "cruiseM": null,
-        "max":     487,
-        "maxM":    0.83
-    },
-    "capability": {
-        "ils": true,
-        "fix": true
+    "wake": {
+        "icaoCategory": "M",
+        "euRecat": "UM",
+        "faaRecat": "D",
+        "faaCategory": "L"
     }
 }
