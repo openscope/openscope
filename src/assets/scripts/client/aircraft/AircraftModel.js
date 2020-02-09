@@ -1040,10 +1040,14 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isOnFinal() {
+        if (!this.isEstablishedOnCourse()) {
+            return false;
+        }
+
         const approachDistanceNm = this.positionModel.distanceToPosition(this.mcp.nav1Datum);
         const maxDistanceConsideredOnFinalNm = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM;
 
-        return this.isEstablishedOnCourse() && approachDistanceNm <= maxDistanceConsideredOnFinalNm;
+        return approachDistanceNm <= maxDistanceConsideredOnFinalNm;
     }
 
     /**
@@ -2227,6 +2231,8 @@ export default class AircraftModel {
         const runwayModel = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
+        const stableApproachTimeHours = PERFORMANCE.STABLE_APPROACH_TIME_SECONDS * TIME.ONE_SECOND_IN_HOURS;
+        const stableApproachDistance = this.model.speed.landing * stableApproachTimeHours;
 
         if (distanceOnFinal_nm <= 0 && this.isOnGround()) {
             return 0;
@@ -2237,9 +2243,9 @@ export default class AircraftModel {
         }
 
         const nextSpeed = extrapolate_range_clamp(
-            AIRPORT_CONSTANTS.LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM,
+            stableApproachDistance,
             distanceOnFinal_nm,
-            AIRPORT_CONSTANTS.LANDING_ASSIGNED_SPEED_DISTANCE_NM,
+            AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM,
             this.model.speed.landing,
             startSpeed
         );
@@ -2443,7 +2449,8 @@ export default class AircraftModel {
         // TODO: this should be an available property on the `AircraftTypeDefinitionModel`
         let descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
 
-        if (this.target.expedite) {
+        // TODO: target.expedite... if it's not used, remove it!
+        if (this.target.expedite || this.mcp.shouldExpediteAltitudeChange || this.isOnFinal()) {
             descentRate = this.model.rate.descent;
         }
 
