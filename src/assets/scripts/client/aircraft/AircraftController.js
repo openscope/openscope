@@ -561,7 +561,14 @@ export default class AircraftController {
         const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
         // TODO: update `airlineNameAndFleetHelper` to accept a string
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
-        const airlineModel = this._airlineController.findAirlineById(name);
+        let airlineModel = this._airlineController.findAirlineById(name);
+
+        if (typeof airlineModel === 'undefined') {
+            console.warn(`Expected airline "${name}" to be defined, but it is not! Using AAL instead.`);
+
+            airlineModel = this._airlineController.findAirlineById('aal');
+        }
+
         // TODO: impove the `airlineModel` logic here
         // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller

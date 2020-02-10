@@ -16,6 +16,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1471" target="_blank">#1471</a> - Change all airport guide links to open in new tab
 - <a href="https://github.com/openscope/openscope/issues/1514" target="_blank">#1514</a> - Reintroduce Malvinas Argentinas Ushuaia Airport (SAWH)
 - <a href="https://github.com/openscope/openscope/issues/1381" target="_blank">#1381</a> -  Change all airport names in airport loadList to the official English name according to Jeppesen charts
+- <a href="https://github.com/openscope/openscope/issues/242" target="_blank">#242</a> - Update KJFK to AIRAC 2002
 
 
 # 6.15.1 (December 2, 2019)
