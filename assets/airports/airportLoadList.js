@@ -462,8 +462,8 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'same',
-            level: 'medium',
-            name: 'Aeropuerto Internacional El Plumerillo',
+            level: 'beginner',
+            name: 'Mendoza El Plumerillo International Airport',
             premium: false
         },
         {
