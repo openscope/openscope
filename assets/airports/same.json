@@ -8,7 +8,7 @@
     "icao": "SAME",
     "iata": "MDZ",
     "magnetic_north": -1,
-    "ctr_radius": 101.86,
+    "ctr_radius": 150,
     "ctr_ceiling": 24500,
     "initial_alt": 25000,
     "position": ["S32.83193513725802", "W68.79086367155263", "2310ft"],
@@ -2338,7 +2338,6 @@
             "airlines": [
                 ["dsm/short", 1],
                 ["lpe/short", 3],
-                ["lv/fastGA", 1],
                 ["tpu", 1]
             ]
         },
@@ -2352,8 +2351,7 @@
             "method": "random",
             "rate": 0.17,
             "airlines": [
-                ["cmp/b738", 5],
-                ["lv/fastGA", 1]
+                ["cmp/b738", 5]
             ]
         },
         {
@@ -2441,7 +2439,6 @@
             "rate": 0.2,
             "airlines": [
                 ["glo", 3],
-                ["lv/fastGA", 1],
                 ["tam/short", 3]
             ]
         },
@@ -2562,7 +2559,6 @@
             "airlines": [
                 ["jat", 3],
                 ["lan/short", 11],
-                ["lv/fastGA", 1],
                 ["sku", 8],
                 ["tam/short", 3]
             ]
@@ -2665,7 +2661,6 @@
             "airlines": [
                 ["jat", 3],
                 ["lan/short", 11],
-                ["lv/fastGA", 1],
                 ["sku", 8],
                 ["tam/short", 3]
             ]
