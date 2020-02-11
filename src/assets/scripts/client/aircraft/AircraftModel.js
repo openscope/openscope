@@ -472,7 +472,6 @@ export default class AircraftModel {
         // not given a heading directly, but has a fix or is following an ILS path
         this.target = {
             altitude: 0,
-            expedite: false,
             heading: null,
             turn: null,
             speed: 0
@@ -1040,10 +1039,14 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isOnFinal() {
+        if (!this.isEstablishedOnCourse()) {
+            return false;
+        }
+
         const approachDistanceNm = this.positionModel.distanceToPosition(this.mcp.nav1Datum);
         const maxDistanceConsideredOnFinalNm = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM;
 
-        return this.isEstablishedOnCourse() && approachDistanceNm <= maxDistanceConsideredOnFinalNm;
+        return approachDistanceNm <= maxDistanceConsideredOnFinalNm;
     }
 
     /**
@@ -1402,7 +1405,6 @@ export default class AircraftModel {
      * @method updateTarget
      */
     updateTarget() {
-        this.target.expedite = _defaultTo(this.fms.currentWaypoint.expedite, false);
         this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
 
         this._updateTargetedDirectionality();
@@ -1422,7 +1424,6 @@ export default class AircraftModel {
             case FLIGHT_PHASE.APRON:
                 // TODO: Is this needed?
                 // this.target.altitude = this.altitude;
-                // this.target.expedite = false;
                 // this.targetHeading = this.heading;
                 // this.target.speed = 0;
 
@@ -1431,7 +1432,6 @@ export default class AircraftModel {
             case FLIGHT_PHASE.TAXI:
                 // TODO: Is this needed?
                 // this.target.altitude = this.altitude;
-                // this.target.expedite = false;
                 // this.targetHeading = this.heading;
                 // this.target.speed = 0;
 
@@ -1440,7 +1440,6 @@ export default class AircraftModel {
             case FLIGHT_PHASE.WAITING:
                 // TODO: Is this needed?
                 // this.target.altitude = this.altitude;
-                // this.target.expedite = false;
                 // this.targetHeading = this.heading;
                 // this.target.speed = 0;
 
@@ -1453,7 +1452,6 @@ export default class AircraftModel {
                     this.target.altitude = this.model.ceiling;
                 }
 
-                this.target.expedite = false;
                 this.targetHeading = this.heading;
                 this.target.speed = this.model.speed.min;
 
@@ -2227,6 +2225,8 @@ export default class AircraftModel {
         const runwayModel = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
+        const stableApproachTimeHours = PERFORMANCE.STABLE_APPROACH_TIME_SECONDS * TIME.ONE_SECOND_IN_HOURS;
+        const stableApproachDistance = this.model.speed.landing * stableApproachTimeHours;
 
         if (distanceOnFinal_nm <= 0 && this.isOnGround()) {
             return 0;
@@ -2237,9 +2237,9 @@ export default class AircraftModel {
         }
 
         const nextSpeed = extrapolate_range_clamp(
-            AIRPORT_CONSTANTS.LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM,
+            stableApproachDistance,
             distanceOnFinal_nm,
-            AIRPORT_CONSTANTS.LANDING_ASSIGNED_SPEED_DISTANCE_NM,
+            AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM,
             this.model.speed.landing,
             startSpeed
         );
@@ -2419,12 +2419,6 @@ export default class AircraftModel {
     updateAltitudePhysics() {
         this.trend = 0;
 
-        // TODO: Is this needed?
-        // // TODO: abstract to class method
-        // if (this.speed <= this.model.speed.min && this.mcp.speedMode === MCP_MODE.SPEED.N1) {
-        //     return;
-        // }
-
         if (this.target.altitude < this.altitude) {
             this.decreaseAircraftAltitude();
         } else if (this.target.altitude > this.altitude) {
@@ -2440,10 +2434,9 @@ export default class AircraftModel {
     */
     decreaseAircraftAltitude() {
         const altitude_diff = this.altitude - this.target.altitude;
-        // TODO: this should be an available property on the `AircraftTypeDefinitionModel`
         let descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
 
-        if (this.target.expedite) {
+        if (this.mcp.shouldExpediteAltitudeChange || this.isEstablishedOnCourse()) {
             descentRate = this.model.rate.descent;
         }
 
@@ -2452,6 +2445,7 @@ export default class AircraftModel {
 
         if (abs(altitude_diff) < feetDescended) {
             this.altitude = this.target.altitude;
+            this.mcp.shouldExpediteAltitudeChange = false;
         } else {
             this.altitude -= feetDescended;
         }
@@ -2469,7 +2463,8 @@ export default class AircraftModel {
         const altitude_diff = this.altitude - this.target.altitude;
         let climbRate = this.getClimbRate() * PERFORMANCE.TYPICAL_CLIMB_FACTOR;
 
-        if (this.target.expedite) {
+        // TODO: Ensure expediting is STOPPED when the altitude is reached
+        if (this.mcp.shouldExpediteAltitudeChange || this.isTakeoff()) {
             climbRate = this.model.rate.climb;
         }
 
@@ -2478,6 +2473,7 @@ export default class AircraftModel {
 
         if (abs(altitude_diff) < abs(feetClimbed)) {
             this.altitude = this.target.altitude;
+            this.mcp.shouldExpediteAltitudeChange = false;
         } else {
             this.altitude += feetClimbed;
         }
@@ -2486,7 +2482,8 @@ export default class AircraftModel {
     }
 
     /**
-     * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
+     * This updates the speed for the instance of the aircraft by checking the
+     * difference between current speed and requested speed
      *
      * @for AircraftModel
      * @method updateWarning
