@@ -1455,8 +1455,8 @@
         }
     },
     "stars": {
-        "ASADA6A": {
-            "icao": "ASADA6A",
+        "ASAD6A": {
+            "icao": "ASAD6A",
             "name": "Asada Six Alpha",
             "entryPoints": {
                 "ASADA": ["ASADA"]
@@ -1469,8 +1469,8 @@
                 ["ASADA*", "AER52", "ARSOT"]
             ]
         },
-        "ASADA6B": {
-            "icao": "ASADA6B",
+        "ASAD6B": {
+            "icao": "ASAD6B",
             "name": "Asada Six Bravo",
             "entryPoints": {
                 "ASADA": ["ASADA"]
@@ -1511,8 +1511,8 @@
                 ["GBE*", "EZE66"]
             ]
         },
-        "KOVUK6A": {
-            "icao": "KOVUK6A",
+        "KOVU6A": {
+            "icao": "KOVU6A",
             "name": "Kovuk Six Alpha",
             "entryPoints": {
                 "KOVUK": ["KOVUK"]
@@ -1525,8 +1525,8 @@
                 ["KOVUK*", "PTA", "EZE"]
             ]
         },
-        "KOVUK6B": {
-            "icao": "KOVUK6B",
+        "KOVU6B": {
+            "icao": "KOVU6B",
             "name": "Kovuk Six Bravo",
             "entryPoints": {
                 "KOVUK": ["KOVUK"]
@@ -1540,8 +1540,8 @@
                 ["PTA", "GESTA"]
             ]
         },
-        "KUKEN6A": {
-            "icao": "KUKEN6A",
+        "KUKE6A": {
+            "icao": "KUKE6A",
             "name": "Kuken Six Alpha",
             "entryPoints": {
                 "KUKEN": ["KUKEN"]
@@ -1554,8 +1554,8 @@
                 ["KUKEN*", "EZE"]
             ]
         },
-        "KUKEN6B": {
-            "icao": "KUKEN6B",
+        "KUKE6B": {
+            "icao": "KUKE6B",
             "name": "Kuken Six Bravo",
             "entryPoints": {
                 "KUKEN": ["KUKEN"]
@@ -1568,8 +1568,8 @@
                 ["KUKEN*"]
             ]
         },
-        "PAGON6A": {
-            "icao": "PAGON6A",
+        "PAGO6A": {
+            "icao": "PAGO6A",
             "name": "Pagon Six Alpha",
             "entryPoints": {
                 "PAGON": ["PAGON"]
@@ -1582,8 +1582,8 @@
                 ["PAGON*", "VANAR", "ENO", "ARSOT"]
             ]
         },
-        "PAGON6B": {
-            "icao": "PAGON6B",
+        "PAGO6B": {
+            "icao": "PAGO6B",
             "name": "Pagon Six Bravo",
             "entryPoints": {
                 "PAGON": ["PAGON"]
@@ -1597,8 +1597,8 @@
                 ["VANAR", "EZE"]
             ]
         },
-        "PAPIX6A": {
-            "icao": "PAPIX6A",
+        "PAPI6A": {
+            "icao": "PAPI6A",
             "name": "Papix Six Alpha",
             "entryPoints": {
                 "PAPIX": ["PAPIX"]
@@ -1611,8 +1611,8 @@
                 ["PAPIX*", "EZE"]
             ]
         },
-        "PAPIX6B": {
-            "icao": "PAPIX6B",
+        "PAPI6B": {
+            "icao": "PAPI6B",
             "name": "Papix Six Bravo",
             "entryPoints": {
                 "PAPIX": ["PAPIX"]
@@ -1653,8 +1653,8 @@
                 ["SNT*", "VANAR"]
             ]
         },
-        "TENIL6A": {
-            "icao": "TENIL6A",
+        "TENI6A": {
+            "icao": "TENI6A",
             "name": "Tenil Six Alpha",
             "entryPoints": {
                 "TENIL": ["TENIL"]
@@ -1667,8 +1667,8 @@
                 ["TENIL*", "PTA"]
             ]
         },
-        "TENIL6B": {
-            "icao": "TENIL6B",
+        "TENI6B": {
+            "icao": "TENI6B",
             "name": "Tenil Six Bravo",
             "entryPoints": {
                 "TENIL": ["TENIL"]
@@ -1681,8 +1681,8 @@
                 ["TENIL*"]
             ]
         },
-        "UGIMI6A": {
-            "icao": "UGIMI6A",
+        "UGIM6A": {
+            "icao": "UGIM6A",
             "name": "Ugimi Six Alpha",
             "entryPoints": {
                 "UGIMI": ["UGIMI"],
@@ -1698,8 +1698,8 @@
                 ["GATOS", "ESLAN"]
             ]
         },
-        "UGIMI6B": {
-            "icao": "UGIMI6B",
+        "UGIM6B": {
+            "icao": "UGIM6B",
             "name": "Ugimi Six Bravo",
             "entryPoints": {
                 "UGIMI": ["UGIMI"],
@@ -1713,8 +1713,8 @@
                 ["ESLAN*"]
             ]
         },
-        "VALOS7A": {
-            "icao": "VALOS7A",
+        "VALO7A": {
+            "icao": "VALO7A",
             "name": "Valos Seven Alpha",
             "entryPoints": {
                 "VALOS": ["VALOS"]
@@ -1727,8 +1727,8 @@
                 ["VALOS*", "GEBEM", "EZE50"]
             ]
         },
-        "VALOS6B": {
-            "icao": "VALOS6B",
+        "VALO6B": {
+            "icao": "VALO6B",
             "name": "Valos Six Bravo",
             "entryPoints": {
                 "VALOS": ["VALOS"]
@@ -1946,7 +1946,7 @@
             "origin": "",
             "destination": "SAEZ",
             "category": "arrival",
-            "route": "DALAB.UL793.GUA.UW65.PAGON.PAGON6A.SAEZ11",
+            "route": "DALAB.UL793.GUA.UW65.PAGON.PAGO6A.SAEZ11",
             "altitude": [17000, 21000],
             "speed": 250,
             "method": "random",
@@ -1966,7 +1966,7 @@
             "origin": "",
             "destination": "SAEZ",
             "category": "arrival",
-            "route": "LOGAM.UM424.ASADA.ASADA6A.SAEZ11",
+            "route": "LOGAM.UM424.ASADA.ASAD6A.SAEZ11",
             "altitude": [17000, 21000],
             "speed": 250,
             "method": "random",
@@ -1986,7 +1986,7 @@
             "origin": "",
             "destination": "SAEZ",
             "category": "arrival",
-            "route": "DUR.UN741.PAPIX.PAPIX6A.SAEZ11",
+            "route": "DUR.UN741.PAPIX.PAPI6A.SAEZ11",
             "altitude": [18000, 20000],
             "speed": 250,
             "method": "random",
@@ -2015,7 +2015,7 @@
             "origin": "",
             "destination": "SAEZ",
             "category": "arrival",
-            "route": "ENSAS.UL324.KUKEN.KUKEN6A.SAEZ11",
+            "route": "ENSAS.UL324.KUKEN.KUKE6A.SAEZ11",
             "altitude": [18000, 20000],
             "speed": 250,
             "method": "random",
@@ -2037,7 +2037,7 @@
             "origin": "",
             "destination": "SAEZ",
             "category": "arrival",
-            "route": "PULAS.UW22.VALOS.VALOS7A.SAEZ11",
+            "route": "PULAS.UW22.VALOS.VALO7A.SAEZ11",
             "altitude": [17000, 23000],
             "speed": 250,
             "method": "random",
@@ -2066,7 +2066,7 @@
             "origin": "",
             "destination": "SAEZ",
             "category": "arrival",
-            "route": "DAGUS.A306.UGIMI.UGIMI6A.SAEZ11",
+            "route": "DAGUS.A306.UGIMI.UGIM6A.SAEZ11",
             "altitude": [18000, 24000],
             "speed": 250,
             "method": "random",

@@ -2461,7 +2461,7 @@
         },
         {
             "origin": "SAME",
-            "destination": "SAEZ",
+            "destination": "",
             "category": "departure",
             "route": "SAME36.KAMU1C.KAMUV.UT670.SNT",
             "altitude": "",
