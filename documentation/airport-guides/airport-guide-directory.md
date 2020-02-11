@@ -40,5 +40,6 @@
 - [OMDB - Dubai International Airport](omaa.md)
 - [OTHH - Doha Hamad International Airport](othh.md)
 - [SAEZ - Ministro Pistarini International Airport](saez.md)
+- [SAME - Mendoza El Plumerillo International Airport](same.md)
 - [SAWH - Malvinas Argentinas Ushuaia International Airport](sawh.md)
 - [SUMU - Montevideo Carrasco International Airport](sumu.md)
