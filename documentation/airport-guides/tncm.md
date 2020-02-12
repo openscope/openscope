@@ -19,31 +19,31 @@ There are two restricted areas within the Juliana TMA, stretching from the Frenc
 ## Airports of Interest
 
 ### TFFG
-Grand Case-Espérance Airport
+Grand Case-Espérance Airport  
 5nm Northast of TNCM  
 
 L'Espérance Airport, also known as Grand Case Airport, is a public use airport located in Grand Case, on the French side of Saint Martin. The airport is mainly used for flights to Guadeloupe and Saint Barth, as well as private aircraft. It is the second and smaller airport of Sint Maarten, after Princess Juliana. Due to the short length of the runway, larger aircraft, such as the ATR 72-500, are forced to powerback after lining up on the runway for departure.
 
 ### TQPF
-Clayton J. Lloyd International Airport
+Clayton J. Lloyd International Airport  
 10nm Northeast of TNCM  
 
 Formerly known as the Anguilla Wallblake Airport, the Clayton J. Lloyd Airport is a small international airport located on the island of Anguilla, a British Overseas Territory in the Caribbean. The airport is located very close to The Valley, the island's capital, and was also a featured airport in one of the Flight Simulator X game demos
 
 ### TFFJ
-Saint Barthélemy Airport
+Saint Barthélemy Airport  
 17nm Southeast of TNCM  
 
 Saint Barthélemy Airport is a public use airport located in the village of St. Jean on the Caribbean island of Saint Barthélemy. The airport is also known as Gustaf III Airport, Rémy de Haenen Airport and St. Jean Airport. The short airstrip is at the base of a gentle slope ending directly on the beach. The arrival descent is extremely steep over the hilltop traffic circle, making it a famous approach within the Flight Simulation community.
 
 ### TNCS
-Juancho E. Yrausquin Airport
+Juancho E. Yrausquin Airport  
 25nm Southwest of TNCM  
 
 The airport, named after the Aruban Minister Juancho Irausquin, has the shortest commercial runway in the world, only 400 meters (1,312 ft) long, flanked on one side by high hills, with cliffs that drop into the sea at both ends. Although the airport is closed to jet traffic, regional airline propeller aircraft are able to land there under waivers from The Netherlands Antilles' Civil Aviation Authority. The most common aircraft to land there are the STOL-capable de Havilland Canada DHC-6 Twin Otter and BN-2 Islander.
 
 ### TNCE
-F. D. Roosevelt Airport
+F. D. Roosevelt Airport  
 33nm South of TNCM  
 
 F. D. Roosevelt Airport is located on the island of Sint Eustatius, Caribbean Netherlands. It was opened as "Golden Rock Airport" in 1946 and subsequently named after Franklin Delano Roosevelt. As of 2012, the only commercial aircraft that serves the island is the DHC-6 Twin Otter, although the runway can accommodate larger turboprop aircraft and some smaller jets.
