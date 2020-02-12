@@ -471,7 +471,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'beginner',
             name: 'Malvinas Argentinas Ushuaia International Airport',
             premium: false
-        // },
+        },
         // {
         //     icao: 'sbgl',
         //     level: 'beginner',
@@ -483,6 +483,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     level: 'beginner',
         //     name: 'Aeroporto Internacional São Paulo-Guarulhos',
         //     premium: false
+        // },
+        {
+            icao: 'sumu',
+            level: 'beginner',
+            name: 'Montevideo Carrasco International Airport',
+            premium: false
         // },
         // {
         //     icao: 'tjsj',
