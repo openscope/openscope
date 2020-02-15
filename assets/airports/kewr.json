@@ -98,14 +98,30 @@
         }, 
     ],
     "sids": {
-        "EWR4": {
-            "icao": "EWR4"
-            "name": "Newark Four"
+        "LIB4": {
+            "icao": "LIB4", 
+            "name": "Liberty Four", 
+            "altitude": 2500, 
             "rwy": {
-                "KEWR4L" : ["_RWY22R01DME"]
-                "KEWR4R" : ["_RWY22L01DME"]
-                "KEWR11" : 
-                "KEWR22L": 
-                "KEWR22R": 
-                "KEWR29" : ["_RWY111.4DME", "#265"]
-            
+                "KEWR22L": ["#239"]
+                "KEWR22R": ["#239"]
+            }, 
+            "exitPoints": {
+                "BAYYS": ["BAYYS"], 
+                "BIGGY": ["BIGGY"], 
+                "BREZY": ["BREZY"], 
+                "COATE": ["COATE"], 
+                "DIXIE": ["DIXIE"], 
+                "ELIOT": ["ELIOT"], 
+                "GAYEL": ["GAYEL"], 
+                "GREKI": ["GREKI"], 
+                "HAAYS": ["HAAYS"], 
+                "LANNA": ["LANNA"], 
+                "MERIT": ["MERIT"], 
+                "NEION": ["NEION"], 
+                "NEWEL": ["NEWEL"], 
+                "PARKE": ["PARKE"], 
+                "WAVEY": ["WAVEY"], 
+                "WHITE": ["WHITE"], 
+                "ZIMMZ": ["ZIMMZ"]
+            },
