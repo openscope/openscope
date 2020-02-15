@@ -19,11 +19,11 @@
     },
     "has_terrain": true,
     "wind": {
-        "angle": 80,
-        "speed": 9
+        "angle": 140,
+        "speed": 8
     },
-    "arrivalRunway": "24",
-    "departureRunway": "24",
+    "arrivalRunway": "06",
+    "departureRunway": "06",
     "defaultMaps": ["Airports", "Airspaces", "Coastline", "Restricted", "Runways"],
     "airspace": [
         {
@@ -2879,9 +2879,126 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5,
+            "rate": 1.96,
             "airlines": [
                 ["arg/short", 3]
+            ]
+        },
+        {
+            "origin": "SUMU",
+            "destination": "",
+            "category": "departure",
+            "route": "SUMU06.AKPO1B.AKPOD",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.31,
+            "airlines": [
+                ["arg/short", 3]
+            ]
+        },
+        {
+            "origin": "SUMU",
+            "destination": "",
+            "category": "departure",
+            "route": "SUMU06.CRR1R.NIMBO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.15,
+            "airlines": [
+                ["arg/short", 3]
+            ]
+        },
+        {
+            "origin": "SUMU",
+            "destination": "",
+            "category": "departure",
+            "route": "SUMU06.CRR1R.MONSA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.08,
+            "airlines": [
+                ["arg/short", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SUMU",
+            "category": "arrival",
+            "route": "TOKAM.TOKA1C.SUMU06",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["arg/short", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SUMU",
+            "category": "arrival",
+            "route": "NIMBO.NIMB1C.SUMU06",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.19,
+            "airlines": [
+                ["arg/short", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SUMU",
+            "category": "arrival",
+            "route": "DRACA.DRAC1C.SUMU06",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.54,
+            "airlines": [
+                ["arg/short", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SUMU",
+            "category": "arrival",
+            "route": "MONSA.MONS1C.SUMU06",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.46,
+            "airlines": [
+                ["arg/short", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SUMU",
+            "category": "arrival",
+            "route": "TELAK.TELA1C.SUMU06",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.67,
+            "airlines": [
+                ["arg/short", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "SUMU",
+            "category": "arrival",
+            "route": "LDS.LDS1C.SUMU06",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.65,
+            "airlines": [
+                ["arg/short", 1]
             ]
         }
     ],
