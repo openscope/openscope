@@ -41,3 +41,4 @@
 - [OTHH - Doha Hamad International Airport](othh.md)
 - [SAEZ - Ministro Pistarini International Airport](saez.md)
 - [SAWH - Malvinas Argentinas Ushuaia International Airport](sawh.md)
+- [SUMU - Montevideo Carrasco International Airport](sumu.md)
