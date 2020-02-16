@@ -2881,7 +2881,15 @@
             "method": "random",
             "rate": 1.96,
             "airlines": [
-                ["arg/short", 3]
+                ["arg/short", 11],
+                ["aut", 53],
+                ["auz", 12],
+                ["gec", 1],
+                ["gti", 1],
+                ["lan/short", 14],
+                ["lco", 2],
+                ["sku", 4],
+                ["tpa", 1]
             ]
         },
         {
@@ -2894,7 +2902,13 @@
             "method": "random",
             "rate": 1.31,
             "airlines": [
-                ["arg/short", 3]
+                ["aea/long", 5],
+                ["azu/short", 11],
+                ["gec", 3],
+                ["glo", 19],
+                ["ibe/long", 5],
+                ["lco", 1],
+                ["tam", 23]
             ]
         },
         {
@@ -2907,7 +2921,7 @@
             "method": "random",
             "rate": 0.15,
             "airlines": [
-                ["arg/short", 3]
+                ["lpe/short", 7]
             ]
         },
         {
@@ -2920,7 +2934,15 @@
             "method": "random",
             "rate": 1.08,
             "airlines": [
-                ["arg/short", 3]
+                ["aal/b763", 7],
+                ["auz", 12],
+                ["ava/shortBus", 7],
+                ["azp", 12],
+                ["cmp/b738", 14],
+                ["gec", 1],
+                ["gti", 1],
+                ["lco", 1],
+                ["tpa", 3]
             ]
         },
         {
@@ -2933,7 +2955,16 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["arg/short", 1]
+                ["aal/b763", 2],
+                ["arg/short", 11],
+                ["aut", 53],
+                ["auz", 12],
+                ["gec", 1],
+                ["gti", 2],
+                ["lan/short", 14],
+                ["lco", 3],
+                ["sku", 4],
+                ["tpa", 2]
             ]
         },
         {
@@ -2946,7 +2977,11 @@
             "method": "random",
             "rate": 0.19,
             "airlines": [
-                ["arg/short", 1]
+                ["aal/b763", 2],
+                ["gti", 1],
+                ["lco", 1],
+                ["lpe/short", 7],
+                ["tpa", 1]
             ]
         },
         {
@@ -2959,7 +2994,10 @@
             "method": "random",
             "rate": 0.54,
             "airlines": [
-                ["arg/short", 1]
+                ["auz", 6],
+                ["azp", 6],
+                ["cmp/b738", 14],
+                ["tpa", 1]
             ]
         },
         {
@@ -2972,7 +3010,13 @@
             "method": "random",
             "rate": 0.46,
             "airlines": [
-                ["arg/short", 1]
+                ["aal/b763", 3],
+                ["auz", 6],
+                ["ava/shortBus", 7],
+                ["azp", 6],
+                ["gti", 1],
+                ["lco", 1],
+                ["tpa", 3]
             ]
         },
         {
@@ -2985,7 +3029,13 @@
             "method": "random",
             "rate": 0.67,
             "airlines": [
-                ["arg/short", 1]
+                ["aea/long", 2],
+                ["azu/short", 6],
+                ["gec", 3],
+                ["glo", 10],
+                ["ibe/long", 2],
+                ["lco", 1],
+                ["tam", 12]
             ]
         },
         {
@@ -2998,7 +3048,13 @@
             "method": "random",
             "rate": 0.65,
             "airlines": [
-                ["arg/short", 1]
+                ["aea/long", 3],
+                ["azu/short", 5],
+                ["gec", 3],
+                ["glo", 9],
+                ["ibe/long", 3],
+                ["lco", 1],
+                ["tam", 11]
             ]
         }
     ],
