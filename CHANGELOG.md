@@ -1,5 +1,6 @@
 # 6.16.0 (January 31, 2020)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/1526" target="_blank">#1526</a> - Introduce Montevideo Carrasco Airport (SUMU)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1389" target="_blank">#1389</a> - Prevent unfair penalty at KDCA on IRONS7 arrivals by deactivating R6601B/C
