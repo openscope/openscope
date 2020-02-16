@@ -3033,7 +3033,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.96,
+            "rate": 2.94,
             "airlines": [
                 ["arg/short", 11],
                 ["aut", 53],
@@ -3054,7 +3054,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.31,
+            "rate": 1.97,
             "airlines": [
                 ["aea/long", 5],
                 ["azu/short", 11],
@@ -3073,7 +3073,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.15,
+            "rate": 0.23,
             "airlines": [
                 ["lpe/short", 7]
             ]
@@ -3086,7 +3086,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.08,
+            "rate": 1.62,
             "airlines": [
                 ["aal/b763", 7],
                 ["auz", 12],
@@ -3107,7 +3107,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 2,
+            "rate": 3,
             "airlines": [
                 ["aal/b763", 2],
                 ["arg/short", 11],
@@ -3129,7 +3129,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 0.19,
+            "rate": 0.29,
             "airlines": [
                 ["aal/b763", 2],
                 ["gti", 1],
@@ -3146,7 +3146,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 0.54,
+            "rate": 0.81,
             "airlines": [
                 ["auz", 6],
                 ["azp", 6],
@@ -3162,7 +3162,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 0.46,
+            "rate": 0.69,
             "airlines": [
                 ["aal/b763", 3],
                 ["auz", 6],
@@ -3181,7 +3181,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 0.67,
+            "rate": 1.01,
             "airlines": [
                 ["aea/long", 2],
                 ["azu/short", 6],
@@ -3200,7 +3200,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 0.65,
+            "rate": 0.98,
             "airlines": [
                 ["aea/long", 3],
                 ["azu/short", 5],
