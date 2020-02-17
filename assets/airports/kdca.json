@@ -1512,7 +1512,7 @@
             "method": "random",
             "rate": 1.78,
             "airlines": [
-                ["aal", 9],
+                ["aal/short", 9],
                 ["jbu", 6],
                 ["jia", 1],
                 ["rpa", 2],
@@ -1529,7 +1529,7 @@
             "method": "random",
             "rate": 0.71,
             "airlines": [
-                ["dal", 4],
+                ["dal/short", 4],
                 ["rpa", 2],
                 ["swa", 2]
             ]
@@ -1590,14 +1590,14 @@
             "rate": 1.33,
             "airlines": [
                 ["asa", 1],
-                ["dal", 4],
+                ["dal/short", 4],
                 ["edv", 1],
                 ["fft", 1],
                 ["jia", 2],
                 ["lof", 2],
                 ["rpa", 2],
                 ["swa", 1],
-                ["ual", 1]
+                ["ual/short", 1]
             ]
         },
         {
@@ -1627,7 +1627,7 @@
             "method": "random",
             "rate": 1.60,
             "airlines": [
-                ["aal", 4],
+                ["aal/short", 4],
                 ["jbu", 5],
                 ["jia", 2],
                 ["lof", 2],
@@ -1660,9 +1660,9 @@
             "method": "random",
             "rate": 3.04,
             "airlines": [
-                ["aal", 5],
+                ["aal/short", 5],
                 ["asa", 1],
-                ["dal", 1],
+                ["dal/short", 1],
                 ["edv", 1],
                 ["jia", 5],
                 ["rpa", 2],
@@ -1679,7 +1679,7 @@
             "method": "random",
             "rate": 0.62,
             "airlines": [
-                ["aal", 3],
+                ["aal/short", 3],
                 ["eny", 1],
                 ["jia", 3]
             ]
@@ -1694,7 +1694,7 @@
             "method": "random",
             "rate": 2.84,
             "airlines": [
-                ["aal", 2],
+                ["aal/short", 2],
                 ["asq", 1],
                 ["jbu", 6],
                 ["jia", 10],
@@ -1714,14 +1714,14 @@
             "method": "random",
             "rate": 3.31,
             "airlines": [
-                ["aal", 4],
-                ["dal", 1],
+                ["aal/short", 4],
+                ["dal/short", 1],
                 ["jia", 3],
                 ["lof", 3],
                 ["rpa", 5],
                 ["skw", 2],
                 ["swa", 6],
-                ["ual", 2]
+                ["ual/short", 2]
             ]
         },
         {
@@ -1734,8 +1734,8 @@
             "method": "random",
             "rate": 6.50,
             "airlines": [
-                ["aal", 15],
-                ["dal", 6],
+                ["aal/short", 15],
+                ["dal/short", 6],
                 ["gjs", 1],
                 ["jbu", 8],
                 ["jia", 11],
@@ -1754,7 +1754,7 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["aal", 6],
+                ["aal/short", 6],
                 ["asq", 2],
                 ["edv", 2],
                 ["jbu", 4],
@@ -1793,17 +1793,17 @@
             "method": "random",
             "rate": 5.88,
             "airlines": [
-                ["aal", 3],
+                ["aal/short", 3],
                 ["asa", 2],
                 ["asq", 2],
-                ["dal", 6],
+                ["dal/short", 6],
                 ["fft", 3],
                 ["jia", 7],
                 ["lof", 5],
                 ["rpa", 11],
                 ["skw", 3],
                 ["swa", 10],
-                ["ual", 4]
+                ["ual/short", 4]
             ]
         },
         {
@@ -1829,7 +1829,7 @@
             "method": "random",
             "rate": 3.57,
             "airlines": [
-                ["aal", 5],
+                ["aal/short", 5],
                 ["ash", 1],
                 ["eny", 1],
                 ["jia", 7],
