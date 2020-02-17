@@ -1,0 +1,18 @@
+{
+    "icao": "jat",
+    "name": "JetSMART Airlines",
+    "callsign": {
+        "name": "Rocksmart",
+        "callsignFormats": [
+            "##",
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A20N", 6],
+            ["A320", 7]
+        ]
+    }
+}

@@ -20,6 +20,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1381" target="_blank">#1381</a> -  Change all airport names in airport loadList to the official English name according to Jeppesen charts
 - <a href="https://github.com/openscope/openscope/issues/242" target="_blank">#242</a> - Update KJFK to AIRAC 2002
 - <a href="https://github.com/openscope/openscope/issues/1528" target="_blank">#1528</a> - Remove heavies from KDCA
+- <a href="https://github.com/openscope/openscope/issues/1525" target="_blank">#1525</a> - Reintroduce Mendoza El Plumerillo Airport (SAME)
 
 
 # 6.15.1 (December 2, 2019)
