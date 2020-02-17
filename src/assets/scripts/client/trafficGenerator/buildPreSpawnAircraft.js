@@ -324,6 +324,25 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
 };
 
 /**
+ * Calculate the offset rate for the preSpawn Aircraft. "rate" will use the arrival rate of the TrafficController
+ *
+ * @function _calculateRateOffset
+ * @param rate
+ * @returns {float}
+ */
+const _calculateRateOffset = (rate) => {
+    if (rate <= 1) {
+        return 1;
+    }
+
+    const initialVal = 0.90;
+    const currentRate = rate - 1;
+    const offsetAmount = 0.03;
+    const offsetRate = initialVal - (offsetAmount * currentRate);
+    return offsetRate;
+};
+
+/**
  * Calculate heading, nextFix and position data to be used when creating an
  * `AircraftModel` along a route.
  *
@@ -337,7 +356,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const airspaceCeiling = airport.maxAssignableAltitude;
     const spawnSpeed = spawnPatternJson.speed;
     const spawnAltitude = spawnPatternJson.altitude;
-    const entrailDistance = spawnSpeed / spawnPatternJson.rate;
+    const entrailDistance = (spawnSpeed / spawnPatternJson.rate) * _calculateRateOffset(1);
     const routeModel = new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
     const totalDistance = _calculateDistancesAlongRoute(waypointModelList, airport);

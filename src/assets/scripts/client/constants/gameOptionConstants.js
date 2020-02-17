@@ -18,6 +18,7 @@ export const GAME_OPTION_NAMES = {
     PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
     RANGE_RINGS: 'rangeRings',
     SOFT_CEILING: 'softCeiling',
+    RESET_ARRIVALS: 'resetArrivals',
     THEME: 'theme'
 };
 
@@ -149,19 +150,19 @@ export const GAME_OPTION_VALUES = [
     },
     {
         name: GAME_OPTION_NAMES.RESET_ARRIVALS,
-        defaultValue: true,
+        defaultValue: 'yes',
         description: 'Allow reset of arrivals upon change',
         help: 'If set to yes, arrivals outside of the airspace will be reset when the arrival rate is changed. If set to no, arrivals will slowly begin arriving at the desired rate',
         type: 'select',
-        onChangeEventHandler: EVENT.RESET_ARRIVALS_OPTION,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Yes',
-                value: true
+                value: 'yes'
             },
             {
                 displayLabel: 'No',
-                value: false
+                value: 'no'
             }
         ]
     },
