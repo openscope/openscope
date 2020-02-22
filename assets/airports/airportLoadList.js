@@ -31,6 +31,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      * }
      * ```
      * - `AIRPORT_ICAO` is the airport icao in lowercase (ex: ksfo)
+     *
      * - `AIRPORT_DIFFICULTY` is the difficulty level based on the traffic volume (in Aircraft per Hour):
      *    +----------+------------------------+
      *    |   Level  |     Traffic Volume     |
@@ -43,7 +44,9 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      *    +----------+------------------------+
      *    |   Hard   |    More than 60 AcpH   |
      *    +----------+------------------------+
-     * - `AIRPORT_NAME` is the official English name of the airport (ex: San Francisco International Airport) according to Jeppesen charts
+     * - `AIRPORT_NAME` is the official English name of the airport, according to Jeppesen charts
+     *       --> for example, KSFO = "San Francisco International Airport"
+     *
      * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
      *
      * @property AIRPORT_LOAD_LIST
@@ -489,18 +492,18 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'beginner',
             name: 'Montevideo Carrasco International Airport',
             premium: false
-        // },
+        },
         // {
         //     icao: 'tjsj',
         //     level: 'easy',
         //     name: 'Luis Muñoz Marín International Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'tncm',
-        //     level: 'easy',
-        //     name: 'Princess Juliana International Airport',
-        //     premium: false
+        {
+            icao: 'tncm',
+            level: 'beginner',
+            name: 'Princess Juliana International Airport',
+            premium: false
         // },
         // {
         //     icao: 'uudd',

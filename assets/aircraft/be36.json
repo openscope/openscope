@@ -1,37 +1,37 @@
 {
-    "name": "Beechcraft Super King Air 200",
-    "icao": "BE20",
+    "name": "Beechcraft Bonanza",
+    "icao": "BE36",
     "engines": {
-        "number": 2,
-        "type": "T"
+        "number": 1,
+        "type": "P"
     },
-    "weightClass": "S+",
+    "weightClass": "S",
     "category": {
         "srs": 1,
         "lahso": 2,
         "recat": "F"
     },
-    "ceiling": 18000,
+    "ceiling": 18500,
     "rate": {
-        "climb":      2000,
+        "climb":      1000,
         "descent":    1000,
         "accelerate": 4,
         "decelerate": 3
     },
     "runway": {
-        "takeoff": 0.640,
-        "landing": 0.400
+        "takeoff": 0.350,
+        "landing": 0.450
     },
     "speed":{
-        "min":     60,
-        "landing": 80,
-        "cruise":  168,
+        "min":     52,
+        "landing": 70,
+        "cruise":  160,
         "cruiseM": null,
-        "max":     177,
+        "max":     203,
         "maxM":    null
     },
     "capability": {
         "ils": true,
-        "fix": false
+        "fix": true
     }
 }

@@ -31,7 +31,7 @@ Aeroparque Jorge Newbery, located just 2km Northeast of Downtown Buenos Aires on
 
 ### SADP
 El Palomar Airport  
-658.505 passengers in 2018  
+658,505 passengers in 2018  
 13nm North of SAEZ  
 
 El Palomar Airport was a military airfield located 18km West of Buenos Aires. The airport was temporarily used for commercial flights in 2010 while Aeroparque Jorge Newbery underwent runway maintenance and was converted for permanent commercial use in 2018, although military operations still take place daily. It serves as a hub for low-cost airlines FlyBondi, JetSmart, SKY Airline and Norwegian Air Shuttle, making it the first and only low-cost airport in Latin America.

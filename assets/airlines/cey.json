@@ -1,0 +1,21 @@
+{
+    "icao": "cey",
+    "name": "Air Century",
+    "callsign": {
+        "name": "Century Flight",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT72", 1],
+            ["CRJ2", 2],
+            ["JS41", 4],
+            ["SF34", 2]
+        ],
+        "crj2": [
+            ["CRJ2", 2]
+        ]
+    }
+}
