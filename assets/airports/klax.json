@@ -124,379 +124,187 @@
         }
     ],
     "fixes": {
-        "_KLAX347060": ["N34d56.63m0", "W118d25.76m0"],
-        "_KLAX169060": ["N32d56.45m0", "W118d25.74m0"],
-        "_KLAX305060": ["N34d40.34m0", "W119d14.10m0"],
-        "VTU": ["N34d6m54.21", "W119d2m58.17"],
-        "NAANC": ["N33d55m54.00", "W118d38m38.00"],
-        "JAVSI": ["N34d1m42.60", "W118d16m39.00"],
-        "RZS": ["N34d30m34.30", "W119d46m15.57"],
-        "GMN": ["N34d48m14.50", "W118d51m40.90"],
-        "MKGEE": ["N33d55m4.00", "W118d37m41.00"],
-        "ELYME": ["N33d53m24.58", "W118d28m53.50"],
-        "SHAEF": ["N33d51m19.00", "W118d33m47.00"],
-        "YUFAP": ["N33d48m50.45", "W118d32m1.23"],
-
-        "PFILA": ["N34d01m12.69", "W117d41m50.18"],
-        "SALWA": ["N34d00m47.72", "W117d46m8.30"],
-        "WLNUT": ["N34d00m22.60", "W117d50m26.38"],
-        "HURLR": ["N33d59m57.33", "W117d54m44.42"],
-        "JULLI": ["N33d58m44.08", "W118d07m03.59"],
-        "BOUBY": ["N33d58m27.94", "W118d09m44.83"],
-        "SUTIE": ["N33d57m47.14", "W118d16m29.60"],
-        "CORTY": ["N33d57m13.85", "W118d21m57.13"],
-
-        "KRAIN": ["N34d00m21.51", "W117d41m30.20"],
-        "TAROC": ["N33d59m57.25", "W117d45m41.11"],
-        "DYMMO": ["N33d59m32.70", "W117d49m51.96"],
-        "FUELR": ["N33d59m09.67", "W117d53m48.79"],
-        "GAATE": ["N33d58m04.44", "W118d04m48.38"],
-        "HUNDA": ["N33d57m32.95", "W118d10m03.20"],
-        "LIMMA": ["N33d56m54.40", "W118d16m25.43"],
-        "LADLE": ["N33d56m27.28", "W118d20m52.39"],
-
-        "OTTES": ["N33d55m26.46", "W118d39m18.34"],
-        "GUPPI": ["N33d56m11.06", "W118d32m08.72"],
-
-        "SKOLL": ["N34d01m19.20", "W117d41m54.95"],
-        "DECOR": ["N34d00m54.23", "W117d46m13.07"],
-        "BREEA": ["N34d00m29.11", "W117d50m31.16"],
-        "PALAC": ["N34d00m03.83", "W117d54m49.20"],
-        "MERCE": ["N33d58m50.84", "W118d07m05.76"],
-        "JETSA": ["N33d57m53.10", "W118d16m39.66"],
-        "ARBIE": ["N33d57m18.09", "W118d22m23.93"],
-
-        "NATHN": ["N33d55m34.95", "W118d39m03.69"],
-        "ALISN": ["N33d56m19.52", "W118d31m54.33"],
-
-        "BCOVE": ["N34d00m57.45", "W117d36m39.03"],
-        "LYCOM": ["N34d00m29.60", "W117d41m28.95"],
-        "TAANK": ["N34d00m05.33", "W117d45m39.87"],
-        "JURPE": ["N33d59m40.93", "W117d49m50.74"],
-        "MUSIK": ["N33d59m17.43", "W117d53m50.89"],
-        "FALLT": ["N33d58m12.40", "W118d04m48.47"],
-        "SHELL": ["N33d57m43.16", "W118d09m40.82"],
-        "FOGLA": ["N33d57m02.36", "W118d16m25.54"],
-        "GRIMY": ["N33d56m42.10", "W118d19m45.18"],
-
-        "STEMS": ["N33d53m41.31", "W118d48m47.54"],
-        "FEKIL": ["N33d54m47.35", "W118d38m18.87"],
-        "TURKA": ["N33d55m31.95", "W118d31m09.32"],
-
-        "OLAFF": ["N33d53m33.39", "W118d48m46.95"],
-        "TIMSE": ["N33d54m39.51", "W118d38m17.58"],
-        "FUMBL": ["N33d55m24.13", "W118d31m07.93"],
-
-        "KIMMO": ["N34d24m36.57", "W118d25m02.17"],
-        "DARTS": ["N34d09m21.77", "W118d16m10.54"],
-        "SXC":   ["N33d22m30.20", "W118d25m11.68"],
-        "CFBZK": ["N33d18m13.20", "W117d52m48.60"],
-        "CWARD": ["N33d23m02.45", "W117d54m33.38"],
-        "SLI":   ["N33d46m59.87", "W118d03m17.12"],
-        "TRM":   ["N33d37m41.15", "W116d09m36.71"],
-        "RUSTT": ["N34d02m53.62", "W117d14m32.83"],
-        "HABSO": ["N34d02m24.41", "W117d19m51.57"],
-        "RIIVR": ["N34d01m42.17", "W117d27m23.82"],
-        "FIM":   ["N34d21m24.10", "W118d52m52.65"],
-        "SADDE": ["N34d02m20.38", "W118d45m52.68"],
-        "SMO":   ["N34d00m36.88", "W118d27m24.18"],
-        "VISTA": ["N33d13m08.66", "W117d14m04.19"],
-        "OCN":   ["N33d14m26.31", "W117d25m03.76"],
-        "SHIVE": ["N33d15m58.34", "W117d51m59.82"],
-        "CWARD": ["N33d23m02.45", "W117d54m33.38"],
-        "MADOW": ["N33d37m24.97", "W117d59m47.04"],
-
-        "LAX":   ["N33.93316666666667", "W118.432"],
-        "KEGGS": ["N34d00m30.41", "W118d17m58.53"],
-        "COOPP": ["N34d07m16.06", "W118d06m01.92"],
-        "DAG":   ["N34d57m44.85", "W116d34m41.40"],
-        "DINTY": ["N33d28m58.49", "W122d35m02.38"],
-        "FICKY": ["N31d33m27.38", "W121d23m30.47"],
-        "COSER": ["N33d34m47.57", "W117d58m49.66"],
-        "CARDI": ["N33d08m11.64", "W117d25m18.95"],
-        "MZB":   ["N32d46m55.93", "W117d13m31.49"],
-        "SEBBY": ["N34d05m22.87", "W117d46m37.12"],
-        "PERCH": ["N33d52m03.03", "W119d09m27.37"]
+        "CASTA": ["N34d31.97", "W118d43.60"],
+        "CHATY": ["N34d14.54", "W118d35.00"],
+        "DARRK": ["N33d55.02", "W118d49.95"],
+        "DEANO": ["N34d19.00", "W119d24.99"],
+        "DINTY": ["N33d28.97", "W122d35.04"],
+        "DLREY": ["N33d56.62", "W118d27.91"],
+        "DOCKR": ["N33d55.91", "W118d27.49"],
+        "ENNEY": ["N33d56.55", "W118d30.35"],
+        "EVOSE": ["N33d55.70", "W118d29.98"],
+        "FABRA": ["N33d56.74", "W118d27.90"],
+        "FIM": ["N34d21.40", "W118d52.88"],
+        "FIXIT": ["N33d58.47", "W118d59.28"],
+        "GMN": ["N34d48.24", "W118d51.68"],
+        "GVO": ["N34d31.88", "W120d05.47"],
+        "HENER": ["N34d19.86", "W119d13.66"],
+        "HIIPR": ["N33d55.79", "W118d27.36"],
+        "IKAYE": ["N34d08.58", "W119d00.62"],
+        "JOSUL": ["N34d15.45", "W118d35.45"],
+        "KWANG": ["N34d18.55", "W119d30.85"],
+        "LAX": ["N33d55.99", "W118d25.92"],
+        "MCKEY": ["N35d28.99", "W121d04.99"],
+        "MKGEE": ["N33d55.07", "W118d37.68"],
+        "NAANC": ["N33d55.90", "W118d38.63"],
+        "OHIGH": ["N34d25.88", "W119d18.65"],
+        "OINGO": ["N34d20.61", "W120d27.97"],
+        "RIZIN": ["N34d24.67", "W119d31.95"],
+        "RZS": ["N34d30.57", "W119d46.26"],
+        "SCTRR": ["N35d31.60", "W120d34.91"],
+        "SPLNT": ["N35d05.25", "W120d22.36"],
+        "STOKD": ["N35d29.01", "W120d49.09"],
+        "WEILR": ["N33d54.63", "W118d29.46"],
+        "ADORE": ["N33d54.47", "W118d29.47"],
+        "SHAEF": ["N33d51.54", "W118d33.87"],
+        "HAYNK": ["N33d50.43", "W118d38.24"],
+        "PEVEE": ["N33d41.83", "W118d31.25"],
+        "HOLTZ": ["N33d38.67", "W118d20.58"],
+        "DOTSS": ["N33d38.65", "W117d47.72"],
+        "EYEDL": ["N33d45.08", "W117d14.02"],
+        "HOMER": ["N33d44.76", "W116d58.43"],
+        "CLEEE": ["N33d43.40", "W116d04.40"],
+        "WIILD": ["N33d30.29", "W117d14.00"],
+        "BLCKD": ["N33d29.53", "W116d25.47"],
+        "CSTWY": ["N33d29.16", "W116d02.05"],
+        "CNERY": ["N33d37.06", "W115d34.95"],
+        "LVELL": ["N34d12.62", "W115d36.89"],
+        "TTRUE": ["N34d38.03", "W114d23.08"],
+        "WURMO": ["N34d15.22", "W114d41.43"],
+        "SXC": ["N33d22.50", "W118d25.19"],
+        "TESEA": ["N35d10.32", "W120d15.38"],
+        "VNY": ["N34d13.41", "W118d29.50"],
+        "VTU": ["N34d06.90", "W119d02.97"]
     },
     "runways":[
         {
-            "name":        ["7L", "25R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end":    [ ["N33.9358305833", "W118.41934175"], ["N33.9398772", "W118.37977695"]],
-            "length":      3.685,
-            "ils":         [true, true]
+            "name": ["6L", "24R"],
+            "end": [
+                ["N33d56.95", "W118d25.87", "113.1ft"],
+                ["N33d57.13", "W118d24.12", "118.9ft"]
+            ],
+            "ils": [true, true]
         },
         {
-            "name":        ["7R", "25L"],
-            "name_offset": [[0, -0.2], [0, -0.3]],
-            "end":    [["N33.9336493833", "W118.4190183333"], ["N33.93736303333", "W118.382713916667"]],
-            "length":      3.382,
-            "ils":         [true, true]
+            "name": ["6R", "24L"],
+            "end": [
+                ["N33d56.81", "W118d26.08", "109.9ft"],
+                ["N33d57.03", "W118d23.94", "112.9ft"]
+            ],
+            "ils": [true, true]
         },
         {
-            "name":        ["6R", "24L"],
-            "name_offset": [[0.3, -0.1], [0.4, 0]],
-            "end":    [["N33.94674746666667","W118.43532721666667" ], ["N33.95019445", "W118.40166866666667"] ],
-            "length":      3.135,
-            "ils":         [true, true]
+            "name": ["7L", "25R"],
+            "end": [
+                ["N33d56.13", "W118d25.32", "114.8ft"],
+                ["N33d56.39", "W118d22.79", "94.3ft"]
+            ],
+            "ils": [true, true]
         },
         {
-            "name":        ["6L", "24R"],
-            "name_offset": [[-0.3, 0], [-0.3, 0.1]],
-            "end":    [["N33.94911246666667", "W118.43115986666667"], ["N33.95210391666667","W118.40194891666667"]],
-            "length":      2.721,
-            "ils":         [true, true]
+            "name": ["7R", "25L"],
+            "end": [
+                ["N33d56.02", "W118d25.14", "121.7ft"],
+                ["N33d56.24", "W118d22.96", "97.8ft"]
+            ],
+            "ils": [true, true]
         }
     ],
     "sids": {
-        "LOOP8": {
-            "icao": "LOOP8",
-            "name": "Loop Eight",
+        "SXC8": {
+            "icao": "SXC8",
+            "name": "Catalina Eight",
             "rwy": {
-                "KLAX6L":  ["KEGGS", "COOPP"],
-                "KLAX6R":  ["KEGGS", "COOPP"],
-                "KLAX7L":  ["KEGGS", "COOPP"],
-                "KLAX7R":  ["KEGGS", "COOPP"],
-                "KLAX24L": ["NAANC", "YUFAP", "LAX", "KEGGS", "COOPP"],
-                "KLAX24R": ["NAANC", "YUFAP", "LAX", "KEGGS", "COOPP"],
-                "KLAX25L": ["MKGEE", "YUFAP", "LAX", "KEGGS", "COOPP"],
-                "KLAX25R": ["MKGEE", "YUFAP", "LAX", "KEGGS", "COOPP"]
+                "KLAX6L": [],
+                "KLAX6R": [],
+                "KLAX7L": [],
+                "KLAX7R": []
             },
+            "body": ["#071"],
             "exitPoints": {
-                "DAG": ["DAG"]
+                "SXC": ["SXC"]
             },
-            "draw": [["LAX","KEGGS","COOPP","DAG*"]]
+            "draw": [
+                ["SXC"]
+            ]
         },
-        "PRCH1": {
-            "icao": "PRCH1",
-            "name": "Perch One",
+        "CHATY5": {
+            "icao": "CHATY5",
+            "name": "Chatty Five",
             "rwy": {
-                "KLAX6L":  [],
-                "KLAX6R":  [],
-                "KLAX7L":  [],
-                "KLAX7R":  [],
-                "KLAX24L": [],
-                "KLAX24R": [],
-                "KLAX25L": [],
-                "KLAX25R": []
+                "KLAX6L": ["#041"],
+                "KLAX6R": ["#041"],
+                "KLAX7L": ["#071"],
+                "KLAX7R": ["#071"]
             },
+            "body": [["CHATY", "A54+"], "JOSUL"],
             "exitPoints": {
-                "PERCH": ["PERCH"]
+                "GMN": [["CASTA", "A83+"], "GMN"],
+                "HENER": ["FIM", "HENER"],
+                "KWANG": ["FIM", "HENER", "DEANO", "KWANG"],
+                "RZS": ["FIM", "OHIGH", "RZS"]
             },
-            "draw": [["PERCH"]]
+            "draw": [
+                ["LAX", "CHATY", "JOSUL", "CASTA", "GMN*"],
+                ["JOSUL", "FIM", "HENER", "DEANO", "KWANG*"],
+                ["FIM", "OHIGH", "RZS*"],
+                ["HENER*"]
+            ]
         },
-        "VTU6": {
-            "icao": "VTU6",
-            "name": "Ventura six",
+        "DARRK3": {
+            "icao": "DARRK3",
+            "name": "Dark Three",
+            "altitude": 23000,
             "rwy": {
-                "KLAX24L": ["NAANC",["VTU","A60-"]],
-                "KLAX24R": ["NAANC",["VTU","A60-"]],
-                "KLAX25L": ["MKGEE",["VTU","A60-"]],
-                "KLAX25R": ["MKGEE",["VTU","A60-"]]
+                "KLAX24L": [["DLREY", "A30-"], ["ENNEY", "A50-"], "NAANC"],
+                "KLAX24R": [["FABRA", "A30-"], ["ENNEY", "A50-"], "NAANC"],
+                "KLAX25L": [["HIIPR", "A30-"], ["EVOSE", "A50-"], "MKGEE"],
+                "KLAX25R": [["DOCKR", "A30-"], ["EVOSE", "A50-"], "MKGEE"]
             },
+            "body": [["DARRK", "A120-"], ["FIXIT", "A120+"], "IKAYE"],
             "exitPoints": {
-                "RZS": ["RZS"],
-                "GMN": ["GMN"]
+                "DINTY": ["RIZIN", "OINGO", "DINTY"],
+                "MCKEY": ["RIZIN", "MCKEY"],
+                "RIZIN": ["RIZIN"],
+                "SCTRR": ["TESEA", "SCTRR"],
+                "STOKD": ["RIZIN", "SPLNT", "STOKD"]
             },
-            "draw": [["VTU","RZS*"],["VTU","GMN*"]]
+            "draw": [
+                ["DLREY", "ENNEY", "NAANC", "DARRK", "FIXIT", "IKAYE", "RIZIN*"],
+                ["FABRA", "ENNEY"],
+                ["HIIPR", "EVOSE", "MKGEE", "DARRK"],
+                ["DOCKR", "EVOSE"],
+                ["RIZIN", "OINGO", "DINTY*"],
+                ["RIZIN", "MCKEY*"],
+                ["RIZIN", "SPLNT", "STOKD*"],
+                ["IKAYE", "TESEA", "SCTRR*"]
+            ]
         },
-        "LAXX8": {
-            "icao": "LAXX8",
-            "name": "Lacks Eight",
+        "DOTSS2": {
+            "icao": "DOTSS2",
+            "name": "Dots Two",
+            "altitude": 17000,
             "rwy": {
-                "KLAX6L":  ["SLI"],
-                "KLAX6R":  ["SLI"],
-                "KLAX7L":  ["SLI"],
-                "KLAX7R":  ["SLI"],
-                "KLAX24L": ["NAANC", "SHAEF", "SLI"],
-                "KLAX24R": ["NAANC", "SHAEF", "SLI"],
-                "KLAX25L": ["MKGEE", "SHAEF", "SLI"],
-                "KLAX25R": ["MKGEE", "SHAEF", "SLI"]
+                "KLAX24L": [["DLREY", "A30-"], ["ENNEY", "A50-"], "NAANC", "HAYNK"],
+                "KLAX24R": [["FABRA", "A30-"], ["ENNEY", "A50-"], "NAANC", "HAYNK"],
+                "KLAX25L": [["HIIPR", "A30-"], ["ADORE", "A50-"], "SHAEF"],
+                "KLAX25R": [["DOCKR", "A30-"], ["WEILR", "A50-"], "SHAEF"]
             },
+            "body": ["PEVEE", "HOLTZ", ["DOTSS", "A150+"]],
             "exitPoints": {
-                "TRM": ["TRM"],
-                "MZB": ["MZB"]
+                "CNERY": ["WIILD", "BLCKD", "CSTWY", "^CNERY"],
+                "CLEEE": ["EYEDL", "HOMER", "CLEEE"]
             },
-            "draw": [["SLI","TRM*"],["SLI","OCN","MZB*"]]
-        },
-        "SEBBY9": {
-            "icao": "SEBBY9",
-            "name": "Sebby Nine",
-            "rwy": {
-                "KLAX6L":  ["SLI"],
-                "KLAX6R":  ["SLI"],
-                "KLAX7L":  ["SLI"],
-                "KLAX7R":  ["SLI"],
-                "KLAX24L": ["NAANC", "SHAEF", "SLI"],
-                "KLAX24R": ["NAANC", "SHAEF", "SLI"],
-                "KLAX25L": ["MKGEE", "SHAEF", "SLI"],
-                "KLAX25R": ["MKGEE", "SHAEF", "SLI"]
-            },
-            "exitPoints": {
-                "DAG": ["DAG"]
-            },
-            "draw": [["SLI","SEBBY","DAG*"]]
+            "draw": [
+                ["NAANC", "HAYNK", "PEVEE", "HOLTZ", "DOTSS", "EYEDL", "HOMER", "CLEEE*"],
+                ["DOCKR", "WEILR", "SHAEF", "PEVEE"],
+                ["HIIPR", "ADORE", "SHAEF"],
+                ["DOTSS", "WIILD", "BLCKD", "CSTWY", "CNERY*"]
+            ]
         }
     },
     "spawnPatterns": [
-        {
-            "origin": "klax",
-            "destination": "",
-            "category": "departure",
-            "route": "KLAX24L.LOOP8.DAG",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 17,
-            "offset": 0,
-            "airlines": [
-                ["aal", 5],
-                ["ual/long", 5],
-                ["dal/long", 5],
-                ["asa", 3],
-                ["cpa", 2],
-                ["ups", 2],
-                ["klm/long", 2],
-                ["kal/long", 2],
-                ["lan/long", 4],
-                ["vir", 2]
-            ]
-        },
-        {
-            "origin": "klax",
-            "destination": "",
-            "category": "departure",
-            "route": "KLAX24L.LAXX8.MZB",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 17,
-            "offset": 0,
-            "airlines": [
-                ["ual", 5],
-                ["dal", 5],
-                ["aal/long", 5],
-                ["swa", 5],
-                ["aca", 2],
-                ["baw/long", 2],
-                ["fdx", 2],
-                ["afr/long", 2],
-                ["amx/long", 2],
-                ["uae", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "klax",
-            "category": "arrival",
-            "route": "_KLAX347060..KIMMO..DARTS",
-            "altitude":  10000,
-            "speed":    250,
-            "method": "cyclic",
-            "rate": 2,
-            "offset": 0,
-            "airlines":  [
-                ["swa", 1],
-                ["n/fastGA", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "klax",
-            "category": "arrival",
-            "route": "_KLAX169060..SXC..CWARD..SLI",
-            "altitude":  10000,
-            "speed":    250,
-            "method": "random",
-            "rate": 3,
-            "airlines":  [
-                ["ual/long", 1],
-                ["dal/long", 1],
-                ["asa", 1],
-                ["aal/long", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "klax",
-            "category": "arrival",
-            "route": "RUSTT..HABSO..RIIVR..BCOVE",
-            "altitude":  10000,
-            "speed":    250,
-            "method": "random",
-            "rate": 8,
-            "airlines":  [
-                ["ual", 5],
-                ["aal", 5],
-                ["dal", 5],
-                ["ual/long", 5],
-                ["aal/long", 5],
-                ["dal/long", 5],
-                ["swa", 5],
-                ["asa", 3],
-                ["aca", 2],
-                ["cpa", 2],
-                ["baw/long", 2],
-                ["ups", 2],
-                ["fdx", 2],
-                ["klm/long", 2],
-                ["afr/long", 2],
-                ["kal/long", 2],
-                ["amx/long", 2],
-                ["lan/long", 4],
-                ["uae", 2],
-                ["vir", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "klax",
-            "category": "arrival",
-            "route": "_KLAX305060..FIM..SADDE..SMO..JAVSI",
-            "altitude":  10000,
-            "speed":    250,
-            "method": "random",
-            "rate": 6,
-            "airlines":  [
-                ["ual", 2],
-                ["aal", 2],
-                ["dal", 2],
-                ["swa", 5],
-                ["asa", 5],
-                ["n/fastGA", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "klax",
-            "category": "arrival",
-            "route": "RZS..VTU..SADDE..SMO..JAVSI",
-            "altitude":  10000,
-            "speed":    250,
-            "method": "random",
-            "rate": 6,
-            "airlines":  [
-                ["ual/long", 1],
-                ["dal/long", 1],
-                ["asa", 1],
-                ["aal/long", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "klax",
-            "category": "arrival",
-            "route": "VISTA..OCN..SHIVE..CWARD..MADOW..SLI",
-            "altitude":  10000,
-            "speed":    250,
-            "method": "random",
-            "rate": 8,
-            "airlines":  [
-                ["ual", 1],
-                ["swa", 1],
-                ["aal", 1]
-            ]
-        }
+
     ],
     "maps": [
         {
