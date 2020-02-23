@@ -106,6 +106,7 @@
                 "KEWR22L": ["#239"]
                 "KEWR22R": ["#239"]
             }, 
+            "body": [], 
             "exitPoints": {
                 "BAYYS": ["BAYYS"], 
                 "BIGGY": ["BIGGY"], 
@@ -125,3 +126,18 @@
                 "WHITE": ["WHITE"], 
                 "ZIMMZ": ["ZIMMZ"]
             },
+            "draw": [[]]
+        }
+        "PORTT4": {
+            "icao": "PORTT4", 
+            "name": "Port Four", 
+            "altitude": 2500
+            "rwy": {
+                "KEWR22L": []
+                "KEWR22R": []
+            "body": [["BAGGA", "S220-"], "PORTT"]
+            "exitPoints": {
+                "BIGGY": ["RIETA", "SBJ", "BIGGY"], 
+                "ELIOT": ["SIRLY", "FENLY", "ELIOT"], 
+                "LANNA": ["RIETA", "SBJ", "LANNA"], 
+                "PARKE": ["RIETA", "SBJ", "PARKE"], 
