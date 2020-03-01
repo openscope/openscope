@@ -1,4 +1,4 @@
-# 6.16.0 (January 31, 2020)
+# 6.16.0 (March 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1526" target="_blank">#1526</a> - Introduce Montevideo Carrasco Airport (SUMU)
 
