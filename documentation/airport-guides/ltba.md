@@ -118,6 +118,6 @@ Runway 07L/25R, concrete, 2,993m (9,818ft)
 
 
 ### Additional Resources
-* [VATSIM Charts](https://trvacc.org/charts/)  
-* Additional information can be found in the [European AIS Database](https://www.ead.eurocontrol.int/fwf-eadbasic/restricted/user/aip/aip_overview.faces) (requires a free registration)  
-* Or the [Turkish AIP](http://ssd.dhmi.gov.tr/ANSLogin.aspx?mn=50) (requires a subscription)
+<a href="https://trvacc.org/charts/" target="_blank">VATSIM Charts</a>
+Additional information can be found in the <a href="https://www.ead.eurocontrol.int/fwf-eadbasic/restricted/user/aip/aip_overview.faces" target="_blank">European AIS Database</a> (requires a free registration)  
+Or the <a href="http://ssd.dhmi.gov.tr/ANSLogin.aspx?mn=50" target="_blank">Turkish AIP</a> (requires a subscription)

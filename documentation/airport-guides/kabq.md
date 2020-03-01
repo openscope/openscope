@@ -1,6 +1,6 @@
 ### About this facility
 Albuquerque Combined TRACON and ATCT (ABQ), Albuquerque, New Mexico, USA  
-198,987 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+198,987 annual operations in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 This level 8 combined TRACON/ATCT facility controls a number of airfields in Albuquerque and its surrounding areas. Since this is a combined facility, the TRACON and ATC Tower are co-located at Albuquerque International Sunport (KABQ), just over 3 miles from Downtown Albuquerque.
 
@@ -58,5 +58,5 @@ Alexander Municipal Airport
 This small airport located in the city of Belen, 30 miles Southwest of Albuquerque, is home to just over 50 aircraft, a skydive club, a propeller maintenance facility, aerial photography, and other aviation businesses. It is also an air operations training site for the United States Air Force.
 
 ### Additional Resources
-[KABQ Charts](https://skyvector.com/airport/ABQ/Albuquerque-International-Sunport-Airport)  
-[VATSIM SOP](https://zabartcc.org/files/40)
+<a href="https://skyvector.com/airport/ABQ/Albuquerque-International-Sunport-Airport" target="_blank">KABQ Charts</a>
+<a href="https://zabartcc.org/files/40" target="_blank">VATSIM SOP</a>

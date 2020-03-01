@@ -1,6 +1,6 @@
 ### About this facility
 Portland TRACON (P80), Portland, Oregon, USA
-316,542 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+316,542 annual operations in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 The P80 TRACON provides approach control service to over twenty public/municipal airports, as well as a myriad of active private airports/airstrips.
 
@@ -50,5 +50,5 @@ Aurora State Airport
 Aurora State Airport/Wes Lematta Field is a small GA Airport with a new control tower built in 2015. Mostly used for flight training as well as some business operations.
 
 ### Additional Resources
-[KPDX Charts](https://skyvector.com/airport/PDX/Portland-International-Airport)  
-[IVAO SOP](http://www.ivaous.org/fdr/SOPs/ZSE/PDXSOP.pdf)
+<a href="https://skyvector.com/airport/PDX/Portland-International-Airport" target="_blank">KPDX Charts</a>
+<a href="http://www.ivaous.org/fdr/SOPs/ZSE/PDXSOP.pdf" target="_blank">IVAO SOP</a>

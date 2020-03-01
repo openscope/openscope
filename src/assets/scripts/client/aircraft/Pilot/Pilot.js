@@ -145,6 +145,7 @@ export default class Pilot {
         this.cancelApproachClearance(aircraftModel);
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
+        this._mcp.shouldExpediteAltitudeChange = false;
 
         // Build readback
         const readbackAltitude = _floor(clampedAltitude, -2);

@@ -1,6 +1,6 @@
 ### About this facility
 Raleigh-Durham Combined TRACON and ATCT (RDU), Morrisville, North Carolina, USA
-257,412 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+257,412 annual operations in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 This level 9 combined TRACON/ATCT facility controls a number of airfields in Greater Raleigh. Since this is a combined facility, the TRACON and ATC Tower are co-located at Raleigh-Durham International Airport (KRDU).
 
@@ -27,7 +27,7 @@ Y - West Feeder      (unavailable)
 Raleigh-Durham International  
 203,174 annual operations
 
-Located between the cities of Raleigh and Durham, RDU is the main airport in the area. Originally built as an Air Force base, its old runways are still visible on the southeast side of the airport. It now has three runways, two of which are parallel (5L/R - 23L/R). Simultaneous approaches are permitted into these runways although it is rarely necessary due to the low amounts of traffic. 
+Located between the cities of Raleigh and Durham, RDU is the main airport in the area. Originally built as an Air Force base, its old runways are still visible on the southeast side of the airport. It now has three runways, two of which are parallel (5L/R - 23L/R). Simultaneous approaches are permitted into these runways although it is rarely necessary due to the low amounts of traffic.
 
 #### KTTA
 Raleigh Executive Jetport  
@@ -44,5 +44,5 @@ Triangle North Executive
 Also known as Franklin County Airport, Triangle North Executive is used primarily for private and general aviation.
 
 ### Additional Resources
-[KRDU Charts](https://skyvector.com/airport/RDU/Raleigh-Durham-International-Airport)
-[VATSIM SOP](https://vzdc.org/downloads/sops/RDU.pdf)
+<a href="https://skyvector.com/airport/RDU/Raleigh-Durham-International-Airport" target="_blank">KRDU Charts</a>
+<a href="https://vzdc.org/downloads/sops/RDU.pdf" target="_blank">VATSIM SOP</a>

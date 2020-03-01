@@ -36,7 +36,7 @@ export const AIRPORT_CONSTANTS = {
      * @type {number}
      * @final
      */
-    FINAL_APPROACH_FIX_DISTANCE_NM: 4,
+    FINAL_APPROACH_FIX_DISTANCE_NM: 5,
 
     /**
      * Maximum allowable indicated airspeed for aircraft below 10,000 feet MSL

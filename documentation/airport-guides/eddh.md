@@ -5,7 +5,7 @@ Bremen Radar (HAM), Hamburg, Germany
 The Hamburg sector covers only a portion of Bremen Radar's control area, located 100km away from Hamburg in the city of Bremen. Although Bremen Radar controls most of the airspace in Northern Germany, the HAM sector only covers the Hamburg and Lübeck metropolitan areas.
 
 ### Airspace
-The HAM sector controls a large area around Hamburg and Lübeck from the ground up to FL100, as well as a small shelf to the West which extends from FL65 to FL100; Below FL65 this area belongs to the BRE sector. 
+The HAM sector controls a large area around Hamburg and Lübeck from the ground up to FL100, as well as a small shelf to the West which extends from FL65 to FL100; Below FL65 this area belongs to the BRE sector.
 Class C and D airspace (equivalent to American class B airspace) exists on top of Hamburg and the surrounding areas up to FL100.
 Of unique note here is the location of Hamburg Finkenwerder Airport (EDHI), which is less than 10km Southwest of Hamburg Airport (EDDH), right along the approach course to runway 05. Pilots sometimes confuse the two airports which has led to several incidents in the past.
 
@@ -32,7 +32,7 @@ Hamburg Finkenwerder Airport
 4,563 annual operations  
 8nm Southwest of EDDH
 
-Hamburg Finkenwerder, commonly referred to as "Finki", is part of the Airbus facility in Hamburg, which plays a huge role in the manufacturing process of the A320, A330, A350 and A380 families. Although the airport doesn't handle any commercial traffic, it has several transfer, freight, and test flights for Airbus as well as a corporate shuttle service to the Airbus plant in Toulouse twice a day. Tours of the plant and the aircraft production lines are available every day. 
+Hamburg Finkenwerder, commonly referred to as "Finki", is part of the Airbus facility in Hamburg, which plays a huge role in the manufacturing process of the A320, A330, A350 and A380 families. Although the airport doesn't handle any commercial traffic, it has several transfer, freight, and test flights for Airbus as well as a corporate shuttle service to the Airbus plant in Toulouse twice a day. Tours of the plant and the aircraft production lines are available every day.
 
 #### EDHL
 Lübeck Airport  
@@ -42,7 +42,7 @@ Lübeck Airport
 Lübeck Airport is a small airport serving the city of Lübeck in Schleswig-Holstein. It has very little traffic and has struggled financially in the past few years. Most of the airlines which operated at the airport have ceased their operations at Lübeck, including Ryanair and Wizz Air.
 
 ### Additional Resources
-[EDDH Charts](http://nav.vatsim-germany.org/files/edww/charts/eddh/public/EDDH_AIO.pdf)  
-[EDHI Charts](http://nav.vatsim-germany.org/files/edww/charts/edhi/public/EDHI_AIO.pdf)  
-[EDDL Charts](http://nav.vatsim-germany.org/files/edww/charts/edhl/public/EDHL_AIO.pdf)  
-[VATSIM SOP (in German)](https://drive.google.com/file/d/1wOl8Pj-5YgAAvY87f5_mq_rfeLSPw_kb/view?usp=sharing)
+<a href="http://nav.vatsim-germany.org/files/edww/charts/eddh/public/EDDH_AIO.pdf" target="_blank">EDDH Charts</a>
+<a href="http://nav.vatsim-germany.org/files/edww/charts/edhi/public/EDHI_AIO.pdf" target="_blank">EDHI Charts</a>
+<a href="http://nav.vatsim-germany.org/files/edww/charts/edhl/public/EDHL_AIO.pdf" target="_blank">EDDL Charts</a>
+<a href="https://drive.google.com/file/d/1wOl8Pj-5YgAAvY87f5_mq_rfeLSPw_kb/view?usp=sharing" target="_blank">VATSIM SOP (in German)</a>

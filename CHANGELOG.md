@@ -1,4 +1,30 @@
-# 6.15.1 (December 2, 2020)
+# 6.16.0 (March 1, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1526" target="_blank">#1526</a> - Introduce Montevideo Carrasco Airport (SUMU)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1389" target="_blank">#1389</a> - Prevent unfair penalty at KDCA on IRONS7 arrivals by deactivating R6601B/C
+- <a href="https://github.com/openscope/openscope/issues/1218" target="_blank">#1218</a> - Ensure proper removal of aircraft who collide with terrain/traffic
+- <a href="https://github.com/openscope/openscope/issues/1513" target="_blank">#1513</a> - Add missing fleets to AFR/LDM airlines that were crashing EDDM/EIDW
+- <a href="https://github.com/openscope/openscope/issues/1398" target="_blank">#1398</a> - Fix go-arounds from aircraft with low descent rates
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
+- <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
+- <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport (EDDM)
+- [#1387](https://github.com/openscope/openscope/issues/1387) - Update LOWW to AIRAC 1908
+- <a href="https://github.com/openscope/openscope/issues/1499" target="_blank">#1499</a> - Reintroduce Ministro Pistarini Airport (SAEZ)
+- <a href="https://github.com/openscope/openscope/issues/1503" target="_blank">#1503</a> - Reintroduce Dublin Airport (EIDW)
+- <a href="https://github.com/openscope/openscope/issues/1471" target="_blank">#1471</a> - Change all airport guide links to open in new tab
+- <a href="https://github.com/openscope/openscope/issues/1514" target="_blank">#1514</a> - Reintroduce Malvinas Argentinas Ushuaia Airport (SAWH)
+- <a href="https://github.com/openscope/openscope/issues/1381" target="_blank">#1381</a> -  Change all airport names in airport loadList to the official English name according to Jeppesen charts
+- <a href="https://github.com/openscope/openscope/issues/242" target="_blank">#242</a> - Update KJFK to AIRAC 2002
+- <a href="https://github.com/openscope/openscope/issues/1528" target="_blank">#1528</a> - Remove heavies from KDCA
+- <a href="https://github.com/openscope/openscope/issues/1525" target="_blank">#1525</a> - Reintroduce Mendoza El Plumerillo Airport (SAME)
+- <a href="https://github.com/openscope/openscope/issues/1517" target="_blank">#1517</a> - Reintroduce Princess Juliana Airport (TNCM)
+
+
+# 6.15.1 (December 2, 2019)
 ### Hotfixes
 - <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
 

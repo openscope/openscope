@@ -1,10 +1,11 @@
-In order to help you learn the details of each particular airspace, an "airport guide" is available for each of the airports in the game.
+﻿In order to help you learn the details of each particular airspace, an "airport guide" is available for each of the airports in the game.
 
 - [CYHZ - Halifax Stanfield International Airport](cyhz.md)
 - [CYOW - Ottawa Macdonald–Cartier International Airport](cyow.md)
 - [EDDF - Flughafen Frankfurt am Main](eddf.md)
 - [EDDH - Hamburg Airport](eddh.md)
 - [EDDL - Flughafen Düsseldorf](eddl.md)
+- [EDDM - Flughafen München](eddm.md)
 - [EGCC - Manchester Airport](egcc.md)
 - [EGNM - Leeds Bradford Airport](egnm.md)
 - [EIDW - Dublin Airport](eidw.md)
@@ -30,6 +31,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [KSTL - St. Louis Lambert International Airport](kstl.md)
 - [KTUS - Tucson International Airport](ktus.md)
 - [LKPR - Václav Havel International Airport](lkpr.md)
+- [LOWW - Vienna Schwechat International Airport](loww.md)
 - [LROP - Bucharest Henri Coanda International Airport](lrop.md)
 - [LSZH - Zürich Airport](lszh.md)
 - [LTBA - Istanbul Atatürk Airport](ltba.md)
@@ -38,3 +40,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [OMDB - Dubai International Airport](omaa.md)
 - [OTHH - Doha Hamad International Airport](othh.md)
 - [SAEZ - Ministro Pistarini International Airport](saez.md)
+- [SAME - Mendoza El Plumerillo International Airport](same.md)
+- [SAWH - Malvinas Argentinas Ushuaia International Airport](sawh.md)
+- [SUMU - Montevideo Carrasco International Airport](sumu.md)
+- [TNCM - Princess Juliana International Airport](tncm.md)

@@ -24,7 +24,7 @@ It's owned by the government of Canada and opened for civillian traffic in the 1
 ### About the Ottawa Terminal Control Area
 The airspace boundary around Ottawa is detailed in NAVCanada's Designated Airspace Handbook. There are two main radar positions, Ottawa Departure and Ottawa Arrival.
 
-Use [this map](https://bit.ly/openscopeCYOW) to see the different areas of Ottawa's Airpsace.
+Use <a href="https://bit.ly/openscopeCYOW" target="_blank">this map</a> to see the different areas of Ottawa's Airpsace.
 
 ### Instrument Procedures
 ##### Departures
@@ -40,7 +40,7 @@ Ottawa Arrivals is responsible for the following:
 * clearing aircraft onto a final approach, ILS, RNAV, Visual or LOC;
 * ensuring aircraft have sufficient spacing between them.
 
-The various advised altitude restrictions can be found on charts. Charts are available for free from [VATCAN's Montreal FIR](https://www.czul.ca/charts)
+The various advised altitude restrictions can be found on charts. Charts are available for free from <a href="https://www.czul.ca/charts" target="_blank">VATCAN's Montreal FIR</a>
 
 The following fixes are Final Approach Course Fixes, meaning that aircraft can be cleared for an approach after these fixes:
 * TEFLY - RNAV 25
@@ -153,5 +153,5 @@ The videomap also contains:
 
 
 ### Additional Resources
-[Ottawa Charts, Montreal FIR (VATCAN)](https://www.czul.ca/charts)  
-[Designated Airspace Handbook](https://www.navcanada.ca/EN/products-and-services/Documents/DAH_Current_EN.pdf)
+<a href="https://www.czul.ca/charts" target="_blank">Ottawa Charts, Montreal FIR (VATCAN)</a>
+<a href="https://www.navcanada.ca/EN/products-and-services/Documents/DAH_Current_EN.pdf" target="_blank">Designated Airspace Handbook</a>

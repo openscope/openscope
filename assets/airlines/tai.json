@@ -1,0 +1,23 @@
+{
+    "icao": "tai",
+    "name": "Avianca El Salvador",
+    "callsign": {
+        "name": "TACA",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319",  8 ],
+            ["A320", 18 ],
+            ["A321",  6 ],
+            ["A332",  1 ],
+            ["E190",  8 ]
+        ],
+        "long": [
+            ["A332",  1 ]
+        ],
+        "jfk": [
+            ["A320", 18 ]
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 ### About this facility
 Las Vegas TRACON (L30), Las Vegas, Nevada, USA
-606,732 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+606,732 annual operations in 2016 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 Located beside Terminal 1 in the same building as the LAS control tower, this consolidated approach control facility works all traffic in the Las Vegas metropolitan area.
 
@@ -30,7 +30,7 @@ K - Keno             (unavailable)
 Mc Carran International  
 535,740 annual operations
 
-Located 5 miles south of Downtown las Vegas, LAS is the primary commercial airport serving the Las Vegas Valley. The airport is a main hub for Southwest Airlines, Spirit Airlines, Allegiant Air and Frontier Airlines. It contains 2 sets of parallel runways; Runways 1L/R - 19L/R, almost parallel to the Vegas Strip, are primarily used for departures in a South-East Configuration. Runway 8L/26R is normally used for departing aircraft, while runway 8R/26L is used for arriving aircraft. Due to the close proximity of the runways, parallel simultaneous approaches are not allowed. 
+Located 5 miles south of Downtown las Vegas, LAS is the primary commercial airport serving the Las Vegas Valley. The airport is a main hub for Southwest Airlines, Spirit Airlines, Allegiant Air and Frontier Airlines. It contains 2 sets of parallel runways; Runways 1L/R - 19L/R, almost parallel to the Vegas Strip, are primarily used for departures in a South-East Configuration. Runway 8L/26R is normally used for departing aircraft, while runway 8R/26L is used for arriving aircraft. Due to the close proximity of the runways, parallel simultaneous approaches are not allowed.
 
 #### KVGT
 North Las Vegas  
@@ -60,4 +60,4 @@ Nellis Air Force Base
 Nellis AFB is a USAF installation with military schools and more squadrons than any other USAF base. The airfield hosts air combat exercises and close air support exercises flown in Military Operations Areas.
 
 ### Additional Resources
-[Detailed SOP](http://ivaous.org/fdr/SOPs/ZLA/L30_SOP.pdf)
+<a href="http://ivaous.org/fdr/SOPs/ZLA/L30_SOP.pdf" target="_blank">Detailed SOP</a>

@@ -133,24 +133,6 @@ export const PERFORMANCE = {
      */
     DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING: 3.5,
 
-    /*
-     * Distance from landing threshold at which to establish on final approach speed
-     *
-     * @property LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM
-     * @type {number}
-     * @final
-     */
-    LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM: 1,
-
-    /**
-     * Distance from landing threshold outside of which you must maintain assigned speed
-     *
-     * @property LANDING_ASSIGNED_SPEED_DISTANCE_NM
-     * @type {number}
-     * @final
-     */
-    LANDING_ASSIGNED_SPEED_DISTANCE_NM: 5,
-
     /**
      * Maximum vertical distance between the aircraft and the glidepath to
      * consider the aircraft to be "established on the glidepath"
@@ -222,6 +204,18 @@ export const PERFORMANCE = {
      * @final
      */
     INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE: 200,
+
+    /**
+     * Length of time individual aircraft will require themselves to be established at Vref
+     * (their landing speed) before landing. If they cannot reach that speed by that time, they
+     * will not consider themselves on a "stable approach", and will likely go around.
+     *
+     * @memberof PERFORMANCE
+     * @property STABLE_APPROACH_TIME_SECONDS
+     * @type {number}
+     * @final
+     */
+    STABLE_APPROACH_TIME_SECONDS: 60,
 
     /**
      * Altitude above the runway at which aircraft begin their on-course turn, in feet

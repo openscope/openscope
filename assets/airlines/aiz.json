@@ -1,0 +1,21 @@
+{
+    "icao": "aiz",
+    "name": "Arkia Israeli Airlines",
+    "callsign": {
+        "name": "Arkia",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A21N", 3],
+            ["B753", 1],
+            ["E190", 5]
+        ],
+        "e190": [
+            ["E190", 5]
+        ]
+    }
+}

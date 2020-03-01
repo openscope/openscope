@@ -13,7 +13,7 @@
 
 - [Expect Runway](#expect-runway)
 - [Descend via STAR](#descend-via-star)
-- [Land](#land)
+- [ILS](#ils)
 
 [Routing Commands](#routing-commands)
 
