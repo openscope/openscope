@@ -114,6 +114,7 @@
                 "COATE": ["COATE"], 
                 "DIXIE": ["DIXIE"], 
                 "ELIOT": ["ELIOT"], 
+                "ELVAE": ["ELVAE"], 
                 "GAYEL": ["GAYEL"], 
                 "GREKI": ["GREKI"], 
                 "HAAYS": ["HAAYS"], 
@@ -137,7 +138,24 @@
                 "KEWR22R": []
             "body": [["BAGGA", "S220-"], "PORTT"]
             "exitPoints": {
+                "BAYYS": ["BAYYS"], 
                 "BIGGY": ["RIETA", "SBJ", "BIGGY"], 
+                "BREZY": ["BREZY"], 
+                "COATE": ["COATE"], 
+                "DIXIE": ["DIXIE"], 
                 "ELIOT": ["SIRLY", "FENLY", "ELIOT"], 
+                "ELVAE": ["ELVAE"], 
+                "GAYEL": ["GAYEL"], 
+                "GREKI": ["GREKI"], 
+                "HAAYS": ["HAAYS"], 
                 "LANNA": ["RIETA", "SBJ", "LANNA"], 
+                "MERIT": ["MERIT"], 
+                "NEION": ["NEION"], 
                 "PARKE": ["RIETA", "SBJ", "PARKE"], 
+                "PORTT": [], 
+                "WAVEY": ["WAVEY"], 
+                "WHITE": ["WHITE"]
+            }, 
+            "draw": [
+                ["BAGGA", "PORTT"], 
+                
