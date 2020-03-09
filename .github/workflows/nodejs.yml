@@ -7,10 +7,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # strategy:
-    #   matrix:
-    #     node-version: [11.3, 11.x, 12.x]
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -18,9 +14,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 11.3
-    - run: |
-        npm install
-        make test-coverage
+    - run: npm install
     - run: npm run build
     - run: npm run test
     - name: Run Code Coverage (via coveralls.io)
