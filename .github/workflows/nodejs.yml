@@ -30,11 +30,11 @@ on: pull_request
 jobs:
   lint-diff:
     runs-on: ubuntu-latest
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Use Node.JS v11.3
-        uses: actions/setup-node@v1
-        with:
-          node-version: 11.3
-      # - run: npm run lint-diff ${{ github.base_ref }}.${{ github.head_ref }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    # - run: npm run lint-diff ${{ github.base_ref }}.${{ github.head_ref }}
