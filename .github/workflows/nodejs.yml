@@ -23,5 +23,6 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
     # - run: npm run coveralls
     - run: npm run lint
+    # - run: npm run lint-diff ${{ github.base_ref }}.${{ github.head_ref }}
       env:
         CI: true
