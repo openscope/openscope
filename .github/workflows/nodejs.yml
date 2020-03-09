@@ -12,15 +12,22 @@ jobs:
     #     node-version: [11.3, 11.x, 12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 11.3
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
         node-version: 11.3
-    - run: npm install
+    - run: |
+      npm install
+      make test-coverage
     - run: npm run build
     - run: npm run test
-    - run: npm run coveralls
+    - name: Run Code Coverage (via coveralls.io)
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    # - run: npm run coveralls
     - run: npm run lint
       env:
         CI: true
