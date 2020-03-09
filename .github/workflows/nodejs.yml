@@ -19,8 +19,8 @@ jobs:
       with:
         node-version: 11.3
     - run: |
-      npm install
-      make test-coverage
+        npm install
+        make test-coverage
     - run: npm run build
     - run: npm run test
     - name: Run Code Coverage (via coveralls.io)
