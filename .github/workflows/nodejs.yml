@@ -2,21 +2,24 @@ name: Node.js CI
 
 on: [push, pull_request]
 
+env:
+  node_version: 11.3
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [11.3, 11.x, 12.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [11.3, 11.x, 12.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ node_version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ node_version }}
     - run: npm install
     - run: npm run build
     - run: npm run test
