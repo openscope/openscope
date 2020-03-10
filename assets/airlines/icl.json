@@ -1,15 +1,16 @@
 {
-    "icao": "voc",
-    "name": "Volaris Costa Rica",
+    "icao": "icl",
+    "name": "CAL Cargo Airlines",
     "callsign": {
-        "name": "Costa Rican",
+        "name": "Cal",
         "callsignFormats": [
+            "###",
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["A319", 3]
+            ["B744", 2]
         ]
     }
 }
