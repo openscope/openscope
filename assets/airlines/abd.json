@@ -1,0 +1,17 @@
+{
+    "icao": "abd",
+    "name": "Air Atlanta Icelandic",
+    "callsign": {
+        "name": "Iceland",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B742", 6],
+            ["B743", 2],
+            ["B744", 8]
+        ]
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "icao": "aah",
+    "name": "Aloha Air Cargo",
+    "callsign": {
+        "name": "Aloha",
+        "callsignFormats": [
+            "##",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 3],
+            ["B763", 1]
+        ],
+        "short": [
+            ["B733", 3]
+        ],
+        "long": [
+            ["B763", 1]
+        ]
+    }
+}
