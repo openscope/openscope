@@ -245,11 +245,11 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Welcome!',
-            text: ['Welcome to the OpenScope Air Traffic Control simulator. It\'s not easy',
+            text: ['Welcome to OpenScope Air Traffic Control simulator. It\'s not easy',
                    'to control dozens of aircraft while maintaining safe distances',
-                   'between them; to get started with the ATC simulator tutorial, click the arrow on',
-                   'the right. You can click the graduation cap icon in the lower right corner',
-                   'of the window at any time to close this tutorial.'
+                   'between them; to get started with the tutorial, click the arrow on',
+                   'the right. You can find the tutorial on/off toggle at the bottom right',
+                   'when you expand the "?" icon.'
                 ].join(' '),
             position: tutorial_position
         });
@@ -258,7 +258,7 @@ export default class TutorialView {
             title: 'Moving Around',
             text: ['To move the middle of the radar screen, use the right click button and drag.',
                 'Zoom in and out by scrolling, and press the middle mouse button or scroll wheel to reset the zoom.',
-                'To select an aircraft when it is in flight, simply left-click.'
+                'To select an aircraft when it is in your control, simply left-click.'
             ].join(' '),
             position: tutorial_position
         });
@@ -282,10 +282,9 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Taxiing',
-            text: ['Now type in "taxi {RUNWAY}" or "wait {RUNWAY}" into the command box after the callsign and hit Return;',
-                   'the messages area above it will show that the aircraft is taxiing to runway ({RUNWAY}) in',
-                   'preparation for takeoff.'
+            title: 'Clearance',
+            text: ['First off, you must clear the aircraft to its destination. To do this, select your aircarft and type "caf" (for "cleared as filed").',
+                   'If required, you can also change the SID the aircraft follows and more! Check out all commands at the end of this tutorial!'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length < 0) {
@@ -299,10 +298,9 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Takeoff, part 1',
-            text: ['When it appears at the start of runway ({RUNWAY}) (which may take a couple of seconds), click it (or press the up arrow once)',
-                   'and type in "caf" (for "cleared as filed"). This tells the aircraft it is cleared to follow its flightplan.',
-                   'Just as in real life, this step must be done before clearing the aircraft for takeoff, so they know where they\'re supposed to go.'
+            title: 'Taxiing',
+            text: ['Now type in "taxi {RUNWAY}" into the command box after the callsign and hit',
+                   'Return; the aircraft should appear on the radar scope after a 3 or so seconds'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -316,8 +314,8 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Takeoff, part 2',
-            text: ['Now the aircraft is ready for take off. Click the aircraft again (or press up arrow once)',
+            title: 'Takeoff',
+            text: ['Now the aircraft is ready for take off. Click the aircraft again',
                    'and type "takeoff" (or "to") to clear the aircraft for take off.',
                    'Once it\'s going fast enough, it should lift off the ground and you should',
                    'see its altitude increasing. Meanwhile, read the next step.'
@@ -359,9 +357,9 @@ export default class TutorialView {
             text: ['Once {CALLSIGN} has taken off, you\'ll notice it will climb to {INIT_ALT} by itself. This is one of the instructions ',
                     'we gave them when we cleared them "as filed". Aircraft perform better when they are able to climb directly',
                     'from the ground to their cruise altitude without leveling off, so let\'s keep them climbing! Click it and type "cvs" (for',
-                    '"climb via SID"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure',
-                    'procedure. Feel free to click the speedup button on the right side of the input box (it\'s two small arrows)',
-                    'to watch the departure climb along the SID. Then just click it again to return to 1x speed.'
+                    '"climb via SID"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure. You can also simply',
+                    'give a direct climb, lifting the restrictions on the SID. Feel free to click the speedup button on the right side of the ',
+                    'input box (it\'s two small arrows) to watch the departure climb along the SID. Then just click it again to return to 1x speed.'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -430,16 +428,6 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Route',
-            text: ['Instead of guiding each aircraft based on heading, you can also clear each aircraft to proceed to a fix or navaid (shown on the map',
-                   'as a small triangle). Just use the command "route" and the name of a fix, and the aircraft will fly to it. Upon passing the',
-                   'fix, it will continue flying along its present heading.'
-            ].join(' '),
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
             title: 'Proceed Direct',
             text: ['The proceed direct command "pd" instructs an aircraft to go directly to a waypoint in the flight plan. For example, if an',
                    'aircraft is flying to fixes [A, B, C], issuing the command "pd B" will cause the aircraft to go to B, then C.'
@@ -450,9 +438,9 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Bon voyage, aircraft!',
-            text: ['When the aircraft crosses the airspace boundary, it will ',
+            text: ['When the aircraft leaves your airspace , it will switch to center and',
                    'automatically remove itself from the flight strip bay on the right.',
-                   'Congratulations, you\'ve successfully taken off one aircraft.'
+                   'Congratulations, you\'ve successfully departed an aircraft.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -460,11 +448,10 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Arrivals',
-            text: ['Now, onto arrivals. Click on any arriving aircraft in the radar screen; after',
-                   'you\'ve selected it, use the altitude/heading/speed controls you\'ve learned in',
-                   'order to guide it to be in front of a runway. Make sure to get the aircraft down to',
-                   'around 4,000ft, and 10-15 nautical miles (2-3 range rings) away from the airport.',
-                   'While you work the airplane, read the next step.'
+            text: ['Now, onto arrivals. Click on any arriving aircraft in the radar screen; after you\'ve',
+                   'selected it, use the altitude/heading/speed controls you\'ve learned in order to',
+                   'guide it to the intercept of the ILS for the runway. The aircraft should be at an',
+                   'appropriate altitude and flying an appropriate heading before you clear it for approach!'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -472,11 +459,11 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Approach Clearances, part 1',
-            text: ['You can clear aircraft for an ILS approach with the "ILS" command, followed by a runway name.',
-                   'When you do so, the aircraft will try to find a route that intercepts the localiser, represented by the',
-                   'extended centerline. Try giving radar vectors to get the aircraft on shallow intercept with this marking',
-                   'and then issue the instruction "i {RUNWAY}" to clear it to land. It should then guide itself',
-                   'the rest of the way to the runway, managing its own height and direction.'
+            text: ['You can clear aircraft for an ILS approach with the "i" command, followed by a runway name.',
+                   'When you do so, the aircraft will attempt to intercept the localiser, represented by the',
+                   'extended centerline. Try giving radar vectors to get the aircraft on an intercept of 30 degrees or less,',
+                   'and then issue the instruction "i {RUNWAY}" to clear it to land. It should then guide itself down',
+                   'to the runway, managing its own altitiude and maintaining heading.'
             ].join(' '),
             parse: (t) => {
                 // This isn't robust. If there are multiple runways in use, or the arrival a/c has filed to land
@@ -490,33 +477,10 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Approach Clearances, part 2',
-            text: ['You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,',
-                   'they follow an acronym "PTAC" for the four elements of an approach clearance, the "T" and "C" of which',
-                   'stand for "Turn" and "Clearance", both of which we entered separately in this tutorial. Though longer, it is both ',
-                   'easier and more real-world accurate to enter them together, like this: "fh 250 i 28r".'
-            ].join(' '),
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
-            // TODO: the windsock will be moving soon. Update this when that happens
-            title: 'Wind sock',
-            text: ['In the lower right corner of the map is a small circle with a line. You may need to collapse the',
-                   'the flight strips with the \'>|\' tab. It\'s like a flag: the line trails in the direction',
-                   'the wind is blowing toward. If it\'s pointing straight down, the wind is blowing from the North',
-                   'to the South. Aircraft must be assigned to different runways such that they always take off and land into the wind, unless the',
-                   'wind is less than 5 knots.'
-            ].join(' '),
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
-            title: 'Scope Commands',
-            text: ['There are also various commands that can be entered into your "scope" which deal with moving',
-                   'aircraft data blocks (labels), transferring control of aircraft, etc. To toggle between aircraft',
-                   'commands and scope commands, press the tab key.'
+            text: ['As said earlier, in the Arrivals page, before clearing the aircraft for the ILS, it should be at an appropriate',
+                   'altitude and a heading of 30 degrees or less to intercept. For maximum realism, we recommend looking up the IAP',
+                   'charts for the airport you are at, to find the intercept altitude and any other restrictions. You can find these',
+                   'easily via a quick google search! :)'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -529,6 +493,16 @@ export default class TutorialView {
                    'like directing aircraft to a runway with a strong crosswind/tailwind, losing separation between aircraft, or ignoring an',
                    'aircraft, you will also lose points. If you\'d like, you can just ignore the score; it doesn\'t have any effect',
                    'with the simulation.'
+            ].join(' '),
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
+            title: 'Some Tips',
+            text: ['If you\'re interested in making your experience in the sim more realistic, a few topics you can check out is how to assign IFR',
+                   'altitudes, how to differentiate and seperate aircraft in regards to wake turbulence and looking up airport charts for even more realistic',
+                   'runway operations, and of course IAP charts for realistically routing arrivals for a correct ILS approach!'
             ].join(' '),
             side: 'left',
             position: tutorial_position
