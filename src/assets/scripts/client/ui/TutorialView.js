@@ -300,7 +300,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Taxiing',
             text: ['Now type in "taxi {RUNWAY}" into the command box after the callsign and hit',
-                   'Return; the aircraft should appear on the radar scope after a 3 or so seconds'
+                   'Return; the aircraft should appear on the radar scope after 3 or so seconds'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -375,11 +375,11 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Departure destinations',
-            text: ['If you zoom out (using the mouse wheel) and click',
-                   'on {CALLSIGN}, you will see a solid blue line that shows where they are heading. At the end of the',
-                   'planned route is its "departure fix". Your goal is to get every departure cleared to their filed departure fix. As',
-                   'you have probably noticed, this is very easy with SIDs, as the aircraft do all the hard work themselves.'
+            title: 'Departures',
+            text: ['If you zoom out and click on {CALLSIGN}, you will see a solid blue line that shows their flight plan',
+                   'route. You will see the SID and some initial waypoints and airways represented by the blue line. To keep',
+                   'traffic at a controllable rate, it is in your best interest to get them out of your airspace! To do this',
+                   'you can issue the "pd" command (later on in this tutorial) to clear it to a fix and out of your airspace faster!'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -418,9 +418,9 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Basic Control Instructions: Speed',
-            text: ['Speed control is the TRACON controller\'s best friend. Making good use of speed control can help keep the pace manageable and allow',
-                   'you to carefully squeeze aircraft closer and closer to minimums while still maintaining safety. To enter speed instructions, use the',
-                   '"+" and "-" keys on the numpad, followed by the speed, in knots. Note that this assigned speed is indicated',
+            text: ['Speed control is a highly useful tool, especially when your airspace has restrictions that aircraft need to meet! Making good use of speed control can also help keep the',
+                   'pace manageable and allow you to carefully squeeze aircraft closer and closer to minimums while still maintaining safety. To enter speed instructions, use the',
+                   '"+" and "-" keys on the numpad or "sp", followed by the speed, in knots. Note that this assigned speed is indicated',
                    'airspeed, and our radar scope can only display groundspeed; so, the values may be different.'
             ].join(' '),
             side: 'left',
@@ -438,7 +438,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Bon voyage, aircraft!',
-            text: ['When the aircraft leaves your airspace , it will switch to center and',
+            text: ['When the aircraft leaves your airspace, it will switch to center and',
                    'automatically remove itself from the flight strip bay on the right.',
                    'Congratulations, you\'ve successfully departed an aircraft.'
             ].join(' '),
@@ -450,8 +450,8 @@ export default class TutorialView {
             title: 'Arrivals',
             text: ['Now, onto arrivals. Click on any arriving aircraft in the radar screen; after you\'ve',
                    'selected it, use the altitude/heading/speed controls you\'ve learned in order to',
-                   'guide it to the intercept of the ILS for the runway. The aircraft should be at an',
-                   'appropriate altitude and flying an appropriate heading before you clear it for approach!'
+                   'guide it to the intercept of the ILS for the runway. The aircraft should be at an appropriate',
+                   'altitude and flying an appropriate heading (more on this later) before you clear it for approach!'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -462,7 +462,7 @@ export default class TutorialView {
             text: ['You can clear aircraft for an ILS approach with the "i" command, followed by a runway name.',
                    'When you do so, the aircraft will attempt to intercept the localiser, represented by the',
                    'extended centerline. Try giving radar vectors to get the aircraft on an intercept of 30 degrees or less,',
-                   'and then issue the instruction "i {RUNWAY}" to clear it to land. It should then guide itself down',
+                   'and then issue the instruction "i {RUNWAY}" to clear it for the ILS. It should then guide itself down',
                    'to the runway, managing its own altitiude and maintaining heading.'
             ].join(' '),
             parse: (t) => {
@@ -492,17 +492,32 @@ export default class TutorialView {
                    'Whenever you successfully route an aircraft to the ground or out of the screen, you earn points. As you make mistakes,',
                    'like directing aircraft to a runway with a strong crosswind/tailwind, losing separation between aircraft, or ignoring an',
                    'aircraft, you will also lose points. If you\'d like, you can just ignore the score; it doesn\'t have any effect',
-                   'with the simulation.'
+                   'on the simulation.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Some Tips',
-            text: ['If you\'re interested in making your experience in the sim more realistic, a few topics you can check out is how to assign IFR',
+            title: 'Some Tips, part 1',
+            text: ['If you\'re interested in making your experience in the sim more realistic, a few topics you can check out are how to assign IFR',
                    'altitudes, how to differentiate and seperate aircraft in regards to wake turbulence and looking up airport charts for even more realistic',
                    'runway operations, and of course IAP charts for realistically routing arrivals for a correct ILS approach!'
+            ].join(' '),
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
+            title: 'Some Tips, part 2',
+            text: ['You can also enter multiple commands together in one transmission, just like real life!',
+                   'E.g. EZE2429 fh 270 d 30 - 180 i 26. A useful tool in this sim is the track measuring tool, hold',
+                   'Ctrl and left click to drag the mouse from one point to another, which will show the distance in NM and',
+                   'the magnetic bearing. Useful for when you need to mark distances or understand when to turn an aircarft.',
+                   'Additionally, you can hold down Ctrl+Shift and left clcik, and your mouse will automatically snap to aircraft',
+                   'and fixes. As well as displaying distance and bearing, it will also show the time the aircraft will take to reach',
+                   'that point. Clicking again will keep the drawn line displayed (you can make multiple lines), and pressing Esc will',
+                   'remove all lines. Be sure to also check out the in-game Airport Guides for some information that could come in hand! :)'
             ].join(' '),
             side: 'left',
             position: tutorial_position
