@@ -1235,7 +1235,7 @@
                 ["HEC", "RESOR", "DAWNA", "CIVET", "BINDY", "ARNES", "BASET", "DOWNE", "REEDR", "SMO"],
                 ["JLI", "RONLD", "LAADY", "WYVIL", "PDZ", "ARNES"],
                 ["PGS", "BUGGA", "DIKES", "EMMEY", "GRAMM", "RUSTT", "CIVET"],
-                ["TNP", "IPHIW", "ARRVD", "KONZL", "TRTLE", "PDZ"]
+                ["IPHIW", "ARRVD", "KONZL", "TRTLE", "PDZ"]
             ]
         },
         "BAYST1": {
@@ -1294,14 +1294,15 @@
             "icao": "BOGET2",
             "name": "Boget Two",
             "entryPoints": {
-                "BUGGA": ["BUGGA", ["JOEES", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ"],
-                "EED": ["EED", "COOOP", "TAAAP", ["JOEES", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ"],
-                "KREME": [["KREME", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ"],
-                "PURSE": ["PURSE", "NIPIY", ["KREME", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ"],
-                "WELUM": ["WELUM", "NIPIY", ["KREME", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ"],
+                "BOGET": [],
+                "BUGGA": ["BUGGA", ["JOEES", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ", ["KOPLE", "A140"], ["ROPEZ", "A110+|A130-"]],
+                "EED": ["EED", "COOOP", "TAAAP", ["JOEES", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ", ["KOPLE", "A140"], ["ROPEZ", "A110+|A130-"]],
+                "KREME": [["KREME", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ", ["KOPLE", "A140"], ["ROPEZ", "A110+|A130-"]],
+                "PURSE": ["PURSE", "NIPIY", ["KREME", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ", ["KOPLE", "A140"], ["ROPEZ", "A110+|A130-"]],
+                "WELUM": ["WELUM", "NIPIY", ["KREME", "A240"], ["DNUTT", "A230"], ["JOHHN", "A220"], "BASAL", ["DYVER", "A190-"], "CHKNZ", ["KOPLE", "A140"], ["ROPEZ", "A110+|A130-"]],
                 "WNCHL": ["WNCHL", "GLAZD", ["SNTRA", "A190-"], "COWWS"]
             },
-            "body": [["KOPLE", "A140"], ["ROPEZ", "A110+|A130-"], ["BOGET", "A80"], ["MEETT", "A75+"], ["WATSS", "A69+"], ["^UPDOC", "A60"], "#140"],
+            "body": [["BOGET", "A80"], ["MEETT", "A75+"], ["WATSS", "A69+"], ["^UPDOC", "A60"], "#140"],
             "rwy": {
                 "KLAX24L": [],
                 "KLAX24R": [],
@@ -3434,6 +3435,21 @@
                 ["tht", 4],
                 ["ual/long", 1],
                 ["voz/b77w", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "klax",
+            "category": "arrival",
+            "route": "BOGET.BOGET2.KLAX24R",
+            "altitude": 8000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["amf", 5],
+                ["btq", 10],
+                ["fdx/feeder", 15]
             ]
         }
     ],
