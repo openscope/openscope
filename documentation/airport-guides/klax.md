@@ -34,7 +34,7 @@ SCT is divided into 6 main areas, each of which has multiple individual sectors 
 
 The area available for control in openScope is a combination of the Los Angeles area (responsible for arrivals into LAX) and the Del Rey area (responsible for departures out of LAX) in a West configuration (landing and departing 24L/R & 25L/R).
 
-NOTE: Since the complex stratification of the airspace is not simulated, the entire airspace extends from the the surface up to FL190. Special attention must be paid to aircraft on the GOATZ1 arrival, which enter the airspace to the South. The procedure takes aircraft out of our airspace to then re-enter to the Southeast. This is not a problem in real life since aircraft would be too high to enter Del Rey's airspace at that point. To prevent aircraft from exiting our airspace, a shortcut can be given to waypoints ZAPPP or BUFIE, as aircraft first enter the airspace south of Catalina Island.
+NOTE: Since the complex stratification of the airspace is not simulated, the entire airspace extends from the the surface up to FL190. Special attention must be paid to aircraft on the GOATZ1 and DIRBY1 arrivals, which enter the airspace to the South. The procedures takes aircraft out of our airspace to then re-enter to the Southeast. This is not a problem in real life since aircraft would be too high to enter Del Rey's airspace at that point. To prevent aircraft from exiting our airspace, a shortcut can be given to waypoints ZAPPP/BUFIE/SLI/TRNDO, as aircraft first enter the airspace near Catalina Island.
 
 ### Procedures
 LAX is obviously a very complex airport with numerous departing and arriving procedures (47 to be precise!). These procedures are designed carefully to minimize conflict between aircraft flying within the SCT and reduce noise around the Los Angeles area.
@@ -75,7 +75,7 @@ Arrival procedures into KLAX bring aircraft from outside the SCT to a small area
 
 NOTE: Aircraft on the HLYWD and ANJLL arrivals are too far away to intercept the ILS glidepath at KRAIN/SKOLL. We recommend descending aircraft to 7000ft-8000ft to allow aircraft to descend on the glidepath once the ILS is captured.
 
-NOTE: As already mentioned above, special attention must be paid to aircraft on the GOATZ1 arrival, which enter the airspace to the South. To prevent aircraft from exiting our airspace, a shortcut can be given to waypoints ZAPPP or BUFIE, as aircraft first enter the airspace south of Catalina Island.
+NOTE: As already mentioned above, special attention must be paid to aircraft on the GOATZ1 and DIRBY1 arrivals, which enter the airspace to the South. To prevent aircraft from exiting our airspace, a shortcut can be given to waypoints ZAPPP/BUFIE/SLI/TRNDO, as aircraft first enter the airspace near Catalina Island.
 
 #### Operation
 
