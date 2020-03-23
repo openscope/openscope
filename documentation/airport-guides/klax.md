@@ -106,8 +106,8 @@ Torrance/Zamperini Field Airport
 Zamperini Field is a small airport three miles (5 km) southwest of downtown Torrance, in Los Angeles County. It's home to the Western Museum of Flight as well as the Robinson Helicopter Company. Their entire production, assembly, and testing facilities are on the southeast side of the airfield and are the largest buildings at the field.
 
 ### Additional Resources
-<a href="https://www.youtube.com/watch?v=UHwg3yrOgtE" target="_blank">VASAviation: Los Angeles Stadium Sector (West Configuration)</a>
-<a href="https://laartcc.org/uploads/lightbox/KLAX%20FINALS%20WEST.png" target="_blank">VATSIM vZLA's Vectoring Diagram</a>
-<a href="https://laartcc.org/document/socal-tracon-general-sop" target="_blank">VATSIM vZLA's SCT General SOP</a>
-<a href="https://laartcc.org/document/socal-tracon-area-2-los-angeles" target="_blank">VATSIM vZLA's SCT Los Angeles Area SOP</a>
-<a href="https://laartcc.org/document/socal-tracon-area-6-del-rey" target="_blank">VATSIM vZLA's SCT Del Rey Area SOP</a>
+<a href="https://www.youtube.com/watch?v=UHwg3yrOgtE" target="_blank">VASAviation: Los Angeles Stadium Sector (West Configuration)</a>  
+<a href="https://laartcc.org/uploads/lightbox/KLAX%20FINALS%20WEST.png" target="_blank">VATSIM vZLA's Vectoring Diagram</a>  
+<a href="https://laartcc.org/document/socal-tracon-general-sop" target="_blank">VATSIM vZLA's SCT General SOP</a>  
+<a href="https://laartcc.org/document/socal-tracon-area-2-los-angeles" target="_blank">VATSIM vZLA's SCT Los Angeles Area SOP</a>  
+<a href="https://laartcc.org/document/socal-tracon-area-6-del-rey" target="_blank">VATSIM vZLA's SCT Del Rey Area SOP</a>  
