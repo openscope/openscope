@@ -158,4 +158,11 @@
             }, 
             "draw": [
                 ["BAGGA", "PORTT"], 
-                
+                ["PORTT", "SIRLY", "FENLY", "ELIOT"], 
+                ["PORTT", "RIETA", "SBJ"], 
+                ["SBJ", "LANNA"], 
+                ["SBJ", "PARKE"], 
+                ["SBJ", "BIGGY"]
+            ]
+        }
+    }, 
