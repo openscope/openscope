@@ -96,12 +96,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Munich Airport',
             premium: false
         },
-        // {
-        //     icao: 'eddt',
-        //     level: 'medium',
-        //     name: 'Berlin Tegel Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'eddt',
+            level: 'medium',
+            name: 'Berlin Tegel Airport',
+            premium: false
+        },
         {
             icao: 'egcc',
             level: 'easy',
