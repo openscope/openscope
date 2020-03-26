@@ -7,6 +7,8 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1534" target="_blank">#1534</a> - Reintroduce Los Angeles International Airport (KLAX)
 - <a href="https://github.com/openscope/openscope/issues/1537" target="_blank">#1537</a> - Make KJFK traffic more realistic
+- <a href="https://github.com/openscope/openscope/issues/1543" target="_blank">#1543</a> - Remove BEE/TCX airlines
+
 
 # 6.16.0 (March 1, 2020)
 ### New Features
