@@ -1,15 +1,16 @@
 {
-    "icao": "cpz",
-    "name": "Compass Airlines",
+    "icao": "dhk",
+    "name": "DHL Air UK",
     "callsign": {
-        "name": "Compass",
+        "name": "World Express",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["E170", 32]
+            ["B752", 26],
+            ["B763", 3]
         ]
     }
 }

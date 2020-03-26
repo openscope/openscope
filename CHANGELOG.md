@@ -5,6 +5,7 @@
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1534" target="_blank">#1534</a> - Reintroduce Los Angeles International Airport (KLAX)
 
 
 # 6.16.0 (March 1, 2020)

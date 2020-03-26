@@ -1,0 +1,17 @@
+{
+    "icao": "viv",
+    "name": "VivaAerobus",
+    "callsign": {
+        "name": "Aeroenlaces",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A20N", 18],
+            ["A320", 19]
+        ]
+    }
+}

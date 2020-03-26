@@ -1,0 +1,17 @@
+{
+    "icao": "btq",
+    "name": "Boutique Air",
+    "callsign": {
+        "name": "Boutique",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B350", 5],
+            ["P180", 2],
+            ["PC12", 27]
+        ]
+    }
+}

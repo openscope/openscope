@@ -1,6 +1,6 @@
 {
-    "name": "Cessna Citation Excel",
-    "icao": "C56X",
+    "name": "Gulfstream G200",
+    "icao": "GALX",
     "engines": {
         "number": 2,
         "type": "J"
@@ -8,27 +8,27 @@
     "weightClass": "S+",
     "category": {
         "srs": 3,
-        "lahso": 8,
+        "lahso": 5,
         "recat": "F"
     },
     "ceiling": 45000,
     "rate": {
-        "climb": 3800,
-        "descent": 2000,
-        "accelerate": 8,
-        "decelerate": 4
+        "climb": 3500,
+        "descent": 4000,
+        "accelerate": 6,
+        "decelerate": 5
     },
     "runway": {
-        "takeoff": 1.000,
-        "landing": 0.930
+        "takeoff": 1.800,
+        "landing": 1.050
     },
     "speed":{
-        "min":  120,
+        "min": 110,
         "landing": 130,
-        "cruise":  420,
-        "cruiseM": 0.84,
-        "max": 441,
-        "maxM": 0.7
+        "cruise": 470,
+        "cruiseM": 0.81,
+        "max": 498,
+        "maxM": null
     },
     "capability": {
         "ils": true,

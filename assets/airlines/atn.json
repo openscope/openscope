@@ -1,0 +1,18 @@
+{
+    "icao": "atn",
+    "name": "Air Transport International",
+    "callsign": {
+        "name": "Air Transport",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B752", 8],
+            ["B762", 7],
+            ["B763", 20]
+        ]
+    }
+}
