@@ -367,6 +367,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false
         // },
         {
+            icao: 'lipz',
+            level: 'easy',
+            name: 'Venice Marco Polo Airport',
+            premium: false
+        },
+        {
             icao: 'lkpr',
             level: 'easy',
             name: 'Václav Havel Airport Prague',
