@@ -562,7 +562,6 @@
             "method": "random",
             "rate": 0.5,
             "airlines": [
-                ["bee", 1],
                 ["exs", 22],
                 ["klm/embraers", 3],
                 ["ryr", 13]
@@ -578,7 +577,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["bee", 1],
                 ["exs", 22],
                 ["klm/embraers", 3],
                 ["ryr", 13]
@@ -594,7 +592,6 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["bee", 7],
                 ["exs", 22],
                 ["eze", 4],
                 ["ryr", 14],
@@ -642,7 +639,6 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["bee", 1],
                 ["exs", 28],
                 ["klm/embraers", 3],
                 ["ryr", 10]
@@ -658,7 +654,6 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["bee", 5],
                 ["exs", 4],
                 ["ryr", 5],
                 ["stk/einRegional", 3],
