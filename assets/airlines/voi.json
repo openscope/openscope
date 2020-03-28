@@ -3,7 +3,9 @@
     "name": "Volaris",
     "callsign": {
         "name": "Volaris",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
