@@ -1,6 +1,6 @@
 # Scope Command Reference
 
-Below is a detailed list outlining all of the available scope commands, including what they do, how to use them, and information on how they fit into the workflow of an air traffic controller.
+Below is a detailed list outlining all of the available scope commands, including what they do, how to use them, and information on how they fit into the workflow of an air traffic controller. Before entering scope commands, you must press the Tab key. The command line will turn red to denote that you are entering scope commands. 
 
 Other than moving the data block or accepting handoffs, most commands require that the radar target be under your scope's control.
 
