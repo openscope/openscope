@@ -1,0 +1,49 @@
+{
+    "airac": 1801,
+    "radio": {
+        "twr": "Toronto Tower",
+        "app": "Toronto Arrival",
+        "dep": "Toronto Departure"
+    },
+    "icao": "CYYZ",
+    "iata": "YYZ",
+    "magnetic_north": -10,
+    "ctr_radius": 50,
+    "ctr_ceiling": 23000,
+    "initial_alt": 5000,
+    "position": [43.676667, -79.630556, "569ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [43.676667, -79.630556],
+        "radius_nm": 5.0
+    },
+    "has_terrain": false,
+    "wind": {
+        "angle": 240,
+        "speed": 5
+    },
+    "arrivalRunway": "23",
+    "departureRunway": "24R",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 230,
+            "airspace_class": "B",
+            "poly": []
+        }
+    ],
+    "fixes": [],
+    "restricted": [],
+    "runways": [],
+    "airways": [],
+    "sids": [],
+    "stars": [],
+    "spawnPatterns": [],
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": []
+        }
+    ]
+}
