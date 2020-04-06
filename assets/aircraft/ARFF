@@ -18,7 +18,7 @@
 		"min": 0,
 		"cruise": 50,
 		"cruiseM": 0.07,
-		"max": 320,
+		"max": 120,
 		"maxM": null
 	},
 	"capability": {
