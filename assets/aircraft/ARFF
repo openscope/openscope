@@ -1,0 +1,30 @@
+{
+    "name": "Aircraft Rescue and Firefighting ",
+    "icao": "ARFF",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "S",
+   
+    },
+    "ceiling": 0,
+    "rate": {
+        "climb":      0,
+        "descent":    0,
+        "accelerate": 50,
+        "decelerate": 50
+ 
+    },
+    "speed":{
+        "min":     0,
+        "cruise":  50,
+        "cruiseM": 0.07,
+        "max":     320,
+        "maxM":    Null
+    },
+    "capability": {
+        "ils": false,
+        "fix": false
+    }
+}
