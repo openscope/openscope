@@ -5,15 +5,15 @@
         "name": "Rescue",
         "callsignFormats": [
             "Rescue #",
-           
+
         ]
     },
     "fleets": {
         "default": [
             ["ARFF", 10],
-          
+
         ],
-       
-        ]
-    }
+
+        
+}
 }
