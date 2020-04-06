@@ -1,0 +1,19 @@
+{
+    "icao": "null",
+    "name": "Airport Rescue and Firefighting",
+    "callsign": {
+        "name": "Rescue",
+        "callsignFormats": [
+            "Rescue #",
+           
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["ARFF", 10],
+          
+        ],
+       
+        ]
+    }
+}
