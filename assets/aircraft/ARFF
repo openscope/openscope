@@ -13,7 +13,7 @@
         "climb":      0,
         "descent":    0,
         "accelerate": 50,
-        "decelerate": 50
+        "decelerate": 35
  
     },
     "speed":{
