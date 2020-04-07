@@ -10,9 +10,9 @@
     },
     "fleets": {
         "default": [
-            ["ARFF", 10],
+            ["ARFF", 10]
 
-        ],
+        ]
 
         
 }
