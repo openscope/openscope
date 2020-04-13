@@ -1,0 +1,37 @@
+{
+    "name": "A-10 Warthog",
+    "icao": "A10",             
+    "engines": {
+        "number": 2,           
+        "type": "J"            
+    },
+    "weightClass": "M",        
+    "category": {
+        "srs": 3,               
+        "lahso": null,         
+        "recat": "E"           
+    },
+    "ceiling": 45000,          
+    "rate": {
+        "climb":      6000,     
+        "descent":    6000,    
+        "accelerate": 5,       
+        "decelerate": 4         
+    },
+    "runway": {
+        "takeoff": 1.219,       
+        "landing": 1.500      
+    },
+    "speed":{
+        "min":     120,       
+        "landing": 160,       
+        "cruise":  310         
+        "cruiseM": null,      
+        "max":     423,       
+        "maxM":    0.63        
+    },
+    "capability": {
+        "ils": true,            
+        "fix": true             
+    }
+}
