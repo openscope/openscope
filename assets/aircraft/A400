@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A400M Grizzly",
+    "icao": "A400",             
+    "engines": {
+        "number": 4,            
+        "type": "T"             
+    },
+    "weightClass": "H",         
+    "category": {
+        "srs": 3,               
+        "lahso": null,           
+        "recat": "C"            
+    },
+    "ceiling": 40000,         
+    "rate": {
+        "climb":      2500,    
+        "descent":    3500,    
+        "accelerate": 4,       
+        "decelerate": 3       
+    },
+    "runway": {
+        "takeoff": 0.980,    
+        "landing": 1.150   
+    },
+    "speed":{
+        "min":     135,       
+        "landing": 150,         
+        "cruise":  453         
+        "cruiseM": 0.68,        
+        "max":     480,         
+        "maxM":    0.72         
+    },
+    "capability": {
+        "ils": true,            
+        "fix": true           
+    }
+}
