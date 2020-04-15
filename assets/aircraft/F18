@@ -1,0 +1,37 @@
+{
+    "name": "Boeing F/A-18 Super Hornet",  
+    "icao": "F18",             
+    "engines": {
+        "number": 2,          
+        "type": "J"           
+    },
+    "weightClass": "M",         
+    "category": {
+        "srs": 3,               
+        "lahso": null,          
+        "recat": "E"            
+    },
+    "ceiling": 50000,           
+    "rate": {
+        "climb":      8000,     
+        "descent":    8000,     
+        "accelerate": 5,        
+        "decelerate": 4         
+    },
+    "runway": {
+        "takeoff": 1.500,       
+        "landing": 1.524        
+    },
+    "speed":{
+        "min":     110,         
+        "landing": 135,        
+        "cruise":  580,
+        "cruiseM": 0.86,       
+        "max":     507,        
+        "maxM":    1.8         
+    },
+    "capability": {
+        "ils": true,            
+        "fix": true             
+    }
+}
