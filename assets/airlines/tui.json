@@ -1,6 +1,6 @@
 {
     "icao": "tui",
-    "name": "TUIfly",
+    "name": "TUIfly Deutschland",
     "callsign": {
         "name": "Tui Jet",
         "callsignFormats": [
@@ -11,14 +11,16 @@
     },
     "fleets": {
         "default": [
-            ["A319", 1],
+            ["B737", 1],
+            ["B738", 33],
+            ["B788", 1]
+        ],
+        "short": [
             ["B737", 1],
             ["B738", 33]
         ],
-        "short": [
-            ["A319", 1],
-            ["B737", 1],
-            ["B738", 33]
+        "long": [
+            ["B788", 1]
         ],
         "b737": [
             ["B737", 1]

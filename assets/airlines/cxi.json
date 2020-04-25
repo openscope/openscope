@@ -1,0 +1,17 @@
+{
+    "icao": "cxi",
+    "name": "Corendon Airlines Europe",
+    "callsign": {
+        "name": "Touristic",
+        "callsignFormats": [
+            "#@",
+            "###",
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 5]
+        ]
+    }
+}

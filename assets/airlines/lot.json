@@ -1,8 +1,8 @@
 {
     "icao": "lot",
-    "name": "LOT",
+    "name": "LOT Polish Airlines",
     "callsign": {
-        "name": "Lot",
+        "name": "Pollot",
         "callsignFormats": [
             "#",
             "##",
@@ -12,7 +12,6 @@
     },
     "fleets": {
         "default": [
-            ["B734", 3],
             ["B737", 1],
             ["B738", 7],
             ["B38M", 5],
@@ -23,7 +22,6 @@
             ["E190", 19]
         ],
         "short": [
-            ["B734", 3],
             ["B737", 1],
             ["B738", 7],
             ["B38M", 5],

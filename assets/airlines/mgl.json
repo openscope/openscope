@@ -1,0 +1,24 @@
+{
+    "icao": "mgl",
+    "name": "MIAT Mongolian Airlines",
+    "callsign": {
+        "name": "MONGOL AIR",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 3],
+            ["B38M", 1],
+            ["B763", 2]
+        ],
+        "short": [
+            ["B738", 3]
+        ],
+        "long": [
+            ["B763", 2]
+        ]
+    }
+}

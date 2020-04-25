@@ -1,0 +1,16 @@
+{
+    "icao": "buc",
+    "name": "Bulgarian Air Charter",
+    "callsign": {
+        "name": "Bulgarian Charter",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 6],
+            ["MD82", 9]
+        ]
+    }
+}

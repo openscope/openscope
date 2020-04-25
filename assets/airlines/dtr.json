@@ -1,6 +1,6 @@
 {
     "icao": "dtr",
-    "name": "Danish Air Transport",
+    "name": "DAT",
     "callsign": {
         "name": "Danish",
         "callsignFormats": [
@@ -9,9 +9,13 @@
     },
     "fleets": {
         "default": [
-            ["A320", 5],
-            ["AT43", 2],
+            ["A320", 3],
+            ["A320", 1],
+            ["AT43", 3],
+            ["AT45", 3],
             ["AT72", 5],
+            ["AT75", 2],
+            ["AT76", 2],
             ["MD82", 1],
             ["MD83", 1]
         ]
