@@ -3,8 +3,6 @@
 - <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Introduce Venice Marco Polo Airport (LIPZ) and Volotea airline (VOE)
 - <a href="https://github.com/openscope/openscope/issues/1563" target="_blank">#1563</a> - Add Cork Airport (EICK)
 
-### Bugfixes
-
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1534" target="_blank">#1534</a> - Reintroduce Los Angeles International Airport (KLAX)
 - <a href="https://github.com/openscope/openscope/issues/1537" target="_blank">#1537</a> - Make KJFK traffic more realistic
