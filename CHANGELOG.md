@@ -1,3 +1,10 @@
+# 6.18.0 (June 1, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
 # 6.17.0 (May 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Introduce Venice Marco Polo Airport (LIPZ) and Volotea airline (VOE)
