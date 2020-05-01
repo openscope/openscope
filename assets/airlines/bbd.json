@@ -1,0 +1,16 @@
+{
+    "icao": "bbd",
+    "name": "Bluebird Nordic",
+    "callsign": {
+        "name": "Blue Cargo",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 1],
+            ["B734", 5]
+        ]
+    }
+}
