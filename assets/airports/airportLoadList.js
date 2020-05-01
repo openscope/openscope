@@ -145,6 +145,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false
         // },
         {
+            icao: 'eick',
+            level: 'beginner',
+            name: 'Cork Airport',
+            premium: false
+        },
+        {
             icao: 'eidw',
             level: 'medium',
             name: 'Dublin Airport',
@@ -258,18 +264,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Las Vegas McCarran International Airport',
             premium: false
         },
-        // {
-        //     icao: 'klax90',
-        //     level: 'medium',
-        //     name: 'Los Angeles International Airport 1990',
-        //     premium: false
-        // },
-        // {
-        //     icao: 'klax',
-        //     level: 'medium',
-        //     name: 'Los Angeles International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'klax',
+            level: 'hard',
+            name: 'Los Angeles International Airport',
+            premium: false
+        },
         {
             icao: 'kmci',
             level: 'beginner',
@@ -366,6 +366,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Tucson International Airport',
         //     premium: false
         // },
+        {
+            icao: 'lipz',
+            level: 'easy',
+            name: 'Venice Marco Polo Airport',
+            premium: false
+        },
         {
             icao: 'lkpr',
             level: 'easy',

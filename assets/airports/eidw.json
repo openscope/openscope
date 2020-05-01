@@ -2706,7 +2706,6 @@
             "method": "random",
             "rate": 0.52,
             "airlines": [
-                ["bee/dh8d", 3],
                 ["stk/einRegional", 9]
             ]
         },
@@ -2720,7 +2719,6 @@
             "method": "random",
             "rate": 0.52,
             "airlines": [
-                ["bee/dh8d", 3],
                 ["log/eidw", 1],
                 ["stk/einRegional", 9]
             ]
@@ -2952,7 +2950,6 @@
             "rate": 1.38,
             "airlines": [
                 ["baw/short", 6],
-                ["bee/dh8d", 3],
                 ["bel/short", 1],
                 ["blx/short", 1],
                 ["bms", 1],
@@ -2983,7 +2980,6 @@
             "rate": 5.43,
             "airlines": [
                 ["baw/short", 6],
-                ["bee/dh8d", 3],
                 ["bel/short", 1],
                 ["blx/short", 1],
                 ["bms", 1],

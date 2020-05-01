@@ -1,3 +1,15 @@
+# 6.17.0 (May 1, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Introduce Venice Marco Polo Airport (LIPZ) and Volotea airline (VOE)
+- <a href="https://github.com/openscope/openscope/issues/1563" target="_blank">#1563</a> - Add Cork Airport (EICK)
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1534" target="_blank">#1534</a> - Reintroduce Los Angeles International Airport (KLAX)
+- <a href="https://github.com/openscope/openscope/issues/1537" target="_blank">#1537</a> - Make KJFK traffic more realistic
+- <a href="https://github.com/openscope/openscope/issues/1543" target="_blank">#1543</a> - Remove BEE/TCX airlines
+- <a href="https://github.com/openscope/openscope/issues/1551" target="_blank">#1551</a> - Add missing waypoint CORDS at KJFK
+- <a href="https://github.com/openscope/openscope/issues/1271" target="_blank">#1271</a> - Update the tutorial
+
 # 6.16.0 (March 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1526" target="_blank">#1526</a> - Introduce Montevideo Carrasco Airport (SUMU)
@@ -12,7 +24,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
 - <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
 - <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport (EDDM)
-- [#1387](https://github.com/openscope/openscope/issues/1387) - Update LOWW to AIRAC 1908
+- <a href="https://github.com/openscope/openscope/issues/1387" target="_blank">#1387</a> - Update LOWW to AIRAC 1908
 - <a href="https://github.com/openscope/openscope/issues/1499" target="_blank">#1499</a> - Reintroduce Ministro Pistarini Airport (SAEZ)
 - <a href="https://github.com/openscope/openscope/issues/1503" target="_blank">#1503</a> - Reintroduce Dublin Airport (EIDW)
 - <a href="https://github.com/openscope/openscope/issues/1471" target="_blank">#1471</a> - Change all airport guide links to open in new tab

@@ -8,6 +8,7 @@
 - [EDDM - Flughafen München](eddm.md)
 - [EGCC - Manchester Airport](egcc.md)
 - [EGNM - Leeds Bradford Airport](egnm.md)
+- [EICK - Cork Airport](eick.md)
 - [EIDW - Dublin Airport](eidw.md)
 - [EINN - Shannon Airport](einn.md)
 - [ENGM - Oslo Gardermoen International Airport](engm.md)

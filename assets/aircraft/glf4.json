@@ -1,0 +1,37 @@
+{
+    "name": "Gulfstream IV",
+    "icao": "GLF4",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 8,
+        "recat": "E"
+    },
+    "ceiling": 45000,
+    "rate": {
+        "climb": 4000,
+        "descent": 2500,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.600,
+        "landing": 1.000
+    },
+    "speed":{
+        "min": 120,
+        "landing": 140,
+        "cruise": 450,
+        "cruiseM": 0.8,
+        "max": 488,
+        "maxM": 0.85
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
