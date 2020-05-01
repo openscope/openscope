@@ -245,11 +245,8 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Welcome!',
-            text: ['Welcome to OpenScope Air Traffic Control simulator. It\'s not easy',
-                   'to control dozens of aircraft while maintaining safe distances',
-                   'between them; to get started with the tutorial, click the arrow on',
-                   'the right. You can find the tutorial on/off toggle at the bottom right',
-                   'when you expand the "?" icon.'
+            text: ['Welcome to the tutorial for the openScope Air Traffic Control Simulator. You can show/hide this',
+                'tutorial at any time by expanding the "?" icon at the bottom right.'
                 ].join(' '),
             position: tutorial_position
         });
@@ -258,17 +255,46 @@ export default class TutorialView {
             title: 'Moving Around',
             text: ['To move the middle of the radar screen, use the right click button and drag.',
                 'Zoom in and out by scrolling, and press the middle mouse button or scroll wheel to reset the zoom.',
-                'To select an aircraft when it is in your control, simply left-click.'
+                'To select an aircraft when it is in your airspace, simply left-click.'
             ].join(' '),
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Departing aircraft',
-            text: ['Let\'s route some planes out of here. On the right side of the screen, there',
-                   'should be a strip with a blue bar on the left, meaning the strip represents a departing aircraft.',
-                   'Click the first one ({CALLSIGN}). The aircraft\'s callsign will appear in the command entry box',
-                   'and the strip will move slightly to the side. This means that the aircraft is selected.'
+            title: 'Flight Strip Bay',
+            text: ['On the right, there\'s a row of strips, one for each aircraft. You may need to pull it out with the',
+                '\'|<\' tab. Each strip has a bar on its left side, colored blue for departures and red for arrivals.'
+            ].join(' '),
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
+            title: 'Reading Flight Strips',
+            text: ['Click the bottom departure strip ({CALLSIGN}).The aircraft\'s callsign will appear in the command',
+                'entry box, and the strip will be offset (indicating the aircraft is selected).',
+                'The left column shows the callsign, aircraft type (in this case "{MODEL}", for a "{MODELNAME}"), and the CID.',
+                'The next column shows the assigned squawk code, assigned altitude, and filed cruise altitude.',
+                'The last two columns show the arrival/departure airport, and the flight plan route, respectively.'
+            ].join(' '),
+            parse: (t) => {
+                if (prop.aircraft.list.length <= 0) {
+                    return t;
+                }
+
+                return t.replace('{CALLSIGN}', departureAircraft.callsign)
+                    .replace('{MODEL}', departureAircraft.model.icao.toUpperCase())
+                    .replace('{MODELNAME}', departureAircraft.model.name);
+            },
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
+            title: 'Departures: Issuing IFR Clearance',
+            text: ['Let\'s work on getting some departures moving. The first step is always to clear the aircraft to its destination.',
+                'With {CALLSIGN} selected, simply type "caf" (for "cleared as filed") and press enter. As needed, you can also change the aircraft\'s',
+                'routing, and much more-- refer to the full list of commands <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md" target="_blank">here</a>.'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -282,25 +308,9 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Clearance',
-            text: ['First off, you must clear the aircraft to its destination. To do this, select your aircarft and type "caf" (for "cleared as filed").',
-                   'If required, you can also change the SID the aircraft follows and more! Check out all commands at the end of this tutorial!'
-            ].join(' '),
-            parse: (t) => {
-                if (prop.aircraft.list.length < 0) {
-                    return t;
-                }
-
-                return t.replace(/{RUNWAY}/g, departureAircraft.fms.departureRunwayModel.name);
-            },
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
             title: 'Taxiing',
-            text: ['Now type in "taxi {RUNWAY}" into the command box after the callsign and hit',
-                   'Return; the aircraft should appear on the radar scope after 3 or so seconds'
+            text: ['Now tell them "taxi {RUNWAY}" to have them taxi to the runway.',
+                   'The aircraft should appear on the scope after about 3 seconds.'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -315,8 +325,8 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Takeoff',
-            text: ['Now the aircraft is ready for take off. Click the aircraft again',
-                   'and type "takeoff" (or "to") to clear the aircraft for take off.',
+            text: ['Now the aircraft is ready for takeoff. Click the aircraft again (or use the PgUp key)',
+                   'and type "takeoff" (or "to") to clear the aircraft for takeoff.',
                    'Once it\'s going fast enough, it should lift off the ground and you should',
                    'see its altitude increasing. Meanwhile, read the next step.'
             ].join(' '),
@@ -325,37 +335,9 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Aircraft strips, part 1',
-            text: ['On the right, there\'s a row of strips, one for each aircraft. You may need to pull it out with the',
-                   '\'|<\' tab. Each strip has a bar on its left side, colored blue for departures and red for arrivals.'
-            ].join(' '),
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
-            title: 'Aircraft strips, part 2',
-            text: ['The strip is split into four parts: the left section shows te aircraft\'s callsign, model number',
-                   '(in this case {MODEL}, representing {MODELNAME}), and computer identification number.',
-                   'The next column has the aircraft\' transponder code, assigned altitude, and flight plan altitude',
-                   'and the two rightmost blocks contain the departure airport code and flight plan route.'
-            ].join(' '),
-            parse: (t) => {
-                if (prop.aircraft.list.length <= 0) {
-                    return t;
-                }
-
-                return t.replace('{MODEL}', departureAircraft.model.icao)
-                        .replace('{MODELNAME}', departureAircraft.model.name);
-            },
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
             title: 'Moving aircraft',
             text: ['Once {CALLSIGN} has taken off, you\'ll notice it will climb to {INIT_ALT} by itself. This is one of the instructions ',
-                    'we gave them when we cleared them "as filed". Aircraft perform better when they are able to climb directly',
+                    'we gave them when we cleared them "as filed". Aircraft get better fuel efficiency when they are able to climb directly',
                     'from the ground to their cruise altitude without leveling off, so let\'s keep them climbing! Click it and type "cvs" (for',
                     '"climb via SID"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure. You can also simply',
                     'give a direct climb, lifting the restrictions on the SID. Feel free to click the speedup button on the right side of the ',
@@ -375,11 +357,12 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Departures',
+            title: 'Projection Lines',
             text: ['If you zoom out and click on {CALLSIGN}, you will see a solid blue line that shows their flight plan',
                    'route. You will see the SID and some initial waypoints and airways represented by the blue line. To keep',
-                   'traffic at a controllable rate, it is in your best interest to get them out of your airspace! To do this',
-                   'you can issue the "pd" command (later on in this tutorial) to clear it to a fix and out of your airspace faster!'
+                   'traffic manageable, it is in your best interest to get them out of your airspace! To do this, you can',
+                   'issue the "pd" command (later on in this tutorial) to give them a shortcut and get them out of your',
+                   'airspace faster!'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
@@ -418,10 +401,10 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Basic Control Instructions: Speed',
-            text: ['Speed control is a highly useful tool, especially when your airspace has restrictions that aircraft need to meet! Making good use of speed control can also help keep the',
-                   'pace manageable and allow you to carefully squeeze aircraft closer and closer to minimums while still maintaining safety. To enter speed instructions, use the',
-                   '"+" and "-" keys on the numpad or "sp", followed by the speed, in knots. Note that this assigned speed is indicated',
-                   'airspeed, and our radar scope can only display groundspeed; so, the values may be different.'
+            text: ['Making good use of speed control can also help keep the pace manageable and allow you to carefully',
+                'squeeze aircraft closer and closer to minimums while still maintaining safety. To enter speed instructions,',
+                'use the "+" and "-" keys on the numpad or "sp", followed by the speed, in knots. Note that this assigned',
+                'speed is indicated airspeed, and our radar scope can only display groundspeed; so, the values may be different.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -429,8 +412,10 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Proceed Direct',
-            text: ['The proceed direct command "pd" instructs an aircraft to go directly to a waypoint in the flight plan. For example, if an',
-                   'aircraft is flying to fixes [A, B, C], issuing the command "pd B" will cause the aircraft to go to B, then C.'
+            text: ['The proceed direct command ("pd") instructs an aircraft to go directly to a waypoint which already',
+                'exists in their flight plan. For example, if an aircraft is flying to fixes [A, B, C, D, ...], issuing',
+                'the command "pd B" will cause the aircraft to skip A and go directly to B, then to C, D, and the rest',
+                'of their route.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -439,8 +424,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Bon voyage, aircraft!',
             text: ['When the aircraft leaves your airspace, it will switch to center and',
-                   'automatically remove itself from the flight strip bay on the right.',
-                   'Congratulations, you\'ve successfully departed an aircraft.'
+                   'automatically be removed from your flight strip bay.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -450,20 +434,21 @@ export default class TutorialView {
             title: 'Arrivals',
             text: ['Now, onto arrivals. Click on any arriving aircraft in the radar screen; after you\'ve',
                    'selected it, use the altitude/heading/speed controls you\'ve learned in order to',
-                   'guide it to the intercept of the ILS for the runway. The aircraft should be at an appropriate',
-                   'altitude and flying an appropriate heading (more on this later) before you clear it for approach!'
+                   'guide it to the intercept of the ILS for the runway. The aircraft must be at an appropriate',
+                   'altitude and flying an appropriate heading (more on this later) in order for it to catch the ILS and land!'
             ].join(' '),
             side: 'left',
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Approach Clearances, part 1',
+            title: 'Approach Clearances',
             text: ['You can clear aircraft for an ILS approach with the "i" command, followed by a runway name.',
                    'When you do so, the aircraft will attempt to intercept the localiser, represented by the',
-                   'extended centerline. Try giving radar vectors to get the aircraft on an intercept of 30 degrees or less,',
-                   'and then issue the instruction "i {RUNWAY}" to clear it for the ILS. It should then guide itself down',
-                   'to the runway, managing its own altitiude and maintaining heading.'
+                   'extended centerline. Try giving radar vectors to aim the aircraft across the final approach course, with ',
+                   'an intercept angle of 30 degrees or less, then tell them "i {RUNWAY}" to clear it for the ILS approach.',
+                   'It should then guide itself down to the runway without any further input from us. If you have trouble,',
+                   'get the airplane lower and have them join the approach further out from the airport.'
             ].join(' '),
             parse: (t) => {
                 // This isn't robust. If there are multiple runways in use, or the arrival a/c has filed to land
@@ -476,59 +461,50 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Approach Clearances, part 2',
-            text: ['As said earlier, in the Arrivals page, before clearing the aircraft for the ILS, it should be at an appropriate',
-                   'altitude and a heading of 30 degrees or less to intercept. For maximum realism, we recommend looking up the IAP',
-                   'charts for the airport you are at, to find the intercept altitude and any other restrictions. You can find these',
-                   'easily via a quick google search! :)'
+            title: 'Combining Instructions',
+            text: ['You can combine as many commands into a single instruction as you\'d like, for example',
+            '"caf cvs taxi 30C" for departures, "fh 250 d 30 i 26 - 180" for arrivals, or any other time you need.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Score',
-            text: ['The lower-right corner of the page has a small number in it; this is your score.',
-                   'Whenever you successfully route an aircraft to the ground or out of the screen, you earn points. As you make mistakes,',
-                   'like directing aircraft to a runway with a strong crosswind/tailwind, losing separation between aircraft, or ignoring an',
-                   'aircraft, you will also lose points. If you\'d like, you can just ignore the score; it doesn\'t have any effect',
-                   'on the simulation.'
+            title: 'Projected Track Lines (PTLs)',
+            text: ['Called "PTLs" in approach controls, and "vector lines" in centers, a useful tool is a line pointing',
+                'directly ahead of an aircraft, whose length is determined by the aircraft\'s speed. To increment these',
+                'PTLs up/down, use the F1/F2 keys, and they will be adjusted based on the increments specified in the',
+                'settings menu.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Some Tips, part 1',
-            text: ['If you\'re interested in making your experience in the sim more realistic, a few topics you can check out are how to assign IFR',
-                   'altitudes, how to differentiate and seperate aircraft in regards to wake turbulence and looking up airport charts for even more realistic',
-                   'runway operations, and of course IAP charts for realistically routing arrivals for a correct ILS approach!'
+            title: 'Range/Bearing Measurement Tool',
+            text: ['To easily determine the heading/distance between two points/fixes/aircraft, simply hold the "Ctrl"',
+                'button and left click two points. Pressing Shift+Ctrl will cause the click to snap to the nearest aircraft',
+                'or fix. If snapped to an aircraft, a time will also be displayed, based on the aircraft\'s current speed.',
+                'To clear all range/bearing lines, press the ESC key.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Some Tips, part 2',
-            text: ['You can also enter multiple commands together in one transmission, just like real life!',
-                   'E.g. EZE2429 fh 270 d 30 - 180 i 26. A useful tool in this sim is the track measuring tool, hold',
-                   'Ctrl and left click to drag the mouse from one point to another, which will show the distance in NM and',
-                   'the magnetic bearing. Useful for when you need to mark distances or understand when to turn an aircarft.',
-                   'Additionally, you can hold down Ctrl+Shift and left clcik, and your mouse will automatically snap to aircraft',
-                   'and fixes. As well as displaying distance and bearing, it will also show the time the aircraft will take to reach',
-                   'that point. Clicking again will keep the drawn line displayed (you can make multiple lines), and pressing Esc will',
-                   'remove all lines. Be sure to also check out the in-game Airport Guides for some information that could come in hand! :)'
+            title: 'Airport Guides & Command Reference',
+            text: ['For further help on how any particular airport or command works, check out the airport guide',
+                '(through the "?" menu), or see the <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md" target="_blank">openScope Command Reference</a>',
+                'for a comprehensive list of the available aircraft and scope commands.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
         });
 
         this.tutorial_step({
-            title: 'Good job!',
-            text: ['If you\'ve gone through this entire tutorial, you should do pretty well with the pressure.',
-                   'In the TRACON, minimum separation is 3 miles laterally or 1000 feet vertically. Keep them separated,',
-                   'keep them moving, and you\'ll be a controller in no time!',
-                   'A full list of commands can be found <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md" target="_blank">here</a>.'
+            title: 'That\'s it!',
+            text: ['Remember, minimum separation in an approach control is 3 miles laterally or 1000 feet vertically. Keep them separated,',
+                   'keep them moving, and you\'ll be a controller in no time!'
             ].join(' '),
             side: 'left',
             position: tutorial_position
