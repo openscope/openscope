@@ -103,7 +103,7 @@
             "name": "Liberty Four", 
             "altitude": 2500, 
             "rwy": {
-                "KEWR22L": ["#239"]
+                "KEWR22L": ["#239"], 
                 "KEWR22R": ["#239"]
             }, 
             "body": [], 
@@ -128,7 +128,24 @@
                 "ZIMMZ": ["ZIMMZ"]
             },
             "draw": [[]]
-        }
+        }, 
+        "EWR4": {
+            "icao": "EWR4", 
+            "name": "Newark Four", 
+            "altitude": 2500, 
+            "rwy": {
+                "KEWR4L": [], 
+                "KEWR4R": [], 
+                "KEWR11": [], 
+                "KEWR22L": [], 
+                "KEWR22R": [], 
+                "KEWR29": [], 
+            }, 
+            "body": [], 
+            "exitPoints": {
+            }, 
+            "draw": [[]]
+        }, 
         "PORTT4": {
             "icao": "PORTT4", 
             "name": "Port Four", 
