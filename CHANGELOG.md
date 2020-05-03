@@ -1,16 +1,21 @@
-# 6.17.0 (April 1, 2020)
+# 6.18.0 (June 1, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+# 6.17.0 (May 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Introduce Venice Marco Polo Airport (LIPZ) and Volotea airline (VOE)
 - <a href="https://github.com/openscope/openscope/issues/1563" target="_blank">#1563</a> - Add Cork Airport (EICK)
-
-### Bugfixes
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1534" target="_blank">#1534</a> - Reintroduce Los Angeles International Airport (KLAX)
 - <a href="https://github.com/openscope/openscope/issues/1537" target="_blank">#1537</a> - Make KJFK traffic more realistic
 - <a href="https://github.com/openscope/openscope/issues/1543" target="_blank">#1543</a> - Remove BEE/TCX airlines
 - <a href="https://github.com/openscope/openscope/issues/1551" target="_blank">#1551</a> - Add missing waypoint CORDS at KJFK
-
+- <a href="https://github.com/openscope/openscope/issues/1271" target="_blank">#1271</a> - Update the tutorial
 
 # 6.16.0 (March 1, 2020)
 ### New Features

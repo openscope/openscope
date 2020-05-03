@@ -10,7 +10,7 @@
     "magnetic_north": 16,
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
-    "initial_alt": 15000,
+    "initial_alt": 7000,
     "position": ["N47d26.99m0", "W122d18.71m0", "432ft"],
     "rangeRings": {
         "enabled": true,
