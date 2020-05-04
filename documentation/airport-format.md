@@ -464,7 +464,7 @@ Runways are defined in pairs because a runway can be used from either direction.
     "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
     "J146": ["LAS", "NOOTN"],
     "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
-    "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+    "J92": ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
     "Q15": ["CHILY", "DOVEE", "BIKKR"],
     "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
 },
