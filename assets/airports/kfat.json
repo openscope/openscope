@@ -1,4 +1,8 @@
+// REVIEW AND MAKE SURE CONFORMS WITH:
+// https://github.com/openscope/openscope/blob/develop/documentation/airport-file-standards.md
+
 {
+	// "airac": 
 	"radio": {
 		"twr": "Fresno Tower",
 		"app": "Fresno Approach",
@@ -46,8 +50,23 @@
 			]
 		}
 	],
-	// "fixes": {
-	// },
+	"fixes": {
+		"FRAME": [],
+		"TTE"  : [],
+		"AVE"  : [],
+		"EHF"  : [],
+		"FRA"  : [],
+		"NIKOL": [],
+		"MVA"  : [],
+		"OAL"  : [],
+		"FMG"  : [],
+		"PXN"  : [],
+		"ALTTA": [],
+		"_RWY29R04DME": [], //Approx dist for climb to 2000 on the OAL4
+		"_RWY29L04DME": [],
+		"_RWY11R04DME": [],
+		"_RWY11L04DME": []
+	},
 	// "restricted": {
 	// },
 	"runways": [
@@ -73,5 +92,90 @@
 			// "loc_maxDist": [24, 24],
 			// "glideslope": [3.00, 3.00]
 		}
-	]
+	],
+	"sids": { // Review and add airways
+		"BULL3": {
+			"icao": "BULL3",
+			"name": "Bulldog Three",
+			"rwy": {
+				"KFAT29R": ["#292"],
+				"KFAT29L": ["#292"],
+				"KFAT11R": ["#112"],
+				"KFAT11L": ["#112"]
+			},
+			"body": [],
+			"exitPoints": {
+				"TTE": ["TTE"],
+				"AVE": ["AVE"],
+				"EHF": ["EHF"]
+			},
+			"draw": [
+				["TTE*"],
+				["AVE*"],
+				["EHF*"]
+			]
+		},
+		"OAL4": {
+			"icao": "OAL4",
+			"name": "Coaldale Four",
+			"rwy": {
+				"KFAT29R": [["_RWY29R04DME", "A20"]],
+				"KFAT29L": [["_RWY29L04DME", "A20"]],
+				"KFAT11R": [["_RWY11R04DME", "A20"]],
+				"KFAT11L": [["_RWY11L04DME", "A20"]]
+			},
+			"body": ["FRA", "NIKOL"],
+			"exitPoints": {
+				"MVA": ["MVA"],
+				"OAL": ["OAL"]
+			},
+			"draw": [
+				["FRA", "NIKOL"],
+				["NIKOL", "MVA*"],
+				["NIKOL", "OAL*"]
+			]
+		},
+		"YOSE3": {
+			"icao": "YOSE3",
+			"name": "Yosemite Three",
+			"rwy": {
+				"KFAT29R": ["#292"],
+				"KFAT29L": ["#292"],
+				"KFAT11R": ["#112"],
+				"KFAT11L": ["#112"]
+			},
+			"body": [],
+			"exitPoints": {
+				"FMG": ["FMG"],
+				"MVA": ["MVA"],
+				"OAL": ["OAL"],
+				"FRA": ["FRA"],
+				"PXN": ["PXN"]
+			},
+			"draw": [
+				["FMG*"],
+				["MVA*"],
+				["OAL*"],
+				["FRA*"],
+				["PXN*"]
+			]
+		}
+	},
+	"stars": { // Review and add airways
+		"ALTTA9": {
+			"icao": "ALTTA9",
+			"name": "ALTTA Nine",
+			"entryPoints": {
+				"TTE": [],
+			},
+			"body": ["ALLTA"],
+			"rwy": {
+				"KFAT29R": ["#292"],
+				"KFAT11L": ["#310"]
+			},
+			"draw": [
+				["TTE*","ALTTA"]
+			]
+		}
+	}
 }
