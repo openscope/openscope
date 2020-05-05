@@ -401,24 +401,24 @@
         {
             "name": ["3", "21"],
             "end": [
-                ["N45d34.95", "W122d37.01", "22.2ft"],
-                ["N45d35.64", "W122d36.01", "26.4ft"]
+                ["N45d34.945500", "W122d37.008647", "22.2ft"],
+                ["N45d35.643417", "W122d36.014105", "26.4ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["10L", "28R"],
             "end": [
-                ["N45d35.79", "W122d36.00", "29.5ft"],
-                ["N45d35.01", "W122d33.99", "30.8ft"]
+                ["N45d35.790900", "W122d36.000968", "29.5ft"],
+                ["N45d35.006308", "W122d33.987727", "30.8ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["10R", "28L"],
             "end": [
-                ["N45d35.71", "W122d37.29", "22.7ft"],
-                ["N45d34.83", "W122d35.03", "22.7ft"]
+                ["N45d35.708912", "W122d37.288370", "22.7ft"],
+                ["N45d34.830885", "W122d35.034105", "22.7ft"]
             ],
             "ils": [true, true]
         }
@@ -441,10 +441,12 @@
                 "SMIGE": ["SMIGE"]
             },
             "draw": [
-                ["PEGTY", "KELYY", "WANOS", "TOSEH", "CHISM", "DSD*"],
-                ["RIVRR", "COSUG", "HADIS", "CHISM", "PAWLI*"],
+                ["PEGTY", "KELYY", "WANOS", "TOSEH", "CHISM"]
+                ["RIVRR", "COSUG", "HADIS", "CHISM"]
                 ["CHISM", "JOGEN*"],
-                ["CHISM", "SMIGE*"]
+                ["CHISM", "SMIGE*"],
+                ["CHISM", "DSD*"],
+                ["CHISM", "PAWLI*"]
             ]
         },
         "HRMNS5": {
@@ -461,8 +463,8 @@
                 "HRMNS": ["HRMNS"]
             },
             "draw": [
-                ["COSUG", "LEZLI", "HRMNS"],
-                ["TOSEH", "HRMNS*"]
+                ["RIVRR", "COSUG", "LEZLI", "HRMNS"],
+                ["PEGTY", "KELYY", "WANOS", "TOSEH", "HRMNS*"]
             ]
         },
         "LAVAA6": {
@@ -480,8 +482,10 @@
                 "YKM": ["YKM"]
             },
             "draw": [
-                ["COSUG", "OKKOR", "LAVAA", "PDT*"],
-                ["KELYY", "ARUPT", "LAVAA", "YKM*"]
+                ["RIVRR", "COSUG", "OKKOR", "LAVAA"],
+                ["PEGTY", "KELYY", "ARUPT", "LAVAA"],
+                ["LAVAA", "PDT*"],
+                ["LAVAA", "YKM*"]
             ]
         },
         "MINNE5": {
@@ -500,9 +504,11 @@
                 "HISKU": ["HISKU"]
             },
             "draw": [
-                ["COSUG", "BISLE", "MINNE", "EASON*"],
-                ["DUDRE", "MINNE", "FAMUK*"],
-                ["MINNE", "HISKU*"]
+                ["RIVRR", "COSUG", "BISLE", "MINNE"],
+                ["PEGTY", "KELYY", "DUDRE", "MINNE"],
+                ["MINNE", "HISKU*"],
+                ["MINNE", "FAMUK*"],
+                ["MINNE", "EASON*"]
             ]
         },
         "PTLD1": {
@@ -572,9 +578,11 @@
                 "RIELY": ["RIELY"]
             },
             "draw": [
-                ["HADIS", "WHAMY", "KOATA*"],
-                ["TOSEH", "WHAMY", "IMB*"],
+                ["RIVRR", "COSUG", "HADIS", "WHAMY"],
+                ["PEGTY", "KELYY", "WANOS", "TOSEH", "WHAMY"],
                 ["WHAMY", "RIELY*"]
+                ["WHAMY", "IMB*"],
+                ["WHAMY", "KOATA*"]
             ]
         }
     },
@@ -594,7 +602,7 @@
                 "KPDX28R": ["#110"]
             },
             "draw": [
-                ["SEA", "BUWZO", "HELNS", "KRATR", "BTG"]
+                ["SEA*", "BUWZO*", "HELNS", "KRATR", "BTG"]
             ]
         },
         "HHOOD4": {
@@ -618,10 +626,12 @@
                 "KPDX28R": [["SHAFR", "A67|S210"]]
             },
             "draw": [
-                ["JOTBA", "SODDA", "DUFUR", "RABBI", "HHOOD", "BLRUN", "SHAFR"],
+                ["JOTBA*", "SODDA", "DUFUR*", "RABBI*", "HHOOD"],
+                ["JORAD*", "LUUND", "YENTL*", "HHOOD"],
+                ["JKNOX*", "MYTOE", "BAYYR*", "HHOOD"],
+                ["HHOOD", "BLRUN"],
                 ["BLRUN", "SSDEE", "THEID", "EMZEY", "CIZZL", "YORKY", "NNUTT"],
-                ["JORAD", "LUUND", "YENTL", "HHOOD"],
-                ["JKNOX", "MYTOE", "BAYYR", "HHOOD"],
+                ["BLRUN", "SHAFR"],
                 ["BLRUN", "SOOZN"]
             ]
         },
@@ -641,14 +651,15 @@
                 "KPDX28R": [["LIQWD", "A60"], ["SSSUN", "S210"], "SHYNE", "#108"]
             },
             "draw": [
+                ["BUWZO*", "HELNS*", "KRATR", "HYKER"],
                 ["HYKER", "VOODU", "DOUHH", "NNUTT"],
                 ["HYKER", "LIQWD", "SSSUN", "SHYNE"],
                 ["HYKER", "BATYL"]
             ]
         },
-        "OCITY1": {
-            "icao": "OCITY1",
-            "name": "Oh City One",
+        "OCITY3": {
+            "icao": "OCITY3",
+            "name": "Oh City Three",
             "entryPoints": {
                 "LMT": ["LMT", "MOXEE", "PORTL"],
                 "MOXEE": ["MOXEE", "PORTL"],
@@ -664,8 +675,9 @@
                 "KPDX28R": ["#100"]
             },
             "draw": [
-                ["LMT", "MOXEE", "PORTL", "VANTZ", "OCITY"],
-                ["OED", "MOXEE"]
+                ["LMT*", "MOXEE"],
+                ["OED*", "MOXEE"],
+                ["MOXEE*", "PORTL", "VANTZ", "OCITY"]
             ]
         },
         "TMBRS2": {
@@ -689,12 +701,17 @@
                 "KPDX28R": [["WIDMR", "A50|S210"], "ROAGE", "ICEAX", "#103"]
             },
             "draw": [
+                ["CITYY*", "TMBRS"],
+                ["GALLO*", "RENAA", "MOXEE"],
+                ["MACHU*", "HUBUX", "IBALL", "AARON", "MOXEE"],
+                ["SOERN*", "PSARO", "MOXEE"],
+                ["SPNSR*", "GSTER", "MOXEE"],
+                ["MOXEE*", "PORTL*", "TMBRS"],
+                ["TMBRS", "VANTZ", "FLOWR",]
                 ["FLOWR", "FFULL", "SSAIL", "MYCRO", "BBREW", "PUBBB"],
-                ["MACHU", "HUBUX", "IBALL", "AARON", "MOXEE"],
-                ["SOERN", "PSARO", "MOXEE"],
-                ["CITYY", "TMBRS"],
-                ["FLOWR", "HHOPZ"],
-                ["ROAGE", "ICEAX"]
+                ["FLOWR", "WIDMR", "ROAGE", "ICEAX"],
+                ["FLOWR", "HHOPZ"]
+
             ]
         }
     },
