@@ -1,7 +1,7 @@
 
 {
     
-    "airac": 1901,
+    "airac": 2005,
     "radio": {
         "twr": "Hobby Tower",
         "app": "Houston Approach",
@@ -19,7 +19,7 @@
         "center": ["N29d38.73", "W95d16.74"],
         "radius_nm": 5.0
     },
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
         "angle": 110,
         "speed": 10
