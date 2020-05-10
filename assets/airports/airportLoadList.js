@@ -330,12 +330,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Louisville International Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'ksan',
-        //     level: 'easy',
-        //     name: 'San Diego International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'ksan',
+            level: 'easy',
+            name: 'San Diego International Airport',
+            premium: false
+        },
         {
             icao: 'ksea',
             level: 'hard',
