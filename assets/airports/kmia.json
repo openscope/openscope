@@ -957,7 +957,6 @@
                 ["mph", 1],
                 ["qtr/long", 1],
                 ["swr/long", 1],
-                ["tcx/long", 1],
                 ["wow", 1]
             ]
         },
@@ -1208,7 +1207,6 @@
                 ["swq", 1],
                 ["swr/long", 1],
                 ["tap/long", 1],
-                ["tcx/long", 1],
                 ["thy/long", 1],
                 ["ual", 6],
                 ["ups", 2],

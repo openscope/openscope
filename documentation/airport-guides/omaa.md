@@ -38,4 +38,4 @@ All restricted airspaces are displayed on the map, alongside key waypoints on th
 
 
 ### Additional Resources
-[UAE AIP (free registration required)](https://www.gcaa.gov.ae/en/ais/pages/aip.aspx)
+<a href="https://www.gcaa.gov.ae/en/ais/pages/aip.aspx" target="_blank">UAE AIP (free registration required)</a>

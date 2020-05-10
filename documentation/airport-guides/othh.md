@@ -46,4 +46,4 @@ Runway 16/34, Asphalt, 3750m (12303ft)
 
 
 ### Additional Resources
-[Qatar EAIP](https://www.aim.gov.qa/eaip/2018-02-01-AIRAC/html/index-en-GB.html)
+<a href="https://www.aim.gov.qa/eaip/2018-02-01-AIRAC/html/index-en-GB.html" target="_blank">Qatar EAIP</a>

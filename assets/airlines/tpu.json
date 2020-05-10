@@ -1,0 +1,24 @@
+{
+    "icao": "tpu",
+    "name": "Avianca Perú",
+    "callsign": {
+        "name": "Avianca Perú",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A320", 2],
+            ["A332", 1]
+        ],
+        "short": [
+            ["A319", 1],
+            ["A320", 2]
+        ],
+        "long": [
+            ["A332", 1]
+        ]
+    }
+}

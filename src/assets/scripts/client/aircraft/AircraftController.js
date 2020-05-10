@@ -561,7 +561,14 @@ export default class AircraftController {
         const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
         // TODO: update `airlineNameAndFleetHelper` to accept a string
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
-        const airlineModel = this._airlineController.findAirlineById(name);
+        let airlineModel = this._airlineController.findAirlineById(name);
+
+        if (typeof airlineModel === 'undefined') {
+            console.warn(`Expected airline "${name}" to be defined, but it is not! Using AAL instead.`);
+
+            airlineModel = this._airlineController.findAirlineById('aal');
+        }
+
         // TODO: impove the `airlineModel` logic here
         // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
@@ -795,7 +802,7 @@ export default class AircraftController {
      */
     _updateAircraftVisibility(aircraftModel) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
-        if (aircraftModel.isArrival() && aircraftModel.isStopped()) {
+        if (aircraftModel.isArrival() && aircraftModel.isStopped() && !aircraftModel.hit) {
             EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
 
             UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
@@ -819,6 +826,7 @@ export default class AircraftController {
             UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
             aircraftModel.setIsFlightStripRemovable();
             aircraftModel.setIsRemovable();
+            this.aircraft_remove(aircraftModel);
 
             speech_say(
                 [

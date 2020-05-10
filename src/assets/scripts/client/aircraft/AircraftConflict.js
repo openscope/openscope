@@ -161,10 +161,6 @@ export default class AircraftConflict {
             GameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
             this.aircraft[1].hit = true;
-
-            // If either are in a runway queue, remove them from it
-            AirportController.removeAircraftFromAllRunwayQueues(this.aircraft[0]);
-            AirportController.removeAircraftFromAllRunwayQueues(this.aircraft[1]);
         }
     }
 

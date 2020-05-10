@@ -1,0 +1,16 @@
+{
+    "icao": "csb",
+    "name": "21-Air",
+    "callsign": {
+        "name": "Cargo South",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B762", 2]
+        ]
+    }
+}

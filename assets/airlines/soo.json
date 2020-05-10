@@ -1,0 +1,21 @@
+{
+    "icao": "soo",
+    "name": "Southern Air",
+    "callsign": {
+        "name": "Southern Air",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B734", 5],
+            ["B738", 5],
+            ["B77L", 9]
+        ],
+        "long": [
+            ["B77L", 9]
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "icao": "icl",
+    "name": "CAL Cargo Airlines",
+    "callsign": {
+        "name": "Cal",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B744", 2]
+        ]
+    }
+}

@@ -1,7 +1,7 @@
 ### About this facility
 
 Norcal TRACON, San Francisco, USA  
-470,166 aircraft movements in 2018 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Airport.asp))
+470,166 aircraft movements in 2018 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 This is the TRACON position at SFO, serving San Francisco International Airport, one of three major commercial airports in the San Francisco/San Jose/Oakland area.
 
@@ -11,7 +11,7 @@ Class B airspace extends to 19,000 feet above sea level, encompassing the area a
 
 ### Instrument Procedures
 
-##### San Francisco International Airport has 13 STAR procedures, and 12 SID procedures. 
+##### San Francisco International Airport has 13 STAR procedures, and 12 SID procedures.
 
 ##### SIDs
 
@@ -63,7 +63,7 @@ Class B airspace extends to 19,000 feet above sea level, encompassing the area a
 San Francisco International Airport  
 470,166 annual operations
 
-San Francisco is the largest international airport in Northern California. It is a hub for United and Alaska Airlines. 
+San Francisco is the largest international airport in Northern California. It is a hub for United and Alaska Airlines.
 
 #### KOAK
 
@@ -77,9 +77,8 @@ Oakland is a large commercial airport to the northeast of San Francisco in Oakla
 San Jose Norman Y Mineta International Airport
 213,237 annual operations
 
-San Jose is a large commercial airport to the southeast of San Francisco in San Jose. 
+San Jose is a large commercial airport to the southeast of San Francisco in San Jose.
 
 ### Additional Resources
-
-[KSFO Charts](https://skyvector.com/airport/SFO)  
-[VATSIM SOP](https://www.oakartcc.org/standard-operating-procedures/san-francisco-atct-sop/)
+<a href="https://skyvector.com/airport/SFO" target="_blank">KSFO Charts</a>
+<a href="https://www.oakartcc.org/standard-operating-procedures/san-francisco-atct-sop/" target="_blank">VATSIM SOP</a>

@@ -1,0 +1,15 @@
+{
+    "icao": "lco",
+    "name": "LATAM Cargo",
+    "callsign": {
+        "name": "Lan Cargo",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B763", 7]
+        ]
+    }
+}

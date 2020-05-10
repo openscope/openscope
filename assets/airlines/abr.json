@@ -1,0 +1,35 @@
+{
+    "icao": "abr",
+    "name": "ASL Airlines Ireland",
+    "callsign": {
+        "name": "Contract",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A306", 4],
+            ["A333", 2],
+            ["AT43", 5],
+            ["AT72", 17],
+            ["AT75", 2],
+            ["B733", 2],
+            ["B734", 7],
+            ["B752", 7]
+        ],
+        "dhl": [
+            ["A306", 4]
+        ],
+        "hongKong": [
+            ["A333", 2]
+        ],
+        "fedEx": [
+            ["A306", 4]
+        ],
+        "aerLingus": [
+            ["B733", 1],
+            ["B752", 7]
+        ]
+    }
+}

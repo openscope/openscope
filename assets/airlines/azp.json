@@ -1,0 +1,15 @@
+{
+    "icao": "azp",
+    "name": "Paranair",
+    "callsign": {
+        "name": "Guaraní",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["CRJ2", 4]
+        ]
+    }
+}

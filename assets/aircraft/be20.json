@@ -1,0 +1,37 @@
+{
+    "name": "Beechcraft Super King Air 200",
+    "icao": "BE20",
+    "engines": {
+        "number": 2,
+        "type": "T"
+    },
+    "weightClass": "S+",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "F"
+    },
+    "ceiling": 35000,
+    "rate": {
+        "climb":      1500,
+        "descent":    1500,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 0.570,
+        "landing": 0.540
+    },
+    "speed":{
+        "min":     100,
+        "landing": 115,
+        "cruise":  260,
+        "cruiseM": 0.48,
+        "max":     290,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

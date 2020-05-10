@@ -1,0 +1,16 @@
+{
+    "icao": "eal",
+    "name": "Eastern Airlines",
+    "callsign": {
+        "name": "Eastern",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B762", 4],
+            ["B763", 4]
+        ]
+    }
+}

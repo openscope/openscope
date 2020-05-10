@@ -1677,7 +1677,6 @@
                 ["aal/long", 1],
                 ["ein/short", 8],
                 ["ryr", 31],
-                ["tcx", 5],
                 ["ual", 1],
                 ["vir", 1]
             ]
@@ -1692,12 +1691,10 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["bee", 53],
                 ["exs", 6],
                 ["ezy", 22],
                 ["ryr", 31],
-                ["tap/airbusShort", 2],
-                ["tcx", 5]
+                ["tap/airbusShort", 2]
             ]
         },
         {
@@ -1711,7 +1708,6 @@
             "rate": 1,
             "airlines": [
                 ["aur", 1],
-                ["bee", 53],
                 ["log", 9]
             ]
         },
@@ -1725,7 +1721,6 @@
             "method": "random",
             "rate": 1.5,
             "airlines": [
-                ["bee", 53],
                 ["fin/airbusShort", 2],
                 ["ice", 1],
                 ["log", 9],
@@ -1750,7 +1745,6 @@
                 ["ezy", 22],
                 ["ryr", 31],
                 ["swr/short", 2],
-                ["tcx", 5],
                 ["vue", 1]
             ]
         },
@@ -1765,7 +1759,6 @@
             "rate": 3,
             "airlines": [
                 ["aua/short", 1],
-                ["bee", 53],
                 ["chh/long", 1],
                 ["cpa", 1],
                 ["dlh/short", 8],
@@ -1779,7 +1772,6 @@
                 ["qtr/long", 3],
                 ["ryr", 31],
                 ["sia/a350", 1],
-                ["tcx", 5],
                 ["thy", 2]
             ]
         },
@@ -1840,7 +1832,6 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["bee", 53],
                 ["fin/airbusShort", 2],
                 ["nax/short", 3],
                 ["sas/short", 5]
@@ -1856,7 +1847,6 @@
             "method": "random",
             "rate": 0.5,
             "airlines": [
-                ["bee", 53],
                 ["ice", 1],
                 ["log", 9]
             ]
@@ -1872,8 +1862,6 @@
             "rate": 2,
             "airlines": [
                 ["aal/long", 1],
-                ["bee", 53],
-                ["tcx", 3],
                 ["ual/long", 1],
                 ["vir", 3]
             ]
@@ -1904,7 +1892,6 @@
                 ["afr/short", 3],
                 ["aua/short", 1],
                 ["aur", 2],
-                ["bee", 53],
                 ["bel/short", 3],
                 ["dlh/short", 8],
                 ["etd/long", 2],
@@ -1920,7 +1907,7 @@
                 ["swr/short", 2],
                 ["thy", 2],
                 ["tom", 12],
-                ["uae/a380", 3]
+                ["uae/a388", 3]
             ]
         },
         {
@@ -1933,12 +1920,10 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["bee", 53],
                 ["exs", 6],
                 ["ezy", 30],
                 ["ryr", 31],
                 ["tap/airbusShort", 1],
-                ["tcx", 3],
                 ["tom", 12],
                 ["vue", 1]
             ]

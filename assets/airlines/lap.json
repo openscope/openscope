@@ -1,0 +1,15 @@
+{
+    "icao": "lap",
+    "name": "LATAM Airlines Paraguay",
+    "callsign": {
+        "name": "Paraguaya",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 5]
+        ]
+    }
+}

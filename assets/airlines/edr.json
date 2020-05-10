@@ -1,0 +1,16 @@
+{
+    "icao": "edr",
+    "name": "Fly All Ways",
+    "callsign": {
+        "name": "Birdview",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 1],
+            ["F70", 3]
+        ]
+    }
+}
