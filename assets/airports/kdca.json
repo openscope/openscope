@@ -1,5 +1,5 @@
 {
-    "airac": 1813,
+    "airac": 2005,
     "radio": {
         "twr": "Washington Tower",
         "app": "Potomac Approach",
@@ -7,14 +7,14 @@
     },
     "icao": "KDCA",
     "iata": "DCA",
-    "magnetic_north": -10.8,
+    "magnetic_north": -11,
     "ctr_radius": 80,
-    "ctr_ceiling": 7000,
-    "initial_alt": 3000,
-    "position": ["N38d51m05.20", "W077d02m15.80", "14.1ft"],
+    "ctr_ceiling": 23000,
+    "initial_alt": 5000,
+    "position": ["N38.8514444", "W77.0377222", "14.1ft"],
     "rangeRings": {
         "enabled": true,
-        "center": ["N38d51m05.20", "W077d02m15.80"],
+        "center": ["N38.8514444", "W77.0377222"],
         "radius_nm": 5.0
     },
     "has_terrain": true,
@@ -99,7 +99,10 @@
         "_DCA32805DME": [38.92232122317, -77.10671587096],
         "_DCA32810DME": [38.98509966444, -77.17705534923],
         "_1006ADAXE334": [38.87321, -77.04007],
+        "_4037ERECA081": [38.8731292, -77.0253106],
+        "_15154LEAVY207": [38.8278939, -77.02076],
         "_15154LEAVY209": [38.83523, -77.01812],
+        "_1007REVGE331": [38.8650625, -77.0369583],
         "_RWY040.5DME": [38.86175132081, -77.02871923968],
         "_RWY150.5DME": [38.84248674836, -77.02512995271],
         "_RWY190.5DME": [38.83241516888, -77.03592685316],
@@ -116,7 +119,7 @@
         "BELAY": ["N39d35m15.67", "W076d18m02.00"],
         "BENSH": ["N39d01m10.48", "W079d10m29.13"],
         "BILIT": ["N38d45m15.82", "W076d03m57.59"],
-        "BKW"  : ["N39d11m38.67", "W094d40m41.61"],
+        "BKW"  : ["N37d46m49.08", "W081d07m24.44"],
         "BOOCK": ["N38d24m34.35", "W076d42m50.50"],
         "BRUNC": ["N38d55m50.89", "W076d56m24.24"],
         "BRUTL": ["N38d43m58.66", "W077d30m20.26"],
@@ -135,7 +138,7 @@
         "COLIN": ["N38d05m59.23", "W076d39m50.85"],
         "COURG": ["N39d12m01.14", "W078d43m44.52"],
         "COVTO": ["N38d56m49.58", "W077d08m02.23"],
-        "CSN"  : ["N38d38.47", "W77d51.93"],
+        "CSN"  : ["N38d38m28.33", "W077d51m55.80"],
         "CUKLI": ["N38d59m10.33", "W077d16m34.81"],
         "DAILY": ["N38d33m37.83", "W076d43m31.05"],
         "DANOO": ["N38d04m27.24", "W078d15m08.96"],
@@ -155,6 +158,7 @@
         "ELAPP": ["N37d53m40.21", "W077d21m10.46"],
         "EMI"  : ["N39d29m42.00", "W076d58m42.00"],
         "EPICS": ["N37d47m12.26", "W077d15m41.98"],
+        "ERECA": ["N38d55m07.67", "W076d51m07.09"],
         "ESL"  : ["N39d13m31.80", "W078d59m22.20"],
         "EYESS": ["N38d58m18.75", "W076d53m48.84"],
         "FELTY": ["N38d46m46.15", "W076d56m40.79"],
@@ -181,6 +185,7 @@
         "HIGPO": ["N38d22m16.09", "W077d22m19.97"],
         "HITEK": ["N38d41m19.00", "W076d56m09.00"],
         "HMBGR": ["N38d56m38.04", "W076d36m59.08"],
+        "HOLTB": ["N38d19m36.44", "W076d42m02.35"],
         "HONNR": ["N39d14m46.59", "W079d14m08.91"],
         "HORTO": ["N39d07m04.50", "W077d27m49.30"],
         "HOYAS": ["N38d20m12.69", "W077d12m52.30"],
@@ -233,6 +238,7 @@
         "RAMAY": ["N38d57m38.57", "W078d12m59.01"],
         "RANJR": ["N38d28m02.97", "W079d02m20.08"],
         "REBLL": ["N38d50m42.79", "W077d53m08.73"],
+        "REVGE": ["N38d53m59.46", "W077d04m14.24"],
         "RIC"  : ["N37d30m06.00", "W077d19m12.00"],
         "RIDGY": ["N38d56m34.71", "W075d47m23.33"],
         "RIISE": ["N39d00m33.66", "W076d39m41.13"],
@@ -1029,8 +1035,8 @@
         {
             "name": ["1", "19"],
             "end": [
-                ["N38d50m29.6455", "W077d02m12.2944", "11.4ft"],
-                ["N38d51m40.2933", "W077d02m19.4053", "12.1ft"]
+                ["N38d50.494092", "W077d02.204907", "11.4ft"],
+                ["N38d51.671555", "W077d02.323422", "12.1ft"]
             ],
             "ils": [true, false]
         },
@@ -1117,6 +1123,28 @@
                 ["_RWY330.5DME", "ADAXE"]
             ]
         },
+        "HOLTB1": {
+        	"icao": "HOLTB1",
+        	"name": "Holtib One",
+        	"rwy": {
+        		"KDCA1": ["_1007REVGE331", ["REVGE","S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"],
+        		"KDCA4": ["_4037ERECA081", "ERECA", "EDDGY"],
+        		"KDCA15": ["_15154LEAVY207", "LEAVY", ["FIMBI", "S230-"], "MCNAB"],
+        		"KDCA19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MCNAB"],
+        		"KDCA33": [["_RWY330.5DME", "A05+"], ["REVGE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"]
+        	},
+        	"body": ["BOOCK", "HOLTB"],
+        	"exitPoints": {
+        		"COLIN": ["COLIN"]
+        	},
+        	"draw": [
+        		["_1007REVGE331", "REVGE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "GUCER", "BOOCK", "HOLTB", "COLIN*"],
+        		["_4037ERECA081", "ERECA", "EDDGY", "BOOCK"],
+        		["_15154LEAVY207", "LEAVY", "FIMBI", "MCNAB", "BOOCK"],
+        		["_RWY190.5DME", "FIMBI"],
+        		["_RWY330.5DME", "REVGE"]
+        	]
+        },
         "HORTO3": {
             "icao": "HORTO3",
             "name": "Horto Three",
@@ -1138,9 +1166,9 @@
                 ["_RWY330.5DME", "ADAXE"]
             ]
         },
-        "JDUBB2": {
-            "icao": "JDUBB2",
-            "name": "Jaydubb Two",
+        "JDUBB3": {
+            "icao": "JDUBB3",
+            "name": "Jaydubb Three",
             "rwy": {
                 "KDCA1": ["_1006ADAXE334", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
@@ -1149,15 +1177,15 @@
             },
             "body": ["HAFNR", "JDUBB"],
             "exitPoints": {
-                "GSO": ["TYPNZ", "SCORN", "RRSIN", "GSO"],
-                "SBV": ["CASLY", "MELTN", "SBV"]
+                "MELTN": ["CASLY", "MELTN"],
+                "RRSIN": ["TYPNZ", "SCORN", "RRSIN"]
             },
             "draw": [
                 ["_1006ADAXE334", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "HAFNR"],
-                ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "HAFNR", "JDUBB", "TYPNZ", "SCORN", "RRSIN", "GSO*"],
+                ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "HAFNR", "JDUBB", "TYPNZ", "SCORN", "RRSIN*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"],
-                ["JDUBB", "CASLY", "MELTN", "SBV*"]
+                ["JDUBB", "CASLY", "MELTN*"]
             ]
         },
         "NATNL7": {
@@ -1258,9 +1286,9 @@
                 ["_RWY330.5DME", "ADAXE"]
             ]
         },
-        "SCRAM4": {
-            "icao": "SCRAM4",
-            "name": "Scram Four",
+        "SCRAM5": {
+            "icao": "SCRAM5",
+            "name": "Scram Five",
             "rwy": {
                 "KDCA1": ["_1006ADAXE334", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
@@ -1269,11 +1297,11 @@
             },
             "body": ["POOCH", "SCRAM"],
             "exitPoints": {
-                "LYH": ["DANOO", "WALCE", "GLANC", "LYH"]
+                "GLANC": ["DANOO", "WALCE", "GLANC"]
             },
             "draw": [
                 ["_1006ADAXE334", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "POOCH"],
-                ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "POOCH", "SCRAM", "DANOO", "WALCE", "GLANC", "LYH*"],
+                ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "POOCH", "SCRAM", "DANOO", "WALCE", "GLANC*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"]
             ]
@@ -1382,9 +1410,9 @@
                 ["DEALE", "EDDGY", "THANE", "MEGGS"]
             ]
         },
-        "FRDMM4": {
-            "icao": "FRDMM4",
-            "name": "Freedom Four",
+        "FRDMM5": {
+            "icao": "FRDMM5",
+            "name": "Freedom Five",
             "entryPoints": {
                 "BUCKO": [["BUCKO", "A310"], ["DRRON", "A270+|A310-"], ["HONNR", "A240+|A280-|S280"], ["BRVRY", "A220+|A260-"], ["COURG", "A200+|A230-|S280"], ["PLDGE", "A150+|A170-|S280"], ["WEWIL", "A140+"], ["NEVVR", "A120+"], ["FORGT", "A110+|S250"], ["SEPII", "A100+|S250"]]
             },
@@ -1421,9 +1449,9 @@
                 ["RIC*", "EPICS", "PEGBY", "OJAAY", "IRONS", "SAMMO"]
             ]
         },
-        "NUMMY2": {
-            "icao": "NUMMY2",
-            "name": "Nummy Two",
+        "NUMMY3": {
+            "icao": "NUMMY3",
+            "name": "Nummy Three",
             "entryPoints": {
                 "BUCKO": [["BUCKO", "A310"], ["HONNR", "A260"], ["ESL", "A230"], ["DRUZZ", "A150"], ["WEWIL", "A140+"], ["NEVVR", "A120+"], "FORGT", ["SEPII", "A110"], "ALWYZ"]
             },
@@ -1621,7 +1649,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA1.JDUBB2.GSO",
+            "route": "KDCA1.JDUBB3.GSO",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1639,7 +1667,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA1.JDUBB2.SBV",
+            "route": "KDCA1.JDUBB3.SBV",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1673,7 +1701,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA1.SCRAM4.LYH",
+            "route": "KDCA1.SCRAM5.LYH",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1787,7 +1815,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "BUCKO.FRDMM4.KDCA1",
+            "route": "BUCKO.FRDMM5.KDCA1",
             "altitude": 31000,
             "speed": 300,
             "method": "random",
