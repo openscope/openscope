@@ -53,32 +53,73 @@
         }
     ],
     "fixes": {
+        "_CLSTR155005": ["N32d47.29", "W117d19.01"],
         "_KSAN046060": ["N33d16.52m0", "W116d11.36m0"],
         "_KSAN075060": ["N32d47.86m0", "W116d00.37m0"],
+        "_KSAN093008": ["N32d42.07", "W117d2.18"],
         "_MZB293020": ["N32d59.25", "W117d32.26"],
+        "_MZB314005": ["N32d51.22", "W117d16.58"],
         "_OCN170022": ["N32d52.48", "W117d27.34"],
         "BARET": ["N32d46.45", "W116d40.65"],
+        "BAUCA": ["N32d51.61", "W117d15.63"],
+        "BLUZE": ["N32d42.08", "W116d01.87"],
         "BROWS": ["N32d37.87", "W116d46.20"],
         "BOKNE": ["N32d58.41", "W117d21.71"],
+        "CENZA": ["N32d35.20", "W117d06.13"],
+        "CHKNN": ["N33d45.50", "W118d20.20"],
+        "CHRJR": ["N32d42.65", "W116d51.02"],
+        "CLSTR": ["N32d52.16", "W117d20.41"],
+        "CWARD": ["N33d23.04", "W117d54.56"],
+        "DINTY": ["N33d28.97", "W122d35.04"],
+        "ECHHO": ["N32d58.02", "W117d22.39"],
+        "EHF"  : ["N35d29.07", "W119d05.84"],
         "FALCC": ["N33d15.68", "W117d34.11"],
+        "GEEGN": ["N33d53.87", "W118d45.14"],
+        "GOFUR": ["N33d10.50", "W117d35.44"],
+        "GRIDR": ["N32d37.81", "W116d46.39"],
+        "GYWNN": ["N33d03.81", "W117d43.75"],
         "HARBR": ["N33d14.28", "W117d51.38"],
+        "HFMNN": ["N33d34.55", "W118d14.17"],
         "IFHEJ": ["N32d39.60", "W116d53.28"],
+        "IKAYE": ["N34d08.58", "W119d00.62"],
         "IPL"  : ["N32d44.93", "W115d30.51"],
+        "JETTI": ["N32d45.28", "W117d16.59"],
         "JLI"  : ["N33d08.43", "W116d35.16"],
+        "JORRJ": ["N32d36.11", "W116d54.97"],
+        "JUNOR": ["N32d46.07", "W116d32.72"],
+        "LANDN": ["N32d47.62", "W117d18.21"],
+        "LANDO": ["N35d00.75", "W118d36.98"],
+        "LAX"  : ["N33d55.99", "W118d25.92"],
+        "LEGUE": ["N32d51.85", "W116d50.02"],
         "LNSAY": ["N33d08.77", "W117d29.17"],
         "LOWMA": ["N32d39m16.71", "W117d16m5.79"],
+        "MADOW": ["N33d37.42", "W117d59.78"],
         "MAFAN": ["N33d04.10", "W117d25.78"],
+        "MALIT": ["N32d28.54", "W119d35.47"],
         "MELDY": ["N33d05.36", "W117d41.63"],
+        "MTBAL": ["N33d36.20", "W116d02.54"],
+        "MMOTO": ["N33d16.17", "W117d41.72"],
+        "NSHEE": ["N33d23.96", "W116d22.99"],
+        "OROSZ": ["N34d25.60", "W118d40.45"],
+        "PADRZ": ["N33d11.63", "W117d51.72"],
         "PEBLE": ["N33d10.92", "W117d50.17"],
         "PGY"  : ["N32d36.62", "W116d58.75"],
+        "PIEZZ": ["N33d00.56", "W116d35.25"],
         "PILLO": ["N32d46.22", "W116d28.11"],
+        "RIDDL": ["N34d00.12", "W118d27.59"],
         "SARGS": ["N32d46.90", "W117d23.37"],
+        "SAYOW": ["N32d41.09", "W116d59.28"],
         "SLI"  : ["N33d47.00", "W118d3.29"],
-        "VYDDA": ["N32d40.30", "W116d56.15"]
+        "SXC"  : ["N33d22.50", "W118d25.19"],
+        "TEDEY": ["N33d32.25", "W117d57.25"],
+        "TWINE": ["N34d18.58", "W118d36.99"],
+        "VYDDA": ["N32d40.30", "W116d56.15"],
+        "WNFLD": ["N32d47.88", "W117d18.96"],
+        "ZZOOO": ["N32d37.89", "W117d14.75"]
     },
     "runways": [
         {
-            "name": ["09", "27"],
+            "name": ["9", "27"],
             "end": [
                 ["N32.7371218", "W117.2043558"],
                 ["N32.7300016", "W117.1749719"]
@@ -105,24 +146,201 @@
                 ["BROWS", "IPL*"]
             ]
         },
+        "CWARD2": {
+            "icao": "CWARD2",
+            "name": "Seward Two",
+            "rwy": {
+                "KSAN27": ["WNFLD"]
+            },
+            "body": [["GYWNN", "A60+"], "PADRZ", ["CWARD", "A120-"]],
+            "exitPoints": {
+                "SLI": ["MADOW", "SLI"],
+                "LAX": ["LAX"]
+            },
+            "draw": [
+                ["WNFLD", "GYWNN", "PADRZ", "CWARD", "MADOW", "SLI*"],
+                ["CWARD", "LAX*"]
+            ]
+        },
+        "ECHHO2": {
+            "icao": "ECHHO2",
+            "name": "Echo Two",
+            "rwy": {
+                "KSAN9": [["_KSAN093008", "A40+"], "BAUCA"],
+                "KSAN27": ["LANDN"]
+            },
+            "body": ["ECHHO", ["GOFUR", "A150+"], "MMOTO"],
+            "exitPoints": {
+                "SLI": ["SLI"],
+                "IKAYE": ["TEDEY", "GEEGN", "IKAYE"]
+            },
+            "draw": [
+                ["_KSAN093008", "BAUCA", "ECHHO", "GOFUR", "MMOTO", "TEDEY", "GEEGN", "IKAYE*"],
+                ["LANDN", "ECHHO"],
+                ["MMOTO", "SLI*"]
+            ]
+        },
+        "FALCC1": {
+            "icao": "FALCC1",
+            "name": "Falk One",
+            "rwy": {
+                "KSAN9": [["_KSAN093008", "A40+"], "_MZB314005"],
+                "KSAN27": ["_CLSTR155005", ["CLSTR", "A40+"]]
+            },
+            "body": ["BOKNE", ["MAFAN", "A80+"], "LNSAY", "FALCC"],
+            "exitPoints": {
+                "SLI": ["SLI"],
+                "SXC": ["SXC"]
+            },
+            "draw": [
+                ["_KSAN093008", "_MZB314005", "BOKNE", "MAFAN", "LNSAY", "FALCC", "SLI*"],
+                ["_CLSTR155005", "CLSTR", "BOKNE"],
+                ["FALCC", "SXC*"]
+            ]
+        },
+        "MMOTO2": {
+            "icao": "MMOTO2",
+            "name": "Moto Two",
+            "rwy": {
+                "KSAN9": [["_KSAN093008", "A40+"], "BAUCA"],
+                "KSAN27": ["LANDN"]
+            },
+            "body": ["ECHHO", ["GOFUR", "A150+"], ["MMOTO", "A190-"], "SXC"],
+            "exitPoints": {
+                "DINTY": ["DINTY"],
+                "MALIT": ["MALIT"]
+            },
+            "draw": [
+                ["_KSAN093008", "BAUCA", "ECHHO", "GOFUR", "MMOTO", "SXC", "DINTY*"],
+                ["LANDN", "ECHHO"],
+                ["SXC", "MALIT*"]
+            ]
+        },
+        "PADRZ2": {
+            "icao": "PADRZ2",
+            "name": "Padres Two",
+            "rwy": {
+                "KSAN27": ["WNFLD"]
+            },
+            "body": [["GYWNN", "A80+"], "PADRZ"],
+            "exitPoints": {
+                "MALIT": ["SXC", "MALIT"],
+                "DINTY": ["SXC", "DINTY"],
+                "IKAYE": ["IKAYE"],
+                "OROSZ": ["HFMNN", "CHKNN", "RIDDL", "TWINE", "OROSZ"],
+                "EHF": ["HFMNN", "CHKNN", "RIDDL", "LANDO", "EHF"]
+            },
+            "draw": [
+                ["WNFLD", "GYWNN", "PADRZ", "HFMNN", "CHKNN", "RIDDL", "LANDO", "EHF*"],
+                ["RIDDL", "TWINE", "OROSZ*"],
+                ["PADRZ", "IKAYE*"],
+                ["PADRZ", "SXC", "MALIT*"],
+                ["SXC", "DINTY*"]
+            ]
+        },
         "PEBLE6": {
             "icao": "PEBLE6",
             "name": "Pebble Six",
             "rwy": {
                 "KSAN27": ["_OCN170022", "_MZB293020"]
             },
-            "body": ["MELDY", "PEBLE"],
+            "body": [["MELDY", "A140+"], "PEBLE"],
             "exitPoints": {
-                "SLI": ["SLI"]
+                "SLI": ["SLI"],
+                "SXC": ["SXC"]
             },
-            "draw": [["SARGS", "MELDY", "PEBLE*"]]
+            "draw": [
+                ["SARGS", "MELDY", "PEBLE", "SLI*"],
+                ["PEBLE", "SXC*"]
+            ]
+        },
+        "SAYOW2": {
+            "icao": "SAYOW2",
+            "name": "Say Ow Two",
+            "rwy": {
+                "KSAN9": []
+            },
+            "body": [["SAYOW", "A49+"]],
+            "exitPoints": {
+                "IPL": [["CHRJR", "A72+"], ["JUNOR", "A150+"], "IPL"],
+                "MTBAL": [["LEGUE", "A100+"], "JLI", "NSHEE", "MTBAL"]
+            },
+            "draw": [
+                ["SAYOW", "CHRJR", "JUNOR", "IPL*"],
+                ["SAYOW", "LEGUE", "JLI", "NSHEE", "MTBAL*"]
+            ]
+        },
+        "ZZOOO2": {
+            "icao": "ZZOOO2",
+            "name": "Zoo Two",
+            "rwy": {
+                "KSAN27": []
+            },
+            "body": [["JETTI", "A120-|S210-"], "ZZOOO"],
+            "exitPoints": {
+                "CENZA": ["CENZA"],
+                "IPL": [["JORRJ", "A140+"], "GRIDR", "BLUZE", "IPL"],
+                "MTBAL": [["JORRJ", "A140+"], "GRIDR", "PIEZZ", "NSHEE", "MTBAL"]
+            },
+            "draw": [
+                ["JETTI", "ZZOOO", "CENZA*"],
+                ["ZZOOO", "JORRJ", "GRIDR", "BLUZE", "IPL*"],
+                ["GRIDR", "PIEZZ", "NSHEE", "MTBAL"]
+            ]
         }
     },
     "stars": {
 
     },
     "spawnPatterns": [
-
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.ZZOOO2.IPL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.71,
+            "airlines": [
+                ["aal/short", 8],
+                ["dal/short", 1],
+                ["swa", 7],
+                ["ual/short", 1]
+            ]
+        },
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.ZZOOO2.MTBAL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.83,
+            "airlines": [
+                ["aal/short", 1],
+                ["dal/short", 3],
+                ["fft", 2],
+                ["scx", 1],
+                ["swa", 9],
+                ["ual", 4]
+            ]
+        },
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.ZZOOO2.CENZA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.13,
+            "airlines": [
+                ["amf", 1],
+                ["pcm", 2]
+            ]
+        }
     ],
     "maps": [
         {
