@@ -1,11 +1,101 @@
-# 6.14.0 (July 1, 2019)
+# 6.18.0 (June 1, 2020)
 ### New Features
-
+- <a href="https://github.com/openscope/openscope/issues/1568" target="_blank">#1568</a> - Add command reference and slack links to help menu
 
 ### Bugfixes
 
+### Enhancements & Refactors
+
+# 6.17.0 (May 1, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Introduce Venice Marco Polo Airport (LIPZ) and Volotea airline (VOE)
+- <a href="https://github.com/openscope/openscope/issues/1563" target="_blank">#1563</a> - Add Cork Airport (EICK)
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1534" target="_blank">#1534</a> - Reintroduce Los Angeles International Airport (KLAX)
+- <a href="https://github.com/openscope/openscope/issues/1537" target="_blank">#1537</a> - Make KJFK traffic more realistic
+- <a href="https://github.com/openscope/openscope/issues/1543" target="_blank">#1543</a> - Remove BEE/TCX airlines
+- <a href="https://github.com/openscope/openscope/issues/1551" target="_blank">#1551</a> - Add missing waypoint CORDS at KJFK
+- <a href="https://github.com/openscope/openscope/issues/1271" target="_blank">#1271</a> - Update the tutorial
+
+# 6.16.0 (March 1, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1526" target="_blank">#1526</a> - Introduce Montevideo Carrasco Airport (SUMU)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1389" target="_blank">#1389</a> - Prevent unfair penalty at KDCA on IRONS7 arrivals by deactivating R6601B/C
+- <a href="https://github.com/openscope/openscope/issues/1218" target="_blank">#1218</a> - Ensure proper removal of aircraft who collide with terrain/traffic
+- <a href="https://github.com/openscope/openscope/issues/1513" target="_blank">#1513</a> - Add missing fleets to AFR/LDM airlines that were crashing EDDM/EIDW
+- <a href="https://github.com/openscope/openscope/issues/1398" target="_blank">#1398</a> - Fix go-arounds from aircraft with low descent rates
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1486" target="_blank">#1486</a> - Update AFL airline
+- <a href="https://github.com/openscope/openscope/issues/1507" target="_blank">#1507</a> - Fix broken link in aircraft commands documentation
+- <a href="https://github.com/openscope/openscope/issues/1022" target="_blank">#1022</a> - Reintroduce Munich Airport (EDDM)
+- <a href="https://github.com/openscope/openscope/issues/1387" target="_blank">#1387</a> - Update LOWW to AIRAC 1908
+- <a href="https://github.com/openscope/openscope/issues/1499" target="_blank">#1499</a> - Reintroduce Ministro Pistarini Airport (SAEZ)
+- <a href="https://github.com/openscope/openscope/issues/1503" target="_blank">#1503</a> - Reintroduce Dublin Airport (EIDW)
+- <a href="https://github.com/openscope/openscope/issues/1471" target="_blank">#1471</a> - Change all airport guide links to open in new tab
+- <a href="https://github.com/openscope/openscope/issues/1514" target="_blank">#1514</a> - Reintroduce Malvinas Argentinas Ushuaia Airport (SAWH)
+- <a href="https://github.com/openscope/openscope/issues/1381" target="_blank">#1381</a> -  Change all airport names in airport loadList to the official English name according to Jeppesen charts
+- <a href="https://github.com/openscope/openscope/issues/242" target="_blank">#242</a> - Update KJFK to AIRAC 2002
+- <a href="https://github.com/openscope/openscope/issues/1528" target="_blank">#1528</a> - Remove heavies from KDCA
+- <a href="https://github.com/openscope/openscope/issues/1525" target="_blank">#1525</a> - Reintroduce Mendoza El Plumerillo Airport (SAME)
+- <a href="https://github.com/openscope/openscope/issues/1517" target="_blank">#1517</a> - Reintroduce Princess Juliana Airport (TNCM)
+
+
+# 6.15.1 (December 2, 2019)
+### Hotfixes
+- <a href="https://github.com/openscope/openscope/issues/1480" target="_blank">#1480</a> - Ensure settings menu appears above flight strip bay
+
+
+# 6.15.0 (December 1, 2019)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1105" target="_blank">#1105</a> - Add in-sim Airport Guide accessible via footer button
+- <a href="https://github.com/openscope/openscope/issues/1191" target="_blank">#1191</a> - Consolidate command bar buttons
+- <a href="https://github.com/openscope/openscope/issues/45" target="_blank">#45</a> - Add range/bearing measurement tool via Control button
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1456" target="_blank">#1456</a> - Only allow headings between 001 and 360
+- <a href="https://github.com/openscope/openscope/issues/1474" target="_blank">#1474</a> - Fix crash at KAUS from missing FDX fleet
+- <a href="https://github.com/openscope/openscope/issues/1476" target="_blank">#1476</a> - Fix missing terrain at KSTL
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1451" target="_blank">#1451</a> - Add ability to specify the radial with the `hold` command
+- <a href="https://github.com/openscope/openscope/issues/1458" target="_blank">#1458</a> - Add support for holding patterns with distance-based legs
+- <a href="https://github.com/openscope/openscope/issues/1431" target="_blank">#1431</a> - Expand capabilities for predefined holding patterns in airport files
+- <a href="https://github.com/openscope/openscope/issues/1402" target="_blank">#1402</a> - Prevent assignment of reserved/nondiscrete beacon codes
+- <a href="https://github.com/openscope/openscope/issues/1472" target="_blank">#1472</a> - Add water polygons to airport terrain files
+
+
+# 6.14.2 (October 17, 2019)
+### Hotfixes
+- [#1463](https://github.com/openscope/openscope/issues/1463) - Fix travis build notifications
+- [#1453](https://github.com/openscope/openscope/issues/1453) - Fix EINN video maps format which was causing sim to crash
+
+
+# 6.14.0 (October 1, 2019)
+### New Features
+- [#1436](https://github.com/openscope/openscope/issues/1436) - Add support for multiple video maps (no toggling yet)
+- [#420](https://github.com/openscope/openscope/issues/420) - Include water in terrain files
+
+### Bugfixes
+- [#1418](https://github.com/openscope/openscope/issues/1418) - Fix error from EDDF spawn pattern
+- [#1395](https://github.com/openscope/openscope/issues/1395) - Fix aircraft's wind correction angle math (which was causing go-arounds)
+- [#1420](https://github.com/openscope/openscope/issues/1420) - Spawn pre-spawned aircraft on correct heading instead of 360 heading
+- [#1432](https://github.com/openscope/openscope/issues/1432) - Prevent aircraft from leaving their holding patterns
+- [#1440](https://github.com/openscope/openscope/issues/1440) - Add missing "b738"-fleet to TUI Airways
+- [#23](https://github.com/openscope/openscope/issues/23) - Ensure focus remains on the text input box in MS Edge
+- [#1448](https://github.com/openscope/openscope/issues/1448) - Lower spawn altitudes of KSFO arrivals so can comply with STAR restrictions
+- [#1446](https://github.com/openscope/openscope/issues/1446) - Ensure `sh`/`sah` commands return headings within 001-360
+
+### Enhancements & Refactors
+- [#1410](https://github.com/openscope/openscope/issues/1410) - Restore functionality of local server from `npm run start`
+- [#1387](https://github.com/openscope/openscope/issues/1387) - Update EDDF to AIRAC 1906
+- [#1327](https://github.com/openscope/openscope/issues/1327) - Airport Revival: San Francisco International Airport
+- [#1390](https://github.com/openscope/openscope/issues/1390) - Update KAUS to AIRAC 1909
+- [#1231](https://github.com/openscope/openscope/issues/1231) - Draw STAR labels left of fix to prevent text overlap with SID labels
+- [#1434](https://github.com/openscope/openscope/issues/1434) - Update EINN to AIRAC 1909
 
 
 # 6.13.0 (June 1, 2019)

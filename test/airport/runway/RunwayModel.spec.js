@@ -83,7 +83,7 @@ ava('.getGlideslopeAltitude() returns glideslope altitude at the specified dista
 
 ava('.getGlideslopeAltitudeAtFinalApproachFix() returns glideslope altitude at the final approach fix', (t) => {
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    const expectedResult = 3452.7428770628912;
+    const expectedResult = 3771.178596328614;
     const result = model.getGlideslopeAltitudeAtFinalApproachFix();
 
     t.true(result === expectedResult);
@@ -91,7 +91,7 @@ ava('.getGlideslopeAltitudeAtFinalApproachFix() returns glideslope altitude at t
 
 ava('.getMinimumGlideslopeInterceptAltitude() returns glideslope altitude at the final approach fix', (t) => {
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    const expectedResult = 3500;
+    const expectedResult = 3800;
     const result = model.getMinimumGlideslopeInterceptAltitude();
 
     t.true(result === expectedResult);
@@ -119,7 +119,7 @@ ava('.isAircraftNextInQueue() returns true only when an aircraftId is at index 0
 ava.todo('.isOnApproachCourse()');
 
 // need an aircraftModel to be able to test
-ava.todo('.isOnCorrectApproachHeading()');
+ava.todo('.isOnCorrectApproachGroundTrack()');
 
 ava('.removeAircraftFromQueue() removes an aircraft#id from the queue', (t) => {
     const aircraftIdMock = 'aircraft-221';

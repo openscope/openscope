@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A330-900neo",
+    "icao": "A339",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "H",
+    "category": {
+        "srs": 3,
+        "lahso": 8,
+        "recat": "B"
+    },
+    "ceiling": 41450,
+    "rate": {
+        "climb":      2000,
+        "descent":    3000,
+        "accelerate": 6,
+        "decelerate": 3.5
+    },
+    "runway": {
+        "takeoff": 2.800,
+        "landing": 1.800
+    },
+    "speed":{
+        "min":     125,
+        "landing": 130,
+        "cruise":  464,
+        "cruiseM": null,
+        "max":     496,
+        "maxM":    0.86
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

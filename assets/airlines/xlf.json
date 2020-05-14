@@ -1,0 +1,14 @@
+{
+    "icao": "xlf",
+    "name": "XL Airways",
+    "callsign": {
+        "name": "Starway",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A332", 2],
+            ["A333", 1]
+        ]
+    }
+}

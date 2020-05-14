@@ -562,10 +562,10 @@ ava('.conductInstrumentApproach() returns failure message when no runway is prov
 
 ava('.conductInstrumentApproach() returns failure message when assigned altitude is lower than minimum glideslope intercept altitude', (t) => {
     const expectedResult = [false, {
-        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope '
-            + 'intercept altitude, request climb to 3400',
-        say: 'unable ILS one niner left, our assigned altitude is below the minimum '
-            + 'glideslope intercept altitude, request climb to three thousand four hundred'
+        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope ' +
+            'intercept altitude, request climb to 3700',
+        say: 'unable ILS one niner left, our assigned altitude is below the minimum ' +
+            'glideslope intercept altitude, request climb to three thousand seven hundred'
     }];
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
 
@@ -847,8 +847,8 @@ ava('.initiateHoldingPattern() returns error response when specified fix is not 
 ava('.initiateHoldingPattern() returns correct readback when hold implemented successfully', (t) => {
     const pilot = createPilotFixture();
     const expectedResult = [true, {
-        log: 'hold east of KEPEC, right turns, 1min legs',
-        say: 'hold east of kepec, right turns, 1min legs'
+        log: 'hold east of KEPEC on the 087 radial, right turns, 1min legs',
+        say: 'hold east of kepec on the zero eight seven radial, right turns, 1min legs'
     }];
     const result = pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
 

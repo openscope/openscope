@@ -1,0 +1,17 @@
+{
+    "icao": "tno",
+    "name": "AeroUnion",
+    "callsign": {
+        "name": "AeroUnion",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A306", 4],
+            ["B762", 2]
+        ]
+    }
+}

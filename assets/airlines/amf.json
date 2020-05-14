@@ -1,0 +1,19 @@
+{
+    "icao": "amf",
+    "name": "Ameriflight",
+    "callsign": {
+        "name": "Amflight",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B190", 26],
+            ["BE99", 57],
+            ["E120", 12],
+            ["SW4", 47]
+        ]
+    }
+}

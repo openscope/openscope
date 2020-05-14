@@ -8,6 +8,7 @@ import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
 import AirwayModel from './AirwayModel';
 import FixCollection from './FixCollection';
+import HoldCollection from './HoldCollection';
 import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
@@ -27,6 +28,15 @@ class NavigationLibrary {
      */
     constructor() {
         this._airwayCollection = {};
+
+        /**
+         * Collection of all `HoldModel`s for the airport region
+         *
+         * @property holdCollection
+         * @type {HoldCollection}
+         * @default HoldCollection()
+         */
+        this._holdCollection = new HoldCollection();
 
         // /**
         //  *
@@ -131,12 +141,13 @@ class NavigationLibrary {
      */
     init(airportJson) {
         const {
-            airways, fixes, sids, stars
+            airways, fixes, holds, sids, stars
         } = airportJson;
 
         this._initializeReferencePosition(airportJson);
         this._initializeFixCollection(fixes);
         this._initializeAirwayCollection(airways);
+        this._initializeHoldCollection(holds);
         this._initializeProcedureCollection(sids, stars);
         this._initializeSidLines();
         this._initializeStarLines();
@@ -167,6 +178,16 @@ class NavigationLibrary {
      */
     _initializeFixCollection(fixes) {
         FixCollection.addItems(fixes, this._referencePosition);
+    }
+
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeHoldCollection
+     * @param holds {object} - non-procedural holds to add to the collection.
+     */
+    _initializeHoldCollection(holds) {
+        this._holdCollection.populateHolds(holds);
     }
 
     /**
@@ -301,6 +322,7 @@ class NavigationLibrary {
      */
     reset() {
         FixCollection.removeItems();
+        this._holdCollection.reset();
 
         this._airwayCollection = {};
         this._procedureCollection = {};
@@ -393,6 +415,18 @@ class NavigationLibrary {
     //
     //     return collectionName;
     // }
+
+    /**
+     * Facade for `HoldCollection.findHoldParametersByFix`
+     *
+     * @for NavigationLibrary
+     * @method findHoldParametersByFix
+     * @param fixName {string}
+     * @return {object|null}
+     */
+    findHoldParametersByFix(fixName) {
+        return this._holdCollection.findHoldParametersByFix(fixName);
+    }
 
     /**
      * Fascade Method

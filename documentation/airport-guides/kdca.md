@@ -30,7 +30,7 @@ There are no international routes from DCA; the only international flights that 
 The airport is known by many pilots for its River Visual procedure for runway 19 which requires at least 3 statute miles of visibility. It uses the Potomac River and various bridges including the Roosevelt Bridge, Memorial Bridge, Rochambeau Bridge and more.
 
 ### Mount Vernon Area
-The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so [here is a diagram](https://image.prntscr.com/image/fRaW9wieSJ_Ibi9KRix4Kg.png) of the airspace that Mount Vernon owns.
+The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so <a href="https://image.prntscr.com/image/fRaW9wieSJ_Ibi9KRix4Kg.png" target="_blank">here is a diagram</a>] of the airspace that Mount Vernon owns.
 
 ### Instrument Procedures
 ##### Departures
@@ -63,7 +63,7 @@ Potomac Approach (ADW Arrival)
 ```
 
 ### Restricted Airspace
-Here are a few of the most important restricted airspaces within the Mount Vernon area. For details of other restricted airspaces, see [FAA Order JO 7400.8Z](https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7400.8Z_Special_Use_Airspace.pdf)
+Here are a few of the most important restricted airspaces within the Mount Vernon area. For details of other restricted airspaces, see <a href="https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7400.8Z_Special_Use_Airspace.pdf" target="_blank">FAA Order JO 7400.8Z</a>
 
 ##### P-56A, P-56B
 P-56A is the airspace which seeks to protect the National Mall and various other monuments in Washington D.C.
@@ -129,5 +129,5 @@ The videomap contains the following:
 We don't know what all the symbols on the videomap mean, however the map is courtesy of VATSIM's vZDC vSTARS file.
 
 ### Additional Resources
-[vZDC PCT SOP](https://vzdc.org/downloads/PCT_SOP.pdf)  
-[FAA Airport Information](https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=dca)
+<a href="https://vzdc.org/downloads/PCT_SOP.pdf" target="_blank">vZDC PCT SOP</a>
+<a href="https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=dca" target="_blank">FAA Airport Information</a>

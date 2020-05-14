@@ -51,7 +51,7 @@ export default class ModeController {
         /**
          * The current headingeMode
          *
-         * This mode informs what value to use for `aircraft.target.headinge`
+         * This mode informs what value to use for `aircraft.targetHeading`
          *
          *
          * @property headingMode

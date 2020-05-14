@@ -1,0 +1,15 @@
+{
+    "icao": "nje",
+    "name": "NetJets Europe",
+    "callsign": {
+        "name": "Fraction",
+        "callsignFormats": [
+            "###@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["GLF5", 8]
+        ]
+    }
+}

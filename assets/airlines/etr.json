@@ -1,0 +1,25 @@
+{
+    "icao": "etr",
+    "name": "Estelar Latinoamérica",
+    "callsign": {
+        "name": "Estelar",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A343", 1],
+            ["B732", 3],
+            ["B733", 3]
+        ],
+        "short": [
+            ["B732", 3],
+            ["B733", 3]
+        ],
+        "long": [
+            ["A343", 1]
+        ]
+    }
+}

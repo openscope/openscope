@@ -18,7 +18,8 @@ ava('sets #_options on instantiation', (t) => {
         'drawProjectedPaths',
         'softCeiling',
         'mouseClickDrag',
-        'rangeRings'
+        'rangeRings',
+        'measureToolPath'
     ];
 
     const model = new GameOptions();

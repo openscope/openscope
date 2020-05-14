@@ -1,6 +1,6 @@
 ### About this facility
 Henri Coanda International Aiport (LROP / OTP), Otopeni, Bucharest, Romania, EU
-116,718 annual operations in 2017 ([BUCHAREST AIRPORTS](http://www.bucharestairports.ro/files/pages_files/AIHCB_WEBSITE__2016_-_2017__ENGL.pdf))
+116,718 annual operations in 2017 (<a href="http://www.bucharestairports.ro/files/pages_files/AIHCB_WEBSITE__2016_-_2017__ENGL.pdf" target="_blank">BUCHAREST AIRPORTS</a>)
 
 Located at about 7 miles north of Bucharest, the capital of Romania, it is the main international airport in the country. It has become the busiest airport since Baneasa Aurel Vlaicu Airport was converted into a general aviation airport and all low cost operations were moved to Otopeni. Traffic consists of medium aircraft (mostly from A320 and B737 families) with seldom heavy arrivals.
 
@@ -33,4 +33,3 @@ K - west radar 2 - Koman (unavailable)
 Baneasa Aurel Vlaicu International Aiport (less than 100 annual operations)
 
 General aviation airport located less than 5 miles south of LROP, traffic arriving here is usually accomodated according to LROP traffic due to short distance between the 2 airports and LRBS's runway direction 07/25.
-

@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier Global 5000",
+    "icao": "GL5T",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "D"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb": 3000,
+        "descent": 2300,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.689,
+        "landing": 0.814
+    },
+    "speed":{
+        "min": 98,
+        "landing": 122,
+        "cruise": 485,
+        "cruiseM": 0.85,
+        "max": 498,
+        "maxM": null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

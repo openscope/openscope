@@ -11,6 +11,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import MapCollection from './MapCollection';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
@@ -22,6 +23,7 @@ import {
     round
 } from '../math/core';
 import {
+    vectorize_2d,
     vlen,
     vsub,
     vadd,
@@ -31,6 +33,7 @@ import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
+import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -160,13 +163,13 @@ export default class AirportModel {
         this._runwayCollection = null;
 
         /**
-         * Dictionary of polys that make up any airport video maps
+         * Collection of all `MapModel`s available to be displayed on the scope
          *
-         * @property maps
-         * @type {object}
-         * @default {}
+         * @property mapCollection
+         * @type {MapCollection}
+         * @default null
          */
-        this.maps = {};
+        this.mapCollection = null;
 
         /**
          * @property restricted_areas
@@ -368,11 +371,11 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
+        this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
-        this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
     }
@@ -426,41 +429,6 @@ export default class AirportModel {
                 )
             ))
         );
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildAirportMaps
-     * @param maps {object}
-     */
-    buildAirportMaps(maps) {
-        if (!maps) {
-            return;
-        }
-
-        _forEach(maps, (map, key) => {
-            this.maps[key] = [];
-
-            const outputMap = this.maps[key];
-            const lines = map;
-
-            _forEach(lines, (line) => {
-                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
-                const lineStartCoordinates = [line[0], line[1]];
-                const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineStartCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const endPosition = DynamicPositionModel.calculateRelativePosition(
-                    lineEndCoordinates,
-                    ...airportPositionAndDeclination
-                );
-                const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-
-                outputMap.push(lineVerticesRelativePositions);
-            });
-        });
     }
 
     /**
@@ -556,25 +524,25 @@ export default class AirportModel {
     }
 
     /**
+     * Get the wind at the specified altitude.
+     * When the altitude is not specified, the airport's surface wind is given.
+     *
      * @for AirportModel
-     * @method getWind
-     * @return wind {number}
+     * @method getWindAtAltitude
+     * @param {number} altitude
+     * @returns {object<angle, speed>}
      */
-    getWind() {
-        return this.wind;
+    getWindAtAltitude(altitude = this.elevation) {
+        const windTravelSpeedAtSurface = this.wind.speed;
+        const altitudeAboveSurface = altitude - this.elevation;
+        const windIncreaseFactor = altitudeAboveSurface * ENVIRONMENT.WIND_INCREASE_FACTOR_PER_FT;
+        const windTravelSpeedAtAltitude = windTravelSpeedAtSurface * (1 + windIncreaseFactor);
+        const wind = {
+            angle: this.wind.angle,
+            speed: windTravelSpeedAtAltitude
+        };
 
-        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        // const wind = Object.assign({}, this.wind);
-        // let s = 1;
-        // const angle_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // // TODO: why is this var getting reassigned to a magic number?
-        // s = 100;
-        // const speed_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
-        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-        //
-        // return wind;
+        return wind;
     }
 
     /**
@@ -590,6 +558,23 @@ export default class AirportModel {
             cross: sin(crosswindAngle) * this.wind.speed,
             head: cos(crosswindAngle) * this.wind.speed
         };
+    }
+
+    /**
+     * Generates a vector representation of the wind at a given altitude.
+     * When the altitude is not specified, the airport elevation is used as the assumed altitude.
+     *
+     * @for AirportModel
+     * @method getWindVectorAtAltitude
+     * @param {number} altitude
+     * @returns {array<number, number>}
+     */
+    getWindVectorAtAltitude(altitude) {
+        const { angle, speed } = this.getWindAtAltitude(altitude);
+        const windTravelDirection = angle + Math.PI;
+        const windVector = vscale(vectorize_2d(windTravelDirection), speed);
+
+        return windVector;
     }
 
     /**

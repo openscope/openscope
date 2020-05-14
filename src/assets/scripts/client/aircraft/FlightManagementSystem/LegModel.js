@@ -314,6 +314,26 @@ export default class LegModel {
     }
 
     /**
+     * Generate a `WaypointModel` for the specified data
+     *
+     * @for LegModel
+     * @method _generateWaypoint
+     * @param data {string|array<string>}
+     * @returns {WaypointModel}
+     * @private
+     */
+    _generateWaypoint(data) {
+        const waypoint = new WaypointModel(data);
+        const holdParameters = NavigationLibrary.findHoldParametersByFix(waypoint.name);
+
+        if (holdParameters != null) {
+            waypoint.setDefaultHoldParameters(holdParameters);
+        }
+
+        return waypoint;
+    }
+
+    /**
      * Generate an array of `WaypointModel`s an aircraft's FMS will need in order to
      * navigate along this leg instance.
      *
@@ -325,7 +345,7 @@ export default class LegModel {
      */
     _generateWaypointCollection(entryOrFixName, exit) {
         if (this._legType === LEG_TYPE.DIRECT) {
-            return [new WaypointModel(entryOrFixName)];
+            return [this._generateWaypoint(entryOrFixName)];
         }
 
         if (this._legType === LEG_TYPE.AIRWAY) {
@@ -348,8 +368,10 @@ export default class LegModel {
      * @method activateHoldForWaypointName
      * @param waypointName {string} name of waypoint in route
      * @param holdParameters {object}
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
+     * @returns {object} The hold parameters set for the `WaypointModel`
      */
-    activateHoldForWaypointName(waypointName, holdParameters) {
+    activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this.hasWaypointName(waypointName)) {
             return;
         }
@@ -357,7 +379,7 @@ export default class LegModel {
         const waypointIndex = this._findIndexOfWaypointName(waypointName);
         const waypointModel = this._waypointCollection[waypointIndex];
 
-        waypointModel.setHoldParametersAndActivateHold(holdParameters);
+        return waypointModel.setHoldParametersAndActivateHold(holdParameters, fallbackInboundHeading);
     }
 
     /**

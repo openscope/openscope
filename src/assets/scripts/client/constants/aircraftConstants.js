@@ -133,24 +133,6 @@ export const PERFORMANCE = {
      */
     DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING: 3.5,
 
-    /*
-     * Distance from landing threshold at which to establish on final approach speed
-     *
-     * @property LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM
-     * @type {number}
-     * @final
-     */
-    LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM: 1,
-
-    /**
-     * Distance from landing threshold outside of which you must maintain assigned speed
-     *
-     * @property LANDING_ASSIGNED_SPEED_DISTANCE_NM
-     * @type {number}
-     * @final
-     */
-    LANDING_ASSIGNED_SPEED_DISTANCE_NM: 5,
-
     /**
      * Maximum vertical distance between the aircraft and the glidepath to
      * consider the aircraft to be "established on the glidepath"
@@ -193,7 +175,7 @@ export const PERFORMANCE = {
     MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894, // appx. 500 feet
 
     /**
-     * Maximum angular differce from the approach course heading to consider the aircraft close
+     * Maximum angular difference from the approach course heading to consider the aircraft close
      * to be "established on the approach course", which is an important condition for applying
      * rules of separation.
      *
@@ -204,6 +186,16 @@ export const PERFORMANCE = {
     MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0872665, // appx. 5 degrees
 
     /**
+     * Maximum angular difference from the hold outbound heading to consider the aircraft close
+     * to be "established on the hold course".
+     *
+     * @property MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE: 0.0017453, // appx. 0.1 degrees
+
+    /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.
      * Note: Below this altitude, the aircraft is in landing mode
      *
@@ -212,6 +204,18 @@ export const PERFORMANCE = {
      * @final
      */
     INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE: 200,
+
+    /**
+     * Length of time individual aircraft will require themselves to be established at Vref
+     * (their landing speed) before landing. If they cannot reach that speed by that time, they
+     * will not consider themselves on a "stable approach", and will likely go around.
+     *
+     * @memberof PERFORMANCE
+     * @property STABLE_APPROACH_TIME_SECONDS
+     * @type {number}
+     * @final
+     */
+    STABLE_APPROACH_TIME_SECONDS: 60,
 
     /**
      * Altitude above the runway at which aircraft begin their on-course turn, in feet

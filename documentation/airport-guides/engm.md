@@ -45,8 +45,8 @@ Kjeller Airport
 Unknown annual operations  
 14.1nm South of ENGM
 
-Kjeller Airport became the first in Norway when it was established in 1912 to serve the Norwegian Army Air Service. Today it is a small airport used primarily for general aviation and military operations. 
+Kjeller Airport became the first in Norway when it was established in 1912 to serve the Norwegian Army Air Service. Today it is a small airport used primarily for general aviation and military operations.
 
 ### Additional Resources
-[ENGM Charts](https://ais.avinor.no/AIP/Latest/aip/ad/engm/engm_en.html)  
-[VATSIM SOP](http://vatsim-scandinavia.org/wp-content/uploads/2017/01/LOPOsloTMA.pdf)
+<a href="https://ais.avinor.no/AIP/Latest/aip/ad/engm/engm_en.html" target="_blank">ENGM Charts</a>
+<a href="http://vatsim-scandinavia.org/wp-content/uploads/2017/01/LOPOsloTMA.pdf" target="_blank">VATSIM SOP</a>

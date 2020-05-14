@@ -395,13 +395,13 @@ export default class RunwayModel extends BaseModel {
      * Boolean helper used to determine if an aircraftModel is on the correct approach heading.
      *
      * @for RunwayModel
-     * @method isOnCorrectApproachHeading
-     * @param  aircraftheading {number}
+     * @method isOnCorrectApproachGroundTrack
+     * @param  aircraftGroundTrack {number}
      * @return {boolean}
      */
-    isOnCorrectApproachHeading(aircraftheading) {
-        const heading_diff = abs(angle_offset(aircraftheading, this.angle));
+    isOnCorrectApproachGroundTrack(aircraftGroundTrack) {
+        const angle_diff = abs(angle_offset(aircraftGroundTrack, this.angle));
 
-        return heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+        return angle_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
     }
 }

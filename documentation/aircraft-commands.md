@@ -13,7 +13,7 @@
 
 - [Expect Runway](#expect-runway)
 - [Descend via STAR](#descend-via-star)
-- [Land](#land)
+- [ILS](#ils)
 
 [Routing Commands](#routing-commands)
 
@@ -175,15 +175,17 @@ pattern until further notice. The direction (left/right) may be specified,
 as well as the leg length (in minutes), as well as the fix to hold over.
 But you may also omit those specifications, in which case, the aircraft
 will enter a standard holding pattern over their present position (right
-turns, 1 minute legs). To clear the aircraft out of the hold, either
-clear it direct to a fix or assign it a new heading.
+turns, 1 minute legs, using the reciprocal bearing to the fix as the outbound
+radial). To clear the aircraft out of the hold, either clear it direct to
+a fix or assign it a new heading.
 
 _Parameters -_ Specify the direction of turns during the hold with `right`
-or `left`, the leg length, with `[time]min`, and the fix to hold over
-with simply `[fixname]`. Any combination of these arguments provided in
-any order is acceptable, as long as the command `hold` comes first.
+or `left`, the leg length, with `[time]min`, the fix to hold over
+with simply `[fixname]` and the `radial` (a 3-digit course, eg. 001 to 360) which
+defines the outbound leg. Any combination of these arguments provided in any
+order is acceptable, as long as the command `hold` comes first.
 
-_Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
+_Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min [radial]` or `AAL123 hold`
 
 ### Exit Hold
 

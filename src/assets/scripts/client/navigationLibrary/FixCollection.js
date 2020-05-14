@@ -1,10 +1,9 @@
-import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
-import _map from 'lodash/map';
 // TODO: Start using the model source factory again!
 // import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../base/BaseCollection';
+import { distance2d } from '../math/distance';
 import FixModel from './FixModel';
 
 /**
@@ -102,6 +101,28 @@ class FixCollection extends BaseCollection {
     }
 
     /**
+     * Returns the nearest fix to the specified position
+     *
+     * @for FixCollection
+     * @method getNearestFix
+     * @param position {array<number>} These are x, y canvas units (km)
+     * @param hiddenFixes {boolean} A flag indicating whether hidden fixes should be used
+     */
+    getNearestFix(position, hiddenFixes = false) {
+        return this._items.reduce((lastResult, fix) => {
+            let [nearest, distance] = lastResult;
+            const d = distance2d(fix.relativePosition, position);
+
+            if ((fix.isRealFix || hiddenFixes) && d < distance) {
+                nearest = fix;
+                distance = d;
+            }
+
+            return [nearest, distance];
+        }, [null, Infinity]);
+    }
+
+    /**
      * Return the position model for the specified fix, if that fix exists
      *
      * @for FixCollection
@@ -127,13 +148,7 @@ class FixCollection extends BaseCollection {
      * @return {array<FixModel>}
      */
     findRealFixes() {
-        const realFixList = _map(this._items, (item) => {
-            if (item.name.indexOf('_') !== 0) {
-                return item;
-            }
-        });
-
-        return _compact(realFixList);
+        return this._items.filter((fix) => fix.isRealFix);
     }
 
     /**

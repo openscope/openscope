@@ -1,18 +1,16 @@
 {
-    "icao": "adr",
-    "name": "Adria Airways",
+    "icao": "auz",
+    "name": "Amaszonas Uruguay",
     "callsign": {
-        "name": "Adria",
+        "name": "Uruguaya",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A319", 3],
             ["CRJ2", 1],
-            ["CRJ7", 2],
-            ["CRJ9", 6]
+            ["E190", 1]
         ]
     }
 }

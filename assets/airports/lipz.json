@@ -1,0 +1,2623 @@
+{
+    "airac": 2002,
+    "radio": {
+        "twr": "Venezia Tower",
+        "app": "Venezia Radar",
+        "dep": "Venezia Radar"
+    },
+    "icao": "LIPZ",
+    "iata": "VCE",
+    "magnetic_north": 3.0,
+    "ctr_radius": 90,
+    "ctr_ceiling": 12500,
+    "initial_alt": 4000,
+    "position": ["N45d30m19.0", "E012d21m07.0", "7ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N45d30m19.0", "E012d21m07.0"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": true,
+    "wind": {
+        "angle": 50,
+        "speed": 6
+    },
+    "arrivalRunway": "04R",
+    "departureRunway": "04R",
+    "defaultMaps": ["TAXIWAYS", "CENTERLINE", "LIPH", "LIPS", "TRE", "TES", "VIC", "ISA", "CHI", "AVI", "BORDER", "2000FTZONE1", "2000FTZONE2", "2000FTNW", "2000FTNE", "2000FTSE", "4000FTZONE3", "4500FTZONE4", "5000FT", "PADOVA5000FT", "FL90 NORTH-WEST", "FL90 SOUTH-EAST", "5000FT / FL90", "FL100 NORTH-WEST", "FL110 NORTH-EAST", "FL110 NORTH-WEST", "FL120", "FL130 NORTH-WEST", "FL130 SOUTH-WEST", "FL140", "FL160 NORTH-WEST", "FL150", "FL100 NORTH-EAST", "FL100 SOUTH-EAST", "TREVISO ZONA1", "TREVISO ZONA2", "TREVISO ZONA3", "TREVISO ZONA4"],
+    "airspace": [
+        {
+            "floor": 20,
+            "ceiling": 125,
+            "airspace_class": "B",
+            "poly": [
+                ["N45d13m35", "E012d45m14"],
+                ["N45d00m00", "E012d21m22"],
+                ["N44d58m41", "E011d57m07"],
+                ["N44d54m35", "E011d51m59"],
+                ["N45d05m51", "E011d34m03"],
+                ["N45d11m32", "E011d41m08"],
+                ["N45d23m00", "E011d37m50"],
+                ["N45d24m00", "E011d53m18"],
+                ["N45d24m00", "E011d53m19"],
+                ["N45d24m09", "E011d55m43"],
+                ["N45d29m25", "E012d07m46"],
+                ["N45d32m03", "E012d15m39"],
+                ["N45d35m14", "E012d25m13"],
+                ["N45d34m45", "E012d40m38"],
+                ["N45d36m42", "E012d50m00"],
+                ["N45d28m14", "E012d50m00"],
+                ["N45d24m40", "E012d50m00"],
+                ["N45d16m34", "E012d47m47"],
+                [45.26948115708276, 12.79437374408007],
+                [45.26241859924679, 12.79115174728580],
+                [45.25568433341776, 12.78701292691420],
+                [45.24938678708844, 12.78225221752989],
+                [45.24401873063496, 12.77723378330195],
+                [45.23929706527306, 12.77214215505764],
+                [45.23489706349185, 12.76665106585853],
+                [45.23106539456451, 12.76128857028377],
+                [45.22667848079561, 12.75444712938464]
+            ]
+        }
+    ],
+    "fixes": {
+        "_ALBET121021": ["N45d13m50", "E011d56m17"],
+        "_LUMAV215030": ["N45d13m8.79", "E12d01m9.65"],
+        "_OTGIG331012": ["N45d10m29", "E011d58m45"],
+        "_PZ461220004": ["N45d23m41.26", "E12d13m7.87"],
+        "_PZ464358003": ["N45d14m6.26", "E12d16m41.01"],
+        "_PZ467307008": ["N45d21m54.00", "E12d10m59.86"],
+        "_PZ469129007": ["N45d17m41.97", "E012d13m15.90"],
+        "_PZ471120003": ["N45d18m7.29", "E12d25m29.89"],
+        "ABMOG": ["N44d42m52", "E10d58m14"],
+        "ABN"  : [44.05583300, 8.221111000],
+        "ADOSA": [45.64444400, 11.02638900],
+        "AGAVI": [45.18388900, 11.94277800],
+        "AGOMO": [45.01694400, 12.80194400],
+        "AKADO": [45.33333300, 12.50000000],
+        "ALBET": [45.42666700, 11.50916700],
+        "ALESE": [46.27500000, 11.40388900],
+        "AMLON": ["N44d20m21", "E12d52m35"],
+        "ANC"  : [43.58638900, 13.47111100],
+        "ARDAM": [44.79777800, 12.50583300],
+        "ARLUK": [45.72388900, 11.83861100],
+        "ATPED": ["N46d09m15", "E10d25m49"],
+        "BANKO": [45.82000000, 7.054722000],
+        "BARPI": [45.58583300, 13.52277800],
+        "BASOG": [45.13250000, 12.49333300],
+        "BELOV": [44.54250000, 12.71333300],
+        "BETMU": [44.67277800, 10.82222200],
+        "BIKTU": [44.00222200, 11.53916007],
+        "BOA"  : [44.53702800, 11.29066100],
+        "BRENO": [46.98000000, 11.37666700],
+        "BUSER": [44.10666700, 13.64888900],
+        "CHI"  : [45.07122200, 12.28144200],
+        "DIBAX": [46.11638900, 11.06416700],
+        "DIKEM": [46.03972200, 11.39944400],
+        "DITUM": [44.40583300, 12.24722200],
+        "DOGEX": [45.23416700, 12.44555600],
+        "DOLON": [40.88916700, 17.59444400],
+        "EDEMO": ["N45d34m60", "E11d57m08"],
+        "EKPAL": [44.48416700, 10.16250000],
+        "ELTAR": ["N45d38m51", "E10d37m40"],
+        "ERSAB": [45.44305600, 12.55194400],
+        "GARGA": [42.26666700, 16.11666700],
+        "GIKEB": [46.18250000, 11.62083300],
+        "GIPUK": ["N44d35m19", "E11d58m00"],
+        "GOREP": [44.91833300, 12.09972200],
+        "GOXIN": [44.26972200, 11.56444400],
+        "IBTOK": [44.91194400, 10.64972200],
+        "IBUGO": ["N45d38m28", "E11d22m36"],
+        "IDREK": [45.64611100, 10.81944400],
+        "INBUT": [45.41333300, 11.91750000],
+        "INDOD": [45.21944400, 12.38888900],
+        "KALMO": [44.32166700, 9.594167000],
+        "KIZAF": ["N45d19m49", "E12d07m41"],
+        "KOPER": [45.15388900, 11.64138900],
+        "LABIN": [44.98583300, 13.09138900],
+        "LAPAB": ["N45d31m46", "E11d58m18"],
+        "LAREN": [45.27805600, 12.06166700],
+        "LIKNO": ["N43d47m38", "E12d20m54"],
+        "LIPZ" : [45.50527778, 12.35194444],
+        "LISKO": [43.57138900, 14.13222200],
+        "LIZUM": [47.12500000, 11.76000000],
+        "LOBBE": ["N45d19m55", "E12d07m36"],
+        "LOBSI": [44.90500000, 12.17250000],
+        "LUMAV": [44.81444400, 11.61638900],
+        "LURUT": [44.52361100, 10.98333300],
+        "MONFA": ["N45d29m14", "E13d16m45"],
+        "MOVOR": [45.81888900, 10.82388900],
+        "NAKIT": [45.19111111, 13.45750000],
+        "NAXAV": [46.46388900, 11.32222200],
+        "NIMUM": [44.77833300, 11.88333300],
+        "OSBUL": [44.82222200, 10.29333300],
+        "OSTEG": ["N45d10m43", "E11d08m20"],
+        "OTGIG": ["N45d00m00", "E12d07m00"],
+        "PELEG": [44.22777800, 11.73527800],
+        "PUL"  : [45.89250000, 13.91805556],
+        "RESIA": [46.47833300, 10.04333300],
+        "ROKIB": [45.93555600, 11.69222200],
+        "ROSKA": [45.31416700, 12.86166700],
+        "ROTAR": [45.26277800, 12.99555600],
+        "ROVIG": [44.92388900, 11.89750000],
+        "SOVUB": [44.92055600, 12.01888900],
+        "SUKOM": ["N44d33m09", "E11d40m11"],
+        "SUMIR": ["N46d15m32", "E11d21m35"],
+        "SUXAN": [46.56222200, 10.47916700],
+        "TAGIP": ["N45d56m01", "E10d41m24"],
+        "TES"  : [45.51922200, 12.36821700],
+        "TIBRO": [46.21833300, 13.47277800],
+        "TULIK": [45.28388900, 12.78916700],
+        "UMBEK": [45.54444400, 13.41972200],
+        "UNTAD": [46.22000000, 10.84277800],
+        "UPIRO": ["N45d37m33", "E12d44m33"],
+        "UVOKI": [44.51138900, 10.72250000],
+        "VABOK": ["N45d17m37", "E11d16m41"],
+        "VADIK": ["N45d38m24", "E11d28m17"],
+        "VEPAD": [45.10388900, 11.84222200],
+        "VIC"  : [45.63730800, 11.67635300],
+        "VOLET": ["N45d32m16", "E11d47m01"],
+        "PZ401": ["N44d58m37.37", "E012d27m38.39"],
+        "PZ402": ["N45d32m35.85", "E012d24m03.54"],
+        "PZ408": ["N45d07m29.60", "E012d22m39.02"],
+        "PZ416": ["N45d23m07.11", "E012d28m37.93"],
+        "PZ431": ["N45d31m05.19", "E012d29m51.00"],
+        "PZ432": ["N45d27m22.01", "E012d31m17.05"],
+        "PZ433": ["N45d24m27.16", "E012d38m16.50"],
+        "PZ434": ["N45d21m53.05", "E012d44m25.66"],
+        "PZ436": ["N45d20m52.89", "E012d46m49.61"],
+        "PZ437": ["N45d11m22.42", "E012d27m56.13"],
+        "PZ438": ["N45d17m34.37", "E012d17m07.40"],
+        "PZ439": ["N45d25m44.24", "E012d02m46.63"],
+        "PZ441": ["N45d26m06.07", "E012d30m30.26"],
+        "PZ451": ["N45d35m46.72", "E012d19m11.52"],
+        "PZ452": ["N45d32m49.59", "E012d12m17.19"],
+        "PZ453": ["N45d34m15.03", "E012d04m06.86"],
+        "PZ454": ["N45d26m01.65", "E012d34m17.70"],
+        "PZ455": ["N45d26m56.80", "E012d16m36.91"],
+        "PZ461": ["N45d26m43.77", "E012d16m19.88"],
+        "PZ462": ["N45d30m11.53", "E012d06m35.96"],
+        "PZ464": ["N45d11m26.60", "E012d16m50.17"],
+        "PZ466": ["N45d28m48.08", "E012d11m06.67"],
+        "PZ467": ["N45d26m46.25", "E012d01m42.15"],
+        "PZ468": ["N45d24m09.28", "E011d55m43.65"],
+        "PZ469": ["N45d13m17.85", "E012d21m02.87"],
+        "PZ471": ["N45d16m23.27", "E012d29m38.78"],
+        "PZ472": ["N45d12m53.15", "E012d37m22.73"],
+        "PZ473": ["N45d10m57.17", "E012d41m37.91"],
+        "PZ474": ["N45d15m59.68", "E012d44m50.40"],
+        "PZ477": ["N45d35m45.39", "E012d22m54.33"],
+        "PZ481": ["N45d31m22.83", "E012d12m16.50"],
+        "PZ483": ["N45d37m27.42", "E011d54m24.46"],
+        "PZ484": ["N45d34m53.22", "E011d56m10.01"],
+        "PZ485": ["N45d51m37.99", "E011d44m38.69"],
+        "PZ486": ["N45d33m37.17", "E012d25m50.81"],
+        "PZ487": ["N45d36m01.89", "E012d18m26.58"],
+        "PZ488": ["N45d32m14.67", "E012d23m49.31"],
+        "PZ489": ["N45d31m20.57", "E012d32m41.70"],
+        "PZ490": ["N45d27m23.82", "E012d30m33.51"],
+        "PZ491": ["N45d31m00.13", "E012d36m01.12"],
+        "PZ492": ["N45d21m08.92", "E012d27m21.67"],
+        "PZ493": ["N45d28m44.45", "E012d06m12.93"],
+        "PZ494": ["N45d30m39.44", "E012d39m21.83"],
+        "PZ506": ["N45d21m27.71", "E011d34m50.63"],
+        "PZ507": ["N44d59m59.15", "E012d05m40.90"],
+        "PZ508": ["N45d20m15.80", "E011d59m54.60"],
+        "PZ509": ["N45d15m13.62", "E011d53m14.77"],
+        "PZ511": ["N45d18m58.53", "E011d37m25.13"],
+        "PZ512": ["N45d18m09.93", "E011d46m50.63"],
+        "PZ513": ["N45d15m19.14", "E012d18m48.06"],
+        "PZ514": ["N45d06m38.91", "E012d07m52.56"],
+        "PZ601": ["N45d26m30.8", "E012d06m44.3"],
+        "PZ602": ["N45d37m21.1", "E011d56m14.1"],
+        "PZ534": ["N45d22m34.9", "E012d11m12.5"],
+        "PZ610": ["N45d26m40.8", "E012d16m27.2"],
+        "PZ611": ["N45d20m36.6", "E012d18m00.4"],
+        "PZ612": ["N45d25m35.4", "E012d06m27.6"],
+        "PZ613": ["N45d27m55.8", "E012d09m10.3"],
+        "PZ614": ["N45d22m37.6", "E011d57m27.8"],
+        "PZ615": ["N45d27m37.4", "E011d52m04.9"],
+        "PZ655": ["N45d04m03.6", "E012d06m42.4"],
+        "PZ725": ["N45d10m42.8", "E011d56m10.2"],
+        "PZ730": ["N45d06m58.8", "E011d51m28.6"],
+        "PZ735": ["N45d03m14.5", "E011d46m47.7"],
+        "PZ740": ["N45d06m33.3", "E011d41m30.8"],
+        "PZ745": ["N45d10m17.8", "E011d46m11.7"],
+        "PZ750": ["N45d14m02.1", "E011d50m53.2"],
+        "PZ755": ["N45d17m46.2", "E011d55m35.3"],
+        "PZ760": ["N45d21m05.4", "E011d50m17.6"],
+        "PZ768": ["N45d20m33.1", "E011d38m32.4"],
+        "PZ840": ["N44d59m55.4", "E011d52m03.9"],
+        "PZ845": ["N45d03m39.5", "E011d56m44.9"],
+        "PZ850": ["N45d07m23.3", "E012d01m26.6"],
+        "PZ855": ["N45d11m07.0", "E012d06m08.9"],
+        "PZ862": ["N45d11m37.3", "E012d15m36.6"]
+    },
+    "restricted": [
+        {
+            "name": "R91-B",
+            "height": "3500ft",
+            "coordinates": [
+                ["N45d23m00.0", "E011d37m50.0"],
+                ["N45d23m54.0", "E011d51m54.0"],
+                ["N45d18m43.0", "E011d43m03.0"],
+                ["N45d18m12.0", "E011d39m13.0"]
+            ]
+        },
+        {
+            "name": "R91-C",
+            "height": "3000ft",
+            "coordinates": [
+                ["N45d23m54", "E011d51m54"],
+                ["N45d22m11", "E011d52m25"],
+                ["N45d11m52", "E011d41m02"],
+                ["N45d18m12", "E011d39m13"],
+                ["N45d18m43", "E011d43m03"]
+            ]
+        }
+    ],
+    "runways": [
+        {
+            "name": ["04L", "22R"],
+            "end": [
+                ["N45d29m43.56", "E012d20m09.29", "143.1ft"],
+                ["N45d30m49.34", "E012d21m33.86", "143.3ft"]
+            ],
+            "ils": [false, false]
+        },
+        {
+            "name": ["04R", "22L"],
+            "end": [
+                ["N45d29m38.86", "E012d20m15.79", "143.3ft"],
+                ["N45d30m58.16", "E012d21m57.77", "143.0ft"]
+            ],
+            "ils": [true, false]
+        }
+    ],
+    "airways": {
+        "T132": ["UPIRO", "ROSKA", "ROTAR"],
+        "P131": ["RESIA", "ATPED", "TAGIP", "MOVOR", "ADOSA", "VABOK", "LUMAV", "LIKNO"],
+        "L612": ["ADOSA", "ALBET", "CHI", "ARDAM", "BELOV", "AMLON"],
+        "L614": ["PUL", "LABIN", "AGOMO", "CHI", "KOPER", "OSTEG"],
+        "L615": ["ELTAR", "IDREK", "ADOSA", "IBUGO", "VADIK", "VIC", "LAPAB", "AKADO", "TULIK", "ROTAR"],
+        "M726": ["NAXAV", "SUMIR", "DIKEM", "VADIK", "ALBET", "LUMAV", "SUKOM", "PELEG"],
+        "Z71": ["TULIK", "BASOG", "OTGIG"],
+        "M859": ["BARPI", "UMBEK", "MONFA", "ROSKA", "TULIK", "CHI", "ROVIG", "LUMAV"],
+        "N503": ["ROKIB", "VIC", "INBUT", "LAREN", "CHI", "LOBSI", "GIPUK", "PELEG", "BIKTU"],
+        "Z388": ["CHI", "ABMOG", "BETMU", "EKPAL", "KALMO"],
+        "Z43": ["CHI", "OTGIG", "SOVUB", "NIMUM", "GOXIN"],
+        "Z456": ["OTGIG", "LOBSI", "ARDAM"],
+        "Z905": ["DIKEM", "VIC", "LOBSI"],
+        "Z906": ["NAXAV", "ROKIB", "LAPAB", "CHI", "LISKO"]
+    },
+    "sids": {
+        "AKADO5L": {
+            "icao": "AKADO5L",
+            "name": "AKADO Five Lima",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "A07+|S200-"], ["PZ489", "A34+|S200-"], ["AKADO", "A100+"]],
+            "exitPoints": {
+                "AKADO": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "AKADO"]
+            ]
+        },
+        "BASOG6V": {
+            "icao": "BASOG6V",
+            "name": "Basog Six Victor",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["PZ461", "A15+"], ["_PZ461220004", "A30+"], "_PZ469129007", ["PZ469", "A90+"], "BASOG"],
+            "exitPoints": {
+                "BASOG": []
+            },
+            "draw": [
+                ["PZ461", "_PZ461220004", "PZ469", "BASOG"]
+            ]
+        },
+        "BELOV7V": {
+            "icao": "BELOV7V",
+            "name": "Belov Seven Victor",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", ["PZ432", "A48+"], ["PZ436", "A110+"], "PZ408", ["PZ401", "A250+"], "BELOV"],
+            "exitPoints": {
+                "BELOV": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ436", "PZ408", "PZ401", "BELOV"]
+            ]
+        },
+        "CHI5L": {
+            "icao": "CHI5L",
+            "name": "Chioggia Five Lima",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "A07+|S200-"], ["PZ489", "A34+|S200-"], "AKADO", ["CHI", "A60+"]],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "AKADO", "CHI"]
+            ]
+        },
+        "CHI5Q": {
+            "icao": "CHI5Q",
+            "name": "Chioggia Five Quebec",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["PZ610", ["PZ534", "A40+|S210-"], ["PZ612", "S210-"], ["PZ613", "S210-"], ["PZ488", "A90+"], "PZ489", "AKADO", "CHI"],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ610", "PZ534", "PZ612", "PZ613", "PZ488", "PZ489", "AKADO", "CHI"]
+            ]
+        },
+        "CHI5R": {
+            "icao": "CHI5R",
+            "name": "Chioggia Five Romeo",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["PZ610", ["PZ611", "A40+"], ["CHI", "A60+"]],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ610", "PZ611", "CHI"]
+            ]
+        },
+        "CHI7V": {
+            "icao": "CHI7V",
+            "name": "Chioggia Seven Victor",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", ["PZ432", "A40+"], "PZ416", ["CHI", "A60+"]],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ416", "CHI"]
+            ]
+        },
+        "CHI8D": {
+            "icao": "CHI8D",
+            "name": "Chioggia Eight Delta",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["PZ461", "A15+"], ["_PZ461220004", "A30+"], "_PZ464358003", "PZ464", ["CHI", "A60+"]],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ461", "_PZ461220004", "_PZ464358003", "PZ464", "CHI"]
+            ]
+        },
+        "CHI8Y": {
+            "icao": "CHI8Y",
+            "name": "Chioggia Eight Yankee",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", "PZ432", ["PZ454", "A50+"], "PZ433", ["CHI", "A60+"]],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ454", "PZ433", "CHI"]
+            ]
+        },
+        "CHI8Z": {
+            "icao": "CHI8Z",
+            "name": "Chioggia Eight Zulu",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", "PZ432", ["PZ454", "A50+"], "PZ434", ["CHI", "A60+"]],
+            "exitPoints": {
+                "CHI": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ454", "PZ434", "CHI"]
+            ]
+        },
+        "LUMAV6V": {
+            "icao": "LUMAV6V",
+            "name": "Lumav Six Victor",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["LAREN", "A90+"], "_LUMAV215030", ["LUMAV", "A110+"]],
+            "exitPoints": {
+                "LUMAV": []
+            },
+            "draw": [
+                ["LAREN", "_LUMAV215030", "LUMAV"]
+            ]
+        },
+        "ROKIB5L": {
+            "icao": "ROKIB5L",
+            "name": "ROKIB Five Lima",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "S200-"], ["PZ489", "A34+|S200-"], ["PZ490", "A40+|S220-"], ["PZ601", "A90+"], ["ARLUK", "A110+"], ["^PZ485", "A130+"], ["ROKIB", "A140+"]],
+            "exitPoints": {
+                "ROKIB": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "PZ490", "PZ601", "ARLUK", "PZ485", "ROKIB"]
+            ]
+        },
+        "ROKIB5M": {
+            "icao": "ROKIB5M",
+            "name": "ROKIB Five Mike",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ486", "A16+|S200-"], ["PZ477", "A25+|S200-"], "PZ602", ["ARLUK", "A110+"], ["^PZ485", "A130+"], ["ROKIB", "A140+"]],
+            "exitPoints": {
+                "ROKIB": []
+            },
+            "draw": [
+                ["PZ486", "PZ477", "PZ602", "ARLUK", "PZ485", "ROKIB"]
+            ]
+        },
+        "ROKIB5Q": {
+            "icao": "ROKIB5Q",
+            "name": "Rokib Five Quebec",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["PZ610", ["PZ534", "A40+|S210-"], ["PZ612", "S210-"], ["PZ614", "A90+"], "PZ615", ["ARLUK", "A110+"], ["^PZ485", "A130+"], ["ROKIB", "A140+"]],
+            "exitPoints": {
+                "ROKIB": []
+            },
+            "draw": [
+                ["PZ610", "PZ534", "PZ612", "PZ614", "PZ615", "ARLUK", "PZ485", "ROKIB"]
+            ]
+        },
+        "ROKIB5V": {
+            "icao": "ROKIB5V",
+            "name": "Rokib Five Victor",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["_PZ467307008", ["PZ467", "A100+"], ["ARLUK", "A110+"], ["^PZ485", "A130+"], ["ROKIB", "A140+"]],
+            "exitPoints": {
+                "ROKIB": []
+            },
+            "draw": [
+                ["PZ467", "ARLUK", "PZ485", "ROKIB"]
+            ]
+        },
+        "ROKIB5W": {
+            "icao": "ROKIB5W",
+            "name": "Rokib Five Whiskey",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", "PZ432", ["PZ454", "A50+"], "PZ434", "PZ437", ["PZ438", "A105+"], ["PZ439", "A140+"], "ROKIB"],
+            "exitPoints": {
+                "ROKIB": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ454", "PZ434", "PZ437", "PZ438", "PZ439", "ROKIB"]
+            ]
+        },
+        "ROKIB7X": {
+            "icao": "ROKIB7X",
+            "name": "Rokib Seven X-Ray",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "A07+|S200-"], ["PZ489", "A34+|S200-"], ["PZ490", "A40+|S200-"], ["PZ481", "A100+"], "PZ484", ["ARLUK",  "A110+"], ["^PZ485", "A130+"], ["ROKIB", "A140+"]],
+            "exitPoints": {
+                "ROKIB": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "PZ490", "PZ481", "PZ484", "ARLUK", "PZ485", "ROKIB"]
+            ]
+        },
+        "ROSKA5L": {
+            "icao": "ROSKA5L",
+            "name": "Roska Five Lima",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "A07+|S200-"], ["PZ489", "A34+|S200-"], ["ROSKA", "A90+"]],
+            "exitPoints": {
+                "ROSKA": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "ROSKA"]
+            ]
+        },
+        "ROSKA5Q": {
+            "icao": "ROSKA5Q",
+            "name": "Roska Five Quebec",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["PZ610", ["PZ534", "A40+|S210-"], ["PZ612", "S210-"], ["PZ613", "S210-"], ["PZ488", "A90+"], "PZ489", "ROSKA"],
+            "exitPoints": {
+                "ROSKA": []
+            },
+            "draw": [
+                ["PZ610", "PZ534", "PZ612", "PZ613", "PZ488", "PZ489", "ROSKA"]
+            ]
+        },
+        "ROSKA5R": {
+            "icao": "ROSKA5R",
+            "name": "Roska Five Romeo",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["PZ610", ["PZ611", "A40+"], ["AKADO", "A60+"], ["ROSKA", "A90+"]],
+            "exitPoints": {
+                "ROSKA": []
+            },
+            "draw": [
+                ["PZ610", "PZ611", "AKADO", "ROSKA"]
+            ]
+        },
+        "ROSKA7V": {
+            "icao": "ROSKA7V",
+            "name": "Roska Seven Victor",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", "PZ432", ["PZ454", "A50+"], ["ROSKA", "A85+"]],
+            "exitPoints": {
+                "ROSKA": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ454", "ROSKA"]
+            ]
+        },
+        "ROSKA8D": {
+            "icao": "ROSKA8D",
+            "name": "Roska Eight Delta",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["PZ461", "A15+"], ["_PZ461220004", "A30+"], "_PZ471120003", ["PZ471", "A50+"], "PZ472", ["PZ474", "A110+"], "ROSKA"],
+            "exitPoints": {
+                "ROSKA": []
+            },
+            "draw": [
+                ["PZ461", "_PZ461220004", "PZ471", "PZ472", "PZ474", "ROSKA"]
+            ]
+        },
+        "ROTAR8V": {
+            "icao": "ROTAR8V",
+            "name": "Rotar Eight Victor",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", "PZ432", ["PZ454", "A50+"], ["ROTAR",  "A60+"]],
+            "exitPoints": {
+                "ROTAR": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ454", "ROTAR"]
+            ]
+        },
+        "ROTAR9D": {
+            "icao": "ROTAR9D",
+            "name": "Rotar Niner Delta",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["PZ461", "A15+"], ["_PZ461220004", "A30+"], "_PZ471120003", ["PZ471", "A50+"], ["PZ473", "A90+"], "ROTAR"],
+            "exitPoints": {
+                "ROTAR": []
+            },
+            "draw": [
+                ["PZ461", "_PZ461220004", "PZ471", "PZ473", "ROTAR"]
+            ]
+        },
+        "VIC5D": {
+            "icao": "VIC5D",
+            "name": "Vicenza Five Delta",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["^PZ461", "A15+"], ["PZ466", "S220-"], ["PZ462", "A50+"], ["VIC", "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ461", "PZ466", "PZ462", "VIC"]
+            ]
+        },
+        "VIC5L": {
+            "icao": "VIC5L",
+            "name": "Vicenza Five Lima",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "A07+|S200-"], ["PZ489", "A34+|S200-"], ["PZ490", "A40+|S220-"], ["PZ601", "A90+"], ["VIC", "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "PZ490", "PZ601", "VIC"]
+            ]
+        },
+        "VIC5M": {
+            "icao": "VIC5M",
+            "name": "Vicenza Five Mike",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ486", "A16+|S200-"], ["PZ477", "A25+|S200-"], ["VIC", "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ486", "PZ477", "VIC"]
+            ]
+        },
+        "VIC5Q": {
+            "icao": "VIC5Q",
+            "name": "Vicenza Five Quebec",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": ["PZ610", ["PZ534", "A40+|S210-"], ["PZ612", "S210-"], ["PZ614", "A90+"], "PZ615", ["VIC", "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ610", "PZ534", "PZ612", "PZ614", "PZ615", "VIC"]
+            ]
+        },
+        "VIC7V": {
+            "icao": "VIC7V",
+            "name": "Vicenza Seven Victor",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ451", "PZ452", ["PZ453", "A50+"], ["VIC",  "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ402", "PZ451", "PZ452", "PZ453", "VIC"]
+            ]
+        },
+        "VIC7W": {
+            "icao": "VIC7W",
+            "name": "Vicenza Seven Whiskey",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", "PZ432", ["PZ454", "A50+"], "PZ434", "PZ437", ["PZ438", "A105+"], ["PZ439", "A140+"], "VIC"],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ454", "PZ434", "PZ437", "PZ438", "PZ439", "VIC"]
+            ]
+        },
+        "VIC7X": {
+            "icao": "VIC7X",
+            "name": "Vicenza Seven X-Ray",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["PZ488", "A07+|S200-"], ["PZ489", "A34+|S200-"], ["PZ490", "A40+|S200-"], ["PZ481", "A100+"], ["VIC", "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ488", "PZ489", "PZ490", "PZ481", "VIC"]
+            ]
+        },    
+        "VIC9E": {
+            "icao": "VIC9E",
+            "name": "Vicenza Niner Echo",
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "body": [["LAREN", "A90+"], ["PZ468", "A100+"], ["VIC", "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["LAREN", "PZ468", "VIC"]
+            ]
+        },
+        "VIC9Y": {
+            "icao": "VIC9Y",
+            "name": "Vicenza Niner Yankee",
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "body": [["^PZ402", "A10+|S230-"], "PZ431", ["PZ432", "A40+"], "PZ416", ["PZ455", "A60+"], ["VIC",  "A120+"]],
+            "exitPoints": {
+                "VIC": []
+            },
+            "draw": [
+                ["PZ402", "PZ431", "PZ432", "PZ416", "PZ455", "VIC"]
+            ]
+        }
+    },
+    "stars": {
+        "ALBET1E": {
+            "icao": "ALBET1E",
+            "name": "Albet One Echo",
+            "entryPoints": {
+                "ALBET": [["ALBET", "A100+|A130-|S270-"]]
+            },
+            "body": [["PZ768", "A90+"], ["PZ760", "A90+"], ["PZ755", "A60+|A90-|S230-"], ["PZ750", "A60+|A90-|S230-"], ["PZ745", "A60+|A90-|S230-"], ["PZ740", "A60+|A90-|S210-"], ["PZ735", "A50+|S210-"], ["PZ730", "A50+|S210-"], ["PZ725", "A40+|S210-"], ["LAREN", "A40+|S210"]],
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "draw": [
+                ["ALBET", "PZ768", "PZ760", "PZ755", "PZ750", "PZ745", "PZ740", "PZ735", "PZ730", "PZ725", "LAREN"]
+            ]
+        },
+        "ALBET1P": {
+            "icao": "ALBET1P",
+            "name": "Albet One Papa",
+            "entryPoints": {
+                "ALBET": [["ALBET", "A50+"]]
+            },
+            "body": [["^_ALBET121021", "A50+"], ["LAREN", "A40+"]],
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "draw": [
+                ["ALBET", "_ALBET121021", "LAREN"]
+            ]
+        },
+        "ALBET1R": {
+            "icao": "ALBET1R",
+            "name": "Albet One Romeo",
+            "entryPoints": {
+                "ALBET": [["ALBET", "A50+"]]
+            },
+            "body": [["CHI", "A50+"], ["INDOD", "A50+"], ["ERSAB", "A50+"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["ALBET", "CHI", "INDOD", "ERSAB"]
+            ]
+        },
+        "BASOG1E": {
+            "icao": "BASOG1E",
+            "name": "Basog One Echo",
+            "entryPoints": {
+                "BASOG": [["BASOG", "A100+|A120-|S270-"]]
+            },
+            "body": [["PZ862", "A60+"], ["PZ855", "A60+|A90-|S230-"], ["PZ850", "A60+|A90-|S230-"], ["PZ845", "A60+|A90-|S230-"], ["PZ840", "A60+|A90-|S210-"], ["PZ735", "A50+|S210-"], ["PZ730", "A50+|S210-"], ["PZ725", "A40+|S210-"], ["LAREN", "A40+|S210"]],
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "draw": [
+                ["BASOG", "PZ862", "PZ855", "PZ850", "PZ845", "PZ840", "PZ735", "PZ730", "PZ725", "LAREN"]
+            ]
+        },
+        "BASOG1F": {
+            "icao": "BASOG1F",
+            "name": "Basog One Foxtrot",
+            "entryPoints": {
+                "BASOG": [["BASOG", "A100+|A120-|S270-"]]
+            },
+            "body": [["ERSAB", "A50+|S210"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["BASOG", "ERSAB"]
+            ]
+        },
+        "BASOG1P": {
+            "icao": "BASOG1P",
+            "name": "Basog One Papa",
+            "entryPoints": {
+                "BASOG": [["BASOG", "A50+"]]
+            },
+            "body": [["CHI", "A50+"], ["LAREN", "A40+"]],
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "draw": [
+                ["BASOG", "CHI", "LAREN"]
+            ]
+        },
+        "CHI2W": {
+            "icao": "CHI2W",
+            "name": "Chioggia Two Whiskey",
+            "entryPoints": {
+                "CHI": [["CHI", "A50+"]]
+            },
+            "body": [["INDOD", "A50+"], ["ERSAB", "A50+"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["CHI", "INDOD", "ERSAB"]
+            ]
+        },
+        "INDOD1W": {
+            "icao": "INDOD1W",
+            "name": "Indod One Whiskey",
+            "entryPoints": {
+                "INDOD": [["INDOD", "A40+"]]
+            },
+            "body": [["ERSAB", "A40+"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["INDOD", "ERSAB"]
+            ]
+        },
+        "OTGIG1E": {
+            "icao": "OTGIG1E",
+            "name": "Otgig One Echo",
+            "entryPoints": {
+                "OTGIG": [["OTGIG", "A90+|A110-|S270-"]]
+            },
+            "body": [["PZ655", "A60+|S230-"], ["PZ850", "A60+|A90-|S230-"], ["PZ845", "A60+|A90-|S230-"], ["PZ840", "A60+|A90-|S210-"], ["PZ735", "A50+|S210-"], ["PZ730", "A50+|S210-"], ["PZ725", "A40+|S210-"], ["LAREN", "A40+|S210"]],
+            "rwy": {
+                "LIPZ04L": [],
+                "LIPZ04R": []
+            },
+            "draw": [
+                ["OTGIG", "PZ655", "PZ850", "PZ845", "PZ840", "PZ735", "PZ730", "PZ725", "LAREN"]
+            ]
+        },
+        "OTGIG1F": {
+            "icao": "OTGIG1F",
+            "name": "Otgig One Foxtrot",
+            "entryPoints": {
+                "OTGIG": [["OTGIG", "A90+|A110-|S270-"]]
+            },
+            "body": [["ERSAB", "A50+|S210"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["OTGIG", "ERSAB"]
+            ]
+        },
+        "OTGIG1P": {
+            "icao": "OTGIG1P",
+            "name": "Otgig One Papa",
+            "entryPoints": {
+                "OTGIG": [["OTGIG", "A50+"]]
+            },
+            "body": [["^_OTGIG331012", "A50+"], ["LAREN", "A40+"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["OTGIG", "_OTGIG331012", "LAREN"]
+            ]
+        },
+        "OTGIG1R": {
+            "icao": "OTGIG1R",
+            "name": "Otgig One Romeo",
+            "entryPoints": {
+                "OTGIG": [["OTGIG", "A50+"]]
+            },
+            "body": [["CHI", "A50+"], ["INDOD", "A50+"], ["ERSAB", "A50+"]],
+            "rwy": {
+                "LIPZ22L": [],
+                "LIPZ22R": []
+            },
+            "draw": [
+                ["OTGIG", "CHI", "INDOD", "ERSAB"]
+            ]
+        }        
+    },
+    "spawnPatterns": [
+        {
+            "origin": "",
+            "destination": "LIPZ",
+            "category": "arrival",
+            "route": "RESIA.P131.ADOSA.L612.ALBET.ALBET1E.LIPZ04R",
+            "altitude": [6000, 8000],
+            "speed": 250,
+            "method": "random",
+            "rate": 10,
+            "airlines": [
+                ["aal/long", 6],
+                ["afr/short", 18],
+                ["baw/short", 17],
+                ["dal/long", 6],
+                ["dla", 12],
+                ["dlh/cityline", 16],
+                ["ewg", 16],
+                ["exs", 3],
+                ["ezy", 46],
+                ["klm/embraers", 5],
+                ["klm/short", 6],
+                ["ryr", 11],
+                ["swr/a320", 9],
+                ["tra", 1],
+                ["vlg", 2],
+                ["voe", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LIPZ",
+            "category": "arrival",
+            "route": "BIKTU.N503.LOBSI.Z456.OTGIG.OTGIG1E.LIPZ04R",
+            "altitude": [11000, 6000],
+            "speed": 240,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aee", 3],
+                ["aza", 20],
+                ["ctn", 1],
+                ["ezy", 37],
+                ["hop", 3],
+                ["ram", 1],
+                ["ryr", 4],
+                ["tap", 5],
+                ["vlg", 10],
+                ["voe", 37]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LIPZ",
+            "category": "arrival",
+            "route": "BARPI.M859.TULIK.Z71.BASOG.BASOG1E.LIPZ04R",
+            "altitude": [12000, 6000],
+            "speed": 280,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aar/long", 1],
+                ["afl/b738", 6],
+                ["asl", 2],
+                ["aua", 12],
+                ["ely", 2],
+                ["ezy", 9],
+                ["fin", 2],
+                ["lot", 5],
+                ["pgt", 2],
+                ["qtr/long", 3],
+                ["svr", 1],
+                ["tar", 1],
+                ["thy", 9],
+                ["uae", 3],
+                ["voe", 14]
+            ]
+        },
+        {
+            "origin": "LIPZ",
+            "destination": "",
+            "category": "departure",
+            "route": "LIPZ04R.VIC5L.VIC.L615.ADOSA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.2,
+            "airlines": [
+                ["baw/short", 20],
+                ["dal/long", 3],
+                ["ezy", 16],
+                ["tra", 1],
+                ["ual/long", 3],
+                ["voe", 2]
+            ]
+        },
+        {
+            "origin": "LIPZ",
+            "destination": "",
+            "category": "departure",
+            "route": "LIPZ04R.ROKIB5L.ROKIB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 7.4,
+            "airlines": [
+                ["aal/long", 3],
+                ["bel", 5],
+                ["bti", 2],
+                ["dla", 13],
+                ["dlh/cityline", 17],
+                ["ewg", 16],
+                ["ezy", 18],
+                ["fin", 2],
+                ["klm/embraers", 5],
+                ["klm/short", 6],
+                ["lgl", 2],
+                ["nax", 2],
+                ["ryr", 12],
+                ["swr/a320", 9],
+                ["sxs", 2]
+            ]
+        },
+        {
+            "origin": "LIPZ",
+            "destination": "",
+            "category": "departure",
+            "route": "LIPZ04R.ROSKA5L.ROSKA.T132.ROTAR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.4,
+            "airlines": [
+                ["asl", 2],
+                ["ely", 2],
+                ["ezy", 14],
+                ["pgt", 2],
+                ["qtr/long", 3],
+                ["uae", 3],
+                ["voe", 18],
+                ["aea/short", 7],
+                ["ibe", 11],
+                ["tap", 5],
+                ["thy", 9],
+                ["vlg", 10]
+            ]
+        },
+        {
+            "origin": "LIPZ",
+            "destination": "",
+            "category": "departure",
+            "route": "LIPZ04R.CHI5L.CHI.L612.BELOV",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.4,
+            "airlines": [
+                ["aea/short", 7],
+                ["ezy", 2],
+                ["ibe", 11],
+                ["tap", 5],
+                ["thy", 9],
+                ["vlg", 10],
+                ["voe", 3]
+            ]
+        }
+    ],
+    "maps": [
+        {
+            "name": "TAXIWAYS",
+            "lines":[
+                ["45.493728449296330", "12.337174415588377", "45.516526832172510", "12.366507053375244"],
+                ["45.515842714313310", "12.365621924400328", "45.516000588403614", "12.365664839744568"],
+                ["45.516000588403614", "12.365664839744568", "45.516139667592410", "12.365627288818360"],
+                ["45.516139667592410", "12.365627288818360", "45.516271228670846", "12.365503907203674"],
+                ["45.516271228670846", "12.365503907203674", "45.516335129655110", "12.365294694900513"],
+                ["45.516335129655110", "12.365294694900513", "45.516327611896024", "12.365031838417053"],
+                ["45.516327611896024", "12.365031838417053", "45.516256193134600", "12.364854812622070"],
+                ["45.516256193134600", "12.364854812622070", "45.516045695205214", "12.364565134048462"],
+                ["45.516045695205214", "12.364565134048462", "45.515880303422590", "12.364452481269836"],
+                ["45.515880303422590", "12.364452481269836", "45.515726187914920", "12.364382743835450"],
+                ["45.515726187914920", "12.364382743835450", "45.515542000535020", "12.364372014999390"],
+                ["45.515542000535020", "12.364372014999390", "45.515365330440915", "12.364388108253477"],
+                ["45.515365330440915", "12.364388108253477", "45.515248803053986", "12.364393472671509"],
+                ["45.515248803053986", "12.364393472671509", "45.515113480624464", "12.364388108253477"],
+                ["45.515113480624464", "12.364388108253477", "45.514936809185010", "12.364355921745300"],
+                ["45.514936809185010", "12.364355921745300", "45.514793968041270", "12.364270091056824"],
+                ["45.512493423890156", "12.361314296722412", "45.512433277683560", "12.361046075820923"],
+                ["45.512433277683560", "12.361046075820923", "45.512433277683560", "12.360820770263672"],
+                ["45.512433277683560", "12.360820770263672", "45.512485905617830", "12.360568642616272"],
+                ["45.512485905617830", "12.360568642616272", "45.512594920467990", "12.360391616821289"],
+                ["45.512594920467990", "12.360391616821289", "45.513200137002670", "12.359420657157898"],
+                ["45.513200137002670", "12.359420657157898", "45.513260282389730", "12.359259724617004"],
+                ["45.513260282389730", "12.359259724617004", "45.513271559642620", "12.359050512313843"],
+                ["45.513271559642620", "12.359050512313843", "45.513241486963160", "12.358884215354920"],
+                ["45.513241486963160", "12.358884215354920", "45.513162546103125", "12.358707189559937"],
+                ["45.512572365688740", "12.360423803329468", "45.512452073380025", "12.360514998435974"],
+                ["45.512452073380025", "12.360514998435974", "45.512343058253150", "12.360574007034302"],
+                ["45.512343058253150", "12.360574007034302", "45.512177655588450", "12.360579371452332"],
+                ["45.512177655588450", "12.360579371452332", "45.512053603270940", "12.360568642616272"],
+                ["45.512053603270940", "12.360568642616272", "45.511895718107730", "12.360514998435974"],
+                ["45.511895718107730", "12.360514998435974", "45.511831812082406", "12.360461354255676"],
+                ["45.494976884633520", "12.335339784622192", "45.516947823644310", "12.363524436950682"],
+                ["45.513444477237680", "12.359039783477783", "45.513538453968650", "12.359098792076110"],
+                ["45.513538453968650", "12.359098792076110", "45.513636189602420", "12.359066605567932"],
+                ["45.513636189602420", "12.359066605567932", "45.513707611688980", "12.359018325805664"],
+                ["45.513707611688980", "12.359018325805664", "45.513782792734794", "12.358862757682800"],
+                ["45.513782792734794", "12.358862757682800", "45.513782792734794", "12.358734011650085"],
+                ["45.513782792734794", "12.358734011650085", "45.513760238431580", "12.358610630035400"],
+                ["45.513760238431580", "12.358610630035400", "45.513707611688980", "12.358524799346924"],
+                ["45.513707611688980", "12.358524799346924", "45.513376813894180", "12.358106374740600"],
+                ["45.513376813894180", "12.358106374740600", "45.513271559642620", "12.358042001724243"],
+                ["45.513271559642620", "12.358042001724243", "45.513170064285050", "12.358025908470154"],
+                ["45.513170064285050", "12.358025908470154", "45.513046014154995", "12.358031272888184"],
+                ["45.513046014154995", "12.358031272888184", "45.512937000178624", "12.358031272888184"],
+                ["45.512937000178624", "12.358031272888184", "45.512816708649270", "12.358025908470154"],
+                ["45.512816708649270", "12.358025908470154", "45.512696416862820", "12.358025908470154"],
+                ["45.512696416862820", "12.358025908470154", "45.512617475238210", "12.357966899871826"],
+                ["45.498992747944020", "12.338483333587646", "45.495307790564716", "12.337367534637451"],
+                ["45.495307790564716", "12.337367534637451", "45.495097214288040", "12.337351441383362"],
+                ["45.495097214288040", "12.337351441383362", "45.494924240328840", "12.337458729743958"],
+                ["45.494924240328840", "12.337458729743958", "45.494777588077696", "12.337592840194702"],
+                ["45.494777588077696", "12.337592840194702", "45.494702381646900", "12.337748408317564"],
+                ["45.494702381646900", "12.337748408317564", "45.494645976757920", "12.337914705276487"],
+                ["45.494645976757920", "12.337914705276487", "45.494630935444650", "12.338150739669800"],
+                ["45.494630935444650", "12.338150739669800", "45.494694860998320", "12.338408231735228"],
+                ["45.494593332143886", "12.338284850120543", "45.494548208149840", "12.338086366653442"],
+                ["45.494548208149840", "12.338086366653442", "45.494589571812405", "12.336911559104920"],
+                ["45.494589571812405", "12.336911559104920", "45.494630935444650", "12.336745262145996"],
+                ["45.494630935444650", "12.336745262145996", "45.495285228858440", "12.335747480392456"],
+                ["45.495285228858440", "12.335747480392456", "45.495604852187530", "12.335264682769775"],
+                ["45.495604852187530", "12.335264682769775", "45.495770303551180", "12.335146665573120"],
+                ["45.495770303551180", "12.335146665573120", "45.495909432730730", "12.335141301155090"],
+                ["45.495909432730730", "12.335141301155090", "45.496056082034336", "12.335205674171448"],
+                ["45.496056082034336", "12.335205674171448", "45.496157608251580", "12.335318326950073"],
+                ["45.496157608251580", "12.335318326950073", "45.496834445022060", "12.336155176162720"],
+                ["45.496834445022060", "12.336155176162720", "45.496920929134350", "12.336439490318298"],
+                ["45.496920929134350", "12.336439490318298", "45.497056295304330", "12.337276339530945"],
+                ["45.497056295304330", "12.337276339530945", "45.497165340037920", "12.337448000907898"],
+                ["45.497165340037920", "12.337448000907898", "45.497680479544960", "12.338081002235410"],
+                ["45.497063815637560", "12.337265610694885", "45.497146539236844", "12.337726950645447"],
+                ["45.497146539236844", "12.337726950645447", "45.497233022869814", "12.337989807128906"],
+                ["45.497233022869814", "12.337989807128906", "45.497492472971715", "12.338558435440063"],
+                ["45.495604852187530", "12.335259318351746", "45.495499564703040", "12.335447072982786"],
+                ["45.495499564703040", "12.335447072982786", "45.495477003073610", "12.335608005523682"],
+                ["45.495477003073610", "12.335608005523682", "45.495477003073610", "12.335886955261230"],
+                ["45.495477003073610", "12.335886955261230", "45.495571009803270", "12.336106896400450"],
+                ["45.495571009803270", "12.336106896400450", "45.495443160612500", "12.335972785949707"],
+                ["45.495443160612500", "12.335972785949707", "45.495360434510860", "12.335967421531677"],
+                ["45.495360434510860", "12.335967421531677", "45.495236345130520", "12.335983514785765"],
+                ["45.495236345130520", "12.335983514785765", "45.495093453990215", "12.336047887802124"],
+                ["45.495093453990215", "12.336047887802124", "45.495010727374850", "12.336160540580750"],
+                ["45.500805056879890", "12.346272468566895", "45.500680979497574", "12.346057891845703"],
+                ["45.500680979497574", "12.346057891845703", "45.500613300810170", "12.345837950706482"],
+                ["45.500613300810170", "12.345837950706482", "45.500549381975130", "12.345392704010010"],
+                ["45.500549381975130", "12.345392704010010", "45.500470423314010", "12.342769503593445"],
+                ["45.500470423314010", "12.342769503593445", "45.500432823912660", "12.342474460601807"],
+                ["45.500432823912660", "12.342474460601807", "45.500391464542160", "12.342281341552734"],
+                ["45.500391464542160", "12.342281341552734", "45.500602021021010", "12.342549562454224"],
+                ["45.500602021021010", "12.342549562454224", "45.500462903435760", "12.342292070388794"],
+                ["45.500462903435760", "12.342292070388794", "45.500447863676190", "12.342098951339722"],
+                ["45.500447863676190", "12.342098951339722", "45.500383944653370", "12.340570092201233"],
+                ["45.500383944653370", "12.340570092201233", "45.500357625034624", "12.340334057807922"],
+                ["45.500357625034624", "12.340334057807922", "45.500274906152780", "12.340146303176880"],
+                ["45.500274906152780", "12.340146303176880", "45.500158347522095", "12.339958548545837"],
+                ["45.500158347522095", "12.339958548545837", "45.499011548128660", "12.338488698005674"],
+                ["45.500094428170584", "12.339856624603271", "45.500169627400130", "12.340071201324463"],
+                ["45.500169627400130", "12.340071201324463", "45.500207226977250", "12.340323328971863"],
+                ["45.500207226977250", "12.340323328971863", "45.500154587562260", "12.340419888496397"],
+                ["45.500154587562260", "12.340419888496397", "45.500053068551490", "12.340570092201233"],
+                ["45.500053068551490", "12.340570092201233", "45.499853789961060", "12.340602278709412"],
+                ["45.499853789961060", "12.340602278709412", "45.499334910322130", "12.340639829635620"],
+                ["45.499334910322130", "12.340639829635620", "45.499131869161770", "12.340602278709412"],
+                ["45.499131869161770", "12.340602278709412", "45.499034108341945", "12.340548634529112"],
+                ["45.499857549941000", "12.340596914291382", "45.500492982942774", "12.340548634529112"],
+                ["45.500492982942774", "12.340548634529112", "45.500613300810170", "12.340613007545471"],
+                ["45.500613300810170", "12.340613007545471", "45.500729858499014", "12.340698838233948"],
+                ["45.500729858499014", "12.340698838233948", "45.500132027797900", "12.339915633201600"],
+                ["45.500470423314010", "12.342796325683594", "45.500447863676190", "12.342098951339722"],
+                ["45.500729858499014", "12.340698838233948", "45.502854174100720", "12.343418598175049"],
+                ["45.502854174100720", "12.343418598175049", "45.502955688060844", "12.343482971191406"],
+                ["45.502955688060844", "12.343482971191406", "45.503226391059606", "12.343520522117615"],
+                ["45.503226391059606", "12.343520522117615", "45.506320584252244", "12.343311309814453"],
+                ["45.506320584252244", "12.343311309814453", "45.506429611044110", "12.343241572380066"],
+                ["45.506429611044110", "12.343241572380066", "45.506512320883280", "12.343166470527649"],
+                ["45.506512320883280", "12.343166470527649", "45.507670245871346", "12.341342568397522"],
+                ["45.507670245871346", "12.341342568397522", "45.507790548400300", "12.341262102127075"],
+                ["45.507790548400300", "12.341262102127075", "45.507892053459120", "12.341278195381165"],
+                ["45.507892053459120", "12.341278195381165", "45.507982280024410", "12.341288924217224"],
+                ["45.507982280024410", "12.341288924217224", "45.508034912120670", "12.341369390487670"],
+                ["45.508034912120670", "12.341369390487670", "45.509042431333010", "12.342640757560728"],
+                ["45.509042431333010", "12.342640757560728", "45.509087543711750", "12.342807054519652"],
+                ["45.509087543711750", "12.342807054519652", "45.509095062438010", "12.342930436134337"],
+                ["45.509095062438010", "12.342930436134337", "45.509072506256180", "12.343059182167053"],
+                ["45.509072506256180", "12.343059182167053", "45.508997318918134", "12.343220114707945"],
+                ["45.508997318918134", "12.343220114707945", "45.506294267408800", "12.347409725189207"],
+                ["45.506294267408800", "12.347409725189207", "45.506192759468746", "12.347586750984192"],
+                ["45.506192759468746", "12.347586750984192", "45.506121327845670", "12.347731590270996"],
+                ["45.506121327845670", "12.347731590270996", "45.506102530035060", "12.347871065139770"],
+                ["45.506102530035060", "12.347871065139770", "45.506076213089656", "12.348091006278992"],
+                ["45.506076213089656", "12.348091006278992", "45.506230355023430", "12.352725863456726"],
+                ["45.506230355023430", "12.352725863456726", "45.506241633684950", "12.352929711341858"],
+                ["45.506241633684950", "12.352929711341858", "45.506305546057510", "12.353171110153198"],
+                ["45.506305546057510", "12.353171110153198", "45.506335622443004", "12.353321313858032"],
+                ["45.506335622443004", "12.353321313858032", "45.506448408745490", "12.353535890579222"],
+                ["45.506106289597690", "12.349008321762085", "45.506132606529020", "12.349362373352050"],
+                ["45.506132606529020", "12.349362373352050", "45.506173961682000", "12.349646687507630"],
+                ["45.506173961682000", "12.349646687507630", "45.506226595469100", "12.349759340286255"],
+                ["45.506226595469100", "12.349759340286255", "45.506343141536860", "12.349920272827147"],
+                ["45.506110049160060", "12.348922491073608", "45.506087491782040", "12.349067330360413"],
+                ["45.506087491782040", "12.349067330360413", "45.506016060025380", "12.349158525466919"],
+                ["45.506016060025380", "12.349158525466919", "45.505959666469250", "12.349190711975098"],
+                ["45.505959666469250", "12.349190711975098", "45.505861917504800", "12.349217534065245"],
+                ["45.505861917504800", "12.349217534065245", "45.505756649199405", "12.349158525466919"],
+                ["45.505170150751500", "12.343397140502930", "45.505252862441170", "12.343413233757019"],
+                ["45.505252862441170", "12.343413233757019", "45.505384448969760", "12.343472242355347"],
+                ["45.505384448969760", "12.343472242355347", "45.505425804672360", "12.343568801879883"],
+                ["45.505425804672360", "12.343568801879883", "45.505579948387100", "12.343767285346985"],
+                ["45.505579948387100", "12.343767285346985", "45.505952147324170", "12.344250082969666"],
+                ["45.505952147324170", "12.344250082969666", "45.505963426041420", "12.344357371330261"],
+                ["45.505963426041420", "12.344357371330261", "45.506076213089656", "12.348123192787170"],
+                ["45.506880754144980", "12.346487045288086", "45.506794285330730", "12.346562147140503"],
+                ["45.506794285330730", "12.346562147140503", "45.506681499721220", "12.346610426902771"],
+                ["45.506681499721220", "12.346610426902771", "45.506538637624800", "12.346647977828980"],
+                ["45.506538637624800", "12.346647977828980", "45.506395775165790", "12.346599698066711"],
+                ["45.506395775165790", "12.346599698066711", "45.506271710104610", "12.346524596214294"],
+                ["45.506271710104610", "12.346524596214294", "45.506151404329610", "12.346385121345518"],
+                ["45.506151404329610", "12.346385121345518", "45.506064934394985", "12.346224188804626"],
+                ["45.506064934394985", "12.346224188804626", "45.506008540887834", "12.345907688140870"],
+                ["45.506516080418530", "12.343145012855530", "45.506038617432026", "12.343928217887878"],
+                ["45.506038617432026", "12.343928217887878", "45.505997262179626", "12.344008684158325"],
+                ["45.505997262179626", "12.344008684158325", "45.505970945184990", "12.344142794609070"],
+                ["45.505970945184990", "12.344142794609070", "45.505959666469250", "12.344287633895872"],
+                ["45.506143885210130", "12.350049018859863", "45.506106289597690", "12.350403070449829"],
+                ["45.506106289597690", "12.350403070449829", "45.505993502609700", "12.350596189498901"],
+                ["45.505993502609700", "12.350596189498901", "45.505865677083484", "12.350671291351318"],
+                ["45.505865677083484", "12.350671291351318", "45.505677697841180", "12.350757122039795"],
+                ["45.505677697841180", "12.350757122039795", "45.505467160344566", "12.350703477859497"],
+                ["45.505467160344566", "12.350703477859497", "45.503858026328100", "12.350242137908936"],
+                ["45.502542111521590", "12.345038652420044", "45.502707542501850", "12.345349788665771"],
+                ["45.502707542501850", "12.345349788665771", "45.502730101234230", "12.345532178878784"],
+                ["45.502730101234230", "12.345532178878784", "45.502722581657800", "12.345821857452393"],
+                ["45.502722581657800", "12.345821857452393", "45.502669944594470", "12.346014976501463"],
+                ["45.502669944594470", "12.346014976501463", "45.502527072317456", "12.346186637878418"],
+                ["45.502527072317456", "12.346186637878418", "45.502309003406080", "12.346304655075073"],
+                ["45.502309003406080", "12.346304655075073", "45.502105972970730", "12.346347570419312"],
+                ["45.502105972970730", "12.346347570419312", "45.500632100453720", "12.345864772796630"],
+                ["45.500632100453720", "12.345864772796630", "45.500444103735695", "12.345736026763916"],
+                ["45.500444103735695", "12.345736026763916", "45.500278666104585", "12.345607280731201"],
+                ["45.509805577538770", "12.354340553283691", "45.509948431343815", "12.354565858840942"],
+                ["45.509948431343815", "12.354565858840942", "45.509986024390140", "12.354844808578491"],
+                ["45.509986024390140", "12.354844808578491", "45.509963468565346", "12.355145215988160"],
+                ["45.509963468565346", "12.355145215988160", "45.509895801036780", "12.355370521545410"],
+                ["45.509895801036780", "12.355370521545410", "45.509767984371920", "12.355574369430542"],
+                ["45.509767984371920", "12.355574369430542", "45.509527387509500", "12.355724573135376"],
+                ["45.509527387509500", "12.355724573135376", "45.509369495259605", "12.355692386627197"],
+                ["45.509369495259605", "12.355692386627197", "45.507948445079364", "12.355263233184813"],
+                ["45.507948445079364", "12.355263233184813", "45.507760472792164", "12.355177402496336"],
+                ["45.507760472792164", "12.355177402496336", "45.507587537733550", "12.354973554611204"],
+                ["45.509895801036780", "12.354512214660645", "45.509775503007290", "12.353482246398926"],
+                ["45.509775503007290", "12.353482246398926", "45.509670242020604", "12.352452278137207"],
+                ["45.509670242020604", "12.352452278137207", "45.509610092796930", "12.352001667022705"],
+                ["45.509610092796930", "12.352001667022705", "45.509459719456630", "12.351722717285156"],
+                ["45.509459719456630", "12.351722717285156", "45.506512320883280", "12.347474098205566"],
+                ["45.506512320883280", "12.347474098205566", "45.506376977446834", "12.347280979156494"],
+                ["45.506376977446834", "12.347280979156494", "45.506271710104610", "12.346873283386229"],
+                ["45.506271710104610", "12.346873283386229", "45.506031098297484", "12.346014976501463"],
+                ["45.510320601396316", "12.355016469955443", "45.511140118694710", "12.353696823120115"],
+                ["45.511140118694710", "12.353696823120115", "45.511279209895730", "12.353584170341492"],
+                ["45.511279209895730", "12.353584170341492", "45.511410782337060", "12.353793382644653"],
+                ["45.511410782337060", "12.353793382644653", "45.511692722247070", "12.353433966636658"],
+                ["45.511692722247070", "12.353433966636658", "45.511034860260054", "12.352382540702818"],
+                ["45.511034860260054", "12.352382540702818", "45.510745398549750", "12.352736592292786"],
+                ["45.510745398549750", "12.352736592292786", "45.511252895370550", "12.353541254997253"],
+                ["45.509504831500900", "12.351754903793335", "45.510346916357385", "12.350220680236816"],
+                ["45.501786386542850", "12.342066764831541", "45.501718709184196", "12.342002391815186"],
+                ["45.501718709184196", "12.342002391815186", "45.501647271884010", "12.341991662979126"],
+                ["45.501647271884010", "12.341991662979126", "45.501568314762565", "12.342056035995483"],
+                ["45.501568314762565", "12.342056035995483", "45.501500637141790", "12.342152595520020"],
+                ["45.501500637141790", "12.342152595520020", "45.501504397011736", "12.342297434806824"],
+                ["45.501504397011736", "12.342297434806824", "45.501538235830030", "12.343407869338990"],
+                ["45.501538235830030", "12.343407869338990", "45.501572074628000", "12.343617081642150"],
+                ["45.501572074628000", "12.343617081642150", "45.501602153542464", "12.343729734420776"],
+                ["45.501602153542464", "12.343729734420776", "45.501673590899880", "12.343917489051817"],
+                ["45.501673590899880", "12.343917489051817", "45.501778866840360", "12.344056963920593"],
+                ["45.501500637141790", "12.342141866683960", "45.501493117401110", "12.341943383216856"],
+                ["45.501493117401110", "12.341943383216856", "45.501493117401110", "12.341868281364441"],
+                ["45.501493117401110", "12.341868281364441", "45.501463038428405", "12.341744899749756"],
+                ["45.501463038428405", "12.341744899749756", "45.501421679814676", "12.341642975807190"],
+                ["45.501421679814676", "12.341642975807190", "45.501365281656130", "12.341508865356445"],
+                ["45.498571622162720", "12.336707711219788", "45.498142973043684", "12.337351441383362"],
+                ["45.498142973043684", "12.337351441383362", "45.498124172569014", "12.337431907653809"],
+                ["45.498124172569014", "12.337431907653809", "45.498112892281210", "12.337555289268494"],
+                ["45.498112892281210", "12.337555289268494", "45.498139212949250", "12.337657213211060"],
+                ["45.498139212949250", "12.337657213211060", "45.498714504477270", "12.338386774063110"],
+                ["45.498244495498355", "12.338268756866455", "45.498319697198620", "12.338258028030396"],
+                ["45.498319697198620", "12.338258028030396", "45.498372338329055", "12.338193655014038"],
+                ["45.498372338329055", "12.338193655014038", "45.498383618564870", "12.338118553161620"],
+                ["45.498383618564870", "12.338118553161620", "45.498379858486516", "12.337989807128906"],
+                ["45.498379858486516", "12.337989807128906", "45.498330977444990", "12.337898612022400"],
+                ["45.498169293697640", "12.336283922195435", "45.497729361151194", "12.336970567703245"],
+                ["45.497729361151194", "12.336970567703245", "45.497718080784290", "12.337045669555664"],
+                ["45.497718080784290", "12.337045669555664", "45.497725601029146", "12.337131500244139"],
+                ["45.497725601029146", "12.337131500244139", "45.497763202238320", "12.337195873260498"],
+                ["45.497763202238320", "12.337195873260498", "45.498158013418870", "12.337673306465149"],
+                ["45.502857933880314", "12.343418598175049", "45.506091251345680", "12.347688674926758"],
+                ["45.506016060025380", "12.343976497650146", "45.504053531046420", "12.346991300582886"]
+            ]
+        },
+        {
+            "name": "LIPH",
+            "lines":[
+                ["45.65244412973340", "12.20866415298171", "45.64379389195793", "12.17639731425867"]
+            ]
+        },
+        {
+            "name": "TRE",
+            "lines":[
+                ["45.62240508234564", "12.09271626503405", "45.62219881484115", "12.09243075383304"],
+                ["45.62219881484115", "12.09243075383304", "45.62193874116643", "12.09229814217493"],
+                ["45.62193874116643", "12.09229814217493", "45.62167253360835", "12.09232476652791"],
+                ["45.62167253360835", "12.09232476652791", "45.62148888727312", "12.09240194361551"],
+                ["45.62148888727312", "12.09240194361551", "45.62128958787005", "12.09258425816841"],
+                ["45.62128958787005", "12.09258425816841", "45.62115828495482", "12.09275346828429"],
+                ["45.62115828495482", "12.09275346828429", "45.62107497789149", "12.09310688217144"],
+                ["45.62107497789149", "12.09310688217144", "45.62103086468704", "12.09348845906188"],
+                ["45.62103086468704", "12.09348845906188", "45.62107298313821", "12.09379182380022"],
+                ["45.62107298313821", "12.09379182380022", "45.62114765978571", "12.09408421777521"],
+                ["45.62114765978571", "12.09408421777521", "45.62133469559680", "12.09433776840186"],
+                ["45.62133469559680", "12.09433776840186", "45.62152091462025", "12.09446234400679"],
+                ["45.62152091462025", "12.09446234400679", "45.62169198356534", "12.09453363495952"],
+                ["45.62169198356534", "12.09453363495952", "45.62187355103352", "12.09453707442027"],
+                ["45.62187355103352", "12.09453707442027", "45.62206137090098", "12.09446331696475"],
+                ["45.62206137090098", "12.09446331696475", "45.62219642661228", "12.09438699254920"],
+                ["45.62219642661228", "12.09438699254920", "45.62234358730809", "12.09419059292526"],
+                ["45.62234358730809", "12.09419059292526", "45.62243228094119", "12.09395785716088"],
+                ["45.62243228094119", "12.09395785716088", "45.62252481779164", "12.09366824946205"],
+                ["45.62252481779164", "12.09366824946205", "45.62254138742004", "12.09336593243736"],
+                ["45.62254138742004", "12.09336593243736", "45.62253070146297", "12.09302456833246"],
+                ["45.62253070146297", "12.09302456833246", "45.62240508234564", "12.09271626503405"],
+                ["45.62461385919819", "12.08104637914823", "45.62370570224891", "12.08067898170920"],
+                ["45.62370570224891", "12.08067898170920", "45.62244865707700", "12.08032853571222"],
+                ["45.62244865707700", "12.08032853571222", "45.62148342150697", "12.08027709769387"],
+                ["45.62148342150697", "12.08027709769387", "45.62011008535550", "12.08039966190685"],
+                ["45.62011008535550", "12.08039966190685", "45.61935805106528", "12.08059387214700"],
+                ["45.61935805106528", "12.08059387214700", "45.61851064643835", "12.08095877246634"],
+                ["45.61851064643835", "12.08095877246634", "45.61756103393220", "12.08147585952044"],
+                ["45.61756103393220", "12.08147585952044", "45.61683835270210", "12.08193643147823"],
+                ["45.61683835270210", "12.08193643147823", "45.61616673602354", "12.08256004380001"],
+                ["45.61616673602354", "12.08256004380001", "45.61548082353988", "12.08331058465414"],
+                ["45.61548082353988", "12.08331058465414", "45.61470546312201", "12.08427050661114"],
+                ["45.61470546312201", "12.08427050661114", "45.61405804927665", "12.08537288581690"],
+                ["45.61405804927665", "12.08537288581690", "45.61354187317722", "12.08640198753658"],
+                ["45.61354187317722", "12.08640198753658", "45.61284286138837", "12.08824391904997"],
+                ["45.61284286138837", "12.08824391904997", "45.61238108039659", "12.08983194515019"],
+                ["45.61238108039659", "12.08983194515019", "45.61209259041588", "12.09158784886436"],
+                ["45.61209259041588", "12.09158784886436", "45.61197894693252", "12.09325758603377"],
+                ["45.61197894693252", "12.09325758603377", "45.61204765830322", "12.09546841792805"],
+                ["45.61204765830322", "12.09546841792805", "45.61237550963410", "12.09771828002875"],
+                ["45.61237550963410", "12.09771828002875", "45.61297486485760", "12.09980183195884"],
+                ["45.61297486485760", "12.09980183195884", "45.61368354368133", "12.10159189002475"],
+                ["45.61368354368133", "12.10159189002475", "45.61474204665851", "12.10334207308151"],
+                ["45.61474204665851", "12.10334207308151", "45.61589159898622", "12.10478532813818"],
+                ["45.61589159898622", "12.10478532813818", "45.61722802351870", "12.10591142568121"],
+                ["45.61722802351870", "12.10591142568121", "45.61865548655592", "12.10673816197668"],
+                ["45.61865548655592", "12.10673816197668", "45.62018234262174", "12.10720195523919"],
+                ["45.62018234262174", "12.10720195523919", "45.62202189702861", "12.10730809074769"],
+                ["45.62202189702861", "12.10730809074769", "45.62339620897485", "12.10702778489440"],
+                ["45.62339620897485", "12.10702778489440", "45.62462749966140", "12.10654903224856"],
+                ["45.62462749966140", "12.10654903224856", "45.62569927517111", "12.10585894479651"],
+                ["45.62569927517111", "12.10585894479651", "45.62693988684772", "12.10483601554089"],
+                ["45.62693988684772", "12.10483601554089", "45.62817055828843", "12.10330584446735"],
+                ["45.62817055828843", "12.10330584446735", "45.62927112785236", "12.10138568357827"],
+                ["45.62927112785236", "12.10138568357827", "45.63013178587817", "12.09914410927672"],
+                ["45.63013178587817", "12.09914410927672", "45.63055268475555", "12.09726270032085"],
+                ["45.63055268475555", "12.09726270032085", "45.63084165344961", "12.09522001016287"],
+                ["45.63084165344961", "12.09522001016287", "45.63086914405239", "12.09285474819293"],
+                ["45.63086914405239", "12.09285474819293", "45.63062215083812", "12.09055309975908"],
+                ["45.63062215083812", "12.09055309975908", "45.62995925670061", "12.08797237069207"],
+                ["45.62995925670061", "12.08797237069207", "45.62927221810303", "12.08620255535519"],
+                ["45.62927221810303", "12.08620255535519", "45.62817838680348", "12.08431198302135"],
+                ["45.62817838680348", "12.08431198302135", "45.62694495112905", "12.08275127090768"],
+                ["45.62694495112905", "12.08275127090768", "45.62578027625781", "12.08176969243028"],
+                ["45.62578027625781", "12.08176969243028", "45.62461385919819", "12.08104637914823"]
+            ]
+        },
+        {
+            "name": "LIPS",
+            "lines":[
+                ["45.68626915147623", "12.10600286629038", "45.68252486826452", "12.06859908954388"]
+            ]
+        },
+        {
+            "name": "CENTERLINE",
+            "lines":[
+                ["45.48997235224238", "12.33265464724581", "45.26919477226196", "12.04907914309660"],
+                ["45.26893217984397", "12.04871127364859", "45.26329817057528", "12.04147832562931"],
+                ["45.26264143023285", "12.04055964113593", "45.25732226236508", "12.03391747489139"],
+                ["45.25635414299843", "12.03255687910182", "45.25141860945122", "12.02620262423368"],
+                ["45.25004522366784", "12.02442493278559", "45.24541473819714", "12.01860466231697"],
+                ["45.24363360246841", "12.01634966034422", "45.23940064581285", "12.01089383773837"],
+                ["45.23735439555694", "12.00819468377633", "45.23353137085168", "12.00330908978980"],
+                ["45.23102489815652", "12.00014981202584", "45.22755936108182", "11.99567047452237"],
+                ["45.22472318950560", "11.99198578639116", "45.22163213034951", "11.98808347828139"],
+                ["45.21836716611952", "11.98381949918760", "45.21562841282333", "11.98032485163895"],
+                ["45.21202400457409", "11.97574608969508", "45.20971036593045", "11.97276282195408"],
+                ["45.20574284212130", "11.96774014030600", "45.20372270413534", "11.96507126465692"],
+                ["45.19937759181315", "11.95950452947095", "45.19781894788716", "11.95748039615843"],
+                ["45.19303812829759", "11.95132367539462", "45.19186574704311", "11.94982034179947"],
+                ["45.18673160914969", "11.94326435924296", "45.18589520033262", "11.94219303078955"],
+                ["45.19170853373522", "11.92557899507905", "45.17478916177243", "11.95221538475723"],
+                ["45.25310654487360", "12.00418506656578", "45.23611141789312", "12.03085168338961"],
+                ["45.31437620430399", "12.08308705749468", "45.29757545650055", "12.10969202501145"],
+                ["45.32383476256869", "12.10327699490621", "45.31261733973155", "12.12103778662020"],
+                ["45.33612905371495", "12.11895020871592", "45.32476605547063", "12.13657753524430"],
+                ["45.34839221645603", "12.13481920877381", "45.33705238790173", "12.15244148692267"],
+                ["45.34923761509946", "12.16822712914747", "45.36060315202828", "12.15056019893618"],
+                ["45.35880102522609", "12.18822599398681", "45.37562703550137", "12.16178920218655"],
+                ["45.37389049882560", "12.19974458451996", "45.38509861447050", "12.18203388939942"],
+                ["45.38611546765769", "12.21543950461881", "45.39733729018970", "12.19772625694723"],
+                ["45.39836303358720", "12.23122133184938", "45.40962960082229", "12.21349041017382"],
+                ["45.41069501471362", "12.24696561513272", "45.42189176331902", "12.22922855744231"],
+                ["45.42006314662154", "12.26730187433684", "45.43706824366308", "12.24049140748881"],
+                ["45.43518583865694", "12.27846318612474", "45.44641999805317", "12.26079739157543"],
+                ["45.44749730038010", "12.29425150341434", "45.45866201429340", "12.27653481362561"],
+                ["45.47192873456423", "12.32580787765554", "45.48322117043723", "12.30798136720265"],
+                ["45.45968516824737", "12.31002096949413", "45.47093597232491", "12.29219629872345"]
+            ]
+        },
+        {
+            "name": "ISA",
+            "lines":[
+                ["45.69773242650943", "12.10717133123252", "45.69198896194614", "12.10107828903647"],
+                ["45.69198896194614", "12.10107828903647", "45.68979127195772", "12.10572369958383"],
+                ["45.68979127195772", "12.10572369958383", "45.68431569783903", "12.11116023679692"],
+                ["45.68431569783903", "12.11116023679692", "45.68043898093161", "12.11130759758946"],
+                ["45.68043898093161", "12.11130759758946", "45.68050258579369", "12.11999949324549"],
+                ["45.68050258579369", "12.11999949324549", "45.68427546972075", "12.11996464458105"],
+                ["45.68427546972075", "12.11996464458105", "45.68958507034885", "12.12505576955315"],
+                ["45.68958507034885", "12.12505576955315", "45.69216720302077", "12.12991119117921"],
+                ["45.69216720302077", "12.12991119117921", "45.69766720439742", "12.12396811455243"],
+                ["45.69766720439742", "12.12396811455243", "45.69536049572957", "12.11950542788127"],
+                ["45.69536049572957", "12.11950542788127", "45.69524297823463", "12.11131956735023"],
+                ["45.69524297823463", "12.11131956735023", "45.69773242650943", "12.10717133123252"],
+                ["45.69037763008947", "12.11462439031402", "45.69013716667999", "12.11449257184814"],
+                ["45.69013716667999", "12.11449257184814", "45.68991043956929", "12.11441576194418"],
+                ["45.68991043956929", "12.11441576194418", "45.68972614199896", "12.11443050871506"],
+                ["45.68972614199896", "12.11443050871506", "45.68944975995190", "12.11455877828741"],
+                ["45.68944975995190", "12.11455877828741", "45.68929101125759", "12.11476893875366"],
+                ["45.68929101125759", "12.11476893875366", "45.68914318068681", "12.11497634021338"],
+                ["45.68914318068681", "12.11497634021338", "45.68909016575445", "12.11533371504205"],
+                ["45.68909016575445", "12.11533371504205", "45.68907378368350", "12.11562281188178"],
+                ["45.68907378368350", "12.11562281188178", "45.68908465874144", "12.11584513313858"],
+                ["45.68908465874144", "12.11584513313858", "45.68917952980248", "12.11613094756739"],
+                ["45.68917952980248", "12.11613094756739", "45.68933997280937", "12.11632495755766"],
+                ["45.68933997280937", "12.11632495755766", "45.68935898067082", "12.11635102460790"],
+                ["45.68935898067082", "12.11635102460790", "45.68954937088338", "12.11648047553394"],
+                ["45.68954937088338", "12.11648047553394", "45.68956863598717", "12.11650681460240"],
+                ["45.68956863598717", "12.11650681460240", "45.68974221281838", "12.11662490823230"],
+                ["45.68974221281838", "12.11662490823230", "45.68977118326451", "12.11662462911535"],
+                ["45.68977118326451", "12.11662462911535", "45.68999528680774", "12.11664944972610"],
+                ["45.68999528680774", "12.11664944972610", "45.69020155223644", "12.11651185250802"],
+                ["45.69020155223644", "12.11651185250802", "45.69022133363129", "12.11649800639974"],
+                ["45.69022133363129", "12.11649800639974", "45.69039023367780", "12.11634546032519"],
+                ["45.69039023367780", "12.11634546032519", "45.69050000108092", "12.11617895667795"],
+                ["45.69050000108092", "12.11617895667795", "45.69065055530256", "12.11589994590335"],
+                ["45.69065055530256", "12.11589994590335", "45.69066787894819", "12.11547207857324"],
+                ["45.69066787894819", "12.11547207857324", "45.69065573389053", "12.11521078359941"],
+                ["45.69065573389053", "12.11521078359941", "45.69057143031998", "12.11484411375960"],
+                ["45.69057143031998", "12.11484411375960", "45.69037763008947", "12.11462439031402"]
+            ]
+        },
+        {
+            "name": "CHI",
+            "lines":[
+                ["45.0768687505911", "12.2726359267889", "45.0768244013684", "12.2900154167077"],
+                ["45.0768244013684", "12.2900154167077", "45.0657634662526", "12.2901329461861"],
+                ["45.0657634662526", "12.2901329461861", "45.0656310538429", "12.2726102746712"],
+                ["45.0656310538429", "12.2726102746712", "45.0768687505911", "12.2726359267889"],
+                ["45.0768170317695", "12.2777261573320", "45.0713021809838", "12.2726641658874"],
+                ["45.0713021809838", "12.2726641658874", "45.0656694539857", "12.2779229575359"],
+                ["45.0656694539857", "12.2779229575359", "45.0656958841594", "12.2851640896582"],
+                ["45.0656958841594", "12.2851640896582", "45.0713745560670", "12.2900829852206"],
+                ["45.0713745560670", "12.2900829852206", "45.0768161739506", "12.2851629446221"],
+                ["45.0719874488709", "12.2808731248499", "45.0718358144030", "12.2806071180043"],
+                ["45.0718358144030", "12.2806071180043", "45.0716742754275", "12.2804529170206"],
+                ["45.0716742754275", "12.2804529170206", "45.0715026607773", "12.2803626240476"],
+                ["45.0715026607773", "12.2803626240476", "45.0712086148271", "12.2803698377228"],
+                ["45.0712086148271", "12.2803698377228", "45.0711973617254", "12.2803701137861"],
+                ["45.0711973617254", "12.2803701137861", "45.0709401295777", "12.2804386727937"],
+                ["45.0709401295777", "12.2804386727937", "45.0707636029987", "12.2806445347923"],
+                ["45.0707636029987", "12.2806445347923", "45.0705996924301", "12.2809263619738"],
+                ["45.0705996924301", "12.2809263619738", "45.0705795264703", "12.2811896185665"],
+                ["45.0705795264703", "12.2811896185665", "45.0705264577490", "12.2814683594871"],
+                ["45.0705264577490", "12.2814683594871", "45.0705400131719", "12.2818237341709"],
+                ["45.0705400131719", "12.2818237341709", "45.0706415774629", "12.2821487413974"],
+                ["45.0706415774629", "12.2821487413974", "45.0707974868799", "12.2822736288533"],
+                ["45.0707974868799", "12.2822736288533", "45.0709986432082", "12.2823684123475"],
+                ["45.0709986432082", "12.2823684123475", "45.0713138404498", "12.2824649366604"],
+                ["45.0713138404498", "12.2824649366604", "45.0713251338326", "12.2824650479337"],
+                ["45.0713251338326", "12.2824650479337", "45.0715518817407", "12.2824672821464"],
+                ["45.0715518817407", "12.2824672821464", "45.0717221469241", "12.2823429159770"],
+                ["45.0717221469241", "12.2823429159770", "45.0718477116390", "12.2822649553498"],
+                ["45.0718477116390", "12.2822649553498", "45.0719611233550", "12.2820284284725"],
+                ["45.0719611233550", "12.2820284284725", "45.0720518171015", "12.2817910425540"],
+                ["45.0720518171015", "12.2817910425540", "45.0720499984267", "12.2815375677708"],
+                ["45.0720499984267", "12.2815375677708", "45.0720485204570", "12.2813316195574"],
+                ["45.0720485204570", "12.2813316195574", "45.0719874488709", "12.2808731248499"],
+                ["45.0762735597079", "12.2719690928377", "45.0755894706358", "12.2713758135850"],
+                ["45.0755894706358", "12.2713758135850", "45.0746678462411", "12.2707626023201"],
+                ["45.0746678462411", "12.2707626023201", "45.0739544184342", "12.2703206477660"],
+                ["45.0739544184342", "12.2703206477660", "45.0730178289994", "12.2699732821592"],
+                ["45.0730178289994", "12.2699732821592", "45.0720794200513", "12.2698268747175"],
+                ["45.0720794200513", "12.2698268747175", "45.0720218027421", "12.2698387043592"],
+                ["45.0720218027421", "12.2698387043592", "45.0711674404885", "12.2697211122722"],
+                ["45.0711674404885", "12.2697211122722", "45.0700098049897", "12.2697842034082"],
+                ["45.0700098049897", "12.2697842034082", "45.0699827803016", "12.2697899511829"],
+                ["45.0699827803016", "12.2697899511829", "45.0689988585055", "12.2699992096738"],
+                ["45.0689988585055", "12.2699992096738", "45.0681480824826", "12.2703546733563"],
+                ["45.0681480824826", "12.2703546733563", "45.0673970114526", "12.2709949238959"],
+                ["45.0673970114526", "12.2709949238959", "45.0673228180854", "12.2710443312282"],
+                ["45.0673228180854", "12.2710443312282", "45.0660180694792", "12.2719469511168"],
+                ["45.0660180694792", "12.2719469511168", "45.0651142528567", "12.2731140101882"],
+                ["45.0651142528567", "12.2731140101882", "45.0643732075451", "12.2743881737574"],
+                ["45.0643732075451", "12.2743881737574", "45.0643284003422", "12.2743950479402"],
+                ["45.0643284003422", "12.2743950479402", "45.0636529146341", "12.2759146052408"],
+                ["45.0636529146341", "12.2759146052408", "45.0634219654256", "12.2767820882087"],
+                ["45.0634219654256", "12.2767820882087", "45.0630154449996", "12.2782769052475"],
+                ["45.0630154449996", "12.2782769052475", "45.0627201935228", "12.2802237530218"],
+                ["45.0627201935228", "12.2802237530218", "45.0627212088931", "12.2803635561138"],
+                ["45.0627212088931", "12.2803635561138", "45.0627064972590", "12.2818699027903"],
+                ["45.0627064972590", "12.2818699027903", "45.0627070040446", "12.2819397756385"],
+                ["45.0627070040446", "12.2819397756385", "45.0628240655052", "12.2839207255308"],
+                ["45.0628240655052", "12.2839207255308", "45.0631223179949", "12.2858606302183"],
+                ["45.0631223179949", "12.2858606302183", "45.0631492900105", "12.2859995050882"],
+                ["45.0631492900105", "12.2859995050882", "45.0636307304251", "12.2874207208338"],
+                ["45.0636307304251", "12.2874207208338", "45.0641979044099", "12.2885759983385"],
+                ["45.0641979044099", "12.2885759983385", "45.0654549191256", "12.2903404808923"],
+                ["45.0654549191256", "12.2903404808923", "45.0659463344770", "12.2911442712352"],
+                ["45.0659463344770", "12.2911442712352", "45.0668698155305", "12.2916870116819"],
+                ["45.0668698155305", "12.2916870116819", "45.0679796632832", "12.2924124362868"],
+                ["45.0679796632832", "12.2924124362868", "45.0693503653180", "12.2934778617561"],
+                ["45.0693503653180", "12.2934778617561", "45.0709188765010", "12.2936630336447"],
+                ["45.0709188765010", "12.2936630336447", "45.0722333079497", "12.2933802755554"],
+                ["45.0722333079497", "12.2933802755554", "45.0733542404528", "12.2930981713002"],
+                ["45.0733542404528", "12.2930981713002", "45.0750877543937", "12.2920282577763"],
+                ["45.0750877543937", "12.2920282577763", "45.0764700257571", "12.2907757634460"],
+                ["45.0764700257571", "12.2907757634460", "45.0774879269630", "12.2893090735707"],
+                ["45.0774879269630", "12.2893090735707", "45.0782167122185", "12.2880428720602"],
+                ["45.0782167122185", "12.2880428720602", "45.0790159317557", "12.2866135792529"],
+                ["45.0790159317557", "12.2866135792529", "45.0794082500698", "12.2851089279268"],
+                ["45.0794082500698", "12.2851089279268", "45.0795810513452", "12.2830551723834"],
+                ["45.0795810513452", "12.2830551723834", "45.0796951742382", "12.2814602016947"],
+                ["45.0796951742382", "12.2814602016947", "45.0796532731059", "12.2800301416588"],
+                ["45.0796532731059", "12.2800301416588", "45.0792676698812", "12.2786426254941"],
+                ["45.0792676698812", "12.2786426254941", "45.0790403682196", "12.2772485960001"],
+                ["45.0790403682196", "12.2772485960001", "45.0785992785117", "12.2757456180092"],
+                ["45.0785992785117", "12.2757456180092", "45.0781952570756", "12.2744455546192"],
+                ["45.0781952570756", "12.2744455546192", "45.0777995291599", "12.2736506403591"],
+                ["45.0777995291599", "12.2736506403591", "45.0770269430452", "12.2727961824190"],
+                ["45.0770269430452", "12.2727961824190", "45.0762735597079", "12.2719690928377"]   
+            ]
+        },
+        {
+            "name": "AVI",
+            "lines":[
+                ["45.94293269009699", "12.43469864231830", "45.94270843993132", "12.43448525219305"],
+                ["45.94270843993132", "12.43448525219305", "45.94244008588194", "12.43433799053041"],
+                ["45.94244008588194", "12.43433799053041", "45.94210815381160", "12.43434495623740"],
+                ["45.94210815381160", "12.43434495623740", "45.94191204985753", "12.43445447486547"],
+                ["45.94191204985753", "12.43445447486547", "45.94169803045019", "12.43470194314691"],
+                ["45.94169803045019", "12.43470194314691", "45.94152687763138", "12.43506612691320"],
+                ["45.94152687763138", "12.43506612691320", "45.94150674565583", "12.43547670000016"],
+                ["45.94150674565583", "12.43547670000016", "45.94149211753374", "12.43551948879901"],
+                ["45.94149211753374", "12.43551948879901", "45.94161480288473", "12.43610278231196"],
+                ["45.94161480288473", "12.43610278231196", "45.94180582316970", "12.43627903204057"],
+                ["45.94180582316970", "12.43627903204057", "45.94196943695298", "12.43642700040325"],
+                ["45.94196943695298", "12.43642700040325", "45.94199299427773", "12.43643759365215"],
+                ["45.94199299427773", "12.43643759365215", "45.94219963762604", "12.43651241890175"],
+                ["45.94219963762604", "12.43651241890175", "45.94243525352686", "12.43651182551523"],
+                ["45.94243525352686", "12.43651182551523", "45.94261757923783", "12.43642230395075"],
+                ["45.94261757923783", "12.43642230395075", "45.94276916589353", "12.43629775182527"],
+                ["45.94276916589353", "12.43629775182527", "45.94298346546410", "12.43605643722397"],
+                ["45.94298346546410", "12.43605643722397", "45.94303434717814", "12.43575915642887"],
+                ["45.94303434717814", "12.43575915642887", "45.94306826021409", "12.43552965960465"],
+                ["45.94306826021409", "12.43552965960465", "45.94306630775267", "12.43516479788972"],
+                ["45.94306630775267", "12.43516479788972", "45.94304775247360", "12.43498380331488"],
+                ["45.94304775247360", "12.43498380331488", "45.94293269009699", "12.43469864231830"],
+                ["45.94637978974998", "12.42297898013312", "45.94538166891901", "12.42245715178839"],
+                ["45.94538166891901", "12.42245715178839", "45.94459527450342", "12.42222821305590"],
+                ["45.94459527450342", "12.42222821305590", "45.94370736653630", "12.42200653057676"],
+                ["45.94370736653630", "12.42200653057676", "45.94277032495725", "12.42193968624711"],
+                ["45.94277032495725", "12.42193968624711", "45.94128084767270", "12.42200712379684"],
+                ["45.94128084767270", "12.42200712379684", "45.94027082836449", "12.42237175051919"],
+                ["45.94027082836449", "12.42237175051919", "45.93941503811374", "12.42270827363463"],
+                ["45.93941503811374", "12.42270827363463", "45.93836311315765", "12.42335293836672"],
+                ["45.93836311315765", "12.42335293836672", "45.93754846241929", "12.42409675227013"],
+                ["45.93754846241929", "12.42409675227013", "45.93679208324447", "12.42482367793733"],
+                ["45.93679208324447", "12.42482367793733", "45.93616952578198", "12.42560103218107"],
+                ["45.93616952578198", "12.42560103218107", "45.93548932320864", "12.42664097270664"],
+                ["45.93548932320864", "12.42664097270664", "45.93493646796567", "12.42768137776417"],
+                ["45.93493646796567", "12.42768137776417", "45.93451156811907", "12.42875678787971"],
+                ["45.93451156811907", "12.42875678787971", "45.93409640918803", "12.43002731108323"],
+                ["45.93409640918803", "12.43002731108323", "45.93374753877434", "12.43119578507070"],
+                ["45.93374753877434", "12.43119578507070", "45.93347303964087", "12.43233749059712"],
+                ["45.93347303964087", "12.43233749059712", "45.93339881391452", "12.43382654447620"],
+                ["45.93339881391452", "12.43382654447620", "45.93328139874931", "12.43486931210400"],
+                ["45.93328139874931", "12.43486931210400", "45.93325896811866", "12.43635098014676"],
+                ["45.93325896811866", "12.43635098014676", "45.93335746222304", "12.43748067828182"],
+                ["45.93335746222304", "12.43748067828182", "45.93352857134089", "12.43859709533261"],
+                ["45.93352857134089", "12.43859709533261", "45.93377452739952", "12.43980624522905"],
+                ["45.93377452739952", "12.43980624522905", "45.93402162204090", "12.44079269447682"],
+                ["45.93402162204090", "12.44079269447682", "45.93435596556300", "12.44183329986384"],
+                ["45.93435596556300", "12.44183329986384", "45.93471316710108", "12.44258583288474"],
+                ["45.93471316710108", "12.44258583288474", "45.93510624089769", "12.44343291221722"],
+                ["45.93510624089769", "12.44343291221722", "45.93555668802101", "12.44432205004222"],
+                ["45.93555668802101", "12.44432205004222", "45.93624275174840", "12.44526985972554"],
+                ["45.93624275174840", "12.44526985972554", "45.93697650022267", "12.44619492476519"],
+                ["45.93697650022267", "12.44619492476519", "45.93742805939542", "12.44667900850630"],
+                ["45.93742805939542", "12.44667900850630", "45.93809007434987", "12.44731066882907"],
+                ["45.93809007434987", "12.44731066882907", "45.93870308036620", "12.44771532558607"],
+                ["45.93870308036620", "12.44771532558607", "45.93939497500102", "12.44814317146724"],
+                ["45.93939497500102", "12.44814317146724", "45.94016129290126", "12.44845343398088"],
+                ["45.94016129290126", "12.44845343398088", "45.94102029550710", "12.44874338791474"],
+                ["45.94102029550710", "12.44874338791474", "45.94175485241111", "12.44894838124585"],
+                ["45.94175485241111", "12.44894838124585", "45.94264042460096", "12.44893699005922"],
+                ["45.94264042460096", "12.44893699005922", "45.94349548994752", "12.44895501122276"],
+                ["45.94349548994752", "12.44895501122276", "45.94439464394126", "12.44867347602199"],
+                ["45.94439464394126", "12.44867347602199", "45.94520347321114", "12.44841399086518"],
+                ["45.94520347321114", "12.44841399086518", "45.94604264634322", "12.44808767240443"],
+                ["45.94604264634322", "12.44808767240443", "45.94674085784829", "12.44762889151084"],
+                ["45.94674085784829", "12.44762889151084", "45.94752293132201", "12.44706599693201"],
+                ["45.94752293132201", "12.44706599693201", "45.94821864701972", "12.44640436418914"],
+                ["45.94821864701972", "12.44640436418914", "45.94883507644825", "12.44568667221618"],
+                ["45.94883507644825", "12.44568667221618", "45.94928835683501", "12.44500006758262"],
+                ["45.94928835683501", "12.44500006758262", "45.94988405620517", "12.44409144906439"],
+                ["45.94988405620517", "12.44409144906439", "45.95024450490848", "12.44339323165778"],
+                ["45.95024450490848", "12.44339323165778", "45.95073073644896", "12.44249471265887"],
+                ["45.95073073644896", "12.44249471265887", "45.95107676037378", "12.44146183326404"],
+                ["45.95107676037378", "12.44146183326404", "45.95139800379560", "12.44048591737922"],
+                ["45.95139800379560", "12.44048591737922", "45.95168401107601", "12.43932404835926"],
+                ["45.95168401107601", "12.43932404835926", "45.95193734873263", "12.43803924763993"],
+                ["45.95193734873263", "12.43803924763993", "45.95202804673762", "12.43685244627754"],
+                ["45.95202804673762", "12.43685244627754", "45.95205690029232", "12.43541865617138"],
+                ["45.95205690029232", "12.43541865617138", "45.95200014122726", "12.43397889758866"],
+                ["45.95200014122726", "12.43397889758866", "45.95188571477819", "12.43261899314203"],
+                ["45.95188571477819", "12.43261899314203", "45.95164581858268", "12.43127384547000"],
+                ["45.95164581858268", "12.43127384547000", "45.95132338641292", "12.43005508497682"],
+                ["45.95132338641292", "12.43005508497682", "45.95099678682917", "12.42906511382954"],
+                ["45.95099678682917", "12.42906511382954", "45.95059673687738", "12.42811214139439"],
+                ["45.95059673687738", "12.42811214139439", "45.95011278314421", "12.42710272878116"],
+                ["45.95011278314421", "12.42710272878116", "45.94964508112684", "12.42627012277248"],
+                ["45.94964508112684", "12.42627012277248", "45.94923732194510", "12.42568689381123"],
+                ["45.94923732194510", "12.42568689381123", "45.94871112338901", "12.42502887494502"],
+                ["45.94871112338901", "12.42502887494502", "45.94821112513499", "12.42445889309886"],
+                ["45.94821112513499", "12.42445889309886", "45.94770324035426", "12.42398653412041"],
+                ["45.94770324035426", "12.42398653412041", "45.94737134485251", "12.42370531535815"],
+                ["45.94737134485251", "12.42370531535815", "45.94679828026914", "12.42327156724520"],
+                ["45.94679828026914", "12.42327156724520", "45.94637978974998", "12.42297898013312"]
+            ]
+        },
+        {
+            "name": "VIC",
+            "lines":[
+                ["45.6423452000617", "11.6666847316197", "45.6423617816579", "11.6858174950324"],
+                ["45.6423617816579", "11.6858174950324", "45.6322869922078", "11.6859625666190"],
+                ["45.6322869922078", "11.6859625666190", "45.6322656785412", "11.6669086265096"],
+                ["45.6322656785412", "11.6669086265096", "45.6423452000617", "11.6666847316197"],
+                ["45.6373778788552", "11.6668399502930", "45.6423434891946", "11.6721696428754"],
+                ["45.6423434891946", "11.6721696428754", "45.6423551831331", "11.6805671461841"],
+                ["45.6423551831331", "11.6805671461841", "45.6374580746878", "11.6859040458337"],
+                ["45.6374580746878", "11.6859040458337", "45.6322599983804", "11.6800976612947"],
+                ["45.6322599983804", "11.6800976612947", "45.6322673080876", "11.6725841243258"],
+                ["45.6322673080876", "11.6725841243258", "45.6373778788552", "11.6668399502930"],
+                ["45.6378399061808", "11.6752486704476", "45.6375854814940", "11.6751071010141"],
+                ["45.6375854814940", "11.6751071010141", "45.6372645091097", "11.6750968495009"],
+                ["45.6372645091097", "11.6750968495009", "45.6369775573096", "11.6751702951487"],
+                ["45.6369775573096", "11.6751702951487", "45.6367388657393", "11.6753665732889"],
+                ["45.6367388657393", "11.6753665732889", "45.6367289771935", "11.6753825027016"],
+                ["45.6367289771935", "11.6753825027016", "45.6365260771902", "11.6757409161845"],
+                ["45.6365260771902", "11.6757409161845", "45.6365067147154", "11.6757641776184"],
+                ["45.6365067147154", "11.6757641776184", "45.6364109895499", "11.6761446861366"],
+                ["45.6364109895499", "11.6761446861366", "45.6364052601089", "11.6766445297184"],
+                ["45.6364052601089", "11.6766445297184", "45.6364061001411", "11.6766665621834"],
+                ["45.6364061001411", "11.6766665621834", "45.6365997244701", "11.6771398404459"],
+                ["45.6365997244701", "11.6771398404459", "45.6368366963650", "11.6773809540368"],
+                ["45.6368366963650", "11.6773809540368", "45.6370166670316", "11.6774791638700"],
+                ["45.6370166670316", "11.6774791638700", "45.6370329765605", "11.6774805333766"],
+                ["45.6370329765605", "11.6774805333766", "45.6373404670095", "11.6775377261466"],
+                ["45.6373404670095", "11.6775377261466", "45.6373747416061", "11.6775406835421"],
+                ["45.6373747416061", "11.6775406835421", "45.6376189873476", "11.6775457513202"],
+                ["45.6376189873476", "11.6775457513202", "45.6376540734517", "11.6775326886242"],
+                ["45.6376540734517", "11.6775326886242", "45.6376597341933", "11.6775251354920"],
+                ["45.6376597341933", "11.6775251354920", "45.6378549104993", "11.6774192488798"],
+                ["45.6378549104993", "11.6774192488798", "45.6378850588659", "11.6774051720108"],
+                ["45.6378850588659", "11.6774051720108", "45.6380387423856", "11.6771934834522"],
+                ["45.6380387423856", "11.6771934834522", "45.6380510507057", "11.6771859252372"],
+                ["45.6380510507057", "11.6771859252372", "45.6381622300099", "11.6769337094058"],
+                ["45.6381622300099", "11.6769337094058", "45.6381913455338", "11.6765161715859"],
+                ["45.6381913455338", "11.6765161715859", "45.6381709023603", "11.6759794396749"],
+                ["45.6381709023603", "11.6759794396749", "45.6381135097525", "11.6756545950075"],
+                ["45.6381135097525", "11.6756545950075", "45.6380238346834", "11.6754758345108"],
+                ["45.6380238346834", "11.6754758345108", "45.6378399061808", "11.6752486704476"],
+                ["45.6416342430812", "11.6656258309892", "45.6408511390823", "11.6650822561701"],
+                ["45.6408511390823", "11.6650822561701", "45.6398620149067", "11.6646611198723"],
+                ["45.6398620149067", "11.6646611198723", "45.6385476226911", "11.6642611061229"],
+                ["45.6385476226911", "11.6642611061229", "45.6377482091153", "11.6641137950008"],
+                ["45.6377482091153", "11.6641137950008", "45.6367032277179", "11.6641007995241"],
+                ["45.6367032277179", "11.6641007995241", "45.6355203049795", "11.6645128519496"],
+                ["45.6355203049795", "11.6645128519496", "45.6343909485260", "11.6649750687493"],
+                ["45.6343909485260", "11.6649750687493", "45.6332645713388", "11.6656124101871"],
+                ["45.6332645713388", "11.6656124101871", "45.6325970631007", "11.6663058300725"],
+                ["45.6325970631007", "11.6663058300725", "45.6319979858588", "11.6669375628329"],
+                ["45.6319979858588", "11.6669375628329", "45.6319398104083", "11.6669885727043"],
+                ["45.6319398104083", "11.6669885727043", "45.6309813903418", "11.6682400921440"],
+                ["45.6309813903418", "11.6682400921440", "45.6309588652491", "11.6682401556450"],
+                ["45.6309588652491", "11.6682401556450", "45.6302937692329", "11.6698200107608"],
+                ["45.6302937692329", "11.6698200107608", "45.6296150393933", "11.6720001617958"],
+                ["45.6296150393933", "11.6720001617958", "45.6291120814430", "11.6736839503751"],
+                ["45.6291120814430", "11.6736839503751", "45.6289179652680", "11.6758279923628"],
+                ["45.6289179652680", "11.6758279923628", "45.6289779010550", "11.6778027189956"],
+                ["45.6289779010550", "11.6778027189956", "45.6291665857968", "11.6795836389700"],
+                ["45.6291665857968", "11.6795836389700", "45.6297353835312", "11.6813854438981"],
+                ["45.6297353835312", "11.6813854438981", "45.6306231242670", "11.6836716053435"],
+                ["45.6306231242670", "11.6836716053435", "45.6315431139668", "11.6853358149157"],
+                ["45.6315431139668", "11.6853358149157", "45.6326248266460", "11.6863485660121"],
+                ["45.6326248266460", "11.6863485660121", "45.6339109844860", "11.6874831306436"],
+                ["45.6339109844860", "11.6874831306436", "45.6349504367548", "11.6879492501455"],
+                ["45.6349504367548", "11.6879492501455", "45.6359440539445", "11.6883230019013"],
+                ["45.6359440539445", "11.6883230019013", "45.6369750821957", "11.6885674162805"],
+                ["45.6369750821957", "11.6885674162805", "45.6384171628904", "11.6884779157585"],
+                ["45.6384171628904", "11.6884779157585", "45.6389959982229", "11.6883858819217"],
+                ["45.6389959982229", "11.6883858819217", "45.6401038941063", "11.6879171606626"],
+                ["45.6401038941063", "11.6879171606626", "45.6408509685682", "11.6874686699549"],
+                ["45.6408509685682", "11.6874686699549", "45.6420446284844", "11.6865913519034"],
+                ["45.6420446284844", "11.6865913519034", "45.6428336829253", "11.6857873651364"],
+                ["45.6428336829253", "11.6857873651364", "45.6435025756563", "11.6848851794786"],
+                ["45.6435025756563", "11.6848851794786", "45.6440813503224", "11.6840241612718"],
+                ["45.6440813503224", "11.6840241612718", "45.6447619490446", "11.6826069314493"],
+                ["45.6447619490446", "11.6826069314493", "45.6452472881996", "11.6812158321603"],
+                ["45.6452472881996", "11.6812158321603", "45.6456729882211", "11.6796462575981"],
+                ["45.6456729882211", "11.6796462575981", "45.6459011476852", "11.6784349150725"],
+                ["45.6459011476852", "11.6784349150725", "45.6459983099902", "11.6771725202543"],
+                ["45.6459983099902", "11.6771725202543", "45.6459610144923", "11.6761199662425"],
+                ["45.6459610144923", "11.6761199662425", "45.6459243995293", "11.6746658489008"],
+                ["45.6459243995293", "11.6746658489008", "45.6457055985768", "11.6730863058368"],
+                ["45.6457055985768", "11.6730863058368", "45.6453758455466", "11.6716936731214"],
+                ["45.6453758455466", "11.6716936731214", "45.6449830326341", "11.6704889940594"],
+                ["45.6449830326341", "11.6704889940594", "45.6445365184584", "11.6693766672722"],
+                ["45.6445365184584", "11.6693766672722", "45.6440783458110", "11.6686408182961"],
+                ["45.6440783458110", "11.6686408182961", "45.6437610029748", "11.6679591612796"],
+                ["45.6437610029748", "11.6679591612796", "45.6431525631589", "11.6671247521318"],
+                ["45.6431525631589", "11.6671247521318", "45.6426465153697", "11.6665865722230"],
+                ["45.6426465153697", "11.6665865722230", "45.6416342430812", "11.6656258309892"]
+            ]
+        },
+        {
+            "name": "TES",
+            "lines":[
+                ["45.5198022807639", "12.3674054001701", "45.5196576311156", "12.3672237588414"],
+                ["45.5196576311156", "12.3672237588414", "45.5194525699834", "12.3671514340054"],
+                ["45.5194525699834", "12.3671514340054", "45.5192214712471", "12.3671230684418"],
+                ["45.5192214712471", "12.3671230684418", "45.5189664338447", "12.3671772521520"],
+                ["45.5189664338447", "12.3671772521520", "45.5187616845701", "12.3673267876091"],
+                ["45.5187616845701", "12.3673267876091", "45.5185474099202", "12.3676202780418"],
+                ["45.5185474099202", "12.3676202780418", "45.5184491752769", "12.3679831902025"],
+                ["45.5184491752769", "12.3679831902025", "45.5184491868648", "12.3683043072949"],
+                ["45.5184491868648", "12.3683043072949", "45.5184771572116", "12.3686359527145"],
+                ["45.5184771572116", "12.3686359527145", "45.5185969924578", "12.3688650670829"],
+                ["45.5185969924578", "12.3688650670829", "45.5187545192722", "12.3690497786146"],
+                ["45.5187545192722", "12.3690497786146", "45.5188855094334", "12.3692360130159"],
+                ["45.5188855094334", "12.3692360130159", "45.5190931355901", "12.3693597103494"],
+                ["45.5190931355901", "12.3693597103494", "45.5193209813425", "12.3693750666322"],
+                ["45.5193209813425", "12.3693750666322", "45.5194760777871", "12.3693237136298"],
+                ["45.5194760777871", "12.3693237136298", "45.5196976570313", "12.3692128203697"],
+                ["45.5196976570313", "12.3692128203697", "45.5198510479201", "12.3689694026664"],
+                ["45.5198510479201", "12.3689694026664", "45.5199739242147", "12.3686680700450"],
+                ["45.5199739242147", "12.3686680700450", "45.5200567256371", "12.3682879390702"],
+                ["45.5200567256371", "12.3682879390702", "45.5200567162045", "12.3680223506271"],
+                ["45.5200567162045", "12.3680223506271", "45.5199656493390", "12.3677374181794"],
+                ["45.5199656493390", "12.3677374181794", "45.5198022807639", "12.3674054001701"],
+                ["45.5249136293925", "12.3644866835229", "45.5249138933339", "12.3719607600190"],
+                ["45.5249138933339", "12.3719607600190", "45.5193537795914", "12.3769453188917"],
+                ["45.5193537795914", "12.3769453188917", "45.5136983086733", "12.3719771925648"],
+                ["45.5136983086733", "12.3719771925648", "45.5137649556993", "12.3644513432484"],
+                ["45.5137649556993", "12.3644513432484", "45.5191798883054", "12.3591528393546"],
+                ["45.5191798883054", "12.3591528393546", "45.5249136293925", "12.3644866835229"],
+                ["45.5249136293925", "12.3644866835229", "45.5248417465394", "12.3593074324526"],
+                ["45.5248417465394", "12.3593074324526", "45.5137643634984", "12.3590964537917"],
+                ["45.5137643634984", "12.3590964537917", "45.5136647814202", "12.3767516761264"],
+                ["45.5136647814202", "12.3767516761264", "45.5248781249110", "12.3770427480852"],
+                ["45.5248781249110", "12.3770427480852", "45.5248781418588", "12.3720107877901"]
+            ]
+        },
+        {
+            "name": "2000FTZONE1",
+            "lines": [
+                ["N45d24m55", "E12d04m43", "N45d30m57", "E12d12m21"],
+                ["N45d30m57", "E12d12m21", "N45d35m14", "E12d25m13"],
+                ["N45d35m14", "E12d25m13", "N45d35m06", "E12d29m54"],
+                ["45.58499160773646", "12.49832471691152", "45.58461903150221", "12.50450695344552"],
+                ["45.58461903150221", "12.50450695344552", "45.58387947131420", "12.51061430217229"],
+                ["45.58387947131420", "12.51061430217229", "45.58272719921144", "12.51667531504189"],
+                ["45.58272719921144", "12.51667531504189", "45.58131963428794", "12.52226844174971"],
+                ["45.58131963428794", "12.52226844174971", "45.57945465760103", "12.52813361164403"],
+                ["45.57945465760103", "12.52813361164403", "45.57727010414136", "12.53350450224877"],
+                ["45.57727010414136", "12.53350450224877", "45.57478014097633", "12.53862391892779"],
+                ["45.57478014097633", "12.53862391892779", "45.57284520828608", "12.54191115054650"],
+                ["45.57284520828608", "12.54191115054650", "45.57105081169136", "12.54474551061974"],
+                ["45.57105081169136", "12.54474551061974", "45.56938521083543", "12.54713277070705"],
+                ["45.56938521083543", "12.54713277070705", "45.56777879147654", "12.54919229630416"],
+                ["45.56777879147654", "12.54919229630416", "45.56604508891255", "12.55125048692503"],
+                ["45.56604508891255", "12.55125048692503", "45.56371106626931", "12.55373635374336"],
+                ["45.56371106626931", "12.55373635374336", "45.56149773378854", "12.55587768264444"],
+                ["45.56149773378854", "12.55587768264444", "45.55917354656481", "12.55779648548366"],
+                ["45.55917354656481", "12.55779648548366", "45.55672705664552", "12.55957025861431"],
+                ["45.55672705664552", "12.55957025861431", "45.55429372927517", "12.56117299082160"],
+                ["45.55429372927517", "12.56117299082160", "45.55202381259942", "12.56240202495071"],
+                ["45.55202381259942", "12.56240202495071", "45.54992205278214", "12.56347700381925"],
+                ["45.54992205278214", "12.56347700381925", "45.54703450545708", "12.56459027760717"],
+                ["45.54703450545708", "12.56459027760717", "45.54426403857382", "12.56542471577179"],
+                ["45.54426403857382", "12.56542471577179", "45.54155852069769", "12.56611379985537"],
+                ["45.54155852069769", "12.56611379985537", "45.53723036816601", "12.56664109828663"],
+                ["45.53723036816601", "12.56664109828663", "45.53286834108834", "12.56665125237717"],
+                ["45.53286834108834", "12.56665125237717", "45.52943941970525", "12.56621960687515"],
+                ["45.52943941970525", "12.56621960687515", "45.52598753785843", "12.56547243659765"],
+                ["45.52598753785843", "12.56547243659765", "45.52281894008716", "12.56450301330702"],
+                ["45.52281894008716", "12.56450301330702", "45.51978139463307", "12.56331002879523"],
+                ["45.51978139463307", "12.56331002879523", "45.51586938781554", "12.56125926199049"],
+                ["45.51586938781554", "12.56125926199049", "45.51191662761529", "12.55866002069298"],
+                ["45.51191662761529", "12.55866002069298", "45.50869389449469", "12.55591371848319"],
+                ["45.50869389449469", "12.55591371848319", "45.50611335089906", "12.55333180706583"],
+                ["N45d30m22", "E12d33m12", "N45d28m02", "E12d30m51"],
+                ["N45d28m02", "E12d30m51", "N45d28m04", "E12d27m43"],
+                ["N45d28m04", "E12d27m43", "N45d25m11", "E12d19m05"],
+                ["N45d25m11", "E12d19m05", "N45d19m51", "E12d18m34"],
+                ["N45d19m51", "E12d18m34", "N45d18m16", "E12d15m14"],
+                ["N45d18m16", "E12d15m14", "N45d24m55", "E12d04m43"]
+            ]
+        },
+        {
+            "name": "2000FTZONE2",
+            "lines": [
+                ["N45d24m00", "E11d53m19", "N45d17m59", "E11d55m08"],
+                ["N45d17m59", "E11d55m08", "N45d08m27", "E12d07m39"],
+                ["N45d08m27", "E12d07m39", "N45d17m55", "E12d33m55"],
+                ["N45d17m55", "E12d33m55", "N45d21m34", "E12d40m20"],
+                ["N45d21m34", "E12d40m20", "N45d24m39", "E12d44m29"],
+                ["N45d24m39", "E12d44m29", "N45d28m14", "E12d50m00"],
+                ["N45d28m14", "E12d50m00", "N45d36m42", "E12d50m00"],
+                ["N45d36m42", "E12d50m00", "N45d34m45", "E12d40m38"],
+                ["N45d34m45", "E12d40m38", "N45d35m14", "E12d25m13"],
+                ["N45d35m14", "E12d25m13", "N45d32m03", "E12d15m39"],
+                ["N45d32m03", "E12d15m39", "N45d29m25", "E12d07m46"],
+                ["N45d29m25", "E12d07m46", "N45d24m09", "E11d55m43"],
+                ["N45d24m09", "E11d55m43", "N45d24m00", "E11d53m19"]
+            ]
+        },
+        {
+            "name": "2000FTNW",
+            "lines": [
+                ["N45d32m03", "E12d15m39", "N45d42m12", "E12d26m44"],
+                ["N45d42m12", "E12d26m44", "N45d39m59", "E11d48m28"],
+                ["N45d39m59", "E11d48m28", "N45d24m00", "E11d53m19"],
+                ["N45d24m00", "E11d53m19", "N45d24m09", "E11d55m43"],
+                ["N45d24m09", "E11d55m43", "N45d29m25", "E12d07m46"],
+                ["N45d29m25", "E12d07m46", "N45d30m57", "E12d12m21"],
+                ["N45d30m57", "E12d12m21", "N45d32m03", "E12d15m39"]
+            ]
+        },
+        {
+            "name": "2000FTNE",
+            "lines": [
+                ["N45d32m03", "E12d15m39", "N45d42m12", "E12d26m44"],
+                ["N45d42m12", "E12d26m44", "N45d43m07", "E12d43m46"],
+                ["N45d43m07", "E12d43m46", "N45d36m42", "E12d50m00"],
+                ["N45d36m42", "E12d50m00", "N45d35m20", "E12d43m27"],
+                ["N45d35m20", "E12d43m27", "N45d36m47", "E12d44m32"],
+                ["N45d36m47", "E12d44m32", "N45d39m51", "E12d35m59"],
+                ["N45d39m51", "E12d35m59", "N45d40m59", "E12d31m26"],
+                ["N45d40m59", "E12d31m26", "N45d39m48", "E12d28m12"],
+                ["N45d39m48", "E12d28m12", "N45d37m23", "E12d26m55"],
+                ["N45d37m23", "E12d26m55", "N45d34m38", "E12d23m25"],
+                ["N45d34m38", "E12d23m25", "N45d32m03", "E12d15m39"]
+            ]
+        },
+        {
+            "name": "2000FTSE",
+            "lines": [
+                ["N45d34m38", "E12d23m25", "N45d37m23", "E12d26m55"],
+                ["N45d37m23", "E12d26m55", "N45d39m48", "E12d28m12"],
+                ["N45d39m48", "E12d28m12", "N45d40m59", "E12d31m26"],
+                ["N45d40m59", "E12d31m26", "N45d39m51", "E12d35m59"],
+                ["N45d39m51", "E12d35m59", "N45d36m47", "E12d44m32"],
+                ["N45d36m47", "E12d44m32", "N45d35m20", "E12d43m27"],
+                ["N45d35m20", "E12d43m27", "N45d34m45", "E12d40m38"],
+                ["N45d34m45", "E12d40m38", "N45d35m14", "E12d25m13"],
+                ["N45d35m14", "E12d25m13", "N45d34m38", "E12d23m25"]
+            ]
+        },
+        {
+            "name": "4000FTZONE3",
+            "lines": [
+                ["N45d17m13", "E11d39m30", "N45d11m32", "E11d41m08"],
+                ["N45d11m32", "E11d41m08", "N45d00m30", "E11d53m30"],
+                ["N45d00m30", "E11d53m30", "N45d04m18", "E12d16m53"],
+                ["N45d04m18", "E12d16m53", "N45d13m36", "E12d45m15"],
+                ["45.27639897639230", "12.79671115161779", "45.26948115708276", "12.79437374408007"],
+                ["45.26948115708276", "12.79437374408007", "45.26241859924679", "12.79115174728580"],
+                ["45.26241859924679", "12.79115174728580", "45.25568433341776", "12.78701292691420"],
+                ["45.25568433341776", "12.78701292691420", "45.24938678708844", "12.78225221752989"],
+                ["45.24938678708844", "12.78225221752989", "45.24401873063496", "12.77723378330195"],
+                ["45.24401873063496", "12.77723378330195", "45.23929706527306", "12.77214215505764"],
+                ["45.23929706527306", "12.77214215505764", "45.23489706349185", "12.76665106585853"],
+                ["45.23489706349185", "12.76665106585853", "45.23106539456451", "12.76128857028377"],
+                ["45.23106539456451", "12.76128857028377", "45.22667848079561", "12.75444712938464"],
+                ["N45d16m34", "E12d47m47", "N45d24m40", "E12d50m00"],
+                ["N45d24m40", "E12d50m00", "N45d28m14", "E12d50m00"],
+                ["N45d28m14", "E12d50m00", "N45d24m39", "E12d44m29"],
+                ["N45d24m39", "E12d44m29", "N45d21m34", "E12d40m20"],
+                ["N45d21m34", "E12d40m20", "N45d17m55", "E12d33m55"],
+                ["N45d17m55", "E12d33m55", "N45d08m27", "E12d07m39"],
+                ["N45d08m27", "E12d07m39", "N45d17m59", "E11d55m08"],
+                ["N45d17m59", "E11d55m08", "N45d23m31", "E11d53m28"],
+                ["N45d23m31", "E11d53m28", "N45d17m47", "E11d43m41"],
+                ["N45d17m47", "E11d43m41", "N45d17m13", "E11d39m30"]
+            ]
+        },
+        {
+            "name": "4500FTZONE4",
+            "lines": [
+                ["N45d23m00", "E11d37m50", "N45d24m00", "E11d53m18"],
+                ["N45d24m00", "E11d53m18", "N45d23m31", "E11d53m27"],
+                ["N45d23m31", "E11d53m27", "N45d17m47", "E11d43m41"],
+                ["N45d17m47", "E11d43m41", "N45d17m13", "E11d39m30"],
+                ["N45d17m13", "E11d39m30", "N45d23m00", "E11d37m50"]
+            ]
+        },
+        {
+            "name": "5000FT",
+            "lines": [
+                ["N45d13m35", "E12d45m14", "N45d00m00", "E12d21m22"],
+                ["N45d00m00", "E12d21m22", "N44d58m41", "E11d57m07"],
+                ["N44d58m41", "E11d57m07", "N44d54m35", "E11d51m59"],
+                ["N44d54m35", "E11d51m59", "N45d05m51", "E11d34m03"],
+                ["N45d05m51", "E11d34m03", "N45d11m32", "E11d41m08"],
+                ["N45d11m32", "E11d41m08", "N45d00m30", "E11d53m30"],
+                ["N45d00m30", "E11d53m30", "N45d04m18", "E12d16m53"],
+                ["N45d04m18", "E12d16m53", "N45d13m35", "E12d45m14"]
+            ]
+        },
+        {
+            "name": "PADOVA5000FT",
+            "lines": [
+                ["N45d48m30", "E12d50m00", "N45d44m55", "E12d15m39"],
+                ["N45d44m55", "E12d15m39", "N45d43m40", "E12d04m00"],
+                ["N45d43m40", "E12d04m00", "N45d43m34", "E11d58m07"],
+                ["N45d43m34", "E11d58m07", "N45d39m24", "E11d40m23"],
+                ["N45d39m24", "E11d40m23", "N45d38m38", "E11d30m17"],
+                ["N45d38m38", "E11d30m17", "N45d28m42", "E11d18m29"],
+                ["N45d28m42", "E11d18m29", "N45d25m54", "E11d09m28"],
+                ["N45d25m54", "E11d09m28", "N45d26m08", "E10d57m26"],
+                ["N45d26m08", "E10d57m26", "N45d20m17", "E10d58m52"],
+                ["N45d20m17", "E10d58m52", "N45d22m18", "E10d38m42"],
+                ["N45d22m18", "E10d38m42", "N44d45m34", "E10d56m54"],
+                ["N44d45m34", "E10d56m54", "N44d47m41", "E11d03m24"],
+                ["N44d47m41", "E11d03m24", "N44d43m53", "E11d06m11"],
+                ["N44d43m53", "E11d06m11", "N44d44m27", "E11d14m00"],
+                ["N44d44m27", "E11d14m00", "N44d37m29", "E11d44m35"],
+                ["N44d37m29", "E11d44m35", "N44d43m53", "E11d47m03"],
+                ["N44d43m53", "E11d47m03", "N44d50m30", "E11d43m37"],
+                ["N44d50m30", "E11d43m37", "N44d49m59", "E12d31m07"],
+                ["N44d49m59", "E12d31m07", "N45d06m17", "E12d37m03"],
+                ["N45d06m17", "E12d37m03", "N45d15m53", "E13d00m00"],
+                ["N45d15m53", "E13d00m00", "N45d18m00", "E13d00m00"],
+                ["N45d18m00", "E13d00m00", "N45d28m03", "E13d15m00"],
+                ["N45d28m03", "E13d15m00", "N45d34m00", "E13d05m13"],
+                ["N45d34m00", "E13d05m13", "N45d31m30", "E12d50m00"],
+                ["N45d31m30", "E12d50m00", "N45d48m30", "E12d50m00"]
+            ]
+        },
+        {
+            "name": "FL90 NORTH-WEST",
+            "lines": [
+                ["N45d48m28", "E11d54m45", "N45d49m15", "E11d43m54"],
+                ["N45d49m15", "E11d43m54", "N45d51m52", "E11d32m25"],
+                ["N45d51m52", "E11d32m25", "N45d49m13", "E11d22m27"],
+                ["N45d49m13", "E11d22m27", "N45d43m27", "E11d22m54"],
+                ["N45d43m27", "E11d22m54", "N45d43m22", "E11d29m57"],
+                ["N45d43m22", "E11d29m57", "N45d38m12", "E11d22m52"],
+                ["N45d38m12", "E11d22m52", "N45d33m26", "E11d17m34"],
+                ["N45d33m26", "E11d17m34", "N45d32m30", "E11d12m17"],
+                ["N45d32m30", "E11d12m17", "N45d32m52", "E11d03m46"],
+                ["N45d32m52", "E11d03m46", "N45d34m25", "E10d56m52"],
+                ["N45d34m25", "E10d56m52", "N45d33m40", "E10d55m41"],
+                ["N45d33m40", "E10d55m41", "N45d31m30", "E10d56m07"],
+                ["N45d31m30", "E10d56m07", "N45d31m30", "E10d51m00"],
+                ["N45d31m30", "E10d51m00", "N45d33m21", "E10d37m41"],
+                ["N45d33m21", "E10d37m41", "N45d34m01", "E10d32m49"],
+                ["N45d34m01", "E10d32m49", "N45d22m18", "E10d38m42"],
+                ["N45d22m18", "E10d38m42", "N45d20m17", "E10d58m52"],
+                ["N45d20m17", "E10d58m52", "N45d26m08", "E10d57m26"],
+                ["N45d26m08", "E10d57m26", "N45d25m54", "E11d09m28"],
+                ["N45d25m54", "E11d09m28", "N45d28m42", "E11d18m29"],
+                ["N45d28m42", "E11d18m29", "N45d38m38", "E11d30m17"],
+                ["N45d38m38", "E11d30m17", "N45d39m24", "E11d40m23"],
+                ["N45d39m24", "E11d40m23", "N45d43m34", "E11d58m07"],
+                ["N45d43m34", "E11d58m07", "N45d48m28", "E11d54m45"]
+            ]
+        },
+        {
+            "name": "FL90 SOUTH-EAST",
+            "lines": [
+                ["N44d43m53", "E11d47m03", "N44d50m30", "E11d43m37"],
+                ["N44d50m30", "E11d43m37", "N44d49m59", "E12d31m07"],
+                ["N44d49m59", "E12d31m07", "N45d06m17", "E12d37m03"],
+                ["N45d06m17", "E12d37m03", "N45d15m53", "E13d00m00"],
+                ["N45d15m53", "E13d00m00", "N45d10m00", "E13d00m00"],
+                ["N45d10m00", "E13d00m00", "N44d59m14", "E13d05m43"],
+                ["N44d59m14", "E13d05m43", "N44d35m51", "E12d09m43"],
+                ["N44d35m51", "E12d09m43", "N44d43m53", "E11d47m03"]
+            ]
+        },
+        {
+            "name": "5000FT / FL90",
+            "lines": [
+                ["N45d38m00", "E13d30m00", "N45d46m30", "E13d35m00"],
+                ["N45d46m30", "E13d35m00", "N46d00m04", "E13d24m56"],
+                ["N46d00m04", "E13d24m56", "N46d00m09", "E13d18m53"],
+                ["N46d00m09", "E13d18m53", "N45d56m17", "E13d15m03"],
+                ["N45d56m17", "E13d15m03", "N45d55m24", "E13d12m43"],
+                ["N45d55m24", "E13d12m43", "N45d36m56", "E13d23m15"],
+                ["N45d36m56", "E13d23m15", "N45d34m00", "E13d05m13"],
+                ["N45d34m00", "E13d05m13", "N45d28m03", "E13d15m00"],
+                ["N45d28m03", "E13d15m00", "N45d38m00", "E13d30m00"]
+            ]
+        },
+        {
+            "name": "FL100 NORTH-WEST",
+            "lines": [
+                ["N45d57m39", "E11d54m34", "N45d48m28", "E11d54m45"],
+                ["N45d48m28", "E11d54m45", "N45d49m15", "E11d43m54"],
+                ["N45d49m15", "E11d43m54", "N45d51m52", "E11d32m25"],
+                ["N45d51m52", "E11d32m25", "N45d57m39", "E11d54m34"]
+            ]
+        },
+        {
+            "name": "FL110 NORTH-EAST",
+            "lines": [
+                ["N46d04m00", "E12d15m30", "N45d54m00", "E12d33m30"],
+                ["N45d54m00", "E12d33m30", "N45d44m55", "E12d15m39"],
+                ["N45d44m55", "E12d15m39", "N45d43m40", "E12d04m00"],
+                ["N45d43m40", "E12d04m00", "N45d43m34", "E11d58m07"],
+                ["N45d43m34", "E11d58m07", "N45d48m28", "E11d54m45"],
+                ["N45d48m28", "E11d54m45", "N45d57m39", "E11d54m34"],
+                ["N45d57m39", "E11d54m34", "N46d04m00", "E12d15m30"]
+            ]
+        },
+        {
+            "name": "FL110 NORTH-WEST",
+            "lines": [
+                ["N45d57m00", "E10d56m30", "N45d45m25", "E10d33m20"],
+                ["N45d45m25", "E10d33m20", "N45d45m34", "E10d32m57"],
+                ["N45d45m34", "E10d32m57", "N45d46m14", "E10d26m38"],
+                ["N45d46m14", "E10d26m38", "N45d34m01", "E10d32m49"],
+                ["N45d34m01", "E10d32m49", "N45d33m21", "E10d37m41"],
+                ["N45d33m21", "E10d37m41", "N45d31m30", "E10d51m00"],
+                ["N45d31m30", "E10d51m00", "N45d31m30", "E10d56m07"],
+                ["N45d31m30", "E10d56m07", "N45d33m40", "E10d55m41"],
+                ["N45d33m40", "E10d55m41", "N45d34m25", "E10d56m52"],
+                ["N45d34m25", "E10d56m52", "N45d32m52", "E11d03m46"],
+                ["N45d32m52", "E11d03m46", "N45d32m30", "E11d12m17"],
+                ["N45d32m30", "E11d12m17", "N45d33m26", "E11d17m34"],
+                ["N45d33m26", "E11d17m34", "N45d38m12", "E11d22m52"],
+                ["N45d38m12", "E11d22m52", "N45d43m22", "E11d29m57"],
+                ["N45d43m22", "E11d29m57", "N45d43m27", "E11d22m54"],
+                ["N45d43m27", "E11d22m54", "N45d49m13", "E11d22m27"],
+                ["N45d49m13", "E11d22m27", "N45d49m39", "E11d24m04"],
+                ["N45d49m39", "E11d24m04", "N45d57m00", "E10d56m30"]
+            ]
+        },
+        {
+            "name": "FL120",
+            "lines": [
+                ["N45d51m52", "E11d32m25", "N45d49m39", "E11d24m04"],
+                ["N45d49m39", "E11d24m04", "N45d57m00", "E10d56m30"],
+                ["N45d57m00", "E10d56m30", "N46d07m30", "E11d06m30"],
+                ["N46d07m30", "E11d06m30", "N46d09m41", "E11d24m21"],
+                ["N46d09m41", "E11d24m21", "N46d04m59", "E11d33m37"],
+                ["N46d04m59", "E11d33m37", "N45d57m39", "E11d54m34"],
+                ["N45d57m39", "E11d54m34", "N45d51m52", "E11d32m25"]
+            ]
+        },
+        {
+            "name": "FL130 NORTH-WEST",
+            "lines": [
+                ["N45d57m39", "E11d54m34", "N46d04m59", "E11d33m37"],
+                ["N46d04m59", "E11d33m37", "N46d09m41", "E11d24m21"],
+                ["N46d09m41", "E11d24m21", "N46d25m19", "E11d25m34"],
+                ["N46d25m19", "E11d25m34", "N46d04m00", "E11d44m30"],
+                ["N46d04m00", "E11d44m30", "N46d09m00", "E12d08m00"],
+                ["N46d09m00", "E12d08m00", "N46d04m00", "E12d15m30"],
+                ["N46d04m00", "E12d15m30", "N45d57m39", "E11d54m34"]
+            ]
+        },
+        {
+            "name": "FL130 SOUTH-WEST",
+            "lines": [
+                ["N44d45m34", "E10d56m54", "N44d47m41", "E11d03m24"],
+                ["N44d47m41", "E11d03m24", "N44d28m36", "E11d17m23"],
+                ["N44d28m36", "E11d17m23", "N44d17m10", "E11d14m17"],
+                ["N44d17m10", "E11d14m17", "N44d23m17", "E11d07m44"],
+                ["N44d23m17", "E11d07m44", "N44d45m34", "E10d56m54"]
+            ]
+        },
+        {
+            "name": "FL140",
+            "lines": [
+                ["N46d09m41", "E11d24m21", "N46d25m19", "E11d25m34"],
+                ["N46d25m19", "E11d25m34", "N46d29m01", "E11d06m59"],
+                ["N46d29m01", "E11d06m59", "N46d07m30", "E11d06m30"],
+                ["N46d07m30", "E11d06m30", "N46d09m41", "E11d24m21"]
+            ]
+        },
+        {
+            "name": "FL160 NORTH-WEST",
+            "lines": [ 
+                ["N46d29m51", "E11d07m20", "N46d21m00", "E10d44m00"],
+                ["N46d21m00", "E10d44m00", "N46d11m43", "E10d02m53"],
+                ["N46d11m43", "E10d02m53", "N46d02m35", "E10d07m00"],
+                ["N46d02m35", "E10d07m00", "N45d48m14", "E10d25m37"],
+                ["N45d48m14", "E10d25m37", "N45d46m14", "E10d26m38"],
+                ["N45d46m14", "E10d26m38", "N45d45m34", "E10d32m57"],
+                ["N45d45m34", "E10d32m57", "N45d45m25", "E10d33m20"],
+                ["N45d45m25", "E10d33m20", "N45d57m00", "E10d56m30"],
+                ["N45d57m00", "E10d56m30", "N46d07m30", "E11d06m30"],
+                ["N46d07m30", "E11d06m30", "N46d29m01", "E11d06m59"],
+                ["N46d29m01", "E11d06m59", "N46d29m51", "E11d07m20"]
+            ]
+        },
+        {
+            "name": "FL150",
+            "lines": [
+                ["N46d04m27", "E13d31m46", "N46d11m30", "E12d56m00"],
+                ["N46d11m30", "E12d56m00", "N46d00m30", "E12d46m00"],
+                ["N46d00m30", "E12d46m00", "N45d54m00", "E12d33m30"],
+                ["N45d54m00", "E12d33m30", "N46d04m00", "E12d15m30"],
+                ["N46d04m00", "E12d15m30", "N46d09m00", "E12d08m00"],
+                ["N46d09m00", "E12d08m00", "N46d04m00", "E11d44m30"],
+                ["N46d04m00", "E11d44m30", "N46d25m19", "E11d25m34"],
+                ["N46d25m19", "E11d25m34", "N46d37m51", "E12d49m00"]
+            ]
+        },
+        {
+            "name": "FL100 NORTH-EAST",
+            "lines": [
+                ["N45d35m40", "E013d43m16","N45d37m00", "E013d44m00"],
+                ["N45d37m00", "E013d44m00","N45d38m00", "E013d30m00"],
+                ["N45d38m00", "E013d30m00","N45d46m30", "E013d35m00"],
+                ["N45d46m30", "E013d35m00","N46d00m04", "E013d24m56"],
+                ["N46d00m04", "E013d24m56","N46d00m09", "E013d18m53"],
+                ["N46d00m09", "E013d18m53","N45d56m17", "E013d15m03"],
+                ["N45d56m17", "E013d15m03","N45d55m24", "E013d12m43"],
+                ["N45d55m24", "E013d12m43","N45d36m56", "E013d23m15"],
+                ["N45d36m56", "E013d23m15","N45d31m30", "E012d50m00"],
+                ["N45d31m30", "E012d50m00","N45d48m30", "E012d50m00"],
+                ["N45d48m30", "E012d50m00","N45d44m55", "E012d15m39"],
+                ["N45d44m55", "E012d15m39","N45d54m00", "E012d33m30"],
+                ["N45d54m00", "E012d33m30","N46d00m30", "E012d46m00"],
+                ["N46d00m30", "E012d46m00","N46d11m30", "E012d56m00"],
+                ["N46d11m30", "E012d56m00","N46d04m27", "E013d31m46"]
+            ]
+        },
+        {
+            "name": "FL100 SOUTH-EAST",
+            "lines": [
+                ["N44d43m53", "E011d06m11", "N44d44m27", "E011d14m00"],
+                ["N44d44m27", "E011d14m00", "N44d37m29", "E011d44m35"],
+                ["N44d37m29", "E011d44m35", "N44d43m53", "E011d47m03"],
+                ["N44d43m53", "E011d47m03", "N44d35m51", "E012d09m43"],
+                ["N44d35m51", "E012d09m43", "N44d59m14", "E013d05m43"],
+                ["N44d59m14", "E013d05m43", "N44d32m00", "E013d20m00"],
+                ["N44d32m00", "E013d20m00", "N43d57m00", "E014d00m00"],
+                ["N43d57m00", "E014d00m00", "N43d33m56", "E014d25m40"],
+                ["N43d33m56", "E014d25m40", "N43d15m03", "E013d40m56"],
+                ["N43d15m03", "E013d40m56", "N43d16m19", "E013d22m52"],
+                ["N43d16m19", "E013d22m52", "N43d39m40", "E012d54m42"],
+                ["N43d39m40", "E012d54m42", "N43d42m38", "E012d28m36"],
+                ["N43d42m38", "E012d28m36", "N43d49m04", "E012d13m03"],
+                ["N43d49m04", "E012d13m03", "N43d52m49", "E011d51m39"],
+                ["N43d52m49", "E011d51m39", "N43d45m12", "E011d53m00"],
+                ["N43d45m12", "E011d53m00", "N43d46m34", "E011d49m30"],
+                ["N43d46m34", "E011d49m30", "N43d49m49", "E011d43m11"],
+                ["N43d49m49", "E011d43m11", "N44d17m10", "E011d14m17"],
+                ["N44d17m10", "E011d14m17", "N44d28m36", "E011d17m23"],
+                ["N44d28m36", "E011d17m23", "N44d43m53", "E011d06m11"]
+            ]
+        },
+        {
+            "name": "TREVISO ZONA1",
+            "lines": [
+                ["N45d45m23", "E11d56m52", "N45d46m48", "E12d10m03"],
+                ["N45d46m48", "E12d10m03", "N45d45m10", "E12d18m00"],
+                ["N45d45m10", "E12d18m00", "N45d35m05", "E12d20m36"],
+                ["N45d35m05", "E12d20m36", "N45d28m38", "E11d57m25"],
+                ["N45d28m38", "E11d57m25", "N45d37m05", "E11d51m48"],
+                ["N45d37m05", "E11d51m48", "N45d36m17", "E11d44m01"],
+                ["N45d36m17", "E11d44m01", "N45d43m18", "E11d43m39"],
+                ["N45d43m18", "E11d43m39", "N45d45m23", "E11d56m52"]
+            ]
+        },
+        {
+            "name": "TREVISO ZONA2",
+            "lines": [
+                ["N45d45m10", "E12d18m00", "N45d48m30", "E12d50m01"],
+                ["N45d48m30", "E12d50m01", "N45d36m42", "E12d50m00"],
+                ["N45d36m42", "E12d50m00", "N45d34m45", "E12d40m38"],
+                ["N45d34m45", "E12d40m38", "N45d35m14", "E12d25m13"],
+                ["N45d35m14", "E12d25m13", "N45d29m25", "E12d07m46"],
+                ["N45d29m25", "E12d07m46", "N45d31m12", "E12d06m33"],
+                ["N45d31m12", "E12d06m33", "N45d35m05", "E12d20m36"],
+                ["N45d35m05", "E12d20m36", "N45d45m10", "E12d18m00"]
+            ]
+        },
+        {
+            "name": "TREVISO ZONA3",
+            "lines": [
+                ["N45d29m25", "E12d07m46", "N45d35m14", "E12d25m13"],
+                ["N45d35m14", "E12d25m13", "N45d34m45", "E12d40m38"],
+                ["N45d34m45", "E12d40m38", "N45d36m42", "E12d50m00"],
+                ["N45d36m42", "E12d50m00", "N45d48m30", "E12d50m01"],
+                ["N45d48m30", "E12d50m01", "N45d45m10", "E12d18m00"],
+                ["N45d45m10", "E12d18m00", "N45d46m48", "E12d10m03"],
+                ["N45d46m48", "E12d10m03", "N45d45m23", "E11d56m52"],
+                ["N45d45m23", "E11d56m52", "N45d29m25", "E12d07m46"]
+            ]
+        },
+        {
+            "name": "TREVISO ZONA4",
+            "lines": [
+                ["N45d43m14", "E11d40m23", "N45d43m18", "E11d43m39"],
+                ["N45d43m18", "E11d43m39", "N45d45m23", "E11d56m52"],
+                ["N45d45m23", "E11d56m52", "N45d29m25", "E12d07m46"],
+                ["N45d29m25", "E12d07m46", "N45d24m09", "E11d55m43"],
+                ["N45d24m09", "E11d55m43", "N45d23m00", "E11d37m50"],
+                ["N45d23m00", "E11d37m50", "N45d37m14", "E11d33m36"],
+                ["45.62057360485010", "11.55999317168352", "45.62883112574840", "11.55801160926907"],
+                ["45.62883112574840", "11.55801160926907", "45.63694331026862", "11.55722982507682"],
+                ["45.63694331026862", "11.55722982507682", "45.64431305789292", "11.55762506078430"],
+                ["45.64431305789292", "11.55762506078430", "45.65103627332706", "11.55883880705444"],
+                ["45.65103627332706", "11.55883880705444", "45.65761438273761", "11.56085011113728"],
+                ["45.65761438273761", "11.56085011113728", "45.66540047693319", "11.56429345085583"],
+                ["45.66540047693319", "11.56429345085583", "45.67077471591948", "11.56723743528855"],
+                ["45.67077471591948", "11.56723743528855", "45.67556917518315", "11.57060732407501"],
+                ["45.67556917518315", "11.57060732407501", "45.68019122444841", "11.57422235046620"],
+                ["45.68019122444841", "11.57422235046620", "45.68448039958274", "11.57822022529062"],
+                ["45.68448039958274", "11.57822022529062", "45.68847982892651", "11.58234090335330"],
+                ["45.68847982892651", "11.58234090335330", "45.69220659552861", "11.58683099054885"],
+                ["45.69220659552861", "11.58683099054885", "45.69639399521202", "11.59248438505349"],
+                ["45.69639399521202", "11.59248438505349", "45.70024736384588", "11.59845131707150"],
+                ["45.70024736384588", "11.59845131707150", "45.70386448236500", "11.60488869721998"],
+                ["45.70386448236500", "11.60488869721998", "45.70787758920524", "11.61320493178582"],
+                ["45.70787758920524", "11.61320493178582", "45.71216792418122", "11.62424937565578"],
+                ["45.71216792418122", "11.62424937565578", "45.71532204493205", "11.63465309275188"],
+                ["45.71532204493205", "11.63465309275188", "45.71762479606556", "11.64531289295647"],
+                ["45.71762479606556", "11.64531289295647", "45.71926506040811", "11.65542471204926"],
+                ["45.71926506040811", "11.65542471204926", "45.72003451283969", "11.66291654006708"],
+                ["45.72003451283969", "11.66291654006708", "45.72055296074650", "11.67302880908125"]
+            ]
+        },
+        {
+            "name": "BORDER",
+            "lines":[
+                ["46.63055254191530", "12.81570730862190", "46.62742546653560", "12.83732129946020"],
+                ["46.62742546653560", "12.83732129946020", "46.62085890480340", "12.83399258846570"],
+                ["46.62085890480340", "12.83399258846570", "46.61065476871251", "12.83365423784450"],
+                ["46.61065476871251", "12.83365423784450", "46.60823310093120", "12.83782551548700"],
+                ["46.60823310093120", "12.83782551548700", "46.60507872614950", "12.85198948892470"],
+                ["46.60507872614950", "12.85198948892470", "46.60990916477900", "12.86526211916910"],
+                ["46.60990916477900", "12.86526211916910", "46.60687689411160", "12.88908148074810"],
+                ["46.60687689411160", "12.88908148074810", "46.60963307919591", "12.89654870714790"],
+                ["46.60963307919591", "12.89654870714790", "46.60783871862110", "12.90520992018430"],
+                ["46.60783871862110", "12.90520992018430", "46.61001846182550", "12.93205490102010"],
+                ["46.61001846182550", "12.93205490102010", "46.60261792408920", "12.94894449680200"],
+                ["46.60261792408920", "12.94894449680200", "46.60631813626420", "12.95658834071660"],
+                ["46.60631813626420", "12.95658834071660", "46.60495560273470", "12.96641966557740"],
+                ["46.60495560273470", "12.96641966557740", "46.60075412040580", "12.97814486106730"],
+                ["46.60075412040580", "12.97814486106730", "46.59956875975481", "12.99148231898430"],
+                ["46.59956875975481", "12.99148231898430", "46.60240016790820", "13.00046597613950"],
+                ["46.60240016790820", "13.00046597613950", "46.59944643729400", "13.00821191989630"],
+                ["46.59944643729400", "13.00821191989630", "46.60143352735910", "13.02324524358830"],
+                ["46.60143352735910", "13.02324524358830", "46.59642345889309", "13.03106638514510"],
+                ["46.59642345889309", "13.03106638514510", "46.59535359621291", "13.04592326391890"],
+                ["46.59535359621291", "13.04592326391890", "46.59890641996840", "13.06740383428190"],
+                ["46.59890641996840", "13.06740383428190", "46.59916132452310", "13.07931051606900"],
+                ["46.59916132452310", "13.07931051606900", "46.60183152149499", "13.08354962362650"],
+                ["46.60183152149499", "13.08354962362650", "46.60013968612879", "13.09259402030510"],
+                ["46.60013968612879", "13.09259402030510", "46.59443426723920", "13.10635810540200"],
+                ["46.59443426723920", "13.10635810540200", "46.59581573966070", "13.10936456761600"],
+                ["46.59581573966070", "13.10936456761600", "46.59181635349771", "13.12206324743780"],
+                ["46.59181635349771", "13.12206324743780", "46.59130277714330", "13.13751035656170"],
+                ["46.59130277714330", "13.13751035656170", "46.58724284714950", "13.14695712473570"],
+                ["46.58724284714950", "13.14695712473570", "46.58874177969821", "13.15326397852570"],
+                ["46.58874177969821", "13.15326397852570", "46.58883326022670", "13.16841615550300"],
+                ["46.58883326022670", "13.16841615550300", "46.58488583397340", "13.16868010199010"],
+                ["46.58488583397340", "13.16868010199010", "46.58192193225420", "13.17700522453690"],
+                ["46.58192193225420", "13.17700522453690", "46.57832363825210", "13.17879648616640"],
+                ["46.57832363825210", "13.17879648616640", "46.57162569813870", "13.19687439513620"],
+                ["46.57162569813870", "13.19687439513620", "46.56910913878821", "13.20900313088430"],
+                ["46.56910913878821", "13.20900313088430", "46.57029357304591", "13.21800552755190"],
+                ["46.57029357304591", "13.21800552755190", "46.56604936748619", "13.22057304304680"],
+                ["46.56604936748619", "13.22057304304680", "46.55927407214131", "13.23218499843690"],
+                ["46.55927407214131", "13.23218499843690", "46.55359100391789", "13.23252520748480"],
+                ["46.55359100391789", "13.23252520748480", "46.55195585167460", "13.23984425170410"],
+                ["46.55195585167460", "13.23984425170410", "46.56056786343070", "13.25271766531280"],
+                ["46.56056786343070", "13.25271766531280", "46.55755683242120", "13.26117525098500"],
+                ["46.55755683242120", "13.26117525098500", "46.56111483142589", "13.27254424613780"],
+                ["46.56111483142589", "13.27254424613780", "46.55735105138620", "13.28567221761180"],
+                ["46.55735105138620", "13.28567221761180", "46.56041095527430", "13.29705722272060"],
+                ["46.56041095527430", "13.29705722272060", "46.55464800381010", "13.30775208682660"],
+                ["46.55464800381010", "13.30775208682660", "46.55226203720051", "13.32170568564480"],
+                ["46.55226203720051", "13.32170568564480", "46.55834526942510", "13.32839319903030"],
+                ["46.55834526942510", "13.32839319903030", "46.56986426865620", "13.34444311520950"],
+                ["46.56986426865620", "13.34444311520950", "46.56694567244021", "13.35324787007020"],
+                ["46.56694567244021", "13.35324787007020", "46.57005912951010", "13.36387960850020"],
+                ["46.57005912951010", "13.36387960850020", "46.57935960002090", "13.37275047133740"],
+                ["46.57935960002090", "13.37275047133740", "46.57689081932639", "13.38783239159000"],
+                ["46.57689081932639", "13.38783239159000", "46.57275659157110", "13.39854992389700"],
+                ["46.57275659157110", "13.39854992389700", "46.57099931516710", "13.40875574250140"],
+                ["46.57099931516710", "13.40875574250140", "46.56267968199530", "13.40696468864900"],
+                ["46.56267968199530", "13.40696468864900", "46.55763226701950", "13.42726760082940"],
+                ["46.55763226701950", "13.42726760082940", "46.55935451792400", "13.43599967689860"],
+                ["46.55935451792400", "13.43599967689860", "46.55677791216889", "13.44242582756110"],
+                ["46.55677791216889", "13.44242582756110", "46.55940873053099", "13.45206456099270"],
+                ["46.55940873053099", "13.45206456099270", "46.55748613691159", "13.47487919559060"],
+                ["46.55748613691159", "13.47487919559060", "46.56571699632050", "13.49870847755560"],
+                ["46.56571699632050", "13.49870847755560", "46.56607595602010", "13.50410024899660"],
+                ["46.56607595602010", "13.50410024899660", "46.54826217199400", "13.51540288337240"],
+                ["46.54826217199400", "13.51540288337240", "46.54696009222749", "13.51987457590390"],
+                ["46.54696009222749", "13.51987457590390", "46.54943553324401", "13.53382869110080"],
+                ["46.54943553324401", "13.53382869110080", "46.55362053829180", "13.54244345228900"],
+                ["46.55362053829180", "13.54244345228900", "46.55125964797720", "13.56349686573310"],
+                ["46.55125964797720", "13.56349686573310", "46.54575759088910", "13.56884654614590"],
+                ["46.54575759088910", "13.56884654614590", "46.53907697171620", "13.56923145790240"],
+                ["46.53907697171620", "13.56923145790240", "46.53803230588760", "13.57710841495470"],
+                ["46.53803230588760", "13.57710841495470", "46.53995297328741", "13.58352723929990"],
+                ["46.53995297328741", "13.58352723929990", "46.54618766217270", "13.59199953526740"],
+                ["46.54618766217270", "13.59199953526740", "46.54306320269750", "13.60130312011950"],
+                ["46.54306320269750", "13.60130312011950", "46.54365244449020", "13.61045679847750"],
+                ["46.54365244449020", "13.61045679847750", "46.54098397055311", "13.62879669677550"],
+                ["46.54098397055311", "13.62879669677550", "46.53324776331250", "13.64496687913160"],
+                ["46.53324776331250", "13.64496687913160", "46.52692297080740", "13.66651970371160"],
+                ["46.52692297080740", "13.66651970371160", "46.52341172719611", "13.67259016216010"],
+                ["46.52341172719611", "13.67259016216010", "46.52133979027410", "13.69051534658860"],
+                ["46.52133979027410", "13.69051534658860", "46.52349461446400", "13.69786930591220"],
+                ["46.52349461446400", "13.69786930591220", "46.52097316837720", "13.70641738589930"],
+                ["46.52097316837720", "13.70641738589930", "46.52308313695511", "13.71385195814030"],
+                ["46.52308313695511", "13.71385195814030", "46.51315969576900", "13.71733109853940"],
+                ["46.51315969576900", "13.71733109853940", "46.50734538919030", "13.71677723040210"],
+                ["46.50734538919030", "13.71677723040210", "46.50134982079980", "13.70349387555750"],
+                ["46.50134982079980", "13.70349387555750", "46.49290269731250", "13.70555869227820"],
+                ["46.49290269731250", "13.70555869227820", "46.48462997141850", "13.70317413761520"],
+                ["46.48462997141850", "13.70317413761520", "46.48158124733190", "13.70965801479790"],
+                ["46.48158124733190", "13.70965801479790", "46.46795637692870", "13.69375072006300"],
+                ["46.46795637692870", "13.69375072006300", "46.45649471837810", "13.69875146411170"],
+                ["46.45649471837810", "13.69875146411170", "46.44047949762090", "13.68961617836130"],
+                ["46.44047949762090", "13.68961617836130", "46.43790848837230", "13.68142461292980"],
+                ["46.43790848837230", "13.68142461292980", "46.44025243867460", "13.67562672758000"],
+                ["46.44025243867460", "13.67562672758000", "46.43967253366870", "13.65425255494880"],
+                ["46.43967253366870", "13.65425255494880", "46.44606415949240", "13.64837923450810"],
+                ["46.44606415949240", "13.64837923450810", "46.44187929918770", "13.63187130149500"],
+                ["46.44187929918770", "13.63187130149500", "46.44325375357100", "13.62561347031290"],
+                ["46.44325375357100", "13.62561347031290", "46.43987302345551", "13.61774415691550"],
+                ["46.43987302345551", "13.61774415691550", "46.43950328601890", "13.60718294571950"],
+                ["46.43950328601890", "13.60718294571950", "46.43641219096030", "13.59220115186140"],
+                ["46.43641219096030", "13.59220115186140", "46.43279534312690", "13.58936541542910"],
+                ["46.43279534312690", "13.58936541542910", "46.42648196545920", "13.57869998953970"],
+                ["46.42648196545920", "13.57869998953970", "46.40888314602171", "13.57706133822880"],
+                ["46.40888314602171", "13.57706133822880", "46.39901630853220", "13.56676868232230"],
+                ["46.39901630853220", "13.56676868232230", "46.39861686546099", "13.55863646468660"],
+                ["46.39861686546099", "13.55863646468660", "46.39502153401740", "13.55614272975660"],
+                ["46.39502153401740", "13.55614272975660", "46.38995832865050", "13.54124169857940"],
+                ["46.38995832865050", "13.54124169857940", "46.38559268995660", "13.53298200804710"],
+                ["46.38559268995660", "13.53298200804710", "46.38828368406049", "13.52743473103780"],
+                ["46.38828368406049", "13.52743473103780", "46.38301199801450", "13.51691235971080"],
+                ["46.38301199801450", "13.51691235971080", "46.37786609167661", "13.51775449083660"],
+                ["46.37786609167661", "13.51775449083660", "46.37693892202520", "13.50967740639130"],
+                ["46.37693892202520", "13.50967740639130", "46.37164867177440", "13.49992716279660"],
+                ["46.37164867177440", "13.49992716279660", "46.37044059566810", "13.48694627194450"],
+                ["46.37044059566810", "13.48694627194450", "46.36412287955410", "13.47683664037320"],
+                ["46.36412287955410", "13.47683664037320", "46.36076619746000", "13.46809173676690"],
+                ["46.36076619746000", "13.46809173676690", "46.36286393015831", "13.46083108931000"],
+                ["46.36286393015831", "13.46083108931000", "46.36294646957280", "13.44868624902390"],
+                ["46.36294646957280", "13.44868624902390", "46.36020975649320", "13.43898845864030"],
+                ["46.36020975649320", "13.43898845864030", "46.35436661404300", "13.43682767716300"],
+                ["46.35436661404300", "13.43682767716300", "46.34845255929000", "13.44250682767280"],
+                ["46.34845255929000", "13.44250682767280", "46.34011051140210", "13.44465399938380"],
+                ["46.34011051140210", "13.44465399938380", "46.33502754408280", "13.44943765948700"],
+                ["46.33502754408280", "13.44943765948700", "46.32227845590460", "13.43901531696310"],
+                ["46.32227845590460", "13.43901531696310", "46.32255288336861", "13.42569325170130"],
+                ["46.32255288336861", "13.42569325170130", "46.31418667242530", "13.41534726548270"],
+                ["46.31418667242530", "13.41534726548270", "46.30612324492300", "13.41821573349710"],
+                ["46.30612324492300", "13.41821573349710", "46.30564902789020", "13.40661994200000"],
+                ["46.30564902789020", "13.40661994200000", "46.29999542157301", "13.40279708328210"],
+                ["46.29999542157301", "13.40279708328210", "46.29821770257240", "13.37554746042910"],
+                ["46.29821770257240", "13.37554746042910", "46.29125559090259", "13.37776023050420"],
+                ["46.29125559090259", "13.37776023050420", "46.28807062491500", "13.38604519366060"],
+                ["46.28807062491500", "13.38604519366060", "46.27928653760860", "13.39187257864660"],
+                ["46.27928653760860", "13.39187257864660", "46.26584039945700", "13.39370692336660"],
+                ["46.26584039945700", "13.39370692336660", "46.25340655285020", "13.39858492692910"],
+                ["46.25340655285020", "13.39858492692910", "46.24856085588831", "13.40449987679400"],
+                ["46.24856085588831", "13.40449987679400", "46.23912117565211", "13.41131057347660"],
+                ["46.23912117565211", "13.41131057347660", "46.23439068248069", "13.42248303053760"],
+                ["46.23439068248069", "13.42248303053760", "46.22850374875110", "13.41784198686230"],
+                ["46.22850374875110", "13.41784198686230", "46.21200336222680", "13.41124885177770"],
+                ["46.21200336222680", "13.41124885177770", "46.20953237491871", "13.42171763102830"],
+                ["46.20953237491871", "13.42171763102830", "46.20633666087269", "13.42345238892170"],
+                ["46.20633666087269", "13.42345238892170", "46.21156215222010", "13.43595966637360"],
+                ["46.21156215222010", "13.43595966637360", "46.21284291083680", "13.44629874001580"],
+                ["46.21284291083680", "13.44629874001580", "46.21617654000890", "13.44817861843370"],
+                ["46.21617654000890", "13.44817861843370", "46.22544557079610", "13.44395924222490"],
+                ["46.22544557079610", "13.44395924222490", "46.22642271889529", "13.45702804766950"],
+                ["46.22642271889529", "13.45702804766950", "46.22364466240860", "13.46564679585750"],
+                ["46.22364466240860", "13.46564679585750", "46.22524758225591", "13.47298123380740"],
+                ["46.22524758225591", "13.47298123380740", "46.22455236318280", "13.48438569596160"],
+                ["46.22455236318280", "13.48438569596160", "46.22169703922311", "13.49689949711390"],
+                ["46.22169703922311", "13.49689949711390", "46.21568215264870", "13.50300098602420"],
+                ["46.21568215264870", "13.50300098602420", "46.21505569327739", "13.51577592163820"],
+                ["46.21505569327739", "13.51577592163820", "46.21874629259460", "13.52905612922250"],
+                ["46.21874629259460", "13.52905612922250", "46.21225194570329", "13.52939715486590"],
+                ["46.21225194570329", "13.52939715486590", "46.21345481606291", "13.53876537339990"],
+                ["46.21345481606291", "13.53876537339990", "46.20863275646920", "13.55327056915780"],
+                ["46.20863275646920", "13.55327056915780", "46.20407763616059", "13.56195842937150"],
+                ["46.20407763616059", "13.56195842937150", "46.19393843378330", "13.56565573302810"],
+                ["46.19393843378330", "13.56565573302810", "46.18781324588719", "13.56509080301080"],
+                ["46.18781324588719", "13.56509080301080", "46.18419932354449", "13.57317967477580"],
+                ["46.18419932354449", "13.57317967477580", "46.19027397948320", "13.58554027167630"],
+                ["46.19027397948320", "13.58554027167630", "46.18441063119300", "13.61453472878390"],
+                ["46.18441063119300", "13.61453472878390", "46.19044192733440", "13.63195670819240"],
+                ["46.19044192733440", "13.63195670819240", "46.18834760654010", "13.64571751234280"],
+                ["46.18834760654010", "13.64571751234280", "46.18011807554420", "13.66320330504750"],
+                ["46.18011807554420", "13.66320330504750", "46.17089746989840", "13.66416565003720"],
+                ["46.17089746989840", "13.66416565003720", "46.16194184215230", "13.65412477842060"],
+                ["46.16194184215230", "13.65412477842060", "46.15161646251990", "13.65469976114360"],
+                ["46.15161646251990", "13.65469976114360", "46.13707884280771", "13.64389453257110"],
+                ["46.13707884280771", "13.64389453257110", "46.13475491109009", "13.63530386241880"],
+                ["46.13475491109009", "13.63530386241880", "46.12888372799370", "13.62682731094120"],
+                ["46.12888372799370", "13.62682731094120", "46.12422489419300", "13.62406992531500"],
+                ["46.12422489419300", "13.62406992531500", "46.11282994682821", "13.60124050492650"],
+                ["46.11282994682821", "13.60124050492650", "46.10372211475221", "13.59472995893180"],
+                ["46.10372211475221", "13.59472995893180", "46.09820939192539", "13.58039406613580"],
+                ["46.09820939192539", "13.58039406613580", "46.09067688882230", "13.57396362250930"],
+                ["46.09067688882230", "13.57396362250930", "46.08207228296931", "13.55020707736770"],
+                ["46.08207228296931", "13.55020707736770", "46.08226181179990", "13.54330725386990"],
+                ["46.08226181179990", "13.54330725386990", "46.07736661499750", "13.54247941502320"],
+                ["46.07736661499750", "13.54247941502320", "46.07299245837570", "13.53409812611360"],
+                ["46.07299245837570", "13.53409812611360", "46.06720986439330", "13.53022993288250"],
+                ["46.06720986439330", "13.53022993288250", "46.06734778496770", "13.52505483405230"],
+                ["46.06734778496770", "13.52505483405230", "46.06222055962520", "13.51531384617940"],
+                ["46.06222055962520", "13.51531384617940", "46.06166256769160", "13.50096415952580"],
+                ["46.06166256769160", "13.50096415952580", "46.05644119778460", "13.49733020338920"],
+                ["46.05644119778460", "13.49733020338920", "46.04764873504130", "13.49808574801940"],
+                ["46.04764873504130", "13.49808574801940", "46.04624599508530", "13.51001605773300"],
+                ["46.04624599508530", "13.51001605773300", "46.03277098647350", "13.50717372071680"],
+                ["46.03277098647350", "13.50717372071680", "46.01454771410749", "13.49429280631860"],
+                ["46.01454771410749", "13.49429280631860", "46.01149661802770", "13.47987033629510"],
+                ["46.01149661802770", "13.47987033629510", "46.00683963092790", "13.47697551480790"],
+                ["46.00683963092790", "13.47697551480790", "46.00028051915700", "13.48446534541780"],
+                ["46.00028051915700", "13.48446534541780", "45.98716384657280", "13.49400282672450"],
+                ["45.98716384657280", "13.49400282672450", "45.98047064627500", "13.50168541185980"],
+                ["45.98047064627500", "13.50168541185980", "45.97946530960700", "13.51504897104560"],
+                ["45.97946530960700", "13.51504897104560", "45.97477925929950", "13.51745831989720"],
+                ["45.97477925929950", "13.51745831989720", "45.97328233814039", "13.52535965670420"],
+                ["45.97328233814039", "13.52535965670420", "45.96705968883010", "13.52781023311780"],
+                ["45.96705968883010", "13.52781023311780", "45.96474779007380", "13.54271286388180"],
+                ["45.96474779007380", "13.54271286388180", "45.96958571367739", "13.54734971333050"],
+                ["45.96958571367739", "13.54734971333050", "45.96867523104570", "13.55876927386990"],
+                ["45.96867523104570", "13.55876927386990", "45.96991560361390", "13.56859885812890"],
+                ["45.96991560361390", "13.56859885812890", "45.97642512873559", "13.57518296626280"],
+                ["45.97642512873559", "13.57518296626280", "45.98309186732070", "13.57795492960950"],
+                ["45.98309186732070", "13.57795492960950", "45.98949310789340", "13.59347946114350"],
+                ["45.98949310789340", "13.59347946114350", "45.98340165539830", "13.61715737977600"],
+                ["45.98340165539830", "13.61715737977600", "45.98947565628391", "13.63340468554430"],
+                ["45.98947565628391", "13.63340468554430", "45.98300061696990", "13.64288619302070"],
+                ["45.98300061696990", "13.64288619302070", "45.98005114503361", "13.63949603805010"],
+                ["45.98005114503361", "13.63949603805010", "45.96977587599281", "13.64049773045040"],
+                ["45.96977587599281", "13.64049773045040", "45.95023837646351", "13.63319519823120"],
+                ["45.95023837646351", "13.63319519823120", "45.93745698313140", "13.63761128567590"],
+                ["45.93745698313140", "13.63761128567590", "45.92984301482180", "13.63071634790050"],
+                ["45.92984301482180", "13.63071634790050", "45.92251823590900", "13.62722238313710"],
+                ["45.92251823590900", "13.62722238313710", "45.91707954900910", "13.61883178279890"],
+                ["45.91707954900910", "13.61883178279890", "45.89924929068020", "13.60923123149250"],
+                ["45.89924929068020", "13.60923123149250", "45.89532923220160", "13.59986849448790"],
+                ["45.89532923220160", "13.59986849448790", "45.88831913243330", "13.59032695440780"],
+                ["45.88831913243330", "13.59032695440780", "45.87525587990860", "13.59306583358310"],
+                ["45.87525587990860", "13.59306583358310", "45.86757448894280", "13.58408715478120"],
+                ["45.86757448894280", "13.58408715478120", "45.86126389413310", "13.58331939711210"],
+                ["45.86126389413310", "13.58331939711210", "45.85486160127230", "13.57586900715700"],
+                ["45.85486160127230", "13.57586900715700", "45.84755227004700", "13.57273334480770"],
+                ["45.84755227004700", "13.57273334480770", "45.84308141697660", "13.57445833537260"],
+                ["45.84308141697660", "13.57445833537260", "45.83412929253541", "13.58779481512040"],
+                ["45.83412929253541", "13.58779481512040", "45.82369838607010", "13.59211254200210"],
+                ["45.82369838607010", "13.59211254200210", "45.81876285209640", "13.59687229894570"],
+                ["45.81876285209640", "13.59687229894570", "45.80821964205380", "13.59537320033140"],
+                ["45.80821964205380", "13.59537320033140", "45.80424938241970", "13.60331046141140"],
+                ["45.80424938241970", "13.60331046141140", "45.80017259124220", "13.62342176644250"],
+                ["45.80017259124220", "13.62342176644250", "45.79588561328200", "13.62381122874130"],
+                ["45.79588561328200", "13.62381122874130", "45.80033527414910", "13.65812392019260"],
+                ["45.80033527414910", "13.65812392019260", "45.79963994421030", "13.66940043903240"],
+                ["45.79963994421030", "13.66940043903240", "45.79191382440551", "13.67375439309140"],
+                ["45.79191382440551", "13.67375439309140", "45.79376213174390", "13.67872825331380"],
+                ["45.79376213174390", "13.67872825331380", "45.78922038915500", "13.68772491526840"],
+                ["45.78922038915500", "13.68772491526840", "45.77854703733400", "13.70220216515320"],
+                ["45.77854703733400", "13.70220216515320", "45.76923921473620", "13.72115691577690"],
+                ["45.76923921473620", "13.72115691577690", "45.76663740439470", "13.72996098354920"],
+                ["45.76663740439470", "13.72996098354920", "45.75964896094950", "13.73589395983400"],
+                ["45.75964896094950", "13.73589395983400", "45.75521667708691", "13.74615174853140"],
+                ["45.75521667708691", "13.74615174853140", "45.75608838618640", "13.76204988631080"],
+                ["45.75608838618640", "13.76204988631080", "45.75037904206160", "13.76738302448160"],
+                ["45.75037904206160", "13.76738302448160", "45.74823217768600", "13.78360506464430"],
+                ["45.74823217768600", "13.78360506464430", "45.73973225006750", "13.79983140055770"],
+                ["45.73973225006750", "13.79983140055770", "45.73115588820270", "13.80394878565690"],
+                ["45.73115588820270", "13.80394878565690", "45.72283119780759", "13.81127060596580"],
+                ["45.72283119780759", "13.81127060596580", "45.71426388458709", "13.82708069848070"],
+                ["45.71426388458709", "13.82708069848070", "45.70649679523100", "13.83406059937650"],
+                ["45.70649679523100", "13.83406059937650", "45.69790101784339", "13.83574191132720"],
+                ["45.69790101784339", "13.83574191132720", "45.69269472080260", "13.83104618821120"],
+                ["45.69269472080260", "13.83104618821120", "45.68703682300960", "13.83376902406530"],
+                ["45.68703682300960", "13.83376902406530", "45.68055941644990", "13.84485843450310"],
+                ["45.68055941644990", "13.84485843450310", "45.66476761779310", "13.85922389016240"],
+                ["45.66476761779310", "13.85922389016240", "45.65183893113490", "13.87948481006880"],
+                ["45.65183893113490", "13.87948481006880", "45.64358412933960", "13.89680684479250"],
+                ["45.64358412933960", "13.89680684479250", "45.64256592736480", "13.90312754463160"],
+                ["45.64256592736480", "13.90312754463160", "45.63357077611650", "13.91885308918640"],
+                ["45.63357077611650", "13.91885308918640", "45.63114280545550", "13.91806602064300"],
+                ["45.63114280545550", "13.91806602064300", "45.61888671191330", "13.89235299656750"],
+                ["45.61888671191330", "13.89235299656750", "45.61168460115270", "13.87914452945010"],
+                ["45.61168460115270", "13.87914452945010", "45.60925749763270", "13.86875336366090"],
+                ["45.60925749763270", "13.86875336366090", "45.59668998612790", "13.86562177014110"],
+                ["45.59668998612790", "13.86562177014110", "45.59154709512130", "13.85281406890930"],
+                ["45.59154709512130", "13.85281406890930", "45.58491792960180", "13.85132166058540"],
+                ["45.58491792960180", "13.85132166058540", "45.58250377852299", "13.83971845766960"],
+                ["45.58250377852299", "13.83971845766960", "45.58092671047380", "13.81052693997900"],
+                ["45.58092671047380", "13.81052693997900", "45.58259009818180", "13.78984116615710"],
+                ["45.58259009818180", "13.78984116615710", "45.58601126294500", "13.77556360005440"],
+                ["45.58601126294500", "13.77556360005440", "45.59807188696700", "13.74715656619490"],
+                ["45.59807188696700", "13.74715656619490", "45.59469263110820", "13.72406376326210"]
+            ]
+        }
+    ]
+}

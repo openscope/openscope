@@ -11,6 +11,7 @@ module.exports = (gulp, config) => {
             OPTIONS.DIR.DIST_SCRIPTS_SERVER,
             OPTIONS.DIR.DIST_STYLE,
             OPTIONS.DIR.DIST_ASSETS,
+            OPTIONS.DIR.DIST_GUIDES
         ];
         const glob = `{${dirsToClean.join(',')}}`;
 
