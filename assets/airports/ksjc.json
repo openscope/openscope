@@ -1,5 +1,5 @@
 {
-    "airac": 1905,
+    "airac": 2005,
     "radio": {
         "twr": "San Jose Tower",
         "app": "NORCAL Approach",
@@ -7,17 +7,17 @@
     },
     "icao": "KSJC",
     "iata": "SJC",
-    "magnetic_north": 13.6,
+    "magnetic_north": 13.2,
     "ctr_radius": 110,
     "ctr_ceiling": 12000,
-    "initial_alt": 12000,
-    "position": ["N37d21.78", "W121d55.72"],
+    "initial_alt": 5000,
+    "position": ["N37d21.78", "W121d55.72", "62ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N37d21.78", "W121d55.72"],
         "radius_nm": 5.0
     },
-    "has_terrain": false,
+    "has_terrain": false, // Add terrain later
     "wind": {
         "angle": 290,
         "speed": 6
@@ -55,8 +55,24 @@
             ]
         }
     ],
-    "fixes": {
-
+    "fixes": { // Fill in coordinates
+    	"_RWY12R1.8DME": [],
+    	"_090OAK120": [], // Heading 090 from 1.8 DME SJC --> OAK 120 radial
+    	"ALMDN": [],
+    	"AXXXX": [],
+    	"BLNCH": [],
+    	"BMRNG": [],
+    	"DEEII": [],
+    	"GRRIF": [],
+    	"HRNER": [],
+    	"KAESS": [],
+    	"KIELY": [],
+    	"MOGEE": [],
+    	"NEVSE": [],
+    	"ROANA": [],
+    	"SJC"  : [],
+    	"SYRAH": [],
+    	"TIPRE": [],
     },
     "runways": [
         {
@@ -77,7 +93,81 @@
         }
     ],
     "sids": {
-
+    	"ALMDN4": {
+    		"icao": "ALMDN4",
+    		"name": "Almdan Four",
+    		"altitude": 15000,
+    		"rwy": {
+    			"KSJC12L": ["NEVSE"],
+    			"KSJC12R": ["NEVSE"]
+    		},
+    		"body": ["KIELY", ["ALMDN", "A120-"]],
+    		"exitPoints": {
+    			"HRNER": ["DEEII", "HRNER"],
+    			"MOGEE": ["ROANA", "KAESS", "MOGEE"],
+    			"ORRCA": ["ROANA", "AXXXX", "ORRCA"],
+    			"SYRAH": ["ROANA", "SYRAH"],
+    			"TIPRE": ["ROANA", "HNNLE", "TIPRE"]
+    		},
+    		"draw": [
+    			["NEVSE", "KIELY", "ALMDN", "DEEII", "HRNER*"],
+    			["ALMDN", "ROANA", "AXXXX", "ORRCA*"],
+    			["ROANA", "KAESS", "MOGEE*"],
+    			["ROANA", "HNNLE", "TIPRE*"],
+    			["ROANA", "SYRAH*"]
+    		]
+    	},
+    	"BMRNG4": {
+    		"icao": "BMRNG4",
+    		"name": "Boomerang Four",
+    		"altitude": 15000,
+    		"rwy": {
+    			"KSJC12L": ["#126"],
+    			"KSJC12R": ["#126"]
+    		},
+    		"body": [["GRRIF", "A130+"], "BMRNG"],
+    		"exitPoints": {
+    			"HRNER": ["HRNER"],
+    			"MOGEE": ["AXXXX", "MOGEE"],
+    			"ORRCA": ["DEEII", "ORRCA"],
+    			"SYRAH": ["HNNLE", "SYRAH"],
+    			"TIPRE": ["KAESS", "TIPRE"]
+    		},
+    		"draw": [
+    			["GRRIF", "BMRNG", "HRNER*"],
+    			["BMRNG", "DEEII", "ORRCA*"],
+    			["BMRNG", "AXXXX", "MOGEE*"],
+    			["BMRNG", "KAESS", "TIPRE*"],
+    			["BMRNG", "HNNLE", "SYRAH*"]
+    		]
+    	},
+    	"LOUPE5": {
+    		"icao": "LOUPE5",
+    		"name": "Lupe Five",
+    		"altitude": 5000,
+    		"rwy": {
+    			"KSJC30L": ["_RWY12R1.8DME"],
+    			"KSJC30R": ["_RWY12R1.8DME"]
+    		},
+    		"body": ["_090OAK120", "BLNCH", "#180"],
+    		"exitPoints": {
+    			"BMRNG": ["SJC", "BMRNG"]
+    		},
+    		"draw": [
+    			["_090OAK120", "BLNCH"],
+    			["SJC", "BMRNG*"]
+    		]
+    	},
+    	"SJC3": {
+    		"icao": "SJC3",
+    		"name": "San Jose Three",
+    		"altitude": 5000,
+    		"rwy": {
+    			"KSJC30L": ["_RWY12R1.8DME"],
+    			"KSJC30R": ["_RWY12R1.8DME"]
+    		},
+    		"body": ["_SJC3OAK120"]
+    	}
     },
     "stars": {
 
