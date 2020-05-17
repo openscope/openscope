@@ -179,8 +179,7 @@
 		"YADUT": ["N037d12m14.360", "W122d01m23.800"],
 		"ZINNN": ["N038d03m44.510", "W122d31m18.919"],
 		"ZORSA": ["N037d21m46.659", "W122d03m02.379"],
-		"ZULUP": ["N037d12m20.408", "W121d45m29.880"],
-
+		"ZULUP": ["N037d12m20.408", "W121d45m29.880"]
     },
     "runways": [
         {
@@ -463,7 +462,7 @@
     		"icao": "SILCN4",
     		"name": "Silicon Four",
     		"entryPoints": {
-    			"TROXX": [["SILCN", "A200+|S280"]],
+    			"TROXX": [["SILCN", "A200+|S280"]]
     		},
     		"body": [["VLLEY", "A150+|A190-|S280"]],
     		"rwy": {
