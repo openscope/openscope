@@ -17,7 +17,7 @@
         "center": ["N37d21.78", "W121d55.72"],
         "radius_nm": 5.0
     },
-    "has_terrain": false, // Add terrain later
+    "has_terrain": false,
     "wind": {
         "angle": 290,
         "speed": 6
@@ -55,12 +55,12 @@
             ]
         }
     ],
-    "fixes": { // Fill in coordinates
+    "fixes": {
     	"_RWY12R1.8DME": [],
     	"_RWY30R5DME": [],
-    	"_SJC3OAK120": [], // Intercept point of the OAK 121 radial for the SJC3 SID
-    	"_SUNOL1SJC009": [], // Intercept point of the SJC 009 radial for the 30 deps on the SUNOL1 SID
-    	"_090OAK120": [], // Heading 090 from 1.8 DME SJC --> OAK 120 radial
+    	"_SJC3OAK120": [], 
+    	"_SUNOL1SJC009": [],
+    	"_090OAK120": [],
     	"ALMDN": [],
     	"APLLE": [],
     	"ARTAQ": [],
@@ -330,7 +330,7 @@
     		"icao": "PYE3",
     		"name": "Point Reyes Three",
     		"entryPoints": {
-    			"SAC": ["SAC"], // Only to be assigned by ATC
+    			"SAC": ["SAC"],
     			"ENI": ["ENI"]
     		},
     		"body": ["PYE", "HADLY", "OSI"],
@@ -477,7 +477,7 @@
     		]
     	}
     },
-    "spawnPatterns": [ // Add rates
+    "spawnPatterns": [
     	{
     		"origin": "KSJC",
     		"destination": "",
