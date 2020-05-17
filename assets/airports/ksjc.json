@@ -57,22 +57,129 @@
     ],
     "fixes": { // Fill in coordinates
     	"_RWY12R1.8DME": [],
+    	"_RWY30R5DME": [],
+    	"_SJC3OAK120": [], // Intercept point of the OAK 121 radial for the SJC3 SID
+    	"_SUNOL1SJC009": [], // Intercept point of the SJC 009 radial for the 30 deps on the SUNOL1 SID
     	"_090OAK120": [], // Heading 090 from 1.8 DME SJC --> OAK 120 radial
     	"ALMDN": [],
+    	"APLLE": [],
+    	"ARTAQ": [],
+    	"AVE"  : [],
     	"AXXXX": [],
+    	"BAXBE": [],
     	"BLNCH": [],
     	"BMRNG": [],
+    	"BORED": [],
+    	"BRINY": [],
+    	"BRIXX": [],
+    	"BYRON": [],
+    	"CANDA": [],
+    	"CEDES": [],
+    	"CHBLI": [],
+    	"COKOR": [],
+    	"CORKK": [],
     	"DEEII": [],
+    	"EBAYE": [],
+    	"EDMND": [],
+    	"ENI"  : [],
+    	"FAANG": [],
+    	"FMG"  : [],
+    	"FODPA": [],
+    	"FORUL": [],
+    	"FOXAG": [],
+    	"FRLON": [],
+    	"GAARY": [],
+    	"GGULF": [],
+    	"GGUGL": [],
+    	"GILRO": [],
+    	"GRIJO": [],
     	"GRRIF": [],
+    	"GOTEE": [],
+    	"GSTEE": [],
+    	"GUUYY": [],
+    	"GYLET": [],
+    	"HADLY": [],
+    	"HAIRE": [],
+    	"HEPAP": [],
+    	"HILUD": [],
+    	"HINIR": [],
+    	"HITIR": [],
+    	"HIVAK": [],
+    	"HOSBO": [],
     	"HRNER": [],
+    	"ILA"  : [],
+    	"JEGSA": [],
+    	"JENES": [],
+    	"JESEN": [],
+    	"JFREE": [],
+    	"JILNA": [],
+    	"JUJGE": [],
     	"KAESS": [],
     	"KIELY": [],
+    	"KIRVE": [],
+    	"KLIDE": [],
+    	"KNGRY": [],
+    	"LIN"  : [],
+    	"LOSHN": [],
+    	"LUYTA": [],
+    	"MDOWS": [],
+    	"MISSS": [],
+    	"MLPTS": [],
+    	"MNTNA": [],
     	"MOGEE": [],
+    	"MOVDD": [],
+    	"NIBUY": [],
+    	"NIKKT": [],
     	"NEVSE": [],
+    	"OMSEE": [],
+    	"OOWEN": [],
+    	"ORRCA": [],
+    	"OSI"  : [],
+    	"OUCHH": [],
+    	"PPEGS": [],
+    	"PUAKO": [],
+    	"PYE"  : [],
+    	"RAZRR": [],
+    	"RBL"  : [],
+    	"RERAE": [],
+    	"RISTI": [],
     	"ROANA": [],
+    	"ROBIE": [],
+    	"ROSTE": [],
+    	"RUSME": [],
+    	"RZS"  : [],
+    	"SAC"  : [],
+    	"SCOPR": [],
+    	"SEKKO": [],
+    	"SHIKK": [],
+    	"SIBAE": [],
+    	"SILCN": [],
     	"SJC"  : [],
+    	"SNS"  : [],
+    	"SPTNS": [],
+    	"STCLR": [],
+    	"STLER": [],
+    	"STSHH": [],
+    	"STUBL": [],
+    	"SUNOL": [],
+    	"SUNNE": [],
+    	"SWIGS": [],
     	"SYRAH": [],
+    	"TECKY": [],
     	"TIPRE": [],
+    	"TRACY": [],
+    	"TRCOT": [],
+    	"TROXX": [],
+    	"TUZGY": [],
+    	"VLLEY": [],
+    	"VLREE": [],
+    	"WADVA": [],
+    	"WLSSN": [],
+    	"WOXAR": [],
+    	"YADUT": [],
+    	"ZINNN": [],
+    	"ZORSA": [],
+    	"ZULUP": []
     },
     "runways": [
         {
@@ -166,15 +273,260 @@
     			"KSJC30L": ["_RWY12R1.8DME"],
     			"KSJC30R": ["_RWY12R1.8DME"]
     		},
-    		"body": ["_SJC3OAK120"]
+    		"body": ["_SJC3OAK120", "MOONY"],
+    		"exitPoints": {
+    			"AVE": ["AVE"],
+    			"PXN": ["PXN"]
+    		},
+    		"draw": [
+    			["_SJC3OAK120", "MOONY", "AVE*"],
+    			["MOONY", "PXN*"]
+    		]
+    	},
+    	"SUNOL1": {
+    		"icao": "SUNOL1",
+    		"name": "Sunol One",
+    		"rwy": {
+    			"KSJC12L": ["_RWY30R5DME", "#303"],
+    			"KSJC12R": ["_RWY30R5DME", "#303"],
+    			"KSJC30L": ["_RWY12R1.8DME", "_SUNOL1SJC009"],
+    			"KSJC30R": ["_RWY12R1.8DME", "_SUNOL1SJC009"]
+    		},
+    		"body": [["SUNOL", "A50"]],
+    		"exitPoints": {
+    			"LIN": ["LIN"],
+    			"SAC": ["SAC"]
+    		},
+    		"draw": [
+    			["SUNOL", "LIN*"],
+    			["SUNOL", "SAC*"]
+    		]
+    	},
+    	"TECKY3": {
+    		"icao": "TECKY3",
+    		"name": "Tecky Three",
+    		"altitude": 19000,
+    		"rwy": {
+    			"KSJC12L": ["NEVSE"],
+    			"KSJC12R": ["NEVSE"],
+    			"KSJC30L": [["STCLR", "A900+|S230-"], ["SPTNS", "A50"]],
+    			"KSJC30R": [["MLPTS", "A90+|S230-"], ["SPTNS", "A50"]]
+    		},
+    		"body": [["TECKY", "A130+"]],
+    		"exitPoints": {
+    			"EBAYE": ["VLREE", "EBAYE"],
+    			"LOSHN": ["JFREE", "LOSHN"]
+    		},
+    		"draw": [
+    			["STCLR", "SPTNS", "TECKY", "JFREE", "LOSHN*"],
+    			["MLPTS", "SPTNS"],
+    			["NEVSE", "TECKY"],
+    			["TECKY", "VLREE", "EBAYE*"]
+    		]
     	}
     },
     "stars": {
-
+    	"PYE3": {
+    		"icao": "PYE3",
+    		"name": "Point Reyes Three",
+    		"entryPoints": {
+    			"SAC": ["SAC"], // Only to be assigned by ATC
+    			"ENI": ["ENI"]
+    		},
+    		"body": ["PYE", "HADLY", "OSI"],
+    		"rwy": {
+    			"KSJC12L": ["#076"],
+    			"KSJC12R": ["#076"],
+    			"KSJC30L": ["#076"],
+    			"KSJC30R": ["#076"]
+    		},
+    		"draw": [
+    			["ENI*", "PYE", "HADLY", "OSI"],
+    			["SAC*", "PYE"]
+    		]
+    	},
+    	"RISTI1": {
+    		"icao": "RISTI1",
+    		"name": "Risti One",
+    		"entryPoints": {
+    			"ORRCA": ["ORRCA", "HAIRE", "BYRON", "TRACY"],
+    			"TIPRE": ["TIPRE", "OOWEN"]
+    		},
+    		"body": ["MOVDD", "RISTI", ["CEDES", "A90"]],
+    		"rwy": {
+    			"KSJC12L": ["#220"],
+    			"KSJC12R": ["#220"],
+    			"KSJC30L": ["#220"],
+    			"KSJC30R": ["#220"]
+    		},
+    		"draw": [
+    			["TIPRE*", "OOWEN", "MOVDD", "RISTI", "CEDES"],
+    			["ORRCA*", "HAIRE", "BYRON", "TRACY", "MOVDD"]
+    		]
+    	},
+    	"BRINY2": {
+    		"icao": "BRINY2",
+    		"name": "Briny Two",
+    		"entryPoints": {
+    			"ENI": ["ENI"],
+    			"FMG": ["FMG", "ILA", "ENI"],
+    			"RBL": ["RBL", "ENI"]
+    		},
+    		"body": ["PYE", "BRINY", "OSI"],
+    		"rwy": {
+    			"KSJC12R": ["#057"]
+    		},
+    		"draw": [
+    			["FMG*", "ILA", "ENI", "PYE", "BRINY", "OSI"],
+    			["RBL*", "ENI*"]
+    		]
+    	},
+    	"BRIXX2": {
+    		"icao": "BRIXX2",
+    		"name": "Brixx Two",
+    		"entryPoints": {
+    			"CHBLI": [["CHBLI", "A280+"], ["GRIJO", "A220+|S280"], "ZINNN", ["CORKK", "A140+"]]
+    		},
+    		"body": [["BRIXX", "A120|S250"], "LUYTA", "JILNA", "YADUT"],
+    		"rwy": {
+    			"KSJC12L": ["#113"],
+    			"KSJC12R": ["#113"],
+    			"KSJC30L": ["#113"],
+    			"KSJC30R": ["#113"]
+    		},
+    		"draw": [
+    			["CHBLI*", "GRIJO", "ZINNN", "CORKK", "BRIXX", "LUYTA", "JILNA", "YADUT"]
+    		]
+    	},
+    	"FRLON2": {
+    		"icao": "FRLON2",
+    		"name": "Furlon Two",
+    		"entryPoints": {
+    			"GGULF": [["GGULF", "A280+"]]
+    		},
+    		"body": [["FRLON", "A130+|S280"], ["STLER", "A120|S250"], "MNTNA", ["MISSS", "A70"], ["PPEGS", "A55|S210"]],
+    		"rwy": {
+    			"KSJC12L": ["#140"],
+    			"KSJC12R": ["#140"],
+    			"KSJC30L": ["#140"],
+    			"KSJC30R": ["#140"]
+    		},
+    		"draw": [
+    			["GGULF*", "FRLON", "STLER", "MNTNA", "MISSS", "PPEGS"]
+    		]
+    	},
+    	"RAZRR4": {
+    		"icao": "RAZRR4",
+    		"name": "Razor Four",
+    		"entryPoints": {
+    			"FAANG": ["FAANG"],
+    			"KNGRY": ["KNGRY", "GYLET"],
+    			"MDOWS": ["MDOWS", "STSHH"],
+    			"RUSME": ["RUSME", "CANDA"]
+    		},
+    		"body": [["STUBL", "A280-|A240+|S280"], ["RAZRR", "A220-|A200+"], ["OUCHH", "A190-|A160+"], ["NIKKT", "A140-|A100+"]],
+    		"rwy": {
+    			"KSJC12L": [["SEKKO", "A80+|S250"], ["SCOPR", "A50+"], ["KLIDE", "A40+|S230"]],
+    			"KSJC12R": [["SEKKO", "A80+|S250"], ["SCOPR", "A50+"], ["KLIDE", "A40+|S230"]],
+    			"KSJC30L": [["GOTEE", "A120-|S280"], "SHIKK", ["TRCOT", "A90+|S240"], ["GGUGL", "A80-|A70+"], ["GAARY", "A58+"], ["EDMND", "A56+"], ["JESEN", "A41+"], ["HITIR", "A40"], "ZORSA", "#306"],
+    			"KSJC30R": [["GOTEE", "A120-|S280"], "SHIKK", ["TRCOT", "A90+|S240"], ["GGUGL", "A80-|A70+"], ["GAARY", "A58+"], ["EDMND", "A56+"], ["JESEN", "A41+"], ["HITIR", "A40"], "ZORSA", "#306"]
+    		},
+    		"draw": [
+    			["MDOWS*", "STSHH", "STUBL", "RAZRR", "OUCHH", "NIKKT", "SEKKO", "SCOPR", "KLIDE"],
+    			["KNGRY*", "GYLET", "STUBL"],
+    			["RUSME*", "CANDA", "STUBL"],
+    			["FAANG*", "STUBL"],
+    			["NIKKT", "GOTEE", "SHIKK", "TRCOT", "GGUGL", "GAARY", "EDMND", "JESEN", "HITIR", "ZORSA"]
+    		]
+    	},
+    	"ROBIE5": {
+    		"icao": "ROBIE5",
+    		"name": "Robie Five",
+    		"entryPoints": {
+    			"AVE": ["AVE"],
+    			"RZS": ["RZS"]
+    		},
+    		"body": ["ROBIE", "SNS"],
+    		"rwy": {
+    			"KSJC12L": ["SNS", "SJC", "#325"],
+    			"KSJC12R": ["SNS", "SJC", "#325"],
+    			"KSJC30L": ["SNS", "GILRO", "#347"]
+    		},
+    		"draw": [
+    			["RZS*", "ROBIE", "SNS", "GILRO"],
+    			["AVE*", "ROBIE"]
+    			["SNS", "SJC"]
+    		]
+    	},
+    	"SILCN4": {
+    		"icao": "SILCN4",
+    		"name": "Silicon Four",
+    		"entryPoints": {
+    			"TROXX": [["SILCN", "A200+|S280"]],
+    		},
+    		"body": [["VLLEY", "A150+|A190-|S280"]],
+    		"rwy": {
+    			"KSJC12L": [["BAXBE", "A120+"], ["APLLE", "A90+|S240"], ["GGUGL", "A80-|A70+"], ["GAARY", "A58+"], ["EDMND", "A56+"], ["JESEN", "A41+"], ["HITIR", "A40"], "ZORSA", "#306"],
+				"KSJC12R": [["BAXBE", "A120+"], ["APLLE", "A90+|S240"], ["GGUGL", "A80-|A70+"], ["GAARY", "A58+"], ["EDMND", "A56+"], ["JESEN", "A41+"], ["HITIR", "A40"], "ZORSA", "#306"],    			
+				"KSJC30L": [["GUUYY", "A110+"], ["WLSSN", "A80+|S250"], ["GSTEE", "A42+"], ["KLIDE", "A40+|S230"]],
+				"KSJC30R": [["GUUYY", "A110+"], ["WLSSN", "A80+|S250"], ["GSTEE", "A42+"], ["KLIDE", "A40+|S230"]]
+    		},
+    		"draw": [
+    			["TROXX*", "SILCN", "VLLEY", "GUUYY", "WLSSN", "GSTEE", "KLIDE"],
+    			["VLLEY", "BAXBE", "APLLE", "GGUGL", "GAARY", "EDMND", "JESEN", "HITIR", "ZORSA"]
+    		]
+    	}
     },
-    "spawnPatterns": [
-
-    ],
+    "spawnPatterns": [ // Add rates
+    	{
+    		"origin": "KSJC",
+    		"destination": "",
+    		"category": "departure",
+    		"route": "KSJC.TECKY3.EBAYE",
+    		"altitude": "",
+    		"speed": "",
+    		"method": "random",
+    		"rate": null,
+    		"airlines": [
+    			["skw", null],
+    			["swa", null],
+    			["eja", null],
+    			["aal", null],
+    			["ual", null]
+    		]
+    	},
+    	{
+    		"origin": "KSJC",
+    		"destination": "",
+    		"category": "departure",
+    		"route": "KSJC.TECKY3.TECKY",
+    		"altitude": "",
+    		"speed": "",
+    		"method": "random",
+    		"rate": null,
+    		"airlines": [
+    			["skw", null],
+    			["swa", null],
+    			["qxe", null],
+    			["dal", null]
+    		]
+    	},
+    	{
+    		"origin": "KSJC",
+    		"destination": "",
+    		"category": "departure",
+    		"route": "KSJC.TECKY3.LOSHN",
+    		"altitude": "",
+    		"speed": "",
+    		"method": "random",
+    		"rate": null,
+    		"airlines": [
+    			["skw", null],
+    			["swa", null],
+    			["aal", null]
+    		]
+    	}
+	],
     "maps": {
         "base": [
             ["N37d17m38.797", "W122d02m14.457", "N37d17m00.111", "W122d01m58.314"],
