@@ -69,29 +69,38 @@
         "CHKNN": ["N33d45.50", "W118d20.20"],
         "CHRJR": ["N32d42.65", "W116d51.02"],
         "CLSTR": ["N32d52.16", "W117d20.41"],
+        "COMIX": ["N33d08.25", "W117d29.03"],
         "CWARD": ["N33d23.04", "W117d54.56"],
+        "DECEA": ["N33d50.82", "W118d04.60"],
         "DINTY": ["N33d28.97", "W122d35.04"],
         "ECHHO": ["N32d58.02", "W117d22.39"],
         "EHF"  : ["N35d29.07", "W119d05.84"],
         "FALCC": ["N33d15.68", "W117d34.11"],
+        "FLSHH": ["N33d03.03", "W117d24.68"],
+        "GAMBT": ["N33d26.48", "W117d48.39"],
         "GEEGN": ["N33d53.87", "W118d45.14"],
         "GOFUR": ["N33d10.50", "W117d35.44"],
         "GRIDR": ["N32d37.81", "W116d46.39"],
         "GYWNN": ["N33d03.81", "W117d43.75"],
         "HARBR": ["N33d14.28", "W117d51.38"],
         "HFMNN": ["N33d34.55", "W118d14.17"],
+        "HUULK": ["N34d35.46", "W118d36.19"],
         "IFHEJ": ["N32d39.60", "W116d53.28"],
         "IKAYE": ["N34d08.58", "W119d00.62"],
         "IPL"  : ["N32d44.93", "W115d30.51"],
         "JETTI": ["N32d45.28", "W117d16.59"],
         "JLI"  : ["N33d08.43", "W116d35.16"],
+        "JOEKR": ["N33d32.86", "W117d52.73"],
         "JORRJ": ["N32d36.11", "W116d54.97"],
         "JUNOR": ["N32d46.07", "W116d32.72"],
+        "KLOMN": ["N32d46.73", "W117d03.86"],
         "LANDN": ["N32d47.62", "W117d18.21"],
         "LANDO": ["N35d00.75", "W118d36.98"],
         "LAX"  : ["N33d55.99", "W118d25.92"],
         "LEGUE": ["N32d51.85", "W116d50.02"],
+        "LEJEN": ["N33d15.07", "W117d36.21"],
         "LNSAY": ["N33d08.77", "W117d29.17"],
+        "LNTRN": ["N32d55.10", "W117d18.03"],
         "LOWMA": ["N32d39m16.71", "W117d16m5.79"],
         "MADOW": ["N33d37.42", "W117d59.78"],
         "MAFAN": ["N33d04.10", "W117d25.78"],
@@ -99,6 +108,8 @@
         "MELDY": ["N33d05.36", "W117d41.63"],
         "MTBAL": ["N33d36.20", "W116d02.54"],
         "MMOTO": ["N33d16.17", "W117d41.72"],
+        "MRVEL": ["N33d46.60", "W118d13.77"],
+        "NADDO": ["N32d45.04", "W116d59.52"],
         "NSHEE": ["N33d23.96", "W116d22.99"],
         "OROSZ": ["N34d25.60", "W118d40.45"],
         "PADRZ": ["N33d11.63", "W117d51.72"],
@@ -109,12 +120,15 @@
         "RIDDL": ["N34d00.12", "W118d27.59"],
         "SARGS": ["N32d46.90", "W117d23.37"],
         "SAYOW": ["N32d41.09", "W116d59.28"],
+        "SLAER": ["N33d20.71", "W118d11.83"],
         "SLI"  : ["N33d47.00", "W118d3.29"],
+        "SPYDE": ["N33d33.07", "W117d56.03"],
         "SXC"  : ["N33d22.50", "W118d25.19"],
         "TEDEY": ["N33d32.25", "W117d57.25"],
         "TWINE": ["N34d18.58", "W118d36.99"],
         "VYDDA": ["N32d40.30", "W116d56.15"],
         "WNFLD": ["N32d47.88", "W117d18.96"],
+        "XMANS": ["N32d48.71", "W117d12.72"],
         "ZZOOO": ["N32d37.89", "W117d14.75"]
     },
     "runways": [
@@ -290,9 +304,96 @@
         }
     },
     "stars": {
-
+        "COMIX2": {
+            "icao": "COMIX2",
+            "name": "Comics Two",
+            "entryPoints": {
+                "SXC": [["SXC", "A250+|A290-"]],
+                "LAX": ["LAX", "MRVEL", "SPYDE", "GAMBT"],
+                "HUULK": ["HUULK", "DECEA", "JOEKR", "GAMBT"]
+            },
+            "body": [["LEJEN", "A150+|A190-"], ["COMIX", "A120+|A150-"], "FLSHH", ["LNTRN", "A90+|S230"], ["XMANS", "A70+"]],
+            "rwy": {
+                "KSAN27": [["KLOMN", "A60|S210"], ["^NADDO", "A60"], "#095"]
+            },
+            "draw": [
+                ["LAX*", "MRVEL", "SPYDE", "GAMBT", "LEJEN", "COMIX", "FLSHH", "LNTRN", "XMANS", "KLOMN", "NADDO"],
+                ["SXC*", "SLAER", "COMIX"],
+                ["HUULK*", "DECEA", "JOEKR", "GAMBT"]
+            ]
+        }
     },
     "spawnPatterns": [
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.BRDR7.JLI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.20,
+            "airlines": [
+                ["amf", 1]
+            ]
+        },
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.PADRZ2.DINTY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.20,
+            "airlines": [
+                ["asa", 1]
+            ]
+        },
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.PADRZ2.EHF",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.70,
+            "airlines": [
+                ["asa", 3],
+                ["dal/short", 2],
+                ["qxe/long", 6],
+                ["skw", 4],
+                ["swa", 13]
+            ]
+        },
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.PADRZ2.IKAYE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.02,
+            "airlines": [
+                ["jal/long", 1],
+                ["skw", 4]
+            ]
+        },
+        {
+            "origin": "KSAN",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAN27.PADRZ2.OROSZ",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.63,
+            "airlines": [
+                ["swa", 3]
+            ]
+        },
         {
             "origin": "KSAN",
             "destination": "",
@@ -301,7 +402,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.71,
+            "rate": 3.46,
             "airlines": [
                 ["aal/short", 8],
                 ["dal/short", 1],
@@ -317,11 +418,12 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.83,
+            "rate": 4.29,
             "airlines": [
                 ["aal/short", 1],
                 ["dal/short", 3],
                 ["fft", 2],
+                ["nks", 1],
                 ["scx", 1],
                 ["swa", 9],
                 ["ual", 4]
@@ -335,7 +437,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.13,
+            "rate": 0.63,
             "airlines": [
                 ["amf", 1],
                 ["pcm", 2]
