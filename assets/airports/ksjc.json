@@ -482,48 +482,74 @@
     		"origin": "KSJC",
     		"destination": "",
     		"category": "departure",
-    		"route": "KSJC.TECKY3.EBAYE",
+    		"route": "KSJC30R.TECKY3.EBAYE",
     		"altitude": "",
     		"speed": "",
     		"method": "random",
-    		"rate": null,
+    		"rate": 7,
     		"airlines": [
-    			["skw", null],
-    			["swa", null],
-    			["eja", null],
-    			["aal", null],
-    			["ual", null]
+    			["swa", 9],
+    			["skw", 2]
     		]
     	},
     	{
     		"origin": "KSJC",
     		"destination": "",
     		"category": "departure",
-    		"route": "KSJC.TECKY3.TECKY",
+    		"route": "KSJC30R.TECKY3.LOSHN",
     		"altitude": "",
     		"speed": "",
     		"method": "random",
-    		"rate": null,
+    		"rate": 7,
     		"airlines": [
-    			["skw", null],
-    			["swa", null],
-    			["qxe", null],
-    			["dal", null]
+    			["swa", 1],
+    			["aal", 1]
     		]
     	},
     	{
     		"origin": "KSJC",
     		"destination": "",
     		"category": "departure",
-    		"route": "KSJC.TECKY3.LOSHN",
+    		"route": "KSJC30R.TECKY3.TECKY",
     		"altitude": "",
     		"speed": "",
     		"method": "random",
-    		"rate": null,
+    		"rate": 7,
     		"airlines": [
-    			["skw", null],
-    			["swa", null],
-    			["aal", null]
+    			["asa", 1],
+    			["skw", 3],
+    			["swa", 3],
+    			["aal", 2],
+    			["ual", 2]
+    		]
+    	},
+    	{
+    		"origin": "",
+    		"destination": "KSJC",
+    		"route": "TROXX.SILCN4.KSJC30L",
+    		"category": "arrival",
+    		"altitude": 26000,
+    		"speed": 280,
+    		"method": "random",
+    		"rate": 7,
+    		"airlines": [
+    			["swa", 11],
+    			["skw", 3]
+    		]
+    	},
+    	{
+    		"origin": "",
+    		"destination": "KSJC",
+    		"route": "CHBLI.BRIXX2.KSJC30L",
+    		"category": "arrival",
+    		"altitude": 28000,
+    		"speed": 280,
+    		"method": "random",
+    		"rate": 7,
+    		"airlines": [
+    			["skw", 5],
+    			["swa", 3],
+    			["asa", 2]
     		]
     	}
 	],
