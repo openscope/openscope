@@ -23,7 +23,7 @@ Morgan - SJC arrivals
 ### Airports of interest
 #### San Jose Norman Y Mineta International SJC
 San Jose, while not NCT's major airport, is a moderately busy airport that mainly serves airports in the western United States.
-Its top domestic destinations include Los Angeles, San Diego , and Seattle.
+Its top domestic destinations include Los Angeles, San Diego, and Seattle.
 Internationally, San Jose operators mainly fly to Mexico and Canada.
 The San Jose runway configuration follows the one at nearby SFO. When SFO is in its west flow, so is SJC. When SFO is in east, so is SJC.
 San Jose uses the west-facing runways the most. 30R is typically used for departures as it's closer to the ramp.
@@ -43,7 +43,7 @@ Oakland handles a similar amount of traffic as San Jose, and is divided into two
 #### San Carlos SQL
 *17 nmi northwest of SJC*
 
-A popular GA hub with a flight school, FBOs, and the Hiller air museum. The SFO class B airspace was modified in the 2010s to accomodate GA traffic in the reagion, mostly from SQL.
+A popular GA hub with a flight school, FBOs, and the Hiller air museum. The SFO class B airspace was modified in the 2010s to accomodate GA traffic in the region, mostly from SQL.
 
 #### Moffett Federal Airfield NUQ
 *7 nmi northwest of SJC*
