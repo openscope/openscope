@@ -1,6 +1,6 @@
 {
   "name": "openscope",
-  "version": "6.17.1",
+  "version": "6.18.0-BETA",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "11.3.0",
