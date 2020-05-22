@@ -1,3 +1,7 @@
+# 6.17.1 (May 21, 2020)
+### Hotfixes
+- <a href="https://github.com/openscope/openscope/issues/1573" target="_blank">#1573</a> - Add missing waypoints from KJFK to fix crash
+
 # 6.17.0 (May 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Introduce Venice Marco Polo Airport (LIPZ) and Volotea airline (VOE)
