@@ -24,11 +24,6 @@ import {
     vscale
 } from '../math/vector';
 import {
-    DECIMAL_RADIX,
-    degreesToRadians,
-    km
-} from '../utilities/unitConverters';
-import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
@@ -44,6 +39,12 @@ import {
 } from '../constants/globalConstants';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
+import { leftPad } from '../utilities/generalUtilities';
+import {
+    DECIMAL_RADIX,
+    degreesToRadians,
+    km
+} from '../utilities/unitConverters';
 
 /**
  * @class CanvasController
@@ -414,6 +415,7 @@ export default class CanvasController {
             this._drawSids(staticCanvasCtx);
             this._drawStars(staticCanvasCtx);
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
+            this._drawAirspaceShelvesAndLabels(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
             this._drawCurrentScale(staticCanvasCtx);
         }
@@ -857,6 +859,10 @@ export default class CanvasController {
         cc.stroke();
     }
 
+    // TODO: This method requires that we translate the canvas to the center, WITHOUT correcting for pan.
+    // This is the opposite of what _drawPoly does, and there is real advantage to the differing strategies.
+    // They should both be made to behave in the same way, probably by translating to center, and adjusting
+    // for pan within _drawPoly or _drawText itself, to make the usage in _drawFixes etc more intuitive.
     /**
      * @for CanvasController
      * @method _drawText
@@ -868,7 +874,11 @@ export default class CanvasController {
      */
     _drawText(cc, position, labels, lineHeight = 15) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
-        const dx = cc.textAlign === 'right' ? -10 : 10;
+        let dx = cc.textAlign === 'right' ? -10 : 10;
+
+        if (cc.textAlign === 'center') {
+            dx = 0;
+        }
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
@@ -1713,21 +1723,41 @@ export default class CanvasController {
             cc.restore();
         }
 
+        // this._drawAirspaceShelvesAndLabels(cc);
+
+        cc.restore();
+    }
+
+    _drawAirspaceShelvesAndLabels(cc) {
+        cc.save();
+
+        const airport = AirportController.airport_get();
+        cc.strokeStyle = 'rgba(224, 128, 128, 1.0)';
         cc.fillStyle = 'rgba(224, 128, 128, 1.0)';
-        cc.font = '16px monoOne, monospace';
+        cc.font = '12px monoOne, monospace';
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
-        const lineHeight = 20;
-
         for (let i = 0; i < airport.airspace.length; i++) {
             const airspace = airport.airspace[i];
-            const transformedX = CanvasStageModel.translateKilometersToPixels(airspace.labelPosition.x);
-            const transformedY = -CanvasStageModel.translateKilometersToPixels(airspace.labelPosition.y);
 
-            cc.fillText(`Airspace ${i} (${airspace.airspace_class})`, transformedX, transformedY);
-            cc.fillText(`${airspace.ceiling}`, transformedX, transformedY + 1 * lineHeight);
-            cc.fillText(`${airspace.floor}`, transformedX, transformedY + 2 * lineHeight);
+            cc.save(); // to allow reset of translation
+            // required positioning to use _drawPoly
+            cc.translate(CanvasStageModel.halfWidth + CanvasStageModel._panX, CanvasStageModel.halfHeight + CanvasStageModel._panY);
+            // draw lines
+            this._drawPoly(cc, airspace.relativePoly, false);
+
+            const bottomFlightLevel = leftPad(Math.floor(airspace.floor / 100), 3);
+            const topFlightLevel = leftPad(Math.ceil(airspace.ceiling / 100), 3);
+            const content = `${bottomFlightLevel}-${topFlightLevel} (#${i})`;
+
+            cc.restore(); // reset from translation used for poly above
+            cc.save();
+            // required positioning to use _drawText
+            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+            // draw labels
+            this._drawText(cc, [airspace.labelPosition.x, airspace.labelPosition.y], [content]);
+            cc.restore();
         }
 
         cc.restore();
@@ -1757,6 +1787,10 @@ export default class CanvasController {
         return km(defaultRangeRings.radius_nm);
     }
 
+    // TODO: This method requires that we translate the canvas to the center, WITH correcting for pan.
+    // This is the opposite of what _drawText does, and there is real advantage to the differing strategies.
+    // They should both be made to behave in the same way, probably by translating to center, and adjusting
+    // for pan within _drawPoly or _drawText itself, to make the usage in _drawFixes etc more intuitive.
     /**
      * @for CanvasController
      * @method _drawPoly
