@@ -1,4 +1,3 @@
-import _map from 'lodash/map';
 import {
     abs,
     sin,
@@ -8,12 +7,10 @@ import {
     tau,
     angle_offset
 } from './circle';
-import { distance2d } from './distance';
 import {
     vradial,
     vsub,
-    vlen,
-    distance_to_poly
+    vlen
 } from './vector';
 import {
     degreesToRadians,
