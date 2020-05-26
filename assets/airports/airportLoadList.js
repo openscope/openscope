@@ -246,6 +246,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Washington-Dulles International Airport',
         //     premium: false
         // },
+        {
+            icao: 'kiah',
+            level: 'hard',
+            name: 'George Bush Intercontinental/Houston Airport',
+            premium: false
+        },
         // {
         //     icao: 'kjax',
         //     level: 'easy',
