@@ -57,6 +57,7 @@
         }
     ],
     "fixes": {
+    	"_SUNOL1turnleft": ["N37d17m29", "W121d50m40.489"],
     	"_RWY12R1.8DME": ["N37d23m43.089", "W121d58m01.148"],
     	"_RWY30R5DME": ["N37d17m28.586", "W121d50m40.489"],
     	"_SJC3OAK121": ["N37d17m41.919", "W121d46m33.921"], 
@@ -291,8 +292,8 @@
     		"icao": "SUNOL1",
     		"name": "Sunol One",
     		"rwy": {
-    			"KSJC12L": ["_RWY30R5DME", "#303"],
-    			"KSJC12R": ["_RWY30R5DME", "#303"],
+    			"KSJC12L": ["_RWY30R5DME", "_SUNOL1turnleft", "#303"],
+    			"KSJC12R": ["_RWY30R5DME", "_SUNOL1turnleft", "#303"],
     			"KSJC30L": ["_RWY12R1.8DME", "_SUNOL1SJC009"],
     			"KSJC30R": ["_RWY12R1.8DME", "_SUNOL1SJC009"]
     		},
