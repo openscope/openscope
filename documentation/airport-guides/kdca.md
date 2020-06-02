@@ -129,5 +129,5 @@ The videomap contains the following:
 We don't know what all the symbols on the videomap mean, however the map is courtesy of VATSIM's vZDC vSTARS file.
 
 ### Additional Resources
-<a href="https://vzdc.org/downloads/PCT_SOP.pdf" target="_blank">vZDC PCT SOP</a>
+<a href="https://vzdc.org/storage/files/PCT%20%7C%20Potomac%20Consolidated%20TRACON%20SOP_1579909027.pdf" target="_blank">vZDC PCT SOP</a>
 <a href="https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=dca" target="_blank">FAA Airport Information</a>
