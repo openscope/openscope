@@ -301,6 +301,10 @@ export default class ScopeModel {
         if (scratchPadText.length > 3) {
             return [false, 'ERR: SCRATCHPAD MAX 3 CHAR'];
         }
+        
+        if (scratchPadText === '---') {
+            return radarTargetModel.setScratchpad('');
+        }
 
         return radarTargetModel.setScratchpad(scratchPadText.toUpperCase());
     }
