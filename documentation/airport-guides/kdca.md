@@ -14,7 +14,7 @@ Chesapeake (CHP) covers Baltimore and the northern area of the PCT.
 ##### Richmond International Airport (KRIC, RIC)
 Richmond International Airport is the smallest of the four major airports within the Potomac Consolidated TRACON, 7 miles southeast of downtown Richmond. During 2015-2016 it handled 3,818,759 passengers across 10,073 aircraft movements.
 
-The area of the PCT which covers Richmond is the James River (JRV) area, which also covers the southern area of the PCT.
+James River (JRV) covers Richmond and the southern area of the PCT.
 
 ### Statistics
 Handled 70m+ passengers in 2015-2016
@@ -30,7 +30,7 @@ There are no international routes from DCA; the only international flights that 
 The airport is known by many pilots for its River Visual procedure for runway 19 which requires at least 3 statute miles of visibility. It uses the Potomac River and various bridges including the Roosevelt Bridge, Memorial Bridge, Rochambeau Bridge and more.
 
 ### Mount Vernon Area
-The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so <a href="https://image.prntscr.com/image/fRaW9wieSJ_Ibi9KRix4Kg.png" target="_blank">here is a diagram</a>] of the airspace that Mount Vernon owns.
+The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so <a href="https://i.ibb.co/rvdJsyk/image.png" target="_blank">here is a diagram</a>] of the airspace that MTV owns.
 
 ### Instrument Procedures
 ##### Departures
