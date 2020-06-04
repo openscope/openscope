@@ -1,0 +1,17 @@
+{
+    "icao": "mtn",
+    "name": "Mountain Air Cargo",
+    "callsign": {
+        "name": "Mountain",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT43", 10],
+            ["AT72", 9],
+            ["C208", 30]
+        ]
+    }
+}
