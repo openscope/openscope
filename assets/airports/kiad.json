@@ -1396,7 +1396,7 @@
 		},
         "RNLDI4": {
 			"icao": "RNLDI4",
-			"name": "Rnldi Four",
+			"name": "Rinaldi Four",
 			"altitude": 3000,
 			"rwy": {
 				"KIAD1L" : ["_RWY19R1DME", "LOULU"],
@@ -1480,7 +1480,7 @@
     "stars": {
         "CAVLR3": {
 			"icao": "CAVLR3",
-			"name": "Cavlr Three",
+			"name": "Cavler Three",
 			"entryPoints": {
                 "BNTLY": [
                     ["BNTLY", "A130+"]
@@ -1526,7 +1526,7 @@
 		},
         "COATT5": {
 			"icao": "COATT5",
-			"name": "Coatt Five",
+			"name": "Coat Five",
 			"entryPoints": {
 				"FAK": [
                     "FAK",
