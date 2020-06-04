@@ -2119,29 +2119,17 @@
             "altitude": 18000,
             "speed": 280,
             "method": "random",
-            "rate": 12,
+            "rate": 10.9,
             "airlines":  [
-                ["ual", 5],
-                ["ual/long", 2],
-                ["swa", 1],
                 ["dal", 5],
-                ["dal/long", 2],
-                ["aal", 5],
+                ["ual", 5],
                 ["aal/long", 2],
+                ["dal/long", 2],
+                ["ual/long", 2],
+                ["aal", 5],
                 ["asa", 1],
-                ["fdx", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "BNTLY.CAVLR3.KIAD1R",
-            "altitude": 10000,
-            "speed": 250,
-            "method": "random",
-            "rate": 6,
-            "airlines":  [
+                ["fdx", 1],
+                ["swa", 1],
                 ["uca", 4],
                 ["ups", 4]
             ]
@@ -2150,72 +2138,25 @@
             "origin": "",
             "destination": "KIAD",
             "category": "arrival",
-            "route": "BKW.GIBBZ3.KIAD1C",
-            "altitude": 21000,
-            "speed": 280,
-            "method": "random",
-            "rate": 6,
-            "offset": 7.5,
-            "airlines":  [
-                ["ash", 6],
-                ["fdx", 4],
-                ["edv", 5],
-                ["aal", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "HVQ.GIBBZ3.KIAD1R",
+            "route": "BKW.GIBBZ3.KIAD1R",
             "altitude": 25000,
             "speed": 280,
             "method": "random",
-            "rate": 8,
-            "period": 75,
-            "offset": 25,
+            "rate": 12.7,
             "airlines":  [
-                ["ual", 5],
-                ["ual/long", 2],
-                ["swa", 1],
+                ["ash", 7],
+                ["aal", 6],
                 ["dal", 5],
-                ["dal/long", 2],
-                ["aal", 5],
+                ["edv", 5],
+                ["ual", 5],
+                ["rpa", 4],
+                ["fdx", 3],
+                ["uca", 3],
                 ["aal/long", 2],
+                ["dal/long", 2],
+                ["ual/long", 2],
                 ["asa", 1],
-                ["fdx", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "MGW.GIBBZ3.KIAD1C",
-            "altitude": 23000,
-            "speed": 280,
-            "method": "random",
-            "rate": 9,
-            "airlines":  [
-                ["ash", 6],
-                ["rpa", 5],
-                ["edv", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "PHOOW.GIBBZ3.KIAD1C",
-            "altitude": 17000,
-            "speed": 280,
-            "method": "random",
-            "rate": 5,
-            "period": 50,
-            "offset": 20,
-            "airlines":  [
-                ["uca", 4],
-                ["rpa", 5],
-                ["edv", 5]
+                ["swa", 1]
             ]
         },
         {
@@ -2226,17 +2167,17 @@
             "altitude": 20000,
             "speed": 280,
             "method": "random",
-            "rate": 12,
+            "rate": 11.4,
             "airlines":  [
-                ["ual", 5],
-                ["ual/long", 2],
-                ["swa", 1],
-                ["dal", 5],
-                ["dal/long", 2],
                 ["aal", 5],
+                ["dal", 5],
+                ["ual", 5],
                 ["aal/long", 2],
+                ["dal/long", 2],
+                ["ual/long", 2],
                 ["asa", 1],
-                ["fdx", 1]
+                ["fdx", 1],
+                ["swa", 1]
             ]
         },
         {
@@ -2247,18 +2188,17 @@
             "altitude": 17000,
             "speed": 280,
             "method": "random",
-            "offset": 7,
-            "rate": 10,
+            "rate": 10.8,
             "airlines":  [
-                ["ual", 5],
-                ["ual/long", 2],
-                ["swa", 1],
-                ["dal", 5],
-                ["dal/long", 2],
                 ["aal", 5],
+                ["dal", 5],
+                ["ual", 5],
                 ["aal/long", 2],
+                ["dal/long", 2],
+                ["ual/long", 2],
                 ["asa", 1],
-                ["fdx", 1]
+                ["fdx", 1],
+                ["swa", 1]
             ]
         },
         {
@@ -2270,22 +2210,6 @@
             "speed": 200,
             "method": "random",
             "rate": 0.8,
-            "offset": 4,
-            "airlines":  [
-                ["n", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "LVZ.SEG6.KIAD1R",
-            "altitude": 9000,
-            "speed": 210,
-            "method": "cyclic",
-            "rate": 4,
-            "period": 50,
-            "offset": 25,
             "airlines":  [
                 ["n", 5]
             ]
@@ -2298,22 +2222,7 @@
             "altitude": 9000,
             "speed": 200,
             "method": "random",
-            "rate": 1,
-            "offset": 25,
-            "airlines":  [
-                ["n", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "ZUMBR.WIGOL1.KIAD1R",
-            "altitude": 10000,
-            "speed": 200,
-            "method": "random",
-            "rate": 1,
-            "offset": 15,
+            "rate": 0.9,
             "airlines":  [
                 ["n", 5]
             ]
