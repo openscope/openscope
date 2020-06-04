@@ -243,7 +243,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'kiad',
             level: 'hard',
-            name: 'Washington-Dulles International Airport',
+            name: 'Washington Dulles International Airport',
             premium: false
         },
         // {
