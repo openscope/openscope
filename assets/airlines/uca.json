@@ -1,0 +1,15 @@
+{
+    "icao": "uca",
+    "name": "CommutAir",
+    "callsign": {
+        "name": "Commutair",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E145", 37]
+        ]
+    }
+}
