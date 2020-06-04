@@ -202,8 +202,8 @@
         "FQM"  : ["N41d20m18.81", "W076d46m29.52"],
         "FRDMM": ["N38d56m34.54", "W077d31m01.39"],
         "GAITE": ["N38d44m40.12", "W077d07m44.97"],
-        "GANDE": ["N41d24m28.13", "W074d01m12.37"],
-        "GBERG": ["N37d56m09.23", "W080d41m5.28"],
+        "GANDE": ["N41d30m36.66", "W073d48m52.03"],
+        "GBERG": ["N37d56m09.23", "W080d41m05.28"],
         "GDYUP": ["N38d51m49.38", "W076d49m48.10"],
         "GIBBZ": ["N38d57m56.87", "W077d45m34.53"],
         "GILFF": ["N38d21m44.86", "W077d26m05.38"],
@@ -218,6 +218,7 @@
         "HALLL": ["N38d31m07.19", "W077d00m33.68"],
         "HAMME": ["N38d42m29.69", "W079d14m39.39"],
         "HANEY": ["N38d17m17.16", "W077d55m04.28"],
+        "HAYGR": ["N39d23m18.32", "W077d46m37.08"],
         "HEROO": ["N38d37m37.42", "W077d06m22.27"],
         "HESEE": ["N38d29m56.75", "W079d29m42.95"],
         "HHARP": ["N38d14m40.21", "W080d10m30.28"],
@@ -1369,6 +1370,29 @@
 			"draw": [
                 ["IDORE", "JERES*"]
 			]
+        },
+        "MCRAY2": {
+			"icao": "MCRAY2",
+			"name": "Mcray Two",
+			"altitude": 3000,
+			"rwy": {
+				"KIAD1L" : ["_RWY19R1DME", "#011"],
+                "KIAD1C" : ["_RWY19C1DME", "#011"],
+                "KIAD1R" : ["_RWY19L1DME", "#011"],
+                "KIAD19L": [["_RWY1R1DME", "A008+"], "#320"],
+                "KIAD19C": [["_RWY1C1DME", "A008+"], "#320"],
+                "KIAD19R": [["_RWY1L1DME", "A008+"], "#320"],
+                "KIAD30" : [["_RWY121DME", "A008+"], "#320"]
+			},
+			"body": [
+                "HAYGR"
+			],
+			"exitPoints": {
+				"MCRAY": ["MCRAY"]
+			},
+			"draw": [
+                ["HAYGR", "MCRAY*"]
+			]
 		},
         "RNLDI4": {
 			"icao": "RNLDI4",
@@ -1458,21 +1482,26 @@
 			"icao": "CAVLR3",
 			"name": "Cavlr Three",
 			"entryPoints": {
+                "BNTLY": [
+                    ["BNTLY", "A130+"]
+                ],
 				"DORRN": [
-					"DORRN"
+                    "DORRN",
+                    ["BNTLY", "A130+"]
 				],
 				"THHMP": [
 					"THHMP",
 					["PERKN", "A220+"],
-					["KHOOD", "A140+|A220-"]
+                    ["KHOOD", "A140+|A220-"],
+                    ["BNTLY", "A130+"]
 				],
 				"TRSSK": [
 					"TRSSK",
-					"JROBB"
+                    "JROBB",
+                    ["BNTLY", "A130+"]
 				]
 			},
 			"body": [
-				["BNTLY", "A130+"],
 				["MEEGO", "A110+"],
 				["CAVLR", "A100|S250"],
 				["KASDY", "A70"]
@@ -1487,9 +1516,9 @@
 				"KIAD30": [["COINZ", "A60"]]
 			},
 			"draw": [
-				["DORRN", "PERKN", "KHOOD", "BNTLY"],
-				["TRSSK", "PERKN", "KHOOD", "BNTLY"],
-				["THHMP*", "JROBB", "BNTLY"],
+                ["DORRN*", "BNTLY"],
+				["THHMP*", "PERKN", "KHOOD", "BNTLY"],
+				["TRSSK*", "JROBB", "BNTLY"],
 				["BNTLY*", "MEEGO", "CAVLR", "KASDY"],
 				["KASDY", "COINZ"],
 				["KASDY", "BARIN", "STAYO", "TRING", "MIXNN"]
@@ -1637,6 +1666,16 @@
                     ["MONNK", "A100-"],
                     ["BMICH", "A090+"],
                     ["THZMN", "A070"]
+                ],
+                "PHOOW": [
+                    "PHOOW",
+                    ["HESEE", "A240+|S280"],
+                    ["GYSLO", "A170+|A220-|S280"],
+                    ["BBONE", "A150+|A190-|S280"],
+                    ["KILMR", "A110|S250"],
+                    ["OTTTO", "A090"],
+                    ["MAAAY", "A070"],
+                    ["RYPIN", "A060"]
                 ]
 			},
 			"body": [
@@ -1928,57 +1967,355 @@
     },
     "spawnPatterns": [
 		{
-			"origin": "KIAD",
-			"destination": "",
-			"category": "departure",
-			"route": "KIAD30.SCRAM5.GLANC",
-			"altitude": 0,
-			"speed": 0,
-			"method": "random",
-			"rate": 1.8,
-			"airlines": [
-				["ash", 1],
-				["jia", 1]
-			]
-		},
-		{
-            "origin": "",
-            "destination": "KIAD",
-            "category": "arrival",
-            "route": "DORRN.CAVLR3.KIAD1R",
-            "altitude": 13000,
-            "speed": 250,
+            "origin": "KIAD",
+            "destination": "",
+            "category": "departure",
+            "route": "KIAD30.BUNZZ3.RAMAY",
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 5,
             "airlines": [
-				["aal/short", 6],
-				["ual", 3]
+                ["awi", 10],
+                ["rpa", 8],
+                ["asa", 5]
             ]
         },
-		{
+        {
+			"origin": "KIAD",
+			"destination": "",
+			"category": "departure",
+			"route": "KIAD30.CLTCH2.FLASK",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 5,
+			"airlines": [
+                ["dal", 3],
+                ["ual/short", 2],
+                ["swa", 1]
+			]
+        },
+        {
+			"origin": "KIAD",
+			"destination": "",
+			"category": "departure",
+			"route": "KIAD30.JCOBY3.SWANN",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 5,
+			"airlines": [
+                ["ual/short", 3],
+                ["fdx", 3],
+                ["baw/long", 2],
+                ["ual/long", 2],
+                ["mtn", 2],
+                ["eth", 1],
+                ["qtr/long", 1],
+                ["aic/long", 1],
+                ["ice", 1],
+                ["saa", 1]
+			]
+        },
+        {
+            "origin": "KIAD",
+            "destination": "",
+            "category": "departure",
+            "route": "KIAD30.JERES2.JERES",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["asq", 8],
+                ["jia", 4],
+                ["uca", 4],
+                ["skv", 2]
+            ]
+        },
+        {
+			"origin": "KIAD",
+			"destination": "",
+			"category": "departure",
+			"route": "KIAD30.JDUBB3.MELTN",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 5,
+			"airlines": [
+                ["eja", 1],
+                ["ash", 2]
+			]
+        },
+        {
+			"origin": "KIAD",
+			"destination": "",
+			"category": "departure",
+			"route": "KIAD30.MCRAY2.MCRAY",
+			"altitude": [30000, 36000],
+			"speed": 430,
+			"method": "random",
+			"rate": 1,
+			"airlines": [
+                ["edv", 1]
+			]
+        },
+        {
+			"origin": "KIAD",
+			"destination": "",
+			"category": "departure",
+			"route": "KIAD30.RNLDI4.OTTTO",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 5,
+			"airlines": [
+                ["ual/short", 2],
+                ["aal/short", 2],
+                ["swa", 1],
+                ["ash", 1],
+                ["ash", 1],
+                ["ups", 1]
+			]
+        },
+        {
+            "origin": "KIAD",
+            "destination": "",
+            "category": "departure",
+            "route": "KIAD30.SCRAM5.GLANC",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ual", 3],
+                ["swa", 3],
+                ["fft", 2],
+                ["jia", 2],
+                ["ash", 1]
+            ]
+        },
+        {
+            "origin": "KIAD",
+            "destination": "",
+            "category": "departure",
+            "route": "KIAD30.WOOLY1.SWANN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["eny", 10],
+                ["aal", 9],
+                ["edv", 9]
+            ]
+        },
+        {
             "origin": "",
             "destination": "KIAD",
             "category": "arrival",
-            "route": "BAF.HYPER7.KIAD1R",
+            "route": "THHMP.CAVLR3.KIAD1R",
             "altitude": 18000,
-            "speed": 250,
+            "speed": 280,
             "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["rpa", 2]
+            "rate": 12,
+            "airlines":  [
+                ["ual", 5],
+                ["ual/long", 2],
+                ["swa", 1],
+                ["dal", 5],
+                ["dal/long", 2],
+                ["aal", 5],
+                ["aal/long", 2],
+                ["asa", 1],
+                ["fdx", 1]
             ]
         },
-		{
+        {
             "origin": "",
             "destination": "KIAD",
             "category": "arrival",
-            "route": "BAF.HYPER7.KIAD1L",
-            "altitude": 18000,
+            "route": "BNTLY.CAVLR3.KIAD1R",
+            "altitude": 10000,
             "speed": 250,
             "method": "random",
+            "rate": 6,
+            "airlines":  [
+                ["uca", 4],
+                ["ups", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "BKW.GIBBZ3.KIAD1C",
+            "altitude": 21000,
+            "speed": 280,
+            "method": "random",
+            "rate": 6,
+            "offset": 7.5,
+            "airlines":  [
+                ["ash", 6],
+                ["fdx", 4],
+                ["edv", 5],
+                ["aal", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "HVQ.GIBBZ3.KIAD1R",
+            "altitude": 25000,
+            "speed": 280,
+            "method": "random",
+            "rate": 8,
+            "period": 75,
+            "offset": 25,
+            "airlines":  [
+                ["ual", 5],
+                ["ual/long", 2],
+                ["swa", 1],
+                ["dal", 5],
+                ["dal/long", 2],
+                ["aal", 5],
+                ["aal/long", 2],
+                ["asa", 1],
+                ["fdx", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "MGW.GIBBZ3.KIAD1C",
+            "altitude": 23000,
+            "speed": 280,
+            "method": "random",
+            "rate": 9,
+            "airlines":  [
+                ["ash", 6],
+                ["rpa", 5],
+                ["edv", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "PHOOW.GIBBZ3.KIAD1C",
+            "altitude": 17000,
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "period": 50,
+            "offset": 20,
+            "airlines":  [
+                ["uca", 4],
+                ["rpa", 5],
+                ["edv", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "PARKE.HYPER7.KIAD1R",
+            "altitude": 20000,
+            "speed": 280,
+            "method": "random",
+            "rate": 12,
+            "airlines":  [
+                ["ual", 5],
+                ["ual/long", 2],
+                ["swa", 1],
+                ["dal", 5],
+                ["dal/long", 2],
+                ["aal", 5],
+                ["aal/long", 2],
+                ["asa", 1],
+                ["fdx", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "PSB.MAPEL2.KIAD1L",
+            "altitude": 17000,
+            "speed": 280,
+            "method": "random",
+            "offset": 7,
+            "rate": 10,
+            "airlines":  [
+                ["ual", 5],
+                ["ual/long", 2],
+                ["swa", 1],
+                ["dal", 5],
+                ["dal/long", 2],
+                ["aal", 5],
+                ["aal/long", 2],
+                ["asa", 1],
+                ["fdx", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "FQM.SEG6.KIAD1R",
+            "altitude": 7000,
+            "speed": 200,
+            "method": "random",
+            "rate": 0.8,
+            "offset": 4,
+            "airlines":  [
+                ["n", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "LVZ.SEG6.KIAD1R",
+            "altitude": 9000,
+            "speed": 210,
+            "method": "cyclic",
+            "rate": 4,
+            "period": 50,
+            "offset": 25,
+            "airlines":  [
+                ["n", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "DORRN.WIGOL1.KIAD1R",
+            "altitude": 9000,
+            "speed": 200,
+            "method": "random",
             "rate": 1,
-            "airlines": [
-                ["rpa", 2]
+            "offset": 25,
+            "airlines":  [
+                ["n", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
+            "route": "ZUMBR.WIGOL1.KIAD1R",
+            "altitude": 10000,
+            "speed": 200,
+            "method": "random",
+            "rate": 1,
+            "offset": 15,
+            "airlines":  [
+                ["n", 5]
             ]
         }
     ],
