@@ -172,8 +172,8 @@ export default class RadarTargetModel {
         this._theme = theme;
 
         this._init(aircraftModel)
-            .setDefaultScratchpad()
-            .enable();
+            .enable()
+            .setDefaultScratchpad(aircraftModel);
     }
 
     /**
@@ -279,6 +279,8 @@ export default class RadarTargetModel {
     */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
+        return this;
     }
 
     /**
@@ -532,16 +534,16 @@ export default class RadarTargetModel {
      * @private
      * @chainable
      */
-    setDefaultScratchpad() {
-        if (this.aircraftModel.isDeparture()) {
-            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
+    setDefaultScratchpad(aircraftModel) {
+        if (aircraftModel.isDeparture()) {
+            this.scratchPadText = aircraftModel.fms.getFlightPlanEntry();
 
-            return this;
+            return [true, 'RESET SCRATCHPAD'];
         }
 
-        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
+        this.scratchPadText = aircraftModel.destination.substr(1, 3);
 
-        return this;
+        return [true, 'RESET SCRATCHPAD'];
     }
 
     /**
