@@ -527,7 +527,7 @@ export default class RadarTargetModel {
     }
 
     /**
-     * Initialize the value of the scratchpad
+     * Set default value of the scratchpad
      *
      * @for RadarTargetModel
      * @method setDefaultScratchpad
