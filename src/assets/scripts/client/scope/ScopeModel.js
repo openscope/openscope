@@ -303,7 +303,7 @@ export default class ScopeModel {
         }
 
         if (scratchPadText === '.') {
-            return radarTargetModel.setDefaultScratchpad(radarTargetModel.aircraftModel);
+            return radarTargetModel.setDefaultScratchpad();
         }
 
         return radarTargetModel.setScratchpad(scratchPadText.toUpperCase());

@@ -172,8 +172,7 @@ export default class RadarTargetModel {
         this._theme = theme;
 
         this._init(aircraftModel)
-            .enable()
-            .setDefaultScratchpad(aircraftModel);
+            .enable();
     }
 
     /**
@@ -268,6 +267,8 @@ export default class RadarTargetModel {
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._routeString = aircraftModel.fms.getRouteString();
 
+        this.setDefaultScratchpad();
+
         return this;
     }
 
@@ -276,6 +277,7 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method enable
+    * @chainable
     */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
@@ -288,9 +290,12 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method disable
+    * @chainable
     */
     disable() {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
+        return this;
     }
 
     /**
@@ -298,6 +303,7 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method reset
+    * @chainable
     */
     reset() {
         this.aircraftModel = null;
@@ -310,6 +316,8 @@ export default class RadarTargetModel {
         this._interimAltitude = INVALID_NUMBER;
         this._isUnderOurControl = true;
         this._routeString = '';
+
+        return this;
     }
 
     /**
@@ -534,14 +542,14 @@ export default class RadarTargetModel {
      * @private
      * @chainable
      */
-    setDefaultScratchpad(aircraftModel) {
-        if (aircraftModel.isDeparture()) {
-            this.scratchPadText = aircraftModel.fms.getFlightPlanEntry();
+    setDefaultScratchpad() {
+        if (this.aircraftModel.isDeparture()) {
+            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
 
             return [true, 'RESET SCRATCHPAD'];
         }
 
-        this.scratchPadText = aircraftModel.destination.substr(1, 3);
+        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
 
         return [true, 'RESET SCRATCHPAD'];
     }
