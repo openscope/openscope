@@ -107,6 +107,10 @@ export default class ScopeCommandModel {
             return COMMAND_FUNCTIONS.INITIATE_HANDOFF;
         }
 
+        if (firstElement === '.') {
+            return COMMAND_FUNCTIONS.SCRATCHPAD;
+        }
+
         if (firstElement.indexOf(DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR) !== -1 || firstElement.length < 2) {
             return COMMAND_FUNCTIONS.MOVE_DATA_BLOCK;
         }

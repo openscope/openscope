@@ -53,13 +53,13 @@ _More Info -_ On real ATC systems, moving the data block is sometimes used by co
 
 ~~_More Info -_ **THIS COMMAND IS NOT YET AVAILABLE**~~
 
-### Set Scratch Pad~~
+### Set Scratchpad
 
 _Syntax -_ `[scratchpad text] [CID]`
 
-_Description -_ This will amend the value stored in the target's data block's scratch pad. This value can be a maximum of three alphanumeric characters.~~
+_Description -_ This will amend the value stored in the target's data block's scratchpad. This value can be either two or three alphanumeric characters.
 
-More Info -
+More Info - To reset the scratchpad, set it to a period symbol `. [CID]`
 
 ### Toggle Halo
 
