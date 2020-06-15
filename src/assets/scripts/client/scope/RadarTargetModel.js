@@ -539,8 +539,7 @@ export default class RadarTargetModel {
      *
      * @for RadarTargetModel
      * @method setDefaultScratchpad
-     * @private
-     * @chainable
+     * @return {array} [success of operation, system's response]
      */
     setDefaultScratchpad() {
         if (this.aircraftModel.isDeparture()) {
