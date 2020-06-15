@@ -7,6 +7,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1590" target="_blank">#1590</a> - Update KLAX airport guide description
 - <a href="https://github.com/openscope/openscope/issues/1589" target="_blank">#1589</a> - Update KDCA airport guide links
+- <a href="https://github.com/openscope/openscope/issues/1581" target="_blank">#1581</a> - Add ability to reset scratchpad with "."
 
 # 6.17.1 (May 21, 2020)
 ### Hotfixes
