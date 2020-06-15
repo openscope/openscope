@@ -1,10 +1,11 @@
-# 6.18.0 (June 1, 2020)
+# 6.18.0 (July 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1568" target="_blank">#1568</a> - Add command reference and slack links to help menu
 
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1590" target="_blank">#1590</a> - Update KLAX airport guide description
 
 # 6.17.1 (May 21, 2020)
 ### Hotfixes
