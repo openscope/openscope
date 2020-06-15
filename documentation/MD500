@@ -1,0 +1,37 @@
+{
+    "name": "MD Helicopters MD500E",
+    "icao": "H500",
+    "engines": {
+        "number": 1,
+        "type": "T"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 1,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 31000,
+    "rate": {
+        "climb":      2070,
+        "descent":    2100,
+        "accelerate": 3,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 0.005,
+        "landing": 0.005
+    },
+    "speed":{
+        "min":     000,
+        "landing": 001,
+        "cruise":  135,
+        "cruiseM": null,
+        "max":     153,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
