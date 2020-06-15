@@ -172,7 +172,7 @@ export default class RadarTargetModel {
         this._theme = theme;
 
         this._init(aircraftModel)
-            ._initializeScratchPad()
+            .setDefaultScratchpad()
             .enable();
     }
 
@@ -267,26 +267,6 @@ export default class RadarTargetModel {
         this._dataBlockLeaderDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._routeString = aircraftModel.fms.getRouteString();
-
-        return this;
-    }
-
-    /**
-     * Initialize the value of the scratchpad
-     *
-     * @for RadarTargetModel
-     * @method _initializeScratchPad
-     * @private
-     * @chainable
-     */
-    _initializeScratchPad() {
-        if (this.aircraftModel.isDeparture()) {
-            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
-
-            return this;
-        }
-
-        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
 
         return this;
     }
@@ -542,6 +522,26 @@ export default class RadarTargetModel {
         this._haloRadius = radius;
 
         return [true, 'ADJUST HALO'];
+    }
+
+    /**
+     * Initialize the value of the scratchpad
+     *
+     * @for RadarTargetModel
+     * @method setDefaultScratchpad
+     * @private
+     * @chainable
+     */
+    setDefaultScratchpad() {
+        if (this.aircraftModel.isDeparture()) {
+            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
+
+            return this;
+        }
+
+        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
+
+        return this;
     }
 
     /**
