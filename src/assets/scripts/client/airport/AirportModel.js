@@ -23,7 +23,7 @@ import {
     round
 } from '../math/core';
 import {
-    vectorize_2d,
+    vectorize2dFromRadians,
     vlen,
     vsub,
     vadd,
@@ -572,7 +572,7 @@ export default class AirportModel {
     getWindVectorAtAltitude(altitude) {
         const { angle, speed } = this.getWindAtAltitude(altitude);
         const windTravelDirection = angle + Math.PI;
-        const windVector = vscale(vectorize_2d(windTravelDirection), speed);
+        const windVector = vscale(vectorize2dFromRadians(windTravelDirection), speed);
 
         return windVector;
     }

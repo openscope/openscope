@@ -129,17 +129,6 @@ export const vectorize2dFromDegrees = (heading_angle) => {
 };
 
 /**
- * Alias of the vectorize2dFromRadians
- * Kept for backwards compatibility
- *
- * Get a 2D unit vector corresponding to a heading in radians
- *
- * @param  heading_angle    float    the heading angle, in radians
- * @return array    an array of the x and y components of the vector
- */
-export const vectorize_2d = vectorize2dFromRadians;
-
-/**
  * Adds Vectors (all dimensions)
  */
 export const vadd = (v1, v2) => {
@@ -293,13 +282,13 @@ export const raysIntersect = (pos1, dir1, pos2, dir2, deg_allowance) => {
 
     const p = pos1;
     const q = pos2;
-    const r = vectorize_2d(dir1);
-    const s = vectorize_2d(dir2);
+    const r = vectorize2dFromRadians(dir1);
+    const s = vectorize2dFromRadians(dir2);
     const t = abs(vcp(vsub(q, p), s) / vcp(r, s));
     const t_norm = abs(vcp(vsub(vnorm(q), vnorm(p)), s) / vcp(r, s));
     const u_norm = abs(vcp(vsub(vnorm(q), vnorm(p)), r) / vcp(r, s));
 
-    if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize_2d(degreesToRadians(deg_allowance))))) {
+    if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize2dFromRadians(degreesToRadians(deg_allowance))))) {
         // parallel (within allowance)
         const crossProduct = vcp(
             vsub(vnorm(q), vnorm(p)),

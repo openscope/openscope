@@ -17,7 +17,7 @@ import {
 } from '../math/core';
 import {
     positive_intersection_with_rect,
-    vectorize_2d,
+    vectorize2dFromRadians,
     vectorize2dFromDegrees,
     vadd,
     vscale
@@ -1092,7 +1092,7 @@ export default class CanvasController {
         const lineLengthInMinutes = this._scopeModel.ptlLength;
         const lineLengthInHours = lineLengthInMinutes * TIME.ONE_MINUTE_IN_HOURS;
         const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
-        const groundTrackVector = vectorize_2d(aircraft.groundTrack);
+        const groundTrackVector = vectorize2dFromRadians(aircraft.groundTrack);
         const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
         const screenPositionOffsetX = CanvasStageModel.translateKilometersToPixels(scaledGroundTrackVector[0]);
         const screenPositionOffsetY = CanvasStageModel.translateKilometersToPixels(scaledGroundTrackVector[1]);
