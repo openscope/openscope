@@ -258,8 +258,8 @@ export default class CanvasController {
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStripHandler);
-        this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectAircraftStripHandler);
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftStripHandler);
+        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftStripHandler);
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
@@ -285,8 +285,8 @@ export default class CanvasController {
      * @method disable
      */
     disable() {
-        this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStripHandler);
-        this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectAircraftStripHandler);
+        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftStripHandler);
+        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftStripHandler);
         this._eventBus.off(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);

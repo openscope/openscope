@@ -208,7 +208,7 @@ export default class InputController {
         this.input.command = '';
         this.$commandInput.val('');
 
-        this._eventBus.trigger(EVENT.DESELECT_ACTIVE_STRIP_VIEW, {});
+        this._eventBus.trigger(EVENT.DESELECT_AIRCRAFT, {});
     }
 
     /**
@@ -429,7 +429,7 @@ export default class InputController {
             this.$commandInput.focus();
         }
 
-        this._eventBus.trigger(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, aircraftModel);
+        this._eventBus.trigger(EVENT.SELECT_AIRCRAFT, aircraftModel);
     };
 
     /**
