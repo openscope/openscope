@@ -137,9 +137,10 @@ Manassas Regional Airport is five miles southwest of the center of Manassas, VA.
 The videomap contains the following:
 
 * Restricted Airspaces;
-* Extended centreline for ILS01;
-* Various airports within the Shenandoah and Mount Vernon Areas;
-* Locations of important fixes
+* Extended centerlines for all runways (1L, 1C, 1R, 12, 19L, 19C, 19R, 30);
+* Various airports within in and around the Shenandoah Area;
+* Locations of important fixes;
+* The Potomac River
 
 The map is courtesy of VATSIM's vZDC vSTARS file.
 
