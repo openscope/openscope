@@ -2465,10 +2465,26 @@ export default class CanvasController {
         this._markShallowRender();
     }
 
+    /**
+     * Trigger _markDeepRender() when an aircraft strip is selected, thus
+     * forcing a redraw of both canvases on the next frame.
+     *
+     * @for CanvasController
+     * @method _onSelectAircraftStrip
+     * @private
+     */
     _onSelectAircraftStrip() {
         this._markDeepRender();
     }
 
+    /**
+     * Trigger _markDeepRender() when an aircraft strip is deselected, thus
+     * forcing a redraw of both canvases on the next frame.
+     *
+     * @for CanvasController
+     * @method _onSelectAircraftStrip
+     * @private
+     */
     _onDeselectAircraftStrip() {
         this._markDeepRender();
     }
