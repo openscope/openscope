@@ -2245,20 +2245,11 @@ export default class CanvasController {
             -CanvasStageModel.translateKilometersToPixels(positionFromScope[1])
         ];
 
-        // We want to compute a position relative to the canvas from a position relative to
-        // the scope. To do that, we will create a vector "vCanvasToScope" describing the
-        // position of the canvas relative to the scope, so we can simply add it to the
-        // given position to get our final result.
+        const scopePositionRelativeToView = [CanvasStageModel._panX, CanvasStageModel._panY];
+        const viewPositionRelativeToCanvasOrigin = [CanvasStageModel.halfWidth, CanvasStageModel.halfHeight];
+        const scopePositionRelativeToCanvasOrigin = vadd(viewPositionRelativeToCanvasOrigin, scopePositionRelativeToView);
 
-        // the position of the scope relative to the view (center of the canvas)
-        const vViewToScope = [CanvasStageModel._panX, CanvasStageModel._panY];
-        // the position of the view relative to the canvas origin
-        const vCanvasToView = [CanvasStageModel.halfWidth, CanvasStageModel.halfHeight];
-
-        // the position of the scope relative to the canvas origin
-        const vCanvasToScope = vadd(vCanvasToView, vViewToScope);
-
-        return vadd(vCanvasToScope, positionFromScope);
+        return vadd(scopePositionRelativeToCanvasOrigin, positionFromScope);
     }
 
     /**
