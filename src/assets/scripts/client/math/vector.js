@@ -108,27 +108,6 @@ export const vectorize2dFromDegrees = (heading_angle) => {
 };
 
 /**
- * Alias of the vectorize2dFromRadians
- * Kept for backwards compatibility
- *
- * Get a 2D unit vector corresponding to a heading in radians
- *
- * @param  heading_angle    float    the heading angle, in radians
- * @return array    an array of the x and y components of the vector
- */
-export const vectorize_2d = vectorize2dFromRadians;
-
-/**
- * Get a 2D unit vector corresponding to a heading in degrees
- *
- * @param  heading_angle    float    the heading angle, in degrees
- * @return array    an array of the x and y components of the vector
- */
-export const vectorize2dFromDegrees = (heading_angle) => {
-    return vectorize2dFromRadians(degreesToRadians(heading_angle));
-};
-
-/**
  * Adds Vectors (all dimensions)
  */
 export const vadd = (v1, v2) => {
