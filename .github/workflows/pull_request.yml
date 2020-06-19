@@ -8,9 +8,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - run: git log
     - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
         node-version: 11.3
     - run: npm install
     - run: npm run lint-diff ${{ github.base_ref }}..${{ github.head_ref }} --
+    - name: Check test coverage versus deverlop (via coveralls.io)
+      uses: coverallsapp/github-action@deverlop
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}

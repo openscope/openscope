@@ -22,7 +22,7 @@ jobs:
         head_sha: ${{ github.sha }}
     - run: npm run build
     - run: npm run test
-    - name: Run Code Coverage (via coveralls.io)
+    - name: Check test coverage versus last commit (via coveralls.io)
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
