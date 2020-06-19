@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: 11.3
     - run: npm install
-    - run: npm run lint-diff ${{ github.base_ref }}..${{ github.head_ref }} --
+    - run: npm run lint-diff ${{ github.base_ref }}..${{ github.sha }} --
     - name: Check test coverage versus target branch (via coveralls.io)
       uses: coverallsapp/github-action@master
       with:
