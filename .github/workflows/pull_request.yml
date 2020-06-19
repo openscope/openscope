@@ -14,13 +14,12 @@ jobs:
     - run: git log
     - run: git log HEAD
     - run: git log HEAD~1
-    - run: git log HEAD~2
     - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
         node-version: 11.3
     - run: npm install
-    - run: npm run lint-diff ${{ github.base_ref }}..${{ github.sha }}
+    - run: npm run lint-diff HEAD~1..HEAD
     - name: Check test coverage versus target branch (via coveralls.io)
       uses: coverallsapp/github-action@master
       with:
