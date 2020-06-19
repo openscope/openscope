@@ -10,8 +10,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        fetch-depth: 1
+        fetch-depth: 2
     - run: git log
+    - run: git log HEAD
+    - run: git log HEAD~1
+    - run: git log HEAD~2
     - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
