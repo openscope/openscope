@@ -20,7 +20,7 @@ jobs:
         node-version: 11.3
     - name: Install dependencies
       run: npm install
-    - name: lint-diff with target branch
+    - name: Find lint errors on changed lines
       run: npm run lint-diff HEAD~1..HEAD
     - name: Run test suite
       run: npm run test
@@ -30,4 +30,3 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
       if: ${{ always() }}
-      
