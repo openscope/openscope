@@ -616,8 +616,8 @@ export default class AircraftModel {
      * @type {string}
      */
     get flightPhase() {
-        if (this.fms === 17) {
-            return;
+        if (this.fms == 17) {
+            return
         }
 
         return this.fms.currentPhase;
