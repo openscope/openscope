@@ -8,7 +8,7 @@ Washington Dulles International Airport is an international airport 26 miles wes
 Dulles is a hub for United Airlines.
 
 ### Airspace: Shenandoah Area (SHD)
-The Shenandoah Area is the part of the Potomac PCT which mainly covers IAD in addition to KFDK and KHEF. The airspace is relatively large, so <a href="https://i.ibb.co/bQSXRmW/image.png" target="_blank">here is a diagram</a>] of the airspace that MTV owns.
+The Shenandoah Area is the part of the Potomac PCT which mainly covers IAD in addition to KFDK and KHEF. The airspace is relatively large, so <a href="https://i.ibb.co/bQSXRmW/image.png" target="_blank">here is a diagram</a> of the airspace that MTV owns.
 
 ### Airports of Interest
 
@@ -40,14 +40,14 @@ The instrument procedures are as of AIRAC 2006.
 Dulles has 10 Standard Instrument Departures (SIDs) which are all available in openScope. The only departure which is not assigned automatically is the Capital One (CPTAL1) departure as it is used much less frequently than the others.
 
 
-|Departure Gate|Altitude (ft)|Notes|Handoff To|
-|---|---|---|---|
-|JCOBY#|10,000|Direct RIGNZ to join SID|MTV - KRANT|
-|SWANN/AGARD/PALEO/COLIN|10,000|Vector through C-Gate (heading 100-120)|MTV - KRANT|
-|WOOLY#|11,000|Direct RAZZA to join SID or vector towards RAZZA if vectors WOOLY|CHP|
-|JERES#/MCRAY#|11,000|On course|CHP - BUFFR|
-|LDN/OTTTO/RAMAY|10,000 or lower filed cruise|On course|MTV - LURAY|
-|JDUBB#/CLTCH#/GVE|10,000 or lower filed cruise|On course|MTV - FLUKY|
+|SID|Departure Gate(s)|Altitude (ft)|Notes|Handoff To|
+|---|---|---|---|---|
+|JCOBY#|All|10,000|Direct RIGNZ to join SID|MTV - KRANT|
+|CPTAL#|SWANN/AGARD/PALEO/COLIN|10,000|Vector through C-Gate (heading 100-120)|MTV - KRANT|
+|WOOLY#|All|11,000|Direct RAZZA to join SID or vector towards RAZZA if vectors WOOLY|CHP|
+|JERES#, MCRAY#|All|11,000|On course|CHP - BUFFR|
+|BUNZZ#, CPTAL#, RNLDI#|LDN/OTTTO/RAMAY|10,000 or lower filed cruise|On course|MTV - LURAY|
+|JDUBB#, CLTCH#, CPTAL#|JDUBB#/CLTCH#: All; CPTAL#: GVE|10,000 or lower filed cruise|On course|MTV - FLUKY|
 
 ##### Arrivals
 There are 11 Standard Terminal Arrival Routes (STARs) into Dulles.
@@ -89,7 +89,7 @@ Potomac Approach (RCOLA Sector)
 ### Restricted Airspace
 With Dulles' close proximity to downtown Washington, D.C., it is important to be cognizant of the various restricted airspace in the region. The areas around the National Mall and US Naval Observatory are both prohibited airspace with a ceiling of 18,000ft.
 
-For details of other restricted airspaces, see <a  href="https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7400.8Z_Special_Use_Airspace.pdf" target="_blank">FAA Order JO 7400.8Z</a>
+For details of other restricted airspaces, see <a href="https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7400.8Z_Special_Use_Airspace.pdf" target="_blank">FAA Order JO 7400.8Z</a>
 
 ##### P-56A, P-56B
 P-56A is the airspace which seeks to protect the National Mall and various other monuments in Washington D.C.
@@ -145,7 +145,8 @@ The videomap contains the following:
 The map is courtesy of VATSIM's vZDC vSTARS file.
 
 ### Additional Resources
-<a  href="https://i.ibb.co/bQSXRmW/image.png" target="_blank">SHD Airspace Diagram</a>
-<a  href="https://www.vzdc.org/storage/files/SHD%20Arrival%20Flow%20Chart_1585847150.png" target="_blank">IAD Arrival Flows Diagram</a>
-<a  href="https://vzdc.org/downloads/PCT_SOP.pdf" target="_blank">vZDC PCT SOP</a>
-<a  href="https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=iad" target="_blank">FAA Airport Information</a>
+<a href="https://i.ibb.co/bQSXRmW/image.png" target="_blank">SHD Airspace Diagram</a>
+<a href="https://www.vzdc.org/storage/files/SHD%20Arrival%20Flow%20Chart_1585847150.png" target="_blank">IAD Arrival Flows Diagram</a>
+<a href="https://vzdc.org/storage/files/PCT%20%7C%20Potomac%20Consolidated%20TRACON%20SOP_1579909027.pdf" target="_blank">vZDC PCT SOP</a>
+<a href="https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=iad" target="_blank">FAA Airport Information</a>
+<a href="https://flightaware.com/resources/airport/KIAD/procedures" target="_blank">FAA Charts (via FlightAware)</a>
