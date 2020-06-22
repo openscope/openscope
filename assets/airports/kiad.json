@@ -366,6 +366,7 @@
         "WOOLY": ["N39d20m19.18", "W077d02m11.17"],
         "WYNGS": ["N38d56m55.04", "W077d51m07.02"],
         "YACKK": ["N38d54m28.80", "W077d21m25.20"],
+        "YORKE": ["N41d48m21.75", "W073d19m14.12"],
         "YUCKK": ["N38d47m56.31", "W076d42m28.91"],
         "YYANG": ["N39d18m32.01", "W077d25m50.37"],
         "ZUMBR": ["N38d32m38.28", "W078d58m18.48"]
@@ -1583,7 +1584,7 @@
                 ["HYPER", "SIGBE", "MOWAT", "HUSEL", "YACKK", "TICON"],
                 ["HYPER", "OOGLE", "LITEY", "YYANG", "DADEY"],
                 ["HYPER", "COVUR", "DIMKE", "HOOSR"],
-                ["HYPER", "CRAIN", "REXOE", "BREEZY"]
+                ["HYPER", "CRAIN", "REXOE", "BEEZY"]
             ]
         },
         "LEGGO5": {
