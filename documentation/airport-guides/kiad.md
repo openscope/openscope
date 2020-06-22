@@ -70,7 +70,19 @@ WIGOL#
 
 <a href="https://www.vzdc.org/storage/files/SHD%20Arrival%20Flow%20Chart_1585847150.png" target="_blank">Arrivals flow diagram</a>
 
+### Dulles Runways
+Dulles is home to four runways:
+
+|Runway|Length (ft)|Width (ft)|Surface|
+|---|---|---|---|
+|1L/19R|9,400|150|Concrete/grooved|
+|1C/19C|11,500|150|Concrete/grooved|
+|1R/19L|11,500|150|Concrete/grooved|
+|12/30|10,501|150|Concrete/grooved|
+
 ### Sectors Available in openScope
+The following sectors are part of the Shenandoah Area of the PCT and available in openScope.
+
 ```
 Potomac Departure (ASPER Sector)
 Potomac Departure (TILLY Sector)
@@ -121,7 +133,7 @@ Using agency. U.S. Marine Corps, Commanding General, Marine Corps Base, Quantico
 Frederick Municipal Airport is classified as a general aviation airport. According to analysis, FDK experienced approximately 129,000 operations in 2004 with an expected increase to about 165,000 by 2025.
 
 |Runway|Length (ft)|Surface|
-|----|----|----|
+|---|---|---|
 |5/23|5,219|Asphalt concrete|
 |12/30|3,600|Asphalt|
 
@@ -129,7 +141,7 @@ Frederick Municipal Airport is classified as a general aviation airport. Accordi
 Manassas Regional Airport is five miles southwest of the center of Manassas, VA. It is also the largest regional airport in Virginia, and it is located 30 miles (48 km) from Washington, D.C..
 
 |Runway|Length (ft)|Surface|
-|----|----|----|
+|---|---|---|
 |16L/34R|6,200|Asphalt|
 |16R/34L|3,704|Asphalt|
  
@@ -145,8 +157,8 @@ The videomap contains the following:
 The map is courtesy of VATSIM's vZDC vSTARS file.
 
 ### Additional Resources
-<a href="https://i.ibb.co/bQSXRmW/image.png" target="_blank">SHD Airspace Diagram</a>
-<a href="https://www.vzdc.org/storage/files/SHD%20Arrival%20Flow%20Chart_1585847150.png" target="_blank">IAD Arrival Flows Diagram</a>
-<a href="https://vzdc.org/storage/files/PCT%20%7C%20Potomac%20Consolidated%20TRACON%20SOP_1579909027.pdf" target="_blank">vZDC PCT SOP</a>
-<a href="https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=iad" target="_blank">FAA Airport Information</a>
+<a href="https://i.ibb.co/bQSXRmW/image.png" target="_blank">SHD Airspace Diagram</a>  
+<a href="https://www.vzdc.org/storage/files/SHD%20Arrival%20Flow%20Chart_1585847150.png" target="_blank">IAD Arrival Flows Diagram</a>  
+<a href="https://vzdc.org/storage/files/PCT%20%7C%20Potomac%20Consolidated%20TRACON%20SOP_1579909027.pdf" target="_blank">vZDC PCT SOP</a>  
+<a href="https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=iad" target="_blank">FAA Airport Information</a>  
 <a href="https://flightaware.com/resources/airport/KIAD/procedures" target="_blank">FAA Charts (via FlightAware)</a>
