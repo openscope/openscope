@@ -156,8 +156,8 @@ export default class AircraftController {
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
-        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this.onSelectAircraftStrip);
-        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectActiveStripView);
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this.onSelectAircraft);
+        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
@@ -172,8 +172,8 @@ export default class AircraftController {
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
-        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftStrip);
-        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectActiveStripView);
+        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
+        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
@@ -394,14 +394,14 @@ export default class AircraftController {
     }
 
     /**
-     * Public facade for `._onSelectAircraftStrip`
+     * Public facade for `._onSelectAircraft`
      *
      * @for AircraftController
-     * @method onSelectAircraftStrip
+     * @method onSelectAircraft
      * @param aircaftModel {AircraftModel}
      */
-    onSelectAircraftStrip = (aircraftModel) => {
-        this._onSelectAircraftStrip(aircraftModel);
+    onSelectAircraft = (aircraftModel) => {
+        this._onSelectAircraft(aircraftModel);
     }
 
     /**
@@ -689,11 +689,11 @@ export default class AircraftController {
      * Show a `StripViewModel` as selected
      *
      * @for AircraftController
-     * @method _onSelectAircraftStrip
+     * @method _onSelectAircraft
      * @param  aircraftModel {AircraftModel}
      * @private
      */
-    _onSelectAircraftStrip = (aircraftModel) => {
+    _onSelectAircraft = (aircraftModel) => {
         if (!aircraftModel.isControllable) {
             return;
         }
@@ -710,10 +710,10 @@ export default class AircraftController {
      * This method is called as the result of an event
      *
      * @for AircraftController
-     * @method _onDeselectActiveStripView
+     * @method _onDeselectAircraft
      * @private
      */
-    _onDeselectActiveStripView = () => {
+    _onDeselectAircraft = () => {
         this._stripViewController.findAndDeselectActiveStripView();
     };
 

@@ -231,8 +231,8 @@ export default class CanvasController {
      * @private
      */
     _setupHandlers() {
-        this._onSelectAircraftStripHandler = this._onSelectAircraftStrip.bind(this);
-        this._onDeselectAircraftStripHandler = this._onDeselectAircraftStrip.bind(this);
+        this._onSelectAircraftHandler = this._onSelectAircraft.bind(this);
+        this._onDeselectAircraftHandler = this._onDeselectAircraft.bind(this);
         this._onCenterPointInViewHandler = this._onCenterPointInView.bind(this);
         this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
         this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
@@ -258,8 +258,8 @@ export default class CanvasController {
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftStripHandler);
-        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftStripHandler);
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftHandler);
+        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftHandler);
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
@@ -285,8 +285,8 @@ export default class CanvasController {
      * @method disable
      */
     disable() {
-        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftStripHandler);
-        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftStripHandler);
+        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftHandler);
+        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftHandler);
         this._eventBus.off(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
@@ -2457,26 +2457,26 @@ export default class CanvasController {
     }
 
     /**
-     * Trigger _markDeepRender() when an aircraft strip is selected, thus
-     * forcing a redraw of both canvases on the next frame.
+     * Trigger _markShallowRender() when an aircraft is selected, thus
+     * forcing a redraw of the dynamic canvas on the next frame.
      *
      * @for CanvasController
-     * @method _onSelectAircraftStrip
+     * @method _onSelectAircraft
      * @private
      */
-    _onSelectAircraftStrip() {
+    _onSelectAircraft() {
         this._markShallowRender();
     }
 
     /**
-     * Trigger _markDeepRender() when an aircraft strip is deselected, thus
-     * forcing a redraw of both canvases on the next frame.
+     * Trigger _markShallowRender() when an aircraft is deselected, thus
+     * forcing a redraw of the dynamic canvas on the next frame.
      *
      * @for CanvasController
-     * @method _onDeselectAircraftStrip
+     * @method _onDeselectAircraft
      * @private
      */
-    _onDeselectAircraftStrip() {
+    _onDeselectAircraft() {
         this._markShallowRender();
     }
 
