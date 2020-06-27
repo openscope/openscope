@@ -3,6 +3,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1568" target="_blank">#1568</a> - Add command reference and slack links to help menu
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/39" target="_blank">#39</a> - Fix misaligned compass headings around scope border
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1590" target="_blank">#1590</a> - Update KLAX airport guide description
