@@ -1792,6 +1792,11 @@ export default class CanvasController {
     // They should both be made to behave in the same way, probably by translating to center, and adjusting
     // for pan within _drawPoly or _drawText itself, to make the usage in _drawFixes etc more intuitive.
     /**
+     * Draw the provided polygon to the specified canvas
+     *
+     * This method does not itself provide any specific color/width/etc properties. These must be
+     * set prior to calling this method.
+     *
      * @for CanvasController
      * @method _drawPoly
      * @param cc {HTMLCanvasContext}
