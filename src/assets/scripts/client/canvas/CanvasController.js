@@ -2130,7 +2130,7 @@ export default class CanvasController {
         // Compute the intersection point between a ray originating from the
         // aircraft at a given heading angle and the canvas boundaries, for
         // each heading angle between 0 and 360 (by 1 degree increment)
-        for (let heading = 0; heading < 360; heading++) {
+        for (let heading = 1; heading <= 360; heading++) {
             // compute the 2D unit vector representing the ray direction using the given
             // heading angle
             const rayUnitVector = vectorize2dFromDegrees(heading);
@@ -2185,7 +2185,7 @@ export default class CanvasController {
                 'bold 10px monoOne, monospace' :
                 BASE_CANVAS_FONT;
 
-            const text = `${heading}`;
+            const text = `${String(heading).padStart(3, '0')}`;
             const textWidth = cc.measureText(text).width;
 
             // draw the label
