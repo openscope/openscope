@@ -12,14 +12,14 @@ import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
 import {
-    sin,
-    cos,
     round,
     clamp
 } from '../math/core';
 import {
     positive_intersection_with_rect,
-    vectorize_2d,
+    vectorize2dFromRadians,
+    vectorize2dFromDegrees,
+    vadd,
     vscale
 } from '../math/vector';
 import {
@@ -231,6 +231,8 @@ export default class CanvasController {
      * @private
      */
     _setupHandlers() {
+        this._onSelectAircraftHandler = this._onSelectAircraft.bind(this);
+        this._onDeselectAircraftHandler = this._onDeselectAircraft.bind(this);
         this._onCenterPointInViewHandler = this._onCenterPointInView.bind(this);
         this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
         this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
@@ -256,6 +258,8 @@ export default class CanvasController {
      * @chainable
      */
     enable() {
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftHandler);
+        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftHandler);
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
@@ -281,6 +285,8 @@ export default class CanvasController {
      * @method disable
      */
     disable() {
+        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraftHandler);
+        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraftHandler);
         this._eventBus.off(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
@@ -408,12 +414,12 @@ export default class CanvasController {
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
             this._drawCurrentScale(staticCanvasCtx);
-            this._drawSelectedAircraftCompass(staticCanvasCtx);
         }
 
         const dynamicCanvasCtx = this._getCanvasContextByName(CANVAS_NAME.DYNAMIC);
 
         this._clearCanvasContext(dynamicCanvasCtx);
+        this._drawSelectedAircraftCompass(dynamicCanvasCtx);
         this._drawRadarTargetList(dynamicCanvasCtx);
         this._drawAircraftDataBlocks(dynamicCanvasCtx);
         this._drawMeasureTool(dynamicCanvasCtx);
@@ -1086,7 +1092,7 @@ export default class CanvasController {
         const lineLengthInMinutes = this._scopeModel.ptlLength;
         const lineLengthInHours = lineLengthInMinutes * TIME.ONE_MINUTE_IN_HOURS;
         const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
-        const groundTrackVector = vectorize_2d(aircraft.groundTrack);
+        const groundTrackVector = vectorize2dFromRadians(aircraft.groundTrack);
         const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
         const screenPositionOffsetX = CanvasStageModel.translateKilometersToPixels(scaledGroundTrackVector[0]);
         const screenPositionOffsetY = CanvasStageModel.translateKilometersToPixels(scaledGroundTrackVector[1]);
@@ -2093,8 +2099,6 @@ export default class CanvasController {
             return;
         }
 
-        cc.save();
-
         const callsign = prop.input.callsign.toUpperCase();
 
         if (callsign.length === 0) {
@@ -2111,64 +2115,85 @@ export default class CanvasController {
             return;
         }
 
-        const pos = this._toCanvasPosition(aircraft.relativePosition);
-        const rectPos = [0, 0];
-        const rectSize = [CanvasStageModel.width, CanvasStageModel.height];
+        const canvasOrigin = [0, 0];
+        const canvasSize = [CanvasStageModel.width, CanvasStageModel.height];
+        const aircraftPosition = this._toCanvasPosition(aircraft.relativePosition);
 
-        // cc.save();
+        cc.save();
+
+        // generic styles of the compass marks
         cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
         cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
-        for (let alpha = 0; alpha < 360; alpha++) {
-            const dir = [
-                sin(degreesToRadians(alpha)),
-                -cos(degreesToRadians(alpha))
-            ];
+        // Compute the intersection point between a ray originating from the
+        // aircraft at a given heading angle and the canvas boundaries, for
+        // each heading angle between 0 and 360 (by 1 degree increment)
+        for (let heading = 1; heading <= 360; heading++) {
+            // compute the 2D unit vector representing the ray direction using the given
+            // heading angle
+            const rayUnitVector = vectorize2dFromDegrees(heading);
 
-            const p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
+            // Use the opposite of the y component of the vector because of the vertical
+            // axes of the reference frames being oriented in opposite directions
+            rayUnitVector[1] = -rayUnitVector[1];
 
-            if (p) {
-                const markLen = (alpha % 5 === 0 ?
-                    (alpha % 10 === 0 ?
-                        16 :
-                        12) :
-                    8
-                );
-                const markWeight = (alpha % 30 === 0 ?
-                    2 :
-                    1
-                );
+            // compute the intersection point between the ray and the canvas
+            const intersection = positive_intersection_with_rect(
+                aircraftPosition,
+                rayUnitVector,
+                canvasOrigin,
+                canvasSize
+            );
 
-                const dx = -markLen * dir[0];
-                const dy = -markLen * dir[1];
-
-                cc.lineWidth = markWeight;
-                cc.beginPath();
-                cc.moveTo(p[0], p[1]);
-
-                const markX = p[0] + dx;
-                const markY = p[1] + dy;
-
-                cc.lineTo(markX, markY);
-                cc.stroke();
-
-                if (alpha % 10 === 0) {
-                    cc.font = alpha % 30 === 0 ?
-                        'bold 10px monoOne, monospace' :
-                        BASE_CANVAS_FONT;
-
-                    const text = `${alpha}`;
-                    const textWidth = cc.measureText(text).width;
-
-                    cc.fillText(
-                        text,
-                        markX - dir[0] * (textWidth / 2 + 4),
-                        markY - dir[1] * 7
-                    );
-                }
+            if (!intersection) {
+                continue;
             }
+
+            // draw a mark and label at the intersection point
+            // standard marks on all headings
+            // minor marks on headings multiple of 5 degrees
+            // major marks on headings multiple of 10 degrees
+            let markLen = 8;
+
+            if (heading % 5 === 0) {
+                markLen = heading % 10 === 0 ? 16 : 12;
+            }
+
+            const markWeight = heading % 30 === 0 ? 2 : 1;
+
+            // use the opposite of the length to draw toward the inside of the canvas
+            const markVector = vscale(rayUnitVector, -markLen);
+            const markStartPoint = intersection;
+            const markEndPoint = vadd(markStartPoint, markVector);
+
+            // draw the mark
+            cc.lineWidth = markWeight;
+            cc.beginPath();
+            cc.moveTo(...markStartPoint);
+            cc.lineTo(...markEndPoint);
+            cc.stroke();
+
+            // only draw label on major marks
+            if (heading % 10 !== 0) {
+                continue;
+            }
+
+            // set label font heavier every 3 major marks
+            cc.font = heading % 30 === 0 ?
+                'bold 10px monoOne, monospace' :
+                BASE_CANVAS_FONT;
+
+            const text = `${String(heading).padStart(3, '0')}`;
+            const textWidth = cc.measureText(text).width;
+
+            // draw the label
+            cc.fillText(
+                text,
+                markEndPoint[0] - rayUnitVector[0] * (textWidth / 2 + 4),
+                markEndPoint[1] - rayUnitVector[1] * 7
+            );
         }
 
         cc.restore();
@@ -2187,18 +2212,44 @@ export default class CanvasController {
     }
 
     // TODO: this should be moved to the `CanvasStageModel`
+    // NOTE: `CanvasStageModel.translatePostionModelToPreciseCanvasPosition()`
+    // is a closely related function
     /**
-     * Calculate an aircraft's position within the canvas from
+     * Transform a scope relative position to a canvas relative position
+     *
+     * Create a vector "vCanvasToScope" describing the position of the canvas
+     * relative to the scope, and simply add it to the given position to get the
+     * position relative to the canvas.
+     *
+     * The vertical axes are oriented in opposite direction in our source and
+     * destination frames of reference (scope versus canvas), so the y component of
+     * the given position need to be "reversed".
+     *
+     * The given position in expressed in kilometers so it needs to be
+     * translated to pixels.
      *
      * @for CanvasController
      * @method _toCanvasPosition
-     * @param pos {DynamicPositionModel}
+     * @param positionFromScope     array   an array of the x and y components of a
+     *                                      position relative to the scope center
      */
-    _toCanvasPosition(pos) {
-        return [
-            CanvasStageModel.halfWidth + CanvasStageModel._panX + km(pos[0]),
-            CanvasStageModel.halfHeight + CanvasStageModel._panY - km(pos[1])
+    _toCanvasPosition(positionFromScope) {
+        // positionFromScope is given in kilometers so it needs to be translated
+        // to pixels first
+        //
+        // use the opposite of the y component of the aircraft position because
+        // the vertical axes are not oriented in the same direction in the
+        // scope (aircraft) frame of reference versus the canvas frame of reference
+        positionFromScope = [
+            CanvasStageModel.translateKilometersToPixels(positionFromScope[0]),
+            -CanvasStageModel.translateKilometersToPixels(positionFromScope[1])
         ];
+
+        const scopePositionRelativeToView = [CanvasStageModel._panX, CanvasStageModel._panY];
+        const viewPositionRelativeToCanvasOrigin = [CanvasStageModel.halfWidth, CanvasStageModel.halfHeight];
+        const scopePositionRelativeToCanvasOrigin = vadd(viewPositionRelativeToCanvasOrigin, scopePositionRelativeToView);
+
+        return vadd(scopePositionRelativeToCanvasOrigin, positionFromScope);
     }
 
     /**
@@ -2402,6 +2453,30 @@ export default class CanvasController {
     _markDeepRender() {
         this._shouldDeepRender = true;
 
+        this._markShallowRender();
+    }
+
+    /**
+     * Trigger _markShallowRender() when an aircraft is selected, thus
+     * forcing a redraw of the dynamic canvas on the next frame.
+     *
+     * @for CanvasController
+     * @method _onSelectAircraft
+     * @private
+     */
+    _onSelectAircraft() {
+        this._markShallowRender();
+    }
+
+    /**
+     * Trigger _markShallowRender() when an aircraft is deselected, thus
+     * forcing a redraw of the dynamic canvas on the next frame.
+     *
+     * @for CanvasController
+     * @method _onDeselectAircraft
+     * @private
+     */
+    _onDeselectAircraft() {
         this._markShallowRender();
     }
 

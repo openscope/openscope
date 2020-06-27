@@ -40,7 +40,7 @@ import {
     point_in_poly,
     point_in_area,
     vadd,
-    vectorize_2d,
+    vectorize2dFromRadians,
     vlen,
     vradial,
     vscale,
@@ -1652,7 +1652,7 @@ export default class AircraftModel {
      * @priate
      */
     _calculateGroundTrackForHeading(heading) {
-        const headingVector = vscale(vectorize_2d(heading), this.trueAirspeed);
+        const headingVector = vscale(vectorize2dFromRadians(heading), this.trueAirspeed);
         const windVector = AirportController.airport_get().getWindVectorAtAltitude(this.altitude);
         const groundTrackHeading = vradial(vadd(headingVector, windVector));
 
@@ -2528,7 +2528,7 @@ export default class AircraftModel {
         const indicatedAirspeed = this.speed;
         const trueAirspeedIncreaseFactor = this.altitude * ENVIRONMENT.DENSITY_ALT_INCREASE_FACTOR_PER_FT;
         const trueAirspeed = indicatedAirspeed * (1 + trueAirspeedIncreaseFactor);
-        const flightThroughAirVector = vscale(vectorize_2d(this.heading), trueAirspeed);
+        const flightThroughAirVector = vscale(vectorize2dFromRadians(this.heading), trueAirspeed);
 
         // Calculate ground speed and direction
         const windVector = AirportController.airport_get().getWindVectorAtAltitude(this.altitude);
