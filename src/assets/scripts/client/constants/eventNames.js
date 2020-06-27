@@ -35,7 +35,7 @@ export const EVENT = {
      * @property DESELECT_AIRCRAFT
      * @type {string}
      */
-    DESELECT_AIRCRAFT: 'deselect-active-strip-view',
+    DESELECT_AIRCRAFT: 'deselect-aircraft',
 
     /**
      * Event used to notify the `CanvasController` when a re-draw
@@ -127,7 +127,7 @@ export const EVENT = {
      * @property SELECT_AIRCRAFT
      * @type {string}
      */
-    SELECT_AIRCRAFT: 'select-strip-view-from-data-block',
+    SELECT_AIRCRAFT: 'select-aircraft',
 
     /**
      * An aircraft progress strip was clicked
