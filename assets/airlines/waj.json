@@ -4,8 +4,8 @@
     "callsign": {
         "name": "Wing Asia",
         "callsignFormats": [
-			"#",
-			"##",
+            "#",
+            "##",
             "###"
         ]
     },
@@ -13,5 +13,5 @@
         "default": [
             ["A320", 3]
         ]
-	}
+    }
 }

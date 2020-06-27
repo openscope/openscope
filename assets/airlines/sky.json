@@ -1,17 +1,17 @@
 {
-	"icao": "sky",
-	"name": "Skymark Airlines",
-	"callsign": {
-		"name": "Skymark",
-		"callsignFormats": [
-			"#",
-			"##",
-			"###"
-		]
-	},
-	"fleets": {
-		"default": [
-			["B738", 29]
-		]
-	}
+    "icao": "sky",
+    "name": "Skymark Airlines",
+    "callsign": {
+        "name": "Skymark",
+        "callsignFormats": [
+            "#",
+            "##",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 29]
+        ]
+    }
 }

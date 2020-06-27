@@ -1,15 +1,15 @@
 {
-	"icao": "fda",
-	"name": "Fuji Dream Airlines",
-	"callsign": {
-		"name": "Fuji Dream",
-		"callsignFormats": [
-			"###"
-		]
-	},
-	"fleets": {
-		"default": [
-			["E170", 16]
-		]
-	}
+    "icao": "fda",
+    "name": "Fuji Dream Airlines",
+    "callsign": {
+        "name": "Fuji Dream",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E170", 16]
+        ]
+    }
 }
