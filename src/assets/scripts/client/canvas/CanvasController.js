@@ -414,12 +414,12 @@ export default class CanvasController {
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
             this._drawCurrentScale(staticCanvasCtx);
-            this._drawSelectedAircraftCompass(staticCanvasCtx);
         }
 
         const dynamicCanvasCtx = this._getCanvasContextByName(CANVAS_NAME.DYNAMIC);
 
         this._clearCanvasContext(dynamicCanvasCtx);
+        this._drawSelectedAircraftCompass(dynamicCanvasCtx);
         this._drawRadarTargetList(dynamicCanvasCtx);
         this._drawAircraftDataBlocks(dynamicCanvasCtx);
         this._drawMeasureTool(dynamicCanvasCtx);
