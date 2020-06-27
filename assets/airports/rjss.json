@@ -1,0 +1,369 @@
+{
+	"airac": 2007,
+	"radio": {
+		"twr": "Sendai Tower",
+		"app": "Sendai Approach",
+		"dep": "Sendai Departure"
+	},
+	"icao": "RJSS",
+	"iata": "SDJ",
+	"magnetic_north": -8,
+	"ctr_radius": 55,
+	"ctr_ceiling": 16000,
+	"initial_alt": 16000,
+	"position": ["N38d08m23.00", "E140d55m01.00", "5.6ft"],
+	"rangeRings": {
+		"enabled": true,
+		"center": ["N38d08m23.00", "E140d55m01.00"],
+		"radius_nm": 5.0
+	},
+	"has_terrain": true,
+	"wind": {
+		"angle": 270,
+		"speed": 4
+	},
+	"arrivalRunway": "27",
+	"departureRunway": "27",
+	"defaultMaps": ["Base Map"],
+	"airspace": [
+		{
+			"floor": 0,
+			"ceiling": 160,
+			"airspace_class": "E",
+			"poly": [
+				["N38d19m23.00", "E140d39m55.00"],
+				["N38d16m11.00", "E140d49m35.00"],
+				["N38d15m50.61", "E140d49m24.23"],
+				["N38d15m25.66", "E140d49m14.16"],
+				["N38d15m00.10", "E140d49m06.96"],
+				["N38d14m34.15", "E140d49m02.63"],
+				["N38d14m08.01", "E140d49m01.20"],
+				["N38d13m41.87", "E140d49m02.63"],
+				["N38d13m15.92", "E140d49m06.96"],
+				["N38d12m50.36", "E140d49m14.16"],
+				["N38d12m36.00", "E140d49m20.00"],
+				["N38d12m16.00", "E141d01m20.00"],
+				["N37d55m55.00", "E141d49m37.00"],
+				["N37d18m49.00", "E141d03m52.00"],
+				["N37d18m30.27", "E141d00m49.68"],
+				["N37d18m18.86", "E140d55m17.40"],
+				["N37d18m30.27", "E140d49m45.11"],
+				["N37d19m04.44", "E140d44m15.00"],
+				["N37d19m27.00", "E140d42m07.00"],
+				["N37d20m01.85", "E140d41m44.87"],
+				["N37d20m40.16", "E140d41m17.87"],
+				["N37d20m47.00", "E140d41m13.00"],
+				["N37d27m37.00", "E140d43m58.00"],
+				["N37d28m46.77", "E140d42m22.31"],
+				["N37d29m50.49", "E140d40m37.91"],
+				["N37d30m46.76", "E140d38m47.03"],
+				["N37d31m35.07", "E140d36m50.40"],
+				["N37d32m15.14", "E140d34m49.07"],
+				["N37d32m46.64", "E140d32m43.44"],
+				["N37d33m09.28", "E140d30m35.28"],
+				["N37d33m22.93", "E140d28m24.96"],
+				["N37d33m24.00", "E140d27m51.00"],
+				["N38d09m11.00", "E140d27m51.00"],
+				["N38d09m13.32", "E140d28m01.55"],
+				["N38d09m43.34", "E140d29m34.07"],
+				["N38d10m19.59", "E140d31m03.00"],
+				["N38d11m01.78", "E140d32m27.23"],
+				["N38d11m49.59", "E140d33m46.79"],
+				["N38d12m42.62", "E140d35m00.59"],
+				["N38d13m40.51", "E140d36m08.28"],
+				["N38d14m42.82", "E140d37m09.48"],
+				["N38d15m49.03", "E140d38m03.11"],
+				["N38d16m58.69", "E140d38m49.55"],
+				["N38d18m11.19", "E140d39m27.72"],
+				["N38d19m23.00", "E140d39m55.00"]
+			]
+		}
+	],
+	"fixes": {
+		"_RWY2702DME" : ["N38d08m45.00", "E140d58m02.00"],
+		"_RWY0901DME" : ["N38d08m09.00", "E140d52m10.00"],
+		"_RWY0902DME" : ["N38d08m07.00", "E140d51m51.00"],
+		"_SDE080003"  : ["N38d08m54.00", "E140d59m32.00"],
+		"_SS701233001": ["N38d07m25.00", "E140d49m34.00"],
+		"AIZUH"       : ["N37d46m34.00", "E139d43m78.00"],
+		"ANEMO"       : ["N37d58m33.50", "E140d59m50.40"],
+		"BUBLE"       : ["N38d03m33.70", "E140d59m56.20"],
+		"CUBIC"       : ["N37d55m17.80", "E141d35m03.00"],
+		"DATTE"       : ["N37d48m56.90", "E140d33m12.20"],
+		"DERBY"       : ["N38d00m12.70", "E140d27m48.40"],
+		"EBOSI"       : ["N38d00m28.70", "E140d37m35.80"],
+		"FUBOU"       : ["N37d55m40.20", "E140d35m51.60"],
+		"GTC"         : ["N37d57m29.90", "E139d06m53.60"],
+		"HEIKE"		  : ["N37d24m15.00", "E139d44m13.00"],
+		"HPE"         : ["N39d26m00.09", "E141d08m00.60"],
+		"INAWA"       : ["N37d32m56.00", "E140d00m01.00"],
+		"LANCE"       : ["N37d54m22.00", "E140d28m33.60"],
+		"NIRAX"       : ["N37d43m74.00", "E140d23m79.00"],
+		"OWLET"       : ["N37d46m23.00", "E140d27m47.10"],
+		"PERID"       : ["N38d09m44.80", "E141d07m49.40"],
+		"RIBON"       : ["N37d52m22.20", "E140d40m23.40"],
+		"RIDER"       : ["N38d19m06.70", "E141d41m14.50"],
+		"RIKYU"       : ["N37d33m27.80", "E140d27m31.80"],
+		"SAITI"       : ["N39d26m00.10", "E141d15m11.10"],
+		"SAMBO"       : ["N40d11m15.90", "E140d57m01.40"],
+		"SDE"         : ["N38d08m19.00", "E140d55m17.00"],
+		"SHIRO"       : ["N37d36m78.00", "E140d08m80.00"],
+		"SNOOK"       : ["N37d59m01.50", "E140d54m51.70"],
+		"SS701"       : ["N38d07m58.50", "E140d50m31.70"],
+		"SS901"       : ["N38d08m54.60", "E140d59m35.60"],
+		"STEED"       : ["N37d43m36.20", "E140d59m32.80"],
+		"TOPAZ"       : ["N38d05m16.80", "E141d08m33.50"],
+		"YUCCA"       : ["N38d09m06.50", "E141d01m32.24"]
+	},	
+	"restricted": [
+	],
+	"runways": [
+		{
+			"name": ["09", "27"],
+			"end": [
+				["N38d08m19.58", "E140d53m55.40", "11.5ft"],
+				["N38d08m32.18", "E140d55m57.56", "15.1ft"]
+			],
+			"ils": [false, true],
+			"ils_distance": [27, 27],
+			"loc_maxDist": [27, 27],
+			"glideslope": [3.00, 3.00]
+		},
+		{
+			"name": ["12", "30"],
+			"end": [
+				["N38d08m22.05", "E140d54m53.09", "6ft"],
+				["N38d08m03.96", "E140d55m36.72", "5ft"]
+			],
+			"ils": [false, false]
+		}
+	],
+	"airways": {
+		"Y15": ["HEIKE", "INAWA", "SHIRO", "NIRAX", "OWLET"]
+	},
+	"sids": {
+		"CUBIC3": {
+			"icao": "CUBIC3",
+			"name": "Cubic Three",
+			"rwy": {
+				"RJSS09": [["_RWY2702DME", "A5+"], "SS901"],
+				"RJSS27": [["_RWY0902DME", "A5+"], "BUBLE"]
+			},
+			"body": [["CUBIC", "A150+"]],
+			"exitPoints": {
+				"SAMBO": ["RIDER", "SAITI", "SAMBO"]
+			},
+			"draw": [
+				["SS901", "CUBIC"],
+				["BUBLE", "CUBIC"],
+				["CUBIC", "RIDER", "SAITI", "SAMBO*"]
+			]
+		},
+		"DERBY3": {
+			"icao": "DERBY3",
+			"name": "Derby Three",
+			"rwy": {
+				"RJSS09": [["_RWY2702DME", "A5+"], "SS901", "ANEMO", "EBOSI"],
+				"RJSS27": [["_RWY0901DME", "A5+"], "SS701", ["_SS701233001", "A13+"], "EBOSI"]
+			},
+			"body": ["DERBY"],
+			"exitPoints": {
+				"GTC": ["GTC"]
+			},
+			"draw": [
+				["SS901", "ANEMO", "EBOSI"],
+				["SS701", "EBOSI"],
+				["EBOSI", "DERBY", "GTC*"]
+			]
+		},
+		"STEED3": {
+			"icao": "STEED3",
+			"name": "Steed Three",
+			"rwy": {
+				"RJSS09": [["_RWY2702DME", "A5+"], "SS901", "STEED"],
+				"RJSS27": [["_RWY0902DME", "A5+"], "BUBLE", "STEED"]
+			},
+			"body": [],
+			"exitPoints": {
+				"RIKYU": ["RIKYU"]
+			},
+			"draw": [
+				["SS901", "STEED"],
+				["BUBLE", "STEED"],
+				["STEED", "RIKYU*"]
+			]
+		}
+	},
+	"stars": {
+		"LANCEA": {
+			"icao": "LANCEA",
+			"name": "Lance East Alfa",
+			"entryPoints": {
+				"LANCE": [["LANCE", "A110+"]]
+			},
+			"body": [["FUBOU", "A60+"], ["SNOOK", "A40+"], ["TOPAZ", "S230-"], ["PERID", "A15+"]],
+			"rwy": {
+				"RJSS27": ["#360"]
+			},
+			"draw": [
+				["LANCE*", "FUBOU", "SNOOK", "TOPAZ", "PERID"]
+			]
+		},
+		"LANCEB": {
+			"icao": "LANCEB",
+			"name": "Lance East Bravo",
+			"entryPoints": {
+				"LANCE": [["LANCE", "A110+"]]
+			},
+			"body": [["FUBOU", "A60+"], ["SNOOK", "A40+"]],
+			"rwy": {
+				"RJSS27": ["#085"]
+			},
+			"draw": [
+				["LANCE*", "FUBOU", "SNOOK"]
+			]
+		},
+		"OWLEEA": {
+			"icao": "OWLEEA",
+			"name": "Owlet East Alfa",
+			"entryPoints": {
+				"OWLET": [["OWLET", "A130+"]]
+			},
+			"body": [["DATTE", "A80+"], ["RIBON", "A60+"], ["SNOOK", "A40+"], ["TOPAZ", "S230-"], ["PERID", "A15+"]],
+			"rwy": {
+				"RJSS27": ["#360"]
+			},
+			"draw": [
+				["OWLET*", "DATTE", "RIBON", "SNOOK", "TOPAZ", "PERID"]
+			]
+		},
+		"OWLEEB": {
+			"icao": "OWLEEB",
+			"name": "Owlet East Bravo",
+			"entryPoints": {
+				"OWLET": [["OWLET", "A130+"]]
+			},
+			"body": [["DATTE", "A80+"], ["RIBON", "A60+"], ["SNOOK", "A40+"]],
+			"rwy": {
+				"RJSS27": ["#067"]
+			},
+			"draw": [
+				["OWLET*", "DATTE", "RIBON", "SNOOK"]
+			]
+		}
+	},
+	"spawnPatterns": [
+		{
+			"origin": "RJSS",
+			"destination": "",
+			"category": "departure",
+			"route": "RJSS27.STEED3.RIKYU",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 2,
+			"airlines": [
+				["ana/short", 11],
+				["ibx", 5],
+				["jal/short", 8],
+				["apj", 3],
+				["sky", 2],
+				["waj", 1]
+			]
+		},
+		{
+			"origin": "RJSS",
+			"destination": "",
+			"category": "departure",
+			"route": "RJSS27.DERBY3.GTC",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 1,
+			"airlines": [
+				["ana/short", 1],
+				["fda", 1],
+				["ibx", 7],
+				["jal/short", 2]
+			]
+		},
+		{
+			"origin": "RJSS",
+			"destination": "",
+			"category": "departure",
+			"route": "RJSS27.CUBIC3.SAMBO",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 1,
+			"airlines": [
+				["ado", 2],
+				["ana/short", 3],
+				["ibx", 2],
+				["jal/short", 5],
+				["apj", 3]
+			]
+		},
+		{
+			"origin": "",
+			"destination": "RJSS",
+			"category": "arrival",
+			"route": "AIZUH..LANCE.LANCEA.RJSS27",
+			"altitude": [11000, 40000],
+			"speed": 320,
+			"method": "random",
+			"rate": 0.69,
+			"airlines": [
+				["fda", 1],
+				["ibx", 3],
+				["sky", 2]
+			]
+		},
+		{
+			"origin": "",
+			"destination": "RJSS",
+			"category": "arrival",
+			"route": "HEIKE..INAWA..SHIRO..NIRAX..OWLET.OWLEEA.RJSS27",
+			"altitude": [11000, 40000],
+			"speed": 320,
+			"method": "random",
+			"rate": 0.69,
+			"airlines": [
+				["ana/short", 12],
+				["apj", 3],
+				["ibx", 9],
+				["jal/short", 10],
+				["waj", 1]
+			]
+		},
+		{
+			"origin": "",
+			"destination": "RJSS",
+			"category": "arrival",
+			"route": "HPE..SDE..#195",
+			"altitude": [7000, 40000],
+			"speed": 250,
+			"method": "random",
+			"rate": 0.34,
+			"airlines": [
+				["ado", 2],
+				["ana/short", 3],
+				["ibx", 2],
+				["jal/short", 5],
+				["apj", 3]
+			]
+		}
+	],
+	"maps": [
+		{
+			"name": "Base Map",
+			"lines": [
+				["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
+				["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
+				["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
+				["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
+				["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
+			]
+		}
+	]
+}
