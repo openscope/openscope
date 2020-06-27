@@ -2465,7 +2465,7 @@ export default class CanvasController {
      * @private
      */
     _onSelectAircraftStrip() {
-        this._markDeepRender();
+        this._markShallowRender();
     }
 
     /**
@@ -2473,11 +2473,11 @@ export default class CanvasController {
      * forcing a redraw of both canvases on the next frame.
      *
      * @for CanvasController
-     * @method _onSelectAircraftStrip
+     * @method _onDeselectAircraftStrip
      * @private
      */
     _onDeselectAircraftStrip() {
-        this._markDeepRender();
+        this._markShallowRender();
     }
 
     /**
