@@ -1,6 +1,7 @@
 import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { convertToThousands, nm } from '../utilities/unitConverters';
 import { buildPolyPositionModels, point_in_poly, distance_to_poly } from '../math/vector';
@@ -14,14 +15,14 @@ export default class AirspaceModel extends BaseModel {
     /**
      * @for AirspaceModel
      * @constructor
-     * @param airspace {object}
+     * @param data {object}
      * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      */
-    constructor(airspace, airportPosition, magneticNorth) {
+    constructor(data, airportPosition, magneticNorth) {
         super();
 
-        if (!airspace || !airportPosition || !_isNumber(magneticNorth)) {
+        if (!data || !airportPosition || !_isNumber(magneticNorth)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
         }
@@ -82,13 +83,13 @@ export default class AirspaceModel extends BaseModel {
          * Position of the label of the airspace on the screen
          *
          * @for AirspaceModel
-         * @property labelPosition
+         * @property labelPositions
          * @type {object} x,y in km
          * @default null
          */
-        this.labelPosition = null;
+        this.labelPositions = [];
 
-        return this._init(airspace, airportPosition, magneticNorth);
+        return this._init(data, airportPosition, magneticNorth);
     }
 
     /**
@@ -96,23 +97,42 @@ export default class AirspaceModel extends BaseModel {
      *
      * @for AirspaceModel
      * @method _init
-     * @param airspace {array}
+     * @param data {array}
      * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      * @chainable
      * @private
      */
-    _init(airspace, airportPosition, magneticNorth) {
-        this.floor = convertToThousands(airspace.floor);
-        this.ceiling = convertToThousands(airspace.ceiling);
-        this.airspace_class = airspace.airspace_class;
-        this.poly = buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
+    _init(data, airportPosition, magneticNorth) {
+        this.floor = convertToThousands(data.floor);
+        this.ceiling = convertToThousands(data.ceiling);
+        this.airspace_class = data.airspace_class;
+        this.poly = buildPolyPositionModels(data.poly, airportPosition, magneticNorth);
+        this.relativePoly = _map(this.poly, (v) => v.relativePosition);
 
-        this.transformPoly();
-
-        this.labelPosition = airspace.labelPosition !== undefined ? airspace.labelPosition : this._calculateLabelPosition();
+        this._initLabelPositions(data, airportPosition, magneticNorth);
 
         return this;
+    }
+
+    _initLabelPositions(data, airportPosition, magneticNorth) {
+        if (!data.labelPositions) {
+            this.labelPositions = [this._calculateLabelPosition()];
+
+            return;
+        }
+
+        this.labelPositions = [];
+
+        for (const position of data.labelPositions) {
+            const labelPositionModel = new StaticPositionModel(
+                position,
+                airportPosition,
+                magneticNorth
+            );
+
+            this.labelPositions.push(labelPositionModel.relativePosition);
+        }
     }
 
     /**
@@ -124,24 +144,22 @@ export default class AirspaceModel extends BaseModel {
      * @private
      */
     _calculateLabelPosition() {
-        let minX = Number.MAX_VALUE;
-        let minY = Number.MAX_VALUE;
-        let maxX = Number.MIN_VALUE;
-        let maxY = Number.MIN_VALUE;
+        let [minX, minY] = this.relativePoly[0];
+        let [maxX, maxY] = this.relativePoly[0];
 
-        for (let i = 0; i < this.relativePoly.length; i++) {
-            const point = this.relativePoly[i];
-
+        // iterate through all points in the polygon to find the extreme X/Y coordinates
+        for (const point of this.relativePoly) {
             minX = Math.min(minX, point[0]);
             maxX = Math.max(maxX, point[0]);
             minY = Math.min(minY, point[1]);
             maxY = Math.max(maxY, point[1]);
         }
 
-        return {
-            x: (minX + maxX) * 0.5,
-            y: (minY + maxY) * 0.5
-        };
+        // calculate the center point as the middle of the extremes
+        return [
+            (minX + maxX) / 2,
+            (minY + maxY) / 2
+        ];
     }
 
     /**
@@ -153,16 +171,6 @@ export default class AirspaceModel extends BaseModel {
         this.floor = INVALID_NUMBER;
         this.ceiling = INVALID_NUMBER;
         this.airspace_class = '';
-    }
-
-    /**
-     * Transforms the polygon into a relative polygon
-     *
-     * @for AirspaceModel
-     * @method transformPoly
-     */
-    transformPoly() {
-        this.relativePoly = _map(this.poly, (v) => v.relativePosition);
     }
 
     /**

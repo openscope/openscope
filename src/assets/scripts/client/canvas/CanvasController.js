@@ -1743,7 +1743,10 @@ export default class CanvasController {
 
             cc.save(); // to allow reset of translation
             // required positioning to use _drawPoly
-            cc.translate(CanvasStageModel.halfWidth + CanvasStageModel._panX, CanvasStageModel.halfHeight + CanvasStageModel._panY);
+            cc.translate(
+                CanvasStageModel.halfWidth + CanvasStageModel._panX,
+                CanvasStageModel.halfHeight + CanvasStageModel._panY
+            );
             // draw lines
             this._drawPoly(cc, airspace.relativePoly, false);
 
@@ -1755,8 +1758,12 @@ export default class CanvasController {
             cc.save();
             // required positioning to use _drawText
             cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
             // draw labels
-            this._drawText(cc, [airspace.labelPosition.x, airspace.labelPosition.y], [content]);
+            for (const labelPosition of airspace.labelPositions) {
+                this._drawText(cc, labelPosition, [content]);
+            }
+
             cc.restore();
         }
 
