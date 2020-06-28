@@ -93,6 +93,7 @@
         "AIZUH"       : ["N37d46m34.00", "E139d43m78.00"],
         "ANEMO"       : ["N37d58m33.50", "E140d59m50.40"],
         "AOBAR"       : ["N38d01m02.14", "E141d07m23.23"],
+        "ASTER"       : ["N39d13m52.00", "E142d31m59.00"],
         "BEKEN"       : ["N38d00m21.00", "E140d55m17.00"],
         "BUBLE"       : ["N38d03m33.70", "E140d59m56.20"],
         "CAVES"       : ["N40d15m51.00", "E141d54m55.00"],
@@ -166,6 +167,7 @@
         "Y106": ["MQE", "SDE", "RUBIS"],
         "Y15" : ["TENRU", "MYOGI", "TADMI", "DANDY", "HEIKE", "INAWA", "SHIRO", "NIRAX", "OWLET"],
         "Y512": ["ADNAP", "OATIS", "BEKEN", "SDE", "ELDAK", "GTC"],
+        "Y514": ["ASTER", "SDE"],
         "Y515": ["KMC", "ZUWAI", "ETIGO", "VIKET", "AIZUH", "LANCE"]
     },
     "sids": {
