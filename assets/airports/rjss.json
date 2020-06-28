@@ -115,8 +115,9 @@
         "INAWA"       : ["N37d32m56.00", "E140d00m01.00"],
         "KMC"         : ["N36d23m47.00", "E136d24m15.00"],
         "LANCE"       : ["N37d54m22.00", "E140d28m33.60"],
-        "MYOGI"       : ["N36d12m28.00", "E138d32m10.00"],
         "METEL"       : ["N38d33m26.00", "E140d59m21.00"],
+        "MIS"         : ["N40d42m13.76", "E141d22m51.99"],
+        "MYOGI"       : ["N36d12m28.00", "E138d32m10.00"],
         "MQE"         : ["N39d51m56.30", "E141d57m03.84"],
         "NIRAX"       : ["N37d43m74.00", "E140d23m79.00"],
         "NODAN"       : ["N40d25m10.29", "E144d59m45.93"],
@@ -171,6 +172,7 @@
     "airways": {
         "R217": ["NODAN", "ASTER", "SDE", "FINCH", "YONEX", "ELDAK", "GTC"],
         "V22" : ["CHE", "TOBBY", "OBCHI", "CAVES", "MQE", "SDE", "HERON", "FKE"],
+        "V33" : ["MIS", "HPE", "SDE"],
         "Y102": ["CAVES", "HPE", "METEL", "SDE", "HERON", "FKE"],
         "Y106": ["MQE", "SDE", "RUBIS"],
         "Y15" : ["TENRU", "MYOGI", "TADMI", "DANDY", "HEIKE", "INAWA", "SHIRO", "NIRAX", "OWLET"],
