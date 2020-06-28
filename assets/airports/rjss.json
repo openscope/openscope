@@ -500,7 +500,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 1.58,
             "airlines": [
                 ["ana/short", 11],
                 ["ibx", 5],
@@ -518,11 +518,17 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 0.79,
             "airlines": [
+                ["aar", 1],
                 ["ana/short", 1],
+                ["apj", 1],
+                ["cca", 1],
+                ["eva", 1],
                 ["fda", 1],
                 ["ibx", 7],
+                ["tha", 1],
+                ["ttw", 1],
                 ["jal/short", 2]
             ]
         },
@@ -534,7 +540,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 0.79,
             "airlines": [
                 ["ado", 2],
                 ["ana/short", 3],
@@ -551,11 +557,14 @@
             "altitude": [11000, 40000],
             "speed": 300,
             "method": "random",
-            "rate": 0.69,
+            "rate": 1.26,
             "airlines": [
+                ["aar", 1],
+                ["cca", 1],
                 ["fda", 1],
                 ["ibx", 3],
-                ["sky", 2]
+                ["sky", 2],
+                ["tha", 1]
             ]
         },
         {
@@ -566,12 +575,14 @@
             "altitude": [11000, 40000],
             "speed": 300,
             "method": "random",
-            "rate": 0.69,
+            "rate": 1.26,
             "airlines": [
                 ["ana/short", 12],
-                ["apj", 3],
+                ["apj", 4],
+                ["eva", 1],
                 ["ibx", 9],
                 ["jal/short", 10],
+                ["ttw", 1],
                 ["waj", 1]
             ]
         },
@@ -583,7 +594,7 @@
             "altitude": [7000, 40000],
             "speed": 250,
             "method": "random",
-            "rate": 0.34,
+            "rate": 0.63,
             "airlines": [
                 ["ado", 2],
                 ["ana/short", 3],
