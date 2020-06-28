@@ -111,12 +111,14 @@
         "LANCE"       : ["N37d54m22.00", "E140d28m33.60"],
         "MYOGI"       : ["N36d12m28.00", "E138d32m10.00"],
         "METEL"       : ["N38d33m26.00", "E140d59m21.00"],
+        "MQE"         : ["N39d51m56.00", "E141d57m04.00"],
         "NIRAX"       : ["N37d43m74.00", "E140d23m79.00"],
         "OWLET"       : ["N37d46m23.00", "E140d27m47.10"],
         "PERID"       : ["N38d09m44.80", "E141d07m49.43"],
         "RIBON"       : ["N37d52m22.20", "E140d40m23.40"],
         "RIDER"       : ["N38d19m06.70", "E141d41m14.50"],
         "RIKYU"       : ["N37d33m27.80", "E140d27m31.80"],
+        "RUBIS"       : ["N37d44m51.00", "E140d38m08.00"],
         "SAITI"       : ["N39d26m00.10", "E141d15m11.10"],
         "SAMBO"       : ["N40d11m15.90", "E140d57m01.40"],
         "SDE"         : ["N38d08m19.00", "E140d55m17.00"],
@@ -156,7 +158,8 @@
         }
     ],
     "airways": {
-        "Y102": ["CAVES", "HPE", "METEL", "SDE", "HERON", "FKE"]
+        "Y102": ["CAVES", "HPE", "METEL", "SDE", "HERON", "FKE"],
+        "Y106": ["MQE", "SDE", "RUBIS"],
         "Y15" : ["TENRU", "MYOGI", "TADMI", "DANDY", "HEIKE", "INAWA", "SHIRO", "NIRAX", "OWLET"],
         "Y515": ["KMC", "ZUWAI", "ETIGO", "VIKET", "AIZUH", "LANCE"]
     },
