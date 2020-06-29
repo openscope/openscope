@@ -80,19 +80,19 @@
         }
     ],
     "fixes": {
-        "_IXE024047": ["N37d51m32.00", "E141d22m34.00"],
         "_IXE024028": ["N37d34m29.00", "E141d12m54.00"],
+        "_IXE024047": ["N37d51m32.00", "E141d22m34.00"],
         "_IXE024SDE120": ["N37d54m56.00", "E141d24m31.00"],
         "_RWY0901DME": ["N38d08m09.00", "E140d52m10.00"],
         "_RWY0902DME": ["N38d08m07.00", "E140d51m51.00"],
         "_RWY2702DME": ["N38d08m39.00", "E140d57m05.00"], 
         "_RWY2703DME": ["N38d08m54.00", "E140d59m29.00"],
         "_SDE080003": ["N38d08m54.00", "E140d59m32.00"],
-        "_SDE135010": ["N38d01m15.00", "E141d04m15.00"],
-        "_SDE120010": ["N38d03m19.00", "E141d06m17.00"],
-        "_SDE120005": ["N38d05m49.00", "E141d00m47.00"],
-        "_SDE105010": ["N38d05m43.00", "E141d07m33.00"],
-        "_SDE089010": ["N38d08m29.00", "E141d07m59.00"],
+        "_SDE089010": ["N38d09m52.00", "E141d07m50.00"],
+        "_SDE105010": ["N38d07m05.00", "E141d07m53.00"],
+        "_SDE120005": ["N38d06m27.00", "E141d01m10.00"],
+        "_SDE120010": ["N38d04m34.00", "E141d07m03.00"],
+        "_SDE135010": ["N38d02m18.00", "E141d05m25.00"],
         "_SS701233001": ["N38d07m25.00", "E140d49m34.00"],
         "ADNAP": ["N37d11m51.00", "E145d39m59.00"],
         "AIZUH": ["N37d46m34.00", "E139d43m78.00"],
@@ -309,8 +309,8 @@
             "icao": "CUBIC3",
             "name": "Cubic Three",
             "rwy": {
-                "RJSS09": [["_RWY2702DME", "A5+"], "SS901"],
-                "RJSS27": [["_RWY0902DME", "A5+"], "BUBLE"]
+                "RJSS09": [["^_RWY2702DME", "A5+"], "^SS901"],
+                "RJSS27": [["^_RWY0902DME", "A5+"], "BUBLE"]
             },
             "body": [["CUBIC", "A150+"]],
             "exitPoints": {
@@ -326,10 +326,10 @@
             "icao": "DERBY3",
             "name": "Derby Three",
             "rwy": {
-                "RJSS09": [["_RWY2702DME", "A5+"], "SS901", "ANEMO", "EBOSI"],
-                "RJSS27": [["_RWY0901DME", "A5+"], "SS701", ["_SS701233001", "A13+"], "EBOSI"]
+                "RJSS09": [["_RWY2702DME", "A5+"], "^SS901", "ANEMO", "EBOSI"],
+                "RJSS27": [["_RWY0901DME", "A5+"], "^SS701", ["_SS701233001", "A13+"], "EBOSI"]
             },
-            "body": ["DERBY"],
+            "body": [["DERBY", "A100+"]],
             "exitPoints": {
                 "GTC": ["GTC"]
             },
@@ -344,7 +344,7 @@
             "name": "Iwaki Eight",
             "rwy": {
                 "RJSS09": [["_RWY2702DME", "A5+"], "^_RWY2703DME", "_SDE120005"],
-                "RJSS12": [],
+                "RJSS12": ["_SDE120005"],
                 "RJSS27": ["^_SDE120005"],
                 "RJSS30": ["_SDE120005"]
             },
@@ -361,7 +361,7 @@
             "name": "Sendai Reversal Six",
             "rwy": {
                 "RJSS09": [["_RWY2702DME", "A5+"], "^_RWY2703DME", "_SDE120005", "^_SDE120010"],
-                "RJSS12": ["^_SDE120010"],
+                "RJSS12": ["_SDE120005", "^_SDE120010"],
                 "RJSS27": [["_RWY0902DME", "A5+"], "_SDE120005", "^_SDE120010"],
                 "RJSS30": ["_SDE120005", "^_SDE120010"]
             },
@@ -377,7 +377,7 @@
             "icao": "STEED3",
             "name": "Steed Three",
             "rwy": {
-                "RJSS09": [["_RWY2702DME", "A5+"], "SS901", "STEED"],
+                "RJSS09": [["_RWY2702DME", "A5+"], "^SS901", "STEED"],
                 "RJSS27": [["_RWY0902DME", "A5+"], "BUBLE", "STEED"]
             },
             "body": [],
@@ -400,7 +400,7 @@
             },
             "body": [["FUBOU", "A60+"], ["SNOOK", "A40+"], ["TOPAZ", "S230-"], ["PERID", "A15+"]],
             "rwy": {
-                "RJSS27": ["#360"]
+                "RJSS27": []
             },
             "draw": [
                 ["LANCE*", "FUBOU", "SNOOK", "TOPAZ", "PERID"]
@@ -414,7 +414,7 @@
             },
             "body": [["FUBOU", "A60+"], ["SNOOK", "A40+"]],
             "rwy": {
-                "RJSS27": ["#085"]
+                "RJSS27": []
             },
             "draw": [
                 ["LANCE*", "FUBOU", "SNOOK"]
@@ -424,7 +424,7 @@
             "icao": "LANCEW",
             "name": "Lance West",
             "entryPoints": {
-                "OWLET": [["LANCE", "A110+"]]
+                "LANCE": [["LANCE", "A110+"]]
             },
             "body": [["QUAIL", "S250-"], ["RIBON", "A60+"]],
             "rwy": {
@@ -442,7 +442,7 @@
             },
             "body": [["DATTE", "A80+"], ["RIBON", "A60+"], ["SNOOK", "A40+"], ["TOPAZ", "S230-"], ["PERID", "A15+"]],
             "rwy": {
-                "RJSS27": ["#360"]
+                "RJSS27": []
             },
             "draw": [
                 ["OWLET*", "DATTE", "RIBON", "SNOOK", "TOPAZ", "PERID"]
@@ -456,7 +456,7 @@
             },
             "body": [["DATTE", "A80+"], ["RIBON", "A60+"], ["SNOOK", "A40+"]],
             "rwy": {
-                "RJSS27": ["#067"]
+                "RJSS27": []
             },
             "draw": [
                 ["OWLET*", "DATTE", "RIBON", "SNOOK"]
@@ -468,7 +468,7 @@
             "entryPoints": {
                 "OWLET": [["OWLET", "A130+"]]
             },
-            "body": [["PRINK", "A130+"], ["QUIST", "S250-"], ["RIBON", "A60+"]],
+            "body": [["PRINK", "A80+"], ["QUIST", "S250-"], ["RIBON", "A60+"]],
             "rwy": {
                 "RJSS09": [["SHIPS", "A40+"]]
             },
