@@ -27,26 +27,26 @@ As the name suggests, the Departure and Approach positions are for departing and
 
 The Radar position is used as a combined position of Depature and Approach.
 
-Finally, the TCA position provides advisory service to VFR traffics in the Sendai Terminal Control Area. 
+Finally, the TCA position provides advisory service to VFR traffic in the Sendai Terminal Control Area. 
 
 ## Instrument Procedures
 ###Departures
 
-Departing aircrafts will be assigned the Steed Three Depature, Derby Three Departure, or Cubic Three Departure; they are generally assigned to aircrafts departing southbound, westbound, and northbound, respectively. Pilots are given an initial altitude of FL160. 
+Departing aircraft will be assigned the Steed Three Depature, Derby Three Departure, or Cubic Three Departure; they are generally assigned to aircraft departing southbound, westbound, and northbound, respectively. Pilots are given an initial climb of FL160. 
 
 Due to obstructions, pilots departing RWY09 are required to climb at a 5.0% gradient up to 500FT, and those departing RWY27 are required to climb at a 5.0% gradient up to 1000FT, except for the Derby Three Depature, where pilots are required to climb at a 5.9% gradient until 1300FT.
 
 ###Arrivals
 
-Tokyo Control will assign STARs to aircrafts and give initial descent instructions.
+Tokyo Control will assign STARs to aircraft and give initial descent instructions.
 
 After handed off from Tokyo Control, Sendai Approach is responsible for: 
 * issuing further descent clearance;
 * vectoring the aircraft to the final approach course if necessary;
 * issuing approach clearance
-* ensuring sufficient spacing between aircrafts;
+* ensuring sufficient spacing between aircraft;
 
-YUCCA is the Final Approach Fix (FAF) for ILS 27, meaning that aircrafts can be cleared for the approach after this fix. Approach should issue a descent clearance so that the aircraft is at 1500' at YUCCA.
+YUCCA is the Final Approach Fix (FAF) for ILS 27, meaning that aircraft can be cleared for the approach after this fix. Approach should issue a descent clearance so that the aircraft is at 1700ft at YUCCA (note: in real life, the intercept altitude is 1500ft; however due to constraints, the minimum intercept altitude in the simulator is 1700ft.)
 
 ## Sectors Available in openScope
 ```
