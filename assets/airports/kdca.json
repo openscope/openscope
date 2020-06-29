@@ -1060,7 +1060,7 @@
     "sids": {
         "BOOCK3": {
             "icao": "BOOCK3",
-            "name": "Boock Three",
+            "name": "Book Three",
             "rwy": {
                 "KDCA1": ["_1006ADAXE334", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"],
                 "KDCA4": [["_RWY040.5DME", "A05+"], "#072", "MCNAB"],
@@ -1649,7 +1649,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA1.JDUBB3.GSO",
+            "route": "KDCA1.JDUBB3.MELTN",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1667,7 +1667,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA1.JDUBB3.SBV",
+            "route": "KDCA1.JDUBB3.RRSIN",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1701,7 +1701,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA1.SCRAM5.LYH",
+            "route": "KDCA1.SCRAM5.GLANC",
             "altitude": 0,
             "speed": 0,
             "method": "random",
