@@ -1,5 +1,5 @@
 {
-    "airac": 1702,
+    "airac": 2007,
     "radio": {
         "twr": "Tokyo Tower",
         "app": "Tokyo Approach",
@@ -7,10 +7,10 @@
     },
     "icao": "RJTT",
     "iata": "HND",
-    "magnetic_north": 0.2,
+    "magnetic_north": -7,
     "ctr_radius": 80,
-    "ctr_ceiling": 25000,
-    "initial_alt": 3000,
+    "ctr_ceiling": 24000,
+    "initial_alt": 20000,
     "position": ["N35d33m12.00", "E139d46m52.00"],
     "rangeRings": {
         "enabled": true,
@@ -132,34 +132,39 @@
         "WELDA":    ["N35d29m41.40",    "E139d59m56.70"],
         "YANAG":    ["N35d29m04.50",    "E139d30m05.00"]
     },
-
+    "restricted": [
+    ],
     "runways": [
         {
             "name": ["16L", "34R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N35d33m57.23", "E139d47m11.59"], ["N35d32m22.90", "E139d48m18.49"]],
-            "length": 3.360,
-            "ils": [false, true]
+            "end": [
+                ["N35d33m57.23", "E139d47m11.59"],
+                ["N35d32m22.90", "E139d48m18.49"]
+            ],
+            "ils": [true, true]
         },
         {
             "name": ["16R", "34L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N35d33m35.95", "E139d46m08.64"], ["N35d32m11.76", "E139d47m08.41"]],
-            "length": 3.000,
-            "ils": [false, true]
+            "end": [
+                ["N35d33m35.95", "E139d46m08.64"],
+                ["N35d32m11.76", "E139d47m08.41"]
+            ],
+            "ils": [true, true]
         },
         {
             "name": ["04", "22"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N35d32m56.47", "E139d45m40.60"], ["N35d34m02.88", "E139d46m37.61"]],
-            "length": 2.500,
+            "end": [
+                ["N35d32m56.47", "E139d45m40.60"],
+                ["N35d34m02.88", "E139d46m37.61"]
+            ],
             "ils": [false, true]
         },
         {
             "name": ["05", "23"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N35d31m26.41", "E139d48m12.47"], ["N35d32m26.15", "E139d49m19.61"]],
-            "length": 2.500,
+            "end": [
+                ["N35d31m26.41", "E139d48m12.47"],
+                ["N35d32m26.15", "E139d49m19.61"]
+            ],
             "ils": [false, true]
         }
     ],
