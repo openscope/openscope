@@ -701,6 +701,15 @@ class UiController {
      * @method _onClickOpenAirportDialog
      */
     _onClickOpenAirportDialog() {
+        $("#search").on("keyup", function(){
+            var value = $(this).val().toLowerCase();
+            $(".dialog-body li").filter(
+                function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                }
+            );
+        });
+        
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
