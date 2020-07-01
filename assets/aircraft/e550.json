@@ -1,0 +1,37 @@
+{
+    "name": "Embraer Legacy 500",
+    "icao": "E550",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "E"
+    },
+    "ceiling": 45000,
+    "rate": {
+        "climb":      1500,
+        "descent":    1500,
+        "accelerate": 10,
+        "decelerate": 6
+    },
+    "runway": {
+        "takeoff": 4.1,
+        "landing": 2.1
+    },
+    "speed":{
+        "min":     104,
+        "landing": 142,
+        "cruise":  450,
+        "cruiseM": null,
+        "max":     466,
+        "maxM":    0.83
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
