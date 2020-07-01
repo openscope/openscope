@@ -29,7 +29,7 @@
         {
             "floor": 0,
             "ceiling": 160,
-            "airspace_class": "E",
+            "airspace_class": "C",
             "poly": [
                 ["N38d19m23.00", "E140d39m55.00"],
                 ["N38d16m11.00", "E140d49m35.00"],
