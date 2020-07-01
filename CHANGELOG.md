@@ -11,6 +11,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1589" target="_blank">#1589</a> - Update KDCA airport guide links
 - <a href="https://github.com/openscope/openscope/issues/1581" target="_blank">#1581</a> - Add ability to reset scratchpad with "."
 - <a href="https://github.com/openscope/openscope/issues/1606" target="_blank">#1606</a> - Retitle options menu to "Settings"
+- <a href="https://github.com/openscope/openscope/issues/1608" target="_blank">#1608</a> - Add/Update Japanese Airline Files
 
 # 6.17.1 (May 21, 2020)
 ### Hotfixes
