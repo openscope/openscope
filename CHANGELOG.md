@@ -1,3 +1,18 @@
+# 6.18.0 (July 1, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1236" target="_blank">#1523</a> - Re-introduce Washington Dulles International Airport (KIAD); add Mountain Air Cargo (MTN) and CommutAir (UCA)
+- <a href="https://github.com/openscope/openscope/issues/1568" target="_blank">#1568</a> - Add command reference and slack links to help menu
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/39" target="_blank">#39</a> - Fix misaligned compass headings around scope border
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1590" target="_blank">#1590</a> - Update KLAX airport guide description
+- <a href="https://github.com/openscope/openscope/issues/1589" target="_blank">#1589</a> - Update KDCA airport guide links
+- <a href="https://github.com/openscope/openscope/issues/1581" target="_blank">#1581</a> - Add ability to reset scratchpad with "."
+- <a href="https://github.com/openscope/openscope/issues/1606" target="_blank">#1606</a> - Retitle options menu to "Settings"
+- <a href="https://github.com/openscope/openscope/issues/1608" target="_blank">#1608</a> - Add/Update Japanese Airline Files
+
 # 6.17.1 (May 21, 2020)
 ### Hotfixes
 - <a href="https://github.com/openscope/openscope/issues/1573" target="_blank">#1573</a> - Add missing waypoints from KJFK to fix crash

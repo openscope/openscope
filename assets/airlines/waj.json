@@ -1,16 +1,17 @@
 {
-    "icao": "sfj",
-    "name": "Star Flyer",
+    "icao": "waj",
+    "name": "Air Asia Japan",
     "callsign": {
-        "name": "Starflyer",
+        "name": "Wing Asia",
         "callsignFormats": [
+            "#",
             "##",
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A320", 13]
+            ["A320", 3]
         ]
     }
 }

@@ -240,12 +240,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'El Paso International Airport',
             premium: false
         },
-        // {
-        //     icao: 'kiad',
-        //     level: 'hard',
-        //     name: 'Washington-Dulles International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'kiad',
+            level: 'hard',
+            name: 'Washington Dulles International Airport',
+            premium: false
+        },
         // {
         //     icao: 'kjax',
         //     level: 'easy',

@@ -1,16 +1,17 @@
 {
-    "icao": "sfj",
-    "name": "Star Flyer",
+    "icao": "sky",
+    "name": "Skymark Airlines",
     "callsign": {
-        "name": "Starflyer",
+        "name": "Skymark",
         "callsignFormats": [
+            "#",
             "##",
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A320", 13]
+            ["B738", 29]
         ]
     }
 }

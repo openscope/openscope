@@ -1,16 +1,15 @@
 {
-    "icao": "jjp",
-    "name": "Jetstar Japan",
+    "icao": "ibx",
+    "name": "Ibex Airlines",
     "callsign": {
-        "name": "Orange Liner",
+        "name": "Ibex",
         "callsignFormats": [
-            "###",
             "##"
         ]
     },
     "fleets": {
         "default": [
-            ["A320", 25]
+            ["CRJ7", 10]
         ]
     }
 }

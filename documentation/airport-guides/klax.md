@@ -89,7 +89,7 @@ NOTE: As already mentioned above, special attention must be paid to aircraft on 
 Los Angeles International Airport  
 710,989 annual operations  
 
-The primary airport of the Kennedy area of the New York TRACON, New York's John F Kennedy Int'l Airport is the second busiest airport in N90, behind Newark Liberty Int'l (KEWR). It is the 19th busiest in the world, and 10th busiest in the United States.
+Commonly referred to as LAX, it is the primary international airport serving Los Angeles and its surrounding metropolitan area. In 2019, LAX handled 88,068,013 passengers, making it the world's third busiest and the United States' second busiest airport. LAX is a major international gateway to the United States, and also serves a connection point for passengers traveling internationally. The airport holds the record for the world's busiest origin and destination airport, since relative to other airports, many more travelers begin or end their trips in Los Angeles than use it as a connection. It is also the only airport to rank among the top five U.S. airports for both passenger and cargo traffic.
 
 #### KHHR
 Jack Northrop Field/Hawthorne Municipal Airport  

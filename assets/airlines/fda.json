@@ -1,16 +1,15 @@
 {
-    "icao": "sfj",
-    "name": "Star Flyer",
+    "icao": "fda",
+    "name": "Fuji Dream Airlines",
     "callsign": {
-        "name": "Starflyer",
+        "name": "Fuji Dream",
         "callsignFormats": [
-            "##",
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A320", 13]
+            ["E170", 16]
         ]
     }
 }
