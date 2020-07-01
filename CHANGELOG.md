@@ -1,3 +1,10 @@
+# 6.19.0 (August 1, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
 # 6.18.0 (July 1, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1236" target="_blank">#1523</a> - Re-introduce Washington Dulles International Airport (KIAD); add Mountain Air Cargo (MTN) and CommutAir (UCA)
