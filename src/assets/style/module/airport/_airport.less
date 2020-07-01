@@ -1,18 +1,19 @@
-#search,
-#search:active,
-#search:focus {
-    height: 100%;
+#search{
+    height: 1.5em;
     width: -webkit-fill-available;
-    padding: 0 18px;
-    flex-grow: 1;
-    background-color: transparent;
+    display: inline-block;
+    float: none;
+    padding: 3px 18px;
+    margin-bottom: 5px;
     font-size: 115%;
     font-family: inherit;
-    color: @light-gray;
     user-select: text;
-    border: none;
     overflow: hidden;
     outline: none;
+    background-color: @dark;
+    color: @light-gray;
+    border: 2px solid @blue-medium;
+    border-radius: 10px;
 }   
 
 .airport-list-item {
