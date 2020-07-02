@@ -700,9 +700,10 @@ class UiController {
      * @for UiController
      * @method _onClickOpenAirportDialog
      */
+
     _onClickOpenAirportDialog() {
-        $('#search').on('keyup', function() {
-            let value = $(this).val().toLowerCase();
+        $('.search').on('keyup', function() {
+            const value = $(this).val().toLowerCase();
             $('.dialog-body li').filter(
                 function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
