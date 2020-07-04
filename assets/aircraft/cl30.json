@@ -1,6 +1,6 @@
 {
-    "name": "Bombardier Challenger 350",
-    "icao": "CL35",
+    "name": "Bombardier Challenger 300",
+    "icao": "CL30",
     "engines": {
         "number": 2,
         "type": "J"
@@ -11,24 +11,24 @@
         "lahso": null,
         "recat": "F"
     },
-    "ceiling": 45000,
+    "ceiling": 41000,
     "rate": {
-        "climb": 5000,
+        "climb": 4500,
         "descent": 3000,
         "accelerate": 6,
         "decelerate": 5
     },
     "runway": {
-        "takeoff": 1.466,
-        "landing": 0.792
+        "takeoff": 1.800,
+        "landing": 1.050
     },
     "speed":{
         "min": 110,
         "landing": 130,
-        "cruise": 459,
-        "cruiseM": 0.80,
-        "max": 470,
-        "maxM": 0.82
+        "cruise": 460,
+        "cruiseM": 0.75,
+        "max": 478,
+        "maxM": null
     },
     "capability": {
         "ils": true,
