@@ -2,12 +2,13 @@
 ### New Features
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1617" target="_blank">#1617</a> - Add LXJ to fix crash at KIAD
 
 ### Enhancements & Refactors
 
 # 6.18.0 (July 1, 2020)
 ### New Features
-- <a href="https://github.com/openscope/openscope/issues/1236" target="_blank">#1523</a> - Re-introduce Washington Dulles International Airport (KIAD); add Mountain Air Cargo (MTN) and CommutAir (UCA)
+- <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Re-introduce Washington Dulles International Airport (KIAD); add Mountain Air Cargo (MTN) and CommutAir (UCA)
 - <a href="https://github.com/openscope/openscope/issues/1568" target="_blank">#1568</a> - Add command reference and slack links to help menu
 
 ### Bugfixes
