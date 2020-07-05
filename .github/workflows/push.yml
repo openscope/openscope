@@ -1,15 +1,15 @@
-# name: Node.js CI
+name: Node.js CI
 
-# on: push
+on: push
 
-# jobs:
-#   build:
+jobs:
+  build:
 
-#     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 #       with:
 #         fetch-depth: 2
 #     - name: Use Node.JS v11.3
