@@ -1,5 +1,6 @@
 # 6.19.0 (August 1, 2020)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/1610" target="_blank">#1610</a> - Add Sendai Airport (RJSS)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1617" target="_blank">#1617</a> - Add LXJ to fix crash at KIAD
@@ -10,7 +11,6 @@
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1523" target="_blank">#1523</a> - Re-introduce Washington Dulles International Airport (KIAD); add Mountain Air Cargo (MTN) and CommutAir (UCA)
 - <a href="https://github.com/openscope/openscope/issues/1568" target="_blank">#1568</a> - Add command reference and slack links to help menu
-- <a href="https://github.com/openscope/openscope/issues/1610" target="_blank">#1610</a> - Add Sendai Airport (RJSS)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/39" target="_blank">#39</a> - Fix misaligned compass headings around scope border
