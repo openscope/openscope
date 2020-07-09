@@ -1,0 +1,14 @@
+{
+    "icao": "ttw",
+    "name": "Tigerair Taiwan",
+    "callsign": {
+        "name": "Smart Cat",
+        "callsignFormats":
+            "###"
+    },
+    "fleets": {
+        "default": [
+            ["a320", 11]
+        ]
+    }
+}

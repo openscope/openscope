@@ -41,6 +41,7 @@
 - [OMAA - Abu Dhabi International Airport](omaa.md)
 - [OMDB - Dubai International Airport](omaa.md)
 - [OTHH - Doha Hamad International Airport](othh.md)
+- [RJSS - Sendai Airport](rjss.md)
 - [SAEZ - Ministro Pistarini International Airport](saez.md)
 - [SAME - Mendoza El Plumerillo International Airport](same.md)
 - [SAWH - Malvinas Argentinas Ushuaia International Airport](sawh.md)

@@ -1,5 +1,6 @@
 # 6.19.0 (August 1, 2020)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/1610" target="_blank">#1610</a> - Add Sendai Airport (RJSS)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1617" target="_blank">#1617</a> - Add LXJ to fix crash at KIAD
