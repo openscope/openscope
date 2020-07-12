@@ -257,8 +257,9 @@ export default class AircraftCommander {
     runCross(aircraft, data) {
         const fix = data[0].toUpperCase();
         const altitude = data[1];
+        const speed = data[2];
 
-        return aircraft.pilot.crossFix(aircraft, fix, altitude);
+        return aircraft.pilot.crossFix(aircraft, fix, altitude, speed);
     }
 
     /**

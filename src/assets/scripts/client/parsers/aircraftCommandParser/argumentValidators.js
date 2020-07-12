@@ -88,6 +88,19 @@ export const oneOrThreeArgumentsValidator = (args = []) => {
 };
 
 /**
+ * Checks that `args` has exactly two or three values
+ *
+ * @function twoOrThreeArgumentsValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+export const twoOrThreeArgumentsValidator = (args = []) => {
+    if (args.length !== 2 && args.length !== 3) {
+        return ERROR_MESSAGE.TWO_OR_THREE_ARG_LENGTH;
+    }
+};
+
+/**
  * Checks that args is the required length and the data is of the correct type
  *
  * ```
@@ -311,7 +324,7 @@ export const squawkValidator = (args = []) => {
  *
  * ```
  * Allowed argument shapes:
- * - ['dumba', '120']
+ * - ['dumba', 'a120', 's210']
  * ```
  *
  * @function crossingValidator
@@ -319,20 +332,51 @@ export const squawkValidator = (args = []) => {
  * @return {array<string>}
  */
 export const crossingValidator = (args = []) => {
-    if (args.length !== 2) {
-        return ERROR_MESSAGE.TWO_ARG_LENGTH;
+    if (args.length !== 2 && args.length !== 3) {
+        return ERROR_MESSAGE.TWO_OR_THREE_ARG_LENGTH;
     }
 
     const [fixName] = args;
-    let altitude = args[1];
+
+    let altitude;
+    let speed;
+
+    // Set i to 1 to skip fixName
+    for (let i = 1; i < args.length; i++) {
+        if (typeof args[i][0] === 'string') {
+            if (args[i][0].toLowerCase() === 'a') {
+                altitude = args[i].toString().substr(1);
+            } else if (args[i][0].toLowerCase() === 's') {
+                speed = args[i].toString().substr(1);
+            }
+        }
+    }
 
     if (!_isString(fixName)) {
         return ERROR_MESSAGE.MUST_BE_STRING;
     }
 
-    altitude = convertStringToNumber(altitude);
+    if (altitude) {
+        altitude = convertStringToNumber(altitude);
 
-    if (_isNaN(altitude)) {
-        return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
+        if (_isNaN(altitude)) {
+            return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
+        }
+    }
+
+    if (speed) {
+        speed = convertStringToNumber(speed);
+
+        if (_isNaN(speed)) {
+            return ERROR_MESSAGE.SPEED_MUST_BE_NUMBER;
+        }
+    }
+
+    if (args.length === 3) {
+        if (altitude == null) {
+            return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
+        } else if (speed == null) {
+            return ERROR_MESSAGE.SPEED_MUST_BE_NUMBER;
+        }
     }
 };
