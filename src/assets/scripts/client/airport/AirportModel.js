@@ -401,7 +401,7 @@ export default class AirportModel {
                 this.magneticNorth
             ),
             radius_nm: rangeRingData.radius_nm
-        }
+        };
     }
 
     /**
