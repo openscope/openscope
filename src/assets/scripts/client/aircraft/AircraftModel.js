@@ -926,13 +926,13 @@ export default class AircraftModel {
             return
         } else if (this.fms == 17) {
             return
-        } else if (this.fms == 17) {
+        } else if (this.fms === 17) {
             return
-        } else if (this.fms == 17) {
+        } else if (this.fms === 17) {
             return
-        } else if (this.fms == 17) {
+        } else if (this.fms === 17) {
             return
-        } else if (this.fms == 17) {
+        } else if (this.fms === 17) {
             return
         } else if (this.fms == 17) {
             return
