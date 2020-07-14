@@ -1675,10 +1675,19 @@ export default class CanvasController {
             round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
             round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
         );
-
         this._drawAirspaceBorder(cc);
-        this._drawRangeRings(cc);
 
+        // undo the above translation
+        // caution: do not replace with restore().save() because
+        // we need the clipping region from _drawAirspaceBorder()
+        // also, do not reverse these calls, as the rings should be
+        // drawn ON TOP of the airspace boundary lines
+        cc.translate(
+            round(-CanvasStageModel.halfWidth - CanvasStageModel._panX),
+            round(-CanvasStageModel.halfHeight - CanvasStageModel._panY)
+        );
+
+        this._drawRangeRings(cc);
         cc.restore();
     }
 
@@ -1774,6 +1783,11 @@ export default class CanvasController {
         const userValue = GameController.getGameOption(GAME_OPTION_NAMES.RANGE_RINGS);
         const useDefault = userValue === 'default';
         const defaultRangeRings = airportModel.rangeRings;
+        const centerPositionPx = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(
+            defaultRangeRings.center.relativePosition
+        );
+        const drawPositionX = centerPositionPx.x + CanvasStageModel.halfWidth;
+        const drawPositionY = centerPositionPx.y + CanvasStageModel.halfHeight;
 
         if (userValue === 'off' || (useDefault && defaultRangeRings.enabled === false)) {
             return;
@@ -1796,7 +1810,7 @@ export default class CanvasController {
         // Fill up airportModel's ctr_radius with rings of the specified radius
         for (let i = 1; i * rangeRingRadius < airportModel.ctr_radius; i++) {
             cc.beginPath();
-            cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
+            cc.arc(drawPositionX, drawPositionY, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
             cc.stroke();
         }
     }

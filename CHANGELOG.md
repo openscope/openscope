@@ -5,6 +5,7 @@
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1617" target="_blank">#1617</a> - Add LXJ to fix crash at KIAD
+- <a href="https://github.com/openscope/openscope/issues/1626" target="_blank">#1626</a> - Draw range rings where the file specifies instead of at the airport center
 
 ### Enhancements & Refactors
 
