@@ -618,6 +618,332 @@ export default class AircraftModel {
     get flightPhase() {
         if (this.fms == 17) {
             return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
+        } else if (this.fms == 17) {
+            return
         }
 
         return this.fms.currentPhase;
