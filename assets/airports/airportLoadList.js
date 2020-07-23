@@ -354,6 +354,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'St. Louis Lambert International Airport',
             premium: false
         },
+        {
+            icao: 'lbsf',
+            level: 'medium',
+            name: 'Sofia Airport',
+            premium: false,
+            wip: true
+        },
         // {
         //     icao: 'ktpa',
         //     level: 'easy',
