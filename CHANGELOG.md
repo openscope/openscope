@@ -8,6 +8,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1626" target="_blank">#1626</a> - Draw range rings where the file specifies instead of at the airport center
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1628" target="_blank">#1628</a> - Use Github status checks for all pull requests
 
 # 6.18.0 (July 1, 2020)
 ### New Features
