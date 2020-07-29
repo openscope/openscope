@@ -6,28 +6,29 @@
     },
     "icao": "VECC",
     "iata": "CCU",
-    "magnetic_north": 0.3,
+    "magnetic_north": 0.0,
     "ctr_radius": 80,
-    "ctr_ceiling": 19500,
-    "initial_alt": 5500,
-    "position": ["N22d40m24.00", "E088d26m96.00", "23ft"],
+    "ctr_ceiling": 25500,
+    "initial_alt": 4000,
+    "position": ["N22d39m24.00", "E088d26m80.00", "20ft"],
     "rangeRings": {
         "enabled": true,
-        "center": ["N22d40m24.00", "E088d26m96.00"],
+        "center": ["N22d39m24.00", "E088d26m80.00"],
         "radius_nm": 5.0
     },
     "has_terrain": false,
     "wind": {
-        "angle": 190,
+        "angle": 10,
         "speed": 4
     },
-    "arrivalRunway": "19R",
-    "departureRunway": "19R",
+    "arrivalRunway": "01R",
+    "departureRunway": "01R",
+    "defaultMaps": ["Base Map", "Extended Runway Centrelines"],
     "airspace": [
         {
-            "floor":       0,
-            "ceiling":     21000,
-            "airspace_class":  "D",
+            "floor":       20,
+            "ceiling":     25500,
+            "airspace_class":  "C",
             "poly":
             [
                 ["N23d08m02.40", "E086d57m51.00"],
