@@ -516,6 +516,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'beginner',
             name: 'Princess Juliana International Airport',
             premium: false
+        },
         // },
         // {
         //     icao: 'uudd',
@@ -529,12 +530,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Chhatrapati Shivaji International Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'vecc',
-        //     level: 'medium',
-        //     name: 'Kolkata Netaji Subhas Chandra Bose Int\'l',
-        //     premium: false
-        // },
+        {
+            icao: 'vecc',
+            level: 'medium',
+            name: 'Kolkata Netaji Subhas Chandra Bose Int\'l',
+            premium: false
+        },
         // {
         //     icao: 'vobl',
         //     level: 'medium',
@@ -588,6 +589,6 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     level: 'hard',
         //     name: 'Shanghai Pudong International Airport',
         //     premium: false
-        }
+        // },
     ];
 })();
