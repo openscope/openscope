@@ -1,13 +1,11 @@
 name: protected-branch-checks
 
-on: push
-
-# on:
-#   push:
-#     branches:
-#       - develop
-#       - master
-#       - release/*
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - release/*
 
 jobs:
   lint:
@@ -16,9 +14,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        fetch-depth: 2 # makes available shas HEAD (head of feature branch) and HEAD~1 (head of target branch) - Note: this is different in a PR action!
-    - run: git log -1 --oneline HEAD
-    - run: git log -1 --oneline HEAD~1
+        fetch-depth: 2 # makes available shas HEAD (head of this branch) and HEAD~1 (previous commit on this branch) - Note: this is different in a PR action!
     - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
@@ -53,7 +49,7 @@ jobs:
       run: npm install
     - name: Run test suite
       run: npm run test
-    - name: Check test coverage versus target branch (via coveralls.io)
+    - name: Check test coverage versus previous commit (via coveralls.io)
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
