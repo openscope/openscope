@@ -1,6 +1,6 @@
 name: protected-branch-checks
 
-on: pull_request
+on: push
 
 # on:
 #   push:
