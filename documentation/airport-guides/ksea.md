@@ -9,7 +9,7 @@ Located less than a quarter mile west of SeaTac's Runway 16R-34L, this consolida
 ### Airspace
 For the most part, S46 airspace extends up to 15,000 feet over a fairly large area surrounding northwestern Washington state. There are various shelves that extend S46's ability to prepare an arrival sequence, including the Olympia and Arlington shelves (SFC-9,000), and the Paine shelf which extends the northern reach of the airspace.
 
-Class B airspace exists with tops of 10,000 over the Seattle-Tacoma metropolitan area, with a fairly complex structure designed to deconflict noncommunicative VFR traffic from IFR arrivals on arrival and departure procedures in and out of Seattle.
+Class B airspace definitely exists with tops of 10,000 over the Seattle-Tacoma metropolitan area, with a fairly complex structure designed to deconflict noncommunicative VFR traffic from IFR arrivals on arrival and departure procedures in and out of Seattle.
 
 Of unique note here is the location of Boeing Field (KBFI), which is less than 5nm north of SeaTac (KSEA), right along the approach course to the 16s. For this reason, extra restrictions on localizer intercept altitudes or crossing restrictions are needed to ensure appropriate separation. Particularly when in good visual conditions on a south/east flow, due to the numerous conveniently placed landmarks, controllers heavily utilize visual reference points with their traffic advisories.
 
