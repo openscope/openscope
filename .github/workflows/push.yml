@@ -1,6 +1,13 @@
-name: checks
+name: protected-branch-checks
 
 on: pull_request
+
+# on:
+#   push:
+#     branches:
+#       - develop
+#       - master
+#       - release/*
 
 jobs:
   lint:
@@ -9,7 +16,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        fetch-depth: 2 # makes available shas HEAD (head of feature branch) and HEAD~1 (head of target branch)
+        fetch-depth: 2 # makes available shas HEAD (head of feature branch) and HEAD~1 (head of target branch) - Note: this is different in a PR action!
+    - run: git log -1 --oneline HEAD
+    - run: git log -1 --oneline HEAD~1
     - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
