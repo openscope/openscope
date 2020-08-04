@@ -9,7 +9,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        fetch-depth: 2 # makes available shas HEAD (head of feature branch) and HEAD~1 (head of target branch)
+        fetch-depth: 2 # makes available shas HEAD (head of feature branch) and HEAD~1 (head of target branch) - Note: this is different in a push action!
     - name: Use Node.JS v11.3
       uses: actions/setup-node@v1
       with:
