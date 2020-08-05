@@ -14,7 +14,7 @@ The airport is known by many pilots for its River Visual procedure for runway 19
 As of <a href="https://www.mwaa.com/sites/default/files/12-19_ats_2.10.20.pdf" target="_blank">December 2019</a>, DCA has 579 daily departures via 17 airlines to 87 unique destinations.
 
 ### Airspace: Mount Vernon Area (MTV)
-The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so <a href="https://image.prntscr.com/image/fRaW9wieSJ_Ibi9KRix4Kg.png" target="_blank">here is a diagram</a>] of the airspace Mount Vernon owns.
+The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so <a href="https://image.prntscr.com/image/fRaW9wieSJ_Ibi9KRix4Kg.png" target="_blank">here is a diagram</a> of the airspace Mount Vernon owns.
 
 ### Airports of Interest
 
@@ -170,8 +170,8 @@ MCAF Quantico is a United States Marine Corps field within the Marine Corps Base
 The videomap contains the following:
 
 * Restricted Airspaces;
-* Extended centerlines for all runways (1L, 1C, 1R, 12, 19L, 19C, 19R, 30);
-* Various airports within in and around the Shenandoah Area;
+* Extended centerline for runway 01;
+* Various airports within in and around the Mount Vernon Area;
 * Locations of important fixes;
 * The Potomac River
 
