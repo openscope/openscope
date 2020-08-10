@@ -1,3 +1,10 @@
+# 6.20.0 (September 1, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
 # 6.19.0 (August 10, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1624" target="_blank">#1624</a> - Add speed capability to crossing restrictions
