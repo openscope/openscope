@@ -755,13 +755,19 @@ export default class AircraftCommander {
     runSquawk(aircraft, data) {
         const squawk = data[0];
         const result = this._onChangeTransponderCode(squawk, aircraft);
-        let message = `squawking ${squawk}`;
+        let readback = {
+            log: `squawking ${squawk}`,
+            say: `squawking ${radio_spellOut(squawk)}`
+        };
 
         if (!result) {
-            message = `unable to squawk ${squawk}`;
+            readback = {
+                log: `unable to squawk ${squawk}`,
+                say: `unable to squawk ${radio_spellOut(squawk)}`
+            };
         }
 
-        return [result, message];
+        return [result, readback];
     }
 
     /**
