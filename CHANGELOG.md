@@ -9,6 +9,7 @@
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1628" target="_blank">#1628</a> - Use Github status checks for all pull requests
+- <a href="https://github.com/openscope/openscope/issues/1538" target="_blank">#1538</a> - Update KDCA
 
 # 6.18.0 (July 1, 2020)
 ### New Features
