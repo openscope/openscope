@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier Learjet 75",
+    "icao": "LJ75",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "H"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb":      4000,
+        "descent":    2500,
+        "accelerate": 10,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.300,
+        "landing": 0.800
+    },
+    "speed":{
+        "min":     120,
+        "landing": 130,
+        "cruise":  432,
+        "cruiseM": 0.75,
+        "max":     465,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

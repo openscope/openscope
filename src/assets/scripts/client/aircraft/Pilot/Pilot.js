@@ -564,16 +564,21 @@ export default class Pilot {
     }
 
     /**
-     * Cross a fix at a certain altitude
+     * Cross a fix at a certain altitude and/or speed
      *
      * @for Pilot
      * @method crossFix
      * @param aircraftModel {AircraftModel}
      * @param fixName  {string} name of the fix
      * @param altitude {number} the altitude
+     * @param speed {number} the speed
      * @return {array}  success of operation, readback]
      */
-    crossFix(aircraftModel, fixName, altitude) {
+    crossFix(aircraftModel, fixName, altitude, speed) {
+        if (!altitude && !speed) {
+            return [false, 'say again? In crossing restrictions, prefix altitudes with A and speeds with S!'];
+        }
+
         if (!NavigationLibrary.hasFixName(fixName)) {
             return [false, `unable to find '${fixName}'`];
         }
@@ -583,23 +588,72 @@ export default class Pilot {
         }
 
         const airportModel = this._fms.arrivalAirportModel || this._fms.departureAirportModel;
+        const waypoint = this._fms.findWaypoint(fixName);
+
+        // altitude-only crossing restriction
+        if (!speed) {
+            const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
+
+            if (!altitudeCheck[0]) {
+                return altitudeCheck;
+            }
+
+            altitude = airportModel.clampWithinAssignableAltitudes(altitude);
+
+            waypoint.setAltitude(altitude);
+            this._mcp.setAltitudeFieldValue(altitude);
+            this._mcp.setAltitudeVnav();
+
+            const readback = {
+                log: `cross ${fixName.toUpperCase()} at ${altitude}`,
+                say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)}`
+            };
+
+            return [true, readback];
+        }
+
+        // speed-only crossing restriction
+        if (!altitude) {
+            const speedCheck = aircraftModel.validateNextSpeed(speed);
+
+            if (!speedCheck[0]) {
+                return speedCheck;
+            }
+
+            waypoint.setSpeed(speed);
+            this._mcp.setSpeedFieldValue(speed);
+            this._mcp.setSpeedVnav();
+
+            const readback = {
+                log: `cross ${fixName.toUpperCase()} at ${speed}kt`,
+                say: `cross ${fixName.toLowerCase()} at ${radio_spellOut(speed)} knots`
+            };
+
+            return [true, readback];
+        }
+
+        // altitude AND speed crossing restriction
         const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
+        const speedCheck = aircraftModel.validateNextSpeed(speed);
 
         if (!altitudeCheck[0]) {
             return altitudeCheck;
         }
 
-        altitude = airportModel.clampWithinAssignableAltitudes(altitude);
-
-        const waypoint = this._fms.findWaypoint(fixName);
+        if (!speedCheck[0]) {
+            return speedCheck;
+        }
 
         waypoint.setAltitude(altitude);
+        waypoint.setSpeed(speed);
         this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setSpeedFieldValue(speed);
         this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
 
         const readback = {
-            log: `cross ${fixName.toUpperCase()} at ${altitude}`,
-            say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)}`
+            log: `cross ${fixName.toUpperCase()} at ${altitude} and ${speed}kt`,
+            say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)} and ${radio_spellOut(speed)} knots`
         };
 
         return [true, readback];

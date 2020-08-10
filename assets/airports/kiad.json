@@ -1606,7 +1606,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 2.1,
             "airlines": [
                 ["awi", 10],
                 ["rpa", 8],
@@ -1621,7 +1621,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 3.4,
             "airlines": [
                 ["dal", 3],
                 ["ual/short", 2],
@@ -1649,7 +1649,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 4.3,
             "airlines": [
                 ["ual/short", 3],
                 ["fdx", 3],
@@ -1671,7 +1671,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 2.9,
             "airlines": [
                 ["asq", 8],
                 ["jia", 4],
@@ -1687,7 +1687,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 1.6,
             "airlines": [
                 ["eja", 1],
                 ["ash", 2]
@@ -1701,7 +1701,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.2,
+            "rate": 0.3,
             "airlines": [
                 ["lxj", 1],
                 ["n/fastGA"]
@@ -1715,7 +1715,7 @@
             "altitude": "",
             "speed": 430,
             "method": "random",
-            "rate": 1,
+            "rate": 1.3,
             "airlines": [
                 ["edv", 1]
             ]
@@ -1728,7 +1728,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 3.4,
             "airlines": [
                 ["ual/short", 2],
                 ["aal/short", 2],
@@ -1746,7 +1746,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 3.1,
             "airlines": [
                 ["ual", 3],
                 ["swa", 3],
@@ -1763,7 +1763,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 1.8,
             "airlines": [
                 ["eny", 10],
                 ["aal", 9],
@@ -1778,7 +1778,7 @@
             "altitude": 18000,
             "speed": 280,
             "method": "random",
-            "rate": 10.9,
+            "rate": 8.1,
             "airlines":  [
                 ["dal", 5],
                 ["ual", 5],
@@ -1801,7 +1801,7 @@
             "altitude": 25000,
             "speed": 280,
             "method": "random",
-            "rate": 12.7,
+            "rate": 9.2,
             "airlines":  [
                 ["ash", 7],
                 ["aal", 6],
@@ -1822,11 +1822,35 @@
             "origin": "",
             "destination": "KIAD",
             "category": "arrival",
+            "route": "MGW.GIBBZ3.KIAD1C",
+            "altitude": 23000,
+            "speed": 270,
+            "method": "random",
+            "rate": 3.4,
+            "airlines":  [
+                ["dal", 5],
+                ["aal", 3],
+                ["ual", 3],
+                ["asa", 2],
+                ["ash", 2],
+                ["edv", 2],
+                ["uca", 2],
+                ["fdx", 1],
+                ["aal/long", 1],
+                ["dal/long", 1],
+                ["ual/long", 1],
+                ["swa", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KIAD",
+            "category": "arrival",
             "route": "PARKE.HYPER7.KIAD1R",
             "altitude": 20000,
             "speed": 280,
             "method": "random",
-            "rate": 11.4,
+            "rate": 12.2,
             "airlines":  [
                 ["aal", 5],
                 ["dal", 5],
@@ -1843,11 +1867,11 @@
             "origin": "",
             "destination": "KIAD",
             "category": "arrival",
-            "route": "PSB.MAPEL2.KIAD1C",
+            "route": "PSB.MAPEL2.KIAD1L",
             "altitude": 17000,
             "speed": 280,
             "method": "random",
-            "rate": 10.8,
+            "rate": 8.4,
             "airlines":  [
                 ["aal", 5],
                 ["dal", 5],
@@ -1868,7 +1892,7 @@
             "altitude": 7000,
             "speed": 200,
             "method": "random",
-            "rate": 0.8,
+            "rate": 0.4,
             "airlines":  [
                 ["n/fastGA", 5]
             ]
@@ -1881,7 +1905,7 @@
             "altitude": 9000,
             "speed": 200,
             "method": "random",
-            "rate": 0.9,
+            "rate": 0.4,
             "airlines":  [
                 ["n/fastGA", 5]
             ]
