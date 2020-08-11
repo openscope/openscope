@@ -2850,4 +2850,33 @@ export default class AircraftModel {
 
         return [true];
     }
+
+    /**
+     * Ensure that the provided speed is valid
+     *
+     * @for AircraftModel
+     * @method validateNextSpeed
+     * @param nextSpeed {number} speed the aircraft should maintain
+     * @return {array}          [success of operation, readback]
+     */
+    validateNextSpeed(nextSpeed) {
+        if (nextSpeed === INVALID_NUMBER) {
+            return [false, 'unable, no speed assigned'];
+        }
+
+        if (typeof nextSpeed !== 'number') {
+            return [false, `unable to maintain a speed of ${nextSpeed}`];
+        }
+
+        if (!this.model.isAbleToMaintainSpeed(nextSpeed)) {
+            const readback = {
+                log: `unable to maintain ${nextSpeed} due to performance`,
+                say: `unable to maintain ${radio_spellOut(nextSpeed)} knots due to performance`
+            };
+
+            return [false, readback];
+        }
+
+        return [true];
+    }
 }
