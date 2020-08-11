@@ -1108,7 +1108,7 @@
                 ["DF149", "MTR", "TOBAK", "APROX", "MARUN"]
             ]
         },
-        "METRO5C": {
+        "MTR5C": {
             "icao": "MTR5C",
             "name": "Metro Five Charlie",
             "altitude": 5000,
@@ -1307,7 +1307,7 @@
                 ["DF999", "DF998", "DF996", "DF995", "DF172", "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM", "OBOKA"]
             ]
         },
-        "RIED3Q": {
+        "RID3Q": {
             "icao": "RID3Q",
             "name": "Ried Three Quebec",
             "altitude": 5000,
@@ -1323,7 +1323,7 @@
                 ["_FRD2461.5", "_RID356009", "RID"]
             ]
         },
-        "RIED8C": {
+        "RID8C": {
             "icao": "RID8C",
             "name": "Ried Eight Charlie",
             "rwy": {
@@ -1550,7 +1550,7 @@
                 ["DF158", "DF159", "AMTIX", "CINDY", "GIBSA", "WUR", "SULUS"]
             ]
         },
-        "TAUNUS1Q": {
+        "TAI1Q": {
             "icao": "TAI1Q",
             "name": "Taunus One Quebec",
             "altitude": 5000,
@@ -1911,7 +1911,7 @@
                 ["KERAX", "GED", "GEDSI", "MTR", "ETARU", "DF951", "IBLUS"]
             ]
         },
-        "KERAX4B": {
+        "KERA4B": {
             "icao": "KERA4B",
             "name": "Kerax Four Bravo",
             "entryPoints": {
@@ -1927,7 +1927,7 @@
                 ["KERAX", "SPESA", "CHA"]
             ]
         },
-        "KERAX4H": {
+        "KERA4H": {
             "icao": "KERA4H",
             "name": "Kerax Four Hotel",
             "entryPoints": {
@@ -2003,7 +2003,7 @@
                 ["PETIX", "ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "SPESA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
             ]
         },
-        "SPESA07N": {
+        "SPE07N": {
             "icao": "SPE07N",
             "name": "Spessa Zero Seven North Transition",
             "entryPoints": {
@@ -2017,7 +2017,7 @@
                 ["SPESA", "RIPKU", "DF436", "DF437", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"]
             ]
         },
-        "SPESA07S": {
+        "SPE07S": {
             "icao": "SPE07S",
             "name": "Spessa Zero Seven South Transition",
             "entryPoints": {
@@ -2033,7 +2033,7 @@
                 ["DF651", "ROBSA"]
             ]
         },
-        "SPESA25N": {
+        "SPE25N": {
             "icao": "SPE25N",
             "name": "Spessa Two Five North Transition",
             "entryPoints": {
@@ -2047,7 +2047,7 @@
                 ["RIPKU", "DF406", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"]
             ]
         },
-        "SPESA25S": {
+        "SPE25S": {
             "icao": "SPE25S",
             "name": "Spessa Two Five South Transition",
             "entryPoints": {
@@ -2063,7 +2063,7 @@
                 ["DF621", "REDGO"]
             ]
         },
-        "SPESA1G": {
+        "SPES1G": {
             "icao": "SPES1G",
             "name": "Spessa One Golf",
             "entryPoints": {
@@ -2078,7 +2078,7 @@
                 ["SPESA", "KUGUK"]
             ]
         },
-        "SPESA1B": {
+        "SPES1B": {
             "icao": "SPES1B",
             "name": "Spessa One Bravo",
             "entryPoints": {
@@ -2094,7 +2094,7 @@
                 ["SPESA", "CHA"]
             ]
         },
-        "SPESA1H": {
+        "SPES1H": {
             "icao": "SPES1H",
             "name": "Spessa One Hotel",
             "entryPoints": {
@@ -2110,7 +2110,7 @@
                 ["SPESA", "CHA", "FFM", "RID"]
             ]
         },
-        "SPESA1L": {
+        "SPES1L": {
             "icao": "SPES1L",
             "name": "Spessa One Lima",
             "entryPoints": {
@@ -2126,7 +2126,7 @@
                 ["SPESA", "CHA"]
             ]
         },
-        "SPESA1M": {
+        "SPES1M": {
             "icao": "SPES1M",
             "name": "Spessa One Mike",
             "entryPoints": {
@@ -2142,7 +2142,7 @@
                 ["SPESA", "CHA", "FFM", "RID"]
             ]
         },
-        "SPESA1R": {
+        "SPES1R": {
             "icao": "SPES1R",
             "name": "Spessa One Romeo",
             "entryPoints": {
