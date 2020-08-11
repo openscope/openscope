@@ -1,11 +1,22 @@
-# 6.19.0 (August 1, 2020)
+# 6.20.0 (September 1, 2020)
 ### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+# 6.19.0 (August 10, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1624" target="_blank">#1624</a> - Add speed capability to crossing restrictions
 - <a href="https://github.com/openscope/openscope/issues/1610" target="_blank">#1610</a> - Add Sendai Airport (RJSS)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1617" target="_blank">#1617</a> - Add LXJ to fix crash at KIAD
+- <a href="https://github.com/openscope/openscope/issues/1626" target="_blank">#1626</a> - Draw range rings where the file specifies instead of at the airport center
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1628" target="_blank">#1628</a> - Use Github status checks for all pull requests
+- <a href="https://github.com/openscope/openscope/issues/1538" target="_blank">#1538</a> - Update KDCA
 
 # 6.18.0 (July 1, 2020)
 ### New Features

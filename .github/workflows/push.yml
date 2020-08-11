@@ -1,0 +1,55 @@
+name: protected-branch-checks
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2 # makes available shas HEAD (head of this branch) and HEAD~1 (previous commit on this branch) - Note: this is different in a PR action!
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    - name: Install dependencies
+      run: npm install
+    - name: Find lint errors on changed lines
+      run: npm run lint-diff HEAD~1..HEAD
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    - name: Install dependencies
+      run: npm install
+    - name: Build application
+      run: npm run build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    - name: Install dependencies
+      run: npm install
+    - name: Run test suite
+      run: npm run test
+    - name: Check test coverage versus previous commit (via coveralls.io)
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      if: ${{ always() }}

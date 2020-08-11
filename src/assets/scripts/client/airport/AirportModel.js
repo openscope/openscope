@@ -369,15 +369,39 @@ export default class AirportModel {
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
-        this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
+        this._initRangeRings(data.rangeRings);
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
+    }
+
+    /**
+     * Initialize the range ring position model
+     *
+     * @for AirportModel
+     * @method _initRangeRings
+     * @param {object} rangeRingData
+     * @private
+     */
+    _initRangeRings(rangeRingData) {
+        if (!rangeRingData) {
+            this.rangeRings = DEFAULT_RANGE_RINGS;
+        }
+
+        this.rangeRings = {
+            enabled: rangeRingData.enabled,
+            center: new DynamicPositionModel(
+                rangeRingData.center,
+                this.positionModel,
+                this.magneticNorth
+            ),
+            radius_nm: rangeRingData.radius_nm
+        };
     }
 
     /**
@@ -419,14 +443,7 @@ export default class AirportModel {
         this.perimeter = _head(this.airspace);
         this.ctr_radius = Math.max(
             ..._map(this.perimeter.poly, (vertexPosition) => vlen(
-                vsub(
-                    vertexPosition.relativePosition,
-                    DynamicPositionModel.calculateRelativePosition(
-                        this.rangeRings.center,
-                        this._positionModel,
-                        this.magneticNorth
-                    )
-                )
+                vsub(vertexPosition.relativePosition, this.rangeRings.center.relativePosition)
             ))
         );
     }
