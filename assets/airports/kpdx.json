@@ -469,9 +469,9 @@
                 ["HYKER", "BATYL"]
             ]
         },
-        "OCITY1": {
-            "icao": "OCITY1",
-            "name": "Oh City One",
+        "OCITY3": {
+            "icao": "OCITY3",
+            "name": "Oh City Three",
             "entryPoints": {
                 "LMT": ["LMT", "MOXEE", "PORTL"],
                 "MOXEE": ["MOXEE", "PORTL"],
