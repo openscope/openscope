@@ -4,6 +4,7 @@
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1615" target="_blank">#1615</a> - Fix broken link in KSTL airport guide
 
 # 6.19.0 (August 10, 2020)
 ### New Features
