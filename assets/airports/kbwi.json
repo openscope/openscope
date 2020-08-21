@@ -24,7 +24,7 @@
     },
     "arrivalRunway": "33L",
     "departureRunway": "28",
-    "defaultMaps": [],
+    "defaultMaps": ["Base Map"],
     "airspace": [
         {
             "floor": 0,
