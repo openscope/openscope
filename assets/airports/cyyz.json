@@ -1813,9 +1813,222 @@
         }
     ],
     "airways": [],
-    "sids": [],
-    "stars": [],
-    "spawnPatterns": [],
+    "sids": {
+        "ANCOL4": {
+            "icao": "ANCOL4",
+            "name": "Ancol Four",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "GGUCE": ["MIXUT", "LETOR", ["GGUCE", "A220-"]]
+            },
+            "draw": [
+                ["MIXUT", "LETOR", "GGUCE*"]
+            ]
+        },
+        "AVSEP6": {
+            "icao": "AVSEP6",
+            "name": "Avsep 6",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "MUSIT": ["TILAM", "AVSEP", "NUGOP", "PEPMA", "MUSIT"]
+            },
+            "draw": [
+                ["TILAM", "AVSEP", "NUGOP", "PEPMA", "MUSIT*"]
+            ]
+        },
+        "BETES2": {
+            "icao": "BETES2",
+            "name": "Betes 2",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ERI": ["MURNO", "OAKVL", "BETES", "ERI"],
+                "AIRRA": ["MURNO", "OAKVL", "BETES", "SAMYL", "AIRRA"],
+                "FOXEE": ["MURNO", "OAKVL", "BETES", "SAMYL", "FOXEE"]
+            },
+            "draw": [
+                ["MURNO", "OAKVL", "BETES", "ERI*"],
+                ["MURNO", "OAKVL", "BETES", "SAMYL", "AIRRA*"],
+                ["MURNO", "OAKVL", "BETES", "SAMYL", "FOXEE*"]
+            ]
+        },
+        "DEDKI4": {
+            "icao": "DEDKI4",
+            "name": "Dedki 4",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "MIGLO": ["SAVUR", "SEKIT", "DEDKI", "SANIN", "MIGLO"],
+                "OLABA": ["SAVUR", "SEKIT", "DEDKI", "SANIN", "OLABA"],
+                "RAKAM": ["SAVUR", "SEKIT", "DEDKI", "IGSEB", "RAKAM"],
+                "TULEG": ["SAVUR", "SEKIT", "DEDKI", "TULEG"]
+            },
+            "draw": [
+                ["SAVUR", "SEKIT", "DEDKI", "SANIN", "MIGLO*"],
+                ["SAVUR", "SEKIT", "DEDKI", "SANIN", "OLABA*"],
+                ["SAVUR", "SEKIT", "DEDKI", "IGSEB", "RAKAM*"],
+                ["SAVUR", "SEKIT", "DEDKI", "TULEG*"]
+            ]
+        },
+        "GOPUP3": {
+            "icao": "GOPUP3",
+            "name": "Gopup 3",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "HOCKE": ["TILAM", "TULEK", "GOPUP", "EMDEX", "TAGUM", "HOCKE"],
+                "SLLAP": ["TILAM", "TULEK", "GOPUP", "KARIT", "HHIPP", "SLLAP"]
+            },
+            "draw": [
+                ["TILAM", "TULEK", "GOPUP", "EMDEX", "TAGUM", "HOCKE*"],
+                ["TILAM", "TULEK", "GOPUP", "KARIT", "HHIPP", "SLLAP*"]
+            ]
+        },
+        "IKLEN2": {
+            "icao": "IKLEN2",
+            "name": "Iklen 2",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "TONNY": ["BISTI", "NAMGI", "IKLEN", "TONNY"]
+            },
+            "draw": [
+                ["BISTI", "NAMGI", "IKLEN", "TONNY*"]
+            ]
+        },
+        "KEPTA2": {
+            "icao": "KEPTA2",
+            "name": "Kepta 2",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BMPAH": ["SAVUR", "SEKIT", "RIKEM", "KEPTA", "BMPAH"],
+                "WOZEE": ["SAVUR", "SEKIT", "RIKEM", ["WOZEE", "A90-"]]
+            },
+            "draw": [
+                ["SAVUR", "SEKIT", "RIKEM", "KEPTA", "BMPAH*"],
+                ["SAVUR", "SEKIT", "RIKEM", "WOZEE*"]
+            ]
+        },
+        "KISEP3": {
+            "icao": "KISEP3",
+            "name": "Kisep 3",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SILVU": ["BISTI", "NAMGI", "EBKIN", "KISEP", "SILVU"]
+            },
+            "draw": [
+                ["BISTI", "NAMGI", "EBKIN", "KISEP", "SILVU*"]
+            ]
+        },
+        "MIXUT6": {
+            "icao": "MIXUT6",
+            "name": "Mixut 6",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "DERLO": ["MIXUT", "LETOR", "SEVBI", ["DERLO", "A220-"]],
+                "GNTRY": ["MIXUT", "LETOR", "PEMBA", ["NUGID", "A260-"], "GNTRY"]
+            },
+            "draw": [
+                ["MIXUT", "LETOR", "SEVBI", "DERLO*"],
+                ["MIXUT", "LETOR", "PEMBA", "NUGID", "GNTRY*"]
+            ]
+        },
+        "RIGUS4": {
+            "icao": "RIGUS4",
+            "name": "Rigus 4",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "PSB": ["MURNO", "DUSOM", "RIGUS", "MIKKY", "PSB"]
+            },
+            "draw": [
+                ["MURNO", "DUSOM", "RIGUS", "MIKKY", "PSB*"]
+            ]
+        },
+        "URSAL3": {
+            "icao": "URSAL3",
+            "name": "Ursal 3",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "KASED": ["TILAM", "URSAL", "KASED"],
+                "ZOHAN": ["TILAM", "URSAL", "BESID", "NOSIK", "ZOHAN"]
+            },
+            "draw": [
+                ["TILAM", "URSAL", "KASED*"],
+                ["TILAM", "URSAL", "BESID", "NOSIK", "ZOHAN*"]
+            ]
+        },
+        "VERDO6": {
+            "icao": "VERDO6",
+            "name": "Verdo 6",
+            "altitude": 5000,
+            "rwy": {
+                "CYYZ23": ["#245"],
+                "CYYZ24R": ["#235"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ELSUB": ["SAVUR", "SEKIT", "VERDO", "AGNOB", "ELSUB"],
+                "IPTOS": ["SAVUR", "SEKIT", "VERDO", "AGNOB", "IPTOS"],
+                "LORKA": ["SAVUR", "SEKIT", "VERDO", "AGNOB", "LORKA"]
+            },
+            "draw": [
+                ["SAVUR", "SEKIT", "VERDO", "AGNOB", "ELSUB*"],
+                ["SAVUR", "SEKIT", "VERDO", "AGNOB", "IPTOS*"],
+                ["SAVUR", "SEKIT", "VERDO", "AGNOB", "LORKA*"]
+            ]
+        }
+    },
     "maps": [
         {
             "name": "Base Map",
