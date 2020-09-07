@@ -2119,6 +2119,108 @@
             ]
         }
     },
+    "spawnPatterns": [
+        {
+            "origin": "CYYZ",
+            "destination": "",
+            "category": "departure",
+            "route": "CYYZ23.ANCOL4.GGUCE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 8],
+                ["aal", 1],
+                ["dal", 1],
+                ["ual", 2],
+                ["wja", 6]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYYZ",
+            "category": "arrival",
+            "route": "OTNIK.BOXUM5.CYYZ23",
+            "altitude": [11000, 13000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aca", 5],
+                ["aca/long", 4],
+                ["wja", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYYZ",
+            "category": "arrival",
+            "route": "APDAX.NUBER4.CYYZ23",
+            "altitude": [11000, 13000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aca", 5],
+                ["aal", 1],
+                ["dal", 1],
+                ["ual", 2],
+                ["wja", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYYZ",
+            "category": "arrival",
+            "route": "WOZEE.LINNG2.CYYZ24R",
+            "altitude": [11000, 13000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aca", 5],
+                ["aal", 1],
+                ["dal", 1],
+                ["ual", 2],
+                ["wja", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYYZ",
+            "category": "arrival",
+            "route": "TUKIR.RAGID5.CYYZ24R",
+            "altitude": [9000, 10000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aca", 5],
+                ["aca/long", 4],
+                ["wja", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYYZ",
+            "category": "arrival",
+            "route": "YXI.IMEBA5.CYYZ23",
+            "altitude": [8000, 10000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aca", 5],
+                ["aca/long", 4],
+                ["wja", 4],
+                ["klm/long", 1],
+                ["afr/long", 1],
+                ["baw/long", 1],
+                ["dlh/long", 1]
+            ]
+        }
+    ],
     "maps": [
         {
             "name": "Base Map",
