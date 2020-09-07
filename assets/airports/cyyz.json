@@ -2029,6 +2029,96 @@
             ]
         }
     },
+    "stars": {
+        "BOXUM5": {
+            "icao": "BOXUM5",
+            "name": "Boxum 5",
+            "entryPoints": {
+                "OTNIK": ["OTNIK", "NAKAL", "GOPAK", "TUDAN", "SETGO", "DARID"],
+                "IRKIM": []
+            },
+            "body": ["BOXUM"],
+            "rwy": {
+                "CYYZ23": [["DUVOS", "A110+|A130-|S250"], "ADSED", ["SEDER", "A080|S210"], "ERBUS", "DAVIK", "LEVIG", "MIPED", "SATUR", "#057"],
+                "CYYZ24R": [["DUVOS", "A110+|A130-|S250"], "ADSED", ["SEDER", "A080|S210"], "ERBUS", "DAVIK", "LEVIG", "MIPED", "SATUR", "#057"]
+            },
+            "draw": [
+                ["OTNIK", "NAKAL", "GOPAK", "TUDAN", "SETGO", "DARID", "BOXUM*", "DUVOS", "ADSED", "SEDER", "ERBUS", "DAVIK", "LEVIG", "MIPED", "SATUR"]
+            ]
+        },
+        "IMEBA5": {
+            "icao": "IMEBA5",
+            "name": "Imeba 5",
+            "entryPoints": {
+                "TUKIR": ["TADMO", "VIBLI"],
+                "LETAK": ["TADMO", "VIBLI"],
+                "POLTY": ["PERGI"],
+                "YXI": ["BETUL"]
+            },
+            "body": ["IMEBA", ["LEPUX", "A80|S220"]],
+            "rwy": {
+                "CYYZ23": ["DUGDA", "CALVY", "#237"],
+                "CYYZ24R": ["AMILU", "EBDAL", "#237"]
+            },
+            "draw": [
+                ["IMEBA*", "LEPUX", "DUGDA", "CALVY"],
+                ["IMEBA", "LEPUX", "AMILU", "EBDAL"]
+            ]
+        },
+        "RAGID5": {
+            "icao": "RAGID5",
+            "name": "Ragid 5",
+            "entryPoints": {
+                "TUKIR": [],
+                "TORNI": []
+            },
+            "body": ["LIBEM", "IGSAP", "UDNOX", "RAGID", ["DENKA", "A70|S220"]],
+            "rwy": {
+                "CYYZ23": ["DUGDA", "CALVY", "#237"],
+                "CYYZ24R": ["AMILU", "EBDAL", "#237"]
+            },
+            "draw": [
+                ["RAGID*", "DENKA", "DUGDA", "CALVY"],
+                ["RAGID", "DENKA", "AMILU", "EBDAL"]
+            ]
+        },
+        "LINNG2": {
+            "icao": "LINNG2",
+            "name": "Linng 2",
+            "entryPoints": {
+                "WOZEE": ["ISTON"],
+                "LOKPU": [],
+                "OXMAN": ["TMILS", "MYPAL"]
+            },
+            "body": ["LINNG", ["YOUTH", "A110+|A130-|S250"], ["BIMPO", "A80|S210"], "VERKO"],
+            "rwy": {
+                "CYYZ23": ["MAROD", "DEKNI", "DAVNO", "DUNOL", "#057"],
+                "CYYZ24R": ["MAROD", "DEKNI", "DAVNO", "DUNOL", "#057"]
+            },
+            "draw": [
+                ["LINNG*", "YOUTH", "BIMPO", "VERKO", "MAROD", "DEKNI", "DAVNO", "DUNOL"]
+            ]
+        },
+        "NUBER4": {
+            "icao": "NUBER4",
+            "name": "Nuber 4",
+            "entryPoints": {
+                "YZEMN": ["SHHOT", "PNLTE", "BBOXX", "EBGAG", "NAKBO"],
+                "MONEE": ["SHHOT", "PNLTE", "BBOXX", "EBGAG", "NAKBO"],
+                "APDAX": [],
+                "QWERI": ["KNOOK", "ERBEL"],
+                "FINGL": ["DERLO"]
+            },
+            "body": ["NUBER", ["ROKTO", "A110+|A150-|S250"], "PENGO"],
+            "rwy": {
+                "CYYZ23": [["MANUP", "A80|S210"], "ERBUS", "DAVIK", "LEVIG", "MIPED", "SATUR", "#057"],
+                "CYYZ24R": [["BOTUM", "A80|S210"], "VERKO", "MAROD", "DEKNI", "DAVNO", "DUNOL", "#057"]
+            },
+            "draw": [
+                ["NUBER*", "ROKTO", "PENGO"]
+            ]
+        }
+    },
     "maps": [
         {
             "name": "Base Map",
