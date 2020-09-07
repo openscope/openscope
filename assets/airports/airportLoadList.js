@@ -66,12 +66,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Ottawa Macdonald-Cartier International Airport',
             premium: false
         },
-        // {
-        //     icao: 'cyyz',
-        //     level: 'medium',
-        //     name: 'Toronto Pearson International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'cyyz',
+            level: 'medium',
+            name: 'Toronto Pearson International Airport',
+            premium: false
+        },
         // {
         //     icao: 'ebbr',
         //     level: 'easy',
