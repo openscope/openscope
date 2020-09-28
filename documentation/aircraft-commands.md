@@ -303,9 +303,9 @@ writing altitudes you would drop the last two zeros. For example, 3,000ft =
 "30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
 Airplanes will not descend below 1000 feet (unless locked on ILS).
 
-Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
+Altitude also accepts an `expedite` or `ex` argument which can be used as the last item in the command.
 
-_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
+_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] ex`
 
 ### Fly Present Heading
 
