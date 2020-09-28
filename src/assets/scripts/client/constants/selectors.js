@@ -76,6 +76,7 @@ export const CLASSNAMES = {
     STRIP: 'strip',
     SWITCH_AIRPORT: 'switch-airport',
     TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+    TOGGLE_AIRSPACE: 'toggle-airspace',
     TOGGLE_CHANGELOG: 'js-changelogToggle',
     TOGGLE_LABELS: 'toggle-labels',
     TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',

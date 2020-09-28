@@ -137,6 +137,15 @@ export default class CanvasController {
         this._shouldDeepRender = true;
 
         /**
+         * Flag used to determine if airspace polygons should be displayed and labeled
+         *
+         * @property _shouldDrawAirspace
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawAirspace = false;
+
+        /**
          * Flag used to determine if fix labels should be displayed
          *
          * @property _shouldDrawFixLabels
@@ -240,6 +249,7 @@ export default class CanvasController {
         this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
         this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
         this._onMarkDirtyCanvasHandler = this._onMarkDirtyCanvas.bind(this);
+        this._onToggleAirspaceHandler = this._onToggleAirspace.bind(this);
         this._onToggleLabelsHandler = this._onToggleLabels.bind(this);
         this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
         this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
@@ -267,6 +277,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
         this._eventBus.on(EVENT.MARK_SHALLOW_RENDER, this._onMarkDirtyCanvasHandler);
+        this._eventBus.on(EVENT.TOGGLE_AIRSPACE, this._onToggleAirspaceHandler);
         this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
         this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
         this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
@@ -294,6 +305,7 @@ export default class CanvasController {
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
         this._eventBus.off(EVENT.MARK_SHALLOW_RENDER, this._onMarkDirtyCanvas);
+        this._eventBus.off(EVENT.TOGGLE_AIRSPACE, this._onToggleAirspaceHandler);
         this._eventBus.off(EVENT.TOGGLE_LABELS, this._onToggleLabels);
         this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
         this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
@@ -1729,6 +1741,10 @@ export default class CanvasController {
     }
 
     _drawAirspaceShelvesAndLabels(cc) {
+        if (!this._shouldDrawAirspace) {
+            return;
+        }
+
         cc.save();
 
         const airport = AirportController.airport_get();
@@ -2314,6 +2330,22 @@ export default class CanvasController {
      * @private
      */
     _onChangeViewportZoom() {
+        this._markDeepRender();
+    }
+
+    /**
+     * Toogle current value of `#_shouldDrawAirspace`
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleAirspace
+     * @private
+     */
+    _onToggleAirspace() {
+        this._shouldDrawAirspace = !this._shouldDrawAirspace;
+
         this._markDeepRender();
     }
 
