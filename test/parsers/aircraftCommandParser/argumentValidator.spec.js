@@ -126,15 +126,15 @@ ava('.altitudeValidator() returns a string when passed the wrong number of argum
     t.true(result === 'Invalid argument length. Expected one or two arguments');
 });
 
-ava('.altitudeValidator() returns a string when passed anything other than expedite or x as the second argument', t => {
+ava('.altitudeValidator() returns a string when passed anything other than expedite or ex as the second argument', t => {
     let result = altitudeValidator(['100', 'expedite']);
     t.true(typeof result === 'undefined');
 
-    result = altitudeValidator(['100', 'x']);
+    result = altitudeValidator(['100', 'ex']);
     t.true(typeof result === 'undefined');
 
     result = altitudeValidator(['100', '']);
-    t.true(result === 'Invalid argument. Altitude accepts only "expedite" or "x" as a second argument');
+    t.true(result === 'Invalid argument. Altitude accepts only "expedite" or "ex" as a second argument');
 });
 
 ava('.optionalAltitudeValidator() returns undefined when no value is passed', t => {

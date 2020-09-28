@@ -107,7 +107,7 @@ export const twoOrThreeArgumentsValidator = (args = []) => {
  * Allowed argument shapes:
  * - ['030']
  * - ['030', 'expedite']
- * - ['030', 'x']
+ * - ['030', 'ex']
  * ```
  *
  * @function altitudeValidator

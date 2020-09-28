@@ -33,7 +33,7 @@ export const ERROR_MESSAGE = {
     ONE_TO_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one, two, or three arguments`,
     ONE_OR_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or three arguments`,
     TWO_OR_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected two or three arguments`,
-    ALTITUDE_EXPEDITE_ARG: `${INVALID_ARG}. Altitude accepts only "expedite" or "x" as a second argument`,
+    ALTITUDE_EXPEDITE_ARG: `${INVALID_ARG}. Altitude accepts only "expedite" or "ex" as a second argument`,
     ALTITUDE_MUST_BE_NUMBER: `${INVALID_ARG}. Altitude must be a number`,
     SPEED_MUST_BE_NUMBER: `${INVALID_ARG}. Speed must be a number`,
     HEADING_MUST_BE_NUMBER: `${INVALID_ARG}. Heading must be a number`,
