@@ -1,0 +1,116 @@
+{
+    "airac": 2007,
+    "radio": {
+        "twr": "Salzburg Tower",
+        "app": "Salzburg Radar",
+        "dep": "Salzburg Radar"
+    },  
+    "icao": "LOWS",
+    "iata": "SZG",
+    "magnetic_north": 4.04,
+    "ctr_radius": 80,
+    "ctr_ceiling": 12500,
+    "initial_alt": 6000,
+    "position": ["N47d47m40", "N013d00m12", "1411ft"],
+    "rangeRings": {
+        "enabled": false,
+        "center": ["N47d47m40", "N013d00m12"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": true,
+    "wind": {
+        "angle": 240,
+        "speed": 5
+    },
+    "arrivalRunway": "15",
+    "departureRunway": "33",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 12500,
+            "airspace_class": "B",
+            "poly": [
+                ["N48d17m29", "E013d09m59"],
+                ["N48d10m02", "E013d10m00"],
+                ["N48d05m00", "E013d10m00"],
+                ["N47d52m12", "E013d19m54"],
+                ["N47d51m44", "E013d20m15"],
+                ["N47d48m14", "E013d19m28"],
+                ["N47d47m02", "E013d09m10"],
+                ["N47d42m52", "E013d10m58"],
+                ["N47d40m13", "E013d12m36"],
+                ["N47d37m15", "E013d14m16"],
+                ["N47d36m37", "E013d08m08"],
+                ["N47d41m13", "E013d04m51"],
+                ["N47d41m45", "E013d03m47"],
+                ["N47d43m15", "E013d01m19"],
+                ["N47d43m21", "E013d00m46"],
+                ["N47d42m26", "E012d58m26"],
+                ["N47d42m54", "E012d55m07"],
+                ["N47d44m21", "E012d54m58"],
+                ["N47d45m52", "E012d56m41"],
+                ["N47d46m16", "E012d56m32"],
+                ["N47d46m34", "E012d56m00"],
+                ["N47d48m24", "E012d58m12"],
+                ["N47d50m38", "E013d00m14"],
+                ["N47d52m37", "E012d58m54"],
+                ["N47d54m20", "E012d57m46"],
+                ["N47d56m35", "E012d56m06"],
+                ["N47d57m29", "E012d53m56"],
+                ["N47d58m03", "E012d52m13"],
+                ["N48d00m25", "E012d51m27"],
+                ["N48d01m13", "E012d50m42"],
+                ["N48d01m31", "E012d50m19"],
+                ["N48d02m33", "E012d48m36"],
+                ["N48d04m15", "E012d45m50"],
+                ["N48d06m42", "E012d45m01"],
+                ["N48d07m38", "E012d46m29"],
+                ["N48d09m04", "E012d48m36"],
+                ["N48d09m59", "E012d50m46"],
+                ["N48d10m02", "E012d50m51"],
+                ["N48d12m08", "E012d52m22"],
+                ["N48d12m22", "E012d54m53"],
+                ["N48d12m40", "E012d57m38"],
+                ["N48d14m33", "E013d00m16"],
+                ["N48d15m55", "E013d03m18"],
+                ["N48d16m38", "E013d06m48"],
+                ["N48d17m29", "E013d09m59"]
+            ]
+        }
+    ],
+    "restricted": [
+    ],
+    "fixes": {
+    },
+    "runways":[
+		{
+            "name": ["15", "33"],
+            "end": [
+                ["N47d48m11.32", "E012d59m51.89", "1411ft"],
+                ["N47d47m02.57", "E013d00m35.34", "1411ft"]
+            ],
+            "ils": [true, false],
+            "ils_distance":[28, 0],
+            "loc_maxDist": [28, 0],
+            "glideslope": [3.0, 0]
+		}
+    ],
+    "airways": {
+    },
+    "sids": {
+    },
+    "stars": {
+    },
+    "spawnPatterns": [
+        {
+        } 
+    ],
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
+            ]
+        }
+    ]
+}
