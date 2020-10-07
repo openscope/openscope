@@ -351,6 +351,16 @@ ava('.isEstablishedOnGlidepath() returns true when an acceptable distance below 
     t.true(result);
 });
 
+ava('.isInsideAirspace() returns the value of Airport.isPointWithinAirspace as called upon the provided AirportModel', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const expectedResult = 'this is some output from Airport.isPointWithinAirspace()';
+    const airportModelIsPointWithinAirspaceStub = sandbox.stub(airportModelFixture, 'isPointWithinAirspace').returns(expectedResult);
+    const result = model.isInsideAirspace(airportModelFixture);
+
+    t.true(airportModelIsPointWithinAirspaceStub.calledWithExactly(model.relativePosition, model.altitude));
+    t.true(result === expectedResult);
+});
+
 // using `sinon.stub` directly for these tests because the stubs via `sandbox` are not getting restored
 // in time for the next assertion that is also stubbing the same methods
 ava('.isOnFinal() returns false when neither on the selected course nor within the final approach fix distance', (t) => {

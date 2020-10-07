@@ -7,6 +7,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1615" target="_blank">#1615</a> - Fix broken link in KSTL airport guide
 - <a href="https://github.com/openscope/openscope/issues/1583" target="_blank">#1583</a> - Update EDDF to AIRAC 2009
 - <a href="https://github.com/openscope/openscope/issues/1645" target="_blank">#1645</a> - Change expedite command from "x" to "ex" (since "x" is now used for "cross")
+- <a href="https://github.com/openscope/openscope/issues/391" target="_blank">#391</a> - Add support for multiple airspace sections
 
 # 6.19.0 (August 10, 2020)
 ### New Features

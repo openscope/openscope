@@ -38,7 +38,6 @@ import {
     distance_to_poly,
     point_to_mpoly,
     point_in_poly,
-    point_in_area,
     vadd,
     vectorize2dFromRadians,
     vlen,
@@ -986,7 +985,8 @@ export default class AircraftModel {
         // const course = this.mcp.course;
         // const courseOffset = getOffset(this, courseDatum.relativePosition, course);
         // const lateralDistanceFromCourse_nm = abs(nm(courseOffset[0]));
-        // const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        // const allowableLateralDistanceFromCourse = PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        // const isAlignedWithCourse = lateralDistanceFromCourse_nm <= allowableLateralDistanceFromCourse;
         // const heading_diff = abs(angle_offset(this.heading, course));
         // const isOnCourseHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
         //
@@ -1010,25 +1010,16 @@ export default class AircraftModel {
         return glideslopeAltitudeDifference <= PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
     }
 
-    // TODO: the logic here should be moved to the `AirportModel`
     /**
      * Checks if the aircraft is inside the airspace of a specified airport
      *
      * @for AircraftModel
      * @method isInsideAirspace
-     * @param  {airport} airport the airport whose airspace we are checking
+     * @param  {AirportModel} airport the airport whose airspace we are checking
      * @return {boolean}
      */
     isInsideAirspace(airport) {
-        let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
-        const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
-
-        // polygonal airspace boundary
-        if (!_isNil(airport.perimeter)) {
-            withinAirspaceLateralBoundaries = point_in_area(this.positionModel.relativePosition, airport.perimeter);
-        }
-
-        return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
+        return airport.isPointWithinAirspace(this.relativePosition, this.altitude);
     }
 
     /**
@@ -1874,7 +1865,8 @@ export default class AircraftModel {
         const severity_of_correction = 20; // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
-        const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <=
+            PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
 
         // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
         if (inTheWindow || isAlignedWithCourse) {
@@ -2128,7 +2120,9 @@ export default class AircraftModel {
                     if (altitudeMaximum < altitudeMinimum) {
                         // the maximum altitude is below the minimal altiude, check if we can climb all the way up
                         // without violating VNAV restrictions.
-                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, altitudeMinimumWaypoint, altitudeMaximumWaypoint);
+                        const firstWaypoint = this._findFirstWaypoint(
+                            this.fms.waypoints, altitudeMinimumWaypoint, altitudeMaximumWaypoint
+                        );
 
                         if (firstWaypoint.name === altitudeMaximumWaypoint.name) {
                             // ... but we can not climb all the way up yet
@@ -2362,7 +2356,9 @@ export default class AircraftModel {
                 offsetGameTime
             ]);
             // TODO: this can be abstracted
-        } else if (abs(offsetGameTime - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
+        } else if (abs(offsetGameTime - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) >
+            4 / GameController.game_speedup()
+        ) {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],
                 this.positionModel.relativePosition[1],
