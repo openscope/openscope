@@ -1015,11 +1015,11 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method isInsideAirspace
-     * @param  {airport} airport the airport whose airspace we are checking
+     * @param  {AirportModel} airport the airport whose airspace we are checking
      * @return {boolean}
      */
     isInsideAirspace(airport) {
-        return airport.isPointWithinAirspace(this.positionModel.relativePosition, this.altitude);
+        return airport.isPointWithinAirspace(this.relativePosition, this.altitude);
     }
 
     /**

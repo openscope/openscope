@@ -868,6 +868,8 @@ export default class AirportModel {
     }
 
     /**
+     * Returns whether or not the provided point (at the specified altitude) is within any
+     * airspace area belonging to this airport
      *
      * @for AirportModel
      * @function isPointWithinAirspace
@@ -876,10 +878,6 @@ export default class AirportModel {
      * @return {boolean}
      */
     isPointWithinAirspace(point, altitude) {
-        if (!this.airspace) {
-            return this.distance2d(point) <= this.ctr_radius && altitude <= this.ctr_ceiling;
-        }
-
         for (let i = 0; i < this.airspace.length; i++) {
             const airspace = this.airspace[i];
 
