@@ -23,10 +23,6 @@ import {
     vscale
 } from '../math/vector';
 import {
-    degreesToRadians,
-    km
-} from '../utilities/unitConverters';
-import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
@@ -42,6 +38,12 @@ import {
 } from '../constants/globalConstants';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
+import { leftPad } from '../utilities/generalUtilities';
+import {
+    DECIMAL_RADIX,
+    degreesToRadians,
+    km
+} from '../utilities/unitConverters';
 
 /**
  * @class CanvasController
@@ -132,6 +134,15 @@ export default class CanvasController {
          * @default true
          */
         this._shouldDeepRender = true;
+
+        /**
+         * Flag used to determine if airspace polygons should be displayed and labeled
+         *
+         * @property _shouldDrawAirspace
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawAirspace = false;
 
         /**
          * Flag used to determine if fix labels should be displayed
@@ -237,6 +248,7 @@ export default class CanvasController {
         this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
         this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
         this._onMarkDirtyCanvasHandler = this._onMarkDirtyCanvas.bind(this);
+        this._onToggleAirspaceHandler = this._onToggleAirspace.bind(this);
         this._onToggleLabelsHandler = this._onToggleLabels.bind(this);
         this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
         this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
@@ -264,6 +276,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
         this._eventBus.on(EVENT.MARK_SHALLOW_RENDER, this._onMarkDirtyCanvasHandler);
+        this._eventBus.on(EVENT.TOGGLE_AIRSPACE, this._onToggleAirspaceHandler);
         this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
         this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
         this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
@@ -291,6 +304,7 @@ export default class CanvasController {
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
         this._eventBus.off(EVENT.MARK_SHALLOW_RENDER, this._onMarkDirtyCanvas);
+        this._eventBus.off(EVENT.TOGGLE_AIRSPACE, this._onToggleAirspaceHandler);
         this._eventBus.off(EVENT.TOGGLE_LABELS, this._onToggleLabels);
         this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
         this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
@@ -412,6 +426,7 @@ export default class CanvasController {
             this._drawSids(staticCanvasCtx);
             this._drawStars(staticCanvasCtx);
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
+            this._drawAirspaceShelvesAndLabels(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
             this._drawCurrentScale(staticCanvasCtx);
         }
@@ -552,15 +567,13 @@ export default class CanvasController {
         const textHeight = 14;
 
         cc.save();
-        cc.translate(runwayPosition.x, runwayPosition.y);
-        cc.rotate(angle);
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
-        cc.save();
+        cc.translate(runwayPosition.x, runwayPosition.y);
+        cc.rotate(angle);
         cc.translate(0, length2 + textHeight);
         cc.rotate(-angle);
         cc.fillText(runwayModel.name, 0, 0);
-        cc.restore();
         cc.restore();
     }
 
@@ -857,22 +870,31 @@ export default class CanvasController {
         cc.stroke();
     }
 
+    // TODO: This method requires that we translate the canvas to the center, WITHOUT correcting for pan.
+    // This is the opposite of what _drawPoly does, and there is real advantage to the differing strategies.
+    // They should both be made to behave in the same way, probably by translating to center, and adjusting
+    // for pan within _drawPoly or _drawText itself, to make the usage in _drawFixes etc more intuitive.
     /**
      * @for CanvasController
      * @method _drawText
      * @param cc {HTMLCanvasContext}
      * @param position {array<number, number>} position coordinates (in km)
      * @param labels {array}
+     * @param lineHeight {number} in pixel
      * @private
      */
-    _drawText(cc, position, labels) {
+    _drawText(cc, position, labels, lineHeight = 15) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
-        const dx = cc.textAlign === 'right' ? -10 : 10;
+        let dx = cc.textAlign === 'right' ? -10 : 10;
+
+        if (cc.textAlign === 'center') {
+            dx = 0;
+        }
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
             const positionX = positionInPx.x + dx;
-            const positionY = positionInPx.y + (15 * k);
+            const positionY = positionInPx.y + (lineHeight * k);
 
             cc.fillText(textItem, positionX, positionY);
         }
@@ -1115,7 +1137,7 @@ export default class CanvasController {
      * @param aircraft {AircraftModel}
      * @param future_track
      */
-    canvas_draw_future_track_fixes(cc, aircraft, future_track) {
+    canvas_draw_future_track_fixes(/* cc, aircraft, future_track */) {
         // const waypointList = aircraft.fms.waypoints;
         //
         // if (waypointList.length <= 1) {
@@ -1457,8 +1479,12 @@ export default class CanvasController {
         }
 
         // Move to center of where the data block is to be drawn
-        const radarTargetPositionX = round(CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[0])) + CanvasStageModel._panX;
-        const radarTargetPositionY = -round(CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[1])) + CanvasStageModel._panY;
+        const radarTargetPositionX = round(
+            CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[0])
+        ) + CanvasStageModel._panX;
+        const radarTargetPositionY = -round(
+            CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[1])
+        ) + CanvasStageModel._panY;
         const radarTargetPosition = [
             radarTargetPositionX,
             radarTargetPositionY
@@ -1668,6 +1694,9 @@ export default class CanvasController {
      * @private
      */
     _drawAirspaceAndRangeRings(cc) {
+        const airport = AirportController.airport_get();
+        const rangeRingRadius = this._calculateRangeRingRadius(airport);
+
         cc.save();
         // translate to airport center
         // TODO: create method in CanvasStageModel to returns an array with these values
@@ -1675,168 +1704,145 @@ export default class CanvasController {
             round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
             round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
         );
-        this._drawAirspaceBorder(cc);
 
-        // undo the above translation
-        // caution: do not replace with restore().save() because
-        // we need the clipping region from _drawAirspaceBorder()
-        // also, do not reverse these calls, as the rings should be
-        // drawn ON TOP of the airspace boundary lines
-        cc.translate(
-            round(-CanvasStageModel.halfWidth - CanvasStageModel._panX),
-            round(-CanvasStageModel.halfHeight - CanvasStageModel._panY)
-        );
+        // draw airspaces
+        for (let i = 0; i < airport.airspace.length; i++) {
+            const airspace = airport.airspace[i];
 
-        this._drawRangeRings(cc);
+            cc.save();
+
+            cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
+            cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
+
+            this._drawPoly(cc, airspace.relativePoly, false);
+
+            // prevent infinite loop when rangeRingRadius is 0
+            if (rangeRingRadius > 0) {
+                cc.clip();
+
+                // cc.linewidth = 1;
+                cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
+
+                // Fill up airportModel's ctr_radius with rings of the specified radius
+                for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
+                    cc.beginPath();
+                    cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
+                    cc.stroke();
+                }
+            }
+
+            cc.restore();
+        }
+
+        // this._drawAirspaceShelvesAndLabels(cc);
+
+        cc.restore();
+    }
+
+    _drawAirspaceShelvesAndLabels(cc) {
+        if (!this._shouldDrawAirspace) {
+            return;
+        }
+
+        cc.save();
+
+        const airport = AirportController.airport_get();
+        cc.strokeStyle = 'rgba(224, 128, 128, 1.0)';
+        cc.fillStyle = 'rgba(224, 128, 128, 1.0)';
+        cc.font = '12px monoOne, monospace';
+        cc.textAlign = 'center';
+        cc.textBaseline = 'middle';
+
+        for (let i = 0; i < airport.airspace.length; i++) {
+            const airspace = airport.airspace[i];
+
+            cc.save(); // to allow reset of translation
+            // required positioning to use _drawPoly
+            cc.translate(
+                CanvasStageModel.halfWidth + CanvasStageModel._panX,
+                CanvasStageModel.halfHeight + CanvasStageModel._panY
+            );
+            // draw lines
+            this._drawPoly(cc, airspace.relativePoly, false);
+
+            const bottomFlightLevel = leftPad(Math.floor(airspace.floor / 100), 3);
+            const topFlightLevel = leftPad(Math.ceil(airspace.ceiling / 100), 3);
+            const content = `${bottomFlightLevel}-${topFlightLevel} (#${i})`;
+
+            cc.restore(); // reset from translation used for poly above
+            cc.save();
+            // required positioning to use _drawText
+            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+            // draw labels
+            for (const labelPosition of airspace.labelPositions) {
+                this._drawText(cc, labelPosition, [content]);
+            }
+
+            cc.restore();
+        }
+
         cc.restore();
     }
 
     /**
-     * Draw polygonal airspace border
+     * Calculates the range ring radius
      *
      * @for CanvasController
-     * @method _drawAirspaceBorder
-     * @param cc {HTMLCanvasContext}
+     * @method _calculateRangeRingRadius
+     * @param airport {AirportModel}
      * @private
      */
-    _drawAirspaceBorder(cc) {
-        const airport = AirportController.airport_get();
-
-        cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
-        cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
-
-        for (let i = 0; i < airport.airspace.length; i++) {
-            const poly = $.map(airport.perimeter.poly, (v) => {
-                return [v.relativePosition];
-            });
-
-            this._drawPoly(cc, poly);
-            cc.clip();
-        }
-    }
-
-    // TODO: are these two methods still needed? why?
-    // /**
-    //  * @for CanvasController
-    //  * @method canvas_draw_engm_range_rings
-    //  * @param cc {HTMLCanvasContext}
-    //  */
-    // // Draw range rings for ENGM airport to assist in point merge
-    // canvas_draw_engm_range_rings(cc) {
-    //     cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-    //     cc.setLineDash([3, 6]);
-
-    //     this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
-    //     this.canvas_draw_fancy_rings(cc, 'TITLA', 'GM418', 'GM422');
-    //     this.canvas_draw_fancy_rings(cc, 'INSUV', 'GM403', 'GM416');
-    //     this.canvas_draw_fancy_rings(cc, 'VALPU', 'GM410', 'GM402');
-    // }
-
-    //  /**
-    //  * Draw range rings for `ENGM`
-    //  *
-    //  * This method is used exclusively by `.canvas_draw_engm_range_rings()`
-    //  *
-    //  * @for CanvasController
-    //  * @method canvas_draw_fancy_rings
-    //  * @param cc {HTMLCanvasContext}
-    //  * @param fix_origin
-    //  * @param fix1
-    //  * @param fix2
-    //  */
-    // canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
-    //     const airport = AirportController.airport_get();
-    //     const origin = airport.getFixPosition(fix_origin);
-    //     const f1 = airport.getFixPosition(fix1);
-    //     const f2 = airport.getFixPosition(fix2);
-    //     const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
-    //     const halfPI = Math.PI / 2;
-    //     const extend_ring = degreesToRadians(10);
-    //     const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
-    //     const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
-    //     const x = round(CanvasStageModel.translateKilometersToPixels(origin[0])) + CanvasStageModel._panX;
-    //     const y = -round(CanvasStageModel.translateKilometersToPixels(origin[1])) + CanvasStageModel._panY;
-    //     // 5NM = 9.27km
-    //     const radius = 9.27;
-
-    //     for (let i = 0; i < 4; i++) {
-    //         cc.beginPath();
-    //         cc.arc(
-    //             x,
-    //             y,
-    //             CanvasStageModel.translateKilometersToPixels(minDist - (i * radius)),
-    //             start_angle, end_angle
-    //         );
-
-    //         cc.stroke();
-    //     }
-    // }
-
-    /**
-     * @for CanvasController
-     * @method _drawRangeRings
-     * @param cc {HTMLCanvasContext}
-     * @private
-     */
-    _drawRangeRings(cc) {
-        const airportModel = AirportController.airport_get();
+    _calculateRangeRingRadius(airport) {
         const userValue = GameController.getGameOption(GAME_OPTION_NAMES.RANGE_RINGS);
         const useDefault = userValue === 'default';
-        const defaultRangeRings = airportModel.rangeRings;
-        const centerPositionPx = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(
-            defaultRangeRings.center.relativePosition
-        );
-        const drawPositionX = centerPositionPx.x + CanvasStageModel.halfWidth;
-        const drawPositionY = centerPositionPx.y + CanvasStageModel.halfHeight;
+        const defaultRangeRings = airport.rangeRings;
 
         if (userValue === 'off' || (useDefault && defaultRangeRings.enabled === false)) {
-            return;
+            return 0;
         }
-
-        let rangeRingRadius = km(defaultRangeRings.radius_nm);
 
         if (!useDefault) {
-            rangeRingRadius = km(parseInt(userValue, 10));
+            return km(parseInt(userValue, DECIMAL_RADIX));
         }
 
-        if (rangeRingRadius === 0) {
-            // prevent infinite loop
-            return;
-        }
-
-        cc.linewidth = 1;
-        cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-
-        // Fill up airportModel's ctr_radius with rings of the specified radius
-        for (let i = 1; i * rangeRingRadius < airportModel.ctr_radius; i++) {
-            cc.beginPath();
-            cc.arc(drawPositionX, drawPositionY, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
-            cc.stroke();
-        }
+        return km(defaultRangeRings.radius_nm);
     }
 
+    // TODO: This method requires that we translate the canvas to the center, WITH correcting for pan.
+    // This is the opposite of what _drawText does, and there is real advantage to the differing strategies.
+    // They should both be made to behave in the same way, probably by translating to center, and adjusting
+    // for pan within _drawPoly or _drawText itself, to make the usage in _drawFixes etc more intuitive.
     /**
+     * Draw the provided polygon to the specified canvas
+     *
+     * This method does not itself provide any specific color/width/etc properties. These must be
+     * set prior to calling this method.
+     *
      * @for CanvasController
      * @method _drawPoly
      * @param cc {HTMLCanvasContext}
      * @param poly {array<array<number, number>>}
      * @private
      */
-    _drawPoly(cc, poly) {
+    _drawPoly(cc, poly, fill = true) {
         cc.beginPath();
 
         for (let i = 0; i < poly.length; i++) {
-            const singlePoly = poly[i];
+            const point = poly[i];
 
             cc.lineTo(
-                CanvasStageModel.translateKilometersToPixels(singlePoly[0]),
-                -CanvasStageModel.translateKilometersToPixels(singlePoly[1])
+                CanvasStageModel.translateKilometersToPixels(point[0]),
+                -CanvasStageModel.translateKilometersToPixels(point[1])
             );
         }
 
         cc.closePath();
         cc.stroke();
-        cc.fill();
+
+        if (fill) {
+            cc.fill();
+        }
     }
 
     /**
@@ -2323,6 +2329,22 @@ export default class CanvasController {
      * @private
      */
     _onChangeViewportZoom() {
+        this._markDeepRender();
+    }
+
+    /**
+     * Toogle current value of `#_shouldDrawAirspace`
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleAirspace
+     * @private
+     */
+    _onToggleAirspace() {
+        this._shouldDrawAirspace = !this._shouldDrawAirspace;
+
         this._markDeepRender();
     }
 

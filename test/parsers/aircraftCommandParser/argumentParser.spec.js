@@ -19,7 +19,7 @@ ava('.altitudeParser() converts a string flight level altitude to a number altit
 });
 
 ava('.altitudeParser() returns true if the second argument is not undefined', t => {
-    const result = altitudeParser(['080', 'x']);
+    const result = altitudeParser(['080', 'ex']);
 
     t.true(result[1]);
 });

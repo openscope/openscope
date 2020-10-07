@@ -174,6 +174,13 @@ export const EVENT = {
 
     /**
      * @memberof EVENT
+     * @property TOGGLE_AIRSPACE
+     * @type {string}
+     */
+    TOGGLE_AIRSPACE: 'toggle-airspace',
+
+    /**
+     * @memberof EVENT
      * @property TOGGLE_CHANGELOG
      * @type {string}
      */

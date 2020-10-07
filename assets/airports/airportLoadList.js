@@ -379,15 +379,15 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
-            icao: 'lrop',
-            level: 'medium',
-            name: 'Bucharest Henri Coandă Airport',
-            premium: false
-        },
-        {
             icao: 'loww',
             level: 'easy',
             name: 'Vienna Schwechat International Airport',
+            premium: false
+        },
+        {
+            icao: 'lrop',
+            level: 'medium',
+            name: 'Bucharest Henri Coandă Airport',
             premium: false
         },
         {

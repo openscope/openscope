@@ -1,3 +1,11 @@
+# 6.20.0 (October 7, 2020)
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1615" target="_blank">#1615</a> - Fix broken link in KSTL airport guide
+- <a href="https://github.com/openscope/openscope/issues/1583" target="_blank">#1583</a> - Update EDDF to AIRAC 2009
+- <a href="https://github.com/openscope/openscope/issues/1645" target="_blank">#1645</a> - Change expedite command from "x" to "ex" (since "x" is now used for "cross")
+- <a href="https://github.com/openscope/openscope/issues/391" target="_blank">#391</a> - Add support for multiple airspace sections
+
+
 # 6.19.0 (August 10, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1624" target="_blank">#1624</a> - Add speed capability to crossing restrictions
@@ -10,6 +18,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1628" target="_blank">#1628</a> - Use Github status checks for all pull requests
 - <a href="https://github.com/openscope/openscope/issues/1538" target="_blank">#1538</a> - Update KDCA
+
 
 # 6.18.0 (July 1, 2020)
 ### New Features
@@ -26,9 +35,11 @@
 - <a href="https://github.com/openscope/openscope/issues/1606" target="_blank">#1606</a> - Retitle options menu to "Settings"
 - <a href="https://github.com/openscope/openscope/issues/1608" target="_blank">#1608</a> - Add/Update Japanese Airline Files
 
+
 # 6.17.1 (May 21, 2020)
 ### Hotfixes
 - <a href="https://github.com/openscope/openscope/issues/1573" target="_blank">#1573</a> - Add missing waypoints from KJFK to fix crash
+
 
 # 6.17.0 (May 1, 2020)
 ### New Features
@@ -41,6 +52,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1543" target="_blank">#1543</a> - Remove BEE/TCX airlines
 - <a href="https://github.com/openscope/openscope/issues/1551" target="_blank">#1551</a> - Add missing waypoint CORDS at KJFK
 - <a href="https://github.com/openscope/openscope/issues/1271" target="_blank">#1271</a> - Update the tutorial
+
 
 # 6.16.0 (March 1, 2020)
 ### New Features
