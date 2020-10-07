@@ -1,3 +1,11 @@
+# 6.21.0 (November 1, 2020)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.20.0 (October 7, 2020)
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1615" target="_blank">#1615</a> - Fix broken link in KSTL airport guide
