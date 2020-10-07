@@ -16,7 +16,6 @@ import {
     clamp
 } from '../math/core';
 import {
-    area_to_poly,
     positive_intersection_with_rect,
     vectorize2dFromRadians,
     vectorize2dFromDegrees,

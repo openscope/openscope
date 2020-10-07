@@ -22,6 +22,7 @@ import {
     round
 } from '../math/core';
 import {
+    vectorize2dFromRadians,
     vlen,
     vsub,
     vadd,
