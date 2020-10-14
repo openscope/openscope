@@ -1019,9 +1019,14 @@
             "ils": [true, true]
         }
     ],
+    "airways": {
+        "Q37": ["SHA", "TOMTO", "TORLU", "OSGAR"],
+        "M145": ["SHA", "DIGAN", "ENOKU", "PELIG", "DUB"],
+        "L975": ["SHA", "RIKUL", "KORAK", "INKUR", "DUB"]
+    },
     "sids": {
-        "ABAGU3A": {
-            "icao": "ABAGU3A",
+        "ABAG3A": {
+            "icao": "ABAG3A",
             "name": "Abahgoo Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+|S185-"]]
@@ -1034,8 +1039,8 @@
                 ["_RWY0601DME", "ABAGU"]
             ]
         },
-        "ABAGU3B": {
-            "icao": "ABAGU3B",
+        "ABAG3B": {
+            "icao": "ABAG3B",
             "name": "Abahgoo Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["ADARU", "A33+|S185-"]]
@@ -1048,8 +1053,8 @@
                 ["_RWY2401DME", "ADARU", "ABAGU"]
             ]
         },
-        "AGINI3A": {
-            "icao": "AGINI3A",
+        "AGIN3A": {
+            "icao": "AGIN3A",
             "name": "Aginee Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+"]]
@@ -1062,8 +1067,8 @@
                 ["_RWY0601DME", "AGINI"]
             ]
         },
-        "AGINI3B": {
-            "icao": "AGINI3B",
+        "AGIN3B": {
+            "icao": "AGIN3B",
             "name": "Aginee Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["DISUR", "A33+|S185-"], ["GORTO", "S250-"]]
@@ -1076,8 +1081,8 @@
                 ["_RWY2401DME", "DISUR", "GORTO", "AGINI"]
             ]
         },
-        "BUNON3B": {
-            "icao": "BUNON3B",
+        "BUNO3B": {
+            "icao": "BUNO3B",
             "name": "Boonon Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+"]]
@@ -1090,8 +1095,8 @@
                 ["_RWY2401DME", "BUNON"]
             ]
         },
-        "DIGAN3A": {
-            "icao": "DIGAN3A",
+        "DIGA3A": {
+            "icao": "DIGA3A",
             "name": "Digan Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+"]]
@@ -1104,8 +1109,8 @@
                 ["_RWY0601DME", "DIGAN"]
             ]
         },
-        "ERABI3A": {
-            "icao": "ERABI3A",
+        "ERAB3A": {
+            "icao": "ERAB3A",
             "name": "Ehrabee Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+|S185-"], ["NEPOG", "A34+|S185-"]]
@@ -1118,8 +1123,8 @@
                 ["_RWY0601DME", "NEPOG", "ERABI"]
             ]
         },
-        "ERABI3B": {
-            "icao": "ERABI3B",
+        "ERAB3B": {
+            "icao": "ERAB3B",
             "name": "Ehrabee Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["DISUR", "A33+|S185-"]]
@@ -1132,8 +1137,8 @@
                 ["DISUR", "ERABI"]
             ]
         },
-        "KURUM3A": {
-            "icao": "KURUM3A",
+        "KURU3A": {
+            "icao": "KURU3A",
             "name": "Kooroom Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+|S185-"], ["GATLO", "A34+|S185-"]]
@@ -1146,8 +1151,8 @@
                 ["_RWY0601DME", "GATLO", "KURUM"]
             ]
         },
-        "KURUM3B": {
-            "icao": "KURUM3B",
+        "KURU3B": {
+            "icao": "KURU3B",
             "name": "Kooroom Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["ADARU", "A33+|S185-"]]
@@ -1160,8 +1165,8 @@
                 ["ADARU", "KURUM"]
             ]
         },
-        "LUNIG3A": {
-            "icao": "LUNIG3A",
+        "LUNI3A": {
+            "icao": "LUNI3A",
             "name": "Lunig Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+|S185-"], ["GATLO", "A34+|S185-"]]
@@ -1174,8 +1179,8 @@
                 ["GATLO", "LUNIG"]
             ]
         },
-        "LUNIG3B": {
-            "icao": "LUNIG3B",
+        "LUNI3B": {
+            "icao": "LUNI3B",
             "name": "Lunig Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["ADARU", "A33+|S185-"]]
@@ -1188,8 +1193,8 @@
                 ["ADARU", "LUNIG"]
             ]
         },
-        "LUPOR3B": {
-            "icao": "LUPOR3B",
+        "LUPO3B": {
+            "icao": "LUPORB",
             "name": "Loopor Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+"]]
@@ -1202,8 +1207,8 @@
                 ["_RWY2401DME", "LUPOR"]
             ]
         },
-        "MOMIN3A": {
-            "icao": "MOMIN3A",
+        "MOMI3A": {
+            "icao": "MOMI3A",
             "name": "Momin Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+|S185-"], ["NEPOG", "A34+|S185-"]]
@@ -1216,8 +1221,8 @@
                 ["NEPOG", "MOMIN"]
             ]
         },
-        "MOMIN3B": {
-            "icao": "MOMIN3B",
+        "MOMI3B": {
+            "icao": "MOMI3B",
             "name": "Momin Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["DISUR", "A33+|S185-"]]
@@ -1230,8 +1235,8 @@
                 ["DISUR", "MOMIN"]
             ]
         },
-        "OSGAR3B": {
-            "icao": "OSGAR3B",
+        "OSGA3B": {
+            "icao": "OSGA3B",
             "name": "Osgar Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["DISUR", "A33+|S185-"], ["GORTO", "S250-"], ["AGINI", "S250-"]]
@@ -1244,8 +1249,8 @@
                 ["AGINI", "OSGAR"]
             ]
         },
-        "PELIG3B": {
-            "icao": "PELIG3B",
+        "PELI3B": {
+            "icao": "PELI3B",
             "name": "Pelig Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+|S185-"], ["DISUR", "A33+|S185-"], ["GORTO", "S250-"], ["AGINI", "S250-"]]
@@ -1258,8 +1263,8 @@
                 ["AGINI", "PELIG"]
             ]
         },
-        "TOMTO3A": {
-            "icao": "TOMTO3A",
+        "TOMT3A": {
+            "icao": "TOMT3A",
             "name": "Tomtoe Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+"]]
@@ -1272,8 +1277,8 @@
                 ["_RWY0601DME", "TOMTO"]
             ]
         },
-        "UNBEG3A": {
-            "icao": "UNBEG3A",
+        "UNBE3A": {
+            "icao": "UNBE3A",
             "name": "Unbeg Three Alpha",
             "rwy": {
                 "EINN06": [["_RWY0601DME", "A6+|S185-"], ["NEPOG", "A34+|S185-"], ["GULTU", "S250-"]]
@@ -1283,11 +1288,11 @@
                 "UNBEG": [["UNBEG", "S250-"]]
             },
             "draw": [
-                ["NEPOG", "UNBEG", "GULTU"]
+                ["NEPOG", "GULTU", "UNBEG"]
             ]
         },
-        "UNBEG3B": {
-            "icao": "UNBEG3B",
+        "UNBE3B": {
+            "icao": "UNBE3B",
             "name": "Unbeg Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+"]]
@@ -1302,8 +1307,8 @@
         }
     },
     "stars": {
-        "AGINI2D": {
-            "icao": "AGINI2D",
+        "AGIN2D": {
+            "icao": "AGIN2D",
             "name": "Aginee Two Delta",
             "entryPoints": {
                 "AGINI": [["AGINI", "A80+|S250-"]]
@@ -1319,8 +1324,8 @@
                 ["AGINI", "OGONO", "DERAG"]
             ]
         },
-        "AGINI2E": {
-            "icao": "AGINI2E",
+        "AGIN2E": {
+            "icao": "AGIN2E",
             "name": "Aginee Two Echo",
             "entryPoints": {
                 "AGINI": [["AGINI", "A80+|S250-"]]
@@ -1336,8 +1341,8 @@
                 ["AGINI", "ULSIT", "TERDU", "ELPOM"]
             ]
         },
-        "BUNON2E": {
-            "icao": "BUNON2E",
+        "BUNO2E": {
+            "icao": "BUNO2E",
             "name": "Boonon Two Echo",
             "entryPoints": {
                 "BUNON": [["BUNON", "A80+|S250-"]]
@@ -1353,8 +1358,8 @@
                 ["BUNON", "ELPOM"]
             ]
         },
-        "BUNON3D": {
-            "icao": "BUNON3D",
+        "BUNO3D": {
+            "icao": "BUNO3D",
             "name": "Boonon Three Delta",
             "entryPoints": {
                 "BUNON": [["BUNON", "A80+|S250-"]]
@@ -1371,8 +1376,8 @@
                 ["BUNON", "EKNIS", "TOBRI", "DERAG"]
             ]
         },
-        "DIGAN2D": {
-            "icao": "DIGAN2D",
+        "DIGA2D": {
+            "icao": "DIGA2D",
             "name": "Digan Two Delta",
             "entryPoints": {
                 "DIGAN": [["DIGAN", "A80+|S250-"]]
@@ -1388,8 +1393,8 @@
                 ["DIGAN", "OGONO"]
             ]
         },
-        "DIGAN2E": {
-            "icao": "DIGAN2E",
+        "DIGA2E": {
+            "icao": "DIGA2E",
             "name": "Digan Two Echo",
             "entryPoints": {
                 "DIGAN": [["DIGAN", "A80+|S250-"]]
@@ -1405,8 +1410,8 @@
                 ["DIGAN", "ULSIT"]
             ]
         },
-        "ERABI2E": {
-            "icao": "ERABI2E",
+        "ERAB2E": {
+            "icao": "ERAB2E",
             "name": "Ehrabee Two Echo",
             "entryPoints": {
                 "ERABI": [["ERABI", "A80+|S250-"]]
@@ -1422,8 +1427,8 @@
                 ["ERABI", "TERDU"]
             ]
         },
-        "ERABI3D": {
-            "icao": "ERABI3D",
+        "ERAB3D": {
+            "icao": "ERAB3D",
             "name": "Ehrabee Three Delta",
             "entryPoints": {
                 "ERABI": [["ERABI", "A80+|S250-"]]
@@ -1440,8 +1445,8 @@
                 ["ERABI", "EKNIS"]
             ]
         },
-        "KURUM2D": {
-            "icao": "KURUM2D",
+        "KURU2D": {
+            "icao": "KURU2D",
             "name": "Kooroom Two Delta",
             "entryPoints": {
                 "KURUM": [["KURUM", "A80+|S250-"]]
@@ -1457,8 +1462,8 @@
                 ["KURUM", "GILOG", "DERAG"]
             ]
         },
-        "KURUM2E": {
-            "icao": "KURUM2E",
+        "KURU2E": {
+            "icao": "KURU2E",
             "name": "Kooroom Two Echo",
             "entryPoints": {
                 "KURUM": [["KURUM", "A80+|S250-"]]
@@ -1474,8 +1479,8 @@
                 ["KURUM", "RERKA", "ELPOM"]
             ]
         },
-        "LUPOR2E": {
-            "icao": "LUPOR2E",
+        "LUPO2E": {
+            "icao": "LUPO2E",
             "name": "Loopor Two Echo",
             "entryPoints": {
                 "LUPOR": [["LUPOR", "A80+|S250-"]]
@@ -1491,8 +1496,8 @@
                 ["LUPOR", "ELPOM"]
             ]
         },
-        "LUPOR3D": {
-            "icao": "LUPOR3D",
+        "LUPO3D": {
+            "icao": "LUPO3D",
             "name": "Loopor Three Delta",
             "entryPoints": {
                 "LUPOR": [["LUPOR", "A80+"]]
@@ -1509,8 +1514,8 @@
                 ["LUPOR", "EKNIS"]
             ]
         },
-        "MOMIN2E": {
-            "icao": "MOMIN2E",
+        "MOMI2E": {
+            "icao": "MOMI2E",
             "name": "Momin Two Echo",
             "entryPoints": {
                 "MOMIN": [["MOMIN", "A80+|S250-"]]
@@ -1526,8 +1531,8 @@
                 ["MOMIN", "TERDU"]
             ]
         },
-        "MOMIN3D": {
-            "icao": "MOMIN3D",
+        "MOMI3D": {
+            "icao": "MOMI3D",
             "name": "Momin Three Delta",
             "entryPoints": {
                 "MOMIN": [["MOMIN", "A80+|S250-"]]
@@ -1544,8 +1549,8 @@
                 ["MOMIN", "EKNIS"]
             ]
         },
-        "RIKUL2D": {
-            "icao": "RIKUL2D",
+        "RIKU2D": {
+            "icao": "RIKU2D",
             "name": "Ricool Two Delta",
             "entryPoints": {
                 "RIKUL": [["RIKUL", "A80+|S250-"]]
@@ -1561,8 +1566,8 @@
                 ["RIKUL", "OGONO"]
             ]
         },
-        "RIKUL2E": {
-            "icao": "RIKUL2E",
+        "RIKU2E": {
+            "icao": "RIKU2E",
             "name": "Ricool Two Echo",
             "entryPoints": {
                 "RIKUL": [["RIKUL", "A80+|S250-"]]
@@ -1578,8 +1583,8 @@
                 ["RIKUL", "ULSIT"]
             ]
         },
-        "TIPUR2D": {
-            "icao": "TIPUR2D",
+        "TIPU2D": {
+            "icao": "TIPU2D",
             "name": "Tipoor Two Delta",
             "entryPoints": {
                 "TIPUR": [["TIPUR", "A80+|S250-"]]
@@ -1595,8 +1600,8 @@
                 ["TIPUR", "GILOG"]
             ]
         },
-        "TIPUR2E": {
-            "icao": "TIPUR2E",
+        "TIPU2E": {
+            "icao": "TIPU2E",
             "name": "Tipoor Two Echo",
             "entryPoints": {
                 "TIPUR": [["TIPUR", "A80+|S250-"]]
@@ -1612,9 +1617,9 @@
                 ["TIPUR", "RERKA"]
             ]
         },
-        "UNBEG2E": {
-            "icao": "UNBEG2E",
-            "name": "Unbeg Twp Echo",
+        "UNBE2E": {
+            "icao": "UNBE2E",
+            "name": "Unbeg Two Echo",
             "entryPoints": {
                 "UNBEG": [["UNBEG", "A80+|S250-"]]
             },
@@ -1629,8 +1634,8 @@
                 ["UNBEG", "ELPOM"]
             ]
         },
-        "UNBEG3D": {
-            "icao": "UNBEG3D",
+        "UNBE3D": {
+            "icao": "UNBE3D",
             "name": "Unbeg Three Delta",
             "entryPoints": {
                 "UNBEG": [["UNBEG", "A80+|S250-"]]
@@ -1653,7 +1658,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.OSGAR3B.OSGAR",
+            "route": "EINN24.OSGA3B.OSGAR..DUB",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1669,7 +1674,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.ABAGU3B.ABAGU",
+            "route": "EINN24.ABAG3B.ABAGU",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1685,7 +1690,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.LUNIG3B.LUNIG..NORLA",
+            "route": "EINN24.LUNI3B.LUNIG..NORLA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1702,7 +1707,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.KURUM3B.KURUM..CRK",
+            "route": "EINN24.KURU3B.KURUM..CRK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1719,7 +1724,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.LUPOR3B.LUPOR..LIMRI",
+            "route": "EINN24.LUPO3B.LUPOR..LIMRI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1739,7 +1744,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.BUNON3B.BUNON..BEDRA",
+            "route": "EINN24.BUNO3B.BUNON..BEDRA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1759,7 +1764,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.UNBEG3B.UNBEG..DOGAL",
+            "route": "EINN24.UNBE3B.UNBEG..DOGAL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1779,7 +1784,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.ERABI3B.ERABI..RESNO",
+            "route": "EINN24.ERAB3B.ERABI..RESNO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1799,7 +1804,7 @@
             "origin": "EINN",
             "destination": "",
             "category": "departure",
-            "route": "EINN24.MOMIN3B.MOMIN..SUNOT",
+            "route": "EINN24.MOMI3B.MOMIN..SUNOT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1819,7 +1824,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "DUB..PELIG..ENOKU..DIGAN.DIGAN2D.EINN24",
+            "route": "DUB.M145.DIGAN.DIGA2D.EINN24",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -1835,7 +1840,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "SLANY..ABAGU..TIPUR.TIPUR2D.EINN24",
+            "route": "SLANY..ABAGU..TIPUR.TIPU2D.EINN24",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -1853,7 +1858,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "LEDGO..ERTER..CRK..KURUM.KURUM2D.EINN24",
+            "route": "LEDGO..ERTER..CRK..KURUM.KURU2D.EINN24",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -1870,7 +1875,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "SOMAX..ATSUR..BUNON.BUNON3D.EINN24",
+            "route": "SOMAX..ATSUR..BUNON.BUNO3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1888,7 +1893,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "LIMRI..XETBO..LUPOR.LUPOR3D.EINN24",
+            "route": "LIMRI..XETBO..LUPOR.LUPO3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1906,7 +1911,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "MALOT..GISTI..UNBEG.UNBEG3D.EINN24",
+            "route": "MALOT..GISTI..UNBEG.UNBE3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1924,7 +1929,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "VENER..KOKIB..ERABI.ERABI3D.EINN24",
+            "route": "VENER..KOKIB..ERABI.ERAB3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
@@ -1942,7 +1947,7 @@
             "origin": "",
             "destination": "EINN",
             "category": "arrival",
-            "route": "PIKIL..SOVED..MOMIN.MOMIN3D.EINN24",
+            "route": "PIKIL..SOVED..MOMIN.MOMI3D.EINN24",
             "altitude": 20000,
             "speed": 250,
             "method": "random",
