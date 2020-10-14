@@ -217,6 +217,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
+            icao: 'kdab',
+            level: 'beginner',
+            name: 'Daytona Beach International Airport',
+            premium: false
+        },
+        {
             icao: 'kdca',
             level: 'easy',
             name: 'Ronald Reagan Washington National Airport',
@@ -238,6 +244,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kelp',
             level: 'easy',
             name: 'El Paso International Airport',
+            premium: false
+        },
+        {
+            icao: 'kgso',
+            level: 'beginner',
+            name: 'Piedmont Triad International Airport',
             premium: false
         },
         {
