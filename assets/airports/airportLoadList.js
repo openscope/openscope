@@ -306,6 +306,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Portland International Airport',
             premium: false
         },
+        {
+            icao: 'kphl',
+            level: 'hard',
+            name: 'Philadelphia International Airport',
+            premium: false
+        },
         // {
         //     icao: 'kphx',
         //     level: 'easy',
