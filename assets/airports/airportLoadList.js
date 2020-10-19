@@ -242,7 +242,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'kgso',
-            level: 'beginner',
+            level: 'easy',
             name: 'Piedmont Triad International Airport',
             premium: false
         },
