@@ -2164,7 +2164,8 @@
                 "CYYZ24R": [["BOTUM", "A80|S210"], "VERKO", "MAROD", "DEKNI", "DAVNO", "DUNOL", "#057"]
             },
             "draw": [
-                ["NUBER*", "ROKTO", "PENGO"]
+                ["NUBER*", "ROKTO", "PENGO", "MANUP", "ERBUS", "DAVIK", "LEVIG", "MIPED", "SATUR"],
+                ["NUBER", "ROKTO", "PENGO", "BOTUM", "VERKO", "MAROD", "DEKNI", "DAVNO", "DUNOL"]
             ]
         }
     },
