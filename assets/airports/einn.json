@@ -1212,7 +1212,7 @@
             ]
         },
         "LUPO3B": {
-            "icao": "LUPORB",
+            "icao": "LUPO3B",
             "name": "Loopor Three Bravo",
             "rwy": {
                 "EINN24": [["_RWY2401DME", "A6+"]]
