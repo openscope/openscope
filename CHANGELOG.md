@@ -4,6 +4,7 @@
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1652" target="_blank">#1652</a> - Update EIDW/EICK airspace and procedures
 
 
 # 6.20.0 (October 7, 2020)
