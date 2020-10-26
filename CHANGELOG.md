@@ -6,6 +6,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1652" target="_blank">#1652</a> - Update EIDW/EICK airspace and procedures
 - <a href="https://github.com/openscope/openscope/issues/1658" target="_blank">#1658</a> - Update LIPZ airspace
+- <a href="https://github.com/openscope/openscope/issues/1633" target="_blank">#1633</a> - Add missing important fixes to KPDX
 
 
 # 6.20.0 (October 7, 2020)
