@@ -4,7 +4,7 @@
         "twr": "Wien Tower",
         "app": "Wien Radar",
         "dep": "Wien Radar"
-    },  
+    },
     "icao": "LOWW",
     "iata": "VIE",
     "magnetic_north": 4.04,
@@ -30,6 +30,9 @@
             "floor": 0,
             "ceiling": 245,
             "airspace_class": "C",
+            "labelPositions": [
+                [48.049, 15.935]
+            ],
             "poly": [
                 ["N47.56028", "E16.68889"],
                 ["N47.42056", "E16.58417"],
@@ -124,6 +127,9 @@
             "floor": 55,
             "ceiling": 245,
             "airspace_class": "C",
+            "labelPositions": [
+                [47.794, 17.271]
+            ],
             "poly": [
                 ["N47.60750", "E17.50000"],
                 ["N47.74694", "E17.50000"],
@@ -417,7 +423,7 @@
         "MASUR": ["N48d31m12.35", "E15d26m21.45"],
         "MATIG": ["N48.058592", "E13.541494"],
         "MAXUR": ["N45d44.75", "E14d54.62"],
-        "MEDIX": ["N48d17m39.00", "E15d24m31.00"],    
+        "MEDIX": ["N48d17m39.00", "E15d24m31.00"],
         "MIKOV": ["N48d47m05.08", "E16d37m15.61"],
         "MOOCE": ["N49.566522", "E11.546572"],
         "NATEX": ["N47d44m49.00", "E17d30m00.00"],
@@ -658,7 +664,7 @@
 		},
 		{
             "name": ["16", "34"],
-            "end": [	
+            "end": [
                 ["N48d7m11.21", "E16d34m41.46", "579.1ft"],
                 ["N48d5m19.07", "E16d35m28.87", "585.6ft"]
             ],
@@ -673,7 +679,7 @@
         "J23":  ["STO", "GRZ"],
         "L156": ["LEDVA", "GINAT", "HLV", "OGDAS", "SOPAV"],
         "L604": ["LAMSI", "LALIN", "RUDNO", "RODIS", "MOOCE", "EKSOS", "ANELA", "BAMAS", "SULUS"],
-        "L858": ["LANUX", "OKF", "VLM", "RISUK", "ULNIP", "HDO"],   
+        "L858": ["LANUX", "OKF", "VLM", "RISUK", "ULNIP", "HDO"],
         "M174": ["DITIS", "NEPUX", "OKG"],
         "T135": ["ABRAX", "BELUX", "ADISU", "MIKOV"],
         "T161": ["SUBEN", "NENUM", "AKINI", "NIMDI", "ERNAS"],
@@ -2651,7 +2657,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },  
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2690,7 +2696,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2731,7 +2737,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2766,7 +2772,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2795,7 +2801,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2824,7 +2830,7 @@
                 ["lot/e190", 1400],
                 ["nax/b738", 400]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2860,7 +2866,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2899,7 +2905,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2929,7 +2935,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2958,7 +2964,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -2992,7 +2998,7 @@
                 ["t7/fastGA", 11],
                 ["ok/fastGA", 11]
             ]
-        },   
+        },
         {
             "origin": "LOWW",
             "destination": "",
@@ -3161,7 +3167,7 @@
                 ["t7/fastGA", 10],
                 ["ok/fastGA", 10]
             ]
-        },   
+        },
         {
             "origin": "",
             "destination": "LOWW",
