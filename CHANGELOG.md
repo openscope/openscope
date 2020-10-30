@@ -1,5 +1,6 @@
 # 6.21.0 (November 1, 2020)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/1654" target="_blank">#1654</a> - Add Greensboro - Piedmont Triad Airport (KGSO)
 
 ### Bugfixes
 

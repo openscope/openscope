@@ -241,6 +241,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
+            icao: 'kgso',
+            level: 'easy',
+            name: 'Piedmont Triad International Airport',
+            premium: false
+        },
+        {
             icao: 'kiad',
             level: 'hard',
             name: 'Washington Dulles International Airport',
