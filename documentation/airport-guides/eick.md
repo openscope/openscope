@@ -38,6 +38,8 @@ A maximum speed of 250 KIAS should be maintained below FL100. Aircraft should cl
 ##### Arrivals
 Aircraft arriving into Cork should expect the following STARs, followed by an ILS/RNP/VOR approach to the respective runway. The arrivals into runways 07 and 25 are for CAT A/B aircraft only.
 
+**Note:** Although this isn't simulated in openScope, aircraft will nearly always need to backtrack RWY16/34 (departures backtrack with RWY34 active, arrivals backtrack with RWY16 active). Cork Approach should ideally aim for a minimum of 10nm separation between aircraft on the apprach, to allow for backtracking if necessary. This distance should also be increased if an aircraft is departing in between two arrivals.
+
 | Runway | Suffix |
 | -- | -- |
 | 07 | 1F |

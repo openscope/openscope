@@ -60,12 +60,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Halifax Stanfield International Airport',
             premium: false
         },
-        {
-            icao: 'cyow',
-            level: 'easy',
-            name: 'Ottawa Macdonald-Cartier International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'cyow',
+        //     level: 'easy',
+        //     name: 'Ottawa Macdonald-Cartier International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'ebbr',
         //     level: 'easy',
@@ -108,12 +108,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Manchester Airport',
             premium: false
         },
-        {
-            icao: 'eggw',
-            level: 'easy',
-            name: 'London Luton Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'eggw',
+        //     level: 'easy',
+        //     name: 'London Luton Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'egkk',
         //     level: 'easy',
@@ -238,6 +238,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kelp',
             level: 'easy',
             name: 'El Paso International Airport',
+            premium: false
+        },
+        {
+            icao: 'kgso',
+            level: 'easy',
+            name: 'Piedmont Triad International Airport',
             premium: false
         },
         {

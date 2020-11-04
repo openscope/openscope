@@ -1,3 +1,14 @@
+# 6.21.0 (November 4, 2020)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1654" target="_blank">#1654</a> - Add Greensboro - Piedmont Triad Airport (KGSO)
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1652" target="_blank">#1652</a> - Update EIDW/EICK airspace and procedures
+- <a href="https://github.com/openscope/openscope/issues/1658" target="_blank">#1658</a> - Update LIPZ airspace
+- <a href="https://github.com/openscope/openscope/issues/1633" target="_blank">#1633</a> - Add missing important fixes to KPDX
+- <a href="https://github.com/openscope/openscope/issues/1651" target="_blank">#1651</a> - Deactivate or fix airports with broken airspace
+
+
 # 6.20.0 (October 7, 2020)
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1615" target="_blank">#1615</a> - Fix broken link in KSTL airport guide
