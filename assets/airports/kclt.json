@@ -199,6 +199,7 @@
         "HMMPY": ["N34.8029528", "W80.8604806"],
         "HMV"  : ["N36.4370556", "W82.1296000"],
         "ICONS": ["N34.6207833", "W80.9725750"],
+        "ILM"  : ["N34.3516483", "W77.8743803"],
         "INNOR": ["N35.1822694", "W80.8288333"],
         "INWAL": ["N35.3830111", "W81.4873194"],
         "IPTAY": ["N34.3490472", "W82.8397417"],
@@ -753,7 +754,7 @@
                 "LYH": ["LYH", "BEMOH", "WRLLD", ["BLUEJ", "A270+"], ["BURRZ", "A240+|A270-|S280"], ["SKLES", "A220+|S280"], ["DENTT", "A160+|S270"], ["BOOTS", "A130+|A230-"]],
                 "NUUMN": ["NUUMN", ["SDAIL", "A170+|A230-|S280"], ["WLLSH", "A160+|S270"]]
             },
-            "body": [["CHSLY", "A130+|A220-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A210-"]],
+            "body": [["CHSLY", "A130+|A220-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A160-"]],
             "rwy": {
                 "KCLT05": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"]],
                 "KCLT18L": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
@@ -1232,7 +1233,7 @@
             "origin": "KCLT",
             "destination": "",
             "category": "departure",
-            "route": "KCLT18L.LILLS2.LILLS",
+            "route": "KCLT18L.LILLS2.LILLS..ILM",
             "altitude": "",
             "speed": "",
             "method": "random",
