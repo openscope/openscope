@@ -1310,7 +1310,9 @@ export default class AircraftModel {
                 return [false, 'we\'re already holding short of the runway'];
             }
 
-            return [false, 'we\'re already taxiing to that runway'];
+            if (this.flightPhase === FLIGHT_PHASE.TAXI) {
+                return [false, 'we\'re already taxiing to that runway'];
+            }
         }
 
         this.setFlightPhase(FLIGHT_PHASE.TAXI);
