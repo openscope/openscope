@@ -2,6 +2,7 @@
 ### New Features
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1565" target="_blank">#1565</a> - Aircraft can no longer taxi to a runway they're already at
 
 ### Enhancements & Refactors
 
