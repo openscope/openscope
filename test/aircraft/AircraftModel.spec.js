@@ -701,6 +701,32 @@ ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
     t.deepEqual(arrivalResult, expectedResult);
 });
 
+ava('.taxiToRunway() returns an error when the aircraft is already taxiing to the specified runway', (t) => {
+    const expectedResult = [false, {
+        log: 'we\'re already taxiing to Runway 19L',
+        say: 'we\'re already taxiing to Runway one niner left'
+    }];
+    const arrival = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    arrival.fms.departureRunwayModel = runwayModelMock;
+    arrival.fms.currentPhase = FLIGHT_PHASE.TAXI;
+    const arrivalResult = arrival.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(arrivalResult, expectedResult);
+});
+
+ava('.taxiToRunway() returns an error when the aircraft is already holding short of the specified runway', (t) => {
+    const expectedResult = [false, {
+        log: 'we\'re already holding short of Runway 19L',
+        say: 'we\'re already holding short of Runway one niner left'
+    }];
+    const arrival = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    arrival.fms.departureRunwayModel = runwayModelMock;
+    arrival.fms.currentPhase = FLIGHT_PHASE.WAITING;
+    const arrivalResult = arrival.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(arrivalResult, expectedResult);
+});
+
 ava('.taxiToRunway() returns a success message when finished', (t) => {
     const expectedResult = [
         true,

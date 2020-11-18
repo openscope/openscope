@@ -1307,11 +1307,21 @@ export default class AircraftModel {
 
         if (this.fms.departureRunwayModel === runwayModel) {
             if (this.flightPhase === FLIGHT_PHASE.WAITING) {
-                return [false, 'we\'re already holding short of the runway'];
+                const readback = {
+                    log: `we're already holding short of Runway ${runwayModel.name}`,
+                    say: `we're already holding short of Runway ${runwayModel.getRadioName()}`
+                };
+
+                return [false, readback];
             }
 
             if (this.flightPhase === FLIGHT_PHASE.TAXI) {
-                return [false, 'we\'re already taxiing to that runway'];
+                const readback = {
+                    log: `we're already taxiing to Runway ${runwayModel.name}`,
+                    say: `we're already taxiing to Runway ${runwayModel.getRadioName()}`
+                };
+
+                return [false, readback];
             }
         }
 
