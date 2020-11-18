@@ -1305,6 +1305,26 @@ export default class AircraftModel {
             return [false, 'unable to taxi to runway, we have just landed'];
         }
 
+        if (this.fms.departureRunwayModel === runwayModel) {
+            if (this.flightPhase === FLIGHT_PHASE.WAITING) {
+                const readback = {
+                    log: `we're already holding short of Runway ${runwayModel.name}`,
+                    say: `we're already holding short of Runway ${runwayModel.getRadioName()}`
+                };
+
+                return [false, readback];
+            }
+
+            if (this.flightPhase === FLIGHT_PHASE.TAXI) {
+                const readback = {
+                    log: `we're already taxiing to Runway ${runwayModel.name}`,
+                    say: `we're already taxiing to Runway ${runwayModel.getRadioName()}`
+                };
+
+                return [false, readback];
+            }
+        }
+
         this.setFlightPhase(FLIGHT_PHASE.TAXI);
         // remove aircraft from previous runway's queue
         this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
