@@ -1305,6 +1305,10 @@ export default class AircraftModel {
             return [false, 'unable to taxi to runway, we have just landed'];
         }
 
+        if (this.flightPhase === FLIGHT_PHASE.WAITING && this.fms.departureRunwayModel === runwayModel) {
+            return [false, 'we\'re already holding short of the runway'];
+        }
+
         this.setFlightPhase(FLIGHT_PHASE.TAXI);
         // remove aircraft from previous runway's queue
         this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
