@@ -211,6 +211,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
+            icao: 'kclt',
+            level: 'hard',
+            name: 'Charlotte-Douglas International Airport',
+            premium: false
+        },
+        {
             icao: 'kcvg',
             level: 'beginner',
             name: 'Cincinnati-Northern Kentucky International Airport',
