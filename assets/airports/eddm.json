@@ -24,7 +24,7 @@
     },
     "arrivalRunway": "26L",
     "departureRunway": "26R",
-    "defaultMaps": ["EDDM - extended centerlines", "EDDM - class C airspace", "EDDM - CTR", "Other airports - airspace", "Other airports - extended centerlines", "Neighboring sectors"],
+    "defaultMaps": ["EDDM - extended centerlines", "EDDM - class C airspace", "EDDM - CTR", "Other airports - airspaces", "Other airports - extended centerlines", "Neighboring sectors"],
     "airspace": [
         {
             "floor": 0,
