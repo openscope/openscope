@@ -4336,7 +4336,7 @@
             ]
         },
         {
-            "name": "Other airports - airspace",
+            "name": "Other airports - airspaces",
             "lines": [
                 ["N48.45694", "E10.75833", "N48.52222", "E11.04444"],
                 ["N48.52222", "E11.04444", "N48.41111", "E11.10139"],
