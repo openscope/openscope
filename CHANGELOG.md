@@ -6,6 +6,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1190" target="_blank">#1190</a> - Prevent selection of text in most dialogs
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1614" target="_blank">#1614</a> - Spell out squawk code in single digit form in readbacks
 
 
 # 6.21.0 (November 4, 2020)

@@ -756,8 +756,8 @@ export default class AircraftCommander {
         const squawk = data[0];
         const result = this._onChangeTransponderCode(squawk, aircraft);
         let readback = {
-            log: `squawking ${squawk}`,
-            say: `squawking ${radio_spellOut(squawk)}`
+            log: `squawk ${squawk}`,
+            say: `squawk ${radio_spellOut(squawk)}`
         };
 
         if (!result) {
