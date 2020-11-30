@@ -378,16 +378,17 @@ class UiController {
     /**
      * Enable event handlers
      *
-     * should be run only once on instantiation
-     *
      * @for UiController
      * @method enable
+     * @chainable
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
 
         // TODO: move these to properly bound handler methods
-        this.$airportSearch.on('keyup', (event) => this.onInitiateAirportSearch(event));
+
+        // using keyup here because the search is based on the contents of the search bar
+        this.$airportSearch.on('keyup', (event) => this._onInitiateAirportSearch(event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
@@ -415,10 +416,11 @@ class UiController {
      *
      * @for UiController
      * @method disable
+     * @chainable
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
-
+        this.$airportSearch.off('keyup', (event) => this._onInitiateAirportSearch(event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
@@ -438,16 +440,18 @@ class UiController {
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
 
-        return this.destroy();
+        return this();
     }
 
     /**
-     * Tear down the instance
+     * Reset the instance
      *
      * @for UiController
-     * @method destroy
+     * @method reset
      */
-    destroy() {
+    reset() {
+        this.disable();
+
         this._eventBus = null;
         this.tutorialView = null;
         this.settingsController = null;
@@ -735,12 +739,12 @@ class UiController {
 
     /**
      * @for UiController
-     * @method onInitiateAirportSearch
+     * @method _onInitiateAirportSearch
      */
-    onInitiateAirportSearch() {
+    _onInitiateAirportSearch() {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-search', 'start');
 
-        const value = this.$airportDialog.find(SELECTORS.DOM_SELECTORS.AIRPORT_SEARCH).val().toLowerCase();
+        const value = this.$airportSearch.val().toLowerCase();
 
         $('.dialog-body li').each(
             function() {
