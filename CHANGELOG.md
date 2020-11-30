@@ -3,7 +3,7 @@
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1565" target="_blank">#1565</a> - Prevent aircraft from taxiing to a runway they're already holding short of
-- <a href="https://github.com/openscope/openscope/issues/1190" target="_blank">#1190</a> - Fix .notSelectable CSS class functionality
+- <a href="https://github.com/openscope/openscope/issues/1190" target="_blank">#1190</a> - Prevent selection of text in most dialogs
 
 ### Enhancements & Refactors
 
