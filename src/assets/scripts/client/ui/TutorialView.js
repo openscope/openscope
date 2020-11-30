@@ -15,7 +15,7 @@ import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 const tutorial = {};
 
 const TUTORIAL_TEMPLATE = '' +
-    '<div id="tutorial">' +
+    '<div id="tutorial" class="notSelectable">' +
     '   <h1></h1>' +
     '   <main></main>' +
     '   <div class="prev"><img src="assets/images/prev.png" title="Previous step" /></div>' +
