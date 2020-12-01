@@ -355,6 +355,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
+            icao: 'ksjc',
+            level: 'easy',
+            name: 'Norman Y Mineta San Jose International Airport',
+            premium: false
+        },
+        {
             icao: 'kstl',
             level: 'medium',
             name: 'St. Louis Lambert International Airport',
