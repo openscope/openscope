@@ -32,10 +32,10 @@ export const EVENT = {
      * css classname removed
      *
      * @memberof EVENT
-     * @property DESELECT_ACTIVE_STRIP_VIEW
+     * @property DESELECT_AIRCRAFT
      * @type {string}
      */
-    DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
+    DESELECT_AIRCRAFT: 'deselect-aircraft',
 
     /**
      * Event used to notify the `CanvasController` when a re-draw
@@ -124,10 +124,10 @@ export const EVENT = {
      * `StripViewModel` must also be selected
      *
      * @memberof EVENT
-     * @property SELECT_STRIP_VIEW_FROM_DATA_BLOCK
+     * @property SELECT_AIRCRAFT
      * @type {string}
      */
-    SELECT_STRIP_VIEW_FROM_DATA_BLOCK: 'select-strip-view-from-data-block',
+    SELECT_AIRCRAFT: 'select-aircraft',
 
     /**
      * An aircraft progress strip was clicked
@@ -171,6 +171,13 @@ export const EVENT = {
      * @type {string}
      */
     TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_AIRSPACE
+     * @type {string}
+     */
+    TOGGLE_AIRSPACE: 'toggle-airspace',
 
     /**
      * @memberof EVENT

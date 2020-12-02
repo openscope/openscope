@@ -305,6 +305,7 @@ class UiController {
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
         this.$switchAirport = this.$element.find(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT);
         this.$toggleAirportGuide = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRPORT_GUIDE);
+        this.$toggleAirspace = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRSPACE);
         this.$toggleChangelog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_CHANGELOG);
         this.$toggleLabels = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
@@ -346,6 +347,7 @@ class UiController {
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
         this.$switchAirport.on('click', (event) => this.onToggleAirportList(event));
         this.$toggleAirportGuide.on('click', (event) => this.onToggleAirportGuide(event));
+        this.$toggleAirspace.on('click', (event) => this.onToggleAirspace(event));
         this.$toggleChangelog.on('click', (event) => this.onToggleChangelog(event));
         this.$toggleLabels.on('click', (event) => this.onToggleLabels(event));
         this.$togglePause.on('click', (event) => GameController.game_pause_toggle(event));
@@ -374,6 +376,7 @@ class UiController {
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
         this.$switchAirport.off('click', (event) => this.onToggleAirportList(event));
         this.$toggleAirportGuide.off('click', (event) => this.onToggleAirportGuide(event));
+        this.$toggleAirspace.off('click', (event) => this.onToggleAirspace(event));
         this.$toggleChangelog.off('click', (event) => this.onToggleChangelog(event));
         this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
         this.$togglePause.off('click', (event) => GameController.game_pause_toggle(event));
@@ -699,6 +702,23 @@ class UiController {
             `airport-guide:${labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this._eventBus.trigger(EVENT.TOGGLE_AIRPORT_GUIDE);
+    }
+
+    /**
+     * @for UiController
+     * @method onToggleAirspace
+     * @param event {jquery event}
+     */
+    onToggleAirspace(event) {
+        const $airspaceButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
+
+        $airspaceButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'airspace',
+            `${$airspaceButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this._eventBus.trigger(EVENT.TOGGLE_AIRSPACE);
     }
 
     /**

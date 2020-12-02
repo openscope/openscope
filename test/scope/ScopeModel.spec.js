@@ -265,6 +265,21 @@ ava('.setScratchpad() returns scratchpad length error when too many characters p
     t.true(radarTargetModelSetScratchPadSpy.notCalled);
 });
 
+ava('.setScratchpad() calls and returns RadarTargetModel.setDefaultScratchpad() with no parameters', (t) => {
+    const model = new ScopeModel();
+    const radarTargetModel = createRadarTargetArrivalMock();
+    const radarTargetModelSetScratchpadSpy = sinon.spy(radarTargetModel, 'setScratchpad');
+    const radarTargetModelSetDefaultScratchpadSpy = sinon.spy(radarTargetModel, 'setDefaultScratchpad');
+    const resetScratchPadTrigger = '.';
+    const expectedResponse = [true, 'RESET SCRATCHPAD'];
+    const response = model.setScratchpad(radarTargetModel, resetScratchPadTrigger);
+
+    t.deepEqual(response, expectedResponse);
+    t.true(radarTargetModelSetScratchpadSpy.notCalled);
+    t.true(radarTargetModelSetDefaultScratchpadSpy.called);
+    t.true(radarTargetModelSetDefaultScratchpadSpy.calledWithExactly());
+});
+
 ava('.setScratchpad() sets RadarTargetModel._scratchPadText to the specified string', (t) => {
     const model = new ScopeModel();
     const radarTargetModel = createRadarTargetArrivalMock();

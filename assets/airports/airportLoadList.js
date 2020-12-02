@@ -60,12 +60,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Halifax Stanfield International Airport',
             premium: false
         },
-        {
-            icao: 'cyow',
-            level: 'easy',
-            name: 'Ottawa Macdonald-Cartier International Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'cyow',
+        //     level: 'easy',
+        //     name: 'Ottawa Macdonald-Cartier International Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'ebbr',
         //     level: 'easy',
@@ -108,12 +108,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Manchester Airport',
             premium: false
         },
-        {
-            icao: 'eggw',
-            level: 'easy',
-            name: 'London Luton Airport',
-            premium: false
-        },
+        // {
+        //     icao: 'eggw',
+        //     level: 'easy',
+        //     name: 'London Luton Airport',
+        //     premium: false
+        // },
         // {
         //     icao: 'egkk',
         //     level: 'easy',
@@ -246,12 +246,18 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'El Paso International Airport',
             premium: false
         },
-        // {
-        //     icao: 'kiad',
-        //     level: 'hard',
-        //     name: 'Washington-Dulles International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'kgso',
+            level: 'easy',
+            name: 'Piedmont Triad International Airport',
+            premium: false
+        },
+        {
+            icao: 'kiad',
+            level: 'hard',
+            name: 'Washington Dulles International Airport',
+            premium: false
+        },
         // {
         //     icao: 'kjax',
         //     level: 'easy',
@@ -385,15 +391,15 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false
         },
         {
-            icao: 'lrop',
-            level: 'medium',
-            name: 'Bucharest Henri Coandă Airport',
-            premium: false
-        },
-        {
             icao: 'loww',
             level: 'easy',
             name: 'Vienna Schwechat International Airport',
+            premium: false
+        },
+        {
+            icao: 'lrop',
+            level: 'medium',
+            name: 'Bucharest Henri Coandă Airport',
             premium: false
         },
         {
@@ -457,6 +463,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Tokyo Narita International Airport',
         //     premium: false
         // },
+        {
+            icao: 'rjss',
+            level: 'beginner',
+            name: 'Sendai Airport',
+            premium: false
+        },
         // {
         //     icao: 'rjtt',
         //     level: 'hard',

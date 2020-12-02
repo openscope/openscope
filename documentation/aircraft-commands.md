@@ -303,9 +303,9 @@ writing altitudes you would drop the last two zeros. For example, 3,000ft =
 "30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
 Airplanes will not descend below 1000 feet (unless locked on ILS).
 
-Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
+Altitude also accepts an `expedite` or `ex` argument which can be used as the last item in the command.
 
-_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
+_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] ex`
 
 ### Fly Present Heading
 
@@ -350,11 +350,11 @@ the airplane, as long as they comply with the restrictions given.
 
 ## Cross
 
-_Aliases -_ `cross`, `cr`
+_Aliases -_ `cross`, `cr`, `x`
 
-_Information -_ This command has the aircraft cross a specified point along their route at a specified altitude. The altitude must be entered in hundreds of feet (eg `130` for 13,000 feet).
+_Information -_ This command has the aircraft cross a specified point along their route at a specified altitude and/or speed. The altitude must be entered in hundreds of feet (eg `130` for 13,000 feet). The speed should be entered in knots (eg `210` for 210 knots).
 
-_Syntax -_ `AAL123 cr aubrn 130`
+_Syntax -_ `AAL123 x aubrn a[alt] s[spd]`
 
 ## Aircraft Query Commands
 

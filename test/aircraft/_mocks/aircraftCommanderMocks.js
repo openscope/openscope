@@ -54,10 +54,27 @@ export const RUN_SAY_HEADING_RESULT_NE = [
         say: 'heading zero four five'
     }
 ];
+
 export const RUN_SAY_HEADING_RESULT_SW = [
     true,
     {
         log: 'heading 225',
         say: 'heading two two five'
+    }
+];
+
+export const SQUAWK_RESPONSE_SUCCESS = [
+    true,
+    {
+        log: 'squawk 3377',
+        say: 'squawk three three seven seven'
+    }
+];
+
+export const SQUAWK_RESPONSE_FAILURE = [
+    false,
+    {
+        log: 'unable to squawk 3377',
+        say: 'unable to squawk three three seven seven'
     }
 ];

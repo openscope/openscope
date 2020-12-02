@@ -19,7 +19,7 @@ ava('.altitudeParser() converts a string flight level altitude to a number altit
 });
 
 ava('.altitudeParser() returns true if the second argument is not undefined', t => {
-    const result = altitudeParser(['080', 'x']);
+    const result = altitudeParser(['080', 'ex']);
 
     t.true(result[1]);
 });
@@ -205,9 +205,24 @@ ava('.timewarpParser() returns an array with 50 as a value when provided as an a
 });
 
 
-ava('.crossingParser() returns an array with the correct values', (t) => {
-    const result = crossingParser(['LEMDY', '50']);
+ava('.crossingParser() returns an array with the correct values when provided all args', (t) => {
+    const result = crossingParser(['LEMDY', 'a50', 's210']);
 
     t.true(result[0] === 'LEMDY');
     t.true(result[1] === 5000);
+    t.true(result[2] === 210);
+});
+
+ava('.crossingParser() returns an array with the correct values when provided altitude as an arg', (t) => {
+    const result = crossingParser(['LEMDY', 'a50']);
+
+    t.true(result[0] === 'LEMDY');
+    t.true(result[1] === 5000);
+});
+
+ava('.crossingParser() returns an array with the correct values when provided speed as an arg', (t) => {
+    const result = crossingParser(['LEMDY', 's210']);
+
+    t.true(result[0] === 'LEMDY');
+    t.true(result[2] === 210);
 });

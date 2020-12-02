@@ -351,6 +351,16 @@ ava('.isEstablishedOnGlidepath() returns true when an acceptable distance below 
     t.true(result);
 });
 
+ava('.isInsideAirspace() returns the value of Airport.isPointWithinAirspace as called upon the provided AirportModel', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const expectedResult = 'this is some output from Airport.isPointWithinAirspace()';
+    const airportModelIsPointWithinAirspaceStub = sandbox.stub(airportModelFixture, 'isPointWithinAirspace').returns(expectedResult);
+    const result = model.isInsideAirspace(airportModelFixture);
+
+    t.true(airportModelIsPointWithinAirspaceStub.calledWithExactly(model.relativePosition, model.altitude));
+    t.true(result === expectedResult);
+});
+
 // using `sinon.stub` directly for these tests because the stubs via `sandbox` are not getting restored
 // in time for the next assertion that is also stubbing the same methods
 ava('.isOnFinal() returns false when neither on the selected course nor within the final approach fix distance', (t) => {
@@ -686,6 +696,32 @@ ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     arrival.altitude = arrival.fms.arrivalAirportModel.elevation;
 
+    const arrivalResult = arrival.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(arrivalResult, expectedResult);
+});
+
+ava('.taxiToRunway() returns an error when the aircraft is already taxiing to the specified runway', (t) => {
+    const expectedResult = [false, {
+        log: 'we\'re already taxiing to Runway 19L',
+        say: 'we\'re already taxiing to Runway one niner left'
+    }];
+    const arrival = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    arrival.fms.departureRunwayModel = runwayModelMock;
+    arrival.fms.currentPhase = FLIGHT_PHASE.TAXI;
+    const arrivalResult = arrival.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(arrivalResult, expectedResult);
+});
+
+ava('.taxiToRunway() returns an error when the aircraft is already holding short of the specified runway', (t) => {
+    const expectedResult = [false, {
+        log: 'we\'re already holding short of Runway 19L',
+        say: 'we\'re already holding short of Runway one niner left'
+    }];
+    const arrival = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    arrival.fms.departureRunwayModel = runwayModelMock;
+    arrival.fms.currentPhase = FLIGHT_PHASE.WAITING;
     const arrivalResult = arrival.taxiToRunway(runwayModelMock);
 
     t.deepEqual(arrivalResult, expectedResult);

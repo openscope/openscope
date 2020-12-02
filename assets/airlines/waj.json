@@ -1,0 +1,17 @@
+{
+    "icao": "waj",
+    "name": "Air Asia Japan",
+    "callsign": {
+        "name": "Wing Asia",
+        "callsignFormats": [
+            "#",
+            "##",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 3]
+        ]
+    }
+}

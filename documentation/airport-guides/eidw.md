@@ -3,7 +3,7 @@
 ## About EIDW
 Dublin Airport (IATA: DUB, ICAO: EIDW) is an international airport serving Dublin, the capital of The Republic of Ireland. It is the 13th busiest airport in Europe, and by far the busiest in Ireland.
 
-The airport was initially know as Collinstown Aerodrome when it opened in 1917 as a base for the British Royal Flying Corps. The site was then used as an internment camp during the Irish Civil War and left abandoned until 1937, when work began to convert the field into a civil airport for the newly established civil airline, Aer Lingus. By 1950 Dublin Airport had welcomed a total of 920,000 passengers and featured three new concrete runways, the longest of which (16/34) is still used today, although the other two are still clearly visible from the air. Runway 10/28 was opened in 1989 and a new runway measuring 3,110 m (10,203 ft) is currently under construction to the north of and parallel to the existing runway 10/28.
+The airport was initially know as Collinstown Aerodrome when it opened in 1917 as a base for the British Royal Flying Corps. The site was then used as an internment camp during the Irish Civil War and left abandoned until 1937, when work began to convert the field into a civil airport for the newly established civil airline, Aer Lingus. By 1950 Dublin Airport had welcomed a total of 920,000 passengers and featured three new concrete runways, the longest of which (16/34) is still used today, although the other two are still clearly visible from the air. Runway 10R/28L was opened in 1989 and a new runway measuring 3,110 m (10,203 ft) is currently under construction to the north of and parallel to the existing runway 10R/28L.
 
 ### Statistcs
 31,495,604 passengers in 2018, up 6.5% from 2017
@@ -30,53 +30,28 @@ Withing the Shannon FIR:
 | Dublin CTA | 5,000 ft | FL245 |
 | Dublin CTA | FL075 | FL245 |
 
-Outside the Shannon FIR:
-| Name | Lower Limit | Upper Limit |
-| --- | -- | --- |
-| Holyhead CTA 10 | FL145 | FL195 |
-| Holyhead CTA 11 | FL115 | FL195 |
-| Holyhead CTA 12 | FL035 | FL195 |
-| Holyhead CTA 13 | FL115 | FL195 |
-| Holyhead CTA 14 | FL075 | FL195 |
-| Holyhead CTA 19 | FL055 | FL195 |
-| Holyhead CTA 20 | FL085 | FL195 |
-
 ## Instrument Procedures
 Dublin has numerous instrument departures and standard terminal arrival routes.
 
 ### Departures
-Standard Instrument Departures in Dublin are divided into two categories; A/B and C/D. Aircraft which fall into categories A/B, namely turboprops, must fly the A/B departures, whereas aircraft which fall into categories C/D, namely jet airliners, must fly the C/D departures. Initial climb for aircraft on A/B category departures is 4,000ft, and FL090 for aircraft flying C/D category departures. The only exceptions are the KISHA2F and INKUR5B departures, for which the initial climb is 3,000ft.
-
 | Runway | Category | Suffix | Chart |
 | --- | -- | -- | --- |
-| 28 | A/B | B | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-9_en.pdf" target="_blank">EIDW AD 2.24-9</a> |
-| 28 | C/D | A | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-10_en.pdf" target="_blank">EIDW AD 2.24-10</a> |
-| 10 | A/B | F | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-11.1_en.pdf" target="_blank">EIDW AD 2.24-11</a> |
-| 10 | C/D | E | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-12.1_en.pdf" target="_blank">EIDW AD 2.24-12</a> |
-| 16 | A/B | P | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-13_en.pdf" target="_blank">EIDW AD 2.24-13</a> |
-| 16 | C/D | M | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-14_en.pdf" target="_blank">EIDW AD 2.24-14</a> |
-| 34 | A/B | H | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-15_en.pdf" target="_blank">EIDW AD 2.24-15</a> |
-| 34 | C/D | G | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-16_en.pdf" target="_blank">EIDW AD 2.24-16</a> |
+| 28L | C/D | A | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-11.1_en.pdf" target="_blank">EIDW AD 2.24-11</a> |
+| 10R | C/D | E | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.1_en.pdf" target="_blank">EIDW AD 2.24-17</a> |
+| 16 | C/D | M | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.1_en.pdf" target="_blank">EIDW AD 2.24-19</a> |
+| 34 | C/D | G | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21.1_en.pdf" target="_blank">EIDW AD 2.24-21</a> |
 
-Note: PELIG departures are not often used due to active restricted military area (EIR16) Southwest of Dublin. INKUR and OLONO departures are used instead.
+Note: PELIG departures are not available when the EIR16 military airspace is active.
 
 ### Arrivals
-Dublin Airport was one of the first airports in the world to adopt a point merge system, minimizing conflicts between departing and arriving aircraft as well as reducing fuel consumption. Once within the point merge arches, aircraft can be given shortcuts or vectors to join the ILS approach. Point merge approaches are used for aircraft landing on runways 28 and 10. Although all STARs include both altitude and speed restrictions, actual descent clearances are given by ATC.
+Dublin Airport was one of the first airports in the world to adopt a point merge system, minimizing conflicts between departing and arriving aircraft as well as reducing fuel consumption. Once within the point merge arches, aircraft can be given shortcuts or vectors to join the ILS approach. Point merge approaches are used for aircraft landing on runways 28L and 10R. Although all STARs include both altitude and speed restrictions, actual descent clearances are given by ATC.
 
 | Runway | Suffix | Point Merge | Chart |
 | --- | -- | -- | --- |
-| 28 | L | Yes | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.1_en.pdf" target="_blank">EIDW AD 2.24-17</a> |
-| 28 | X* | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-17.4_en.pdf" target="_blank">EIDW AD 2.24-17</a> |
-| 10 | R | Yes | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.1_en.pdf" target="_blank">EIDW AD 2.24-19</a> |
-| 10 | Z* | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-19.5_en.pdf" target="_blank">EIDW AD 2.24-19</a> |
-| 16 | U | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-20_en.pdf" target="_blank">EIDW AD 2.24-20</a> |
-| 16 | K | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-20_en.pdf" target="_blank">EIDW AD 2.24-20</a> |
-| 34 | S | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21_en.pdf" target="_blank">EIDW AD 2.24-21</a> |
-| 34 | K | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-21_en.pdf" target="_blank">EIDW AD 2.24-21</a> |
-
-\*X and Z arrivals are not available in openScope as these are never used in real life. They are available for descent and fuel planning purposes only. If ATC wishes to shorten the approach, vectors and shortcuts can be given.
-
-Note: OSGAR arrivals are not often used due to active restricted military area (EIR16) Southwest of Dublin. SUTEX and OLAPO arrivals are used instead.
+| 28L | L | Yes | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-22.1_en.pdf" target="_blank">EIDW AD 2.24-22</a> |
+| 10R | R | Yes | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-23.1_en.pdf" target="_blank">EIDW AD 2.24-23</a> |
+| 16 | U/K | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-24.1_en.pdf" target="_blank">EIDW AD 2.24-24</a> |
+| 34 | S/K | No | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EIDW/EI_AD_2_EIDW_24-25.1_en.pdf" target="_blank">EIDW AD 2.24-25</a> |
 
 ## Restricted Airspace
 There are several restricted and prohibited areas within the Dublin CTA. Most notably, EIR16 is a large area Southwest of Dublin used for military training up to FL240. There are also a few spots over the city of Dublin where flying is prohibited below 1,000ft

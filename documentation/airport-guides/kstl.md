@@ -63,4 +63,4 @@ MidAmerica St. Louis Airport / Scott AFB
 MidAmerica Airport is co-located on the grounds of Scott Air Force Base; The Northern side is used for civilian operations and Southern side is owned by the U.S. Air Force. It was originally built in 1997 as a reliever airport for STL.
 
 ### Additional Resources
-<a href="http://kcartcc.com/open/38" target="_blank">VATSIM SOP</a>
+<a href="https://kcartcc.com/storage/files/T75%20TRACON%20SOP_1566503142.pdf" target="_blank">VATSIM SOP</a>
