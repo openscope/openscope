@@ -235,6 +235,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false
         // },
         {
+            icao: 'khou',
+            level: 'easy',
+            name: 'Houston-Hobby Int\'l',
+            premium: false
+        },
+        {
             icao: 'kelp',
             level: 'easy',
             name: 'El Paso International Airport',
@@ -597,3 +603,4 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         }
     ];
 })();
+
