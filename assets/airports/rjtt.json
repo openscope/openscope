@@ -1440,8 +1440,8 @@
                 ["STONE", "_HME036028", "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "DOYLE"]
             ]
         },
-        "GODIN1C": {
-            "icao": "GODIN1C",
+        "GODI1C": {
+            "icao": "GODI1C",
             "name": "Godin One Charlie",
             "entryPoints": {
                 "GODIN": ["GODIN"]
@@ -1456,7 +1456,7 @@
             ]
         },
         "GODI1D": {
-            "icao": "GODIN1D",
+            "icao": "GODI1D",
             "name": "Godin One Delta",
             "entryPoints": {
                 "GODIN": ["GODIN"]
@@ -1470,8 +1470,8 @@
                 ["GODIN", "NOVEL", "DREAD", "DENNY", "DATUM"]
             ]
         },
-        "GODIN1H": {
-            "icao": "GODIN1H",
+        "GODI1H": {
+            "icao": "GODI1H",
             "name": "Godin One Hotel",
             "entryPoints": {
                 "GODIN": ["GODIN"]
@@ -1500,8 +1500,8 @@
                 ["GODIN", "NOVEL", "SCREW", "STEAM"]
             ]
         },
-        "GODIN2A": {
-            "icao": "GODIN2A",
+        "GODI2A": {
+            "icao": "GODI2A",
             "name": "Godin Two Alpha",
             "entryPoints": {
                 "GODIN": ["GODIN"]
@@ -1515,8 +1515,8 @@
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "ARLON"]
             ]
         },
-        "GODIN2K": {
-            "icao": "GODIN2K",
+        "GODI2K": {
+            "icao": "GODI2K",
             "name": "Godin Two Kilo",
             "entryPoints": {
                 "GODIN": ["GODIN"]
@@ -1989,15 +1989,16 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": "RJNK",
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y884.MBE",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.25,
+            "rate": 0.63,
             "airlines": [
-                ["ana/short", 4]
+                ["ana/short", 4],
+                ["jal/short", 6]
             ]
         },
         {
@@ -2067,6 +2068,140 @@
                 ["sfj", 5],
                 ["sky", 13],
                 ["snj", 14],
+                ["tha/long", 2],
+                ["pal/long", 2]
+            ]
+        }
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "GENJI.Y10.GODIN.GODI1C.RJTT34R",
+            "altitude": [16000, 16000],
+            "speed": 240,
+            "method": "random",
+            "rate": 7.31,
+            "airlines": [
+                ["ado", 24],
+                ["ana/short", 37],
+                ["jal", 48],
+                ["sky", 8]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "SASAP.Y10.GODIN.GODI1C.RJTT34R",
+            "altitude": [16000, 16000],
+            "speed": 240,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["afl/long", 1],
+                ["afr/long", 1],
+                ["ana/long", 5],
+                ["baw/long", 2],
+                ["jal/long", 8],
+                ["sas/long", 2],
+                ["sbi", 1]
+            ]
+        },
+        {
+            "origin": "PHNL",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "ANSAD.Y824.AROSA.AROS1A.RJTT34L",
+            "altitude": [16000, 16000],
+            "speed": 240,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ana/long", 2],
+                ["dal/long", 1],
+                ["hal/long", 1],
+                ["jal/long", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "AKRIT.Y807.POLIX.POLI1C.RJTT34R",
+            "altitude": [16000, 16000],
+            "speed": 240,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["aca/long", 1],
+                ["ana/long", 7],
+                ["dal/long", 6],
+                ["jal/long", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "WAKOH.Y31.GENJI.Y10.GODIN.GODI1C.RJTT34R",
+            "altitude": [16000, 16000],
+            "speed": 240,
+            "method": "random",
+            "rate": 0.38,
+            "airlines": [
+                ["ana/short", 6]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "SHOOT.Y71.XAC.XAC1A.RJTT34L",
+            "altitude": [22000, 22000],
+            "speed": 240,
+            "method": "random",
+            "rate": 2.69,
+            "airlines": [
+                ["ana/short", 23],
+                ["jal/short", 16],
+                ["kal", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "ENSYU.Y23.ARTIC.Y71.XAC.XAC1A.RJTT34L",
+            "altitude": [22000, 22000],
+            "speed": 240,
+            "method": "random",
+            "rate": 5.88,
+            "airlines": [
+                ["ana/short", 32],
+                ["jal/short", 31],
+                ["sfj", 10],
+                ["sky", 15],
+                ["snj", 6]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "RJTT",
+            "category": "arrival",
+            "route": "MENUR.Y21.AKSEL.AKSE1A.RJTT34L",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 7.75,
+            "airlines": [
+                ["ana", 103],
+                ["apj", 1],
+                ["cpa/long", 2],
+                ["jal", 99],
+                ["jta", 3],
+                ["sfj", 25],
+                ["sky", 23],
+                ["snj", 23],
                 ["tha/long", 2],
                 ["pal/long", 2]
             ]
