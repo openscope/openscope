@@ -1,0 +1,18 @@
+{
+    "icao": "jta",
+    "name": "Japan Transocean Air",
+    "callsign": {
+        "name": "Jay Ocean",
+        "callsignFormats": [
+            "#",
+            "##",
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 13]
+        ]
+    }
+}
