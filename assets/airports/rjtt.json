@@ -659,12 +659,12 @@
             "icao": "BEKL2A",
             "name": "Bekla Two Alpha",
             "rwy": {
-                "04":  [["^_RWY0402DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
-                "05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
-                "34L": [["^_RWY34L02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]]
+                "RJTT04":  [["^_RWY0402DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
+                "RJTT05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
+                "RJTT34L": [["^_RWY34L02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]]
             },
             "body": [],
             "exitPoints": {
@@ -681,10 +681,10 @@
             "icao": "BEKL2B",
             "name": "Bekla Two Bravo",
             "rwy": {
-                "05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"], ["RAGOS", "A130+"]]
+                "RJTT05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"], ["RAGOS", "A130+"]]
             },
             "body": [],
             "exitPoints": {
@@ -701,10 +701,10 @@
             "icao": "BEKL2C",
             "name": "Bekla Two Charlie",
             "rwy": {
-                "05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"], ["RAGOS", "A130+"]]
+                "RJTT05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["RAGOS", "A130+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"], ["RAGOS", "A130+"]]
             },
             "body": [],
             "exitPoints": {
@@ -721,12 +721,12 @@
             "icao": "ISOGO2",
             "name": "Isogo Two",
             "rwy": {
-                "04":   [["^_RWY0402DME", "A7+"], "^HME"],
-                "05":   [["^_RWY0503DME", "A10"], "_HME084009", "_HME097010", ["_HME120009", "A50+"], "_HME170012"],
-                "16L":  ["^_HME140007", "_HME170012"],
-                "16R":  ["^_HME148007", "_HME170012"],
-                "34L":  [["^_RWY34L02DME", "A7+"], "_HME286003", "_HME170006"],
-                "34R":  [["^_RWY34R02DME", "A7+"], "_HME286003", "_HME170006"]
+                "RJTT04":   [["^_RWY0402DME", "A7+"], "^HME"],
+                "RJTT05":   [["^_RWY0503DME", "A10"], "_HME084009", "_HME097010", ["_HME120009", "A50+"], "_HME170012"],
+                "RJTT16L":  ["^_HME140007", "_HME170012"],
+                "RJTT16R":  ["^_HME148007", "_HME170012"],
+                "RJTT34L":  [["^_RWY34L02DME", "A7+"], "_HME286003", "_HME170006"],
+                "RJTT34R":  [["^_RWY34R02DME", "A7+"], "_HME286003", "_HME170006"]
             },
             "body": ["VADAR"],
             "exitPoints": {
@@ -738,17 +738,17 @@
                 ["_HME177XAC058", "XAC"]
             ]
         },
-        "LAXAS2": {
-            "icao": "LAXAS2",
-            "name": "Laxas Two",
+        "LAXAS3": {
+            "icao": "LAXAS3",
+            "name": "Laxas Three",
             "rwy": {
-                "04":  [["^_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]],
-                "05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L21", ["TAURA", "A90+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["TAURA", "A90+"]],
-                "22":  [["^_RWY2202DME", "A6+"], "HOBBS", "BASSA", "UMUKI", ["PIPER", "A90+"], "SATOL"],
-                "34L": [["^_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]]
+                "RJTT04":  [["^_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]],
+                "RJTT05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L21", ["TAURA", "A90+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["TAURA", "A90+"]],
+                "RJTT22":  [["^_RWY2202DME", "A6+"], "HOBBS", "BASSA", "UMUKI", ["PIPER", "A90+"], "SATOL"],
+                "RJTT34L": [["^_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"]]
             },
             "body": [["IMOLA", "A150+"]],
             "exitPoints": {
@@ -769,13 +769,13 @@
             "icao": "NINOX3",
             "name": "Ninox Three",
             "rwy": {
-                "04":  [["^_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
-                "05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L22", "TT631", ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R12", "TT631", ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
-                "22":  [["^_RWY2202DME", "A6+"], "HOBBS", "BASSA", "UMUKI", ["PIPER", "A90+"], "SATOL", ["CURVA", "A150+"]],
-                "34L": [["^_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]]
+                "RJTT04":  [["^_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
+                "RJTT05":  [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L22", "TT631", ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R12", "TT631", ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
+                "RJTT22":  [["^_RWY2202DME", "A6+"], "HOBBS", "BASSA", "UMUKI", ["PIPER", "A90+"], "SATOL", ["CURVA", "A150+"]],
+                "RJTT34L": [["^_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["SEIKO", "A130+"]]
             },
             "body": [],
             "exitPoints": {
@@ -794,12 +794,12 @@
             "icao": "OPPAR3",
             "name": "Oppar Three",
             "rwy": {
-                "04":   [["^_RWY0402DME", "A7+"], ["_HME080007", "A30+"], "_HME090008", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"],
-                "05":   ["^_HME074005", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"],
-                "16L":  [["^_RWY16L03DME", "A5+"], "_HME140008", "_HME110008", "_HME194008"],
-                "16R":  [["^_RWY16R03DME", "A5+"], "_HME140008", "_HME110008", "_HME194008"],
-                "34L":  [["^_RWY34L02DME", "A7+"], ["_HME080007", "A30+"], "_HME090008", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"],
-                "34R":  [["^_RWY34R02DME", "A7+"], ["_HME080007", "A30+"], "_HME090008", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"]
+                "RJTT04":   [["^_RWY0402DME", "A7+"], ["_HME080007", "A30+"], "_HME090008", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"],
+                "RJTT05":   ["^_HME074005", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"],
+                "RJTT16L":  [["^_RWY16L03DME", "A5+"], "_HME140008", "_HME110008", "_HME194008"],
+                "RJTT16R":  [["^_RWY16R03DME", "A5+"], "_HME140008", "_HME110008", "_HME194008"],
+                "RJTT34L":  [["^_RWY34L02DME", "A7+"], ["_HME080007", "A30+"], "_HME090008", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"],
+                "RJTT34R":  [["^_RWY34R02DME", "A7+"], ["_HME080007", "A30+"], "_HME090008", "_HME100008", "_HME110008", ["_HME120008", "A50+"], "_HME130008", "_HME140008", "_HME150008", "_HME160008", "_HME167008", "_HME170008", "_HME180008", "_HME194008"]
             },
             "body": [],
             "exitPoints": {
@@ -820,12 +820,12 @@
             "icao": "RITL2A",
             "name": "Ritla Two Alpha",
             "rwy": {
-                "04": [["^_RWY0402DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"]],
-                "05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"]],
-                "34L": [["^_RWY34L02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"]]
+                "RJTT04": [["^_RWY0402DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"]],
+                "RJTT05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"]],
+                "RJTT34L": [["^_RWY34L02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "TORAM", "PLUTO", "KAIJI", ["INTEL", "A90+"]]
             },
             "body": [["LAYER", "A130+"], "TIARA"],
             "exitPoints": {
@@ -846,10 +846,10 @@
             "icao": "RITL2B",
             "name": "Ritla Two Bravo",
             "rwy": {
-                "05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"]]
+                "RJTT05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R13", "HATBA", ["KAMAT", "A90+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"]]
             },
             "body": [["LAYER", "A130+"], "TIARA"],
             "exitPoints": {
@@ -867,11 +867,11 @@
             "icao": "RITL2C",
             "name": "Ritla Two Charlie",
             "rwy": {
-                "05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"], "TIARA"],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["LAYER", "A130+"], "TIARA"],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["LAYER", "A130+"], "TIARA"],
-                "22": [["^_RWY2202DME", "A6+"], "HOBBS", "BASSA", "UMUKI", ["PIPER", "A90+"], "SATOL", ["CURVA", "A150+"], "RITLA"],
-                "34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"], ["LAYER", "A130+"], "TIARA"]
+                "RJTT05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["LAYER", "A130+"], "TIARA"],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["LAYER", "A130+"], "TIARA"],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["INTEL", "A90+"], ["LAYER", "A130+"], "TIARA"],
+                "RJTT22": [["^_RWY2202DME", "A6+"], "HOBBS", "BASSA", "UMUKI", ["PIPER", "A90+"], "SATOL", ["CURVA", "A150+"], "RITLA"],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO", ["INTEL", "A90+"], ["LAYER", "A130+"], "TIARA"]
             },
             "body": [],
             "exitPoints": {
@@ -890,12 +890,12 @@
             "icao": "ROVE2A",
             "name": "Rover Two Alpha",
             "rwy": {
-                "04": [["^_RWY0402DME", "A7+"], "TORAM"],
-                "05": [["^_RWY0503DME", "A5+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"]],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"]],
-                "34L": [["^_RWY34L02DME", "A7+"], "TORAM"],
-                "34R": [["^_RWY34R02DME", "A7+"], "TORAM"]
+                "RJTT04": [["^_RWY0402DME", "A7+"], "TORAM"],
+                "RJTT05": [["^_RWY0503DME", "A5+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"]],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"]],
+                "RJTT34L": [["^_RWY34L02DME", "A7+"], "TORAM"],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "TORAM"]
             },
             "body": ["PLUTO", "KAIJI", ["SPOON", "A150-"]],
             "exitPoints": {
@@ -921,10 +921,10 @@
             "icao": "ROVE1B",
             "name": "Rover One Bravo",
             "rwy": {
-                "05": [["^_RWY0503DME", "A5+"], "PLUTO", "KAIJI"],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
-                "34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO"]
+                "RJTT05": [["^_RWY0503DME", "A5+"], "PLUTO", "KAIJI"],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO"]
             },
             "body": [["SPOON", "A150-"]],
             "exitPoints": {
@@ -947,10 +947,10 @@
             "icao": "ROVE1C",
             "name": "Rover One Charlie",
             "rwy": {
-                "05": [["^_RWY0503DME", "A5+"], "PLUTO", "KAIJI"],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L31", "DAMBO", "T6L32", ["LESMO", "A80+"], "KAIJI"],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
-                "34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO"]
+                "RJTT05": [["^_RWY0503DME", "A5+"], "PLUTO", "KAIJI"],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L31", "DAMBO", "T6L32", ["LESMO", "A80+"], "KAIJI"],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "ARAKA", "EDOJO", "OHEDO"]
             },
             "body": [["SPOON", "A150-"]],
             "exitPoints": {
@@ -973,12 +973,12 @@
             "icao": "RUTAS2",
             "name": "Rutas Two",
             "rwy": {
-                "04": [["^_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"]],
-                "05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"]],
-                "16L": [["^_RWY16L03DME", "A5+"], "T6L21"],
-                "16R": [["^_RWY16R03DME", "A5+"], "T6R11"],
-                "34L": [["^_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"]],
-                "34R": [["^_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"]]
+                "RJTT04": [["^_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"]],
+                "RJTT05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"]],
+                "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L21"],
+                "RJTT16R": [["^_RWY16R03DME", "A5+"], "T6R11"],
+                "RJTT34L": [["^_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"]],
+                "RJTT34R": [["^_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"]]
             },
             "body": ["VAMOS", ["UTIBO", "A60"]],
             "exitPoints": {
@@ -999,12 +999,12 @@
             "icao": "SYE2",
             "name": "Sekiyado Two",
             "rwy": {
-                "16L":  [["SYE", "A150"]],
-                "16R":  [["SYE", "A150"]],
-                "34L":  [["SYE", "A150"]],
-                "34R":  [["SYE", "A150"]],
-                "04":   [["SYE", "A150"]],
-                "05":   [["SYE", "A150"]]
+                "RJTT16L":  [["SYE", "A150"]],
+                "RJTT16R":  [["SYE", "A150"]],
+                "RJTT34L":  [["SYE", "A150"]],
+                "RJTT34R":  [["SYE", "A150"]],
+                "RJTT04":   [["SYE", "A150"]],
+                "RJTT05":   [["SYE", "A150"]]
             },
             "draw": [
                 ["SYE"]
@@ -1014,12 +1014,12 @@
             "icao": "VADAR1",
             "name": "Vadar One",
             "rwy": {
-                "16L":  [["VADAR", "A90"]],
-                "16R":  [["VADAR", "A90"]],
-                "34L":  [["VADAR", "A90"]],
-                "34R":  [["VADAR", "A90"]],
-                "04":   [["VADAR", "A90"]],
-                "05":   [["VADAR", "A90"]]
+                "RJTT16L":  [["VADAR", "A90"]],
+                "RJTT16R":  [["VADAR", "A90"]],
+                "RJTT34L":  [["VADAR", "A90"]],
+                "RJTT34R":  [["VADAR", "A90"]],
+                "RJTT04":   [["VADAR", "A90"]],
+                "RJTT05":   [["VADAR", "A90"]]
             },
             "draw": [
                 ["VADAR"]
@@ -1035,8 +1035,8 @@
             },
             "body": ["_HME157025"],
             "rwy": {
-                "34L": [["ARLON", "A50"]],
-                "34R": [["ARLON", "A40"]]
+                "RJTT34L": [["ARLON", "A50"]],
+                "RJTT34R": [["ARLON", "A40"]]
             },
             "draw": [
                 ["ADDUM", "_HME157025", "ARLON"]
@@ -1050,8 +1050,8 @@
             },
             "body": ["TT454", "TT455", "TT456", ["WALLY", "A120|S230"], ["WEDGE", "A80"]],
             "rwy": {
-                "34L": [["ARLON", "A50"]],
-                "34R": [["ARLON", "A40"]]
+                "RJTT34L": [["ARLON", "A50"]],
+                "RJTT34R": [["ARLON", "A40"]]
             },
             "draw": [
                 ["AKSEL", "TT454", "TT455", "TT456", "WALLY", "WEDGE", "ARLON"]
@@ -1065,8 +1065,8 @@
             },
             "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A80"]],
             "rwy": {
-                "22": ["BACON"],
-                "23": ["BACON"]
+                "RJTT22": ["BACON"],
+                "RJTT23": ["BACON"]
             },
             "draw": [
                 ["AKSEL", "SALLY", "TT253", "TT254", "TT255", "STOWE", "SHAFT", "BACON"]
@@ -1080,8 +1080,8 @@
             },
             "body": ["TT454", "TT455", "TT456", ["WALLY", "A120|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"]],
             "rwy": {
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["AKSEL", "TT454", "TT455", "TT456", "WALLY", "WEDGE", "UMUKI", "KAIHO"]
@@ -1095,8 +1095,8 @@
             },
             "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A80"]],
             "rwy": {
-                "22": [["NYLON", "A50"]],
-                "23": [["NYLON", "A40"]]
+                "RJTT22": [["NYLON", "A50"]],
+                "RJTT23": [["NYLON", "A40"]]
             },
             "draw": [
                 ["AKSEL", "SALLY", "TT253", "TT254", "TT255", "STOWE", "SHAFT", "NYLON"]
@@ -1110,8 +1110,8 @@
             },
             "body": [["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
             "rwy": {
-                "22": ["BACON"],
-                "23": ["BACON"]
+                "RJTT22": ["BACON"],
+                "RJTT23": ["BACON"]
             },
             "draw": [
                 ["AKSEL", "LAFIT", "STING", "SPARK", "SHAFT", "BACON"]
@@ -1125,8 +1125,8 @@
             },
             "body": ["CLONE", "TT460", "TT461", ["CIVIC", "A70|S210"], "TT462", "TT463", "TT464", ["EPSON", "A70|S210"]],
             "rwy": {
-                "34L": [["CREAM", "A50"]],
-                "34R": [["CREAM", "A40"]]
+                "RJTT34L": [["CREAM", "A50"]],
+                "RJTT34R": [["CREAM", "A40"]]
             },
             "draw": [
                 ["AKSEL", "CLONE", "TT460", "TT461", "CIVIC", "TT462", "TT463", "TT464", "EPSON", "CREAM"]
@@ -1140,8 +1140,8 @@
             },
             "body": ["CLONE", "TT460", "TT461", ["CIVIC", "A70|S210"], "TT462", "TT463", "TT464", ["EPSON", "A70|S210"], "CREAM", "CLOAK", "CAMEL"],
             "rwy": {
-                "34L": [["CACAO", "A30"]],
-                "34R": ["CACAO"]
+                "RJTT34L": [["CACAO", "A30"]],
+                "RJTT34R": ["CACAO"]
             },
             "draw": [
                 ["AKSEL", "CLONE", "TT460", "TT461", "CIVIC", "TT462", "TT463", "TT464", "EPSON", "CREAM", "CLOAK", "CAMEL", "CACAO"]
@@ -1155,8 +1155,8 @@
             },
             "body": [["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
             "rwy": {
-                "22": [["NYLON", "A50"]],
-                "23": [["NYLON", "A40"]]
+                "RJTT22": [["NYLON", "A50"]],
+                "RJTT23": [["NYLON", "A40"]]
             },
             "draw": [
                 ["AKSEL", "LAFIT", "STING", "SPARK", "SHAFT", "NYLON"]
@@ -1170,7 +1170,7 @@
             },
             "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60"],
             "rwy": {
-                "16L": [["SANDY", "A45"]]
+                "RJTT16L": [["SANDY", "A45"]]
             },
             "draw": [
                 ["AKSEL", "SALLY", "TT253", "TT254", "TT255", "STOWE", "SHAFT", "SNOKE", "SPINE", "SOPPY", "SNARE", "T6L60", "SANDY"]
@@ -1184,10 +1184,10 @@
             },
             "body": ["UTIBO", ["UMUKI", "A60+"]],
             "rwy": {
-                "22": [["KAIHO", "A40"]],
-                "23": ["KAIHO"],
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT22": [["KAIHO", "A40"]],
+                "RJTT23": ["KAIHO"],
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["AKSEL", "UTIBO", "UMUKI", "KAIHO"]
@@ -1201,7 +1201,7 @@
             },
             "body": [["SALLY", "S230"], "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
             "rwy": {
-                "16R": ["NATTY"]
+                "RJTT16R": ["NATTY"]
             },
             "draw": [
                 ["AKSEL", "SALLY", "SCOUT", "SCOPE", "T6R70", "NUMAN", "NORIK", "T6R71", "T6R72", "NURSE", "NEURO", "NIGEL", "NATTY"]
@@ -1215,8 +1215,8 @@
             },
             "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
             "rwy": {
-                "16L": [["DARKS", "A18"]],
-                "16R": [["DARKS", "A18"]]
+                "RJTT16L": [["DARKS", "A18"]],
+                "RJTT16R": [["DARKS", "A18"]]
             },
             "draw": [
                 ["AKSEL", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1230,8 +1230,8 @@
             },
             "body": [["AVEEY", "A110|S230"], "TT457", "TT458", "TT459", ["WALTZ", "A110|S230"], ["WEDGE", "A80"]],
             "rwy": {
-                "34L": [["ARLON", "A50"]],
-                "34R": [["ARLON", "A40"]]
+                "RJTT34L": [["ARLON", "A50"]],
+                "RJTT34R": [["ARLON", "A40"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "TT457", "TT458", "TT459", "WALTZ", "WEDGE", "ARLON"]
@@ -1245,8 +1245,8 @@
             },
             "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A80"]],
             "rwy": {
-                "22": ["BACON"],
-                "23": ["BACON"]
+                "RJTT22": ["BACON"],
+                "RJTT23": ["BACON"]
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SLICK", "SHAFT", "BACON"]
@@ -1260,8 +1260,8 @@
             },
             "body": [["AVEEY", "A110|S230"], "TT457", "TT458", "TT459", ["WALTZ", "A110|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"]],
             "rwy": {
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "TT457", "TT458", "TT459", "WALTZ", "WEDGE", "UMUKI", "KAIHO"]
@@ -1275,8 +1275,8 @@
             },
             "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A80"]],
             "rwy": {
-                "22": [["NYLON", "A50"]],
-                "23": [["NYLON", "A40"]]
+                "RJTT22": [["NYLON", "A50"]],
+                "RJTT23": [["NYLON", "A40"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SLICK", "SHAFT", "NYLON"]
@@ -1290,8 +1290,8 @@
             },
             "body": [["AVEEY", "A110|S230"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
             "rwy": {
-                "22": ["BACON"],
-                "23": ["BACON"]
+                "RJTT22": ["BACON"],
+                "RJTT23": ["BACON"]
             },
             "draw": [
                 ["AROSA", "AVEEY", "STING", "SPARK", "SHAFT", "BACON"]
@@ -1305,8 +1305,8 @@
             },
             "body": [["AVEEY", "A110|S230"], "TT460", "TT461", ["CIVIC", "A70|S210"], "TT462", "TT463", "TT464", ["EPSON", "A70|S210"]],
             "rwy": {
-                "34L": [["CREAM", "A50"]],
-                "34R": [["CREAM", "A40"]]
+                "RJTT34L": [["CREAM", "A50"]],
+                "RJTT34R": [["CREAM", "A40"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "TT460", "TT461", "CIVIC", "TT462", "TT463", "TT464", "EPSON", "CREAM"]
@@ -1320,8 +1320,8 @@
             },
             "body": [["AVEEY", "A110|S230"], "TT460", "TT461", ["CIVIC", "A70|S210"], "TT462", "TT463", "TT464", ["EPSON", "A70|S210"], "CREAM", "CLOAK", "CAMEL"],
             "rwy": {
-                "34L": [["CACAO", "A30"]],
-                "34R": ["CACAO"]
+                "RJTT34L": [["CACAO", "A30"]],
+                "RJTT34R": ["CACAO"]
             },
             "draw": [
                 ["AROSA", "AVEEY", "TT460", "TT461", "CIVIC", "TT462", "TT463", "TT464", "EPSON", "CREAM", "CLOAK", "CAMEL", "CACAO"]
@@ -1335,8 +1335,8 @@
             },
             "body": [["AVEEY", "A110|S230"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
             "rwy": {
-                "22": [["NYLON", "A50"]],
-                "23": [["NYLON", "A40"]]
+                "RJTT22": [["NYLON", "A50"]],
+                "RJTT23": [["NYLON", "A40"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "STING", "SPARK", "SHAFT", "NYLON"]
@@ -1350,7 +1350,7 @@
             },
             "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60"],
             "rwy": {
-                "16L": [["SANDY", "A45"]]
+                "RJTT16L": [["SANDY", "A45"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SLICK", "SHAFT", "SNOKE", "SPINE", "SOPPY", "SNARE", "T6L60", "SANDY"]
@@ -1364,10 +1364,10 @@
             },
             "body": ["AVEEY", "UTIBO", ["UMUKI", "A60+"]],
             "rwy": {
-                "22": [["KAIHO", "A40"]],
-                "23": ["KAIHO"],
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT22": [["KAIHO", "A40"]],
+                "RJTT23": ["KAIHO"],
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "UTIBO", "UMUKI", "KAIHO"]
@@ -1381,7 +1381,7 @@
             },
             "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
             "rwy": {
-                "16R": ["NATTY"]
+                "RJTT16R": ["NATTY"]
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SCOUT", "SCOPE", "T6R70", "NUMAN", "NORIK", "T6R71", "T6R72", "NURSE", "NEURO", "NIGEL", "NATTY"]
@@ -1395,8 +1395,8 @@
             },
             "body": ["AVEEY", "UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
             "rwy": {
-                "16L": [["DARKS", "A18"]],
-                "16R": [["DARKS", "A18"]]
+                "RJTT16L": [["DARKS", "A18"]],
+                "RJTT16R": [["DARKS", "A18"]]
             },
             "draw": [
                 ["AROSA", "AVEEY", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1410,7 +1410,7 @@
             },
             "body": ["_HME157022", "_HME150022", "_HME140022", "_HME130022", "_HME120022", "_HME110022", "_HME096022"],
             "rwy": {
-                "22": [["BONUS", "A50"]]
+                "RJTT22": [["BONUS", "A50"]]
             },
             "draw": [
                 ["ADDUM", "_HME157022", "_HME150022", "_HME140022", "_HME130022", "_HME120022", "_HME110022", "_HME096022", "BONUS"]
@@ -1424,7 +1424,7 @@
             },
             "body": [["_HME036028", "A80+"], "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022"],
             "rwy": {
-                "23": [["DOYLE", "A40"]]
+                "RJTT23": [["DOYLE", "A40"]]
             },
             "draw": [
                 ["STONE", "_HME036028", "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "DOYLE"]
@@ -1438,8 +1438,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"]],
             "rwy": {
-                "34L": [["CREAM", "A50"]],
-                "34R": [["CREAM", "A40"]]
+                "RJTT34L": [["CREAM", "A50"]],
+                "RJTT34R": [["CREAM", "A40"]]
             },
             "draw": [
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "CREAM"]
@@ -1453,8 +1453,8 @@
             },
             "body": [["NOVEL", "A80+"], "DREAD", "DENNY"],
             "rwy": {
-                "22": [["DATUM", "A50"]],
-                "23": ["DATUM"]
+                "RJTT22": [["DATUM", "A50"]],
+                "RJTT23": ["DATUM"]
             },
             "draw": [
                 ["GODIN", "NOVEL", "DREAD", "DENNY", "DATUM"]
@@ -1468,8 +1468,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "CREAM", "CLOAK", "CAMEL"],
             "rwy": {
-                "34L": [["CACAO", "A30"]],
-                "34R": ["CACAO"]
+                "RJTT34L": [["CACAO", "A30"]],
+                "RJTT34R": ["CACAO"]
             },
             "draw": [
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "CREAM", "CLOAK", "CAMEL", "CACAO"]
@@ -1483,8 +1483,8 @@
             },
             "body": [["NOVEL", "A80+"], "SCREW"],
             "rwy": {
-                "22": [["STEAM", "A50"]],
-                "23": [["STEAM", "A40"]]
+                "RJTT22": [["STEAM", "A50"]],
+                "RJTT23": [["STEAM", "A40"]]
             },
             "draw": [
                 ["GODIN", "NOVEL", "SCREW", "STEAM"]
@@ -1498,8 +1498,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469"],
             "rwy": {
-                "34L": [["ARLON", "A50"]],
-                "34R": [["ARLON", "A40"]]
+                "RJTT34L": [["ARLON", "A50"]],
+                "RJTT34R": [["ARLON", "A40"]]
             },
             "draw": [
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "ARLON"]
@@ -1513,8 +1513,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469", ["UMUKI", "A60+"]],
             "rwy": {
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "UMUKI", "KAIHO"]
@@ -1528,7 +1528,7 @@
             },
             "body": [["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["SNARE", "A60"], "T6L60"],
             "rwy": {
-                "16L": [["SANDY", "A45"]]
+                "RJTT16L": [["SANDY", "A45"]]
             },
             "draw": [
                 ["GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "SNARE", "T6L60", "SANDY"]
@@ -1542,7 +1542,7 @@
             },
             "body": [["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
             "rwy": {
-                "16R": ["NATTY"]
+                "RJTT16R": ["NATTY"]
             },
             "draw": [
                 ["GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "NEURO", "NIGEL", "NATTY"]
@@ -1556,10 +1556,10 @@
             },
             "body": ["UTIBO", ["UMUKI", "A60+"]],
             "rwy": {
-                "22": [["KAIHO", "A40"]],
-                "23": ["KAIHO"],
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT22": [["KAIHO", "A40"]],
+                "RJTT23": ["KAIHO"],
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["MESSE", "UTIBO", "UMUKI", "KAIHO"]
@@ -1573,8 +1573,8 @@
             },
             "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
             "rwy": {
-                "16L": [["DARKS", "A18"]],
-                "16R": [["DARKS", "A18"]]
+                "RJTT16L": [["DARKS", "A18"]],
+                "RJTT16R": [["DARKS", "A18"]]
             },
             "draw": [
                 ["MESSE", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1588,8 +1588,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "CREAM", "CLOAK", "CAMEL"],
             "rwy": {
-                "34L": [["CACAO", "A30"]],
-                "34R": ["CACAO"]
+                "RJTT34L": [["CACAO", "A30"]],
+                "RJTT34R": ["CACAO"]
             },
             "draw": [
                 ["POLIX", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "CREAM", "CLOAK", "CAMEL", "CACAO"]
@@ -1603,8 +1603,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"]],
             "rwy": {
-                "34L": [["CREAM", "A50"]],
-                "34R": [["CREAM", "A40"]]
+                "RJTT34L": [["CREAM", "A50"]],
+                "RJTT34R": [["CREAM", "A40"]]
             },
             "draw": [
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "CREAM"]
@@ -1618,8 +1618,8 @@
             },
             "body": ["GODIN", ["NOVEL", "A80+"], "DREAD", "DENNY"],
             "rwy": {
-                "22": [["DATUM", "A50"]],
-                "23": ["DATUM"]
+                "RJTT22": [["DATUM", "A50"]],
+                "RJTT23": ["DATUM"]
             },
             "draw": [
                 ["POLIX", "GODIN", "NOVEL", "DREAD", "DENNY", "DATUM"]
@@ -1633,8 +1633,8 @@
             },
             "body": ["GODIN", ["NOVEL", "A80+"], "SCREW"],
             "rwy": {
-                "22": [["STEAM", "A50"]],
-                "23": [["STEAM", "A40"]]
+                "RJTT22": [["STEAM", "A50"]],
+                "RJTT23": [["STEAM", "A40"]]
             },
             "draw": [
                 ["POLIX", "GODIN", "NOVEL", "SCREW", "STEAM"]
@@ -1648,8 +1648,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469"],
             "rwy": {
-                "34L": [["ARLON", "A50"]],
-                "34R": [["ARLON", "A40"]]
+                "RJTT34L": [["ARLON", "A50"]],
+                "RJTT34R": [["ARLON", "A40"]]
             },
             "draw": [
                 ["POLIX", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "ARLON"]
@@ -1663,8 +1663,8 @@
             },
             "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469", ["UMUKI", "A60+"]],
             "rwy": {
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["POLIX", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "UMUKI", "KAIHO"]
@@ -1678,7 +1678,7 @@
             },
             "body": ["GODIN", ["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["SNARE", "A60"], "T6L60"],
             "rwy": {
-                "16L": [["SANDY", "A45"]]
+                "RJTT16L": [["SANDY", "A45"]]
             },
             "draw": [
                 ["POLIX", "GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "SNARE", "T6L60", "SANDY"]
@@ -1692,7 +1692,7 @@
             },
             "body": ["GODIN", ["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
             "rwy": {
-                "16R": ["NATTY"]
+                "RJTT16R": ["NATTY"]
             },
             "draw": [
                 ["POLIX", "GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "NEURO", "NIGEL", "NATTY"]
@@ -1706,7 +1706,7 @@
             },
             "body": [["_HME036028", "A80+"], "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "_HME096022", "_HME110022", "_HME120022", "_HME130022", "_HME140022", "_HME150022"],
             "rwy": {
-                "34R": [["SINGO", "A40"]]
+                "RJTT34R": [["SINGO", "A40"]]
             },
             "draw": [
                 ["STONE", "_HME036028", "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "_HME096022", "_HME110022", "_HME120022", "_HME130022", "_HME140022", "_HME150022", "SINGO"]
@@ -1720,8 +1720,8 @@
             },
             "body": [["ACORN", "A130|S230"], "TT450", "TT451", "TT452", "TT453", ["WANDA", "A130|S230"], ["WEDGE", "A80"], "ARLON"],
             "rwy": {
-                "34L": [["ARLON", "A50"]],
-                "34R": [["ARLON", "A40"]]
+                "RJTT34L": [["ARLON", "A50"]],
+                "RJTT34R": [["ARLON", "A40"]]
             },
             "draw": [
                 ["XAC", "ACORN", "TT450", "TT451", "TT452", "TT453", "WANDA", "WEDGE", "ARLON"]
@@ -1735,8 +1735,8 @@
             },
             "body": [["ACORN", "A130|S230"], ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A80"]],
             "rwy": {
-                "22": ["BACON"],
-                "23": ["BACON"]
+                "RJTT22": ["BACON"],
+                "RJTT23": ["BACON"]
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "TT250", "TT251", "TT252", "STOCK", "SHAFT", "BACON"]
@@ -1750,8 +1750,8 @@
             },
             "body": [["ACORN", "A130|S230"], "TT450", "TT451", "TT452", "TT453", ["WANDA", "A130|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"]],
             "rwy": {
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["XAC", "ACORN", "TT450", "TT451", "TT452", "TT453", "WANDA", "WEDGE", "UMUKI", "KAIHO"]
@@ -1765,8 +1765,8 @@
             },
             "body": [["ACORN", "A130|S230"], ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A80"]],
             "rwy": {
-                "22": [["NYLON", "A50"]],
-                "23": [["NYLON", "A40"]]
+                "RJTT22": [["NYLON", "A50"]],
+                "RJTT23": [["NYLON", "A40"]]
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "TT250", "TT251", "TT252", "STOCK", "SHAFT", "NYLON"]
@@ -1780,8 +1780,8 @@
             },
             "body": [["AKSEL", "A120|S230"], ["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
             "rwy": {
-                "22": ["BACON"],
-                "23": ["BACON"]
+                "RJTT22": ["BACON"],
+                "RJTT23": ["BACON"]
             },
             "draw": [
                 ["XAC", "AKSEL", "LAFIT", "STING", "SPARK", "SHAFT", "BACON"]
@@ -1795,8 +1795,8 @@
             },
             "body": ["CLONE", "TT460", "TT461", ["CIVIC", "A70|S210"], "TT462", "TT463", "TT464", ["EPSON", "A70|S210"]],
             "rwy": {
-                "34L": [["CREAM", "A50"]],
-                "34R": [["CREAM", "A40"]]
+                "RJTT34L": [["CREAM", "A50"]],
+                "RJTT34R": [["CREAM", "A40"]]
             },
             "draw": [
                 ["AKSEL", "CLONE", "TT460", "TT461", "CIVIC", "TT462", "TT463", "TT464", "EPSON", "CREAM"]
@@ -1810,8 +1810,8 @@
             },
             "body": ["CLONE", "TT460", "TT461", ["CIVIC", "A70|S210"], "TT462", "TT463", "TT464", ["EPSON", "A70|S210"], "CREAM", "CLOAK", "CAMEL"],
             "rwy": {
-                "34L": [["CACAO", "A30"]],
-                "34R": ["CACAO"]
+                "RJTT34L": [["CACAO", "A30"]],
+                "RJTT34R": ["CACAO"]
             },
             "draw": [
                 ["AKSEL", "CLONE", "TT460", "TT461", "CIVIC", "TT462", "TT463", "TT464", "EPSON", "CREAM", "CLOAK", "CAMEL", "CACAO"]
@@ -1825,8 +1825,8 @@
             },
             "body": [["AKSEL", "A120|S230"], ["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
             "rwy": {
-                "22": [["NYLON", "A50"]],
-                "23": [["NYLON", "A40"]]
+                "RJTT22": [["NYLON", "A50"]],
+                "RJTT23": [["NYLON", "A40"]]
             },
             "draw": [
                 ["XAC", "AKSEL", "LAFIT", "STING", "SPARK", "SHAFT", "NYLON"]
@@ -1840,7 +1840,7 @@
             },
             "body": ["ACORN", ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60"],
             "rwy": {
-                "16L": [["SANDY", "A45"]]
+                "RJTT16L": [["SANDY", "A45"]]
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "TT250", "TT251", "TT252", "STOCK", "SHAFT", "SNOKE", "SPINE", "SOPPY", "SNARE", "T6L60", "SANDY"]
@@ -1854,7 +1854,7 @@
             },
             "body": ["ACORN", ["SOLAR", "S230"], "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
             "rwy": {
-                "16R": ["NATTY"]
+                "RJTT16R": ["NATTY"]
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "SCOPE", "T6R70", "NUMAN", "NORIK", "T6R71", "T6R72", "NURSE", "NEURO", "NIGEL", "NATTY"]
@@ -1868,10 +1868,10 @@
             },
             "body": ["UTIBO", ["UMUKI", "A60+"]],
             "rwy": {
-                "22": [["KAIHO", "A40"]],
-                "23": ["KAIHO"],
-                "34L": [["KAIHO", "A40"]],
-                "34R": [["KAIHO", "A40"]]
+                "RJTT22": [["KAIHO", "A40"]],
+                "RJTT23": ["KAIHO"],
+                "RJTT34L": [["KAIHO", "A40"]],
+                "RJTT34R": [["KAIHO", "A40"]]
             },
             "draw": [
                 ["XAC", "UTIBO", "UMUKI", "KAIHO"]
@@ -1885,8 +1885,8 @@
             },
             "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
             "rwy": {
-                "16L": [["DARKS", "A18"]],
-                "16R": [["DARKS", "A18"]]
+                "RJTT16L": [["DARKS", "A18"]],
+                "RJTT16R": [["DARKS", "A18"]]
             },
             "draw": [
                 ["XAC", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1894,6 +1894,173 @@
         }
     },
     "spawnPatterns": [
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.ROVE2A.BRUCE.Y11.SHIRO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 7.31,
+            "airlines": [
+                ["ado", 24],
+                ["ana/short", 37],
+                ["jal", 48],
+                ["sky", 8]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.ROVE2A.BRUCE.Y372.KALON.Y37.GOSEN",
+            "altitude": "",
+            "speed": "",
+            "method": "wave",
+            "rate": 2,
+            "period": 60,
+            "variation": 4,
+            "airlines": [
+                ["afl/long", 1],
+                ["afr/long", 1],
+                ["ana/long", 5],
+                ["baw/long", 2],
+                ["jal/long", 8],
+                ["sas/long", 2],
+                ["sbi", 1]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "PHNL",
+            "category": "departure",
+            "route": "RJTT34R.ROVE2A.INUBO.Y830.TELAS",
+            "altitude": "",
+            "speed": "",
+            "method": "surge",
+            "rate": 5,
+            "period": 120,
+            "airlines": [
+                ["ana/long", 2],
+                ["dal/long", 1],
+                ["hal/long", 1],
+                ["jal/long", 1]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.ROVE2A.INUBO.Y808.PUTER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["aca/long", 1],
+                ["ana/long", 7],
+                ["dal/long", 6],
+                ["jal/long", 4]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.BEKL2A.BEKLA.Y885.AZUMI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.38,
+            "airlines": [
+                ["ana/short", 6]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.BEKL2A.BEKLA.Y884.MBE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.25,
+            "airlines": [
+                ["ana/short", 4]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.BEKL2A.BEKLA.Y18.PIGAP",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2.06,
+            "airlines": [
+                ["ana/short", 19],
+                ["jal/short", 10],
+                ["kal", 4]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT34R.RITL2A.RITLA.Y20.SUGAL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.88,
+            "airlines": [
+                ["ana/short", 32],
+                ["jal/short", 31],
+                ["sfj", 10],
+                ["sky", 15],
+                ["snj", 6]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT05.NINOX3.NINOX.Y28.IPLES",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 7.75,
+            "airlines": [
+                ["ana", 41],
+                ["apj", 1],
+                ["cpa/long", 2],
+                ["jal", 41],
+                ["sfj", 20],
+                ["sky", 10],
+                ["snj", 9]
+            ]
+        },
+        {
+            "origin": "RJTT",
+            "destination": "",
+            "category": "departure",
+            "route": "RJTT05.LAXAS3.LAXAS.Y56.TOHME",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 10.13,
+            "airlines": [
+                ["ana", 62],
+                ["jal", 58],
+                ["jta", 3],
+                ["sfj", 5],
+                ["sky", 13],
+                ["snj", 14],
+                ["tha/long", 2],
+                ["pal/long", 2]
+            ]
+        }
     ],
     "maps": [
         {
