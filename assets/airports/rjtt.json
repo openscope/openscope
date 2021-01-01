@@ -664,6 +664,26 @@
             "ils": [false, true]
         }
     ],
+    "airways": {
+        "Y10": ["LUMIN", "WKE", "YOROI", "RUMOI", "CHE", "TOBBY", "LARCH", "PANSY", "HPE", "VINAR", "ZAHAN", "RUBIS", "ASHRA", "SASAP", "GENJI", "DAIGO", "TEDIX", "GODIN"],
+        "Y11": ["AGRIS", "YAITA", "SYOEN", "SHIRO", "YTE", "HANKA", "VARSU", "PEONY", "SAMBO", "JYONA", "CAPLY", "NONUT", "IBURI", "NAVER", "CHE"],
+        "Y18": ["BEKLA", "OLBER", "PIGAP", "VERUG", "ELKOT", "OVMAX", "YME", "RAKDA", "ORUDA", "MIHOU"],
+        "Y20": ["RITLA", "LEBOS", "VENDI", "SUGAL", "TOLUM", "MORVA", "ARASI", "GINJI", "WAKIT", "KAMMY", "CLOVE", "BASIL", "PASLI", "STOUT", "KIRIN", "EBISU", "IKE"],
+        "Y21": ["BILLY", "MENUR", "PAMVI", "SELNO", "RUNSO", "AKSEL"],
+        "Y23": ["FUE", "KASTE", "OOITA", "BEGOP", "SPIDE", "EKUNU", "UKAKO", "ANSUM", "ELMIR", "FLUTE", "BOGON", "ENSYU", "BOKJO", "ARTIC"],
+        "Y28": ["NINOX", "BIVET", "KIDAX", "IPLES", "KCC", "BIWWA", "ADGUN", "CUE", "SANDA", "HYOGO", "ASANO", "OLIVE", "BIZEN", "PIONE", "DANGO", "WASYU", "BINGO", "BAMBO", "ONDOC", "MARCO", "CLIPA", "HIZET", "ACTIE", "DGC", "ISAKY"],
+        "Y31": ["HISUI", "KOHAK", "DANDY", "WAKOH", "SYOEN", "GENJI"],
+        "Y37": ["AGRIS", "KALON", "MAUKA", "TAGOK", "GOSEN", "SANJO", "HAIJI", "CLALA", "AVGOK"],
+        "Y372": ["AKAGI", "KALON"],
+        "Y56": ["LAXAS", "KAGNA", "IBENO", "TOHME", "HANTO", "NADAR", "SIOMI", "KEC"],
+        "Y71": ["LANAT", "CUE", "SHTLE", "GAKKI", "SHOOT", "ARTIC", "SPENS", "XAC"],
+        "Y807": ["ADNAP", "ALGES", "ENVOP", "NOGIX", "AKRIT", "LALID", "MILIT", "RUSDA", "ESKEN", "POLIX"],
+        "Y808": ["KOGAR", "COLOR", "INUBO", "GULBO", "TASID", "NOLAX", "BITEK", "ALGES", "PUTER"],
+        "Y824": ["SMOLT", "PONEM", "OLVEK", "ANSAD", "DOLBA", "PEDLA", "AROSA"],
+        "Y830": ["INUBO", "BORLO", "TELAS", "IPROS", "LAPIL"],
+        "Y884": ["BEKLA", "MBE", "YARII", "KMC"]
+        "Y885": ["BEKLA", "AZUMI", "URUSI"]
+    },
     "sids": {
         "BEKL2A": {
             "icao": "BEKL2A",
