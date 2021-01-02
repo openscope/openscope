@@ -1173,16 +1173,16 @@
                 ["VAMOS", "UTIBO", "RUTAS"]
             ]            
         },
-        "SYE2": {
-            "icao": "SYE2",
-            "name": "Sekiyado Two",
+        "SYE3": {
+            "icao": "SYE3",
+            "name": "Sekiyado Three",
             "rwy": {
+                "RJTT04":   [["_RWY0402DME", "A7+"], "_HME084009"],
+                "RJTT05":   [["SYE", "A150"]],
                 "RJTT16L":  [["SYE", "A150"]],
                 "RJTT16R":  [["SYE", "A150"]],
                 "RJTT34L":  [["SYE", "A150"]],
-                "RJTT34R":  [["SYE", "A150"]],
-                "RJTT04":   [["SYE", "A150"]],
-                "RJTT05":   [["SYE", "A150"]]
+                "RJTT34R":  [["SYE", "A150"]]
             },
             "draw": [
                 ["SYE"]
@@ -1241,10 +1241,10 @@
             "entryPoints": {
                 "AKSEL": [["AKSEL", "A120|S230"]]
             },
-            "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A80"]],
+            "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A80"], "BACON"],
             "rwy": {
-                "RJTT22": ["BACON"],
-                "RJTT23": ["BACON"]
+                "RJTT22": [],
+                "RJTT23": []
             },
             "draw": [
                 ["AKSEL", "SALLY", "TT253", "TT254", "TT255", "STOWE", "SHAFT", "BACON"]
@@ -1256,10 +1256,10 @@
             "entryPoints": {
                 "AKSEL": [["AKSEL", "A120|S230"]]
             },
-            "body": ["TT454", "TT455", "TT456", ["WALLY", "A120|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"]],
+            "body": ["TT454", "TT455", "TT456", ["WALLY", "A120|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"], ["KAIHO", "A40"]],
             "rwy": {
-                "RJTT34L": [["KAIHO", "A40"]],
-                "RJTT34R": [["KAIHO", "A40"]]
+                "RJTT34L": [],
+                "RJTT34R": []
             },
             "draw": [
                 ["AKSEL", "TT454", "TT455", "TT456", "WALLY", "WEDGE", "UMUKI", "KAIHO"]
@@ -1286,10 +1286,10 @@
             "entryPoints": {
                 "AKSEL": [["AKSEL", "A120|S230"]]
             },
-            "body": [["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
+            "body": [["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"], "BACON"],
             "rwy": {
-                "RJTT22": ["BACON"],
-                "RJTT23": ["BACON"]
+                "RJTT22": [],
+                "RJTT23": []
             },
             "draw": [
                 ["AKSEL", "LAFIT", "STING", "SPARK", "SHAFT", "BACON"]
@@ -1346,9 +1346,9 @@
             "entryPoints": {
                 "AKSEL": ["AKSEL"]
             },
-            "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60"],
+            "body": [["SALLY", "A120|S230"], "TT253", "TT254", "TT255", ["STOWE", "A120|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60", ["SANDY", "A45"]],
             "rwy": {
-                "RJTT16L": [["SANDY", "A45"]]
+                "RJTT16L": []
             },
             "draw": [
                 ["AKSEL", "SALLY", "TT253", "TT254", "TT255", "STOWE", "SHAFT", "SNOKE", "SPINE", "SOPPY", "SNARE", "T6L60", "SANDY"]
@@ -1377,9 +1377,9 @@
             "entryPoints": {
                 "AKSEL": ["AKSEL"]
             },
-            "body": [["SALLY", "S230"], "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
+            "body": [["SALLY", "S230"], "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"], "NATTY"],
             "rwy": {
-                "RJTT16R": ["NATTY"]
+                "RJTT16R": []
             },
             "draw": [
                 ["AKSEL", "SALLY", "SCOUT", "SCOPE", "T6R70", "NUMAN", "NORIK", "T6R71", "T6R72", "NURSE", "NEURO", "NIGEL", "NATTY"]
@@ -1391,10 +1391,10 @@
             "entryPoints": {
                 "AKSEL": ["AKSEL"]
             },
-            "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
+            "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224", ["DARKS", "A18"]],
             "rwy": {
-                "RJTT16L": [["DARKS", "A18"]],
-                "RJTT16R": [["DARKS", "A18"]]
+                "RJTT16L": [],
+                "RJTT16R": []
             },
             "draw": [
                 ["AKSEL", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1421,10 +1421,10 @@
             "entryPoints": {
                 "AROSA": ["AROSA"]
             },
-            "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A80"]],
+            "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A80"], "BACON"],
             "rwy": {
-                "RJTT22": ["BACON"],
-                "RJTT23": ["BACON"]
+                "RJTT22": [],
+                "RJTT23": []
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SLICK", "SHAFT", "BACON"]
@@ -1436,10 +1436,10 @@
             "entryPoints": {
                 "AROSA": ["AROSA"]
             },
-            "body": [["AVEEY", "A110|S230"], "TT457", "TT458", "TT459", ["WALTZ", "A110|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"]],
+            "body": [["AVEEY", "A110|S230"], "TT457", "TT458", "TT459", ["WALTZ", "A110|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"], ["KAIHO", "A40"]],
             "rwy": {
-                "RJTT34L": [["KAIHO", "A40"]],
-                "RJTT34R": [["KAIHO", "A40"]]
+                "RJTT34L": [],
+                "RJTT34R": []
             },
             "draw": [
                 ["AROSA", "AVEEY", "TT457", "TT458", "TT459", "WALTZ", "WEDGE", "UMUKI", "KAIHO"]
@@ -1466,10 +1466,10 @@
             "entryPoints": {
                 "AROSA": ["AROSA"]
             },
-            "body": [["AVEEY", "A110|S230"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
+            "body": [["AVEEY", "A110|S230"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"], "BACON"],
             "rwy": {
-                "RJTT22": ["BACON"],
-                "RJTT23": ["BACON"]
+                "RJTT22": [],
+                "RJTT23": []
             },
             "draw": [
                 ["AROSA", "AVEEY", "STING", "SPARK", "SHAFT", "BACON"]
@@ -1526,9 +1526,9 @@
             "entryPoints": {
                 "AROSA": ["AROSA"]
             },
-            "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60"],
+            "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", ["SLICK", "A110|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60", ["SANDY", "A45"]],
             "rwy": {
-                "RJTT16L": [["SANDY", "A45"]]
+                "RJTT16L": []
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SLICK", "SHAFT", "SNOKE", "SPINE", "SOPPY", "SNARE", "T6L60", "SANDY"]
@@ -1557,9 +1557,9 @@
             "entryPoints": {
                 "AROSA": ["AROSA"]
             },
-            "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
+            "body": [["AVEEY", "A110|S230"], ["ALDEN", "A110|S230"], "TT256", "TT257", "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"], "NATTY"],
             "rwy": {
-                "RJTT16R": ["NATTY"]
+                "RJTT16R": []
             },
             "draw": [
                 ["AROSA", "AVEEY", "ALDEN", "TT256", "TT257", "SCOUT", "SCOPE", "T6R70", "NUMAN", "NORIK", "T6R71", "T6R72", "NURSE", "NEURO", "NIGEL", "NATTY"]
@@ -1571,10 +1571,10 @@
             "entryPoints": {
                 "AROSA": ["AROSA"]
             },
-            "body": ["AVEEY", "UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
+            "body": ["AVEEY", "UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224", ["DARKS", "A18"]],
             "rwy": {
-                "RJTT16L": [["DARKS", "A18"]],
-                "RJTT16R": [["DARKS", "A18"]]
+                "RJTT16L": [],
+                "RJTT16R": []
             },
             "draw": [
                 ["AROSA", "AVEEY", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1586,9 +1586,9 @@
             "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
-            "body": ["_HME157022", "_HME150022", "_HME140022", "_HME130022", "_HME120022", "_HME110022", "_HME096022"],
+            "body": ["_HME157022", "_HME150022", "_HME140022", "_HME130022", "_HME120022", "_HME110022", "_HME096022", ["BONUS", "A50"]],
             "rwy": {
-                "RJTT22": [["BONUS", "A50"]]
+                "RJTT22": []
             },
             "draw": [
                 ["ADDUM", "_HME157022", "_HME150022", "_HME140022", "_HME130022", "_HME120022", "_HME110022", "_HME096022", "BONUS"]
@@ -1600,9 +1600,9 @@
             "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
-            "body": [["_HME036028", "A80+"], "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022"],
+            "body": [["_HME036028", "A80+"], "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", ["DOYLE", "A40"]],
             "rwy": {
-                "RJTT23": [["DOYLE", "A40"]]
+                "RJTT23": []
             },
             "draw": [
                 ["STONE", "_HME036028", "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "DOYLE"]
@@ -1689,10 +1689,10 @@
             "entryPoints": {
                 "GODIN": ["GODIN"]
             },
-            "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469", ["UMUKI", "A60+"]],
+            "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469", ["UMUKI", "A60+"], ["KAIHO", "A40"]],
             "rwy": {
-                "RJTT34L": [["KAIHO", "A40"]],
-                "RJTT34R": [["KAIHO", "A40"]]
+                "RJTT34L": [],
+                "RJTT34R": []
             },
             "draw": [
                 ["GODIN", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "UMUKI", "KAIHO"]
@@ -1704,9 +1704,9 @@
             "entryPoints": {
                 "GODIN": ["GODIN"]
             },
-            "body": [["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["SNARE", "A60"], "T6L60"],
+            "body": [["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["SNARE", "A60"], "T6L60", ["SANDY", "A45"]],
             "rwy": {
-                "RJTT16L": [["SANDY", "A45"]]
+                "RJTT16L": []
             },
             "draw": [
                 ["GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "SNARE", "T6L60", "SANDY"]
@@ -1718,9 +1718,9 @@
             "entryPoints": {
                 "GODIN": ["GODIN"]
             },
-            "body": [["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
+            "body": [["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["NEURO", "A60"], ["NIGEL", "A60"], "NATTY"],
             "rwy": {
-                "RJTT16R": ["NATTY"]
+                "RJTT16R": []
             },
             "draw": [
                 ["GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "NEURO", "NIGEL", "NATTY"]
@@ -1749,10 +1749,10 @@
             "entryPoints": {
                 "MESSE": ["MESSE"]
             },
-            "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
+            "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224", ["DARKS", "A18"]],
             "rwy": {
-                "RJTT16L": [["DARKS", "A18"]],
-                "RJTT16R": [["DARKS", "A18"]]
+                "RJTT16L": [],
+                "RJTT16R": []
             },
             "draw": [
                 ["MESSE", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
@@ -1839,10 +1839,10 @@
             "entryPoints": {
                 "POLIX": [["POLIX", "A150"]]
             },
-            "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469", ["UMUKI", "A60+"]],
+            "body": [["CHIPS", "A130-"], ["COLOR", "A110-"], "COPSE", ["COACH", "A80|S210"], "TT465", "TT466", "TT467", ["EDDIE", "A80|S210"], "TT468", "TT469", ["UMUKI", "A60+"], ["KAIHO", "A40"]],
             "rwy": {
-                "RJTT34L": [["KAIHO", "A40"]],
-                "RJTT34R": [["KAIHO", "A40"]]
+                "RJTT34L": [],
+                "RJTT34R": []
             },
             "draw": [
                 ["POLIX", "CHIPS", "COLOR", "COPSE", "COACH", "TT465", "TT466", "TT467", "EDDIE", "TT468", "TT469", "UMUKI", "KAIHO"]
@@ -1854,9 +1854,9 @@
             "entryPoints": {
                 "POLIX": [["POLIX", "A150"]]
             },
-            "body": ["GODIN", ["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["SNARE", "A60"], "T6L60"],
+            "body": ["GODIN", ["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["SNARE", "A60"], "T6L60", ["SANDY", "A45"]],
             "rwy": {
-                "RJTT16L": [["SANDY", "A45"]]
+                "RJTT16L": []
             },
             "draw": [
                 ["POLIX", "GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "SNARE", "T6L60", "SANDY"]
@@ -1868,9 +1868,9 @@
             "entryPoints": {
                 "POLIX": [["POLIX", "A150"]]
             },
-            "body": ["GODIN", ["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
+            "body": ["GODIN", ["NOVEL", "A80|S210"], "NAMCO", "TT680", "TT681", ["NILUS", "A80|S210"], ["NEURO", "A60"], ["NIGEL", "A60"], "NATTY"],
             "rwy": {
-                "RJTT16R": ["NATTY"]
+                "RJTT16R": []
             },
             "draw": [
                 ["POLIX", "GODIN", "NOVEL", "NAMCO", "TT680", "TT681", "NILUS", "NEURO", "NIGEL", "NATTY"]
@@ -1882,9 +1882,9 @@
             "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
-            "body": [["_HME036028", "A80+"], "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "_HME096022", "_HME110022", "_HME120022", "_HME130022", "_HME140022", "_HME150022"],
+            "body": [["_HME036028", "A80+"], "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "_HME096022", "_HME110022", "_HME120022", "_HME130022", "_HME140022", "_HME150022", ["SINGO", "A40"]],
             "rwy": {
-                "RJTT34R": [["SINGO", "A40"]]
+                "RJTT34R": []
             },
             "draw": [
                 ["STONE", "_HME036028", "_HME036022", "_HME040022", "_HME050022", "_HME060022", "_HME070022", "_HME080022", "_HME089022", "_HME096022", "_HME110022", "_HME120022", "_HME130022", "_HME140022", "_HME150022", "SINGO"]
@@ -1911,10 +1911,10 @@
             "entryPoints": {
                 "XAC": ["XAC"]
             },
-            "body": [["ACORN", "A130|S230"], ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A80"]],
+            "body": [["ACORN", "A130|S230"], ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A80"], "BACON"],
             "rwy": {
-                "RJTT22": ["BACON"],
-                "RJTT23": ["BACON"]
+                "RJTT22": [],
+                "RJTT23": []
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "TT250", "TT251", "TT252", "STOCK", "SHAFT", "BACON"]
@@ -1926,10 +1926,10 @@
             "entryPoints": {
                 "XAC": ["XAC"]
             },
-            "body": [["ACORN", "A130|S230"], "TT450", "TT451", "TT452", "TT453", ["WANDA", "A130|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"]],
+            "body": [["ACORN", "A130|S230"], "TT450", "TT451", "TT452", "TT453", ["WANDA", "A130|S230"], ["WEDGE", "A80"], ["UMUKI", "A60+"], ["KAIHO", "A40"]],
             "rwy": {
-                "RJTT34L": [["KAIHO", "A40"]],
-                "RJTT34R": [["KAIHO", "A40"]]
+                "RJTT34L": [],
+                "RJTT34R": []
             },
             "draw": [
                 ["XAC", "ACORN", "TT450", "TT451", "TT452", "TT453", "WANDA", "WEDGE", "UMUKI", "KAIHO"]
@@ -1956,10 +1956,10 @@
             "entryPoints": {
                 "XAC": ["XAC"]
             },
-            "body": [["AKSEL", "A120|S230"], ["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"]],
+            "body": [["AKSEL", "A120|S230"], ["LAFIT", "A100-"], ["STING", "A90-"], ["SPARK", "A70-"], ["SHAFT", "A50"], "BACON"],
             "rwy": {
-                "RJTT22": ["BACON"],
-                "RJTT23": ["BACON"]
+                "RJTT22": [],
+                "RJTT23": []
             },
             "draw": [
                 ["XAC", "AKSEL", "LAFIT", "STING", "SPARK", "SHAFT", "BACON"]
@@ -2016,9 +2016,9 @@
             "entryPoints": {
                 "XAC": ["XAC"]
             },
-            "body": ["ACORN", ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60"],
+            "body": ["ACORN", ["SOLAR", "A130|S230"], "SCOUT", "TT250", "TT251", "TT252", ["STOCK", "A130|S230"], ["SHAFT", "A90"], "SNOKE", "SPINE", ["SOPPY", "A70-"], ["SNARE", "A60"], "T6L60", ["SANDY", "A45"]],
             "rwy": {
-                "RJTT16L": [["SANDY", "A45"]]
+                "RJTT16L": []
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "TT250", "TT251", "TT252", "STOCK", "SHAFT", "SNOKE", "SPINE", "SOPPY", "SNARE", "T6L60", "SANDY"]
@@ -2030,9 +2030,9 @@
             "entryPoints": {
                 "XAC": ["XAC"]
             },
-            "body": ["ACORN", ["SOLAR", "S230"], "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"]],
+            "body": ["ACORN", ["SOLAR", "S230"], "SCOUT", ["SCOPE", "A100"], "T6R70", ["NUMAN", "A90|S210"], "NORIK", "T6R71", "T6R72", ["NURSE", "A90|S210"], ["NEURO", "A60"], ["NIGEL", "A60"], "NATTY"],
             "rwy": {
-                "RJTT16R": ["NATTY"]
+                "RJTT16R": []
             },
             "draw": [
                 ["XAC", "ACORN", "SOLAR", "SCOUT", "SCOPE", "T6R70", "NUMAN", "NORIK", "T6R71", "T6R72", "NURSE", "NEURO", "NIGEL", "NATTY"]
@@ -2061,10 +2061,10 @@
             "entryPoints": {
                 "XAC": ["XAC"]
             },
-            "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224"],
+            "body": ["UTIBO", ["UMUKI", "A60+"], ["KAIHO", "A40+"], ["LD225", "S220-"], "LD224", ["DARKS", "A18"]],
             "rwy": {
-                "RJTT16L": [["DARKS", "A18"]],
-                "RJTT16R": [["DARKS", "A18"]]
+                "RJTT16L": [],
+                "RJTT16R": []
             },
             "draw": [
                 ["XAC", "UTIBO", "UMUKI", "KAIHO", "LD225", "LD224", "DARKS"]
