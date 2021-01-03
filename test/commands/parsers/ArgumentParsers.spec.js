@@ -10,7 +10,7 @@ import {
     timewarpParser,
     optionalAltitudeParser,
     crossingParser
-} from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentParsers';
+} from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
     const result = altitudeParser(['080']);

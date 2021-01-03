@@ -21,7 +21,7 @@ import {
     squawkValidator,
     optionalAltitudeValidator,
     crossingValidator
-} from './argumentValidators';
+} from '../parsers/argumentValidators';
 import {
     altitudeParser,
     headingParser,
@@ -29,7 +29,7 @@ import {
     timewarpParser,
     optionalAltitudeParser,
     crossingParser
-} from './argumentParsers';
+} from '../parsers/argumentParsers';
 
 /**
  * A no-op function used for command definitions that do not need a parser
