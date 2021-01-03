@@ -4,8 +4,8 @@ import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 
-import AircraftCommandParser from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandParser';
-import AircraftCommandModel from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandModel';
+import CommandParser from '../../../src/assets/scripts/client/commands/parsers/CommandParser';
+import AircraftCommandModel from '../../../src/assets/scripts/client/commands/aircraftCommand/AircraftCommandModel';
 import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
 
 const TIMEWARP_50_MOCK = 'timewarp 50';
@@ -26,10 +26,10 @@ const buildCommandList = (...args) => {
 };
 
 ava('throws when called with an invalid command', (t) => {
-    t.throws(() => new AircraftCommandParser(['threeve']));
-    t.throws(() => new AircraftCommandParser(false));
-    t.throws(() => new AircraftCommandParser(42));
-    t.throws(() => new AircraftCommandParser({}));
+    t.throws(() => new CommandParser(['threeve']));
+    t.throws(() => new CommandParser(false));
+    t.throws(() => new CommandParser(42));
+    t.throws(() => new CommandParser({}));
 });
 
 ava('throws when called with invalid arguments', (t) => {
@@ -38,44 +38,44 @@ ava('throws when called with invalid arguments', (t) => {
 
     try {
         // eslint-disable-next-line no-unused-vars
-        const model = new AircraftCommandParser(commandStringMock);
+        const model = new CommandParser(commandStringMock);
     } catch (e) {
         t.true(e === expectedResult);
     }
 });
 
 ava('does not throw when called without parameters', t => {
-    t.notThrows(() => new AircraftCommandParser());
+    t.notThrows(() => new CommandParser());
 });
 
 ava('#args returns one item when a system command is present', t => {
-    const model = new AircraftCommandParser(TIMEWARP_50_MOCK);
+    const model = new CommandParser(TIMEWARP_50_MOCK);
 
     t.true(_isEqual(model.args, [50]));
 });
 
 ava('#args an array for each command with arg values when a transmit command is present', t => {
     const commandStringMock = buildCommandString(FH_COMMAND_MOCK, D_COMMAND_MOCK, STAR_MOCK);
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.args.length === 3);
 });
 
 ava('sets #command with the correct name when provided a system command', t => {
-    const model = new AircraftCommandParser(TIMEWARP_50_MOCK);
+    const model = new CommandParser(TIMEWARP_50_MOCK);
 
     t.true(model.command === 'timewarp');
 });
 
 ava('sets #command with the correct name when provided a transmit command', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.command === PARSED_COMMAND_NAME.TRANSMIT);
 });
 
 ava('sets #commandList with a AircraftCommandModel object when provided a system command', t => {
-    const model = new AircraftCommandParser(TIMEWARP_50_MOCK);
+    const model = new CommandParser(TIMEWARP_50_MOCK);
 
     t.true(model.commandList.length === 1);
     t.true(model.commandList[0] instanceof AircraftCommandModel);
@@ -83,7 +83,7 @@ ava('sets #commandList with a AircraftCommandModel object when provided a system
 
 ava('sets #commandList with AircraftCommandModel objects when it receives transmit commands', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.commandList.length === 3);
 
@@ -95,7 +95,7 @@ ava('sets #commandList with AircraftCommandModel objects when it receives transm
 ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
     const _buildCommandListSpy = sinon.spy(model, '_buildCommandList');
 
     model._extractCommandsAndArgs(commandStringMock);
@@ -104,7 +104,7 @@ ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit
 });
 
 ava('._buildCommandList() returns an empty array when adding args to an undefined AircraftCommandModel', t => {
-    const model = new AircraftCommandParser('threeve');
+    const model = new CommandParser('threeve');
 
     t.notThrows(() => model._buildCommandList(['$texas']));
 
@@ -115,7 +115,7 @@ ava('._buildCommandList() returns an empty array when adding args to an undefine
 
 ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     const _validateCommandArgumentsSpy = sinon.spy(model, '_validateCommandArguments');
     model._validateCommandArguments();
@@ -125,7 +125,7 @@ ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t
 
 ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists within SYSTEM_COMMANDS and is not transmit', t => {
     const systemCommandMock = 'timewarp';
-    const model = new AircraftCommandParser(systemCommandMock);
+    const model = new CommandParser(systemCommandMock);
 
     t.true(model._isSystemCommand(systemCommandMock));
 });
@@ -133,7 +133,7 @@ ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists wi
 // specific use case tests
 ava('when passed hold LAM it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('hold', 'LAM');
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.args[0][0] === 'hold');
     t.true(model.args[0][1] === null);
@@ -143,7 +143,7 @@ ava('when passed hold LAM it creates the correct command with the correct argume
 
 ava('when passed dct WHAMY it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('dct', 'WHAMY');
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.args[0][0] === 'direct');
     t.true(model.args[0][1] === 'whamy');
@@ -151,7 +151,7 @@ ava('when passed dct WHAMY it creates the correct command with the correct argum
 
 ava('when passed dct TOU it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('dct', 'TOU');
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.args[0][0] === 'direct');
     t.true(model.args[0][1] === 'tou');
@@ -159,14 +159,14 @@ ava('when passed dct TOU it creates the correct command with the correct argumen
 
 ava('when passed dct TOR it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('dct', 'TOR');
-    const model = new AircraftCommandParser(commandStringMock);
+    const model = new CommandParser(commandStringMock);
 
     t.true(model.args[0][0] === 'direct');
     t.true(model.args[0][1] === 'tor');
 });
 
 ava('provides a default value for the timewarp command when no args are passed', (t) => {
-    const model = new AircraftCommandParser('timewarp');
+    const model = new CommandParser('timewarp');
 
     t.true(model.args[0] === 1);
 });

@@ -7,8 +7,8 @@ import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './ui/UiController';
-import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
-import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
+import CommandParser from './commands/parsers/CommandParser';
+import ScopeCommandModel from './commands/scopeCommand/ScopeCommandModel';
 import EventTracker from './EventTracker';
 import MeasureTool from './measurement/MeasureTool';
 import FixCollection from './navigationLibrary/FixCollection';
@@ -782,11 +782,11 @@ export default class InputController {
         // this could use $commandInput.val() as an alternative
         const userCommand = this.input.command.trim().toLowerCase();
 
-        // Using try/catch here very much on purpose. the `AircraftCommandParser` will throw when it encounters any kind
+        // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
         // and then throw them all at once
         try {
-            aircraftCommandParser = new AircraftCommandParser(userCommand);
+            aircraftCommandParser = new CommandParser(userCommand);
         } catch (error) {
             UiController.ui_log('Command not understood', true);
 
@@ -851,7 +851,7 @@ export default class InputController {
     /**
      * @for InputController
      * @method processSystemCommand
-     * @param aircraftCommandParser {AircraftCommandParser}
+     * @param aircraftCommandParser {CommandParser}
      * @return {boolean}
      */
     processSystemCommand(aircraftCommandParser) {
@@ -932,7 +932,7 @@ export default class InputController {
     /**
      * @for InputController
      * @method processTransmitCommand
-     * @param aircraftCommandParser {AircraftCommandParser}
+     * @param aircraftCommandParser {CommandParser}
      * @return {boolean}
      */
     processTransmitCommand(aircraftCommandParser) {

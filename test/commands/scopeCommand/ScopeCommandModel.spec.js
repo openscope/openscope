@@ -1,6 +1,6 @@
 import ava from 'ava';
-import ScopeCommandModel from '../../../src/assets/scripts/client/parsers/scopeCommandParser/ScopeCommandModel';
-import { COMMAND_FUNCTIONS } from '../../../src/assets/scripts/client/parsers/scopeCommandParser/scopeCommandMap';
+import ScopeCommandModel from '../../../src/assets/scripts/client/commands/scopeCommand/ScopeCommandModel';
+import { COMMAND_FUNCTIONS } from '../../../src/assets/scripts/client/commands/scopeCommand/scopeCommandMap';
 
 ava('throws when instantiated without parameters', (t) => {
     t.throws(() => new ScopeCommandModel());
