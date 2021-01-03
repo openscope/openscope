@@ -10,7 +10,7 @@ import { SELECTORS } from '../constants/selectors';
  * @final
  */
 const UI_SETTINGS_MODAL_TEMPLATE = `
-    <div class="option-dialog dialog">
+    <div class="option-dialog dialog notSelectable">
         <p class="dialog-title">Settings</p>
         <div class="dialog-body nice-scrollbar"></div>
     </div>`;

@@ -1,3 +1,12 @@
+# 6.22.0 (January 3, 2021)
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1565" target="_blank">#1565</a> - Prevent aircraft from taxiing to a runway they're already holding short of
+- <a href="https://github.com/openscope/openscope/issues/1190" target="_blank">#1190</a> - Prevent selection of text in most dialogs
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1614" target="_blank">#1614</a> - Spell out squawk code in single digit form in readbacks
+
+
 # 6.21.0 (November 4, 2020)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1654" target="_blank">#1654</a> - Add Greensboro - Piedmont Triad Airport (KGSO)

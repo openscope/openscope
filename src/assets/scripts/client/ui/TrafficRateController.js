@@ -16,7 +16,7 @@ import { TRACKABLE_EVENT } from '../constants/trackableEvents';
  * @final
  */
 const UI_TRAFFIC_MODAL_TEMPLATE = `
-    <div class="traffic-dialog dialog">
+    <div class="traffic-dialog dialog notSelectable">
         <p class="dialog-title">Traffic rate</p>
         <div class="dialog-body nice-scrollbar"></div>
     </div>`;
