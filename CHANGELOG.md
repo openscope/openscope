@@ -1,3 +1,11 @@
+# 6.23.0 (February 1, 2021)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.22.0 (January 3, 2021)
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1565" target="_blank">#1565</a> - Prevent aircraft from taxiing to a runway they're already holding short of
