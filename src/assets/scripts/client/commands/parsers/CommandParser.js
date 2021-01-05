@@ -3,11 +3,11 @@ import _forEach from 'lodash/forEach';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
-import AircraftCommandModel from './AircraftCommandModel';
+import AircraftCommandModel from '../aircraftCommand/AircraftCommandModel';
 import {
     AIRCRAFT_COMMAND_MAP,
     findCommandNameWithAlias
-} from './aircraftCommandMap';
+} from '../aircraftCommand/aircraftCommandMap';
 import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 
 /**
@@ -55,12 +55,12 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * The root command is also what the `AircraftModel` is expecting when it receives commands
  * from the `InputController`.
  *
- * @class AircraftCommandParser
+ * @class CommandParser
  */
-export default class AircraftCommandParser {
+export default class CommandParser {
     /**
      * @constructor
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @param rawCommandWithArgs {string}  string present in the `$commandInput` when the user pressed `enter`
      */
     constructor(rawCommandWithArgs = '') {
@@ -132,7 +132,7 @@ export default class AircraftCommandParser {
      * - System command and its arguments
      * - Transmit commands and thier arguments
      *
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @method _extractCommandsAndArgs
      * @param rawCommandWithArgs {string}
      * @private
@@ -156,7 +156,7 @@ export default class AircraftCommandParser {
     /**
      * Build a `AircraftCommandModel` for a System command then add that model to the `commandList`
      *
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @method _buildSystemCommandModel
      * @private
      */
@@ -205,7 +205,7 @@ export default class AircraftCommandParser {
      *
      * this allows us to create several `AircraftCommandModel` with arguments and only loop over them once.
      *
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @method _buildCommandList
      * @param commandArgSegments {array<string>}
      * @return {array<AircraftCommandModel>}
@@ -252,7 +252,7 @@ export default class AircraftCommandParser {
     /**
      * Fire off the `_validateCommandArguments` method and throws any errors returned
      *
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @method _validateAndParseCommandArguments
      * @private
      */
@@ -270,7 +270,7 @@ export default class AircraftCommandParser {
      * For each `AircraftCommandModel` in the `commandList`, first validate it's arguments
      * then parse those arguments into a consumable array.
      *
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @method _validateCommandArguments
      * @private
      */
@@ -299,7 +299,7 @@ export default class AircraftCommandParser {
      * is in fact a system command.
      *
      *
-     * @for AircraftCommandParser
+     * @for CommandParser
      * @method _isSystemCommand
      * @param callsignOrSystemCommandName {string}
      * @return {boolean}
