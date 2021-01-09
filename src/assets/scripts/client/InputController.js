@@ -778,21 +778,21 @@ export default class InputController {
      * @method processAircraftCommand
      */
     processAircraftCommand() {
-        let parsedCommand;
         // this could use $commandInput.val() as an alternative
         const userCommand = this.input.command.trim().toLowerCase();
 
         // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
         // and then throw them all at once
+        let cmd;
         try {
             const parser = new CommandParser(userCommand);
-            parsedCommand = parser.parse();
+            cmd = parser.parse();
         } catch (error) {
             UiController.ui_log('Command not understood', true);
             throw error;
         }
-
+        const parsedCommand = cmd;
         if (parsedCommand.command !== PARSED_COMMAND_NAME.TRANSMIT) {
             return this.processSystemCommand(parsedCommand);
         }
