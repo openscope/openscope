@@ -117,26 +117,6 @@ export default class CommandParser {
     }
 
     /**
-     * Return an array of [commandName, ...args]
-     *
-     * We use this shape solely to match the existing api.
-     *
-     * When command is a System command:
-     * - commandList is assumed to have a length on 1
-     * - commandList[0].args[0] is assumed to have a single string value
-     *
-     * @property args
-     * @return {string|array<string>}
-     */
-    get args() {
-        if (this.command !== PARSED_COMMAND_NAME.TRANSMIT) {
-            return this.commandList[0].args;
-        }
-
-        return _map(this.commandList, (command) => command.nameAndArgs);
-    }
-
-    /**
      * Accept the entire string provided to the constructor and attempt to break it up into:
      * - System command and its arguments
      * - Transmit commands and thier arguments

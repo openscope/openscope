@@ -4,10 +4,6 @@ import { PARSED_COMMAND_NAME } from '../constants/inputConstants';
 /**
  * This class is returned from `CommandParser` on successful parsing.
  *
- * Differentiation of commands and arguments is determined by splitting the string on an empty space. This
- * is very important, so legacy commands did not have spaces between the command and argument. With this
- * implementation _every_ command shall have a space between itself and it's arguments.**
- *
  * Commands are broken out into two categories: `System` and `Transmit`.
  * - System commands are zero or single argument commands that are used for interacting with the app
  *   itself. Things like `timewarp` or `tutorial` are examples of system commands.
