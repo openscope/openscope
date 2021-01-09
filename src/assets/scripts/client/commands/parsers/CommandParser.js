@@ -9,6 +9,7 @@ import {
     findCommandNameWithAlias
 } from '../aircraftCommand/aircraftCommandMap';
 import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
+import ParsedCommand from '../ParsedCommand';
 
 /**
  * Symbol used to split the command string as it enters the class.
@@ -29,7 +30,7 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * - `AA777 fh 0270 d 050 sp 200`
  * - `AA777 hold dumba left 2min`
  *
- * **Differentiation of commands and arguments is determinied by splitting the string on an empty space. This
+ * **Differentiation of commands and arguments is determined by splitting the string on an empty space. This
  * is very important, so legacy commands did not have spaces between the command and argument. With this
  * implementation _every_ command shall have a space between itself and it's arguments.**
  *
@@ -45,12 +46,12 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * - user types command and presses enter
  * - command string is captured via input value, then passed as an argument to this class
  * - determine if command string is a `System Command` or `Transmit`
- * - creation of `AircraftCommandModel` objects for each command/argment group found
+ * - creation of `AircraftCommandModel` objects for each command/argument group found
  * - validate command arguments (number of arguments and data type)
  * - parse command arguments
  *
  * All available commands are defined in the `commandMap`. Two terms of note are alias and root command.
- * We would call the `takeoff` command a root command and `to` and `cto` alises. The root command is the
+ * We would call the `takeoff` command a root command and `to` and `cto` aliases. The root command is the
  * one that shares the same key as the command definition which gives us the correct validator and parser.
  * The root command is also what the `AircraftModel` is expecting when it receives commands
  * from the `InputController`.
@@ -105,6 +106,14 @@ export default class CommandParser {
         this.commandList = [];
 
         this._extractCommandsAndArgs(rawCommandWithArgs.toLowerCase());
+    }
+
+    /**
+     * Returns the parsed command.
+     * @return ParsedCommand
+     */
+    parse() {
+        return new ParsedCommand(this.command, this.commandList, this.callsign);
     }
 
     /**

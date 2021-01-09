@@ -778,7 +778,7 @@ export default class InputController {
      * @method processAircraftCommand
      */
     processAircraftCommand() {
-        let aircraftCommandParser;
+        let parsedCommand;
         // this could use $commandInput.val() as an alternative
         const userCommand = this.input.command.trim().toLowerCase();
 
@@ -786,21 +786,21 @@ export default class InputController {
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
         // and then throw them all at once
         try {
-            aircraftCommandParser = new CommandParser(userCommand);
+            const parser = new CommandParser(userCommand);
+            parsedCommand = parser.parse();
         } catch (error) {
             UiController.ui_log('Command not understood', true);
-
             throw error;
         }
 
-        if (aircraftCommandParser.command !== PARSED_COMMAND_NAME.TRANSMIT) {
-            return this.processSystemCommand(aircraftCommandParser);
+        if (parsedCommand.command !== PARSED_COMMAND_NAME.TRANSMIT) {
+            return this.processSystemCommand(parsedCommand);
         }
 
         this.input.history.unshift(this.input.callsign);
         this.input.history_item = null;
 
-        return this.processTransmitCommand(aircraftCommandParser);
+        return this.processTransmitCommand(parsedCommand);
     }
 
     /**
@@ -851,11 +851,11 @@ export default class InputController {
     /**
      * @for InputController
      * @method processSystemCommand
-     * @param aircraftCommandParser {CommandParser}
+     * @param parsedCommand {ParsedCommand}
      * @return {boolean}
      */
-    processSystemCommand(aircraftCommandParser) {
-        switch (aircraftCommandParser.command) {
+    processSystemCommand(parsedCommand) {
+        switch (parsedCommand.command) {
             case PARSED_COMMAND_NAME.TUTORIAL:
                 UiController.onToggleTutorial();
 
@@ -881,8 +881,9 @@ export default class InputController {
             case PARSED_COMMAND_NAME.TIMEWARP:
                 let nextTimewarpValue = 0;
 
-                if (aircraftCommandParser.args) {
-                    nextTimewarpValue = aircraftCommandParser.args[0];
+                if (parsedCommand.args) {
+                    // timewarp has just one argument
+                    [nextTimewarpValue] = parsedCommand.args;
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
@@ -897,7 +898,7 @@ export default class InputController {
                 break;
             case PARSED_COMMAND_NAME.AIRPORT: {
                 // TODO: it may be better to do this in the parser
-                const airportIcao = aircraftCommandParser.args[0];
+                const airportIcao = parsedCommand.args[0];
 
                 if (_has(AirportController.airports, airportIcao)) {
                     AirportController.airport_set(airportIcao);
@@ -932,10 +933,10 @@ export default class InputController {
     /**
      * @for InputController
      * @method processTransmitCommand
-     * @param aircraftCommandParser {CommandParser}
+     * @param parsedCommand {ParsedCommand}
      * @return {boolean}
      */
-    processTransmitCommand(aircraftCommandParser) {
+    processTransmitCommand(parsedCommand) {
         // TODO: abstract the aircraft callsign matching
         let matches = 0;
         let match = INVALID_NUMBER;
@@ -943,7 +944,7 @@ export default class InputController {
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             const aircraft = this._aircraftController.aircraft.list[i];
 
-            if (aircraft.matchCallsign(aircraftCommandParser.callsign)) {
+            if (aircraft.matchCallsign(parsedCommand.callsign)) {
                 matches += 1;
                 match = i;
             }
@@ -963,7 +964,7 @@ export default class InputController {
 
         const aircraft = this._aircraftController.aircraft.list[match];
 
-        return this._aircraftCommander.runCommands(aircraft, aircraftCommandParser.args);
+        return this._aircraftCommander.runCommands(aircraft, parsedCommand.args);
     }
 
     /**
