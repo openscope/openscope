@@ -390,10 +390,10 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Basic Control Instructions: Radar Vectors',
             text: ['Radar vectors are an air traffic controller\'s way of telling aircraft to fly a specific magnetic heading. We can give aircraft radar',
-                   'vectors in three ways. Usually, you will use "t l ###" or "t r ###". Be careful, as it is both easy',
+                   'vectors in three ways. Usually, you will specify a three-digit heading using "t l ###" or "t r ###". Be careful, as it is both easy',
                    'and dangerous to give a turn in the wrong direction. If the heading is only slightly left or right, to avoid choosing the wrong direction,',
                    'you can tell them to "fly heading" by typing "fh ###", and the aircraft will simply turn the shortest direction',
-                   'to face that heading. You can also instruct an aircraft to turn left and right by a given number of degrees if you give only a two-digit number.'
+                   'to face that heading. You can also instruct an aircraft to turn left or right by a given number of degrees if you give only a two-digit number.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
