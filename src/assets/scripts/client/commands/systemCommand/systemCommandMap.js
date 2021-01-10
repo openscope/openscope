@@ -33,15 +33,14 @@ export const SYSTEM_COMMAND_MAP = {
         validate: zeroArgumentsValidator
     },
     debug: {
+        // todo parsed, but not implemented
         parse: noop,
-        // todo hat entry in commands
         validate: zeroArgumentsValidator
     },
     pause: {
         parse: noop,
         validate: zeroArgumentsValidator
     },
-
     rate: {
         // calling method is expecting an array with values that will get spread later, thus we purposely
         // return an array here
@@ -52,8 +51,11 @@ export const SYSTEM_COMMAND_MAP = {
         parse: timewarpParser,
         validate: zeroOrOneArgumentValidator
     },
-    // todo
-    transmit: {},
+    transmit: {
+        // todo parsed, but not implemented
+        parse: noop,
+        validate: zeroArgumentsValidator
+    },
     tutorial: {
         parse: noop,
         validate: zeroArgumentsValidator
