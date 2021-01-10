@@ -1,9 +1,7 @@
 import _findKey from 'lodash/findKey';
 import {
-    altitudeValidator,
-    crossingValidator, fixValidator, headingValidator, holdValidator, optionalAltitudeValidator,
-    singleArgumentValidator, squawkValidator, zeroArgumentsValidator,
-    zeroOrOneArgumentValidator
+    altitudeValidator, crossingValidator, fixValidator, headingValidator, holdValidator, optionalAltitudeValidator,
+    singleArgumentValidator, squawkValidator, zeroArgumentsValidator, zeroOrOneArgumentValidator
 } from '../parsers/argumentValidators';
 import { convertStringToNumber } from '../../utilities/unitConverters';
 import {
@@ -21,7 +19,6 @@ import { noop } from '../utils';
  * contains `validate` and `parse` functions for each root command. Some commands have very unique demands for how arguments
  * are formatted,those functions let us do that on a case by case basis.
  *
- * Keys are lowercased here so they can be accessed programmatically.
  * @propery AIRCRAFT_COMMAND_MAP
  * @type {Object}
  * @final

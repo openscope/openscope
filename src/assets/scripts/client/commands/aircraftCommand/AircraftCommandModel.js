@@ -2,7 +2,7 @@ import CommandModel from '../CommandModel';
 import { AIRCRAFT_COMMAND_MAP } from './aircraftCommandMap';
 
 /**
- * A definition of an aircraft command and it's arguments.
+ * A definition of an aircraft command and it's arguments e.g., descend 40
  *
  * @class AircraftCommandModel
  */
