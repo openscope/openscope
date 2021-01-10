@@ -4,12 +4,11 @@ import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 import AircraftCommandModel from '../aircraftCommand/AircraftCommandModel';
-import {
-    AIRCRAFT_COMMAND_MAP,
-    findCommandNameWithAlias
-} from '../aircraftCommand/aircraftCommandMap';
+import { findCommandNameWithAlias } from '../aircraftCommand/aircraftCommandMap';
 import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 import ParsedCommand from '../ParsedCommand';
+import { isSystemCommand } from '../systemCommand/systemCommandMap';
+import SystemCommandModel from '../systemCommand/SystemCommandModel';
 
 /**
  * Symbol used to split the command string as it enters the class.
@@ -133,7 +132,7 @@ export default class CommandParser {
         // effectively a slice of the array that returns everything but the first item
         const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
 
-        if (this._isSystemCommand(callsignOrSystemCommandName)) {
+        if (isSystemCommand(callsignOrSystemCommandName)) {
             this._buildSystemCommandModel(commandArgSegmentsWithCallsign);
 
             return;
@@ -154,7 +153,7 @@ export default class CommandParser {
         const argIndex = 1;
         const commandName = commandArgSegments[commandIndex];
         const commandArgs = commandArgSegments[argIndex];
-        const aircraftCommandModel = new AircraftCommandModel(commandName);
+        const aircraftCommandModel = new SystemCommandModel(commandName);
 
         // undefined will happen with zeroArgument system commands, so we check for that here
         // and add only when args are defined
@@ -281,25 +280,5 @@ export default class CommandParser {
         });
 
         return _compact(validatedCommandList);
-    }
-
-    /**
-     * Encapsulation of boolean logic used to determine if the `callsignOrSystemCommandName`
-     * is in fact a system command.
-     *
-     *
-     * @for CommandParser
-     * @method _isSystemCommand
-     * @param callsignOrSystemCommandName {string}
-     * @return {boolean}
-     */
-    _isSystemCommand(callsignOrSystemCommandName) {
-        const command = AIRCRAFT_COMMAND_MAP[callsignOrSystemCommandName];
-
-        if (typeof command === 'undefined') {
-            return false;
-        }
-
-        return command.isSystemCommand && callsignOrSystemCommandName !== PARSED_COMMAND_NAME.TRANSMIT;
     }
 }

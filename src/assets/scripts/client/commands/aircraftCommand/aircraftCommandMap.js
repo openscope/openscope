@@ -1,19 +1,27 @@
 import _findKey from 'lodash/findKey';
+import {
+    altitudeValidator,
+    crossingValidator, fixValidator, headingValidator, holdValidator, optionalAltitudeValidator,
+    singleArgumentValidator, squawkValidator, zeroArgumentsValidator,
+    zeroOrOneArgumentValidator
+} from '../parsers/argumentValidators';
+import { convertStringToNumber } from '../../utilities/unitConverters';
+import {
+    altitudeParser, crossingParser, headingParser, holdParser, optionalAltitudeParser
+} from '../parsers/argumentParsers';
+
+import { noop } from '../utils';
 
 /**
  * Complete map of commands
  *
- * This list includes both System and Unicode commands, as well as all the various aircraft
- * commands.
+ * This list includes all the various aircraft commands.
  *
  * Aliased commands map to a single root command that is shared among all aliases. The values
- * here then map to a `AIRCRAFT_COMMAND_DEFINITION` which contains `validate` and `parse` functions for
- * each root command. Some commands have very unique demands for how arguments are formatted,
- * those functions let us do that on a case by case basis.
+ * contains `validate` and `parse` functions for each root command. Some commands have very unique demands for how arguments
+ * are formatted,those functions let us do that on a case by case basis.
  *
- * Keys are lowercased here so they can be accessed programatically using input string segments
- * that are converted to lowercase for ease of comparison.
- *
+ * Keys are lowercased here so they can be accessed programmatically.
  * @propery AIRCRAFT_COMMAND_MAP
  * @type {Object}
  * @final
@@ -21,191 +29,201 @@ import _findKey from 'lodash/findKey';
 export const AIRCRAFT_COMMAND_MAP = {
     abort: {
         aliases: ['abort'],
-        functionName: 'runAbort',
-        isSystemCommand: false
-    },
-    airac: {
-        aliases: ['airac'],
-        functionName: '',
-        isSystemCommand: true
-    },
-    airport: {
-        aliases: ['airport'],
-        functionName: '',
-        isSystemCommand: true
+        validate: zeroArgumentsValidator,
+        parse: noop,
+        functionName: 'runAbort'
+
     },
     altitude: {
         aliases: ['a', 'altitude', 'c', 'climb', 'd', 'descend'],
-        functionName: 'runAltitude',
-        isSystemCommand: false
-    },
-    auto: {
-        aliases: ['auto'],
-        functionName: '',
-        isSystemCommand: true
-    },
-    clear: {
-        aliases: ['clear'],
-        functionName: '',
-        isSystemCommand: true
+        parse: altitudeParser,
+        validate: altitudeValidator,
+
+        functionName: 'runAltitude'
+
     },
     clearedAsFiled: {
         aliases: ['caf', 'clearedAsFiled'],
-        functionName: 'runClearedAsFiled',
-        isSystemCommand: false
+        validate: zeroArgumentsValidator,
+        parse: noop,
+        functionName: 'runClearedAsFiled'
     },
     climbViaSid: {
         aliases: ['climbViaSid', 'cvs'],
-        functionName: 'runClimbViaSID',
-        isSystemCommand: false
+        parse: optionalAltitudeParser,
+        validate: optionalAltitudeValidator,
+
+        functionName: 'runClimbViaSID'
     },
     cross: {
         aliases: ['cross', 'cr', 'x'],
-        functionName: 'runCross',
-        isSystemCommand: false
+        parse: crossingParser,
+        validate: crossingValidator,
+        functionName: 'runCross'
     },
     delete: {
         aliases: ['del', 'delete', 'kill'],
-        functionName: 'runDelete',
-        isSystemCommand: false
+        validate: zeroArgumentsValidator,
+        parse: noop,
+        functionName: 'runDelete'
     },
     descendViaStar: {
         aliases: ['descendViaStar', 'dvs'],
-        functionName: 'runDescendViaStar',
-        isSystemCommand: false
+        parse: optionalAltitudeParser,
+        validate: optionalAltitudeValidator,
+        functionName: 'runDescendViaStar'
     },
     direct: {
         aliases: ['dct', 'direct', 'pd'],
-        functionName: 'runDirect',
-        isSystemCommand: false
+        parse: noop,
+        validate: singleArgumentValidator,
+        functionName: 'runDirect'
     },
     cancelHold: {
         aliases: ['exithold', 'cancelhold', 'continue', 'nohold', 'xh'],
-        functionName: 'runCancelHoldingPattern',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroOrOneArgumentValidator,
+        functionName: 'runCancelHoldingPattern'
     },
     expectArrivalRunway: {
         aliases: ['e'],
-        functionName: 'runExpectArrivalRunway',
-        isSystemCommand: false
+        parse: noop,
+        validate: singleArgumentValidator,
+        functionName: 'runExpectArrivalRunway'
     },
     fix: {
         aliases: ['f', 'fix', 'track'],
-        functionName: 'runFix',
-        isSystemCommand: false
+        parse: noop,
+        validate: fixValidator,
+        functionName: 'runFix'
     },
     flyPresentHeading: {
         aliases: ['fph'],
-        functionName: 'runFlyPresentHeading',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator,
+        functionName: 'runFlyPresentHeading'
     },
     heading: {
         aliases: ['fh', 'h', 'heading', 't', 'turn'],
-        functionName: 'runHeading',
-        isSystemCommand: false
+        parse: headingParser,
+        validate: headingValidator,
+        functionName: 'runHeading'
     },
     hold: {
         aliases: ['hold'],
-        functionName: 'runHold',
-        isSystemCommand: false
+        parse: holdParser,
+        validate: holdValidator,
+        functionName: 'runHold'
     },
     ils: {
         aliases: ['*', 'i', 'ils'],
-        functionName: 'runIls',
-        isSystemCommand: false
+        // TODO: split this out to custom parser once the null value is defined
+        parse: (args) => [null, args[0]],
+        validate: singleArgumentValidator,
+        functionName: 'runIls'
     },
     land: {
         aliases: ['land'],
-        functionName: 'runLand',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroOrOneArgumentValidator,
+        functionName: 'runLand'
     },
     moveDataBlock: {
         aliases: ['`'],
-        functionName: 'runMoveDataBlock',
-        isSystemCommand: false
-    },
-    pause: {
-        aliases: ['pause'],
-        functionName: '',
-        isSystemCommand: true
-    },
-    rate: {
-        aliases: ['rate'],
-        functionName: '',
-        isSystemCommand: true
+        functionName: 'runMoveDataBlock'
     },
     reroute: {
         aliases: ['reroute', 'rr'],
-        functionName: 'runReroute',
-        isSystemCommand: false
+        parse: noop,
+        validate: singleArgumentValidator,
+
+        functionName: 'runReroute'
     },
     route: {
         aliases: ['route'],
-        functionName: 'runRoute',
-        isSystemCommand: false
+        parse: noop,
+        validate: singleArgumentValidator,
+        functionName: 'runRoute'
     },
     sayAltitude: {
         aliases: ['sa'],
         functionName: 'runSayAltitude',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator
     },
     sayAssignedAltitude: {
         aliases: ['saa'],
-        functionName: 'runSayAssignedAltitude',
-        isSystemCommand: false
+        functionName: 'runSayAssignedAltitude'
     },
     sayAssignedHeading: {
         aliases: ['sah'],
-        functionName: 'runSayAssignedHeading',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator,
+        functionName: 'runSayAssignedHeading'
     },
     sayAssignedSpeed: {
         aliases: ['sas'],
-        functionName: 'runSayAssignedSpeed',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator,
+        functionName: 'runSayAssignedSpeed'
     },
     sayHeading: {
         aliases: ['sh'],
-        functionName: 'runSayHeading',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator,
+
+        functionName: 'runSayHeading'
     },
     sayIndicatedAirspeed: {
         aliases: ['si'],
-        functionName: 'runSayIndicatedAirspeed',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator,
+        functionName: 'runSayIndicatedAirspeed'
     },
     sayRoute: {
         aliases: ['sr'],
-        functionName: 'runSayRoute',
-        isSystemCommand: false
+        functionName: 'runSayRoute'
     },
     sid: {
         aliases: ['sid'],
-        functionName: 'runSID',
-        isSystemCommand: false
+        parse: noop,
+        validate: singleArgumentValidator,
+
+        functionName: 'runSID'
     },
     speed: {
         aliases: ['-', '+', 'slow', 'sp', 'speed'],
-        functionName: 'runSpeed',
-        isSystemCommand: false
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (arg) => [convertStringToNumber(arg)],
+        validate: singleArgumentValidator,
+
+        functionName: 'runSpeed'
     },
     squawk: {
         aliases: ['sq', 'squawk'],
-        functionName: 'runSquawk',
-        isSystemCommand: false
+        parse: noop,
+        validate: squawkValidator,
+
+        functionName: 'runSquawk'
     },
     star: {
         aliases: ['star'],
-        functionName: 'runSTAR',
-        isSystemCommand: false
+        parse: noop,
+        validate: singleArgumentValidator,
+        functionName: 'runSTAR'
     },
     takeoff: {
         aliases: ['/', 'cto', 'to', 'takeoff'],
-        functionName: 'runTakeoff',
-        isSystemCommand: false
+        parse: noop,
+        validate: zeroArgumentsValidator,
+
+        functionName: 'runTakeoff'
     },
     taxi: {
         aliases: ['taxi', 'w', 'wait'],
+        parse: noop,
+        validate: zeroOrOneArgumentValidator,
         functionName: 'runTaxi',
         isSystemCommand: false
     },
