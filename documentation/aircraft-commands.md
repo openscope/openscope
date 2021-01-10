@@ -54,7 +54,6 @@
 [System Commands](#system-commands)
 
 - [Airport](#airport)
-- [Move Data Block](#move-data-block)
 - [Pause](#pause)
 - [Timewarp](#timewarp)
 - [Tutorial](#tutorial)
@@ -96,9 +95,9 @@ _Aliases -_ `takeoff`, `to`, `cto`
 _Hotkey -_ `numpad /`
 
 _Information -_ This command clears the specified plane for takeoff. They
-will climb to the altitude specified, or in accordance with a SID if told
-previously to "climb via the SID". If neither has happened, they will ask
-for an altitude assignment before they agree to take off.
+will climb to the altitude they were previously cleared to, or in accordance
+with a SID if told previously to "climb via the SID". If neither has happened,
+they will ask for an altitude assignment before they agree to take off.
 
 _Syntax -_ `AAL123 cto`
 
@@ -107,7 +106,7 @@ _Syntax -_ `AAL123 cto`
 _Aliases -_ `taxi` / `wait` / `w`
 
 _Information -_ This command tells the specified plane to taxi to and hold short
-of specified runway.
+of the specified runway.
 
 _Syntax -_ `AAL123 taxi [runway]`
 
@@ -142,9 +141,7 @@ _Syntax -_ `AAL123 dvs` or `AAL123 dvs [alt]`
 
 ### ILS
 
-_Aliases -_ `ils` / `i`
-
-_Shortkey -_ `numpad *`
+_Aliases -_ `ils` / `i` / `*`
 
 _Information -_ This command clears for an ILS approach to a runway. The
 aircraft will continue on its assigned heading until intercepting the localizer,
@@ -164,6 +161,7 @@ These commands allow you to manipulate the route in the aircraft's FMS.
 ~~_Aliases -_ `f` / `fix` / `track`~~
 
 ~~_Syntax -_ `AAL123 f [fixname]`~~
+
 *_This command has been deprecated_*
 
 ### Hold
@@ -171,21 +169,28 @@ These commands allow you to manipulate the route in the aircraft's FMS.
 _Aliases -_ `hold`
 
 _Information -_ This command instructs the aircraft to enter a holding
-pattern until further notice. The direction (left/right) may be specified,
-as well as the leg length (in minutes), as well as the fix to hold over.
-But you may also omit those specifications, in which case, the aircraft
-will enter a standard holding pattern over their present position (right
-turns, 1 minute legs, using the reciprocal bearing to the fix as the outbound
-radial). To clear the aircraft out of the hold, either clear it direct to
-a fix or assign it a new heading.
+pattern over a specified fix until further notice. (If no fix is provided, it
+is intended that the aircraft should hold over their present position, but this
+is currently not implemented.)
 
-_Parameters -_ Specify the direction of turns during the hold with `right`
-or `left`, the leg length, with `[time]min`, the fix to hold over
-with simply `[fixname]` and the `radial` (a 3-digit course, eg. 001 to 360) which
-defines the outbound leg. Any combination of these arguments provided in any
-order is acceptable, as long as the command `hold` comes first.
+By default, the aircraft will fly a standard holding pattern, i.e. right turns,
+1 minute legs, and using the reciprocal bearing to the fix as the outbound
+radial. You may override this by specifying any of: the direction of the hold
+(left/right), the leg length (either in minutes or nautical miles), and/or the
+heading for the outbound radial.
 
-_Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min [radial]` or `AAL123 hold`
+_Parameters -_
+Specify the the fix to hold over with simply `[fixname]`.  
+Optionally, you may also specify:
+
+- the direction of turns during the hold with `left`, `l`, `right`, or `r`
+- the leg length, either as `[time]min` or `[distance]nm`
+- the `radial` (a 3-digit course, eg. 001 to 360) which defines the outbound leg.
+
+Any combination of these arguments provided in any order is acceptable, as long
+as the command `hold` comes first.
+
+_Syntax -_ `AAL123 hold [fixname] [left|l|right|r] [leg_time]min|[leg_dist]nm [radial]` ~~or `AAL123 hold`~~
 
 ### Exit Hold
 
@@ -197,6 +202,10 @@ pattern and resume its flight plan.
 _Parameters -_ Optionally, you may specify the fix at which to cancel the hold,
 by specifying the fix at the end of the command: `AAL123 cancelhold [fixname]`.
 This can be useful if multiple holds exist.
+
+If no fix is specified, and the aircraft is currently in a holding pattern, it
+will exit from the current hold. Otherwise, the very next hold that the
+aircraft will encounter on its existing flight plan will be cancelled.
 
 _Syntax -_ `AAL123 continue` or `AAL123 xh BOTON`
 
@@ -301,7 +310,8 @@ _Information -_ This command tells the specified plane the altitude, in
 hundreds of feet (flight levels), it should travel to. This means that when
 writing altitudes you would drop the last two zeros. For example, 3,000ft =
 "30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
-Airplanes will not descend below 1000 feet (unless locked on ILS).
+Airplanes will not descend below 1000 feet nor the minimum safe altitude
+(unless locked on ILS).
 
 Altitude also accepts an `expedite` or `ex` argument which can be used as the last item in the command.
 
@@ -319,27 +329,32 @@ _Syntax -_ `AAL123 fph`
 
 _Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
 
-_Shortkeys -_ `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
+_Hotkeys -_ `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
 
-_Information -_ This command sets the target heading; up (north) is 360,
-right (east) is 090, down (south) is 180, and left (west) is 270. Of course
-you can use any angle in between these as well. If the heading is set
-before takeoff, the aircraft will turn to that heading after takeoff. You
-can force the aircraft to reach the heading by turning left or right by
-inserting `l` or `r` before the new heading, as demonstrated below.
+_Information -_ This command tells the aircraft the target heading to fly
+towards: up (north) is 360, right (east) is 090, down (south) is 180, and left
+(west) is 270. Of course you can use any angle in between these as well. If the
+heading is set before takeoff, the aircraft will turn to that heading after takeoff.
 
-_Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r [hdg]`
+The target heading is specified by a three-digit heading. You can force the
+aircraft to reach the heading by turning left or right by inserting `left`,
+`l`, `right`, or `r` before the new heading, as demonstrated below.
+
+Alternatively, you can instruct an aircraft to turn from its current heading by
+a given angle by specifying the direction of turn with the heading change as
+a one- or two-digit number of degrees
+
+_Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r 270` (target heading) or `AAL123 t r 45` (heading change)
 
 ### Speed
 
-_Aliases -_ `speed` / `slow` / `sp`
-
-_ShortKey -_ `numpad +` / `numpad -`
+_Aliases -_ `speed` / `slow` / `sp` / `+` / `-`
 
 _Information -_ This command sets the target speed; aircraft will stay within
 their safe speeds if you tell them to fly faster or slower than they are able
 to. It takes some time to increase and reduce speed. Remember that speed is
-always expressed in knots.
+always expressed in knots, and is indicated airspeed, whereas our radar scope
+can only display groundspeed.
 
 _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
 
