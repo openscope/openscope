@@ -1333,26 +1333,11 @@ export default class AircraftModel {
 
         this.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
-        GameController.game_timeout(
-            this._changeFromTaxiToWaiting,
-            this.taxi_time,
-            this,
-            null
-        );
-
         const readback = {};
         readback.log = `taxi to and hold short of Runway ${runwayModel.name}`;
         readback.say = `taxi to and hold short of Runway ${radio_runway(runwayModel.name)}`;
 
         return [true, readback];
-    }
-
-    /**
-     * @for AircraftModel
-     * @method _changeFromTaxiToWaiting
-     */
-    _changeFromTaxiToWaiting() {
-        this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
     /**

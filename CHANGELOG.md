@@ -2,6 +2,7 @@
 ### New Features
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism 
 
 ### Enhancements & Refactors
 
