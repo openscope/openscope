@@ -52,25 +52,11 @@ export const SYSTEM_COMMAND_MAP = {
         parse: timewarpParser,
         validate: zeroOrOneArgumentValidator
     },
+    // todo
     transmit: {},
     tutorial: {
         parse: noop,
         validate: zeroArgumentsValidator
-    },
-
-    // todo
-    moveDataBlock: {
-        parse: noop,
-        validate: singleArgumentValidator
-    },
-
-    '`': {
-        // todo
-        // calling method is expecting an array with values that will get spread later, thus we purposly
-        // return an array here
-        parse: (args) => [convertStringToNumber(args)],
-        validate: singleArgumentValidator
-
     }
 };
 

@@ -4,7 +4,7 @@ import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 import AircraftCommandModel from '../aircraftCommand/AircraftCommandModel';
-import { findCommandNameWithAlias } from '../aircraftCommand/aircraftCommandMap';
+import { getAircraftCommandByAlias } from '../aircraftCommand/aircraftCommandMap';
 import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 import ParsedCommand from '../ParsedCommand';
 import { isSystemCommand } from '../systemCommand/systemCommandMap';
@@ -153,16 +153,16 @@ export default class CommandParser {
         const argIndex = 1;
         const commandName = commandArgSegments[commandIndex];
         const commandArgs = commandArgSegments[argIndex];
-        const aircraftCommandModel = new SystemCommandModel(commandName);
+        const systemCommand = new SystemCommandModel(commandName);
 
         // undefined will happen with zeroArgument system commands, so we check for that here
         // and add only when args are defined
         if (typeof commandArgs !== 'undefined') {
-            aircraftCommandModel.args.push(commandArgs);
+            systemCommand.args.push(commandArgs);
         }
 
         this.command = commandName;
-        this.commandList.push(aircraftCommandModel);
+        this.commandList.push(systemCommand);
 
         this._validateAndParseCommandArguments();
     }
@@ -210,7 +210,7 @@ export default class CommandParser {
                 continue;
             }
 
-            const commandName = findCommandNameWithAlias(commandOrArg);
+            const commandName = getAircraftCommandByAlias(commandOrArg);
 
             if (typeof aircraftCommandModel === 'undefined') {
                 if (typeof commandName === 'undefined') {

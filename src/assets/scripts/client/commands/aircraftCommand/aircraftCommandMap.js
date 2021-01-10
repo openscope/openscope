@@ -29,8 +29,8 @@ import { noop } from '../utils';
 export const AIRCRAFT_COMMAND_MAP = {
     abort: {
         aliases: ['abort'],
-        validate: zeroArgumentsValidator,
         parse: noop,
+        validate: zeroArgumentsValidator,
         functionName: 'runAbort'
 
     },
@@ -38,21 +38,19 @@ export const AIRCRAFT_COMMAND_MAP = {
         aliases: ['a', 'altitude', 'c', 'climb', 'd', 'descend'],
         parse: altitudeParser,
         validate: altitudeValidator,
-
         functionName: 'runAltitude'
 
     },
     clearedAsFiled: {
         aliases: ['caf', 'clearedAsFiled'],
-        validate: zeroArgumentsValidator,
         parse: noop,
+        validate: zeroArgumentsValidator,
         functionName: 'runClearedAsFiled'
     },
     climbViaSid: {
         aliases: ['climbViaSid', 'cvs'],
         parse: optionalAltitudeParser,
         validate: optionalAltitudeValidator,
-
         functionName: 'runClimbViaSID'
     },
     cross: {
@@ -63,8 +61,8 @@ export const AIRCRAFT_COMMAND_MAP = {
     },
     delete: {
         aliases: ['del', 'delete', 'kill'],
-        validate: zeroArgumentsValidator,
         parse: noop,
+        validate: zeroArgumentsValidator,
         functionName: 'runDelete'
     },
     descendViaStar: {
@@ -128,15 +126,10 @@ export const AIRCRAFT_COMMAND_MAP = {
         validate: zeroOrOneArgumentValidator,
         functionName: 'runLand'
     },
-    moveDataBlock: {
-        aliases: ['`'],
-        functionName: 'runMoveDataBlock'
-    },
     reroute: {
         aliases: ['reroute', 'rr'],
         parse: noop,
         validate: singleArgumentValidator,
-
         functionName: 'runReroute'
     },
     route: {
@@ -147,12 +140,14 @@ export const AIRCRAFT_COMMAND_MAP = {
     },
     sayAltitude: {
         aliases: ['sa'],
-        functionName: 'runSayAltitude',
         parse: noop,
-        validate: zeroArgumentsValidator
+        validate: zeroArgumentsValidator,
+        functionName: 'runSayAltitude'
     },
     sayAssignedAltitude: {
         aliases: ['saa'],
+        parse: noop,
+        validate: zeroArgumentsValidator,
         functionName: 'runSayAssignedAltitude'
     },
     sayAssignedHeading: {
@@ -171,7 +166,6 @@ export const AIRCRAFT_COMMAND_MAP = {
         aliases: ['sh'],
         parse: noop,
         validate: zeroArgumentsValidator,
-
         functionName: 'runSayHeading'
     },
     sayIndicatedAirspeed: {
@@ -182,13 +176,14 @@ export const AIRCRAFT_COMMAND_MAP = {
     },
     sayRoute: {
         aliases: ['sr'],
+        parse: noop,
+        validate: zeroArgumentsValidator,
         functionName: 'runSayRoute'
     },
     sid: {
         aliases: ['sid'],
         parse: noop,
         validate: singleArgumentValidator,
-
         functionName: 'runSID'
     },
     speed: {
@@ -197,14 +192,12 @@ export const AIRCRAFT_COMMAND_MAP = {
         // return an array here
         parse: (arg) => [convertStringToNumber(arg)],
         validate: singleArgumentValidator,
-
         functionName: 'runSpeed'
     },
     squawk: {
         aliases: ['sq', 'squawk'],
         parse: noop,
         validate: squawkValidator,
-
         functionName: 'runSquawk'
     },
     star: {
@@ -217,7 +210,6 @@ export const AIRCRAFT_COMMAND_MAP = {
         aliases: ['/', 'cto', 'to', 'takeoff'],
         parse: noop,
         validate: zeroArgumentsValidator,
-
         functionName: 'runTakeoff'
     },
     taxi: {
@@ -239,12 +231,6 @@ export const AIRCRAFT_COMMAND_MAP = {
     }
 };
 
-/**
- * @property EXPEDITE
- * @type {array}
- * @final
- */
-export const EXPEDITE = ['expedite', 'ex'];
 
 /**
  * Get the name of a command when given any of that command's aliases
@@ -253,6 +239,6 @@ export const EXPEDITE = ['expedite', 'ex'];
  * @param commandAlias {string}
  * @return {string}
  */
-export function findCommandNameWithAlias(commandAlias) {
+export function getAircraftCommandByAlias(commandAlias) {
     return _findKey(AIRCRAFT_COMMAND_MAP, (command) => command.aliases.indexOf(commandAlias) !== -1);
 }
