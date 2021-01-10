@@ -1,13 +1,10 @@
 /**
  * A definition of a specific command and it's arguments.
  *
- * Conatins a command name, which maps 1:1 with a name defined in `commandMap.js` and `commandDefinitions.js`.
+ * Contains a command name, which maps 1:1 with a name defined in `AircraftCommandMap` or `SystemCommandMap`.
  * Commands may have an alias or many, we care only about the root command. The command map will map any
  * alias to a root command and this `CommandModel` is only concerned about those root commands. It has
  * no way of knowing what the original alias was, if one was used.
- *
- * Each `CommandModel` will be expected to have, at a minimum, a `name` and a matching
- * `AIRCRAFT_COMMAND_DEFINITION`.
  *
  * @class CommandModel
  */
@@ -15,6 +12,8 @@ export default class CommandModel {
     /**
      * @constructor
      * @for CommandModel
+     * @param {string} name
+     * @param {object} commandDefinition
      */
     constructor(name = '', commandDefinition) {
         /**
@@ -26,13 +25,11 @@ export default class CommandModel {
         this.name = name;
 
         /**
-         * A reference to the AIRCRAFT_COMMAND_DEFINITION for this particular command.
-         * this gives us access to both the `validate` and `parse` methods
-         * that belong to this command.
+         * A reference to {AIRCRAFT,SYSTEM}_COMMAND_MAP for this particular command.
+         * This gives us access to both the `validate` and `parse` methods that belong to this command.
          *
          * Storing this as an instance property allows us to do the lookup once
-         * and then make it available to the rest of the class so it can
-         * be referenced when needed.
+         * and then make it available to the rest of the class so it can be referenced when needed.
          *
          * @property _commandDefinition
          * @type {object}
