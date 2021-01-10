@@ -2,16 +2,13 @@ import _isEqual from 'lodash/isEqual';
 import ava from 'ava';
 import CommandParser from '../../src/assets/scripts/client/commands/parsers/CommandParser';
 
-
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AAL777';
 const FH_COMMAND_MOCK = 'fh 180';
 const D_COMMAND_MOCK = 'd 030';
 const STAR_MOCK = 'star quiet7';
 
-
 const buildCommandString = (...args) => `${CALLSIGN_MOCK} ${args.join(' ')}`;
-
 
 ava('#args returns one item when a system command is present', t => {
     const parser = new CommandParser(TIMEWARP_50_MOCK);
