@@ -4,9 +4,9 @@ import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 
 import CommandParser from '../../../src/assets/scripts/client/commands/parsers/CommandParser';
-import AircraftCommandModel from '../../../src/assets/scripts/client/commands/aircraftCommand/AircraftCommandModel';
+import AircraftCommandModel from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/AircraftCommandModel';
 import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
-import SystemCommandModel from '../../../src/assets/scripts/client/commands/systemCommand/SystemCommandModel';
+import SystemCommandModel from '../../../src/assets/scripts/client/commands/definitions/systemCommand/SystemCommandModel';
 
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AAL777';

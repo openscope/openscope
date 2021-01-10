@@ -8,7 +8,7 @@ import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './ui/UiController';
 import CommandParser from './commands/parsers/CommandParser';
-import ScopeCommandModel from './commands/scopeCommand/ScopeCommandModel';
+import ScopeCommandModel from './commands/definitions/scopeCommand/ScopeCommandModel';
 import EventTracker from './EventTracker';
 import MeasureTool from './measurement/MeasureTool';
 import FixCollection from './navigationLibrary/FixCollection';

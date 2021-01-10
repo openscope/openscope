@@ -1,4 +1,4 @@
-import ScopeCommandModel from '../../../src/assets/scripts/client/commands/scopeCommand/ScopeCommandModel';
+import ScopeCommandModel from '../../../src/assets/scripts/client/commands/definitions/scopeCommand/ScopeCommandModel';
 
 export const SCOPE_COMMAND_MOCK = new ScopeCommandModel('QZ 150 UAL1567');
 

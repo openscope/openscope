@@ -3,12 +3,12 @@ import _forEach from 'lodash/forEach';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
-import AircraftCommandModel from '../aircraftCommand/AircraftCommandModel';
-import { getAircraftCommandByAlias } from '../aircraftCommand/aircraftCommandMap';
+import AircraftCommandModel from '../definitions/aircraftCommand/AircraftCommandModel';
+import { getAircraftCommandByAlias } from '../definitions/aircraftCommand/aircraftCommandMap';
 import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 import ParsedCommand from '../ParsedCommand';
-import { isSystemCommand } from '../systemCommand/systemCommandMap';
-import SystemCommandModel from '../systemCommand/SystemCommandModel';
+import { isSystemCommand } from '../definitions/systemCommand/systemCommandMap';
+import SystemCommandModel from '../definitions/systemCommand/SystemCommandModel';
 
 /**
  * Symbol used to split the command string as it enters the class.

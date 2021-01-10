@@ -2,11 +2,11 @@ import _findKey from 'lodash/findKey';
 import {
     altitudeValidator, crossingValidator, fixValidator, headingValidator, holdValidator, optionalAltitudeValidator,
     singleArgumentValidator, squawkValidator, zeroArgumentsValidator, zeroOrOneArgumentValidator
-} from '../parsers/argumentValidators';
-import { convertStringToNumber } from '../../utilities/unitConverters';
+} from '../../parsers/argumentValidators';
+import { convertStringToNumber } from '../../../utilities/unitConverters';
 import {
     altitudeParser, crossingParser, headingParser, holdParser, optionalAltitudeParser
-} from '../parsers/argumentParsers';
+} from '../../parsers/argumentParsers';
 
 import { noop } from '../utils';
 

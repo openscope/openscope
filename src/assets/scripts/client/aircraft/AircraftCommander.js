@@ -14,7 +14,7 @@ import {
 import { EVENT } from '../constants/eventNames';
 import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
-import { AIRCRAFT_COMMAND_MAP } from '../commands/aircraftCommand/aircraftCommandMap';
+import { AIRCRAFT_COMMAND_MAP } from '../commands/definitions/aircraftCommand/aircraftCommandMap';
 import { speech_say } from '../speech';
 import {
     radio_runway,

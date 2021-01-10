@@ -1,5 +1,5 @@
 import ava from 'ava';
-import { isSystemCommand } from '../../../src/assets/scripts/client/commands/systemCommand/systemCommandMap';
+import { isSystemCommand } from '../../../../src/assets/scripts/client/commands/definitions/systemCommand/systemCommandMap';
 
 
 ava('isSystemCommand() returns true if command is a system command', t => {
