@@ -272,9 +272,8 @@
             ]
         }
     ],
-    "_comment": "Source most fixes: https://www.aro.lfv.se/Editorial/View/8321/ES_AD_2_ESSA_4-3_en",
-    "_comment": "Source fixes ARS and TRS (not in list above but used in SIDs???): https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
     "fixes": {
+        "_comment": "Source fixes: https://www.aro.lfv.se/Editorial/View/8321/ES_AD_2_ESSA_4-3_en",
         "ARC53": ["N59d43m47.80", "E018d06m49.00"],
         "RW01L": ["N59d38m14.11", "E017d54m47.60"],
         "RW01R": ["N59d37m35.02", "E017d57m02.67"],
@@ -465,7 +464,14 @@
         "TOMBU": ["N59d13m46.00", "E019d34m04.20"],
         "TOVRI": ["N59d44m59.30", "E018d46m00.60"],
         "XILAN": ["N59d39m33.50", "E019d04m33.80"],
+        "_comment": "Source DVOR/DME: https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
+        "ANE":   ["N59d41m38.30", "E018d03m35.50"],
+        "ANW":   ["N59d42m47.80", "E017d51m09.30"],
+        "ARL":   ["N59d39m12.30", "E017d54m52.10"],
         "ARS":   ["N59d35m10.40", "E016d39m01.20"],
+        "ASE":   ["N59d38m13.90", "E017d57m26.50"],
+        "ASW":   ["N59d35m15.70", "E017d49m10.90"],
+        "TEB":   ["N59d31m54.10", "E018d12m11.90"],
         "TRS":   ["N58d56m16.50", "E017d30m08.30"]
     },
     "_comment": "Source runways: https://www.aro.lfv.se/Editorial/View/7952/ES_AD_2_ESSA_en",
@@ -841,6 +847,118 @@
             ]
         },
         "_comment": "Source runway 08 right turn SIDs: https://www.aro.lfv.se/Editorial/View/7947/ES_AD_2_ESSA_4-25_en",
+        "ABENI3R": {
+            "icao": "ABENI3R",
+            "name": "Abeni Three Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "ABENI", "PETEV"], 
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA418", "SA557", "ABENI", "PETEV"]
+            ]
+        },
+        "BABAP3R": {
+            "icao": "BABAP3R",
+            "name": "Babap Three Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "SA416", "BABAP"], 
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA418", "SA416", "BABAP"]
+            ]
+        },
+        "DIGLI3R": {
+            "icao": "DIGLI3R",
+            "name": "Digli Three Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "DIGLI", "NOSLI"], 
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA418", "SA557", "SA717", "DIGLI", "NOSLI"]
+            ]
+        },
+        "GALNU3R": {
+            "icao": "GALNU3R",
+            "name": "Galnu Three Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "SA718", "GALNU", "TRS"], 
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA418", "SA557", "SA717", "SA718", "GALNU", "TRS"]
+            ]
+        },
+        "LUMAX4R": {
+            "icao": "LUMAX4R",
+            "name": "Lumax Four Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "LUMAX", "RESNA"], 
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA418", "SA558", "ARL", "SA860", "LUMAX", "RESNA"]
+            ]
+        },
+        "ROKNI3R": {
+            "icao": "ROKNI3R",
+            "name": "Rokni Three Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA716", "ROKNI", "ARS"], 
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA418", "SA557", "SA716", "ROKNI", "ARS"]
+            ]
+        },
+        "TALEK4R": {
+            "icao": "TALEK4R",
+            "name": "Talek Four Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "TALEK", "KOGAV"], 
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA418", "SA558", "ARL", "SA860", "TALEK", "KOGAV"]
+            ]
+        },
+        "TOVRI4R": {
+            "icao": "TOVRI4R",
+            "name": "Tovri Four Romeo",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "TOVRI"], 
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA418", "TOVRI"]
+            ]
+        },
         "_comment": "Source runway 19L SIDs: https://www.aro.lfv.se/Editorial/View/7948/ES_AD_2_ESSA_4-31_en",
         "_comment": "Source runway 19R SIDs: https://www.aro.lfv.se/Editorial/View/7577/ES_AD_2_ESSA_4-37_en",
         "_comment": "Source runway 26 SIDs: https://www.aro.lfv.se/Editorial/View/7578/ES_AD_2_ESSA_4-41_en"
