@@ -960,6 +960,174 @@
             ]
         },
         "_comment": "Source runway 19L SIDs: https://www.aro.lfv.se/Editorial/View/7948/ES_AD_2_ESSA_4-31_en",
+        "ABENI5Q": {
+            "icao": "ABENI5Q",
+            "name": "Abeni Five Quebec",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "ABENI", "PETEV"], 
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA727", "ABENI", "PETEV"]
+            ]
+        },
+        "AROS5E": {
+            "icao": "AROS5E",
+            "name": "Aros Five Echo",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA567", "A15+|220-"], "SA726", "ARS"], 
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA567", "SA726", "ARS"]
+            ]
+        },
+        "BABAP3E": {
+            "icao": "BABAP3E",
+            "name": "Babap Three Echo",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "SA411", "BABAP"], 
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA551", "SA552", "SA411", "BABAP"]
+            ]
+        },
+        "DIGLI5Q": {
+            "icao": "DIGLI5Q",
+            "name": "Digli Five Quebec",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "DIGLI", "NOSLI"], 
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA727", "SA728", "DIGLI", "NOSLI"]
+            ]
+        },
+        "GALNU5Q": {
+            "icao": "GALNU5Q",
+            "name": "Galnu Five Quebec",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "SA729", "GALNU", "TRS"], 
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA727", "SA728", "SA729", "GALNU", "TRS"]
+            ]
+        },
+        "LUMAX5Q": {
+            "icao": "LUMAX5Q",
+            "name": "Lumax Five Quebec",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "LUMAX", "RESNA"], 
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA709", "SA710", "SA855", "LUMAX", "RESNA"]
+            ]
+        },
+        "NOSLI5E": {
+            "icao": "NOSLI5E",
+            "name": "Nosli Five Echo",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "NOSLI"], 
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA566", "SA728", "NOSLI"]
+            ]
+        },
+        "PETEV1E": {
+            "icao": "PETEV1E",
+            "name": "Petev One Echo",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "PETEV"], 
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA566", "SA728", "PETEV"]
+            ]
+        },
+        "ROKNI5Q": {
+            "icao": "ROKNI5Q",
+            "name": "Rokni Five Quebec",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "ROKNI", "ARS"], 
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA709", "ROKNI", "ARS"]
+            ]
+        },
+        "TALEK5Q": {
+            "icao": "TALEK5Q",
+            "name": "Talek Five Quebec",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "TALEK", "KOGAV"], 
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA709", "SA710", "SA855", "TALEK", "KOGAV"]
+            ]
+        },
+        "TOVRI4E": {
+            "icao": "TOVRI4E",
+            "name": "Tovri Four Echo",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "TOVRI"], 
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA551", "SA552", "TOVRI"]
+            ]
+        },
+        "TROSA5E": {
+            "icao": "TROSA5E",
+            "name": "Trosa Five Echo",
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "SA729", "TRS"], 
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA566", "SA728", "SA729", "TRS"]
+            ]
+        },
         "_comment": "Source runway 19R SIDs: https://www.aro.lfv.se/Editorial/View/7577/ES_AD_2_ESSA_4-37_en",
         "_comment": "Source runway 26 SIDs: https://www.aro.lfv.se/Editorial/View/7578/ES_AD_2_ESSA_4-41_en"
     },
