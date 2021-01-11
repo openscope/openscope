@@ -728,6 +728,118 @@
             ]
         },
         "_comment": "Source runway 08 left turn SIDs: https://www.aro.lfv.se/Editorial/View/7946/ES_AD_2_ESSA_4-19_en",
+        "AROS3L": {
+            "icao": "AROS3L",
+            "name": "Aros Three Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA723", "ARS"], 
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA723", "ARS"]
+            ]
+        },
+        "BABAP3L": {
+            "icao": "BABAP3L",
+            "name": "Babap Three Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], "SA416", "BABAP"], 
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA412", "SA416", "BABAP"]
+            ]
+        },
+        "KOGAV3L": {
+            "icao": "KOGAV3L",
+            "name": "Kogav Three Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "KOGAV"], 
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA412", "SA413", "SA415", "KOGAV"]
+            ]
+        },
+        "NOSLI5L": {
+            "icao": "NOSLI5L",
+            "name": "Nosli Five Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724", "NOSLI"], 
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA724", "NOSLI"]
+            ]
+        },
+        "PETEV1L": {
+            "icao": "PETEV1L",
+            "name": "Petev One Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724", "PETEV"], 
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA724", "PETEV"]
+            ]
+        },
+        "RESNA3L": {
+            "icao": "RESNA3L",
+            "name": "Resna Three Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "SA417", "RESNA"], 
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA412", "SA413", "SA415", "SA417", "RESNA"]
+            ]
+        },
+        "TOVRI4L": {
+            "icao": "TOVRI4L",
+            "name": "Tovri Four Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], "TOVRI"], 
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA412", "TOVRI"]
+            ]
+        },
+        "TROSA5L": {
+            "icao": "TROSA5L",
+            "name": "Trosa Five Lima",
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724", "TRS"], 
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA724", "TRS"]
+            ]
+        },
         "_comment": "Source runway 08 right turn SIDs: https://www.aro.lfv.se/Editorial/View/7947/ES_AD_2_ESSA_4-25_en",
         "_comment": "Source runway 19L SIDs: https://www.aro.lfv.se/Editorial/View/7948/ES_AD_2_ESSA_4-31_en",
         "_comment": "Source runway 19R SIDs: https://www.aro.lfv.se/Editorial/View/7577/ES_AD_2_ESSA_4-37_en",
