@@ -615,6 +615,118 @@
             ]
         },
         "_comment": "Source runway 01R SIDs: https://www.aro.lfv.se/Editorial/View/7945/ES_AD_2_ESSA_4-15_en",
+        "AROS3B": {
+            "icao": "AROS3B",
+            "name": "Aros Three Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "ARS"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA423", "SA864", "ARS"]
+            ]
+        },
+        "BABAP3B": {
+            "icao": "BABAP3B",
+            "name": "Babap Three Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "SA406", "BABAP"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA404", "SA405", "SA406", "BABAP"]
+            ]
+        },
+        "KOGAV3B": {
+            "icao": "KOGAV3B",
+            "name": "Kogav Three Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], "SA408", "KOGAV"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA404", "SA408", "KOGAV"]
+            ]
+        },
+        "NOSLI4B": {
+            "icao": "NOSLI4B",
+            "name": "Nosli Four Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724", "NOSLI"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA423", "SA864", "SA851", "SA724", "NOSLI"]
+            ]
+        },
+        "PETEV1B": {
+            "icao": "PETEV1B",
+            "name": "Petev One Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "SA854", "PETEV"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA423", "SA864", "SA854", "PETEV"]
+            ]
+        },
+        "RESNA3B": {
+            "icao": "RESNA3B",
+            "name": "Resna Three Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], "SA409", "RESNA"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA404", "SA409", "RESNA"]
+            ]
+        },
+        "TOVRI4B": {
+            "icao": "TOVRI4B",
+            "name": "Tovri Four Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "TOVRI"],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA404", "SA405", "TOVRI"]
+            ]
+        },
+        "TROSA4B": {
+            "icao": "TROSA4B",
+            "name": "Trosa Four Bravo",
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724", "TRS"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA423", "SA864", "SA851", "SA724", "TRS"]
+            ]
+        },
         "_comment": "Source runway 08 left turn SIDs: https://www.aro.lfv.se/Editorial/View/7946/ES_AD_2_ESSA_4-19_en",
         "_comment": "Source runway 08 right turn SIDs: https://www.aro.lfv.se/Editorial/View/7947/ES_AD_2_ESSA_4-25_en",
         "_comment": "Source runway 19L SIDs: https://www.aro.lfv.se/Editorial/View/7948/ES_AD_2_ESSA_4-31_en",
