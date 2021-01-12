@@ -578,6 +578,10 @@ export default class CanvasController {
     }
 
     /**
+     * Draw all runways, but NOT their labels (see _drawRunwayLabels())
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawRunways
      * @param cc {HTMLCanvasContext}
@@ -613,9 +617,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw runway label text
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawRunwayLabels
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawRunwayLabels(cc) {
@@ -640,9 +649,12 @@ export default class CanvasController {
     /**
      * Draw scale in the top right corner of the scope
      *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawCurrentScale
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawCurrentScale(cc) {
@@ -706,9 +718,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw fixes and labels
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawAirportFixesAndLabels
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawAirportFixesAndLabels(cc) {
@@ -732,9 +749,14 @@ export default class CanvasController {
 
     // TODO: break this method up into smaller chunks
     /**
+     * Draw SID lines and labels
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawSids
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawSids(cc) {
@@ -795,6 +817,10 @@ export default class CanvasController {
     }
 
     /**
+     * Draw STAR lines and labels
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawStars
      * @param cc {HTMLCanvasContext}
@@ -1250,9 +1276,12 @@ export default class CanvasController {
     /**
      * Draw the `MeasureTool` path and text labels
      *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawMeasureTool
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawMeasureTool(cc) {
@@ -1400,6 +1429,8 @@ export default class CanvasController {
 
     /**
      * Draw the RADAR RETURN AND HISTORY DOTS ONLY of all radar target models
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
      *
      * @for CanvasController
      * @method _drawRadarTargetList
@@ -1669,9 +1700,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw data blocks for each aircraft
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawAircraftDataBlocks
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawAircraftDataBlocks(cc) {
@@ -1688,57 +1724,149 @@ export default class CanvasController {
     }
 
     /**
+     * Draw and fill all airspace boundaries, and draw range rings clipped to that area
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawAirspaceAndRangeRings
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawAirspaceAndRangeRings(cc) {
-        const airport = AirportController.airport_get();
-        const rangeRingRadius = this._calculateRangeRingRadius(airport);
-
         cc.save();
+
         // translate to airport center
-        // TODO: create method in CanvasStageModel to returns an array with these values
-        cc.translate(
-            round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
-            round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
-        );
+        this._ccTranslateFromCanvasOriginToAirportCenter(cc);
+        this._drawAirspaceBorder(cc);
 
-        // draw airspaces
-        for (let i = 0; i < airport.airspace.length; i++) {
-            const airspace = airport.airspace[i];
-
-            cc.save();
-
-            cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
-            cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
-
-            this._drawPoly(cc, airspace.relativePoly, false);
-
-            // prevent infinite loop when rangeRingRadius is 0
-            if (rangeRingRadius > 0) {
-                cc.clip();
-
-                // cc.linewidth = 1;
-                cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-
-                // Fill up airportModel's ctr_radius with rings of the specified radius
-                for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
-                    cc.beginPath();
-                    cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
-                    cc.stroke();
-                }
-            }
-
-            cc.restore();
-        }
-
-        // this._drawAirspaceShelvesAndLabels(cc);
+        // undo the above translation
+        // caution: do not replace with restore().save() because
+        // we need the clipping region from _drawAirspaceBorder()
+        // also, do not reverse these calls, as the rings should be
+        // drawn ON TOP of the airspace boundary lines
+        this._ccTranslateFromAirportCenterToCanvasOrigin(cc);
+        this._drawRangeRings(cc);
 
         cc.restore();
     }
 
+    /**
+     * From the canvas origin, cc.translate() to the airport center, adjusting for user panning
+     *
+     * @for CanvasController
+     * @method _ccTranslateFromCanvasOriginToAirportCenter
+     * @param cc {HTMLCanvasContext}
+     * @returns undefined
+     * @private
+     */
+    _ccTranslateFromCanvasOriginToAirportCenter(cc) {
+        cc.translate(
+            round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
+            round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
+        );
+    }
+
+    /**
+     * From the airport center, cc.translate() to the canvas origin, adjusting for user panning
+     *
+     * @for CanvasController
+     * @method _ccTranslateFromAirportCenterToCanvasOrigin
+     * @param cc {HTMLCanvasContext}
+     * @returns undefined
+     * @private
+     */
+    _ccTranslateFromAirportCenterToCanvasOrigin(cc) {
+        cc.translate(
+            round(-CanvasStageModel.halfWidth - CanvasStageModel._panX),
+            round(-CanvasStageModel.halfHeight - CanvasStageModel._panY)
+        );
+    }
+
+    /**
+     * Draw range rings
+     *
+     * POSITIONING: Before calling this method, translate to the AIRPORT CENTER
+     *
+     * @for CanvasController
+     * @method _drawRangeRings
+     * @param cc {HTMLCanvasContext}
+     * @returns undefined
+     * @private
+     */
+    _drawRangeRings(cc) {
+        const airportModel = AirportController.airport_get();
+        const userValue = GameController.getGameOption(GAME_OPTION_NAMES.RANGE_RINGS);
+        const useDefault = userValue === 'default';
+        const defaultRangeRings = airportModel.rangeRings;
+        const centerPositionPx = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(
+            defaultRangeRings.center.relativePosition
+        );
+        const drawPositionX = centerPositionPx.x + CanvasStageModel.halfWidth;
+        const drawPositionY = centerPositionPx.y + CanvasStageModel.halfHeight;
+
+        if (userValue === 'off' || (useDefault && defaultRangeRings.enabled === false)) {
+            return;
+        }
+
+        let rangeRingRadius = km(defaultRangeRings.radius_nm);
+
+        if (!useDefault) {
+            rangeRingRadius = km(parseInt(userValue, 10));
+        }
+
+        if (rangeRingRadius === 0) {
+            // prevent infinite loop
+            return;
+        }
+
+        cc.linewidth = 1;
+        cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
+
+        // Fill up airportModel's ctr_radius with rings of the specified radius
+        for (let i = 1; i * rangeRingRadius < airportModel.ctr_radius; i++) {
+            cc.beginPath();
+            cc.arc(drawPositionX, drawPositionY, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
+            cc.stroke();
+        }
+    }
+
+    /**
+     * Draw polygonal airspace border
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
+     * @for CanvasController
+     * @method _drawAirspaceBorder
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawAirspaceBorder(cc) {
+        const airport = AirportController.airport_get();
+
+        cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
+
+        for (let i = 0; i < airport.airspace.length; i++) {
+            const airspace = airport.airspace[i];
+
+            this._drawPoly(cc, airspace.relativePoly, false);
+            cc.clip(); // this may only happen to the last polygon... or may be additive... tbd
+        }
+    }
+
+    /**
+     * Draw individual airspace shelves, each labeled by index and altitude(s)
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
+     * @for CanvasController
+     * @method _drawAirspaceShelvesAndLabels
+     * @param cc {HTMLCanvasContext}
+     * @returns undefined
+     * @private
+     */
     _drawAirspaceShelvesAndLabels(cc) {
         if (!this._shouldDrawAirspace) {
             return;
@@ -1758,10 +1886,7 @@ export default class CanvasController {
 
             cc.save(); // to allow reset of translation
             // required positioning to use _drawPoly
-            cc.translate(
-                CanvasStageModel.halfWidth + CanvasStageModel._panX,
-                CanvasStageModel.halfHeight + CanvasStageModel._panY
-            );
+            this._ccTranslateFromCanvasOriginToAirportCenter(cc);
             // draw lines
             this._drawPoly(cc, airspace.relativePoly, false);
 
@@ -1823,6 +1948,7 @@ export default class CanvasController {
      * @method _drawPoly
      * @param cc {HTMLCanvasContext}
      * @param poly {array<array<number, number>>}
+     * @param fill {boolean}
      * @private
      */
     _drawPoly(cc, poly, fill = true) {
@@ -1846,9 +1972,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw terrain contours for a SPECIFIC elevation
+     *
+     * @for CanvasController
+     * @method _drawTerrainAtElevation
      * @param cc {HTMLCanvasContext}
      * @param terrainLevel {object}
      * @param elevation {number}
+     * @returns undefined
      * @private
      */
     _drawTerrainAtElevation(cc, terrainLevel, elevation) {
@@ -1948,9 +2079,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw all terrain contours and legend
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawTerrain
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawTerrain(cc) {
@@ -2007,9 +2143,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw restricted airspace and labels
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawRestrictedAirspace
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawRestrictedAirspace(cc) {
@@ -2018,10 +2159,8 @@ export default class CanvasController {
         }
 
         cc.save();
-        cc.translate(
-            CanvasStageModel.halfWidth + CanvasStageModel._panX,
-            CanvasStageModel.halfHeight + CanvasStageModel._panY
-        );
+        this._ccTranslateFromCanvasOriginToAirportCenter(cc);
+
         cc.strokeStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
         cc.lineWidth = Math.max(CanvasStageModel.scale / 3, 2);
         cc.lineJoin = 'round';
@@ -2066,9 +2205,14 @@ export default class CanvasController {
     }
 
     /**
+     * Draw all active video map(s)
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
      * @for CanvasController
      * @method _drawVideoMap
      * @param cc {HTMLCanvasContext}
+     * @returns undefined
      * @private
      */
     _drawVideoMap(cc) {
@@ -2080,12 +2224,11 @@ export default class CanvasController {
         }
 
         cc.save();
-        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+        this._ccTranslateFromCanvasOriginToAirportCenter(cc);
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
         cc.lineWidth = Math.max(1, CanvasStageModel.scale / 15);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
-        cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         cc.beginPath();
 
         const lines = airportModel.mapCollection.getVisibleMapLines();
@@ -2108,6 +2251,8 @@ export default class CanvasController {
     // TODO: this method should be removed or reworked.
     /**
      * Draw the compass around the edge of the scope view
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
      *
      * @for CanvasController
      * @method _drawSelectedAircraftCompass
