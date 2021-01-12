@@ -38,6 +38,7 @@ options.DIR = {
     ASSETS_AIRCRAFT: path.join(buildAssetsDir, 'aircraft'),
     ASSETS_AIRLINES: path.join(buildAssetsDir, 'airlines'),
     ASSETS_AIRPORTS: path.join(buildAssetsDir, 'airports'),
+    ASSETS_VOICE_RECOGNITION: path.join(buildAssetsDir, 'voice_recognition'),
     BUILD_FONTS: path.join(buildAssetsDir, 'fonts'),
     BUILD_IMAGES: path.join(buildAssetsDir, 'images'),
 
@@ -51,7 +52,8 @@ options.DIR = {
     DIST_IMAGES: path.join(distAssets, 'images'),
     DIST_SCRIPTS_CLIENT: path.join(distAssets, 'scripts/client'),
     DIST_SCRIPTS_SERVER: path.join(distAssets, 'scripts/server'),
-    DIST_STYLE: path.join(distAssets, 'style')
+    DIST_STYLE: path.join(distAssets, 'style'),
+    DIST_VOICE_RECOGNITION: path.join(distAssets, 'voice_recognition')
 };
 
 // for specific files

@@ -26,6 +26,7 @@ import {
 } from './constants/inputConstants';
 import { SELECTORS, CLASSNAMES } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
+import { listen } from './speechControl';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -469,8 +470,11 @@ export default class InputController {
         // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (code) {
             case KEY_CODES.CONTROL_LEFT:
-            case KEY_CODES.CONTROL_RIGHT:
                 this._startMeasuring();
+
+                break;
+            case KEY_CODES.CONTROL_RIGHT:
+                listen();
 
                 break;
             case KEY_CODES.BAT_TICK:
@@ -765,9 +769,8 @@ export default class InputController {
                 this.$commandInput.attr('placeholder', 'enter aircraft command');
                 this.$commandInput.css({ color: 'white' });
 
-                return;
+                break;
             default:
-                return;
         }
     }
 
@@ -882,7 +885,7 @@ export default class InputController {
                 let nextTimewarpValue = 0;
 
                 if (aircraftCommandParser.args) {
-                    nextTimewarpValue = aircraftCommandParser.args[0];
+                    [nextTimewarpValue] = aircraftCommandParser.args;
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
