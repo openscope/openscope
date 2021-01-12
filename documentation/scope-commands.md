@@ -6,7 +6,7 @@ Other than moving the data block or accepting handoffs, most commands require th
 
 Please note that the bracketed words (and brackets themselves) used in the syntax examples should be replaced with the appropriate data. Note that in lieu of having to manually type the `callsign` into the command input, it is also possible to click on the aircraft on the radar scope; doing so will automatically append its callsign to the command input and execute the completed command.
 
-While `callsign` is used in the examples, it is envisioned that in future it will be possible for  aircraft to also be referenced by their CID or squawk code.
+While `callsign` is used in the examples to reference individual aircraft, you can also substitute it with their squawk code. It is envisioned that in future it will be possible for aircraft to also be referenced by their CID.
 
 ## Table of Contents
 

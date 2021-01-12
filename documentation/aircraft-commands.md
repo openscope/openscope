@@ -143,6 +143,8 @@ _Syntax -_ `AAL123 dvs` or `AAL123 dvs [alt]`
 
 _Aliases -_ `ils` / `i` / `*`
 
+_Hotkey -_  `numpad *`
+
 _Information -_ This command clears for an ILS approach to a runway. The
 aircraft will continue on its assigned heading until intercepting the localizer,
 and then automatically follow the runway centerline inbound, descending along
@@ -189,6 +191,9 @@ Optionally, you may also specify:
 
 Any combination of these arguments provided in any order is acceptable, as long
 as the command `hold` comes first.
+
+To clear the aircraft out of the hold, you can use the `exithold` command below,
+clear it direct to a fix, or assign it a new heading.
 
 _Syntax -_ `AAL123 hold [fixname] [left|l|right|r] [leg_time]min|[leg_dist]nm [radial]` ~~or `AAL123 hold`~~
 
@@ -304,7 +309,7 @@ These commands control the three most basic ways we can control aircraft, collec
 
 _Aliases -_ `climb` / `c` / `descend` / `d` / `altitude` / `a`
 
-_Hotkey -_ `up arrow` / `down arrow` (if "Control Method" setting = "Arrow Keys")
+_Hotkeys -_ `up arrow` / `down arrow` (if "Control Method" setting = "Arrow Keys")
 
 _Information -_ This command tells the specified plane the altitude, in
 hundreds of feet (flight levels), it should travel to. This means that when
@@ -336,13 +341,13 @@ towards: up (north) is 360, right (east) is 090, down (south) is 180, and left
 (west) is 270. Of course you can use any angle in between these as well. If the
 heading is set before takeoff, the aircraft will turn to that heading after takeoff.
 
-The target heading is specified by a three-digit heading. You can force the
+The target heading is specified by a three digit heading. You can force the
 aircraft to reach the heading by turning left or right by inserting `left`,
 `l`, `right`, or `r` before the new heading, as demonstrated below.
 
 Alternatively, you can instruct an aircraft to turn from its current heading by
 a given angle by specifying the direction of turn with the heading change as
-a one- or two-digit number of degrees
+a one or two digit number of degrees.
 
 _Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r 270` (target heading) or `AAL123 t r 45` (heading change)
 
@@ -350,11 +355,13 @@ _Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r 270` 
 
 _Aliases -_ `speed` / `slow` / `sp` / `+` / `-`
 
+_Hotkeys -_ `numpad +` / `numpad -`
+
 _Information -_ This command sets the target speed; aircraft will stay within
 their safe speeds if you tell them to fly faster or slower than they are able
-to. It takes some time to increase and reduce speed. Remember that speed is
-always expressed in knots, and is indicated airspeed, whereas our radar scope
-can only display groundspeed.
+to. It takes some time to increase and reduce speed. Remember that speed 
+assignments are given in indicated airspeed, whereas our scope can only
+display groundspeed.
 
 _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
 
