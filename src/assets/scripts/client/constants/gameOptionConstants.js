@@ -95,16 +95,24 @@ export const GAME_OPTION_VALUES = [
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: '1-2-4-8',
-                value: '1-2-4-8'
+                displayLabel: '0.5 x n ... 8',
+                value: '0.5-1-1.5-2-2.5-3-3.5-4-4.5-5-5.5-6-6.5-7-7.5-8'
+            },
+            {
+                displayLabel: '1.0 x n ... 8',
+                value: '1-2-3-4-5-6-7-8'
             },
             {
                 displayLabel: '1-2-4-6-8-10-12-14-16',
                 value: '1-2-4-6-8-10-12-14-16'
             },
             {
-                displayLabel: '1-2-3-4-5-6-7-8',
-                value: '1-2-3-4-5-6-7-8'
+                displayLabel: '0.5-1-2-4-8',
+                value: '0.5-1-2-4-8'
+            },
+            {
+                displayLabel: '1-2-4-8',
+                value: '1-2-4-8'
             }
         ]
     },
