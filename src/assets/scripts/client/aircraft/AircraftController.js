@@ -730,9 +730,8 @@ export default class AircraftController {
      */
     _onStripDoubleClickHandler = (callsign) => {
         const { relativePosition } = this.findAircraftByCallsign(callsign);
-        const [x, y] = relativePosition;
 
-        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
+        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, relativePosition);
     };
 
     /**

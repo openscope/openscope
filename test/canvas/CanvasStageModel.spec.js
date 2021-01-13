@@ -24,10 +24,7 @@ ava('.translatePixelsToKilometers() divides pixels by scale', (t) => {
 });
 
 ava('.calculatePreciseCanvasPositionFromRelativePosition() returns an object with x, y keys with precise values', (t) => {
-    const expectedResult = {
-        x: 533.6571116862411,
-        y: -529.6559736409592
-    };
+    const expectedResult = [533.6571116862411, -529.6559736409592];
     const positionMock = [66.70713896078014, 66.2069967051199];
     const result = CanvasStageModel.calculatePreciseCanvasPositionFromRelativePosition(positionMock);
 
@@ -35,20 +32,17 @@ ava('.calculatePreciseCanvasPositionFromRelativePosition() returns an object wit
 });
 
 ava('.calculatePreciseCanvasPositionFromRelativePosition() returns an object with x, y keys and rounded values', (t) => {
-    const expectedResult = {
-        x: 534,
-        y: -530
-    };
+    const expectedResult = [534, -530];
     const positionMock = [66.70713896078014, 66.2069967051199];
     const result = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(positionMock);
 
     t.deepEqual(result, expectedResult);
 });
 
-ava('.translateKilometersToPixels() multiplies kilometers by scale', (t) => {
+ava('._translateKilometersToPixels() multiplies kilometers by scale', (t) => {
     const expectedResult = 100;
     const kilometerValueMock = 12.5;
-    const result = CanvasStageModel.translateKilometersToPixels(kilometerValueMock);
+    const result = CanvasStageModel._translateKilometersToPixels(kilometerValueMock);
 
     t.true(result === expectedResult);
 });
