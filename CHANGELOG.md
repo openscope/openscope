@@ -8,6 +8,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1703" target="_blank">#1703</a> - Add more PTL ranges, some including 30sec PTLs
 - <a href="https://github.com/openscope/openscope/issues/1697" target="_blank">#1697</a> - Refactor command parsing with new `ParsedCommand` class
+- <a href="https://github.com/openscope/openscope/issues/1699" target="_blank">#1699</a> - Improve command documentation
 
 
 # 6.22.0 (January 3, 2021)
