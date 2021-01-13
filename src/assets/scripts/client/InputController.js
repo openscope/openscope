@@ -501,7 +501,7 @@ export default class InputController {
             // turning
             case KEY_CODES.LEFT_ARROW:
             case LEGACY_KEY_CODES.LEFT_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} t l `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -510,7 +510,7 @@ export default class InputController {
                 break;
             case KEY_CODES.RIGHT_ARROW:
             case LEGACY_KEY_CODES.RIGHT_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} t r `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -520,7 +520,7 @@ export default class InputController {
             // climb / descend
             case KEY_CODES.UP_ARROW:
             case LEGACY_KEY_CODES.UP_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} c `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -532,7 +532,7 @@ export default class InputController {
                 break;
             case KEY_CODES.DOWN_ARROW:
             case LEGACY_KEY_CODES.DOWN_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} d `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -545,31 +545,39 @@ export default class InputController {
             // takeoff / landing
             case KEY_CODES.NUM_DIVIDE:
             case LEGACY_KEY_CODES.NUM_DIVIDE:
-                this.$commandInput.val(`${currentCommandInputValue} takeoff `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} takeoff `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             case KEY_CODES.NUM_MULTIPLY:
             case LEGACY_KEY_CODES.NUM_MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue} * `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} * `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             // speed up / slow down
             case KEY_CODES.NUM_ADD:
             case LEGACY_KEY_CODES.NUM_ADD:
-                this.$commandInput.val(`${currentCommandInputValue} + `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} + `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             case KEY_CODES.NUM_SUBTRACT:
             case LEGACY_KEY_CODES.NUM_SUBTRACT:
-                this.$commandInput.val(`${currentCommandInputValue} - `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} - `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             case KEY_CODES.F1:
