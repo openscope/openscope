@@ -537,7 +537,7 @@ export default class InputController {
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
-                    this.selectPreviousAircraft();
+                    this.selectNextAircraft();
                     event.preventDefault();
                 }
 
