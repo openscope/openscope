@@ -6,6 +6,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1705" target="_blank">#1705</a> - Re-fix range ring drawing position
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1703" target="_blank">#1703</a> - Add more PTL ranges, some including 30sec PTLs
 
 
 # 6.22.0 (January 3, 2021)
