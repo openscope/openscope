@@ -1,6 +1,7 @@
 /* eslint-disable max-len, indent, no-undef, prefer-destructuring */
 import $ from 'jquery';
 import _has from 'lodash/has';
+import _flow from 'lodash/flow';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import EventTracker from '../EventTracker';
@@ -115,6 +116,7 @@ export default class TutorialView {
         this.tutorial = tutorial;
         this.tutorial.steps = [];
         this.tutorial.step = 0;
+        this.tutorial.liverefs = {};
         this.tutorial.open = false;
 
         return this;
@@ -204,6 +206,7 @@ export default class TutorialView {
         this.tutorial = {};
         this.tutorial.steps = [];
         this.tutorial.step = 0;
+        this.tutorial.liverefs = {};
         this.tutorial.open = false;
 
         return this;
@@ -240,9 +243,64 @@ export default class TutorialView {
         this.tutorial.steps = [];
         this.tutorial.step = 0;
 
-        const tutorial_position = [0.1, 0.85];
-        const departureAircraft = prop.aircraft.list.filter((aircraftModel) => aircraftModel.isDeparture())[0];
+        // these always get evaluated on-the-fly.
+        this.tutorial.liverefs = {
+            airport: function() {
+                return AirportController.airport_get();
+            },
+            departureAircraft: function() {
+                return prop.aircraft.list.filter((aircraftModel) => aircraftModel.isDeparture())[0];
+            }
+        };
 
+        zlsa.atc.loadAsset({ url: 'assets/tutorial/tutorial.json', immediate: true })
+            .done((response) => {
+                response.forEach((step) => {
+                    if (Array.isArray(step.replace)) {
+                        step.replace.forEach((replacement) => {
+                            const objFetcher = this.tutorial.liverefs[replacement.replaceWith.object];
+                            if (!objFetcher) {
+                                console.error(`Tutorial: ${step.title}: ${replacement.replaceWith.object} is not valid.`);
+                                return;
+                            }
+                            const propFetcher = this._getPropFetcher(replacement.replaceWith.propPath);
+                            const hasTransform = typeof replacement.replaceWith.transform === 'string' && replacement.replaceWith.transform.trim().length > 0;
+                            // eslint-disable-next-line no-new-func
+                            const transform = hasTransform ? new Function('t', replacement.replaceWith.transform) : undefined;
+                            const replaceFunc = (t) => {
+                                let value = propFetcher(objFetcher());
+                                if (value === undefined || value === null) {
+                                    return t;
+                                }
+                                if (hasTransform) {
+                                    value = transform(value);
+                                    if (value === undefined || value === null) {
+                                        return t;
+                                    }
+                                }
+                                return t.replace(replacement.findWhat, value);
+                            };
+
+                            if (Array.isArray(step.parse)) {
+                                step.parse.push(replaceFunc);
+                            } else {
+                                step.parse = [replaceFunc];
+                            }
+                        });
+                        if (Array.isArray(step.parse)) {
+                            step.parse = _flow(...step.parse);
+                        }
+                        delete step.replace;
+                    }
+                    this.tutorial_step(step);
+                });
+            })
+            .fail((jqxhr, textStatus, error) => {
+                console.error(`Failed to load tutorial data: ${textStatus}, ${error}`);
+                this.tutorial_step({ title: 'Error', text: `The tutorial failed to load: ${textStatus}, ${error}` });
+            });
+
+    /* TODO: leaving these here to compare against for now, remove before merge
         this.tutorial_step({
             title: 'Welcome!',
             text: ['Welcome to the tutorial for the openScope Air Traffic Control Simulator. You can show/hide this',
@@ -508,6 +566,28 @@ export default class TutorialView {
             ].join(' '),
             side: 'left',
             position: tutorial_position
+        });
+    */
+    }
+
+    /**
+     * Fetching descendent property of an object without using eval()
+     *
+     * Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#accessing_member_properties
+     *
+     * @for TutorialView
+     * @method _getPropFetcher
+     * @return [{function}] A function that will fetch a given descendent property of an object without using eval()
+     */
+    _getPropFetcher(desc) {
+        return ((obj) => {
+            let result = obj;
+            const arr = desc.split('.');
+            while (arr.length) {
+                if (result === undefined || result === null) return result;
+                result = result[arr.shift()];
+            }
+            return result;
         });
     }
 
