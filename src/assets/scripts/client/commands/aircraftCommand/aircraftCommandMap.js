@@ -200,7 +200,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     takeoff: {
-        aliases: ['cto', 'to', 'takeoff'],
+        aliases: ['/', 'cto', 'to', 'takeoff'],
         functionName: 'runTakeoff',
         isSystemCommand: false
     },

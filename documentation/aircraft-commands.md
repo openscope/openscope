@@ -90,7 +90,7 @@ _Syntax -_ `AAL123 cvs` or `AAL123 cvs [alt]`
 
 ### Takeoff
 
-_Aliases -_ `takeoff`, `to`, `cto`
+_Aliases -_ `takeoff`, `to`, `cto`, `/`
 
 _Hotkey -_ `numpad /`
 

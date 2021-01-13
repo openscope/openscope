@@ -546,7 +546,7 @@ export default class InputController {
             case KEY_CODES.NUM_DIVIDE:
             case LEGACY_KEY_CODES.NUM_DIVIDE:
                 if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
-                    this.$commandInput.val(`${currentCommandInputValue} takeoff `);
+                    this.$commandInput.val(`${currentCommandInputValue} / `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
