@@ -3,6 +3,7 @@
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism 
+- <a href="https://github.com/openscope/openscope/issues/1705" target="_blank">#1705</a> - Re-fix range ring drawing position
 
 ### Enhancements & Refactors
 
