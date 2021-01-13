@@ -274,8 +274,9 @@
             ]
         }
     ],
+    "_comment": "Source fixes: https://www.aro.lfv.se/Editorial/View/8321/ES_AD_2_ESSA_4-3_en",
+    "_comment": "Source DVOR/DME: https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
     "fixes": {
-        "_comment": "Source fixes: https://www.aro.lfv.se/Editorial/View/8321/ES_AD_2_ESSA_4-3_en",
         "ARC53": ["N59d43m47.80", "E018d06m49.00"],
         "RW01L": ["N59d38m14.11", "E017d54m47.60"],
         "RW01R": ["N59d37m35.02", "E017d57m02.67"],
@@ -466,7 +467,6 @@
         "TOMBU": ["N59d13m46.00", "E019d34m04.20"],
         "TOVRI": ["N59d44m59.30", "E018d46m00.60"],
         "XILAN": ["N59d39m33.50", "E019d04m33.80"],
-        "_comment": "Source DVOR/DME: https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
         "ANE":   ["N59d41m38.30", "E018d03m35.50"],
         "ANW":   ["N59d42m47.80", "E017d51m09.30"],
         "ARL":   ["N59d39m12.30", "E017d54m52.10"],
@@ -494,8 +494,14 @@
             "ils": [false, true]
         }
     ],
+    "_comment": "Source runway 01L SIDs: https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
+    "_comment": "Source runway 01R SIDs: https://www.aro.lfv.se/Editorial/View/7945/ES_AD_2_ESSA_4-15_en",
+    "_comment": "Source runway 08 left turn SIDs: https://www.aro.lfv.se/Editorial/View/7946/ES_AD_2_ESSA_4-19_en",
+    "_comment": "Source runway 08 right turn SIDs: https://www.aro.lfv.se/Editorial/View/7947/ES_AD_2_ESSA_4-25_en",
+    "_comment": "Source runway 19L SIDs: https://www.aro.lfv.se/Editorial/View/7948/ES_AD_2_ESSA_4-31_en",
+    "_comment": "Source runway 19R SIDs: https://www.aro.lfv.se/Editorial/View/7577/ES_AD_2_ESSA_4-37_en",
+    "_comment": "Source runway 26 SIDs: https://www.aro.lfv.se/Editorial/View/7578/ES_AD_2_ESSA_4-41_en",
     "sids": {
-        "_comment": "Source runway 01L SIDs: https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
         "AROS5C": {
             "icao": "AROS5C",
             "name": "Aros Five Charlie",
@@ -631,7 +637,6 @@
                 ["SA421", "SA850", "SA851", "SA724", "TRS"]
             ]
         },
-        "_comment": "Source runway 01R SIDs: https://www.aro.lfv.se/Editorial/View/7945/ES_AD_2_ESSA_4-15_en",
         "AROS3B": {
             "icao": "AROS3B",
             "name": "Aros Three Bravo",
@@ -752,7 +757,6 @@
                 ["SA423", "SA864", "SA851", "SA724", "TRS"]
             ]
         },
-        "_comment": "Source runway 08 left turn SIDs: https://www.aro.lfv.se/Editorial/View/7946/ES_AD_2_ESSA_4-19_en",
         "AROS3L": {
             "icao": "AROS3L",
             "name": "Aros Three Lima",
@@ -873,7 +877,6 @@
                 ["SA412", "SA424", "SA857", "SA851", "SA724", "TRS"]
             ]
         },
-        "_comment": "Source runway 08 right turn SIDs: https://www.aro.lfv.se/Editorial/View/7947/ES_AD_2_ESSA_4-25_en",
         "ABENI3R": {
             "icao": "ABENI3R",
             "name": "Abeni Three Romeo",
@@ -994,7 +997,6 @@
                 ["SA418", "TOVRI"]
             ]
         },
-        "_comment": "Source runway 19L SIDs: https://www.aro.lfv.se/Editorial/View/7948/ES_AD_2_ESSA_4-31_en",
         "ABENI5Q": {
             "icao": "ABENI5Q",
             "name": "Abeni Five Quebec",
@@ -1174,14 +1176,13 @@
             "draw": [
                 ["SA551", "SA561", "SA566", "SA728", "SA729", "TRS"]
             ]
-        },
-        "_comment": "Source runway 19R SIDs: https://www.aro.lfv.se/Editorial/View/7577/ES_AD_2_ESSA_4-37_en",
-        "_comment": "Source runway 26 SIDs: https://www.aro.lfv.se/Editorial/View/7578/ES_AD_2_ESSA_4-41_en"
+        }
     },
     "maps": [
         {
             "name": "Base Map",
-            "lines": []
+            "_comment": "The line below is just because I got an error when using a map without lines. Replace this later.",
+            "lines": [["N59d48m58.00", "E017d46m48.00", "N59d48m59.00", "E017d46m49.00"]]
         }
     ]
 }
