@@ -224,13 +224,12 @@ export default class TutorialView {
     }
 
     /**
-     * Reloads the tutorial when the airport is changed.
+     * Refresh the tutorial text contents when the airport is changed.
      *
      * @for TutorialView
      * @method onAirportChange
      */
     onAirportChange() {
-        this.tutorial_init_pre();
         this.tutorial_update_content();
     }
 
