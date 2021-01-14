@@ -287,11 +287,13 @@ export default class TutorialView {
                 const replaceFunc = (t) => {
                     let value = propFetcher(objFetcher());
                     if (value == null) { // null or undefined; likely configured with incorrect property path
+                        console.warn(`Tutorial: ${step.title}: ${replacement.replaceWith.object}.${replacement.replaceWith.propPath} has ${value} value.`);
                         return t;
                     }
                     if (hasTransform) {
                         value = transform(value);
                         if (value == null) { // null or undefined; likely produced by mistakes in transform function
+                            console.warn(`Tutorial: ${step.title}: transformation "${replacement.replaceWith.transform}" turned ${replacement.replaceWith.object}.${replacement.replaceWith.propPath} into ${value}.`);
                             return t;
                         }
                     }
