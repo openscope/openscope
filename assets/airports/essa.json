@@ -27,7 +27,7 @@
     "arrivalRunway": "19L",
     "departureRunway": "19R",
     "defaultMaps": ["Arlanda CTR", "Stockholm TMA", "Sector Uppsala + Uppsala CTR", "Sector Västerås + Västerås CTR", "Bromma CTR"],
-    "_comment": "These airspaces are a simplification of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
+    "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
             "_comment": "Arlanda CTR West + Arlanda CTR East + Overlapping part of Stockholm TMA b",
@@ -53,6 +53,9 @@
             "floor":          1200,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+                ["N60d00m00.00", "E018d00m00.00"]
+            ],
             "poly":
             [
                 ["N60d17m58.00", "E018d12m47.00"],
@@ -67,6 +70,9 @@
             "floor":          2000,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+                ["N59d40m00.00", "E018d35m00.00"]
+            ],
             "poly":
             [
                 ["N60d17m58.00", "E018d12m47.00"],
@@ -96,6 +102,10 @@
             "floor":          1500,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+                ["N59d11m00.00", "E018d10m00.00"]
+            ],
+
             "poly":
             [
                 ["N59d24m22.00", "E018d41m24.00"],
@@ -113,6 +123,9 @@
             "floor":          2000,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+                ["N59d09m00.00", "E017d40m00.00"]
+            ],
             "poly":
             [
                 ["N59d41m58.00", "E017d05m48.00"],
@@ -132,6 +145,9 @@
             "floor":          1200,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+                ["N59d41m30.00", "E017d17m30.00"]
+            ],
             "poly":
             [
                 ["N59d45m52.00", "E017d31m10.00"],
@@ -145,6 +161,9 @@
             "floor":          1500,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+              ["N59d51m00.00", "E017d55m00.00"]
+            ],
             "poly":
             [
                 ["N59d54m48.00", "E018d06m47.00"],
@@ -169,6 +188,9 @@
             "floor":          1200,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+                ["N59d28m00.00", "E017d48m00.00"]
+            ],
             "poly":
             [
                 ["N59d48m58.00", "E017d46m48.00"],
@@ -188,6 +210,9 @@
             "floor":          4500,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+              ["N59d40m00.00", "E016d45m00.00"]
+            ],
             "poly":
             [
                 ["N60d17m58.00", "E018d12m47.00"],
@@ -209,6 +234,9 @@
             "floor":          3000,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+              ["N58d55m00.00", "E017d38m00.00"]
+            ],
             "poly":
             [
                 ["N59d03m45.00", "E017d21m48.00"],
@@ -241,6 +269,9 @@
             "floor":          4500,
             "ceiling":        9500,
             "airspace_class": "C",
+            "labelPositions": [
+              ["N58d47m00.00", "E018d05m00.00"]
+            ],
             "poly":
             [
                 ["N59d35m58.00", "E019d16m25.00"],
