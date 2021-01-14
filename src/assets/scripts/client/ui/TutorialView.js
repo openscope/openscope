@@ -256,43 +256,7 @@ export default class TutorialView {
         zlsa.atc.loadAsset({ url: 'assets/tutorial/tutorial.json', immediate: true })
             .done((response) => {
                 response.forEach((step) => {
-                    if (Array.isArray(step.replace)) {
-                        step.replace.forEach((replacement) => {
-                            const objFetcher = this.tutorial.liverefs[replacement.replaceWith.object];
-                            if (!objFetcher) {
-                                console.error(`Tutorial: ${step.title}: ${replacement.replaceWith.object} is not valid.`);
-                                return;
-                            }
-                            const propFetcher = this._getPropFetcher(replacement.replaceWith.propPath);
-                            const hasTransform = typeof replacement.replaceWith.transform === 'string' && replacement.replaceWith.transform.trim().length > 0;
-                            // eslint-disable-next-line no-new-func
-                            const transform = hasTransform ? new Function('t', replacement.replaceWith.transform) : undefined;
-                            const replaceFunc = (t) => {
-                                let value = propFetcher(objFetcher());
-                                if (value === undefined || value === null) {
-                                    return t;
-                                }
-                                if (hasTransform) {
-                                    value = transform(value);
-                                    if (value === undefined || value === null) {
-                                        return t;
-                                    }
-                                }
-                                return t.replace(replacement.findWhat, value);
-                            };
-
-                            if (Array.isArray(step.parse)) {
-                                step.parse.push(replaceFunc);
-                            } else {
-                                step.parse = [replaceFunc];
-                            }
-                        });
-                        if (Array.isArray(step.parse)) {
-                            step.parse = _flow(...step.parse);
-                        }
-                        delete step.replace;
-                    }
-                    this.tutorial_step(step);
+                    this._loadTutorialStep(step);
                 });
             })
             .fail((jqxhr, textStatus, error) => {
@@ -571,6 +535,57 @@ export default class TutorialView {
     }
 
     /**
+     * Load a single step of the tutorial data that was parsed from JSON
+     *
+     * @for TutorialView
+     * @method _loadTutorialStep
+     */
+    _loadTutorialStep(step) {
+        if (Array.isArray(step.replace)) {
+            // take each text replacement entry, configure corresponding text.replace() function call, wrapped with checks
+            step.replace.forEach((replacement) => {
+                const objFetcher = this.tutorial.liverefs[replacement.replaceWith.object];
+                if (!objFetcher) {
+                    // don't create replace function if 'object' config is not one of valid options in liverefs
+                    console.error(`Tutorial: ${step.title}: ${replacement.replaceWith.object} is not valid.`);
+                    return;
+                }
+                const propFetcher = this._getPropFetcher(replacement.replaceWith.propPath);
+                const hasTransform = typeof replacement.replaceWith.transform === 'string' && replacement.replaceWith.transform.trim().length > 0;
+                // eslint-disable-next-line no-new-func
+                const transform = hasTransform ? new Function('t', replacement.replaceWith.transform) : undefined;
+                const replaceFunc = (t) => {
+                    let value = propFetcher(objFetcher());
+                    if (value == null) { // null or undefined; likely configured with incorrect property path
+                        return t;
+                    }
+                    if (hasTransform) {
+                        value = transform(value);
+                        if (value == null) { // null or undefined; likely produced by mistakes in transform function
+                            return t;
+                        }
+                    }
+                    return t.replace(replacement.findWhat, value);
+                };
+
+                if (Array.isArray(step.parse)) {
+                    step.parse.push(replaceFunc);
+                } else {
+                    step.parse = [replaceFunc];
+                }
+            });
+
+            // compose possibly multiple text replacement functions together into one
+            if (Array.isArray(step.parse)) {
+                step.parse = _flow(...step.parse);
+            }
+            // discard property not used by TutorialStep
+            delete step.replace;
+        }
+        this.tutorial_step(step);
+    }
+
+    /**
      * Fetching descendent property of an object without using eval()
      *
      * Adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#accessing_member_properties
@@ -584,7 +599,9 @@ export default class TutorialView {
             let result = obj;
             const arr = desc.split('.');
             while (arr.length) {
-                if (result === undefined || result === null) return result;
+                if (result == null) { // null or undefined, can drill down no further
+                    return result;
+                }
                 result = result[arr.shift()];
             }
             return result;
