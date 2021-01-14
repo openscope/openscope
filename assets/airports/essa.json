@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "19L",
     "departureRunway": "19R",
-    "defaultMaps": ["Arlanda CTR", "Stockholm TMA"],
+    "defaultMaps": ["Arlanda CTR", "Stockholm TMA", "Sector Uppsala + Uppsala CTR", "Sector Västerås + Västerås CTR", "Bromma CTR"],
     "_comment": "These airspaces are a simplification of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -1288,6 +1288,58 @@
                 ["N59d12m48.00", "E018d28m47.00", "N59d24m22.00", "E018d41m24.00"],
                 ["N59d24m22.00", "E018d41m24.00", "N59d32m20.00", "E018d50m10.00"],
                 ["N59d32m20.00", "E018d50m10.00", "N59d35m58.00", "E019d16m25.00"]
+            ]
+        },
+        {
+            "_comment": "Source Sector Uppsala: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "_comment": "Source Uppsala CTR: https://www.aro.lfv.se/Editorial/View/8286/ES_AD_2_ESCM_en",
+            "name": "Sector Uppsala + Uppsala CTR",
+            "lines": [
+                ["N60d17m58.00", "E018d12m47.00", "N59d45m52.00", "E017d31m10.00"],
+                ["N59d45m52.00", "E017d31m10.00", "N59d41m58.00", "E017d05m48.00"],
+                ["N59d41m58.00", "E017d05m48.00", "N59d56m20.00", "E016d53m28.00"],
+                ["N59d56m20.00", "E016d53m28.00", "N60d13m58.00", "E017d35m48.00"],
+                ["N60d13m58.00", "E017d35m48.00", "N60d17m58.00", "E018d12m47.00"],
+                ["N60d02m58.00", "E017d39m48.00", "N59d58m58.00", "E017d49m48.00"],
+                ["N59d58m58.00", "E017d49m48.00", "N59d51m58.00", "E017d47m48.00"],
+                ["N59d51m58.00", "E017d47m48.00", "N59d47m58.00", "E017d34m48.00"],
+                ["N59d47m58.00", "E017d34m48.00", "N59d47m58.00", "E017d21m48.00"],
+                ["N59d47m58.00", "E017d21m48.00", "N59d54m58.00", "E017d17m48.00"],
+                ["N59d54m58.00", "E017d17m48.00", "N60d02m58.00", "E017d39m48.00"]
+            ]
+        },
+        {
+            "_comment": "Source Sector Västerås: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "_comment": "Source Västerås CTR: https://www.aro.lfv.se/Editorial/View/8437/ES_AD_2_ESOW_en",
+            "name": "Sector Västerås + Västerås CTR",
+            "lines": [
+                ["N59d56m20.00", "E016d53m28.00", "N59d41m58.00", "E017d05m48.00"],
+                ["N59d41m58.00", "E017d05m48.00", "N59d09m43.00", "E016d47m22.00"],
+                ["N59d09m43.00", "E016d47m22.00", "N59d09m33.00", "E016d39m41.00"],
+                ["N59d09m33.00", "E016d39m41.00", "N59d19m26.00", "E016d19m06.00"],
+                ["N59d19m26.00", "E016d19m06.00", "N59d44m58.00", "E016d26m48.00"],
+                ["N59d44m58.00", "E016d26m48.00", "N59d56m20.00", "E016d53m28.00"],
+                ["N59d47m04.00", "E016d36m15.00", "N59d45m56.00", "E016d48m05.00"],
+                ["N59d45m56.00", "E016d48m05.00", "N59d34m06.00", "E016d47m49.00"],
+                ["N59d34m06.00", "E016d47m49.00", "N59d23m48.00", "E016d39m44.00"],
+                ["N59d23m48.00", "E016d39m44.00", "N59d24m54.00", "E016d28m10.00"],
+                ["N59d24m54.00", "E016d28m10.00", "N59d36m33.00", "E016d27m52.00"],
+                ["N59d36m33.00", "E016d27m52.00", "N59d47m04.00", "E016d36m15.00"]
+            ]
+        },
+        {
+            "_comment": "Source Bromma CTR: https://www.aro.lfv.se/Editorial/View/7956/ES_AD_2_ESSB_en",
+            "name": "Bromma CTR",
+            "lines": [
+                ["N59d26m28.00", "E017d44m48.00", "N59d26m29.00", "E017d57m17.00"],
+                ["N59d26m29.00", "E017d57m17.00", "N59d22m58.00", "E018d09m48.00"],
+                ["N59d22m58.00", "E018d09m48.00", "N59d14m58.00", "E018d09m48.00"],
+                ["N59d14m58.00", "E018d09m48.00", "N59d14m58.00", "E017d44m48.00"],
+                ["N59d14m58.00", "E017d44m48.00", "N59d19m28.00", "E017d44m48.00"],
+                ["N59d19m28.00", "E017d44m48.00", "N59d19m28.00", "E017d41m48.00"],
+                ["N59d19m28.00", "E017d41m48.00", "N59d21m58.00", "E017d41m48.00"],
+                ["N59d21m58.00", "E017d41m48.00", "N59d21m58.00", "E017d44m48.00"],
+                ["N59d21m58.00", "E017d44m48.00", "N59d26m28.00", "E017d44m48.00"]
             ]
         }
     ]
