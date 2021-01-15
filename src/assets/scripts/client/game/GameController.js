@@ -270,6 +270,7 @@ class GameController {
         EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', nextValue);
 
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+
         if (nextValue === 1) {
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
