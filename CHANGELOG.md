@@ -12,6 +12,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1699" target="_blank">#1699</a> - Improve command documentation
 - <a href="https://github.com/openscope/openscope/issues/1692" target="_blank">#1692</a> - Remove obsolete caveats for GOATZ1 and DIRBY1 arrivals from KLAX airport guide
 - <a href="https://github.com/openscope/openscope/issues/1677" target="_blank">#1677</a> - Update Munich airport (EDDM) to AIRAC 2015
+- <a href="https://github.com/openscope/openscope/issues/1712" target="_blank">#1712</a> - Centralize z-index declarations for ease of layer management
 
 
 # 6.22.0 (January 3, 2021)

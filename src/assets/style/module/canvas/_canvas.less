@@ -19,8 +19,8 @@ canvas {
 
 // following properties are ordered top-down
 // z-index is very important here as we are layering canvases on top of each other
-#static-canvas { z-index: 1 }
-#dynamic-canvas { z-index: 2 }
+#static-canvas { z-index: @static-canvas-z }
+#dynamic-canvas { z-index: @dynamic-canvas-z }
 
 .canvas-theme-default {
     background-color: @blue-very-dark;
