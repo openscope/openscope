@@ -162,7 +162,7 @@
             "ceiling":        9500,
             "airspace_class": "C",
             "labelPositions": [
-              ["N59d51m00.00", "E017d55m00.00"]
+                ["N59d51m00.00", "E017d55m00.00"]
             ],
             "poly":
             [
@@ -211,7 +211,7 @@
             "ceiling":        9500,
             "airspace_class": "C",
             "labelPositions": [
-              ["N59d40m00.00", "E016d45m00.00"]
+                ["N59d40m00.00", "E016d45m00.00"]
             ],
             "poly":
             [
@@ -235,7 +235,7 @@
             "ceiling":        9500,
             "airspace_class": "C",
             "labelPositions": [
-              ["N58d55m00.00", "E017d38m00.00"]
+                ["N58d55m00.00", "E017d38m00.00"]
             ],
             "poly":
             [
@@ -270,7 +270,7 @@
             "ceiling":        9500,
             "airspace_class": "C",
             "labelPositions": [
-              ["N58d47m00.00", "E018d05m00.00"]
+                ["N58d47m00.00", "E018d05m00.00"]
             ],
             "poly":
             [
@@ -491,7 +491,8 @@
         "ASE":   ["N59d38m13.90", "E017d57m26.50"],
         "ASW":   ["N59d35m15.70", "E017d49m10.90"],
         "TEB":   ["N59d31m54.10", "E018d12m11.90"],
-        "TRS":   ["N58d56m16.50", "E017d30m08.30"]
+        "TRS":   ["N58d56m16.50", "E017d30m08.30"],
+        "_SA705178006":   ["N59d31m26.99", "E017d53m40.60"]
     },
     "_comment": "Source runways: https://www.aro.lfv.se/Editorial/View/7952/ES_AD_2_ESSA_en",
     "runways": [
@@ -1192,6 +1193,246 @@
             },
             "draw": [
                 ["SA551", "SA561", "SA566", "SA728", "SA729", "TRS"]
+            ]
+        },
+        "AROS5G": {
+            "icao": "AROS5G",
+            "name": "Aros Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "ARS"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "ARS"]
+            ]
+        },
+        "BABAP3G": {
+            "icao": "BABAP3G",
+            "name": "Babap Three Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "SA507", "BABAP"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA705", "_SA705178006", "SA553", "SA507", "BABAP"]
+            ]
+        },
+        "KOGAV5G": {
+            "icao": "KOGAV5G",
+            "name": "Kogav Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855", "KOGAV"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "SA722", "SA855", "KOGAV"]
+            ]
+        },
+        "NOSLI5G": {
+            "icao": "NOSLI5G",
+            "name": "Nosli Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "NOSLI"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "NOSLI"]
+            ]
+        },
+        "PETEV1G": {
+            "icao": "PETEV1G",
+            "name": "Petev One Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "PETEV"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "PETEV"]
+            ]
+        },
+        "RESNA5G": {
+            "icao": "RESNA5G",
+            "name": "Resna Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855", "RESNA"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "SA722", "SA855", "RESNA"]
+            ]
+        },
+        "TOVRI4G": {
+            "icao": "TOVRI4G",
+            "name": "Tovri Four Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "TOVRI"],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA705", "_SA705178006", "SA553", "TOVRI"]
+            ]
+        },
+        "TROSA5G": {
+            "icao": "TROSA5G",
+            "name": "Trosa Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA708", "TRS"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "SA708", "TRS"]
+            ]
+        },
+        "AROS3K": {
+            "icao": "AROS3K",
+            "name": "Aros Three Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A05+"], "SA861", "ARS"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA871", "SA861", "ARS"]
+            ]
+        },
+        "BABAP3K": {
+            "icao": "BABAP3K",
+            "name": "Babap Three Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A05+"], "SA861", "SA702", "SA703", "BABAP"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA871", "SA861", "SA702", "SA703", "BABAP"]
+            ]
+        },
+        "KOGAV3K": {
+            "icao": "KOGAV3K",
+            "name": "Kogav Three Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A06+"], ["SA862", "A15+|S220-"], "SA420", "KOGAV"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA871", "SA862", "SA420", "KOGAV"]
+            ]
+        },
+        "NOSLI3K": {
+            "icao": "NOSLI3K",
+            "name": "Nosli Three Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A05+"], "SA861", "NOSLI"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA871", "SA861", "NOSLI"]
+            ]
+        },
+        "PETEV1K": {
+            "icao": "PETEV1K",
+            "name": "Petev One Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A05+"], "SA861", "PETEV"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA871", "SA861", "PETEV"]
+            ]
+        },
+        "RESNA3K": {
+            "icao": "RESNA3K",
+            "name": "Resna Three Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A06+"], ["SA862", "A15+|S220-"], "RESNA"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA871", "SA862", "RESNA"]
+            ]
+        },
+        "TOVRI4K": {
+            "icao": "TOVRI4K",
+            "name": "Tovri Four Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A06+"], ["SA419", "A15+|S22-"], "TOVRI"],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA871", "SA419", "TOVRI"]
+            ]
+        },
+        "TROSA3K": {
+            "icao": "TROSA3K",
+            "name": "Trosa Three Kilo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA26": []
+            },
+            "body": [["^SA871", "A05+"], "SA861", "SA719", "TRS"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA871", "SA861", "SA719", "TRS"]
             ]
         }
     },
