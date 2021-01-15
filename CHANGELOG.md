@@ -5,6 +5,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism 
 - <a href="https://github.com/openscope/openscope/issues/1705" target="_blank">#1705</a> - Re-fix range ring drawing position
 - <a href="https://github.com/openscope/openscope/issues/1707" target="_blank">#1707</a> - Fix minor keyboard input inconsistencies and correct command documentation
+- <a href="https://github.com/openscope/openscope/issues/1716" target="_blank">#1716</a> - Prevent timewarping by negative values
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1703" target="_blank">#1703</a> - Add more PTL ranges, some including 30sec PTLs
@@ -13,6 +14,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1692" target="_blank">#1692</a> - Remove obsolete caveats for GOATZ1 and DIRBY1 arrivals from KLAX airport guide
 - <a href="https://github.com/openscope/openscope/issues/1677" target="_blank">#1677</a> - Update Munich airport (EDDM) to AIRAC 2015
 - <a href="https://github.com/openscope/openscope/issues/1712" target="_blank">#1712</a> - Centralize z-index declarations for ease of layer management
+- <a href="https://github.com/openscope/openscope/issues/1715" target="_blank">#1715</a> - Sync fast-forward command bar button with timewarp commands
 
 
 # 6.22.0 (January 3, 2021)
