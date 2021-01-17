@@ -48,7 +48,6 @@ export const noop = (args) => args;
 /**
  * Call `convertStringToNumber` and store the result in an array
  *
-
  * @function strToNumArray
  * @param args {*}
  */

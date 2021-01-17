@@ -21,7 +21,9 @@ import {
 } from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
 import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/aircraftCommand/aircraftCommandMap';
 
-import { noopParse, zeroArgVal, singleArgVal, strToNumArrayParse, zeroOrOneArgumentVal } from './testUtils';
+import {
+    noopParse, zeroArgVal, singleArgVal, strToNumArrayParse, zeroOrOneArgumentVal
+} from './testUtils';
 
 const extractParseAndValidate = (t, cmd) => {
     const model = new AircraftCommandModel(cmd);
