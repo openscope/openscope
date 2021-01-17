@@ -24,6 +24,15 @@ const HOLD_COMMAND_ARG_NAMES = {
 };
 
 /**
+ * Parses the the runway of an ils command.
+ *
+ * @function ilsParser
+ * @param args {array}
+ */
+// TODO: define the second value
+export const ilsParser = (args) => [null, args[0]];
+
+/**
  * Converts a flight level altitude to a number in thousands and converts second arg to a boolean
  *
  * @function altitudeParser
@@ -237,9 +246,11 @@ export const crossingParser = (args = []) => {
     // Set i to 1 to skip fixName
     for (let i = 1; i < args.length; i++) {
         if (args[i][0].toLowerCase() === 'a') {
-            altitude = convertToThousands(args[i].toString().substr(1));
+            altitude = convertToThousands(args[i].toString()
+                .substr(1));
         } else if (args[i][0].toLowerCase() === 's') {
-            speed = convertStringToNumber(args[i].toString().substr(1));
+            speed = convertStringToNumber(args[i].toString()
+                .substr(1));
         }
     }
 
