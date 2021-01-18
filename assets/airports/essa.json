@@ -490,6 +490,7 @@
         "ARS":   ["N59d35m10.40", "E016d39m01.20"],
         "ASE":   ["N59d38m13.90", "E017d57m26.50"],
         "ASW":   ["N59d35m15.70", "E017d49m10.90"],
+        "HMR":   ["N60d16m45.20", "E018d23m29.60"],
         "TEB":   ["N59d31m54.10", "E018d12m11.90"],
         "TRS":   ["N58d56m16.50", "E017d30m08.30"],
         "_SA705178006":   ["N59d31m26.99", "E017d53m40.60"]
@@ -2614,6 +2615,71 @@
             },
             "draw": [
                 ["SA871", "SA861", "SA719", "TRS"]
+            ]
+        }
+    },
+    "_comment": "Source runway 01L STARs: https://www.aro.lfv.se/Editorial/View/7949/ES_AD_2_ESSA_4-47_en",
+    "_comment": "Source runway 01L/01R STARs: https://www.aro.lfv.se/Editorial/View/6273/ES_AD_2_ESSA_4-51_en",
+    "_comment": "Source runway 08 STARs: https://www.aro.lfv.se/Editorial/View/6274/ES_AD_2_ESSA_4-53_en",
+    "_comment": "Source runway 19R STARs: https://www.aro.lfv.se/Editorial/View/7950/ES_AD_2_ESSA_4-55_en",
+    "_comment": "Source runway 19R/19L STARs: https://www.aro.lfv.se/Editorial/View/6276/ES_AD_2_ESSA_4-59_en",
+    "_comment": "Source runway 26 STARs: https://www.aro.lfv.se/Editorial/View/7582/ES_AD_2_ESSA_4-61_en",
+    "_comment": "Source runway 26 open STARs: https://www.aro.lfv.se/Editorial/View/6278/ES_AD_2_ESSA_4-65_en",
+    "stars": {
+        "ELTOK3J": {
+            "icao": "ELTOK3J",
+            "name": "Eltok Three Juliet",
+            "entryPoints": {
+                "ELTOK": ["ELTOK"]
+            },
+            "body": ["ELTOK", ["SA912", "A100+"], ["SA810", "A80+"], "SA815", ["SA808", "A50+"], ["SA816", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["ELTOK", "SA912", "SA810", "SA815", "SA808", "SA816", "SA802", "SA801"]
+            ]
+        },
+        "HAMMAR3J": {
+            "icao": "HAMMAR3J",
+            "name": "Hammar Three Juliet",
+            "entryPoints": {
+                "HMR": ["HMR"]
+            },
+            "body": ["HMR", ["SA500", "A100+"], ["SA499", "A80+"], "SA602", ["SA604", "A50+"], ["SA605", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["HMR", "SA500", "SA499", "SA602", "SA604", "SA605", "SA802", "SA801"]
+            ]
+        },
+        "NILUG2J": {
+            "icao": "NILUG2J",
+            "name": "Nilug Two Juliet",
+            "entryPoints": {
+                "NILUG": ["NILUG"]
+            },
+            "body": ["NILUG", ["SA818", "A100+"], ["SA817", "A80+"], ["SA811", "A50+"], "SA802", ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["NILUG", "SA818", "SA817", "SA811", "SA802", "SA801"]
+            ]
+        },
+        "XILAN3J": {
+            "icao": "XILAN3J",
+            "name": "Xilan Three Juliet",
+            "entryPoints": {
+                "XILAN": ["XILAN"]
+            },
+            "body": ["XILAN", ["SA619", "A100+"], ["SA618", "A80+"], ["SA604", "A50+"], ["SA605", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["XILAN", "SA619", "SA618", "SA604", "SA605", "SA802", "SA801"]
             ]
         }
     },
