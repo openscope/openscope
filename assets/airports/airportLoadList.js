@@ -12,47 +12,6 @@
  * @return {array<object>}
  */
 window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
-    /**
-     * List of airports to load.
-     *
-     * If you are adding a new airport to the game, be sure to include:
-     *
-     * - the airport json file in `assets/airports/AIRPORT_NAME.json` where `AIRPORT_NAME` is
-     *   the airport icao. (ex: KSFO would be `assets/airports/ksfo.json`)
-     * - the terrain geojson file (if one exists) in `assets/airports/terrain/AIRPORT_NAME.geojson`
-     *   where `AIRPORT_NAME` is the airport icao. (ex: KSFO would be `assets/airports/terrain/ksfo.geojson`)
-     * - add a new data block at the bottom of this file in the shape of:
-     * ```
-     * {
-     *   icao: {AIRPORT_ICAO},
-     *   level: {AIRPORT_DIFFICULTY},
-     *   name: {AIRPORT_NAME},
-     *   premium: {MEETS_PREMIUM_STANDARDS}
-     * }
-     * ```
-     * - `AIRPORT_ICAO` is the airport icao in lowercase (ex: ksfo)
-     *
-     * - `AIRPORT_DIFFICULTY` is the difficulty level based on the traffic volume (in Aircraft per Hour):
-     *    +----------+------------------------+
-     *    |   Level  |     Traffic Volume     |
-     *    +----------+------------------------+
-     *    | Beginner |    Less than 20 AcpH   |
-     *    +----------+------------------------+
-     *    |   Easy   | Between 20 and 40 AcpH |
-     *    +----------+------------------------+
-     *    |  Medium  | Between 40 and 60 AcpH |
-     *    +----------+------------------------+
-     *    |   Hard   |    More than 60 AcpH   |
-     *    +----------+------------------------+
-     * - `AIRPORT_NAME` is the official English name of the airport, according to Jeppesen charts
-     *       --> for example, KSFO = "San Francisco International Airport"
-     *
-     * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
-     *
-     * @property AIRPORT_LOAD_LIST
-     * @type {Array}
-     * @final
-     */
     return [
         {
             icao: 'cyhz',
