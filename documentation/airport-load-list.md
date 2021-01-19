@@ -30,3 +30,7 @@ Then, add a new data block (in alphabetical order) to  [airportLoadList.json](ht
 - `AIRPORT_NAME` is the official English name of the airport, according to Jeppesen charts  
   - for example, KSFO = "San Francisco International Airport"
 - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
+
+If an existing airport is affected by bugs or has other problems and needs to be temporarily taken out of circulation, the property `"disabled": true` can be added to prevent it from being loaded until the issue can be resolved. This property is otherwise optional, i.e. it is not necessary to specify `"disabled": false`.
+
+The `disabled` property is not intended for use with airports that are still a "work in progress". New airports or redevelopments should meet the [standards set out in the documentation](https://github.com/openscope/openscope/blob/develop/documentation/airport-file-standards.md) before being added.
