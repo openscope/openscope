@@ -1,0 +1,15 @@
+{
+    "icao": "pcm",
+    "name": "West Air",
+    "callsign": {
+        "name": "PAC Valley",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C208", 33]
+        ]
+    }
+}
