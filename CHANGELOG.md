@@ -18,6 +18,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1715" target="_blank">#1715</a> - Sync fast-forward command bar button with timewarp commands
 - <a href="https://github.com/openscope/openscope/issues/1718" target="_blank">#1718</a> - Sync aircraft command map with command definitions
 - <a href="https://github.com/openscope/openscope/issues/1725" target="_blank">#1725</a> - Convert airport load list to JSON
+- <a href="https://github.com/openscope/openscope/issues/217" target="_blank">#217</a> - Differentiate projected path color for selected vs non-selected aircraft
 
 
 # 6.22.0 (January 3, 2021)
