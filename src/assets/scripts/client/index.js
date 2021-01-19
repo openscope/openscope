@@ -32,9 +32,15 @@ function getInitialAirport(airportLoadList) {
  * Provides a way to grab the `body` element of the document and pass it to the app.
  */
 export default (() => {
-    const airportLoadList = window.AIRPORT_LOAD_LIST;
-    const initialAirportToLoad = getInitialAirport(airportLoadList);
-    const $body = $('body');
-    // eslint-disable-next-line no-unused-vars
-    const app = new App($body, airportLoadList, initialAirportToLoad);
+    $.getJSON('assets/airports/airportLoadList.json')
+        .done((data) => {
+            const airportLoadList = data.filter((a) => a.disabled !== true);
+            const initialAirportToLoad = getInitialAirport(airportLoadList);
+            const $body = $('body');
+            // eslint-disable-next-line no-unused-vars
+            const app = new App($body, airportLoadList, initialAirportToLoad);
+        })
+        .fail((jqXHR) => {
+            console.error(`Unable to load airport list: ${jqXHR.status}: ${jqXHR.statusText}`);
+        });
 })();
