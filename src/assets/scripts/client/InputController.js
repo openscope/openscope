@@ -225,15 +225,17 @@ export default class InputController {
      * @private
      */
     _addMeasurePoint(event, shouldReplaceLastPoint = false) {
-        const mouseCanvasPos = CanvasStageModel.calculateCanvasPositionFromPagePosition(
+        const mouseCanvasPosition = CanvasStageModel.calculateCanvasPositionFromPagePosition(
             event.pageX, event.pageY
         );
-        let relativePosition = CanvasStageModel.calculateRelativePositionFromCanvasPosition(...mouseCanvasPos);
+        let relativePosition = CanvasStageModel.calculateRelativePositionFromCanvasPosition(...mouseCanvasPosition);
 
         // Snapping should only be done when the shift key is depressed
         if (event.originalEvent.shiftKey) {
-            const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToCanvasPosition(...mouseCanvasPos);
-            const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToCanvasPosition(...mouseCanvasPos);
+            const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToCanvasPosition(
+                ...mouseCanvasPosition
+            );
+            const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToCanvasPosition(...mouseCanvasPosition);
             let distance;
             let nearestModel;
 
@@ -1001,7 +1003,7 @@ export default class InputController {
     }
 
     /**
-     * Retrieve and return the x/y offset from the airport center (km) where the user clicked in the provided event
+     * Given a mouse click event, retrieve and return the [x, y] offset from the airport center, in km
      *
      * @for InputController
      * @method _calculateRelativePositionFromEvent
@@ -1052,10 +1054,31 @@ export default class InputController {
     }
 
     /**
+     * Log the provided lat/lon coordinates to the console, display in command log, and copy to clipboard
+     *
+     * @for InputController
+     * @method _logAndCopyCoordinates
+     * @param latLonCoordinates {array<number>} [lat, lon]
+     * @returns undefined
+     * @private
+     */
+    _logAndCopyCoordinates(latLonCoordinates) {
+        const coordinateText = latLonCoordinates.map((coord) => coord.toFixed(9)).join(', ');
+
+        window.navigator.clipboard.writeText(coordinateText).then(() => {
+            console.log(coordinateText);
+            UiController.ui_log(`Clicked coordinates: ${coordinateText} (logged to console and copied to clipboard!)`, true);
+        });
+    }
+
+    /**
      * Triggered when a user clicks on the `right` mouse button and
      * records the position of the `right click` event.
      *
+     * @for InputController
+     * @method _onRightMousePress
      * @param event {jquery Event}
+     * @returns undefined
      * @private
      */
     _onRightMousePress(event) {
@@ -1071,15 +1094,9 @@ export default class InputController {
             const referencePosition = AirportController.current.positionModel;
             const latLonCoordinates = DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition(
                 relativePosition, referencePosition
-            ).map((coord) => coord.toFixed(9)).join(', ');
+            );
 
-            navigator.clipboard.writeText(latLonCoordinates).then(() => {
-                console.log(latLonCoordinates);
-                UiController.ui_log(`Clicked coordinates: ${latLonCoordinates} ` +
-                    '(logged to console and copied to clipboard!)', true);
-            });
-
-            return;
+            return this._logAndCopyCoordinates(latLonCoordinates);
         }
 
         this._markMousePressed(event, MOUSE_BUTTON_NAMES.RIGHT);
