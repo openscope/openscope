@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://openscope.co/assets/airports/airportLoadList.schema.json",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/airport"
+  },
+  "uniqueItems": true,
+  "$defs": {
+    "airport": {
+      "type": "object",
+      "description": "A data block for a single airport",
+      "properties": {
+        "icao": {
+          "description": "Airport icao identifier in lowercase",
+          "type": "string",
+          "pattern": "^[a-z]{4}$"
+        },
+        "level": {
+          "description": "Difficulty level based on the traffic",
+          "type": "string",
+          "enum": [
+            "beginner",
+            "easy",
+            "medium",
+            "hard"
+          ]
+        },
+        "name": {
+          "description": "Official English name of the airport, according to Jeppesen charts",
+          "type": "string"
+        },
+        "premium": {
+          "description": "Whether airport meets premium standards, according to the airport standards document",
+          "type": "boolean"
+        },
+        "disabled": {
+          "description": "(Optional) Prevents airport from being listed within the game",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "icao",
+        "level",
+        "name",
+        "premium"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
