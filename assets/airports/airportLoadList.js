@@ -336,6 +336,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Raleigh–Durham International Airport',
             premium: false
         },
+        {
+            icao: 'ksat',
+            level: 'medium',
+            name: 'San Antonio International Airport',
+            premium: false
+        },
         // {
         //     icao: 'ksdf',
         //     level: 'easy',
