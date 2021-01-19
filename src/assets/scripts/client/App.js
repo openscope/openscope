@@ -1,8 +1,11 @@
 import $ from 'jquery';
+import _isNil from 'lodash/isNil';
+import _lowerCase from 'lodash/lowerCase';
 import AppController from './AppController';
 import EventBus from './lib/EventBus';
 import TimeKeeper from './engine/TimeKeeper';
 import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
+import { STORAGE_KEY } from './constants/storageKeys';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
@@ -28,10 +31,8 @@ export default class App {
     /**
      * @constructor
      * @param $element {HTML Element|null}
-     * @param airportLoadList {array<object>}  List of airports to load
-     * @param initialAirportToLoad {string}    ICAO id of the initial airport. may be the default or a stored airport
      */
-    constructor(element, airportLoadList, initialAirportToLoad) {
+    constructor(element) {
         /**
          * Root DOM element.
          *
@@ -50,8 +51,55 @@ export default class App {
         this.prop.log = LOG.DEBUG;
         this.prop.loaded = false;
 
-        return this.setupHandlers()
-            .loadInitialAirport(airportLoadList, initialAirportToLoad);
+        $.getJSON('assets/airports/airportLoadList.json')
+            .done((data) => {
+                // List of airports to load
+                const airportLoadList = data.filter((airport) => airport.disabled !== true);
+
+                // ICAO id of the initial airport. may be the default or a stored airport
+                const initialAirportToLoad = this._getInitialAirport(airportLoadList);
+
+                this.setupHandlers()
+                    .loadInitialAirport(airportLoadList, initialAirportToLoad);
+            })
+            .fail((jqXHR) => {
+                console.error(`Unable to load airport list: ${jqXHR.status}: ${jqXHR.statusText}`);
+            });
+    }
+
+    /**
+     * Check if a given icao exists in the list of available airports
+     *
+     * @for App
+     * @method _isAirportIcaoInLoadList
+     * @param icao {string}  icao
+     * @param airportLoadList {array<object>}  List of available airports
+     */
+    _isAirportIcaoInLoadList(icao, airportLoadList) {
+        if (_isNil(icao)) {
+            return false;
+        }
+
+        return airportLoadList.some((airport) => airport.icao === icao);
+    }
+
+    /**
+     * Obtain icao for the initial airport from localStorage if available
+     * otherwise use `DEFAULT_AIRPORT_ICAO`
+     *
+     * @for App
+     * @method _getInitialAirport
+     * @param airportLoadList {array<object>}  List of airports to load
+     */
+    _getInitialAirport(airportLoadList) {
+        let airportName = DEFAULT_AIRPORT_ICAO;
+        const previousAirportIcaoFromLocalStorage = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
+
+        if (this._isAirportIcaoInLoadList(previousAirportIcaoFromLocalStorage, airportLoadList)) {
+            airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
+        }
+
+        return airportName;
     }
 
     /**
