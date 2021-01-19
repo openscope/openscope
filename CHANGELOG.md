@@ -22,6 +22,7 @@
 # 6.23.0 (February 5, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1656" target="_blank">#1656</a> - Add Philadelphia International Airport (KPHL)
+- <a href="https://github.com/openscope/openscope/issues/1670" target="_blank">#1670</a> - Display GPS coordinates on shift+alt+rightClick
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism

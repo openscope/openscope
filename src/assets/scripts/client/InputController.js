@@ -4,6 +4,7 @@ import _has from 'lodash/has';
 import _includes from 'lodash/includes';
 import AirportController from './airport/AirportController';
 import CanvasStageModel from './canvas/CanvasStageModel';
+import DynamicPositionModel from './base/DynamicPositionModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './ui/UiController';
@@ -141,7 +142,7 @@ export default class InputController {
         this.$canvases.off('mouseup', this.onMouseUpHandler);
         this.$canvases.off('mousedown', this.onMouseDownHandler);
         this.$canvases.off('dblclick', this.onMouseDblclickHandler);
-        this.$body.removeEventListener('contextmenu', event.preventDefault());
+        this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
@@ -224,16 +225,15 @@ export default class InputController {
      * @private
      */
     _addMeasurePoint(event, shouldReplaceLastPoint = false) {
-        const currentMousePosition = CanvasStageModel.translateMousePositionToCanvasPosition(
+        const mouseCanvasPos = CanvasStageModel.calculateCanvasPositionFromPagePosition(
             event.pageX, event.pageY
         );
-        const { x, y } = currentMousePosition;
-        let modelToUse = this._translatePointToKilometers(x, y);
+        let relativePosition = CanvasStageModel.calculateRelativePositionFromCanvasPosition(...mouseCanvasPos);
 
         // Snapping should only be done when the shift key is depressed
         if (event.originalEvent.shiftKey) {
-            const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToMousePosition(x, y);
-            const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToMousePosition(x, y);
+            const [aircraftModel, distanceFromAircraft] = this._findClosestAircraftAndDistanceToCanvasPosition(...mouseCanvasPos);
+            const [fixModel, distanceFromFix] = this._findClosestFixAndDistanceToCanvasPosition(...mouseCanvasPos);
             let distance;
             let nearestModel;
 
@@ -248,14 +248,14 @@ export default class InputController {
 
             // Only snap if the distance is with 50px, otherwise the behaviour is jarring
             if (distance < CanvasStageModel.translatePixelsToKilometers(50)) {
-                modelToUse = nearestModel;
+                relativePosition = nearestModel;
             }
         }
 
         if (MeasureTool.hasStarted && shouldReplaceLastPoint) {
-            MeasureTool.updateLastPoint(modelToUse);
+            MeasureTool.updateLastPoint(relativePosition);
         } else {
-            MeasureTool.addPoint(modelToUse);
+            MeasureTool.addPoint(relativePosition);
         }
 
         // Mark for shallow render so the draw motion is smooth
@@ -798,9 +798,9 @@ export default class InputController {
                 this.$commandInput.attr('placeholder', 'enter aircraft command');
                 this.$commandInput.css({ color: 'white' });
 
-                return;
+                break;
+
             default:
-                return;
         }
     }
 
@@ -1001,20 +1001,35 @@ export default class InputController {
     }
 
     /**
+     * Retrieve and return the x/y offset from the airport center (km) where the user clicked in the provided event
+     *
+     * @for InputController
+     * @method _calculateRelativePositionFromEvent
+     * @param event {jQuery Event}
+     * @return {array<number>}
+     */
+    _calculateRelativePositionFromEvent(event) {
+        const canvasPosition = CanvasStageModel.calculateCanvasPositionFromPagePosition(event.pageX, event.pageY);
+        const relativePosition = CanvasStageModel.calculateRelativePositionFromCanvasPosition(...canvasPosition);
+
+        return relativePosition;
+    }
+
+    /**
      * Facade for `_aircraftController.aircraft_get_nearest()`
      *
      * Accepts current mouse position in canvas coordinates x, y
      *
      * @for InputController
-     * @method _findClosestAircraftAndDistanceToMousePosition
+     * @method _findClosestAircraftAndDistanceToCanvasPosition
      * @param x {number}
      * @param y {number}
      * @returns [aircraftModel, number]
      * @private
      */
-    _findClosestAircraftAndDistanceToMousePosition(x, y) {
+    _findClosestAircraftAndDistanceToCanvasPosition(x, y) {
         return this._aircraftController.aircraft_get_nearest(
-            this._translatePointToKilometers(x, y)
+            CanvasStageModel.calculateRelativePositionFromCanvasPosition(x, y)
         );
     }
 
@@ -1024,15 +1039,15 @@ export default class InputController {
      * Accepts current mouse position in canvas coordinates x, y
      *
      * @for InputController
-     * @method _findClosestFixAndDistanceToMousePosition
+     * @method _findClosestFixAndDistanceToCanvasPosition
      * @param x {number}
      * @param y {number}
      * @returns [FixModel, number]
      * @private
      */
-    _findClosestFixAndDistanceToMousePosition(x, y) {
+    _findClosestFixAndDistanceToCanvasPosition(x, y) {
         return FixCollection.getNearestFix(
-            this._translatePointToKilometers(x, y)
+            CanvasStageModel.calculateRelativePositionFromCanvasPosition(x, y)
         );
     }
 
@@ -1046,6 +1061,23 @@ export default class InputController {
     _onRightMousePress(event) {
         if (MeasureTool.isMeasuring) {
             this._removePreviousMeasurePoint();
+
+            return;
+        }
+
+        // copy mouse click position to clipboard on shift+alt+rightclick
+        if (event.originalEvent.shiftKey && event.originalEvent.altKey) {
+            const relativePosition = this._calculateRelativePositionFromEvent(event);
+            const referencePosition = AirportController.current.positionModel;
+            const latLonCoordinates = DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition(
+                relativePosition, referencePosition
+            ).map((coord) => coord.toFixed(9)).join(', ');
+
+            navigator.clipboard.writeText(latLonCoordinates).then(() => {
+                console.log(latLonCoordinates);
+                UiController.ui_log(`Clicked coordinates: ${latLonCoordinates} ` +
+                    '(logged to console and copied to clipboard!)', true);
+            });
 
             return;
         }
@@ -1072,11 +1104,8 @@ export default class InputController {
             return;
         }
 
-        const currentMousePosition = CanvasStageModel.translateMousePositionToCanvasPosition(event.pageX, event.pageY);
-        const [aircraftModel, distanceFromPosition] = this._findClosestAircraftAndDistanceToMousePosition(
-            currentMousePosition.x,
-            currentMousePosition.y
-        );
+        const mouseCanvasPos = CanvasStageModel.calculateCanvasPositionFromPagePosition(event.pageX, event.pageY);
+        const [aircraftModel, distanceFromPosition] = this._findClosestAircraftAndDistanceToCanvasPosition(...mouseCanvasPos);
 
         if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
             this.deselectAircraft();
@@ -1119,22 +1148,5 @@ export default class InputController {
             mousePositionY
         ];
         this.input.isMouseDown = true;
-    }
-
-    /**
-     * Translate the specified x, y pixel coordinates to map kilometers
-     *
-     * @for InputController
-     * @method _translatePointToKilometers
-     * @param x {number}
-     * @param y {number}
-     * @returns {array<number>}
-     * @private
-     */
-    _translatePointToKilometers(x, y) {
-        return [
-            CanvasStageModel.translatePixelsToKilometers(x - CanvasStageModel._panX),
-            CanvasStageModel.translatePixelsToKilometers(y + CanvasStageModel._panY)
-        ];
     }
 }
