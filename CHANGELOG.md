@@ -10,6 +10,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1697" target="_blank">#1697</a> - Refactor command parsing with new `ParsedCommand` class
 - <a href="https://github.com/openscope/openscope/issues/1699" target="_blank">#1699</a> - Improve command documentation
 - <a href="https://github.com/openscope/openscope/issues/1692" target="_blank">#1692</a> - Remove obsolete caveats for GOATZ1 and DIRBY1 arrivals from KLAX airport guide
+- <a href="https://github.com/openscope/openscope/issues/1677" target="_blank">#1677</a> - Update Munich airport (EDDM) to AIRAC 2015
 
 
 # 6.22.0 (January 3, 2021)
