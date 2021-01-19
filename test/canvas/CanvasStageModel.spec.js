@@ -105,7 +105,7 @@ ava('.zoomIn() increases #_scale by SCALE.CHANGE_FACTOR', (t) => {
 });
 
 ava('.zoomIn() resets #_scale to #_scaleMax when #_scale is > #scaleMax', (t) => {
-    CanvasStageModel._scale = 80;
+    CanvasStageModel._scale = 999999;
     CanvasStageModel.zoomIn();
 
     t.true(CanvasStageModel._scale === CanvasStageModel._scaleMax);
