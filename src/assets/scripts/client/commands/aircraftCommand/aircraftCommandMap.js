@@ -210,7 +210,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     timewarp: {
-        aliases: ['timewarp'],
+        aliases: ['timewarp', 'tw'],
         functionName: '',
         isSystemCommand: true
     },
