@@ -51,20 +51,34 @@ export default class App {
         this.prop.log = LOG.DEBUG;
         this.prop.loaded = false;
 
+        this.setupHandlers()
+            ._fetchAirportLoadList();
+    }
+
+    /**
+     * Fetch airportLoadList.json containing the list of available airports
+     *
+     * @for App
+     * @method _fetchAirportLoadList
+     */
+    _fetchAirportLoadList() {
         $.getJSON('assets/airports/airportLoadList.json')
-            .done((data) => {
-                // List of airports to load
-                const airportLoadList = data.filter((airport) => airport.disabled !== true);
+            .done((response) => this.onAirportLoadListFetchedHandler(response))
+            .fail((jqXHR) => console.error(`Unable to load airport list: ${jqXHR.status}: ${jqXHR.statusText}`));
+    }
 
-                // ICAO id of the initial airport. may be the default or a stored airport
-                const initialAirportToLoad = this._getInitialAirport(airportLoadList);
+    /**
+     * Handler method called after successfully fetching airportLoadList.json
+     *
+     * @for App
+     * @method _onAirportLoadListFetched
+     */
+    _onAirportLoadListFetched(data) {
+        const airportLoadList = data.filter((airport) => airport.disabled !== true);
+        // ICAO id of the initial airport. may be the default or a stored airport
+        const initialAirportToLoad = this._getInitialAirport(airportLoadList);
 
-                this.setupHandlers()
-                    .loadInitialAirport(airportLoadList, initialAirportToLoad);
-            })
-            .fail((jqXHR) => {
-                console.error(`Unable to load airport list: ${jqXHR.status}: ${jqXHR.statusText}`);
-            });
+        this.loadInitialAirport(airportLoadList, initialAirportToLoad);
     }
 
     /**
@@ -76,11 +90,7 @@ export default class App {
      * @param airportLoadList {array<object>}  List of available airports
      */
     _isAirportIcaoInLoadList(icao, airportLoadList) {
-        if (_isNil(icao)) {
-            return false;
-        }
-
-        return airportLoadList.some((airport) => airport.icao === icao);
+        return !_isNil(icao) && airportLoadList.some((airport) => airport.icao === icao);
     }
 
     /**
@@ -110,6 +120,7 @@ export default class App {
      * @chainable
      */
     setupHandlers() {
+        this.onAirportLoadListFetchedHandler = this._onAirportLoadListFetched.bind(this);
         this.loadDefaultAiportAfterStorageIcaoFailureHandler = this.loadDefaultAiportAfterStorageIcaoFailure.bind(this);
         this.loadAirlinesAndAircraftHandler = this.loadAirlinesAndAircraft.bind(this);
         this.setupChildrenHandler = this.setupChildren.bind(this);
