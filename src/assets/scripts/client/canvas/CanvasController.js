@@ -1277,6 +1277,7 @@ export default class CanvasController {
 
         // future track colors
         let strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL_ALL;
+
         if (aircraftModel.category === FLIGHT_CATEGORY.DEPARTURE) {
             if (selected) {
                 strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE;
