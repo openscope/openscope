@@ -1251,14 +1251,14 @@
             "name": "Vamos Three",
             "rwy": {
                 "RJTT04": [["_RWY0402DME", "A7+"], "TT502", ["LOCUP", "A50+"]],
-                "RJTT05": [["TT501", "A5+"], "TT502", ["LOCUP", "A50+"]],
+                "RJTT05": [["^TT501", "A5+"], "TT502", ["LOCUP", "A50+"]],
                 "RJTT16L": ["T6L21"],
                 "RJTT16R": ["T6R11"],
                 "RJTT22": [["_RWY2202DME", "A6+"], "HOBBS", "BASSA"],
                 "RJTT34L": [["_RWY34L02DME", "A7+"], "TT502", ["LOCUP", "A50+"]],
                 "RJTT34R": [["_RWY34R02DME", "A7+"], "TT502", ["LOCUP", "A50+"]]
             },
-            "body": [["VAMOS", "A9+"]],
+            "body": [["VAMOS", "A90+"]],
             "exitPoints": {
                 "UTIBO": ["UTIBO"],
                 "VAMOS": [],
