@@ -1,0 +1,38 @@
+{
+    "name": "Airbus Helicopters AS350",   
+    "icao": "AS50",             
+    "engines": {
+        "number": 1,            
+        "type": "T"             
+    },
+    "weightClass": "S",         
+    "category": {
+        "srs": 1,              
+        "lahso": null,          
+        "recat": "F"            
+    },
+    "ceiling": 23000,           
+    "rate": {
+        "climb":      1900,     
+        "descent":    1000,     
+        "accelerate": 4,        
+        "decelerate": 5         
+    },
+    "runway": {
+        "takeoff": 0.0175,       
+        "landing": 0.0175       
+    },
+    "speed":{
+        "min":     0,         
+        "landing": 15,         
+        "cruise":  140,          
+        "cruiseM": null,        
+        "max":     155,         
+        "maxM":    0.23        
+    },
+    "capability": {
+        "ils": true,            
+        "fix": true             
+    }
+}
+

@@ -1,0 +1,37 @@
+{
+    "name": "McDonnell Douglas MD500",   
+    "icao": "H500",             
+    "engines": {
+        "number": 1,            
+        "type": "T"             
+    },
+    "weightClass": "S",         
+    "category": {
+        "srs": 1,              
+        "lahso": null,          
+        "recat": "F"            
+    },
+    "ceiling": 16000,           
+    "rate": {
+        "climb":      1500,     
+        "descent":    1000,     
+        "accelerate": 4,        
+        "decelerate": 5         
+    },
+    "runway": {
+        "takeoff": 0.015,       
+        "landing": 0.015       
+    },
+    "speed":{
+        "min":     0,         
+        "landing": 15,         
+        "cruise":  120,          
+        "cruiseM": null,        
+        "max":     152,         
+        "maxM":    0.22        
+    },
+    "capability": {
+        "ils": true,            
+        "fix": false             
+    }
+},
