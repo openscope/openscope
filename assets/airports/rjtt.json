@@ -1094,12 +1094,12 @@
                 "RJTT34L": [["^_RWY34L02DME", "A7+"], "TORAM"],
                 "RJTT34R": [["^_RWY34R02DME", "A7+"], "TORAM"]
             },
-            "body": ["PLUTO", "KAIJI", ["SPOON", "A150-"]],
+            "body": ["PLUTO", "KAIJI", ["SPOON", "A150-"], ["ROVER", "A120+"]],
             "exitPoints": {
-                "AKAGI": [["ROVER", "A120+"], "CLARK", "AKAGI"],
-                "AGRIS": [["ROVER", "A120+"], ["BRUCE", "A150+"], "AGRIS"],
-                "INUBO": [["ROVER", "A120+"], ["BRUCE", "A150+"], ["LEWIS", "A170"], ["SILVA", "A170"], ["INUBO", "A250+"]],
-                "ROVER": [["ROVER", "A120+"]]
+                "AKAGI": ["CLARK", "AKAGI"],
+                "AGRIS": [["BRUCE", "A150+"], "AGRIS"],
+                "INUBO": [["BRUCE", "A150+"], ["LEWIS", "A170"], ["SILVA", "A170"], ["INUBO", "A250+"]],
+                "ROVER": []
             },
             "draw": [
                 ["_RWY34L02DME", "TORAM"],
@@ -1126,7 +1126,7 @@
             "body": [["SPOON", "A150-"]],
             "exitPoints": {
                 "AKAGI": [["ROVER", "A120+"], "CLARK", "AKAGI"],
-                "AGRIS": [["ROVER", "A120+"], ["BRUCE", "A150+"], "AGRIS"],
+                "BRUCE": [["ROVER", "A120+"], ["BRUCE", "A150+"], "AGRIS"],
                 "INUBO": [["ROVER", "A120+"], ["BRUCE", "A150+"], ["LEWIS", "A170"], ["SILVA", "A170"], ["INUBO", "A250+"]],
                 "ROVER": [["ROVER", "A120+"]]
             },
@@ -1152,7 +1152,7 @@
             "body": [["SPOON", "A150-"]],
             "exitPoints": {
                 "AKAGI": [["ROVER", "A120+"], "CLARK", "AKAGI"],
-                "AGRIS": [["ROVER", "A120+"], ["BRUCE", "A150+"], "AGRIS"],
+                "BRUCE": [["ROVER", "A120+"], ["BRUCE", "A150+"], "AGRIS"],
                 "INUBO": [["ROVER", "A120+"], ["BRUCE", "A150+"], ["LEWIS", "A170"], ["SILVA", "A170"], ["INUBO", "A250+"]],
                 "ROVER": [["ROVER", "A120+"]]
             },
