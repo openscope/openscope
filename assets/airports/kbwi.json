@@ -243,6 +243,23 @@
             "ils": [true, true]
         }
     ],
+    "sids":   {
+        "icao": "CONLE4",
+        "name": "Conley Four",
+        "altitude": 14000,
+        "rwy": {
+            "KBWI33L": ["OHSSS"],
+            "KBWI10" : ["OHSSS"],
+            "KBWI28" : ["BOSLY"],
+            "KBWI15L": ["KEMMP"],
+            "KBWI15R": ["GAGLR"],
+            "KBWI33R": ["OHSSS"]
+        },
+        "body": [],
+        "exitPoints": {
+
+        }
+    },
     "maps": [
         {
             "name": "Base Map",
