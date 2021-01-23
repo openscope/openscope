@@ -1,0 +1,37 @@
+{
+    "name": "Sikorsky H-60",   
+    "icao": "H60",             
+    "engines": {
+        "number": 2,            
+        "type": "T"             
+    },
+    "weightClass": "M",         
+    "category": {
+        "srs": 1,              
+        "lahso": null,          
+        "recat": "F"            
+    },
+    "ceiling": 20000,           
+    "rate": {
+        "climb":      1250,     
+        "descent":    1000,     
+        "accelerate": 4,        
+        "decelerate": 5         
+    },
+    "runway": {
+        "takeoff": 0.025,       
+        "landing": 0.025       
+    },
+    "speed":{
+        "min":     0,         
+        "landing": 15,         
+        "cruise":  160,          
+        "cruiseM": null,        
+        "max":     190,         
+        "maxM":    0.28        
+    },
+    "capability": {
+        "ils": true,            
+        "fix": true             
+    }
+},
