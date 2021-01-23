@@ -1227,11 +1227,11 @@
                 "RJTT34L":  [["^_RWY34L02DME", "A7+"], "_HME084009", ["_HME113009", "A50+"]],
                 "RJTT34R":  [["^_RWY34R02DME", "A7+"], "_HME084009", ["_HME113009", "A50+"]]
             },
-            "body": ["_HME170012"],
+            "body": ["VADAR", "_HME170012"],
             "exitPoints": {
-                "CHIKU": ["VADAR", "UTIBO"],
-                "VADAR": ["VADAR"],
-                "XAC": ["VADAR", "_HME177XAC058", "XAC"]
+                "CHIKU": ["UTIBO"],
+                "VADAR": [],
+                "XAC": ["_HME177XAC058", "XAC"]
             },
             "draw": [
                 ["_RWY0402DME", "_HME084009", "_HME113009"],
