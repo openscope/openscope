@@ -451,6 +451,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Ted Stevens Anchorage International Airport',
         //     premium: false
         // },
+        {
+            icao: 'phnl',
+            level: 'medium',
+            name: "Daniel K Inouye International Airport",
+            premium: false
+        },
         // {
         //     icao: 'rjbb',
         //     level: 'hard',
