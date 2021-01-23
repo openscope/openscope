@@ -54,9 +54,9 @@ Opened in 1931 as the Haneda Airfield with a less than 1000ft long runway, the a
 
 ## Airspace
 
-There are four radar positions in the Tokyo Approach Control Area (ACA) — Depature, Approach, Radar, and TCA, with each being divided into smaller sectors. The Tokyo ACA covers both Tokyo Int'l (RJTT) and Narita Int'l (RJAA); however, due to the nature of openScope, aircrafts will only be arriving and departing from Tokyo Int'l.
+There are four radar positions in the Tokyo Approach Control Area (ACA) — Depature, Approach, Radar, and TCA, with each being divided into smaller sectors. The Tokyo ACA covers both Tokyo Int'l (RJTT) and Narita Int'l (RJAA); however, due to the nature of openScope, aircraft will only be arriving and departing from Tokyo Int'l.
 
-As the name suggests, the Departure and Approach positions are for departing and arriving aircrafts in the Tokyo ACA.
+As the name suggests, the Departure and Approach positions are for departing and arriving aircraft in the Tokyo ACA.
 
 The Radar position is used as a combined position of Depature and Approach, and to assist both positions.
 
@@ -66,7 +66,7 @@ Finally, the TCA position provides advisory service to VFR traffic in the Tokyo 
 
 ###Departures
 
-Departing aircrafts will be assigned their SID based on their destination, as the following table shows.
+Departing aircraft will be assigned their SID based on their destination, as the following table shows.
 
 |SID                      | Destination or airway                                                                     
 |-------------------------|-------------------------------------------------------------------------------------------|
