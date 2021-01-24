@@ -131,12 +131,6 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
  * @final
  */
 const SINGLE_ARG_AIRCRAFT_COMMANDS = {
-    '`': {
-        validate: singleArgumentValidator,
-        // calling method is expecting an array with values that will get spread later, thus we purposly
-        // return an array here
-        parse: (args) => [convertStringToNumber(args)]
-    },
     airport: {
         validate: singleArgumentValidator,
         parse: noop
