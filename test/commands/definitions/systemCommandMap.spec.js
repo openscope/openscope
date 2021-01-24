@@ -58,8 +58,3 @@ ava('timewarp parser and zeroOrOneArgumentValidator used by timewarp', t => {
     const v = zeroOrOneArgumentVal();
     t.true(parse === p.toString() && validate === v.toString());
 });
-
-ava('noop parser and zeroArgumentsValidator used by transmit', t => {
-    const [parse, validate] = extractParseAndValidate(t, 'transmit');
-    t.true(parse === noopParse() && validate === zeroArgVal());
-});

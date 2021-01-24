@@ -43,12 +43,6 @@ ava('noop parser and zeroArgumentsValidator used by clearedAsFiled', t => {
     t.true(parse === noopParse() && validate === zeroArgVal());
 });
 
-
-ava('noop parser and zeroArgumentsValidator used by debug', t => {
-    const [parse, validate] = extractParseAndValidate(t, 'debug');
-    t.true(parse === noopParse() && validate === zeroArgVal());
-});
-
 ava('noop parser and zeroArgumentsValidator used by delete', t => {
     const [parse, validate] = extractParseAndValidate(t, 'delete');
     t.true(parse === noopParse() && validate === zeroArgVal());
@@ -98,12 +92,6 @@ ava('noop parser and zeroArgumentsValidator used by sayRoute', t => {
     const [parse, validate] = extractParseAndValidate(t, 'sayRoute');
     t.true(parse === noopParse() && validate === zeroArgVal());
 });
-
-ava('strToNumArray parser and singleArgumentValidator used by `', t => {
-    const [parse, validate] = extractParseAndValidate(t, '`');
-    t.true(parse === strToNumArrayParse() && validate === singleArgVal());
-});
-
 
 ava('noop parser and singleArgumentValidator used by direct', t => {
     const [parse, validate] = extractParseAndValidate(t, 'direct');
