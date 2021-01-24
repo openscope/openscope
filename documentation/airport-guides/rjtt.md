@@ -83,6 +83,8 @@ Departing aircraft will be assigned their SID based on their destination, as the
 
 SEKIYADO (SYE), VADAR, and ISOGO departures are not used for scheduled commercial flights.
 
+Note: Due to technical limitations in openScope, BRUCE transition of the ROVER departures are named AGRIS transitions instead.
+
 Departure runway assigned for flights are based on its flight direction. Below shows the assignment in different operation scenarios.
 
 |Airway or Waypoint       | North Wind Operation   | South Wind Operation 1 (RWY22/23 approaches in progress)   | South Wind Operation 2 (RWY16L/R approaches in progress between 0600UTC and 1000UTC) 
