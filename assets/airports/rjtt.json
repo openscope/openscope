@@ -1114,9 +1114,9 @@
                 ["BRUCE", "LEWIS", "SILVA", "INUBO"]
             ]
         },
-        "ROVE1B": {
-            "icao": "ROVE1B",
-            "name": "Rover One Bravo",
+        "ROVE2B": {
+            "icao": "ROVE2B",
+            "name": "Rover Two Bravo",
             "rwy": {
                 "RJTT05": [["^_RWY0503DME", "A5+"], "PLUTO", "KAIJI"],
                 "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI"],
@@ -1140,9 +1140,9 @@
                 ["BRUCE", "LEWIS", "SILVA", "INUBO"]
             ]
         },
-        "ROVE1C": {
-            "icao": "ROVE1C",
-            "name": "Rover One Charlie",
+        "ROVE2C": {
+            "icao": "ROVE2C",
+            "name": "Rover Two Charlie",
             "rwy": {
                 "RJTT05": [["^_RWY0503DME", "A5+"], "PLUTO", "KAIJI"],
                 "RJTT16L": [["^_RWY16L03DME", "A5+"], "T6L31", "DAMBO", "T6L32", ["LESMO", "A80+"], "KAIJI"],
