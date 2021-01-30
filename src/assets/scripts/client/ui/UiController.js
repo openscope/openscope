@@ -177,6 +177,16 @@ class UiController {
         this.$toggleAirportGuide = null;
 
         /**
+         * Footer button element used to toggle airspace on/off
+         *
+         * @for UiController
+         * @property $toggleAirspace
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleAirspace = null;
+
+        /**
          * Footer button element used to toggle the airport guide on/off
          *
          * @for UiController
