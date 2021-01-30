@@ -641,7 +641,7 @@ class UiController {
      */
     _buildAirportListItemTemplate(icao, difficulty, name) {
         return `
-            <li class="airport-list-item icao-${icao.toLowerCase()}">
+            <li class="airport-list-item" data-icao="${icao.toLowerCase()}">
                 <span style="font-size: 7pt" class="difficulty">${difficulty}</span>
                 <span class="icao">${icao.toUpperCase()}</span>
                 <span class="name">${name}</span>
@@ -689,8 +689,7 @@ class UiController {
         }
 
         const icao = AirportController.airport_get().icao.toLowerCase();
-        // TODO: why is this find by class? should either give each element an id, or use a data attribute
-        this.$airportDialogBody.find(`.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
+        this.$airportDialogBody.find(`li[data-icao="${icao}"]`).addClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
