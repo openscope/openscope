@@ -97,7 +97,7 @@ class UiController {
         this.$airportGuideDialog = null;
 
         /**
-         * Element of the airport guide dialog
+         * Element of the changelog dialog
          *
          * @for UiController
          * @property $changelogDialog
@@ -187,7 +187,7 @@ class UiController {
         this.$toggleAirspace = null;
 
         /**
-         * Footer button element used to toggle the airport guide on/off
+         * Footer button element used to toggle the changelog on/off
          *
          * @for UiController
          * @property $toggleChangelog
@@ -267,7 +267,7 @@ class UiController {
         this.$toggleTraffic = null;
 
         /**
-         * Footer button element used to toggle the tutoral on/off
+         * Footer button element used to toggle the tutorial on/off
          *
          * @for UiController
          * @property $toggleTutorial
@@ -287,9 +287,9 @@ class UiController {
         this.$toggleVideoMap = null;
 
         /**
-         * Footer button element used as a hook to
-         * activate/show option
+         * Element of the tutorial dialog
          *
+         * @for UiController
          * @property $tutorialDialog
          * @type {Jquery|Element}
          * @default null
