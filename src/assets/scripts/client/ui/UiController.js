@@ -713,10 +713,10 @@ class UiController {
      * @method onToggleAirportGuide
      */
     onToggleAirportGuide() {
+        this.$toggleAirportGuide.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS,
             'airport-guide',
             `airport-guide:${this.$toggleAirportGuide.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
-        this.$toggleAirportGuide.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this._eventBus.trigger(EVENT.TOGGLE_AIRPORT_GUIDE);
     }
 
@@ -753,12 +753,12 @@ class UiController {
     onToggleLabels(event) {
         const labelButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
+        labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         EventTracker.recordEvent(
             TRACKABLE_EVENT.OPTIONS,
             'fix-runway-labels',
             `${labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
-        labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this._eventBus.trigger(EVENT.TOGGLE_LABELS);
     }
 
@@ -783,12 +783,12 @@ class UiController {
     * @method onToggleOptions
     */
     onToggleOptions() {
+        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         EventTracker.recordEvent(
             TRACKABLE_EVENT.SETTINGS,
             'toggle-dialog',
             `${this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
-        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this.settingsController.toggleDialog();
     }
 
@@ -888,12 +888,12 @@ class UiController {
      * @param event {jquery event}
      */
     onToggleTraffic(event) {
+        this.$toggleTraffic.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         EventTracker.recordEvent(
             TRACKABLE_EVENT.OPTIONS,
             'traffic',
             `${!this.$toggleTraffic.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
-        this.$toggleTraffic.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this.trafficRateController.toggleDialog();
     }
 }
