@@ -127,6 +127,16 @@ class UiController {
         this.$githubLinkElement = null;
 
         /**
+         * Element displaying log of readbacks and other messages
+         *
+         * @for UiController
+         * @property $log
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$log = null;
+
+        /**
          * Element in center of screen to unpause when paused
          *
          * @for UiController
@@ -321,6 +331,7 @@ class UiController {
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
+        this.$log = this.$element.find(SELECTORS.DOM_SELECTORS.LOG);
         this.$switchAirport = this.$element.find(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT);
         this.$toggleAirportGuide = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRPORT_GUIDE);
         this.$toggleAirspace = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRSPACE);
@@ -430,6 +441,7 @@ class UiController {
         this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
+        this.$log = null;
         this.$pausedImg = null;
         this.$switchAirport = null;
         this.$toggleAirportGuide = null;
@@ -649,9 +661,8 @@ class UiController {
             EventTracker.recordEvent(TRACKABLE_EVENT.UI_LOG, 'error', message);
         }
 
-        const $log = $(SELECTORS.DOM_SELECTORS.LOG);
-        $log.append(html);
-        $log.scrollTop($log.get(0).scrollHeight);
+        this.$log.append(html);
+        this.$log.scrollTop(this.$log.get(0).scrollHeight);
 
         GameController.game_timeout((uiLogView) => {
             uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
