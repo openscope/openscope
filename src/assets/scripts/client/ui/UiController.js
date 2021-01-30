@@ -49,6 +49,14 @@ class UiController {
         this.settingsController = null;
 
         /**
+         * @for UiController
+         * @property trafficRateController
+         * @type {TrafficRateController}
+         * @default null
+         */
+        this.trafficRateController = null;
+
+        /**
          * Element of the airport selection dialog
          *
          * @for UiController
