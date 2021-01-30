@@ -714,9 +714,11 @@ class UiController {
      */
     onToggleAirportGuide() {
         this.$toggleAirportGuide.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS,
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
             'airport-guide',
-            `airport-guide:${this.$toggleAirportGuide.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
+            `airport-guide:${this.$toggleAirportGuide.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
         this._eventBus.trigger(EVENT.TOGGLE_AIRPORT_GUIDE);
     }
 
@@ -801,7 +803,11 @@ class UiController {
         const $sisdButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         $sisdButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'sids', `${$sisdButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'sids',
+            `${$sisdButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
         this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
     }
 
