@@ -57,6 +57,16 @@ class UiController {
         this.trafficRateController = null;
 
         /**
+         * Root element used to find all other DOM elements needed by this class
+         *
+         * @for UiController
+         * @property $element
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$element = null;
+
+        /**
          * Element of the airport selection dialog
          *
          * @for UiController
@@ -95,16 +105,6 @@ class UiController {
          * @default null
          */
         this.$changelogDialog = null;
-
-        /**
-         * Root element used to find all other DOM elements needed by this class
-         *
-         * @for UiController
-         * @property $element
-         * @type {Jquery|Element}
-         * @default null
-         */
-        this.$element = null;
 
         /**
          * Footer button element used to toggle fast-forward mode on/off
