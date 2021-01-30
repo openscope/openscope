@@ -713,12 +713,10 @@ class UiController {
      * @method onToggleAirportGuide
      */
     onToggleAirportGuide() {
-        const labelButtonElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_AIRPORT_GUIDE);
-
         EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS,
             'airport-guide',
-            `airport-guide:${labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
-        labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+            `airport-guide:${this.$toggleAirportGuide.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
+        this.$toggleAirportGuide.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this._eventBus.trigger(EVENT.TOGGLE_AIRPORT_GUIDE);
     }
 
