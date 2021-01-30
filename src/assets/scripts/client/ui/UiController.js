@@ -358,6 +358,8 @@ class UiController {
      * @chainable
      */
     setupHandlers() {
+        this.onAirportChangeHandler = this.onAirportChange.bind(this);
+
         return this;
     }
 
@@ -370,6 +372,8 @@ class UiController {
      * @method enable
      */
     enable() {
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+
         // TODO: move these to properly bound handler methods
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
@@ -400,6 +404,8 @@ class UiController {
      * @method disable
      */
     disable() {
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
@@ -502,6 +508,14 @@ class UiController {
                 uiLogView.remove();
             }, 10000);
         }, 3, window, html);
+    }
+
+    /**
+     * @for UiController
+     * @method onAirportChange
+     */
+    onAirportChange() {
+        this.$log.empty();
     }
 
     /**
