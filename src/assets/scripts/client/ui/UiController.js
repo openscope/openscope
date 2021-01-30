@@ -689,7 +689,8 @@ class UiController {
         }
 
         const icao = AirportController.airport_get().icao.toLowerCase();
-        $(`.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
+        // TODO: why is this find by class? should either give each element an id, or use a data attribute
+        this.$airportDialogBody.find(`.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
