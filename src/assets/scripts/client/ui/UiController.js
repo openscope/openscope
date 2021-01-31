@@ -439,7 +439,6 @@ class UiController {
         this.$airportDialogBody = null;
         this.$airportGuideDialog = null;
         this.$changelogDialog = null;
-        this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
         this.$log = null;
@@ -456,9 +455,10 @@ class UiController {
         this.$toggleSpeech = null;
         this.$toggleStars = null;
         this.$toggleTerrain = null;
+        this.$toggleTraffic = null;
         this.$toggleTutorial = null;
         this.$toggleVideoMap = null;
-        this.$toggleTraffic = null;
+        this.$tutorialDialog = null;
 
         return this;
     }
