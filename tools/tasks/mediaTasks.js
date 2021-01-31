@@ -9,7 +9,8 @@ module.exports = function(gulp, config) {
 
     const jsonMinify = () => gulp.src([
             path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.json'),
-            path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.geojson')
+            path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.geojson'),
+            '!' + path.join(OPTIONS.DIR.DIST_AIRPORTS, 'airportLoadList*.json')
         ])
         .pipe(jsonmin())
         .pipe(gulp.dest(OPTIONS.DIR.DIST_AIRPORTS));
