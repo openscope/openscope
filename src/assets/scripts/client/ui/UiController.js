@@ -473,6 +473,38 @@ class UiController {
     }
 
     /**
+     * @for UiController
+     * @method ui_complete
+     */
+    ui_complete() {
+        this._buildAirportList();
+    }
+
+    /**
+     * @for UiController
+     * @method ui_log
+     */
+    ui_log(message, warn = false) {
+        const html = $(`<span class="item"><span class="message">${message}</span></span>`);
+
+        if (warn) {
+            html.addClass(SELECTORS.CLASSNAMES.WARN);
+            EventTracker.recordEvent(TRACKABLE_EVENT.UI_LOG, 'error', message);
+        }
+
+        this.$log.append(html);
+        this.$log.scrollTop(this.$log.get(0).scrollHeight);
+
+        GameController.game_timeout((uiLogView) => {
+            uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
+
+            setTimeout(() => {
+                uiLogView.remove();
+            }, 10000);
+        }, 3, window, html);
+    }
+
+    /**
      * Close all open dialogs and return focus to the command bar
      *
      * @for UiController
@@ -558,14 +590,6 @@ class UiController {
             AirportController.airport_set(event.data);
             this._onClickCloseAirportDialog();
         }
-    }
-
-    /**
-     * @for UiController
-     * @method ui_complete
-     */
-    ui_complete() {
-        this._buildAirportList();
     }
 
     /**
@@ -656,30 +680,6 @@ class UiController {
                 <span class="name">${name}</span>
             </li>
         `;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_log
-     */
-    ui_log(message, warn = false) {
-        const html = $(`<span class="item"><span class="message">${message}</span></span>`);
-
-        if (warn) {
-            html.addClass(SELECTORS.CLASSNAMES.WARN);
-            EventTracker.recordEvent(TRACKABLE_EVENT.UI_LOG, 'error', message);
-        }
-
-        this.$log.append(html);
-        this.$log.scrollTop(this.$log.get(0).scrollHeight);
-
-        GameController.game_timeout((uiLogView) => {
-            uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
-
-            setTimeout(() => {
-                uiLogView.remove();
-            }, 10000);
-        }, 3, window, html);
     }
 
     /**
