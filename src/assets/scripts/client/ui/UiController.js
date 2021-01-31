@@ -379,16 +379,16 @@ class UiController {
         this.$toggleAirspace.on('click', (event) => this.onToggleAirspace(event));
         this.$toggleChangelog.on('click', (event) => this.onToggleChangelog(event));
         this.$toggleLabels.on('click', (event) => this.onToggleLabels(event));
+        this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
         this.$togglePause.on('click', (event) => GameController.game_pause_toggle(event));
         this.$toggleRestrictedAreas.on('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
         this.$toggleSpeech.on('click', (event) => speech_toggle(event));
         this.$toggleStars.on('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
-        this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
-        this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
-        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
         this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
+        this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
+        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
 
         return this;
     }
@@ -408,16 +408,16 @@ class UiController {
         this.$toggleAirspace.off('click', (event) => this.onToggleAirspace(event));
         this.$toggleChangelog.off('click', (event) => this.onToggleChangelog(event));
         this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
+        this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
         this.$togglePause.off('click', (event) => GameController.game_pause_toggle(event));
         this.$toggleRestrictedAreas.off('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
         this.$toggleSpeech.off('click', (event) => speech_toggle(event));
         this.$toggleStars.off('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
-        this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
-        this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
-        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
         this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
+        this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
+        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
 
         return this.destroy();
     }
