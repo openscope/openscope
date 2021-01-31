@@ -785,6 +785,20 @@ class UiController {
     }
 
     /**
+    * @for UiController
+    * @method onToggleOptions
+    */
+    onToggleOptions() {
+        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.SETTINGS,
+            'toggle-dialog',
+            `${this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this.settingsController.toggleDialog();
+    }
+
+    /**
      * @for UiController
      * @method onToggleRestrictedAreas
      */
@@ -798,20 +812,6 @@ class UiController {
             `${restrictedButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
         this._eventBus.trigger(EVENT.TOGGLE_RESTRICTED_AREAS);
-    }
-
-    /**
-    * @for UiController
-    * @method onToggleOptions
-    */
-    onToggleOptions() {
-        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.recordEvent(
-            TRACKABLE_EVENT.SETTINGS,
-            'toggle-dialog',
-            `${this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
-        );
-        this.settingsController.toggleDialog();
     }
 
     /**
@@ -866,6 +866,23 @@ class UiController {
     }
 
     /**
+     * Handler for toggling the traffic volume view
+     *
+     * @for UiController
+     * @method onToggleTraffic
+     * @param event {jquery event}
+     */
+    onToggleTraffic(event) {
+        this.$toggleTraffic.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'traffic',
+            `${!this.$toggleTraffic.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this.trafficRateController.toggleDialog();
+    }
+
+    /**
     * @for UiController
     * @method onToggleTutorial
     * @param event {jquery event}
@@ -904,23 +921,6 @@ class UiController {
      */
     onClickGithubLink(event) {
         EventTracker.recordClickOnOutboundLink(event.target.href);
-    }
-
-    /**
-     * Handler for toggling the traffic volume view
-     *
-     * @for UiController
-     * @method onToggleTraffic
-     * @param event {jquery event}
-     */
-    onToggleTraffic(event) {
-        this.$toggleTraffic.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.recordEvent(
-            TRACKABLE_EVENT.OPTIONS,
-            'traffic',
-            `${!this.$toggleTraffic.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
-        );
-        this.trafficRateController.toggleDialog();
     }
 }
 
