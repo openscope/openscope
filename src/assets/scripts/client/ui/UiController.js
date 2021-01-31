@@ -532,7 +532,7 @@ class UiController {
         }
 
         if (this.isTutorialDialogOpen()) {
-            this.tutorialView.tutorial_close();
+            this.onToggleTutorial();
         }
     }
 
@@ -876,11 +876,12 @@ class UiController {
     * @param event {jquery event}
     */
     onToggleTutorial(event) {
+        this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
         EventTracker.recordEvent(
             TRACKABLE_EVENT.OPTIONS,
-            'tutorial'
+            'tutorial',
+            `${this.$toggleTutorial.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
-        this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
     }
 
     /**
