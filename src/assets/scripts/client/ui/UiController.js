@@ -147,26 +147,6 @@ class UiController {
         this.$pausedImg = null;
 
         /**
-         * Footer button element used to pause when the sim is running
-         *
-         * @for UiController
-         * @property $togglePause
-         * @type {Jquery|Element}
-         * @default null
-         */
-        this.$togglePause = null;
-
-        /**
-         * Footer button element used to toggle speech synthesis on/off
-         *
-         * @for UiController
-         * @property $toggleSpeech
-         * @type {Jquery|Element}
-         * @default null
-         */
-        this.$toggleSpeech = null;
-
-        /**
          * Footer button element used to toggle the airport selection dialog on/off
          *
          * @for UiController
@@ -227,6 +207,16 @@ class UiController {
         this.$toggleOptions = null;
 
         /**
+         * Footer button element used to pause when the sim is running
+         *
+         * @for UiController
+         * @property $togglePause
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$togglePause = null;
+
+        /**
          * Footer button element used to toggle restricted areas on/off
          *
          * @for UiController
@@ -245,6 +235,16 @@ class UiController {
          * @default null
          */
         this.$toggleSids = null;
+
+        /**
+         * Footer button element used to toggle speech synthesis on/off
+         *
+         * @for UiController
+         * @property $toggleSpeech
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$toggleSpeech = null;
 
         /**
          * Footer button element used to toggle STARs on/off
