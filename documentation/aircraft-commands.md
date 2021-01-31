@@ -186,8 +186,8 @@ Specify the the fix to hold over with simply `[fixname]`.
 Optionally, you may also specify:
 
 - the direction of turns during the hold with `left`, `l`, `right`, or `r`
-- the leg length, either as `[time]min` or `[distance]nm`
-- the `radial` (a 3-digit course, eg. 001 to 360) which defines the outbound leg.
+- the leg length, either as `[time]min` or `[distance]nm`, where the supplied number is either an integer from `1` to `19`, or a one-decimal number from `0.1` to `19.9`
+- the radial (a 3-digit course, eg. `001` to `360`) which defines the outbound leg
 
 Any combination of these arguments provided in any order is acceptable, as long
 as the command `hold` comes first.
