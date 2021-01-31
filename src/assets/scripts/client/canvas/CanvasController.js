@@ -1117,12 +1117,12 @@ export default class CanvasController {
         // Draw the future path
         switch (GameController.game.option.getOptionByName('drawProjectedPaths')) {
             case 'always':
-                this._drawAircraftFuturePath(cc, aircraftModel);
+                this._drawAircraftFuturePath(cc, aircraftModel, match);
 
                 break;
             case 'selected':
                 if (match) {
-                    this._drawAircraftFuturePath(cc, aircraftModel);
+                    this._drawAircraftFuturePath(cc, aircraftModel, match);
                 }
 
                 break;
@@ -1242,9 +1242,10 @@ export default class CanvasController {
      * @method _drawAircraftFuturePath
      * @param cc {HTMLCanvasContext}
      * @param aircraftModel {AircraftModel}
+     * @param selected {boolean}
      * @private
      */
-    _drawAircraftFuturePath(cc, aircraftModel) {
+    _drawAircraftFuturePath(cc, aircraftModel, selected) {
         if (aircraftModel.isTaxiing() || TimeKeeper.simulationRate !== 1) {
             return;
         }
@@ -1274,11 +1275,17 @@ export default class CanvasController {
 
         cc.save();
 
-        let strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL;
-
         // future track colors
+        let strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL_ALL;
+
         if (aircraftModel.category === FLIGHT_CATEGORY.DEPARTURE) {
-            strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE;
+            if (selected) {
+                strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE;
+            } else {
+                strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE_ALL;
+            }
+        } else if (selected) {
+            strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL;
         }
 
         cc.strokeStyle = strokeStyle;
