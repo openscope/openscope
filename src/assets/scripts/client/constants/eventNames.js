@@ -130,7 +130,7 @@ export const EVENT = {
     SCROLL_TO_AIRCRAFT: 'scroll-to-aircraft',
 
     /**
-     * An aircraft data block was clicked and the corresponding
+     * An aircraft radar return was clicked and the corresponding
      * `StripViewModel` must also be selected
      *
      * @memberof EVENT
