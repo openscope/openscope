@@ -214,11 +214,6 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: '',
         isSystemCommand: true
     },
-    transmit: {
-        aliases: ['transmit'],
-        functionName: '',
-        isSystemCommand: true
-    },
     tutorial: {
         aliases: ['tutorial'],
         functionName: '',
