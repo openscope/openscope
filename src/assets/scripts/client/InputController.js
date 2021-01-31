@@ -1103,14 +1103,15 @@ export default class InputController {
      */
     _markMousePressed(event, mouseButton) {
         const canvasDragButton = GameController.getGameOption(GAME_OPTION_NAMES.MOUSE_CLICK_DRAG);
-        const mousePositionX = event.pageX - CanvasStageModel._panX;
-        const mousePositionY = event.pageY - CanvasStageModel._panY;
 
         // The mouse button that's been pressed isn't the one
         // that drags the canvas, so we return.
         if (mouseButton !== canvasDragButton) {
             return;
         }
+
+        const mousePositionX = event.pageX - CanvasStageModel._panX;
+        const mousePositionY = event.pageY - CanvasStageModel._panY;
 
         // Record mouse down position for panning
         this._mouseDownScreenPosition = [
