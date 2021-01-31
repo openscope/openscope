@@ -865,7 +865,7 @@ class UiController {
         EventTracker.recordEvent(
             TRACKABLE_EVENT.OPTIONS,
             'traffic',
-            `${!this.$toggleTraffic.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+            `${this.$toggleTraffic.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
         this.trafficRateController.toggleDialog();
     }
