@@ -120,6 +120,16 @@ export const EVENT = {
     REQUEST_TO_CENTER_POINT_IN_VIEW: 'request-to-center-point-in-view',
 
     /**
+     * An aircraft radar return was double clicked and the corresponding
+     * `StripViewModel` must be scrolled into view
+     *
+     * @memberof EVENT
+     * @property SCROLL_TO_AIRCRAFT
+     * @type {string}
+     */
+    SCROLL_TO_AIRCRAFT: 'scroll-to-aircraft',
+
+    /**
      * An aircraft data block was clicked and the corresponding
      * `StripViewModel` must also be selected
      *
