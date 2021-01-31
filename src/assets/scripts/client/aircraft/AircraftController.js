@@ -156,7 +156,7 @@ export default class AircraftController {
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
-        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this.onSelectAircraft);
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
         this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
         this._eventBus.on(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -393,17 +393,6 @@ export default class AircraftController {
      */
     updateAircraftStrips() {
         this._stripViewController.update(this.aircraft.list);
-    }
-
-    /**
-     * Public facade for `._onSelectAircraft`
-     *
-     * @for AircraftController
-     * @method onSelectAircraft
-     * @param aircaftModel {AircraftModel}
-     */
-    onSelectAircraft = (aircraftModel) => {
-        this._onSelectAircraft(aircraftModel);
     }
 
     /**
