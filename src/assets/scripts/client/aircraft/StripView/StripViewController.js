@@ -221,6 +221,23 @@ export default class StripViewController {
     }
 
     /**
+     * Find a `StripViewModel` and scroll it into view
+     *
+     * @for StripViewController
+     * @method scrollToStripView
+     * @param  aircraftModel {AircraftModel}
+     */
+    scrollToStripView(aircraftModel) {
+        const stripModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+        if (!stripModel) {
+            throw Error(`No StripViewModel found for selected Aircraft: ${aircraftModel.callsign}`);
+        }
+
+        stripModel.scrollIntoView();
+    }
+
+    /**
      * Method used to deselect an active `StripViewModel` when
      * the specific model is not known.
      *
