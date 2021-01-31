@@ -504,6 +504,13 @@ class UiController {
         }
     }
 
+    /**
+     * Returns whether the changelog dialog is open
+     *
+     * @for UiController
+     * @method isChangelogDialogOpen
+     * @return {boolean}
+     */
     isChangelogDialogOpen() {
         return this.$changelogDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
