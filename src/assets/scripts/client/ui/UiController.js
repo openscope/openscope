@@ -432,6 +432,7 @@ class UiController {
         this._eventBus = null;
         this.tutorialView = null;
         this.settingsController = null;
+        this.trafficRateController = null;
 
         this.$element = null;
         this.$airportDialog = null;
@@ -445,6 +446,7 @@ class UiController {
         this.$pausedImg = null;
         this.$switchAirport = null;
         this.$toggleAirportGuide = null;
+        this.$toggleAirspace = null;
         this.$toggleChangelog = null;
         this.$toggleLabels = null;
         this.$toggleOptions = null;
@@ -456,7 +458,7 @@ class UiController {
         this.$toggleTerrain = null;
         this.$toggleTutorial = null;
         this.$toggleVideoMap = null;
-        this.$onToggleTraffic = null;
+        this.$toggleTraffic = null;
 
         return this;
     }
