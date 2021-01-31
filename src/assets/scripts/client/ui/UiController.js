@@ -511,8 +511,16 @@ class UiController {
      * @method closeAllDialogs
      */
     closeAllDialogs() {
-        if (this.isTutorialDialogOpen()) {
-            this.tutorialView.tutorial_close();
+        if (this.isAirportGuideDialogOpen()) {
+            this.onToggleAirportGuide();
+        }
+
+        if (this.isAirportSelectionDialogOpen()) {
+            this.onToggleAirportList();
+        }
+
+        if (this.isChangelogDialogOpen()) {
+            this.onToggleChangelog();
         }
 
         if (this.settingsController.isDialogOpen()) {
@@ -523,16 +531,8 @@ class UiController {
             this.onToggleTraffic();
         }
 
-        if (this.isAirportSelectionDialogOpen()) {
-            this.onToggleAirportList();
-        }
-
-        if (this.isAirportGuideDialogOpen()) {
-            this.onToggleAirportGuide();
-        }
-
-        if (this.isChangelogDialogOpen()) {
-            this.onToggleChangelog();
+        if (this.isTutorialDialogOpen()) {
+            this.tutorialView.tutorial_close();
         }
     }
 
