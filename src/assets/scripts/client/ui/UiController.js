@@ -327,11 +327,10 @@ class UiController {
         this.$airportDialogBody = this.$airportDialog.find(SELECTORS.DOM_SELECTORS.DIALOG_BODY);
         this.$airportGuideDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_GUIDE_CONTAINER);
         this.$changelogDialog = this.$element.find(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTAINER);
-        this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
-        this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
         this.$log = this.$element.find(SELECTORS.DOM_SELECTORS.LOG);
+        this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
         this.$switchAirport = this.$element.find(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT);
         this.$toggleAirportGuide = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRPORT_GUIDE);
         this.$toggleAirspace = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_AIRSPACE);
@@ -344,9 +343,10 @@ class UiController {
         this.$toggleSpeech = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
         this.$toggleStars = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STARS);
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
+        this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
-        this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
+        this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TUTORIAL);
 
         return this.setupHandlers()
             .enable();
