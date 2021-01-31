@@ -505,14 +505,14 @@ class UiController {
     }
 
     /**
-     * Returns whether the changelog dialog is open
+     * Returns whether the airport guide dialog is open
      *
      * @for UiController
-     * @method isChangelogDialogOpen
+     * @method isAirportGuideDialogOpen
      * @return {boolean}
      */
-    isChangelogDialogOpen() {
-        return this.$changelogDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    isAirportGuideDialogOpen() {
+        return this.$airportGuideDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
     /**
@@ -527,14 +527,14 @@ class UiController {
     }
 
     /**
-     * Returns whether the airport guide dialog is open
+     * Returns whether the changelog dialog is open
      *
      * @for UiController
-     * @method isAirportGuideDialogOpen
+     * @method isChangelogDialogOpen
      * @return {boolean}
      */
-    isAirportGuideDialogOpen() {
-        return this.$airportGuideDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    isChangelogDialogOpen() {
+        return this.$changelogDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
     /**
