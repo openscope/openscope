@@ -724,16 +724,24 @@ export default class StripViewModel extends BaseModel {
      * @private
      */
     _shouldUpdate(aircraftModel) {
-        const viewModel = aircraftModel.getViewModel();
+        const {
+            insideCenter,
+            transponderCode,
+            assignedAltitude,
+            flightPlanAltitude,
+            arrivalAirportId,
+            departureAirportId,
+            flightPlan
+        } = aircraftModel.getViewModel();
         const runwayInfo = this._buildRunwayInformation(aircraftModel);
 
-        return this.insideCenter !== viewModel.insideCenter ||
-            this._transponder !== viewModel.transponderCode ||
-            this._assignedAltitude !== viewModel.assignedAltitude ||
-            this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
-            this._arrivalAirport !== viewModel.arrivalAirportId ||
-            this._departureAirport !== viewModel.departureAirportId ||
-            this._flightPlan !== viewModel.flightPlan ||
+        return this.insideCenter !== insideCenter ||
+            this._transponder !== transponderCode ||
+            this._assignedAltitude !== assignedAltitude ||
+            this._flightPlanAltitude !== flightPlanAltitude ||
+            this._arrivalAirport !== arrivalAirportId ||
+            this._departureAirport !== departureAirportId ||
+            this._flightPlan !== flightPlan ||
             this._runwayInformation.hasRunwayAssigned !== runwayInfo.hasRunwayAssigned ||
             this._runwayInformation.name !== runwayInfo.name;
     }
