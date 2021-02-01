@@ -1688,7 +1688,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA723", "ARS"],
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA723"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -1703,7 +1703,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402", "SA422", "BABAP"],
+            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402", "SA422"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -1718,7 +1718,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A05+"], "SA401", "SA403", "KOGAV"],
+            "body": [["^SA421", "A05+"], "SA401", "SA403"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -1733,7 +1733,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA702", "SA703", "MENGA", "BABAP"],
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA702", "SA703", "MENGA"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -1748,7 +1748,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724", "NOSLI"],
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -1757,13 +1757,13 @@
             ]
         },
         "PETEV1C": {
-            "icao": "PETEC1C",
+            "icao": "PETEV1C",
             "name": "Petev One Charlie",
             "altitude": 5000,
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724", "PETEV"],
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -1778,7 +1778,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A05+"], "SA401", "RESNA"],
+            "body": [["^SA421", "A05+"], "SA401"],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -1793,7 +1793,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402", "TOVRI"],
+            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402"],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -1808,7 +1808,7 @@
             "rwy": {
                 "ESSA01L": []
             },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724", "TRS"],
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -1823,7 +1823,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA423", "A25+"], "SA864", "ARS"],
+            "body": [["^SA423", "A25+"], "SA864"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -1838,7 +1838,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "SA406", "BABAP"],
+            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "SA406"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -1853,7 +1853,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA404", "A06+"], "SA408", "KOGAV"],
+            "body": [["^SA404", "A06+"], "SA408"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -1868,7 +1868,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724", "NOSLI"],
+            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -1883,7 +1883,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA423", "A25+"], "SA864", "SA854", "PETEV"],
+            "body": [["^SA423", "A25+"], "SA864", "SA854"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -1898,7 +1898,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA404", "A06+"], "SA409", "RESNA"],
+            "body": [["^SA404", "A06+"], "SA409"],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -1913,7 +1913,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "TOVRI"],
+            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"]],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -1928,7 +1928,7 @@
             "rwy": {
                 "ESSA01R": []
             },
-            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724", "TRS"],
+            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -1943,7 +1943,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA723", "ARS"],
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA723"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -1958,7 +1958,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], "SA416", "BABAP"],
+            "body": [["^SA412", "A06+"], "SA416"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -1973,7 +1973,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "KOGAV"],
+            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -1988,7 +1988,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724", "NOSLI"],
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -2003,7 +2003,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724", "PETEV"],
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -2018,7 +2018,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "SA417", "RESNA"],
+            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "SA417"],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -2033,7 +2033,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], "TOVRI"],
+            "body": [["^SA412", "A06+"]],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -2048,7 +2048,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724", "TRS"],
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -2063,7 +2063,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "ABENI", "PETEV"],
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "ABENI"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -2078,7 +2078,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], "SA416", "BABAP"],
+            "body": [["^SA418", "A05+"], "SA416"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -2093,7 +2093,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "DIGLI", "NOSLI"],
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "DIGLI"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -2108,7 +2108,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "SA718", "GALNU", "TRS"],
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "SA718", "GALNU"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -2123,7 +2123,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "LUMAX", "RESNA"],
+            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "LUMAX"],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -2138,7 +2138,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA716", "ROKNI", "ARS"],
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA716", "ROKNI"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -2153,7 +2153,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "TALEK", "KOGAV"],
+            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "TALEK"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -2168,7 +2168,7 @@
             "rwy": {
                 "ESSA08": []
             },
-            "body": [["^SA418", "A05+"], "TOVRI"],
+            "body": [["^SA418", "A05+"]],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -2183,7 +2183,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "ABENI", "PETEV"],
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "ABENI"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -2198,7 +2198,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA567", "A15+|220-"], "SA726", "ARS"],
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA567", "A15+|220-"], "SA726"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -2213,7 +2213,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "SA411", "BABAP"],
+            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "SA411"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -2228,7 +2228,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "DIGLI", "NOSLI"],
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "DIGLI"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -2243,7 +2243,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "SA729", "GALNU", "TRS"],
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "SA729", "GALNU"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -2258,7 +2258,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "LUMAX", "RESNA"],
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "LUMAX"],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -2273,7 +2273,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "NOSLI"],
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -2288,7 +2288,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "PETEV"],
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -2303,7 +2303,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "ROKNI", "ARS"],
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "ROKNI"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -2318,7 +2318,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "TALEK", "KOGAV"],
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "TALEK"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -2333,7 +2333,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "TOVRI"],
+            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"]],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -2348,7 +2348,7 @@
             "rwy": {
                 "ESSA19L": []
             },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "SA729", "TRS"],
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "SA729"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -2363,7 +2363,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "ARS"],
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -2378,7 +2378,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "SA507", "BABAP"],
+            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "SA507"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -2393,7 +2393,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855", "KOGAV"],
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -2408,7 +2408,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "NOSLI"],
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -2423,7 +2423,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "PETEV"],
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -2438,7 +2438,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855", "RESNA"],
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855"],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -2453,7 +2453,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "TOVRI"],
+            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553"],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -2468,7 +2468,7 @@
             "rwy": {
                 "ESSA19R": []
             },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA708", "TRS"],
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA708"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
@@ -2483,7 +2483,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A05+"], "SA861", "ARS"],
+            "body": [["^SA871", "A05+"], "SA861"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
@@ -2498,7 +2498,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A05+"], "SA861", "SA702", "SA703", "BABAP"],
+            "body": [["^SA871", "A05+"], "SA861", "SA702", "SA703"],
             "exitPoints": {
                 "BABAP": ["BABAP"]
             },
@@ -2513,7 +2513,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A06+"], ["SA862", "A15+|S220-"], "SA420", "KOGAV"],
+            "body": [["^SA871", "A06+"], ["SA862", "A15+|S220-"], "SA420"],
             "exitPoints": {
                 "KOGAV": ["KOGAV"]
             },
@@ -2528,7 +2528,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A05+"], "SA861", "NOSLI"],
+            "body": [["^SA871", "A05+"], "SA861"],
             "exitPoints": {
                 "NOSLI": ["NOSLI"]
             },
@@ -2543,7 +2543,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A05+"], "SA861", "PETEV"],
+            "body": [["^SA871", "A05+"], "SA861"],
             "exitPoints": {
                 "PETEV": ["PETEV"]
             },
@@ -2558,7 +2558,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A06+"], ["SA862", "A15+|S220-"], "RESNA"],
+            "body": [["^SA871", "A06+"], ["SA862", "A15+|S220-"]],
             "exitPoints": {
                 "RESNA": ["RESNA"]
             },
@@ -2573,7 +2573,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A06+"], ["SA419", "A15+|S22-"], "TOVRI"],
+            "body": [["^SA871", "A06+"], ["SA419", "A15+|S22-"]],
             "exitPoints": {
                 "TOVRI": ["TOVRI"]
             },
@@ -2588,7 +2588,7 @@
             "rwy": {
                 "ESSA26": []
             },
-            "body": [["^SA871", "A05+"], "SA861", "SA719", "TRS"],
+            "body": [["^SA871", "A05+"], "SA861", "SA719"],
             "exitPoints": {
                 "TRS": ["TRS"]
             },
