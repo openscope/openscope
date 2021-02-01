@@ -2671,9 +2671,9 @@
                 "LNA"  : "260|left|1min|S230-"
             },
             "entryPoints": {
-                "ELTOK": [["@ELTOK", "A100+|A110-"]]
+                "ELTOK": [["@ELTOK", "A110-"]]
             },
-            "body": ["SA820", ["SA854", "A80-"], ["@LNA", "A25+"]],
+            "body": ["SA820", ["SA854", "A80-"], "@LNA"],
             "rwy": {
                 "ESSA01L": [],
                 "ESSA01R": []
@@ -2690,9 +2690,9 @@
                 "TEB": "178|right|1min|S230-"
             },
             "entryPoints": {
-                "HMR": [["@HMR", "A100+|A150-"]]
+                "HMR": [["@HMR", "A150-"]]
             },
-            "body": ["SA539", "SA540", ["@TEB", "A25+"]],
+            "body": ["SA539", "SA540", "@TEB"],
             "rwy": {
                 "ESSA01L": [],
                 "ESSA01R": []
@@ -2709,9 +2709,9 @@
                 "TEB"  : "178|right|1min|S230-"
             },
             "entryPoints": {
-                "NILUG": [["@NILUG", "A70+|A150-"]]
+                "NILUG": [["@NILUG", "A150-"]]
             },
-            "body": ["SA630", ["@TEB", "A25+"]],
+            "body": ["SA630", "@TEB"],
             "rwy": {
                 "ESSA01L": [],
                 "ESSA01R": []
@@ -2728,9 +2728,9 @@
                 "TEB"  : "178|right|1min|S230-"
             },
             "entryPoints": {
-                "XILAN": [["@XILAN", "A100+|A150-"]]
+                "XILAN": [["@XILAN", "A150-"]]
             },
-            "body": ["SA570", ["@TEB", "A25+"]],
+            "body": ["SA570", "@TEB"],
             "rwy": {
                 "ESSA01L": [],
                 "ESSA01R": []
