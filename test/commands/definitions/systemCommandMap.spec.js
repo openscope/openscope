@@ -1,12 +1,14 @@
 import ava from 'ava';
 import AircraftCommandModel
     from '../../../src/assets/scripts/client/commands/aircraftCommand/AircraftCommandModel';
-
 import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/aircraftCommand/aircraftCommandMap';
 import { timewarpParser } from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
-
 import {
-    noopParse, zeroArgVal, singleArgVal, strToNumArrayParse, zeroOrOneArgumentVal
+    noopParse,
+    zeroArgVal,
+    singleArgVal,
+    strToNumArrayParse,
+    zeroOrOneArgumentVal
 } from './testUtils';
 
 const extractParseAndValidate = (t, cmd) => {
