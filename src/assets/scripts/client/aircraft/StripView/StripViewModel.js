@@ -389,12 +389,12 @@ export default class StripViewModel extends BaseModel {
         const {
             insideCenter,
             callsign,
-            icaoWithWeightClass,
             transponderCode,
+            icaoWithWeightClass,
             assignedAltitude,
+            flightPlanAltitude,
             arrivalAirportId,
             departureAirportId,
-            flightPlanAltitude,
             flightPlan
         } = aircraftModel.getViewModel();
 
@@ -754,9 +754,9 @@ export default class StripViewModel extends BaseModel {
             insideCenter,
             transponderCode,
             assignedAltitude,
+            flightPlanAltitude,
             arrivalAirportId,
             departureAirportId,
-            flightPlanAltitude,
             flightPlan
         } = aircraftModel.getViewModel();
 
