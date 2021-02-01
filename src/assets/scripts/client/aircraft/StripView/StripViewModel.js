@@ -491,7 +491,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Update teh view with new data
+     * Update the view with new data
      *
      * This method will be run on instantiation to initialize the view with data,
      * and will be run again any time updatable data has changed.
