@@ -329,3 +329,18 @@ export const WAKE_TURBULENCE_CATEGORY = {
         SPOKEN: 'super'
     }
 };
+
+/**
+ * Engine types
+ *
+ * @property ENGINE_TYPE
+ * @type {Object}
+ * @final
+ */
+export const ENGINE_TYPE = {
+    ELECTRIC: 'E',
+    JET: 'J',
+    PISTON: 'P',
+    ROCKET: 'R',
+    TURBOPROP: 'T'
+};
