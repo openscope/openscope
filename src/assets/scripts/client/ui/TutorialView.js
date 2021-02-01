@@ -281,21 +281,11 @@ export default class TutorialView {
                     return;
                 }
                 const propFetcher = this._getPropFetcher(replacement.replaceWith.propPath);
-                const hasTransform = typeof replacement.replaceWith.transform === 'string' && replacement.replaceWith.transform.trim().length > 0;
-                // eslint-disable-next-line no-new-func
-                const transform = hasTransform ? new Function('t', replacement.replaceWith.transform) : undefined;
                 const replaceFunc = (t) => {
-                    let value = propFetcher(objFetcher());
+                    const value = propFetcher(objFetcher());
                     if (value == null) { // null or undefined; likely configured with incorrect property path
                         console.warn(`Tutorial: ${step.title}: ${replacement.replaceWith.object}.${replacement.replaceWith.propPath} has ${value} value.`);
                         return t;
-                    }
-                    if (hasTransform) {
-                        value = transform(value);
-                        if (value == null) { // null or undefined; likely produced by mistakes in transform function
-                            console.warn(`Tutorial: ${step.title}: transformation "${replacement.replaceWith.transform}" turned ${replacement.replaceWith.object}.${replacement.replaceWith.propPath} into ${value}.`);
-                            return t;
-                        }
                     }
                     return t.replace(replacement.findWhat, value);
                 };

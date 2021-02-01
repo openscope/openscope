@@ -38,10 +38,6 @@
                     "propPath": {
                       "type": "string",
                       "description": "property path to fetch some value of the object"
-                    },
-                    "transform": {
-                      "type": "string",
-                      "description": "function body to perform some transformation on the fetched value before output"
                     }
                 },
                 "required": [

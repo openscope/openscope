@@ -39,8 +39,7 @@
         "findWhat": "{MODEL}",
         "replaceWith": {
           "object": "departureAircraft",
-          "propPath": "model.icao",
-          "transform": "return t.toUpperCase();"
+          "propPath": "model.icao"
         }
       },
       {
