@@ -457,16 +457,6 @@ export default class AircraftModel {
 
         this.category = options.category; // 'arrival' or 'departure'
 
-        /**
-         * the following diagram illustrates all allowed mode transitions:
-         *
-         * apron -> taxi -> waiting -> takeoff -> cruise <-> landing
-         *   ^                                       ^
-         *   |                                       |
-         * new planes with                      new planes with
-         * category 'departure'                 category 'arrival'
-         */
-
         // target represents what the pilot makes of the tower's commands. It is
         // most important when the plane is in a 'guided' situation, that is it is
         // not given a heading directly, but has a fix or is following an ILS path
