@@ -19,7 +19,8 @@
 - <a href="https://github.com/openscope/openscope/issues/1718" target="_blank">#1718</a> - Sync aircraft command map with command definitions
 - <a href="https://github.com/openscope/openscope/issues/1725" target="_blank">#1725</a> - Convert airport load list to JSON
 - <a href="https://github.com/openscope/openscope/issues/217" target="_blank">#217</a> - Differentiate projected path color for selected vs non-selected aircraft
-- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Scrolls strip into view when aircraft radar return double clicked
+- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Scroll strip into view when aircraft radar return double clicked
+- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Expand on command parser testing
 
 
 # 6.22.0 (January 3, 2021)
