@@ -90,7 +90,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.ceiling = INVALID_NUMBER;
 
         /**
-         * Decsribes rate of:
+         * Describes rate of:
          * - climb
          * - descent
          * - acceleration
