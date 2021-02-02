@@ -136,8 +136,6 @@ ava('.isLegLengthArg() returns false when passed an invalid decimal leg length',
     t.false(isLegLengthArg('-1.0nm'));
     t.false(isLegLengthArg('1.05min'));
     t.false(isLegLengthArg('1.05nm'));
-    t.false(isLegLengthArg(''));
-        t.false(isLegLengthArg(''));
 });
 
 ava('.isLegLengthArg() returns true when passed a valid integer leg length', (t) => {
