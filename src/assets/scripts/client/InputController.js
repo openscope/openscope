@@ -93,6 +93,7 @@ export default class InputController {
         this.onMouseClickAndDragHandler = this._onMouseClickAndDrag.bind(this);
         this.onMouseUpHandler = this._onMouseUp.bind(this);
         this.onMouseDownHandler = this._onMouseDown.bind(this);
+        this.onMouseDblclickHandler = this._onMouseDblclick.bind(this);
 
         return this;
     }
@@ -115,6 +116,7 @@ export default class InputController {
         this.$canvases.on('mousemove', this.onMouseClickAndDragHandler);
         this.$canvases.on('mouseup', this.onMouseUpHandler);
         this.$canvases.on('mousedown', this.onMouseDownHandler);
+        this.$canvases.on('dblclick', this.onMouseDblclickHandler);
         this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
@@ -138,6 +140,7 @@ export default class InputController {
         this.$canvases.off('mousemove', this.onMouseClickAndDragHandler);
         this.$canvases.off('mouseup', this.onMouseUpHandler);
         this.$canvases.off('mousedown', this.onMouseDownHandler);
+        this.$canvases.off('dblclick', this.onMouseDblclickHandler);
         this.$body.removeEventListener('contextmenu', event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
@@ -394,6 +397,28 @@ export default class InputController {
             default:
                 break;
         }
+    }
+
+    /**
+     * @for InputController
+     * @method _onMouseDblclick
+     * @param event {jquery Event}
+     */
+    _onMouseDblclick(event) {
+        // HACK: for "when an aircraft's radar return is double clicked"
+        // caveat: double click is series of mousedown-mouseup-mousedown-mouseup events in rapid succession
+        // there is no guarantee that pointer is stationary throughout the process!
+        // event handler is for entire canvas, not for things drawn on it; need to resolve which aircraft
+        // _onLeftMouseButtonPress identifies and selects nearest aircraft within 50px of mousedown events
+        // so we can just piggyback off the aircraft (if any) already selected by the second mousedown
+        if (!this.input.callsign) {
+            return;
+        }
+
+        this._eventBus.trigger(
+            EVENT.SCROLL_TO_AIRCRAFT,
+            this._aircraftController.findAircraftByCallsign(this.input.callsign)
+        );
     }
 
     /**
@@ -1078,14 +1103,15 @@ export default class InputController {
      */
     _markMousePressed(event, mouseButton) {
         const canvasDragButton = GameController.getGameOption(GAME_OPTION_NAMES.MOUSE_CLICK_DRAG);
-        const mousePositionX = event.pageX - CanvasStageModel._panX;
-        const mousePositionY = event.pageY - CanvasStageModel._panY;
 
         // The mouse button that's been pressed isn't the one
         // that drags the canvas, so we return.
         if (mouseButton !== canvasDragButton) {
             return;
         }
+
+        const mousePositionX = event.pageX - CanvasStageModel._panX;
+        const mousePositionY = event.pageY - CanvasStageModel._panY;
 
         // Record mouse down position for panning
         this._mouseDownScreenPosition = [
