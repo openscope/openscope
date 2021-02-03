@@ -2738,7 +2738,79 @@
             "draw": [
                 ["XILAN", "SA570", "TEB"]
             ]
-        }        
+        },
+        "ELTOK7S": {
+            "icao": "ELTOK7S",
+            "name": "Eltok Seven Sierra",
+            "holds":{
+                "ELTOK": "286|left|19min|S230-",
+                "BALVI": "295|left|1min|S230-"
+            },
+            "entryPoints": {
+                "ELTOK": [["@ELTOK", "A110-"]]
+            },
+            "body": ["SA821", "@BALVI"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["ELTOK", "SA821", "BALVI"]
+            ]
+        },
+        "HMR5S": {
+            "icao": "HMR5S",
+            "name": "Hammar Five Sierra",
+            "holds":{
+                "HMR": "011|left|19min|S230-",
+                "TEB": "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "HMR": [["@HMR", "A150-"]]
+            },
+            "body": ["SA539", "SA540", "@TEB"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["HMR", "SA539", "SA540", "TEB"]
+            ]
+        },
+        "NILUG2S": {
+            "icao": "NILUG2S",
+            "name": "Nilug Two Sierra",
+            "holds":{
+                "NILUG": "188|right|1min|S210-",
+                "TEB"  : "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "NILUG": [["@NILUG", "A190-"]]
+            },
+            "body": ["SA630", "@TEB"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["NILUG", "SA630", "TEB"]
+            ]
+        },
+        "XILAN4S": {
+            "icao": "XILAN4S",
+            "name": "Xilan Four Sierra",
+            "holds":{
+                "XILAN": "069|left|19min|S230-",
+                "TEB"  : "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "XILAN": [["@XILAN", "A150-"]]
+            },
+            "body": ["SA570", "@TEB"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["XILAN", "SA570", "TEB"]
+            ]
+        }
     },
     "maps": [
         {
