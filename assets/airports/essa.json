@@ -2668,7 +2668,7 @@
         "ELTOK7M": {
             "icao": "ELTOK7M",
             "name": "Eltok Seven Mike",
-            "holds":{
+            "holds": {
                 "ELTOK": "286|left|19min|S230-",
                 "LNA"  : "260|left|1min|S230-"
             },
@@ -2687,7 +2687,7 @@
         "HMR5M": {
             "icao": "HMR5M",
             "name": "Hammar Five Mike",
-            "holds":{
+            "holds": {
                 "HMR": "011|left|19min|S230-",
                 "TEB": "178|right|1min|S230-"
             },
@@ -2706,7 +2706,7 @@
         "NILUG2M": {
             "icao": "NILUG2M",
             "name": "Nilug Two Mike",
-            "holds":{
+            "holds": {
                 "NILUG": "188|right|1min|S210-",
                 "TEB"  : "178|right|1min|S230-"
             },
@@ -2725,7 +2725,7 @@
         "XILAN4M": {
             "icao": "XILAN4M",
             "name": "Xilan Four Mike",
-            "holds":{
+            "holds": {
                 "XILAN": "069|left|19min|S230-",
                 "TEB"  : "178|right|1min|S230-"
             },
@@ -2744,7 +2744,7 @@
         "ELTOK7S": {
             "icao": "ELTOK7S",
             "name": "Eltok Seven Sierra",
-            "holds":{
+            "holds": {
                 "ELTOK": "286|left|19min|S230-",
                 "BALVI": "295|left|1min|S230-"
             },
@@ -2762,7 +2762,7 @@
         "HMR5S": {
             "icao": "HMR5S",
             "name": "Hammar Five Sierra",
-            "holds":{
+            "holds": {
                 "HMR": "011|left|19min|S230-",
                 "TEB": "178|right|1min|S230-"
             },
@@ -2780,7 +2780,7 @@
         "NILUG2S": {
             "icao": "NILUG2S",
             "name": "Nilug Two Sierra",
-            "holds":{
+            "holds": {
                 "NILUG": "188|right|1min|S210-",
                 "TEB"  : "178|right|1min|S230-"
             },
@@ -2798,7 +2798,7 @@
         "XILAN4S": {
             "icao": "XILAN4S",
             "name": "Xilan Four Sierra",
-            "holds":{
+            "holds": {
                 "XILAN": "069|left|19min|S230-",
                 "TEB"  : "178|right|1min|S230-"
             },
@@ -2872,7 +2872,7 @@
         "ELTOK7P": {
             "icao": "ELTOK7P",
             "name": "Eltok Seven Papa",
-            "holds":{
+            "holds": {
                 "ELTOK": "286|left|19min|S230-",
                 "BALVI": "295|left|1min|S230-"
             },
@@ -2891,7 +2891,7 @@
         "HMR4P": {
             "icao": "HMR4P",
             "name": "Hammar Four Papa",
-            "holds":{
+            "holds": {
                 "HMR": "011|left|19min|S230-",
                 "ERK": "038|left|1min|S230-"
             },
@@ -2910,7 +2910,7 @@
         "NILUG2P": {
             "icao": "NILUG2P",
             "name": "Nilug Two Papa",
-            "holds":{
+            "holds": {
                 "NILUG": "188|right|1min|S210-",
                 "TEB"  : "178|right|1min|S230-",
                 "ERK"  : "038|left|1min|S230-"
@@ -2930,7 +2930,7 @@
         "XILAN5P": {
             "icao": "XILAN5P",
             "name": "Xilan Five Papa",
-            "holds":{
+            "holds": {
                 "XILAN": "069|left|19min|S230-",
                 "ERK"  : "038|left|1min|S230-"
             },
@@ -3000,6 +3000,78 @@
             },
             "draw": [
                 ["XILAN", "SA494", "SA493", "SA492", "EKDAS"]
+            ]
+        },
+        "ELTOK4T": {
+            "icao": "ELTOK4T",
+            "name": "Eltok Four Tango",
+            "holds": {
+                "ELTOK": "286|left|19min|S230-",
+                "ERK"  : "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "ELTOK": [["@ELTOK", "A150-"]]
+            },
+            "body": ["SA865", "@ERK"],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["ELTOK", "SA865", "ERK"]
+            ]
+        },
+        "HMR4T": {
+            "icao": "HMR4T",
+            "name": "Hammar Four Tango",
+            "holds": {
+                "HMR": "011|left|19min|S230-",
+                "ERK": "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "HMR": [["@HMR", "A130-"]]
+            },
+            "body": ["SA541", "@ERK"],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["HMR", "SA541", "ERK"]
+            ]
+        },
+        "NILUG2T": {
+            "icao": "NILUG2T",
+            "name": "Nilug Two Tango",
+            "holds": {
+                "NILUG": "188|right|1min|S210-",
+                "TEB"  : "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "NILUG": [["@NILUG", "A150-"]]
+            },
+            "body": ["SA630", "@TEB"],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["NILUG", "SA630", "TEB"]
+            ]
+        },
+        "XILAN5T": {
+            "icao": "XILAN5T",
+            "name": "Xilan Five Tango",
+            "holds": {
+                "XILAN": "069|left|19min|S230-",
+                "TEB"  : "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "XILAN": [["@XILAN", "A120-"]]
+            },
+            "body": ["SA570", "@TEB"],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["XILAN", "SA570", "TEB"]
             ]
         }
     },
