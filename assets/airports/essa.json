@@ -2945,6 +2945,62 @@
             "draw": [
                 ["XILAN", "SA570", "TEB", "ERK"]
             ]
+        },
+        "ELTOK3V": {
+            "icao": "ELTOK3V",
+            "name": "Eltok Three Victor",
+            "entryPoints": {
+                "ELTOK": ["ELTOK"]
+            },
+            "body": [["SA911", "A100+"], ["SA491", "A80+"], ["SA490", "A50+|S230-"], "SA472", "SA471", ["EKDAS", "A25+|S200-"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["ELTOK", "SA911", "SA491", "SA490", "SA472", "SA471", "EKDAS"]
+            ]
+        },
+        "HAMMAR3V": {
+            "icao": "HAMMAR3V",
+            "name": "Hammar Three Victor",
+            "entryPoints": {
+                "HMR": ["HMR"]
+            },
+            "body": [["SA496", "A100+"], ["SA489", "A80+"], ["SA488", "A50+|S230-"], "SA471", ["EKDAS", "A25+|S200-"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["HMR", "SA496", "SA489", "SA488", "SA471", "EKDAS"]
+            ]
+        },
+        "NILUG2V": {
+            "icao": "NILUG2V",
+            "name": "Nilug Two Victor",
+            "entryPoints": {
+                "NILUG": ["NILUG"]
+            },
+            "body": [["SA623", "A100+"], ["SA622", "A80+"], ["SA611", "A50+|S230-"], "SA495", ["EKDAS", "A25+|S200-"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["NILUG", "SA623", "SA622", "SA611", "SA495", "EKDAS"]
+            ]
+        },
+        "XILAN3V": {
+            "icao": "XILAN3V",
+            "name": "Xilan Three Victor",
+            "entryPoints": {
+                "XILAN": ["XILAN"]
+            },
+            "body": [["SA494", "A80+"], ["SA493", "A50+"], "SA492", ["EKDAS", "A25+"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["XILAN", "SA494", "SA493", "SA492", "EKDAS"]
+            ]
         }
     },
     "maps": [
