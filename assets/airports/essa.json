@@ -280,8 +280,9 @@
         }
     ],
     "_comment": "Source fixes: https://www.aro.lfv.se/Editorial/View/8321/ES_AD_2_ESSA_4-3_en",
-    "_comment": "Source some DVOR/DME: https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
-    "_comment": "Source some DVOR/DME: https://www.aro.lfv.se/Editorial/View/6273/ES_AD_2_ESSA_4-51_en",
+    "_comment": "Source some DVOR/DME (3 letters): https://www.aro.lfv.se/Editorial/View/7944/ES_AD_2_ESSA_4-9_en",
+    "_comment": "Source some DVOR/DME (3 letters): https://www.aro.lfv.se/Editorial/View/6273/ES_AD_2_ESSA_4-51_en",
+    "_comment": "Source some DVOR/DME (3 letters): https://www.aro.lfv.se/Editorial/View/6276/ES_AD_2_ESSA_4-59_en",
     "fixes": {
         "ARC53": ["N59d43m47.80", "E018d06m49.00"],
         "RW01L": ["N59d38m14.11", "E017d54m47.60"],
@@ -479,8 +480,9 @@
         "ARS":   ["N59d35m10.40", "E016d39m01.20"],
         "ASE":   ["N59d38m13.90", "E017d57m26.50"],
         "ASW":   ["N59d35m15.70", "E017d49m10.90"],
+        "ERK":   ["N59d53m46.50", "E018d20m12.90"],
         "HMR":   ["N60d16m45.20", "E018d23m29.60"],
-        "LNA":  ["N59d32m20.30", "E017d21m30.10"],
+        "LNA":   ["N59d32m20.30", "E017d21m30.10"],
         "TEB":   ["N59d31m54.10", "E018d12m11.90"],
         "TRS":   ["N58d56m16.50", "E017d30m08.30"],
         "_SA705178006":   ["N59d31m26.99", "E017d53m40.60"]
@@ -2865,6 +2867,83 @@
             },
             "draw": [
                 ["XILAN", "SA482", "SA481", "SA480", "SA476", "OXINU"]
+            ]
+        },
+        "ELTOK7P": {
+            "icao": "ELTOK7P",
+            "name": "Eltok Seven Papa",
+            "holds":{
+                "ELTOK": "286|left|19min|S230-",
+                "BALVI": "295|left|1min|S230-"
+            },
+            "entryPoints": {
+                "ELTOK": [["@ELTOK", "A110-"]]
+            },
+            "body": ["SA821", "@BALVI"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["ELTOK", "SA821", "BALVI"]
+            ]
+        },
+        "HMR4P": {
+            "icao": "HMR4P",
+            "name": "Hammar Four Papa",
+            "holds":{
+                "HMR": "011|left|19min|S230-",
+                "ERK": "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "HMR": [["@HMR", "A130-"]]
+            },
+            "body": ["SA541", "@ERK"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["HMR", "SA541", "ERK"]
+            ]
+        },
+        "NILUG2P": {
+            "icao": "NILUG2P",
+            "name": "Nilug Two Papa",
+            "holds":{
+                "NILUG": "188|right|1min|S210-",
+                "TEB"  : "178|right|1min|S230-",
+                "ERK"  : "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "NILUG": [["@NILUG", "A170-"]]
+            },
+            "body": ["SA630", "@TEB", "@ERK"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["NILUG", "SA630", "TEB", "ERK"]
+            ]
+        },
+        "XILAN5P": {
+            "icao": "XILAN5P",
+            "name": "Xilan Five Papa",
+            "holds":{
+                "XILAN": "069|left|19min|S230-",
+                "ERK"  : "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "XILAN": [["@XILAN", "A150-"]]
+            },
+            "body": ["SA570", "TEB", "@ERK"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["XILAN", "SA570", "TEB", "ERK"]
             ]
         }
     },
