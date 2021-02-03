@@ -2810,6 +2810,62 @@
             "draw": [
                 ["XILAN", "SA570", "TEB"]
             ]
+        },
+        "ELTOK3N": {
+            "icao": "ELTOK3N",
+            "name": "Eltok Three November",
+            "entryPoints": {
+                "ELTOK": [["ELTOK"]]
+            },
+            "body": [["SA910", "A100+"], ["SA909", "A80+"], ["SA908", "A50+|S230-"], "SA474", ["OXINU", "A25+|S200-"]],
+            "rwy": {
+                "ESSA19R": []
+            },
+            "draw": [
+                ["ELTOK", "SA910", "SA909", "SA908", "SA474", "OXINU"]
+            ]
+        },
+        "HAMMAR3N": {
+            "icao": "HAMMAR3N",
+            "name": "Hammar Three November",
+            "entryPoints": {
+                "HMR": ["HMR"]
+            },
+            "body": [["SA485", "A100+"], ["SA484", "A80+"], ["SA483", "A50+"], "SA475", ["OXINU", "A25+"]],
+            "rwy": {
+                "ESSA19R": []
+            },
+            "draw": [
+                ["HMR", "SA485", "SA484", "SA483", "SA475", "OXINU"]
+            ]
+        },
+        "NILUG2N": {
+            "icao": "NILUG2N",
+            "name": "Nilug Two November",
+            "entryPoints": {
+                "NILUG": ["NILUG"]
+            },
+            "body": [["SA614", "A100+"], ["SA479", "A70+"], ["SA478", "A40+|S230-"], ["SA477", "A40+"], "SA476", ["OXINU", "A25+|S200-"]],
+            "rwy": {
+                "ESSA19R": []
+            },
+            "draw": [
+                ["NILUG", "SA614", "SA479", "SA478", "SA477", "SA476", "OXINU"]
+            ]
+        },
+        "XILAN3N": {
+            "icao": "XILAN3N",
+            "name": "Xilan Three November",
+            "entryPoints": {
+                "XILAN": ["XILAN"]
+            },
+            "body": [["SA482", "A100+"], ["SA481", "A80+"], ["SA480", "A50+|S230-"], "SA476", ["OXINU", "A25+|S200-"]],
+            "rwy": {
+                "ESSA19R": []
+            },
+            "draw": [
+                ["XILAN", "SA482", "SA481", "SA480", "SA476", "OXINU"]
+            ]
         }
     },
     "maps": [
