@@ -25,6 +25,7 @@
 - <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Expand on command parser testing
 - <a href="https://github.com/openscope/openscope/issues/1739" target="_blank">#1739</a> - General code gardening in UiController.js
 - <a href="https://github.com/openscope/openscope/issues/1700" target="_blank">#1700</a> - Convert tutorial contents to JSON
+- <a href="https://github.com/openscope/openscope/issues/1750" target="_blank">#1750</a> - Fix syntax error in airway documentation
 
 
 # 6.22.0 (January 3, 2021)
