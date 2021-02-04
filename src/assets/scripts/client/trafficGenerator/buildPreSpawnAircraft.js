@@ -7,7 +7,7 @@ import _without from 'lodash/without';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 import { TIME } from '../constants/globalConstants';
 import { nm } from '../utilities/unitConverters';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { distance2d } from '../math/distance';
 
 /**
@@ -378,8 +378,9 @@ const _preSpawn = (spawnPatternJson, airport) => {
  * @return {array<object>}
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, currentAirport) => {
-    if (isEmptyObject(spawnPatternJson)) {
-        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
+    if (isEmptyOrNotObject(spawnPatternJson)) {
+        // eslint-disable-next-line max-len
+        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be a non-empty object');
     }
 
     if (_isNil(currentAirport)) {

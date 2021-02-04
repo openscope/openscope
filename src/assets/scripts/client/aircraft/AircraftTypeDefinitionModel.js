@@ -1,6 +1,6 @@
 import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 
 // TODO: abstract these to an appropriate constants file
@@ -27,8 +27,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     constructor(aircraftTypeDefinition) {
         super();
 
-        if (isEmptyObject(aircraftTypeDefinition)) {
-            throw new TypeError('Invalid parameter. Expected aircraftTypeDefinition to be an object');
+        if (isEmptyOrNotObject(aircraftTypeDefinition)) {
+            throw new TypeError('Invalid parameter. Expected aircraftTypeDefinition to be a non-empty object');
         }
 
         /**

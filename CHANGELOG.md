@@ -7,6 +7,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1705" target="_blank">#1705</a> - Re-fix range ring drawing position
 - <a href="https://github.com/openscope/openscope/issues/1707" target="_blank">#1707</a> - Fix minor keyboard input inconsistencies and correct command documentation
 - <a href="https://github.com/openscope/openscope/issues/1716" target="_blank">#1716</a> - Prevent timewarping by negative values
+- <a href="https://github.com/openscope/openscope/issues/1744" target="_blank">#1744</a> - Fix validation helper method for preventing non-empty objects
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1703" target="_blank">#1703</a> - Add more PTL ranges, some including 30sec PTLs
