@@ -26,6 +26,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1739" target="_blank">#1739</a> - General code gardening in UiController.js
 - <a href="https://github.com/openscope/openscope/issues/1700" target="_blank">#1700</a> - Convert tutorial contents to JSON
 - <a href="https://github.com/openscope/openscope/issues/1750" target="_blank">#1750</a> - Fix syntax error in airway documentation
+- <a href="https://github.com/openscope/openscope/issues/1741" target="_blank">#1741</a> - Add support for holding leg lengths of up to 49.9nm
 
 
 # 6.22.0 (January 3, 2021)
