@@ -55,7 +55,8 @@
     "require": [
       "@babel/register",
       "./test/testHelpers/globalProps.js",
-      "./test/testHelpers/localStorage.js"
+      "./test/testHelpers/localStorage.js",
+      "./test/testHelpers/setupBrowserEnv.js"
     ]
   },
   "nyc": {
@@ -92,6 +93,7 @@
     "ava": "1.4.1",
     "babel-eslint": "10.0.1",
     "babelify": "10.0.0",
+    "browser-env": "3.3.0",
     "browserify": "16.2.3",
     "coveralls": "3.0.3",
     "eslint": "5.16.0",
