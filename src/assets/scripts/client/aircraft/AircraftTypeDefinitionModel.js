@@ -151,7 +151,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     init(aircraftTypeDefinition) {
         this.name = aircraftTypeDefinition.name;
-        this.icao = aircraftTypeDefinition.icao.toLowerCase();
+        this.icao = aircraftTypeDefinition.icao;
         this.engines = aircraftTypeDefinition.engines;
         this.weightClass = aircraftTypeDefinition.weightClass;
         this.category = aircraftTypeDefinition.category;
@@ -209,7 +209,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
                 break;
         }
 
-        return aircraftIcao.toUpperCase();
+        return aircraftIcao;
     }
 
     /**

@@ -21,8 +21,9 @@ module.exports = function(gulp, config) {
     const copyStatic = () => {
         const fonts = gulp.src(OPTIONS.GLOB.FONTS).pipe(gulp.dest(OPTIONS.DIR.DIST_FONT));
         const images = gulp.src(OPTIONS.GLOB.IMAGES).pipe(gulp.dest(OPTIONS.DIR.DIST_IMAGES));
+        const tutorial = gulp.src(OPTIONS.GLOB.TUTORIAL).pipe(gulp.dest(OPTIONS.DIR.DIST_TUTORIAL));
 
-        return merge(fonts, images);
+        return merge(fonts, images, tutorial);
     };
 
     gulp.task(OPTIONS.TASKS.JSON.MINIFY, gulp.series(jsonMinify));
