@@ -4,6 +4,7 @@
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
 
 
 # 6.23.0 (February 5, 2021)
