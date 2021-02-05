@@ -5,21 +5,7 @@ import AircraftController from '../../src/assets/scripts/client/aircraft/Aircraf
 import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
 import { airlineControllerFixture } from '../fixtures/airlineFixtures';
 import { scopeModelFixture } from '../fixtures/scopeFixtures';
-import {
-    createNavigationLibraryFixture,
-    resetNavigationLibraryFixture
-} from '../fixtures/navigationLibraryFixtures';
 // import { spawnPatternModelArrivalFixture } from '../fixtures/trafficGeneratorFixtures';
-
-ava.beforeEach(() => {
-    createNavigationLibraryFixture();
-});
-
-ava.afterEach(() => {
-    resetNavigationLibraryFixture();
-});
-
-ava.todo('Tests not available for AircraftController due to $ import');
 
 ava('throws when called with invalid parameters', (t) => {
     t.throws(() => new AircraftController());
