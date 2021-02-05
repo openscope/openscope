@@ -1,3 +1,11 @@
+# 6.24.0 (March 1, 2021)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.23.0 (February 5, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1656" target="_blank">#1656</a> - Add Philadelphia International Airport (KPHL)
