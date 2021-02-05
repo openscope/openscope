@@ -200,7 +200,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     takeoff: {
-        aliases: ['cto', 'to', 'takeoff'],
+        aliases: ['/', 'cto', 'to', 'takeoff'],
         functionName: 'runTakeoff',
         isSystemCommand: false
     },
@@ -210,12 +210,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     timewarp: {
-        aliases: ['timewarp'],
-        functionName: '',
-        isSystemCommand: true
-    },
-    transmit: {
-        aliases: ['transmit'],
+        aliases: ['timewarp', 'tw'],
         functionName: '',
         isSystemCommand: true
     },

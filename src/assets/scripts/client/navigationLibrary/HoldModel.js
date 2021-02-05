@@ -1,8 +1,8 @@
 import _isString from 'lodash/isString';
 import BaseModel from '../base/BaseModel';
 import { radians_normalize } from '../math/circle';
-import { isValidCourseString, isValidDirectionString } from '../parsers/aircraftCommandParser/argumentValidators';
-import { directionNormalizer, isLegLengthArg } from '../parsers/aircraftCommandParser/argumentParsers';
+import { isValidCourseString, isValidDirectionString } from '../commands/parsers/argumentValidators';
+import { directionNormalizer, isLegLengthArg } from '../commands/parsers/argumentParsers';
 import { parseSpeedRestriction } from '../utilities/navigationUtilities';
 import { degreesToRadians } from '../utilities/unitConverters';
 

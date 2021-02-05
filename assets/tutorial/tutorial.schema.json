@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://openscope.co/assets/tutorial/tutorial.schema.json",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/tutorialStep"
+  },
+  "$defs": {
+    "tutorialStep": {
+      "type": "object",
+      "description": "a single tutorial step",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "replace": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "defines a string replacement operation to substitute part of tutorial text with dynamic values obtained from current simulation state",
+            "properties": {
+              "findWhat": {
+                "type": "string",
+                "description": "string to find within tutorial step text"
+              },
+              "replaceWith": {
+                "type": "object",
+                "description": "defines how to fetch a dynamic value based on current simulation state",
+                "properties": {
+                    "object": {
+                      "type": "string",
+                      "description": "object to fetch a property from",
+                      "enum": ["airport","departureAircraft"]
+                    },
+                    "propPath": {
+                      "type": "string",
+                      "description": "property path to fetch some value of the object"
+                    }
+                },
+                "required": [
+                  "object",
+                  "propPath"
+                ],
+                "additionalProperties": false
+              },
+              "comment": {
+                "$ref": "#/$defs/comment"
+              }
+            },
+            "required": [
+              "findWhat",
+              "replaceWith"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "none",
+            "left",
+            "right"
+          ]
+        },
+        "position": {
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "padding": {
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "comment": {
+          "$ref": "#/$defs/comment"
+        }
+      },
+      "required": [
+        "title",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "comment": {
+      "type": "string",
+      "description": "developer comment"
+    }
+  }
+}

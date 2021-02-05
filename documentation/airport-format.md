@@ -15,7 +15,7 @@
   * [Identifiers](#icao-and-iata-identifiers)
   * [Flight Level](#flight-level)
 
-The airport JSON file must be in "[assets/airports](https://github.com/openscope/openscope/tree/develop/assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](https://github.com/openscope/openscope/blob/develop/assets/airports/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
+The airport JSON file must be in "[assets/airports](https://github.com/openscope/openscope/tree/develop/assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.json](https://github.com/openscope/openscope/blob/develop/assets/airports/airportLoadList.json) in alphabetical order. See the [airport load list documentation](https://github.com/openscope/openscope/blob/develop/documentation/airport-load-list.md) for information on the correct structure to use.
 
 ## Example
 
@@ -464,7 +464,7 @@ Runways are defined in pairs because a runway can be used from either direction.
     "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
     "J146": ["LAS", "NOOTN"],
     "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
-    "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+    "J92": ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
     "Q15": ["CHILY", "DOVEE", "BIKKR"],
     "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
 },

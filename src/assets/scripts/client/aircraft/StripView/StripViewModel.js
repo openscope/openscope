@@ -616,6 +616,16 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Scroll into view
+     *
+     * @for StripViewModel
+     * @method scrollIntoView
+     */
+    scrollIntoView() {
+        this.$element[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    /**
      * Return a classname based on whether an aircraft is a `departure` or an `arrival`
      *
      * @for AircraftStripView

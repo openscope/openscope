@@ -1,3 +1,34 @@
+# 6.23.0 (February 5, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1656" target="_blank">#1656</a> - Add Philadelphia International Airport (KPHL)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism
+- <a href="https://github.com/openscope/openscope/issues/1705" target="_blank">#1705</a> - Re-fix range ring drawing position
+- <a href="https://github.com/openscope/openscope/issues/1707" target="_blank">#1707</a> - Fix minor keyboard input inconsistencies and correct command documentation
+- <a href="https://github.com/openscope/openscope/issues/1716" target="_blank">#1716</a> - Prevent timewarping by negative values
+- <a href="https://github.com/openscope/openscope/issues/1744" target="_blank">#1744</a> - Fix validation helper method for preventing non-empty objects
+- <a href="https://github.com/openscope/openscope/issues/1690" target="_blank">#1690</a> - Clear log on airport change
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1703" target="_blank">#1703</a> - Add more PTL ranges, some including 30sec PTLs
+- <a href="https://github.com/openscope/openscope/issues/1697" target="_blank">#1697</a> - Refactor command parsing with new `ParsedCommand` class
+- <a href="https://github.com/openscope/openscope/issues/1699" target="_blank">#1699</a> - Improve command documentation
+- <a href="https://github.com/openscope/openscope/issues/1692" target="_blank">#1692</a> - Remove obsolete caveats for GOATZ1 and DIRBY1 arrivals from KLAX airport guide
+- <a href="https://github.com/openscope/openscope/issues/1677" target="_blank">#1677</a> - Update Munich airport (EDDM) to AIRAC 2015
+- <a href="https://github.com/openscope/openscope/issues/1712" target="_blank">#1712</a> - Centralize z-index declarations for ease of layer management
+- <a href="https://github.com/openscope/openscope/issues/1715" target="_blank">#1715</a> - Sync fast-forward command bar button with timewarp commands
+- <a href="https://github.com/openscope/openscope/issues/1718" target="_blank">#1718</a> - Sync aircraft command map with command definitions
+- <a href="https://github.com/openscope/openscope/issues/1725" target="_blank">#1725</a> - Convert airport load list to JSON
+- <a href="https://github.com/openscope/openscope/issues/217" target="_blank">#217</a> - Differentiate projected path color for selected vs non-selected aircraft
+- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Scroll strip into view when aircraft radar return double clicked
+- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Expand on command parser testing
+- <a href="https://github.com/openscope/openscope/issues/1739" target="_blank">#1739</a> - General code gardening in UiController.js
+- <a href="https://github.com/openscope/openscope/issues/1700" target="_blank">#1700</a> - Convert tutorial contents to JSON
+- <a href="https://github.com/openscope/openscope/issues/1750" target="_blank">#1750</a> - Fix syntax error in airway documentation
+- <a href="https://github.com/openscope/openscope/issues/1741" target="_blank">#1741</a> - Add support for holding leg lengths of up to 49.9nm
+
+
 # 6.22.0 (January 3, 2021)
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1565" target="_blank">#1565</a> - Prevent aircraft from taxiing to a runway they're already holding short of

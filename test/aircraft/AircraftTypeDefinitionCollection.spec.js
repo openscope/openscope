@@ -20,9 +20,9 @@ ava('does not throw when passed valid parameters', (t) => {
 });
 
 ava('.findAircraftTypeDefinitionModelByIcao() returns an AircraftTypeDefinitionModel when provided a valid aircraft icao', (t) => {
-    const expectedResult = 'b737';
+    const expectedResult = 'B737';
     const collection = new AircraftTypeDefinitionCollection(AIRCRAFT_DEFINITION_LIST_MOCK);
-    const result = collection.findAircraftTypeDefinitionModelByIcao('b737');
+    const result = collection.findAircraftTypeDefinitionModelByIcao('B737');
 
     t.true(result instanceof AircraftTypeDefinitionModel);
     t.true(result.icao === expectedResult);
@@ -34,7 +34,7 @@ ava('._buildAircraftTypeDefinitionModelList() returns a list of AircraftTypeDefi
 
     _forEach(results, (result, i) => {
         t.true(result instanceof AircraftTypeDefinitionModel);
-        t.true(result.icao === AIRCRAFT_DEFINITION_LIST_MOCK[i].icao.toLowerCase());
+        t.true(result.icao === AIRCRAFT_DEFINITION_LIST_MOCK[i].icao);
     });
 });
 

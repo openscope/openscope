@@ -6,7 +6,7 @@ import BaseCollection from '../base/BaseCollection';
 import SpawnPatternModel from './SpawnPatternModel';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 
 /**
  * A collection of `SpawnPatternModel` objects
@@ -47,7 +47,7 @@ class SpawnPatternCollection extends BaseCollection {
      * @param airportJson {object}
      */
     init(airportJson) {
-        if (typeof airportJson === 'undefined' || isEmptyObject(airportJson)) {
+        if (isEmptyOrNotObject(airportJson)) {
             throw new TypeError('Invalid airportJson passed to SpawnPatternCollection');
         }
 
@@ -158,10 +158,6 @@ class SpawnPatternCollection extends BaseCollection {
     _buildSpawnPatternModels(spawnPatterns) {
         _forEach(spawnPatterns, (spawnPattern) => {
             const spawnPatternModel = new SpawnPatternModel(spawnPattern);
-            // const spawnPatternModel = ModelSourceFactory.getModelSourceForType(
-            //     'SpawnPatternModel',
-            //     spawnPattern
-            // );
 
             this.addItem(spawnPatternModel);
         });

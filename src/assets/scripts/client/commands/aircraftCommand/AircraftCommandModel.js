@@ -91,7 +91,7 @@ export default class AircraftCommandModel {
     }
 
     /**
-     * Send the initial args, set from the `AircraftCommandParser` right after instantiation, off to
+     * Send the initial args, set from the `CommandParser` right after instantiation, off to
      * the parser for formatting.
      *
      * @for AircraftCommandModel
