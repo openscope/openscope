@@ -10,7 +10,7 @@ import {
     MAP_MOCK_EMPTY,
     DEFAULT_MAPS_MOCK,
     DEFAULT_MAPS_MOCK_EMPTY
-} from './_mocks/mapCollectionlMocks';
+} from './_mocks/mapCollectionMocks';
 
 const currentPosition = ['N44.879722', 'W063.510278', '2181ft'];
 const magneticNorth = -18;
