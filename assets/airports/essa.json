@@ -32,7 +32,7 @@
         {
             "_comment": "Arlanda CTR West + Arlanda CTR East + Overlapping part of Stockholm TMA b",
             "floor":          0,
-            "ceiling":        9500,
+            "ceiling":        95,
             "airspace_class": "C",
             "poly":
             [
@@ -49,8 +49,8 @@
         },
         {
             "_comment": "Stockholm TMA a",
-            "floor":          1200,
-            "ceiling":        9500,
+            "floor":          12,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N60d00m00.00", "E018d00m00.00"]
@@ -65,8 +65,8 @@
         },
         {
             "_comment": "Part of Stockholm TMA b not overlapping Arlanda CTR",
-            "floor":          2000,
-            "ceiling":        9500,
+            "floor":          20,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d40m00.00", "E018d35m00.00"]
@@ -96,8 +96,8 @@
         },
         {
             "_comment": "Stockholm TMA c",
-            "floor":          1500,
-            "ceiling":        9500,
+            "floor":          15,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d11m00.00", "E018d10m00.00"]
@@ -115,8 +115,8 @@
         },
         {
             "_comment": "Stockholm TMA d",
-            "floor":          2000,
-            "ceiling":        9500,
+            "floor":          20,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d09m00.00", "E017d40m00.00"]
@@ -136,8 +136,8 @@
         },
         {
             "_comment": "Stockholm TMA e",
-            "floor":          1200,
-            "ceiling":        9500,
+            "floor":          12,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d41m30.00", "E017d17m30.00"]
@@ -151,8 +151,8 @@
         },
         {
             "_comment": "Stockholm TMA f",
-            "floor":          1500,
-            "ceiling":        9500,
+            "floor":          15,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d51m00.00", "E017d55m00.00"]
@@ -177,8 +177,8 @@
         },
         {
             "_comment": "Stockholm TMA g",
-            "floor":          1200,
-            "ceiling":        9500,
+            "floor":          12,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d28m00.00", "E017d48m00.00"]
@@ -198,8 +198,8 @@
         },
         {
             "_comment": "Stockholm TMA h",
-            "floor":          4500,
-            "ceiling":        9500,
+            "floor":          45,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N59d40m00.00", "E016d45m00.00"]
@@ -221,8 +221,8 @@
         },
         {
             "_comment": "Stockholm TMA i",
-            "floor":          3000,
-            "ceiling":        9500,
+            "floor":          30,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N58d55m00.00", "E017d38m00.00"]
@@ -239,8 +239,8 @@
         },
         {
             "_comment": "Stockholm TMA k",
-            "floor":          6500,
-            "ceiling":        9500,
+            "floor":          65,
+            "ceiling":        95,
             "airspace_class": "C",
             "poly":
             [
@@ -254,8 +254,8 @@
         },
         {
             "_comment": "Stockholm TMA l",
-            "floor":          4500,
-            "ceiling":        9500,
+            "floor":          45,
+            "ceiling":        95,
             "airspace_class": "C",
             "labelPositions": [
                 ["N58d47m00.00", "E018d05m00.00"]
