@@ -48,7 +48,8 @@ class SpawnPatternCollection extends BaseCollection {
      */
     init(airportJson) {
         if (isEmptyOrNotObject(airportJson)) {
-            throw new TypeError('Invalid airportJson passed to SpawnPatternCollection');
+            throw new TypeError('Invalid airportJson passed to SpawnPatternCollection.init. ' +
+                `Expected a non-empty object, but received ${typeof airportJson}`);
         }
 
         this._buildSpawnPatternModels(airportJson.spawnPatterns);
