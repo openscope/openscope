@@ -1,13 +1,18 @@
-import _isArray from 'lodash/isArray';
+import _isNil from 'lodash/isNil';
 import _isNumber from 'lodash/isNumber';
 import _isString from 'lodash/isString';
 import BaseModel from '../base/BaseModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
+import {
+    isEmptyOrNotArray,
+    isEmptyOrNotObject
+} from '../utilities/validatorUtilities';
 
 /**
  * A video map item, containing a collection of map lines
  *
- * Defines a vide omap layer referenced by an `AirportModel` that
+ * Defines a video map layer referenced by an `AirportModel` that
  * contains the map lines to be drawn by the `CanvasController`,
  * as well as a name describing the map contents and a flag
  * allowing rendering of the layer to be suppressed.
@@ -25,18 +30,26 @@ export default class MapModel extends BaseModel {
     constructor(map, airportPosition, magneticNorth) {
         super();
 
-        if (!map || !airportPosition || !_isNumber(magneticNorth)) {
-            throw new TypeError(
-                'Invalid parameter, expected map, airportPosition and magneticNorth to be defined'
-            );
-        } else if (!_isArray(map.lines) || map.lines.length === 0) {
-            throw new TypeError(
-                'Invalid parameter, map.lines must be an array with at least one element'
-            );
-        } else if (!_isString(map.name)) {
-            throw new TypeError(
-                `Invalid parameter, map.name must be a string, but found ${typeof map.name}`
-            );
+        if (_isNil(map) || _isNil(airportPosition) || !_isNumber(magneticNorth)) {
+            throw new TypeError('Invalid parameter(s) passed to MapModel constructor. ' +
+                'Expected map, airportPosition and magneticNorth to be defined, ' +
+                `but received ${typeof map}, ${typeof airportPosition} and ${typeof magneticNorth}`);
+        }
+        if (isEmptyOrNotObject(map)) {
+            throw new TypeError('Invalid map passed to MapModel constructor. ' +
+                `Expected a non-empty object, but received ${typeof map}`);
+        }
+        if (!_isString(map.name)) {
+            throw new TypeError('Invalid map passed to MapModel constructor. ' +
+                `Expected map.name to be a string, but received ${typeof map.name}`);
+        }
+        if (isEmptyOrNotArray(map.lines)) {
+            throw new TypeError('Invalid map passed to MapModel constructor. ' +
+                `Expected map.lines to be a non-empty array, but received ${typeof map.lines}`);
+        }
+        if (!(airportPosition instanceof StaticPositionModel)) {
+            throw new TypeError('Invalid airportPosition passed to MapModel constructor. ' +
+                `Expected instance of StaticPositionModel, but received ${typeof airportPosition}`);
         }
 
         /**
