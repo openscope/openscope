@@ -136,6 +136,12 @@
         "disabled": true
     },
     {
+        "icao": "essa",
+        "level": "easy",
+        "name": "Stockholm Arlanda Airport",
+        "premium": false
+    },
+    {
         "icao": "gcrr",
         "level": "easy",
         "name": "Lanzarote Airport",
