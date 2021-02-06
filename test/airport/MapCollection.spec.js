@@ -7,9 +7,7 @@ import {
     MAP_NAMES_MOCK_EMPTY,
     MAP_MOCK,
     MAP_MOCK_LEGACY,
-    MAP_MOCK_EMPTY,
-    DEFAULT_MAPS_MOCK,
-    DEFAULT_MAPS_MOCK_EMPTY
+    DEFAULT_MAPS_MOCK
 } from './_mocks/mapCollectionMocks';
 
 const currentPosition = ['N44.879722', 'W063.510278', '2181ft'];
@@ -153,14 +151,6 @@ ava('throws if called with invalid airportPositionModel', t => {
 
 ava('throws if called with a legacy map', t => {
     t.throws(() => new MapCollection(MAP_MOCK_LEGACY, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
-});
-
-ava('throws if called with an empty map array', t => {
-    t.throws(() => new MapCollection(MAP_MOCK_EMPTY, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
-});
-
-ava('throws if called with an empty defaultMaps array', t => {
-    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK_EMPTY, airportPositionFixtureKCYHZ, magneticNorth));
 });
 
 ava('does not throw when instantiated with a 0 magneticNorth', t => {
