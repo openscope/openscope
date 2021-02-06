@@ -5,6 +5,7 @@
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
+- <a href="https://github.com/openscope/openscope/issues/1758" target="_blank">#1758</a> - Update GitHub build status badge
 
 
 # 6.23.0 (February 5, 2021)
