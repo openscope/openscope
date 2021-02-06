@@ -1869,381 +1869,6 @@
     "_comment": "Source runway 19R SIDs: https://www.aro.lfv.se/Editorial/View/7577/ES_AD_2_ESSA_4-37_en",
     "_comment": "Source runway 26 SIDs: https://www.aro.lfv.se/Editorial/View/7578/ES_AD_2_ESSA_4-41_en",
     "sids": {
-        "AROS5C": {
-            "icao": "AROS5C",
-            "name": "Aros Five Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA723"],
-            "exitPoints": {
-                "ARS": ["ARS"]
-            },
-            "draw": [
-                ["SA421", "SA850", "SA851", "SA723", "ARS"]
-            ]
-        },
-        "BABAP4C": {
-            "icao": "BABAP4C",
-            "name": "Babap Four Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402", "SA422"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA421", "SA401", "SA402", "SA422", "BABAP"]
-            ]
-        },
-        "KOGAV4C": {
-            "icao": "KOGAV4C",
-            "name": "Kogav Four Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A05+"], "SA401", "SA403"],
-            "exitPoints": {
-                "KOGAV": ["KOGAV"]
-            },
-            "draw": [
-                ["SA421", "SA401", "SA403", "KOGAV"]
-            ]
-        },
-        "MENGA2C": {
-            "icao": "MENGA2C",
-            "name": "Menga Two Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA702", "SA703", "MENGA"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA421", "SA850", "SA851", "SA702", "SA703", "MENGA", "BABAP"]
-            ]
-        },
-        "NOSLI5C": {
-            "icao": "NOSLI5C",
-            "name": "Nosli Five Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA421", "SA850", "SA851", "SA724", "NOSLI"]
-            ]
-        },
-        "PETEV1C": {
-            "icao": "PETEV1C",
-            "name": "Petev One Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
-            "exitPoints": {
-                "PETEV": ["PETEV"]
-            },
-            "draw": [
-                ["SA421", "SA850", "SA851", "SA724", "PETEV"]
-            ]
-        },
-        "RESNA4C": {
-            "icao": "RESNA4C",
-            "name": "Resna Four Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A05+"], "SA401"],
-            "exitPoints": {
-                "RESNA": ["RESNA"]
-            },
-            "draw": [
-                ["SA421", "SA401", "RESNA"]
-            ]
-        },
-        "TOVRI5C": {
-            "icao": "TOVRI5C",
-            "name": "Tovri Five Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402"],
-            "exitPoints": {
-                "TOVRI": ["TOVRI"]
-            },
-            "draw": [
-                ["SA421", "SA401", "SA402", "TOVRI"]
-            ]
-        },
-        "TROSA5C": {
-            "icao": "TROSA5C",
-            "name": "Trosa Five Charlie",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01L": []
-            },
-            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA421", "SA850", "SA851", "SA724", "TRS"]
-            ]
-        },
-        "AROS3B": {
-            "icao": "AROS3B",
-            "name": "Aros Three Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA423", "A25+"], "SA864"],
-            "exitPoints": {
-                "ARS": ["ARS"]
-            },
-            "draw": [
-                ["SA423", "SA864", "ARS"]
-            ]
-        },
-        "BABAP3B": {
-            "icao": "BABAP3B",
-            "name": "Babap Three Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "SA406"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA404", "SA405", "SA406", "BABAP"]
-            ]
-        },
-        "KOGAV3B": {
-            "icao": "KOGAV3B",
-            "name": "Kogav Three Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA404", "A06+"], "SA408"],
-            "exitPoints": {
-                "KOGAV": ["KOGAV"]
-            },
-            "draw": [
-                ["SA404", "SA408", "KOGAV"]
-            ]
-        },
-        "NOSLI4B": {
-            "icao": "NOSLI4B",
-            "name": "Nosli Four Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA423", "SA864", "SA851", "SA724", "NOSLI"]
-            ]
-        },
-        "PETEV1B": {
-            "icao": "PETEV1B",
-            "name": "Petev One Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA423", "A25+"], "SA864", "SA854"],
-            "exitPoints": {
-                "PETEV": ["PETEV"]
-            },
-            "draw": [
-                ["SA423", "SA864", "SA854", "PETEV"]
-            ]
-        },
-        "RESNA3B": {
-            "icao": "RESNA3B",
-            "name": "Resna Three Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA404", "A06+"], "SA409"],
-            "exitPoints": {
-                "RESNA": ["RESNA"]
-            },
-            "draw": [
-                ["SA404", "SA409", "RESNA"]
-            ]
-        },
-        "TOVRI4B": {
-            "icao": "TOVRI4B",
-            "name": "Tovri Four Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"]],
-            "exitPoints": {
-                "TOVRI": ["TOVRI"]
-            },
-            "draw": [
-                ["SA404", "SA405", "TOVRI"]
-            ]
-        },
-        "TROSA4B": {
-            "icao": "TROSA4B",
-            "name": "Trosa Four Bravo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA01R": []
-            },
-            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA423", "SA864", "SA851", "SA724", "TRS"]
-            ]
-        },
-        "AROS3L": {
-            "icao": "AROS3L",
-            "name": "Aros Three Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA723"],
-            "exitPoints": {
-                "ARS": ["ARS"]
-            },
-            "draw": [
-                ["SA412", "SA424", "SA857", "SA851", "SA723", "ARS"]
-            ]
-        },
-        "BABAP3L": {
-            "icao": "BABAP3L",
-            "name": "Babap Three Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], "SA416"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA412", "SA416", "BABAP"]
-            ]
-        },
-        "KOGAV3L": {
-            "icao": "KOGAV3L",
-            "name": "Kogav Three Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415"],
-            "exitPoints": {
-                "KOGAV": ["KOGAV"]
-            },
-            "draw": [
-                ["SA412", "SA413", "SA415", "KOGAV"]
-            ]
-        },
-        "NOSLI5L": {
-            "icao": "NOSLI5L",
-            "name": "Nosli Five Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA412", "SA424", "SA857", "SA851", "SA724", "NOSLI"]
-            ]
-        },
-        "PETEV1L": {
-            "icao": "PETEV1L",
-            "name": "Petev One Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
-            "exitPoints": {
-                "PETEV": ["PETEV"]
-            },
-            "draw": [
-                ["SA412", "SA424", "SA857", "SA851", "SA724", "PETEV"]
-            ]
-        },
-        "RESNA3L": {
-            "icao": "RESNA3L",
-            "name": "Resna Three Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "SA417"],
-            "exitPoints": {
-                "RESNA": ["RESNA"]
-            },
-            "draw": [
-                ["SA412", "SA413", "SA415", "SA417", "RESNA"]
-            ]
-        },
-        "TOVRI4L": {
-            "icao": "TOVRI4L",
-            "name": "Tovri Four Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"]],
-            "exitPoints": {
-                "TOVRI": ["TOVRI"]
-            },
-            "draw": [
-                ["SA412", "TOVRI"]
-            ]
-        },
-        "TROSA5L": {
-            "icao": "TROSA5L",
-            "name": "Trosa Five Lima",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA412", "SA424", "SA857", "SA851", "SA724", "TRS"]
-            ]
-        },
         "ABENI3R": {
             "icao": "ABENI3R",
             "name": "Abeni Three Romeo",
@@ -2257,111 +1882,6 @@
             },
             "draw": [
                 ["SA418", "SA557", "ABENI", "PETEV"]
-            ]
-        },
-        "BABAP3R": {
-            "icao": "BABAP3R",
-            "name": "Babap Three Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"], "SA416"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA418", "SA416", "BABAP"]
-            ]
-        },
-        "DIGLI3R": {
-            "icao": "DIGLI3R",
-            "name": "Digli Three Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "DIGLI"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA418", "SA557", "SA717", "DIGLI", "NOSLI"]
-            ]
-        },
-        "GALNU3R": {
-            "icao": "GALNU3R",
-            "name": "Galnu Three Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "SA718", "GALNU"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA418", "SA557", "SA717", "SA718", "GALNU", "TRS"]
-            ]
-        },
-        "LUMAX4R": {
-            "icao": "LUMAX4R",
-            "name": "Lumax Four Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "LUMAX"],
-            "exitPoints": {
-                "RESNA": ["RESNA"]
-            },
-            "draw": [
-                ["SA418", "SA558", "ARL", "SA860", "LUMAX", "RESNA"]
-            ]
-        },
-        "ROKNI3R": {
-            "icao": "ROKNI3R",
-            "name": "Rokni Three Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA716", "ROKNI"],
-            "exitPoints": {
-                "ARS": ["ARS"]
-            },
-            "draw": [
-                ["SA418", "SA557", "SA716", "ROKNI", "ARS"]
-            ]
-        },
-        "TALEK4R": {
-            "icao": "TALEK4R",
-            "name": "Talek Four Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "TALEK"],
-            "exitPoints": {
-                "KOGAV": ["KOGAV"]
-            },
-            "draw": [
-                ["SA418", "SA558", "ARL", "SA860", "TALEK", "KOGAV"]
-            ]
-        },
-        "TOVRI4R": {
-            "icao": "TOVRI4R",
-            "name": "Tovri Four Romeo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA08": []
-            },
-            "body": [["^SA418", "A05+"]],
-            "exitPoints": {
-                "TOVRI": ["TOVRI"]
-            },
-            "draw": [
-                ["SA418", "TOVRI"]
             ]
         },
         "ABENI5Q": {
@@ -2379,289 +1899,19 @@
                 ["SA551", "SA564", "SA727", "ABENI", "PETEV"]
             ]
         },
-        "AROS5E": {
-            "icao": "AROS5E",
-            "name": "Aros Five Echo",
+        "AROS3B": {
+            "icao": "AROS3B",
+            "name": "Aros Three Bravo",
             "altitude": 5000,
             "rwy": {
-                "ESSA19L": []
+                "ESSA01R": []
             },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA567", "A15+|220-"], "SA726"],
+            "body": [["^SA423", "A25+"], "SA864"],
             "exitPoints": {
                 "ARS": ["ARS"]
             },
             "draw": [
-                ["SA551", "SA561", "SA567", "SA726", "ARS"]
-            ]
-        },
-        "BABAP3E": {
-            "icao": "BABAP3E",
-            "name": "Babap Three Echo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "SA411"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA551", "SA552", "SA411", "BABAP"]
-            ]
-        },
-        "DIGLI5Q": {
-            "icao": "DIGLI5Q",
-            "name": "Digli Five Quebec",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "DIGLI"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA551", "SA564", "SA727", "SA728", "DIGLI", "NOSLI"]
-            ]
-        },
-        "GALNU5Q": {
-            "icao": "GALNU5Q",
-            "name": "Galnu Five Quebec",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "SA729", "GALNU"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA551", "SA564", "SA727", "SA728", "SA729", "GALNU", "TRS"]
-            ]
-        },
-        "LUMAX5Q": {
-            "icao": "LUMAX5Q",
-            "name": "Lumax Five Quebec",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "LUMAX"],
-            "exitPoints": {
-                "RESNA": ["RESNA"]
-            },
-            "draw": [
-                ["SA551", "SA564", "SA709", "SA710", "SA855", "LUMAX", "RESNA"]
-            ]
-        },
-        "NOSLI5E": {
-            "icao": "NOSLI5E",
-            "name": "Nosli Five Echo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA551", "SA561", "SA566", "SA728", "NOSLI"]
-            ]
-        },
-        "PETEV1E": {
-            "icao": "PETEV1E",
-            "name": "Petev One Echo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728"],
-            "exitPoints": {
-                "PETEV": ["PETEV"]
-            },
-            "draw": [
-                ["SA551", "SA561", "SA566", "SA728", "PETEV"]
-            ]
-        },
-        "ROKNI5Q": {
-            "icao": "ROKNI5Q",
-            "name": "Rokni Five Quebec",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "ROKNI"],
-            "exitPoints": {
-                "ARS": ["ARS"]
-            },
-            "draw": [
-                ["SA551", "SA564", "SA709", "ROKNI", "ARS"]
-            ]
-        },
-        "TALEK5Q": {
-            "icao": "TALEK5Q",
-            "name": "Talek Five Quebec",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "TALEK"],
-            "exitPoints": {
-                "KOGAV": ["KOGAV"]
-            },
-            "draw": [
-                ["SA551", "SA564", "SA709", "SA710", "SA855", "TALEK", "KOGAV"]
-            ]
-        },
-        "TOVRI4E": {
-            "icao": "TOVRI4E",
-            "name": "Tovri Four Echo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"]],
-            "exitPoints": {
-                "TOVRI": ["TOVRI"]
-            },
-            "draw": [
-                ["SA551", "SA552", "TOVRI"]
-            ]
-        },
-        "TROSA5E": {
-            "icao": "TROSA5E",
-            "name": "Trosa Five Echo",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19L": []
-            },
-            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "SA729"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA551", "SA561", "SA566", "SA728", "SA729", "TRS"]
-            ]
-        },
-        "AROS5G": {
-            "icao": "AROS5G",
-            "name": "Aros Five Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
-            "exitPoints": {
-                "ARS": ["ARS"]
-            },
-            "draw": [
-                ["SA705", "SA704", "SA706", "ARS"]
-            ]
-        },
-        "BABAP3G": {
-            "icao": "BABAP3G",
-            "name": "Babap Three Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "SA507"],
-            "exitPoints": {
-                "BABAP": ["BABAP"]
-            },
-            "draw": [
-                ["SA705", "_SA705178006", "SA553", "SA507", "BABAP"]
-            ]
-        },
-        "KOGAV5G": {
-            "icao": "KOGAV5G",
-            "name": "Kogav Five Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855"],
-            "exitPoints": {
-                "KOGAV": ["KOGAV"]
-            },
-            "draw": [
-                ["SA705", "SA704", "SA706", "SA722", "SA855", "KOGAV"]
-            ]
-        },
-        "NOSLI5G": {
-            "icao": "NOSLI5G",
-            "name": "Nosli Five Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
-            "exitPoints": {
-                "NOSLI": ["NOSLI"]
-            },
-            "draw": [
-                ["SA705", "SA704", "SA706", "NOSLI"]
-            ]
-        },
-        "PETEV1G": {
-            "icao": "PETEV1G",
-            "name": "Petev One Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
-            "exitPoints": {
-                "PETEV": ["PETEV"]
-            },
-            "draw": [
-                ["SA705", "SA704", "SA706", "PETEV"]
-            ]
-        },
-        "RESNA5G": {
-            "icao": "RESNA5G",
-            "name": "Resna Five Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855"],
-            "exitPoints": {
-                "RESNA": ["RESNA"]
-            },
-            "draw": [
-                ["SA705", "SA704", "SA706", "SA722", "SA855", "RESNA"]
-            ]
-        },
-        "TOVRI4G": {
-            "icao": "TOVRI4G",
-            "name": "Tovri Four Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553"],
-            "exitPoints": {
-                "TOVRI": ["TOVRI"]
-            },
-            "draw": [
-                ["SA705", "_SA705178006", "SA553", "TOVRI"]
-            ]
-        },
-        "TROSA5G": {
-            "icao": "TROSA5G",
-            "name": "Trosa Five Golf",
-            "altitude": 5000,
-            "rwy": {
-                "ESSA19R": []
-            },
-            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA708"],
-            "exitPoints": {
-                "TRS": ["TRS"]
-            },
-            "draw": [
-                ["SA705", "SA704", "SA706", "SA708", "TRS"]
+                ["SA423", "SA864", "ARS"]
             ]
         },
         "AROS3K": {
@@ -2679,6 +1929,111 @@
                 ["SA871", "SA861", "ARS"]
             ]
         },
+        "AROS3L": {
+            "icao": "AROS3L",
+            "name": "Aros Three Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA723"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA723", "ARS"]
+            ]
+        },
+        "AROS5C": {
+            "icao": "AROS5C",
+            "name": "Aros Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA723"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA421", "SA850", "SA851", "SA723", "ARS"]
+            ]
+        },
+        "AROS5E": {
+            "icao": "AROS5E",
+            "name": "Aros Five Echo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA567", "A15+|220-"], "SA726"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA567", "SA726", "ARS"]
+            ]
+        },
+        "AROS5G": {
+            "icao": "AROS5G",
+            "name": "Aros Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "ARS"]
+            ]
+        },
+        "BABAP3B": {
+            "icao": "BABAP3B",
+            "name": "Babap Three Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"], "SA406"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA404", "SA405", "SA406", "BABAP"]
+            ]
+        },
+        "BABAP3E": {
+            "icao": "BABAP3E",
+            "name": "Babap Three Echo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"], "SA411"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA551", "SA552", "SA411", "BABAP"]
+            ]
+        },
+        "BABAP3G": {
+            "icao": "BABAP3G",
+            "name": "Babap Three Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553", "SA507"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA705", "_SA705178006", "SA553", "SA507", "BABAP"]
+            ]
+        },
         "BABAP3K": {
             "icao": "BABAP3K",
             "name": "Babap Three Kilo",
@@ -2692,6 +2047,126 @@
             },
             "draw": [
                 ["SA871", "SA861", "SA702", "SA703", "BABAP"]
+            ]
+        },
+        "BABAP3L": {
+            "icao": "BABAP3L",
+            "name": "Babap Three Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], "SA416"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA412", "SA416", "BABAP"]
+            ]
+        },
+        "BABAP3R": {
+            "icao": "BABAP3R",
+            "name": "Babap Three Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "SA416"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA418", "SA416", "BABAP"]
+            ]
+        },
+        "BABAP4C": {
+            "icao": "BABAP4C",
+            "name": "Babap Four Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402", "SA422"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA421", "SA401", "SA402", "SA422", "BABAP"]
+            ]
+        },
+        "DIGLI3R": {
+            "icao": "DIGLI3R",
+            "name": "Digli Three Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "DIGLI"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA418", "SA557", "SA717", "DIGLI", "NOSLI"]
+            ]
+        },
+        "DIGLI5Q": {
+            "icao": "DIGLI5Q",
+            "name": "Digli Five Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "DIGLI"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA727", "SA728", "DIGLI", "NOSLI"]
+            ]
+        },
+        "GALNU3R": {
+            "icao": "GALNU3R",
+            "name": "Galnu Three Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA717", "SA718", "GALNU"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA418", "SA557", "SA717", "SA718", "GALNU", "TRS"]
+            ]
+        },
+        "GALNU5Q": {
+            "icao": "GALNU5Q",
+            "name": "Galnu Five Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA727", "SA728", "SA729", "GALNU"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA727", "SA728", "SA729", "GALNU", "TRS"]
+            ]
+        },
+        "KOGAV3B": {
+            "icao": "KOGAV3B",
+            "name": "Kogav Three Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], "SA408"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA404", "SA408", "KOGAV"]
             ]
         },
         "KOGAV3K": {
@@ -2709,6 +2184,96 @@
                 ["SA871", "SA862", "SA420", "KOGAV"]
             ]
         },
+        "KOGAV3L": {
+            "icao": "KOGAV3L",
+            "name": "Kogav Three Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA412", "SA413", "SA415", "KOGAV"]
+            ]
+        },
+        "KOGAV4C": {
+            "icao": "KOGAV4C",
+            "name": "Kogav Four Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A05+"], "SA401", "SA403"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA421", "SA401", "SA403", "KOGAV"]
+            ]
+        },
+        "KOGAV5G": {
+            "icao": "KOGAV5G",
+            "name": "Kogav Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "SA722", "SA855", "KOGAV"]
+            ]
+        },
+        "LUMAX4R": {
+            "icao": "LUMAX4R",
+            "name": "Lumax Four Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "LUMAX"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA418", "SA558", "ARL", "SA860", "LUMAX", "RESNA"]
+            ]
+        },
+        "LUMAX5Q": {
+            "icao": "LUMAX5Q",
+            "name": "Lumax Five Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "LUMAX"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA709", "SA710", "SA855", "LUMAX", "RESNA"]
+            ]
+        },
+        "MENGA2C": {
+            "icao": "MENGA2C",
+            "name": "Menga Two Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA702", "SA703", "MENGA"],
+            "exitPoints": {
+                "BABAP": ["BABAP"]
+            },
+            "draw": [
+                ["SA421", "SA850", "SA851", "SA702", "SA703", "MENGA", "BABAP"]
+            ]
+        },
         "NOSLI3K": {
             "icao": "NOSLI3K",
             "name": "Nosli Three Kilo",
@@ -2722,6 +2287,141 @@
             },
             "draw": [
                 ["SA871", "SA861", "NOSLI"]
+            ]
+        },
+        "NOSLI4B": {
+            "icao": "NOSLI4B",
+            "name": "Nosli Four Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA423", "SA864", "SA851", "SA724", "NOSLI"]
+            ]
+        },
+        "NOSLI5C": {
+            "icao": "NOSLI5C",
+            "name": "Nosli Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA421", "SA850", "SA851", "SA724", "NOSLI"]
+            ]
+        },
+        "NOSLI5E": {
+            "icao": "NOSLI5E",
+            "name": "Nosli Five Echo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA566", "SA728", "NOSLI"]
+            ]
+        },
+        "NOSLI5G": {
+            "icao": "NOSLI5G",
+            "name": "Nosli Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "NOSLI"]
+            ]
+        },
+        "NOSLI5L": {
+            "icao": "NOSLI5L",
+            "name": "Nosli Five Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
+            "exitPoints": {
+                "NOSLI": ["NOSLI"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA724", "NOSLI"]
+            ]
+        },
+        "PETEV1B": {
+            "icao": "PETEV1B",
+            "name": "Petev One Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "SA854"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA423", "SA864", "SA854", "PETEV"]
+            ]
+        },
+        "PETEV1C": {
+            "icao": "PETEV1C",
+            "name": "Petev One Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA421", "SA850", "SA851", "SA724", "PETEV"]
+            ]
+        },
+        "PETEV1E": {
+            "icao": "PETEV1E",
+            "name": "Petev One Echo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA566", "SA728", "PETEV"]
+            ]
+        },
+        "PETEV1G": {
+            "icao": "PETEV1G",
+            "name": "Petev One Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "PETEV"]
             ]
         },
         "PETEV1K": {
@@ -2739,6 +2439,36 @@
                 ["SA871", "SA861", "PETEV"]
             ]
         },
+        "PETEV1L": {
+            "icao": "PETEV1L",
+            "name": "Petev One Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
+            "exitPoints": {
+                "PETEV": ["PETEV"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA724", "PETEV"]
+            ]
+        },
+        "RESNA3B": {
+            "icao": "RESNA3B",
+            "name": "Resna Three Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], "SA409"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA404", "SA409", "RESNA"]
+            ]
+        },
         "RESNA3K": {
             "icao": "RESNA3K",
             "name": "Resna Three Kilo",
@@ -2752,6 +2482,156 @@
             },
             "draw": [
                 ["SA871", "SA862", "RESNA"]
+            ]
+        },
+        "RESNA3L": {
+            "icao": "RESNA3L",
+            "name": "Resna Three Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA413", "A15+|S210-"], "SA415", "SA417"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA412", "SA413", "SA415", "SA417", "RESNA"]
+            ]
+        },
+        "RESNA4C": {
+            "icao": "RESNA4C",
+            "name": "Resna Four Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A05+"], "SA401"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA421", "SA401", "RESNA"]
+            ]
+        },
+        "RESNA5G": {
+            "icao": "RESNA5G",
+            "name": "Resna Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA722", "SA855"],
+            "exitPoints": {
+                "RESNA": ["RESNA"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "SA722", "SA855", "RESNA"]
+            ]
+        },
+        "ROKNI3R": {
+            "icao": "ROKNI3R",
+            "name": "Rokni Three Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], ["SA557", "A15+|S205-"], "SA716", "ROKNI"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA418", "SA557", "SA716", "ROKNI", "ARS"]
+            ]
+        },
+        "ROKNI5Q": {
+            "icao": "ROKNI5Q",
+            "name": "Rokni Five Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "ROKNI"],
+            "exitPoints": {
+                "ARS": ["ARS"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA709", "ROKNI", "ARS"]
+            ]
+        },
+        "TALEK4R": {
+            "icao": "TALEK4R",
+            "name": "Talek Four Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"], "SA558", ["ARL", "A25+|S205-"], "SA860", "TALEK"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA418", "SA558", "ARL", "SA860", "TALEK", "KOGAV"]
+            ]
+        },
+        "TALEK5Q": {
+            "icao": "TALEK5Q",
+            "name": "Talek Five Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A05+"], ["SA564", "A15+|S220-"], "SA709", "SA710", "SA855", "TALEK"],
+            "exitPoints": {
+                "KOGAV": ["KOGAV"]
+            },
+            "draw": [
+                ["SA551", "SA564", "SA709", "SA710", "SA855", "TALEK", "KOGAV"]
+            ]
+        },
+        "TOVRI4B": {
+            "icao": "TOVRI4B",
+            "name": "Tovri Four Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA404", "A06+"], ["SA405", "A15+|S210-"]],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA404", "SA405", "TOVRI"]
+            ]
+        },
+        "TOVRI4E": {
+            "icao": "TOVRI4E",
+            "name": "Tovri Four Echo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA552", "A15+|S205-"]],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA551", "SA552", "TOVRI"]
+            ]
+        },
+        "TOVRI4G": {
+            "icao": "TOVRI4G",
+            "name": "Tovri Four Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["_SA705178006", "A25+|S205-"], "SA553"],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA705", "_SA705178006", "SA553", "TOVRI"]
             ]
         },
         "TOVRI4K": {
@@ -2769,6 +2649,51 @@
                 ["SA871", "SA419", "TOVRI"]
             ]
         },
+        "TOVRI4L": {
+            "icao": "TOVRI4L",
+            "name": "Tovri Four Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"]],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA412", "TOVRI"]
+            ]
+        },
+        "TOVRI4R": {
+            "icao": "TOVRI4R",
+            "name": "Tovri Four Romeo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA418", "A05+"]],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA418", "TOVRI"]
+            ]
+        },
+        "TOVRI5C": {
+            "icao": "TOVRI5C",
+            "name": "Tovri Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A05+"], ["SA401", "A25+|S205-"], "SA402"],
+            "exitPoints": {
+                "TOVRI": ["TOVRI"]
+            },
+            "draw": [
+                ["SA421", "SA401", "SA402", "TOVRI"]
+            ]
+        },
         "TROSA3K": {
             "icao": "TROSA3K",
             "name": "Trosa Three Kilo",
@@ -2782,6 +2707,81 @@
             },
             "draw": [
                 ["SA871", "SA861", "SA719", "TRS"]
+            ]
+        },
+        "TROSA4B": {
+            "icao": "TROSA4B",
+            "name": "Trosa Four Bravo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01R": []
+            },
+            "body": [["^SA423", "A25+"], "SA864", "SA851", "SA724"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA423", "SA864", "SA851", "SA724", "TRS"]
+            ]
+        },
+        "TROSA5C": {
+            "icao": "TROSA5C",
+            "name": "Trosa Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA01L": []
+            },
+            "body": [["^SA421", "A06+"], ["SA850", "A15+|S205-"], "SA851", "SA724"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA421", "SA850", "SA851", "SA724", "TRS"]
+            ]
+        },
+        "TROSA5E": {
+            "icao": "TROSA5E",
+            "name": "Trosa Five Echo",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19L": []
+            },
+            "body": [["^SA551", "A06+"], ["SA561", "A15+|S205-"], ["SA566", "A15+|S220-"], "SA728", "SA729"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA551", "SA561", "SA566", "SA728", "SA729", "TRS"]
+            ]
+        },
+        "TROSA5G": {
+            "icao": "TROSA5G",
+            "name": "Trosa Five Golf",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA19R": []
+            },
+            "body": ["^SA705", ["SA704", "A21+|S220-"], "SA706", "SA708"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA705", "SA704", "SA706", "SA708", "TRS"]
+            ]
+        },
+        "TROSA5L": {
+            "icao": "TROSA5L",
+            "name": "Trosa Five Lima",
+            "altitude": 5000,
+            "rwy": {
+                "ESSA08": []
+            },
+            "body": [["^SA412", "A06+"], ["SA424", "A25+|S205-"], "SA857", "SA851", "SA724"],
+            "exitPoints": {
+                "TRS": ["TRS"]
+            },
+            "draw": [
+                ["SA412", "SA424", "SA857", "SA851", "SA724", "TRS"]
             ]
         }
     },
