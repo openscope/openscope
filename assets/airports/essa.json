@@ -2807,46 +2807,50 @@
                 ["ELTOK", "SA912", "SA810", "SA815", "SA808", "SA816", "SA802", "SA801"]
             ]
         },
-        "HAMMAR3J": {
-            "icao": "HAMMAR3J",
-            "name": "Hammar Three Juliet",
+        "ELTOK3N": {
+            "icao": "ELTOK3N",
+            "name": "Eltok Three November",
             "entryPoints": {
-                "HMR": ["HMR"]
+                "ELTOK": [["ELTOK"]]
             },
-            "body": [["SA500", "A100+"], ["SA499", "A80+"], "SA602", ["SA604", "A50+"], ["SA605", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "body": [["SA910", "A100+"], ["SA909", "A80+"], ["SA908", "A50+|S230-"], "SA474", ["OXINU", "A25+|S200-"]],
             "rwy": {
-                "ESSA01L": []
+                "ESSA19R": []
             },
             "draw": [
-                ["HMR", "SA500", "SA499", "SA602", "SA604", "SA605", "SA802", "SA801"]
+                ["ELTOK", "SA910", "SA909", "SA908", "SA474", "OXINU"]
             ]
         },
-        "NILUG2J": {
-            "icao": "NILUG2J",
-            "name": "Nilug Two Juliet",
+        "ELTOK3V": {
+            "icao": "ELTOK3V",
+            "name": "Eltok Three Victor",
             "entryPoints": {
-                "NILUG": ["NILUG"]
+                "ELTOK": ["ELTOK"]
             },
-            "body": [["SA818", "A100+"], ["SA817", "A80+"], ["SA811", "A50+"], "SA802", ["SA801", "A25+"]],
+            "body": [["SA911", "A100+"], ["SA491", "A80+"], ["SA490", "A50+|S230-"], "SA472", "SA471", ["EKDAS", "A25+|S200-"]],
             "rwy": {
-                "ESSA01L": []
+                "ESSA26": []
             },
             "draw": [
-                ["NILUG", "SA818", "SA817", "SA811", "SA802", "SA801"]
+                ["ELTOK", "SA911", "SA491", "SA490", "SA472", "SA471", "EKDAS"]
             ]
         },
-        "XILAN3J": {
-            "icao": "XILAN3J",
-            "name": "Xilan Three Juliet",
-            "entryPoints": {
-                "XILAN": ["XILAN"]
+        "ELTOK4T": {
+            "icao": "ELTOK4T",
+            "name": "Eltok Four Tango",
+            "holds": {
+                "ELTOK": "286|left|1.5min|S230-",
+                "ERK"  : "038|left|1min|S230-"
             },
-            "body": [["SA619", "A100+"], ["SA618", "A80+"], ["SA604", "A50+"], ["SA605", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "entryPoints": {
+                "ELTOK": [["@ELTOK", "A150-"]]
+            },
+            "body": ["SA865", "@ERK"],
             "rwy": {
-                "ESSA01L": []
+                "ESSA26": []
             },
             "draw": [
-                ["XILAN", "SA619", "SA618", "SA604", "SA605", "SA802", "SA801"]
+                ["ELTOK", "SA865", "ERK"]
             ]
         },
         "ELTOK7M": {
@@ -2868,6 +2872,122 @@
                 ["ELTOK", "SA820", "SA854", "LNA"]
             ]
         },
+        "ELTOK7P": {
+            "icao": "ELTOK7P",
+            "name": "Eltok Seven Papa",
+            "holds": {
+                "ELTOK": "286|left|1.5min|S230-",
+                "BALVI": "295|left|1min|S230-"
+            },
+            "entryPoints": {
+                "ELTOK": [["@ELTOK", "A110-"]]
+            },
+            "body": ["SA821", "@BALVI"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["ELTOK", "SA821", "BALVI"]
+            ]
+        },
+        "ELTOK7S": {
+            "icao": "ELTOK7S",
+            "name": "Eltok Seven Sierra",
+            "holds": {
+                "ELTOK": "286|left|1.5min|S230-",
+                "BALVI": "295|left|1min|S230-"
+            },
+            "entryPoints": {
+                "ELTOK": [["@ELTOK", "A110-"]]
+            },
+            "body": ["SA821", "@BALVI"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["ELTOK", "SA821", "BALVI"]
+            ]
+        },
+        "HAMMAR3J": {
+            "icao": "HAMMAR3J",
+            "name": "Hammar Three Juliet",
+            "entryPoints": {
+                "HMR": ["HMR"]
+            },
+            "body": [["SA500", "A100+"], ["SA499", "A80+"], "SA602", ["SA604", "A50+"], ["SA605", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["HMR", "SA500", "SA499", "SA602", "SA604", "SA605", "SA802", "SA801"]
+            ]
+        },
+        "HAMMAR3N": {
+            "icao": "HAMMAR3N",
+            "name": "Hammar Three November",
+            "entryPoints": {
+                "HMR": ["HMR"]
+            },
+            "body": [["SA485", "A100+"], ["SA484", "A80+"], ["SA483", "A50+"], "SA475", ["OXINU", "A25+"]],
+            "rwy": {
+                "ESSA19R": []
+            },
+            "draw": [
+                ["HMR", "SA485", "SA484", "SA483", "SA475", "OXINU"]
+            ]
+        },
+        "HAMMAR3V": {
+            "icao": "HAMMAR3V",
+            "name": "Hammar Three Victor",
+            "entryPoints": {
+                "HMR": ["HMR"]
+            },
+            "body": [["SA496", "A100+"], ["SA489", "A80+"], ["SA488", "A50+|S230-"], "SA471", ["EKDAS", "A25+|S200-"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["HMR", "SA496", "SA489", "SA488", "SA471", "EKDAS"]
+            ]
+        },
+        "HMR4P": {
+            "icao": "HMR4P",
+            "name": "Hammar Four Papa",
+            "holds": {
+                "HMR": "011|left|1.5min|S230-",
+                "ERK": "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "HMR": [["@HMR", "A130-"]]
+            },
+            "body": ["SA541", "@ERK"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["HMR", "SA541", "ERK"]
+            ]
+        },
+        "HMR4T": {
+            "icao": "HMR4T",
+            "name": "Hammar Four Tango",
+            "holds": {
+                "HMR": "011|left|1.5min|S230-",
+                "ERK": "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "HMR": [["@HMR", "A130-"]]
+            },
+            "body": ["SA541", "@ERK"],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["HMR", "SA541", "ERK"]
+            ]
+        },
         "HMR5M": {
             "icao": "HMR5M",
             "name": "Hammar Five Mike",
@@ -2885,6 +3005,38 @@
             },
             "draw": [
                 ["HMR", "SA539", "SA540", "TEB"]
+            ]
+        },
+        "HMR5S": {
+            "icao": "HMR5S",
+            "name": "Hammar Five Sierra",
+            "holds": {
+                "HMR": "011|left|1.5min|S230-",
+                "TEB": "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "HMR": [["@HMR", "A150-"]]
+            },
+            "body": ["SA539", "SA540", "@TEB"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["HMR", "SA539", "SA540", "TEB"]
+            ]
+        },
+        "NILUG2J": {
+            "icao": "NILUG2J",
+            "name": "Nilug Two Juliet",
+            "entryPoints": {
+                "NILUG": ["NILUG"]
+            },
+            "body": [["SA818", "A100+"], ["SA817", "A80+"], ["SA811", "A50+"], "SA802", ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["NILUG", "SA818", "SA817", "SA811", "SA802", "SA801"]
             ]
         },
         "NILUG2M": {
@@ -2906,125 +3058,6 @@
                 ["NILUG", "SA630", "TEB"]
             ]
         },
-        "XILAN4M": {
-            "icao": "XILAN4M",
-            "name": "Xilan Four Mike",
-            "holds": {
-                "XILAN": "069|left|1.5min|S230-",
-                "TEB"  : "178|right|1min|S230-"
-            },
-            "entryPoints": {
-                "XILAN": [["@XILAN", "A150-"]]
-            },
-            "body": ["SA570", "@TEB"],
-            "rwy": {
-                "ESSA01L": [],
-                "ESSA01R": []
-            },
-            "draw": [
-                ["XILAN", "SA570", "TEB"]
-            ]
-        },
-        "ELTOK7S": {
-            "icao": "ELTOK7S",
-            "name": "Eltok Seven Sierra",
-            "holds": {
-                "ELTOK": "286|left|1.5min|S230-",
-                "BALVI": "295|left|1min|S230-"
-            },
-            "entryPoints": {
-                "ELTOK": [["@ELTOK", "A110-"]]
-            },
-            "body": ["SA821", "@BALVI"],
-            "rwy": {
-                "ESSA08": []
-            },
-            "draw": [
-                ["ELTOK", "SA821", "BALVI"]
-            ]
-        },
-        "HMR5S": {
-            "icao": "HMR5S",
-            "name": "Hammar Five Sierra",
-            "holds": {
-                "HMR": "011|left|1.5min|S230-",
-                "TEB": "178|right|1min|S230-"
-            },
-            "entryPoints": {
-                "HMR": [["@HMR", "A150-"]]
-            },
-            "body": ["SA539", "SA540", "@TEB"],
-            "rwy": {
-                "ESSA08": []
-            },
-            "draw": [
-                ["HMR", "SA539", "SA540", "TEB"]
-            ]
-        },
-        "NILUG2S": {
-            "icao": "NILUG2S",
-            "name": "Nilug Two Sierra",
-            "holds": {
-                "NILUG": "188|right|1min|S210-",
-                "TEB"  : "178|right|1min|S230-"
-            },
-            "entryPoints": {
-                "NILUG": [["@NILUG", "A190-"]]
-            },
-            "body": ["SA630", "@TEB"],
-            "rwy": {
-                "ESSA08": []
-            },
-            "draw": [
-                ["NILUG", "SA630", "TEB"]
-            ]
-        },
-        "XILAN4S": {
-            "icao": "XILAN4S",
-            "name": "Xilan Four Sierra",
-            "holds": {
-                "XILAN": "069|left|1.5min|S230-",
-                "TEB"  : "178|right|1min|S230-"
-            },
-            "entryPoints": {
-                "XILAN": [["@XILAN", "A150-"]]
-            },
-            "body": ["SA570", "@TEB"],
-            "rwy": {
-                "ESSA08": []
-            },
-            "draw": [
-                ["XILAN", "SA570", "TEB"]
-            ]
-        },
-        "ELTOK3N": {
-            "icao": "ELTOK3N",
-            "name": "Eltok Three November",
-            "entryPoints": {
-                "ELTOK": [["ELTOK"]]
-            },
-            "body": [["SA910", "A100+"], ["SA909", "A80+"], ["SA908", "A50+|S230-"], "SA474", ["OXINU", "A25+|S200-"]],
-            "rwy": {
-                "ESSA19R": []
-            },
-            "draw": [
-                ["ELTOK", "SA910", "SA909", "SA908", "SA474", "OXINU"]
-            ]
-        },
-        "HAMMAR3N": {
-            "icao": "HAMMAR3N",
-            "name": "Hammar Three November",
-            "entryPoints": {
-                "HMR": ["HMR"]
-            },
-            "body": [["SA485", "A100+"], ["SA484", "A80+"], ["SA483", "A50+"], "SA475", ["OXINU", "A25+"]],
-            "rwy": {
-                "ESSA19R": []
-            },
-            "draw": [
-                ["HMR", "SA485", "SA484", "SA483", "SA475", "OXINU"]
-            ]
-        },
         "NILUG2N": {
             "icao": "NILUG2N",
             "name": "Nilug Two November",
@@ -3037,58 +3070,6 @@
             },
             "draw": [
                 ["NILUG", "SA614", "SA479", "SA478", "SA477", "SA476", "OXINU"]
-            ]
-        },
-        "XILAN3N": {
-            "icao": "XILAN3N",
-            "name": "Xilan Three November",
-            "entryPoints": {
-                "XILAN": ["XILAN"]
-            },
-            "body": [["SA482", "A100+"], ["SA481", "A80+"], ["SA480", "A50+|S230-"], "SA476", ["OXINU", "A25+|S200-"]],
-            "rwy": {
-                "ESSA19R": []
-            },
-            "draw": [
-                ["XILAN", "SA482", "SA481", "SA480", "SA476", "OXINU"]
-            ]
-        },
-        "ELTOK7P": {
-            "icao": "ELTOK7P",
-            "name": "Eltok Seven Papa",
-            "holds": {
-                "ELTOK": "286|left|1.5min|S230-",
-                "BALVI": "295|left|1min|S230-"
-            },
-            "entryPoints": {
-                "ELTOK": [["@ELTOK", "A110-"]]
-            },
-            "body": ["SA821", "@BALVI"],
-            "rwy": {
-                "ESSA19R": [],
-                "ESSA19L": []
-            },
-            "draw": [
-                ["ELTOK", "SA821", "BALVI"]
-            ]
-        },
-        "HMR4P": {
-            "icao": "HMR4P",
-            "name": "Hammar Four Papa",
-            "holds": {
-                "HMR": "011|left|1.5min|S230-",
-                "ERK": "038|left|1min|S230-"
-            },
-            "entryPoints": {
-                "HMR": [["@HMR", "A130-"]]
-            },
-            "body": ["SA541", "@ERK"],
-            "rwy": {
-                "ESSA19R": [],
-                "ESSA19L": []
-            },
-            "draw": [
-                ["HMR", "SA541", "ERK"]
             ]
         },
         "NILUG2P": {
@@ -3111,115 +3092,22 @@
                 ["NILUG", "SA630", "TEB", "ERK"]
             ]
         },
-        "XILAN5P": {
-            "icao": "XILAN5P",
-            "name": "Xilan Five Papa",
+        "NILUG2S": {
+            "icao": "NILUG2S",
+            "name": "Nilug Two Sierra",
             "holds": {
-                "XILAN": "069|left|1.5min|S230-",
-                "ERK"  : "038|left|1min|S230-"
+                "NILUG": "188|right|1min|S210-",
+                "TEB"  : "178|right|1min|S230-"
             },
             "entryPoints": {
-                "XILAN": [["@XILAN", "A150-"]]
+                "NILUG": [["@NILUG", "A190-"]]
             },
-            "body": ["SA570", "TEB", "@ERK"],
+            "body": ["SA630", "@TEB"],
             "rwy": {
-                "ESSA19R": [],
-                "ESSA19L": []
+                "ESSA08": []
             },
             "draw": [
-                ["XILAN", "SA570", "TEB", "ERK"]
-            ]
-        },
-        "ELTOK3V": {
-            "icao": "ELTOK3V",
-            "name": "Eltok Three Victor",
-            "entryPoints": {
-                "ELTOK": ["ELTOK"]
-            },
-            "body": [["SA911", "A100+"], ["SA491", "A80+"], ["SA490", "A50+|S230-"], "SA472", "SA471", ["EKDAS", "A25+|S200-"]],
-            "rwy": {
-                "ESSA26": []
-            },
-            "draw": [
-                ["ELTOK", "SA911", "SA491", "SA490", "SA472", "SA471", "EKDAS"]
-            ]
-        },
-        "HAMMAR3V": {
-            "icao": "HAMMAR3V",
-            "name": "Hammar Three Victor",
-            "entryPoints": {
-                "HMR": ["HMR"]
-            },
-            "body": [["SA496", "A100+"], ["SA489", "A80+"], ["SA488", "A50+|S230-"], "SA471", ["EKDAS", "A25+|S200-"]],
-            "rwy": {
-                "ESSA26": []
-            },
-            "draw": [
-                ["HMR", "SA496", "SA489", "SA488", "SA471", "EKDAS"]
-            ]
-        },
-        "NILUG2V": {
-            "icao": "NILUG2V",
-            "name": "Nilug Two Victor",
-            "entryPoints": {
-                "NILUG": ["NILUG"]
-            },
-            "body": [["SA623", "A100+"], ["SA622", "A80+"], ["SA611", "A50+|S230-"], "SA495", ["EKDAS", "A25+|S200-"]],
-            "rwy": {
-                "ESSA26": []
-            },
-            "draw": [
-                ["NILUG", "SA623", "SA622", "SA611", "SA495", "EKDAS"]
-            ]
-        },
-        "XILAN3V": {
-            "icao": "XILAN3V",
-            "name": "Xilan Three Victor",
-            "entryPoints": {
-                "XILAN": ["XILAN"]
-            },
-            "body": [["SA494", "A80+"], ["SA493", "A50+"], "SA492", ["EKDAS", "A25+"]],
-            "rwy": {
-                "ESSA26": []
-            },
-            "draw": [
-                ["XILAN", "SA494", "SA493", "SA492", "EKDAS"]
-            ]
-        },
-        "ELTOK4T": {
-            "icao": "ELTOK4T",
-            "name": "Eltok Four Tango",
-            "holds": {
-                "ELTOK": "286|left|1.5min|S230-",
-                "ERK"  : "038|left|1min|S230-"
-            },
-            "entryPoints": {
-                "ELTOK": [["@ELTOK", "A150-"]]
-            },
-            "body": ["SA865", "@ERK"],
-            "rwy": {
-                "ESSA26": []
-            },
-            "draw": [
-                ["ELTOK", "SA865", "ERK"]
-            ]
-        },
-        "HMR4T": {
-            "icao": "HMR4T",
-            "name": "Hammar Four Tango",
-            "holds": {
-                "HMR": "011|left|1.5min|S230-",
-                "ERK": "038|left|1min|S230-"
-            },
-            "entryPoints": {
-                "HMR": [["@HMR", "A130-"]]
-            },
-            "body": ["SA541", "@ERK"],
-            "rwy": {
-                "ESSA26": []
-            },
-            "draw": [
-                ["HMR", "SA541", "ERK"]
+                ["NILUG", "SA630", "TEB"]
             ]
         },
         "NILUG2T": {
@@ -3238,6 +3126,118 @@
             },
             "draw": [
                 ["NILUG", "SA630", "TEB"]
+            ]
+        },
+        "NILUG2V": {
+            "icao": "NILUG2V",
+            "name": "Nilug Two Victor",
+            "entryPoints": {
+                "NILUG": ["NILUG"]
+            },
+            "body": [["SA623", "A100+"], ["SA622", "A80+"], ["SA611", "A50+|S230-"], "SA495", ["EKDAS", "A25+|S200-"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["NILUG", "SA623", "SA622", "SA611", "SA495", "EKDAS"]
+            ]
+        },
+        "XILAN3J": {
+            "icao": "XILAN3J",
+            "name": "Xilan Three Juliet",
+            "entryPoints": {
+                "XILAN": ["XILAN"]
+            },
+            "body": [["SA619", "A100+"], ["SA618", "A80+"], ["SA604", "A50+"], ["SA605", "A25+|S200-"], ["SA802", "A25+|S180-"], ["SA801", "A25+"]],
+            "rwy": {
+                "ESSA01L": []
+            },
+            "draw": [
+                ["XILAN", "SA619", "SA618", "SA604", "SA605", "SA802", "SA801"]
+            ]
+        },
+        "XILAN3N": {
+            "icao": "XILAN3N",
+            "name": "Xilan Three November",
+            "entryPoints": {
+                "XILAN": ["XILAN"]
+            },
+            "body": [["SA482", "A100+"], ["SA481", "A80+"], ["SA480", "A50+|S230-"], "SA476", ["OXINU", "A25+|S200-"]],
+            "rwy": {
+                "ESSA19R": []
+            },
+            "draw": [
+                ["XILAN", "SA482", "SA481", "SA480", "SA476", "OXINU"]
+            ]
+        },
+        "XILAN3V": {
+            "icao": "XILAN3V",
+            "name": "Xilan Three Victor",
+            "entryPoints": {
+                "XILAN": ["XILAN"]
+            },
+            "body": [["SA494", "A80+"], ["SA493", "A50+"], "SA492", ["EKDAS", "A25+"]],
+            "rwy": {
+                "ESSA26": []
+            },
+            "draw": [
+                ["XILAN", "SA494", "SA493", "SA492", "EKDAS"]
+            ]
+        },
+        "XILAN4M": {
+            "icao": "XILAN4M",
+            "name": "Xilan Four Mike",
+            "holds": {
+                "XILAN": "069|left|1.5min|S230-",
+                "TEB"  : "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "XILAN": [["@XILAN", "A150-"]]
+            },
+            "body": ["SA570", "@TEB"],
+            "rwy": {
+                "ESSA01L": [],
+                "ESSA01R": []
+            },
+            "draw": [
+                ["XILAN", "SA570", "TEB"]
+            ]
+        },
+        "XILAN4S": {
+            "icao": "XILAN4S",
+            "name": "Xilan Four Sierra",
+            "holds": {
+                "XILAN": "069|left|1.5min|S230-",
+                "TEB"  : "178|right|1min|S230-"
+            },
+            "entryPoints": {
+                "XILAN": [["@XILAN", "A150-"]]
+            },
+            "body": ["SA570", "@TEB"],
+            "rwy": {
+                "ESSA08": []
+            },
+            "draw": [
+                ["XILAN", "SA570", "TEB"]
+            ]
+        },
+        "XILAN5P": {
+            "icao": "XILAN5P",
+            "name": "Xilan Five Papa",
+            "holds": {
+                "XILAN": "069|left|1.5min|S230-",
+                "ERK"  : "038|left|1min|S230-"
+            },
+            "entryPoints": {
+                "XILAN": [["@XILAN", "A150-"]]
+            },
+            "body": ["SA570", "TEB", "@ERK"],
+            "rwy": {
+                "ESSA19R": [],
+                "ESSA19L": []
+            },
+            "draw": [
+                ["XILAN", "SA570", "TEB", "ERK"]
             ]
         },
         "XILAN5T": {
