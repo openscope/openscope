@@ -60,10 +60,36 @@ ava.afterEach(() => {
 });
 
 ava('throws when called without proper parameters', (t) => {
-    t.throws(() => new Fms());
-    t.throws(() => new Fms(''));
-    t.throws(() => new Fms([]));
-    t.throws(() => new Fms({}));
+    const expectedMessage = /Invalid aircraftInitProps passed to Fms constructor\. Expected a non-empty object, but received .*/;
+
+    t.throws(() => new Fms(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new Fms(null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new Fms({}), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new Fms([]), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new Fms(42), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new Fms('threeve'), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new Fms(false), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
 });
 
 ava('throws when instantiated with a route string containing less than two waypoints', (t) => {
