@@ -668,9 +668,9 @@
         "OSTOT":        ["N59d17m15.00", "E022d10m43.00"],
         "POGOK":        ["N59d59m28.00", "E021d23m16.00"],
         "RIRIP":        ["N60d12m10.00", "E021d26m03.00"],
-        "SOTUP":        ["N60d17m20.00", "E020d37m26.00"]
+        "SOTUP":        ["N60d17m20.00", "E020d37m26.00"],
         "USITU":        ["N59d51m31.00", "E021d21m57.00"],
-        "UXETI":        ["N60d08m28.00", "E019d54m52.00"],
+        "UXETI":        ["N60d08m28.00", "E019d54m52.00"]
     },
     "_comment": "Source restricted areas map: https://www.aro.lfv.se/Editorial/View/8319/ES_AD_2_ESSA_4-1_en",
     "_comment": "Source restricted areas definition: https://www.aro.lfv.se/Editorial/View/8415/ES_ENR_5_1_en",
