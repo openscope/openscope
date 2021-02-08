@@ -9,7 +9,7 @@
     "icao": "ESSA",
     "iata": "ARN",
     "magnetic_north": 6,
-    "ctr_radius": 150,
+    "ctr_radius": 125,
     "ctr_ceiling": 9500,
     "_comment": "Initial climb clearance is 3000 ft if not on a SID, all SIDs have 5000 ft",
     "initial_alt": 3000,
@@ -3259,6 +3259,74 @@
             ]
         }
     },
+    "_comment": "Data for spawnpatterns is 2018/2019 (pre-covid) statistics from https://en.wikipedia.org/wiki/Stockholm_Arlanda_Airport",
+    "_comment": "London example:",
+    "_comment": "a. ['Passengers handled 2019' 1420655] / ['Total passenger traffic 2017' 26642034] = ['Passenger proportion to/from London' 0.0533] (using 2017 total because 2019 is not available, should be quite representative)",
+    "_comment": "b. ['Total landings 2017' 122697] * ['Passenger proportion to/from London' 0.0533] = ['Landings from London' 6540] (using 2017 total because 2019 is not available)",
+    "_comment": "c. ['Landings from London' 6540] / ['Hours in a year' 8760] / (2/3) = ['Aircraft per hour from London' 1.1] (2/3 because I assume almost no passenger traffic during the night 1/3 of each day)",
+    "_comment": "d. Divide the 1.1 rate between London/Heathrow and London/Gatwick by feeling. This gives me 0.7 to Heathrow and 0.4 to Gatwick",
+    "_comment": "e. Find which airlines operate these destinations and guess the weights by feeling",
+    "_comment": "f. Find a reasonable route from London to Arlanda on http://flightplandatabase.com and select a reasonable STAR",
+    "_comment": "g. Create a spawnPatterns for arrivals from Heathrow and Gatwick using the above information",
+    "_comment": "h. Find a reasonable SID and create corresponding spawnPatterns for departures (assuming landing rate and takeoff rate are equal)",
+    "spawnPatterns" : [
+        {
+            "origin": "EGLL",
+            "destination": "ESSA",
+            "category": "arrival",
+            "route": "INVOL.N866.BEDLA..ELTOK.ELTOK7M.ESSA01R",
+            "altitude": "18000",
+            "speed": "330",
+            "method": "random",
+            "rate": 0.7,
+            "airlines": [
+                ["sas/short", 1],
+                ["baw/short", 1]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "ESSA",
+            "category": "arrival",
+            "route": "INVOL.N866.BEDLA..ELTOK.ELTOK7M.ESSA01R",
+            "altitude": "18000",
+            "speed": "330",
+            "method": "random",
+            "rate": 0.4,
+            "airlines": [
+                ["ezy", 1],
+                ["nax/short", 3]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "EGLL",
+            "category": "departure",
+            "route": "ESSA01L.AROS5C.ARS..BEDLA.N866.INVOL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.7,
+            "airlines": [
+                ["sas/short", 1],
+                ["baw/short", 1]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "EGKK",
+            "category": "departure",
+            "route": "ESSA01L.AROS5C.ARS..BEDLA.N866.INVOL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.4,
+            "airlines": [
+                ["ezy", 1],
+                ["nax/short", 3]
+            ]
+        }
+    ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
     "_comment": "Source airways Sweden FIR table: https://www.aro.lfv.se/Editorial/View/8720/ES_ENR_3_3_en",
     "_comment": "Source continuation of airways into other Finland FIR when the boundary is close to the airport: https://www.eurocontrol.int/sites/default/files/2019-11/erc11h-07nov2019.pdf",
