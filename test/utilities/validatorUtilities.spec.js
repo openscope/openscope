@@ -5,19 +5,17 @@ import {
     isEmptyOrNotArray
 } from '../../src/assets/scripts/client/utilities/validatorUtilities';
 
-ava('.isEmptyOrNotObject() returns true when passed an non object', (t) => {
+ava('.isEmptyOrNotObject() returns true when passed a non object', (t) => {
+    t.true(isEmptyOrNotObject());
+    t.true(isEmptyOrNotObject(null));
+    t.true(isEmptyOrNotObject(42));
     t.true(isEmptyOrNotObject('threeve'));
     t.true(isEmptyOrNotObject(false));
-    t.true(isEmptyOrNotObject(true));
-    t.true(isEmptyOrNotObject(42));
-    t.true(isEmptyOrNotObject(undefined));
-    t.true(isEmptyOrNotObject({}));
 });
 
 ava('.isEmptyOrNotObject returns true when passed an empty object', (t) => {
     t.true(isEmptyOrNotObject({}));
     t.true(isEmptyOrNotObject([]));
-    t.true(isEmptyOrNotObject(null));
 });
 
 ava('.isEmptyOrNotObject() returns false when passed a non-empty object', (t) => {
@@ -29,19 +27,17 @@ ava('.isEmptyOrNotObject() returns false when passed a non-empty object', (t) =>
     }));
 });
 
-ava('.isEmptyOrNotArray() returns true when passed an non Array', (t) => {
+ava('.isEmptyOrNotArray() returns true when passed a non array', (t) => {
+    t.true(isEmptyOrNotArray());
+    t.true(isEmptyOrNotArray(null));
+    t.true(isEmptyOrNotArray({}));
+    t.true(isEmptyOrNotArray(42));
     t.true(isEmptyOrNotArray('threeve'));
     t.true(isEmptyOrNotArray(false));
-    t.true(isEmptyOrNotArray(true));
-    t.true(isEmptyOrNotArray(42));
-    t.true(isEmptyOrNotArray(undefined));
-    t.true(isEmptyOrNotArray({}));
 });
 
-ava('.isEmptyOrNotArray returns true when passed an empty object', (t) => {
-    t.true(isEmptyOrNotArray({}));
+ava('.isEmptyOrNotArray returns true when passed an empty array', (t) => {
     t.true(isEmptyOrNotArray([]));
-    t.true(isEmptyOrNotArray(null));
 });
 
 ava('.isEmptyOrNotArray return false when passed an array with values', (t) => {
