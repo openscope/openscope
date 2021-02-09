@@ -1,31 +1,9 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import {
-    isEmptyObject,
     isEmptyOrNotObject,
     isEmptyOrNotArray
 } from '../../src/assets/scripts/client/utilities/validatorUtilities';
-
-ava('.isEmptyObject() returns false when passed an non object', (t) => {
-    t.false(isEmptyObject('threeve'));
-    t.false(isEmptyObject(false));
-    t.false(isEmptyObject(true));
-    t.false(isEmptyObject(42));
-    t.false(isEmptyObject(undefined));
-});
-
-ava('.isEmptyObject() returns false when passed an object with properties', (t) => {
-    t.false(isEmptyObject({
-        a: 'threeve',
-        b: 42,
-        c: false
-    }));
-});
-
-ava('.isEmptyObject() returns true when passed an empty object', (t) => {
-    t.true(isEmptyObject({}));
-    t.true(isEmptyObject([]));
-});
 
 ava('.isEmptyOrNotObject() returns true when passed an non object', (t) => {
     t.true(isEmptyOrNotObject('threeve'));
