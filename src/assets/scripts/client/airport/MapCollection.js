@@ -31,14 +31,17 @@ export default class MapCollection extends BaseCollection {
                 'Expected mapJson, defaultMaps, airportPositionModel and magneticNorth to be defined, but received ' +
                 `${typeof mapJson}, ${typeof defaultMaps}, ${typeof airportPositionModel} and ${typeof magneticNorth}`);
         }
+
         if (isEmptyOrNotArray(mapJson)) {
             throw new TypeError('Invalid mapJson passed to MapCollection constructor. ' +
                 `Expected a non-empty array, but received ${typeof mapJson}`);
         }
+
         if (isEmptyOrNotArray(defaultMaps)) {
             throw new TypeError('Invalid defaultMaps passed to MapCollection constructor. ' +
                 `Expected a non-empty array, but received ${typeof defaultMaps}`);
         }
+
         if (!(airportPositionModel instanceof StaticPositionModel)) {
             throw new TypeError('Invalid airportPositionModel passed to MapCollection constructor. ' +
                 `Expected instance of StaticPositionModel, but received ${typeof airportPositionModel}`);

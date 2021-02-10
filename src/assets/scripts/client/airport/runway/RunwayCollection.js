@@ -28,6 +28,7 @@ export default class RunwayCollection extends BaseCollection {
                 'Expected runwayJson and airportPositionModel to be defined, ' +
                 `but received ${typeof runwayJson} and ${typeof airportPositionModel}`);
         }
+
         if (isEmptyOrNotArray(runwayJson)) {
             throw new TypeError('Invalid runwayJson passed to RunwayCollection constructor. ' +
                 `Expected a non-empty array, but received ${typeof runwayJson}`);

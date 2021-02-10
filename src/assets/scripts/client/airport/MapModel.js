@@ -35,18 +35,22 @@ export default class MapModel extends BaseModel {
                 'Expected map, airportPosition and magneticNorth to be defined, ' +
                 `but received ${typeof map}, ${typeof airportPosition} and ${typeof magneticNorth}`);
         }
+
         if (isEmptyOrNotObject(map)) {
             throw new TypeError('Invalid map passed to MapModel constructor. ' +
                 `Expected a non-empty object, but received ${typeof map}`);
         }
+
         if (!_isString(map.name)) {
             throw new TypeError('Invalid map passed to MapModel constructor. ' +
                 `Expected map.name to be a string, but received ${typeof map.name}`);
         }
+
         if (isEmptyOrNotArray(map.lines)) {
             throw new TypeError('Invalid map passed to MapModel constructor. ' +
                 `Expected map.lines to be a non-empty array, but received ${typeof map.lines}`);
         }
+
         if (!(airportPosition instanceof StaticPositionModel)) {
             throw new TypeError('Invalid airportPosition passed to MapModel constructor. ' +
                 `Expected instance of StaticPositionModel, but received ${typeof airportPosition}`);
