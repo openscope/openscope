@@ -1,0 +1,24 @@
+{
+    "icao": "vte",
+    "name": "Contour Airlines",
+    "callsign": {
+        "name": "Volunteer",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E135", 10],
+            ["E145", 2],
+            ["BE40", 2],
+            ["C560", 1],
+            ["H25B", 1],
+            ["JS31", 2],
+            ["JS32", 3],
+            ["JS41", 4],
+            ["SF34", 2]
+        ]
+    }
+}
