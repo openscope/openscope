@@ -32,8 +32,8 @@ export default class AirlineModel extends BaseModel {
         super();
 
         if (isEmptyOrNotObject(airlineDefinition)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected a non-empty object but received ${typeof airlineDefinition}`);
+            throw new TypeError('Invalid airlineDefinition passed to AirlineModel constructor. ' +
+                `Expected a non-empty object, but received ${typeof airlineDefinition}`);
         }
 
         /**

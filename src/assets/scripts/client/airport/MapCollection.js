@@ -1,6 +1,9 @@
-import _isArray from 'lodash/isArray';
+import _isNil from 'lodash/isNil';
+import _isNumber from 'lodash/isNumber';
 import MapModel from './MapModel';
 import BaseCollection from '../base/BaseCollection';
+import StaticPositionModel from '../base/StaticPositionModel';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 
 /**
  * Collection of `MapModel`s available to be displayed on the scope
@@ -23,22 +26,25 @@ export default class MapCollection extends BaseCollection {
     constructor(mapJson, defaultMaps, airportPositionModel, magneticNorth) {
         super();
 
-        if (!_isArray(mapJson)) {
-            throw new TypeError(
-                `Invalid mapJson parameter passed to MapCollection. Expected an array but found ${typeof mapJson}`
-            );
-        } else if (!_isArray(defaultMaps)) {
-            throw new TypeError(
-                `Invalid defaultMaps parameter passed to MapCollection. Expected an array but found ${typeof defaultMaps}`
-            );
-        } else if (defaultMaps.length === 0) {
-            throw new TypeError(
-                'Invalid defaultMaps parameter passed to MapCollection. Expected an array with at least one element'
-            );
-        } else if (mapJson.length === 0) {
-            throw new TypeError(
-                'Invalid mapJson parameter passed to MapCollection. Expected an array with at least one element'
-            );
+        if (_isNil(mapJson) || _isNil(defaultMaps) || _isNil(airportPositionModel) || !_isNumber(magneticNorth)) {
+            throw new TypeError('Invalid parameter(s) passed to MapCollection constructor. ' +
+                'Expected mapJson, defaultMaps, airportPositionModel and magneticNorth to be defined, but received ' +
+                `${typeof mapJson}, ${typeof defaultMaps}, ${typeof airportPositionModel} and ${typeof magneticNorth}`);
+        }
+
+        if (isEmptyOrNotArray(mapJson)) {
+            throw new TypeError('Invalid mapJson passed to MapCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof mapJson}`);
+        }
+
+        if (isEmptyOrNotArray(defaultMaps)) {
+            throw new TypeError('Invalid defaultMaps passed to MapCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof defaultMaps}`);
+        }
+
+        if (!(airportPositionModel instanceof StaticPositionModel)) {
+            throw new TypeError('Invalid airportPositionModel passed to MapCollection constructor. ' +
+                `Expected instance of StaticPositionModel, but received ${typeof airportPositionModel}`);
         }
 
         /**

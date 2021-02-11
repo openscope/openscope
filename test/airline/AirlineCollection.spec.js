@@ -6,11 +6,35 @@ import AirlineModel from '../../src/assets/scripts/client/airline/AirlineModel';
 import { AIRLINE_DEFINITION_LIST_MOCK } from './_mocks/airlineMocks';
 
 ava('throws when called with invalid data', (t) => {
-    t.throws(() => new AirlineCollection());
-    t.throws(() => new AirlineCollection({}));
-    t.throws(() => new AirlineCollection(42));
-    t.throws(() => new AirlineCollection('threeve'));
-    t.throws(() => new AirlineCollection(false));
+    const expectedMessage = /Invalid airlineList passed to AirlineCollection constructor\. Expected a non-empty array, but received .*/;
+    t.throws(() => new AirlineCollection(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineCollection(null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineCollection({}), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineCollection([]), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineCollection(42), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineCollection('threeve'), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineCollection(false), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
 });
 
 ava('does not throw when called with valid data', (t) => {

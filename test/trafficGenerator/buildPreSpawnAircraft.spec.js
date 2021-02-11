@@ -6,12 +6,15 @@ import {
     _calculateOffsetsToEachWaypointInRoute,
     _calculateAltitudeOffsets,
     _calculateAltitudeAtOffset,
-    _calculateIdealSpawnAltitudeAtOffset
+    _calculateIdealSpawnAltitudeAtOffset,
+    buildPreSpawnAircraft
 } from '../../src/assets/scripts/client/trafficGenerator/buildPreSpawnAircraft';
+import { airportModelFixture } from '../fixtures/airportFixtures';
 import {
     createNavigationLibraryFixture,
     resetNavigationLibraryFixture
 } from '../fixtures/navigationLibraryFixtures';
+import { ARRIVAL_PATTERN_MOCK } from './_mocks/spawnPatternMocks';
 
 let sandbox;
 
@@ -170,17 +173,85 @@ ava('_calculateIdealSpawnAltitudeAtOffset() returns an appropriate altitude when
     t.true(expectedResult === result);
 });
 
-// ava('buildPreSpawnAircraft() throws when passed invalid parameters', (t) => {
-//     t.throws(() => buildPreSpawnAircraft());
-//     t.throws(() => buildPreSpawnAircraft({}));
-//     t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null, null));
-//     t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null, airportModelFixture));
-// });
-//
-// ava('buildPreSpawnAircraft() does not throw when passed valid parameters', (t) => {
-//     t.notThrows(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture));
-// });
-//
+ava('buildPreSpawnAircraft() throws when called with missing parameters', (t) => {
+    const expectedMessage = /Invalid parameter\(s\) passed to buildPreSpawnAircraft\. Expected spawnPatternJson and currentAirport to be defined, but received .*/;
+
+    t.throws(() => buildPreSpawnAircraft(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(null, airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('buildPreSpawnAircraft() throws when passed invalid spawnPatternJson', (t) => {
+    const expectedMessage = /Invalid spawnPatternJson passed to buildPreSpawnAircraft\. Expected a non-empty object, but received .*/;
+
+    t.throws(() => buildPreSpawnAircraft({}, airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft([], airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(42, airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft('threeve', airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(false, airportModelFixture), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('buildPreSpawnAircraft() throws when passed invalid currentAirport', (t) => {
+    const expectedMessage = /Invalid currentAirport passed to buildPreSpawnAircraft\. Expected instance of AirportModel, but received .*/;
+
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, {}), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, []), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, 42), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, 'threeve'), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, false), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('buildPreSpawnAircraft() does not throw when passed valid parameters', (t) => {
+    t.notThrows(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture));
+});
+
 // ava('buildPreSpawnAircraft() returns an array of objects with correct keys', (t) => {
 //     const results = buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture);
 //
