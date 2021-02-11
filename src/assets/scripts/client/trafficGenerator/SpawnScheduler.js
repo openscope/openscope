@@ -39,7 +39,7 @@ class SpawnScheduler {
             throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftController to be defined.');
         }
 
-        this.aircraftController = aircraftController;
+        this._aircraftController = aircraftController;
 
         this.startScheduler();
 
@@ -74,7 +74,7 @@ class SpawnScheduler {
 
             // TODO: abstract this to a class method on the `SpawnPatternModel`
             if (spawnPatternModel.isAirborneAtSpawn() && spawnPatternModel.preSpawnAircraftList.length > 0) {
-                this.aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
+                this._aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
             }
         });
     }
@@ -97,7 +97,7 @@ class SpawnScheduler {
         for (let i = 0; i < departureModelsToPreSpawn.length; i++) {
             const spawnPatternModel = departureModelsToPreSpawn[i];
 
-            this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+            this._aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
         }
     }
 
@@ -143,7 +143,7 @@ class SpawnScheduler {
         if (timePassed < nextDelay) {
             nextDelay -= timePassed;
         } else {
-            this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+            this._aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
         }
 
         spawnPatternModel.scheduleId = this._createTimeout(spawnPatternModel, nextDelay);
@@ -166,7 +166,7 @@ class SpawnScheduler {
             // passing null only to match existing api
             null,
             // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
-            [spawnPatternModel, this.aircraftController]
+            [spawnPatternModel, this._aircraftController]
         );
     }
 
