@@ -11,13 +11,56 @@ import { AIRPORT_JSON_KLAS_MOCK } from '../_mocks/airportJsonMock';
 
 const RUNWAY_LIST_MOCK = AIRPORT_JSON_KLAS_MOCK.runways;
 
-ava('throws when called with invalid parameters', (t) => {
-    t.throws(() => new RunwayCollection());
-    t.throws(() => new RunwayCollection({}));
-    t.throws(() => new RunwayCollection(42));
-    t.throws(() => new RunwayCollection('threeve'));
-    t.throws(() => new RunwayCollection(false));
-    t.throws(() => new RunwayCollection(null));
+ava('throws when called with missing parameters', (t) => {
+    const expectedMessage = /Invalid parameter\(s\) passed to RunwayCollection constructor\. Expected runwayJson and airportPositionModel to be defined, but received .*/;
+
+    t.throws(() => new RunwayCollection(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+
+    t.throws(() => new RunwayCollection(RUNWAY_LIST_MOCK), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new RunwayCollection(airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+
+    t.throws(() => new RunwayCollection(null, airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new RunwayCollection(RUNWAY_LIST_MOCK, null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('throws when called with invalid runwayJson', (t) => {
+    const expectedMessage = /Invalid runwayJson passed to RunwayCollection constructor\. Expected a non-empty array, but received .*/;
+
+    t.throws(() => new RunwayCollection({}, airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new RunwayCollection([], airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new RunwayCollection(42, airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new RunwayCollection('threeve', airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new RunwayCollection(false, airportPositionFixtureKLAS), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
 });
 
 ava('does not throw when called with valid parameters', (t) => {

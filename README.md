@@ -1,5 +1,5 @@
-[![openScope Current Release](https://img.shields.io/github/release/openscope/openscope.svg)](https://github.com/openscope/openscope/releases)
-[![Travis Production Build State](https://img.shields.io/travis/openscope/openscope/master.svg)](https://github.com/openscope/openscope/tree/master)
+[![openScope Current Release](https://img.shields.io/github/v/release/openscope/openscope.svg)](https://github.com/openscope/openscope/releases)
+[![Production Build State](https://img.shields.io/github/workflow/status/openscope/openscope/protected-branch-checks/master.svg)](https://github.com/openscope/openscope/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/openscope/openscope/badge.svg?branch=develop)](https://coveralls.io/github/openscope/openscope?branch=develop)
 [![Slack Status](http://slack.openscope.io/badge.svg)](http://slack.openscope.io)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)

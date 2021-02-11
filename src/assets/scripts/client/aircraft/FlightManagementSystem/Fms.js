@@ -3,11 +3,11 @@ import _findLast from 'lodash/findLast';
 import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
 import RouteModel from './RouteModel';
 import AirportController from '../../airport/AirportController';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import RunwayModel from '../../airport/runway/RunwayModel';
+import { isEmptyOrNotObject } from '../../utilities/validatorUtilities';
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE
@@ -60,8 +60,9 @@ export default class Fms {
      * @param aircraftInitProps {object}
      */
     constructor(aircraftInitProps) {
-        if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
-            throw new TypeError('Invalid aircraftInitProps passed to Fms');
+        if (isEmptyOrNotObject(aircraftInitProps)) {
+            throw new TypeError('Invalid aircraftInitProps passed to Fms constructor. ' +
+                `Expected a non-empty object, but received ${typeof aircraftInitProps}`);
         }
 
         /**
@@ -571,7 +572,6 @@ export default class Fms {
         return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumAltitudeAtOrAbove(altitude));
     }
 
-
     /**
      * Return the next waypoint having an #altitudeMinimum restriction
      *
@@ -933,7 +933,7 @@ export default class Fms {
                 entryPoint = sidModel.getFirstEntryPoint();
 
                 if (_isEmpty(entryPoint)) {
-                    throw new TypeError(`the '${procedureId}' departure has no valid entry points`);
+                    return [false, `the '${procedureId}' departure has no valid entry points`];
                 }
             }
 

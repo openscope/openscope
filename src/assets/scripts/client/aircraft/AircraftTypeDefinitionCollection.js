@@ -28,9 +28,8 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
         super();
 
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
-                `received ${typeof aircraftTypeDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof aircraftTypeDefinitionList}`);
         }
 
         /**
