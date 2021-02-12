@@ -545,7 +545,7 @@
             "rate": 1.46,
             "airlines": [
                 ["aal/short", 8],
-                ["baw/b744", 1],
+                ["baw/long", 1],
                 ["dal/short", 3],
                 ["eny", 1],
                 ["fft", 3],
