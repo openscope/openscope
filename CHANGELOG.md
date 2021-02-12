@@ -8,6 +8,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
 - <a href="https://github.com/openscope/openscope/issues/1758" target="_blank">#1758</a> - Update GitHub build status badge
 - <a href="https://github.com/openscope/openscope/issues/1749" target="_blank">#1749</a> - Improve user input validation and associated tests
+- <a href="https://github.com/openscope/openscope/issues/1763" target="_blank">#1763</a> - Reflect merging of Singapore Cargo Airlines (SQC) into SIA
 
 
 # 6.23.0 (February 5, 2021)
