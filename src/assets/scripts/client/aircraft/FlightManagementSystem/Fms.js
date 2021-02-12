@@ -271,10 +271,17 @@ export default class Fms {
 
         this._verifyRouteContainsMultipleWaypoints();
         this._initializeFlightPhaseForCategory(category);
-        this._initializeDepartureAirport(origin);
-        this._initializeDepartureRunway();
-        this._initializeArrivalAirport(destination);
-        this._initializeArrivalRunway();
+
+        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+            this._initializeDepartureAirport(origin);
+            this._initializeDepartureRunway();
+        }
+
+        if (category === FLIGHT_CATEGORY.ARRIVAL) {
+            this._initializeArrivalAirport(destination);
+            this._initializeArrivalRunway();
+        }
+
         this._initializeFlightPlanAltitude(altitude, category, model);
         this._initializePositionInRouteToBeginAtFixName(nextFix, category);
 
