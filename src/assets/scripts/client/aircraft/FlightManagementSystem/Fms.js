@@ -320,6 +320,12 @@ export default class Fms {
             return;
         }
 
+        destinationIcao = destinationIcao.toLowerCase();
+
+        if (destinationIcao !== AirportController.current.icao) {
+            return;
+        }
+
         this.arrivalAirportModel = AirportController.airport_get(destinationIcao);
     }
 
@@ -358,6 +364,12 @@ export default class Fms {
      */
     _initializeDepartureAirport(originIcao) {
         if (originIcao === '') {
+            return;
+        }
+
+        originIcao = originIcao.toLowerCase();
+
+        if (originIcao !== AirportController.current.icao) {
             return;
         }
 
