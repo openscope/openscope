@@ -316,10 +316,6 @@ export default class Fms {
      * @private
      */
     _initializeArrivalAirport(destinationIcao) {
-        if (destinationIcao === '') {
-            return;
-        }
-
         destinationIcao = destinationIcao.toLowerCase();
 
         if (destinationIcao !== AirportController.current.icao) {
@@ -363,10 +359,6 @@ export default class Fms {
      * @private
      */
     _initializeDepartureAirport(originIcao) {
-        if (originIcao === '') {
-            return;
-        }
-
         originIcao = originIcao.toLowerCase();
 
         if (originIcao !== AirportController.current.icao) {
