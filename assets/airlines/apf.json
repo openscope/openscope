@@ -1,5 +1,5 @@
 {
-    "icao": "apf",
+    "icao": "apf",  
     "name": "Amapola Flyg",
     "callsign": {
         "name": "Amapola",
@@ -10,10 +10,10 @@
     "fleets": {
         "default": [
             ["F50", 8],
-	    ["JS42", 1]
+            ["JS42", 1]
         ],
-	"cargo": [
-		["F50", 8]
-	]
+        "cargo": [
+            ["F50", 8]
+        ]
     }
 }
