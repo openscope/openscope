@@ -233,10 +233,10 @@ ava('._initializeArrivalAirport() returns early when destination ICAO is an empt
 
 ava('._initializeArrivalAirport() sets #arrivalAirportModel to the specified destination airport', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-    const result = fms.reset()._initializeArrivalAirport('ksea');
+    const result = fms.reset()._initializeArrivalAirport('klas');
 
     t.true(typeof result === 'undefined');
-    t.true(fms.arrivalAirportModel.icao === 'ksea');
+    t.true(fms.arrivalAirportModel.icao === 'klas');
 });
 
 ava('._initializeArrivalRunway() returns early when #arrivalAirportModel is null', (t) => {
@@ -275,10 +275,10 @@ ava('._initializeDepartureAirport() returns early when destination ICAO is an em
 
 ava('._initializeDepartureAirport() sets #departureAirportModel to the specified origin airport', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-    const result = fms.reset()._initializeDepartureAirport('ksea');
+    const result = fms.reset()._initializeDepartureAirport('klas');
 
     t.true(typeof result === 'undefined');
-    t.true(fms.departureAirportModel.icao === 'ksea');
+    t.true(fms.departureAirportModel.icao === 'klas');
 });
 
 ava('._initializeDepartureRunway() returns early when #departureAirportModel is null', (t) => {
