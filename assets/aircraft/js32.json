@@ -1,5 +1,5 @@
 {
-    "name": "BAe Jetstream 32",
+    "name": "British Aerospace BAe-3200 Jetstream Super 31",
     "icao": "JS32",
     "engines": {
         "number": 2,
@@ -13,22 +13,22 @@
     },
     "ceiling": 25000,
     "rate": {
-        "climb":      2080,
-        "descent":    1500,
-        "accelerate": 6,
-        "decelerate": 6
+        "climb":      2000,
+        "descent":    2000,
+        "accelerate": 3,
+        "decelerate": 4
     },
     "runway": {
-        "takeoff": 1.463,
-        "landing": 1.341
+        "takeoff": 1.570,
+        "landing": 1.220
     },
     "speed":{
-        "min":     87,
-        "landing": 113,
-        "cruise":  230,
-        "cruiseM": 0.382,
+        "min":     86,
+        "landing": 115,
+        "cruise":  235,
+        "cruiseM": null,
         "max":     250,
-        "maxM":    0.417
+        "maxM":    null
     },
     "capability": {
         "ils": true,
