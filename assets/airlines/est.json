@@ -1,0 +1,17 @@
+{
+    "icao": "est",
+    "name": "Nordica",
+    "callsign": {
+        "name": "Reval",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT76", 2],
+            ["CRJ7", 2],
+            ["CRJ9", 7]
+        ]
+    }
+}
