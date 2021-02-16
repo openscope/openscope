@@ -3,7 +3,7 @@
     "icao": "ATP",
     "engines": {
         "number": 2,
-        "type": "S"
+        "type": "T"
     },
     "weightClass": "M",
     "category": {
