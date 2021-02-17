@@ -271,9 +271,7 @@ export default class Fms {
 
         this._verifyRouteContainsMultipleWaypoints();
         this._initializeFlightPhaseForCategory(category);
-
-        this._initializeAirportsAndRunways(category, origin, destination);
-
+        this._initializeAirportsAndRunways(origin, destination);
         this._initializeFlightPlanAltitude(altitude, category, model);
         this._initializePositionInRouteToBeginAtFixName(nextFix, category);
 
@@ -305,18 +303,20 @@ export default class Fms {
      *
      * @for Fms
      * @method _initializeAirportsAndRunways
-     * @param category {string} Flight category (arrival, departure, or overflight)
      * @param origin {string} ICAO identifier specified by spawn pattern
      * @param destination {string} ICAO identifier specified by spawn pattern
      * @private
      */
-    _initializeAirportsAndRunways(category, origin, destination) {
-        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+    _initializeAirportsAndRunways(origin, destination) {
+        const originLowerCase = origin.toLowerCase();
+        const destinationLowerCase = destination.toLowerCase();
+
+        if (originLowerCase === AirportController.current.icao) {
             this._initializeDepartureAirport(origin);
             this._initializeDepartureRunway();
         }
 
-        if (category === FLIGHT_CATEGORY.ARRIVAL) {
+        if (destinationLowerCase === AirportController.current.icao) {
             this._initializeArrivalAirport(destination);
             this._initializeArrivalRunway();
         }
@@ -331,12 +331,6 @@ export default class Fms {
      * @private
      */
     _initializeArrivalAirport(destinationIcao) {
-        const destinationIcaoLowerCase = destinationIcao.toLowerCase();
-
-        if (destinationIcaoLowerCase !== AirportController.current.icao) {
-            return;
-        }
-
         this.arrivalAirportModel = AirportController.airport_get(destinationIcao);
     }
 
@@ -374,12 +368,6 @@ export default class Fms {
      * @private
      */
     _initializeDepartureAirport(originIcao) {
-        const originIcaoLowerCase = originIcao.toLowerCase();
-
-        if (originIcaoLowerCase !== AirportController.current.icao) {
-            return;
-        }
-
         this.departureAirportModel = AirportController.airport_get(originIcao);
     }
 
