@@ -480,7 +480,7 @@ export default class AircraftModel {
          * @property model
          * @type {AircraftTypeDefinitionModel}
          */
-        this.model = new AircraftTypeDefinitionModel(options.model);
+        this.model = options.model;
 
         /**
          * @for AircraftModel
