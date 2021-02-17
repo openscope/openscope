@@ -550,7 +550,162 @@
         
     },
     "sids": {
-        
+		"BORLO2": {
+			"icao": "BORLO2",
+			"name": "Borlo Two",
+			"rwy": {
+				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21", "OLVAN", ["GRAYL", "A160+"]],
+				"RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R12", "OLVAN", ["GRAYL", "A160+"]],
+				"RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "CHUMS", "CUPID"],
+				"RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA", "CUPID"]
+			},
+			"body": ["BORLO"],
+			"exitPoints": {
+				"BORLO": []
+			},
+			"draw": [
+				["_RWY34R03DME", "BEAMS", "A6L21", "OLVAN"],
+				["_RWY34L03DME", "ASPEN", "A6R12", "OLVAN"],
+				["OLVAN", "GRAYL", "BORLO"],
+				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "CHUMS", "CUPID"],
+				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA", "CUPID"],
+				["CUPID", "BORLO"]
+			]
+		},
+		"GULBO2": {
+			"icao": "GULBO2",
+			"name": "Gulbo Two",
+			"rwy": {
+				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21", "OLVAN", ["TAPIR", "A160+"]],
+                "RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R12", "OLVAN", ["TAPIR", "A160+"]],
+                "RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "CHUMS", "CUPID"]
+                "RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA", "CUPID"]
+			},
+			"body": ["GULBO"],
+			"exitPoints": {
+				"GULBO": []
+			}
+			"draw": [
+				["_RWY34R03DME", "BEAMS", "A6L21", "OLVAN"],
+				["_RWY34L03DME", "ASPEN", "A6R12", "OLVAN"],
+				["OLVAN", "TAPIR", "GULBO"],
+				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "CHUMS", "CUPID"],
+				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA", "CUPID"],
+				["CUPID", "GULBO"]
+			]
+		},
+		"OLVAN2": {
+			"icao": "OLVAN2",
+			"name": "Olvan Two",
+			"rwy": {
+				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21"],
+				"RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R12"],
+				"RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", "ROONY", "CHUMS"],
+				"RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA"]
+			},
+			"body": ["OLVAN"],
+			"exitPoints": {
+				"OLVAN": []
+			},
+			"draw": [
+				["_RWY34R03DME", "BEAMS", "A6L21", "OLVAN"],
+				["_RWY34L03DME", "ASPEN", "A6R12", "OLVAN"],
+				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "OLVAN"],
+				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA", "OLVAN"]
+			]
+		},
+		"PEDLA1": {
+			"icao": "PEDLA1",
+			"name": "Pedla One",
+			"rwy": {
+				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21"],
+				"RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R11"],
+				"RJAA34L": [["_RWY16R03DME", "A6+"], "^ASTRA", "AA433"],
+				"RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "AA433"]
+			},
+			"body": ["DAITO", "PEDLA"],
+			"exitPoints": {
+				"PEDLA": []
+			},
+			"draw": [
+				["_RWY34R03DME", "BEAMS", "A6L21", "DAITO"],
+				["_RWY34L03DME", "ASPEN", "A6R11", "DAITO"],
+				["_RWY16R03DME", "ASTRA", "AA433"],
+				["_RWY16L03DME", "BOXER", "AA433"],
+				["AA433", "DAITO"],
+				["DAITO", "PEDLA"]
+			]
+		},
+		"PIGOK2": {
+			"icao": "PIGOK2",
+			"name": "Pigok Two",
+			"rwy": {
+				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21", "AA631", "AA632", "ACURE", ["PAGOT", "A160+"]],
+				"RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R12", ["KUJYU", "A110+"]],
+				"RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "IBURA", "ADRIA", "ROSSO"],
+				"RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "GULID", ["ROSSO", "A110+"]]
+			},
+			"body": [["PIGOK", "A200+"]],
+			"exitPoints": [
+				"PIGOK": []
+			},
+			"draw": [
+				["_RWY34R03DME", "BEAMS", "A6L21", "AA631", "AA632", "ACURE", "PAGOT", "PIGOK"],
+				["_RWY34L03DME", "ASPEN", "A6R12", "KUJYU", "PIGOK"],
+				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "IBURA", "ADRIA"],
+				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "GULID", "ROSSO"],
+				["ADRIA", "ROSSO", "PIGOK"]
+			]
+		},
+		"REDEK2": {
+			"icao": "REDEK2",
+			"name": "Redek Two",
+			"rwy": {
+				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21", "AA631", "AA632", "ACURE", ["PAGOT", "A160+"]],
+                "RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R12", ["KUJYU", "A110+"]],
+                "RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "IBURA", "GULID", "PORCO"],
+                "RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "GULID", ["PORCO", "A110+"]]
+			},
+			"body": [["REDEK", "A200+"]],
+			"exitPoints": {
+				"REDEK": []
+			},
+			"draw": [
+				["_RWY34R03DME", "BEAMS", "A6L21", "AA631", "AA632", "ACURE", "PAGOT", "REDEK"],
+				["_RWY34L03DME", "ASPEN", "A6R12", "KUJYU", "REDEK"],
+				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "IBURA"],
+				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "GULID"],
+				["IBURA", "GULID", "PORCO", "REDEK"]
+			]
+		},
+		"TETRA8": {
+			"icao": "TETRA8",
+            "name": "Tetra Eight",
+            "rwy": {
+                "RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21", "AA631", "AA632", ["PHLOX", "A160+"]],
+                "RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R11", "A6R13", "A6R14"],
+                "RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "ASTON"],
+                "RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "ASTON"]
+            },
+            "body": [],
+            "exitPoints": {
+                "AGRIS": [["TETRA", "A120+"], ["RADIX", "A150+"], ["WHARF", "A180+"], ["AGRIS", "A200+"]],
+				"ENPAR": [["TETRA", "A120+"], ["RAMBA", "A160+"], "ENPAR"],
+				"KIMIN": [["TETRA", "A120+"], ["RADIX", "A150+"], ["WHARF", "A180+"], "KIMIN"],
+				"TETRA": ["TETRA"]
+            },
+            "draw": [
+                ["_RWY34R03DME", "BEAMS", "A6L21", "AA631", "AA632", "PHLOX", "TETRA"],
+				["_RWY34L03DME", "ASPEN", "A6R11", "A6R13", "A6R14", "TETRA"],
+				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "ASTON"],
+				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "ASTON"],
+				["ASTON", "TETRA"],
+				["TETRA", "RADIX", "WHARF"],
+				["WHARF", "AGRIS"],
+				["WHARF", "KIMIN"],
+				["TETRA", "RAMBA", "ENPAR"]
+            ]
+        }
     },
     "stars": {
         
