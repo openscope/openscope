@@ -194,6 +194,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         let aircraftIcao = `${this.icao}/L`;
 
         const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.weightClass) ?? { APPEND: false };
+
         if (wtc.APPEND) {
             aircraftIcao = `${wtc.LETTER}/${this.icao}/L`;
         }

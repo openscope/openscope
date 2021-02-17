@@ -342,6 +342,7 @@ export default class RadarTargetModel {
 
         const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.aircraftModel.model.weightClass) ??
             { APPEND: false };
+
         if (wtc.APPEND) {
             // NOTE: using empty space before the letter on purpose so this gets rendered appropriately within a canvas
             dataBlockRowOne += ` ${wtc.LETTER}`;
