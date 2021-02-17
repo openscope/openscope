@@ -227,7 +227,7 @@ ava('._initializeAirportsAndRunways() does not make calls to initialize departur
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(starRouteStringMock);
     const _initializeDepartureAirportSpy = sinon.spy(fms, '_initializeDepartureAirport');
     const _initializeDepartureRunwaySpy = sinon.spy(fms, '_initializeDepartureRunway');
-    const result = fms._initializeAirportsAndRunways('','klas');
+    const result = fms._initializeAirportsAndRunways('', 'klas');
 
     t.true(typeof result === 'undefined');
     t.true(_initializeDepartureAirportSpy.notCalled);
@@ -238,7 +238,7 @@ ava('._initializeAirportsAndRunways() does not make calls to initialize arrival 
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(sidRouteStringMock);
     const _initializeArrivalAirportSpy = sinon.spy(fms, '_initializeArrivalAirport');
     const _initializeArrivalRunwaySpy = sinon.spy(fms, '_initializeArrivalRunway');
-    const result = fms._initializeAirportsAndRunways('klas','');
+    const result = fms._initializeAirportsAndRunways('klas', '');
 
     t.true(typeof result === 'undefined');
     t.true(_initializeArrivalAirportSpy.notCalled);
