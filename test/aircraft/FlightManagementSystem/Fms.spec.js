@@ -223,14 +223,6 @@ ava('.reset() resets all instance properties to appropriate default values', (t)
     t.true(!fms._routeModel);
 });
 
-ava('._initializeArrivalAirport() returns early when destination ICAO is an empty string', (t) => {
-    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-    const result = fms.reset()._initializeArrivalAirport('');
-
-    t.true(typeof result === 'undefined');
-    t.true(!fms.arrivalAirportModel);
-});
-
 ava('._initializeArrivalAirport() sets #arrivalAirportModel to the specified destination airport', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const result = fms.reset()._initializeArrivalAirport('klas');
@@ -262,15 +254,6 @@ ava('._initializeArrivalRunway() sets #arrivalRunwayModel IAW the route model', 
 
     t.true(typeof result === 'undefined');
     t.true(fms.arrivalRunwayModel.name === '07R');
-});
-
-ava('._initializeDepartureAirport() returns early when destination ICAO is an empty string', (t) => {
-    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-
-    const result = fms.reset()._initializeDepartureAirport('');
-
-    t.true(typeof result === 'undefined');
-    t.true(!fms.departureAirportModel);
 });
 
 ava('._initializeDepartureAirport() sets #departureAirportModel to the specified origin airport', (t) => {
