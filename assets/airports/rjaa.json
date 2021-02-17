@@ -390,6 +390,15 @@
         }
     ],
     "fixes": {
+		"_NRE011009": ["N35d55m46.00", "E140d23m52.00"],
+		"_NRE029008": ["N35d53m56.00", "E140d26m32.00"],
+		"_NRE096008": ["N35d46m05.00", "E140d31m33.00"],
+		"_NRE122014": ["N35d39m30.00", "E140d36m21.00"],
+		"_NRE131021": ["N35d33m08.00", "E140d41m13.00"],
+		"_NRE150014": ["N35d34m49.00", "E140d30m21.00"],
+		"_NRE330006": ["N35d52m08.00", "E140d18m03.00"],
+		"_NRE354007": ["N35d53m53.00", "E140d20m51.00"],
+		"_NRE354009": ["N35d55m53.00", "E140d20m35.00"],
 		"A4L11": ["N35d59m15.60","E140d12m49.10"],
 		"A4L12": ["N36d02m32.60","E140d16m46.80"],
 		"A4L13": ["N36d02m36.70","E140d25m59.70"],
@@ -550,6 +559,23 @@
         
     },
     "sids": {
+		"AKAGI4": {
+			"icao": "AKAGI4",
+			"name": "Akagi Four",
+			"rwy": {
+				"RJAA16R": ["^_NRE150014"],
+				"RJAA34L": ["^_NRE330006", ["_NRE354007", "A30+"], ["_NRE029008", "A40+|A70-"], "_NRE096008"]
+			},
+			"body": ["NRE", ["LOPIA", "A120+"], ["YAOKO", "A180+"], "AKAGI"],
+			"exitPoints": {
+				"AKAGI": []
+			},
+			"draw": [
+				["_NRE150014", "NRE"],
+				["_NRE330006", "_NRE354007", "_NRE029008", "_NRE096008", "NRE"],
+				["NRE", "LOPIA", "YAOKO", "AKAGI"]
+			]
+		},
 		"BORLO2": {
 			"icao": "BORLO2",
 			"name": "Borlo Two",
@@ -578,13 +604,13 @@
 			"rwy": {
 				"RJAA16L": [["_RWY34R03DME", "A6+"], "^BEAMS", "A6L21", "OLVAN", ["TAPIR", "A160+"]],
                 "RJAA16R": [["_RWY34L03DME", "A6+"], "^ASPEN", "A6R12", "OLVAN", ["TAPIR", "A160+"]],
-                "RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "CHUMS", "CUPID"]
+                "RJAA34L": [["_RWY16R03DME", "A6+"], ["^ARIES", "A40+"], "A4L11", ["A4L12", "A70-"], "A4L13", "A4L14", ["ROONY", "A130+"], "CHUMS", "CUPID"],
                 "RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "LUCCA", "CUPID"]
 			},
 			"body": ["GULBO"],
 			"exitPoints": {
 				"GULBO": []
-			}
+			},
 			"draw": [
 				["_RWY34R03DME", "BEAMS", "A6L21", "OLVAN"],
 				["_RWY34L03DME", "ASPEN", "A6R12", "OLVAN"],
@@ -646,7 +672,7 @@
 				"RJAA34R": [["_RWY16L03DME", "A6+"], "^BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "GULID", ["ROSSO", "A110+"]]
 			},
 			"body": [["PIGOK", "A200+"]],
-			"exitPoints": [
+			"exitPoints": {
 				"PIGOK": []
 			},
 			"draw": [
@@ -676,6 +702,41 @@
 				["_RWY16R03DME", "ARIES", "A4L11", "A4L12", "A4L13", "A4L14", "ROONY", "IBURA"],
 				["_RWY16L03DME", "BOXER", "A4R21", "A4R22", "A4R23", "PEGAS", "GULID"],
 				["IBURA", "GULID", "PORCO", "REDEK"]
+			]
+		},
+		"SAKUR5": {
+			"icao": "SAKUR5",
+			"name": "Sakura Five",
+			"rwy": {
+				"RJAA16R": ["^_NRE150014", "^_NRE122014"],
+				"RJAA34L": ["^_NRE330006", ["_NRE354007", "A30+"], ["_NRE029008", "A40+|A70-"], "_NRE096008"]
+			},
+			"body": ["NRE"],
+			"exitPoints": {
+				"SZE": ["TETRA", ["HME", "A200+"], "SZE"],
+				"TETRA": [["TETRA", "A120+"]]
+			},
+			"draw": [
+				["_NRE150014", "_NRE122014", "NRE"],
+				["_NRE330006", "_NRE354007", "_NRE029008", "_NRE096008", "NRE"],
+				["NRE", "TETRA"],
+				["TETRA", "HME", "SZE"]
+			]
+		},
+		"SUNNS2": {
+			"icao": "SUNNS2",
+			"name": "Sunns Two",
+			"rwy": {
+				"RJAA16R": ["^_NRE150014", "_NRE131021"],
+				"RJAA34L": ["^_NRE330006", ["_NRE354009", "A28+"], ["_NRE011009", "A70-"], "NRE"]				
+			},
+			"body": [["ROUSY", "A70+"], ["SUNNS", "A190+"]],
+			"exitPoints": {
+				"SUNNS": []
+			},
+			"draw": [
+				["_NRE150014", "_NRE131021"],
+				["_NRE330006", "_NRE354009", "_NRE011009", "NRE", "ROUSY", "SUNNS"]
 			]
 		},
 		"TETRA8": {
@@ -947,7 +1008,7 @@
 			"draw": [
 				["SWAMP", "VIXEN", "PLEIA", "KARMA", "DREAM", "MCGEE", "AA455", "AA456", "AA457", "HYDRA", "PEAKS", "TYLER"]
 			]
-		},
+		}
     },
     "spawnPatterns": [
         
