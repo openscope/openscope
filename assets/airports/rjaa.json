@@ -708,7 +708,246 @@
         }
     },
     "stars": {
-        
+        "LUBLAE": {
+			"icao": "LUBLAE",
+			"name": "Lubla Echo",
+			"entryPoints": {
+				"LUBLA": []
+			},
+			"body": ["LUBLA", ["TORCH", "A90-"], "CORGI", "ELGAR"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["LUBLA", "TORCH", "CORGI", "ELGAR"]
+			]
+		},
+        "LUBLAG": {
+			"icao": "LUBLAG",
+			"name": "Lubla Golf",
+			"entryPoints": {
+				"LUBLA": []
+			},
+			"body": ["LUBLA", ["REGZA", "A80"], "VOGUE", "AA658", "AA659", ["SAFRA", "A80"], ["CASIO", "A60"], "GEMIN"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["LUBLA", "REGZA", "VOGUE", "AA658", "AA659", "SAFRA", "CASIO", "GEMIN"]
+			]
+		},
+        "LUBLAN": {
+			"icao": "LUBLAN",
+			"name": "Lubla  November",
+			"entryPoints": {
+				"LUBLA": []
+			},
+			"body": ["LUBLA", "REGZA", "BARON", "NORMA"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["LUBLA", "REGZA", "BARON", "NORMA"]
+			]
+		},
+        "LUBLAT": {
+			"icao": "LUBLAT",
+			"name": "Lubla Tango",
+			"entryPoints": {
+				"LUBLA": []
+			},
+			"body": ["LUBLA", ["SOFIA", "A90|S220"], "AA458", "AA459", "AA460", "AA461", ["BELKS", "A90|S220"], ["PEAKS", "A60"], "TYLER"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["LUBLA", "SOFIA", "AA458", "AA459", "AA460", "AA461", "BELKS", "PEAKS", "TYLER"]
+			]
+		},
+        "RUTASE": {
+			"icao": "RUTASE",
+			"name": "Rutas Echo",
+			"entryPoints": {
+				"RUTAS": []
+			},
+			"body": ["RUTAS", "JITAN", "AQUOS", ["SIGMA", "A80-"], "TORCH", "CORGI", "ELGAR"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["RUTAS", "JITAN", "AQUOS", "SIGMA", "TORCH", "CORGI", "ELGAR"]
+			]
+		},
+        "RUTASG": {
+			"icao": "RUTASG",
+			"name": "Rutas Golf",
+			"entryPoints": {
+				"RUTAS": []
+			},
+			"body": ["RUTAS", "VENUS", ["COPEN", "A100"], "BOOTH", "AA651", "AA652", ["GAMMA", "A100"], ["CASIO", "A60"], "GEMIN"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["RUTAS", "VENUS", "COPEN", "BOOTH", "AA651", "AA652", "GAMMA", "CASIO", "GEMIN"]
+			]
+		},
+        "RUTASN": {
+			"icao": "RUTASG",
+			"name": "Rutas November",
+			"entryPoints": {
+				"RUTAS": []
+			},
+			"body": ["RUTAS", "VENUS", "GAUDI", "BARON", "NORMA"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["RUTAS", "VENUS", "GAUDI", "BARON", "NORMA"]
+			]
+		},
+        "RUTAST": {
+			"icao": "RUTAST",
+			"name": "Rutas Tango",
+			"entryPoints": {
+				"RUTAS": []
+			},
+			"body": ["RUTAS", ["VENUS", "A110|S220"], "JARED", "AA451", "AA452", "AA453", ["YUMIL", "A110|S220"], ["PEAKS", "A60"], "TYLER"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["RUTAS", "VENUS", "JARED", "AA451", "AA452", "AA453", "YUMIL", "PEAKS", "TYLER"]
+			]
+		},
+        "SUPOKE": {
+			"icao": "SUPOKE",
+			"name": "Supok Echo",
+			"entryPoints": {
+				"SUPOK": []
+			},
+			"body": ["SUPOK", ["PLOKY", "A90-"], "UNARI", "CORGI", "ELGAR"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SUPOK", "PLOKY", "UNARI", "CORGI", "ELGAR"]
+			]
+		},
+        "SUPOKG": {
+			"icao": "SUPOKG",
+			"name": "Supok Golf",
+			"entryPoints": {
+				"SUPOK": []
+			},
+			"body": ["SUPOK", "AA657", ["REGZA", "A80"], "VOGUE", "AA658", "AA659", ["SAFRA", "A80"], ["CASIO", "A60"], "GEMIN"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SUPOK", "AA657", "REGZA", "VOGUE", "AA658", "AA659", "SAFRA", "CASIO", "GEMIN"]
+			]
+		},
+        "SUPOKN": {
+			"icao": "SUPOKN",
+			"name": "Supok November",
+			"entryPoints": {
+				"SUPOK": []
+			},
+			"body": ["SUPOK", "AA657", "BARON", "NORMA"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SUPOK", "AA657", "BARON", "NORMA"]
+			]
+		},
+        "SUPOKT": {
+			"icao": "SUPOKT",
+			"name": "Supok Tango",
+			"entryPoints": {
+				"SUPOK": []
+			},
+			"body": ["SUPOK", ["SOFIA", "A90|S220"], "AA458", "AA459", "AA460", "AA461", ["BELKS", "A90|S220"], ["PEAKS", "A60"], "TYLER"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SUPOK", "SOFIA", "AA458", "AA459", "AA460", "AA461", "BELKS", "PEAKS", "TYLER"]
+			]
+		},
+        "SWAMPE": {
+			"icao": "SWAMPE",
+			"name": "Swamp Echo",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["VIXEN", "A110+"], "PLEIA", ["MIFFY", "A90+"], ["KARMA", "A60+"], "UNARI", "CORGI", "ELGAR"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SWAMP", "VIXEN", "PLEIA", "MIFFY", "KARMA", "UNARI", "CORGI", "ELGAR"]
+			]
+		},
+        "SWAMPG": {
+			"icao": "SWAMPG",
+			"name": "Swamp Golf",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["VIXEN", "A110+"], ["PLEIA", "A90"], "BETEL", "AA653", "AA654", ["SPITZ", "A90"], ["CASIO", "A60"], "GEMIN"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SWAMP", "VIXEN", "PLEIA", "BETEL", "AA653", "AA654", "SPITZ", "CASIO", "GEMIN"]
+			]
+		},
+        "SWAMPN": {
+			"icao": "SWAMPN",
+			"name": "Swamp November",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["VIXEN", "A110+"], "PLEIA", "AA655", "AA656", ["AA657", "A90+"], "BARON", "NORMA"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SWAMP", "VIXEN", "PLEIA", "AA655", "AA656", "AA657", "BARON", "NORMA"]
+			]
+		},
+        "SWAMPT": {
+			"icao": "SWAMPT",
+			"name": "Swamp Tango",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["VIXEN", "A110+"], "PLEIA", "KARMA", ["DREAM", "A100"], "MCGEE", "AA455", "AA456", "AA457", ["HYDRA", "A100"], ["PEAKS", "A60"], "TYLER"],
+			"rwy": {
+				"RJAA34L": [],
+				"RJAA34R": []
+			},
+			"draw": [
+				["SWAMP", "VIXEN", "PLEIA", "KARMA", "DREAM", "MCGEE", "AA455", "AA456", "AA457", "HYDRA", "PEAKS", "TYLER"]
+			]
+		},
     },
     "spawnPatterns": [
         
