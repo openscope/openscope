@@ -391,11 +391,33 @@
     ],
     "fixes": {
 		"_NRE011009": ["N35d55m46.00", "E140d23m52.00"],
+		"_NRE025021": ["N36d05m57.00", "E140d32m44.00"],
 		"_NRE029008": ["N35d53m56.00", "E140d26m32.00"],
+		"_NRE035021": ["N36d04m07.00", "E140d36m38.00"],
+		"_NRE045013": ["N35d55m58.00", "E140d32m55.00"],
+		"_NRE045021": ["N36d01m45.00", "E140d40d06.00"],
+		"_NRE055013": ["N35d54m16.00", "E140d34m41.00"],
+		"_NRE055021": ["N35d58m56.00", "E140d43m00.00"],
+		"_NRE065013": ["N35d52m20.00", "E140d36m03.00"],
+		"_NRE065021": ["N35d55m46.00", "E140d45m14.00"],
+		"_NRE075013": ["N35d50m14.00", "E140d36m59.00"],
+		"_NRE075021": ["N35d52m19.00", "E140d46m46.00"],
+		"_NRE087013": ["N35d47m35.00", "E140d47m30.00"],
+		"_NRE095021": ["N35d45m04.00", "E140d47m31.00"],
 		"_NRE096008": ["N35d46m05.00", "E140d31m33.00"],
+		"_NRE105021": ["N35d41m28.00", "E140d46m43.00"],
+		"_NRE115021": ["N35d38m02.00", "E140d45m09.00"],
 		"_NRE122014": ["N35d39m30.00", "E140d36m21.00"],
+		"_NRE125021": ["N35d34m52.00", "E140d42m53.00"],
 		"_NRE131021": ["N35d33m08.00", "E140d41m13.00"],
+		"_NRE135021": ["N35d32m04.00", "E140d39m59.00"],
+		"_NRE145021": ["N35d29m44.00", "E140d36m32.00"],
+		"_NRE146021": ["N35d29m31.00", "E140d36m10.00"],
+		"_NRE146033": ["N35d19m33.00", "E140d44m21.00"],
 		"_NRE150014": ["N35d34m49.00", "E140d30m21.00"],
+		"_NRE150035": ["N35d16m37.00", "E140d43m10.00"],
+		"_NRE153021": ["N35d28m14.00", "E140d33m27.00"],
+		"_NRE157021": ["N35d27m37.00", "E140d31m49.00"],
 		"_NRE330006": ["N35d52m08.00", "E140d18m03.00"],
 		"_NRE354007": ["N35d53m53.00", "E140d20m51.00"],
 		"_NRE354009": ["N35d55m53.00", "E140d20m35.00"],
@@ -769,6 +791,107 @@
         }
     },
     "stars": {
+		"BINKSA": {
+			"icao": "BINKSA",
+			"name": "Binks South Alfa",
+			"entryPoints": {
+				"BINKS": []
+			},
+			"body": ["BINKS", "_NRE150035", ["GIINA", "A40"]],
+			"rwy": {
+				"RJAA34L": []
+			},
+			"draw": [
+				["BINKS", "_NRE150035", "GIINA"]
+			]
+		},
+		"BINKSB": {
+			"icao": "BINKSB",
+			"name": "Binks South Bravo",
+			"entryPoints": {
+				"BINKS": []
+			},
+			"body": ["BINKS", "_NRE146033", ["TEMIS", "A50+"]],
+			"rwy": {
+				"RJAA34R": []
+			},
+			"draw": [
+				["BINKS", "_NRE146033", "TEMIS"]
+			]
+		},
+		"BINKSN": {
+			"icao": "BINKSN",
+			"name": "Binks North",
+			"entryPoints": {
+				"BINKS": []
+			},
+			"body": ["BINKS", "_NRE153021", "_NRE145021", "_NRE135021", "_NRE125021", "_NRE115021", "_NRE105021", "_NRE095021", "SIMAK", "_NRE087013", "_NRE075013", "_NRE065013", "_NRE055013", "_NRE045013", ["LAKES", "A60+"]],
+			"rwy": {
+				"RJAA16L": [],
+				"RJAA16R": []
+			},
+			"draw": [
+				["BINKS", "_NRE153021", "_NRE145021", "_NRE135021", "_NRE125021", "_NRE115021", "_NRE105021", "_NRE095021", "SIMAK", "_NRE087013", "_NRE075013", "_NRE065013", "_NRE055013", "_NRE045013", "LAKES"]
+			]
+		},
+		"BOSPAN": {
+			"icao": "BOSPAN",
+			"name": "Bospa North",
+			"entryPoints": {
+				"BOSPA": []
+			},
+			"body": [["BOSPA", "A80+"], "_NRE087013", "_NRE075013", "_NRE065013", "_NRE055013", "_NRE045013", ["LAKES", "A60+"]],
+			"rwy": {
+				"RJAA16L": [],
+				"RJAA16R": []
+			},
+			"draw": [
+				["BOSPA", "_NRE087013", "_NRE075013", "_NRE065013", "_NRE055013", "_NRE045013", "LAKES"]
+			]
+		},
+		"BOSPSA": {
+			"icao": "BOSPSA",
+			"name": "Bospa South Alfa",
+			"entryPoints": {
+				"BOSPA": []
+			},
+			"body": [["BOSPA", "A80+"], "SIMAK", "_NRE095021", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE145021", "_NRE157021", ["GIINA", "A40"]],
+			"rwy": {
+				"RJAA34L": []
+			},
+			"draw": [
+				["BOSPA", "SIMAK", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE145021", "_NRE157021", "GIINA"]
+			]
+		},
+		"BOSPSB": {
+			"icao": "BOSPSB",
+			"name": "Bospa South Bravo",
+			"entryPoints": {
+				"BOSPA": []
+			},
+			"body": [["BOSPA", "A80+"], "SIMAK", "_NRE095021", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE146021", ["TEMIS", "A50+"]],
+			"rwy": {
+				"RJAA34R": []
+			},
+			"draw": [
+				["BOSPA", "SIMAK", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE145021", "_NRE157021", "GIINA"]
+			]
+		},
+		"LAKESN": {
+			"icao": "LAKESN",
+			"name": "Lakes North",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["DANTE", "A110+"], "_NRE025021", "_NRE035021", "_NRE045021", "_NRE055021", "_NRE065021", "_NRE075021", "SIMAK", "_NRE087013", "_NRE075013", "_NRE065013", "_NRE055013", "_NRE045013", ["LAKES", "A60+"]],
+			"rwy": {
+				"RJAA16L": [],
+				"RJAA16R": []
+			},
+			"draw": [
+				["SWAMP", "DANTE", "_NRE025021", "_NRE035021", "_NRE045021", "_NRE055021", "_NRE065021", "_NRE075021", "SIMAK", "_NRE087013", "_NRE075013", "_NRE065013", "_NRE055013", "_NRE045013", "LAKES"]
+			]
+		},
         "LUBLAE": {
 			"icao": "LUBLAE",
 			"name": "Lubla Echo",
@@ -992,6 +1115,34 @@
 			},
 			"draw": [
 				["SWAMP", "VIXEN", "PLEIA", "AA655", "AA656", "AA657", "BARON", "NORMA"]
+			]
+		},
+		"SWAMSA": {
+			"icao": "SWAMSA",
+			"name": "Swamp South Alfa",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["DANTE", "A110+"], "_NRE025021", "_NRE035021", "_NRE045021", "_NRE055021", "_NRE065021", "_NRE075021", "SIMAK", "_NRE095021", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE145021", "_NRE157021", ["GIINA", "A40"]],
+			"rwy": {
+				"RJAA34L": []
+			},
+			"draw": [
+				["SWAMP", "DANTE", "_NRE025021", "_NRE035021", "_NRE045021", "_NRE055021", "_NRE065021", "_NRE075021", "SIMAK", "_NRE095021", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE145021", "_NRE157021", "GIINA"]
+			]
+		},
+		"SWAMSB": {
+			"icao": "SWAMSB",
+			"name": "Swamp South Bravo",
+			"entryPoints": {
+				"SWAMP": []
+			},
+			"body": ["SWAMP", ["DANTE", "A110+"], "_NRE025021", "_NRE035021", "_NRE045021", "_NRE055021", "_NRE065021", "_NRE075021", "SIMAK", "_NRE095021", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE146021", ["TEMIS", "A50+"]],
+			"rwy": {
+				"RJAA34R": []
+			},
+			"draw": [
+				["SWAMP", "DANTE", "_NRE025021", "_NRE035021", "_NRE045021", "_NRE055021", "_NRE065021", "_NRE075021", "SIMAK", "_NRE095021", "_NRE105021", "_NRE115021", "_NRE125021", "_NRE135021", "_NRE146021", "TEMIS"]
 			]
 		},
         "SWAMPT": {
