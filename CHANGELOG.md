@@ -12,6 +12,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1778" target="_blank">#1778</a> - Code gardening in StripViewModel.js
 - <a href="https://github.com/openscope/openscope/issues/1780" target="_blank">#1780</a> - Implement constants for wake turbulence category & engine type
 - <a href="https://github.com/openscope/openscope/issues/1771" target="_blank">#1771</a> - Change VKG airline from Thomas Cook to Sunclass
+- <a href="https://github.com/openscope/openscope/issues/1417" target="_blank">#1417</a> - Update and re-enable RJTT (Tokyo Haneda)
 
 
 # 6.23.0 (February 5, 2021)

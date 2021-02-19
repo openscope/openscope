@@ -443,9 +443,9 @@
     {
         "icao": "rjtt",
         "level": "hard",
-        "name": "Tokyo Haneda International Airport",
+        "name": "Tokyo (Haneda) International Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "rksi",
