@@ -3,6 +3,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1762" target="_blank">#1762</a> - FMS initialization checks against current airport
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
