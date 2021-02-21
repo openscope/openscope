@@ -3259,29 +3259,33 @@
             ]
         }
     },
-    "_comment": "Data for spawnpatterns is 2018/2019 (pre-covid) statistics from https://en.wikipedia.org/wiki/Stockholm_Arlanda_Airport",
-    "_comment": "London example:",
-    "_comment": "a. ['Passengers handled 2019' 1420655] / ['Total passenger traffic 2017' 26642034] = ['Passenger proportion to/from London' 0.0533] (using 2017 total because 2019 is not available, should be quite representative)",
-    "_comment": "b. ['Total landings 2017' 122697] * ['Passenger proportion to/from London' 0.0533] = ['Landings from London' 6540] (using 2017 total because 2019 is not available)",
-    "_comment": "c. ['Landings from London' 6540] / ['Hours in a year' 8760] / (2/3) = ['Aircraft per hour from London' 1.1] (2/3 because I assume almost no passenger traffic during the night 1/3 of each day)",
-    "_comment": "d. Divide the 1.1 rate between London/Heathrow and London/Gatwick by feeling. This gives me 0.7 to Heathrow and 0.4 to Gatwick",
-    "_comment": "e. Find which airlines operate these destinations and guess the weights by feeling",
-    "_comment": "f. Find a reasonable route from London to Arlanda on http://flightplandatabase.com and select a reasonable STAR",
-    "_comment": "g. Create a spawnPatterns for arrivals from Heathrow and Gatwick using the above information",
-    "_comment": "h. Find a reasonable SID and create corresponding spawnPatterns for departures (assuming landing rate and takeoff rate are equal)",
+    "_comment": "More detailed description of how the rates are calculated and how different airways are combined into simpler spawnPatterns can be found in comment on issue #1695 on Github",
     "spawnPatterns" : [
         {
-            "origin": "EGLL",
+            "origin": "",
             "destination": "ESSA",
             "category": "arrival",
-            "route": "INVOL.N866.BEDLA..ELTOK.ELTOK7M.ESSA01R",
+            "route": "OLPED.L77.XILAN.XILAN4M.ESSA01R",
             "altitude": "18000",
             "speed": "330",
             "method": "random",
-            "rate": 0.7,
+            "rate": 2.926,
             "airlines": [
-                ["sas/short", 1],
-                ["baw/short", 1]
+                ["nax/short", 0.494],
+                ["nax/long", 0.041],
+                ["sas/short", 0.392],
+                ["tom/long", 0.081],
+                ["bti", 0.168],
+                ["lot/short", 0.033],
+                ["ces/long", 0.034],
+                ["fin/short", 0.327],
+                ["cca/long", 0.106],
+                ["tha/long", 0.208],
+                ["ira", 0.023],
+                ["nvr", 0.04],
+                ["uae", 0.239],
+                ["qtr/long", 0.224],
+                ["kal/cargo", 0.025]
             ]
         },
         {
