@@ -3396,6 +3396,29 @@
                 ["tha/long", 0.208],
                 ["kal/cargo", 0.025]
             ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.BABAB4C.BABAP.P156.RASEL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.845,
+            "airlines": [
+                ["eth/long", 0.073],
+                ["nax/short", 0.103],
+                ["nax/long", 0.041],
+                ["bti", 0.103],
+                ["ira", 0.023],
+                ["nvr", 0.04],
+                ["uae", 0.239],
+                ["qtr/long", 0.224],
+                ["pgt", 0.14],
+                ["thy/long", 0.14],
+                ["thy/cargo", 0.14]
+            ]
         }
     ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
