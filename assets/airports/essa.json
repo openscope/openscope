@@ -3259,7 +3259,7 @@
             ]
         }
     },
-    "_comment": "More detailed description of how the rates are calculated and how different airways are combined into simpler spawnPatterns can be found in comment on issue #1695 on Github",
+    "_comment": "Description of how the rates and weights are calculated can be found in comment on issue #1695 on Github",
     "spawnPatterns" : [
         {
             "origin": "",
@@ -3289,17 +3289,20 @@
             ]
         },
         {
-            "origin": "EGKK",
+            "origin": "",
             "destination": "ESSA",
             "category": "arrival",
-            "route": "INVOL.N866.BEDLA..ELTOK.ELTOK7M.ESSA01R",
+            "route": "OSK.T318.SIPRI.N5.HMR.HMR5M.ESSA01R",
             "altitude": "18000",
             "speed": "330",
             "method": "random",
-            "rate": 0.4,
+            "rate": 2.553,
             "airlines": [
-                ["ezy", 1],
-                ["nax/short", 3]
+                ["nax/short", 0.538],
+                ["sas/short", 1.775],
+                ["apf/passenger", 0.098],
+                ["est", 0.016],
+                ["swn", 0.125]
             ]
         },
         {
@@ -3362,6 +3365,7 @@
         "T314": ["RESNA", "DEGAL", "ZIPCO", "SUN"],
         "T316": ["SUN", "FOXSA", "ASVOB", "SIPRI", "HMR", "BABAP", "ALOLA", "NEPVA", "GOTAL", "VSB", "PENOR"],
         "T317": ["ARS", "ELTOK", "RESNA", "OSK", "RASEN", "REKMI", "OSKIR", "ITVAV", "VAGAS", "KRA", "NOVRI"],
+        "T318": ["OSK", "SIPRI"],
         "T365": ["ALOLA", "ODIBI"],
         "T402": ["VERAG", "ASVOB", "UMLAX", "JON", "ERNOV", "AMSUR"],
         "Y130": ["RASEL", "DETSO"],
