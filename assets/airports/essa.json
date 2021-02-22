@@ -3476,6 +3476,75 @@
             "airlines": [
                 ["sas/short", 0.273]
             ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.NOSLI5C.NOSLI.N850.TONSA.L87.LUSID",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.092,
+            "airlines": [
+                ["nax/short", 0.31],
+                ["sas/short", 0.503],
+                ["eju", 0.081],
+                ["dlh/short", 0.147],
+                ["bcs", 0.05]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.TROSA5C.TRS.M607.PENOR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.21,
+            "airlines": [
+                ["aua/short", 0.21]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.NOSLI5C.NOSLI.N850.MISBI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.602,
+            "airlines": [
+                ["nax/short", 0.287],
+                ["nax/long", 0.312],
+                ["sas/short", 1.485],
+                ["sas/long", 0.312],
+                ["blx/long", 0.043],
+                ["vkg/long", 0.043],
+                ["dlh/short", 0.275],
+                ["swr/short", 0.158],
+                ["ewg/short", 0.059],
+                ["vlg", 0.025],
+                ["bcs", 0.575],
+                ["ups", 0.025]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.BABAB4C.BABAP.T316.VSB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.126,
+            "airlines": [
+                ["lpa", 0.014],
+                ["nax/short", 0.056],
+                ["sas/short", 0.056]
+            ]
         }
     ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
