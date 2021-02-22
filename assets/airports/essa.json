@@ -3259,7 +3259,7 @@
             ]
         }
     },
-    "_comment": "Description of how the rates and weights are calculated can be found in comment on issue #1695 on Github",
+    "_comment": "A spreadsheet with the calculations used for spawnPatterns is attached to issue #1695 on Github",
     "spawnPatterns" : [
         {
             "origin": "",
