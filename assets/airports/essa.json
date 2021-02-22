@@ -3360,6 +3360,42 @@
                 ["fdx", 0.134],
                 ["swn", 0.42]
             ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.BABAP4C.BABAP.P607.APTUG.M851.OSTOT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.228,
+            "airlines": [
+                ["nax/short", 0.065],
+                ["sas/short", 0.065],
+                ["bti", 0.065],
+                ["lot/short", 0.033]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.TOVRI5C.TOVRI.N851.RIRIP",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.434,
+            "airlines": [
+                ["nax/short", 0.327],
+                ["sas/short", 0.327],
+                ["tom/long", 0.081],
+                ["ces/long", 0.034],
+                ["fin/short", 0.327],
+                ["cca/long", 0.106],
+                ["tha/long", 0.208],
+                ["kal/cargo", 0.025]
+            ]
         }
     ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
