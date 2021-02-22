@@ -1,44 +1,51 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "http://openscope.co/assets/tutorial/tutorial.schema.json",
+  "title": "Openscope ATC simulator tutorial configuration schema",
   "type": "array",
   "items": {
-    "$ref": "#/$defs/tutorialStep"
+    "$ref": "#tutorialStep"
   },
   "$defs": {
     "tutorialStep": {
+      "$anchor": "tutorialStep",
+      "description": "Configuration for a single tutorial step",
       "type": "object",
-      "description": "a single tutorial step",
       "properties": {
         "title": {
+          "description": "Tutorial step heading",
           "type": "string"
         },
         "text": {
+          "description": "Tutorial step body text",
           "type": "string"
         },
         "replace": {
           "type": "array",
           "items": {
+            "description": "Defines a string replacement operation to substitute part of tutorial text with dynamic values obtained from current simulation state",
             "type": "object",
-            "description": "defines a string replacement operation to substitute part of tutorial text with dynamic values obtained from current simulation state",
             "properties": {
               "findWhat": {
-                "type": "string",
-                "description": "string to find within tutorial step text"
+                "description": "string to find within tutorial step text",
+                "type": "string"
               },
               "replaceWith": {
-                "type": "object",
                 "description": "defines how to fetch a dynamic value based on current simulation state",
+                "type": "object",
                 "properties": {
-                    "object": {
-                      "type": "string",
-                      "description": "object to fetch a property from",
-                      "enum": ["airport","departureAircraft"]
-                    },
-                    "propPath": {
-                      "type": "string",
-                      "description": "property path to fetch some value of the object"
-                    }
+                  "object": {
+                    "description": "object to fetch a property from",
+                    "type": "string",
+                    "enum": [
+                      "airport",
+                      "departureAircraft"
+                    ]
+                  },
+                  "propPath": {
+                    "description": "property path to fetch some value of the object",
+                    "type": "string"
+                  }
                 },
                 "required": [
                   "object",
@@ -46,8 +53,8 @@
                 ],
                 "additionalProperties": false
               },
-              "comment": {
-                "$ref": "#/$defs/comment"
+              "_comment": {
+                "$ref": "#comment"
               }
             },
             "required": [
@@ -58,6 +65,8 @@
           }
         },
         "side": {
+          "description": "Display tutorial dialog box on a particular side?",
+          "$comment": "Does not actually appear to be implemented",
           "type": "string",
           "enum": [
             "none",
@@ -66,29 +75,37 @@
           ]
         },
         "position": {
+          "description": "Tutorial dialog box position",
+          "$comment": "Position relative to document (https://api.jquery.com/offset/) with compensation for dialog box dimensions + padding",
           "type": "array",
           "items": [
             {
+              "description": "x-position as fraction of window width",
               "type": "number"
             },
             {
+              "description": "y-position as fraction of window height",
               "type": "number"
             }
           ]
         },
         "padding": {
+          "description": "Tutorial dialog box padding?",
+          "$comment": "Appears to be disregarded in favor of magic values",
           "type": "array",
           "items": [
             {
+              "description": "x-padding",
               "type": "number"
             },
             {
+              "description": "y-padding",
               "type": "number"
             }
           ]
         },
-        "comment": {
-          "$ref": "#/$defs/comment"
+        "_comment": {
+          "$ref": "#comment"
         }
       },
       "required": [
@@ -98,8 +115,9 @@
       "additionalProperties": false
     },
     "comment": {
-      "type": "string",
-      "description": "developer comment"
+      "$anchor": "comment",
+      "description": "A developer comment",
+      "type": "string"
     }
   }
 }
