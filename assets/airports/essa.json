@@ -3545,6 +3545,63 @@
                 ["nax/short", 0.056],
                 ["sas/short", 0.056]
             ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.AROS5C.AROS.N623.ESEBA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.464,
+            "airlines": [
+                ["lpa", 0.108],
+                ["eth/long", 0.108],
+                ["nax/short", 0.432],
+                ["sas/short", 0.432],
+                ["sas/long", 0.324],
+                ["ual/long", 0.044],
+                ["tom/long", 0.018]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.AROS5C.AROS.N623.BEDLA.N866.INVOL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.959,
+            "airlines": [
+                ["nax/short", 0.32],
+                ["sas/short", 0.74],
+                ["baw/short", 0.32],
+                ["ezy", 0.16],
+                ["swn", 0.42] 
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.PETEV1C.PETEV.N872.KOPIM",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.951,
+            "airlines": [
+                ["nax/short", 0.304],
+                ["nax/long", 0.271],
+                ["sas/short", 0.304],
+                ["sas/long", 0.271],
+                ["blx/long", 0.04],
+                ["afr/short", 0.267],
+                ["vkg/long", 0.02],
+                ["klm/short", 0.34],
+                ["fdx", 0.134]
+            ]
         }
     ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
