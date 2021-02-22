@@ -3419,6 +3419,63 @@
                 ["thy/long", 0.14],
                 ["thy/cargo", 0.14]
             ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.RESNA4C.RESNA.M607.BESLA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.869,
+            "airlines": [
+                ["nax/short", 0.19],
+                ["sas/short", 0.68]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.RESNA4C.RESNA.T314.SUN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.251,
+            "airlines": [
+                ["sas/short", 0.125],
+                ["swn", 0.125] 
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.RESNA4C.RESNA.T317.NOVRI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.16,
+            "airlines": [
+                ["nax/short", 0.348],
+                ["sas/short", 0.697],
+                ["apf/passenger", 0.098],
+                ["est", 0.016]
+            ]
+        },
+        {
+            "origin": "ESSA",
+            "destination": "",
+            "category": "departure",
+            "route": "ESSA01L.KOGAV4C.KOGAV.Z11.TIGBA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.273,
+            "airlines": [
+                ["sas/short", 0.273]
+            ]
         }
     ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
