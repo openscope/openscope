@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
 import AirportController from './airport/AirportController';
+import AutocompleteController from './ui/autocomplete/AutocompleteController';
 import CanvasStageModel from './canvas/CanvasStageModel';
 import DynamicPositionModel from './base/DynamicPositionModel';
 import EventBus from './lib/EventBus';
@@ -51,6 +52,7 @@ export default class InputController {
         this._eventBus = EventBus;
         this._aircraftController = aircraftController;
         this._scopeModel = scopeModel;
+        this._autocompleteController = new AutocompleteController(this.$element, this, this._aircraftController);
 
         prop.input = input;
         this.input = input;
@@ -158,6 +160,8 @@ export default class InputController {
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
+
+        this._autocompleteController = null;
 
         this.input = input;
         this.input.command = '';
@@ -486,6 +490,12 @@ export default class InputController {
             return;
         }
 
+        // pass keboard inputs to autocomplete if it is active
+        if (this._autocompleteController.active) {
+            this._autocompleteController.onKeydownHandler(event);
+            return;
+        }
+
         const currentCommandInputValue = this.$commandInput.val();
 
 
@@ -629,6 +639,14 @@ export default class InputController {
                 this.$commandInput.val('');
                 event.preventDefault();
                 this._toggleCommandBarContext();
+
+                break;
+            case KEY_CODES.TAB:
+            case LEGACY_KEY_CODES.TAB:
+                event.preventDefault();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this._autocompleteController.activate();
+                }
 
                 break;
             case KEY_CODES.ESCAPE:
