@@ -494,18 +494,11 @@ export default class InputController {
             code = event.originalEvent.keyCode;
         }
 
-        // TODO: this swtich can be simplified, there is a lot of repetition here
+        // TODO: this switch can be simplified, there is a lot of repetition here
         switch (code) {
             case KEY_CODES.CONTROL_LEFT:
             case KEY_CODES.CONTROL_RIGHT:
                 this._startMeasuring();
-
-                break;
-            case KEY_CODES.BAT_TICK:
-            case LEGACY_KEY_CODES.BAT_TICK:
-                this.$commandInput.val(`${currentCommandInputValue}\` `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.ENTER:
@@ -631,8 +624,8 @@ export default class InputController {
                 this.onCommandInputChangeHandler();
 
                 break;
-            case KEY_CODES.TAB:
-            case LEGACY_KEY_CODES.TAB:
+            case KEY_CODES.BACKQUOTE:
+            case LEGACY_KEY_CODES.BACKQUOTE:
                 this.$commandInput.val('');
                 event.preventDefault();
                 this._toggleCommandBarContext();
