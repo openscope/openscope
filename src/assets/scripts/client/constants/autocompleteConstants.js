@@ -38,8 +38,8 @@ export const AUTOCOMPLETE_COMMAND_STATES = Object.values(AUTOCOMPLETE_STATE.COMM
 * @final
 */
 export const AUTOCOMPLETE_INPUT_PLACEHOLDER = {
-    COMMAND: ' search commands ',
-    PARAM: ' input arguments '
+    COMMAND: 'search commands',
+    PARAM: 'input arguments'
 };
 
 /**

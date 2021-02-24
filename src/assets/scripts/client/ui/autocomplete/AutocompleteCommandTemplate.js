@@ -2,7 +2,7 @@ export const AUTOCOMPLETE_COMMAND_TEMPLATE = `
 <table>
 {{#each this}}
 <tr data-command="{{command}}">
-    <td class="autocomplete-command-suggestion">{{command}}</td>
+    <td class="autocomplete-suggestion">{{command}}</td>
     <td>{{{explanation}}}</td>
 </tr>
 {{else}}

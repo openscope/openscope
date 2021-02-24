@@ -22,29 +22,36 @@
     padding: 0 0 0 18px;
     font-size: 100%;
     font-family: inherit;
+    white-space: pre; // don't collapse spaces
     visibility: hidden;
+}
+
+#autocomplete-ui {
+    margin-left: -5px;
 }
 
 #autocomplete-footer {
     height: @command-bar-height;
+    display: flex;
+    align-items: stretch;
 }
 
 #autocomplete-output,
 #autocomplete-input {
-    height: 100%;
-    padding: 0;
+    padding: 0 5px;
     background-color: @medium-light-gray;
     font-size: 100%;
     font-family: inherit;
     color: @dark;
     user-select: text;
     border: none;
-    overflow: hidden;
+    overflow: hidden; // TODO: width imprecision with long contents despite monospace font
     outline: none;
     .placeholder(@medium-gray);
 }
 
 #autocomplete-output {
+    padding-right: 0;
     color: @dark-085;
     display: none;
 }
@@ -54,7 +61,18 @@
     display: inline-block;
 }
 
+.autocomplete_params_invalid #autocomplete-input,
+.autocomplete_params_valid #autocomplete-input {
+    padding-left: 0;
+}
+
+#autocomplete-footer-fade {
+    width: 100px;
+    background: linear-gradient(to right, @dark, @dark-0);
+}
+
 #autocomplete-popup {
+    display: inline-block; // do not grow beyond max-content even when #autocomplete-footer is wider
     background-color: @dark;
     color: @medium-gray;
     box-shadow: 0 0 50px -10px rgba(0, 0, 0, 0.3);
@@ -71,42 +89,50 @@
     font-style: italic;
 }
 
-#autocomplete-suggests>table {
-    width: 100%;
+#autocomplete-suggests > table {
+    table-layout: auto; // fit contents, redistribute any extra width proportionately
+    width: 100%; // fill available width if legend/instruction are wider
 }
 
 #autocomplete-suggests td {
+    width: 100%;
     padding: 0 10px;
+    white-space: nowrap;
     line-height: @command-bar-height;
     border-bottom: 1px @dark-gray solid;
 }
 
-#autocomplete-suggests tr.highlight>td,
-#autocomplete-suggests tr:hover>td {
+#autocomplete-suggests tr.highlight > td,
+#autocomplete-suggests tr:hover > td {
     background-color: @white-01;
 }
 
-#autocomplete-suggests tr.valid>td.autocomplete-param-explanation {
-    box-shadow: inset 4px 0 0 @green;
-}
-#autocomplete-suggests tr.invalid>td.autocomplete-param-explanation {
-    box-shadow: inset 4px 0 0 @red;
+#autocomplete-suggests td.autocomplete-suggestion {
+    width: 0; // do not accept redistributed extra width
+    padding: 0 20px 0 5px;
+    color: @light-gray;
 }
 
-#autocomplete-suggests td.autocomplete-command-suggestion {
-    padding-left: 0;
-    color: @light-gray;
+#autocomplete-suggests td.autocomplete-param-explanation {
+    padding-left: 15px;
+}
+
+tr.valid > td.autocomplete-param-explanation {
+    box-shadow: inset 4px 0 0 @green;
+}
+tr.invalid > td.autocomplete-param-explanation {
+    box-shadow: inset 4px 0 0 @red;
 }
 
 #autocomplete-legend,
 #autocomplete-instruction {
-    padding: 2px 5px;
-    font-size: 80%;
+    padding: 3px 5px;
+    font-size: 75%;
     border-bottom: 1px @dark-gray solid;
 }
 
 #autocomplete-instruction > span {
-    padding: 0 5px 0 0;
+    padding-right: 5px;
 }
 
 #autocomplete-instruction-navigate,

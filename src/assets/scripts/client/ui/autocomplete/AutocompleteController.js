@@ -268,7 +268,7 @@ export default class AutocompleteController {
         }
 
         this._updateState(AUTOCOMPLETE_STATE.COMMANDS.NO_MATCHES);
-        this.$autocompleteSpacer.text(cmdstr.slice(0, this.targetRange.start).replaceAll('\x20', '\xa0'));
+        this.$autocompleteSpacer.text(cmdstr.slice(0, this.targetRange.start));
         this.$autocompleteInput.val(cmdstr.slice(this.targetRange.start, this.targetRange.end));
         this.$autocompleteInput.attr('placeholder', AUTOCOMPLETE_INPUT_PLACEHOLDER.COMMAND);
         this.onAutocompleteInputChangeHandler();
