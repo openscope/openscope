@@ -199,6 +199,7 @@ export default class AutocompleteController {
         if (this.state === newState) {
             return;
         }
+
         this.$autocomplete.removeClass(this.state);
         this.state = newState;
         this.$autocomplete.addClass(this.state);
@@ -282,10 +283,11 @@ export default class AutocompleteController {
         }
 
         // find first token in whole command string, if any
-        const { index: firstChar, 1: firstToken } = AUTOCOMPLETE_REGEXP.FIRST_TOKEN.exec(cmdstr) || {};
+        const { index: firstChar, 1: firstToken } = AUTOCOMPLETE_REGEXP.FIRST_TOKEN.exec(cmdstr) ?? {};
 
         // is the first token an aircraft callsign?
         const aircraft = this._aircraftController.findAircraftByCallsign(firstToken);
+
         // if (aircraft) {
         // TODO: if so, be clever and filter suggestions depending on departure/arrival and flight phase
         // }
@@ -340,13 +342,16 @@ export default class AutocompleteController {
     highlightPrev() {
         const $highlightOld = this.$autocompleteSuggests.find('tr.highlight');
         let $highlightNew = this.$autocompleteSuggests.find('tr').last();
+
         if ($highlightOld.length) {
             $highlightOld.removeClass('highlight');
             const $highlightOldPrev = $highlightOld.prev();
+
             if ($highlightOldPrev.length) {
                 $highlightNew = $highlightOldPrev;
             }
         }
+
         $highlightNew.addClass('highlight');
         this.highlighted = $highlightNew.data('command');
         this._updateState(AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT);
@@ -361,13 +366,16 @@ export default class AutocompleteController {
     highlightNext() {
         const $highlightOld = this.$autocompleteSuggests.find('tr.highlight');
         let $highlightNew = this.$autocompleteSuggests.find('tr').first();
+
         if ($highlightOld.length) {
             $highlightOld.removeClass('highlight');
             const $highlightOldNext = $highlightOld.next();
+
             if ($highlightOldNext.length) {
                 $highlightNew = $highlightOldNext;
             }
         }
+
         $highlightNew.addClass('highlight');
         this.highlighted = $highlightNew.data('command');
         this._updateState(AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT);
@@ -454,9 +462,11 @@ export default class AutocompleteController {
         const after = cmdstr.slice(this.targetRange.end).trimLeft();
 
         let paramstr = this.$autocompleteInput.val().trim();
+
         if (paramstr.length) {
             paramstr = paramstr.replace(AUTOCOMPLETE_REGEXP.WHITESPACE, ' ').concat(' ');
         }
+
         cmdstr = before.concat((before.length > 0) ? ' ' : '', this.params.command, ' ', paramstr);
         this._inputController.$commandInput.val(cmdstr + after);
         this._inputController.onCommandInputChangeHandler();
@@ -493,6 +503,7 @@ export default class AutocompleteController {
             case KEY_CODES.UP_ARROW:
             case LEGACY_KEY_CODES.UP_ARROW:
                 event.preventDefault();
+
                 if (this.state === AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT || this.state === AUTOCOMPLETE_STATE.COMMANDS.MATCHES) {
                     this.highlightPrev();
                 }
@@ -501,6 +512,7 @@ export default class AutocompleteController {
             case KEY_CODES.DOWN_ARROW:
             case LEGACY_KEY_CODES.DOWN_ARROW:
                 event.preventDefault();
+
                 if (this.state === AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT || this.state === AUTOCOMPLETE_STATE.COMMANDS.MATCHES) {
                     this.highlightNext();
                 }
@@ -509,6 +521,7 @@ export default class AutocompleteController {
             case KEY_CODES.TAB:
             case LEGACY_KEY_CODES.TAB:
                 event.preventDefault();
+
                 if (this.state === AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT) {
                     // replace with selected suggestion (command or alias)
                     this.selectCommand(this.highlighted);
@@ -541,6 +554,7 @@ export default class AutocompleteController {
     _onSuggestionClick(event) {
         if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             const command = $(event.currentTarget).data('command');
+
             if (command) {
                 this.highlighted = command; // for revert purposes
                 this.selectCommand(command);
@@ -556,7 +570,8 @@ export default class AutocompleteController {
     _onAutocompleteInputChange() {
         const currentAutocompleteInputValue = this.$autocompleteInput.val();
         const inputLength = currentAutocompleteInputValue.length;
-        this.$autocompleteInput.attr('size', (inputLength === 0 ? this.$autocompleteInput.attr('placeholder').length : inputLength));
+        this.$autocompleteInput.attr('size',
+            (inputLength === 0 ? this.$autocompleteInput.attr('placeholder').length : inputLength));
 
         if (AUTOCOMPLETE_COMMAND_STATES.includes(this.state)) {
             this._matchCommands(currentAutocompleteInputValue.trim().toLowerCase());
@@ -573,6 +588,7 @@ export default class AutocompleteController {
      */
     _matchCommands(prefix) {
         let matches = {};
+
         // empty / blank input:
         // transmit: force no results, otherwise _findCandidateCommands will return *everything*!
         //     TODO: provide smart suggestions based on aircraft category/flight phase?
@@ -590,13 +606,16 @@ export default class AutocompleteController {
             if (this.state === AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT) {
                 // retain highlight if same entry still exists
                 const $highlight = this.$autocompleteSuggests.find(`tr[data-command="${this.highlighted}"]`);
+
                 if ($highlight.length) {
                     $highlight.addClass('highlight');
                     return;
                 }
             }
+
             this._updateState(AUTOCOMPLETE_STATE.COMMANDS.MATCHES);
         }
+
         this.highlighted = null;
     }
 
@@ -613,7 +632,7 @@ export default class AutocompleteController {
         const matches = {};
         for (const command of this.commandDefs[this.commandType]) {
             for (const variant of command.variants) {
-                /* eslint-disable no-multi-spaces */
+                /* eslint-disable max-len, no-multi-spaces */
                 for (const alias of variant.aliases) {
                     if (alias.startsWith(prefix) &&
                         (typeof matches[command.id] === 'undefined' ||        // has not been matched yet
@@ -631,6 +650,7 @@ export default class AutocompleteController {
 
                 if (variant.altkeys.some((alt) => alt.startsWith(prefix))) {
                     const c = variant.aliases[0];
+
                     if (typeof matches[command.id] === 'undefined' ||    // has not been matched yet
                         c.length < matches[command.id].command.length) { // was matched indirectly for a longer variant of the command
                         matches[command.id] = { direct: false, command: c, explanation: variant.explain };

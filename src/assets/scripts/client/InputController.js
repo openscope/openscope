@@ -644,6 +644,7 @@ export default class InputController {
             case KEY_CODES.TAB:
             case LEGACY_KEY_CODES.TAB:
                 event.preventDefault();
+
                 if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this._autocompleteController.activate();
                 }
