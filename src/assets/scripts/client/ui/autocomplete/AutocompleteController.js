@@ -205,6 +205,33 @@ export default class AutocompleteController {
     }
 
     /**
+     * Grow autocomplete target range to encompass whole token to the left
+     *
+     * @for AutocompleteController
+     * @method _growTargetRangeLeft
+     * @param cmdstr {string}
+     * @param targetRange {object}
+     * @private
+     */
+    _growTargetRangeLeft(cmdstr, targetRange) {
+        const reversePrefix = cmdstr.slice(0, targetRange.start).split('').reverse().join('');
+        targetRange.start -= AUTOCOMPLETE_REGEXP.TOKEN_END.exec(reversePrefix).index + 1;
+    }
+
+    /**
+     * Grow autocomplete target range to encompass whole token to the right
+     *
+     * @for AutocompleteController
+     * @method _growTargetRangeRight
+     * @param cmdstr {string}
+     * @param targetRange {object}
+     * @private
+     */
+    _growTargetRangeRight(cmdstr, targetRange) {
+        targetRange.end += AUTOCOMPLETE_REGEXP.TOKEN_END.exec(cmdstr.slice(targetRange.end)).index + 1;
+    }
+
+    /**
      * Activate the autocomplete UI
      * Starts in command search and suggest mode
      *
@@ -225,17 +252,33 @@ export default class AutocompleteController {
         // target range of command input to ingest and replace
         this.targetRange = Object.assign({}, this.initialRange);
 
-        if (this.targetRange.start > 0 && (
-            // cursor at mid token or touching right edge of a token: grow to encompass it
-            (this.targetRange.start === this.targetRange.end && !AUTOCOMPLETE_REGEXP.WHITESPACE.test(cmdstr.charAt(this.targetRange.start - 1))) ||
-            // selection left boundary at mid token: grow to encompass whole token to left
-            (this.targetRange.start !== this.targetRange.end && AUTOCOMPLETE_REGEXP.TOKEN_MID.test(cmdstr.slice(this.targetRange.start - 1, this.targetRange.start + 1)))
-        )) {
-            this.targetRange.start -= AUTOCOMPLETE_REGEXP.TOKEN_END.exec(cmdstr.slice(0, this.targetRange.start).split('').reverse().join('')).index + 1;
+        // cursor/selection left boundary adjustment
+        if (this.targetRange.start > 0) { // guarantees index (start - 1) is valid
+            if (this.targetRange.start === this.targetRange.end) { // cursor
+                if (!AUTOCOMPLETE_REGEXP.WHITESPACE.test(cmdstr.charAt(this.targetRange.start - 1))) {
+                    // cursor at mid token or touching right edge of a token
+                    this._growTargetRangeLeft(cmdstr, this.targetRange);
+                }
+            } else { // selection, guarantees index (start + 1) is valid
+                const leftBoundary = cmdstr.slice(this.targetRange.start - 1, this.targetRange.start + 1);
+                if (AUTOCOMPLETE_REGEXP.TOKEN_MID.test(leftBoundary)) {
+                    // selection left boundary at mid token
+                    this._growTargetRangeLeft(cmdstr, this.targetRange);
+                } else if (AUTOCOMPLETE_REGEXP.TOKEN_END.exec(leftBoundary)?.index === 0) { // using test() gives spurious match
+                    // selection left boundary touching right edge of a token
+                    // exclude one space for UI aesthetics
+                    this.targetRange.start += 1;
+                }
+            }
         }
-        // cursor/selection right boundary at mid token: grow to encompass whole token to right
-        if (this.targetRange.end < cmdstr.length && AUTOCOMPLETE_REGEXP.TOKEN_MID.test(cmdstr.slice(this.targetRange.end - 1, this.targetRange.end + 1))) {
-            this.targetRange.end += AUTOCOMPLETE_REGEXP.TOKEN_END.exec(cmdstr.slice(this.targetRange.end)).index + 1;
+
+        // cursor/selection right boundary adjustment
+        if (this.targetRange.end < cmdstr.length && // guarantees index (end + 1) is valid
+            this.targetRange.start < this.targetRange.end && // guarantees index (end - 1) is valid; cursor start already moved
+            AUTOCOMPLETE_REGEXP.TOKEN_MID.test(cmdstr.slice(this.targetRange.end - 1, this.targetRange.end + 1))
+        ) {
+            // cursor/selection right boundary at mid token
+            this._growTargetRangeRight(cmdstr, this.targetRange);
         }
 
         // find first token in whole command string, if any
@@ -247,6 +290,9 @@ export default class AutocompleteController {
         // TODO: if so, be clever and filter suggestions depending on departure/arrival and flight phase
         // }
 
+        // may require additional space for correct positioning
+        let extraPad = '';
+
         // determine command type to autocomplete
         if (firstChar === undefined) {
             // empty/blank command string
@@ -255,7 +301,15 @@ export default class AutocompleteController {
             // cursor/selection before or includes first token
             if (aircraft) {
                 // first token is callsign, exclude it
-                this.targetRange.start = firstChar + firstToken.length + 1;
+                let startWithoutCallsign = firstChar + firstToken.length + 1;
+
+                // callsign not guaranteed to be followed by whitespace, i.e. cmdstr may match ^\s*<callsign>$
+                if (startWithoutCallsign > cmdstr.length) {
+                    startWithoutCallsign = cmdstr.length;
+                    extraPad = ' ';
+                }
+
+                this.targetRange.start = startWithoutCallsign;
                 this.targetRange.end = Math.max(this.targetRange.start, this.targetRange.end);
                 this.commandType = AUTOCOMPLETE_COMMAND_TYPE.TRANSMIT;
             } else {
@@ -268,7 +322,7 @@ export default class AutocompleteController {
         }
 
         this._updateState(AUTOCOMPLETE_STATE.COMMANDS.NO_MATCHES);
-        this.$autocompleteSpacer.text(cmdstr.slice(0, this.targetRange.start));
+        this.$autocompleteSpacer.text(cmdstr.slice(0, this.targetRange.start).concat(extraPad));
         this.$autocompleteInput.val(cmdstr.slice(this.targetRange.start, this.targetRange.end));
         this.$autocompleteInput.attr('placeholder', AUTOCOMPLETE_INPUT_PLACEHOLDER.COMMAND);
         this.onAutocompleteInputChangeHandler();
