@@ -603,12 +603,21 @@ export default class AutocompleteController {
         if (_isEmpty(matches)) {
             this._updateState(AUTOCOMPLETE_STATE.COMMANDS.NO_MATCHES);
         } else {
-            if (this.state === AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT) {
-                // retain highlight if same entry still exists
+            // seek to retain highlight on previously highlighted entry if it still exists
+            let findAndHighlight = this.state === AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT;
+
+            // pre-emptively highlight corresponding entry when input is exact match for a command or alias
+            if (Object.keys(this.lookup[this.commandType]).includes(prefix)) {
+                this.highlighted = prefix;
+                findAndHighlight = true;
+            }
+
+            if (findAndHighlight) {
                 const $highlight = this.$autocompleteSuggests.find(`tr[data-command="${this.highlighted}"]`);
 
                 if ($highlight.length) {
                     $highlight.addClass('highlight');
+                    this._updateState(AUTOCOMPLETE_STATE.COMMANDS.HIGHLIGHT);
                     return;
                 }
             }
