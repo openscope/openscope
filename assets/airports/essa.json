@@ -33,7 +33,7 @@
             "_comment": "Arlanda CTR West + Arlanda CTR East + Overlapping part of Stockholm TMA b",
             "floor":          0,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "poly":
             [
                 ["N59d48m58.00", "E017d46m48.00"],
@@ -51,7 +51,7 @@
             "_comment": "Stockholm TMA a",
             "floor":          12,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N60d00m00.00", "E018d00m00.00"]
             ],
@@ -67,7 +67,7 @@
             "_comment": "Part of Stockholm TMA b not overlapping Arlanda CTR",
             "floor":          20,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d40m00.00", "E018d35m00.00"]
             ],
@@ -98,7 +98,7 @@
             "_comment": "Stockholm TMA c",
             "floor":          15,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d11m00.00", "E018d10m00.00"]
             ],
@@ -117,7 +117,7 @@
             "_comment": "Stockholm TMA d",
             "floor":          20,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d09m00.00", "E017d40m00.00"]
             ],
@@ -138,7 +138,7 @@
             "_comment": "Stockholm TMA e",
             "floor":          12,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d41m30.00", "E017d17m30.00"]
             ],
@@ -153,7 +153,7 @@
             "_comment": "Stockholm TMA f",
             "floor":          15,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d51m00.00", "E017d55m00.00"]
             ],
@@ -179,7 +179,7 @@
             "_comment": "Stockholm TMA g",
             "floor":          12,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d28m00.00", "E017d48m00.00"]
             ],
@@ -200,7 +200,7 @@
             "_comment": "Stockholm TMA h",
             "floor":          45,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N59d40m00.00", "E016d45m00.00"]
             ],
@@ -223,7 +223,7 @@
             "_comment": "Stockholm TMA i",
             "floor":          30,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N58d55m00.00", "E017d38m00.00"]
             ],
@@ -241,7 +241,7 @@
             "_comment": "Stockholm TMA k",
             "floor":          65,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "poly":
             [
                 ["N60d02m07.00", "E019d18m49.00"],
@@ -256,7 +256,7 @@
             "_comment": "Stockholm TMA l",
             "floor":          45,
             "ceiling":        95,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "labelPositions": [
                 ["N58d47m00.00", "E018d05m00.00"]
             ],
