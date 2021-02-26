@@ -328,8 +328,8 @@ export default class AutocompleteController {
         this.$autocompleteInput.val(cmdstr.slice(this.targetRange.start, this.targetRange.end));
         this.$autocompleteInput.attr('placeholder', AUTOCOMPLETE_INPUT_PLACEHOLDER.COMMAND);
         this.onAutocompleteInputChangeHandler();
-        this.$autocompleteInput.focus();
         this.$autocomplete.addClass('active');
+        this.$autocompleteInput.focus();
         this.active = true;
     }
 
