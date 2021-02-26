@@ -27,6 +27,7 @@ export const CLASSNAMES = {
     CHANGELOG_CONTAINER: 'js-changelogContainer',
     CHANGELOG_CONTENT: 'js-changelog',
     CHANGELOG_VERSION: 'changelog-version',
+    COMMAND_SCOPE_MODE: 'scope-mode',
     CONTROL: 'control',
     DEPARTURE: 'departure',
     DESTINATION: 'destination',

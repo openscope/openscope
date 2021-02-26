@@ -805,13 +805,13 @@ export default class InputController {
             case COMMAND_CONTEXT.AIRCRAFT:
                 this.commandBarContext = COMMAND_CONTEXT.SCOPE;
                 this.$commandInput.attr('placeholder', 'enter scope command');
-                this.$commandInput.css({ color: 'red' });
+                this.$commandInput.toggleClass(SELECTORS.CLASSNAMES.COMMAND_SCOPE_MODE);
 
                 return;
             case COMMAND_CONTEXT.SCOPE:
                 this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
                 this.$commandInput.attr('placeholder', 'enter aircraft command');
-                this.$commandInput.css({ color: 'white' });
+                this.$commandInput.toggleClass(SELECTORS.CLASSNAMES.COMMAND_SCOPE_MODE);
 
                 break;
 
