@@ -1,9 +1,10 @@
 import { noop, strToNumArray } from '../../../src/assets/scripts/client/commands/definitions/utils';
+
 import {
     singleArgumentValidator,
     zeroArgumentsValidator, zeroOrOneArgumentValidator
 } from '../../../src/assets/scripts/client/commands/parsers/argumentValidators';
-import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/aircraftCommandMap';
+
 
 export const noopParse = () => {
     const tmp = noop;
@@ -30,14 +31,14 @@ export const zeroOrOneArgumentVal = () => {
     return tmp.toString();
 };
 
-export const test_aliases = (t, cmd, t_aliases) => {
-    const a = AIRCRAFT_COMMAND_MAP[cmd].aliases;
+export const test_aliases = (t, map, cmd, t_aliases) => {
+    const a = map[cmd].aliases;
     t.true(a.length === t_aliases.length);
     for (const alias in t_aliases.values()) {
         t.true(a.includes(alias));
     }
 };
-export const self_alias = (t, cmd) => {
-    const a = AIRCRAFT_COMMAND_MAP[cmd].aliases;
+export const self_alias = (t, map, cmd) => {
+    const a = map[cmd].aliases;
     t.true(a.includes(cmd) && a.length === 1);
 };

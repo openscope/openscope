@@ -1,3 +1,5 @@
+import { convertStringToNumber } from '../../utilities/unitConverters';
+
 /**
  * A no-op function used for command definitions that do not need a parser
  *
@@ -10,3 +12,11 @@
  * @return {*}
  */
 export const noop = (args) => args;
+
+/**
+ * Call `convertStringToNumber` and store the result in an array
+ *
+ * @function strToNumArray
+ * @param args {*}
+ */
+export const strToNumArray = (args) => [convertStringToNumber(args)];
