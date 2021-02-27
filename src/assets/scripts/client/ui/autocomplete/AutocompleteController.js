@@ -531,6 +531,16 @@ export default class AutocompleteController {
                 }
 
                 break;
+            case KEY_CODES.ENTER:
+            case KEY_CODES.NUM_ENTER:
+            case LEGACY_KEY_CODES.ENTER:
+                if (this.state === AUTOCOMPLETE_STATE.PARAMS.VALID) {
+                    // shortcut to commit + submit immediately
+                    this.commit();
+                    this._inputController.processCommand();
+                }
+
+                break;
             // cancel / revert
             case KEY_CODES.ESCAPE:
             case LEGACY_KEY_CODES.ESCAPE:
