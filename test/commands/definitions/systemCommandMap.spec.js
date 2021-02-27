@@ -1,7 +1,7 @@
 import ava from 'ava';
 import AircraftCommandModel
-    from '../../../src/assets/scripts/client/commands/aircraftCommand/AircraftCommandModel';
-import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/aircraftCommand/aircraftCommandMap';
+    from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/AircraftCommandModel';
+import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/aircraftCommandMap';
 import { timewarpParser } from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
 import {
     noopParse,

@@ -1,9 +1,9 @@
-import { noop, strToNumArray } from '../../../src/assets/scripts/client/commands/aircraftCommand/aircraftCommandDefinitions';
+import { noop, strToNumArray } from '../../../src/assets/scripts/client/commands/definitions/utils';
 import {
     singleArgumentValidator,
     zeroArgumentsValidator, zeroOrOneArgumentValidator
 } from '../../../src/assets/scripts/client/commands/parsers/argumentValidators';
-import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/aircraftCommand/aircraftCommandMap';
+import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/aircraftCommandMap';
 
 export const noopParse = () => {
     const tmp = noop;

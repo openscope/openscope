@@ -1,6 +1,6 @@
 import ava from 'ava';
 import AircraftCommandModel
-    from '../../../src/assets/scripts/client/commands/aircraftCommand/AircraftCommandModel';
+    from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/AircraftCommandModel';
 
 import {
     altitudeValidator,
@@ -19,7 +19,7 @@ import {
     holdParser,
     optionalAltitudeParser
 } from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
-import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/aircraftCommand/aircraftCommandMap';
+import { AIRCRAFT_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/aircraftCommandMap';
 
 import {
     noopParse,
