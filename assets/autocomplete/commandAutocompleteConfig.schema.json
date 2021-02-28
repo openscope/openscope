@@ -93,12 +93,32 @@
                 "type": "string"
               },
               "candidate": {
-                "description": "A regular expression that matches any prefix of any string that would be valid input for this set of parameters",
-                "type": "string"
+                "description": "A (set of) regular expression(s) that matches any prefix of any string that would be valid input for this set of parameters",
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
               },
               "validate": {
-                "description": "A regular expression that matches any string that is valid input for this set of parameters",
-                "type": "string"
+                "description": "A (set of) regular expression(s) that matches any string that is valid input for this set of parameters",
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
               },
               "_comment": {
                 "$ref": "#comment"

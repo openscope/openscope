@@ -1,5 +1,7 @@
 import $ from 'jquery';
+import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
+import RegexGroup from './RegexGroup';
 import {
     AUTOCOMPLETE_COMMAND_TYPE,
     AUTOCOMPLETE_STATE,
@@ -124,14 +126,31 @@ export default class AutocompleteController {
 
                 // setup regular expressions for parameter validation
                 commandDef.paramsets.forEach((paramset) => {
-                    paramset.candidate = new RegExp(paramset.candidate, 'i');
-                    paramset.validate = new RegExp(paramset.validate, 'i');
+                    paramset.candidate = this._buildRegexOrGroup(paramset.candidate, 'i');
+                    paramset.validate = this._buildRegexOrGroup(paramset.validate, 'i');
                 });
             });
         }
 
         this.enable();
         this.ready = true;
+    }
+
+    /**
+     * Build a single regex or group of regexes for parameter validation
+     *
+     * @for AutocompleteController
+     * @method _buildRegexOrGroup
+     * @param regexStrs {string|Array<string>}
+     * @param flags {string}
+     * @private
+     */
+    _buildRegexOrGroup(regexStrs, flags) {
+        if (_isArray(regexStrs)) {
+            return new RegexGroup(regexStrs, flags);
+        }
+
+        return new RegExp(regexStrs, flags);
     }
 
     /**
