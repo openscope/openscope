@@ -7,7 +7,6 @@ import CommandParser from '../../../src/assets/scripts/client/commands/parsers/C
 import AircraftCommandModel from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/AircraftCommandModel';
 import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
 import SystemCommandModel from '../../../src/assets/scripts/client/commands/definitions/systemCommand/SystemCommandModel';
-import { isSystemCommand } from '../../../src/assets/scripts/client/commands/definitions/systemCommand/systemCommandMap';
 
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AAL777';
