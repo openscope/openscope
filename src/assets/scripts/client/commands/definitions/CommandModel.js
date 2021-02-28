@@ -1,24 +1,21 @@
-import { AIRCRAFT_COMMAND_DEFINITION } from './aircraftCommandDefinitions';
-
 /**
  * A definition of a specific command and it's arguments.
  *
- * Conatins a command name, which maps 1:1 with a name defined in `commandMap.js` and `commandDefinitions.js`.
+ * Contains a command name, which maps 1:1 with a name defined in `AircraftCommandMap` or `SystemCommandMap`.
  * Commands may have an alias or many, we care only about the root command. The command map will map any
- * alias to a root command and this `AircraftCommandModel` is only concerned about those root commands. It has
+ * alias to a root command and this `CommandModel` is only concerned about those root commands. It has
  * no way of knowing what the original alias was, if one was used.
  *
- * Each `AircraftCommandModel` will be expected to have, at a minimum, a `name` and a matching
- * `AIRCRAFT_COMMAND_DEFINITION`.
- *
- * @class AircraftCommandModel
+ * @class CommandModel
  */
-export default class AircraftCommandModel {
+export default class CommandModel {
     /**
      * @constructor
-     * @for AircraftCommandModel
+     * @for CommandModel
+     * @param {string} name
+     * @param {object} commandDefinition
      */
-    constructor(name = '') {
+    constructor(name = '', commandDefinition) {
         /**
          * command name, should match a command in the COMMANDS constant
          *
@@ -28,19 +25,17 @@ export default class AircraftCommandModel {
         this.name = name;
 
         /**
-         * A reference to the AIRCRAFT_COMMAND_DEFINITION for this particular command.
-         * this gives us access to both the `validate` and `parse` methods
-         * that belong to this command.
+         * A reference to {AIRCRAFT,SYSTEM}_COMMAND_MAP for this particular command.
+         * This gives us access to both the `validate` and `parse` methods that belong to this command.
          *
          * Storing this as an instance property allows us to do the lookup once
-         * and then make it available to the rest of the class so it can
-         * be referenced when needed.
+         * and then make it available to the rest of the class so it can be referenced when needed.
          *
          * @property _commandDefinition
          * @type {object}
          * @private
          */
-        this._commandDefinition = AIRCRAFT_COMMAND_DEFINITION[name];
+        this._commandDefinition = commandDefinition;
 
         /**
          * list of command arguments
@@ -78,7 +73,7 @@ export default class AircraftCommandModel {
     /**
      * Send the initial args off to the validator
      *
-     * @for AircraftCommandModel
+     * @for CommandModel
      * @method validateArgs
      * @return {string|undefined}
      */
@@ -94,7 +89,7 @@ export default class AircraftCommandModel {
      * Send the initial args, set from the `CommandParser` right after instantiation, off to
      * the parser for formatting.
      *
-     * @for AircraftCommandModel
+     * @for CommandModel
      * @method parseArgs
      */
     parseArgs() {

@@ -8,7 +8,7 @@ import {
     EXPLICIT_COMMANDS,
     COMMAND_FUNCTIONS
 } from './scopeCommandMap';
-import { DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR } from '../../constants/scopeConstants';
+import { DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR } from '../../../constants/scopeConstants';
 
 // TODO: Replace dummy sector codes with a proper `SectorCollection`
 const SECTOR_HANDOFF_CODES = ['18', '19', '10', '12'];

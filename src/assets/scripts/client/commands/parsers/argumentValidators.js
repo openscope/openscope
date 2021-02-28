@@ -2,12 +2,19 @@ import _isNaN from 'lodash/isNaN';
 import _isString from 'lodash/isString';
 import _forEach from 'lodash/forEach';
 import { convertStringToNumber } from '../../utilities/unitConverters';
-import { EXPEDITE } from '../aircraftCommand/aircraftCommandMap';
 import { ERROR_MESSAGE } from './parserMessages';
 import {
     INVALID_INDEX,
     REGEX
 } from '../../constants/globalConstants';
+
+
+/**
+ * @property EXPEDITE
+ * @type {array}
+ * @final
+ */
+export const EXPEDITE = ['expedite', 'ex'];
 
 /**
  * Check that `args` has exactly zero values
