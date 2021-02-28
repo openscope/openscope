@@ -72,6 +72,5 @@ ava('aliases, timewarp parser and zeroOrOneArgumentValidator used by timewarp', 
 });
 
 ava('make sure we test all 8 system commands', t => {
-    t.true(Object.values(SYSTEM_COMMAND_MAP)
-        .filter(val => val.isSystemCommand).length === 8);
+    t.true(Object.values(SYSTEM_COMMAND_MAP).length === 8);
 });

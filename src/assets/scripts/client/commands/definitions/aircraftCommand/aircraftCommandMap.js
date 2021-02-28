@@ -1,14 +1,30 @@
 import _findKey from 'lodash/findKey';
 import {
-    altitudeValidator, crossingValidator, fixValidator, headingValidator, holdValidator, optionalAltitudeValidator,
-    singleArgumentValidator, squawkValidator, zeroArgumentsValidator, zeroOrOneArgumentValidator
+    altitudeValidator,
+    crossingValidator,
+    fixValidator,
+    headingValidator,
+    holdValidator,
+    optionalAltitudeValidator,
+    singleArgumentValidator,
+    squawkValidator,
+    zeroArgumentsValidator,
+    zeroOrOneArgumentValidator
 } from '../../parsers/argumentValidators';
-import { convertStringToNumber } from '../../../utilities/unitConverters';
+
 import {
-    altitudeParser, crossingParser, headingParser, holdParser, optionalAltitudeParser
+    altitudeParser,
+    crossingParser,
+    headingParser,
+    holdParser,
+    ilsParser,
+    optionalAltitudeParser
 } from '../../parsers/argumentParsers';
 
-import { noop } from '../utils';
+import {
+    noop,
+    strToNumArray
+} from '../utils';
 
 /**
  * Complete map of commands
@@ -112,8 +128,7 @@ export const AIRCRAFT_COMMAND_MAP = {
     },
     ils: {
         aliases: ['*', 'i', 'ils'],
-        // TODO: split this out to custom parser once the null value is defined
-        parse: (args) => [null, args[0]],
+        parse: ilsParser,
         validate: singleArgumentValidator,
         functionName: 'runIls'
     },
@@ -122,6 +137,12 @@ export const AIRCRAFT_COMMAND_MAP = {
         parse: noop,
         validate: zeroOrOneArgumentValidator,
         functionName: 'runLand'
+    },
+    moveDataBlock: {
+        aliases: ['`'],
+        parse: noop,
+        validate: singleArgumentValidator,
+        functionName: 'runMoveDataBlock'
     },
     reroute: {
         aliases: ['reroute', 'rr'],
@@ -187,7 +208,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         aliases: ['-', '+', 'slow', 'sp', 'speed'],
         // calling method is expecting an array with values that will get spread later, thus we purposly
         // return an array here
-        parse: (arg) => [convertStringToNumber(arg)],
+        parse: strToNumArray,
         validate: singleArgumentValidator,
         functionName: 'runSpeed'
     },
@@ -213,18 +234,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         aliases: ['taxi', 'w', 'wait'],
         parse: noop,
         validate: zeroOrOneArgumentValidator,
-        functionName: 'runTaxi',
-        isSystemCommand: false
-    },
-    timewarp: {
-        aliases: ['timewarp', 'tw'],
-        functionName: '',
-        isSystemCommand: true
-    },
-    tutorial: {
-        aliases: ['tutorial'],
-        functionName: '',
-        isSystemCommand: true
+        functionName: 'runTaxi'
     }
 };
 

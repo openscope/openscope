@@ -1,7 +1,6 @@
 import { singleArgumentValidator, zeroArgumentsValidator, zeroOrOneArgumentValidator } from '../../parsers/argumentValidators';
-import { convertStringToNumber } from '../../../utilities/unitConverters';
 import { timewarpParser } from '../../parsers/argumentParsers';
-import { noop } from '../utils';
+import { noop, strToNumArray } from '../utils';
 
 /**
  * Complete map of system commands
@@ -16,47 +15,44 @@ import { noop } from '../utils';
  */
 export const SYSTEM_COMMAND_MAP = {
     airac: {
+        aliases: ['airac'],
         parse: noop,
         validate: zeroArgumentsValidator
     },
     airport: {
+        aliases: ['airport'],
         parse: noop,
         validate: singleArgumentValidator
     },
-
     auto: {
+        aliases: ['auto'],
         parse: noop,
         validate: zeroArgumentsValidator
     },
     clear: {
-        parse: noop,
-        validate: zeroArgumentsValidator
-    },
-    debug: {
-        // todo parsed, but not implemented
+        aliases: ['clear'],
         parse: noop,
         validate: zeroArgumentsValidator
     },
     pause: {
+        aliases: ['pause'],
         parse: noop,
         validate: zeroArgumentsValidator
     },
     rate: {
         // calling method is expecting an array with values that will get spread later, thus we purposely
         // return an array here
-        parse: (args) => [convertStringToNumber(args)],
+        aliases: ['rate'],
+        parse: strToNumArray,
         validate: singleArgumentValidator
     },
     timewarp: {
+        aliases: ['timewarp', 'tw'],
         parse: timewarpParser,
         validate: zeroOrOneArgumentValidator
     },
-    transmit: {
-        // todo parsed, but not implemented
-        parse: noop,
-        validate: zeroArgumentsValidator
-    },
     tutorial: {
+        aliases: ['tutorial'],
         parse: noop,
         validate: zeroArgumentsValidator
     }
