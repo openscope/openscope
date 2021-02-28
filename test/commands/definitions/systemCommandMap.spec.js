@@ -1,7 +1,10 @@
 import ava from 'ava';
 import SystemCommandModel
     from '../../../src/assets/scripts/client/commands/definitions/systemCommand/SystemCommandModel';
-import { SYSTEM_COMMAND_MAP } from '../../../src/assets/scripts/client/commands/definitions/systemCommand/systemCommandMap';
+import {
+    SYSTEM_COMMAND_MAP,
+    isSystemCommand
+} from '../../../src/assets/scripts/client/commands/definitions/systemCommand/systemCommandMap';
 import { timewarpParser } from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
 import {
     noopParse,
@@ -73,4 +76,15 @@ ava('aliases, timewarp parser and zeroOrOneArgumentValidator used by timewarp', 
 
 ava('make sure we test all 8 system commands', t => {
     t.true(Object.values(SYSTEM_COMMAND_MAP).length === 8);
+});
+
+
+ava('isSystemCommand() returns true if command is a system command', t => {
+    const systemCommandMock = 'timewarp';
+    t.true(isSystemCommand(systemCommandMock));
+});
+
+ava('isSystemCommand() returns false if command is not a system command', t => {
+    const transmitCommandMock = 'climb';
+    t.false(isSystemCommand(transmitCommandMock));
 });
