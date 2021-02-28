@@ -7,6 +7,7 @@ import CommandParser from '../../../src/assets/scripts/client/commands/parsers/C
 import AircraftCommandModel from '../../../src/assets/scripts/client/commands/definitions/aircraftCommand/AircraftCommandModel';
 import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
 import SystemCommandModel from '../../../src/assets/scripts/client/commands/definitions/systemCommand/SystemCommandModel';
+import { isSystemCommand } from '../../../src/assets/scripts/client/commands/definitions/systemCommand/systemCommandMap';
 
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AAL777';
@@ -112,46 +113,39 @@ ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t
 ava('when passed hold LAM it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('hold', 'LAM');
     const model = new CommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'hold');
-    t.true(model.args[0][1] === null);
-    t.true(model.args[0][2] === null);
-    t.true(model.args[0][3] === 'lam');
+    const cmd = model.parse();
+    t.true(cmd.args[0][0] === 'hold');
+    t.true(cmd.args[0][1] === null);
+    t.true(cmd.args[0][2] === null);
+    t.true(cmd.args[0][3] === 'lam');
 });
 
 ava('when passed dct WHAMY it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('dct', 'WHAMY');
     const model = new CommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'direct');
-    t.true(model.args[0][1] === 'whamy');
+    const cmd = model.parse();
+    t.true(cmd.args[0][0] === 'direct');
+    t.true(cmd.args[0][1] === 'whamy');
 });
 
 ava('when passed dct TOU it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('dct', 'TOU');
     const model = new CommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'direct');
-    t.true(model.args[0][1] === 'tou');
+    const cmd = model.parse();
+    t.true(cmd.args[0][0] === 'direct');
+    t.true(cmd.args[0][1] === 'tou');
 });
 
 ava('when passed dct TOR it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('dct', 'TOR');
     const model = new CommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'direct');
-    t.true(model.args[0][1] === 'tor');
+    const cmd = model.parse();
+    t.true(cmd.args[0][0] === 'direct');
+    t.true(cmd.args[0][1] === 'tor');
 });
 
 ava('provides a default value for the timewarp command when no args are passed', (t) => {
     const model = new CommandParser('timewarp');
-
-    t.true(model.args[0] === 1);
-});
-
-ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists within SYSTEM_COMMANDS and is not transmit', t => {
-    const systemCommandMock = 'timewarp';
-    const model = new CommandParser(systemCommandMock);
-
-    t.true(model._isSystemCommand(systemCommandMock));
+    const cmd = model.parse();
+    t.true(cmd.args[0] === 1);
 });
