@@ -431,7 +431,7 @@
           "example": "30 ex",
           "explain": "travel to <u>altitude</u> and <u><b>ex</b>pedite</u>",
           "candidate": "^[0-9]*$|^[0-9]+ +e(?:x(?:p(?:e(?:d(?:i(?:te?)?)?)?)?)?)?$",
-          "validate": "^([0-9]+) +(ex(?:pedite)?)$"
+          "validate": "^([0-9]+)(?: +(ex(?:pedite)?))?$"
         }
       ]
     },
