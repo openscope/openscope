@@ -1,0 +1,26 @@
+{
+  "radio"{
+      "twr": "Fiumicino Tower",
+      "app": "Rome Arrivals",
+      "dep": "Rome Departures"
+  },
+  "icao": "LIRF",
+  "iata": "FCO",
+  "magnetic_north": +2,
+  "ctr_radius": 100,
+	"ctr_ceiling": 24000,
+	"initial_alt": 4000,
+	"position": ["N41d48m1", "E12d14m20", "15.0ft"],
+	"rr_radius_nm": 5.0,
+	"rr_center": ["N41d48m1", "E12d14m20"],
+	"has_terrain": true,
+	"wind":{
+		"angle": 210,
+		"speed": 9
+	},
+	"arrivalRunway": "16L",
+	"departureRunway": "25",
+	
+	//WIP
+	
+}
