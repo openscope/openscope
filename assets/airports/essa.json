@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Stockholm TMA", "Sector Uppsala + Uppsala CTR", "Sector Västerås + Västerås CTR", "Bromma CTR", "Östgöta TMA", "Örebro TMA", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Stockholm TMA", "Sector Uppsala + Uppsala CTR", "Sector Västerås + Västerås CTR", "Bromma CTR", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -673,7 +673,7 @@
     },
     "_comment": "Source restricted areas map: https://www.aro.lfv.se/Editorial/View/8319/ES_AD_2_ESSA_4-1_en",
     "_comment": "Source restricted areas definition: https://www.aro.lfv.se/Editorial/View/8415/ES_ENR_5_1_en",
-    "_comment": "Most of these areas are only active when military exercies or operations are in progress, so a reasonable selection is implemented",
+    "_comment": "Most of these areas are only active when military exercises or operations are in progress, so a reasonable selection is implemented",
     "restricted": [
         {
             "name": "R15A",
@@ -3871,6 +3871,14 @@
                 ["N59d14m02.00", "E014d50m52.00", "N59d29m06.00", "E014d56m52.00"],
                 ["N59d29m06.00", "E014d56m52.00", "N59d31m20.00", "E015d18m28.00"],
                 ["N59d31m20.00", "E015d18m28.00", "N59d34m33.00", "E015d50m57.00"]
+            ]
+        },
+        {
+            "name": "Arlanda runways",
+            "lines": [
+                ["N59d38m14.11", "E017d54m47.60", "N59d39m59.04", "E017d55m25.56"],
+                ["N59d37m35.03", "E017d57m02.67", "N59d38m54.49", "E017d57m31.48"],
+                ["N59d39m30.31", "E017d56m10.08", "N59d39m50.03", "E017d58m44.96"]
             ]
         },
         {
