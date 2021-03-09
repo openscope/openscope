@@ -18,6 +18,9 @@ Stockholm TMA e
 Stockholm TMA f
 Stockholm TMA g
 Stockholm TMA h
+Stockholm TMA i
+Stockholm TMA k
+Stockholm TMA l
 Arlanda CTR Sector East
 Arlanda CTR Sector West
 
