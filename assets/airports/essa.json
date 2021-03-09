@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Stockholm TMA", "Sector Uppsala + Uppsala CTR", "Sector Västerås + Västerås CTR", "Bromma CTR", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Stockholm TMA", "Sector Uppsala + Uppsala CTR", "Sector Västerås + Västerås CTR", "Bromma CTR", "Östgöta TMA", "Örebro TMA", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -3830,6 +3830,47 @@
                 ["N59d19m28.00", "E017d41m48.00", "N59d21m58.00", "E017d41m48.00"],
                 ["N59d21m58.00", "E017d41m48.00", "N59d21m58.00", "E017d44m48.00"],
                 ["N59d21m58.00", "E017d44m48.00", "N59d26m28.00", "E017d44m48.00"]
+            ]
+        },
+        {
+            "_comment": "Source Östgöta TMA, https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "name": "Östgöta TMA",
+            "lines": [
+                ["N59d00m43.00", "E016d42m28.00", "N58d58m43.00", "E017d13m24.00"],
+                ["N58d58m43.00", "E017d13m24.00", "N58d57m58.00", "E017d24m28.00"],
+                ["N58d57m58.00", "E017d24m28.00", "N58d36m59.00", "E017d27m25.00"],
+                ["N58d36m59.00", "E017d27m25.00", "N58d21m59.00", "E017d12m54.00"],
+                ["N58d21m59.00", "E017d12m54.00", "N58d15m42.00", "E017d02m52.00"],
+                ["N58d15m42.00", "E017d02m52.00", "N58d07m28.00", "E016d25m56.00"],
+                ["N58d07m28.00", "E016d25m56.00", "N57d52m10.00", "E016d04m37.00"],
+                ["N57d52m10.00", "E016d04m37.00", "N57d56m31.00", "E015d46m39.00"],
+                ["N57d56m31.00", "E015d46m39.00", "N58d08m10.00", "E014d51m35.00"],
+                ["N58d08m10.00", "E014d51m35.00", "N58d14m29.00", "E014d53m19.00"],
+                ["N58d14m29.00", "E014d53m19.00", "N58d25m39.00", "E015d02m25.00"],
+                ["N58d25m39.00", "E015d02m25.00", "N58d40m28.00", "E015d14m39.00"],
+                ["N58d40m28.00", "E015d14m39.00", "N58d47m59.00", "E015d53m52.00"],
+                ["N58d47m59.00", "E015d53m52.00", "N58d51m23.00", "E016d12m04.00"],
+                ["N58d51m23.00", "E016d12m04.00", "N58d56m33.00", "E016d40m18.00"],
+                ["N58d56m33.00", "E016d40m18.00", "N59d00m43.00", "E016d42m28.00"]
+            ]
+        },
+        {
+            "_comment": "Source Örebro TMA: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "name": "Örebro TMA",
+            "lines": [
+                ["N59d34m33.00", "E015d50m57.00", "N59d27m39.00", "E015d59m12.00"],
+                ["N59d27m39.00", "E015d59m12.00", "N59d12m15.00", "E015d32m25.00"],
+                ["N59d12m15.00", "E015d32m25.00", "N58d57m34.00", "E015d06m24.00"],
+                ["N58d57m34.00", "E015d06m24.00", "N58d54m01.00", "E014d57m58.00"],
+                ["N58d54m01.00", "E014d57m58.00", "N58d49m42.00", "E014d47m48.00"],
+                ["N58d49m42.00", "E014d47m48.00", "N58d43m17.00", "E014d32m46.00"],
+                ["N58d43m17.00", "E014d32m46.00", "N58d48m20.00", "E014d20m52.00"],
+                ["N58d48m20.00", "E014d20m52.00", "N59d00m55.00", "E014d16m14.00"],
+                ["N59d00m55.00", "E014d16m14.00", "N59d06m02.00", "E014d29m37.00"],
+                ["N59d06m02.00", "E014d29m37.00", "N59d14m02.00", "E014d50m52.00"],
+                ["N59d14m02.00", "E014d50m52.00", "N59d29m06.00", "E014d56m52.00"],
+                ["N59d29m06.00", "E014d56m52.00", "N59d31m20.00", "E015d18m28.00"],
+                ["N59d31m20.00", "E015d18m28.00", "N59d34m33.00", "E015d50m57.00"]
             ]
         },
         {
