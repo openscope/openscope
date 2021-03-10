@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -3847,6 +3847,22 @@
             ]
         },
         {
+            "_comment": "Source Borlänge TMA, https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "name": "Borlänge TMA",
+            "lines": [
+                ["N60d41m01.00", "E015d08m36.00", "N60d40m40.00", "E015d28m01.00"],
+                ["N60d40m40.00", "E015d28m01.00", "N60d32m42.00", "E015d48m47.00"],
+                ["N60d32m42.00", "E015d48m47.00", "N60d18m58.00", "E016d12m25.00"],
+                ["N60d18m58.00", "E016d12m25.00", "N60d07m30.00", "E015d52m54.00"],
+                ["N60d07m30.00", "E015d52m54.00", "N59d53m08.00", "E015d09m37.00"],
+                ["N59d53m08.00", "E015d09m37.00", "N59d56m39.00", "E015d02m33.00"],
+                ["N59d56m39.00", "E015d02m33.00", "N60d13m13.00", "E015d07m47.00"],
+                ["N60d13m13.00", "E015d07m47.00", "N60d30m48.00", "E015d00m19.00"],
+                ["N60d30m48.00", "E015d00m19.00", "N60d36m43.00", "E015d00m03.00"],
+                ["N60d36m43.00", "E015d00m03.00", "N60d41m01.00", "E015d08m36.00"]
+            ]
+        },
+        {
             "_comment": "Source Visby TMA, https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
             "name": "Visby TMA",
             "lines": [
@@ -3907,7 +3923,7 @@
         },
         {
             "_comment": "Source other airport runways: https://www.aro.lfv.se/Editorial/View/IAIP?folderId=19",
-            "_comment": "Included (in this order): ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSL, ESSP, ESSU, ESSV",
+            "_comment": "Included (in this order): ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSD, ESSL, ESSP, ESSU, ESSV",
             "name": "Other airport runways",
             "lines": [
                 ["N58d23m12.25", "E015d30m57.58", "N58d24m20.18", "E015d31m40.44"], ["N58d24m05.88", "E015d30m56.13", "N58d24m13.01", "E015d32m50.47"],
@@ -3916,6 +3932,7 @@
                 ["N59d12m27.17", "E015d01m53.15", "N59d14m10.69", "E015d02m34.89"],
                 ["N59d34m42.54", "E016d37m45.30", "N59d36m04.23", "E016d38m18.51"],
                 ["N59d21m33.25", "E017d55m40.98", "N59d20m58.22", "E017d57m18.91"],
+                ["N60d25m44.73", "E015d29m59.51", "N60d24m54.32", "E015d31m51.09"],
                 ["N58d24m35.66", "E015d39m48.03", "N58d24m09.62", "E015d41m49.77"],
                 ["N58d35m10.01", "E016d13m54.08", "N58d35m08.92", "E016d16m10.53"], ["N58d35m24.30", "E016d14m11.40", "N58d35m16.00", "E016d14m44.80"],
                 ["N59d21m43.59", "E016d42m27.60", "N59d20m33.42", "E016d42m32.28"],
