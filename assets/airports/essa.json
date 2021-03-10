@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA", "Mariehamn TMA", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -3863,6 +3863,18 @@
             ]
         },
         {
+            "_comment": "Source Mariehamn TMA: https://www.ais.fi/ais/aip/ge/EF_ENR_2_1_EN.pdf",
+            "name": "Mariehamn TMA",
+            "lines": [
+                ["N60d33m33.00", "E020d06m01.00", "N60d29m36.00", "E020d24m19.00"],
+                ["N60d29m36.00", "E020d24m19.00", "N60d17m53.00", "E020d37m55.00"],
+                ["N60d17m53.00", "E020d37m55.00", "N59d43m59.00", "E020d08m38.00"],
+                ["N59d43m59.00", "E020d08m38.00", "N59d41m41.00", "E019d47m56.00"],
+                ["N60d03m59.00", "E019d16m08.00", "N60d30m33.00", "E019d39m17.00"],
+                ["N60d30m33.00", "E019d39m17.00", "N60d33m33.00", "E020d06m01.00"]
+            ]
+        },
+        {
             "_comment": "Source Visby TMA, https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
             "name": "Visby TMA",
             "lines": [
@@ -3922,10 +3934,12 @@
             ]
         },
         {
+            "_comment": "Source Mariehamn runway: https://ais.fi/ais/aip/ad/efma/EF_AD_2_EFMA_EN.pdf",
             "_comment": "Source other airport runways: https://www.aro.lfv.se/Editorial/View/IAIP?folderId=19",
-            "_comment": "Included (in this order): ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSD, ESSL, ESSP, ESSU, ESSV",
+            "_comment": "Included (in this order): EFMA, ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSD, ESSL, ESSP, ESSU, ESSV",
             "name": "Other airport runways",
             "lines": [
+                ["N60d06m51.71", "E019d53m28.92", "N60d07m48.15", "E019d54m17.81"],
                 ["N58d23m12.25", "E015d30m57.58", "N58d24m20.18", "E015d31m40.44"], ["N58d24m05.88", "E015d30m56.13", "N58d24m13.01", "E015d32m50.47"],
                 ["N59d53m41.20", "E017d34m12.01",  "N59d53m57.78", "E017d36m13.87"], ["N59d53m35.29", "E017d34m59.74", "N59d54m26.82", "E017d36m06.86"],
                 ["N58d47m23.17", "E016d55m47.18", "N58d47m11.98", "E016d52m49.31"], ["N58d48m04.95", "E016d54m14.67", "N58d47m02.21", "E016d54m54.40"],
