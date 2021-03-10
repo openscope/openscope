@@ -16,6 +16,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1417" target="_blank">#1417</a> - Update and re-enable RJTT (Tokyo Haneda)
 - <a href="https://github.com/openscope/openscope/issues/1783" target="_blank">#1783</a> - Avoid making unnecessary copies of AircraftTypeDefinitionModel
 - <a href="https://github.com/openscope/openscope/issues/1785" target="_blank">#1785</a> - File location & EoL housekeeping
+- <a href="https://github.com/openscope/openscope/issues/1791" target="_blank">#1791</a> - Add test coverage for all command aliases
 
 
 # 6.23.0 (February 5, 2021)
