@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Bromma CTR", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -3845,17 +3845,15 @@
         },
         {
             "_comment": "Source Bromma CTR: https://www.aro.lfv.se/Editorial/View/7956/ES_AD_2_ESSB_en",
-            "name": "Bromma CTR",
+            "name": "Bromma CTR (dashed)",
             "lines": [
-                ["N59d26m28.00", "E017d44m48.00", "N59d26m29.00", "E017d57m17.00"],
-                ["N59d26m29.00", "E017d57m17.00", "N59d22m58.00", "E018d09m48.00"],
-                ["N59d22m58.00", "E018d09m48.00", "N59d14m58.00", "E018d09m48.00"],
-                ["N59d14m58.00", "E018d09m48.00", "N59d14m58.00", "E017d44m48.00"],
-                ["N59d14m58.00", "E017d44m48.00", "N59d19m28.00", "E017d44m48.00"],
-                ["N59d19m28.00", "E017d44m48.00", "N59d19m28.00", "E017d41m48.00"],
-                ["N59d19m28.00", "E017d41m48.00", "N59d21m58.00", "E017d41m48.00"],
-                ["N59d21m58.00", "E017d41m48.00", "N59d21m58.00", "E017d44m48.00"],
-                ["N59d21m58.00", "E017d44m48.00", "N59d26m28.00", "E017d44m48.00"]
+                ["59.437481481481477", "17.968629629629632", "59.433574074074073", "17.982537037037037"],
+                ["59.429666666666662", "17.996444444444446", "59.425759259259259", "18.010351851851851"],
+                ["59.421851851851848", "18.02425925925926", "59.417944444444444", "18.038166666666665"],
+                ["59.414037037037033", "18.052074074074074", "59.41012962962963", "18.065981481481479"],
+                ["59.406222222222219", "18.079888888888888", "59.402314814814815", "18.093796296296293"],
+                ["59.398407407407404", "18.107703703703702", "59.3945", "18.121611111111108"],
+                ["59.39059259259259", "18.135518518518516", "59.386685185185186", "18.149425925925922"]
             ]
         },
         {
