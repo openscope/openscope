@@ -3907,7 +3907,7 @@
         },
         {
             "_comment": "Source other airport runways: https://www.aro.lfv.se/Editorial/View/IAIP?folderId=19",
-            "_comment": "Included (in this order): ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSL, ESSP, ESSU",
+            "_comment": "Included (in this order): ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSL, ESSP, ESSU, ESSV",
             "name": "Other airport runways",
             "lines": [
                 ["N58d23m12.25", "E015d30m57.58", "N58d24m20.18", "E015d31m40.44"], ["N58d24m05.88", "E015d30m56.13", "N58d24m13.01", "E015d32m50.47"],
@@ -3918,7 +3918,8 @@
                 ["N59d21m33.25", "E017d55m40.98", "N59d20m58.22", "E017d57m18.91"],
                 ["N58d24m35.66", "E015d39m48.03", "N58d24m09.62", "E015d41m49.77"],
                 ["N58d35m10.01", "E016d13m54.08", "N58d35m08.92", "E016d16m10.53"], ["N58d35m24.30", "E016d14m11.40", "N58d35m16.00", "E016d14m44.80"],
-                ["N59d21m43.59", "E016d42m27.60", "N59d20m33.42", "E016d42m32.28"]
+                ["N59d21m43.59", "E016d42m27.60", "N59d20m33.42", "E016d42m32.28"],
+                ["N57d39m15.89", "E018d20m24.75", "N57d40m16.25", "E018d21m07.96"], ["N57d39m03.56", "E018d19m46.75", "N57d38m56.53", "E018d20m51.80"]
             ]
         }
     ]
