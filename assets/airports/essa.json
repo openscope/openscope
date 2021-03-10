@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA", "Mariehamn TMA", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA", "Mariehamn TMA", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -3663,13 +3663,12 @@
             ]
         },
         {
-            "_comment": "Source Sector Uppsala: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "_comment": "Source TMA Sector Uppsala: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
             "_comment": "Source Uppsala CTR: https://www.aro.lfv.se/Editorial/View/8286/ES_AD_2_ESCM_en",
-            "_comment": "Source Sector Västerås: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "_comment": "Source TMA Sector Västerås: https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
             "_comment": "Source Västerås CTR: https://www.aro.lfv.se/Editorial/View/8437/ES_AD_2_ESOW_en",
-            "name": "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)",
+            "name": "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)",
             "lines": [
-                ["59.704259259259253", "17.127983539094647", "59.701851851851849", "17.112325102880657"],
                 ["59.699444444444438", "17.096666666666664", "59.706927083333326", "17.090243055555554"],
                 ["59.714409722222214", "17.08381944444444", "59.721892361111102", "17.07739583333333"],
                 ["59.729375", "17.07097222222222", "59.736857638888885", "17.06454861111111"],
