@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
+    "defaultMaps": ["Arlanda CTR", "Bromma CTR (dashed)", "Sector Uppsala + Uppsala CTR + Sector Västerås + Västerås CTR (dashed)", "Visby TMA", "Östgöta TMA", "Örebro TMA", "Arlanda runways", "Other airport runways"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -3844,6 +3844,19 @@
                 ["59.406222222222219", "18.079888888888888", "59.402314814814815", "18.093796296296293"],
                 ["59.398407407407404", "18.107703703703702", "59.3945", "18.121611111111108"],
                 ["59.39059259259259", "18.135518518518516", "59.386685185185186", "18.149425925925922"]
+            ]
+        },
+        {
+            "_comment": "Source Visby TMA, https://www.aro.lfv.se/Editorial/View/8420/ES_ENR_2_1_en",
+            "name": "Visby TMA",
+            "lines": [
+                ["N58d15m15.00", "E018d33m39.00", "N58d04m42.00", "E018d40m31.00"],
+                ["N58d04m42.00", "E018d40m31.00", "N57d42m25.00", "E018d54m46.00"],
+                ["N57d42m25.00", "E018d54m46.00", "N57d19m55.00", "E018d33m38.00"],
+                ["N57d19m55.00", "E018d33m38.00", "N57d27m29.00", "E017d50m17.00"],
+                ["N57d27m29.00", "E017d50m17.00", "N57d54m50.00", "E017d48m53.00"],
+                ["N57d54m50.00", "E017d48m53.00", "N58d10m32.00", "E017d50m19.00"],
+                ["N58d10m32.00", "E017d50m19.00", "N58d15m15.00", "E018d33m39.00"]
             ]
         },
         {
