@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR (dashed)", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA (dashed)", "Mariehamn TMA (dashed)", "Visby TMA (dashed)", "Östgöta TMA (dashed)", "Örebro TMA (dashed)", "Arlanda runways", "Other airport runways", "FIR boundaries"],
+    "defaultMaps": ["Arlanda CTR (dashed)", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA (dashed)", "Mariehamn TMA (dashed)", "Visby TMA (dashed)", "Östgöta TMA (dashed)", "Örebro TMA (dashed)", "Arlanda runways", "Bromma runway", "Other airport runways", "FIR boundaries"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -4669,9 +4669,16 @@
             ]
         },
         {
+            "_comment": "Source Bromma runway: https://www.aro.lfv.se/Editorial/View/7956/ES_AD_2_ESSB_en",
+            "name": "Bromma runway",
+            "lines": [
+                ["N59d21m33.25", "E017d55m40.98", "N59d20m58.22", "E017d57m18.91"]
+            ]
+        },
+        {
             "_comment": "Source Mariehamn runway: https://ais.fi/ais/aip/ad/efma/EF_AD_2_EFMA_EN.pdf",
             "_comment": "Source other airport runways: https://www.aro.lfv.se/Editorial/View/IAIP?folderId=19",
-            "_comment": "Included (in this order): EFMA, ESCF, ESCM, ESKN, ESOE, ESOW, ESSB, ESSD, ESSL, ESSP, ESSU, ESSV",
+            "_comment": "Included (in this order): EFMA, ESCF, ESCM, ESKN, ESOE, ESOW, ESSD, ESSL, ESSP, ESSU, ESSV",
             "name": "Other airport runways",
             "lines": [
                 ["N60d06m51.71", "E019d53m28.92", "N60d07m48.15", "E019d54m17.81"],
@@ -4680,7 +4687,6 @@
                 ["N58d47m23.17", "E016d55m47.18", "N58d47m11.98", "E016d52m49.31"], ["N58d48m04.95", "E016d54m14.67", "N58d47m02.21", "E016d54m54.40"],
                 ["N59d12m27.17", "E015d01m53.15", "N59d14m10.69", "E015d02m34.89"],
                 ["N59d34m42.54", "E016d37m45.30", "N59d36m04.23", "E016d38m18.51"],
-                ["N59d21m33.25", "E017d55m40.98", "N59d20m58.22", "E017d57m18.91"],
                 ["N60d25m44.73", "E015d29m59.51", "N60d24m54.32", "E015d31m51.09"],
                 ["N58d24m35.66", "E015d39m48.03", "N58d24m09.62", "E015d41m49.77"],
                 ["N58d35m10.01", "E016d13m54.08", "N58d35m08.92", "E016d16m10.53"],
