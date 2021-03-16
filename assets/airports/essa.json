@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR (dashed)", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA (dashed)", "Mariehamn TMA (dashed)", "Visby TMA (dashed)", "Östgöta TMA (dashed)", "Örebro TMA (dashed)", "Arlanda runways", "Arlanda ILS + localizer only", "Bromma runway", "Bromma ILS", "Other airport runways", "Other airport extended runways (dashed)", "FIR boundaries"],
+    "defaultMaps": ["Arlanda CTR (dashed)", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA (dashed)", "Mariehamn TMA (dashed)", "Visby TMA (dashed)", "Östgöta TMA (dashed)", "Örebro TMA (dashed)", "Arlanda runways", "Arlanda ILS + localizer only", "Bromma runway", "Bromma ILS", "Other airport runways", "Other airport extended runways (dashed)", "FIR boundaries", "SID exits (triangle)"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -5066,6 +5066,35 @@
                 ["N58d25m00.00", "E020d38m00.00", "N57d00m00.00", "E019d50m00.00"],
                 ["N59d00m00.00", "E021d00m00.00", "N59d16m30.00", "E022d08m00.00"],
                 ["N58d25m00.00", "E020d38m00.00", "N58d07m00.00", "E021d29m00.00"]
+            ]
+        },
+        {
+            "name": "SID exits (triangle)",
+            "lines": [
+                ["N58d56m46.2622", "E017d30m14.3533", "N58d55m58.9075", "E017d30m55.1325"],
+                ["N58d55m58.9075", "E017d30m55.1325", "N58d56m04.3249", "E017d29m15.4142"],
+                ["N58d56m04.3249", "E017d29m15.4142", "N58d56m46.2622", "E017d30m14.3533"],
+                ["N59d04m51.7616", "E017d15m35.2770", "N59d04m04.4078", "E017d16m16.2160"],
+                ["N59d04m04.4078", "E017d16m16.2160", "N59d04m09.8252", "E017d14m36.1070"],
+                ["N59d04m09.8252", "E017d14m36.1070", "N59d04m51.7616", "E017d15m35.2770"],
+                ["N59d12m55.5610", "E017d00m49.6009", "N59d12m08.2082", "E017d01m30.7006"],
+                ["N59d12m08.2082", "E017d01m30.7006", "N59d12m13.6254", "E016d59m50.1986"],
+                ["N59d12m13.6254", "E016d59m50.1986", "N59d12m55.5610", "E017d00m49.6009"],
+                ["N59d35m40.1592", "E016d39m07.3694", "N59d34m52.8092", "E016d39m48.9305"],
+                ["N59d34m52.8092", "E016d39m48.9305", "N59d34m58.2261", "E016d38m07.3002"],
+                ["N59d34m58.2261", "E016d38m07.3002", "N59d35m40.1592", "E016d39m07.3694"],
+                ["N59d25m49.9600", "E018d42m33.6395", "N59d25m02.6087", "E018d43m14.9996"],
+                ["N59d25m02.6087", "E018d43m14.9996", "N59d25m08.0258", "E018d41m33.8609"],
+                ["N59d25m08.0258", "E018d41m33.8609", "N59d25m49.9600", "E018d42m33.6395"],
+                ["N59d45m29.0585", "E018d46m06.7995", "N59d44m41.7096", "E018d46m48.5635"],
+                ["N59d44m41.7096", "E018d46m48.5635", "N59d44m47.1263", "E018d45m06.4370"],
+                ["N59d44m47.1263", "E018d45m06.4370", "N59d45m29.0585", "E018d46m06.7995"],
+                ["N60d05m21.7570", "E017d13m52.8616", "N60d04m34.4105", "E017d14m35.0437"],
+                ["N60d04m34.4105", "E017d14m35.0437", "N60d04m39.8269", "E017d12m51.8946"],
+                ["N60d04m39.8269", "E017d12m51.8946", "N60d05m21.7570", "E017d13m52.8616"],
+                ["N60d22m30.7557", "E018d01m35.7164", "N60d21m43.4112", "E018d02m18.2672"],
+                ["N60d21m43.4112", "E018d02m18.2672", "N60d21m48.8274", "E018d00m34.2164"],
+                ["N60d21m48.8274", "E018d00m34.2164", "N60d22m30.7557", "E018d01m35.7164"]
             ]
         }
     ]
