@@ -26,7 +26,7 @@
     },
     "arrivalRunway": "01R",
     "departureRunway": "01L",
-    "defaultMaps": ["Arlanda CTR (dashed)", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA (dashed)", "Mariehamn TMA (dashed)", "Visby TMA (dashed)", "Östgöta TMA (dashed)", "Örebro TMA (dashed)", "Arlanda runways", "Arlanda ILS + localizer only", "Bromma runway", "Bromma ILS", "Other airport runways", "Other airport extended runways (dashed)", "FIR boundaries", "SID exits (triangle)", "STAR entries (square)"],
+    "defaultMaps": ["Arlanda CTR (dashed)", "Bromma CTR (dashed)", "TMA Sector Uppsala + Uppsala CTR + TMA Sector Västerås + Västerås CTR (dashed)", "Borlänge TMA (dashed)", "Mariehamn TMA (dashed)", "Visby TMA (dashed)", "Östgöta TMA (dashed)", "Örebro TMA (dashed)", "Arlanda runways", "Arlanda ILS + localizer only", "Bromma runway", "Bromma ILS", "Other airport runways", "Other airport extended runways (dashed)", "FIR boundaries", "SID exits (triangle)", "STAR entries (square)", "STAR exits without hold (cross)"],
     "_comment": "Airspaces below are simplifications of Stockholm TMA and Arlanda CTR where adjacent sectors are combined where possible. All real sectors are drawn in defaultMaps for realistic looks.",
     "airspace": [
         {
@@ -5116,6 +5116,17 @@
                 ["N59d49m04.7447", "E017d00m01.0916", "N59d49m09.1672", "E016d58m37.5235"],
                 ["N59d49m09.1672", "E016d58m37.5235", "N59d49m51.2524", "E016d58m46.2939"],
                 ["N59d49m51.2524", "E016d58m46.2939", "N59d49m46.8283", "E017d00m09.8910"]
+            ]
+        },
+        {
+            "name": "STAR exits without hold (cross)",
+            "lines": [
+                ["N59d30m20.3293", "E017d52m36.0474", "N59d29m42.6662", "E017d51m04.5667"],
+                ["N59d29m38.2435", "E017d52m27.3327", "N59d30m24.7535", "E017d51m13.2531"],
+                ["N59d50m25.4283", "E017d59m52.8058", "N59d49m47.7672", "E017d58m20.4087"],
+                ["N59d49m43.3447", "E017d59m44.0036", "N59d50m29.8523", "E017d58m29.1819"],
+                ["N59d42m37.5287", "E018d19m13.3266", "N59d41m59.8668", "E018d17m41.2878"],
+                ["N59d41m55.4443", "E018d19m04.5586", "N59d42m41.9528", "E018d17m50.0271"]
             ]
         }
     ]
