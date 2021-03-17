@@ -68,3 +68,6 @@ Eskilstuna Airport is a former Swedish Air Force wartime base (used for force di
 - ESSL Linköping Saab Airport
 - ESSP Norrköping Airport
 - ESSV Visby Airport
+
+## References
+Charts and more detailed info can be found here: https://www.aro.lfv.se/Editorial/View/IAIP?folderId=55
