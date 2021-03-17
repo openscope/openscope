@@ -1,6 +1,6 @@
 import _defaultTo from 'lodash/defaultTo';
-import { isValidDirectionString } from './argumentValidators';
-import { INVALID_INDEX } from '../../constants/globalConstants';
+import { isValidCourseString, isValidDirectionString } from './argumentValidators';
+import { REGEX } from '../../constants/globalConstants';
 import {
     convertToThousands,
     convertStringToNumber
@@ -19,7 +19,8 @@ import {
 const HOLD_COMMAND_ARG_NAMES = {
     TURN_DIRECTION: 'turnDirection',
     LEG_LENGTH: 'legLength',
-    FIX_NAME: 'fixName'
+    FIX_NAME: 'fixName',
+    RADIAL: 'radial'
 };
 
 /**
@@ -59,7 +60,7 @@ export const optionalAltitudeParser = (args) => {
  * @param direction {string}
  * @return normalizedDirection {string}
  */
-const directionNormalizer = (direction) => {
+export const directionNormalizer = (direction) => {
     let normalizedDirection = direction;
 
     if (direction === 'l') {
@@ -93,7 +94,7 @@ export const headingParser = (args) => {
 
             return [direction, heading, isIncremental];
         case 2:
-            isIncremental = args[1].length === 2;
+            isIncremental = args[1].length === 2 || args[1].length === 1;
             direction = directionNormalizer(args[0]);
             heading = convertStringToNumber(args[1]);
 
@@ -112,7 +113,7 @@ export const headingParser = (args) => {
  * @param arg {string}
  * @return {boolean}
  */
-const isLegLengthArg = (arg) => arg.indexOf('min') !== INVALID_INDEX || arg.indexOf('nm') !== INVALID_INDEX;
+export const isLegLengthArg = (arg) => REGEX.HOLD_DISTANCE.test(arg);
 
 /**
  * Given a type and an argument list, find the first occurance of `type` from within the argument list.
@@ -154,6 +155,12 @@ export const findHoldCommandByType = (type, args) => {
                 }
 
                 return arg;
+            case HOLD_COMMAND_ARG_NAMES.RADIAL:
+                if (!isValidCourseString(arg)) {
+                    continue;
+                }
+
+                return convertStringToNumber(arg);
             default:
                 return null;
         }
@@ -178,21 +185,25 @@ export const holdParser = (args) => {
     const fixName = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.FIX_NAME, args);
     const turnDirection = _defaultTo(
         findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args),
-        'right'
+        null
     );
     const legLength = _defaultTo(
         findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args),
-        '1min'
+        null
+    );
+    const radial = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.RADIAL, args),
+        null
     );
 
-    return [turnDirection, legLength, fixName];
+    return [turnDirection, legLength, fixName, radial];
 };
 
 /**
  * the `timewarp` command needs to be able to provide a default value,
  * this parser allows us to do that.
  *
- * @method timewarpParser
+ * @function timewarpParser
  * @param  {array|undefined} [args=[]]
  * @return {array<number>}
  */
@@ -208,4 +219,29 @@ export const timewarpParser = (args = []) => {
     return [
         convertStringToNumber(args[0])
     ];
+};
+
+/**
+ * Convert the altitude argument from flight level number (i.e. 180) to feet in thousands (i.e. 18000).
+ *
+ * @function crossingParser
+ * @param  args {array} [fix name, altitude]
+ * @return {array<string, number>}
+ */
+export const crossingParser = (args = []) => {
+    const fix = args[0];
+
+    let altitude;
+    let speed;
+
+    // Set i to 1 to skip fixName
+    for (let i = 1; i < args.length; i++) {
+        if (args[i][0].toLowerCase() === 'a') {
+            altitude = convertToThousands(args[i].toString().substr(1));
+        } else if (args[i][0].toLowerCase() === 's') {
+            speed = convertStringToNumber(args[i].toString().substr(1));
+        }
+    }
+
+    return [fix, altitude, speed];
 };

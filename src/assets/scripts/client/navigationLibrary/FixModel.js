@@ -1,6 +1,7 @@
 import _cloneDeep from 'lodash/cloneDeep';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
+import { RNAV_WAYPOINT_PREFIX } from '../constants/waypointConstants';
 
 /**
  * Defines a navigational `FixModel`
@@ -40,6 +41,17 @@ export default class FixModel extends BaseModel {
         this._positionModel = null;
 
         this.init(fixName, fixCoordinate, referencePosition);
+    }
+
+    /**
+     * Indicates whether the fix is a real fix, not an RNAV fix
+     * (prefixed with an underscore)
+     *
+     * @property isRealFix
+     * @return {boolean}
+     */
+    get isRealFix() {
+        return this.name[0] !== RNAV_WAYPOINT_PREFIX;
     }
 
     /**

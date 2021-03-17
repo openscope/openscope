@@ -14,3 +14,18 @@ ava('.getAllFixNamesInUse() returns list of all fix names used in all procedures
 
     t.true(fixNameList.length === 93);
 });
+
+ava('._holdCollection() is populated correctly', (t) => {
+    NavigationLibrary.reset();
+    NavigationLibrary.init(AIRPORT_JSON_KLAS_MOCK);
+    const bakkrHold = NavigationLibrary.findHoldParametersByFix('BAKRR');
+    // "360|right|4nm|S230-"
+    const expectedResult = {
+        inboundHeading: Math.PI,
+        turnDirection: 'right',
+        legLength: '4nm',
+        speedMaximum: 230
+    };
+
+    t.deepEqual(bakkrHold, expectedResult);
+});

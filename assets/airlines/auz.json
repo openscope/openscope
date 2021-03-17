@@ -1,0 +1,16 @@
+{
+    "icao": "auz",
+    "name": "Amaszonas Uruguay",
+    "callsign": {
+        "name": "Uruguaya",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["CRJ2", 1],
+            ["E190", 1]
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "icao": "naa",
+    "name": "Norwegian Air Argentina",
+    "callsign": {
+        "name": "Noruega",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 3]
+        ]
+    }
+}

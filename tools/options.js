@@ -3,6 +3,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '../');
 const src = './src';
 const srcAssetsDir = path.join(src, 'assets');
+const srcDocumentationDir = path.join(ROOT, 'documentation/airport-guides');
 const srcMarkup = path.join(src, 'templates');
 const scrScriptsFonts = path.join(srcAssetsDir, 'fonts');
 const srcScriptsDir = path.join(srcAssetsDir, 'scripts');
@@ -23,6 +24,7 @@ options.DIR = {
     SRC: src,
     SRC_ASSETS: srcAssetsDir,
     SRC_FONTS: scrScriptsFonts,
+    SRC_GUIDES: srcDocumentationDir,
     SRC_MARKUP: srcMarkup,
     SRC_SCRIPTS: srcScriptsDir,
 
@@ -44,6 +46,7 @@ options.DIR = {
     DIST_AIRCRAFT: path.join(distAssets, 'aircraft'),
     DIST_AIRLINES: path.join(distAssets, 'airlines'),
     DIST_AIRPORTS: path.join(distAssets, 'airports'),
+    DIST_GUIDES: path.join(distAssets, 'guides'),
     DIST_FONT: path.join(distAssets, 'fonts'),
     DIST_IMAGES: path.join(distAssets, 'images'),
     DIST_SCRIPTS_CLIENT: path.join(distAssets, 'scripts/client'),
@@ -58,7 +61,9 @@ options.FILE = {
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.less'),
     PKG_JSON: path.join(options.ROOT, 'package.json'),
     AIRCRAFT_JSON: path.join(options.DIR.ASSETS_AIRCRAFT, 'aircraft.json'),
-    AIRLINES_JSON: path.join(options.DIR.ASSETS_AIRLINES, 'airlines.json')
+    AIRLINES_JSON: path.join(options.DIR.ASSETS_AIRLINES, 'airlines.json'),
+    CHANGELOG_SOURCE: path.join(options.ROOT, 'CHANGELOG.md'),
+    CHANGELOG_DEST: path.join(options.DIR.DIST_ASSETS, 'changelog.json')
 };
 
 options.GLOB = {
@@ -91,6 +96,10 @@ options.TASKS = {
     },
     DEFAULT: 'default',
     MARKUP: 'markup',
+    MARKDOWN: {
+        ASSEMBLE: 'markdown:assemble',
+        CHANGELOG: 'markdown:changelog'
+    },
     JSON: {
         ASSEMBLE: 'json:assemble',
         MINIFY: 'json:minify'

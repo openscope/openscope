@@ -14,7 +14,7 @@ import { THEME } from '../../src/assets/scripts/client/constants/themes';
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
 
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 
 ava.afterEach(() => {
@@ -199,29 +199,29 @@ ava('.setHalo() calls .removeHalo() when a halo is requested of the same radius 
     t.true(removeHaloStub.calledWithExactly());
 });
 
-ava('._initializeScratchPad() sets #_scratchPadText to show aircraft\'s destination', (t) => {
+ava('.setDefaultScratchpad() sets #_scratchPadText to show aircraft\'s destination', (t) => {
     const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedValue = model.aircraftModel.destination.substr(1);
 
-    model._initializeScratchPad();
+    model.setDefaultScratchpad();
 
     t.true(model._scratchPadText === expectedValue);
 });
 
-ava('._initializeScratchPad() sets #_scratchPadText to departure exit fix when aircraft is on departure route', (t) => {
+ava('.setDefaultScratchpad() sets #_scratchPadText to departure exit fix when aircraft is on departure route', (t) => {
     const model = new RadarTargetModel(THEME.DEFAULT, DEPARTURE_AIRCRAFT_MODEL_MOCK);
     const expectedValue = 'GUP';
 
-    model._initializeScratchPad();
+    model.setDefaultScratchpad();
 
     t.true(model._scratchPadText === expectedValue);
 });
 
-ava('._initializeScratchPad() sets #_scratchPadText to arrival airport when aircraft is on arrival route', (t) => {
+ava('.setDefaultScratchpad() sets #_scratchPadText to arrival airport when aircraft is on arrival route', (t) => {
     const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedValue = 'LAS';
 
-    model._initializeScratchPad();
+    model.setDefaultScratchpad();
 
     t.true(model._scratchPadText === expectedValue);
 });

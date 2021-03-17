@@ -1,0 +1,16 @@
+{
+    "icao": "lia",
+    "name": "Leeward Islands Air Transport - LIAT",
+    "callsign": {
+        "name": "LIAT",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT45", 5],
+            ["AT76", 5]
+        ]
+    }
+}

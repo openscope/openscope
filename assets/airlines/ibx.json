@@ -1,0 +1,15 @@
+{
+    "icao": "ibx",
+    "name": "Ibex Airlines",
+    "callsign": {
+        "name": "Ibex",
+        "callsignFormats": [
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["CRJ7", 10]
+        ]
+    }
+}

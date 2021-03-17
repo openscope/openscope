@@ -1,0 +1,28 @@
+{
+    "icao": "dap",
+    "name": "Aerovías DAP",
+    "callsign": {
+        "name": "DAP",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B463", 3],
+            ["B732", 1],
+            ["BE20", 2],
+            ["C402", 3],
+            ["DHC6", 1],
+            ["RJ1H", 5]
+        ],
+        "antarctica": [
+            ["B463", 3],
+            ["BE20", 2],
+            ["DHC6", 1]
+        ],
+        "rj1h": [
+            ["RJ1H", 5]
+        ]
+    }
+}

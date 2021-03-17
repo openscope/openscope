@@ -27,7 +27,7 @@ Runways 18 and 25C are preferred for takeoff.
 | N         | MARUN                    | 25C              |
 | NE        | TOBAK                    | 25C              |
 | SW        | SOBRA, ULKIG             | 18               |
-| SE        | AKONI                    | 18               |
+| SE        | CINDY                    | 18               |
 | E         | SULUS                    | 18               |
 
 There are also rules as to how the runways should be used:
@@ -40,7 +40,7 @@ There are also rules as to how the runways should be used:
 | 18 (runway northwest)      | North to South | Takeoffs in Southbound direction only               |
 
 Runway 18 *is a one way runway*. There are no markings at the opposite end of the runway.
-You can read more about why runway 18 is a one way runway on [StackExchange](https://aviation.stackexchange.com/a/20807).
+You can read more about why runway 18 is a one way runway on <a href="https://aviation.stackexchange.com/a/20807" target="_blank">StackExchange</a>.
 
 
 ### Instrument Procedures
@@ -54,7 +54,7 @@ Frankfurt has a variety of departures. However, there are certain rules as to wh
 | Ried (RID)         | Special permission required, non RNAV equipped aircraft only                                                      |
 | SOBRA              | For flights intending to proceed via Y180/Y181 airways                                                            |
 | SULUS              | Not for flights terminating within the EDDN area                                                                  |
-| Taunus (TAU)       | Special permission required; non RNAV equipped aircraft only                                                      |
+| Taunus (TAI)       | Special permission required; non RNAV equipped aircraft only                                                      |
 | TOBAK              | Not for flights proceeding via airway Z10                                                                         |
 | ULKIG              | For flights intending to proceed via Y180/Y181 airways                                                            |
 
@@ -103,4 +103,4 @@ The videomap also contains:
 
 
 ### Additional Resources
-[VATSIM Germany](http://www.vacc-sag.org/airport/EDDF)
+<a href="http://www.vacc-sag.org/airport/EDDF" target="_blank">VATSIM Germany</a>

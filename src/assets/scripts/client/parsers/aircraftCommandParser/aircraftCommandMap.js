@@ -59,6 +59,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runClimbViaSID',
         isSystemCommand: false
     },
+    cross: {
+        aliases: ['cross', 'cr', 'x'],
+        functionName: 'runCross',
+        isSystemCommand: false
+    },
     delete: {
         aliases: ['del', 'delete', 'kill'],
         functionName: 'runDelete',
@@ -226,7 +231,7 @@ export const AIRCRAFT_COMMAND_MAP = {
  * @type {array}
  * @final
  */
-export const EXPEDITE = ['expedite', 'x'];
+export const EXPEDITE = ['expedite', 'ex'];
 
 /**
  * Get the name of a command when given any of that command's aliases

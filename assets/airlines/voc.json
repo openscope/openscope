@@ -1,0 +1,15 @@
+{
+    "icao": "voc",
+    "name": "Volaris Costa Rica",
+    "callsign": {
+        "name": "Costa Rican",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 3]
+        ]
+    }
+}

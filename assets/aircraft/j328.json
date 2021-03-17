@@ -1,0 +1,37 @@
+{
+    "name": "Dornier 328 JET",
+    "icao": "J328",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": 6,
+        "recat": "F"
+    },
+    "ceiling": 35000,
+    "rate": {
+        "climb":      2500,
+        "descent":    2500,
+        "accelerate": 10,
+        "decelerate": 6
+    },
+    "runway": {
+        "takeoff": 1.300,
+        "landing": 1.200
+    },
+    "speed":{
+        "min":     132,
+        "landing": 1115,
+        "cruise":  350,
+        "cruiseM": 0.66,
+        "max":     300,
+        "maxM":    0.66
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

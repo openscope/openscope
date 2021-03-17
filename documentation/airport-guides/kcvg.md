@@ -1,6 +1,6 @@
 ### About this facility
 Covington/Cincinnati Int'l Combined TRACON and ATCT (CVG), Erlanger, Kentucky, USA
-301,196 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+301,196 annual operations in 2017 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 Located just 10 minutes away from Downtown Cincinnati, Covington and Newport, and within a two-hour flight of 60 percent of the U.S, The CVG TRACON controls a large number of aircraft to and from the Tri-State area.
 
@@ -40,5 +40,5 @@ Cincinnati Municipal Airport – Lunken Field
 When the 1,000 acre (400 ha) airfield first opened in 1925, it was the largest municipal airfield in the world. The Embry-Riddle Company was formed at Lunken Airport, which later moved to Florida to become the Embry-Riddle Aeronautical University. During the Ohio River flood of 1937, the airfield and two-story main terminal building were submerged, giving it the nickname of "Sunken Lunken". Today the old control tower is home to the Lunken Cadet Squadron of the Civil Air Patrol, and is the oldest standing control tower in the United States. The airfield now primarily serves private and general aviation around the Cincinnati area.
 
 ### Additional Resources
-[Charts](https://skyvector.com/airport/CVG/Cincinnati-Northern-Kentucky-International-Airport)
-[VATSIM ZID ARTCC webiste](https://www.zidartcc.org/)
+<a href="https://skyvector.com/airport/CVG/Cincinnati-Northern-Kentucky-International-Airport" target="_blank">Charts</a>
+<a href="https://www.zidartcc.org/" target="_blank">VATSIM ZID ARTCC webiste</a>

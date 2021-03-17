@@ -6,11 +6,12 @@ import EventTracker from './EventTracker';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
-import { VOICES,
-         LOWER_PITCH,
-         HIGHER_PITCH,
-         NORMAL_SPEED,
-         FASTER_SPEED
+import {
+    VOICES,
+    LOWER_PITCH,
+    HIGHER_PITCH,
+    NORMAL_SPEED,
+    FASTER_SPEED
 } from './constants/speechConstants';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
@@ -25,7 +26,7 @@ export const speech_init = () => {
 
     if (_get(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED, false) === true) {
         prop.speech.enabled = true;
-        $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE).addClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH).addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 };
 
@@ -94,7 +95,7 @@ export const speech_say = (sentence, pilotVoice) => {
  * @function speech_toggle
  */
 export const speech_toggle = () => {
-    const $speechToggleElement = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+    const $speechToggleElement = $(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
     prop.speech.enabled = !prop.speech.enabled;
 
     if (!prop.speech.enabled) {

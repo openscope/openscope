@@ -33,9 +33,15 @@ ava('throws when called with an invalid command', (t) => {
 });
 
 ava('throws when called with invalid arguments', (t) => {
+    const expectedResult = 'Invalid argument length. Expected exactly zero arguments';
     const commandStringMock = buildCommandString(TAKEOFF_MOCK, 'threeve');
 
-    t.throws(() => new AircraftCommandParser(commandStringMock));
+    try {
+        // eslint-disable-next-line no-unused-vars
+        const model = new AircraftCommandParser(commandStringMock);
+    } catch (e) {
+        t.true(e === expectedResult);
+    }
 });
 
 ava('does not throw when called without parameters', t => {
@@ -130,8 +136,8 @@ ava('when passed hold LAM it creates the correct command with the correct argume
     const model = new AircraftCommandParser(commandStringMock);
 
     t.true(model.args[0][0] === 'hold');
-    t.true(model.args[0][1] === 'right');
-    t.true(model.args[0][2] === '1min');
+    t.true(model.args[0][1] === null);
+    t.true(model.args[0][2] === null);
     t.true(model.args[0][3] === 'lam');
 });
 

@@ -1,5 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
+import GameController from '../../src/assets/scripts/client/game/GameController';
 import ScopeModel from '../../src/assets/scripts/client/scope/ScopeModel';
 import RadarTargetCollection from '../../src/assets/scripts/client/scope/RadarTargetCollection';
 import {
@@ -8,11 +9,12 @@ import {
 } from './_mocks/radarTargetMocks';
 import { createScopeCommandMock } from './_mocks/scopeCommandMocks';
 import { THEME } from '../../src/assets/scripts/client/constants/themes';
+import { EVENT } from '../../src/assets/scripts/client/constants/eventNames';
 
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
 
 ava.beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
 });
 
 ava.afterEach(() => {
@@ -27,6 +29,35 @@ ava('creates RadarTargetCollection on instantiation', (t) => {
     const model = new ScopeModel();
 
     t.true(model.radarTargetCollection instanceof RadarTargetCollection);
+});
+
+ava('#ptlLength returns #_ptlLength', (t) => {
+    const model = new ScopeModel();
+    const expectedResult = 17;
+    model._ptlLength = expectedResult;
+    const result = model.ptlLength;
+
+    t.true(result === expectedResult);
+});
+
+ava('.enable() registers event handlers', (t) => {
+    const model = new ScopeModel();
+    const eventBusOnStub = sandbox.stub(model._eventBus, 'on');
+    const expectedEventsToRegister = 1;
+    const result = model.enable();
+
+    t.true(typeof result === 'undefined');
+    t.true(eventBusOnStub.callCount === expectedEventsToRegister);
+});
+
+ava('.disable() deregisters event handlers', (t) => {
+    const model = new ScopeModel();
+    const eventBusOffStub = sandbox.stub(model._eventBus, 'off');
+    const expectedEventsToDeregister = 1;
+    const result = model.disable();
+
+    t.true(typeof result === 'undefined');
+    t.true(eventBusOffStub.callCount === expectedEventsToDeregister);
 });
 
 ava('.acceptHandoff() returns message that command is unavailable', (t) => {
@@ -46,6 +77,101 @@ ava('.amendAltitude() accepts {string} number and passes {number} number to rada
     model.amendAltitude(radarTargetArrivalMock, '220');
 
     t.true(radarTargetModelAmendAltitudeSpy.calledWithExactly(220));
+});
+
+ava.serial('.changePtlLength() sets #_ptlLength to 0 and triggers a shallow render when #_ptlLength is invalid and a decrease is requested', (t) => {
+    const model = new ScopeModel();
+    model._ptlLength = 3.5;
+    const direction = -1;
+
+    sandbox.stub(GameController, 'getGameOption').returns('1-2-4-8');
+
+    const eventBusTriggerStub = sandbox.stub(model._eventBus, 'trigger');
+    const result = model.changePtlLength(direction);
+
+    t.true(typeof result === 'undefined');
+    t.true(model._ptlLength === 0);
+    t.true(eventBusTriggerStub.calledWithExactly(EVENT.MARK_SHALLOW_RENDER));
+});
+
+ava.serial('.changePtlLength() sets #_ptlLength to 0 and triggers a shallow render when #_ptlLength is 0 and a decrease is requested', (t) => {
+    const model = new ScopeModel();
+    model._ptlLength = 0;
+    const direction = -1;
+
+    sandbox.stub(GameController, 'getGameOption').returns('1-2-4-8');
+
+    const eventBusTriggerStub = sandbox.stub(model._eventBus, 'trigger');
+    const result = model.changePtlLength(direction);
+
+    t.true(typeof result === 'undefined');
+    t.true(model._ptlLength === 0);
+    t.true(eventBusTriggerStub.calledWithExactly(EVENT.MARK_SHALLOW_RENDER));
+});
+
+ava.serial('.changePtlLength() returns early when #_ptlLength is already at the highest increment and an increase is requested', (t) => {
+    const model = new ScopeModel();
+    model._ptlLength = 8;
+    const direction = 1;
+
+    sandbox.stub(GameController, 'getGameOption').returns('1-2-4-8');
+
+    const eventBusTriggerStub = sandbox.stub(model._eventBus, 'trigger');
+    const result = model.changePtlLength(direction);
+
+    t.true(typeof result === 'undefined');
+    t.true(model._ptlLength === 8);
+    t.true(eventBusTriggerStub.notCalled);
+});
+
+ava.serial('.changePtlLength() increases #_ptlLength by one step and triggers a shallow render when an increase is requested and is possible', (t) => {
+    const model = new ScopeModel();
+    model._ptlLength = 2;
+    const direction = 1;
+
+    sandbox.stub(GameController, 'getGameOption').returns('1-2-4-8');
+
+    const eventBusTriggerStub = sandbox.stub(model._eventBus, 'trigger');
+    const result = model.changePtlLength(direction);
+
+    t.true(typeof result === 'undefined');
+    t.true(model._ptlLength === 4);
+    t.true(eventBusTriggerStub.calledWithExactly(EVENT.MARK_SHALLOW_RENDER));
+});
+
+ava.serial('.changePtlLength() decreases #_ptlLength by one step and triggers a shallow render when a decrease is requested and is possible', (t) => {
+    const model = new ScopeModel();
+    model._ptlLength = 4;
+    const direction = -1;
+
+    sandbox.stub(GameController, 'getGameOption').returns('1-2-4-8');
+
+    const eventBusTriggerStub = sandbox.stub(model._eventBus, 'trigger');
+    const result = model.changePtlLength(direction);
+
+    t.true(typeof result === 'undefined');
+    t.true(model._ptlLength === 2);
+    t.true(eventBusTriggerStub.calledWithExactly(EVENT.MARK_SHALLOW_RENDER));
+});
+
+ava('.decreasePtlLength() calls .changePtlLength() with direction of `-1`', (t) => {
+    const model = new ScopeModel();
+    const expectedDirection = -1;
+    const changePtlLengthStub = sandbox.stub(model, 'changePtlLength');
+    const result = model.decreasePtlLength();
+
+    t.true(typeof result === 'undefined');
+    t.true(changePtlLengthStub.calledWithExactly(expectedDirection));
+});
+
+ava('.increasePtlLength() calls .changePtlLength() with direction of `1`', (t) => {
+    const model = new ScopeModel();
+    const expectedDirection = 1;
+    const changePtlLengthStub = sandbox.stub(model, 'changePtlLength');
+    const result = model.increasePtlLength();
+
+    t.true(typeof result === 'undefined');
+    t.true(changePtlLengthStub.calledWithExactly(expectedDirection));
 });
 
 ava('.initiateHandoff() returns message that command is unavailable', (t) => {
@@ -137,6 +263,21 @@ ava('.setScratchpad() returns scratchpad length error when too many characters p
 
     t.deepEqual(response, expectedResponse);
     t.true(radarTargetModelSetScratchPadSpy.notCalled);
+});
+
+ava('.setScratchpad() calls and returns RadarTargetModel.setDefaultScratchpad() with no parameters', (t) => {
+    const model = new ScopeModel();
+    const radarTargetModel = createRadarTargetArrivalMock();
+    const radarTargetModelSetScratchpadSpy = sinon.spy(radarTargetModel, 'setScratchpad');
+    const radarTargetModelSetDefaultScratchpadSpy = sinon.spy(radarTargetModel, 'setDefaultScratchpad');
+    const resetScratchPadTrigger = '.';
+    const expectedResponse = [true, 'RESET SCRATCHPAD'];
+    const response = model.setScratchpad(radarTargetModel, resetScratchPadTrigger);
+
+    t.deepEqual(response, expectedResponse);
+    t.true(radarTargetModelSetScratchpadSpy.notCalled);
+    t.true(radarTargetModelSetDefaultScratchpadSpy.called);
+    t.true(radarTargetModelSetDefaultScratchpadSpy.calledWithExactly());
 });
 
 ava('.setScratchpad() sets RadarTargetModel._scratchPadText to the specified string', (t) => {

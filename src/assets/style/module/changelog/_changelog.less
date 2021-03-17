@@ -1,0 +1,56 @@
+.changelog-container {
+    width: fit-content;
+    max-width: 70%;
+    height: fit-content;
+    max-height: calc(100% - 200px);
+    overflow-y: scroll;
+    padding: 15px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: @dark;
+    color: @light-gray;
+    font-size: 12px;
+    font-family: inherit;
+    opacity: 0;
+    border-radius: 1px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 6px @blue-medium;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 200;
+}
+
+.changelog-container.open {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.changelog-hd {
+    padding-bottom: 5px;
+    font-size: 2em;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.changelog-version {
+    padding: 5px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: underline;
+    box-sizing: border-box;
+}
+
+.changelog-view-full {
+    padding-top: 10px;
+    font-size: 0.7em;
+    text-align: center;
+    color: @light-gray;
+    box-sizing: border-box;
+}
+
+.changelog-view-full a {
+    color: inherit;
+}

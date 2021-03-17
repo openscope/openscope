@@ -88,13 +88,26 @@ export const oneOrThreeArgumentsValidator = (args = []) => {
 };
 
 /**
+ * Checks that `args` has exactly two or three values
+ *
+ * @function twoOrThreeArgumentsValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+export const twoOrThreeArgumentsValidator = (args = []) => {
+    if (args.length !== 2 && args.length !== 3) {
+        return ERROR_MESSAGE.TWO_OR_THREE_ARG_LENGTH;
+    }
+};
+
+/**
  * Checks that args is the required length and the data is of the correct type
  *
  * ```
  * Allowed argument shapes:
  * - ['030']
  * - ['030', 'expedite']
- * - ['030', 'x']
+ * - ['030', 'ex']
  * ```
  *
  * @function altitudeValidator
@@ -169,6 +182,25 @@ export const fixValidator = (args = []) => {
 };
 
 /**
+ * Tests if value is exactly a 3 digit decimal number
+ * between 001 and 360
+ *
+ * @function isValidCourseString
+ * @param value {string}
+ * @returns {boolean}
+ */
+export const isValidCourseString = (value) => {
+    // Can't rely on parseInt/convertStringToNumber as it'll parse 1min => 1
+    if (!REGEX.THREE_DIGIT_NUMBER.test(value)) {
+        return false;
+    }
+
+    const course = convertStringToNumber(value);
+
+    return course >= 1 && course <= 360;
+};
+
+/**
  * Returns true if value is one of `left / l / right / r`
  *
  * @function isValidDirectionString
@@ -199,7 +231,7 @@ export const isValidDirectionString = (value) => {
  * @return {string|undefined}
  */
 export const headingValidator = (args = []) => {
-    const length = args.length;
+    const { length } = args;
     const hasLengthError = oneOrTwoArgumentValidator(args);
     let numberFromString;
 
@@ -209,10 +241,8 @@ export const headingValidator = (args = []) => {
 
     switch (length) {
         case 1:
-            numberFromString = convertStringToNumber(args[0]);
-
-            if (_isNaN(numberFromString)) {
-                return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
+            if (!isValidCourseString(args[0])) {
+                return ERROR_MESSAGE.HEADING_MUST_BE_VALID_COURSE;
             }
 
             break;
@@ -223,8 +253,16 @@ export const headingValidator = (args = []) => {
                 return ERROR_MESSAGE.INVALID_DIRECTION_STRING;
             }
 
-            if (isNaN(numberFromString)) {
+            if (args[1].length === 3 && !isValidCourseString(args[1])) {
+                return ERROR_MESSAGE.HEADING_MUST_BE_VALID_COURSE;
+            }
+
+            if (_isNaN(numberFromString)) {
                 return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
+            }
+
+            if (numberFromString < 1) {
+                return ERROR_MESSAGE.INCREMENTAL_HEADING_MUST_BE_POSITIVE;
             }
 
             break;
@@ -245,6 +283,7 @@ export const headingValidator = (args = []) => {
  * - ['dumba', 'left', '2nm']
  * - ['dumba', 'right', '2min']
  * - ['dumba', 'right', '2nm']
+ * - ['dumba', 'right', '2nm', '265']
  * ```
  *
  * @function holdValidator
@@ -252,8 +291,8 @@ export const headingValidator = (args = []) => {
  * @return {array<string>}
  */
 export const holdValidator = (args = []) => {
-    if (args.length > 3) {
-        return ERROR_MESSAGE.ZERO_TO_THREE_ARG_LENGTH;
+    if (args.length > 4) {
+        return ERROR_MESSAGE.ZERO_TO_FOUR_ARG_LENGTH;
     }
 
     for (let i = 0; i < args.length; i++) {
@@ -277,5 +316,67 @@ export const squawkValidator = (args = []) => {
 
     if (!REGEX.TRANSPONDER_CODE.test(args[0])) {
         return ERROR_MESSAGE.INVALID_SQUAWK;
+    }
+};
+
+/**
+ * Checks that args is the required length and the data is of the correct type
+ *
+ * ```
+ * Allowed argument shapes:
+ * - ['dumba', 'a120', 's210']
+ * ```
+ *
+ * @function crossingValidator
+ * @param args {array}
+ * @return {array<string>}
+ */
+export const crossingValidator = (args = []) => {
+    if (args.length !== 2 && args.length !== 3) {
+        return ERROR_MESSAGE.TWO_OR_THREE_ARG_LENGTH;
+    }
+
+    const [fixName] = args;
+
+    let altitude;
+    let speed;
+
+    // Set i to 1 to skip fixName
+    for (let i = 1; i < args.length; i++) {
+        if (typeof args[i][0] === 'string') {
+            if (args[i][0].toLowerCase() === 'a') {
+                altitude = args[i].toString().substr(1);
+            } else if (args[i][0].toLowerCase() === 's') {
+                speed = args[i].toString().substr(1);
+            }
+        }
+    }
+
+    if (!_isString(fixName)) {
+        return ERROR_MESSAGE.MUST_BE_STRING;
+    }
+
+    if (altitude) {
+        altitude = convertStringToNumber(altitude);
+
+        if (_isNaN(altitude)) {
+            return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
+        }
+    }
+
+    if (speed) {
+        speed = convertStringToNumber(speed);
+
+        if (_isNaN(speed)) {
+            return ERROR_MESSAGE.SPEED_MUST_BE_NUMBER;
+        }
+    }
+
+    if (args.length === 3) {
+        if (altitude == null) {
+            return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
+        } else if (speed == null) {
+            return ERROR_MESSAGE.SPEED_MUST_BE_NUMBER;
+        }
     }
 };

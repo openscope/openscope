@@ -1,5 +1,6 @@
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
+import _isNumber from 'lodash/isNumber';
 import FixCollection from '../../navigationLibrary/FixCollection';
 import {
     INVALID_INDEX,
@@ -11,6 +12,7 @@ import {
     RNAV_WAYPOINT_PREFIX
 } from '../../constants/waypointConstants';
 // import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import { parseAltitudeRestriction, parseSpeedRestriction } from '../../utilities/navigationUtilities';
 import {
     degreesToRadians,
     DECIMAL_RADIX
@@ -37,8 +39,9 @@ export default class WaypointModel {
 
         this.altitudeMaximum = INVALID_NUMBER;
         this.altitudeMinimum = INVALID_NUMBER;
-        this.speedMaximum = INVALID_NUMBER;
-        this.speedMinimum = INVALID_NUMBER;
+        this._speedMaximum = INVALID_NUMBER;
+        this._speedMinimum = INVALID_NUMBER;
+        this._defaultHoldParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -219,6 +222,28 @@ export default class WaypointModel {
         return this._positionModel.relativePosition;
     }
 
+    /**
+     * The maxmimum speed allowed for the Waypoint, or hold if `#isHoldwaypoint`
+     *
+     * @returns {number}
+     */
+    get speedMaximum() {
+        if (this.isHoldWaypoint && this._holdParameters.speedMaximum !== undefined) {
+            return this._holdParameters.speedMaximum;
+        }
+
+        return this._speedMaximum;
+    }
+
+    /**
+     * The minimum speed allowed for the Waypoint
+     *
+     * @returns {number}
+     */
+    get speedMinimum() {
+        return this._speedMinimum;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -238,8 +263,7 @@ export default class WaypointModel {
                 throw new TypeError(`Expected restricted fix to have restrictions, but received ${data}`);
             }
 
-            fixName = data[0];
-            restrictions = data[1];
+            [fixName, restrictions] = data;
         }
 
         this._name = fixName.replace('@', '').replace('^', '');
@@ -259,8 +283,9 @@ export default class WaypointModel {
     reset() {
         this.altitudeMaximum = INVALID_NUMBER;
         this.altitudeMinimum = INVALID_NUMBER;
-        this.speedMaximum = INVALID_NUMBER;
-        this.speedMinimum = INVALID_NUMBER;
+        this._speedMaximum = INVALID_NUMBER;
+        this._speedMinimum = INVALID_NUMBER;
+        this._defaultHoldParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -315,8 +340,6 @@ export default class WaypointModel {
 
         if (fixName.indexOf('#') !== INVALID_INDEX) {
             this._initVectorWaypoint();
-
-            return;
         }
     }
 
@@ -450,7 +473,9 @@ export default class WaypointModel {
      * @return {boolean}
      */
     hasMaximumSpeedAtOrBelow(speed) {
-        return this.speedMaximum !== INVALID_NUMBER && this.speedMaximum <= speed;
+        const speedMax = this.speedMaximum;
+
+        return speedMax !== INVALID_NUMBER && speedMax <= speed;
     }
 
     /**
@@ -476,6 +501,139 @@ export default class WaypointModel {
     }
 
     /**
+     * Set the #speedMinimum and #speedMaximum to the specified speed
+     *
+     * @for WaypointModel
+     * @method setSpeed
+     * @param speec {number} in knots
+     */
+    setSpeed(speed) {
+        this.setSpeedMinimum(speed);
+        this.setSpeedMaximum(speed);
+    }
+
+    /**
+     * Set the #_speedMaximum to the specified speed
+     *
+     * @for WaypointModel
+     * @method setSpeedMaximum
+     * @param speedMaximum {number} in knots
+     */
+    setSpeedMaximum(speedMaximum) {
+        if (!_isNumber(speedMaximum)) {
+            console.warn(`Expected number to set as max speed of waypoint '${this.name}', ` +
+                `but received '${speedMaximum}'`);
+
+            return;
+        }
+
+        this._speedMaximum = speedMaximum;
+    }
+
+    /**
+     * Set the #_speedMinimum to the specified speed
+     *
+     * @for WaypointModel
+     * @method setSpeedMinimum
+     * @param speedMinimum {number} in knots
+     */
+    setSpeedMinimum(speedMinimum) {
+        if (!_isNumber(speedMinimum)) {
+            console.warn(`Expected number to set as minimum speed of waypoint '${this.name}', ` +
+                `but received '${speedMinimum}'`);
+
+            return;
+        }
+
+        this._speedMinimum = speedMinimum;
+    }
+
+    /**
+     * Set the #altitudeMinimum and #altitudeMaximum to the specified altitude
+     *
+     * @for WaypointModel
+     * @method setAltitude
+     * @param altitude {number} in feet
+     */
+    setAltitude(altitude) {
+        this.setAltitudeMaximum(altitude);
+        this.setAltitudeMinimum(altitude);
+    }
+
+    /**
+     * Set the #altitudeMaximum to the specified altitude
+     *
+     * @for WaypointModel
+     * @method setAltitudeMaximum
+     * @param altitudeMaximum {number} in feet
+     */
+    setAltitudeMaximum(altitudeMaximum) {
+        if (!_isNumber(altitudeMaximum)) {
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
+                `but received '${altitudeMaximum}'`);
+
+            return;
+        }
+
+        if (altitudeMaximum < 0 || altitudeMaximum > 60000) {
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
+                `but received altitude of '${altitudeMaximum}'`);
+
+            return;
+        }
+
+        this.altitudeMaximum = altitudeMaximum;
+    }
+
+    /**
+     * Set the #altitudeMinimum to the specified altitude
+     *
+     * @for WaypointModel
+     * @method setAltitudeMinimum
+     * @param altitudeMinimum {number} in feet
+     */
+    setAltitudeMinimum(altitudeMinimum) {
+        if (!_isNumber(altitudeMinimum)) {
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
+                `but received '${altitudeMinimum}'`);
+
+            return;
+        }
+
+        if (altitudeMinimum < 0 || altitudeMinimum > 60000) {
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
+                `but received altitude altitude of '${altitudeMinimum}'`);
+
+            return;
+        }
+
+        this.altitudeMinimum = altitudeMinimum;
+    }
+
+    /**
+     * Set default parameters for the planned holding pattern at this waypoint, and will
+     * set both `#_defaultHoldParameters` and `#_holdParameters` properties
+     *
+     * This should only be called immedately after creating a new `WaypointModel`
+     *
+     * @for WaypointModel
+     * @method setDefaultHoldParameters
+     * @param holdParameters {object}
+     */
+    setDefaultHoldParameters(holdParameters) {
+        // The rationale behind having both _defaultHoldParameters and _holdParameters is:
+        // * Without this, once a hold command is executed with specific options (eg. HOLD BPK left 225),
+        //   it could overwrite the parameters for a procedural hold
+        // * This would mean that if the hold was cancelled and re-requested without any specific options (eg. HOLD BPK)
+        //   it would still use "left 225", and not the expected defaults from the pocedure
+
+        // These can't be the same reference, as we don't want any changes to made _holdParameters
+        // (eg. timer) to be passed onto _defaultHoldParameters
+        this._defaultHoldParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, holdParameters);
+        this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS, holdParameters);
+    }
+
+    /**
      * Set parameters for the planned holding pattern at this waypoint. This does NOT
      * inherently make this a hold waypoint, but simply describes the holding pattern
      * aircraft should follow IF they are told to hold at this waypoint
@@ -483,9 +641,19 @@ export default class WaypointModel {
      * @for WaypointModel
      * @method setHoldParameters
      * @param holdParameters {object}
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
+     * @returns {object} The hold parameters set for the `WaypointModel`
      */
-    setHoldParameters(holdParameters) {
-        this._holdParameters = Object.assign({}, this._holdParameters, holdParameters);
+    setHoldParameters(holdParameters, fallbackInboundHeading) {
+        const params = Object.assign({}, this._defaultHoldParameters, holdParameters);
+
+        if (params.inboundHeading == null) {
+            params.inboundHeading = fallbackInboundHeading;
+        }
+
+        this._holdParameters = params;
+
+        return params;
     }
 
     /**
@@ -496,10 +664,15 @@ export default class WaypointModel {
      * @param inboundHeading {number} in radians
      * @param turnDirection {string} either left or right
      * @param legLength {string} length of the hold leg in minutes or nm
+     * @param fallbackInboundHeading {number} an optional inboundHeading that is used if no default is available
+     * @returns {object} The hold parameters set
      */
-    setHoldParametersAndActivateHold(holdParameters) {
-        this.setHoldParameters(holdParameters);
+    setHoldParametersAndActivateHold(holdParameters, fallbackInboundHeading = undefined) {
+        const params = this.setHoldParameters(holdParameters, fallbackInboundHeading);
+
         this.activateHold();
+
+        return params;
     }
 
     /**
@@ -528,13 +701,19 @@ export default class WaypointModel {
      * @param restriction {string}
      */
     _applyAltitudeRestriction(restriction) {
-        const altitude = parseInt(restriction, 10) * 100;
+        const [altitude, limit] = parseAltitudeRestriction(restriction);
 
-        if (restriction.indexOf('+') !== INVALID_INDEX) {
+        if (altitude == null) {
+            throw new Error(`Expected valid altitude restriction, but received ${restriction}`);
+        }
+
+        if (limit === '+') {
             this.altitudeMinimum = altitude;
 
             return;
-        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
+        }
+
+        if (limit === '-') {
             this.altitudeMaximum = altitude;
 
             return;
@@ -563,9 +742,9 @@ export default class WaypointModel {
 
             // looking at the first letter of a restriction
             if (restriction[0] === 'A') {
-                this._applyAltitudeRestriction(restriction.substr(1));
+                this._applyAltitudeRestriction(restriction);
             } else if (restriction[0] === 'S') {
-                this._applySpeedRestriction(restriction.substr(1));
+                this._applySpeedRestriction(restriction);
             } else {
                 throw new TypeError('Expected "A" or "S" prefix on restriction, ' +
                     `but received prefix '${restriction[0]}'`);
@@ -581,20 +760,26 @@ export default class WaypointModel {
      * @param restriction {string}
      */
     _applySpeedRestriction(restriction) {
-        const speed = parseInt(restriction, 10);
+        const [speed, limit] = parseSpeedRestriction(restriction);
 
-        if (restriction.indexOf('+') !== INVALID_INDEX) {
-            this.speedMinimum = speed;
+        if (speed == null) {
+            throw new Error(`Expected valid speed restriction, but received ${restriction}`);
+        }
 
-            return;
-        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
-            this.speedMaximum = speed;
+        if (limit === '+') {
+            this._speedMinimum = speed;
 
             return;
         }
 
-        this.speedMaximum = speed;
-        this.speedMinimum = speed;
+        if (limit === '-') {
+            this._speedMaximum = speed;
+
+            return;
+        }
+
+        this._speedMaximum = speed;
+        this._speedMinimum = speed;
     }
 
     /**

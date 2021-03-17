@@ -14,10 +14,12 @@ ava('sets #_options on instantiation', (t) => {
         'theme',
         'controlMethod',
         'drawIlsDistanceSeparator',
-        'ptlLength',
+        'ptlLengths',
         'drawProjectedPaths',
         'softCeiling',
-        'rangeRings'
+        'mouseClickDrag',
+        'rangeRings',
+        'measureToolPath'
     ];
 
     const model = new GameOptions();

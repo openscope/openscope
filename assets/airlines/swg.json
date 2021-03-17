@@ -1,0 +1,15 @@
+{
+    "icao": "swg",
+    "name": "Sunwing Airlines",
+    "callsign": {
+        "name": "Sunwing",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 34]
+        ]
+    }
+}

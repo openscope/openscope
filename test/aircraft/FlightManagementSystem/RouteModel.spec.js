@@ -13,6 +13,12 @@ import {
     resetNavigationLibraryFixture
 } from '../../fixtures/navigationLibraryFixtures';
 import { createAirportModelFixture } from '../../fixtures/airportFixtures';
+import {
+    CUSTOM_HOLD_PARAMETERS_EXECPTED,
+    CUSTOM_HOLD_PARAMETERS_MOCK,
+    EMPTY_HOLD_PARAMETERS_MOCK,
+    GRNPA8_HOLD_PARAMETERS_EXPECTED
+} from './mocks/holdMocks';
 
 const complexRouteStringMock = 'KLAS07R.BOACH6.TNP..OAL..MLF..PGS.TYSSN4.KLAS07R';
 const singleFixRouteStringMock = 'DVC';
@@ -243,9 +249,54 @@ ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName()
     const holdParametersMock = { turnDirection: 'left' };
     const result = model.activateHoldForWaypointName('KEPEC', holdParametersMock);
 
-    t.true(typeof result === 'undefined');
+    t.not(typeof result, 'undefined');
     t.true(activateHoldForWaypointNameSpy1.notCalled);
-    t.true(activateHoldForWaypointNameSpy2.calledWithExactly('KEPEC', holdParametersMock));
+    t.true(activateHoldForWaypointNameSpy2.calledWith('KEPEC', holdParametersMock));
+});
+
+ava('.activateHoldForWaypointName() uses fallbackHeading as inboundHeading when the specified waypoint is first in the route', (t) => {
+    const model = new RouteModel('DAG..KEPEC');
+    const fallbackInboundHeading = 1.2;
+    const result = model.activateHoldForWaypointName('DAG', EMPTY_HOLD_PARAMETERS_MOCK, fallbackInboundHeading);
+
+    t.is(result.inboundHeading, fallbackInboundHeading);
+});
+
+ava('.activateHoldForWaypointName() uses leg course as inboundHeading when the specified waypoint is not first in the route', (t) => {
+    const model = new RouteModel('DAG..KEPEC..IPUMY');
+    const fallbackInboundHeading = 1.2;
+    const expectedInboundHeading = 0.99;
+    const result = model.activateHoldForWaypointName('IPUMY', EMPTY_HOLD_PARAMETERS_MOCK, fallbackInboundHeading);
+    const roundedHeading = Math.round(result.inboundHeading * 100) / 100;
+
+    t.is(roundedHeading, expectedInboundHeading);
+    t.not(result.inboundHeading, fallbackInboundHeading);
+});
+
+ava('.activateHoldForWaypointName() returns the correct hold parameters for a procedural hold', (t) => {
+    const model = new RouteModel('DAG.GRNPA8.KLAS07R');
+    const fallbackInboundHeading = 1.2;
+    const result = model.activateHoldForWaypointName('IPUMY', EMPTY_HOLD_PARAMETERS_MOCK, fallbackInboundHeading);
+
+    t.deepEqual(result, GRNPA8_HOLD_PARAMETERS_EXPECTED);
+});
+
+ava('.activateHoldForWaypointName() returns the correct hold parameters for a procedural hold with custom holdParameters', (t) => {
+    const model = new RouteModel('DAG.GRNPA8.KLAS07R');
+    const fallbackInboundHeading = 1.2;
+    const result = model.activateHoldForWaypointName('IPUMY', CUSTOM_HOLD_PARAMETERS_MOCK, fallbackInboundHeading);
+
+    t.deepEqual(result, CUSTOM_HOLD_PARAMETERS_EXECPTED);
+});
+
+ava('.activateHoldForWaypointName() returns the correct hold parameters for a procedural hold when custom holdParameters had previously been set', (t) => {
+    const model = new RouteModel('DAG.GRNPA8.KLAS07R');
+    const fallbackInboundHeading = 1.2;
+    const customResult = model.activateHoldForWaypointName('IPUMY', CUSTOM_HOLD_PARAMETERS_MOCK, fallbackInboundHeading);
+    const result = model.activateHoldForWaypointName('IPUMY', EMPTY_HOLD_PARAMETERS_MOCK, fallbackInboundHeading);
+
+    t.deepEqual(customResult, CUSTOM_HOLD_PARAMETERS_EXECPTED);
+    t.deepEqual(result, GRNPA8_HOLD_PARAMETERS_EXPECTED);
 });
 
 ava('._createLegModelsFromWaypointModels() returns an array of LegModels matching the specified array of WaypointModels', (t) => {

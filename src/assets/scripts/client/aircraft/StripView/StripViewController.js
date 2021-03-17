@@ -329,7 +329,7 @@ export default class StripViewController {
         const nextCid = _random(1, CID_UPPER_BOUND);
 
         if (this._cidNumbersInUse.indexOf(nextCid) !== INVALID_INDEX) {
-            this._generateCidNumber();
+            return this._generateCidNumber();
         }
 
         this._cidNumbersInUse.push(nextCid);

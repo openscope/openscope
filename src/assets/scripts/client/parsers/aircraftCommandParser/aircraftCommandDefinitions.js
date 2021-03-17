@@ -19,14 +19,16 @@ import {
     headingValidator,
     holdValidator,
     squawkValidator,
-    optionalAltitudeValidator
+    optionalAltitudeValidator,
+    crossingValidator
 } from './argumentValidators';
 import {
     altitudeParser,
     headingParser,
     holdParser,
     timewarpParser,
-    optionalAltitudeParser
+    optionalAltitudeParser,
+    crossingParser
 } from './argumentParsers';
 
 /**
@@ -219,6 +221,10 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     altitude: {
         validate: altitudeValidator,
         parse: altitudeParser
+    },
+    cross: {
+        validate: crossingValidator,
+        parse: crossingParser
     },
     fix: {
         validate: fixValidator,

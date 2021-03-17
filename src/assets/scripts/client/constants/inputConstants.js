@@ -20,6 +20,10 @@ export const COMMAND_CONTEXT = {
  */
 export const KEY_CODES = {
 
+    CONTROL_LEFT: 'ControlLeft',
+    CONTROL_RIGHT: 'ControlRight',
+    SHIFT_LEFT: 'ShiftLeft',
+    SHIFT_RIGHT: 'ShiftRight',
     ENTER: 'Enter',
     ESCAPE: 'Escape',
     TAB: 'Tab',
@@ -30,6 +34,7 @@ export const KEY_CODES = {
     NUM_ADD: 'NumpadAdd',
     NUM_SUBTRACT: 'NumpadSubtract',
     NUM_DIVIDE: 'NumpadDivide',
+    NUM_ENTER: 'NumpadEnter',
     // arrow keys
     LEFT_ARROW: 'ArrowLeft',
     UP_ARROW: 'ArrowUp',
@@ -91,6 +96,28 @@ export const LEGACY_KEY_CODES = {
     F12: 123,
     // `
     BAT_TICK: 220
+};
+
+/**
+ * Enumeration of the render styles used by `MeasureTool`
+ */
+export const MEASURE_TOOL_STYLE = {
+    STRAIGHT: 'straight',
+    ARC_TO_NEXT: 'initial_turn',
+    ALL_ARCED: 'arced'
+};
+
+/**
+ * Enumeration of the mouse button names
+ *
+ * @property MOUSE_BUTTON_NAMES
+ * @type {Object}
+ * @final
+ */
+export const MOUSE_BUTTON_NAMES = {
+    LEFT: 'left',
+    MIDDLE: 'middle',
+    RIGHT: 'right'
 };
 
 /**

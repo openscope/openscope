@@ -1,0 +1,15 @@
+{
+    "icao": "fbz",
+    "name": "Flybondi",
+    "callsign": {
+        "name": "Bondi",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 5]
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "icao": "ans",
+    "name": "Andes Líneas Aéreas",
+    "callsign": {
+        "name": "Andes",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["MD83", 2]
+        ]
+    }
+}

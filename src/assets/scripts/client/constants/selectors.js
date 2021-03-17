@@ -1,5 +1,9 @@
 import _mapValues from 'lodash/mapValues';
 
+// TODO: Why are SO many element-specific selectors classes instead of IDs?
+// We are for some reason defining an ID, and sometimes finding the element by
+// searching the ID name, and other times we are searching by the id-specific
+// class name that is also assigned to that specific element... why?
 /**
  * CSS classnames used throught the app.
  *
@@ -10,18 +14,26 @@ import _mapValues from 'lodash/mapValues';
 export const CLASSNAMES = {
     ACTIVE: 'active',
     AIRCRAFT: 'aircraft',
-    AIRPORT_LIST_ITEM_IS_ACTIVE: 'mix-airport-list-item_isActive',
-    AIRPORT_LIST_ITEM: 'airport-list-item',
+    AIRPORT_GUIDE_VIEW: 'js-airportGuide-view',
     AIRPORT_LIST: 'airport-list',
+    AIRPORT_LIST_ITEM: 'airport-list-item',
+    AIRPORT_LIST_ITEM_IS_ACTIVE: 'mix-airport-list-item_isActive',
     ALL_SET: 'allSet',
     ALTITUDE: 'altitude',
     ARRIVAL: 'arrival',
+    BLACKBOX: 'blackBox',
     CALLSIGN: 'callsign',
+    CHANGELOG_CONTAINER: 'js-changelogContainer',
+    CHANGELOG_CONTENT: 'js-changelog',
+    CHANGELOG_VERSION: 'changelog-version',
     CONTROL: 'control',
     DEPARTURE: 'departure',
     DESTINATION: 'destination',
+    DIALOG: 'dialog',
+    DIALOG_BODY: 'dialog-body',
     FAST_FORWARDS: 'fast-forwards',
     FOLLOWING_STAR: 'followingSTAR',
+    FORM_VALUE: 'form-value',
     HEADING: 'heading',
     HIDDEN: 'hidden',
     HOLD: 'hold',
@@ -34,13 +46,12 @@ export const CLASSNAMES = {
     NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
     OPTIONS_DIALOG: 'option-dialog',
+    TRAFFIC_DIALOG: 'traffic-dialog',
     OVERFLIGHT: 'overflight',
-    PAUSE_TOGGLE: 'pause-toggle',
     PAUSED: 'paused',
     PREV: 'prev',
     RIGHT: 'right',
     RUNWAY: 'runway',
-    SPEECH_TOGGLE: 'speech-toggle',
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     SPEED: 'speed',
@@ -64,11 +75,17 @@ export const CLASSNAMES = {
     STRIP_VIEW: 'js-stripView',
     STRIP: 'strip',
     SWITCH_AIRPORT: 'switch-airport',
+    TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+    TOGGLE_AIRSPACE: 'toggle-airspace',
+    TOGGLE_CHANGELOG: 'js-changelogToggle',
     TOGGLE_LABELS: 'toggle-labels',
     TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',
+    TOGGLE_PAUSE: 'toggle-pause',
     TOGGLE_SIDS: 'toggle-sids',
+    TOGGLE_SPEECH: 'toggle-speech',
     TOGGLE_STARS: 'toggle-stars',
     TOGGLE_TERRAIN: 'toggle-terrain',
+    TOGGLE_TRAFFIC: 'toggle-traffic',
     TOGGLE_TUTORIAL: 'toggle-tutorial',
     TOGGLE_VIDEO_MAP: 'toggle-video-map',
     WARN: 'warn',
@@ -83,6 +100,8 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
+    AIRPORT_GUIDE: 'airportGuide-bd',
+    AIRPORT_GUIDE_CONTAINER: 'airportGuide-container',
     AIRPORT_SWITCH: 'airport-switch',
     CANVASES: 'canvases',
     CLOCK: 'clock',

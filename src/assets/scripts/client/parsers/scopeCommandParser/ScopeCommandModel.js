@@ -8,7 +8,7 @@ import {
     EXPLICIT_COMMANDS,
     COMMAND_FUNCTIONS
 } from './scopeCommandMap';
-import { DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR } from '../../constants/scopeCommandConstants';
+import { DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR } from '../../constants/scopeConstants';
 
 // TODO: Replace dummy sector codes with a proper `SectorCollection`
 const SECTOR_HANDOFF_CODES = ['18', '19', '10', '12'];
@@ -105,6 +105,10 @@ export default class ScopeCommandModel {
 
         if (SECTOR_HANDOFF_CODES.indexOf(firstElement) !== -1) {
             return COMMAND_FUNCTIONS.INITIATE_HANDOFF;
+        }
+
+        if (firstElement === '.') {
+            return COMMAND_FUNCTIONS.SCRATCHPAD;
         }
 
         if (firstElement.indexOf(DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR) !== -1 || firstElement.length < 2) {

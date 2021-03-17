@@ -32,10 +32,10 @@ export const EVENT = {
      * css classname removed
      *
      * @memberof EVENT
-     * @property DESELECT_ACTIVE_STRIP_VIEW
+     * @property DESELECT_AIRCRAFT
      * @type {string}
      */
-    DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
+    DESELECT_AIRCRAFT: 'deselect-aircraft',
 
     /**
      * Event used to notify the `CanvasController` when a re-draw
@@ -44,10 +44,10 @@ export const EVENT = {
      * This should only occur as a result of a user action
      *
      * @memberof EVENT
-     * @property MARK_CANVAS_DIRTY
+     * @property MARK_SHALLOW_RENDER
      * @type {string}
      */
-    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+    MARK_SHALLOW_RENDER: 'mark-shallow-render',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
@@ -61,15 +61,6 @@ export const EVENT = {
     PAN_VIEWPORT: 'pan-viewport',
 
     /**
-     * Pause/unpause the game loop
-     *
-     * @memberof EVENT
-     * @property PAUSE_TOGGLE
-     * @type {string}
-     */
-    PAUSE_TOGGLE: 'pause-toggle',
-
-    /**
      * Fired when the update loop should be either paused or resumed.
      *
      * Usually called when airport data is changing (ie, when a new airport
@@ -80,6 +71,24 @@ export const EVENT = {
      * @type {string}
      */
     PAUSE_UPDATE_LOOP: 'pause-update-loop',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_DECREASE_LENGTH
+     * @type {string}
+     */
+    PTL_DECREASE_LENGTH: 'ptl-decrease-length',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_INCREASE_LENGTH
+     * @type {string}
+     */
+    PTL_INCREASE_LENGTH: 'ptl-increase-length',
 
     /**
      * Remove an aircraft from the sim
@@ -115,10 +124,10 @@ export const EVENT = {
      * `StripViewModel` must also be selected
      *
      * @memberof EVENT
-     * @property SELECT_STRIP_VIEW_FROM_DATA_BLOCK
+     * @property SELECT_AIRCRAFT
      * @type {string}
      */
-    SELECT_STRIP_VIEW_FROM_DATA_BLOCK: 'select-strip-view-from-data-block',
+    SELECT_AIRCRAFT: 'select-aircraft',
 
     /**
      * An aircraft progress strip was clicked
@@ -158,10 +167,40 @@ export const EVENT = {
 
     /**
      * @memberof EVENT
+     * @property TOGGLE_AIRPORT_GUIDE
+     * @type {string}
+     */
+    TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_AIRSPACE
+     * @type {string}
+     */
+    TOGGLE_AIRSPACE: 'toggle-airspace',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_CHANGELOG
+     * @type {string}
+     */
+    TOGGLE_CHANGELOG: 'toggle-changelog',
+
+    /**
+     * @memberof EVENT
      * @property TOGGLE_LABELS
      * @type {string}
      */
     TOGGLE_LABELS: 'toggle-labels',
+
+    /**
+     * Pause/unpause the game loop
+     *
+     * @memberof EVENT
+     * @property TOGGLE_PAUSE
+     * @type {string}
+     */
+    TOGGLE_PAUSE: 'toggle-pause',
 
     /**
      * @memberof EVENT
@@ -192,6 +231,13 @@ export const EVENT = {
     TOGGLE_TERRAIN: 'toggle-terrain',
 
     /**
+     * @memberof EVENT
+     * @property TOGGLE_TRAFFIC
+     * @type {string}
+     */
+    TOGGLE_TRAFFIC: 'toggle-traffic',
+
+    /**
      * Open/close the tutorial modal
      *
      * @memberof EVENT
@@ -213,6 +259,13 @@ export const EVENT = {
      * @type {string}
      */
     RANGE_RINGS_CHANGE: 'range-rings-change',
+
+    /**
+     * @memberof EVENT
+     * @property MEASURE_TOOL_STYLE_CHANGE
+     * @type {string}
+     */
+    MEASURE_TOOL_STYLE_CHANGE: 'measure-tool-style-change',
 
     /**
      * A click has been registered in the unpause button shown within the
@@ -288,5 +341,4 @@ export const AIRCRAFT_EVENT = {
      * @type {string}
      */
     AIRSPACE_EXIT: 'airspace-exit'
-
-}
+};

@@ -1,0 +1,16 @@
+{
+    "icao": "dhk",
+    "name": "DHL Air UK",
+    "callsign": {
+        "name": "World Express",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B752", 26],
+            ["B763", 3]
+        ]
+    }
+}

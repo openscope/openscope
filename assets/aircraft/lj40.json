@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier Learjet 40",
+    "icao": "LJ40",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "H"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb":      2820,
+        "descent":    2200,
+        "accelerate": 10,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.300,
+        "landing": 1.350
+    },
+    "speed":{
+        "min":     105,
+        "landing": 116,
+        "cruise":  457,
+        "cruiseM": null,
+        "max":     464,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

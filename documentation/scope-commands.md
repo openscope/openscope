@@ -1,4 +1,5 @@
 # Scope Command Reference
+
 Below is a detailed list outlining all of the available scope commands, including what they do, how to use them, and information on how they fit into the workflow of an air traffic controller.
 
 Other than moving the data block or accepting handoffs, most commands require that the radar target be under your scope's control.
@@ -24,13 +25,16 @@ Please note that the bracketed words (and brackets themselves) used in the synta
 ~~_More Info -_ **THIS COMMAND IS NOT YET AVAILABLE**~~
 
 ### Move Data Block
+
 _Syntax -_ `[direction] [CID]` or `[direction]/[length] [CID]` or `/[length] CID`
 _Description -_ This command will move the leader line and data block for the specified radar target to the specified direction and/or length. Note that the direction is based on the physical placement of the buttons on a standard computer's numberpad (shown below). So position `8` is directly _up_, position `1` is down and to the left, etc. Position `5` is also available as another way to "shortstem" the data block, so it is centered directly over the target. Position `0` is not used. Leader line lengths 0 through 6 are permitted only.
-```
+
+```text
 7 8 9
 4 5 6
 1 2 3
 ```
+
 _More Info -_ On real ATC systems, moving the data block is sometimes used by controllers to indicate the status of the aircraft, in reference to whether or not they have been told to do something yet (for instance, approach might move all the blocks down for a/c that have been switched to tower frequency).
 
 ~~### Propogate Data Block (and Point Out)~~
@@ -49,14 +53,16 @@ _More Info -_ On real ATC systems, moving the data block is sometimes used by co
 
 ~~_More Info -_ **THIS COMMAND IS NOT YET AVAILABLE**~~
 
-### Set Scratch Pad~~
+### Set Scratchpad
+
 _Syntax -_ `[scratchpad text] [CID]`
 
-_Description -_ This will amend the value stored in the target's data block's scratch pad. This value can be a maximum of three alphanumeric characters.~~
+_Description -_ This will amend the value stored in the target's data block's scratchpad. This value can be either two or three alphanumeric characters.
 
-_More Info -_
+More Info - To reset the scratchpad, set it to a period symbol `. [CID]`
 
 ### Toggle Halo
+
 _Syntax -_ `QP_J [CID]` or `QP_J [radius] [CID]`
 _Shortcut -_ `[F7] [CID]` or `[F7] [radius] [CID]`
 

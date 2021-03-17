@@ -1,0 +1,23 @@
+{
+    "icao": "srr",
+    "name": "Star Air",
+    "callsign": {
+        "name": "White Star",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B762", 11],
+            ["B763", 3]
+        ],
+        "cargo": [
+            ["B762", 11],
+            ["B763", 1]
+        ],
+        "passenger": [
+            ["B763", 2]
+        ]
+    }
+}
