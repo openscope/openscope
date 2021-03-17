@@ -11,12 +11,36 @@ import {
 } from './_mocks/airlineMocks';
 
 ava('throws when called with invalid data', (t) => {
-    t.throws(() => new AirlineModel());
-    t.throws(() => new AirlineModel([]));
-    t.throws(() => new AirlineModel({}));
-    t.throws(() => new AirlineModel(42));
-    t.throws(() => new AirlineModel('threeve'));
-    t.throws(() => new AirlineModel(false));
+    const expectedMessage = /Invalid airlineDefinition passed to AirlineModel constructor\. Expected a non-empty object, but received .*/;
+
+    t.throws(() => new AirlineModel(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineModel(null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineModel({}), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineModel([]), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineModel(42), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineModel('threeve'), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new AirlineModel(false), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
 });
 
 ava('aircraftList returns a list of all aircraft from all fleets', (t) => {

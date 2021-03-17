@@ -9,7 +9,7 @@ import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import { buildFlightNumber } from './buildFlightNumber';
 import { INVALID_INDEX } from '../constants/globalConstants';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { DEFAULT_CALLSIGN_FORMAT } from '../constants/airlineConstants';
 
 /**
@@ -31,9 +31,9 @@ export default class AirlineModel extends BaseModel {
     constructor(airlineDefinition) {
         super();
 
-        if (isEmptyObject(airlineDefinition)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected an object but received ${typeof airlineDefinition}`);
+        if (isEmptyOrNotObject(airlineDefinition)) {
+            throw new TypeError('Invalid airlineDefinition passed to AirlineModel constructor. ' +
+                `Expected a non-empty object, but received ${typeof airlineDefinition}`);
         }
 
         /**

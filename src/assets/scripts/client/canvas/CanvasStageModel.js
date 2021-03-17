@@ -191,11 +191,12 @@ class CanvasStageModel {
      * Translate a kilometer value to pixels based on the current `#_scale` value
      *
      * @for CanvasStageModel
-     * @method translateKilometersToPixels
+     * @method _translateKilometersToPixels
      * @param kilometerValue {number}   value in kilometers
      * @return {number}                 value in pixels
+     * @private
      */
-    translateKilometersToPixels(kilometerValue) {
+    _translateKilometersToPixels(kilometerValue) {
         return kilometerValue * this._scale;
     }
 
@@ -232,51 +233,45 @@ class CanvasStageModel {
     }
 
     /**
-     * Translate an `[x, y]` tuple (in km) to a canvas position (in px)
+     * Calculate a canvas position (in px) from the provided relative position (km offset from airport center)
      *
-     * The return values will be high precision numbers that can be used
-     * to plot an exact pixel position.
-     *
-     * This method should not be used for things like pan and aircraft future tracks
+     * NOTE: The return values will be high precision floating-point numbers with subpixel resolution. This will cause the
+     * browser to perform additional antialiasing, and therefore should not be used for things like aircraft projections.
      *
      * @for CanvasStageModel
-     * @method translatePostionModelToPreciseCanvasPosition
-     * @param x {number}
-     * @param y {number}
-     * @return {object<string, number>}
+     * @method calculatePreciseCanvasPositionFromRelativePosition
+     * @param relativePosition {array<number>} `[x, y]` position coordinates (in km offset from airport center)
+     * @return {array<number>} - `[154.173, 381.029]`
      */
-    translatePostionModelToPreciseCanvasPosition([x, y]) {
-        const canvasX = this.translateKilometersToPixels(x) + this._panX;
-        const canvasY = (this.translateKilometersToPixels(y) * -1) + this._panY;
+    calculatePreciseCanvasPositionFromRelativePosition(relativePosition) {
+        const [x, y] = relativePosition;
+        const canvasX = this._translateKilometersToPixels(x) + this._panX;
+        const canvasY = (this._translateKilometersToPixels(y) * -1) + this._panY;
+        const precisePosition = [canvasX, canvasY];
 
-        return {
-            x: canvasX,
-            y: canvasY
-        };
+        return precisePosition;
     }
 
+
     /**
-     * Translate an `[x, y]` tuple (in km) to a canvas position (in px)
+     * Calculate a canvas position (in px) from the provided relative position (km offset from airport center)
      *
-     * The return values will be rounded and are thus not considered precise
+     * NOTE: The return values will be rounded to the nearest integer, and are thus not considered precise.
      *
-     * Calls to this method should be used to calculate approximate canvas position,
-     * useful for things like pan and cursor screen position.
-     *
-     * This method should not be used to translate an aircraft position
+     * Calls to this method should be used to calculate approximate canvas position, useful for plotting things
+     * in an imprecise, but non-subpixelated manner, which are corrected for user panning. This method should
+     * not be used to translate an aircraft position due to this inherent inaccuracy.
      *
      * @for CanvasStageModel
-     * @method translatePostionModelToRoundedCanvasPosition
-     * @param position {array<number, number>}  `[x, y]` position coordinates (in km)
-     * @return {object<string, number>}
+     * @method calculateRoundedCanvasPositionFromRelativePosition
+     * @param relativePosition {array<number>} `[x, y]` position coordinates (in km offset from airport center)
+     * @return {array<number>} - `[154.173, 381.029]`
      */
-    translatePostionModelToRoundedCanvasPosition(position) {
-        const { x, y } = this.translatePostionModelToPreciseCanvasPosition(position);
+    calculateRoundedCanvasPositionFromRelativePosition(relativePosition) {
+        const precisePosition = this.calculatePreciseCanvasPositionFromRelativePosition(relativePosition);
+        const roundedPosition = [round(precisePosition[0]), round(precisePosition[1])];
 
-        return {
-            x: round(x),
-            y: round(y)
-        };
+        return roundedPosition;
     }
 
     /**
@@ -416,8 +411,8 @@ class CanvasStageModel {
 
         // take previous pan values (in km) and calculate their current position
         // based on the new `#_scale` value
-        const nextPanX = round(this.translateKilometersToPixels(previousX));
-        const nextPanY = round(this.translateKilometersToPixels(previousY));
+        const nextPanX = round(this._translateKilometersToPixels(previousX));
+        const nextPanY = round(this._translateKilometersToPixels(previousY));
 
         this.updatePan(nextPanX, nextPanY);
         this._storeZoomLevel();

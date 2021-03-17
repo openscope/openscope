@@ -10,7 +10,7 @@ import {
     timewarpParser,
     optionalAltitudeParser,
     crossingParser
-} from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentParsers';
+} from '../../../src/assets/scripts/client/commands/parsers/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
     const result = altitudeParser(['080']);
@@ -116,22 +116,50 @@ ava('.findHoldCommandByType() returns a fixName when passed a valid fixName', (t
     t.is(findHoldCommandByType('fixName', argsMock), 'dumba');
 });
 
-ava('.isLegLengthArg() returns false when passed an invalid leg length', (t) => {
+ava('.isLegLengthArg() returns false when passed an invalid integer leg length', (t) => {
     t.false(isLegLengthArg('1'));
     t.false(isLegLengthArg('0min'));
     t.false(isLegLengthArg('0nm'));
-    t.false(isLegLengthArg('20min'));
-    t.false(isLegLengthArg('20nm'));
+    t.false(isLegLengthArg('50min'));
+    t.false(isLegLengthArg('50nm'));
     t.false(isLegLengthArg('1km'));
+    t.false(isLegLengthArg('-1nm'));
 });
 
-ava('.isLegLengthArg() returns true when passed a valid leg length', (t) => {
+ava('.isLegLengthArg() returns false when passed an invalid decimal leg length', (t) => {
+    t.false(isLegLengthArg('1.0'));
+    t.false(isLegLengthArg('0.0min'));
+    t.false(isLegLengthArg('0.0nm'));
+    t.false(isLegLengthArg('50.0min'));
+    t.false(isLegLengthArg('50.0nm'));
+    t.false(isLegLengthArg('1.0km'));
+    t.false(isLegLengthArg('-1.0nm'));
+    t.false(isLegLengthArg('1.05min'));
+    t.false(isLegLengthArg('1.05nm'));
+});
+
+ava('.isLegLengthArg() returns true when passed a valid integer leg length', (t) => {
     t.true(isLegLengthArg('1min'));
     t.true(isLegLengthArg('2min'));
-    t.true(isLegLengthArg('19min'));
+    t.true(isLegLengthArg('10min'));
+    t.true(isLegLengthArg('49min'));
     t.true(isLegLengthArg('1nm'));
     t.true(isLegLengthArg('2nm'));
-    t.true(isLegLengthArg('19nm'));
+    t.true(isLegLengthArg('10nm'));
+    t.true(isLegLengthArg('49nm'));
+});
+
+ava('.isLegLengthArg() returns true when passed a valid decimal leg length', (t) => {
+    t.true(isLegLengthArg('0.1min'));
+    t.true(isLegLengthArg('1.0min'));
+    t.true(isLegLengthArg('2.0min'));
+    t.true(isLegLengthArg('10.0min'));
+    t.true(isLegLengthArg('49.9min'));
+    t.true(isLegLengthArg('0.1nm'));
+    t.true(isLegLengthArg('1.0nm'));
+    t.true(isLegLengthArg('2.0nm'));
+    t.true(isLegLengthArg('10.0nm'));
+    t.true(isLegLengthArg('49.9nm'));
 });
 
 ava('.holdParser() returns an array of length 4 when passed a fixname as the only argument', t => {

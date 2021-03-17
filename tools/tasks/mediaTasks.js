@@ -9,7 +9,8 @@ module.exports = function(gulp, config) {
 
     const jsonMinify = () => gulp.src([
             path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.json'),
-            path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.geojson')
+            path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.geojson'),
+            '!' + path.join(OPTIONS.DIR.DIST_AIRPORTS, 'airportLoadList*.json')
         ])
         .pipe(jsonmin())
         .pipe(gulp.dest(OPTIONS.DIR.DIST_AIRPORTS));
@@ -20,8 +21,9 @@ module.exports = function(gulp, config) {
     const copyStatic = () => {
         const fonts = gulp.src(OPTIONS.GLOB.FONTS).pipe(gulp.dest(OPTIONS.DIR.DIST_FONT));
         const images = gulp.src(OPTIONS.GLOB.IMAGES).pipe(gulp.dest(OPTIONS.DIR.DIST_IMAGES));
+        const tutorial = gulp.src(OPTIONS.GLOB.TUTORIAL).pipe(gulp.dest(OPTIONS.DIR.DIST_TUTORIAL));
 
-        return merge(fonts, images);
+        return merge(fonts, images, tutorial);
     };
 
     gulp.task(OPTIONS.TASKS.JSON.MINIFY, gulp.series(jsonMinify));

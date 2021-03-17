@@ -7,35 +7,150 @@ import {
     MAP_NAMES_MOCK_EMPTY,
     MAP_MOCK,
     MAP_MOCK_LEGACY,
-    MAP_MOCK_EMPTY,
-    DEFAULT_MAPS_MOCK,
-    DEFAULT_MAPS_MOCK_EMPTY
-} from './_mocks/mapCollectionlMocks';
+    DEFAULT_MAPS_MOCK
+} from './_mocks/mapCollectionMocks';
 
 const currentPosition = ['N44.879722', 'W063.510278', '2181ft'];
 const magneticNorth = -18;
 const airportPositionFixtureKCYHZ = new StaticPositionModel(currentPosition, null, magneticNorth);
 
-ava('throws if called with invalid parameters', t => {
-    t.throws(() => new MapCollection());
-    t.throws(() => new MapCollection(MAP_MOCK));
-    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK));
-    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ));
-    t.throws(() => new MapCollection(null, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
-    t.throws(() => new MapCollection(MAP_MOCK, null, airportPositionFixtureKCYHZ, magneticNorth));
-    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, null, magneticNorth));
+ava('throws if called with missing parameters', t => {
+    const expectedMessage = /Invalid parameter\(s\) passed to MapCollection constructor\. Expected mapJson, defaultMaps, airportPositionModel and magneticNorth to be defined, but received .*/;
+
+    t.throws(() => new MapCollection(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+
+    t.throws(() => new MapCollection(MAP_MOCK), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(DEFAULT_MAPS_MOCK), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(airportPositionFixtureKCYHZ), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+
+    t.throws(() => new MapCollection(DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+
+    t.throws(() => new MapCollection(null, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, null, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, null, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('throws if called with invalid mapJson', t => {
+    const expectedMessage = /Invalid mapJson passed to MapCollection constructor\. Expected a non-empty array, but received .*/;
+
+    t.throws(() => new MapCollection({}, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection([], DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(42, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection('threeve', DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(false, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('throws if called with invalid defaultMaps', t => {
+    const expectedMessage = /Invalid defaultMaps passed to MapCollection constructor\. Expected a non-empty array, but received .*/;
+
+    t.throws(() => new MapCollection(MAP_MOCK, {}, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, [], airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, 42, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, 'threeve', airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, false, airportPositionFixtureKCYHZ, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+});
+
+ava('throws if called with invalid airportPositionModel', t => {
+    const expectedMessage = /Invalid airportPositionModel passed to MapCollection constructor\. Expected instance of StaticPositionModel, but received .*/;
+
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, {}, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, [], magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, 42, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, 'threeve', magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK, false, magneticNorth), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
 });
 
 ava('throws if called with a legacy map', t => {
     t.throws(() => new MapCollection(MAP_MOCK_LEGACY, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
-});
-
-ava('throws if called with an empty map array', t => {
-    t.throws(() => new MapCollection(MAP_MOCK_EMPTY, DEFAULT_MAPS_MOCK, airportPositionFixtureKCYHZ, magneticNorth));
-});
-
-ava('throws if called with an empty defaultMaps array', t => {
-    t.throws(() => new MapCollection(MAP_MOCK, DEFAULT_MAPS_MOCK_EMPTY, airportPositionFixtureKCYHZ, magneticNorth));
 });
 
 ava('does not throw when instantiated with a 0 magneticNorth', t => {

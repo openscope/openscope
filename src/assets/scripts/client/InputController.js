@@ -7,8 +7,8 @@ import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './ui/UiController';
-import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
-import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
+import CommandParser from './commands/parsers/CommandParser';
+import ScopeCommandModel from './commands/scopeCommand/ScopeCommandModel';
 import EventTracker from './EventTracker';
 import MeasureTool from './measurement/MeasureTool';
 import FixCollection from './navigationLibrary/FixCollection';
@@ -93,6 +93,7 @@ export default class InputController {
         this.onMouseClickAndDragHandler = this._onMouseClickAndDrag.bind(this);
         this.onMouseUpHandler = this._onMouseUp.bind(this);
         this.onMouseDownHandler = this._onMouseDown.bind(this);
+        this.onMouseDblclickHandler = this._onMouseDblclick.bind(this);
 
         return this;
     }
@@ -115,6 +116,7 @@ export default class InputController {
         this.$canvases.on('mousemove', this.onMouseClickAndDragHandler);
         this.$canvases.on('mouseup', this.onMouseUpHandler);
         this.$canvases.on('mousedown', this.onMouseDownHandler);
+        this.$canvases.on('dblclick', this.onMouseDblclickHandler);
         this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
@@ -138,6 +140,7 @@ export default class InputController {
         this.$canvases.off('mousemove', this.onMouseClickAndDragHandler);
         this.$canvases.off('mouseup', this.onMouseUpHandler);
         this.$canvases.off('mousedown', this.onMouseDownHandler);
+        this.$canvases.off('dblclick', this.onMouseDblclickHandler);
         this.$body.removeEventListener('contextmenu', event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
@@ -398,6 +401,28 @@ export default class InputController {
 
     /**
      * @for InputController
+     * @method _onMouseDblclick
+     * @param event {jquery Event}
+     */
+    _onMouseDblclick(event) {
+        // HACK: for "when an aircraft's radar return is double clicked"
+        // caveat: double click is series of mousedown-mouseup-mousedown-mouseup events in rapid succession
+        // there is no guarantee that pointer is stationary throughout the process!
+        // event handler is for entire canvas, not for things drawn on it; need to resolve which aircraft
+        // _onLeftMouseButtonPress identifies and selects nearest aircraft within 50px of mousedown events
+        // so we can just piggyback off the aircraft (if any) already selected by the second mousedown
+        if (!this.input.callsign) {
+            return;
+        }
+
+        this._eventBus.trigger(
+            EVENT.SCROLL_TO_AIRCRAFT,
+            this._aircraftController.findAircraftByCallsign(this.input.callsign)
+        );
+    }
+
+    /**
+     * @for InputController
      * @method _onCommandInputChange
      * @private
      */
@@ -501,7 +526,7 @@ export default class InputController {
             // turning
             case KEY_CODES.LEFT_ARROW:
             case LEGACY_KEY_CODES.LEFT_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} t l `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -510,7 +535,7 @@ export default class InputController {
                 break;
             case KEY_CODES.RIGHT_ARROW:
             case LEGACY_KEY_CODES.RIGHT_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} t r `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -520,7 +545,7 @@ export default class InputController {
             // climb / descend
             case KEY_CODES.UP_ARROW:
             case LEGACY_KEY_CODES.UP_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} c `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -532,12 +557,12 @@ export default class InputController {
                 break;
             case KEY_CODES.DOWN_ARROW:
             case LEGACY_KEY_CODES.DOWN_ARROW:
-                if (this._isArrowControlMethod()) {
+                if (this._isArrowControlMethod() && this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
                     this.$commandInput.val(`${currentCommandInputValue} d `);
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
-                    this.selectPreviousAircraft();
+                    this.selectNextAircraft();
                     event.preventDefault();
                 }
 
@@ -545,31 +570,39 @@ export default class InputController {
             // takeoff / landing
             case KEY_CODES.NUM_DIVIDE:
             case LEGACY_KEY_CODES.NUM_DIVIDE:
-                this.$commandInput.val(`${currentCommandInputValue} takeoff `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} / `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             case KEY_CODES.NUM_MULTIPLY:
             case LEGACY_KEY_CODES.NUM_MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue} * `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} * `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             // speed up / slow down
             case KEY_CODES.NUM_ADD:
             case LEGACY_KEY_CODES.NUM_ADD:
-                this.$commandInput.val(`${currentCommandInputValue} + `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} + `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             case KEY_CODES.NUM_SUBTRACT:
             case LEGACY_KEY_CODES.NUM_SUBTRACT:
-                this.$commandInput.val(`${currentCommandInputValue} - `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
+                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+                    this.$commandInput.val(`${currentCommandInputValue} - `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
 
                 break;
             case KEY_CODES.F1:
@@ -778,29 +811,29 @@ export default class InputController {
      * @method processAircraftCommand
      */
     processAircraftCommand() {
-        let aircraftCommandParser;
         // this could use $commandInput.val() as an alternative
         const userCommand = this.input.command.trim().toLowerCase();
 
-        // Using try/catch here very much on purpose. the `AircraftCommandParser` will throw when it encounters any kind
+        // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
         // and then throw them all at once
+        let cmd;
         try {
-            aircraftCommandParser = new AircraftCommandParser(userCommand);
+            const parser = new CommandParser(userCommand);
+            cmd = parser.parse();
         } catch (error) {
             UiController.ui_log('Command not understood', true);
-
             throw error;
         }
-
-        if (aircraftCommandParser.command !== PARSED_COMMAND_NAME.TRANSMIT) {
-            return this.processSystemCommand(aircraftCommandParser);
+        const parsedCommand = cmd;
+        if (parsedCommand.command !== PARSED_COMMAND_NAME.TRANSMIT) {
+            return this.processSystemCommand(parsedCommand);
         }
 
         this.input.history.unshift(this.input.callsign);
         this.input.history_item = null;
 
-        return this.processTransmitCommand(aircraftCommandParser);
+        return this.processTransmitCommand(parsedCommand);
     }
 
     /**
@@ -851,11 +884,11 @@ export default class InputController {
     /**
      * @for InputController
      * @method processSystemCommand
-     * @param aircraftCommandParser {AircraftCommandParser}
+     * @param parsedCommand {ParsedCommand}
      * @return {boolean}
      */
-    processSystemCommand(aircraftCommandParser) {
-        switch (aircraftCommandParser.command) {
+    processSystemCommand(parsedCommand) {
+        switch (parsedCommand.command) {
             case PARSED_COMMAND_NAME.TUTORIAL:
                 UiController.onToggleTutorial();
 
@@ -881,8 +914,9 @@ export default class InputController {
             case PARSED_COMMAND_NAME.TIMEWARP:
                 let nextTimewarpValue = 0;
 
-                if (aircraftCommandParser.args) {
-                    nextTimewarpValue = aircraftCommandParser.args[0];
+                if (parsedCommand.args) {
+                    // timewarp has just one argument
+                    [nextTimewarpValue] = parsedCommand.args;
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
@@ -897,7 +931,7 @@ export default class InputController {
                 break;
             case PARSED_COMMAND_NAME.AIRPORT: {
                 // TODO: it may be better to do this in the parser
-                const airportIcao = aircraftCommandParser.args[0];
+                const airportIcao = parsedCommand.args[0];
 
                 if (_has(AirportController.airports, airportIcao)) {
                     AirportController.airport_set(airportIcao);
@@ -932,10 +966,10 @@ export default class InputController {
     /**
      * @for InputController
      * @method processTransmitCommand
-     * @param aircraftCommandParser {AircraftCommandParser}
+     * @param parsedCommand {ParsedCommand}
      * @return {boolean}
      */
-    processTransmitCommand(aircraftCommandParser) {
+    processTransmitCommand(parsedCommand) {
         // TODO: abstract the aircraft callsign matching
         let matches = 0;
         let match = INVALID_NUMBER;
@@ -943,7 +977,7 @@ export default class InputController {
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             const aircraft = this._aircraftController.aircraft.list[i];
 
-            if (aircraft.matchCallsign(aircraftCommandParser.callsign)) {
+            if (aircraft.matchCallsign(parsedCommand.callsign)) {
                 matches += 1;
                 match = i;
             }
@@ -963,7 +997,7 @@ export default class InputController {
 
         const aircraft = this._aircraftController.aircraft.list[match];
 
-        return this._aircraftCommander.runCommands(aircraft, aircraftCommandParser.args);
+        return this._aircraftCommander.runCommands(aircraft, parsedCommand.args);
     }
 
     /**
@@ -1069,14 +1103,15 @@ export default class InputController {
      */
     _markMousePressed(event, mouseButton) {
         const canvasDragButton = GameController.getGameOption(GAME_OPTION_NAMES.MOUSE_CLICK_DRAG);
-        const mousePositionX = event.pageX - CanvasStageModel._panX;
-        const mousePositionY = event.pageY - CanvasStageModel._panY;
 
         // The mouse button that's been pressed isn't the one
         // that drags the canvas, so we return.
         if (mouseButton !== canvasDragButton) {
             return;
         }
+
+        const mousePositionX = event.pageX - CanvasStageModel._panX;
+        const mousePositionY = event.pageY - CanvasStageModel._panY;
 
         // Record mouse down position for panning
         this._mouseDownScreenPosition = [

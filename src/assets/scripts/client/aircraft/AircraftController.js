@@ -1,9 +1,11 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
 import _get from 'lodash/get';
-import _isObject from 'lodash/isObject';
+import _isNil from 'lodash/isNil';
 import _without from 'lodash/without';
+import AirlineController from '../airline/AirlineController';
 import AirportController from '../airport/AirportController';
+import ScopeModel from '../scope/ScopeModel';
 import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
@@ -40,15 +42,25 @@ export default class AircraftController {
      * @param scopeModel {ScopeModel}
      */
     constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
-        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
-                `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
+        if (_isNil(aircraftTypeDefinitionList) || _isNil(airlineController) || _isNil(scopeModel)) {
+            throw new TypeError('Invalid parameter(s) passed to AircraftController constructor. ' +
+                'Expected aircraftTypeDefinitionList, airlineController and scopeModel to be defined, ' +
+                `but received ${typeof aircraftTypeDefinitionList}, ${typeof airlineController} and ${typeof scopeModel}`);
         }
 
-        // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineController)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection to be defined');
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftController constructor. ' +
+                `Expected a non-empty array, but received ${typeof aircraftTypeDefinitionList}`);
+        }
+
+        if (!(airlineController instanceof AirlineController)) {
+            throw new TypeError('Invalid airlineController passed to AircraftController constructor. ' +
+                `Expected instance of AirlineController, but received ${typeof airlineController}`);
+        }
+
+        if (!(scopeModel instanceof ScopeModel)) {
+            throw new TypeError('Invalid scopeModel passed to AircraftController constructor. ' +
+                `Expected instance of ScopeModel, but received ${typeof scopeModel}`);
         }
 
         /**
@@ -156,8 +168,9 @@ export default class AircraftController {
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
-        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this.onSelectAircraft);
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
         this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
+        this._eventBus.on(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
@@ -174,6 +187,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
         this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
+        this._eventBus.off(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
@@ -391,17 +405,6 @@ export default class AircraftController {
      */
     updateAircraftStrips() {
         this._stripViewController.update(this.aircraft.list);
-    }
-
-    /**
-     * Public facade for `._onSelectAircraft`
-     *
-     * @for AircraftController
-     * @method onSelectAircraft
-     * @param aircaftModel {AircraftModel}
-     */
-    onSelectAircraft = (aircraftModel) => {
-        this._onSelectAircraft(aircraftModel);
     }
 
     /**
@@ -718,6 +721,22 @@ export default class AircraftController {
     };
 
     /**
+     * Scroll a `StripViewModel` into view
+     *
+     * @for AircraftController
+     * @method _onScrollToAircraft
+     * @param  aircraftModel {AircraftModel}
+     * @private
+     */
+    _onScrollToAircraft = (aircraftModel) => {
+        if (!aircraftModel.isControllable) {
+            return;
+        }
+
+        this._stripViewController.scrollToStripView(aircraftModel);
+    };
+
+    /**
      * Triggered `EventBus` callback
      *
      * This method allows us to find an `AircraftModel` from a callsign,
@@ -730,9 +749,8 @@ export default class AircraftController {
      */
     _onStripDoubleClickHandler = (callsign) => {
         const { relativePosition } = this.findAircraftByCallsign(callsign);
-        const [x, y] = relativePosition;
 
-        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
+        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, relativePosition);
     };
 
     /**

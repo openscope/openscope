@@ -4,10 +4,11 @@ import _isArray from 'lodash/isArray';
 import _isNil from 'lodash/isNil';
 import _random from 'lodash/random';
 import _without from 'lodash/without';
+import AirportModel from '../airport/AirportModel';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 import { TIME } from '../constants/globalConstants';
 import { nm } from '../utilities/unitConverters';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { distance2d } from '../math/distance';
 
 /**
@@ -333,8 +334,8 @@ const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
  * `AircraftModel` along a route.
  *
  * @function _preSpawn
- * @param spawnPatternJson
- * @param airport
+ * @param spawnPatternJson {object}
+ * @param airport {AirportModel}
  * @return {array<object>}
  */
 const _preSpawn = (spawnPatternJson, airport) => {
@@ -378,12 +379,20 @@ const _preSpawn = (spawnPatternJson, airport) => {
  * @return {array<object>}
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, currentAirport) => {
-    if (isEmptyObject(spawnPatternJson)) {
-        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
+    if (_isNil(spawnPatternJson) || _isNil(currentAirport)) {
+        throw new TypeError('Invalid parameter(s) passed to buildPreSpawnAircraft. ' +
+            'Expected spawnPatternJson and currentAirport to be defined, ' +
+            `but received ${typeof spawnPatternJson} and ${typeof currentAirport}`);
     }
 
-    if (_isNil(currentAirport)) {
-        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected currentAirport to be defined');
+    if (isEmptyOrNotObject(spawnPatternJson)) {
+        throw new TypeError('Invalid spawnPatternJson passed to buildPreSpawnAircraft. ' +
+            `Expected a non-empty object, but received ${typeof spawnPatternJson}`);
+    }
+
+    if (!(currentAirport instanceof AirportModel)) {
+        throw new TypeError('Invalid currentAirport passed to buildPreSpawnAircraft. ' +
+            `Expected instance of AirportModel, but received ${typeof currentAirport}`);
     }
 
     return _preSpawn(spawnPatternJson, currentAirport);

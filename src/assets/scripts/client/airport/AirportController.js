@@ -23,7 +23,7 @@ class AirportController {
         /**
          * Local reference to `window.AIRPORT_LOAD_LIST`
          *
-         * This is defined in `assets/airports/airportLoadList.js`
+         * This is defined in `assets/airports/airportLoadList.json`
          * This property is the only way the possible list of airports
          * makes its way into the app.
          *

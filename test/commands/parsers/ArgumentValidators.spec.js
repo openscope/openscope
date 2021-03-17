@@ -16,7 +16,7 @@ import {
     squawkValidator,
     optionalAltitudeValidator,
     crossingValidator
-} from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentValidators';
+} from '../../../src/assets/scripts/client/commands/parsers/argumentValidators';
 
 // TODO: import ERROR_MESSAGE and use actual values to test against
 

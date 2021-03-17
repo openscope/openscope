@@ -1,3 +1,55 @@
+# 6.24.0 (March 1, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1762" target="_blank">#1762</a> - FMS initialization checks against current airport
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
+- <a href="https://github.com/openscope/openscope/issues/1758" target="_blank">#1758</a> - Update GitHub build status badge
+- <a href="https://github.com/openscope/openscope/issues/1749" target="_blank">#1749</a> - Improve user input validation and associated tests
+- <a href="https://github.com/openscope/openscope/issues/1763" target="_blank">#1763</a> - Reflect merging of Singapore Cargo Airlines (SQC) into SIA
+- <a href="https://github.com/openscope/openscope/issues/1778" target="_blank">#1778</a> - Code gardening in StripViewModel.js
+- <a href="https://github.com/openscope/openscope/issues/1780" target="_blank">#1780</a> - Implement constants for wake turbulence category & engine type
+- <a href="https://github.com/openscope/openscope/issues/1771" target="_blank">#1771</a> - Change VKG airline from Thomas Cook to Sunclass
+- <a href="https://github.com/openscope/openscope/issues/1417" target="_blank">#1417</a> - Update and re-enable RJTT (Tokyo Haneda)
+- <a href="https://github.com/openscope/openscope/issues/1783" target="_blank">#1783</a> - Avoid making unnecessary copies of AircraftTypeDefinitionModel
+- <a href="https://github.com/openscope/openscope/issues/1785" target="_blank">#1785</a> - File location & EoL housekeeping
+- <a href="https://github.com/openscope/openscope/issues/1791" target="_blank">#1791</a> - Add test coverage for all command aliases
+
+
+# 6.23.0 (February 5, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1656" target="_blank">#1656</a> - Add Philadelphia International Airport (KPHL)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism
+- <a href="https://github.com/openscope/openscope/issues/1705" target="_blank">#1705</a> - Re-fix range ring drawing position
+- <a href="https://github.com/openscope/openscope/issues/1707" target="_blank">#1707</a> - Fix minor keyboard input inconsistencies and correct command documentation
+- <a href="https://github.com/openscope/openscope/issues/1716" target="_blank">#1716</a> - Prevent timewarping by negative values
+- <a href="https://github.com/openscope/openscope/issues/1744" target="_blank">#1744</a> - Fix validation helper method for preventing non-empty objects
+- <a href="https://github.com/openscope/openscope/issues/1690" target="_blank">#1690</a> - Clear log on airport change
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1703" target="_blank">#1703</a> - Add more PTL ranges, some including 30sec PTLs
+- <a href="https://github.com/openscope/openscope/issues/1697" target="_blank">#1697</a> - Refactor command parsing with new `ParsedCommand` class
+- <a href="https://github.com/openscope/openscope/issues/1699" target="_blank">#1699</a> - Improve command documentation
+- <a href="https://github.com/openscope/openscope/issues/1692" target="_blank">#1692</a> - Remove obsolete caveats for GOATZ1 and DIRBY1 arrivals from KLAX airport guide
+- <a href="https://github.com/openscope/openscope/issues/1677" target="_blank">#1677</a> - Update Munich airport (EDDM) to AIRAC 2015
+- <a href="https://github.com/openscope/openscope/issues/1712" target="_blank">#1712</a> - Centralize z-index declarations for ease of layer management
+- <a href="https://github.com/openscope/openscope/issues/1715" target="_blank">#1715</a> - Sync fast-forward command bar button with timewarp commands
+- <a href="https://github.com/openscope/openscope/issues/1718" target="_blank">#1718</a> - Sync aircraft command map with command definitions
+- <a href="https://github.com/openscope/openscope/issues/1725" target="_blank">#1725</a> - Convert airport load list to JSON
+- <a href="https://github.com/openscope/openscope/issues/217" target="_blank">#217</a> - Differentiate projected path color for selected vs non-selected aircraft
+- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Scroll strip into view when aircraft radar return double clicked
+- <a href="https://github.com/openscope/openscope/issues/495" target="_blank">#495</a> - Expand on command parser testing
+- <a href="https://github.com/openscope/openscope/issues/1739" target="_blank">#1739</a> - General code gardening in UiController.js
+- <a href="https://github.com/openscope/openscope/issues/1700" target="_blank">#1700</a> - Convert tutorial contents to JSON
+- <a href="https://github.com/openscope/openscope/issues/1750" target="_blank">#1750</a> - Fix syntax error in airway documentation
+- <a href="https://github.com/openscope/openscope/issues/1741" target="_blank">#1741</a> - Add support for holding leg lengths of up to 49.9nm
+
+
 # 6.22.0 (January 3, 2021)
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1565" target="_blank">#1565</a> - Prevent aircraft from taxiing to a runway they're already holding short of

@@ -65,7 +65,8 @@ import {
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
-    PERFORMANCE
+    PERFORMANCE,
+    ENGINE_TYPE
 } from '../constants/aircraftConstants';
 import {
     AIRPORT_CONSTANTS,
@@ -456,16 +457,6 @@ export default class AircraftModel {
 
         this.category = options.category; // 'arrival' or 'departure'
 
-        /**
-         * the following diagram illustrates all allowed mode transitions:
-         *
-         * apron -> taxi -> waiting -> takeoff -> cruise <-> landing
-         *   ^                                       ^
-         *   |                                       |
-         * new planes with                      new planes with
-         * category 'departure'                 category 'arrival'
-         */
-
         // target represents what the pilot makes of the tower's commands. It is
         // most important when the plane is in a 'guided' situation, that is it is
         // not given a heading directly, but has a fix or is following an ILS path
@@ -489,7 +480,7 @@ export default class AircraftModel {
          * @property model
          * @type {AircraftTypeDefinitionModel}
          */
-        this.model = new AircraftTypeDefinitionModel(options.model);
+        this.model = options.model;
 
         /**
          * @for AircraftModel
@@ -794,7 +785,7 @@ export default class AircraftModel {
         const rate = this.model.rate.climb;
         const { ceiling } = this.model;
 
-        if (this.model.engines.type === 'J') {
+        if (this.model.engines.type === ENGINE_TYPE.JET) {
             serviceCeilingClimbRate = 500;
         } else {
             serviceCeilingClimbRate = 100;
@@ -1333,26 +1324,11 @@ export default class AircraftModel {
 
         this.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
-        GameController.game_timeout(
-            this._changeFromTaxiToWaiting,
-            this.taxi_time,
-            this,
-            null
-        );
-
         const readback = {};
         readback.log = `taxi to and hold short of Runway ${runwayModel.name}`;
         readback.say = `taxi to and hold short of Runway ${radio_runway(runwayModel.name)}`;
 
         return [true, readback];
-    }
-
-    /**
-     * @for AircraftModel
-     * @method _changeFromTaxiToWaiting
-     */
-    _changeFromTaxiToWaiting() {
-        this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
     /**

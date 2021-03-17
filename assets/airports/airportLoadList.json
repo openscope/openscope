@@ -1,0 +1,592 @@
+[
+    {
+        "icao": "cyhz",
+        "level": "beginner",
+        "name": "Halifax Stanfield International Airport",
+        "premium": false
+    },
+    {
+        "icao": "cyow",
+        "level": "easy",
+        "name": "Ottawa Macdonald-Cartier International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "ebbr",
+        "level": "easy",
+        "name": "Brussels-National",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "eddf",
+        "level": "hard",
+        "name": "Frankfurt Main Airport",
+        "premium": false
+    },
+    {
+        "icao": "eddh",
+        "level": "beginner",
+        "name": "Hamburg Airport",
+        "premium": false
+    },
+    {
+        "icao": "eddl",
+        "level": "hard",
+        "name": "Düsseldorf Airport",
+        "premium": false
+    },
+    {
+        "icao": "eddm",
+        "level": "hard",
+        "name": "Munich Airport",
+        "premium": false
+    },
+    {
+        "icao": "eddt",
+        "level": "medium",
+        "name": "Berlin Tegel Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "egcc",
+        "level": "easy",
+        "name": "Manchester Airport",
+        "premium": false
+    },
+    {
+        "icao": "eggw",
+        "level": "easy",
+        "name": "London Luton Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "egkk",
+        "level": "easy",
+        "name": "London Gatwick Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "eglc",
+        "level": "medium",
+        "name": "London City Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "egll",
+        "level": "hard",
+        "name": "London Heathrow Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "egnm",
+        "level": "beginner",
+        "name": "Leeds Bradford Airport",
+        "premium": false
+    },
+    {
+        "icao": "eham",
+        "level": "medium",
+        "name": "Amsterdam Airport Schiphol",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "eick",
+        "level": "beginner",
+        "name": "Cork Airport",
+        "premium": false
+    },
+    {
+        "icao": "eidw",
+        "level": "medium",
+        "name": "Dublin Airport",
+        "premium": false
+    },
+    {
+        "icao": "einn",
+        "level": "beginner",
+        "name": "Shannon Airport",
+        "premium": false
+    },
+    {
+        "icao": "ekch",
+        "level": "medium",
+        "name": "Copenhagen Kastrup Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "engm",
+        "level": "easy",
+        "name": "Oslo Gardermoen Airport",
+        "premium": false
+    },
+    {
+        "icao": "espa",
+        "level": "easy",
+        "name": "Luleå Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "gcrr",
+        "level": "easy",
+        "name": "Lanzarote Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kabq",
+        "level": "beginner",
+        "name": "Albuquerque International Sunport",
+        "premium": false
+    },
+    {
+        "icao": "katl",
+        "level": "hard",
+        "name": "Hartsfield–Jackson Atlanta International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kaus",
+        "level": "easy",
+        "name": "Austin-Bergstrom International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kbos",
+        "level": "hard",
+        "name": "Boston Logan International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kcvg",
+        "level": "beginner",
+        "name": "Cincinnati-Northern Kentucky International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kdca",
+        "level": "easy",
+        "name": "Ronald Reagan Washington National Airport",
+        "premium": false
+    },
+    {
+        "icao": "kdfw",
+        "level": "hard",
+        "name": "Dallas-Fort Worth International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kdtw",
+        "level": "medium",
+        "name": "Detroit Metropolitan Wayne County Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kelp",
+        "level": "easy",
+        "name": "El Paso International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kgso",
+        "level": "easy",
+        "name": "Piedmont Triad International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kiad",
+        "level": "hard",
+        "name": "Washington Dulles International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kjax",
+        "level": "easy",
+        "name": "Jacksonville International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kjfk",
+        "level": "hard",
+        "name": "John F. Kennedy International Airport",
+        "premium": false
+    },
+    {
+        "icao": "klas",
+        "level": "hard",
+        "name": "Las Vegas McCarran International Airport",
+        "premium": false
+    },
+    {
+        "icao": "klax",
+        "level": "hard",
+        "name": "Los Angeles International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kmci",
+        "level": "beginner",
+        "name": "Kansas City International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kmia",
+        "level": "hard",
+        "name": "Miami International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kmsp",
+        "level": "hard",
+        "name": "Minneapolis/St. Paul International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kord",
+        "level": "hard",
+        "name": "Chicago O'Hare International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kpdx",
+        "level": "easy",
+        "name": "Portland International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kphl",
+        "level": "hard",
+        "name": "Philadelphia International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kphx",
+        "level": "easy",
+        "name": "Phoenix Sky Harbor International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kpit",
+        "level": "beginner",
+        "name": "Pittsburgh International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kpvd",
+        "level": "beginner",
+        "name": "Theodore Francis Green Memorial State Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "krdu",
+        "level": "easy",
+        "name": "Raleigh–Durham International Airport",
+        "premium": false
+    },
+    {
+        "icao": "ksdf",
+        "level": "easy",
+        "name": "Louisville International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "ksan",
+        "level": "easy",
+        "name": "San Diego International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "ksea",
+        "level": "hard",
+        "name": "Seattle-Tacoma International Airport",
+        "premium": false
+    },
+    {
+        "icao": "ksfo",
+        "level": "hard",
+        "name": "San Francisco International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kstl",
+        "level": "medium",
+        "name": "St. Louis Lambert International Airport",
+        "premium": false
+    },
+    {
+        "icao": "ktpa",
+        "level": "easy",
+        "name": "Tampa International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "ktus",
+        "level": "beginner",
+        "name": "Tucson International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "lipz",
+        "level": "easy",
+        "name": "Venice Marco Polo Airport",
+        "premium": false
+    },
+    {
+        "icao": "lkpr",
+        "level": "easy",
+        "name": "Václav Havel Airport Prague",
+        "premium": false
+    },
+    {
+        "icao": "loww",
+        "level": "easy",
+        "name": "Vienna Schwechat International Airport",
+        "premium": false
+    },
+    {
+        "icao": "lrop",
+        "level": "medium",
+        "name": "Bucharest Henri Coandă Airport",
+        "premium": false
+    },
+    {
+        "icao": "lszh",
+        "level": "medium",
+        "name": "Zürich Airport",
+        "premium": false
+    },
+    {
+        "icao": "ltba",
+        "level": "hard",
+        "name": "Istanbul Atatürk International Airport",
+        "premium": false
+    },
+    {
+        "icao": "mdsd",
+        "level": "beginner",
+        "name": "Aeropuerto Internacional Las Américas",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "omaa",
+        "level": "easy",
+        "name": "Abu Dhabi International Airport",
+        "premium": false
+    },
+    {
+        "icao": "omdb",
+        "level": "hard",
+        "name": "Dubai International Airport",
+        "premium": false
+    },
+    {
+        "icao": "osdi",
+        "level": "easy",
+        "name": "Damascus International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "othh",
+        "level": "easy",
+        "name": "Doha Hamad International Airport",
+        "premium": false
+    },
+    {
+        "icao": "panc",
+        "level": "easy",
+        "name": "Ted Stevens Anchorage International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "rjbb",
+        "level": "hard",
+        "name": "Osaka Kansai International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "rjaa",
+        "level": "hard",
+        "name": "Tokyo Narita International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "rjss",
+        "level": "beginner",
+        "name": "Sendai Airport",
+        "premium": false
+    },
+    {
+        "icao": "rjtt",
+        "level": "hard",
+        "name": "Tokyo (Haneda) International Airport",
+        "premium": false,
+        "disabled": false
+    },
+    {
+        "icao": "rksi",
+        "level": "hard",
+        "name": "Incheon International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "saez",
+        "level": "easy",
+        "name": "Ezeiza Ministro Pistarini International Airport",
+        "premium": false
+    },
+    {
+        "icao": "same",
+        "level": "beginner",
+        "name": "Mendoza El Plumerillo International Airport",
+        "premium": false
+    },
+    {
+        "icao": "sawh",
+        "level": "beginner",
+        "name": "Malvinas Argentinas Ushuaia International Airport",
+        "premium": false
+    },
+    {
+        "icao": "sbgl",
+        "level": "beginner",
+        "name": "Aeroporto Internacional Tom Jobim",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "sbgr",
+        "level": "beginner",
+        "name": "Aeroporto Internacional São Paulo-Guarulhos",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "sumu",
+        "level": "beginner",
+        "name": "Montevideo Carrasco International Airport",
+        "premium": false
+    },
+    {
+        "icao": "tjsj",
+        "level": "easy",
+        "name": "Luis Muñoz Marín International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "tncm",
+        "level": "beginner",
+        "name": "Princess Juliana International Airport",
+        "premium": false
+    },
+    {
+        "icao": "uudd",
+        "level": "easy",
+        "name": "Moscow Domodedovo Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "vabb",
+        "level": "hard",
+        "name": "Chhatrapati Shivaji International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "vecc",
+        "level": "medium",
+        "name": "Kolkata Netaji Subhas Chandra Bose Int'l",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "vobl",
+        "level": "medium",
+        "name": "Kempegowda International Airport Bengaluru",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "vhhh",
+        "level": "medium",
+        "name": "Hong Kong Chep Lap Kok International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "vidp",
+        "level": "hard",
+        "name": "Indira Gandhi International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "wiii",
+        "level": "medium",
+        "name": "Soekarno-Hatta International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "wimm",
+        "level": "easy",
+        "name": "Kuala Namu International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "wmkp",
+        "level": "medium",
+        "name": "Pulau Pinang International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "wmkk",
+        "level": "hard",
+        "name": "Kuala Lumpur International Airport (KLIA)",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "wsss",
+        "level": "hard",
+        "name": "Singapore Changi International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "zspd",
+        "level": "hard",
+        "name": "Shanghai Pudong International Airport",
+        "premium": false,
+        "disabled": true
+    }
+]
