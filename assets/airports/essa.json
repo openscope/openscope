@@ -3606,6 +3606,129 @@
                 ["klm/short", 0.34],
                 ["fdx", 0.134]
             ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "MOXAM.L734.NEBSI",
+            "altitude": "30000",
+            "speed": "320",
+            "method": "random",
+            "rate": 0.438,
+            "airlines": [
+                ["klm", 1],
+                ["fin", 4],
+                ["cub", 1],
+                ["kal/cargo", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "LOBBI.N873.UXETI",
+            "altitude": "33000",
+            "speed": "320",
+            "method": "random",
+            "rate": 0.438,
+            "airlines": [
+                ["dlh", 1],
+                ["ana", 2],
+                ["jal", 3],
+                ["baw", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "RASEL.L199.NETAV",
+            "altitude": "32000",
+            "speed": "320",
+            "method": "random",
+            "rate": 0.438,
+            "airlines": [
+                ["uae", 4],
+                ["afl", 1],
+                ["bti", 1],
+                ["etd", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "ROGED.P607.NEBSI",
+            "altitude": "31000",
+            "speed": "320",
+            "method": "random",
+            "rate": 0.313,
+            "airlines": [
+                ["afl", 2],
+                ["ual", 1],
+                ["bti", 1],
+                ["sia", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "NISIX.Z32.TOKSI.N872.KOPIM",
+            "altitude": "29000",
+            "speed": "320",
+            "method": "random",
+            "rate": 0.313,
+            "airlines": [
+                ["klm", 1],
+                ["fin", 1],
+                ["dhl", 1],
+                ["ups", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "BAKLA.P609.VATEX",
+            "altitude": "34000",
+            "speed": "320",
+            "method": "random",
+            "rate": 1.125,
+            "airlines": [
+                ["klm", 1],
+                ["ckk", 2],
+                ["csn/cargo", 1],
+                ["ana", 2],
+                ["gec", 1],
+                ["ana/cargo", 1],
+                ["jal", 2],
+                ["abw", 1],
+                ["tay", 1],
+                ["clx", 1],
+                ["ces", 1],
+                ["kal", 1],
+                ["afr", 1],
+                ["swr", 1],
+                ["csn", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "IBVUT.L24.MASEV",
+            "altitude": "35000",
+            "speed": "320",
+            "method": "random",
+            "rate": 0.313,
+            "airlines": [
+                ["azq", 1],
+                ["uae", 1],
+                ["fin", 2],
+                ["qtr", 1]
+            ]
         }
     ],
     "_comment": "Source airways Stockholm TMA map: https://www.aro.lfv.se/Editorial/View/8677/ES_AD_2_ESSA_4-1_en",
