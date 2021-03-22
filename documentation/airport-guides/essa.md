@@ -34,7 +34,7 @@ Stockholm TMA is one of the airspaces controlled from ATCC Stockholm, which is r
 Stockholm Arlanda Airport is the busiest airport in Sweden and the third busiest in the Nordic countries. It is located between Stockholm and Uppsala, 37 km from Stockholm. The airport opened in 1959. Arlanda is a major hub for Scandinavian Airlines, Norwegian Air Shuttle and Novair. 
 
 ### Runways
-Arlanda has three runways: Runway 1 (01L/19), runway 2 (08/26) and runway 3 (01R/19L). Runway 1 is the longest at 10,830 ft and it can handle takeoffs and landings of the heaviest aircrafts in use. Runways 2 and 3 are 8,202 ft long. The parallel runways 1 and 3 can handle simultaneous takeoffs and landings in both VMC and IMC, using one runway for departures and the other for arrivals. Parallel approaches are possible and planned for the future, but not used today, since the traffic volumes do not motivate the increased complexity.
+Arlanda has three runways: Runway 1 (01L/19), runway 2 (08/26) and runway 3 (01R/19L). Runway 1 is the longest at 10,830 ft and it can handle takeoffs and landings of the heaviest aircrafts in use. Runways 2 and 3 are 8,202 ft long. The parallel runways 1 and 3 can handle simultaneous takeoffs and landings in both VMC and IMC, using one runway for departures and the other for arrivals. Simultaneous parallel approaches are allowed, but not used today, since the traffic volumes do not motivate the increased complexity.
 
 ### Instrument procedures
 All SIDs and STARs are RNAV and include both altitude and speed restrictions, although descent clearances are given by ATC. 
