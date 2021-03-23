@@ -215,6 +215,7 @@
         "DANKO": ["N57d00.00", "E006d41.87"],
         "DAWLY": ["N50d34.45", "W003d27.83"],
         "DCS"  : ["N54d43.31", "W003d20.44"],
+        "DELBO": ["N51d52.62", "W001d16.40"],
         "DENUT": ["N51d14.17", "E003d39.45"],
         "DET"  : ["N51d18.24", "E000d35.84"],
         "DEVOM": ["N50d43.30", "W003d45.32"],
@@ -412,7 +413,6 @@
         "LOMVO": ["N53d16.27", "W005d10.77"],
         "LORKU": ["N49d56.30", "W002d22.27"],
         "LOVEL": ["N53d15.10", "W002d16.47"],
-        "LUMBA": ["N50d56.73", "E000d15.70"],
         "LUMEN": ["N51d16.17", "E003d24.40"],
         "LUTIP": ["N53d15.37", "W004d44.27"],
         "LYD"  : ["N50d59.98", "E000d52.72"],
@@ -2021,6 +2021,11 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "GWC": "355|left|1min",
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
+            },
             "draw": [
                 ["ABSAV", "AVANT", "GWC"]
             ]
@@ -2037,6 +2042,10 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
             },
             "draw": [
                 ["AMDUT", "SFD", "WILLO"]
@@ -2055,6 +2064,10 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
+            },
             "draw": [
                 ["ARNUN", "HASTY", "SFD"]
             ]
@@ -2071,6 +2084,11 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "ARNUN": "036|right|1min",
+                "MAY": "268|left|1min",
+                "TIMBA": "128|right|1min"
             },
             "draw": [
                 ["BARMI", "SONOG", "ODROB", "TEBRA"]
@@ -2089,6 +2107,10 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
+            },
             "draw": [
                 ["BEDEK", "NIGIT", "MID", "TUFOZ", "HOLLY"]
             ]
@@ -2105,6 +2127,11 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "DELBO": "333|right|1.5min|S240-",
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
             },
             "draw": [
                 ["DISIT", "KIDLI"]
@@ -2123,6 +2150,11 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "GWC": "355|left|1min",
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
+            },
             "draw": [
                 ["GWC", "HOLLY"]
             ]
@@ -2139,6 +2171,11 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "DELBO": "333|right|1.5min|S240-",
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
             },
             "draw": [
                 ["KIDLI", "MID"]
@@ -2157,6 +2194,11 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "ARNUN": "036|right|1min",
+                "MAY": "268|left|1min",
+                "TIMBA": "128|right|1min"
+            },
             "draw": [
                 ["KONAN", "ARNUN"]
             ]
@@ -2173,6 +2215,11 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "AMDUT": "132|right|1.5min",
+                "MAY": "268|left|1min",
+                "TIMBA": "128|right|1min"
             },
             "draw": [
                 ["KUNAV", "AMDUT", "KKE64", "TIMBA"]
@@ -2191,6 +2238,10 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
+            },
             "draw": [
                 ["MID", "ZOPHI", "MAY", "OSDEB", "TIMBA"]
             ]
@@ -2207,6 +2258,11 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "AMDUT": "132|right|1.5min",
+                "MAY": "268|left|1min",
+                "TIMBA": "128|right|1min"
             },
             "draw": [
                 ["NEVIL", "OSPOL", "NETVU", "ELDAX", "AMDUT"]
@@ -2225,6 +2281,11 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "BILNI": "286|left|1.5min",
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
+            },
             "draw": [
                 ["OTMET", "SOKDU", "NEDUL", "ELDER", "TELTU", "HOLLY", "WILLO"]
             ]
@@ -2241,6 +2302,11 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "ARNUN": "036|right|1min",
+                "MAY": "268|left|1min",
+                "TIMBA": "128|right|1min"
             },
             "draw": [
                 ["TEBRA", "ABTUM"]
@@ -2259,6 +2325,10 @@
                 "EGKK26L": [],
                 "EGKK26R": []
             },
+            "holds":{
+                "MAY": "268|left|1min",
+                "TIMBA": "128|right|1min"
+            },
             "draw": [
                 ["TELTU", "SFD", "TIMBA"]
             ]
@@ -2275,6 +2345,14 @@
                 "EGKK08R": [],
                 "EGKK26L": [],
                 "EGKK26R": []
+            },
+            "holds":{
+                "ADLOG": "185|right|1.5min|S240-",
+                "DOMUT": "219|right|1.5min",
+                "GOKTU": "197|right|1.5min|S240-",
+                "KATHY": "219|left|1.5min",
+                "MAY": "268|left|1min",
+                "WILLO": "103|left|1min"
             },
             "draw": [
                 ["VASUX", "DISVO", "TELTU"]
