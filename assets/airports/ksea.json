@@ -846,7 +846,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA16L.HAROB6.FEPOT.Q3.FAMUK",
+            "route": "KSEA16L.HAROB6.FEPOT..FAMUK",
             "altitude": "",
             "speed": "",
             "method": "random",
