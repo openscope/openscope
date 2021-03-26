@@ -2249,19 +2249,22 @@ export default class CanvasController {
             this._drawRelativePoly(cc, areaRelativePositions, false);
 
             const height = area.height === Infinity ? 'UNL' : `FL ${Math.ceil(area.height / 1000) * 10}`;
-            const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(area.labelPosition);
-            let linePaddingPx = 0;
 
-            if (area.name) {
-                linePaddingPx = 6;
-                const nameLineCanvasPosition = [canvasPosition[0], canvasPosition[1] - linePaddingPx];
+            for (let j = 0; j < area.labelPositions.length; j++) {
+                const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(area.labelPositions[j]);
+                let linePaddingPx = 0;
 
-                cc.fillText(area.name, ...nameLineCanvasPosition);
+                if (area.name) {
+                    linePaddingPx = 6;
+                    const nameLineCanvasPosition = [canvasPosition[0], canvasPosition[1] - linePaddingPx];
+
+                    cc.fillText(area.name, ...nameLineCanvasPosition);
+                }
+
+                const altLineCanvasPosition = [canvasPosition[0], canvasPosition[1] + linePaddingPx];
+
+                cc.fillText(height, ...altLineCanvasPosition);
             }
-
-            const altLineCanvasPosition = [canvasPosition[0], canvasPosition[1] + linePaddingPx];
-
-            cc.fillText(height, ...altLineCanvasPosition);
         }
 
         cc.restore();

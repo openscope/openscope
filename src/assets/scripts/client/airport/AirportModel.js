@@ -480,10 +480,13 @@ export default class AirportModel {
                 ];
             });
 
-            if (area.labelPosition) {
-                obj.labelPosition = DynamicPositionModel.calculateRelativePosition(area.labelPosition, this._positionModel, this.magneticNorth);
+            if (area.labelPositions) {
+                obj.labelPositions = _map(
+                    area.labelPositions,
+                    (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+                );
             } else {
-                obj.labelPosition = vscale(vadd(coords_max, coords_min), 0.5);
+                obj.labelPositions = [vscale(vadd(coords_max, coords_min), 0.5)];
             }
 
             this.restricted_areas.push(obj);
