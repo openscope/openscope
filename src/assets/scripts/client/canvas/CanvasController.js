@@ -2249,7 +2249,7 @@ export default class CanvasController {
             this._drawRelativePoly(cc, areaRelativePositions, false);
 
             const height = area.height === Infinity ? 'UNL' : `FL ${Math.ceil(area.height / 1000) * 10}`;
-            const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(area.center);
+            const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(area.labelPosition);
             let linePaddingPx = 0;
 
             if (area.name) {

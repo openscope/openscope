@@ -480,7 +480,11 @@ export default class AirportModel {
                 ];
             });
 
-            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+            if (area.labelPosition) {
+                obj.labelPosition = DynamicPositionModel.calculateRelativePosition(area.labelPosition, this._positionModel, this.magneticNorth);
+            } else {
+                obj.labelPosition = vscale(vadd(coords_max, coords_min), 0.5);
+            }
 
             this.restricted_areas.push(obj);
         });
