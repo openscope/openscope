@@ -69,7 +69,8 @@
             "ceiling":        95,
             "airspace_class": "B",
             "labelPositions": [
-                ["N59d40m00.00", "E018d35m00.00"]
+                ["N59d27m00.00", "E018d15m00.00"],
+                ["N59d58m00.00", "E018d28m00.00"]
             ],
             "poly":
             [
@@ -121,7 +122,8 @@
             "ceiling":        95,
             "airspace_class": "B",
             "labelPositions": [
-                ["N59d09m00.00", "E017d40m00.00"]
+                ["N59d07m00.00", "E017d40m00.00"],
+                ["N59d30m00.00", "E017d10m00.00"]
             ],
             "poly":
             [
@@ -157,7 +159,8 @@
             "ceiling":        95,
             "airspace_class": "B",
             "labelPositions": [
-                ["N59d51m00.00", "E017d55m00.00"]
+                ["N59d51m00.00", "E017d55m00.00"],
+                ["N59d20m00.00", "E017d32m00.00"]
             ],
             "poly":
             [
@@ -184,7 +187,7 @@
             "ceiling":        95,
             "airspace_class": "B",
             "labelPositions": [
-                ["N59d28m00.00", "E017d48m00.00"]
+                ["N59d28m00.00", "E017d45m00.00"]
             ],
             "poly":
             [
@@ -205,7 +208,8 @@
             "ceiling":        95,
             "airspace_class": "B",
             "labelPositions": [
-                ["N59d40m00.00", "E016d45m00.00"]
+                ["N59d57m00.00", "E017d25m00.00"],
+                ["N59d10m00.00", "E016d45m00.00"]
             ],
             "poly":
             [
@@ -262,7 +266,8 @@
             "ceiling":        95,
             "airspace_class": "B",
             "labelPositions": [
-                ["N58d47m00.00", "E018d05m00.00"]
+                ["N58d47m00.00", "E018d05m00.00"],
+                ["N59d25m00.00", "E018d55m00.00"]
             ],
             "poly":
             [
