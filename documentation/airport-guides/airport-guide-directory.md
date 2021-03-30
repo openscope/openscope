@@ -7,7 +7,7 @@
 - [EDDL - Flughafen Düsseldorf](eddl.md)
 - [EDDM - Flughafen München](eddm.md)
 - [EGCC - Manchester Airport](egcc.md)
-- [EGKK - Manchester Airport](egkk.md)
+- [EGKK - Gatwick Airport](egkk.md)
 - [EGNM - Leeds Bradford Airport](egnm.md)
 - [EICK - Cork Airport](eick.md)
 - [EIDW - Dublin Airport](eidw.md)
