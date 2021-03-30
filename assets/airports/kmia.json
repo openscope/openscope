@@ -956,8 +956,7 @@
                 ["ibe/long", 2],
                 ["mph", 1],
                 ["qtr/long", 1],
-                ["swr/long", 1],
-                ["wow", 1]
+                ["swr/long", 1]
             ]
         },
         {
@@ -1209,8 +1208,7 @@
                 ["tap/long", 1],
                 ["thy/long", 1],
                 ["ual", 6],
-                ["ups", 2],
-                ["wow", 1]
+                ["ups", 2]
             ]
         },
         {
