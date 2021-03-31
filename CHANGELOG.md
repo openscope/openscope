@@ -1,4 +1,4 @@
-# 6.24.0 (March 1, 2021)
+# 6.24.0 (April 1, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)
 
@@ -17,6 +17,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1783" target="_blank">#1783</a> - Avoid making unnecessary copies of AircraftTypeDefinitionModel
 - <a href="https://github.com/openscope/openscope/issues/1785" target="_blank">#1785</a> - File location & EoL housekeeping
 - <a href="https://github.com/openscope/openscope/issues/1791" target="_blank">#1791</a> - Add test coverage for all command aliases
+- <a href="https://github.com/openscope/openscope/issues/1721" target="_blank">#1721</a> - Add support for restricted area custom labeling
 
 
 # 6.23.0 (February 5, 2021)

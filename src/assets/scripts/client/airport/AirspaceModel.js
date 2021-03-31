@@ -81,14 +81,14 @@ export default class AirspaceModel extends BaseModel {
         this.airspace_class = '';
 
         /**
-         * Position of the label of the airspace on the screen
+         * Relative positions at which to draw airspace labels
          *
          * @for AirspaceModel
-         * @property labelPositions
-         * @type {object} x,y in km
-         * @default null
+         * @property labelRelativePositions
+         * @type {array<array<number>>} [ [x,y], [x,y], ... ], in km
+         * @default []
          */
-        this.labelPositions = [];
+        this.labelRelativePositions = [];
 
         return this._init(data, airportPosition, magneticNorth);
     }
@@ -120,33 +120,30 @@ export default class AirspaceModel extends BaseModel {
 
     _initLabelPositions(data, airportPosition, magneticNorth) {
         if (!data.labelPositions) {
-            this.labelPositions = [this._calculateLabelPosition()];
+            const centerRelativePosition = this._calculateAirspaceCenterRelativePosition();
+            this.labelRelativePositions = [centerRelativePosition];
 
             return;
         }
 
-        this.labelPositions = [];
+        const labelRelativePositions = data.labelPositions.map((position) => {
+            const labelPositionModel = new StaticPositionModel(position, airportPosition, magneticNorth);
 
-        for (const position of data.labelPositions) {
-            const labelPositionModel = new StaticPositionModel(
-                position,
-                airportPosition,
-                magneticNorth
-            );
+            return labelPositionModel.relativePosition;
+        });
 
-            this.labelPositions.push(labelPositionModel.relativePosition);
-        }
+        this.labelRelativePositions = labelRelativePositions;
     }
 
     /**
-     * Calculates the center of the airspace
+     * Calculates the relative position of the center of the airspace
      *
-     * @for _calculateLabelPosition
-     * @method _calculateLabelPosition
-     * @returns {object} {x,y} coordinates in km
+     * @for AirspaceModel
+     * @method _calculateAirspaceCenterRelativePosition
+     * @returns {array} [x,y] coordinates in km
      * @private
      */
-    _calculateLabelPosition() {
+    _calculateAirspaceCenterRelativePosition() {
         let [minX, minY] = this.relativePoly[0];
         let [maxX, maxY] = this.relativePoly[0];
 
