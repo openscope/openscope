@@ -1956,8 +1956,8 @@ export default class CanvasController {
             this._ccTranslateFromCanvasOriginToAirportCenter(cc);
 
             // draw labels
-            for (const labelPosition of airspace.labelPositions) {
-                this._drawText(cc, labelPosition, [content]);
+            for (const labelRelativePosition of airspace.labelRelativePositions) {
+                this._drawText(cc, labelRelativePosition, [content]);
             }
 
             cc.restore();
@@ -2250,8 +2250,10 @@ export default class CanvasController {
 
             const height = area.height === Infinity ? 'UNL' : `FL ${Math.ceil(area.height / 1000) * 10}`;
 
-            for (let j = 0; j < area.labelPositions.length; j++) {
-                const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(area.labelPositions[j]);
+            for (let j = 0; j < area.labelRelativePositions.length; j++) {
+                const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(
+                    area.labelRelativePositions[j]
+                );
                 let linePaddingPx = 0;
 
                 if (area.name) {

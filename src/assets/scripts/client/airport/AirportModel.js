@@ -445,31 +445,29 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method buildRestrictedAreas
-     * @param restrictedAreas
+     * @param data
      */
-    buildRestrictedAreas(restrictedAreas) {
-        if (!restrictedAreas) {
+    buildRestrictedAreas(data) {
+        if (!data) {
             return;
         }
 
-        _forEach(restrictedAreas, (area) => {
-            // TODO: find a better name for `obj`
-            const obj = {};
+        _forEach(data, (areaData) => {
+            const restrictedArea = {};
 
-            if (area.name) {
-                obj.name = area.name;
+            if (areaData.name) {
+                restrictedArea.name = areaData.name;
             }
 
-            obj.height = parseElevation(area.height);
-            obj.coordinates = _map(
-                area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
-            );
+            restrictedArea.height = parseElevation(areaData.height);
+            restrictedArea.coordinates = areaData.coordinates.map((gps) => {
+                return DynamicPositionModel.calculateRelativePosition(gps, this._positionModel, this.magneticNorth);
+            });
 
-            let coords_max = obj.coordinates[0];
-            let coords_min = obj.coordinates[0];
+            let coords_max = restrictedArea.coordinates[0];
+            let coords_min = restrictedArea.coordinates[0];
 
-            _forEach(obj.coordinates, (v) => {
+            _forEach(restrictedArea.coordinates, (v) => {
                 coords_max = [
                     Math.max(v[0], coords_max[0]),
                     Math.max(v[1], coords_max[1])
@@ -480,18 +478,17 @@ export default class AirportModel {
                 ];
             });
 
-            let labelPositions = [vscale(vadd(coords_max, coords_min), 0.5)];
+            let labelRelativePositions = [vscale(vadd(coords_max, coords_min), 0.5)];
 
-            if (area.labelPositions) {
-                labelPositions = _map(
-                    area.labelPositions,
-                    (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
-                );
+            if (areaData.labelPositions) {
+                labelRelativePositions = areaData.labelPositions.map((v) => {
+                    return DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth);
+                });
             }
 
-            obj.labelPositions = labelPositions;
+            restrictedArea.labelRelativePositions = labelRelativePositions;
 
-            this.restricted_areas.push(obj);
+            this.restricted_areas.push(restrictedArea);
         });
     }
 
