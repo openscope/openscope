@@ -201,37 +201,49 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: '1atl',
             level: 'hard',
-            name: 'KATL: Finals Practice: 7 MIT',
+            name: 'ATL: Finals Practice: 7 MIT',
             premium: false
         },
         {
             icao: '2atl',
             level: 'hard',
-            name: 'KATL: Finals Practice: 9 MIT',
+            name: 'ATL: Finals Practice: 9 MIT',
             premium: false
         },
         {
             icao: '3atl',
             level: 'hard',
-            name: 'KATL: Finals Practice: 12 MIT',
+            name: 'ATL: Finals Practice: 12 MIT',
             premium: false
         },
         {
             icao: '4atl',
             level: 'hard',
-            name: 'KATL: Converging Streams: 6 MIT --> 10 MIT',
+            name: 'ATL: Merging Streams: 6.5 MIT base --> 10 MIT straight-in',
             premium: false
         },
         {
             icao: '5atl',
             level: 'hard',
-            name: 'KATL: Converging Streams: 6 MIT --> 11.5 MIT',
+            name: 'ATL: Merging Streams: 6.5 MIT base --> 11.5 MIT straight-in',
             premium: false
         },
         {
             icao: '6atl',
             level: 'hard',
-            name: 'KATL: Prop vs Jet (each 15 MIT)',
+            name: 'ATL: Merging Streams: 6.5 MIT D/W --> 11.5 MIT angled',
+            premium: false
+        },
+        {
+            icao: '7atl',
+            level: 'hard',
+            name: 'ATL: Merging Streams: 11.5 MIT base --> 6.5 MIT straight-in',
+            premium: false
+        },
+        {
+            icao: '8atl',
+            level: 'hard',
+            name: 'ATL: Prop vs Jet (each 15 MIT)',
             premium: false
         // },
         // {
