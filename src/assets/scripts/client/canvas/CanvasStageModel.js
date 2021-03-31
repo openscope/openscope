@@ -16,6 +16,15 @@ import { INVALID_NUMBER } from '../constants/globalConstants';
  * Also provides methods for translating `[x, y]` positions to
  * and from kilometers or pixels
  *
+ * POSITION INFO:
+ * "Page Position": the position on the canvas, where the top-left is 0,0 (returned by click events)
+ *      V     (shift coordinate origin from top-left to center of canvas)
+ * "Canvas Position": the position on the canvas, in pixels, where the canvas center is 0,0 (used in most canvas drawing)
+ *      V     (adjust for pan and scale values)
+ * "Relative Position": a geographical distance based offset, in km, from the airport center, along magnetic north
+ *      V     (haversine math from DynamicPositionModel to find GPS coordinates based on dist/dir from known coordinates)
+ * "GPS Coordinates": the latitude/longitude values of a given position
+ *
  * @class CanvasStageModel
  */
 class CanvasStageModel {
@@ -201,23 +210,37 @@ class CanvasStageModel {
     }
 
     /**
-     * Translate a mouse position, in pixels, as it relates to the
-     * browser window to canvas position
+     * Translate the specified x, y pixel coordinates to map kilometers
      *
      * @for CanvasStageModel
-     * @method translateMousePositionToCanvasPosition
+     * @method calculateRelativePositionFromCanvasPosition
+     * @param x {number} canvas position X value, in px
+     * @param y {number} canvas position Y value, in px
+     * @returns {array<number>} [x, y], in km
+     * @private
+     */
+    calculateRelativePositionFromCanvasPosition(x, y) {
+        const relativePositionX = this.translatePixelsToKilometers(x - this._panX);
+        const relativePositionY = this.translatePixelsToKilometers(y + this._panY);
+        const relativePosition = [relativePositionX, relativePositionY];
+
+        return relativePosition;
+    }
+
+    /**
+     * Translate a page position, in pixels, as it relates to the browser window to canvas position
+     *
+     * @for CanvasStageModel
+     * @method calculateCanvasPositionFromPagePosition
      * @param x {number}
      * @param y {number}
-     * @return {object<string, number>}
+     * @return {array<number>}
      */
-    translateMousePositionToCanvasPosition(x, y) {
+    calculateCanvasPositionFromPagePosition(x, y) {
         const canvasPositionX = x - this.halfWidth;
         const canvasPositionY = -y + this.halfHeight;
 
-        return {
-            x: canvasPositionX,
-            y: canvasPositionY
-        };
+        return [canvasPositionX, canvasPositionY];
     }
 
     /**
@@ -251,7 +274,6 @@ class CanvasStageModel {
 
         return precisePosition;
     }
-
 
     /**
      * Calculate a canvas position (in px) from the provided relative position (km offset from airport center)
