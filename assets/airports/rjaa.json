@@ -22,8 +22,8 @@
         "angle": 360,
         "speed": 8
     },
-    "arrivalRunway": "34R",
-    "departureRunway": "34L",
+    "arrivalRunway": "16L",
+    "departureRunway": "16R",
     "defaultMaps": ["Base Map", "Runway Centerline"],
     "airspace": [
         {
@@ -1162,7 +1162,184 @@
 		}
     },
     "spawnPatterns": [
-        
+        {
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.GULBO2.GULBO.Y808.NOLAX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.97,
+            "airlines": [
+				["aal/long", 7],
+				["aca/long", 11],
+				["amx/long", 8],
+				["ana/long", 39],
+				["jal/long", 42],
+				["nca", 17],
+				["pac", 10], 
+				["ual/long", 29]
+            ]
+        },
+		{
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.BORLO2.BORLO.Y830.IPROS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.27,
+            "airlines": [
+				["ana/long", 14],
+				["hal/long", 10],
+				["jal/long", 14],
+				["kal/long", 7],
+				["ual/long", 7]
+            ]
+		},
+		{
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.PIGOK2.PIGOK.Y50.ELNIS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate":,
+            "airlines": [
+				["amu", 14],
+				["ana", 14],
+				["apj", 28],
+				["cal", 35],
+				["cpa", 48],
+				["crk", 12],
+				["csz", 1],
+				["eva", 28],
+				["hke", 30],
+				["jal", 28],
+				["tgw", 13],
+				["ttw", 18]
+            ]
+		},
+		{
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.REDEK2.REDEK.Y60.TEKEL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate":,
+            "airlines": [
+				["ana", 56],
+				["cca", 12],
+				["ces", 17],
+				["cqh", 7],
+				["csc", 1],
+				["csn", 9],
+				["cxa", 5],
+				["dkh", 7],
+				["jal", 21],
+				["sjo", 11]
+            ]
+		},
+		{
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.TETRA8.ENPAR.Y16.TEPEX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate":,
+            "airlines": [
+				["aar", 17],
+				["abl", 19],
+				["ana", 21],
+				["asv", 14],
+				["cca", 11],
+				["ces", 2],
+				["chh", 7],
+				["csn", 2],
+				["esr", 21],
+				["eth", 3],
+				["jal", 28],
+				["jja", 42],
+				["jna", 12],
+				["kal", 16],
+				["sjo", 7],
+				["twb", 9]
+            ]
+		},
+		{
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.TETRA8.AGRIS.Y37.AVGOK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate":,
+            "airlines": [
+				["afl/long", 7],
+				["afr/long", 7],
+				["ana/long", 24],
+				["aua/long", 5],
+				["csn", 13],
+				["fin/long", 7],
+				["ibe/long", 4],
+				["jal/long", 14],
+				["klm/long", 7],
+				["lot/long", 7],
+				["mgl", 5],
+				["sbi", 9],
+				["sjo", 7],
+				["swr/long", 5],
+				["thy/long", 3],
+				["vsv", 1]
+            ]
+		},
+		{
+            "origin": "RJAA",
+            "destination": "",
+            "category": "departure",
+            "route": "RJAA16R.TETRA8.KIMIN.Y117.LEKOL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate":,
+            "airlines": [
+				["shu/a319", 2]
+            ]
+		},
+		{
+			"origin": "RJAA",
+			"destination": "",
+			"category": "departure",
+			"route": "RJAA16R.OLVAN2.SAMUS.Y84.HCE",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": ,
+			"airlines": [
+				["ana/long", 76],
+				["ceb", 25],
+				["gia", 7],
+				["hvn", 20],
+				["jal/long", 63],
+				["jjp", 7],
+				["mas", 10],
+				["pal", 28],
+				["rba", 4],
+				["rna", 3],
+				["sia", 14],
+				["tgw", 27],
+				["tha", 21],
+				["xax", 4]
+			]
+		}
     ],
     "maps": [
 		{

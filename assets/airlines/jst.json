@@ -1,0 +1,20 @@
+{
+    "icao": "jst",
+    "name": "Jetstar Airways",
+    "callsign": {
+        "name": "Jetstar",
+        "callsignFormats": [
+            "#",
+			"##",
+			"###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 53],
+			["A321", 8],
+			["B788", 11],
+			["DH8C", 2]
+        ]
+    }
+}
