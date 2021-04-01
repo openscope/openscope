@@ -1,4 +1,5 @@
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
+import AircraftTypeDefinitionModel from '../../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionModel';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
 // import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
@@ -161,6 +162,13 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
     }
 ];
 
+// more fixtures, must be declared after the mocks that they ingest
+// moving to aircraftFixtures.js breaks stuff; not used anywhere else, so they can live here
+// aircraft type data never modified, so no concern regarding mutation
+const aircraftTypeDefinitionModelFixture = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+const aircraftTypeDefinitionModelHeavyFixture = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK_HEAVY);
+const aircraftTypeDefinitionModelSuperFixture = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK_SUPER);
+
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '1567',
@@ -173,8 +181,7 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     speed: 320,
     category: 'departure',
     icao: 'b737',
-    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
-    model: AIRCRAFT_DEFINITION_MOCK,
+    model: aircraftTypeDefinitionModelFixture,
     positionModel: POSITION_MODEL_MOCK,
     routeString: 'KLAS07R.COWBY6.GUP'
 };
@@ -209,8 +216,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     speed: 320,
     category: 'arrival',
     icao: 'b737',
-    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
-    model: AIRCRAFT_DEFINITION_MOCK,
+    model: aircraftTypeDefinitionModelFixture,
     positionModel: POSITION_MODEL_MOCK,
     routeString: 'DAG.KEPEC3.KLAS07R'
 };
@@ -227,8 +233,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_HEAVY = {
     speed: 375,
     category: 'arrival',
     icao: 'b789',
-    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
-    model: AIRCRAFT_DEFINITION_MOCK_HEAVY,
+    model: aircraftTypeDefinitionModelHeavyFixture,
     positionModel: POSITION_MODEL_MOCK,
     routeString: 'DAG.KEPEC3.KLAS07R'  //TODO: this is an invalid route for KATL, but I used it because valid routes weren't working
 };
@@ -245,8 +250,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_SUPER = {
     speed: 375,
     category: 'arrival',
     icao: 'a388',
-    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
-    model: AIRCRAFT_DEFINITION_MOCK_SUPER,
+    model: aircraftTypeDefinitionModelSuperFixture,
     positionModel: POSITION_MODEL_MOCK,
     routeString: 'DAG.KEPEC3.KLAS07R'  //TODO: this is an invalid route for KATL, but I used it because valid routes weren't working
 };

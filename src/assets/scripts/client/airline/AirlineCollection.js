@@ -1,12 +1,12 @@
 import _find from 'lodash/find';
 import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
 import { AIRLINE_NAME_FLEET_SEPARATOR } from '../constants/airlineConstants';
 import { INVALID_INDEX } from '../constants/globalConstants';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 
 /**
  * Houses an `AirlineModel` for each possible airline in the app.
@@ -27,9 +27,9 @@ export default class AirlineCollection extends BaseCollection {
     constructor(airlineList) {
         super(airlineList);
 
-        if (!_isArray(airlineList)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid parameter. AirlineCollection expected and array but found ${typeof airlineList}`);
+        if (isEmptyOrNotArray(airlineList)) {
+            throw new TypeError('Invalid airlineList passed to AirlineCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof airlineList}`);
         }
 
         this.init(airlineList);

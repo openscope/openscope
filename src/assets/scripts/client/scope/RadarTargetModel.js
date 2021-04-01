@@ -14,10 +14,7 @@ import {
     DATA_BLOCK_POSITION_MAP
 } from '../constants/scopeConstants';
 import { THEME } from '../constants/themes';
-
-// TODO: abstract these to an appropriate constants file
-const HEAVY_LETTER = 'H';
-const SUPER_LETTER = 'J';
+import { WAKE_TURBULENCE_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * A single radar target observed by the radar system and shown on the scope
@@ -343,20 +340,12 @@ export default class RadarTargetModel {
     buildDataBlockRowOne() {
         let dataBlockRowOne = this.aircraftModel.callsign;
 
-        // NOTE: using empty space before the letter on purpose so this gets rendered
-        // appropriately within a canvas
-        switch (this.aircraftModel.model.weightClass) {
-            case SUPER_LETTER:
-                dataBlockRowOne += ` ${SUPER_LETTER}`;
+        const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.aircraftModel.model.weightClass) ??
+            { APPEND: false };
 
-                break;
-            case HEAVY_LETTER:
-                dataBlockRowOne += ` ${HEAVY_LETTER}`;
-
-                break;
-            default:
-
-                break;
+        if (wtc.APPEND) {
+            // NOTE: using empty space before the letter on purpose so this gets rendered appropriately within a canvas
+            dataBlockRowOne += ` ${wtc.LETTER}`;
         }
 
         return dataBlockRowOne;

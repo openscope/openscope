@@ -1,6 +1,6 @@
 {
   "name": "openscope",
-  "version": "6.23.0",
+  "version": "6.24.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "11.3.0",
@@ -55,7 +55,8 @@
     "require": [
       "@babel/register",
       "./test/testHelpers/globalProps.js",
-      "./test/testHelpers/localStorage.js"
+      "./test/testHelpers/localStorage.js",
+      "./test/testHelpers/setupBrowserEnv.js"
     ]
   },
   "nyc": {
@@ -71,20 +72,16 @@
   },
   "dependencies": {
     "ansi-colors": "3.2.4",
-    "coveralls": "3.0.3",
     "express": "4.16.4",
-    "fancy-log": "1.3.3",
     "jquery": "3.5.0",
     "lodash": "4.17.19",
-    "mkdirp": "0.5.1",
-    "raf": "3.4.1",
-    "showdown": "1.9.1",
-    "yargs": "13.2.2"
+    "raf": "3.4.1"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",
     "@babel/plugin-proposal-class-properties": "7.4.4",
     "@babel/plugin-proposal-json-strings": "7.2.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "7.4.4",
     "@babel/plugin-proposal-optional-chaining": "7.2.0",
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
@@ -97,14 +94,15 @@
     "ava": "1.4.1",
     "babel-eslint": "10.0.1",
     "babelify": "10.0.0",
+    "browser-env": "3.3.0",
     "browserify": "16.2.3",
-    "cli-table": "0.3.1",
+    "coveralls": "3.0.3",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "2.17.2",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.12.4",
-    "glob-fs": "0.1.7",
+    "fancy-log": "1.3.3",
     "gulp": "4.0.1",
     "gulp-autoprefixer": "6.1.0",
     "gulp-clean": "0.4.0",
@@ -123,11 +121,14 @@
     "handlebars-layouts": "3.1.4",
     "lint-diff": "1.2.1",
     "merge-stream": "1.0.1",
+    "mkdirp": "0.5.1",
     "nyc": "14.1.0",
     "path": "0.12.7",
     "rimraf": "2.6.3",
+    "showdown": "1.9.1",
     "sinon": "7.3.2",
     "vinyl-buffer": "1.0.1",
-    "vinyl-source-stream": "2.0.0"
+    "vinyl-source-stream": "2.0.0",
+    "yargs": "13.2.2"
   }
 }

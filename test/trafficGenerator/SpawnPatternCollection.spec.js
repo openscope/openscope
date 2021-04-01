@@ -29,9 +29,37 @@ ava.afterEach.always(() => {
     SpawnPatternCollection.reset();
 });
 
-ava('.init() throws when the provided airport JSON data is empty', (t) => {
-    t.throws(() => SpawnPatternCollection.init());
-    t.throws(() => SpawnPatternCollection.init({}));
+ava('.init() throws when the provided airport JSON data is empty or invalid', (t) => {
+    const expectedMessage = /Invalid airportJson passed to SpawnPatternCollection\.init\. Expected a non-empty object, but received .*/;
+
+    t.throws(() => SpawnPatternCollection.init(), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => SpawnPatternCollection.init(null), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => SpawnPatternCollection.init([]), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => SpawnPatternCollection.init({}), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => SpawnPatternCollection.init(42), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => SpawnPatternCollection.init('threeve'), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
+    t.throws(() => SpawnPatternCollection.init(false), {
+        instanceOf: TypeError,
+        message: expectedMessage
+    });
 });
 
 ava('.init() calls _buildSpawnPatternModels()', (t) => {
