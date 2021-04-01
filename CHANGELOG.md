@@ -1,3 +1,11 @@
+# 6.25.0 (May 1, 2021)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.24.0 (April 1, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)
