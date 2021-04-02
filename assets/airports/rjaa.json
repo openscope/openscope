@@ -19,7 +19,7 @@
     },
     "has_terrain": true,
     "wind": {
-        "angle": 360,
+        "angle": 160,
         "speed": 8
     },
     "arrivalRunway": "16L",
@@ -475,6 +475,7 @@
 		"ASTRA": ["N35d52m07.10", "E140d18m00.20"],
 		"AVBET": ["N36d08m32.35", "E145d28m00.00"],
 		"AVGOK": ["N43d36m08.13", "E138d14m47.47"],
+		"AVKAM": ["N33d01m56.40", "E132d48m57.80"],
 		"BAFFY": ["N34d20m42.40", "E139d58m31.13"],
 		"BALIE": ["N33d54m55.13", "E132d12m00.37"],
 		"BALSA": ["N34d02m11.41", "E134d54m52.76"],
@@ -773,7 +774,8 @@
 			},
 			"body": ["OLVAN"],
 			"exitPoints": {
-				"OLVAN": []
+				"OLVAN": [],
+				"SAMUS": ["PABLO", "NORIS", ["HANAR", "A160+"], "SAMUS"]
 			},
 			"draw": [
 				["_RWY34R03DME", "BEAMS", "A6L21", "OLVAN"],
@@ -1035,8 +1037,8 @@
 			},
 			"body": ["LUBLA", ["REGZA", "A80"], "VOGUE", "AA658", "AA659", ["SAFRA", "A80"], ["CASIO", "A60"], "GEMIN"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["LUBLA", "REGZA", "VOGUE", "AA658", "AA659", "SAFRA", "CASIO", "GEMIN"]
@@ -1050,8 +1052,8 @@
 			},
 			"body": ["LUBLA", "REGZA", "BARON", "NORMA"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["LUBLA", "REGZA", "BARON", "NORMA"]
@@ -1095,8 +1097,8 @@
 			},
 			"body": ["RUTAS", "VENUS", ["COPEN", "A100"], "BOOTH", "AA651", "AA652", ["GAMMA", "A100"], ["CASIO", "A60"], "GEMIN"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["RUTAS", "VENUS", "COPEN", "BOOTH", "AA651", "AA652", "GAMMA", "CASIO", "GEMIN"]
@@ -1110,8 +1112,8 @@
 			},
 			"body": ["RUTAS", "VENUS", "GAUDI", "BARON", "NORMA"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["RUTAS", "VENUS", "GAUDI", "BARON", "NORMA"]
@@ -1155,8 +1157,8 @@
 			},
 			"body": ["SUPOK", "AA657", ["REGZA", "A80"], "VOGUE", "AA658", "AA659", ["SAFRA", "A80"], ["CASIO", "A60"], "GEMIN"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["SUPOK", "AA657", "REGZA", "VOGUE", "AA658", "AA659", "SAFRA", "CASIO", "GEMIN"]
@@ -1170,8 +1172,8 @@
 			},
 			"body": ["SUPOK", "AA657", "BARON", "NORMA"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["SUPOK", "AA657", "BARON", "NORMA"]
@@ -1215,8 +1217,8 @@
 			},
 			"body": ["SWAMP", ["VIXEN", "A110+"], ["PLEIA", "A90"], "BETEL", "AA653", "AA654", ["SPITZ", "A90"], ["CASIO", "A60"], "GEMIN"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["SWAMP", "VIXEN", "PLEIA", "BETEL", "AA653", "AA654", "SPITZ", "CASIO", "GEMIN"]
@@ -1230,8 +1232,8 @@
 			},
 			"body": ["SWAMP", ["VIXEN", "A110+"], "PLEIA", "AA655", "AA656", ["AA657", "A90+"], "BARON", "NORMA"],
 			"rwy": {
-				"RJAA34L": [],
-				"RJAA34R": []
+				"RJAA16L": [],
+				"RJAA16R": []
 			},
 			"draw": [
 				["SWAMP", "VIXEN", "PLEIA", "AA655", "AA656", "AA657", "BARON", "NORMA"]
@@ -1518,8 +1520,8 @@
             "route": "IDLAN.Y809.SUPOK.SUPOKN.RJAA16L",
             "altitude": 15000,
             "speed": 300,
+            "rate": 1.28,
             "method": "random",
-            "rate": ,
             "airlines": [
 				["aal/long", 7],
 				["aca/long", 11],
@@ -1541,7 +1543,7 @@
             "altitude": 15000,
             "speed": 300,
             "method": "random",
-            "rate": ,
+            "rate": 0.58,
             "airlines": [
 				["aci/a339", 5],
 				["ana/long", 7],
@@ -1565,7 +1567,7 @@
             "altitude": 15000,
             "speed": 300,
             "method": "random",
-            "rate": ,
+            "rate": 4.45,
             "airlines": [
 				["aar", 27],
 				["abl", 19],
@@ -1616,7 +1618,7 @@
             "altitude": 24000,
             "speed": 300,
             "method": "random",
-            "rate": ,
+            "rate": 6.43,
             "airlines": [
 				["aic", 2],
 				["amu", 14],
@@ -1651,14 +1653,14 @@
 				["rba", 4],
 				["rna", 3],
 				["sia", 14],
-				["sjo", 11]
+				["sjo", 11],
 				["sky", 2],
 				["tgw", 40],
 				["tha", 21],
-				["ttw", 18]
+				["ttw", 18],
 				["xax", 4]
             ]
-        },
+        }
     ],
     "maps": [
 		{
