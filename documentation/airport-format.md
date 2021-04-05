@@ -296,7 +296,7 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 * **ceiling** ― The highest altitude (in [flight levels](#flight-level)) included in the airspace.
 * **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true) and find the closest match based on the way the local airspace is treated.
 * **poly** ― The coordinates of the corners of the airspace polygon in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
-* **labelPositions (optional)** - For each airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
+* **labelPositions (optional)** ― For each airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
 
 ```json
 "labelPositions": [
@@ -418,7 +418,7 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 * **name (optional)** ― The name of the restricted airspace.
 * **height** ― The _top_ of the restricted airspace. Currently all restricted airspaces are assumed to begin at sea level.
 * **poly** ― The coordinates of the corners of the restricted airspace polygon in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
-* **labelPositions (optional)** - For each restricted airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
+* **labelPositions (optional)** ― For each restricted airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
 
 ```json
 "labelPositions": [
