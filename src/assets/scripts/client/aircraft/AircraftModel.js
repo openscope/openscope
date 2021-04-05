@@ -2596,7 +2596,7 @@ export default class AircraftModel {
 
                 // recalculate for new areas or those that should be checked
                 if (!area.range || area.range <= 0) {
-                    new_inside = point_in_poly(this.positionModel.relativePosition, area.data.coordinates);
+                    new_inside = point_in_poly(this.positionModel.relativePosition, area.data.poly);
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
@@ -2608,7 +2608,7 @@ export default class AircraftModel {
                         // don't calculate more often than every 10 seconds
                         area.range = Math.max(
                             this.speed * 1.85 / 36 / 1000 * 10,
-                            distance_to_poly(this.positionModel.relativePosition, area.data.coordinates)
+                            distance_to_poly(this.positionModel.relativePosition, area.data.poly)
                         );
                     }
 
