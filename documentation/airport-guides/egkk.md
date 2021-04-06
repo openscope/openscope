@@ -41,64 +41,64 @@ An overview of all available SIDs and STARs can be found below:
   
 #### 4.1 Standard Instrument Departures
 ##### 4.1.1 Runway 08L
-| identifier | endpoint | RNAV | remark                                                |
-|:----------:|:--------:|:----:|-------------------------------------------------------|
-|   DVR2W    |    DVR   |   ❌  |                                                       |
-|   FRANE1W  |   FRANE  |   ❌  |                                                       |
-|   KENET3W  |   KENET  |   ❌  | restricted to traffic with destinations in UK or EIRE |
-|   LAM5W    |    LAM   |   ❌  |                                                       |
-|   SAM3W    |    SAM   |   ❌  | restricted to traffic with destinations in UK or EIRE |
-|   SFD9W    |    SFD   |   ❌  |                                                       |
+| identifier | endpoint | RNAV | remark                                                    |
+|:----------:|:--------:|:----:|-----------------------------------------------------------|
+|   DVR2W    |    DVR   |   ❌  |                                                          |
+|   FRANE1W  |   FRANE  |   ❌  |                                                          |
+|   KENET3W  |   KENET  |   ❌  | restricted to traffic with destinations in UK or Ireland |
+|   LAM5W    |    LAM   |   ❌  |                                                          |
+|   SAM3W    |    SAM   |   ❌  | restricted to traffic with destinations in UK or Ireland |
+|   SFD9W    |    SFD   |   ❌  |                                                          |
   
 ##### 4.1.2 Runway 08R
-| identifier | endpoint | RNAV | remark                                                |
-|:----------:|:--------:|:----:|-------------------------------------------------------|
-|   DVR2P    |    DVR   |   ❌  |                                                       |
-|   FRANE1P  |   FRANE  |   ❌  |                                                       |
-|   FRANE1Z  |   FRANE  |   ✔️  |                                                       |
-|   IMVUR1Z  |   IMVUR  |   ✔️  |                                                       |
-|   KENET3P  |   KENET  |   ❌  | restricted to traffic with destinations in UK or EIRE |
-|   LAM1Z    |    LAM   |   ✔️  |                                                       |
-|   LAM5P    |    LAM   |   ❌  |                                                       |
-|   ODVIK2Z  |   ODVIK  |   ✔️  |                                                       |
-|   SAM3P    |    SAM   |   ❌  | restricted to traffic with destinations in UK or EIRE |
-|   SFD4Z    |    SFD   |   ✔️  |                                                       |
-|   SFD9P    |    SFD   |   ❌  |                                                       |
+| identifier | endpoint | RNAV | remark                                                    |
+|:----------:|:--------:|:----:|-----------------------------------------------------------|
+|   DVR2P    |    DVR   |   ❌  |                                                          |
+|   FRANE1P  |   FRANE  |   ❌  |                                                          |
+|   FRANE1Z  |   FRANE  |   ✔️  |                                                          |
+|   IMVUR1Z  |   IMVUR  |   ✔️  |                                                          |
+|   KENET3P  |   KENET  |   ❌  | restricted to traffic with destinations in UK or Ireland |
+|   LAM1Z    |    LAM   |   ✔️  |                                                          |
+|   LAM5P    |    LAM   |   ❌  |                                                          |
+|   ODVIK2Z  |   ODVIK  |   ✔️  |                                                          |
+|   SAM3P    |    SAM   |   ❌  | restricted to traffic with destinations in UK or Ireland |
+|   SFD4Z    |    SFD   |   ✔️  |                                                          |
+|   SFD9P    |    SFD   |   ❌  |                                                          |
   
 ##### 4.1.3 Runway 26L
-| identifier | endpoint | RNAV | remark                                                |
-|:----------:|:--------:|:----:|-------------------------------------------------------|
-|   BOGNA1M  |   BOGNA  |   ❌  | only available between 0600-2300LT                    |
-|   BOGNA1X  |   BOGNA  |   ✔️  | only available between 0600-2300LT                    |
-|   DAGGA1M  |   DAGGA  |   ❌  | not to be used for flight planning purposes           |
-|   DAGGA1X  |   DAGGA  |   ✔️  | not to be used for flight planning purposes           |
-|   FRANE1M  |   FRANE  |   ❌  |                                                       |
-|   HARDY1X  |   HARDY  |   ✔️  | only available between 0600-2300LT                    |
-|   HARDY5M  |   HARDY  |   ❌  | only available between 0600-2300LT                    |
-|   LAM6M    |    LAM   |   ❌  |                                                       |
-|   MIMFO1M  |   MIMFO  |   ❌  |                                                       |
-|   NOVMA1M  |   NOVMA  |   ❌  | restricted to traffic with destinations in UK or EIRE |
-|   NOVMA1X  |   NOVMA  |   ✔️  |                                                       |
-|   SFD1X    |    SFD   |   ✔️  | only available between 2300-0600LT                    |
-|   SFD5M    |    SFD   |   ❌  | only available between 2300-0600LT                    |
-|   TIGER1X  |    LAM   |   ✔️  | not to be used for flight planning purposes           |
-|   TIGER3M  |    LAM   |   ❌  | not to be used for flight planning purposes           |
-|   WIZAD1X  |   WIZAD  |   ✔️  | not to be used for flight planning purposes           |
-|   WIZAD4M  |   WIZAD  |   ❌  | not to be used for flight planning purposes           |
+| identifier | endpoint | RNAV | remark                                                    |
+|:----------:|:--------:|:----:|-----------------------------------------------------------|
+|   BOGNA1M  |   BOGNA  |   ❌  | only available between 0600-2300LT                       |
+|   BOGNA1X  |   BOGNA  |   ✔️  | only available between 0600-2300LT                       |
+|   DAGGA1M  |   DAGGA  |   ❌  | not to be used for flight planning purposes              |
+|   DAGGA1X  |   DAGGA  |   ✔️  | not to be used for flight planning purposes              |
+|   FRANE1M  |   FRANE  |   ❌  |                                                          |
+|   HARDY1X  |   HARDY  |   ✔️  | only available between 0600-2300LT                       |
+|   HARDY5M  |   HARDY  |   ❌  | only available between 0600-2300LT                       |
+|   LAM6M    |    LAM   |   ❌  |                                                          |
+|   MIMFO1M  |   MIMFO  |   ❌  |                                                          |
+|   NOVMA1M  |   NOVMA  |   ❌  | restricted to traffic with destinations in UK or Ireland |
+|   NOVMA1X  |   NOVMA  |   ✔️  |                                                          |
+|   SFD1X    |    SFD   |   ✔️  | only available between 2300-0600LT                       |
+|   SFD5M    |    SFD   |   ❌  | only available between 2300-0600LT                       |
+|   TIGER1X  |    LAM   |   ✔️  | not to be used for flight planning purposes              |
+|   TIGER3M  |    LAM   |   ❌  | not to be used for flight planning purposes              |
+|   WIZAD1X  |   WIZAD  |   ✔️  | not to be used for flight planning purposes              |
+|   WIZAD4M  |   WIZAD  |   ❌  | not to be used for flight planning purposes              |
   
 ##### 4.1.4 Runway 26R
-| identifier | endpoint | RNAV | remark                                                |
-|:----------:|:--------:|:----:|-------------------------------------------------------|
-|   BOGNA1V  |   BOGNA  |   ❌  | only available between 0600-2300LT                    |
-|   DAGGA1V  |   DAGGA  |   ❌  | not to be used for flight planning purposes           |
-|   FRANE1V  |   FRANE  |   ❌  |                                                       |
-|   HARDY5V  |   HARDY  |   ❌  | only available between 0600-2300LT                    |
-|   LAM6V    |    LAM   |   ❌  |                                                       |
-|   MIMFO1V  |   MIMFO  |   ❌  |                                                       |
-|   NOVMA1V  |   NOVMA  |   ❌  | restricted to traffic with destinations in UK or EIRE |
-|   SFD5V    |    SFD   |   ❌  | only available between 2300-0600LT                    |
-|   TIGER3V  |    LAM   |   ❌  | not to be used for flight planning purposes           |
-|   WIZAD4V  |   WIZAD  |   ❌  | not to be used for flight planning purposes           |
+| identifier | endpoint | RNAV | remark                                                    |
+|:----------:|:--------:|:----:|-----------------------------------------------------------|
+|   BOGNA1V  |   BOGNA  |   ❌  | only available between 0600-2300LT                       |
+|   DAGGA1V  |   DAGGA  |   ❌  | not to be used for flight planning purposes              |
+|   FRANE1V  |   FRANE  |   ❌  |                                                          |
+|   HARDY5V  |   HARDY  |   ❌  | only available between 0600-2300LT                       |
+|   LAM6V    |    LAM   |   ❌  |                                                          |
+|   MIMFO1V  |   MIMFO  |   ❌  |                                                          |
+|   NOVMA1V  |   NOVMA  |   ❌  | restricted to traffic with destinations in UK or Ireland |
+|   SFD5V    |    SFD   |   ❌  | only available between 2300-0600LT                       |
+|   TIGER3V  |    LAM   |   ❌  | not to be used for flight planning purposes              |
+|   WIZAD4V  |   WIZAD  |   ❌  | not to be used for flight planning purposes              |
   
 #### 4.2 Standard terminal arrival routes
 All STARs are RNAV procedures and end at either TIMBA or WILLO, where aircraft will enter the published holding (see 4.3) if no further clearance is issued by the controller.  
@@ -120,7 +120,7 @@ All STARs are RNAV procedures and end at either TIMBA or WILLO, where aircraft w
 |   OTMET1G  |   WILLO  |                                                     |
 |   VASUX1G  |   WILLO  |                                                     |
 
-¹During periods of congestion STAR may be issued to facilitate the transfer of traffic betweend holdings as directed by ATC.  
+¹During periods of congestion STAR may be issued to facilitate the transfer of traffic between holdings as directed by ATC.  
   
 #### 4.3 Published holding procedures
 | waypoint | inbound track | turn direction | MAX speed (IAS) | MIN ALT/LVL | MAX ALT/LVL | leg time/distance |
