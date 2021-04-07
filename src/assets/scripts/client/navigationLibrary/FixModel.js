@@ -16,10 +16,11 @@ export default class FixModel extends BaseModel {
      * @for FixModel
      * @constructor
      * @param fixName {string}
+     * @param fixSpoken {string}
      * @param fixCoordinate {array}
      * @param referencePosition {StaticPositionModel}
      */
-    constructor(fixName, fixCoordinate, referencePosition) {
+    constructor(fixName, fixSpoken, fixCoordinate, referencePosition) {
         super();
 
         /**
@@ -32,6 +33,15 @@ export default class FixModel extends BaseModel {
         this.name = '';
 
         /**
+         * Pronunciation of the fix name
+         *
+         * @property spoken
+         * @type {string}
+         * @default ''
+         */
+        this.spoken = '';
+
+        /**
          * Coordinates of the fix
          *
          * @property _positionModel
@@ -40,7 +50,7 @@ export default class FixModel extends BaseModel {
          */
         this._positionModel = null;
 
-        this.init(fixName, fixCoordinate, referencePosition);
+        this.init(fixName, fixSpoken, fixCoordinate, referencePosition);
     }
 
     /**
@@ -84,13 +94,14 @@ export default class FixModel extends BaseModel {
      * @param referencePosition {StaticPositionModel}
      * @chainable
      */
-    init(fixName, fixCoordinate, referencePosition) {
+    init(fixName, fixSpoken, fixCoordinate, referencePosition) {
         // TODO: should this be a throwing instead of returning early?
-        if (!fixName || !fixCoordinate || !referencePosition) {
+        if (!fixName || !fixSpoken || !fixCoordinate || !referencePosition) {
             return;
         }
 
         this.name = fixName.toUpperCase();
+        this.spoken = fixSpoken;
         this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
@@ -105,6 +116,7 @@ export default class FixModel extends BaseModel {
      */
     reset() {
         this.name = '';
+        this.spoken = '';
         this._positionModel = null;
 
         return this;
