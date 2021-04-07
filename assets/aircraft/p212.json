@@ -1,0 +1,37 @@
+{
+    "name": "Tecnam P2012 Traveller",
+    "icao": "P212",
+    "engines": {
+        "number": 2,
+        "type": "P"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 2,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 19500,
+    "rate": {
+        "climb":      1200,
+        "descent":    2000,
+        "accelerate": 3,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 0.791,
+        "landing": 0.743
+    },
+    "speed":{
+        "min":     68,
+        "landing": 88,
+        "cruise":  175,
+        "cruiseM": null,
+        "max":     194,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
