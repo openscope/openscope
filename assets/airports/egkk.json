@@ -2,7 +2,7 @@
     "airac": 2103,
     "radio": {
         "twr": "Gatwick Tower",
-        "app": "Gatwick Director",
+        "app": "London Control",
         "dep": "London Control"
     },
     "icao": "EGKK",
