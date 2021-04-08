@@ -5,6 +5,8 @@
         "name": "Sun Turk",
         "callsignFormats": [
             "####",
+            "###",
+            "#@@",
             "##@"
         ]
     },

@@ -1,19 +1,34 @@
 {
     "icao": "jaf",
-    "name": "TUI Fly Belgium",
+    "name": "TUI Airlines Belgium",
     "callsign": {
-        "name": "JetAirFly",
-        "length": 3
+        "name": "Beauty",
+        "callsignFormats": [
+            "###",
+            "##@",
+            "##@@"
+        ]
     },
     "fleets": {
         "default": [
+            ["B38M", 4],
             ["B737", 5],
-            ["B738", 16],
+            ["B738", 17],
+            ["B739", 4],
+            ["B763", 1],
+            ["B788", 2],
+            ["E190", 4]
+        ],
+        "short": [
+            ["B38M", 4],
+            ["B737", 5],
+            ["B738", 17],
+            ["B739", 4],
             ["E190", 4]
         ],
         "long": [
             ["B763", 1],
-            ["B788", 1]
+            ["B788", 2]
         ]
     }
 }

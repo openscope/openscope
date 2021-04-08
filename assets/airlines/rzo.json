@@ -1,19 +1,18 @@
 {
-    "icao": "fcb",
-    "name": "Cobalt Air",
+    "icao": "rzo",
+    "name": "Azores Airlines",
     "callsign": {
-        "name": "Apollo",
+        "name": "Air Azores",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A319", 2],
-            ["A320", 4]
+            ["A320", 2]
         ],
         "a320": [
-            ["A320", 4]
+            ["A320", 2]
         ]
     }
 }
