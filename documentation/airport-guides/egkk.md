@@ -15,10 +15,13 @@ In openScope, the airspace responsible for *Gatwick airport* is a combination of
 #### 2.1 Sectors available in openScope
 The sim features a combination of these sectors:  
 
-```
-London Control
-Gatwick Director
-```
+| Sector                         |  Frequency  |             |             |
+|--------------------------------|:-----------:|:-----------:|:-----------:|
+| Gatwick Director               | 126.825 MHz | 118.950 MHz | 129.025 MHz |
+| London Terminal Control OCKHAM | 134.125 MHz |             |             |
+| London Terminal Control WILLO  | 133.180 MHz |             |             |
+| London Terminal Control BIGGIN | 120.530 MHz |             |             |
+| London Terminal Control TIMBA  | 120.175 MHz |             |             |
   
   
 ### 3. Runways
