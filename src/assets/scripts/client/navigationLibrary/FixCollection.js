@@ -101,6 +101,23 @@ class FixCollection extends BaseCollection {
     }
 
     /**
+     * Returns the pronunciation of the fix name if it exists, otherwise returns the input name
+     *
+     * @for FixCollection
+     * @method getFixSpoken
+     * @param fixName {string}
+     */
+    getFixSpoken(fixName) {
+       const fixModel = this.findFixByName(fixName); 
+
+       if(!fixModel) {
+           return fixName;
+       }
+
+       return fixModel.fixSpoken;
+    }
+
+    /**
      * Returns the nearest fix to the specified position
      *
      * @for FixCollection
