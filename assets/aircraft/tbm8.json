@@ -1,0 +1,37 @@
+{
+    "name": "SOCATA TBM 850",
+    "icao": "TBM8",
+    "engines": {
+        "number": 1,
+        "type": "T"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 31000,
+    "rate": {
+        "climb":      2005,
+        "descent":    1500,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 0.865,
+        "landing": 1.143
+    },
+    "speed":{
+        "min":     65,
+        "landing": 84,
+        "cruise":  316,
+        "cruiseM": null,
+        "max":     320,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

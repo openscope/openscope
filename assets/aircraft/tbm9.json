@@ -1,0 +1,37 @@
+{
+    "name": "SOCATA TBM 930",
+    "icao": "TBM9",
+    "engines": {
+        "number": 1,
+        "type": "T"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 31000,
+    "rate": {
+        "climb":      1875,
+        "descent":    1500,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 0.725,
+        "landing": 0.740
+    },
+    "speed":{
+        "min":     65,
+        "landing": 84,
+        "cruise":  290,
+        "cruiseM": null,
+        "max":     330,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
