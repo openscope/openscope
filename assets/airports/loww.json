@@ -192,7 +192,7 @@
         {
             "name": "LO R-01",
             "height": "1500ft",
-            "coordinates": [
+            "poly": [
                 ["N47d58m19", "E016d30m30"],
                 ["N47d58m36", "E016d30m54"],
                 ["N47d58m48", "E016d30m36"],
@@ -202,7 +202,7 @@
         {
             "name": "LO R-02A",
             "height": "1800ft",
-            "coordinates": [
+            "poly": [
                 ["N47d53m25", "E016d16m48"],
                 ["N47d52m42", "E016d16m51"],
                 ["N47d52m19", "E016d19m11"],
@@ -213,7 +213,7 @@
         {
             "name": "LO R-02B",
             "height": "20000ft",
-            "coordinates": [
+            "poly": [
                 ["N47d54m13", "E016d16m11"],
                 ["N47d53m25", "E016d16m48"],
                 ["N47d53m58", "E016d19m41"],
@@ -226,7 +226,7 @@
         {
             "name": "LO R-02C",
             "height": "20000ft",
-            "coordinates": [
+            "poly": [
                 ["N47d54m13", "E016d16m11"],
                 ["N47d53m25", "E016d16m48"],
                 ["N47d53m07", "E016d15m13"],
@@ -236,7 +236,7 @@
         {
             "name": "LO R-15",
             "height": "10000ft",
-            "coordinates": [
+            "poly": [
                 ["N48d16m59", "E016d29m06"],
                 ["N48d12m00", "E016d32m56"],
                 ["N48d09m59", "E016d29m48"],
@@ -249,7 +249,7 @@
         {
             "name": "LO R-16",
             "height": "1500ft",
-            "coordinates": [
+            "poly": [
                 ["N47d53m32", "E016d40m06"],
                 ["N47d56m22", "E016d44m38"],
                 ["N47d57m24", "E016d49m38"],
@@ -268,7 +268,7 @@
         {
             "name": "LO R-4",
             "height": "2500ft",
-            "coordinates": [
+            "poly": [
                 ["N47d59m57", "E016d42m19"],
                 ["N47d58m40", "E016d42m04"],
                 ["N47d57m44", "E016d44m25"],
@@ -280,7 +280,7 @@
         {
             "name": "LO R-6",
             "height": "12500ft",
-            "coordinates": [
+            "poly": [
                 ["N48d35m27", "E015d26m58"],
                 ["N48d45m06", "E015d09m32"],
                 ["N48d45m31", "E015d10m46"],
@@ -292,7 +292,7 @@
         {
             "name": "LHCC FIR",
             "height": "5500ft",
-            "coordinates": [
+            "poly": [
                 ["N47d36m27", "E017d30m00"],
                 ["N47d44m49", "E017d30m00"],
                 ["N47d49m12", "E017d35m42"],

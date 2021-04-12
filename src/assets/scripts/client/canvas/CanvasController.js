@@ -2244,7 +2244,7 @@ export default class CanvasController {
 
         for (let i = 0; i < airportModel.restricted_areas.length; i++) {
             const area = airportModel.restricted_areas[i];
-            const areaRelativePositions = area.coordinates;
+            const areaRelativePositions = area.poly;
 
             this._drawRelativePoly(cc, areaRelativePositions, false);
 

@@ -294,7 +294,7 @@
         {
             "name": "LS-R31",
             "height": "8500ft",
-            "coordinates": [
+            "poly": [
                 ["N47d11m16", "E08d28m04"],
                 ["N47d10m09", "E08d30m00"],
                 ["N47d07m55", "E08d29m40"],

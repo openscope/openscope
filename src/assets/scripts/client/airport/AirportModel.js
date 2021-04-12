@@ -460,14 +460,14 @@ export default class AirportModel {
             }
 
             restrictedArea.height = parseElevation(areaData.height);
-            restrictedArea.coordinates = areaData.coordinates.map((gps) => {
+            restrictedArea.poly = areaData.poly.map((gps) => {
                 return DynamicPositionModel.calculateRelativePosition(gps, this._positionModel, this.magneticNorth);
             });
 
-            let coords_max = restrictedArea.coordinates[0];
-            let coords_min = restrictedArea.coordinates[0];
+            let coords_max = restrictedArea.poly[0];
+            let coords_min = restrictedArea.poly[0];
 
-            _forEach(restrictedArea.coordinates, (v) => {
+            _forEach(restrictedArea.poly, (v) => {
                 coords_max = [
                     Math.max(v[0], coords_max[0]),
                     Math.max(v[1], coords_max[1])
