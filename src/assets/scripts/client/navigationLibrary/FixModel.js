@@ -35,11 +35,11 @@ export default class FixModel extends BaseModel {
         /**
          * Pronunciation of the fix name
          *
-         * @property spoken
+         * @property _spoken
          * @type {string}
          * @default ''
          */
-        this.spoken = '';
+        this._spoken = '';
 
         /**
          * Coordinates of the fix
@@ -91,7 +91,7 @@ export default class FixModel extends BaseModel {
      * @return {string}
      */
     get spoken() {
-        return this.spoken;
+        return this._spoken;
     }
 
     /**
@@ -112,7 +112,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this.spoken = fixSpoken.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
+        this._spoken = fixSpoken.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
         this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
@@ -127,7 +127,7 @@ export default class FixModel extends BaseModel {
      */
     reset() {
         this.name = '';
-        this.spoken = '';
+        this._spoken = '';
         this._positionModel = null;
 
         return this;
