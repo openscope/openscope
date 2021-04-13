@@ -111,11 +111,13 @@ class FixCollection extends BaseCollection {
     getFixSpokenName(fixName) {
        const fixModel = this.findFixByName(fixName); 
 
+    // always return lower case to force speech engine pronunciation instead of spelling
+
        if(!fixModel) {
-           return fixName;
+           return fixName.toLowerCase();
        }
 
-       return fixModel.fixSpoken;
+       return fixModel.fixSpoken.toLowerCase();
     }
 
     /**
