@@ -432,17 +432,16 @@ export default class Pilot {
             if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
                 return [false, {
                     log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
-                    say: `that must be for somebody else, we weren't given holding over ${fixName.toLowerCase()}`
+                    say: `that must be for somebody else, we weren't given holding over ${NavigationLibrary.getFixSpokenName(fixName)}`
                 }];
             }
         }
 
         holdWaypointModel.deactivateHold();
 
-        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
         return [true, {
             log: `roger, we'll cancel the hold at ${holdWaypointModel.getDisplayName()}`,
-            say: `roger, we'll cancel the hold at ${holdWaypointModel.name.toLowerCase()}`
+            say: `roger, we'll cancel the hold at ${NavigationLibrary.getFixSpokenName(holdWaypointModel.name)}`
         }];
     }
 
@@ -606,7 +605,7 @@ export default class Pilot {
 
             const readback = {
                 log: `cross ${fixName.toUpperCase()} at ${altitude}`,
-                say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)}`
+                say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)}`
             };
 
             return [true, readback];
@@ -626,7 +625,7 @@ export default class Pilot {
 
             const readback = {
                 log: `cross ${fixName.toUpperCase()} at ${speed}kt`,
-                say: `cross ${fixName.toLowerCase()} at ${radio_spellOut(speed)} knots`
+                say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_spellOut(speed)} knots`
             };
 
             return [true, readback];
@@ -653,7 +652,7 @@ export default class Pilot {
 
         const readback = {
             log: `cross ${fixName.toUpperCase()} at ${altitude} and ${speed}kt`,
-            say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)} and ${radio_spellOut(speed)} knots`
+            say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)} and ${radio_spellOut(speed)} knots`
         };
 
         return [true, readback];
@@ -833,7 +832,7 @@ export default class Pilot {
         // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
         return [true, {
             log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()} ${radialReadbackLog}, ${holdParametersReadback}`,
-            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()} ${radialReadbackSay}, ${holdParametersReadback}`
+            say: `hold ${cardinalDirectionFromFix} of ${NavigationLibrary.getFixSpokenName(fixName)} ${radialReadbackSay}, ${holdParametersReadback}`
         }];
     }
 
@@ -982,7 +981,7 @@ export default class Pilot {
                 const bearing = Math.round(radiansToDegrees(this.positionModel.bearingToPosition(waypointPosition)));
 
                 readback.log = `our on-course heading to ${waypoint.getDisplayName()} is ${bearing}`;
-                readback.say = `our on-course heading to ${waypoint.getDisplayName()} is ${radio_heading(bearing)}`;
+                readback.say = `our on-course heading to ${NavigationLibrary.getFixSpokenName(waypoint.getDisplayName())} is ${radio_heading(bearing)}`;
 
                 return [true, readback];
             }
