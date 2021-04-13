@@ -112,7 +112,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this.spoken = fixSpoken;
+        this.spoken = fixSpoken.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
         this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
