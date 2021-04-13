@@ -109,11 +109,11 @@ class FixCollection extends BaseCollection {
      * @return {string}
      */
     getFixSpokenName(fixName) {
-       const fixModel = this.findFixByName(fixName); 
+       const fixModel = this.findFixByName(fixName);
 
     // always return lower case to force speech engine pronunciation instead of spelling
 
-       if(!fixModel) {
+       if (!fixModel) {
            return fixName.toLowerCase();
        }
 
@@ -183,7 +183,7 @@ class FixCollection extends BaseCollection {
      */
     _buildFixModelsFromList(fixList, referencePosition) {
         _forEach(fixList, (fixCoordinates, fixName) => {
-            const fixModel = new FixModel(fixName, "spoken fix name", fixCoordinates, referencePosition); // temporarily uses "spoken fix name" for all fixes, change later!
+            const fixModel = new FixModel(fixName, 'spoken fix name', fixCoordinates, referencePosition); // temporarily uses "spoken fix name" for all fixes, change later!
             // const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, referencePosition);
 
             this.addFixToCollection(fixModel);
