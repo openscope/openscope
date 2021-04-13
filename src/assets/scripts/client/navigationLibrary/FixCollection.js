@@ -117,7 +117,9 @@ class FixCollection extends BaseCollection {
            return fixName.toLowerCase();
        }
 
-       return fixModel.spoken.toLowerCase();
+       const fixSpoken = fixModel.spoken;
+
+       return fixSpoken.toLowerCase();
     }
 
     /**
