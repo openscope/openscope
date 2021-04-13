@@ -90,6 +90,7 @@ export default class FixModel extends BaseModel {
      * @for FixModel
      * @method init
      * @param fixName {string}
+     * @param fixSpoken {string}
      * @param fixCoordinate {array}
      * @param referencePosition {StaticPositionModel}
      * @chainable

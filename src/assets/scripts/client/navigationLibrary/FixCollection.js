@@ -106,6 +106,7 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method getFixSpoken
      * @param fixName {string}
+     * @return {string}
      */
     getFixSpoken(fixName) {
        const fixModel = this.findFixByName(fixName); 
