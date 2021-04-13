@@ -75,13 +75,23 @@ export default class FixModel extends BaseModel {
     }
 
     /**
-     * Fascade to access relative position
+     * Facade to access relative position
      *
      * @for FixModel
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
         return this._positionModel.relativePosition;
+    }
+
+    /**
+     * Facade to access spoken name
+     *
+     * @for FixModel
+     * @return {string}
+     */
+    get spoken() {
+        return this.spoken;
     }
 
     /**
