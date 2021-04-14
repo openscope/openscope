@@ -579,11 +579,19 @@ export default class Pilot {
         }
 
         if (!NavigationLibrary.hasFixName(fixName)) {
-            return [false, `unable to find '${fixName}'`];
+            const readback = {
+                log: `unable to find ${fixName.toUpperCase()}`,
+                say: `unable to find ${NavigationLibrary.getFixSpokenName(fixName)}`
+            }
+            return [false, readback];
         }
 
         if (!this._fms.hasWaypointName(fixName)) {
-            return [false, `unable, '${fixName}' is not on our route`];
+            const readback = {
+                log: `unable, ${fixName.toUpperCase()} is not on our route`,
+                say: `unable, ${NavigationLibrary.getFixSpokenName(fixName)} is not on our route`
+            }
+            return [false, readback];
         }
 
         const airportModel = this._fms.arrivalAirportModel || this._fms.departureAirportModel;
@@ -894,14 +902,22 @@ export default class Pilot {
      */
     proceedDirect(waypointName) {
         if (!this._fms.hasWaypointName(waypointName)) {
-            return [false, `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`];
+            const readback = {
+                log: `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`,
+                say: `cannot proceed direct to ${NavigationLibrary.findFixSpokenName(waypointName)}, it does not exist in our flight plan`
+            }
+            return [false, readback];
         }
 
         this._fms.skipToWaypointName(waypointName);
         this.cancelHoldingPattern();
         this._mcp.setHeadingLnav();
 
-        return [true, `proceed direct ${waypointName}`];
+        const readback = {
+            log: `proceed direct ${waypointName}`,
+            say: `proceed direct ${NavigationLibrary.findFixSpokenName(waypointName)}`
+        }
+        return [true, readback];
     }
 
     /**
