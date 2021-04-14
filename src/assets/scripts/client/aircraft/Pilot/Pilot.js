@@ -904,7 +904,7 @@ export default class Pilot {
         if (!this._fms.hasWaypointName(waypointName)) {
             const readback = {
                 log: `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`,
-                say: `cannot proceed direct to ${NavigationLibrary.findFixSpokenName(waypointName)}, it does not exist in our flight plan`
+                say: `cannot proceed direct to ${NavigationLibrary.getFixSpokenName(waypointName)}, it does not exist in our flight plan`
             };
             return [false, readback];
         }
@@ -915,7 +915,7 @@ export default class Pilot {
 
         const readback = {
             log: `proceed direct ${waypointName}`,
-            say: `proceed direct ${NavigationLibrary.findFixSpokenName(waypointName)}`
+            say: `proceed direct ${NavigationLibrary.getFixSpokenName(waypointName)}`
         };
         return [true, readback];
     }
