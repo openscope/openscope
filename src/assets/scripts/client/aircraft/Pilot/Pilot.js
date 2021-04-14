@@ -582,7 +582,7 @@ export default class Pilot {
             const readback = {
                 log: `unable to find ${fixName.toUpperCase()}`,
                 say: `unable to find ${NavigationLibrary.getFixSpokenName(fixName)}`
-            }
+            };
             return [false, readback];
         }
 
@@ -590,7 +590,7 @@ export default class Pilot {
             const readback = {
                 log: `unable, ${fixName.toUpperCase()} is not on our route`,
                 say: `unable, ${NavigationLibrary.getFixSpokenName(fixName)} is not on our route`
-            }
+            };
             return [false, readback];
         }
 
@@ -905,7 +905,7 @@ export default class Pilot {
             const readback = {
                 log: `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`,
                 say: `cannot proceed direct to ${NavigationLibrary.findFixSpokenName(waypointName)}, it does not exist in our flight plan`
-            }
+            };
             return [false, readback];
         }
 
@@ -916,7 +916,7 @@ export default class Pilot {
         const readback = {
             log: `proceed direct ${waypointName}`,
             say: `proceed direct ${NavigationLibrary.findFixSpokenName(waypointName)}`
-        }
+        };
         return [true, readback];
     }
 
