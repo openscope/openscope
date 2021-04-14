@@ -3,6 +3,7 @@ import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixMo
 import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import {
     FIXNAME_MOCK,
+    FIXSPOKEN_MOCK,
     FIX_COORDINATE_MOCK,
     REAL_FIXNAME_MOCK
 } from './_mocks/fixMocks';
@@ -52,31 +53,32 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(!model._positionModel);
 });
 
-ava('accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+ava('accepts a `fixName`, a `fixSpoken`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {
+    const model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(model.name === FIXNAME_MOCK);
+    t.true(model.spoken === FIXSPOKEN_MOCK);
     t.true(model._positionModel instanceof DynamicPositionModel);
 });
 
 ava('.init() sets name in upperCase', t => {
-    let model = new FixModel('uppercase', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    let model = new FixModel('uppercase', FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'UPPERCASE');
 
-    model = new FixModel('u443rcas3', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    model = new FixModel('u443rcas3', FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'U443RCAS3');
 });
 
 ava('.isRealFix returns correct value', (t) => {
-    let model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    let model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.false(model.isRealFix);
 
-    model = new FixModel(REAL_FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    model = new FixModel(REAL_FIXNAME_MOCK, FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.isRealFix);
 });
 
 ava('.clonePosition() returns a DynamicPositionModel with the position information of the FixModel', t => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    const model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     const result = model.clonePosition();
 
     t.true(result instanceof DynamicPositionModel);
