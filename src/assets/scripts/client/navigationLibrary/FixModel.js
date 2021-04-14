@@ -107,12 +107,18 @@ export default class FixModel extends BaseModel {
      */
     init(fixName, fixSpoken, fixCoordinate, referencePosition) {
         // TODO: should this be a throwing instead of returning early?
-        if (!fixName || !fixSpoken || !fixCoordinate || !referencePosition) {
+        if (!fixName || !fixCoordinate || !referencePosition) {
             return;
         }
 
         this.name = fixName.toUpperCase();
-        this._spoken = fixSpoken.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
+        
+        if (!fixSpoken) {
+            this._spoken = fixName.toLowerCase();
+        } else {
+            this._spoken = fixSpoken.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
+        }
+       
         this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
