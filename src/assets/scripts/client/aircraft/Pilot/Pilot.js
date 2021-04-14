@@ -580,7 +580,7 @@ export default class Pilot {
 
         if (!NavigationLibrary.hasFixName(fixName)) {
             const readback = {
-                log: `unable to find ${fixName.toUpperCase()}`,
+                log: `unable to find '${fixName.toUpperCase()}'`,
                 say: `unable to find ${NavigationLibrary.getFixSpokenName(fixName)}`
             };
             return [false, readback];
@@ -588,7 +588,7 @@ export default class Pilot {
 
         if (!this._fms.hasWaypointName(fixName)) {
             const readback = {
-                log: `unable, ${fixName.toUpperCase()} is not on our route`,
+                log: `unable, '${fixName.toUpperCase()}' is not on our route`,
                 say: `unable, ${NavigationLibrary.getFixSpokenName(fixName)} is not on our route`
             };
             return [false, readback];
