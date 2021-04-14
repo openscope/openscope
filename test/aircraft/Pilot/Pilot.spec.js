@@ -642,20 +642,34 @@ ava('.crossFix() returns early when the specified fix does not exist', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const invalidFixNameMock = 'threeve';
     const altitudeMock = 13000;
-    const expectedResult = [false, 'unable to find \'threeve\''];
-    const result = aircraftModel.pilot.crossFix(aircraftModel, invalidFixNameMock, altitudeMock);
+    const expectedResult = false;
+    const expectedReadback = {
+        log: 'unable to find \'THREEVE\'',
+        say: 'unable to find threeve'
+    };
+    const returnValue = aircraftModel.pilot.crossFix(aircraftModel, invalidFixNameMock, altitudeMock);
+    const result = returnValue[0];
+    const readback = returnValue[1];
 
     t.deepEqual(result, expectedResult);
+    t.deepEqual(readback, expectedReadback);
 });
 
 ava('.crossFix() returns early when the specified fix exists but is not on the aircraft\'s route', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nonRouteFixNameMock = 'ogkij';
     const altitudeMock = 13000;
-    const expectedResult = [false, 'unable, \'ogkij\' is not on our route'];
-    const result = aircraftModel.pilot.crossFix(aircraftModel, nonRouteFixNameMock, altitudeMock);
+    const expectedResult = false;
+    const expectedReadback = {
+        log: 'unable, \'OGKIJ\' is not on our route',
+        say: 'unable, ogkij is not on our route'
+    };
+    const returnValue = aircraftModel.pilot.crossFix(aircraftModel, nonRouteFixNameMock, altitudeMock);
+    const result = returnValue[0];
+    const readback = returnValue[1];
 
     t.deepEqual(result, expectedResult);
+    t.deepEqual(readback, expectedReadback);
 });
 
 ava('.crossFix() returns early when the specified altitude fails .validateNextAltitude()', (t) => {
@@ -1182,11 +1196,18 @@ ava('.maintainSpeed() returns early with a warning when assigned an unreachable 
 });
 
 ava('.proceedDirect() returns an error if the waypointName provided is not in the current flightPlan', (t) => {
-    const expectedResult = [false, 'cannot proceed direct to ABC, it does not exist in our flight plan'];
+    const expectedResult = false;
+    const expectedReadback = {
+        log: 'cannot proceed direct to ABC, it does not exist in our flight plan',
+        say: 'cannot proceed direct to abc, it does not exist in our flight plan'
+    };
     const pilot = createPilotFixture();
-    const result = pilot.proceedDirect('ABC');
+    const returnValue = pilot.proceedDirect('ABC');
+    const result = returnValue[0];
+    const readback = returnValue[1];
 
     t.deepEqual(result, expectedResult);
+    t.deepEqual(readback, expectedReadback);
 });
 
 ava('.proceedDirect() calls ._fms.skipToWaypointName() with the correct arguments', (t) => {
@@ -1217,11 +1238,18 @@ ava('.proceedDirect() calls .cancelHoldingPattern()', (t) => {
 });
 
 ava('.proceedDirect() returns success message when finished', (t) => {
-    const expectedResult = [true, 'proceed direct SUNST'];
+    const expectedResult = true;
+    const expectedReadback = {
+        log: 'proceed direct SUNST',
+        say: 'proceed direct sunst'
+    };
     const pilot = createPilotFixture();
-    const result = pilot.proceedDirect(waypointNameMock);
+    const returnValue = pilot.proceedDirect(waypointNameMock);
+    const result = returnValue[0];
+    const readback = returnValue[1];
 
     t.deepEqual(result, expectedResult);
+    t.deepEqual(readback, expectedReadback);
 });
 
 ava('.sayTargetHeading() returns a message when #headingMode is HOLD', (t) => {
