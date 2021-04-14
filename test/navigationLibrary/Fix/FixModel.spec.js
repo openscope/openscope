@@ -34,22 +34,34 @@ ava('returns early when instantiated with incorrect parameters', t => {
 
     model = new FixModel(FIXNAME_MOCK);
     t.true(model.name === '');
+    t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK);
+    model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK);
     t.true(model.name === '');
+    t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(null, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK);
     t.true(model.name === '');
+    t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(FIXNAME_MOCK, null, airportPositionFixtureKSFO);
+    model = new FixModel(null, FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === '');
+    t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(null, null, airportPositionFixtureKSFO);
+    // Not testing fixSpoken = NULL because that should be allowed
+
+    model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
+    t.true(model.spoken === '');
+    t.true(!model._positionModel);
+
+    model = new FixModel(null, null, null, airportPositionFixtureKSFO);
+    t.true(model.name === '');
+    t.true(model.spoken === '');
     t.true(!model._positionModel);
 });
 
@@ -61,12 +73,28 @@ ava('accepts a `fixName`, a `fixSpoken`, an array `fixCoordinate` and an `airpor
     t.true(model._positionModel instanceof DynamicPositionModel);
 });
 
+ava('accepts undefined `fixSpoken` as a parameter', t => {
+    const model = new FixModel(FIXNAME_MOCK, null, FIX_COORDINATE_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+
+    t.true(model.name === FIXNAME_MOCK);
+    t.true(model.spoken === FIXNAME_MOCK.toLowerCase());
+    t.true(model._positionModel instanceof DynamicPositionModel);
+});
+
 ava('.init() sets name in upperCase', t => {
     let model = new FixModel('uppercase', FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'UPPERCASE');
 
     model = new FixModel('u443rcas3', FIXSPOKEN_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'U443RCAS3');
+});
+
+ava('.init() sets spoken in lowerCase', t => {
+    let model = new FixModel(FIXNAME_MOCK, 'LOWERCASE', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    t.true(model.spoken === 'lowercase');
+
+    model = new FixModel(FIXNAME_MOCK, 'L0W3RC4S3', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    t.true(model.spoken === 'l0w3rc4s3');
 });
 
 ava('.isRealFix returns correct value', (t) => {
