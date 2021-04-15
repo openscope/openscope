@@ -23,34 +23,34 @@
     },
     "arrivalRunway": "25L",
     "departureRunway": "25L",
-    "fixes": {
+    "fixes": [
 
-        "DKI": ["S5d57.7m0", "E107d2.1m0"],
-        "_DKIR": ["S6d1m24.44", "E106d39m11.46"],
-        "CKG": ["S6d11.3m0", "E106d31.8m0"],
-        "HLM": ["S6d16.3m0", "E106d53.2m0"],
-        "PW": ["S6d34.0m0", "E107d27.0m0"],
+        {"name": "DKI", "coordinates": ["S5d57.7m0", "E107d2.1m0"]},
+        {"name": "_DKIR", "coordinates": ["S6d1m24.44", "E106d39m11.46"]},
+        {"name": "CKG", "coordinates": ["S6d11.3m0", "E106d31.8m0"]},
+        {"name": "HLM", "coordinates": ["S6d16.3m0", "E106d53.2m0"]},
+        {"name": "PW", "coordinates": ["S6d34.0m0", "E107d27.0m0"]},
 
-        "GL": ["S6d8.8m0", "E106d34.5m0"],
-        "GR": ["S6d10.4m0", "E106d34.0m0"],
-        "CL": ["S6d6.3m0", "E106d44.1m0"],
-        "CR": ["S6d5.2m0", "E106d43.4m0"],
+        {"name": "GL", "coordinates": ["S6d8.8m0", "E106d34.5m0"]},
+        {"name": "GR", "coordinates": ["S6d10.4m0", "E106d34.0m0"]},
+        {"name": "CL", "coordinates": ["S6d6.3m0", "E106d44.1m0"]},
+        {"name": "CR", "coordinates": ["S6d5.2m0", "E106d43.4m0"]},
 
-        "NOKTA": ["S5d28.4m0", "E106d51.4m0"],
-        "ESALA": ["S5d57.7m0", "E107d19.8m0"],
-        "CARLI": ["S5d15.6m0", "E106d12.8m0"],
-        "BUNIK": ["S4d51.7m0", "E106d37.4m0"],
-        "DENDY": ["S5d11.8m0", "E107d36.4m0"],
-        "LEPAS": ["S5d26.0m0", "E107d47.3m0"],
-        "SPADA": ["S5d40.7m0", "E107d54.6m0"],
-        "RENDA": ["S7d15.3m0", "E107d13.4m0"],
+        {"name": "NOKTA", "coordinates": ["S5d28.4m0", "E106d51.4m0"]},
+        {"name": "ESALA", "coordinates": ["S5d57.7m0", "E107d19.8m0"]},
+        {"name": "CARLI", "coordinates": ["S5d15.6m0", "E106d12.8m0"]},
+        {"name": "BUNIK", "coordinates": ["S4d51.7m0", "E106d37.4m0"]},
+        {"name": "DENDY", "coordinates": ["S5d11.8m0", "E107d36.4m0"]},
+        {"name": "LEPAS", "coordinates": ["S5d26.0m0", "E107d47.3m0"]},
+        {"name": "SPADA", "coordinates": ["S5d40.7m0", "E107d54.6m0"]},
+        {"name": "RENDA", "coordinates": ["S7d15.3m0", "E107d13.4m0"]},
 
-        "SIKAD": ["S5d44.3m0", "E106d16.3m0"],
-        "DOLTA": ["S5d7.6m0", "E105d55.5m0"],
-        "TULIP": ["S5d25.4m0", "E105d37.8m0"],
-        "KASAL": ["S6d32.6m0", "E107d56.4m0"]
+        {"name": "SIKAD", "coordinates": ["S5d44.3m0", "E106d16.3m0"]},
+        {"name": "DOLTA", "coordinates": ["S5d7.6m0", "E105d55.5m0"]},
+        {"name": "TULIP", "coordinates": ["S5d25.4m0", "E105d37.8m0"]},
+        {"name": "KASAL", "coordinates": ["S6d32.6m0", "E107d56.4m0"]}
 
-    },
+    ],
     "runways": [
         {
             "name": ["07R", "25L"],
