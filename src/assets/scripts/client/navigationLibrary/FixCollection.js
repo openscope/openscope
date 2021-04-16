@@ -181,10 +181,7 @@ class FixCollection extends BaseCollection {
      */
     _buildFixModelsFromList(fixList, referencePosition) {
         _forEach(fixList, (fixData) => {
-            if (!fixData.spoken) {
-                fixData.spoken = null; // the initializer for FixModel handles this correctly
-            }
-            const fixModel = new FixModel(fixData.name, fixData.spoken, fixData.coordinates, referencePosition);
+            const fixModel = new FixModel(fixData.name, fixData.spoken, fixData.coordinates, referencePosition); // FixModel accepts undefined spoken
             // const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, referencePosition);
 
             this.addFixToCollection(fixModel);

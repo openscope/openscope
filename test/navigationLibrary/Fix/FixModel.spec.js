@@ -52,7 +52,7 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    // Not testing fixSpoken = NULL because that should be allowed
+    // Not testing fixSpoken = null because that should be allowed
 
     model = new FixModel(FIXNAME_MOCK, FIXSPOKEN_MOCK, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
@@ -74,7 +74,7 @@ ava('accepts a `fixName`, a `fixSpoken`, an array `fixCoordinate` and an `airpor
 });
 
 ava('accepts undefined `fixSpoken` as a parameter', t => {
-    const model = new FixModel(FIXNAME_MOCK, null, FIX_COORDINATE_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    const model = new FixModel(FIXNAME_MOCK, undefined, FIX_COORDINATE_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(model.name === FIXNAME_MOCK);
     t.true(model.spoken === FIXNAME_MOCK);
