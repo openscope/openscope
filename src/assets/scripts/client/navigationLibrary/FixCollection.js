@@ -109,13 +109,13 @@ class FixCollection extends BaseCollection {
      * @return {string}
      */
     getFixSpokenName(fixName) {
-       const fixModel = this.findFixByName(fixName);
+        const fixModel = this.findFixByName(fixName);
 
-       if (!fixModel) {
-           return fixName.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
-       }
+        if (!fixModel) {
+            return fixName.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
+        }
 
-       return fixModel.spoken;
+        return fixModel.spoken;
     }
 
     /**
