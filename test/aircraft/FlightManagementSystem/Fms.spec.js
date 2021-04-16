@@ -398,7 +398,7 @@ ava('.activateHoldForWaypointName() returns failure message when the route does 
     const holdParametersMock = { turnDirection: 'left' };
     const expectedResult = [false, {
         log: `unable to hold at ${unknownWaypointName}; it is not on our route!`,
-        say: `unable to hold at ${unknownWaypointName.toLowerCase()}; it is not on our route!`
+        say: `unable to hold at ${unknownWaypointName}; it is not on our route!`
     }];
     const result = fms.activateHoldForWaypointName(unknownWaypointName, holdParametersMock);
 

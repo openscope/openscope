@@ -77,7 +77,7 @@ ava('accepts undefined `fixSpoken` as a parameter', t => {
     const model = new FixModel(FIXNAME_MOCK, null, FIX_COORDINATE_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(model.name === FIXNAME_MOCK);
-    t.true(model.spoken === FIXNAME_MOCK.toLowerCase());
+    t.true(model.spoken === FIXNAME_MOCK);
     t.true(model._positionModel instanceof DynamicPositionModel);
 });
 

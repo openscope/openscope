@@ -112,11 +112,10 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
+        this._spoken = this.name; // upper-case forces spelling, experiments shows that this works best for unknown pronunciation
 
-        if (!fixSpoken) {
-            this._spoken = fixName.toLowerCase();
-        } else {
-            this._spoken = fixSpoken.toLowerCase(); // lower case to force speech engine to pronounce instead of spell
+        if (fixSpoken) {
+            this._spoken = fixSpoken.toLowerCase(); // lower-case prevents spelling
         }
 
         this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
