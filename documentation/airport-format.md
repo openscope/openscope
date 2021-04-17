@@ -64,26 +64,26 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
             ]
         }
     ],
-    "fixes": {
-        "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
-        "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
-        "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
-        "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
-        "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
-        "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
-        "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
-        "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-        "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
-        "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
-        "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-        "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
-        "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-        "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
-        "WESET": ["N47d24.35m0", "W122d19.10m0"],
-        "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
-        "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
-    },
+    "fixes": [
+        {"name": "_NEZUG070010", "coordinates": ["N47d34.80m0", "W122d03.84m0"]},
+        {"name": "_NEZUG070PAE139", "coordinates": ["N47d34.77m0", "W122d05.11m0"]},
+        {"name": "_NICHY250SEA230", "coordinates": ["N47d19.92m0", "W122d42.78m0"]},
+        {"name": "_OLM161026", "coordinates": ["N46d32.31m0", "W122d54.11m0"]},
+        {"name": "_SEA161002", "coordinates": ["N47d24.12m0", "W122d18.58m0"]},
+        {"name": "_SEA341004", "coordinates": ["N47d30.12m0", "W122d18.58m0"]},
+        {"name": "_SUMMA326017", "coordinates": ["N46d53.20m0", "W122d07.08m0"]},
+        {"name": "AAYRR", "coordinates": ["N46d38.81m0", "W123d43.34m0"]},
+        {"name": "BOANE", "coordinates": ["N47d59.10m0", "W122d43.52m0"]},
+        {"name": "EUG", "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene"},
+        {"name": "FEPOT", "coordinates": ["N47d04.85m0", "W123d13.13m0"]},
+        {"name": "GEG", "coordinates": ["N47d33.90m0", "W117d37.61m0"]},
+        {"name": "KRUZR", "coordinates": ["N48d04.65m0", "W120d34.68m0"], "spoken": "cruiser"},
+        {"name": "ONSET", "coordinates": ["N48d57.48m0", "W118d00.00m0"]},
+        {"name": "PAE", "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine"},
+        {"name": "WESET", "coordinates": ["N47d24.35m0", "W122d19.10m0"]},
+        {"name": "YXC", "coordinates": ["N49d33.30m0", "W116d05.26m0"]},
+        {"name": "ZUVEN", "coordinates": ["N47d47.98m0", "W122d25.15m0"]}
+    ],
     "restricted": [
         {
             "name": "P-51",
@@ -310,32 +310,40 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 All fixes listed within the Standard Routes need to be defined within this section
 
 ```json
-"fixes": {
-    "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
-    "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
-    "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-    "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
-    "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
-    "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
-    "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
-    "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
-    "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-    "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
-    "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
-    "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-    "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
-    "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-    "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
-    "WESET": ["N47d24.35m0", "W122d19.10m0"],
-    "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
-    "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
-},
+"fixes": [
+    {"name": "_NEZUG070010", "coordinates": ["N47d34.80m0", "W122d03.84m0"]},
+    {"name": "_NEZUG070PAE139", "coordinates": ["N47d34.77m0", "W122d05.11m0"]},
+    {"name": "_NICHY250SEA230", "coordinates": ["N47d19.92m0", "W122d42.78m0"]},
+    {"name": "_OLM161026", "coordinates": ["N46d32.31m0", "W122d54.11m0"]},
+    {"name": "_SEA161002", "coordinates": ["N47d24.12m0", "W122d18.58m0"]},
+    {"name": "_SEA341004", "coordinates": ["N47d30.12m0", "W122d18.58m0"]},
+    {"name": "_SUMMA326017", "coordinates": ["N46d53.20m0", "W122d07.08m0"]},
+    {"name": "AAYRR", "coordinates": ["N46d38.81m0", "W123d43.34m0"]},
+    {"name": "BOANE", "coordinates": ["N47d59.10m0", "W122d43.52m0"]},
+    {"name": "EUG", "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene"},
+    {"name": "FEPOT", "coordinates": ["N47d04.85m0", "W123d13.13m0"]},
+    {"name": "GEG", "coordinates": ["N47d33.90m0", "W117d37.61m0"]},
+    {"name": "KRUZR", "coordinates": ["N48d04.65m0", "W120d34.68m0"], "spoken": "cruiser"},
+    {"name": "ONSET", "coordinates": ["N48d57.48m0", "W118d00.00m0"]},
+    {"name": "PAE", "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine"},
+    {"name": "WESET", "coordinates": ["N47d24.35m0", "W122d19.10m0"]},
+    {"name": "YXC", "coordinates": ["N49d33.30m0", "W116d05.26m0"]},
+    {"name": "ZUVEN", "coordinates": ["N47d47.98m0", "W122d25.15m0"]}
+],
 ```
 
 Each navaid located within or around the airport airspace in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_.  Real life fixes are defined thusly:
 
 ```json
-"AAYRR": ["N46d38.81m0", "W123d43.34m0"]
+{"name": "AAYRR", "coordinates": ["N46d38.81m0", "W123d43.34m0"]}
+```
+
+Each fix can have an optional `spoken` parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an abitrary letter combination. Capitalization doesn't really matter, but it can be nice to capitalize the first letter in place names for clarity.
+
+```json
+{"name": "EUG", "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene"}
+{"name": "KRUZR", "coordinates": ["N48d04.65m0", "W120d34.68m0"], "spoken": "cruiser"}
+{"name": "PAE", "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine"}
 ```
 
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
@@ -349,31 +357,31 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 * Any fixes located at runway thresholds should be named after the runway at which they are located.
 
 ```json
-"_RWY33L": [42.354662, -70.991598]
+{"name": "_RWY33L", "coordinates": [42.354662, -70.991598]}
 ```
 
 * Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway whose approach path crosses the fix at the specified distance from the threshold (denoted in the fix name as a two digit distance in nautical miles, then "DME"). So a fix named `_RWY1805DME` would be 5.0nm north of the landing threshold of Runway 18. All of these should be marked as invisible fixes (via the underscore prefix).
 
 ```json
-"_RWY33L01DME": [42.342838, -70.975751]
+{"name": "_RWY33L01DME", "coordinates": [42.342838, -70.975751]}
 ```
 
 * Any fixes that represent the intersection of a runway's inbound course and another course to a fix will be descried using the format below. Note that the runway whose _approach course_ intersects is the one to be used, not the runway whose _departure course_ intersects.
 
 ```json
-"_RWY12BSTER081": [25.810667, -80.322667]
+{"name": "_RWY12BSTER081", "coordinates": [25.810667, -80.322667]}
 ```
 
 * Fixes may be defined based on the intersection of a runway's inbound course and an outbound radial of any fix. For a point aligned with Runway 33's approach path and the XYZ VOR's outbound radial 180, we get `_RWY33XYZ180`. Note that if the intersection were to be on the departure side of a given runway, the opposite runway should be used to keep with the convention of using the approach course.
 
 ```json
-"_RWY1LPIE116": [27.848198, -82.546200]
+{"name": "_RWY1LPIE116", "coordinates": [27.848198, -82.546200]}
 ```
 
 * Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as invisible fixes (via the underscore prefix).
 
 ```json
-"_AUTUM220015": [42.324333, -71.736833]
+{"name": "_AUTUM220015", "coordinates": [42.324333, -71.736833]}
 ```
 
 * Any fixes that represent the intersection of radials off of two fixes will be described by including each fix's _outbound_ radial.
@@ -385,14 +393,14 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 * Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
 
 ```json
-"_SIPLY233STINS324": [37.47860, -122.60090]
+{"name": "_SIPLY233STINS324", "coordinates": [37.47860, -122.60090]}
 ```
 
 * Fixes may be defined based on the intersection of a fix's outbound radial and the DME arc of the specified distance from a separate fix. This is formatted like `_FIXXA050FIXXB05DME`, where the first fix has a three digit outbound radial, and the second fix has a two-digit distance in nm, followed by DME. Similarly, this can be done with runways using the same patterns as before, yielding `_RWY22LFIXXB05DME`; just use the name of the runway whose _approach course_ intersects the DME arc, and _not the departure path_.
 
 ```json
-"_SEA104TCM40DME": [47.074500, -121.516167],
-"_RWY16LPAE10DME": [47.754500, -122.308000]
+{"name": "_SEA104TCM40DME", "coordinates": [47.074500, -121.516167]},
+{"name": "_RWY16LPAE10DME", "coordinates": [47.754500, -122.308000]}
 ```
 
 ### Restricted Airspace
