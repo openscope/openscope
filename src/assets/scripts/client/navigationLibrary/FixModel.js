@@ -112,7 +112,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this._spoken = this.name; // upper-case forces spelling, experiments shows that this works best for unknown pronunciation
+        this._spoken = fixName.toLowerCase(); // lower-case makes the voice engine try to pronounce it
 
         if (fixSpoken) {
             this._spoken = fixSpoken.toLowerCase(); // lower-case prevents spelling
