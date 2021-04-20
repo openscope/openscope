@@ -112,7 +112,7 @@ class FixCollection extends BaseCollection {
         const fixModel = this.findFixByName(fixName);
 
         if (!fixModel) {
-            return fixName.toUpperCase(); // upper-case forces spelling, experiments shows that this works best for unknown pronunciation
+            return fixName.toLowerCase(); // lower-case forces the voice engine to try to pronounce it
         }
 
         return fixModel.spoken;
