@@ -42,7 +42,7 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(FIXNAME_MOCK, { "coordinates": FIX_COORDINATE_MOCK, "spoken": FIXSPOKEN_MOCK });
+    model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK });
     t.true(model.name === '');
     t.true(model.spoken === '');
     t.true(!model._positionModel);
@@ -52,12 +52,12 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(null, { "coordinates": FIX_COORDINATE_MOCK, "spoken": FIXSPOKEN_MOCK }, airportPositionFixtureKSFO);
+    model = new FixModel(null, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK }, airportPositionFixtureKSFO);
     t.true(model.name === '');
     t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(FIXNAME_MOCK, null,  airportPositionFixtureKSFO);
+    model = new FixModel(FIXNAME_MOCK, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
     t.true(model.spoken === '');
     t.true(!model._positionModel);
@@ -67,7 +67,7 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(model.spoken === '');
     t.true(!model._positionModel);
 
-    model = new FixModel(FIXNAME_MOCK, { "coordinates": FIX_COORDINATE_MOCK, "spoken": FIXSPOKEN_MOCK }, null);
+    model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK }, null);
     t.true(model.name === '');
     t.true(model.spoken === '');
     t.true(!model._positionModel);
@@ -78,16 +78,16 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(!model._positionModel);
 });
 
-ava('accepts a `fixName`, an array `coordinates` and an `airportPosition` as its parameters', t=> {
+ava('accepts a `fixName`, an array `coordinates` and an `airportPosition` as its parameters', t => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    
     t.true(model.name === FIXNAME_MOCK);
+
     t.true(model.spoken === FIXNAME_MOCK.toLowerCase());
     t.true(model._positionModel instanceof DynamicPositionModel);
 });
 
 ava('accepts a `fixName`, an object with `coordinates` and and `spoken`, and an `airportPosition` as its parameters', t => {
-    const model = new FixModel(FIXNAME_MOCK, { "coordinates": FIX_COORDINATE_MOCK, "spoken": FIXSPOKEN_MOCK }, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    const model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK }, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(model.name === FIXNAME_MOCK);
     t.true(model.spoken === FIXSPOKEN_MOCK);
@@ -103,10 +103,10 @@ ava('.init() sets name in upperCase', t => {
 });
 
 ava('.init() sets spoken in lowerCase', t => {
-    let model = new FixModel(FIXNAME_MOCK, { "coordinates": FIX_COORDINATE_MOCK, "spoken": 'LOWERCASE' }, airportPositionFixtureKSFO);
+    let model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: 'LOWERCASE' }, airportPositionFixtureKSFO);
     t.true(model.spoken === 'lowercase');
 
-    model = new FixModel(FIXNAME_MOCK, { "coordinates": FIX_COORDINATE_MOCK, "spoken": 'L0W3RC4S3' }, airportPositionFixtureKSFO);
+    model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: 'L0W3RC4S3' }, airportPositionFixtureKSFO);
     t.true(model.spoken === 'l0w3rc4s3');
 });
 
