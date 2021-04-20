@@ -399,7 +399,7 @@ ava('.cancelHoldingPattern() returns error response when the aircraft has holdin
 
     const expectedResult = [false, {
         log: 'that must be for somebody else, we weren\'t given holding over ABCDE',
-        say: 'that must be for somebody else, we weren\'t given holding over ABCDE'
+        say: 'that must be for somebody else, we weren\'t given holding over abcde'
     }];
     const result = pilot.cancelHoldingPattern('ABCDE');
 
@@ -645,7 +645,7 @@ ava('.crossFix() returns early when the specified fix does not exist', (t) => {
     const expectedResult = false;
     const expectedReadback = {
         log: 'unable to find \'THREEVE\'',
-        say: 'unable to find THREEVE'
+        say: 'unable to find threeve'
     };
     const returnValue = aircraftModel.pilot.crossFix(aircraftModel, invalidFixNameMock, altitudeMock);
     const result = returnValue[0];
@@ -1199,7 +1199,7 @@ ava('.proceedDirect() returns an error if the waypointName provided is not in th
     const expectedResult = false;
     const expectedReadback = {
         log: 'cannot proceed direct to ABC, it does not exist in our flight plan',
-        say: 'cannot proceed direct to ABC, it does not exist in our flight plan'
+        say: 'cannot proceed direct to abc, it does not exist in our flight plan'
     };
     const pilot = createPilotFixture();
     const returnValue = pilot.proceedDirect('ABC');
