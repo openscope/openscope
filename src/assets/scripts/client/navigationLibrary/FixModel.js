@@ -116,7 +116,7 @@ export default class FixModel extends BaseModel {
             this._positionModel = new StaticPositionModel(fixData, referencePosition, referencePosition.magneticNorth);
         } else {
             const { coordinates, spoken } = fixData;
-            this._spoken = spoken.toLowerCase(); //lower-case prevents spelling
+            this._spoken = spoken.toLowerCase(); // lower-case prevents spelling
             this._positionModel = new StaticPositionModel(coordinates, referencePosition, referencePosition.magneticNorth);
         }
 
