@@ -78,6 +78,12 @@ ava('returns early when instantiated with incorrect parameters', t => {
     t.true(!model._positionModel);
 });
 
+ava('throws if called with an object as input but without both expected parameters defined', t => {
+    t.throws(() => new FixModel(FIXNAME_MOCK, { }, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK }, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(FIXNAME_MOCK, { spoken: FIXSPOKEN_MOCK }, airportPositionFixtureKSFO));
+});
+
 ava('accepts a `fixName`, an array `coordinates` and an `airportPosition` as its parameters', t => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === FIXNAME_MOCK);
