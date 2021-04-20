@@ -413,7 +413,7 @@ ava('.cancelHoldingPattern() returns error response when the aircraft has holdin
 
     const expectedResult = [false, {
         log: 'that must be for somebody else, we weren\'t given holding over SUNST',
-        say: 'that must be for somebody else, we weren\'t given holding over SUNST'
+        say: 'that must be for somebody else, we weren\'t given holding over sunst'
     }];
     const result = pilot.cancelHoldingPattern('SUNST');
 
@@ -432,7 +432,7 @@ ava('.cancelHoldingPattern() calls WaypointModel.deactivateHold() when no hold f
 
     const expectedResult = [true, {
         log: 'roger, we\'ll cancel the hold at KEPEC',
-        say: 'roger, we\'ll cancel the hold at KEPEC'
+        say: 'roger, we\'ll cancel the hold at kepec'
     }];
     const result = pilot.cancelHoldingPattern();
 
@@ -453,7 +453,7 @@ ava('.cancelHoldingPattern() calls WaypointModel.deactivateHold() when the fix i
 
     const expectedResult = [true, {
         log: 'roger, we\'ll cancel the hold at KEPEC',
-        say: 'roger, we\'ll cancel the hold at KEPEC'
+        say: 'roger, we\'ll cancel the hold at kepec'
     }];
     const result = pilot.cancelHoldingPattern('KEPEC');
 
@@ -662,7 +662,7 @@ ava('.crossFix() returns early when the specified fix exists but is not on the a
     const expectedResult = false;
     const expectedReadback = {
         log: 'unable, \'OGKIJ\' is not on our route',
-        say: 'unable, OGKIJ is not on our route'
+        say: 'unable, ogkij is not on our route'
     };
     const returnValue = aircraftModel.pilot.crossFix(aircraftModel, nonRouteFixNameMock, altitudeMock);
     const result = returnValue[0];
@@ -691,7 +691,7 @@ ava('.crossFix() correctly configures arrival aircraft\'s MCP and returns correc
     const altitudeMock = 13000;
     const expectedResult = [true, {
         log: 'cross KEPEC at 13000',
-        say: 'cross KEPEC at one three thousand'
+        say: 'cross kepec at one three thousand'
     }];
     const result = aircraftModel.pilot.crossFix(aircraftModel, fixNameMock, altitudeMock);
 
@@ -704,7 +704,7 @@ ava('.crossFix() correctly configures departure aircraft\'s MCP and returns corr
     const altitudeMock = 13000;
     const expectedResult = [true, {
         log: 'cross COWBY at 13000',
-        say: 'cross COWBY at one three thousand'
+        say: 'cross cowby at one three thousand'
     }];
     const result = aircraftModel.pilot.crossFix(aircraftModel, fixNameMock, altitudeMock);
 
@@ -851,7 +851,7 @@ ava('.initiateHoldingPattern() returns error response when specified fix is not 
     const pilot = createPilotFixture();
     const expectedResult = [false, {
         log: 'unable to hold at COWBY; it is not on our route!',
-        say: 'unable to hold at COWBY; it is not on our route!'
+        say: 'unable to hold at cowby; it is not on our route!'
     }];
     const result = pilot.initiateHoldingPattern('COWBY', holdParametersMock);
 
@@ -862,7 +862,7 @@ ava('.initiateHoldingPattern() returns correct readback when hold implemented su
     const pilot = createPilotFixture();
     const expectedResult = [true, {
         log: 'hold east of KEPEC on the 087 radial, right turns, 1min legs',
-        say: 'hold east of KEPEC on the zero eight seven radial, right turns, 1min legs'
+        say: 'hold east of kepec on the zero eight seven radial, right turns, 1min legs'
     }];
     const result = pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
 
@@ -1241,7 +1241,7 @@ ava('.proceedDirect() returns success message when finished', (t) => {
     const expectedResult = true;
     const expectedReadback = {
         log: 'proceed direct SUNST',
-        say: 'proceed direct SUNST'
+        say: 'proceed direct sunst'
     };
     const pilot = createPilotFixture();
     const returnValue = pilot.proceedDirect(waypointNameMock);

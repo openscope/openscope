@@ -16,11 +16,10 @@ export default class FixModel extends BaseModel {
      * @for FixModel
      * @constructor
      * @param fixName {string}
-     * @param fixSpoken {string}
-     * @param fixCoordinate {array}
+     * @param fixData {array or object}
      * @param referencePosition {StaticPositionModel}
      */
-    constructor(fixName, fixSpoken, fixCoordinate, referencePosition) {
+    constructor(fixName, fixData, referencePosition) {
         super();
 
         /**
@@ -50,7 +49,7 @@ export default class FixModel extends BaseModel {
          */
         this._positionModel = null;
 
-        this.init(fixName, fixSpoken, fixCoordinate, referencePosition);
+        this.init(fixName, fixData, referencePosition);
     }
 
     /**
@@ -100,25 +99,26 @@ export default class FixModel extends BaseModel {
      * @for FixModel
      * @method init
      * @param fixName {string}
-     * @param fixSpoken {string}
-     * @param fixCoordinate {array}
+     * @param fixData {array or object}
      * @param referencePosition {StaticPositionModel}
      * @chainable
      */
-    init(fixName, fixSpoken, fixCoordinate, referencePosition) {
+    init(fixName, fixData, referencePosition) {
         // TODO: should this be a throwing instead of returning early?
-        if (!fixName || !fixCoordinate || !referencePosition) {
+        if (!fixName || !fixData || !referencePosition) {
             return;
         }
 
         this.name = fixName.toUpperCase();
-        this._spoken = fixName.toLowerCase(); // lower-case makes the voice engine try to pronounce it
 
-        if (fixSpoken) {
-            this._spoken = fixSpoken.toLowerCase(); // lower-case prevents spelling
+        if (Array.isArray(fixData)) { // only coordinates supplied
+            this._spoken = fixName.toLowerCase(); // lower-case makes the voice engine try to pronounce it
+            this._positionModel = new StaticPositionModel(fixData, referencePosition, referencePosition.magneticNorth);
+        } else {
+            const { coordinates, spoken } = fixData;
+            this._spoken = spoken.toLowerCase(); //lower-case prevents spelling
+            this._positionModel = new StaticPositionModel(coordinates, referencePosition, referencePosition.magneticNorth);
         }
-
-        this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
     }
