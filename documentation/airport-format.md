@@ -74,14 +74,14 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
         "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
         "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-        "EUG": { "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene" },
+        "EUG"  : { "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene" },
         "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
-        "GEG": ["N47d33.90m0", "W117d37.61m0"],
+        "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
         "KRUZR": { "coordinates": ["N48d04.65m0", "W120d34.68m0"], "spoken": "cruiser" },
         "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-        "PAE": { "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine" },
+        "PAE"  : { "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine" },
         "WESET": ["N47d24.35m0", "W122d19.10m0"],
-        "YXC": ["N49d33.30m0", "W116d05.26m0"],
+        "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
         "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
     },
     "restricted": [
@@ -320,14 +320,14 @@ All fixes listed within the Standard Routes need to be defined within this secti
     "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
     "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
     "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-    "EUG": { "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene" },
+    "EUG"  : { "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene" },
     "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
-    "GEG": ["N47d33.90m0", "W117d37.61m0"],
+    "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
     "KRUZR": { "coordinates": ["N48d04.65m0", "W120d34.68m0"], "spoken": "cruiser" },
     "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-    "PAE": { "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine" },
+    "PAE"  : { "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine" },
     "WESET": ["N47d24.35m0", "W122d19.10m0"],
-    "YXC": ["N49d33.30m0", "W116d05.26m0"],
+    "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
     "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
 },
 ```
@@ -341,9 +341,9 @@ Each navaid located within or around the airport airspace in latitude, longitude
 Each fix can have an optional `spoken` parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an abitrary letter combination. Capitalization doesn't really matter, but it can be nice to capitalize the first letter in place names for clarity.
 
 ```json
-"EUG": { "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene" }
+"EUG"  : { "coordinates": ["N44d07.25m0", "W123d13.37m0"], "spoken": "Eugene" }
 "KRUZR": { "coordinates": ["N48d04.65m0", "W120d34.68m0"], "spoken": "cruiser" }
-"PAE": { "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine" }
+"PAE"  : { "coordinates": ["N47d55.19m0", "W122d16.67m0"], "spoken": "Paine" }
 ```
 
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
