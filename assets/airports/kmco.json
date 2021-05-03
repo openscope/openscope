@@ -7,7 +7,7 @@
     },
     "icao": "KMCO",
     "iata": "MCO",
-    "magnetic_north": 4.1,
+    "magnetic_north": -6.0,
     "ctr_radius": 80,
     "ctr_ceiling": 16000,
     "initial_alt": 5000,
@@ -286,8 +286,8 @@
             "icao": "DDANY1",
             "name": "Danny One",
             "rwy": {
-                "KMCO17L": [["_RW17L1DME", "A006+"], "#166"],
-                "KMCO17R": [["_RW17R1DME", "A006+"], "#166"],
+                "KMCO17L": [["_RW17L1DME", "A006+"], "#176"],
+                "KMCO17R": [["_RW17R1DME", "A006+"], "#176"],
                 "KMCO18L": [["_RW18L1DME", "A006+"], "#141"],
                 "KMCO18R": [["_RW18R1DME", "A006+"], "#141"],
                 "KMCO35L": ["^_RW35L4DME", ["GOHOM", "A26+|S250-"], ["MIEGS", "A50-"], ["LAPUU", "A70+"]],
@@ -339,8 +339,8 @@
             "icao": "FATHE1",
             "name": "Father One",
             "rwy": {
-                "KMCO17L": [["_RW17L1DME", "A006+"], "#166"],
-                "KMCO17R": [["_RW17R1DME", "A006+"], "#166"],
+                "KMCO17L": [["_RW17L1DME", "A006+"], "#176"],
+                "KMCO17R": [["_RW17R1DME", "A006+"], "#176"],
                 "KMCO18L": [["_RW18L1DME", "A006+"], "#141"],
                 "KMCO18R": [["_RW18R1DME", "A006+"], "#141"],
                 "KMCO35L": ["^_RW35L4DME", ["JWOLF", "A26+"], ["JIRAN", "A30+"], "BIGSE"],
@@ -457,8 +457,8 @@
             "icao": "MZULO1",
             "name": "Mizulo One",
             "rwy": {
-                "KMCO17L": [["_RW17L1DME", "A006+"], "#166"],
-                "KMCO17R": [["_RW17R1DME", "A006+"], "#166"],
+                "KMCO17L": [["_RW17L1DME", "A006+"], "#176"],
+                "KMCO17R": [["_RW17R1DME", "A006+"], "#176"],
                 "KMCO18L": [["_RW18L1DME", "A006+"], "#141"],
                 "KMCO18R": [["_RW18R1DME", "A006+"], "#141"],
                 "KMCO35L": ["^_RW35L4DME", ["GOHOM", "A26+|S250-"], ["MIEGS", "A50-"], ["ASKUE", "A70+"]],
@@ -491,10 +491,10 @@
                 "KMCO17R": [["^BANYA", "A70|S210"], "#246"],
                 "KMCO18L": [["^BANYA", "A70|S210"], "#246"],
                 "KMCO18R": [["^BANYA", "A70|S210"], "#246"],
-                "KMCO35L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
-                "KMCO35R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
-                "KMCO36L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
-                "KMCO36R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]]
+                "KMCO35L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"],
+                "KMCO35R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"],
+                "KMCO36L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"],
+                "KMCO36R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"]
             },
             
             "draw": [
@@ -709,10 +709,10 @@
               "KMCO17R": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
               "KMCO18L": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
               "KMCO18R": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
-              "KMCO35L": [["LORRA", "A70|S210"], "#096"],
-              "KMCO35R": [["LORRA", "A70|S210"], "#096"],
-              "KMCO36L": [["LORRA", "A70|S210"], "#096"],
-              "KMCO36R": [["LORRA", "A70|S210"], "#096"]
+              "KMCO35L": [["LORRA", "A70|S210"]],
+              "KMCO35R": [["LORRA", "A70|S210"]],
+              "KMCO36L": [["LORRA", "A70|S210"]],
+              "KMCO36R": [["LORRA", "A70|S210"]]
             },
             "draw": [
                 ["CHRGE*", "DAAWG", "CHIVE", "DECKS", "BULKS", "PRICY", "BOCCE", "JUMBA", "TAYYE", "ARHIP", "GIRAF", "DVOLA", "LYENS"],
@@ -733,10 +733,10 @@
                 "KMCO17R": [["^BANYA", "A70|S210"], "#246"],
                 "KMCO18L": [["^BANYA", "A70|S210"], "#246"],
                 "KMCO18R": [["^BANYA", "A70|S210"], "#246"],
-                "KMCO35L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
-                "KMCO35R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
-                "KMCO36L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
-                "KMCO36R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]]
+                "KMCO35L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"],
+                "KMCO35R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"],
+                "KMCO36L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"],
+                "KMCO36R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"], "#186"]
             },
             
             "draw": [
