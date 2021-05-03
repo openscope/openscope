@@ -1,0 +1,117 @@
+{
+    "airac": 1813,
+    "radio": {
+        "twr": "Rogers Tower",
+        "app": "Oke City Approach",
+        "dep": "Rogers Departure"
+    },
+    "icao": "KOKC",
+    "iata": "OKC",
+    "magnetic_north": 4.0,
+    "ctr_radius": 80,
+    "ctr_ceiling": 12000,
+    "initial_alt": 7000,
+    "position": [35.3930740, -97.6007617, "1296ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [35.3930740, -97.6007617],
+        "radius_nm": 5.0
+    },
+    "has_terrain": true,
+    "wind": {
+        "angle": 230,
+        "speed": 7
+    },
+    "arrivalRunway": "23R",
+    "departureRunway": "23L",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        
+    ],
+    "fixes": {
+        
+    },
+    "restricted": [
+        
+    ],
+    "runways":[
+        {
+            "name": ["5L", "23R"],
+            "end": [
+                ["N35d52.47", "W78d48.12", "366.9ft"],
+                ["N35d53.63", "W78d46.68", "408.7ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["5R", "23L"],
+            "end": [
+                ["N35d51.88", "W78d47.84", "397.4ft"],
+                ["N35d52.75", "W78d46.76", "430.6ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["14", "32"],
+            "end": [
+                ["N35d52.50", "W78d46.96", "432.0ft"],
+                ["N35d52.08", "W78d46.45", "424.7ft"]
+            ],
+            "ils": [false, false]
+        }
+    ],
+    "sids": {
+        "BEXGO3": {
+            "icao": "BEXGO3",
+            "name": "Bexgo Three",
+            "rwy": {
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
+            },
+            "body": ["AIMHI", "BEXGO"],
+            "exitPoints": {
+                "LVL": ["LVL"]
+            },
+            "draw": [
+                ["AIMHI", "BEXGO", "LVL*"]
+            ]
+        }
+    },
+    "stars": {
+        "ALDAN2": {
+            "icao": "ALDAN2",
+            "name": "Aldan Two",
+            "entryPoints": {
+                "HAFNR": ["HAFNR", "MELTN"],
+                "KPASS": ["KPASS", "ROBLS", "TABER"],
+                "ROA": ["ROA", "TIVAE"]
+            },
+            "body": [["SBV", "A170-|S280"], "FRAZI", ["FAVKO", "A100+|A120-"], ["ALDAN", "A100+|A120-"]],
+            "rwy": {
+                "KRDU5L": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "^JEMMY", "#234"],
+                "KRDU5R": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "^JEMMY", "#234"],
+                "KRDU23L": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["^BUTTS", "A60"], "#153"],
+                "KRDU23R": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["^BUTTS", "A60"]]
+            },
+            "draw": [
+                ["KPASS*", "ROBLS", "TABER", "SBV", "FRAZI", "FAVKO", "ALDAN", "GAZER", "HARSH", "BUTTS"],
+                ["ALDAN", "FOBAT", "BILLA", "BLNKR", "GABLR", "HEAVE", "JEMMY"],
+                ["HAFNR*", "MELTN", "SBV"],
+                ["ROA*", "TIVAE", "SBV"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        
+    ],
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": []
+        }
+    ]
+}
