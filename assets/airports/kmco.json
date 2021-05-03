@@ -128,6 +128,7 @@
         "FERAL": ["N26.5131556", "W81.7710389"],
         "FSHUN": ["N27.8491972", "W81.6277806"],
         "FONIK": ["N28.5940444", "W81.2841250"],
+        "FORYU": ["N29.2962444", "W81.1790333"],
         "JAFAR": ["N28.9869444", "W82.0469444"],
         "JESUP": ["N28.8884306", "W81.0797333"],
         "JIRAN": ["N28.5492333", "W81.2509944"],
@@ -139,6 +140,7 @@
         "GRDON": ["N29.3779722", "W80.6466417"],
         "GRNCH": ["N29.0691667", "W81.9100000"],
         "GRTNG": ["N29d18.4", "W82d03.6"],
+        "GTOUT": ["N28.9739806", "W81.0815944"],
         "GUANO": ["N29.0996472", "W81.3885917"],
         "GUMMY": ["N27.8265028", "W82.5323528"],
         "HAMMY": ["N28.5981472", "W81.3286056"],
@@ -171,18 +173,23 @@
         "LEWRD": ["N28.3438083", "W82.0734333"],
         "LLNCH": ["N27.4354639", "W80.6956833"],
         "LORRA": ["N28.0825556", "W81.4244194"],
+        "LPERD": ["N30.6025500", "W81.2811556"],
         "LYENS": ["N28.6256750", "W81.4241250"],
         "MATEO": ["N29.7668639", "W81.4535000"],
         "MAYYR": ["N29d55.1", "W82d10.8"],
         "MDBOG": ["N29.1063333", "W81.3140306"],
         "MDUSA": ["N28.9525389", "W81.4129000"],
         "MICKI": ["N29.1354472", "W81.6078944"],
+        "MICKX": ["N28.3915583", "W81.1875000"],
         "MIEGS": ["N28d30.7", "W81d10.1"],
         "MINEE": ["N28.1183389", "W81.7444944"],
         "MLB"  : ["N28.1052822", "W80.6353400"],
         "MOANS": ["N27.9138806", "W81.7485806"],
         "MUGLS": ["N28d39.1", "W82d30.2"],
         "MZULO": ["N28d32.1", "W80d17.5"],
+        "NICCK": ["N29.1879111", "W81.1694889"],
+        "NOBBS": ["N28.1644444", "W81.1875000"],
+        "NOOMN": ["N29.7077917", "W81.2142472"],
         "NAVAL": ["N28.7035694", "W81.3297556"],
         "OCF"  : ["N29.1774772", "W82.2263339"],
         "ODDEL": ["N28.0959750", "W81.1695111"],
@@ -196,8 +203,10 @@
         "PIE"  : ["N27.9077644", "W82.6843092"],
         "PHK"  : ["N26.7827425", "W80.6914325"],
         "PLUMR": ["N27.6794306", "W81.6909167"],
+        "POPYE": ["N28.7086111", "W81.1875000"],
         "PRICY": ["N28.0546556", "W81.9660639"],
         "QUAYL": ["N27.7759972", "W82.6465000"],
+        "RAMEZ": ["N28.5388889", "W81.1875000"],
         "REMIS": ["N27.8840528", "W85.2578861"],
         "RSW"  : ["N26.5298753", "W81.7757678"],
         "SABOT": ["N28.2514167", "W81.2269889"],
@@ -208,6 +217,7 @@
         "SHEMP": ["N30.9321361", "W82.3844972"],
         "SHIMM": ["N28.9664556", "W81.9279389"],
         "SIMIE": ["N27.2726333", "W81.7285694"],
+        "SNFLD": ["N29.0674972", "W81.1170861"],
         "SNOBE": ["N28.7423250", "W81.3685833"],
         "SRQ"  : ["N27.4070156", "W82.5636625"],
         "SUNDE": ["N28d25.6", "W81d11.2"],
@@ -219,6 +229,7 @@
         "TOSHE": ["N27.4436389", "W81.3846778"],
         "TRV"  : ["N27.6784239", "W80.4897256"],
         "TUFFE": ["N28.5559778", "W81.3281444"],
+        "TUGLE": ["N28.8819194", "W81.0706889"],
         "TUPPY": ["N28.0078361", "W81.5685944"],
         "UKAYY": ["N28d16.8", "W80d51.7"],
         "UNITY": ["N28.2615083", "W81.4505833"],
@@ -238,7 +249,8 @@
                 ["N28.4436967", "W81.2825812", "89ft"],
                 ["N28.4189437", "W81.2823278", "89ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, true],
+            "glideslope": [3.10, 3.00]
         },
         {
             "name": ["17R", "35L"],
@@ -246,7 +258,9 @@
                 ["N28.4356119", "W81.2958793", "90ft"],
                 ["N28.4081098", "W81.2955926", "86ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, true],
+            "glideslope": [3.10, 3.00]
+            
         },
         {
             "name": ["18L", "36R"],
@@ -254,7 +268,8 @@
                 ["N28.4483344", "W81.3223062", "88ft"],
                 ["N28.4153186", "W81.3219544", "89ft"]
             ],
-            "ils": [false, true]
+            "ils": [false, true],
+            "glideslope": [3.10, 3.00]
         },
         {
             "name": ["18R", "36L"],
@@ -262,7 +277,8 @@
                 ["N28.4482936", "W81.3269748", "91ft"],
                 ["N28.4152797", "W81.3266193", "92ft"]
             ],
-            "ils": [true, false]
+            "ils": [true, false],
+            "glideslope": [3.10, 3.00]
         }
    ],
     "sids": {
@@ -486,6 +502,31 @@
                 ["HIBAC*", "BEAUX", "SURFR", "ALYNA", "HIGGZ", "VOSSS", "SUNDE", "CUBAL"]
             ]  
         },
+        "BAIRN4": {
+            "icao": "BAIRN4",
+            "name": "Bairn Four",
+            "entryPoints": {
+              "PBI": ["PBI", "LLNCH"],
+              "PHK": ["PHK"],
+              "TRV": ["TRV"]
+            },
+            "body": [],
+            "rwy": {
+              "KMCO17L": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
+              "KMCO17R": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
+              "KMCO18L": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
+              "KMCO18R": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
+              "KMCO35L": [["BAIRN", "A80"], "NOBBS"],
+              "KMCO35R": [["BAIRN", "A80"], "NOBBS"],
+              "KMCO36L": [["BAIRN", "A80"], "NOBBS"],
+              "KMCO36R": [["BAIRN", "A80"], "NOBBS"]
+            },
+            "draw": [
+                ["TRV*", "BAIRN", "NOBBS", "MICKX", "RAMEZ", "POPYE"],
+                ["PBI*", "BAIRN"],
+                ["PHK*", "BAIRN"]
+            ]
+        },
         "BITHO7": {
             "icao": "BITHO7",
             "name": "Bitho Seven",
@@ -679,6 +720,29 @@
                 ["DOZES*", "QUAYL", "BULKS"],
                 ["JUMBA", "LORRA"]
             ]
+        },
+        "SNFLD1": {
+            "icao": "SNFLD1",
+            "name": "Seinfeld One",
+            "entryPoints": {
+                "LPERD": [["LPERD", "A300+|A340-"], ["NOOMN", "A190+|S280"], ["FORYU", "A130+|S280"], ["NICCK", "A120+"]]
+            },
+            "body": [["SNFLD", "A100+"], ["GTOUT", "A100+|A160-"], "TUGLE"],
+            "rwy": {
+                "KMCO17L": [["^BANYA", "A70|S210"], "#246"],
+                "KMCO17R": [["^BANYA", "A70|S210"], "#246"],
+                "KMCO18L": [["^BANYA", "A70|S210"], "#246"],
+                "KMCO18R": [["^BANYA", "A70|S210"], "#246"],
+                "KMCO35L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
+                "KMCO35R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
+                "KMCO36L": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]],
+                "KMCO36R": [["HIGGZ", "A100+|A120-|S250"], ["VOSSS", "A80+|S230"], ["SUNDE", "A60+"], ["^CUBAL", "A50|S210"]]
+            },
+            
+            "draw": [
+                ["LPERD*", "NOOMN", "FORYU", "NICCK", "SNFLD", "GTOUT", "TUGLE", "BANYA"],
+                ["TUGLE", "HIGGZ", "VOSSS", "SUNDE", "CUBAL"]
+            ]  
         }
     },
     "spawnPatterns": [
@@ -690,12 +754,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.7,
+            "rate": 5.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -703,13 +765,11 @@
                 ["fft", 56],
                 ["jbu", 71],
                 ["nks", 33],
-                ["rpa", 8],
-                ["sli/long", 2],
                 ["ual", 43],
-                ["ups", 1],
-                ["viv", 2]
+                ["ups", 1]
             ]
-        },{
+        },
+        {
             "origin": "kmco",
             "destination": "",
             "category": "departure",
@@ -717,7 +777,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.7,
+            "rate": 4.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -732,6 +792,7 @@
                 ["nks", 33],
                 ["rpa", 8],
                 ["sli/long", 2],
+                ["tam/long", 17],
                 ["ual", 43],
                 ["ups", 1],
                 ["viv", 2]
@@ -745,24 +806,23 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.7,
+            "rate": 9.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
+                ["baw/long", 10],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
+                ["ein/long", 2],
                 ["fdx/md11", 6],
                 ["fft", 56],
                 ["jbu", 71],
                 ["nks", 33],
                 ["rpa", 8],
-                ["sli/long", 2],
                 ["ual", 43],
                 ["ups", 1],
-                ["viv", 2]
+                ["vir", 16]
             ]
         },
         {
@@ -777,20 +837,17 @@
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
                 ["dal/long", 12],
                 ["dal/short", 63],
+                ["dlh/long", 12],
                 ["edv", 34],
                 ["fdx/md11", 6],
                 ["fft", 56],
+                ["ice/b763", 10],
                 ["jbu", 71],
                 ["nks", 33],
-                ["rpa", 8],
-                ["sli/long", 2],
                 ["ual", 43],
-                ["ups", 1],
-                ["viv", 2]
+                ["ups", 1]
             ]
         },
         {
@@ -801,12 +858,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.7,
+            "rate": 4.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -816,6 +871,8 @@
                 ["nks", 33],
                 ["rpa", 8],
                 ["sli/long", 2],
+                ["uae/a388", 3],
+                ["uae/b777", 4],
                 ["ual", 43],
                 ["ups", 1],
                 ["viv", 2]
@@ -829,12 +886,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.7,
+            "rate": 4.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -857,12 +912,12 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.7,
+            "rate": 3.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
                 ["amx/short", 4],
+                ["ava/jfk", 10],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -885,12 +940,36 @@
             "altitude": 26000,
             "speed": 280,
             "method": "random",
-            "rate": 7.7,
+            "rate": 5.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
+                ["dal/long", 12],
+                ["dal/short", 63],
+                ["edv", 34],
+                ["ein/long", 2],
+                ["fdx/md11", 6],
+                ["fft", 56],
+                ["jbu", 71],
+                ["nks", 33],
+                ["rpa", 8],
+                ["swa", 25],
+                ["ual", 43],
+                ["ups", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kmco",
+            "category": "arrival",
+            "route": "PBI.BAIRN4.KMCO17L",
+            "altitude": [26000, 32000],
+            "speed": 280,
+            "method": "random",
+            "rate": 4.7,
+            "airlines": [
+                ["aal/long", 2],
+                ["aal/short", 28],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -908,27 +987,32 @@
             "origin": "",
             "destination": "kmco",
             "category": "arrival",
-            "route": "PHK.GOOFY7.KMCO17L",
-            "altitude": [23000, 31000],
-            "speed": 320,
+            "route": "SAV..LPERD.SNFLD1.KMCO17L",
+            "altitude": [35000, 39000],
+            "speed": 280,
             "method": "random",
-            "rate": 7.7,
+            "rate": 9.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
+                ["baw/long", 9],
                 ["dal/long", 12],
                 ["dal/short", 63],
+                ["dlh/long", 10],
                 ["edv", 34],
+                ["edw/long", 5],
                 ["fdx/md11", 6],
                 ["fft", 56],
+                ["ice/b763", 10],
                 ["jbu", 71],
                 ["nks", 33],
                 ["rpa", 8],
                 ["swa", 25],
+                ["uae/a388", 4],
+                ["uae/b777", 2],
                 ["ual", 43],
-                ["ups", 1]
+                ["ups", 1],
+                ["vir", 16]
             ]
         },
         {
@@ -939,21 +1023,26 @@
             "altitude": 28000,
             "speed": 280,
             "method": "random",
-            "rate": 7.7,
+            "rate": 4.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
                 ["amx/long", 2],
                 ["amx/short", 4],
+                ["ava/jfk", 14],
+                ["bwa/b738", 10],
+                ["cmp", 10],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
                 ["fdx/md11", 6],
                 ["fft", 56],
+                ["glo", 7],
                 ["jbu", 71],
                 ["nks", 33],
                 ["rpa", 8],
                 ["swa", 25],
+                ["tam/long", 10],
                 ["ual", 43],
                 ["ups", 1]
             ]
@@ -966,7 +1055,7 @@
             "altitude": [31000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 7.7,
+            "rate": 6.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -977,12 +1066,14 @@
                 ["edv", 34],
                 ["fdx/md11", 6],
                 ["fft", 56],
+                ["hal/jfk", 3],
                 ["jbu", 71],
                 ["nks", 33],
                 ["rpa", 8],
                 ["swa", 25],
                 ["ual", 43],
-                ["ups", 1]
+                ["ups", 7],
+                ["voi", 4]
             ]
         },
         {
@@ -993,12 +1084,10 @@
             "altitude": [31000, 36000],
             "speed": 280,
             "method": "random",
-            "rate": 7.7,
+            "rate": 5.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -1006,8 +1095,8 @@
                 ["fft", 56],
                 ["jbu", 71],
                 ["nks", 33],
-                ["rpa", 8],
                 ["swa", 25],
+                ["tsc", 4],
                 ["ual", 43],
                 ["ups", 1]
             ]
@@ -1020,12 +1109,11 @@
             "altitude": [31000, 36000],
             "speed": 280,
             "method": "random",
-            "rate": 7.7,
+            "rate": 6.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
-                ["amx/long", 2],
-                ["amx/short", 4],
+                ["asa", 5],
                 ["dal/long", 12],
                 ["dal/short", 63],
                 ["edv", 34],
@@ -1033,10 +1121,11 @@
                 ["fft", 56],
                 ["jbu", 71],
                 ["nks", 33],
-                ["rpa", 8],
+                ["scx", 6],
                 ["swa", 25],
                 ["ual", 43],
-                ["ups", 1]
+                ["ups", 1],
+                ["wja", 6]
             ]
         }
     ],
