@@ -59,15 +59,22 @@
         "_RW35L1DME": ["N35.412658", "W97.605824"],
         "_RW35R1DME": ["N35.411857", "W97.589006"],
         "_RW361DME" : ["N35.399273", "W97.607909"],
+        "AACES": ["N35.2720861", "W97.1444389"],
         "ADWOW": ["N35.4930444", "W97.7090778"],
         "ATOKA": ["N34.6112778", "W96.4694056"],
+        "AWLIV": ["N36.0598583", "W96.8029361"],
+        "BAISS": ["N35.1781694", "W97.4733278"],
         "BASSR": ["N35.0516306", "W97.0570389"],
         "BASTS": ["N35.1105528", "W97.8724778"],
+        "BECTA": ["N35.7292833", "W97.4555861"],
         "BEEDI": ["N35.3697944", "W98.1352889"],
         "BELMN": ["N36.7465306", "W97.1601528"],
         "BFFFY": ["N35.5283944", "W98.7544750"],
+        "BMART": ["N36.1309028", "W96.2828222"],
+        "BOSHY": ["N35.6795750", "W97.3878361"],
         "BRIGE": ["N35.2905778", "W97.6056222"],
         "BROMA": ["N35.2543889", "W98.5027889"],
+        "BYP"  : ["N33.5374861", "W96.2340944"],
         "CAMET": ["N35.6171306", "W98.1903611"],
         "CASTN": ["N35.8365472", "W97.5887250"],
         "CCASH": ["N35.2659444", "W98.0056194"],
@@ -76,7 +83,13 @@
         "CUBTU": ["N35.1653806", "W97.6055083"],
         "DAWKS": ["N35.5800750", "W97.9903361"],
         "DIGHT": ["N35.2757583", "W97.8152194"],
+        "DIGSE": ["N35.2949500", "W97.4808167"],
+        "DIMPL": ["N35.2487028", "W96.6284639"],
         "DRLER": ["N36.1962583", "W95.7880833"],
+        "DWINE": ["N35.2080611", "W96.2162611"],
+        "FAKEY": ["N35.2675667", "W97.0425389"],
+        "FEDRL": ["N36.1416667", "W97.0509500"],
+        "FIGET": ["N34.7822222", "W97.2450000"],
         "FLAPP": ["N35.5352167", "W97.7571278"],
         "FLECH": ["N34.7234056", "W98.1188778"],
         "FOYER": ["N34.5546611", "W98.2285167"],
@@ -87,18 +100,38 @@
         "GHOST": ["N35.2558583", "W98.2138139"],
         "GIMLE": ["N33.9875000", "W98.5934722"],
         "GLOPS": ["N35.0094667", "W97.5591556"],
+        "GOLFS": ["N35.5586694", "W97.5890750"],
         "GRUVN": ["N35.3750000", "W98.4144444"],
         "GTYER": ["N35.9085389", "W96.5752972"],
+        "GULLI": ["N36.0119500", "W97.1443417"],
+        "HALTO": ["N35.3278806", "W97.4868750"],
+        "HEDIK": ["N35.5991861", "W97.4174472"],
         "HNGER": ["N36.3533333", "W97.2113889"],
         "HOLLE": ["N35.0148306", "W96.4697306"],
+        "IMAGE": ["N35.4113500", "W97.4869528"],
+        "IRW"  : ["N35.3585969", "W97.6092267"],
+        "ISAKE": ["N35.4552472", "W97.4868167"],
+        "JASKA": ["N35.8483528", "W97.3248417"],
         "JAVXE": ["N35.1659639", "W97.5887417"],
+        "JSTCE": ["N36.0882389", "W96.5972750"],
+        "JTUNE": ["N36.3601861", "W96.4153750"],
         "KAYOS": ["N35.9946722", "W97.6908639"],
+        "KLUBB": ["N35.1203611", "W95.4667472"],
+        "KNEWT": ["N36.2595667", "W96.7098389"],
+        "KOMMA": ["N35.0146306", "W94.6776083"],
         "KRMSN": ["N34.9251972", "W97.1195111"],
         "LARKO": ["N36.1320306", "W97.4507528"],
         "LEVEE": ["N35.2856111", "W97.7174111"],
+        "LFRED": ["N36.9113694", "W95.8643833"],
+        "LIT"  : ["N34.6776728", "W92.1805283"],
+        "MIICK": ["N36.4626583", "W97.1539667"],
+        "MOMMY": ["N36.3309972", "W96.7627778"],
         "MOOON": ["N35.6631472", "W96.9576583"],
         "MOOSE": ["N34.3147417", "W97.4607500"],
+        "MOVIE": ["N35.4992194", "W97.4544500"],
+        "MPYRE": ["N36.5278583", "W95.9187806"],
         "MUDDE": ["N34.9348444", "W97.5485083"],
+        "MURAH": ["N36.0120917", "W97.1442389"],
         "NICOM": ["N35.3271861", "W97.7070889"],
         "NUTRE": ["N35.2238056", "W97.6055806"],
         "ODOUR": ["N35.2701556", "W97.9447722"],
@@ -106,15 +139,23 @@
         "OLFRD": ["N34.2115861", "W97.1683333"],
         "OLGUY": ["N35.3713389", "W98.2167139"],
         "OLMPC": ["N35.0104972", "W97.7325944"],
+        "OVAYE": ["N35.5481139", "W97.4752944"],
         "OVDIE": ["N35.2935778", "W97.5888472"],
+        "PAAUL": ["N36.4933472", "W96.5136028"],
+        "PALMR": ["N35.3868083", "W97.4867583"],
+        "PER"  : ["N36.7465300", "W97.1601556"],
         "PHARA": ["N35.4644056", "W96.0709722"],
         "POKSS": ["N35.7396000", "W97.6340833"],
         "QWAKE": ["N35.4101500", "W97.7071611"],
         "RDHWK": ["N35.1009583", "W96.8770333"],
+        "RIFFL": ["N35.2583750", "W96.8376917"],
+        "ROHAA": ["N35.5595194", "W97.6058556"],
         "ROLLS": ["N35.7227444", "W99.4706972"],
         "RUSTS": ["N35.2369472", "W99.2059639"],
         "SAGIE": ["N35.0174361", "W97.9712778"],
         "SCUFF": ["N35.6563694", "W98.3891028"],
+        "SEGLR": ["N36.1418083", "W97.0508472"],
+        "SGF"  : ["N37.3559483", "W93.3340411"],
         "SQRRL": ["N35.4737472", "W98.1354861"],
         "SPAMS": ["N35.1334278", "W97.6995944"],
         "SPS"  : ["N33.9872875", "W98.5934719"],
@@ -125,16 +166,21 @@
         "TERNE": ["N35.5295583", "W97.8267667"],
         "THRPE": ["N34.9754222", "W97.7772583"],
         "TRUPR": ["N35.6961194", "W96.8864889"],
+        "TSDEL": ["N34.8955861", "W97.3298306"],
+        "TUL"  : ["N36.1962536", "W95.7880903"],
         "UKW"  : ["N33.5358869", "W97.8212786"],
         "VOWED": ["N35.3968778", "W96.9198861"],
         "WABUT": ["N35.5068250", "W97.7406694"],
         "WALLS": ["N35.3311278", "W97.7090167"],
+        "WAYMN": ["N35.0752000", "W97.4666917"],
         "WENDY": ["N35.9250306", "W97.5475167"],
         "WICKS": ["N34.5408694", "W96.7318611"],
         "WWILL": ["N35.4379611", "W97.7090306"],
         "YOUSE": ["N35.3854028", "W99.1760000"],
         "YUCKS": ["N34.9787944", "W98.0121889"],
-        "ZEEWE": ["N35.5621611", "W99.1544861"]
+        "YUKKY": ["N35.1023222", "W97.4903806"],
+        "ZEEWE": ["N35.5621611", "W99.1544861"],
+        "ZEMMA": ["N34.3838361", "W96.9900028"]
     },
     "restricted": [
         
@@ -173,6 +219,9 @@
             "ils": [false, false]
         }
     ],
+    "airways": {
+        "J14": ["LIT", "KOMMA", "KLUBB", "DWINE"]
+    },
     "sids": {
         "FUNNL3": {
             "icao": "FUNNL3",
@@ -473,6 +522,92 @@
                 ["CCASH", "ODOUR", "LEVEE"]
             ]
         },
+        "GULLI2": {
+            "icao": "GULLI2",
+            "name": "Gulley Two",
+            "entryPoints": {
+                "PER": ["PER"],
+                "SGF": ["SGF", "SEGLR"],
+                "TUL": ["TUL"]
+            },
+            "body": ["GULLI"],
+            "rwy": {
+                "KOKC17L": ["#215"],
+                "KOKC17R": ["#215"],
+                "KOKC35L": ["OVAYE", "#175"],
+                "KOKC35R": ["OVAYE", "#175"]
+            },
+            "draw": [
+                ["SGF*", "SEGLR", "GULLI", "OVAYE"],
+                ["TUL*", "GULLI"],
+                ["PER*", "GULLI"]
+            ]
+        },
+        "MURAH3": {
+            "icao": "MURAH3",
+            "name": "Murah Three",
+            "entryPoints": {
+                "AWLIV": [["AWLIV", "A220-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "BELMN": [["BELMN", "A240+"], ["MIICK", "A190+|A280-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "BMART": [["BMART", "A240+"], ["JSTCE", "A190+|A280-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "DRLER": ["DRLER", ["BMART", "A240+"], ["JSTCE", "A190+|A280-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "JTUNE": [["JTUNE", "A240+"], ["FEDRL", "A220-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "LFRED": ["LFRED", ["PAAUL", "A240+"], ["MOMMY", "A190+|A280-|S280"], ["FEDRL", "A220-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "MPYRE": ["MPYRE", ["JTUNE", "A240+"], ["KNEWT", "A190+|A280-|S280"], ["FEDRL", "A220-|S280"], ["MURAH", "A110+|A170-|S280"]],
+                "MURAH": [["MURAH", "A110+|A170-|S280"]],
+                "PAAUL": [["PAAUL", "A240+"], ["FEDRL", "A220-|S280"], ["MURAH", "A110+|A170-|S280"]]
+            },
+            "body": [["JASKA", "A90+|S250"]],
+            "rwy": {
+                "KOKC17L": [["BECTA", "A60+"], ["GOLFS", "A40|S210"]],
+                "KOKC17R": [["BECTA", "A60+"], ["ROHAA", "A40|S210"]],
+                "KOKC35L": [["BOSHY", "A90+"], ["HEDIK", "A80+"], ["MOVIE", "A70+|S220"], ["IMAGE", "A60|S210"], "^HALTO", "#176"],
+                "KOKC35R": [["BOSHY", "A90+"], ["HEDIK", "A80+"], ["MOVIE", "A70+|S220"], ["IMAGE", "A60|S210"], "^HALTO", "#176"]
+            },
+            "draw": [
+                ["AWLIV", "MURAH"]
+            ]
+        },
+        "RIFFL3": {
+            "icao": "RIFFL3",
+            "name": "Rifle Three",
+            "entryPoints": {
+                "DIMPL": [["DIMPL", "A110+|A170-|S280"], ["RIFFL", "A100+|A150-|S250"]],
+                "DWINE": [["DWINE", "A190+|S280"], ["DIMPL", "A110+|A170-|S280"], ["RIFFL", "A100+|A150-|S250"]],
+                "RIFFL": [["RIFFL", "A100+|A150-|S250"]]
+            },
+            "body": ["FAKEY", ["^AACES", "A60"], "#269"],
+            "rwy": {
+                "KOKC17L": [],
+                "KOKC17R": [],
+                "KOKC35L": [],
+                "KOKC35R": []
+            },
+            "draw": [
+                ["DWINE*", "DIMPL*", "RIFFL*", "FAKEY", "AACES"]
+            ]
+        },
+        "TSDEL3": {
+            "icao": "TSDEL3",
+            "name": "Tisdale Three",
+            "entryPoints": {
+                "FIGET": [["FIGET", "A110+|A170-|S280"], ["TSDEL", "A100+|A150-|S250"]],
+                "TSDEL": [["TSDEL", "A100+|A150-|S250"]],
+                "ZEMMA": [["ZEMMA", "A190+|S280"], ["FIGET", "A110+|A170-|S280"], ["TSDEL", "A100+|A150-|S250"]]
+            },
+            "body": ["WAYMN"],
+            "rwy": {
+                "KOKC17L": [["BAISS", "A80+"], ["DIGSE", "A70+|S220"], ["PALMR", "A60|S210"], "^ISAKE", "#356"],
+                "KOKC17R": [["BAISS", "A80+"], ["DIGSE", "A70+|S220"], ["PALMR", "A60|S210"], "^ISAKE", "#356"],
+                "KOKC35L": [["YUKKY", "A90-"], ["NUTRE", "A40|S210"]],
+                "KOKC35R": [["YUKKY", "A90-"], ["CROPE", "A40|S210"]]
+            },
+            "draw": [
+                ["ZEMMA*", "FIGET", "TSDEL", "WAYMN", "BAISS", "DIGSE", "PALMR", "ISAKE"],
+                ["WAYMN", "YUKKY", "CROPE"],
+                ["YUKKY", "NUTRE"]
+            ]
+        },
         "YUCKS3": {
             "icao": "YUCKS3",
             "name": "Yucks Three",
@@ -503,18 +638,18 @@
             "altitude": "29000",
             "speed": "320",
             "method": "random",
-            "rate": 4,
+            "rate": 3.5,
             "airlines": [
-                ["aal/short", 6],
-                ["asa", 4],
-                ["ash", 2],
-                ["dal/short", 9],
-                ["fft", 1],
-                ["jbu", 2],
-                ["n/fastGA", 1],
+                ["aay", 2],
+                ["asa", 1],
+                ["ash", 1],
+                ["eny", 1],
+                ["fft", 2],
+                ["n/fastGA", 2],
                 ["nks", 4],
-                ["swa", 6],
-                ["ual/short", 7],
+                ["skw", 5],
+                ["swa", 3],
+                ["ual/short", 1],
                 ["ups", 3]
           ]
         },
@@ -526,16 +661,17 @@
             "altitude": "29000",
             "speed": "320",
             "method": "random",
-            "rate": 4,
+            "rate": 2.2,
             "airlines": [
                 ["aal/short", 6],
+                ["aay", 4],
                 ["asa", 4],
                 ["ash", 2],
                 ["dal/short", 9],
+                ["edv", 4],
+                ["fdx", 4],
                 ["fft", 1],
-                ["jbu", 2],
                 ["n/fastGA", 1],
-                ["nks", 4],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 3]
@@ -556,9 +692,71 @@
                 ["ash", 2],
                 ["dal/short", 9],
                 ["fft", 1],
-                ["jbu", 2],
                 ["n/fastGA", 1],
-                ["nks", 4],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "",
+            "destination": "KOKC",
+            "category": "arrival",
+            "route": "MPYRE.MURAH3.KOKC35R",
+            "altitude": "29000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal/short", 6],
+                ["aay", 3],
+                ["asa", 4],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "",
+            "destination": "KOKC",
+            "category": "arrival",
+            "route": "LIT.J14.DWINE.RIFFL3.KOKC35R",
+            "altitude": "37000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal/short", 6],
+                ["asa", 4],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "",
+            "destination": "KOKC",
+            "category": "arrival",
+            "route": "BYP..ZEMMA.TSDEL3.KOKC35R",
+            "altitude": "37000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal/short", 6],
+                ["asa", 4],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 3]
@@ -572,15 +770,13 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
                 ["aal/short", 6],
                 ["ash", 2],
                 ["dal/short", 9],
                 ["fft", 1],
-                ["jbu", 2],
                 ["n/fastGA", 1],
-                ["nks", 4],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 3]
@@ -594,15 +790,203 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["aay", 4],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35L.OLGUY3.YOUSE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
             "airlines": [
                 ["aal/short", 6],
                 ["ash", 2],
                 ["dal/short", 9],
                 ["fft", 1],
-                ["jbu", 2],
                 ["n/fastGA", 1],
-                ["nks", 4],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.KRMSN3.WICKS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.RDHWK3.HOLLE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.SSYKO3.KAYOS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.STPHN3.ZEEWE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.TEBRD3.ATOKA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.THRPE3.FLECH",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.TRUPR3.GTYER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
+                ["swa", 6],
+                ["ual/short", 7],
+                ["ups", 3]
+          ]
+        },
+        {
+            "origin": "KOKC",
+            "destination": "",
+            "category": "departure",
+            "route": "KOKC35R.WENDY3.HNGER..PER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aal/short", 6],
+                ["aay", 4],
+                ["ash", 2],
+                ["dal/short", 9],
+                ["fft", 1],
+                ["n/fastGA", 1],
+                ["skw", 5],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 3]
