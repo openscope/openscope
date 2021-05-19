@@ -1,4 +1,4 @@
-# 6.25.0 (May 1, 2021)
+# 6.25.0 (June 1, 2021)
 ### New Features
 
 ### Bugfixes
@@ -6,6 +6,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Change syntax of restricted airspace definitions
 - <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Update Cape Air (KAP) fleet
+- <a href="https://github.com/openscope/openscope/issues/1732" target="_blank">#1732</a> - Add support for custom pronunciation of fixes
 
 
 # 6.24.0 (April 1, 2021)

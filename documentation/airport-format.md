@@ -68,18 +68,18 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
         "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
         "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+        "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
         "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
         "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
         "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
         "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
         "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-        "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+        "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
         "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
         "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-        "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+        "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
         "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-        "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+        "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
         "WESET": ["N47d24.35m0", "W122d19.10m0"],
         "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
         "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
@@ -314,18 +314,18 @@ All fixes listed within the Standard Routes need to be defined within this secti
     "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
     "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
     "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-    "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+    "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
     "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
     "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
     "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
     "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
     "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-    "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+    "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
     "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
     "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-    "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+    "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
     "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-    "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+    "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
     "WESET": ["N47d24.35m0", "W122d19.10m0"],
     "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
     "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
@@ -336,6 +336,14 @@ Each navaid located within or around the airport airspace in latitude, longitude
 
 ```json
 "AAYRR": ["N46d38.81m0", "W123d43.34m0"]
+```
+
+Each fix can have an optional third parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an arbitrary letter combination. Capitalization of this parameter _does not affect_ the way the fix is pronounced in-sim.
+
+```json
+"EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
+"KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
+"PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
 ```
 
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:

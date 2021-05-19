@@ -16,10 +16,10 @@ export default class FixModel extends BaseModel {
      * @for FixModel
      * @constructor
      * @param fixName {string}
-     * @param fixCoordinate {array}
+     * @param fixData {array or object}
      * @param referencePosition {StaticPositionModel}
      */
-    constructor(fixName, fixCoordinate, referencePosition) {
+    constructor(fixName, fixData, referencePosition) {
         super();
 
         /**
@@ -32,6 +32,15 @@ export default class FixModel extends BaseModel {
         this.name = '';
 
         /**
+         * Pronunciation of the fix name
+         *
+         * @property _spoken
+         * @type {string}
+         * @default ''
+         */
+        this._spoken = '';
+
+        /**
          * Coordinates of the fix
          *
          * @property _positionModel
@@ -40,7 +49,7 @@ export default class FixModel extends BaseModel {
          */
         this._positionModel = null;
 
-        this.init(fixName, fixCoordinate, referencePosition);
+        this.init(fixName, fixData, referencePosition);
     }
 
     /**
@@ -65,7 +74,7 @@ export default class FixModel extends BaseModel {
     }
 
     /**
-     * Fascade to access relative position
+     * Facade to access relative position
      *
      * @for FixModel
      * @return {array<number>} [kilometersNorth, kilometersEast]
@@ -75,23 +84,40 @@ export default class FixModel extends BaseModel {
     }
 
     /**
+     * Facade to access spoken name
+     *
+     * @for FixModel
+     * @return {string}
+     */
+    get spoken() {
+        return this._spoken;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixModel
      * @method init
      * @param fixName {string}
-     * @param fixCoordinate {array}
+     * @param fixData {array or object}
      * @param referencePosition {StaticPositionModel}
      * @chainable
      */
-    init(fixName, fixCoordinate, referencePosition) {
-        // TODO: should this be a throwing instead of returning early?
-        if (!fixName || !fixCoordinate || !referencePosition) {
-            return;
+    init(fixName, fixData, referencePosition) {
+        if (!fixName || !fixData || !referencePosition) {
+            throw new TypeError(`Expected FixModel ${fixName} to receive name, data, and referencePosition, but ` +
+                `received ${typeof fixName}, ${typeof fixData}, ${typeof referencePosition}`);
         }
 
+        const [lat, lon, spoken] = fixData;
         this.name = fixName.toUpperCase();
-        this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
+        this._positionModel = new StaticPositionModel([lat, lon], referencePosition, referencePosition.magneticNorth);
+
+        if (typeof spoken === 'undefined') {
+            this._spoken = fixName.toLowerCase();
+        } else {
+            this._spoken = spoken.toLowerCase();
+        }
 
         return this;
     }
@@ -105,6 +131,7 @@ export default class FixModel extends BaseModel {
      */
     reset() {
         this.name = '';
+        this._spoken = '';
         this._positionModel = null;
 
         return this;
