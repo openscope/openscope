@@ -104,20 +104,19 @@ export default class FixModel extends BaseModel {
      * @chainable
      */
     init(fixName, fixData, referencePosition) {
-        // TODO: should this be a throwing instead of returning early?
         if (!fixName || !fixData || !referencePosition) {
-            return;
+            throw new TypeError(`Expected FixModel ${fixName} to receive name, data, and referencePosition, but ` +
+                `received ${typeof fixName}, ${typeof fixData}, ${typeof referencePosition}`);
         }
 
+        const [lat, lon, spoken] = fixData;
         this.name = fixName.toUpperCase();
+        this._positionModel = new StaticPositionModel([lat, lon], referencePosition, referencePosition.magneticNorth);
 
-        if (Array.isArray(fixData)) { // only coordinates supplied
-            this._spoken = fixName.toLowerCase(); // lower-case makes the voice engine try to pronounce it
-            this._positionModel = new StaticPositionModel(fixData, referencePosition, referencePosition.magneticNorth);
+        if (typeof spoken === 'undefined') {
+            this._spoken = fixName.toLowerCase();
         } else {
-            const { coordinates, spoken } = fixData;
-            this._spoken = spoken.toLowerCase(); // lower-case prevents spelling
-            this._positionModel = new StaticPositionModel(coordinates, referencePosition, referencePosition.magneticNorth);
+            this._spoken = spoken.toLowerCase();
         }
 
         return this;

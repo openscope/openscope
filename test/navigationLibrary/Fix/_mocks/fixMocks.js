@@ -123,5 +123,4 @@ export const AIRPORT_JSON_FIXES_MOCK = {
 
 export const FIXNAME_MOCK = '_NAPSE068';
 export const REAL_FIXNAME_MOCK = 'ARCHI';
-export const FIXSPOKEN_MOCK = 'archie';
 export const FIX_COORDINATE_MOCK = ['N37d19.07m0', 'W121d10.80m0'];

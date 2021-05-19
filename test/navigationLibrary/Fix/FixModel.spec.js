@@ -3,7 +3,6 @@ import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixMo
 import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import {
     FIXNAME_MOCK,
-    FIXSPOKEN_MOCK,
     FIX_COORDINATE_MOCK,
     REAL_FIXNAME_MOCK
 } from './_mocks/fixMocks';
@@ -21,83 +20,18 @@ ava.afterEach(() => {
     resetNavigationLibraryFixture();
 });
 
-ava('does not throw when instantiated with invalid parameters', t => {
-    t.notThrows(() => new FixModel());
-    t.notThrows(() => new FixModel([]));
-    t.notThrows(() => new FixModel(''));
-    t.notThrows(() => new FixModel(42));
-    t.notThrows(() => new FixModel(false));
-});
-
-ava('returns early when instantiated with incorrect parameters', t => {
-    let model;
-
-    model = new FixModel(FIXNAME_MOCK);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK });
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(null, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(null, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK }, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, null, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, null);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK }, null);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(null, null, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(model.spoken === '');
-    t.true(!model._positionModel);
-});
-
-ava('throws if called with an object as input but without both expected parameters defined', t => {
-    t.throws(() => new FixModel(FIXNAME_MOCK, { }, airportPositionFixtureKSFO));
-    t.throws(() => new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK }, airportPositionFixtureKSFO));
-    t.throws(() => new FixModel(FIXNAME_MOCK, { spoken: FIXSPOKEN_MOCK }, airportPositionFixtureKSFO));
-});
-
-ava('accepts a `fixName`, an array `coordinates` and an `airportPosition` as its parameters', t => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    t.true(model.name === FIXNAME_MOCK);
-
-    t.true(model.spoken === FIXNAME_MOCK.toLowerCase());
-    t.true(model._positionModel instanceof DynamicPositionModel);
-});
-
-ava('accepts a `fixName`, an object with `coordinates` and and `spoken`, and an `airportPosition` as its parameters', t => {
-    const model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: FIXSPOKEN_MOCK }, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-
-    t.true(model.name === FIXNAME_MOCK);
-    t.true(model.spoken === FIXSPOKEN_MOCK);
-    t.true(model._positionModel instanceof DynamicPositionModel);
+ava('throws when instantiated with invalid parameters', t => {
+    t.throws(() => new FixModel());
+    t.throws(() => new FixModel([]));
+    t.throws(() => new FixModel(''));
+    t.throws(() => new FixModel(42));
+    t.throws(() => new FixModel(false));
+    t.throws(() => new FixModel(FIXNAME_MOCK, undefined, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, undefined));
+    t.throws(() => new FixModel(FIXNAME_MOCK, undefined, undefined));
+    t.throws(() => new FixModel(undefined, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(undefined, undefined, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(undefined, FIX_COORDINATE_MOCK, undefined));
 });
 
 ava('.init() sets name in upperCase', t => {
@@ -108,12 +42,20 @@ ava('.init() sets name in upperCase', t => {
     t.true(model.name === 'U443RCAS3');
 });
 
-ava('.init() sets spoken in lowerCase', t => {
-    let model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: 'LOWERCASE' }, airportPositionFixtureKSFO);
-    t.true(model.spoken === 'lowercase');
+ava('.init() sets spoken to specified value (lower-cased) when "spoken" parameter is given', t => {
+    let model = new FixModel(FIXNAME_MOCK, [...FIX_COORDINATE_MOCK, 'Spoken Werds'], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'spoken werds');
 
-    model = new FixModel(FIXNAME_MOCK, { coordinates: FIX_COORDINATE_MOCK, spoken: 'L0W3RC4S3' }, airportPositionFixtureKSFO);
+    model = new FixModel(FIXNAME_MOCK, [...FIX_COORDINATE_MOCK, 'L0W3RC4S3'], airportPositionFixtureKSFO);
     t.true(model.spoken === 'l0w3rc4s3');
+});
+
+ava('.init() sets spoken to fix name (lower-cased) when "spoken" parameter is not given', t => {
+    let model = new FixModel('FIXXA', [...FIX_COORDINATE_MOCK], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'fixxa');
+
+    model = new FixModel('F1XX4', [...FIX_COORDINATE_MOCK], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'f1xx4');
 });
 
 ava('.isRealFix returns correct value', (t) => {
@@ -129,6 +71,6 @@ ava('.clonePosition() returns a DynamicPositionModel with the position informati
     const result = model.clonePosition();
 
     t.true(result instanceof DynamicPositionModel);
-    t.true(result.latitude === result.latitude);
-    t.true(result.longitude === result.longitude);
+    t.true(result.latitude === model.positionModel.latitude);
+    t.true(result.longitude === model.positionModel.longitude);
 });
