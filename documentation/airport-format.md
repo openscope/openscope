@@ -338,7 +338,7 @@ Each navaid located within or around the airport airspace in latitude, longitude
 "AAYRR": ["N46d38.81m0", "W123d43.34m0"]
 ```
 
-Each fix can have an optional third parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an abitrary letter combination. Capitalization of this parameter _does not affect_ the way the fix is pronunced in-sim.
+Each fix can have an optional third parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an arbitrary letter combination. Capitalization of this parameter _does not affect_ the way the fix is pronounced in-sim.
 
 ```json
 "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
