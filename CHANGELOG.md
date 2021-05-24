@@ -8,6 +8,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Update Cape Air (KAP) fleet
 - <a href="https://github.com/openscope/openscope/issues/1732" target="_blank">#1732</a> - Add support for custom pronunciation of fixes
 - <a href="https://github.com/openscope/openscope/issues/1818" target="_blank">#1818</a> - Update lodash & dependencies
+- <a href="https://github.com/openscope/openscope/issues/1820" target="_blank">#1820</a> - Update simultaneous dependent approach separation minima
 
 
 # 6.24.0 (April 1, 2021)
