@@ -762,6 +762,8 @@ class UiController {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'close');
         this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.$airportSearch.val(null);
+        $('.dialog-body li').each(() => $(this).toggle(true));
     }
 
     /**
