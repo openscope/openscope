@@ -21,7 +21,7 @@ import { speech_say } from '../speech';
 import { generateTransponderCode, isDiscreteTransponderCode, isValidTransponderCode } from '../utilities/transponderUtilities';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { FLIGHT_CATEGORY, FLIGHT_PHASE } from '../constants/aircraftConstants';
 import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
@@ -548,6 +548,16 @@ export default class AircraftController {
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
+
+        if (initializationProps.category === 'departure') {
+            // create the StripView immediately for departures; arrival strips are made when controllable
+            this._stripViewController.createStripView(aircraftModel);
+            aircraftModel.pilot.clearedAsFiled();
+            aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
+            aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
+            aircraftModel.fms.departureRunwayModel.removeAircraftFromQueue(aircraftModel.id);
+            aircraftModel.takeoff(aircraftModel.fms.departureRunwayModel);
+        }
     }
 
     /**
