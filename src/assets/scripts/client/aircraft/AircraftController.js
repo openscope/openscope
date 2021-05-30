@@ -156,6 +156,7 @@ export default class AircraftController {
      */
     _setupHandlers() {
         this._onRemoveAircraftHandler = this.aircraft_remove.bind(this);
+        this._onRemoveOutsideAircraft = this.aircraft_remove_all_outside.bind(this);
 
         return this;
     }
@@ -172,6 +173,7 @@ export default class AircraftController {
         this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
         this._eventBus.on(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
+        this._eventBus.on(EVENT.REMOVE_OUTSIDE_AIRCRAFT, this._onRemoveOutsideAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
@@ -189,6 +191,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
         this._eventBus.off(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
+        this._eventBus.off(EVENT.REMOVE_OUTSIDE_AIRCRAFT, this.aircraft_remove_all);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
@@ -303,6 +306,20 @@ export default class AircraftController {
         // iterating forward would cause skipping as the array shifts
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
             this.aircraft_remove(this.aircraft.list[i]);
+        }
+    }
+
+    /**
+     * This method is very similar to aircraft_remove_all() but only removes outside aircraft
+     *
+     * @for AircraftController
+     * @method aircraft_remove_all_outside
+     */
+    aircraft_remove_all_outside() {
+        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
+            if (!aircraft.list[i].isControllable) {
+                this.aircraft_remove(this.aircraft.list[i]);
+            }
         }
     }
 

@@ -9,6 +9,8 @@ import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { REGEX } from '../constants/globalConstants';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
+import GameController from '../game/GameController';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -102,6 +104,7 @@ export default class TrafficRateController {
      */
     _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
+        this.arrivalPatternRate = this.arrivalPatternRate.bind(this);
 
         return this;
     }
@@ -117,6 +120,7 @@ export default class TrafficRateController {
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
+        this._eventBus.on(EVENT.GET_ARRIVAL_TRAFFIC_RATE, this.arrivalPatternRate);
 
         return this;
     }
@@ -130,6 +134,7 @@ export default class TrafficRateController {
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
+        this._eventBus.off(EVENT.GET_ARRIVAL_TRAFFIC_RATE, this.arrivalPatternRate);
 
         return this;
     }
@@ -276,6 +281,14 @@ export default class TrafficRateController {
 
             this._updateRate(spawnPattern, $childOutput);
         }
+
+        /**
+         * Apply the reset to arrivals only if the arrivals category is changed & the option for resetting arrivals is "yes"
+         */
+        const resetAirrvalOption = GameController.getGameOption(GAME_OPTION_NAMES.RESET_ARRIVALS);
+        if (category === 'arrival' && resetAirrvalOption === 'yes') {
+            this._eventBus.trigger(EVENT.REMOVE_OUTSIDE_AIRCRAFT);
+        }
     }
 
     /**
@@ -315,5 +328,9 @@ export default class TrafficRateController {
 
         $output.text(spawnPattern.rate);
         SpawnScheduler.resetTimer(spawnPattern);
+    }
+
+    arrivalPatternRate() {
+        return this._rates.arrival;
     }
 }
