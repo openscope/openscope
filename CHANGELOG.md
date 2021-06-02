@@ -1,3 +1,11 @@
+# 6.26.0 (July 1, 2021)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.25.0 (June 2, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1593" target="_blank">#1593</a> - Add search bar to airport selection dialog
