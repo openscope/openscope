@@ -21,8 +21,9 @@ import { speech_say } from '../speech';
 import { generateTransponderCode, isDiscreteTransponderCode, isValidTransponderCode } from '../utilities/transponderUtilities';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { FLIGHT_CATEGORY, FLIGHT_PHASE } from '../constants/aircraftConstants';
 import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -544,10 +545,22 @@ export default class AircraftController {
      */
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftModel(initializationProps);
+        const isDeparture = initializationProps.category === 'departure';
+        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
+
+        if (isDeparture && isAutoTower) {
+            // create the StripView immediately for departures; arrival strips are made when controllable
+            this._stripViewController.createStripView(aircraftModel);
+            aircraftModel.pilot.clearedAsFiled();
+            aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
+            aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
+            aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
+            aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
+        }
     }
 
     /**

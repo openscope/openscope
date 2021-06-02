@@ -1,11 +1,10 @@
 import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
-import _reduce from 'lodash/reduce';
+import _isNaN from 'lodash/isNaN';
 import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import SpawnPatternModel from './SpawnPatternModel';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { TIME } from '../constants/globalConstants';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 
 /**
@@ -118,21 +117,68 @@ class SpawnPatternCollection extends BaseCollection {
      * @return departureModelsForPreSpawn {array<SpawnPatternModel>}
      */
     getDepartureModelsForPreSpawn() {
-        const departureModelsForPreSpawn = [];
-        const departureModelsLength = this.departureModels.length;
-        const minutesOfDeparturesToPreSpawn = 10;
-        const hoursOfDeparturesToPreSpawn = minutesOfDeparturesToPreSpawn * TIME.ONE_MINUTE_IN_HOURS;
-        const departuresPerHour = _reduce(this.departureModels, (sum, spawnPattern) => sum + spawnPattern.rate, 0);
-        const departuresToPreSpawn = departuresPerHour * hoursOfDeparturesToPreSpawn;
+        const spawnPatternsByDepartureRunway = {};
 
-        for (let i = 0; i < departuresToPreSpawn; i++) {
-            const index = _random(0, (departureModelsLength - 1));
-            const spawnPatternModel = this.departureModels[index];
+        // note this DOES NOT include patterns where the route doesn't specify the runway, because we can't
+        // deconflict them. Instead, we just don't prespawn those departures.
+        for (const spawnPattern of this.departureModels) {
+            const firstElement = spawnPattern.routeString.split('.')[0];
 
-            departureModelsForPreSpawn.push(spawnPatternModel);
+            // if not in shape of `KSEA16L`, mark this spawn pattern as having an unknown runway assignment
+            if (firstElement.length < 5 || _isNaN(+firstElement[4])) {
+                if (!('unknownRunway' in spawnPatternsByDepartureRunway)) {
+                    spawnPatternsByDepartureRunway.unknownRunway = [];
+                }
+
+                spawnPatternsByDepartureRunway.unknownRunway.push(spawnPattern);
+
+                continue;
+            }
+
+            // else, we know we do have a route string which specifies the departure runway
+            const departureRunwayId = firstElement.substr(4);
+
+            if (!(departureRunwayId in spawnPatternsByDepartureRunway)) {
+                spawnPatternsByDepartureRunway[departureRunwayId] = [];
+            }
+
+            spawnPatternsByDepartureRunway[departureRunwayId].push(spawnPattern);
         }
 
-        return departureModelsForPreSpawn;
+        const spawnPatternsToPreSpawn = [];
+
+        // randomly select (while respecting spawn weighting) ONE departure
+        // pattern to pre-spawn for each departure runway detected
+        for (const runway of Object.keys(spawnPatternsByDepartureRunway)) {
+            if (runway === 'unknownRunway') {
+                if (Object.keys(spawnPatternsByDepartureRunway).length > 1) {
+                    continue; // if known AND unknown runways exist, ignore unknown
+                }
+                // else, NO runways are known, and all spawn patterns are via
+                // 'unknownRunway', in which case we will pick a pattern below.
+            }
+
+            // randomly choose a spawn pattern for this runway to prespawn
+            const spawnPatterns = spawnPatternsByDepartureRunway[runway];
+            const rateMap = spawnPatterns.map((pattern) => pattern.rate);
+            const rateTotal = spawnPatterns.reduce((sum, pattern) => sum + pattern.rate, 0);
+            const randomPosition = _random(rateTotal, true);
+            let position = 0;
+
+            for (let i = 0; i < rateMap.length; i++) {
+                const endOfThisRange = position + rateMap[i];
+
+                if (randomPosition <= endOfThisRange) {
+                    spawnPatternsToPreSpawn.push(spawnPatterns[i]);
+
+                    break;
+                }
+
+                position += rateMap[i];
+            }
+        }
+
+        return spawnPatternsToPreSpawn;
     }
 
     /**
