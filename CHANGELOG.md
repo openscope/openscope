@@ -1,9 +1,7 @@
-# 6.25.0 (June 1, 2021)
+# 6.25.0 (June 2, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1593" target="_blank">#1593</a> - Add search bar to airport selection dialog
 - <a href="https://github.com/openscope/openscope/issues/1405" target="_blank">#1405</a> - Implement automatic departures
-
-### Bugfixes
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Change syntax of restricted airspace definitions
