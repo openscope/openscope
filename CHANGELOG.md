@@ -1,3 +1,16 @@
+# 6.25.0 (June 2, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1593" target="_blank">#1593</a> - Add search bar to airport selection dialog
+- <a href="https://github.com/openscope/openscope/issues/1405" target="_blank">#1405</a> - Implement automatic departures
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Change syntax of restricted airspace definitions
+- <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Update Cape Air (KAP) fleet
+- <a href="https://github.com/openscope/openscope/issues/1732" target="_blank">#1732</a> - Add support for custom pronunciation of fixes
+- <a href="https://github.com/openscope/openscope/issues/1818" target="_blank">#1818</a> - Update lodash & dependencies
+- <a href="https://github.com/openscope/openscope/issues/1820" target="_blank">#1820</a> - Update simultaneous dependent approach separation minima
+
+
 # 6.24.0 (April 1, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)

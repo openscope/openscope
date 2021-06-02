@@ -20,43 +20,18 @@ ava.afterEach(() => {
     resetNavigationLibraryFixture();
 });
 
-ava('does not throw when instantiated with invalid parameters', t => {
-    t.notThrows(() => new FixModel());
-    t.notThrows(() => new FixModel([]));
-    t.notThrows(() => new FixModel(''));
-    t.notThrows(() => new FixModel(42));
-    t.notThrows(() => new FixModel(false));
-});
-
-ava('returns early when instantiated with incorrect parameters', t => {
-    let model;
-
-    model = new FixModel(FIXNAME_MOCK);
-    t.true(model.name === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK);
-    t.true(model.name === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(null, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(FIXNAME_MOCK, null, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(!model._positionModel);
-
-    model = new FixModel(null, null, airportPositionFixtureKSFO);
-    t.true(model.name === '');
-    t.true(!model._positionModel);
-});
-
-ava('accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-
-    t.true(model.name === FIXNAME_MOCK);
-    t.true(model._positionModel instanceof DynamicPositionModel);
+ava('throws when instantiated with invalid parameters', t => {
+    t.throws(() => new FixModel());
+    t.throws(() => new FixModel([]));
+    t.throws(() => new FixModel(''));
+    t.throws(() => new FixModel(42));
+    t.throws(() => new FixModel(false));
+    t.throws(() => new FixModel(FIXNAME_MOCK, undefined, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, undefined));
+    t.throws(() => new FixModel(FIXNAME_MOCK, undefined, undefined));
+    t.throws(() => new FixModel(undefined, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(undefined, undefined, airportPositionFixtureKSFO));
+    t.throws(() => new FixModel(undefined, FIX_COORDINATE_MOCK, undefined));
 });
 
 ava('.init() sets name in upperCase', t => {
@@ -65,6 +40,22 @@ ava('.init() sets name in upperCase', t => {
 
     model = new FixModel('u443rcas3', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'U443RCAS3');
+});
+
+ava('.init() sets spoken to specified value (lower-cased) when "spoken" parameter is given', t => {
+    let model = new FixModel(FIXNAME_MOCK, [...FIX_COORDINATE_MOCK, 'Spoken Werds'], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'spoken werds');
+
+    model = new FixModel(FIXNAME_MOCK, [...FIX_COORDINATE_MOCK, 'L0W3RC4S3'], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'l0w3rc4s3');
+});
+
+ava('.init() sets spoken to fix name (lower-cased) when "spoken" parameter is not given', t => {
+    let model = new FixModel('FIXXA', [...FIX_COORDINATE_MOCK], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'fixxa');
+
+    model = new FixModel('F1XX4', [...FIX_COORDINATE_MOCK], airportPositionFixtureKSFO);
+    t.true(model.spoken === 'f1xx4');
 });
 
 ava('.isRealFix returns correct value', (t) => {
@@ -80,6 +71,6 @@ ava('.clonePosition() returns a DynamicPositionModel with the position informati
     const result = model.clonePosition();
 
     t.true(result instanceof DynamicPositionModel);
-    t.true(result.latitude === result.latitude);
-    t.true(result.longitude === result.longitude);
+    t.true(result.latitude === model.positionModel.latitude);
+    t.true(result.longitude === model.positionModel.longitude);
 });

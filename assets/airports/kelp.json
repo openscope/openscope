@@ -371,7 +371,7 @@
         {
             "name": "R-5103A",
             "height": "18000ft",
-            "coordinates": [
+            "poly": [
                 ["N32d03m55", "W106d10m00"],
                 ["N32d03m30", "W105d53m50"],
                 ["N32d00m15", "W105d56m42"],
@@ -381,7 +381,7 @@
         {
             "name": "R-5103B",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N32d15m00", "W106d10m02"],
                 ["N32d15m00", "W105d42m02"],
                 ["N32d03m30", "W105d53m50"],
@@ -393,7 +393,7 @@
         {
             "name": "R-5103C",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N32d45m00", "W105d53m02"],
                 ["N32d45m00", "W105d52m22"],
                 ["N32d33m20", "W105d30m02"],
@@ -409,7 +409,7 @@
         {
             "name": "R-5107A",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N32d19m30", "W106d34m02"],
                 ["N32d19m30", "W106d23m49"],
                 ["N32d14m33", "W106d23m46"],
@@ -421,7 +421,7 @@
         {
             "name": "R-5107B",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N33d44m45", "W106d04m02"],
                 ["N32d50m00", "W106d04m02"],
                 ["N32d36m00", "W106d06m02"],
@@ -438,7 +438,7 @@
         {
             "name": "R-5107C",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N34d17m00", "W106d04m02"],
                 ["N33d44m45", "W106d04m02"],
                 ["N33d49m30", "W106d16m32"],
@@ -450,7 +450,7 @@
         {
             "name": "R-5107D",
             "height": "22000ft",
-            "coordinates": [
+            "poly": [
                 ["N33d34m00", "W106d04m02"],
                 ["N33d04m00", "W106d21m02"],
                 ["N32d34m00", "W106d15m02"],
@@ -462,7 +462,7 @@
         {
             "name": "R-5107E",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N33.95435", "W106.73335"],
                 ["N33d54m00", "W106d46m32"],
                 ["N33d32m45", "W106d58m47"],
@@ -473,7 +473,7 @@
         {
             "name": "R-5107K",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N32d19m30", "W106d23m49"],
                 ["N32d19m30", "W106d20m38"],
                 ["N32d24m48", "W106d09m02"],
@@ -490,7 +490,7 @@
         {
             "name": "R-5111A&B",
             "height": "Infinity",
-            "coordinates": [
+            "poly": [
                 ["N32d43m00", "W106d45m02"],
                 ["N32d45m45", "W106d57m02"],
                 ["N32d52m00", "W107d00m02"],
@@ -502,7 +502,7 @@
         {
             "name": "R-5111C&D",
             "height": "13000ft",
-            "coordinates": [
+            "poly": [
                 ["N32d45m45", "W106d57m02"],
                 ["N32d47m00", "W107d06m02"],
                 ["N33d00m00", "W107d13m02"],

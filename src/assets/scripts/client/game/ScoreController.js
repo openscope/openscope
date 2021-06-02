@@ -36,7 +36,6 @@ export default class ScoreController {
      * @chainable
      */
     setupHandlers() {
-        this._onTakeoffHandler = this._onTakeoff.bind(this);
         this._onApproachHandler = this._onApproach.bind(this);
         this._onLandingHandler = this._onLanding.bind(this);
         this._onExitAirspaceHandler = this._onExitAirspace.bind(this);
@@ -50,7 +49,6 @@ export default class ScoreController {
      * @chainable
      */
     enable() {
-        EventBus.on(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
         EventBus.on(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.on(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
         EventBus.on(AIRCRAFT_EVENT.AIRSPACE_EXIT, this._onExitAirspaceHandler);
@@ -64,23 +62,11 @@ export default class ScoreController {
      * @chainable
      */
     disable() {
-        EventBus.off(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
         EventBus.off(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.off(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
         EventBus.off(AIRCRAFT_EVENT.AIRSPACE_EXIT, this._onExitAirspaceHandler);
 
         return this;
-    }
-
-    /**
-     * @for ScoreController
-     * @method _onTakeoff
-     * @param aircraftModel {AircraftModel}
-     * @param runwayModel {RunwayModel}
-     */
-    _onTakeoff(aircraftModel, runwayModel) {
-        this._scoreWind(aircraftModel, 'taking off');
-        this._scoreRunwaySeparation(aircraftModel, runwayModel, 'taking off');
     }
 
     /**
@@ -200,9 +186,10 @@ export default class ScoreController {
      * @param action {string}
      */
     _scoreRunwaySeparation(aircraftModel, runwayModel, action) {
-        const previousAircraft = this._aircraftController.findAircraftByCallsign(runwayModel.lastDepartedAircraftCallsign);
+        const previousAircraft = runwayModel.lastDepartedAircraftModel;
 
-        if (!previousAircraft) {
+        // do not penalize departures launched automatically; only those launched by the user
+        if (!previousAircraft || previousAircraft.shouldTakeOffWhenRunwayIsClear) {
             return;
         }
 
@@ -213,7 +200,8 @@ export default class ScoreController {
             const isWarning = true;
 
             GameController.events_recordNew(GAME_EVENTS.NO_TAKEOFF_SEPARATION);
-            UiController.ui_log(`${aircraftModel.callsign} ${action} without adequate separation from another aircraft using the same runway`, isWarning);
+            UiController.ui_log(`${aircraftModel.callsign} ${action} without adequate separation from another ` +
+                'aircraft using the same runway', isWarning);
         }
     }
 

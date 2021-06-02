@@ -96,6 +96,17 @@ class UiController {
          */
         this.$airportGuideDialog = null;
 
+
+        /**
+         * Element of the airport search bar
+         *
+         * @for UiController
+         * @property $airportSearch
+         * @type {Jquery|Element}
+         * @default null
+         */
+        this.$airportSearch = null;
+
         /**
          * Element of the changelog dialog
          *
@@ -326,6 +337,7 @@ class UiController {
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$airportDialogBody = this.$airportDialog.find(SELECTORS.DOM_SELECTORS.DIALOG_BODY);
         this.$airportGuideDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_GUIDE_CONTAINER);
+        this.$airportSearch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SEARCH);
         this.$changelogDialog = this.$element.find(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTAINER);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK);
@@ -366,15 +378,17 @@ class UiController {
     /**
      * Enable event handlers
      *
-     * should be run only once on instantiation
-     *
      * @for UiController
      * @method enable
+     * @chainable
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
 
         // TODO: move these to properly bound handler methods
+
+        // using keyup here because the search is based on the contents of the search bar
+        this.$airportSearch.on('keyup', (event) => this._onInitiateAirportSearch(event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
@@ -402,10 +416,11 @@ class UiController {
      *
      * @for UiController
      * @method disable
+     * @chainable
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
-
+        this.$airportSearch.off('keyup', (event) => this._onInitiateAirportSearch(event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
@@ -425,16 +440,18 @@ class UiController {
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
 
-        return this.destroy();
+        return this();
     }
 
     /**
-     * Tear down the instance
+     * Reset the instance
      *
      * @for UiController
-     * @method destroy
+     * @method reset
      */
-    destroy() {
+    reset() {
+        this.disable();
+
         this._eventBus = null;
         this.tutorialView = null;
         this.settingsController = null;
@@ -444,6 +461,7 @@ class UiController {
         this.$airportDialog = null;
         this.$airportDialogBody = null;
         this.$airportGuideDialog = null;
+        this.$airportSearch = null;
         this.$changelogDialog = null;
         this.$fastForwards = null;
         this.$githubLinkElement = null;
@@ -700,6 +718,7 @@ class UiController {
      * @for UiController
      * @method _onClickOpenAirportDialog
      */
+
     _onClickOpenAirportDialog() {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
@@ -717,6 +736,23 @@ class UiController {
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
+
+    /**
+     * @for UiController
+     * @method _onInitiateAirportSearch
+     */
+    _onInitiateAirportSearch() {
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-search', 'start');
+
+        const value = this.$airportSearch.val().toLowerCase();
+
+        $('.dialog-body li').each(
+            function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            }
+        );
+    }
+
     /**
      * @for UiController
      * @method _onClickCloseAirportDialog
@@ -726,6 +762,8 @@ class UiController {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'close');
         this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.$airportSearch.val(null);
+        $('.dialog-body li').each(() => $(this).toggle(true));
     }
 
     /**

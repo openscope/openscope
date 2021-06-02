@@ -479,14 +479,16 @@ export default class InputController {
      * @private
      */
     _onKeydown(event) {
-        if (this._isDialog(event.target)) {
+        let { code } = event.originalEvent;
+        const isEscape = code === KEY_CODES.ESCAPE || code === LEGACY_KEY_CODES.ESCAPE;
+
+        if (this._isDialog(event.target) && !isEscape) {
             // ignore input for dialogs
             return;
         }
 
         const currentCommandInputValue = this.$commandInput.val();
 
-        let { code } = event.originalEvent;
 
         if (code == null) {
             // fallback for legacy browsers like IE/Edge
