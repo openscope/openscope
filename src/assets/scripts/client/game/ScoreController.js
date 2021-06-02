@@ -186,9 +186,10 @@ export default class ScoreController {
      * @param action {string}
      */
     _scoreRunwaySeparation(aircraftModel, runwayModel, action) {
-        const previousAircraft = this._aircraftController.findAircraftByCallsign(runwayModel.lastDepartedAircraftCallsign);
+        const previousAircraft = runwayModel.lastDepartedAircraftModel;
 
-        if (!previousAircraft) {
+        // do not penalize departures launched automatically; only those launched by the user
+        if (!previousAircraft || previousAircraft.shouldTakeOffWhenRunwayIsClear) {
             return;
         }
 

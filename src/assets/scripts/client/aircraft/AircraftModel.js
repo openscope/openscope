@@ -56,6 +56,7 @@ import {
 import {
     degreesToRadians,
     nm,
+    nm_ft,
     UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
 import {
@@ -158,6 +159,16 @@ export default class AircraftModel {
          * @default ''
          */
         this.flightNumber = '';
+
+        /**
+         * Option to tell aircraft to take off on its own when there is no other traffic on the runway
+         *
+         * @for AircraftModel
+         * @property shouldTakeOffWhenRunwayIsClear
+         * @type boolean
+         * @default false
+         */
+        this.shouldTakeOffWhenRunwayIsClear = false;
 
         /**
          * Trasponder code
@@ -1347,7 +1358,7 @@ export default class AircraftModel {
         EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        runway.lastDepartedAircraftCallsign = this.callsign;
+        runway.lastDepartedAircraftModel = this;
     }
 
     /**
@@ -1531,6 +1542,26 @@ export default class AircraftModel {
             }
 
             case FLIGHT_PHASE.WAITING:
+                const iAmTheNextDeparture = this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
+
+                if (this.shouldTakeOffWhenRunwayIsClear && iAmTheNextDeparture) {
+                    const lastDeparture = this.fms.departureRunwayModel.lastDepartedAircraftModel;
+                    const iAmTheFirstEverDeparture = lastDeparture === null;
+
+                    if (!iAmTheFirstEverDeparture) {
+                        const actualDistance = nm_ft(this.distanceToAircraft(lastDeparture));
+                        const requiredDistance = this.model.calculateSameRunwaySeparationDistanceInFeet(lastDeparture.model);
+                        const towerUtilizedDistance = requiredDistance + 2000;
+
+                        if (actualDistance < towerUtilizedDistance || lastDeparture.isOnGround()) {
+                            break;
+                        }
+                    }
+
+                    this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
+                    this.takeoff(this.fms.departureRunwayModel);
+                }
+
                 break;
 
             case FLIGHT_PHASE.TAKEOFF:

@@ -554,9 +554,10 @@ export default class AircraftController {
             this._stripViewController.createStripView(aircraftModel);
             aircraftModel.pilot.clearedAsFiled();
             aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
+            aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
             aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
-            aircraftModel.fms.departureRunwayModel.removeAircraftFromQueue(aircraftModel.id);
-            aircraftModel.takeoff(aircraftModel.fms.departureRunwayModel);
+            // FIXME: Move this to be sensitive to an option!
+            aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
         }
     }
 
