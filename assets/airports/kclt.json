@@ -1,5 +1,5 @@
 {
-    "airac": 1813,
+    "airac": 2104,
     "radio": {
         "twr": "Charlotte Tower",
         "app": "Charlotte Approach",
@@ -27,72 +27,74 @@
     "defaultMaps": ["Base Map"],
     "airspace": [
         {
-    "floor": 0,
-    "ceiling": 160,
-    "airspace_class": "B",
-    "poly": [
-        ["N35.80832", "W80.59167"],
-        ["N35.30413", "W80.00001"],
-        ["N35.10828", "W79.99994"],
-        ["N34.85551", "W80.14723"],
-        ["N34.68694", "W80.34361"],
-        ["N34.63889", "W80.45278"],
-        ["N34.66944", "W80.49944"],
-        ["N34.72778", "W80.51662"],
-        ["N34.59157", "W80.85362"],
-        ["N34.47498", "W81.37086"],
-        ["N35.23884", "W81.72497"],
-        ["N35.43167", "W81.67917"],
-        ["N35.63744", "W81.12774"],
-        ["N35.64085", "W81.11743"]
-    ]
-},
-{
-    "floor": 50,
-    "ceiling": 160,
-    "airspace_class": "B",
-    "poly": [
-        ["N35.43167", "W81.67917"],
-        ["N35.48331", "W81.66661"],
-        ["N35.58605", "W81.55416"],
-        ["N35.65971", "W81.35281"],
-        ["N35.67495", "W81.31113"],
-        ["N35.68996", "W81.23155"],
-        ["N35.69130", "W81.22430"],
-        ["N35.80832", "W80.59167"],
-        ["N35.64085", "W81.11743"],
-        ["N35.63744", "W81.12774"]
-    ]
-},
-{
-    "floor": 110,
-    "ceiling": 160,
-    "airspace_class": "B",
-    "poly": [
-        ["N34.47498", "W81.37086"],
-        ["N34.39444", "W81.33333"],
-        ["N34.59157", "W80.85362"]
-    ]
-},
-{
-    "floor": 90,
-    "ceiling": 100,
-    "airspace_class": "B",
-    "poly": [
-        ["N35.65971", "W81.35281"],
-        ["N35.67669", "W81.36524"],
-        ["N35.73990", "W81.40994"],
-        ["N35.78723", "W81.30237"],
-        ["N35.70867", "W81.24515"],
-        ["N35.68996", "W81.23155"],
-        ["N35.67495", "W81.31113"]
-    ]
-}
+        "floor": 0,
+        "ceiling": 160,
+        "airspace_class": "B",
+        "poly": [
+            ["N35.80832", "W80.59167"],
+            ["N35.30413", "W80.00001"],
+            ["N35.10828", "W79.99994"],
+            ["N34.85551", "W80.14723"],
+            ["N34.68694", "W80.34361"],
+            ["N34.63889", "W80.45278"],
+            ["N34.66944", "W80.49944"],
+            ["N34.72778", "W80.51662"],
+            ["N34.59157", "W80.85362"],
+            ["N34.47498", "W81.37086"],
+            ["N35.23884", "W81.72497"],
+            ["N35.43167", "W81.67917"],
+            ["N35.63744", "W81.12774"],
+            ["N35.64085", "W81.11743"]
+        ]
+        },
+        {
+            "floor": 50,
+            "ceiling": 160,
+            "airspace_class": "B",
+            "poly": [
+                ["N35.43167", "W81.67917"],
+                ["N35.48331", "W81.66661"],
+                ["N35.58605", "W81.55416"],
+                ["N35.65971", "W81.35281"],
+                ["N35.67495", "W81.31113"],
+                ["N35.68996", "W81.23155"],
+                ["N35.69130", "W81.22430"],
+                ["N35.80832", "W80.59167"],
+                ["N35.64085", "W81.11743"],
+                ["N35.63744", "W81.12774"]
+            ]
+        },
+        {
+            "floor": 110,
+            "ceiling": 160,
+            "airspace_class": "B",
+            "poly": [
+                ["N34.47498", "W81.37086"],
+                ["N34.39444", "W81.33333"],
+                ["N34.59157", "W80.85362"]
+            ]
+        },
+        {
+            "floor": 90,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N35.65971", "W81.35281"],
+                ["N35.67669", "W81.36524"],
+                ["N35.73990", "W81.40994"],
+                ["N35.78723", "W81.30237"],
+                ["N35.70867", "W81.24515"],
+                ["N35.68996", "W81.23155"],
+                ["N35.67495", "W81.31113"]
+            ]
+        }
     ],
     "fixes": {
+        "_RWY051DME"  : ["N35.225754", "W80.926807"],
         "_RWY18L1DME" : ["N35.195176", "W80.933626"],
         "_RWY18C1DME" : ["N35.194788", "W80.950368"],
         "_RWY18R1DME" : ["N35.196043", "W80.964905"],
+        "_RWY231DME"  : ["N35.205219", "W80.955134"],
         "_RWY36L1DME" : ["N35.231970", "W80.968082"],
         "_RWY36C1DME" : ["N35.233662", "W80.953717"],
         "_RWY36R1DME" : ["N35.229994", "W80.936636"],
@@ -368,20 +370,21 @@
                     "icao": "BARMY4",
                     "name": "Barmy Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["MESHY", "GULFY", "BARMY", "BATTA"],
+                    "body": ["MESHY", "GULFY"],
                     "exitPoints": {
-                        "NUTZE": ["NUTZE"],
-                        "RDU": ["RDU"],
-                        "TYI": ["TYI"]
+                        "BARMY": ["BARMY"],
+                        "NUTZE": ["BARMY", "BATTA", "NUTZE"],
+                        "RDU": ["BARMY", "BATTA", "RDU"],
+                        "TYI": ["BARMY", "BATTA", "TYI"]
                     },
                     "draw": [
                         ["MESHY", "GULFY", "BARMY", "BATTA"],
@@ -394,19 +397,20 @@
                     "icao": "BEAVY5",
                     "name": "Beavy Five",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["UGANG", "BEAVY", "ANDYS"],
+                    "body": ["UGANG"],
                     "exitPoints": {
-                        "GANDT": ["GANDT"],
-                        "JENDO": ["JENDO"]
+                        "BEAVY": ["BEAVY"],
+                        "GANDT": ["BEAVY", "ANDYS", "GANDT"],
+                        "JENDO": ["BEAVY", "ANDYS", "JENDO"]
                     },
                     "draw": [
                         ["UGANG", "BEAVY", "ANDYS"],
@@ -418,19 +422,20 @@
                     "icao": "BOBZY4",
                     "name": "Bobzy Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["LACHN", "YNGUN", "BOBZY"],
+                    "body": ["LACHN", "YNGUN"],
                     "exitPoints": {
-                        "BNA": ["BRAYN", "REWET", "HALLS", "BAZOO", "BNA"],
-                        "TNSLY": ["TNSLY"]
+                        "BNA": ["BOBZY", "BRAYN", "REWET", "HALLS", "BAZOO", "BNA"],
+                        "BOBZY": ["BOBZY"],
+                        "TNSLY": ["BOBZY", "TNSLY"]
                     },
                     "draw": [
                         ["LACHN", "YNGUN", "BOBZY"],
@@ -442,11 +447,11 @@
                     "icao": "CLT2",
                     "name": "Charlotte Two",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#200"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
@@ -473,18 +478,19 @@
                     "icao": "ESTRR4",
                     "name": "Easter Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["GINNN", "ESTRR"],
+                    "body": ["GINNN"],
                     "exitPoints": {
-                        "IPTAY": ["DEBIE", "IPTAY"]
+                        "ESTRR": ["ESTRR"],
+                        "IPTAY": ["ESTRR","DEBIE", "IPTAY"]
                     },
                     "draw": [
                         ["GINNN", "ESTRR", "DEBIE", "IPTAY*"]
@@ -494,18 +500,19 @@
                     "icao": "ICONS4",
                     "name": "Icons Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["GILFN", "ICONS"],
+                    "body": ["GILFN"],
                     "exitPoints": {
-                        "NOOKS": ["NOOKS"]
+                        "ICONS": ["ICONS"],
+                        "NOOKS": ["ICONS", "NOOKS"]
                     },
                     "draw": [
                         ["GILFN", "ICONS", "NOOKS*"]
@@ -515,20 +522,21 @@
                     "icao": "JOJJO4",
                     "name": "Jo Jo Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["WAYDS", "LONEE", "JOJJO"],
+                    "body": ["WAYDS", "LONEE"],
                     "exitPoints": {
-                        "CUBIM": ["WLLGO", "BENBY", "TIELR", "CUBIM"],
-                        "DOOGE": ["MTCHL", "DOOGE"],
-                        "NOONN": ["WLLGO", "BENBY", "SLEPP", "BFORE", "NOONN"]
+                        "CUBIM": ["JOJJO", "WLLGO", "BENBY", "TIELR", "CUBIM"],
+                        "DOOGE": ["JOJJO", "MTCHL", "DOOGE"],
+                        "JOJJO": ["JOJJO"],
+                        "NOONN": ["JOJJO", "WLLGO", "BENBY", "SLEPP", "BFORE", "NOONN"]
                     },
                     "draw": [
                         ["WAYDS", "LONEE", "JOJJO"],
@@ -542,11 +550,11 @@
                     "icao": "KER3",
                     "name": "Kermit Three",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": ["#183"],
                         "KCLT18C": ["#183"],
                         "KCLT18R": ["#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A18+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A14+"], "#330"],
                         "KCLT36R": ["#025"]
@@ -575,18 +583,19 @@
                     "icao": "KILNS4",
                     "name": "Kilns Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#140"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#200"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
+                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
+                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["MUNBE", "LILIC", "KILNS"],
+                    "body": ["MUNBE", "LILIC"],
                     "exitPoints": {
-                        "AUDII": ["DURST", "AUDII"]
+                        "AUDII": ["KILNS", "DURST", "AUDII"],
+                        "KILNS": ["KILNS"]
                     },
                     "draw": [
                         ["MUNBE", "LILIC", "KILNS", "DURST", "AUDII*"]
@@ -596,11 +605,11 @@
                     "icao": "KNI2",
                     "name": "Knights Two",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#183"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A18+"], "#003"],
                         "KCLT36C": [["_RWY36C1DME", "A14+"], "#003"],
                         "KCLT36R": ["#003"]
@@ -629,19 +638,20 @@
                     "icao": "KRITR5",
                     "name": "Critter Five",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
-                        "KCLT36R": [["_RWY36R1DME", "A12+"], "#360"]
+                        "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["JDEAN", "KRITR"],
+                    "body": ["JDEAN"],
                     "exitPoints": {
-                        "FILDS": ["FILDS"],
-                        "SMIAM": ["SMIAM"]
+                        "FILDS": ["KRITR", "FILDS"],
+                        "KRITR": ["KRITR"],
+                        "SMIAM": ["KRITR", "SMIAM"]
                     },
                     "draw": [
                         ["JDEAN", "KRITR", "FILDS*"],
@@ -652,19 +662,20 @@
                     "icao": "KWEEN4",
                     "name": "Queen Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
-                        "KCLT36R": [["_RWY36R1DME", "A12+"], "#360"]
+                        "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
-                    "body": ["HMMPY", "KWEEN"],
+                    "body": ["HMMPY"],
                     "exitPoints": {
-                        "PITRW": ["UNJAM", "TASTY", "PITRW"],
-                        "UNJAM": ["UNJAM"]
+                        "KWEEN": ["KWEEN"],
+                        "PITRW": ["KWEEN", "UNJAM", "TASTY", "PITRW"],
+                        "UNJAM": ["KWEEN", "UNJAM"]
                     },
                     "draw": [
                         ["HMMPY", "KWEEN", "UNJAM*", "TASTY", "PITRW*"]
@@ -674,14 +685,14 @@
                     "icao": "LILLS2",
                     "name": "Lills Two",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
-                        "KCLT36R": [["_RWY36R1DME", "A12+"], "#360"]
+                        "KCLT36R": [["_RWY36R1DME", "A12+"], "#025"]
                     },
                     "body": ["LAMDE"],
                     "exitPoints": {
@@ -695,18 +706,19 @@
                     "icao": "WEAZL4",
                     "name": "Weasel Four",
                     "rwy": {
-                        "KCLT05": ["#055"],
+                        "KCLT5": [["_RWY051DME", "A12+"], "#055"],
                         "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
                         "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
-                        "KCLT23": ["#235"],
+                        "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A12+"], "#330"],
                         "KCLT36R": [["_RWY36R1DME", "A12+"], "#360"]
                     },
-                    "body": ["WHFRD", "WEAZL"],
+                    "body": ["WHFRD"],
                     "exitPoints": {
-                        "CLAWD": ["CLAWD"]
+                        "CLAWD": ["WEAZL", "CLAWD"],
+                        "WEAZL": ["WEAZL"]
                     },
                     "draw": [
                         ["WHFRD", "WEAZL", "CLAWD*"]
@@ -722,7 +734,7 @@
             },
             "body": [["BANKR", "A130+|A220-|S270"], ["DEBBT", "A120+|A210-|S250"]],
             "rwy": {
-                "KCLT05": [["CONTR", "A110+"], ["OPALS", "A100+|A120-"], ["BLNCE", "A90|S210"], "#018"],
+                "KCLT5": [["CONTR", "A110+"], ["OPALS", "A100+|A120-"], ["BLNCE", "A90|S210"], "#018"],
                 "KCLT18L": [["ROBRR", "A120+|A160-"], ["FOBAR", "A120+|A140-"], ["DEELX", "A120|S250"], "STKUP", "DOSBE", "AAIRE", "^JRDEN", "#003"],
                 "KCLT18C": [["ROBRR", "A120+|A160-"], ["FOBAR", "A120+|A140-"], ["DEELX", "A120|S250"], "STKUP", "DOSBE", "AAIRE", "^JRDEN", "#003"],
                 "KCLT18R": [["ROBRR", "A120+|A160-"], ["FOBAR", "A120+|A140-"], ["DEELX", "A120|S250"], "STKUP", "DOSBE", "AAIRE", "^JRDEN", "#003"],
@@ -747,7 +759,7 @@
             },
             "body": [["BTSEY", "A110|S250"], ["CLT"]],
             "rwy": {
-                "KCLT05": [],
+                "KCLT5": [],
                 "KCLT18L": [],
                 "KCLT18C": [],
                 "KCLT18R": [],
@@ -769,7 +781,7 @@
             },
             "body": ["EYPAD"],
             "rwy": {
-                "KCLT05": [["CHPTR", "A110|S250"], "#070"],
+                "KCLT5": [["CHPTR", "A110|S250"], "#070"],
                 "KCLT18L": [["CHPTR", "A140|S250"], "WHDRW", "#050"],
                 "KCLT18C": [["CHPTR", "A140|S250"], "WHDRW", "#050"],
                 "KCLT18R": [["CHPTR", "A140|S250"], "WHDRW", "#050"],
@@ -794,7 +806,7 @@
             },
             "body": [["CHSLY", "A130+|A220-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A210-"]],
             "rwy": {
-                "KCLT05": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"],
+                "KCLT5": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"],
                 "KCLT18L": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
                 "KCLT18C": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
                 "KCLT18R": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
@@ -824,7 +836,7 @@
             },
             "body": ["BLAYQ", ["PHAYE", "A240+|S270"], ["JJENY", "A190+|A270-"], ["FILPZ", "A160+|S270"]],
             "rwy": {
-                "KCLT05": [["ADOWN", "A120+|A190-|S250"], ["INWAL", "A110+|A150-|S250"], ["JELNO", "A100+|A110-"], ["CEDOX", "A90|S210"], ["^VALLL", "A60|S210"], "#183"],
+                "KCLT5": [["ADOWN", "A120+|A190-|S250"], ["INWAL", "A110+|A150-|S250"], ["JELNO", "A100+|A110-"], ["CEDOX", "A90|S210"], ["^VALLL", "A60|S210"], "#183"],
                 "KCLT18L": [["GLAXI", "A120+|S250"], ["JOBOT", "A110+|A120-|S250"], ["ERHRT", "A100-"], ["^FISHN", "A70|S210"], "#090"],
                 "KCLT18C": [["GLAXI", "A120+|S250"], ["JOBOT", "A110+|A120-|S250"], ["ERHRT", "A100-"], ["^FISHN", "A70|S210"], "#090"],
                 "KCLT18R": [["GLAXI", "A120+|S250"], ["JOBOT", "A110+|A120-|S250"], ["ERHRT", "A100-"], ["^FISHN", "A70|S210"], "#090"],
@@ -849,7 +861,7 @@
             },
             "body": ["EVRRR", ["KUPPP", "A240+|S270"], ["CAAKE", "A170+|A260-|S270"], ["JONZE", "A110+|A210-|S250"]],
             "rwy": {
-                "KCLT05": [["DUBBB", "A100+|A120-"], ["^CHELE", "A70|S210"], "#020"],
+                "KCLT5": [["DUBBB", "A100+|A120-"], ["^CHELE", "A70|S210"], "#020"],
                 "KCLT18L": [["WHYLE", "A100+|A160-"], ["FREEK", "A90+|A110-|S250"], "DOSBE", ["AAIRE", "A90|S210"], ["^JRDEN", "A60|S210"], "#003"],
                 "KCLT18C": [["WHYLE", "A100+|A160-"], ["FREEK", "A90+|A110-|S250"], "DOSBE", ["AAIRE", "A90|S210"], ["^JRDEN", "A60|S210"], "#003"],
                 "KCLT18R": [["WHYLE", "A100+|A160-"], ["FREEK", "A90+|A110-|S250"], "DOSBE", ["AAIRE", "A90|S210"], ["^JRDEN", "A60|S210"], "#003"],
@@ -874,7 +886,7 @@
             },
             "body": ["JALIT", ["LIINN", "A110|S250"], "CLT"],
             "rwy": {
-                "KCLT05": [],
+                "KCLT5": [],
                 "KCLT18L": [],
                 "KCLT18C": [],
                 "KCLT18R": [],
@@ -898,7 +910,7 @@
             },
             "body": [["MAJIC", "A130|S250"], "SUDSY", "GIZMO"],
             "rwy": {
-                "KCLT05": [],
+                "KCLT5": [],
                 "KCLT18L": [],
                 "KCLT18C": [],
                 "KCLT18R": [],
@@ -921,7 +933,7 @@
             },
             "body": [],
             "rwy": {
-                "KCLT05": [["MLLET", "A120|S250"], "MANGY", "^GATEE", "#273"],
+                "KCLT5": [["MLLET", "A120|S250"], "MANGY", "^GATEE", "#273"],
                 "KCLT18L": [["MLLET", "A140|S250"], "MANGY", "CEZUN", "DOOMY", "POORE", "LEEKS", "INNOR", "^HANDO", "#003"],
                 "KCLT18C": [["MLLET", "A140|S250"], "MANGY", "CEZUN", "DOOMY", "POORE", "LEEKS", "INNOR", "^HANDO", "#003"],
                 "KCLT18R": [["MLLET", "A140|S250"], "MANGY", "CEZUN", "DOOMY", "POORE", "LEEKS", "INNOR", "^HANDO", "#003"],
@@ -947,7 +959,7 @@
             },
             "body": [["PARQR", "A120+|A200-|S250"]],
             "rwy": {
-                "KCLT05": [["PAYKN", "A120+|A150-"], ["THACK", "A120|S250"], "BBQEE", "CEDOX", "^VALLL", "#183"],
+                "KCLT5": [["PAYKN", "A120+|A150-"], ["THACK", "A120|S250"], "BBQEE", "CEDOX", "^VALLL", "#183"],
                 "KCLT18L": [["NCOMA", "A110+|A120-"], ["BOATN", "A90+|A100-"], ["^CAMPR", "A90|S220"], "#092"],
                 "KCLT18C": [["NCOMA", "A110+|A120-"], ["BOATN", "A90+|A100-"], ["^CAMPR", "A90|S220"], "#092"],
                 "KCLT18R": [["NCOMA", "A110+|A120-"], ["BOATN", "A90+|A100-"], ["^CAMPR", "A90|S220"], "#092"],
@@ -970,7 +982,7 @@
             },
             "body": [],
             "rwy": {
-                "KCLT05": [["RASLN", "A110|S250"], "CLT"],
+                "KCLT5": [["RASLN", "A110|S250"], "CLT"],
                 "KCLT18L": [["RASLN", "A140|S250"], "CLT"],
                 "KCLT18C": [["RASLN", "A140|S250"], "CLT"],
                 "KCLT18R": [["RASLN", "A140|S250"], "CLT"],
@@ -993,7 +1005,7 @@
             },
             "body": [["FLLGG", "A210+|A230-|S280"], ["FFNSH", "A160+|A230-|S280"], ["STOCR", "A120+|A190-|S270"]],
             "rwy": {
-                "KCLT05": [["FIBBR", "A110+|A160-|S250"], ["TYMER", "A80+|A110-"], ["TERIE", "A60+|A80-"], ["^GATEE", "A60|S210"], "#273"],
+                "KCLT5": [["FIBBR", "A110+|A160-|S250"], ["TYMER", "A80+|A110-"], ["TERIE", "A60+|A80-"], ["^GATEE", "A60|S210"], "#273"],
                 "KCLT18L": [["LLAPP", "A110+|A160-|S270"], ["ZYMKO", "A110+|A130-|S250"], ["DOOMY", "A90+|A110-"], "POORE", ["LEEKS", "A90|S210"], "INNOR", ["^HANDO", "A80|S210"], "#003"],
                 "KCLT18C": [["LLAPP", "A110+|A160-|S270"], ["ZYMKO", "A110+|A130-|S250"], ["DOOMY", "A90+|A110-"], "POORE", ["LEEKS", "A90|S210"], "INNOR", ["^HANDO", "A80|S210"], "#003"],
                 "KCLT18R": [["LLAPP", "A110+|A160-|S270"], ["ZYMKO", "A110+|A130-|S250"], ["DOOMY", "A90+|A110-"], "POORE", ["LEEKS", "A90|S210"], "INNOR", ["^HANDO", "A80|S210"], "#003"],
@@ -1020,7 +1032,7 @@
             },
             "body": ["GRD", "BIFFS", ["UNARM", "A110|S250"], "ADENA", "LOCKS", "CLT"],
             "rwy": {
-                "KCLT05": [],
+                "KCLT5": [],
                 "KCLT18L": [],
                 "KCLT18C": [],
                 "KCLT18R": [],
