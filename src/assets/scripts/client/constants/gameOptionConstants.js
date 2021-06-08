@@ -18,7 +18,8 @@ export const GAME_OPTION_NAMES = {
     PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
     RANGE_RINGS: 'rangeRings',
     SOFT_CEILING: 'softCeiling',
-    THEME: 'theme'
+    THEME: 'theme',
+    TOWER_CONTROLLER: 'towerController'
 };
 
 /**
@@ -45,6 +46,23 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'Default',
                 value: 'DEFAULT'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.TOWER_CONTROLLER,
+        defaultValue: 'SYSTEM',
+        description: 'Tower Control (Experimental)',
+        type: 'select',
+        onChangeEventHandler: null,
+        optionList: [
+            {
+                displayLabel: 'System Controlled',
+                value: 'SYSTEM'
+            },
+            {
+                displayLabel: 'User Controlled',
+                value: 'USER'
             }
         ]
     },

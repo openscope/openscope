@@ -271,10 +271,7 @@ export default class Fms {
 
         this._verifyRouteContainsMultipleWaypoints();
         this._initializeFlightPhaseForCategory(category);
-        this._initializeDepartureAirport(origin);
-        this._initializeDepartureRunway();
-        this._initializeArrivalAirport(destination);
-        this._initializeArrivalRunway();
+        this._initializeAirportsAndRunways(origin, destination);
         this._initializeFlightPlanAltitude(altitude, category, model);
         this._initializePositionInRouteToBeginAtFixName(nextFix, category);
 
@@ -301,6 +298,31 @@ export default class Fms {
     }
 
     /**
+     * Initialize `#arrivalAirportModel`+`#arrivalRunwayModel` and/or
+     * `#departureAirportModel`+`#departureRunwayModel` as applicable
+     *
+     * @for Fms
+     * @method _initializeAirportsAndRunways
+     * @param origin {string} ICAO identifier specified by spawn pattern
+     * @param destination {string} ICAO identifier specified by spawn pattern
+     * @private
+     */
+    _initializeAirportsAndRunways(origin, destination) {
+        const originLowerCase = origin.toLowerCase();
+        const destinationLowerCase = destination.toLowerCase();
+
+        if (originLowerCase === AirportController.current.icao) {
+            this._initializeDepartureAirport(origin);
+            this._initializeDepartureRunway();
+        }
+
+        if (destinationLowerCase === AirportController.current.icao) {
+            this._initializeArrivalAirport(destination);
+            this._initializeArrivalRunway();
+        }
+    }
+
+    /**
      * Initialize `#arrivalAirportModel`
      *
      * @for Fms
@@ -309,10 +331,6 @@ export default class Fms {
      * @private
      */
     _initializeArrivalAirport(destinationIcao) {
-        if (destinationIcao === '') {
-            return;
-        }
-
         this.arrivalAirportModel = AirportController.airport_get(destinationIcao);
     }
 
@@ -350,10 +368,6 @@ export default class Fms {
      * @private
      */
     _initializeDepartureAirport(originIcao) {
-        if (originIcao === '') {
-            return;
-        }
-
         this.departureAirportModel = AirportController.airport_get(originIcao);
     }
 
@@ -467,10 +481,9 @@ export default class Fms {
      */
     activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this._routeModel.hasWaypointName(waypointName)) {
-            // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
             return [false, {
                 log: `unable to hold at ${waypointName.toUpperCase()}; it is not on our route!`,
-                say: `unable to hold at ${waypointName.toLowerCase()}; it is not on our route!`
+                say: `unable to hold at ${NavigationLibrary.getFixSpokenName(waypointName)}; it is not on our route!`
             }];
         }
 

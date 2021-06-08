@@ -12,6 +12,7 @@ ava('does not throw on instantiation', (t) => {
 ava('sets #_options on instantiation', (t) => {
     const expectedResult = [
         'theme',
+        'towerController',
         'controlMethod',
         'drawIlsDistanceSeparator',
         'ptlLengths',

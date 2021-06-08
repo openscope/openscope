@@ -642,7 +642,10 @@ ava('.crossFix() returns early when the specified fix does not exist', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const invalidFixNameMock = 'threeve';
     const altitudeMock = 13000;
-    const expectedResult = [false, 'unable to find \'threeve\''];
+    const expectedResult = [false, {
+        log: 'unable to find \'THREEVE\'',
+        say: 'unable to find threeve'
+    }];
     const result = aircraftModel.pilot.crossFix(aircraftModel, invalidFixNameMock, altitudeMock);
 
     t.deepEqual(result, expectedResult);
@@ -652,7 +655,10 @@ ava('.crossFix() returns early when the specified fix exists but is not on the a
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nonRouteFixNameMock = 'ogkij';
     const altitudeMock = 13000;
-    const expectedResult = [false, 'unable, \'ogkij\' is not on our route'];
+    const expectedResult = [false, {
+        log: 'unable, \'OGKIJ\' is not on our route',
+        say: 'unable, ogkij is not on our route'
+    }];
     const result = aircraftModel.pilot.crossFix(aircraftModel, nonRouteFixNameMock, altitudeMock);
 
     t.deepEqual(result, expectedResult);
@@ -1182,7 +1188,10 @@ ava('.maintainSpeed() returns early with a warning when assigned an unreachable 
 });
 
 ava('.proceedDirect() returns an error if the waypointName provided is not in the current flightPlan', (t) => {
-    const expectedResult = [false, 'cannot proceed direct to ABC, it does not exist in our flight plan'];
+    const expectedResult = [false, {
+        log: 'cannot proceed direct to ABC, it does not exist in our flight plan',
+        say: 'cannot proceed direct to abc, it does not exist in our flight plan'
+    }];
     const pilot = createPilotFixture();
     const result = pilot.proceedDirect('ABC');
 
@@ -1217,7 +1226,10 @@ ava('.proceedDirect() calls .cancelHoldingPattern()', (t) => {
 });
 
 ava('.proceedDirect() returns success message when finished', (t) => {
-    const expectedResult = [true, 'proceed direct SUNST'];
+    const expectedResult = [true, {
+        log: 'proceed direct SUNST',
+        say: 'proceed direct sunst'
+    }];
     const pilot = createPilotFixture();
     const result = pilot.proceedDirect(waypointNameMock);
 

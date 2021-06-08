@@ -1,11 +1,8 @@
 import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
+import { WAKE_TURBULENCE_CATEGORY } from '../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
-
-// TODO: abstract these to an appropriate constants file
-const HEAVY_LETTER = 'H';
-const SUPER_LETTER = 'J';
 
 /**
  * Provides a definition for a specific type of aircraft.
@@ -93,7 +90,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.ceiling = INVALID_NUMBER;
 
         /**
-         * Decsribes rate of:
+         * Describes rate of:
          * - climb
          * - descent
          * - acceleration
@@ -196,18 +193,10 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     _buildTypeForStripView() {
         let aircraftIcao = `${this.icao}/L`;
 
-        switch (this.weightClass) {
-            case SUPER_LETTER:
-                aircraftIcao = `${SUPER_LETTER}/${this.icao}/L`;
+        const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.weightClass) ?? { APPEND: false };
 
-                break;
-            case HEAVY_LETTER:
-                aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
-
-                break;
-            default:
-
-                break;
+        if (wtc.APPEND) {
+            aircraftIcao = `${wtc.LETTER}/${this.icao}/L`;
         }
 
         return aircraftIcao;
@@ -239,7 +228,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @returns {Boolean}
      */
     isHeavyOrSuper() {
-        return this.weightClass === HEAVY_LETTER || this.weightClass === SUPER_LETTER;
+        return this.weightClass === WAKE_TURBULENCE_CATEGORY.HEAVY.LETTER ||
+            this.weightClass === WAKE_TURBULENCE_CATEGORY.SUPER.LETTER;
     }
 
     /**
@@ -284,14 +274,6 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @return {string}
      */
     getRadioWeightClass() {
-        if (this.weightClass === HEAVY_LETTER) {
-            return 'heavy';
-        }
-
-        if (this.weightClass === SUPER_LETTER) {
-            return 'super';
-        }
-
-        return '';
+        return Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.weightClass)?.SPOKEN ?? '';
     }
 }

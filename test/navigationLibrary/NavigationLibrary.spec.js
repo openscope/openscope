@@ -29,3 +29,11 @@ ava('._holdCollection() is populated correctly', (t) => {
 
     t.deepEqual(bakkrHold, expectedResult);
 });
+
+ava('.getFixSpokenName() returns input in lowercase if fix does not exist', (t) => {
+    NavigationLibrary.reset();
+    NavigationLibrary.init(AIRPORT_JSON_KLAS_MOCK);
+    const result = NavigationLibrary.getFixSpokenName('ASDFG');
+
+    t.deepEqual(result, 'asdfg');
+});

@@ -18,6 +18,7 @@ export const CLASSNAMES = {
     AIRPORT_LIST: 'airport-list',
     AIRPORT_LIST_ITEM: 'airport-list-item',
     AIRPORT_LIST_ITEM_IS_ACTIVE: 'mix-airport-list-item_isActive',
+    AIRPORT_SEARCH: 'search',
     ALL_SET: 'allSet',
     ALTITUDE: 'altitude',
     ARRIVAL: 'arrival',

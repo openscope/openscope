@@ -1,18 +1,50 @@
-# 6.24.0 (March 1, 2021)
+# 6.26.0 (July 1, 2021)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
+# 6.25.0 (June 2, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1593" target="_blank">#1593</a> - Add search bar to airport selection dialog
+- <a href="https://github.com/openscope/openscope/issues/1405" target="_blank">#1405</a> - Implement automatic departures
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Change syntax of restricted airspace definitions
+- <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Update Cape Air (KAP) fleet
+- <a href="https://github.com/openscope/openscope/issues/1732" target="_blank">#1732</a> - Add support for custom pronunciation of fixes
+- <a href="https://github.com/openscope/openscope/issues/1818" target="_blank">#1818</a> - Update lodash & dependencies
+- <a href="https://github.com/openscope/openscope/issues/1820" target="_blank">#1820</a> - Update simultaneous dependent approach separation minima
+
+
+# 6.24.0 (April 1, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1762" target="_blank">#1762</a> - FMS initialization checks against current airport
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
 - <a href="https://github.com/openscope/openscope/issues/1758" target="_blank">#1758</a> - Update GitHub build status badge
 - <a href="https://github.com/openscope/openscope/issues/1749" target="_blank">#1749</a> - Improve user input validation and associated tests
+- <a href="https://github.com/openscope/openscope/issues/1763" target="_blank">#1763</a> - Reflect merging of Singapore Cargo Airlines (SQC) into SIA
+- <a href="https://github.com/openscope/openscope/issues/1778" target="_blank">#1778</a> - Code gardening in StripViewModel.js
+- <a href="https://github.com/openscope/openscope/issues/1780" target="_blank">#1780</a> - Implement constants for wake turbulence category & engine type
+- <a href="https://github.com/openscope/openscope/issues/1771" target="_blank">#1771</a> - Change VKG airline from Thomas Cook to Sunclass
+- <a href="https://github.com/openscope/openscope/issues/1417" target="_blank">#1417</a> - Update and re-enable RJTT (Tokyo Haneda)
+- <a href="https://github.com/openscope/openscope/issues/1783" target="_blank">#1783</a> - Avoid making unnecessary copies of AircraftTypeDefinitionModel
+- <a href="https://github.com/openscope/openscope/issues/1785" target="_blank">#1785</a> - File location & EoL housekeeping
+- <a href="https://github.com/openscope/openscope/issues/1791" target="_blank">#1791</a> - Add test coverage for all command aliases
+- <a href="https://github.com/openscope/openscope/issues/1721" target="_blank">#1721</a> - Add support for restricted area custom labeling
 
 
 # 6.23.0 (February 5, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1656" target="_blank">#1656</a> - Add Philadelphia International Airport (KPHL)
+- <a href="https://github.com/openscope/openscope/issues/1670" target="_blank">#1670</a> - Display GPS coordinates on shift+alt+rightClick
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism

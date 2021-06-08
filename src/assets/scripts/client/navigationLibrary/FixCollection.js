@@ -101,6 +101,24 @@ class FixCollection extends BaseCollection {
     }
 
     /**
+     * Returns the pronunciation of the fix name if it exists, otherwise returns the input name
+     *
+     * @for FixCollection
+     * @method getFixSpokenName
+     * @param fixName {string}
+     * @return {string}
+     */
+    getFixSpokenName(fixName) {
+        const fixModel = this.findFixByName(fixName);
+
+        if (!fixModel) {
+            return fixName.toLowerCase(); // lower-case forces the voice engine to try to pronounce it
+        }
+
+        return fixModel.spoken;
+    }
+
+    /**
      * Returns the nearest fix to the specified position
      *
      * @for FixCollection
@@ -162,8 +180,8 @@ class FixCollection extends BaseCollection {
      * @private
      */
     _buildFixModelsFromList(fixList, referencePosition) {
-        _forEach(fixList, (fixCoordinates, fixName) => {
-            const fixModel = new FixModel(fixName, fixCoordinates, referencePosition);
+        _forEach(fixList, (fixData, fixName) => {
+            const fixModel = new FixModel(fixName, fixData, referencePosition);
             // const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, referencePosition);
 
             this.addFixToCollection(fixModel);

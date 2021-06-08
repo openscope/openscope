@@ -4,6 +4,7 @@
   * [Base Airport Properties](#base-airport-properties)
   * [Airspace](#airspace)
   * [Fixes](#fixes)
+  * [Restricted Airspace](#restricted-airspace)
   * [Runways](#runways)
   * [Airways](#airways)
   * [SIDs](#sids)
@@ -67,18 +68,18 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
         "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
         "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+        "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
         "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
         "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
         "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
         "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
         "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-        "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+        "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
         "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
         "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-        "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+        "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
         "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-        "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+        "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
         "WESET": ["N47d24.35m0", "W122d19.10m0"],
         "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
         "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
@@ -87,7 +88,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         {
             "name": "P-51",
             "height": "2500ft",
-            "coordinates": [
+            "poly": [
                 ["N47.7737128", "W122.7710456"],
                 ["N47.7189169", "W122.7706794"],
                 ["N47.6924411", "W122.7388044"],
@@ -294,7 +295,15 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 * **floor** ― The lowest altitude (in [flight levels](#flight-level)) included in the airspace.
 * **ceiling** ― The highest altitude (in [flight levels](#flight-level)) included in the airspace.
 * **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true) and find the closest match based on the way the local airspace is treated.
-* **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+* **poly** ― The coordinates of the corners of the airspace polygon in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+* **labelPositions (optional)** ― For each airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
+
+```json
+"labelPositions": [
+    ["N48.20000000", "W122.45000000"],
+    ["N47.83333330", "W121.69999940"]
+],
+```
 
 ### Fixes
 
@@ -305,18 +314,18 @@ All fixes listed within the Standard Routes need to be defined within this secti
     "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
     "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
     "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-    "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+    "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
     "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
     "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
     "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
     "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
     "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-    "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+    "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
     "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
     "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-    "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+    "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
     "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-    "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+    "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
     "WESET": ["N47d24.35m0", "W122d19.10m0"],
     "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
     "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
@@ -327,6 +336,14 @@ Each navaid located within or around the airport airspace in latitude, longitude
 
 ```json
 "AAYRR": ["N46d38.81m0", "W123d43.34m0"]
+```
+
+Each fix can have an optional third parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an arbitrary letter combination. Capitalization of this parameter _does not affect_ the way the fix is pronounced in-sim.
+
+```json
+"EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
+"KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
+"PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
 ```
 
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
@@ -395,7 +412,7 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
     {
         "name": "P-51",
         "height": "2500ft",
-        "coordinates": [
+        "poly": [
             ["N47.7737128", "W122.7710456"],
             ["N47.7189169", "W122.7706794"],
             ["N47.6924411", "W122.7388044"],
@@ -406,7 +423,17 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 ],
 ```
 
-Note that `height` represents the _top_ of the restricted area. Currently all restricted areas are assumed to begin at sea level.
+* **name (optional)** ― The name of the restricted airspace.
+* **height** ― The _top_ of the restricted airspace. Currently all restricted airspaces are assumed to begin at sea level.
+* **poly** ― The coordinates of the corners of the restricted airspace polygon in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+* **labelPositions (optional)** ― For each restricted airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
+
+```json
+"labelPositions": [
+    ["N47.7737128", "W122.7710456"],
+    ["N47.7723906", "W122.6948667"]
+],
+```
 
 ### Runways
 

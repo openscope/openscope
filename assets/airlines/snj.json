@@ -1,0 +1,17 @@
+{
+    "icao": "snj",
+    "name": "Solaseed Air",
+    "callsign": {
+        "name": "New Sky",
+        "callsignFormats": [
+            "#",
+            "##",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 14]
+        ]
+    }
+}
