@@ -1,0 +1,18 @@
+{
+    "icao": "twb",
+    "name": "T'Way Airlines",
+    "callsign": {
+        "name": "Teeway",
+        "callsignFormats": [
+			"#",
+			"##",
+			"###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 20]
+        ]
+    }
+}
