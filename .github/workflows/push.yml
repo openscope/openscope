@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Find lint errors on changed lines
-      run: npm run lint-diff HEAD~1..HEAD
+      run: npm run lint-diff
   build:
     runs-on: ubuntu-latest
     steps:
