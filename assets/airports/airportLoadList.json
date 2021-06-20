@@ -434,6 +434,13 @@
         "premium": false,
         "disabled": true
     },
+	{
+        "icao": "rjoa",
+        "level": "beginner",
+        "name": "Hiroshima Airport",
+        "premium": false,
+		"disabled": false
+    },
     {
         "icao": "rjss",
         "level": "beginner",
