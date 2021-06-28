@@ -64,7 +64,7 @@
         "BOGPE": ["N37d15.69", "W76d29.72"],
         "BOUSY": ["N36.8178917", "W77.9014111"],
         "BRADE": ["N35d38.98", "W78d13.99"],
-        "BUTTS": ["N36.2801833", "W78.7846111"],
+        "BUTTS": ["N36.1899222", "W78.6701944"],
         "BUZZY": ["N35d30.32", "W79d23.14"],
         "CABED": ["N35d43.62", "W78d24.04"],
         "CAE"  : ["N33d51.44", "W81d03.23"],
@@ -130,16 +130,12 @@
         "ISO"  : ["N35d22.26", "W77d33.50"],
         "JAMIE": ["N37d36.34", "W75d57.81"],
         "JAYRR": ["N36d00.54", "W79d22.55"],
-        "JEMMY": ["N35d53.23", "W78d55.90"],
         "JODUS": ["N35d47.93", "W78d46.78"],
-        "JOLTY": ["N35d59.68", "W78d47.94"],
         "JURDI": ["N34d43.76", "W79d50.67"],
-        "KAROO": ["N36d07.32", "W78d16.09"],
+        "KAROO": ["N36.1503861", "W78.2829806"],
         "KENCH": ["N35d50.04", "W78d41.38"],
         "KPASS": ["N36d38.94", "W81d49.97"],
-        "LEASA": ["N36d05.35", "W78d22.87"],
         "LEPEC": ["N35.9062306", "W78.7459417"],
-        "LEZZY": ["N35d52.07", "W78d38.88"],
         "LIB"  : ["N35d48.70", "W79d36.76"],
         "LVL"  : ["N36d49.08", "W77d54.18"],
         "LWOOD": ["N36d10.84", "W79d22.89"],
@@ -151,7 +147,6 @@
         "MSBOX": ["N36.8363611", "W77.4720583"],
         "MUFLY": ["N36d00.06", "W78d31.14"],
         "NEDIE": ["N35d38.10", "W79d09.21"],
-        "NEWIE": ["N35d54.06", "W78d37.67"],
         "NYGEL": ["N35.4893861", "W79.4082417"],
         "OCHRE": ["N35d50.84", "W78d40.39"],
         "OPUSS": ["N36d35.06", "W79d44.43"],
@@ -159,7 +154,6 @@
         "ORLAC": ["N35d48.86", "W78d34.35"],
         "OTTOS": ["N35d39.67", "W79d05.97"],
         "OXFRD": ["N36d25.22", "W78d35.34"],
-        "PAINS": ["N36d04.42", "W78d26.39"],
         "PEAVY": ["N36d21.42", "W78d36.70"],
         "PECIT": ["N35d43.34", "W78d58.36"],
         "PETTO": ["N33d03.13", "W81d07.37"],
@@ -190,10 +184,8 @@
         "TAQLE": ["N36.2312083", "W78.0481333"],
         "TENNI": ["N34d46.90", "W80d03.81"],
         "TIBIA": ["N35d54.37", "W78d36.03"],
-        "TIIME": ["N35d50.14", "W78d40.05"],
         "TILTZ": ["N35d27.27", "W77d45.56"],
         "TIVAE": ["N37d14.44", "W79d54.35"],
-        "TOYER": ["N35d45.69", "W78d46.76"],
         "TREAL": ["N33d04.18", "W81d26.46"],
         "TRPOD": ["N38.3381389", "W75.5078528"],
         "TYI"  : ["N35d58.60", "W77d42.22"],
@@ -382,7 +374,7 @@
             },
             "draw": [
                 ["FOCAL", "EPOCH", "LWOOD", "OPUSS", "DANCO*"],
-                ["LWOOD", "DBRAH"]
+                ["LWOOD", "DBRAH*"]
             ]
         },
         "OXFRD4": {
@@ -406,8 +398,8 @@
             ]
         },
         "PACK9": {
-            "icao": "PACKK9",
-            "name": "Pack Eight",
+            "icao": "PACK9",
+            "name": "Pack Nine",
             "rwy": {
                 "KRDU5L": ["#054"],
                 "KRDU5R": ["#054"],
@@ -428,7 +420,7 @@
         },
         "RDU1": {
             "icao": "RDU1",
-            "name": "Raleigh Nine",
+            "name": "Raleigh One",
             "rwy": {
                 "KRDU5L": ["#054"],
                 "KRDU5R": ["#054"],
@@ -510,31 +502,6 @@
                 ["TIVAE*", "MCDON"]
             ]
         },
-        "ARGAL6": {
-            "icao": "ARGAL6",
-            "name": "Argal Six",
-            "entryPoints": {
-                "FKN": ["FKN"],
-                "HPW": ["HPW"],
-                "SBY": ["SBY", "CCV", "DRIVE", "FKN"],
-                "SWL": ["SWL", "CCV", "DRIVE", "FKN"]
-            },
-            "body": ["DUFFI", "MEYER", "ARGAL", "RDU"],
-            "rwy": {
-                "KRDU5L": [],
-                "KRDU5R": [],
-                "KRDU14": [],
-                "KRDU23L": [],
-                "KRDU23R": [],
-                "KRDU32": []
-            },
-            "draw": [
-                ["FKN*", "DUFFI", "MEYER", "ARGAL", "RDU"],
-                ["SBY*", "CCV", "DRIVE", "FKN"],
-                ["HPW*", "DUFFI"],
-                ["SWL*", "CCV"]
-            ]
-        },
         "BLOGS3": {
             "icao": "BLOGS3",
             "name": "Blogs Three",
@@ -605,10 +572,10 @@
             "icao": "MALNR5",
             "name": "Malner Foive",
             "entryPoints": {
-                "JURDI": [["JURDI", "A230"], "SMIRF", ["MALNR", "A110+|A170="]],
-                "MALNR": [["MALNR", "A110+|A170="]],
-                "PYRES": ["PYRES", ["JURDI", "A230"], "SMIRF", ["MALNR", "A110+|A170="]],
-                "REDFH": ["REDFH", "HOGIL", "ETBUY", ["MALNR", "A110+|A170="]]
+                "JURDI": [["JURDI", "A230"], "SMIRF", ["MALNR", "A110+|A170-"]],
+                "MALNR": [["MALNR", "A110+|A170-"]],
+                "PYRES": ["PYRES", ["JURDI", "A230"], "SMIRF", ["MALNR", "A110+|A170-"]],
+                "REDFH": ["REDFH", "HOGIL", "ETBUY", ["MALNR", "A110+|A170-"]]
             },
             "body": [],
             "rwy": {
@@ -621,29 +588,6 @@
                 ["PYRES*", "JURDI*", "SMIRF", "MALNR*", "WISPY", "CAKEY", "FRETO", "ORENG", "GLEYS"],
                 ["REDFH*", "HOGIL", "ETBUY", "MALNR", "NYGEL", "OTTOS"],
                 ["CAKEY", "JODUS", "CHIRM", "KENCH"]
-            ]
-        },
-        "SBV5": {
-            "icao": "SBV5",
-            "name": "South Boston Five",
-            "entryPoints": {
-                "GVE": ["GVE"],
-                "PSK": ["PSK", "TABER"],
-                "ROA": ["ROA"]
-            },
-            "body": ["SBV", "ALDAN", "BILLA", "RDU"],
-            "rwy": {
-                "KRDU5L": [],
-                "KRDU5R": [],
-                "KRDU14": [],
-                "KRDU23L": [],
-                "KRDU23R": [],
-                "KRDU32": []
-            },
-            "draw": [
-                ["GVE*", "SBV", "ALDAN", "BILLA", "RDU"],
-                ["PSK*", "TABER", "SBV"],
-                ["ROA*", "SBV"]
             ]
         },
         "TAQLE1": {
@@ -696,7 +640,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -725,7 +668,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -755,7 +697,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -783,9 +724,10 @@
                 ["fdx", 1],
                 ["gjs", 10],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
+                ["scx", 4],
+                ["skv", 3],
                 ["skw", 1],
                 ["swa", 25],
                 ["ual", 9]
@@ -813,7 +755,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -842,7 +783,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -872,7 +812,6 @@
                 ["fft", 1],
                 ["gjs", 10],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -900,9 +839,9 @@
                 ["fdx", 1],
                 ["gjs", 10],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
+                ["scx", 3],
                 ["skw", 1],
                 ["swa", 25],
                 ["ual", 9]
@@ -913,7 +852,7 @@
             "destination": "KRDU",
             "category": "arrival",
             "route": "GARIC.BLOGS3.KRDU23R",
-            "altitude": 23000,
+            "altitude": 31000,
             "speed": 280,
             "method": "random",
             "rate": 1.4,
@@ -929,7 +868,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -940,7 +878,7 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "TRPOD.TAQLE1.KRDU23R",
+            "route": "ZJAAY.TAQLE1.KRDU23R",
             "altitude": 32000,
             "speed": 280,
             "method": "random",
@@ -958,7 +896,6 @@
                 ["gjs", 10],
                 ["jbu", 7],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
@@ -970,8 +907,8 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "IRQ..PYRES.MALNR5.KRDU23R",
-            "altitude": [33000, 39000],
+            "route": "PYRES.MALNR5.KRDU23R",
+            "altitude": 33000,
             "speed": 280,
             "method": "random",
             "rate": 3.2,
@@ -988,7 +925,6 @@
                 ["fft", 1],
                 ["gjs", 10],
                 ["jia", 1],
-                ["lof", 7],
                 ["n/fastGA", 25],
                 ["rpa", 11],
                 ["skw", 1],
