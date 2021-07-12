@@ -1,0 +1,16 @@
+{
+    "icao": "est",
+    "name": "Xfly",
+    "callsign": {
+        "name": "Reval",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT76", 7],
+            ["CRJ9", 8]
+        ]
+    }
+}

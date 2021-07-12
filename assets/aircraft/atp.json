@@ -1,0 +1,37 @@
+{
+    "name": "British Aerospace ATP",
+    "icao": "ATP",
+    "engines": {
+        "number": 2,
+        "type": "T"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": 6,
+        "recat": "D"
+    },
+    "ceiling": 25000,
+    "rate": {
+        "climb":      1000,
+        "descent":    1500,
+        "accelerate": 3,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.351,
+        "landing": 1.128
+    },
+    "speed":{
+        "min":     86,
+        "landing": 105,
+        "cruise":  266,
+        "cruiseM": null,
+        "max":     268,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

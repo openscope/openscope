@@ -1,0 +1,17 @@
+{
+    "icao": "swn",
+    "name": "West Air Sweden",
+    "callsign": {
+        "name": "Air Sweden",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 3],
+            ["ATP", 11],
+            ["CRJ2", 2]
+        ]
+    }
+}
