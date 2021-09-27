@@ -370,7 +370,7 @@
                 "KRDU23L": [],
                 "KRDU23R": []
             },
-            "body": ["FOCAL", "EPOCH"],
+            "body": [["FOCAL", "A25+"], "EPOCH"],
             "exitPoints": {
                 "DANCO": ["LWOOD", "OPUSS", "DANCO"],
                 "DBRAH": ["LWOOD", "DBRAH"],
@@ -473,7 +473,7 @@
                 "KRDU23L": [],
                 "KRDU23R": []
             },
-            "body": ["CATAR", "WLFFF"],
+            "body": [["CATAR", "A25+"], "WLFFF"],
             "exitPoints": {
                 "SHPRD": ["SHPRD"]
             },
@@ -487,7 +487,6 @@
             "icao": "ALDAN3",
             "name": "Aldan Three",
             "entryPoints": {
-                "ALDAN": [["ALDAN", "A90+|A120-|S250"]],
                 "KPASS": ["KPASS", "ROBLS", "TABER"],
                 "MELTN": ["MELTN"],
                 "TIVAE": ["TIVAE"]
@@ -510,13 +509,12 @@
             "icao": "BLOGS3",
             "name": "Blogs Three",
             "entryPoints": {
-               "BLOGS": [["BLOGS", "A110+|A120-|S250"]],
                "CHKLZ": ["CHKLZ", "TILTZ", "VEJAY"],
                "FEEBZ": ["FEEBZ", "VEJAY"],
                "GARIC": ["GARIC", "CHKLZ", "TILTZ", "VEJAY"],
                "TILTZ": ["TILTZ", "VEJAY"]
             },
-            "body": [["CABED", "A80+|A90-"]],
+            "body": [["BLOGS", "A110+|A120-|S250"], ["CABED", "A80+|A90-"]],
             "rwy": {
                 "KRDU5L": [["ORLAC", "A80|S220"], ["OCHRE", "A70+"], ["^STINT", "A60|S210"], "#234"],
                 "KRDU5R": [["ORLAC", "A80|S220"], ["OCHRE", "A70+"], ["^STINT", "A60|S210"], "#234"],
@@ -556,10 +554,9 @@
             "icao": "BUZZY1",
             "name": "Buzzy One",
             "entryPoints": {
-                "BUZZY": [["BUZZY", "A110|S250"]],
-                "CAE": ["CAE", ["TENNI", "A210"], "SDZ", "BUZZY"]
+                "CAE": []
             },
-            "body": ["RDU"],
+            "body": ["CAE", "TENNI", "SDZ", "BUZZY", "RDU"],
             "rwy": {
                 "KRDU5L": [],
                 "KRDU5R": [],
@@ -574,14 +571,13 @@
         },
         "MALNR5": {
             "icao": "MALNR5",
-            "name": "Malner Foive",
+            "name": "Malner Five",
             "entryPoints": {
-                "JURDI": [["JURDI", "A230"], "SMIRF", ["MALNR", "A110+|A170-"]],
-                "MALNR": [["MALNR", "A110+|A170-"]],
-                "PYRES": ["PYRES", ["JURDI", "A230"], "SMIRF", ["MALNR", "A110+|A170-"]],
-                "REDFH": ["REDFH", "HOGIL", "ETBUY", ["MALNR", "A110+|A170-"]]
+                "JURDI": [["JURDI", "A230"], "SMIRF"],
+                "PYRES": ["PYRES", ["JURDI", "A230"], "SMIRF"],
+                "REDFH": ["REDFH", "HOGIL", "ETBUY"]
             },
-            "body": [],
+            "body": [["MALNR", "A110+|A170-"]],
             "rwy": {
                 "KRDU5L": [["NYGEL", "A90+|A100-|S250"], ["OTTOS", "A60|S210"]],
                 "KRDU5R": [["NYGEL", "A90+|A100-|S250"], ["OTTOS", "A60|S210"]],
@@ -598,14 +594,13 @@
             "icao": "TAQLE1",
             "name": "Tackle One",
             "entryPoints": {
-                "BOGPE": [["BOGPE", "A240"], ["CEBET", "A220+|A230-"], ["DOYAS", "A170+"], ["TAQLE", "A100+|A170-"]],
-                "COUPN": [["COUPN", "A230"], ["GOLLI", "A200+"], ["BEETN", "A150+|A200-"], "DUFFI", ["TAQLE", "A100+|A170-"]],
-                "HOUKY": [["HOUKY", "A220+"], "PILOE", "AGUYA", ["MSBOX", "A130+"], "DEMVE", ["TAQLE", "A100+|A170-"]],
-                "TAQLE": [["TAQLE", "A100+|A170-"]],
-                "TRPOD": ["TRPOD", "JAMIE", ["BOGPE", "A240"], ["CEBET", "A220+|A230-"], ["DOYAS", "A170+"], ["TAQLE", "A100+|A170-"]],
-                "ZJAAY": ["ZJAAY", "JAMIE", ["BOGPE", "A240"], ["CEBET", "A220+|A230-"], ["DOYAS", "A170+"], ["TAQLE", "A100+|A170-"]]
+                "BOGPE": [["BOGPE", "A240"], ["CEBET", "A220+|A230-"], ["DOYAS", "A170+"]],
+                "COUPN": [["COUPN", "A230"], ["GOLLI", "A200+"], ["BEETN", "A150+|A200-"], "DUFFI"],
+                "HOUKY": [["HOUKY", "A220+"], "PILOE", "AGUYA", ["MSBOX", "A130+"], "DEMVE"],
+                "TRPOD": ["TRPOD", "JAMIE", ["BOGPE", "A240"], ["CEBET", "A220+|A230-"], ["DOYAS", "A170+"]],
+                "ZJAAY": ["ZJAAY", "JAMIE", ["BOGPE", "A240"], ["CEBET", "A220+|A230-"], ["DOYAS", "A170+"]]
             },
-            "body": [["SWETP", "A90+"], ["KAROO", "A120-"]],
+            "body": [["TAQLE", "A100+|A170-"], ["SWETP", "A90+"], ["KAROO", "A120-"]],
             "rwy": {
                 "KRDU5L": [["MUFLY", "A90+|S250"], ["OCHRE", "A70+|S220"], ["^STINT", "A60|S210"], "#234"],
                 "KRDU5R": [["MUFLY", "A90+|S250"], ["OCHRE", "A70+|S220"], ["^STINT", "A60|S210"], "#234"],
