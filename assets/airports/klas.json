@@ -255,7 +255,9 @@
         "RUMLY": [35.6933, -115.530681],
         "GRMMA": [35.728369, -115.555664],
         "BUETY": [35.907386, -115.430161],
-        "MIYKE": [35.296353, -115.589622]
+        "MIYKE": [35.296353, -115.589622],
+        "EED": [34.766004, -114.474104],
+        "HAYLN": [36.037533, -114.654881]
     },
     "runways":[
         {
@@ -315,7 +317,7 @@
                 ["GIDGT", "GEEOO", "BETHL", "VERKN*"],
                 ["GIDGT", "NICLE", "TUKRR*"],
                 ["_1L014PENSK283", "KYBAD", "HAIDN", "AIRRO", "GIDGT"],
-                ["AYVUH", "MLVIN", "GEEZY", "JEETTG", "GIDGT"]
+                ["AYVUH", "MLVIN", "GEEZY", "JETTG", "GIDGT"]
             ]
         },
         "HOOVR7": {
@@ -349,8 +351,8 @@
             "icao": "JOHKR2",
             "name": "Joker Two",
             "rwy": {
-                "KLAS1L": [["BESSY", "A50+"], "HRRLY", "KWYNN", ["RAWKK", "A130+"]],
-                "KLAS1R": [["BESSY", "A50+"], "HRRLY", "KWYNN", ["RAWKK", "A130+"]],
+                "KLAS1L": [["BESSY", "A50+"], "HRRLY", "KWYYN", ["RAWKK", "A130+"]],
+                "KLAS1R": [["BESSY", "A50+"], "HRRLY", "KWYYN", ["RAWKK", "A130+"]],
                 "KLAS8L": ["_8L079LAS3.9DME", ["FLAAR", "A60+"], ["HNIBL", "A80+|S230-"], "VMPRE"],
                 "KLAS8R": ["SCAAR", ["FLAAR", "A60+"], ["HNIBL", "A80+|S230-"], "VMPRE"],
                 "KLAS19L": [["DEREW", "A70-"], "CARNG", "COMIC", "MGNTO", ["KRUGR", "A110-"]],
@@ -365,7 +367,7 @@
             "draw": [
                 ["SCAAR", "FLAAR", "HNIBL", "VMPRE", "JOHKR"],
                 ["_8L079LAS3.9DME", "FLAAR"],
-                ["BESSY", "HRRLY", "KWYNN", "RAWKK", "JOHKR"],
+                ["BESSY", "HRRLY", "KWYYN", "RAWKK", "JOHKR"],
                 ["DEREW", "CARNG", "COMIC", "MGNTO", "KRUGR", "JOHKR"],
                 ["RUDYY", "SELLZ", "MGNTO"],
                 ["JOHKR", "GRYMZ", "DEDPL", "BIKKR", "CAGEE", "KENNO*"]
@@ -469,16 +471,16 @@
                       "BLAQQ": ["BLAQQ"],
                       "HEC": ["SLVRR", "TOPAC", "HEC"],
                       "SLVRR": ["SLVRR"],
-                      "BLH": ["DOYLL", "ZELMA", "BLH"],
-                      "LVELL": ["DOYLL", "ZELMA", "JOTNU", "LVELL"],
-                      "BOJAC": ["DOYLL", "BOJAC"]
+                      "BLH": ["DOYYL", "ZELMA", "BLH"],
+                      "LVELL": ["DOYYL", "ZELMA", "JOTNU", "LVELL"],
+                      "BOJAC": ["DOYYL", "BOJAC"]
                   },
                   "draw": [
                       ["SCAAR", "FLAAR", "HNIBL", "VMPRE", "FLABB", "RADYR"],
                       ["RADYR", "SLVRR*"],
-                      ["RUDYY", "SELLZ", "RAYDR"],
+                      ["RUDYY", "SELLZ", "RADYR"],
                       ["RADYR", "BLAQQ*"],
-                      ["BESSY", "HRRLY", "GRUDN", "RAYDR"],
+                      ["BESSY", "HRRLY", "GRUDN", "RADYR"],
                       ["DEREW", "RADYR"],
                       ["SLVRR", "TOPAC", "HEC*"],
                       ["RADYR", "DOYYL", "BOJAC*"],
@@ -572,7 +574,7 @@
                 "GGAPP": ["GGAPP", "MNCIN", ["PHHIL", "A240+"], ["AALAN", "A230-|A170+"]],
                 "TYEGR": ["TYEGR", "WARKA", "DUUGG", ["HAANG", "A240+"], ["AALAN", "A230-|A170+"]]
             },
-            "body": [["CHOWW", "A190-|S250"], "WOLFH"],
+            "body": [["CHOWW", "A190-|S250"], "WOLPH"],
             "rwy": {
                 "KLAS1L": [["PACKK", "A170+"], ["BEEPR", "A150+"], ["RFUSE", "A120+"], ["DNZIG", "A110+"], "JAIDE", ["TUUTH", "A100+|A80-|S220"], ["TRREY", "A70+|S210"]],
                 "KLAS1R": [["PACKK", "A170+"], ["BEEPR", "A150+"], ["RFUSE", "A120+"], ["DNZIG", "A110+"], "JAIDE", ["TUUTH", "A100+|A80-|S220"], ["^BUHLL", "A70|S210"], "#334"],
@@ -582,12 +584,12 @@
                 "KLAS26R": [["TATUU", "A105-|A95+"], ["KRLOZ", "A90-"], ["FLYES", "A80|S210"]]
             },
             "draw": [
-                ["STEWW", "RIGLL", "AALAN", "CHOWW", "WOLFP", "PACKK", "BEEPR", "RFUSE", "DNZIG", "JAIDE", "TUUTH", "TRREY"],
+                ["STEWW", "RIGLL", "AALAN", "CHOWW", "WOLPH", "PACKK", "BEEPR", "RFUSE", "DNZIG", "JAIDE", "TUUTH", "TRREY"],
                 ["TUUTH", "BUHLL"],
                 ["GGAPP", "MNCIN", "PHHIL", "AALAN"],
                 ["TYEGR", "WARKA", "DUUGG", "HAANG", "AALAN"],
-                ["WOLFP", "SACHL", "FELAA", "FOOOF", "NNEON"],
-                ["WOLFP", "TATUU", "KRLOZ", "PRINO"],
+                ["WOLPH", "SACHL", "FELAA", "FOOOF", "NNEON"],
+                ["WOLPH", "TATUU", "KRLOZ", "PRINO"],
                 ["KRLOZ", "FLYES"]
             ]
         },
@@ -862,7 +864,7 @@
             "origin": "KLAS",
             "destination": "",
             "category": "departure",
-            "route": "KLAS26R.RASLR2.ZAYNE.DRK",
+            "route": "KLAS26R.RASLR2.ZAYNE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -878,7 +880,7 @@
             "origin": "KLAS",
             "destination": "",
             "category": "departure",
-            "route": "KLAS26R.JOHKR2.KENNO.OAL",
+            "route": "KLAS26R.JOHKR2.KENNO",
             "altitude": "",
             "speed": "",
             "method": "random",
