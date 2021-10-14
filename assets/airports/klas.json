@@ -562,8 +562,8 @@
                 "KLAS26R": []
             },
             "draw": [
-                ["BCE", "HOLDM", "AALAN", "CHOWW", "BLAID"],
-                ["PGA", "HOLDM"]
+                ["BCE*", "HOLDM*", "AALAN", "CHOWW", "BLAID"],
+                ["PGA*", "HOLDM"]
             ]
         },
         "CHOWW1": {
@@ -584,10 +584,10 @@
                 "KLAS26R": [["TATUU", "A105-|A95+"], ["KRLOZ", "A90-"], ["FLYES", "A80|S210"]]
             },
             "draw": [
-                ["STEWW", "RIGLL", "AALAN", "CHOWW", "WOLPH", "PACKK", "BEEPR", "RFUSE", "DNZIG", "JAIDE", "TUUTH", "TRREY"],
+                ["STEWW*", "RIGLL", "AALAN", "CHOWW", "WOLPH", "PACKK", "BEEPR", "RFUSE", "DNZIG", "JAIDE", "TUUTH", "TRREY"],
                 ["TUUTH", "BUHLL"],
-                ["GGAPP", "MNCIN", "PHHIL", "AALAN"],
-                ["TYEGR", "WARKA", "DUUGG", "HAANG", "AALAN"],
+                ["GGAPP*", "MNCIN", "PHHIL", "AALAN"],
+                ["TYEGR*", "WARKA", "DUUGG", "HAANG", "AALAN"],
                 ["WOLPH", "SACHL", "FELAA", "FOOOF", "NNEON"],
                 ["WOLPH", "TATUU", "KRLOZ", "PRINO"],
                 ["KRLOZ", "FLYES"]
@@ -612,9 +612,10 @@
                 "KLAS26R": [["DEEON", "A120-"], ["ENNVY", "A110+"], ["REDQN", "A90+|S210"], "TWAFL", ["^BERBN", "A80|S210"], "#079"]
             },
             "draw": [
-                ["BASIC", "FLCHR", "TBRAN", "ARYEL", "COKTL", "ZLLDA", "DEEON", "ENNVY", "REDQN", "TWAFL", "BERBN"],
+                ["BASIC*", "FLCHR", "TBRAN", "ARYEL", "COKTL", "ZLLDA", "DEEON", "ENNVY", "REDQN", "TWAFL", "BERBN"],
                 ["ZLLDA", "MEZKL", "LOOMI", "BAUMM", "ROAMN"],
-                ["BAUMM", "YAGGR"]
+                ["BAUMM", "YAGGR"],
+                ["GIINN*", "TBRAN"]
             ]
         },
         "CRESO4": {
@@ -636,8 +637,8 @@
                 "KLAS26R": []
             },
             "draw": [
-                ["DAG", "JOKUR", "DANBY", "SARAS", "WHIGG", "CRESO", "BLD"],
-                ["HEC", "DANBY"]
+                ["DAG*", "JOKUR", "DANBY", "SARAS", "WHIGG", "CRESO", "BLD"],
+                ["HEC*", "DANBY"]
             ]
         },
         "GAMES1": {
@@ -658,7 +659,7 @@
                 "KLAS26R": []
             },
             "draw": [
-                ["FUULL", "HOUZZ", "BYNGO", "SOTOO", "QWIST", "GAMES", "TOROO", "RATHH", "PIGOW"]
+                ["FUULL*", "HOUZZ", "BYNGO", "SOTOO", "QWIST", "GAMES", "TOROO", "RATHH", "PIGOW"]
             ]
         },
         "ISHEE1": {
@@ -680,8 +681,8 @@
                 "KLAS26R": []
             },
             "draw": [
-                ["PGS", "PEHTY", "ISHEE", "BLD"],
-                ["DRK", "IGM", "PEHTY"]
+                ["PGS*", "PEHTY", "ISHEE", "BLD"],
+                ["DRK*", "IGM", "PEHTY"]
             ]
         },
         "JAYSN1": {
@@ -702,7 +703,7 @@
                 "KLAS26R": [["PESHY", "A150+|S250"], ["NEEMA", "A142+"], ["ENNVY", "A110+"], ["REDQN", "A90+|S210"], "TWAFL", ["^BERBN", "A80|S210"], "#079"]
             },
             "draw": [
-                ["BYRDY", "JAYSN", "WAPID", "KEEKE", "ECAKO", "DRXLR", "MYSHL", "CUEVS", "KORYN"],
+                ["BYRDY*", "JAYSN", "WAPID", "KEEKE", "ECAKO", "DRXLR", "MYSHL", "CUEVS", "KORYN"],
                 ["WAPID", "PESHY", "NEEMA", "ENNVY", "REDQN", "TWAFL", "BERBN"],
                 ["WAPID", "PAIRR", "MEZKL", "LOOMI", "ZINPI", "BAUMM", "YAGGR"],
                 ["BAUMM", "ROAMN"]
@@ -727,8 +728,8 @@
                 "KLAS26R": []
             },
             "draw": [
-                ["DAG", "ZGOSH", "RNDRZ", "LARKK"],
-                ["TNP", "JOTNU", "ZELMA", "GFS", "RNDRZ"]
+                ["DAG*", "ZGOSH", "RNDRZ", "LARKK"],
+                ["TNP*", "JOTNU", "ZELMA", "GFS", "RNDRZ"]
             ]
         },
         "PUMLE1": {
@@ -749,7 +750,7 @@
                 "KLAS26R": []
             },
             "draw": [
-                ["BTY", "PUMLE", "ZLLDA", "FABLE", "ENNVY", "BLD"]
+                ["BTY*", "PUMLE", "ZLLDA", "FABLE", "ENNVY", "BLD"]
             ]
         },
         "RKSTR1": {
@@ -772,9 +773,9 @@
                 "KLAS26R": [["HUXLY", "A100+|S250"], "HAYLN", ["FLYES", "A80|S210"]]
             },
             "draw": [
-                ["SQIRE", "VEDDR", "FLEAA", "PEHTY", "RKSTR", "GROLL", "FEREL", "JOVII", "FELAA", "FOOOF", "NNEON", "PPENN"],
-                ["HAHAA", "JAAGR", "FLEAA"],
-                ["ELLDA", "JJEAN", "PEHTY"],
+                ["SQIRE*", "VEDDR", "FLEAA", "PEHTY", "RKSTR", "GROLL", "FEREL", "JOVII", "FELAA", "FOOOF", "NNEON", "PPENN"],
+                ["HAHAA*", "JAAGR", "FLEAA"],
+                ["ELLDA*", "JJEAN", "PEHTY"],
                 ["RKSTR", "HUXLY", "HAYLN", "PRINO"],
                 ["HAYLN", "FLYES"],
                 ["RKSTR", "LEEEW", "JAIDE", "TUUTH", "BUHLL"],
@@ -802,11 +803,11 @@
                 "KLAS26R": ["GRMMA", ["BUETY", "A125+"], ["ENNVY", "A110+"], ["REDQN", "A90+|S210"], "TWAFL", ["^BERBN", "A80|S210"], "#079"]
             },
             "draw": [
-                ["MISEN", "TEDDE", "WATEV", "TOETS", "RNDRZ", "GRMMA", "BUETY", "ENNVY", "REDQN", "TWAFL", "BERBN"],
+                ["MISEN*", "TEDDE", "WATEV", "TOETS", "RNDRZ", "GRMMA", "BUETY", "ENNVY", "REDQN", "TWAFL", "BERBN"],
                 ["RNDRZ", "RUMLY", "BAUMM", "ROAMN"],
                 ["BAUMM", "YAGGR"],
-                ["EED", "ZELMA", "MIYKE", "RNDRZ"],
-                ["TNP", "JOTNU", "MIYKE"]
+                ["EED*", "ZELMA", "MIYKE", "RNDRZ"],
+                ["TNP*", "JOTNU", "MIYKE"]
             ]
         }
     },
