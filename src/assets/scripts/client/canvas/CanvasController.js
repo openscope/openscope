@@ -2669,7 +2669,8 @@ export default class CanvasController {
      * @returns undefined
      * @private
      */
-    _onToggleVideoMap() {
+    _onToggleVideoMap(mapNames) {
+        log(mapNames)
         this._shouldDrawVideoMap = !this._shouldDrawVideoMap;
 
         this._markDeepRender();

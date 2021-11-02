@@ -11,6 +11,7 @@ import { speech_toggle } from '../speech';
 import { EVENT } from '../constants/eventNames';
 import { SELECTORS } from '../constants/selectors';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
+import VideoMapController from "./VideoMapController";
 
 /**
  * Listens for events that occur in the UI and delegates work to the correct place
@@ -55,6 +56,14 @@ class UiController {
          * @default null
          */
         this.trafficRateController = null;
+
+        /**
+         * @for UiController
+         * @property videoMapController
+         * @type {VideoMapController}
+         * @default null
+         */
+        this.videoMapController = null;
 
         /**
          * Root element used to find all other DOM elements needed by this class
@@ -332,6 +341,7 @@ class UiController {
         this.tutorialView = new TutorialView($element);
         this.settingsController = new SettingsController($element);
         this.trafficRateController = new TrafficRateController($element);
+        this.videoMapController = new VideoMapController($element);
 
         this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
@@ -406,7 +416,7 @@ class UiController {
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
         this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
-        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
+        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMapNew(event));
 
         return this;
     }
@@ -438,7 +448,7 @@ class UiController {
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
         this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
-        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
+        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMapNew(event));
 
         return this();
     }
@@ -949,6 +959,23 @@ class UiController {
             `${this.$toggleVideoMap.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
+    }
+
+    /**
+     * Handler for selecting the current Video Maps
+     *
+     * @for UiController
+     * @method onToggleVideoMap
+     * @param event {jquery event}
+     */
+    onToggleVideoMapNew(event) {
+        this.$toggleVideoMap.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'video-map',
+            `${this.$toggleVideoMap.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this.videoMapController.toggleDialog();
     }
 
     /**
