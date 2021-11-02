@@ -162,13 +162,12 @@ export default class VideoMapController {
      */
     _buildDialogBody() {
         this.$dialogBody.empty();
-        this._selectedMaps = [];
         const airportModel = AirportController.airport_get();
         const mapNames = airportModel.mapCollection.getMapNames();
-        const visibleNames = airportModel.mapCollection.getVisibleMapNames();
+        this._selectedMaps = airportModel.mapCollection.getVisibleMapNames();
 
         for(const mapName of mapNames ) {
-            const isChecked = visibleNames.includes(mapName);
+            const isChecked =  this._selectedMaps.includes(mapName);
             const $formElement = this._buildRow(mapName, mapName, isChecked, this._onChangeSelectedMaps);
             this.$dialogBody.append($formElement);
         }
@@ -187,9 +186,13 @@ export default class VideoMapController {
      * @return {jquery|HTML Element}
      */
     _buildRow(key, label, checked, onChangeMethod) {
+
+        const _inputTemplate = checked ? `<input class="form-checkbox" type="checkbox" name="${key}" checked/>` :
+            `<input class="form-checkbox" type="checkbox" name="${key}"/>`
+
         const template = `
             <div class="form-element">
-                <input class="form-checkbox" type="checkbox" name="${key}" checked="${checked}" />
+                ${_inputTemplate}
                 <label class="form-label"> ${label}</label>
             </div>`;
         const $element = $(template);
