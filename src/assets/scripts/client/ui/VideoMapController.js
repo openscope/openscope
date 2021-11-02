@@ -166,7 +166,6 @@ export default class VideoMapController {
             const $formElement = this._buildRow(mapName, mapName, isChecked, this._onChangeSelectedMaps);
             this.$dialogBody.append($formElement);
         }
-
     }
 
     /**
