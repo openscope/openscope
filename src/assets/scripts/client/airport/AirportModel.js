@@ -370,7 +370,7 @@ export default class AirportModel {
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
 
-        this.eventBus.on(EVENT.WIND_CHANGE, this.updateCurrentWind.bind(this))
+        this.eventBus.on(EVENT.WIND_CHANGE, this.updateCurrentWind.bind(this));
     }
 
     /**

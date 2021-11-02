@@ -9,8 +9,8 @@ import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { REGEX } from '../constants/globalConstants';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
-import AirportController from "../airport/AirportController";
-import {radiansToDegrees} from "../utilities/unitConverters";
+import AirportController from '../airport/AirportController';
+import { radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -187,13 +187,15 @@ export default class TrafficRateController {
 
 
         const airport = AirportController.airport_get();
-        this._wind = {speed: airport.wind.speed, angle: Math.round(radiansToDegrees(airport.wind.angle))};
+        this._wind = { speed: airport.wind.speed, angle: Math.round(radiansToDegrees(airport.wind.angle)) };
 
 
-        const $windDirSlider = this._buildWindSlider("wind direction", "wind direction", this._wind.angle, this._onChangeWindDirection, 10, 360, 10);
-        this.$dialogBody.append($windDirSlider)
-        const $windSpdSlider = this._buildWindSlider("wind speed", "wind speed", this._wind.speed, this._onChangeWindSpeed, 0, 25, 1);
-        this.$dialogBody.append($windSpdSlider)
+        const $windDirSlider = this._buildWindSlider('wind direction', 'wind direction', this._wind.angle,
+            this._onChangeWindDirection, 10, 360, 10);
+        this.$dialogBody.append($windDirSlider);
+        const $windSpdSlider = this._buildWindSlider('wind speed', 'wind speed', this._wind.speed,
+            this._onChangeWindSpeed, 0, 25, 1);
+        this.$dialogBody.append($windSpdSlider);
 
         this.$dialogBody.append('<hr />');
 
@@ -314,9 +316,9 @@ export default class TrafficRateController {
         const $target = $(event.target);
         const $output = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
         const value = $target.val();
-        this._wind.angle = Number(value)
+        this._wind.angle = Number(value);
         $output.text(value);
-        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind)
+        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
     }
 
     /**
@@ -330,9 +332,9 @@ export default class TrafficRateController {
         const $target = $(event.target);
         const $output = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
         const value = $target.val();
-        this._wind.speed = Number(value)
+        this._wind.speed = Number(value);
         $output.text(value);
-        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind)
+        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
     }
 
     /**
