@@ -2661,7 +2661,7 @@ export default class CanvasController {
      * @private
      */
     _onToggleVideoMap(mapNames) {
-        AirportController.airport_get().mapCollection.setVisibleMaps(mapNames)
+        AirportController.airport_get().mapCollection.setVisibleMaps(mapNames);
 
         this._markDeepRender();
     }

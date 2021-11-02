@@ -1,13 +1,8 @@
 import $ from 'jquery';
-import _forEach from 'lodash/forEach';
 import EventBus from '../lib/EventBus';
-import EventTracker from '../EventTracker';
 import { SELECTORS, CLASSNAMES } from '../constants/selectors';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
-import { REGEX } from '../constants/globalConstants';
-import { TRACKABLE_EVENT } from '../constants/trackableEvents';
-import AirportController from "../airport/AirportController";
+import AirportController from '../airport/AirportController';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -166,8 +161,8 @@ export default class VideoMapController {
         const mapNames = airportModel.mapCollection.getMapNames();
         this._selectedMaps = airportModel.mapCollection.getVisibleMapNames();
 
-        for(const mapName of mapNames ) {
-            const isChecked =  this._selectedMaps.includes(mapName);
+        for (const mapName of mapNames) {
+            const isChecked = this._selectedMaps.includes(mapName);
             const $formElement = this._buildRow(mapName, mapName, isChecked, this._onChangeSelectedMaps);
             this.$dialogBody.append($formElement);
         }
@@ -186,10 +181,8 @@ export default class VideoMapController {
      * @return {jquery|HTML Element}
      */
     _buildRow(key, label, checked, onChangeMethod) {
-
         const _inputTemplate = checked ? `<input class="form-checkbox" type="checkbox" name="${key}" checked/>` :
-            `<input class="form-checkbox" type="checkbox" name="${key}"/>`
-
+            `<input class="form-checkbox" type="checkbox" name="${key}"/>`;
         const template = `
             <div class="form-element">
                 ${_inputTemplate}
@@ -198,7 +191,7 @@ export default class VideoMapController {
         const $element = $(template);
         const onChangeHandler = onChangeMethod.bind(this);
 
-        $element.on('change', {name: label} ,onChangeHandler);
+        $element.on('change', { name: label }, onChangeHandler);
 
         return $element;
     }
@@ -212,16 +205,15 @@ export default class VideoMapController {
      */
     _onChangeSelectedMaps(event) {
         const $target = $(event.target);
-        const $output = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
-        const value = $target.prop("checked");
-        const map = event.data.name
+        const value = $target.prop('checked');
+        const map = event.data.name;
 
-        if(value){
-            this._selectedMaps.push(map)
+        if (value) {
+            this._selectedMaps.push(map);
         } else {
-            const index = this._selectedMaps.indexOf(map)
+            const index = this._selectedMaps.indexOf(map);
             if (index > -1) {
-                this._selectedMaps.splice(index,1)
+                this._selectedMaps.splice(index, 1);
             }
         }
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP, this._selectedMaps);

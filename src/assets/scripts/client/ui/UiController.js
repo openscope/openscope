@@ -6,12 +6,12 @@ import EventTracker from '../EventTracker';
 import GameController from '../game/GameController';
 import SettingsController from './SettingsController';
 import TrafficRateController from './TrafficRateController';
+import VideoMapController from './VideoMapController';
 import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
 import { EVENT } from '../constants/eventNames';
 import { SELECTORS } from '../constants/selectors';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
-import VideoMapController from "./VideoMapController";
 
 /**
  * Listens for events that occur in the UI and delegates work to the correct place
@@ -416,7 +416,7 @@ class UiController {
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
         this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
-        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMapNew(event));
+        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
 
         return this;
     }
@@ -448,7 +448,7 @@ class UiController {
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
         this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
-        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMapNew(event));
+        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
 
         return this();
     }
@@ -947,28 +947,13 @@ class UiController {
     }
 
     /**
-     * @for UiController
-     * @method onToggleVideoMap
-     * @param event {jquery event}
-     */
-    onToggleVideoMap(event) {
-        this.$toggleVideoMap.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.recordEvent(
-            TRACKABLE_EVENT.OPTIONS,
-            'video-map',
-            `${this.$toggleVideoMap.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
-        );
-        this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
-    }
-
-    /**
      * Handler for selecting the current Video Maps
      *
      * @for UiController
      * @method onToggleVideoMap
      * @param event {jquery event}
      */
-    onToggleVideoMapNew(event) {
+    onToggleVideoMap(event) {
         this.$toggleVideoMap.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         EventTracker.recordEvent(
             TRACKABLE_EVENT.OPTIONS,
