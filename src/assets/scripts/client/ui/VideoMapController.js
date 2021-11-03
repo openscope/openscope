@@ -197,7 +197,7 @@ export default class VideoMapController {
     }
 
     /**
-     * Called when the rate for a flight category was changed
+     * Called when the video map selection is changed
      *
      * @for VideoMapController
      * @method onChangeSelectedMaps
