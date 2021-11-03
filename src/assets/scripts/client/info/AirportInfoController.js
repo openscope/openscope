@@ -269,6 +269,7 @@ export default class AirportInfoController {
      */
     onWindChange(currentWind) {
         this.wind = this._buildWindAndGustReadout({ speed: currentWind.speed, angle: currentWind.angle });
+
         this._render();
     }
 
