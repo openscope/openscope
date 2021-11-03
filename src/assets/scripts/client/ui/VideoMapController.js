@@ -56,8 +56,8 @@ export default class VideoMapController {
         this._selectedMaps = null;
 
 
-        this.init()
-            ._setupHandlers()
+        this._setupHandlers()
+            .init()
             .enable();
     }
 
@@ -82,12 +82,13 @@ export default class VideoMapController {
      *
      * Should be run once only on instantiation
      *
-     * @for TrafficRateController
+     * @for VideoMapController
      * @method _setupHandlers
      * @chainable
      */
     _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
+        this._onChangeSelectedMapsHandler = this.onChangeSelectedMaps.bind(this);
 
         return this;
     }
@@ -97,7 +98,7 @@ export default class VideoMapController {
      *
      * should be run only once on instantiation
      *
-     * @for TrafficRateController
+     * @for VideoMapController
      * @method enable
      * @chainable
      */
@@ -110,7 +111,7 @@ export default class VideoMapController {
     /**
      * Disable event handlers
      *
-     * @for TrafficRateController
+     * @for VideoMapController
      * @method disable
      * @chainable
      */
@@ -123,7 +124,7 @@ export default class VideoMapController {
     /**
      * Returns whether the airport selection dialog is open
      *
-     * @for TrafficRateController
+     * @for VideoMapController
      * @method isDialogOpen
      * @return {boolean}
      */
@@ -132,7 +133,7 @@ export default class VideoMapController {
     }
 
     /**
-    * @for TrafficRateController
+    * @for VideoMapController
     * @method toggleDialog
     */
     toggleDialog() {
@@ -142,7 +143,7 @@ export default class VideoMapController {
     /**
      * Rebuilds the dialog body when the airport is changed.
      *
-     * @for TrafficRateController
+     * @for VideoMapController
      * @method onAirportChange
      */
     onAirportChange() {
@@ -152,18 +153,20 @@ export default class VideoMapController {
     /**
      * Builds the dialog body
      *
-     * @for TrafficRateController
+     * @for VideoMapController
      * @method _buildDialogBody
      */
     _buildDialogBody() {
         this.$dialogBody.empty();
+
         const airportModel = AirportController.airport_get();
         const mapNames = airportModel.mapCollection.getMapNames();
         this._selectedMaps = airportModel.mapCollection.getVisibleMapNames();
 
         for (const mapName of mapNames) {
             const isChecked = this._selectedMaps.includes(mapName);
-            const $formElement = this._buildRow(mapName, mapName, isChecked, this._onChangeSelectedMaps);
+            const $formElement = this._buildRow(mapName, mapName, isChecked);
+
             this.$dialogBody.append($formElement);
         }
     }
@@ -179,18 +182,16 @@ export default class VideoMapController {
      * @param onChangeMethod {function}
      * @return {jquery|HTML Element}
      */
-    _buildRow(key, label, checked, onChangeMethod) {
-        const _inputTemplate = checked ? `<input class="form-checkbox" type="checkbox" name="${key}" checked/>` :
-            `<input class="form-checkbox" type="checkbox" name="${key}"/>`;
+    _buildRow(key, label, checked) {
         const template = `
             <div class="form-element">
-                ${_inputTemplate}
+                <input class="form-checkbox" type="checkbox" name="${key}"/>
                 <label class="form-label"> ${label}</label>
             </div>`;
         const $element = $(template);
-        const onChangeHandler = onChangeMethod.bind(this);
 
-        $element.on('change', { name: label }, onChangeHandler);
+        $element.find('.form-checkbox').prop('checked', checked);
+        $element.on('change', { name: label }, this._onChangeSelectedMapsHandler);
 
         return $element;
     }
@@ -199,22 +200,46 @@ export default class VideoMapController {
      * Called when the rate for a flight category was changed
      *
      * @for VideoMapController
-     * @method _onChangeSelectedMaps
+     * @method onChangeSelectedMaps
      * @param event
      */
-    _onChangeSelectedMaps(event) {
+    onChangeSelectedMaps(event) {
         const $target = $(event.target);
-        const value = $target.prop('checked');
+        const isChecked = $target.prop('checked');
         const map = event.data.name;
 
-        if (value) {
-            this._selectedMaps.push(map);
-        } else {
-            const index = this._selectedMaps.indexOf(map);
-            if (index > -1) {
-                this._selectedMaps.splice(index, 1);
-            }
+        if (!isChecked) {
+            this._removeMap(map);
+            return;
         }
+
+        this._addMap(map);
+    }
+
+    /**
+     * Helper method to add a map to the list of selected maps
+     *
+     * @param map
+     * @private
+     */
+    _addMap(map) {
+        this._selectedMaps.push(map);
+        this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP, this._selectedMaps);
+    }
+
+    /**
+     *  Helper method to remove a map from the list of selected maps
+     *
+     * @param map
+     * @private
+     */
+    _removeMap(map) {
+        const index = this._selectedMaps.indexOf(map);
+
+        if (index > -1) {
+            this._selectedMaps.splice(index, 1);
+        }
+
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP, this._selectedMaps);
     }
 }
