@@ -258,7 +258,7 @@ export default class TrafficRateController {
      * @return {jquery|HTML Element}
      */
     _buildWindDirectionSlider(value) {
-        const name = "wind direction"
+        const name = 'wind direction';
         const template = `
             <div class="form-element">
                 <div class="form-label">${name}</div>
@@ -283,7 +283,7 @@ export default class TrafficRateController {
      * @return {jquery|HTML Element}
      */
     _buildWindSpeedSlider(value) {
-        const name = "wind speed"
+        const name = 'wind speed';
         const template = `
             <div class="form-element">
                 <div class="form-label">${name}</div>
