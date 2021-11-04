@@ -576,6 +576,10 @@ class UiController {
         if (this.isTutorialDialogOpen()) {
             this.onToggleTutorial();
         }
+
+        if (this.videoMapController.isDialogOpen()) {
+            this.onToggleVideoMap();
+        }
     }
 
     /**
