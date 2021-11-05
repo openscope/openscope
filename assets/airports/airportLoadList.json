@@ -199,6 +199,12 @@
         "premium": false
     },
     {
+        "icao": "kewr",
+        "level": "easy",
+        "name": "Newark Liberty International Airport",
+        "premium": false
+    },
+    {
         "icao": "kgso",
         "level": "easy",
         "name": "Piedmont Triad International Airport",
