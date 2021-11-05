@@ -7,6 +7,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1845" target="_blank">#1845</a> - Fix Safari compatibility issue
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KRDU to AIRAC 2106
 
 
 # 6.25.0 (June 2, 2021)
