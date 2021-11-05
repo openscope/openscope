@@ -14,7 +14,7 @@ import {
 import { EVENT } from '../constants/eventNames';
 import { radians_normalize } from '../math/circle';
 import { round } from '../math/core';
-import { AIRCRAFT_COMMAND_MAP } from '../parsers/aircraftCommandParser/aircraftCommandMap';
+import { AIRCRAFT_COMMAND_MAP } from '../commands/aircraftCommand/aircraftCommandMap';
 import { speech_say } from '../speech';
 import {
     radio_runway,
@@ -257,8 +257,9 @@ export default class AircraftCommander {
     runCross(aircraft, data) {
         const fix = data[0].toUpperCase();
         const altitude = data[1];
+        const speed = data[2];
 
-        return aircraft.pilot.crossFix(aircraft, fix, altitude);
+        return aircraft.pilot.crossFix(aircraft, fix, altitude, speed);
     }
 
     /**
@@ -754,13 +755,19 @@ export default class AircraftCommander {
     runSquawk(aircraft, data) {
         const squawk = data[0];
         const result = this._onChangeTransponderCode(squawk, aircraft);
-        let message = `squawking ${squawk}`;
+        let readback = {
+            log: `squawk ${squawk}`,
+            say: `squawk ${radio_spellOut(squawk)}`
+        };
 
         if (!result) {
-            message = `unable to squawk ${squawk}`;
+            readback = {
+                log: `unable to squawk ${squawk}`,
+                say: `unable to squawk ${radio_spellOut(squawk)}`
+            };
         }
 
-        return [result, message];
+        return [result, readback];
     }
 
     /**

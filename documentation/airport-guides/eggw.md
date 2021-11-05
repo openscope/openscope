@@ -9,14 +9,14 @@ London Terminal Control Centre, 2015-2016
 3.4% increase from 2014-2015
 
 ### Primary Airport :: London Luton Airport
-London Luton Airport is an international airport 29 miles north of Central London and 1.7 miles east of Luton. London Luton is where easyJet, a large no-frills budget airline, started its operations in the 90s with two domestic routes to Edinburgh and Glasgow. The airport has seen various expansions since, however it retains the original, single two-storey terminal building which has 62 check-in desks. In February 2017, Hungarian low-cost carrier Wizz Air opened a British base at Luton, initially flying to Tel Aviv, Pristina and Kutaisi and its other bases. 
+London Luton Airport is an international airport 29 miles north of Central London and 1.7 miles east of Luton. London Luton is where easyJet, a large no-frills budget airline, started its operations in the 90s with two domestic routes to Edinburgh and Glasgow. The airport has seen various expansions since, however it retains the original, single two-storey terminal building which has 62 check-in desks. In February 2017, Hungarian low-cost carrier Wizz Air opened a British base at Luton, initially flying to Tel Aviv, Pristina and Kutaisi and its other bases.
 
 ### Airspace
 All of the airspace controlled by "London Control" is listed in the eAIP for the United Kingdom.
-Chart ENR 6.2.1.11 [from the NATS page](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html) from NATS may be useful to you so that you can understand the divisions within the London TMA.
+Chart ENR 6.2.1.11 <a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html" target="_blank">from the NATS page</a> from NATS may be useful to you so that you can understand the divisions within the London TMA.
 
 In openScope, only the North London Terminal Control Zone is available to control, considering the size of the London TMA.
-File 'TC North 2016_09.pdf' from within [this zip file from VATSIM UK](https://vatsim.uk/download/info/?downloadID=00200) may be of use to visualise TC North.
+File 'TC North 2016_09.pdf' from within <a href="https://vatsim.uk/download/info/?downloadID=00200" target="_blank">this zip file from VATSIM UK</a> may be of use to visualise TC North.
 
 ### Standard Operating Procedures
 ##### Continuous Descent Approaches
@@ -62,7 +62,7 @@ London Gatwick Airport is a major international airport 47.5km south of Central 
 285,969 aircraft movements in 2016-17
 
 08L/26R 2,565m, Asphalt
-08R/26L 3,375m, Asphalt (primary operational runway) 
+08R/26L 3,375m, Asphalt (primary operational runway)
 
 ##### London City Airport, EGLC
 London City Airport is an international airport located in the Royal Docks near Canary Wharf. It has an extremely short runway; Short Takeoff and Landing operations are in use. The airport was officially opened by Queen Elizabeth II in November 1987. The airport is mainly used by business travellers due to its proximity to the finanical district; various business airlines such as British Airways, Lufthansa and KLM operate flights to London City. British Airways operates a flagship route from London City, BA1, from London City to Shannon to New York with an A318.
@@ -103,9 +103,9 @@ Every dash on an extended centreline represents one (1) nautical mile, with each
 All sector splits of the LTMA are drawn on too.
 
 ### Additional Resources
-[NATS London TMA Diagram (chart ENR 6.2.1.11)](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html)  
-[NATS Aerodrome Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=6&Itemid=13.html)  
-[VATSIM UK (Luton)](https://vatsim.uk/eggw/)  
-[VATSIM UK Luton Cribsheet](https://vatsim.uk/download/info/?downloadID=00116)  
-[VATSIM UK Luton Virtual Manual of Air Traffic Services](https://vatsim.uk/download/info/?downloadID=00119)  
-[History of London's Airports (YouTube)](https://youtu.be/AbAal7jIWQ4)
+<a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html) " target="_blank">NATS London TMA Diagram (chart ENR 6.2.1.11)</a>
+<a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=6&Itemid=13.html) " target="_blank">NATS Aerodrome Charts</a>
+<a href="https://vatsim.uk/eggw/) " target="_blank">VATSIM UK (Luton)</a>
+<a href="https://vatsim.uk/download/info/?downloadID=00116) " target="_blank">VATSIM UK Luton Cribsheet</a>
+<a href="https://vatsim.uk/download/info/?downloadID=00119) " target="_blank">VATSIM UK Luton Virtual Manual of Air Traffic Services</a>
+<a href="https://youtu.be/AbAal7jIWQ4" target="_blank">History of London's Airports (YouTube</a>)

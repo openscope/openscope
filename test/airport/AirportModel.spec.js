@@ -2,6 +2,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 
 import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
+import DynamicPositionModel from '../../src/assets/scripts/client/base/DynamicPositionModel';
 import { FLIGHT_CATEGORY } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
@@ -50,7 +51,7 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.airspace = null;
 
-    model.buildAirportAirspace();
+    model.buildAirspace();
 
     t.true(!model.airspace);
 });
@@ -139,6 +140,36 @@ ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid cat
     const result = model.getActiveRunwayForCategory('threeve');
 
     t.true(result.name === model.arrivalRunwayModel.name);
+});
+
+ava('.isPointWithinAirspace() returns true when the provided point is inside the lateral and vertical boundaries', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+    const coordinatesMock = [36, -114.5];
+    const positionMock = DynamicPositionModel.calculateRelativePosition(coordinatesMock, model.positionModel, model.magneticNorth);
+    const altitudeMock = 19000;
+    const result = model.isPointWithinAirspace(positionMock, altitudeMock);
+
+    t.true(result);
+});
+
+ava('.isPointWithinAirspace() returns false when the provided point is inside the lateral boundary but not within vertical boundaries', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+    const coordinatesMock = [36, -114.5];
+    const positionMock = DynamicPositionModel.calculateRelativePosition(coordinatesMock, model.positionModel, model.magneticNorth);
+    const altitudeMock = 19001;
+    const result = model.isPointWithinAirspace(positionMock, altitudeMock);
+
+    t.false(result);
+});
+
+ava('.isPointWithinAirspace() returns false when the provided point is inside the vertical boundary but not within lateral boundaries', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+    const coordinatesMock = [36, -114];
+    const positionMock = DynamicPositionModel.calculateRelativePosition(coordinatesMock, model.positionModel, model.magneticNorth);
+    const altitudeMock = 19000;
+    const result = model.isPointWithinAirspace(positionMock, altitudeMock);
+
+    t.false(result);
 });
 
 ava('.mapCollection is valid', (t) => {

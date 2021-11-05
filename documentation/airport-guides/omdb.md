@@ -6,7 +6,7 @@ Dubai International Airport is the world's busiest airport by international pass
 2,654,494 tonnes of cargo handled in 2017
 418,220 aircraft movements in 2016
 
-Sources: [Dubai Airports](http://www.dubaiairports.ae/corporate/media-centre/factsheets-list/detail/dubai-airports), [ACI](https://en.wikipedia.org/wiki/Dubai_International_Airport#cite_note-ACI-3)
+Sources: <a href="http://www.dubaiairports.ae/corporate/media-centre/factsheets-list/detail/dubai-airports" target="_blank">Dubai Airports</a>, <a href="https://en.wikipedia.org/wiki/Dubai_International_Airport#cite_note-ACI-3" target="_blank">ACI</a>
 
 ### Dubai Air Navigation Services
 Dubai Air Navigation Services is the air navigation services provider for Dubai Airports, Al Minhad Air Base and some of the airports in the North of the UAE, based in Terminal 1 of Dubai International. dans is well-respected in the industry due to its unique air traffic management solutions. Furthermore, it is partnered with global leading aviation organisations, such as Eurocontrol.
@@ -33,7 +33,7 @@ Dubai Air Navigation Services is the air navigation services provider for Dubai 
 | "Dubai Airport"             | 126.275MHZ | ATIS for arrivals                                                        |
 
 ### About the Dubai Control Areas
-The airspace boundaries for the Dubai Control Areas are enlisted within ENR 2.1 of the United Arab Emirates AIP, available from the [General Civil Aviation Authority](https://www.gcaa.gov.ae/en/ais/Pages/default.aspx).
+The airspace boundaries for the Dubai Control Areas are enlisted within ENR 2.1 of the United Arab Emirates AIP, available from the <a href="https://www.gcaa.gov.ae/en/ais/Pages/default.aspx" target="_blank">General Civil Aviation Authority</a>.
 
 ### Standard Operating Procedures
 ###### Preferential Runway
@@ -129,4 +129,4 @@ The videomap also contains:
 
 
 ### Additional Resources
-[UAE AIP (free registration required)](https://www.gcaa.gov.ae/en/ais/pages/aip.aspx)
+<a href="https://www.gcaa.gov.ae/en/ais/pages/aip.aspx" target="_blank">UAE AIP (free registration required)</a>

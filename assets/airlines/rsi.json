@@ -1,0 +1,20 @@
+{
+    "icao": "rsi",
+    "name": "Air Sunshine",
+    "callsign": {
+        "name": "Air Sunshine",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["BE20", 2],
+            ["C402", 4],
+            ["SF34", 2]
+        ],
+        "c402": [
+            ["C402", 4]
+        ]
+    }
+}

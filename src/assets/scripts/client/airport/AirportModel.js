@@ -4,7 +4,6 @@ import _chunk from 'lodash/chunk';
 import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
 import AirspaceModel from './AirspaceModel';
@@ -23,7 +22,7 @@ import {
     round
 } from '../math/core';
 import {
-    vectorize_2d,
+    vectorize2dFromRadians,
     vlen,
     vsub,
     vadd,
@@ -36,6 +35,7 @@ import {
 import { ENVIRONMENT } from '../constants/environmentConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
+import { distance2d } from '../math/distance';
 
 const DEFAULT_CTR_RADIUS_KM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
@@ -196,15 +196,6 @@ export default class AirportModel {
          * @default {}
          */
         this.terrain = {};
-
-        /**
-         * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
-         *
-         * @property perimeter
-         * @type {object}
-         * @default null
-         */
-        this.perimeter = null;
 
         /**
          * @property timeout
@@ -369,15 +360,41 @@ export default class AirportModel {
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
-        this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
 
+        this._initRangeRings(data.rangeRings);
         this.loadTerrain();
-        this.buildAirportAirspace(data.airspace);
+        this.buildAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
+
+        this.eventBus.on(EVENT.WIND_CHANGE, this.updateCurrentWind.bind(this));
+    }
+
+    /**
+     * Initialize the range ring position model
+     *
+     * @for AirportModel
+     * @method _initRangeRings
+     * @param {object} rangeRingData
+     * @private
+     */
+    _initRangeRings(rangeRingData) {
+        if (!rangeRingData) {
+            this.rangeRings = DEFAULT_RANGE_RINGS;
+        }
+
+        this.rangeRings = {
+            enabled: rangeRingData.enabled,
+            center: new DynamicPositionModel(
+                rangeRingData.center,
+                this.positionModel,
+                this.magneticNorth
+            ),
+            radius_nm: rangeRingData.radius_nm
+        };
     }
 
     /**
@@ -398,10 +415,10 @@ export default class AirportModel {
      * create 3d polygonal airspace
      *
      * @for AirportModel
-     * @method buildAirportAirspace
+     * @method buildAirspace
      * @param airspace
      */
-    buildAirportAirspace(airspace) {
+    buildAirspace(airspace) {
         if (!airspace) {
             return;
         }
@@ -415,50 +432,44 @@ export default class AirportModel {
             );
         });
 
-        // airspace perimeter (assumed to be first entry in data.airspace)
-        this.perimeter = _head(this.airspace);
-        this.ctr_radius = Math.max(
-            ..._map(this.perimeter.poly, (vertexPosition) => vlen(
-                vsub(
-                    vertexPosition.relativePosition,
-                    DynamicPositionModel.calculateRelativePosition(
-                        this.rangeRings.center,
-                        this._positionModel,
-                        this.magneticNorth
-                    )
-                )
-            ))
-        );
+        this.ctr_radius = 0;
+
+        for (const airspaceModel of this.airspace) {
+            this.ctr_radius = Math.max(
+                this.ctr_radius,
+                ..._map(airspaceModel.poly, (vertexPosition) => vlen(
+                    vsub(vertexPosition.relativePosition, this.rangeRings.center.relativePosition)
+                ))
+            );
+        }
     }
 
     /**
      * @for AirportModel
      * @method buildRestrictedAreas
-     * @param restrictedAreas
+     * @param data
      */
-    buildRestrictedAreas(restrictedAreas) {
-        if (!restrictedAreas) {
+    buildRestrictedAreas(data) {
+        if (!data) {
             return;
         }
 
-        _forEach(restrictedAreas, (area) => {
-            // TODO: find a better name for `obj`
-            const obj = {};
+        _forEach(data, (areaData) => {
+            const restrictedArea = {};
 
-            if (area.name) {
-                obj.name = area.name;
+            if (areaData.name) {
+                restrictedArea.name = areaData.name;
             }
 
-            obj.height = parseElevation(area.height);
-            obj.coordinates = _map(
-                area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
-            );
+            restrictedArea.height = parseElevation(areaData.height);
+            restrictedArea.poly = areaData.poly.map((gps) => {
+                return DynamicPositionModel.calculateRelativePosition(gps, this._positionModel, this.magneticNorth);
+            });
 
-            let coords_max = obj.coordinates[0];
-            let coords_min = obj.coordinates[0];
+            let coords_max = restrictedArea.poly[0];
+            let coords_min = restrictedArea.poly[0];
 
-            _forEach(obj.coordinates, (v) => {
+            _forEach(restrictedArea.poly, (v) => {
                 coords_max = [
                     Math.max(v[0], coords_max[0]),
                     Math.max(v[1], coords_max[1])
@@ -469,9 +480,17 @@ export default class AirportModel {
                 ];
             });
 
-            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+            let labelRelativePositions = [vscale(vadd(coords_max, coords_min), 0.5)];
 
-            this.restricted_areas.push(obj);
+            if (areaData.labelPositions) {
+                labelRelativePositions = areaData.labelPositions.map((v) => {
+                    return DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth);
+                });
+            }
+
+            restrictedArea.labelRelativePositions = labelRelativePositions;
+
+            this.restricted_areas.push(restrictedArea);
         });
     }
 
@@ -572,7 +591,7 @@ export default class AirportModel {
     getWindVectorAtAltitude(altitude) {
         const { angle, speed } = this.getWindAtAltitude(altitude);
         const windTravelDirection = angle + Math.PI;
-        const windVector = vscale(vectorize_2d(windTravelDirection), speed);
+        const windVector = vscale(vectorize2dFromRadians(windTravelDirection), speed);
 
         return windVector;
     }
@@ -854,5 +873,38 @@ export default class AirportModel {
 
         this.init(response);
         this.set();
+    }
+
+    /**
+     * Returns whether or not the provided point (at the specified altitude) is within any
+     * airspace area belonging to this airport
+     *
+     * @for AirportModel
+     * @function isPointWithinAirspace
+     * @param point {array} x,y
+     * @param altitude {number}
+     * @return {boolean}
+     */
+    isPointWithinAirspace(point, altitude) {
+        for (let i = 0; i < this.airspace.length; i++) {
+            const airspace = this.airspace[i];
+
+            if (airspace.isPointInside(point, altitude)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @for AirportModel
+     * @function distance2d
+     * @param point {array} x,y
+     * @return {number} distance in km
+     */
+    distance2d(point) {
+        return distance2d(point, this.relativePosition);
     }
 }

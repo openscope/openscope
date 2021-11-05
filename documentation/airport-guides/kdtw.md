@@ -1,6 +1,6 @@
 ### About this facility
 Detroit TRACON (D21), Detroit, Michigan, USA
-523,508 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+523,508 annual operations in 2016 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 Located at Detroit Metro airport, the D21 TRACON provides services to all traffic in and out of the Detroit metropolitan area.
 
@@ -61,7 +61,7 @@ Willow Run Airport
 60,801 annual operations  
 8.1nm West of KDTW
 
-Almost all of Detroit's scheduled airline flights used Willow Run until 1958, when the coming of the Jet Age drove traffic to the newly expanded Detroit Metro Airport. It is now used mainly for corporate and general aviation. It is also a hub for cargo airline 'Kalitta Air'. 
+Almost all of Detroit's scheduled airline flights used Willow Run until 1958, when the coming of the Jet Age drove traffic to the newly expanded Detroit Metro Airport. It is now used mainly for corporate and general aviation. It is also a hub for cargo airline 'Kalitta Air'.
 
 #### CYQG
 Windsor Airport  
@@ -71,4 +71,4 @@ Windsor Airport
 Although it is located in Ontario, Canada, Windsor Airport is controlled by D21 due to its proximity to DTW. It's used primarily for general aviation as well as some commercial flights to Toronto and the Caribbean.
 
 ### Additional Resources
-[IVAO SOP](http://www.ivaous.org/fdr/SOPs/ZOB/DTW.pdf)
+<a href="http://www.ivaous.org/fdr/SOPs/ZOB/DTW.pdf" target="_blank">IVAO SOP</a>

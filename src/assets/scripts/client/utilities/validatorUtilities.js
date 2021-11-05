@@ -5,18 +5,18 @@ import _isObject from 'lodash/isObject';
 /**
  * This will return true if it is not an object or it is empty
  *
- * @funtion isNotObjectOrIsEmpty
+ * @funtion isEmptyOrNotObject
  * @param value {*}
  * @return {boolean}
  */
-export const isEmptyObject = (value) => {
-    return _isObject(value) && _isEmpty(value);
+export const isEmptyOrNotObject = (value) => {
+    return !_isObject(value) || _isEmpty(value);
 };
 
 /**
  * This will return true if it is not an array or it is empty
  *
- * @funtion isNotObjectOrIsEmpty
+ * @funtion isEmptyOrNotArray
  * @param value {*}
  * @return {boolean}
  */

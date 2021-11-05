@@ -14,10 +14,7 @@ import {
     DATA_BLOCK_POSITION_MAP
 } from '../constants/scopeConstants';
 import { THEME } from '../constants/themes';
-
-// TODO: abstract these to an appropriate constants file
-const HEAVY_LETTER = 'H';
-const SUPER_LETTER = 'J';
+import { WAKE_TURBULENCE_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * A single radar target observed by the radar system and shown on the scope
@@ -172,7 +169,6 @@ export default class RadarTargetModel {
         this._theme = theme;
 
         this._init(aircraftModel)
-            ._initializeScratchPad()
             .enable();
     }
 
@@ -268,25 +264,7 @@ export default class RadarTargetModel {
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._routeString = aircraftModel.fms.getRouteString();
 
-        return this;
-    }
-
-    /**
-     * Initialize the value of the scratchpad
-     *
-     * @for RadarTargetModel
-     * @method _initializeScratchPad
-     * @private
-     * @chainable
-     */
-    _initializeScratchPad() {
-        if (this.aircraftModel.isDeparture()) {
-            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
-
-            return this;
-        }
-
-        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
+        this.setDefaultScratchpad();
 
         return this;
     }
@@ -296,9 +274,12 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method enable
+    * @chainable
     */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
+        return this;
     }
 
     /**
@@ -306,9 +287,12 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method disable
+    * @chainable
     */
     disable() {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
+        return this;
     }
 
     /**
@@ -316,6 +300,7 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method reset
+    * @chainable
     */
     reset() {
         this.aircraftModel = null;
@@ -328,6 +313,8 @@ export default class RadarTargetModel {
         this._interimAltitude = INVALID_NUMBER;
         this._isUnderOurControl = true;
         this._routeString = '';
+
+        return this;
     }
 
     /**
@@ -353,20 +340,12 @@ export default class RadarTargetModel {
     buildDataBlockRowOne() {
         let dataBlockRowOne = this.aircraftModel.callsign;
 
-        // NOTE: using empty space before the letter on purpose so this gets rendered
-        // appropriately within a canvas
-        switch (this.aircraftModel.model.weightClass) {
-            case SUPER_LETTER:
-                dataBlockRowOne += ` ${SUPER_LETTER}`;
+        const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.aircraftModel.model.weightClass) ??
+            { APPEND: false };
 
-                break;
-            case HEAVY_LETTER:
-                dataBlockRowOne += ` ${HEAVY_LETTER}`;
-
-                break;
-            default:
-
-                break;
+        if (wtc.APPEND) {
+            // NOTE: using empty space before the letter on purpose so this gets rendered appropriately within a canvas
+            dataBlockRowOne += ` ${wtc.LETTER}`;
         }
 
         return dataBlockRowOne;
@@ -542,6 +521,25 @@ export default class RadarTargetModel {
         this._haloRadius = radius;
 
         return [true, 'ADJUST HALO'];
+    }
+
+    /**
+     * Set default value of the scratchpad
+     *
+     * @for RadarTargetModel
+     * @method setDefaultScratchpad
+     * @return {array} [success of operation, system's response]
+     */
+    setDefaultScratchpad() {
+        if (this.aircraftModel.isDeparture()) {
+            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
+
+            return [true, 'RESET SCRATCHPAD'];
+        }
+
+        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
+
+        return [true, 'RESET SCRATCHPAD'];
     }
 
     /**

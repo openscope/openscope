@@ -1,0 +1,15 @@
+{
+    "icao": "myx",
+    "name": "SmartLynx Estonia",
+    "callsign": {
+        "name": "Tallinn Cat",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 7]
+        ]
+    }
+}

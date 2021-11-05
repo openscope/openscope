@@ -392,7 +392,7 @@
             ["vti",  2],
             ["cpa",  1],
             ["fdx",  1],
-            ["sqc",  1]
+            ["sia/cargo", 1]
         ],
         "destinations": [
             "ANIRO6",
@@ -797,7 +797,7 @@
                 ["tgw",  1],
                 ["vti",  2],
                 ["fdx",  1],
-                ["sqc",  1]
+                ["sia/cargo", 1]
             ]
         }
     ]

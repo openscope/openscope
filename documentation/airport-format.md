@@ -4,6 +4,7 @@
   * [Base Airport Properties](#base-airport-properties)
   * [Airspace](#airspace)
   * [Fixes](#fixes)
+  * [Restricted Airspace](#restricted-airspace)
   * [Runways](#runways)
   * [Airways](#airways)
   * [SIDs](#sids)
@@ -15,7 +16,7 @@
   * [Identifiers](#icao-and-iata-identifiers)
   * [Flight Level](#flight-level)
 
-The airport JSON file must be in "[assets/airports](https://github.com/openscope/openscope/tree/develop/assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](https://github.com/openscope/openscope/blob/develop/assets/airports/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
+The airport JSON file must be in "[assets/airports](https://github.com/openscope/openscope/tree/develop/assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.json](https://github.com/openscope/openscope/blob/develop/assets/airports/airportLoadList.json) in alphabetical order. See the [airport load list documentation](https://github.com/openscope/openscope/blob/develop/documentation/airport-load-list.md) for information on the correct structure to use.
 
 ## Example
 
@@ -35,7 +36,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
-    "position": ["N47d26.99m0", "W122d18.71m0"],
+    "position": ["N47d26.99m0", "W122d18.71m0", "432ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N47d26.99m0", "W122d18.71m0"],
@@ -67,18 +68,18 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
         "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
         "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+        "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
         "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
         "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
         "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
         "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
         "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-        "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+        "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
         "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
         "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-        "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+        "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
         "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-        "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+        "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
         "WESET": ["N47d24.35m0", "W122d19.10m0"],
         "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
         "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
@@ -87,7 +88,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         {
             "name": "P-51",
             "height": "2500ft",
-            "coordinates": [
+            "poly": [
                 ["N47.7737128", "W122.7710456"],
                 ["N47.7189169", "W122.7706794"],
                 ["N47.6924411", "W122.7388044"],
@@ -294,7 +295,15 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 * **floor** ― The lowest altitude (in [flight levels](#flight-level)) included in the airspace.
 * **ceiling** ― The highest altitude (in [flight levels](#flight-level)) included in the airspace.
 * **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true) and find the closest match based on the way the local airspace is treated.
-* **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+* **poly** ― The coordinates of the corners of the airspace polygon in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+* **labelPositions (optional)** ― For each airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
+
+```json
+"labelPositions": [
+    ["N48.20000000", "W122.45000000"],
+    ["N47.83333330", "W121.69999940"]
+],
+```
 
 ### Fixes
 
@@ -305,18 +314,18 @@ All fixes listed within the Standard Routes need to be defined within this secti
     "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
     "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
     "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-    "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+    "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
     "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
     "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
     "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
     "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
     "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-    "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+    "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
     "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
     "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-    "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+    "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
     "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-    "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+    "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
     "WESET": ["N47d24.35m0", "W122d19.10m0"],
     "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
     "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
@@ -327,6 +336,14 @@ Each navaid located within or around the airport airspace in latitude, longitude
 
 ```json
 "AAYRR": ["N46d38.81m0", "W123d43.34m0"]
+```
+
+Each fix can have an optional third parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an arbitrary letter combination. Capitalization of this parameter _does not affect_ the way the fix is pronounced in-sim.
+
+```json
+"EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
+"KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
+"PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
 ```
 
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
@@ -343,13 +360,7 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 "_RWY33L": [42.354662, -70.991598]
 ```
 
-* Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as RNAV fixes (via the underscore prefix).
-
-```json
-"_AUTUM220015": [42.324333, -71.736833]
-```
-
-* Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway whose departure path is aimed toward the fix, with the distance being measured from the departure end (denoted in the fix name as a two digit distance in nautical miles, then DME). So a fix named `_RWY1805DME` would be 5.0nm south of the end of Runway 18. All of these should be marked as RNAV fixes (via the underscore prefix).
+* Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway whose approach path crosses the fix at the specified distance from the threshold (denoted in the fix name as a two digit distance in nautical miles, then "DME"). So a fix named `_RWY1805DME` would be 5.0nm north of the landing threshold of Runway 18. All of these should be marked as invisible fixes (via the underscore prefix).
 
 ```json
 "_RWY33L01DME": [42.342838, -70.975751]
@@ -358,7 +369,19 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 * Any fixes that represent the intersection of a runway's inbound course and another course to a fix will be descried using the format below. Note that the runway whose _approach course_ intersects is the one to be used, not the runway whose _departure course_ intersects.
 
 ```json
-"_RWY12BSTER081": []
+"_RWY12BSTER081": [25.810667, -80.322667]
+```
+
+* Fixes may be defined based on the intersection of a runway's inbound course and an outbound radial of any fix. For a point aligned with Runway 33's approach path and the XYZ VOR's outbound radial 180, we get `_RWY33XYZ180`. Note that if the intersection were to be on the departure side of a given runway, the opposite runway should be used to keep with the convention of using the approach course.
+
+```json
+"_RWY1LPIE116": [27.848198, -82.546200]
+```
+
+* Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as invisible fixes (via the underscore prefix).
+
+```json
+"_AUTUM220015": [42.324333, -71.736833]
 ```
 
 * Any fixes that represent the intersection of radials off of two fixes will be described by including each fix's _outbound_ radial.
@@ -370,19 +393,14 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 * Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
 
 ```json
-"_SIPLY233STINS324": ["N37.47860", "W122.60090"]
+"_SIPLY233STINS324": [37.47860, -122.60090]
 ```
 
-* Fixes may be defined based on the intersection of a runway's outbound course and an outbound radial of any fix. For a point aligned with Runway 27's departure path and the XYZ VOR's outbound radial 180, we get `_RWY27XYZ180`. Note that if the intersection were to be on the arrival half of a given runway, the opposite runway should be used to keep with the convention of using the departure course.
+* Fixes may be defined based on the intersection of a fix's outbound radial and the DME arc of the specified distance from a separate fix. This is formatted like `_FIXXA050FIXXB05DME`, where the first fix has a three digit outbound radial, and the second fix has a two-digit distance in nm, followed by DME. Similarly, this can be done with runways using the same patterns as before, yielding `_RWY22LFIXXB05DME`; just use the name of the runway whose _approach course_ intersects the DME arc, and _not the departure path_.
 
 ```json
-"_RWY19RPIE116": [27.848198, 82.546200]
-```
-
-* Fixes may be defined based on the intersection of a fix's outbound radial and the DME arc of the specified distance from a separate fix. This is formatted like `_FIXXA050FIXXB05DME`, where the first fix has a three digit outbound radial, and the second fix has a two-digit distance in nm, followed by DME. Similarly, this can be done with runways using the same patterns as before, yielding `_RWY22LFIXXB05DME`.
-
-```json
-"_RWY09RLON02DME": ["N51d32m17.76", "W0d12m45.87"]
+"_SEA104TCM40DME": [47.074500, -121.516167],
+"_RWY16LPAE10DME": [47.754500, -122.308000]
 ```
 
 ### Restricted Airspace
@@ -394,7 +412,7 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
     {
         "name": "P-51",
         "height": "2500ft",
-        "coordinates": [
+        "poly": [
             ["N47.7737128", "W122.7710456"],
             ["N47.7189169", "W122.7706794"],
             ["N47.6924411", "W122.7388044"],
@@ -405,7 +423,17 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 ],
 ```
 
-Note that `height` represents the _top_ of the restricted area. Currently all restricted areas are assumed to begin at sea level.
+* **name (optional)** ― The name of the restricted airspace.
+* **height** ― The _top_ of the restricted airspace. Currently all restricted airspaces are assumed to begin at sea level.
+* **poly** ― The coordinates of the corners of the restricted airspace polygon in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+* **labelPositions (optional)** ― For each restricted airspace an optional `labelPositions` array may be supplied. It specifies one or more positions at which text labels are to be placed, which is useful for oddly shaped airspaces where the standard placement doesn't look right. Here is an example of defining two positions:
+
+```json
+"labelPositions": [
+    ["N47.7737128", "W122.7710456"],
+    ["N47.7723906", "W122.6948667"]
+],
+```
 
 ### Runways
 
@@ -463,7 +491,7 @@ Runways are defined in pairs because a runway can be used from either direction.
     "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
     "J146": ["LAS", "NOOTN"],
     "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
-    "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+    "J92": ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
     "Q15": ["CHILY", "DOVEE", "BIKKR"],
     "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
 },
@@ -471,13 +499,13 @@ Runways are defined in pairs because a runway can be used from either direction.
 
 Each fix along each airway in successive order (direction does not matter). And of course, all fixes entered here must be defined in the `fixes` section.
 
-## Standard Procedures
+## Instrument Procedures
 
-Standard Procedures consist of SIDs and STARs and, at a very high level, all contain three segments:
+Supported Instrument Procedures currently include only SIDs and STARs, and each contain three components:
 
-1. Entry - the start of the procedure. can be on one of (possibly) several transition routes that feed into a central segment (the Body)
+1. Entry - the starting point of the procedure (can include many different entry points)
 2. Body - shared segment that all aircraft on the route will follow
-3. Exit - end of the procedure. can be one of (possibly) several exit segments
+3. Exit - the ending point of the procedure (can include many different exit points)
 
 This structure is used to work with both SIDs and STARs within the app.  Though it's not important to know for an airport file, it is a good thing to keep in mind.
 
@@ -508,7 +536,7 @@ Fixes within a segment might include an instruction and/or restrictions.  Fixes 
 "16L": ["IMB", ["SUNED", "A70+|A100-|S210+|S250-"], "YKM"]
 ```
 
-These definitions can be used within any `Entry`, `Body` or `Exit` segment of a standardRoute.
+These definitions can be used within any `entryPoints`, `body` or `exitPoints` segment of a procedure.
 
 ### SIDs
 
@@ -526,6 +554,7 @@ All properties in this section are required for each route definition
             "KSEA34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
             "KSEA34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
         },
+        "body": [],
         "exitPoints": {
             "BKE": ["SUMMA", "BKE"],
             "LKV": ["SUMMA", "LKV"],
@@ -554,12 +583,12 @@ SID is an acronym for _Standard Instrument Departure_.
 * **name** - spoken name of the route used for read backs.
 * **altitude** - (number) initial climb clearance (optional).
 * **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
-* **body** - (2d array of strings) fix names for the `Body` segment.
+* **body** - (2d array of strings) fix names for the `Body` segment. May be empty, but must be present.
 * **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
 * **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes. The name of the SID will be displayed on top of the fix with a `*` after it (e.g. `["SUMMA", "LKV*"]`). _Please note that the 'draw' array must contain at least one array, even if it is empty: `"draw": [[]]`_
 
-**The `body` section must contain at least one fix**
-**The `exitPoints` section must contain at least one fix**
+**Every possible rwy/body/exitPoint combination must result at least one fix.**
+**There must be at least one exitPoint, and it cannot be empty.**
 
 ### STARs
 
@@ -604,7 +633,7 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 
 * **name** - spoken name of the route used for read backs.
 * **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
-* **body** - (2d array of strings) fix names for the `Body` segment.
+* **body** - (2d array of strings) fix names for the `Body` segment. May be empty, but must be present.
 * **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
 * **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes. The name of the STAR will be displayed on top of the fix with a `*` after it (e.g. `["PDT*", "BRUKK"]`)
 

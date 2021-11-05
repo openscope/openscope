@@ -34,16 +34,16 @@ A maximum speed of 250 KIAS should be maintained below FL1000. Aircraft should c
 
 | Runway | Suffix | Description | AD | Date |
 | -- | -- | -- | -- | -- |
-| 06 | 3A | RNAV Standard Instrument Departure Chart RWY 06 – ICAO | [EINN AD 2.24-5](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-5_en.pdf) | 31 Jan 2019 |
-| 24 | 3B | RNAV Standard Instrument Departure Chart RWY 24 – ICAO | [EINN AD 2.24-6](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-6_en.pdf) | 31 Jan 2019 |
+| 06 | 3A | RNAV Standard Instrument Departure Chart RWY 06 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-5_en.pdf" target="_blank">EINN AD 2.24-5</a> | 31 Jan 2019 |
+| 24 | 3B | RNAV Standard Instrument Departure Chart RWY 24 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-6_en.pdf" target="_blank">EINN AD 2.24-6</a> | 31 Jan 2019 |
 
 ##### Arrivals
 Aircraft arriving from airways should expect the following arrivals
 
 | Runway | Suffix | Description | AD | Date |
 | -- | -- | -- | -- | -- |
-| 06 | 2E | RNAV Standard Arrival Chart RWY 06 – ICAO | [EINN AD 2.24-7](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-7_en.pdf) | 06 Dec 2018 |
-| 24 | 2D, 3D | RNAV Standard Arrival Chart RWY 24 – ICAO | [EINN AD 2.24-8](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-8_en.pdf) | 31 Jan 2019 |
+| 06 | 2E | RNAV Standard Arrival Chart RWY 06 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EIN" target="_blank">EINN AD 2.24-7</a>_24-7_en.pdf) | 06 Dec 2018 |
+| 24 | 2D, 3D | RNAV Standard Arrival Chart RWY 24 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24" target="_blank">EINN AD 2.24-8</a>8_en.pdf) | 31 Jan 2019 |
 
 ### Other aerodromes of interest
 The videomap includes the position of the following aerodromes within or around the Shannon CTA, including:
@@ -85,11 +85,11 @@ Provided with the videomap is a a top down view of the airport's runways, the Sh
 All restricted airspaces are plotted too.
 
 ### Additional Resources
-All documents can be viewed on the [IAA Website](http://iaip.iaa.ie/iaip/IAIP_Frame_CD.htm). In addition the following documents may be of some use:
+All documents can be viewed on the <a href="http://iaip.iaa.ie/iaip/IAIP_Frame_CD.htm" target="_blank">IAA Website</a>. In addition the following documents may be of some use:
 
 | Description | AD | Type |
 | -- | -- | -- |
-| Aerodrome Information | [EINN AD 2](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/EI_AD_2_EINN_EN.pdf) | AIP | 
-| Instrument Approach Chart ILS or LOC RWY 06 – ICAO | [EINN AD 2.24-11](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-11_en.pdf) | Chart |
-| Instrument Approach Chart ILS CAT I & II or LOC 24 – ICAO | [EINN AD 2.24-14](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-14_en.pdf) | Chart |
-| Visual Approach Chart – ICAO | [EINN AD 2.24-15](http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-15_en.pdf) | Chart |
+| Aerodrome Information | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/EI_AD_2_EINN_EN.pdf" target="_blank">EINN AD 2</a> | AIP | 
+| Instrument Approach Chart ILS or LOC RWY 06 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-11_en.pdf" target="_blank">EINN AD 2.24-11</a> | Chart |
+| Instrument Approach Chart ILS CAT I & II or LOC 24 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-14_en.pdf" target="_blank">EINN AD 2.24-14</a> | Chart |
+| Visual Approach Chart – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-15_en.pdf" target="_blank">EINN AD 2.24-15</a> | Chart |

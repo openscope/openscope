@@ -13,6 +13,7 @@ const LAT_LONG_DECIMAL_MOCK = [36.63366638888889, -114.60478305555554];
 const LAT_LONG_MOCK_2 = ['N35d51.34m0', 'W114d54.60m0'];
 const LAT_LONG_DECIMAL_MOCK_2 = [35.855666666666664, -114.91];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
+const RELATIVE_POSITION_MOCK = [3, 4]; // distance 5km along a 045 magnetic bearing
 const expectedrelativePosition = [35.448246791634254, 70.38079821863909];
 
 ava('throws when called to instantiate without parameters', t => {
@@ -48,10 +49,6 @@ ava('get magneticNorth() returns the value of #_magneticNorth', (t) => {
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.calculatePosition() static method throws when it receives the wrong arguments', t => {
-    t.throws(() => DynamicPositionModel.calculateRelativePosition());
-});
-
 ava('.bearingFromPosition() returns the correct bearing between two DynamicPositionModel instances', t => {
     const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const position2 = new DynamicPositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
@@ -68,6 +65,54 @@ ava('.bearingToPosition() returns the correct bearing between two DynamicPositio
     const result = position1.bearingToPosition(position2);
 
     t.true(result === expectedResult);
+});
+
+ava('.calculateRelativePosition() static method throws when coordinates are undefined', t => {
+    const referencePosition = new DynamicPositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
+
+    t.throws(() => DynamicPositionModel.calculateRelativePosition(undefined, referencePosition, MAGNETIC_NORTH_MOCK));
+});
+
+ava('.calculateRelativePosition() static method throws when referencePosition is undefined', t => {
+    t.throws(() => DynamicPositionModel.calculateRelativePosition(LAT_LONG_MOCK, undefined, MAGNETIC_NORTH_MOCK));
+});
+
+ava('.calculateRelativePosition() static method throws when magnetic north is undefined', t => {
+    const referencePosition = new DynamicPositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
+
+    t.throws(() => DynamicPositionModel.calculateRelativePosition(LAT_LONG_MOCK, referencePosition));
+});
+
+ava('.calculateRelativePosition() static method returns correctly translated value', t => {
+    const referencePosition = new DynamicPositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
+    const expectedResult = [-8.81063082871495, -90.26632595066663];
+    const result = DynamicPositionModel.calculateRelativePosition(LAT_LONG_MOCK_2, referencePosition, MAGNETIC_NORTH_MOCK);
+
+    t.deepEqual(result, expectedResult);
+});
+
+// user bug test case
+ava('.calculateRelativePosition() static method does not throw when it receives 0 for magnetic_north', t => {
+    t.notThrows(() => new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
+    t.notThrows(() => DynamicPositionModel.calculateRelativePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
+});
+
+ava('.calculateGpsCoordinatesFromRelativePosition() static method throws when offset values are undefined', t => {
+    const referencePosition = new DynamicPositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
+
+    t.throws(() => DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition(undefined, referencePosition));
+});
+
+ava('.calculateGpsCoordinatesFromRelativePosition() static method throws when referencePosition is undefined', t => {
+    t.throws(() => DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition(LAT_LONG_MOCK));
+});
+
+ava('.calculateGpsCoordinatesFromRelativePosition() static method returns correctly translated value', t => {
+    const referencePosition = new DynamicPositionModel(LAT_LONG_DECIMAL_MOCK, null, MAGNETIC_NORTH_MOCK);
+    const expectedResult = [36.66329597581823, -114.5626240216674];
+    const result = DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition(RELATIVE_POSITION_MOCK, referencePosition);
+
+    t.deepEqual(result, expectedResult);
 });
 
 ava('.distanceToPosition() returns the correct distance between two DynamicPositionModel instances', t => {
@@ -108,10 +153,4 @@ ava('.setCoordinates() sets the latitude and longitude when provided valid data'
     const expectedResult = LAT_LONG_DECIMAL_MOCK_2;
 
     t.true(_isEqual(result, expectedResult));
-});
-
-// user bug test cases
-ava('.calculatePosition() does not throw when it receives 0 for magnetic_north', t => {
-    t.notThrows(() => new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
-    t.notThrows(() => DynamicPositionModel.calculateRelativePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
 });

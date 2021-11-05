@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier Challenger 350",
+    "icao": "CL35",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "S+",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "F"
+    },
+    "ceiling": 45000,
+    "rate": {
+        "climb": 5000,
+        "descent": 3000,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.466,
+        "landing": 0.792
+    },
+    "speed":{
+        "min": 110,
+        "landing": 130,
+        "cruise": 459,
+        "cruiseM": 0.80,
+        "max": 470,
+        "maxM": 0.82
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

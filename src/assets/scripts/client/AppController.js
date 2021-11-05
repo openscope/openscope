@@ -134,8 +134,7 @@ export default class AppController {
     /**
      * Create child instances and initialize singletons.
      *
-     * Called from `App.setupChildren()` only after all the required data has been retrieved
-     * This method will be called
+     * This method will be called from `App.setupChildren()` only after all the required data has been retrieved
      *
      * @for AppController
      * @method setupChildren

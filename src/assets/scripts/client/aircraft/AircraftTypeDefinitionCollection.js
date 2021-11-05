@@ -28,9 +28,8 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
         super();
 
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
-                `received ${typeof aircraftTypeDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof aircraftTypeDefinitionList}`);
         }
 
         /**
@@ -68,7 +67,7 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
      * @return {AircraftTypeDefinitionModel}
      */
     findAircraftTypeDefinitionModelByIcao(icao) {
-        return _find(this.definitionList, { icao: icao });
+        return _find(this.definitionList, { icao: icao.toUpperCase() });
     }
 
     /**
@@ -82,11 +81,11 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
      */
     getAircraftDefinitionForAirlineId(airlineId, airlineModel) {
         const { fleet } = airlineNameAndFleetHelper([airlineId]);
-        const aircraftType = airlineModel.getRandomAircraftType(fleet);
+        const aircraftType = airlineModel.getRandomAircraftType(fleet).toUpperCase();
         const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
 
         if (typeof aircraftDefinition === 'undefined') {
-            console.error(`Undefined aircraftDefinition found for ${aircraftType.toUpperCase()}`);
+            console.error(`Undefined aircraftDefinition found for ${aircraftType}`);
 
             // recurse through this method if an error is encountered
             return this.getAircraftDefinitionForAirlineId(airlineId, airlineModel);

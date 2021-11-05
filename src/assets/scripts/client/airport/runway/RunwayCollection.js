@@ -1,9 +1,10 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
+import _isNil from 'lodash/isNil';
 import BaseCollection from '../../base/BaseCollection';
 import RunwayModel from './RunwayModel';
 import RunwayRelationshipModel from './RunwayRelationshipModel';
+import { isEmptyOrNotArray } from '../../utilities/validatorUtilities';
 
 /**
  * Collection of `RunwayModel`s
@@ -22,10 +23,15 @@ export default class RunwayCollection extends BaseCollection {
     constructor(runwayJson, airportPositionModel) {
         super();
 
-        if (!_isArray(runwayJson)) {
-            throw new TypeError(
-                `Invalid parameter passed to RunwayCollection. Expected an array but found ${typeof runwayJson}`
-            );
+        if (_isNil(runwayJson) || _isNil(airportPositionModel)) {
+            throw new TypeError('Invalid parameter(s) passed to RunwayCollection constructor. ' +
+                'Expected runwayJson and airportPositionModel to be defined, ' +
+                `but received ${typeof runwayJson} and ${typeof airportPositionModel}`);
+        }
+
+        if (isEmptyOrNotArray(runwayJson)) {
+            throw new TypeError('Invalid runwayJson passed to RunwayCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof runwayJson}`);
         }
 
         /**

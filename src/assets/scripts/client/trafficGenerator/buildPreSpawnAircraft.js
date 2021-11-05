@@ -4,14 +4,12 @@ import _isArray from 'lodash/isArray';
 import _isNil from 'lodash/isNil';
 import _random from 'lodash/random';
 import _without from 'lodash/without';
+import AirportModel from '../airport/AirportModel';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 import { TIME } from '../constants/globalConstants';
-import {
-    isWithinAirspace,
-    calculateDistanceToBoundary
-} from '../math/flightMath';
 import { nm } from '../utilities/unitConverters';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
+import { distance2d } from '../math/distance';
 
 /**
  * Return an array whose indices directly mirror those of `waypointModelList`, except it
@@ -284,15 +282,14 @@ const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
 /**
  * Returns the total distance from beginning to end of the provided route, along the route's course
  *
- * @function _calculateDistancesAlongRoute
- * @param waypointModelList {array<StandardRouteWaypointModel>}
+ * @function _calculateTotalDistanceAlongRoute
+ * @param waypointModelList {array<WaypointModel>}
  * @param airport {AirportModel}
- * @return {object}
+ * @return {number}
  */
-const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
+const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
     // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
     // distance between closest fix outside airspace and airspace border in nm
-    let distanceFromClosestFixToAirspaceBoundary = 0;
     let totalDistance = 0;
 
     // Iteration started at index 1 to ensure two elements are available. It is
@@ -306,16 +303,25 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
             continue;
         }
 
-        if (isWithinAirspace(airport, waypointModel.relativePosition)) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(
-                airport, previousWaypoint.relativePosition
-            ));
-            totalDistance += distanceFromClosestFixToAirspaceBoundary;
+        const distanceBetweenWaypoints = nm(distance2d(previousWaypoint.relativePosition, waypointModel.relativePosition));
+        let distanceToBoundary = Infinity;
+
+        for (let j = 0; j < airport.airspace.length; j++) {
+            const airspace = airport.airspace[j];
+
+            if (airspace.isPointInside2D(waypointModel.relativePosition)) {
+                const distanceToAirspace = airspace.distanceToBoundary(previousWaypoint.relativePosition);
+                // find shortest distance, since the waypoint might be inside multiple airspace polygons
+                distanceToBoundary = Math.min(distanceToBoundary, distanceToAirspace);
+            }
+        }
+
+        // if waypointModel is within any of our airspace
+        if (distanceToBoundary !== Infinity) {
+            totalDistance += distanceToBoundary;
 
             break;
         }
-
-        const distanceBetweenWaypoints = previousWaypoint.calculateDistanceToWaypoint(waypointModel);
 
         totalDistance += distanceBetweenWaypoints;
     }
@@ -328,8 +334,8 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
  * `AircraftModel` along a route.
  *
  * @function _preSpawn
- * @param spawnPatternJson
- * @param airport
+ * @param spawnPatternJson {object}
+ * @param airport {AirportModel}
  * @return {array<object>}
  */
 const _preSpawn = (spawnPatternJson, airport) => {
@@ -340,7 +346,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const entrailDistance = spawnSpeed / spawnPatternJson.rate;
     const routeModel = new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
-    const totalDistance = _calculateDistancesAlongRoute(waypointModelList, airport);
+    const totalDistance = _calculateTotalDistanceAlongRoute(waypointModelList, airport);
     // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
@@ -373,12 +379,20 @@ const _preSpawn = (spawnPatternJson, airport) => {
  * @return {array<object>}
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, currentAirport) => {
-    if (isEmptyObject(spawnPatternJson)) {
-        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
+    if (_isNil(spawnPatternJson) || _isNil(currentAirport)) {
+        throw new TypeError('Invalid parameter(s) passed to buildPreSpawnAircraft. ' +
+            'Expected spawnPatternJson and currentAirport to be defined, ' +
+            `but received ${typeof spawnPatternJson} and ${typeof currentAirport}`);
     }
 
-    if (_isNil(currentAirport)) {
-        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected currentAirport to be defined');
+    if (isEmptyOrNotObject(spawnPatternJson)) {
+        throw new TypeError('Invalid spawnPatternJson passed to buildPreSpawnAircraft. ' +
+            `Expected a non-empty object, but received ${typeof spawnPatternJson}`);
+    }
+
+    if (!(currentAirport instanceof AirportModel)) {
+        throw new TypeError('Invalid currentAirport passed to buildPreSpawnAircraft. ' +
+            `Expected instance of AirportModel, but received ${typeof currentAirport}`);
     }
 
     return _preSpawn(spawnPatternJson, currentAirport);

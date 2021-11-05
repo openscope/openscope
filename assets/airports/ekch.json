@@ -133,7 +133,7 @@
         {
             "name": "EKR17",
             "height": "12000ft",
-            "coordinates": [
+            "poly": [
                 ["N55d55m35", "E11d52m31"],
                 ["N55d53m33", "E11d50m14"],
                 ["N55d49m38", "E11d52m09"],
@@ -146,7 +146,7 @@
         {
             "name": "EKR18",
             "height": "12000ft",
-            "coordinates": [
+            "poly": [
                 ["N55d54m55", "E11d51m47"],
                 ["N55d54m00", "E11d57m56"],
                 ["N55d50m19", "E11d57m56"],

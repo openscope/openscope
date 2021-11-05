@@ -145,6 +145,7 @@ export default class Pilot {
         this.cancelApproachClearance(aircraftModel);
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
+        this._mcp.shouldExpediteAltitudeChange = false;
 
         // Build readback
         const readbackAltitude = _floor(clampedAltitude, -2);
@@ -431,17 +432,16 @@ export default class Pilot {
             if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
                 return [false, {
                     log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
-                    say: `that must be for somebody else, we weren't given holding over ${fixName.toLowerCase()}`
+                    say: `that must be for somebody else, we weren't given holding over ${NavigationLibrary.getFixSpokenName(fixName)}`
                 }];
             }
         }
 
         holdWaypointModel.deactivateHold();
 
-        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
         return [true, {
             log: `roger, we'll cancel the hold at ${holdWaypointModel.getDisplayName()}`,
-            say: `roger, we'll cancel the hold at ${holdWaypointModel.name.toLowerCase()}`
+            say: `roger, we'll cancel the hold at ${NavigationLibrary.getFixSpokenName(holdWaypointModel.name)}`
         }];
     }
 
@@ -563,42 +563,104 @@ export default class Pilot {
     }
 
     /**
-     * Cross a fix at a certain altitude
+     * Cross a fix at a certain altitude and/or speed
      *
      * @for Pilot
      * @method crossFix
      * @param aircraftModel {AircraftModel}
      * @param fixName  {string} name of the fix
      * @param altitude {number} the altitude
+     * @param speed {number} the speed
      * @return {array}  success of operation, readback]
      */
-    crossFix(aircraftModel, fixName, altitude) {
+    crossFix(aircraftModel, fixName, altitude, speed) {
+        if (!altitude && !speed) {
+            return [false, 'say again? In crossing restrictions, prefix altitudes with A and speeds with S!'];
+        }
+
         if (!NavigationLibrary.hasFixName(fixName)) {
-            return [false, `unable to find '${fixName}'`];
+            const readback = {
+                log: `unable to find '${fixName.toUpperCase()}'`,
+                say: `unable to find ${NavigationLibrary.getFixSpokenName(fixName)}`
+            };
+            return [false, readback];
         }
 
         if (!this._fms.hasWaypointName(fixName)) {
-            return [false, `unable, '${fixName}' is not on our route`];
+            const readback = {
+                log: `unable, '${fixName.toUpperCase()}' is not on our route`,
+                say: `unable, ${NavigationLibrary.getFixSpokenName(fixName)} is not on our route`
+            };
+            return [false, readback];
         }
 
         const airportModel = this._fms.arrivalAirportModel || this._fms.departureAirportModel;
+        const waypoint = this._fms.findWaypoint(fixName);
+
+        // altitude-only crossing restriction
+        if (!speed) {
+            const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
+
+            if (!altitudeCheck[0]) {
+                return altitudeCheck;
+            }
+
+            altitude = airportModel.clampWithinAssignableAltitudes(altitude);
+
+            waypoint.setAltitude(altitude);
+            this._mcp.setAltitudeFieldValue(altitude);
+            this._mcp.setAltitudeVnav();
+
+            const readback = {
+                log: `cross ${fixName.toUpperCase()} at ${altitude}`,
+                say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)}`
+            };
+
+            return [true, readback];
+        }
+
+        // speed-only crossing restriction
+        if (!altitude) {
+            const speedCheck = aircraftModel.validateNextSpeed(speed);
+
+            if (!speedCheck[0]) {
+                return speedCheck;
+            }
+
+            waypoint.setSpeed(speed);
+            this._mcp.setSpeedFieldValue(speed);
+            this._mcp.setSpeedVnav();
+
+            const readback = {
+                log: `cross ${fixName.toUpperCase()} at ${speed}kt`,
+                say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_spellOut(speed)} knots`
+            };
+
+            return [true, readback];
+        }
+
+        // altitude AND speed crossing restriction
         const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
+        const speedCheck = aircraftModel.validateNextSpeed(speed);
 
         if (!altitudeCheck[0]) {
             return altitudeCheck;
         }
 
-        altitude = airportModel.clampWithinAssignableAltitudes(altitude);
-
-        const waypoint = this._fms.findWaypoint(fixName);
+        if (!speedCheck[0]) {
+            return speedCheck;
+        }
 
         waypoint.setAltitude(altitude);
+        waypoint.setSpeed(speed);
         this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setSpeedFieldValue(speed);
         this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
 
         const readback = {
-            log: `cross ${fixName.toUpperCase()} at ${altitude}`,
-            say: `cross ${fixName.toLowerCase()} at ${radio_altitude(altitude)}`
+            log: `cross ${fixName.toUpperCase()} at ${altitude} and ${speed}kt`,
+            say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)} and ${radio_spellOut(speed)} knots`
         };
 
         return [true, readback];
@@ -778,7 +840,7 @@ export default class Pilot {
         // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
         return [true, {
             log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()} ${radialReadbackLog}, ${holdParametersReadback}`,
-            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()} ${radialReadbackSay}, ${holdParametersReadback}`
+            say: `hold ${cardinalDirectionFromFix} of ${NavigationLibrary.getFixSpokenName(fixName)} ${radialReadbackSay}, ${holdParametersReadback}`
         }];
     }
 
@@ -840,14 +902,22 @@ export default class Pilot {
      */
     proceedDirect(waypointName) {
         if (!this._fms.hasWaypointName(waypointName)) {
-            return [false, `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`];
+            const readback = {
+                log: `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`,
+                say: `cannot proceed direct to ${NavigationLibrary.getFixSpokenName(waypointName)}, it does not exist in our flight plan`
+            };
+            return [false, readback];
         }
 
         this._fms.skipToWaypointName(waypointName);
         this.cancelHoldingPattern();
         this._mcp.setHeadingLnav();
 
-        return [true, `proceed direct ${waypointName}`];
+        const readback = {
+            log: `proceed direct ${waypointName}`,
+            say: `proceed direct ${NavigationLibrary.getFixSpokenName(waypointName)}`
+        };
+        return [true, readback];
     }
 
     /**
@@ -927,7 +997,7 @@ export default class Pilot {
                 const bearing = Math.round(radiansToDegrees(this.positionModel.bearingToPosition(waypointPosition)));
 
                 readback.log = `our on-course heading to ${waypoint.getDisplayName()} is ${bearing}`;
-                readback.say = `our on-course heading to ${waypoint.getDisplayName()} is ${radio_heading(bearing)}`;
+                readback.say = `our on-course heading to ${NavigationLibrary.getFixSpokenName(waypoint.getDisplayName())} is ${radio_heading(bearing)}`;
 
                 return [true, readback];
             }

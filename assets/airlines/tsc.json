@@ -1,0 +1,25 @@
+{
+    "icao": "tsc",
+    "name": "Air Transat",
+    "callsign": {
+        "name": "Air Transat",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A310", 6],
+            ["A321", 11],
+            ["A21N", 2],
+            ["A332", 16],
+            ["A333", 4],
+            ["B738", 5]
+        ],
+        "eidw": [
+            ["A21N", 2],
+            ["A332", 16],
+            ["A333", 4]
+        ]
+    }
+}

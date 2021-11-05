@@ -6,6 +6,7 @@ import {
     abs,
     clamp
 } from './core';
+import { radians_normalize } from './circle';
 import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
@@ -81,14 +82,29 @@ export const vnorm = (v, length) => {
 };
 
 /**
- * Create a 2D vector
- * Pass a heading (rad) and this will return the corresponding unit vector
+ * Get a 2D unit vector corresponding to a heading in radians
+ *
+ * @param  heading_angle    float    the heading angle, in radians
+ * @return array    an array of the x and y components of the vector
  */
-export const vectorize_2d = (direction) => {
+export const vectorize2dFromRadians = (heading_angle) => {
+    // normalize the angle beetween 0 and 2*PI
+    heading_angle = radians_normalize(heading_angle);
+
     return [
-        sin(direction),
-        cos(direction)
+        sin(heading_angle),
+        cos(heading_angle)
     ];
+};
+
+/**
+ * Get a 2D unit vector corresponding to a heading in degrees
+ *
+ * @param  heading_angle    float    the heading angle, in degrees
+ * @return array    an array of the x and y components of the vector
+ */
+export const vectorize2dFromDegrees = (heading_angle) => {
+    return vectorize2dFromRadians(degreesToRadians(heading_angle));
 };
 
 /**
@@ -245,13 +261,13 @@ export const raysIntersect = (pos1, dir1, pos2, dir2, deg_allowance) => {
 
     const p = pos1;
     const q = pos2;
-    const r = vectorize_2d(dir1);
-    const s = vectorize_2d(dir2);
+    const r = vectorize2dFromRadians(dir1);
+    const s = vectorize2dFromRadians(dir2);
     const t = abs(vcp(vsub(q, p), s) / vcp(r, s));
     const t_norm = abs(vcp(vsub(vnorm(q), vnorm(p)), s) / vcp(r, s));
     const u_norm = abs(vcp(vsub(vnorm(q), vnorm(p)), r) / vcp(r, s));
 
-    if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize_2d(degreesToRadians(deg_allowance))))) {
+    if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize2dFromRadians(degreesToRadians(deg_allowance))))) {
         // parallel (within allowance)
         const crossProduct = vcp(
             vsub(vnorm(q), vnorm(p)),

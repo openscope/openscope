@@ -1,7 +1,7 @@
 ### About Leeds
 Leeds Bradford Airport is an international airport in the North of England, 10km from the cities of Leeds and Bradford. It started off being called Yeadon Aerodrome, where over the years it developed to be a commercial airport. It is the highest airport within England.
 
-During the airport's existance, one particular event has stood out - [Concorde landed at Leeds Bradford in 1986](https://www.youtube.com/watch?v=AgmlLxS-EHc), despite the runway being only 2.25km long.
+During the airport's existance, one particular event has stood out - <a href="https://www.youtube.com/watch?v=AgmlLxS-EHc" target="_blank">Concorde landed at Leeds Bradford in 1986</a>, despite the runway being only 2.25km long.
 
 Today the airport is privately owned, seeking further expansion. It is base to low-cost airline Jet2.com, Ryanair and seasonally TUI Airways. Previously Monarch had a base here before its demise in October 2017. There is a Multiflight hangar, which provides various aviation services and facilities.
 
@@ -29,7 +29,7 @@ Due to the size of the airport, Leeds does not have a ground position. Leeds Tow
 
 ### About the Leeds Bradford CTR, Control Areas and Aerodrome Traffic Zone
 All of the airspace controlled by "Leeds Approach" is designated within the eAIP for the United Kingdom.
-[This diagram](http://prntscr.com/hur9f1) may be of use in order to visualise the airspace.
+<a href="http://prntscr.com/hur9f1" target="_blank">This diagram</a> may be of use in order to visualise the airspace.
 
 After leaving the Leeds Bradford Control Areas, aircraft should be handed off to Scottish Control.
 
@@ -118,7 +118,7 @@ Plotted on are the following:
 
 
 ### Additional Resources
-[Leeds Bradford Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=88&Itemid=137.html)
-[The UK Intergrated Aeronautical Information Package](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=165&Itemid=3.html)
-[VATSIM UK](https://vatsim.uk/egnm)
-[VATSIM UK Leeds Cribsheet](https://vatsim.uk/download/info/?downloadID=00361)
+<a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=88&Itemid=137.html" target="_blank">Leeds Bradford Charts</a>
+<a href="http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=165&Itemid=3.html" target="_blank">The UK Integrated Aeronautical Information Package</a>
+<a href="https://vatsim.uk/egnm" target="_blank">VATSIM UK</a>
+<a href="https://vatsim.uk/download/info/?downloadID=00361" target="_blank">VATSIM UK Leeds Cribsheet</a>

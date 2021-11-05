@@ -27,15 +27,22 @@ export const EVENT = {
     AIRPORT_CHANGE: 'airport-change',
 
     /**
+     * @memberof EVENT
+     * @property WIND_CHANGE
+     * @type {string}
+     */
+    WIND_CHANGE: 'wind-change',
+
+    /**
      * A click was registered outside of a specific `StripViewModel`
      * and the active strip, if any, should have the `active`
      * css classname removed
      *
      * @memberof EVENT
-     * @property DESELECT_ACTIVE_STRIP_VIEW
+     * @property DESELECT_AIRCRAFT
      * @type {string}
      */
-    DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
+    DESELECT_AIRCRAFT: 'deselect-aircraft',
 
     /**
      * Event used to notify the `CanvasController` when a re-draw
@@ -120,14 +127,24 @@ export const EVENT = {
     REQUEST_TO_CENTER_POINT_IN_VIEW: 'request-to-center-point-in-view',
 
     /**
-     * An aircraft data block was clicked and the corresponding
+     * An aircraft radar return was double clicked and the corresponding
+     * `StripViewModel` must be scrolled into view
+     *
+     * @memberof EVENT
+     * @property SCROLL_TO_AIRCRAFT
+     * @type {string}
+     */
+    SCROLL_TO_AIRCRAFT: 'scroll-to-aircraft',
+
+    /**
+     * An aircraft radar return was clicked and the corresponding
      * `StripViewModel` must also be selected
      *
      * @memberof EVENT
-     * @property SELECT_STRIP_VIEW_FROM_DATA_BLOCK
+     * @property SELECT_AIRCRAFT
      * @type {string}
      */
-    SELECT_STRIP_VIEW_FROM_DATA_BLOCK: 'select-strip-view-from-data-block',
+    SELECT_AIRCRAFT: 'select-aircraft',
 
     /**
      * An aircraft progress strip was clicked
@@ -171,6 +188,13 @@ export const EVENT = {
      * @type {string}
      */
     TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_AIRSPACE
+     * @type {string}
+     */
+    TOGGLE_AIRSPACE: 'toggle-airspace',
 
     /**
      * @memberof EVENT

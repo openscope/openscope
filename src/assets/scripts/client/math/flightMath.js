@@ -7,14 +7,10 @@ import {
     tau,
     angle_offset
 } from './circle';
-import { distance2d } from './distance';
 import {
     vradial,
     vsub,
-    vlen,
-    point_in_area,
-    distance_to_poly,
-    area_to_poly
+    vlen
 } from './vector';
 import {
     degreesToRadians,
@@ -118,42 +114,6 @@ export function getOffset(aircraft, target, headingThruTarget = null) {
 
     return offset;
 }
-
-/**
- *
- * @function isWithinAirspace
- * @param airport {AirportModel}
- * @param  pos {array}
- * @return {boolean}
- */
-export function isWithinAirspace(airport, pos) {
-    const perim = airport.perimeter;
-
-    if (perim) {
-        return point_in_area(pos, perim);
-    }
-
-    return distance2d(pos, airport.relativePosition) <= airport.ctr_radius;
-}
-
-/**
- *
- * @function calculateDistanceToBoundary
- * @param airport {AirportModel}
- * @param pos {array}
- * @return {boolean}
- */
-export function calculateDistanceToBoundary(airport, pos) {
-    const perim = airport.perimeter;
-
-    if (perim) {
-        // km
-        return distance_to_poly(pos, area_to_poly(perim));
-    }
-
-    return abs(distance2d(pos, airport.relativePosition) - airport.ctr_radius);
-}
-
 
 /**
  * @function _calculateNominalNewCourse
