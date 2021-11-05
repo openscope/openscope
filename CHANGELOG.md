@@ -4,6 +4,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1848" target="_blank">#1848</a> - Allow user to toggle individual video maps on/off
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1845" target="_blank">#1845</a> - Fix Safari compatibility issue
 
 ### Enhancements & Refactors
 
