@@ -6,6 +6,7 @@ import EventTracker from '../EventTracker';
 import GameController from '../game/GameController';
 import SettingsController from './SettingsController';
 import TrafficRateController from './TrafficRateController';
+import VideoMapController from './VideoMapController';
 import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
 import { EVENT } from '../constants/eventNames';
@@ -55,6 +56,14 @@ class UiController {
          * @default null
          */
         this.trafficRateController = null;
+
+        /**
+         * @for UiController
+         * @property videoMapController
+         * @type {VideoMapController}
+         * @default null
+         */
+        this.videoMapController = null;
 
         /**
          * Root element used to find all other DOM elements needed by this class
@@ -332,6 +341,7 @@ class UiController {
         this.tutorialView = new TutorialView($element);
         this.settingsController = new SettingsController($element);
         this.trafficRateController = new TrafficRateController($element);
+        this.videoMapController = new VideoMapController($element);
 
         this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
@@ -565,6 +575,10 @@ class UiController {
 
         if (this.isTutorialDialogOpen()) {
             this.onToggleTutorial();
+        }
+
+        if (this.videoMapController.isDialogOpen()) {
+            this.onToggleVideoMap();
         }
     }
 
@@ -937,6 +951,8 @@ class UiController {
     }
 
     /**
+     * Handler for selecting the current Video Maps
+     *
      * @for UiController
      * @method onToggleVideoMap
      * @param event {jquery event}
@@ -948,7 +964,7 @@ class UiController {
             'video-map',
             `${this.$toggleVideoMap.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
-        this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
+        this.videoMapController.toggleDialog();
     }
 
     /**
