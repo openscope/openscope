@@ -8,6 +8,7 @@
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KRDU to AIRAC 2106
+- <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KAUS to AIRAC 2109
 
 
 # 6.25.0 (June 2, 2021)
