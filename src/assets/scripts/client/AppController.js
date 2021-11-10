@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
-import AircraftCommander from './aircraft/AircraftCommander';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
@@ -54,7 +53,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.aircraftCommander = null;
         this.airportGuideController = null;
         this.inputController = null;
         this.canvasController = null;
@@ -123,7 +121,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.aircraftCommander = null;
         this.airportGuideController = null;
         this.inputController = null;
         this.canvasController = null;
@@ -188,8 +185,8 @@ export default class AppController {
         UiController.init(this.$element);
 
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
-        this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
+
+        this.inputController = new InputController(this.$element, this.aircraftController, this.scopeModel);
         this.airportInfoController = new AirportInfoController(this.$element);
         this.airportGuideController = new AirportGuideViewController(this.$element, airportGuideData, initialAirportData.icao);
         this.changelogController = new ChangelogController(this.contentQueue);

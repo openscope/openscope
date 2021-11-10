@@ -41,7 +41,7 @@ export default class InputController {
      * @param aircraftCommander {AircraftCommander}
      * @param scopeModel {ScopeModel}
      */
-    constructor($element, aircraftCommander, aircraftController, scopeModel) {
+    constructor($element, aircraftController, scopeModel) {
         this.$element = $element;
         this.$body = null;
         this.$window = null;
@@ -49,7 +49,7 @@ export default class InputController {
         this.$canvases = null;
 
         this._eventBus = EventBus;
-        this._aircraftCommander = aircraftCommander;
+        this._aircraftCommander = aircraftController.getAircraftCommander();
         this._aircraftController = aircraftController;
         this._scopeModel = scopeModel;
 

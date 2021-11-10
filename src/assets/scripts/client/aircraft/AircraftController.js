@@ -10,6 +10,7 @@ import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
+import AircraftCommander from './AircraftCommander';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
@@ -41,8 +42,9 @@ export default class AircraftController {
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
      * @param scopeModel {ScopeModel}
+     * @param aircraftCommander {AircraftCommander}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
+    constructor(aircraftTypeDefinitionList, airlineController, scopeModel, aircraftCommander) {
         if (_isNil(aircraftTypeDefinitionList) || _isNil(airlineController) || _isNil(scopeModel)) {
             throw new TypeError('Invalid parameter(s) passed to AircraftController constructor. ' +
                 'Expected aircraftTypeDefinitionList, airlineController and scopeModel to be defined, ' +
@@ -73,6 +75,16 @@ export default class AircraftController {
          * @private
          */
         this._airlineController = airlineController;
+
+        /**
+         * Reference to an `AircraftCommander` instance
+         *
+         * @property _aircraftCommander
+         * @type {AircraftCommander}
+         * @default aircraftCommander
+         * @private
+         */
+        this._aircraftCommander = new AircraftCommander(this.onRequestToChangeTransponderCode);
 
         /**
          * Local reference to static `EventBus` class
@@ -203,6 +215,10 @@ export default class AircraftController {
      * @param item {AircraftModel}
      */
     addItem = (item) => this.aircraft.list.push(item);
+
+    getAircraftCommander() {
+        return this._aircraftCommander
+    }
 
     /**
      * Callback method fired by an interval defined in the `SpawnScheduler`.

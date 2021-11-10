@@ -30,9 +30,8 @@ import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilit
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(aircraftController, onChangeTransponderCode) {
+    constructor(onChangeTransponderCode) {
         this._eventBus = EventBus;
-        this._aircraftController = aircraftController;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
@@ -657,7 +656,6 @@ export default class AircraftCommander {
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
-        const aircraftAhead = this._aircraftController.findAircraftById(runway.queue[spotInQueue - 1]);
         const wind = airport.getWindAtAltitude();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
@@ -687,8 +685,8 @@ export default class AircraftCommander {
         }
 
         if (spotInQueue > 0) {
-            readback.log = `number ${spotInQueue} behind ${aircraftAhead.callsign}`;
-            readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
+            readback.log = `number ${spotInQueue} for departure`;
+            readback.say = `number ${spotInQueue} for departure`;
 
             return [false, readback];
         }
