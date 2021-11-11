@@ -319,7 +319,7 @@
         },
         {
         "floor": 0,
-        "ceiling": 80,
+        "ceiling": 90,
         "airspace_class": "B",
         "poly": [
             ["N39.35929", "W75.22112"],
@@ -485,7 +485,7 @@
         },
         {
         "floor": 0,
-        "ceiling": 90,
+        "ceiling": 100,
         "airspace_class": "B",
         "poly": [
             ["N39.26657", "W75.83599"],
@@ -812,21 +812,23 @@
             },
             "body": [],
             "exitPoints": {
-                "ARD": ["#095", "ARD"],
-                "DITCH": ["#110", "DITCH"],
-                "DQO": ["#125", "DQO"],
-                "FJC": ["#080", "FJC"],
-                "MXE": ["#080", "MXE"],
-                "OOD": ["#125", "OOD"],
-                "PTW": ["#095", "PTW"],
-                "RUUTH": ["#095", "RUUTH"],
-                "STOEN": ["#080", "STOEN"]
+                "ARD":   ["ARD"],
+                "DITCH": ["DITCH"],
+                "DQO":   ["DQO"],
+                "FJC":   ["FJC"],
+                "MXE":   ["MXE"],
+                "OOD":   ["OOD"],
+                "PTW":   ["PTW"],
+                "RUUTH": ["RUUTH"],
+                "STOEN": ["STOEN"]
             },
             "draw": [
                 ["ARD*"],
                 ["MXE*"],
                 ["OOD*"],
-                ["STOEN*"]
+                ["STOEN*"],
+                ["PTW*"],
+                ["DITCH*"]
             ]
         }
     },
@@ -838,12 +840,12 @@
                 "JST": ["JST", "MIROY", "COFAX", "LOMON"],
                 "PSB": ["PSB"]
             },
-            "body": ["HAR", "BOUHN", "LRP", "TRAGG", ["BUNTS", "A80"]],
+            "body": ["HAR", "BOUHN", "LRP", "TRAGG", "BUNTS"],
             "rwy": {
-                "KPHL9L": [["SCOOL", "A60|S220"], "KYILL", ["EXPRS", "S190"], ["^WHEYY", "A40"], "#265"],
-                "KPHL9R": [["SCOOL", "A60|S220"], "KYILL", ["EXPRS", "S190"], ["^WHEYY", "A40"], "#265"],
-                "KPHL27L": ["SCOOL", ["BOJID", "S220"], "HIFAL", ["EYRIE", "S190"], ["^FERUS", "A40"], "#085"],
-                "KPHL27R": ["SCOOL", ["BOJID", "S220"], "HIFAL", ["EYRIE", "S190"], ["^FERUS", "A40"], "#085"]
+                "KPHL9L": [["SCOOL", "S220"], "KYILL", ["EXPRS", "S190"], "^WHEYY", "#265"],
+                "KPHL9R": [["SCOOL", "S220"], "KYILL", ["EXPRS", "S190"], "^WHEYY", "#265"],
+                "KPHL27L": ["SCOOL", ["BOJID", "S220"], "HIFAL", ["EYRIE", "S190"], "^FERUS", "#085"],
+                "KPHL27R": ["SCOOL", ["BOJID", "S220"], "HIFAL", ["EYRIE", "S190"], "^FERUS", "#085"]
             },
             "draw": [
                 ["PSB*", "HAR"],
@@ -860,7 +862,7 @@
                 "JST": ["JST", "MIROY", "COFAX", "LOMON"],
                 "PSB": ["PSB"]
             },
-            "body": ["HAR", "BOUHN", "LRP", "TRAGG", ["BUNTS", "A80"]],
+            "body": ["HAR", "BOUHN", "LRP", "TRAGG", "BUNTS"],
             "rwy": {
                 "KPHL9L": [],
                 "KPHL9R": [],
@@ -877,11 +879,11 @@
             "icao": "JIIMS3",
             "name": "Jims Three",
             "entryPoints": {
-                "BRIGS": [["BRIGS", "A140"], ["IROKT", "A90"]],
-                "DASHA": ["DASHA", "WNSTN", ["HEKMN", "A90"]],
-                "SWL": ["SWL", ["RADDS", "A150"], "WNSTN", ["HEKMN", "A90"]]
+                "BRIGS": ["BRIGS", "IROKT"],
+                "DASHA": ["DASHA", "WNSTN", "HEKMN"],
+                "SWL": ["SWL", "RADDS", "WNSTN", "HEKMN"]
             },
-            "body": [["JIIMS", "A80"]],
+            "body": ["JIIMS"],
             "rwy": {
                 "KPHL9L": ["TLUKS", ["CHEAZ", "S190"], "^STAYK", "#266"],
                 "KPHL9R": ["TLUKS", ["CHEAZ", "S190"], "^STAYK", "#266"],
@@ -903,11 +905,11 @@
             "icao": "PAATS3",
             "name": "Pats Three",
             "entryPoints": {
-                "FAK": ["FAK", "SHONA", "BUKYY", ["JAYBO", "A150"]],
-                "GVE": ["GVE", "BUKYY", ["JAYBO", "A150"]],
-                "PXT": ["PXT", ["GARED", "A130"]]
+                "FAK": ["FAK", "SHONA", "BUKYY", "JAYBO"],
+                "GVE": ["GVE", "BUKYY", "JAYBO"],
+                "PXT": ["PXT", "GARED"]
             },
-            "body": ["HEDGE", "CANNY", ["ESSSO", "A100|S250"], "PAATS"],
+            "body": ["HEDGE", "CANNY", "ESSSO", "PAATS"],
             "rwy": {
                 "KPHL9L": ["TLUKS", ["CHEAZ", "S190"], "^STAYK", "#266"],
                 "KPHL9R": ["TLUKS", ["CHEAZ", "S190"], "^STAYK", "#266"],
@@ -929,10 +931,10 @@
             "icao": "SLATT4",
             "name": "Slatt Four",
             "entryPoints": {
-                "CFB": ["CFB", ["LECOR", "A120"]],
-                "DNY": ["DNY", ["HARVA", "A190"], ["CORLE", "A120"]]
+                "CFB": ["CFB", "LECOR"],
+                "DNY": ["DNY", "HARVA", "CORLE"]
             },
-            "body": ["LVZ", "SLATT", "ETX", ["SPUDS", "A100|S250"]],
+            "body": ["LVZ", "SLATT", "ETX", "SPUDS"],
             "rwy": {
                 "KPHL9L": [],
                 "KPHL9R": [],
@@ -951,16 +953,16 @@
             "icao": "SPUDS4",
             "name": "Spuds Four",
             "entryPoints": {
-                "CFB": ["CFB", ["LECOR", "A120"]],
-                "DNY": ["DNY", ["HARVA", "A190"], ["CORLE", "A120"]]
+                "CFB": ["CFB", "LECOR"],
+                "DNY": ["DNY", "HARVA", "CORLE"]
             },
-            "body": ["LVZ", "SLATT", "ETX", ["SPUDS", "A100|S250"], ["ANMAR", "A90-"]],
+            "body": ["LVZ", "SLATT", "ETX", "SPUDS", "ANMAR"],
             "rwy": {
-                "KPHL9L": [["SCOOL", "A60|S220"], "KYILL", ["EXPRS", "S190"], ["^WHEYY", "A40"], "#267"],
-                "KPHL9R": [["SCOOL", "A60|S220"], "KYILL", ["EXPRS", "S190"], ["^WHEYY", "A40"], "#267"],
+                "KPHL9L": ["SCOOL", "KYILL", ["EXPRS", "S190"], "^WHEYY", "#267"],
+                "KPHL9R": ["SCOOL", "KYILL", ["EXPRS", "S190"], "^WHEYY", "#267"],
                 "KPHL17": [],
-                "KPHL27L": [["BOJID", "A60|S220"], "HIFAL", ["EYRIE", "S190"], ["^FERUS", "A40"], "#086"],
-                "KPHL27R": [["BOJID", "A60|S220"], "HIFAL", ["EYRIE", "S190"], ["^FERUS", "A40"], "#086"],
+                "KPHL27L": ["BOJID", "HIFAL", ["EYRIE", "S190"], "^FERUS", "#086"],
+                "KPHL27R": ["BOJID", "HIFAL", ["EYRIE", "S190"], "^FERUS", "#086"],
                 "KPHL35": []
             },
             "draw": [
@@ -1000,6 +1002,14 @@
             "destination": "",
             "category": "departure",
             "route": "KPHL9L.PHL2.OOD..TEBEE..HAYDO..SBY..SWL.J121.ORF",
+            "commands": {
+                "9L": "fh 125",
+                "9R": "fh 125",
+                "27L": "fh 230",
+                "27R": "fh 230",
+                "35": "fh 300",
+                "17": "fh 130"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1029,6 +1039,14 @@
             "destination": "",
             "category": "departure",
             "route": "KPHL9L.PHL2.MXE..PENSY.J110.FLIRT.J6.HVQ",
+            "commands": {
+                "9L": "fh 080",
+                "9R": "fh 080",
+                "27L": "fh 265",
+                "27R": "fh 265",
+                "35": "fh 300",
+                "17": "fh 130"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1058,6 +1076,14 @@
             "destination": "",
             "category": "departure",
             "route": "KPHL9L.PHL2.DITCH.J225.JFK..HTO",
+            "commands": {
+                "9L": "fh 110",
+                "9R": "fh 110",
+                "27L": "fh 230",
+                "27R": "fh 230",
+                "35": "fh 300",
+                "17": "fh 130"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1089,6 +1115,14 @@
             "destination": "",
             "category": "departure",
             "route": "KPHL9L.PHL2.DITCH.V312.JIMEE..WAVEY",
+            "commands": {
+                "9L": "fh 110",
+                "9R": "fh 110",
+                "27L": "fh 230",
+                "27R": "fh 230",
+                "35": "fh 300",
+                "17": "fh 130"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1120,6 +1154,14 @@
             "destination": "",
             "category": "departure",
             "route": "KPHL9L.PHL2.STOEN..REEFI..EMI.J48.CSN",
+            "commands": {
+                "9L": "fh 080",
+                "9R": "fh 080",
+                "27L": "fh 245",
+                "27R": "fh 245",
+                "35": "fh 300",
+                "17": "fh 130"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1149,6 +1191,14 @@
             "destination": "",
             "category": "departure",
             "route": "KPHL9L.PHL2.PTW..SARAA.J64.EWC",
+            "commands": {
+                "9L": "fh 095",
+                "9R": "fh 095",
+                "27L": "fh 265",
+                "27R": "fh 265",
+                "35": "fh 300",
+                "17": "fh 130"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1178,6 +1228,14 @@
             "destination": "KPHL",
             "category": "arrival",
             "route": "JST.BOJID2.KPHL9R",
+            "commands": {
+                "9L": "cross bunts A80",
+                "9R": "cross bunts A80",
+                "27L": "cross bunts A80",
+                "27R": "cross bunts A80",
+                "35": "cross bunts A80",
+                "17": "cross bunts A80"
+            },
             "altitude": "28000",
             "speed": "310",
             "method": "random",
@@ -1207,6 +1265,14 @@
             "destination": "KPHL",
             "category": "arrival",
             "route": "HTO.J121.BRIGS.JIIMS3.KPHL9R",
+            "commands": {
+                "9L": "cross irokt A90",
+                "9R": "cross irokt A90",
+                "27L": "cross irokt A90",
+                "27R": "cross irokt A90",
+                "35": "cross irokt A90",
+                "17": "cross irokt A90"
+            },
             "altitude": "24000",
             "speed": "310",
             "method": "random",
@@ -1237,6 +1303,14 @@
             "destination": "KPHL",
             "category": "arrival",
             "route": "RDU..FAK.PAATS3.KPHL9R",
+            "commands": {
+                "9L": "cross essso A100 S250",
+                "9R": "cross essso A100 S250",
+                "27L": "cross essso A100 S250",
+                "27R": "cross essso A100 S250",
+                "35": "cross essso A100 S250",
+                "17": "cross essso A100 S250"
+            },
             "altitude": "28000",
             "speed": "310",
             "method": "random",
@@ -1266,6 +1340,14 @@
             "destination": "KPHL",
             "category": "arrival",
             "route": "DNY.SPUDS4.KPHL9R",
+            "commands": {
+                "9L": "cross spuds A100 S250",
+                "9R": "cross spuds A100 S250",
+                "27L": "cross spuds A100 S250",
+                "27R": "cross spuds A100 S250",
+                "35": "cross spuds A100 S250",
+                "17": "cross spuds A100 S250"
+            },
             "altitude": "23000",
             "speed": "310",
             "method": "random",

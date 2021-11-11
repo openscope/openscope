@@ -590,7 +590,7 @@ export default class AircraftController {
             aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
             aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
 
-            if(runwayCommands && runwayCommands[aircraftModel.fms.departureRunwayModel.name]) {
+            if (runwayCommands && runwayCommands[aircraftModel.fms.departureRunwayModel.name]) {
                 const commandString = runwayCommands[aircraftModel.fms.departureRunwayModel.name];
                 this._runCommandOnNewAircraft(aircraftModel, commandString);
             }
