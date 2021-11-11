@@ -19,6 +19,7 @@ const sandbox = sinon.createSandbox();
 let aircraftControllerFixture = {};
 
 ava.beforeEach(() => {
+    aircraftControllerFixture = {};
     aircraftControllerFixture.onRequestToChangeTransponderCode = () => true;
     aircraftControllerFixture.findAircraftById = () => new AircraftModel(AIRCRAFT_MOCK_WITH_NORTH_HEADING);
 });
