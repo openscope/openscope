@@ -14,6 +14,7 @@ import AircraftCommander from './AircraftCommander';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
+import CommandParser from '../commands/parsers/CommandParser';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { abs } from '../math/core';
@@ -44,7 +45,7 @@ export default class AircraftController {
      * @param scopeModel {ScopeModel}
      * @param aircraftCommander {AircraftCommander}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, scopeModel, aircraftCommander) {
+    constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (_isNil(aircraftTypeDefinitionList) || _isNil(airlineController) || _isNil(scopeModel)) {
             throw new TypeError('Invalid parameter(s) passed to AircraftController constructor. ' +
                 'Expected aircraftTypeDefinitionList, airlineController and scopeModel to be defined, ' +
@@ -216,8 +217,13 @@ export default class AircraftController {
      */
     addItem = (item) => this.aircraft.list.push(item);
 
+    /**
+     * Get the instance of AircraftCommander that was created by this Controller
+     *
+     * @returns {AircraftCommander}
+     */
     getAircraftCommander() {
-        return this._aircraftCommander
+        return this._aircraftCommander;
     }
 
     /**
@@ -562,11 +568,18 @@ export default class AircraftController {
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftModel(initializationProps);
         const isDeparture = initializationProps.category === 'departure';
+        const isArrival = initializationProps.category === 'arrival';
         const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+        const runwayCommands = initializationProps.commands;
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
+
+        if (isArrival && runwayCommands && runwayCommands[aircraftModel.fms.arrivalRunwayModel.name]) {
+            const commandString = runwayCommands[aircraftModel.fms.arrivalRunwayModel.name];
+            this._runCommandOnNewAircraft(aircraftModel, commandString);
+        }
 
         if (isDeparture && isAutoTower) {
             // create the StripView immediately for departures; arrival strips are made when controllable
@@ -576,6 +589,11 @@ export default class AircraftController {
             aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
             aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
             aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
+
+            if(runwayCommands && runwayCommands[aircraftModel.fms.departureRunwayModel.name]) {
+                const commandString = runwayCommands[aircraftModel.fms.departureRunwayModel.name];
+                this._runCommandOnNewAircraft(aircraftModel, commandString);
+            }
         }
     }
 
@@ -634,9 +652,27 @@ export default class AircraftController {
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
             routeString: spawnPatternModel.routeString,
+            commands: spawnPatternModel.commands,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
+    }
+
+    /**
+     * Execute a command on a new or preSpawned aircraft, ignoring controllability flag
+     *
+     * @param aircraft {AircraftModel}
+     * @param command {String}
+     * @private
+     */
+    _runCommandOnNewAircraft(aircraft, commandString) {
+        const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
+        const defaultControllable = aircraft.isControllable;
+        aircraft.isControllable = true;
+
+        this._aircraftCommander.runCommands(aircraft, command.args, true);
+
+        aircraft.isControllable = defaultControllable;
     }
 
     /**

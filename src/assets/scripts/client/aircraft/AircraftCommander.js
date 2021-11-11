@@ -40,8 +40,9 @@ export default class AircraftCommander {
      * @method runCommands
      * @param aircraft {AircraftModel}
      * @param commands {array<AircraftCommandParser>}
+     * @param isPreSpawn {boolean}
      */
-    runCommands(aircraft, commands) {
+    runCommands(aircraft, commands, isPreSpawn = false) {
         if (!aircraft.isControllable) {
             return true;
         }
@@ -127,14 +128,17 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
-            speech_say(
-                [
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: `${r_say} ${response_end}` }
-                ],
-                aircraft.pilotVoice
-            );
+            //no need for reading back or writing to the UI for preSpawn commands
+            if(!isPreSpawn) {
+                UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
+                speech_say(
+                    [
+                        {type: 'callsign', content: aircraft},
+                        {type: 'text', content: `${r_say} ${response_end}`}
+                    ],
+                    aircraft.pilotVoice
+                );
+            }
         }
 
         return true;

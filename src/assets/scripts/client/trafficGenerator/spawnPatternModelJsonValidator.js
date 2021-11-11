@@ -18,7 +18,8 @@ const ACCEPTED_KEYS = [
 const ACCEPTED_OPTIONAL_KEYS = [
     'offset',
     'period',
-    'variation'
+    'variation',
+    'commands'
 ];
 
 const ALL_KEYS = [
