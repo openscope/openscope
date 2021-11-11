@@ -12,8 +12,8 @@ Lets look at some examples before we continue:
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
      "commands": {
-        "19L": "fh 180",
-        "1R": "fh 360"
+         "19L": "fh 180",
+         "1R": "fh 360"
      },
      "altitude": "",
      "speed": "",
@@ -33,8 +33,8 @@ Lets look at some examples before we continue:
     "category": "arrival",
     "route": "BETHL.GRNPA1.KLAS",
     "commands": {
-            "19L": "cross TOROO A100",
-            "1R": "cross TOROO A100"
+        "19L": "cross TOROO A100",
+        "1R": "cross TOROO A100"
     },
     "altitude": [30000, 40000],
     "speed": 320,

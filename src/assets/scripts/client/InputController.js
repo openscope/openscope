@@ -38,7 +38,7 @@ export default class InputController {
     /**
      * @constructor
      * @param $element {JQuery|HTML Element}
-     * @param aircraftCommander {AircraftCommander}
+     * @param aircraftController {AircraftController}
      * @param scopeModel {ScopeModel}
      */
     constructor($element, aircraftController, scopeModel) {
@@ -49,7 +49,6 @@ export default class InputController {
         this.$canvases = null;
 
         this._eventBus = EventBus;
-        this._aircraftCommander = aircraftController.getAircraftCommander();
         this._aircraftController = aircraftController;
         this._scopeModel = scopeModel;
 
@@ -1001,7 +1000,7 @@ export default class InputController {
 
         const aircraft = this._aircraftController.aircraft.list[match];
 
-        return this._aircraftCommander.runCommands(aircraft, parsedCommand.args);
+        return this._aircraftController.aircraftCommander.runCommands(aircraft, parsedCommand.args);
     }
 
     /**

@@ -30,9 +30,10 @@ import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilit
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(onChangeTransponderCode) {
+    constructor(aircraftController) {
         this._eventBus = EventBus;
-        this._onChangeTransponderCode = onChangeTransponderCode;
+        this._findAircraftById = aircraftController.findAircraftById.bind(aircraftController);
+        this._onChangeTransponderCode = aircraftController.onRequestToChangeTransponderCode.bind(aircraftController);
     }
 
     /**
@@ -43,7 +44,7 @@ export default class AircraftCommander {
      * @param isPreSpawn {boolean}
      */
     runCommands(aircraft, commands, isPreSpawn = false) {
-        if (!aircraft.isControllable) {
+        if (!aircraft.isControllable && !isPreSpawn) {
             return true;
         }
 
@@ -113,6 +114,10 @@ export default class AircraftCommander {
             }
         }
 
+        if (isPreSpawn) {
+            return true;
+        }
+
         if (commands.length === 0) {
             response = [{
                 say: 'say again',
@@ -128,17 +133,15 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            // no need for reading back or writing to the UI for preSpawn commands
-            if (!isPreSpawn) {
-                UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
-                speech_say(
-                    [
-                        { type: 'callsign', content: aircraft },
-                        { type: 'text', content: `${r_say} ${response_end}` }
-                    ],
-                    aircraft.pilotVoice
-                );
-            }
+            UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
+            speech_say(
+               [
+                    { type: 'callsign', content: aircraft },
+                    { type: 'text', content: `${r_say} ${response_end}` }
+                ],
+                aircraft.pilotVoice
+            );
+
         }
 
         return true;
@@ -660,6 +663,7 @@ export default class AircraftCommander {
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
+        const aircraftAhead = this._findAircraftById(runway.queue[spotInQueue - 1]);
         const wind = airport.getWindAtAltitude();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
@@ -689,8 +693,8 @@ export default class AircraftCommander {
         }
 
         if (spotInQueue > 0) {
-            readback.log = `number ${spotInQueue} for departure`;
-            readback.say = `number ${spotInQueue} for departure`;
+            readback.log = `number ${spotInQueue} behind ${aircraftAhead.callsign}`;
+            readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
 
             return [false, readback];
         }

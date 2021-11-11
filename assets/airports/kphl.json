@@ -1266,12 +1266,12 @@
             "category": "arrival",
             "route": "HTO.J121.BRIGS.JIIMS3.KPHL9R",
             "commands": {
-                "9L": "cross irokt A90",
-                "9R": "cross irokt A90",
-                "27L": "cross irokt A90",
-                "27R": "cross irokt A90",
-                "35": "cross irokt A90",
-                "17": "cross irokt A90"
+                "9L": "cross jiims A80",
+                "9R": "cross jiims A80",
+                "27L": "cross jiims A80",
+                "27R": "cross jiims A80",
+                "35": "cross jiims A80",
+                "17": "cross jiims A80"
             },
             "altitude": "24000",
             "speed": "310",

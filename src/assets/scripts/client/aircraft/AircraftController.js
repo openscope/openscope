@@ -85,7 +85,7 @@ export default class AircraftController {
          * @default aircraftCommander
          * @private
          */
-        this._aircraftCommander = new AircraftCommander(this.onRequestToChangeTransponderCode);
+        this._aircraftCommander = new AircraftCommander(this);
 
         /**
          * Local reference to static `EventBus` class
@@ -222,7 +222,7 @@ export default class AircraftController {
      *
      * @returns {AircraftCommander}
      */
-    getAircraftCommander() {
+    get aircraftCommander() {
         return this._aircraftCommander;
     }
 
@@ -576,9 +576,8 @@ export default class AircraftController {
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
 
-        if (isArrival && runwayCommands && runwayCommands[aircraftModel.fms.arrivalRunwayModel.name]) {
-            const commandString = runwayCommands[aircraftModel.fms.arrivalRunwayModel.name];
-            this._runCommandOnNewAircraft(aircraftModel, commandString);
+        if (isArrival) {
+            this._runCommandOnNewAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
         }
 
         if (isDeparture && isAutoTower) {
@@ -589,11 +588,7 @@ export default class AircraftController {
             aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
             aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
             aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
-
-            if (runwayCommands && runwayCommands[aircraftModel.fms.departureRunwayModel.name]) {
-                const commandString = runwayCommands[aircraftModel.fms.departureRunwayModel.name];
-                this._runCommandOnNewAircraft(aircraftModel, commandString);
-            }
+            this._runCommandOnNewAircraft(aircraftModel, runwayCommands, aircraftModel.fms.departureRunwayModel.name);
         }
     }
 
@@ -659,20 +654,20 @@ export default class AircraftController {
     }
 
     /**
-     * Execute a command on a new or preSpawned aircraft, ignoring controllability flag
+     * Execute a command on a new or preSpawned aircraft.
      *
      * @param aircraft {AircraftModel}
-     * @param command {String}
+     * @param command {Object}
+     * @param runwayName {String}
      * @private
      */
-    _runCommandOnNewAircraft(aircraft, commandString) {
-        const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
-        const defaultControllable = aircraft.isControllable;
-        aircraft.isControllable = true;
+    _runCommandOnNewAircraft(aircraft, commands, runwayName) {
+        if (commands && commands[runwayName]) {
+            const commandString = commands[runwayName]
+            const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
 
-        this._aircraftCommander.runCommands(aircraft, command.args, true);
-
-        aircraft.isControllable = defaultControllable;
+            this._aircraftCommander.runCommands(aircraft, command.args, true);
+        }
     }
 
     /**
