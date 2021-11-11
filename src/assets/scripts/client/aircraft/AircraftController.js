@@ -663,7 +663,7 @@ export default class AircraftController {
      */
     _runCommandOnNewAircraft(aircraft, commands, runwayName) {
         if (commands && commands[runwayName]) {
-            const commandString = commands[runwayName]
+            const commandString = commands[runwayName];
             const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
 
             this._aircraftCommander.runCommands(aircraft, command.args, true);

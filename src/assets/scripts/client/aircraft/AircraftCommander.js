@@ -135,13 +135,12 @@ export default class AircraftCommander {
 
             UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
             speech_say(
-               [
+                [
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: `${r_say} ${response_end}` }
                 ],
                 aircraft.pilotVoice
             );
-
         }
 
         return true;
