@@ -85,7 +85,7 @@ export default class AircraftController {
          * @default aircraftCommander
          * @private
          */
-        this._aircraftCommander = new AircraftCommander(this);
+        this._aircraftCommander = new AircraftCommander(this.onRequestToChangeTransponderCode, this.findAircraftById);
 
         /**
          * Local reference to static `EventBus` class

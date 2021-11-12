@@ -30,10 +30,10 @@ import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilit
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(aircraftController) {
+    constructor(onChangeTransponderCode, findAircraftById) {
         this._eventBus = EventBus;
-        this._findAircraftById = aircraftController.findAircraftById.bind(aircraftController);
-        this._onChangeTransponderCode = aircraftController.onRequestToChangeTransponderCode.bind(aircraftController);
+        this._findAircraftById = findAircraftById;
+        this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
     /**
