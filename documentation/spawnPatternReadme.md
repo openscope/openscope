@@ -11,6 +11,10 @@ Lets look at some examples before we continue:
      "destination": "",
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
+     "commands": {
+        "19L": "fh 180",
+        "1R": "fh 360"
+     },
      "altitude": "",
      "speed": "",
      "method": "random",
@@ -28,6 +32,10 @@ Lets look at some examples before we continue:
     "destination": "KLAS",
     "category": "arrival",
     "route": "BETHL.GRNPA1.KLAS",
+    "commands": {
+        "19L": "cross TOROO A100",
+        "1R": "cross TOROO A100"
+    },
     "altitude": [30000, 40000],
     "speed": 320,
     "method": "cyclic",
@@ -92,6 +100,12 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
   * For complex routes: `FIXXA..FIXXB..ENTRY.PROCEDURE_ID.EXIT`
   * Prepend a fix name with `@` to _hold_ at that fix `FIXXA..@FIXXB..FIXXC`
   * Prepend a three digit heading with `#` to _fly that heading until given further instructions_
+
+### commands
+
+Commands to pass to an aircraft when it spawns. This could be used for tower assigned departure headings, altitude crossings that might be assigned by another controller, etc.
+* One entry per runway
+* Command string can be any valid command as defined in the aircraft-command guide
 
 ### altitude (* _for arrivals and overflights_)
 
