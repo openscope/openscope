@@ -155,6 +155,17 @@ export default class AircraftController {
     }
 
     /**
+     * Get the instance of AircraftCommander that was created by this Controller
+     *
+     * @for AircraftController
+     * @property aircraftCommander
+     * @type {AircraftCommander}
+     */
+    get aircraftCommander() {
+        return this._aircraftCommander;
+    }
+
+    /**
      * @for AircraftController
      * @method init
      * @chainable
@@ -219,15 +230,6 @@ export default class AircraftController {
      * @param item {AircraftModel}
      */
     addItem = (item) => this.aircraft.list.push(item);
-
-    /**
-     * Get the instance of AircraftCommander that was created by this Controller
-     *
-     * @returns {AircraftCommander}
-     */
-    get aircraftCommander() {
-        return this._aircraftCommander;
-    }
 
     /**
      * Callback method fired by an interval defined in the `SpawnScheduler`.
@@ -580,7 +582,7 @@ export default class AircraftController {
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
 
         if (isArrival) {
-            this._runCommandOnNewAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
         }
 
         if (isDeparture && isAutoTower) {
@@ -590,8 +592,10 @@ export default class AircraftController {
             aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
             aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
             aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
+
             aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
-            this._runCommandOnNewAircraft(aircraftModel, runwayCommands, aircraftModel.fms.departureRunwayModel.name);
+
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.departureRunwayModel.name);
         }
     }
 
@@ -659,18 +663,22 @@ export default class AircraftController {
     /**
      * Execute a command on a new or preSpawned aircraft.
      *
+     * @for AircraftController
+     * @method _runCommandOnPreSpawnAircraft
      * @param aircraft {AircraftModel}
      * @param command {Object}
      * @param runwayName {String}
      * @private
      */
-    _runCommandOnNewAircraft(aircraft, commands, runwayName) {
-        if (commands && commands[runwayName]) {
-            const commandString = commands[runwayName];
-            const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
-
-            this._aircraftCommander.runCommands(aircraft, command.args, true);
+    _runCommandOnPreSpawnAircraft(aircraft, commands, runwayName) {
+        if (!commands || !(runwayName in commands)) {
+            return;
         }
+
+        const commandString = commands[runwayName];
+        const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
+
+        this._aircraftCommander.runCommands(aircraft, command.args, true);
     }
 
     /**

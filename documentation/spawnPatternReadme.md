@@ -12,8 +12,8 @@ Lets look at some examples before we continue:
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
      "commands": {
-         "19L": "fh 180",
-         "1R": "fh 360"
+        "19L": "fh 180",
+        "1R": "fh 360"
      },
      "altitude": "",
      "speed": "",
