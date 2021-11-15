@@ -217,6 +217,15 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = '';
 
         /**
+         * Object defining runway specific commands to send to an aircraft at spawn time
+         *
+         * @property commands
+         * @type {object}
+         * @default
+         */
+        this.commands = {};
+
+        /**
          * List of fixes to follow on spawn.
          *
          * This property will be set to an array of strings representing
@@ -485,6 +494,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
         this.routeString = spawnPatternJson.route;
+        this.commands = spawnPatternJson.commands;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this.method = spawnPatternJson.method;
         this.rate = parseFloat(spawnPatternJson.rate);
@@ -519,6 +529,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.origin = '';
         this.destination = '';
         this.routeString = '';
+        this.commands = {};
         this._minimumAltitude = INVALID_NUMBER;
         this._maximumAltitude = INVALID_NUMBER;
         this.speed = 0;
