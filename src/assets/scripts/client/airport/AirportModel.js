@@ -369,6 +369,8 @@ export default class AirportModel {
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
+
+        this.eventBus.on(EVENT.WIND_CHANGE, this.updateCurrentWind.bind(this));
     }
 
     /**

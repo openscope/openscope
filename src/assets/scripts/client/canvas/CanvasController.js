@@ -192,15 +192,6 @@ export default class CanvasController {
         this._shouldDrawTerrain = true;
 
         /**
-         * Flag used to determine if the video map should be displayed
-         *
-         * @property _shouldDrawVideoMap
-         * @type {boolean}
-         * @default true
-         */
-        this._shouldDrawVideoMap = true;
-
-        /**
          * has a console.warn been output for terrain?
          *
          * This is meant for airport contributors designing new airports
@@ -2287,7 +2278,7 @@ export default class CanvasController {
         const airportModel = AirportController.airport_get();
 
         // Don't bother with the canvas set up if the airport has no visible maps
-        if (!airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
+        if (!airportModel.mapCollection.hasVisibleMaps) {
             return;
         }
 
@@ -2669,8 +2660,8 @@ export default class CanvasController {
      * @returns undefined
      * @private
      */
-    _onToggleVideoMap() {
-        this._shouldDrawVideoMap = !this._shouldDrawVideoMap;
+    _onToggleVideoMap(mapNames) {
+        AirportController.airport_get().mapCollection.setVisibleMaps(mapNames);
 
         this._markDeepRender();
     }

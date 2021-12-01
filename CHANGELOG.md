@@ -1,3 +1,17 @@
+# 6.26.0 (December 1, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1847" target="_blank">#1847</a> - Allow user to change the wind
+- <a href="https://github.com/openscope/openscope/issues/1848" target="_blank">#1848</a> - Allow user to toggle individual video maps on/off
+- <a href="https://github.com/openscope/openscope/issues/1854" target="_blank">#1854</a> - Accept commands to be run at spawn time
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1845" target="_blank">#1845</a> - Fix Safari compatibility issue
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KRDU to AIRAC 2106
+- <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KAUS to AIRAC 2109
+
+
 # 6.25.0 (June 2, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1593" target="_blank">#1593</a> - Add search bar to airport selection dialog

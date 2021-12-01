@@ -30,9 +30,9 @@ import { heading_to_string, radiansToDegrees, degreesToRadians } from '../utilit
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(aircraftController, onChangeTransponderCode) {
+    constructor(onChangeTransponderCode, findAircraftById) {
         this._eventBus = EventBus;
-        this._aircraftController = aircraftController;
+        this._findAircraftById = findAircraftById;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
@@ -41,9 +41,10 @@ export default class AircraftCommander {
      * @method runCommands
      * @param aircraft {AircraftModel}
      * @param commands {array<AircraftCommandParser>}
+     * @param isPreSpawn {boolean}
      */
-    runCommands(aircraft, commands) {
-        if (!aircraft.isControllable) {
+    runCommands(aircraft, commands, isPreSpawn = false) {
+        if (!aircraft.isControllable && !isPreSpawn) {
             return true;
         }
 
@@ -111,6 +112,10 @@ export default class AircraftCommander {
 
                 response.push(retval[1]);
             }
+        }
+
+        if (isPreSpawn) {
+            return true;
         }
 
         if (commands.length === 0) {
@@ -657,7 +662,7 @@ export default class AircraftCommander {
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
-        const aircraftAhead = this._aircraftController.findAircraftById(runway.queue[spotInQueue - 1]);
+        const aircraftAhead = this._findAircraftById(runway.queue[spotInQueue - 1]);
         const wind = airport.getWindAtAltitude();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
