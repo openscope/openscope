@@ -634,7 +634,7 @@
                 "FQM":   ["FQM"],
                 "SLT":   ["SLT", "FQM"]
             },
-            "body": ["MEGSS", "HAYED", ["RACKI", "A130"], "PENNS", "SWEET", "#122"],
+            "body": ["MEGSS", "HAYED", ["RACKI", "A130"], "PENNS", ["SWEET", "A70"], "#122"],
             "rwy": {
                 "KEWR4L": [],
                 "KEWR4R": [],
