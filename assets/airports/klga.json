@@ -313,6 +313,54 @@
                 ["_RWY2201DME","JUTES", "TNNIS"]
             ]
         },
+        "LGA7": {
+            "icao": "LGA7",
+            "name": "LaGuardia Seven",
+            "altitude": "5000",
+            "rwy": {
+                "KLGA22" : ["#070"],
+                "KLGA31" :["#314"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BAYYS": ["BAYYS"],
+                "BIGGY": ["BIGGY"],
+                "COATE": ["COATE"],
+                "DIXIE": ["DIXIE"],
+                "ELIOT": ["ELIOT"],
+                "GAYEL": ["GAYEL"],
+                "GREKI": ["GREKI"],
+                "HAAYS": ["HAAYS"],
+                "LANNA": ["LANNA"],
+                "MERIT": ["MERIT"],
+                "NEION": ["NEION"],
+                "NEWEL": ["NEWEL"],
+                "PARKE": ["PARKE"],
+                "SHIPP": ["SHIPP"],
+                "WAVEY": ["WAVEY"],
+                "WHITE": ["WHITE"],
+                "ZIMMZ": ["ZIMMZ"]
+            },
+            "draw": [
+                ["BAYYS*"],
+                ["BIGGY*"],
+                ["COATE*"],
+                ["DIXIE*"],
+                ["ELIOT*"],
+                ["GAYEL*"],
+                ["GREKI*"],
+                ["HAAYS*"],
+                ["LANNA*"],
+                ["MERIT*"],
+                ["NEION*"],
+                ["NEWEL*"],
+                ["PARKE*"],
+                ["SHIPP*"],
+                ["WAVEY*"],
+                ["WHITE*"],
+                ["ZIMMZ*"]
+            ]
+        },
         "LGA7-BRX": {
             "icao": "LGA7",
             "name": "LaGuardia Seven, Bronx Climb",
@@ -345,76 +393,6 @@
                 "ZIMMZ": ["ZIMMZ"]
             },
             "draw": [["BIGGY"]]
-        },
-        "LGA7-PEL": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Pelham Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA4": ["_RWY22", "#040"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
-        },
-        "LGA7-SND": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Sound Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA4" : ["_RWY22", "#055"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
         },
         "LGA7-CNY": {
             "icao": "LGA7",
@@ -521,6 +499,76 @@
                 ["BIGGY"]
             ]
         },
+        "LGA7-PEL": {
+            "icao": "LGA7",
+            "name": "LaGuardia Seven, Pelham Climb",
+            "altitude": "5000",
+            "rwy": {
+                "KLGA4": ["_RWY22", "#040"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BAYYS": ["BAYYS"],
+                "BDR"  : ["BDR"],
+                "BIGGY": ["BIGGY"],
+                "COATE": ["COATE"],
+                "COL"  : ["COL"],
+                "DIXIE": ["DIXIE"],
+                "ELIOT": ["ELIOT"],
+                "GAYEL": ["GAYEL"],
+                "GREKI": ["GREKI"],
+                "HAAYS": ["HAAYS"],
+                "HUO"  : ["HUO"],
+                "LANNA": ["LANNA"],
+                "MERIT": ["MERIT"],
+                "NEION": ["NEION"],
+                "NEWEL": ["NEWEL"],
+                "PARKE": ["PARKE"],
+                "RBV"  : ["RBV"],
+                "SHIPP": ["SHIPP"],
+                "WAVEY": ["WAVEY"],
+                "WHITE": ["WHITE"],
+                "ZIMMZ": ["ZIMMZ"]
+            },
+            "draw": [
+                ["BIGGY"]
+            ]
+        },
+        "LGA7-SND": {
+            "icao": "LGA7",
+            "name": "LaGuardia Seven, Sound Climb",
+            "altitude": "5000",
+            "rwy": {
+                "KLGA4" : ["_RWY22", "#055"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BAYYS": ["BAYYS"],
+                "BDR"  : ["BDR"],
+                "BIGGY": ["BIGGY"],
+                "COATE": ["COATE"],
+                "COL"  : ["COL"],
+                "DIXIE": ["DIXIE"],
+                "ELIOT": ["ELIOT"],
+                "GAYEL": ["GAYEL"],
+                "GREKI": ["GREKI"],
+                "HAAYS": ["HAAYS"],
+                "HUO"  : ["HUO"],
+                "LANNA": ["LANNA"],
+                "MERIT": ["MERIT"],
+                "NEION": ["NEION"],
+                "NEWEL": ["NEWEL"],
+                "PARKE": ["PARKE"],
+                "RBV"  : ["RBV"],
+                "SHIPP": ["SHIPP"],
+                "WAVEY": ["WAVEY"],
+                "WHITE": ["WHITE"],
+                "ZIMMZ": ["ZIMMZ"]
+            },
+            "draw": [
+                ["BIGGY"]
+            ]
+        },
         "LGA7-WHI": {
             "icao": "LGA7",
             "name": "LaGuardia Seven, Whitestone Climb",
@@ -554,54 +602,6 @@
             },
             "draw": [
                 ["BIGGY"]
-            ]
-        },
-        "LGA7": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA22" : ["#070"],
-                "KLGA31" :["#314"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BAYYS*"],
-                ["BIGGY*"],
-                ["COATE*"],
-                ["DIXIE*"],
-                ["ELIOT*"],
-                ["GAYEL*"],
-                ["GREKI*"],
-                ["HAAYS*"],
-                ["LANNA*"],
-                ["MERIT*"],
-                ["NEION*"],
-                ["NEWEL*"],
-                ["PARKE*"],
-                ["SHIPP*"],
-                ["WAVEY*"],
-                ["WHITE*"],
-                ["ZIMMZ*"]
             ]
         },
         "NTHNS5": {
