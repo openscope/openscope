@@ -236,6 +236,12 @@
         "premium": false
     },
     {
+        "icao": "klga",
+        "level": "easy",
+        "name": "LaGuardia Airport",
+        "premium": false
+    },
+    {
         "icao": "kmci",
         "level": "beginner",
         "name": "Kansas City International Airport",
