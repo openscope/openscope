@@ -775,7 +775,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "klga",
+            "origin": "KLGA",
             "destination": "",
             "category": "departure",
             "route": "KLGA13.LGA7-WHI.LANNA",
@@ -803,6 +803,77 @@
                 ["voc", 4],
                 ["voi/jfk", 2]
 
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KLGA",
+            "category": "arrival",
+            "route": "GVE.KORRY4.KLGA22",
+            "altitude": "24000",
+            "speed": "310",
+            "method": "random",
+            "rate": 14.325,
+            "airlines": [
+                ["ual", 50],
+                ["rpa", 15],
+                ["gjs", 8],
+                ["aal", 7],
+                ["nks", 9],
+                ["fft", 3],
+                ["jbu", 8],
+                ["ajt", 1],
+                ["aal", 7],
+                ["dal", 8],
+                ["scx", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KLGA",
+            "category": "arrival",
+            "route": "RKA.HAARP3.KLGA22",
+            "altitude": "24000",
+            "speed": "310",
+            "method": "random",
+            "rate": 8.125,
+            "airlines": [
+                ["ual", 30],
+                ["jza", 7],
+                ["aca", 1],
+                ["aca/short",2],
+                ["asa", 3],
+                ["rpa", 2],
+                ["gjs", 7],
+                ["fdx", 1],
+                ["jbu", 3],
+                ["baw/long", 2],
+                ["dlh/long", 1],
+                ["ely/long", 1],
+                ["tap/long, 3"]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KLGA",
+            "category": "arrival",
+            "route": "PSB.MIP4.KLGA22",
+            "altitude": "24000",
+            "speed": "310",
+            "method": "random",
+            "rate": 14.325,
+            "airlines": [
+                ["ual", 50],
+                ["rpa", 15],
+                ["gjs", 8],
+                ["aal", 7],
+                ["nks", 9],
+                ["fft", 3],
+                ["jbu", 8],
+                ["ajt", 1],
+                ["aal", 7],
+                ["dal", 8],
+                ["scx", 1]
             ]
         }
     ],
