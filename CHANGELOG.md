@@ -1,3 +1,11 @@
+# 6.27.0 (January 1, 2021)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.26.0 (December 1, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1847" target="_blank">#1847</a> - Allow user to change the wind
