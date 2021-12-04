@@ -486,6 +486,7 @@
         "ALB"  : [42.74727778, -73.80318611],
         "APPLE": [40.55613611, -74.06225278],
         "ASALT": [40.52758889, -73.96393889],
+        "AWLIN": [41.55624444, -71.99915833],
         "BACKY": [39.01603056, -76.0847],
         "BAF"  : [42.16195833, -72.7162],
         "BASYE": [41.34372222, -73.79860833],
@@ -511,6 +512,7 @@
         "CSN"  : [38.64120278, -77.8655],
         "CTR"  : [42.29131944, -72.94939444],
         "CXR"  : [41.51692778, -81.16318611],
+        "CYN"  : [39.81733889, -74.431625],
         "CYPER": [42.10899167, -74.27375556],
         "DAMYR": [40.41076944, -74.23138333],
         "DAVYS": [39.92238889, -74.89715833],
@@ -548,6 +550,7 @@
         "JADEE": [36.56456111, -78.17166111],
         "JUTES": [40.80008333, -73.75719444],
         "KELIE": [42.66036667, -77.74473611],
+        "KEMPR": [36.74945556, -76.48875556],
         "KERNO": [39.31006944, -76.04303333],
         "KIWIE": [40.71278333, -73.82590278],
         "KORRY": [40.09384167, -74.65154444],
@@ -584,9 +587,11 @@
         "RENUE": [40.51853333, -74.09408889],
         "RIDGY": [38.942975, -75.78981389],
         "RKA"  : [42.46633056, -75.23922778],
+        "RUIZE": [41.47934167, -72.20942778],
         "RUUTH": [39.85034444, -74.99976944],
         "RYMES": [41.19166667, -73.53075556],
         "SAX"  : [41.06754167, -74.53830833, "Sparta"],
+        "SBY"  : [38.34500556, -75.510575],
         "SFK"  : [41.69525278, -77.41990556],
         "SHIPP": [40.32943333, -73.24727222],
         "SHLBK": [38.33783611, -76.43625278],
@@ -602,6 +607,7 @@
         "VALRE": [41.43532778, -73.88173611],
         "VIBES": [40.763225, -75.60051944],
         "VIEEW": [42.43946389, -77.02591667],
+        "VILLS": [39.301075, -75.11052778],
         "VOBOZ": [40.66871667, -73.89281111],
         "WAVEY": [40.23458333, -73.39437778],
         "WEVEL": [41.25032222, -78.45807778],
@@ -636,6 +642,7 @@
     ],
     "airways": {
         "J146": ["GERBS", "IDEAS", "WOOST", "CXR", "TEESY", "MIGET", "WEVEL", "ETG", "MIP"],
+        "J209": ["WHITE", "CYN", "VILLS", "SBY"],
         "J48" : ["LANNA", "PTW", "BYRDD", "HAAGN", "PENSY", "EMI", "CSN", "MOL", "FLASK"],
         "J55" : ["RDU", "HAKOK", "JADEE", "ZITTO", "HPW"],
         "Q818": ["GAYEL", "MSLIN", "STOMP", "BUFFY", "CFB", "VIEEW", "KELIE", "WOZEE"]
@@ -1208,7 +1215,6 @@
                 ["fft", 3],
                 ["jbu", 8],
                 ["ash", 2],
-                ["aal/short", 7],
                 ["dal/short", 12]
             ]
         },
@@ -1217,6 +1223,44 @@
             "destination": "",
             "category": "departure",
             "route": "KLGA13.LGA7-WHI.GAYEL.Q818.WOZEE..LINNG",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 6.87,
+            "airlines": [
+                ["ual/short", 4],
+                ["jza", 3],
+                ["aca/short",2],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "KLGA",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA13.LGA7-WHI.MERIT..RUIZE..AWLIN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 6.87,
+            "airlines": [
+                ["ual/short", 4],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "KLGA",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA13.LGA7-CNY.WHITE.J209.SBY..KEMPR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1247,7 +1291,7 @@
             "altitude": "31000",
             "speed": "310",
             "method": "random",
-            "rate": 14.325,
+            "rate": 12.325,
             "airlines": [
                 ["ual/short", 10],
                 ["rpa", 5],
@@ -1269,7 +1313,7 @@
             "altitude": "16000",
             "speed": "310",
             "method": "random",
-            "rate": 8.125,
+            "rate": 9.125,
             "airlines": [
                 ["ual/short", 4],
                 ["jza", 3],
@@ -1293,7 +1337,7 @@
             "altitude": "37000",
             "speed": "310",
             "method": "random",
-            "rate": 12.5,
+            "rate": 10.5,
             "airlines": [
                 ["ual/short", 10],
                 ["rpa", 15],
