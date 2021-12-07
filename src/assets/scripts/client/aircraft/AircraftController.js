@@ -10,9 +10,11 @@ import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
+import AircraftCommander from './AircraftCommander';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
+import CommandParser from '../commands/parsers/CommandParser';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { abs } from '../math/core';
@@ -41,6 +43,7 @@ export default class AircraftController {
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
      * @param scopeModel {ScopeModel}
+     * @param aircraftCommander {AircraftCommander}
      */
     constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (_isNil(aircraftTypeDefinitionList) || _isNil(airlineController) || _isNil(scopeModel)) {
@@ -73,6 +76,19 @@ export default class AircraftController {
          * @private
          */
         this._airlineController = airlineController;
+
+        /**
+         * Reference to an `AircraftCommander` instance
+         *
+         * @property _aircraftCommander
+         * @type {AircraftCommander}
+         * @default aircraftCommander
+         * @private
+         */
+        this._aircraftCommander = new AircraftCommander(
+            this.onRequestToChangeTransponderCode.bind(this),
+            this.findAircraftById.bind(this)
+        );
 
         /**
          * Local reference to static `EventBus` class
@@ -136,6 +152,17 @@ export default class AircraftController {
         return this.init()
             ._setupHandlers()
             .enable();
+    }
+
+    /**
+     * Get the instance of AircraftCommander that was created by this Controller
+     *
+     * @for AircraftController
+     * @property aircraftCommander
+     * @type {AircraftCommander}
+     */
+    get aircraftCommander() {
+        return this._aircraftCommander;
     }
 
     /**
@@ -546,11 +573,17 @@ export default class AircraftController {
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftModel(initializationProps);
         const isDeparture = initializationProps.category === 'departure';
+        const isArrival = initializationProps.category === 'arrival';
         const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+        const runwayCommands = initializationProps.commands;
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
+
+        if (isArrival) {
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
+        }
 
         if (isDeparture && isAutoTower) {
             // create the StripView immediately for departures; arrival strips are made when controllable
@@ -559,7 +592,10 @@ export default class AircraftController {
             aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
             aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
             aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
+
             aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
+
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.departureRunwayModel.name);
         }
     }
 
@@ -618,9 +654,31 @@ export default class AircraftController {
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
             routeString: spawnPatternModel.routeString,
+            commands: spawnPatternModel.commands,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
+    }
+
+    /**
+     * Execute a command on a new or preSpawned aircraft.
+     *
+     * @for AircraftController
+     * @method _runCommandOnPreSpawnAircraft
+     * @param aircraft {AircraftModel}
+     * @param command {Object}
+     * @param runwayName {String}
+     * @private
+     */
+    _runCommandOnPreSpawnAircraft(aircraft, commands, runwayName) {
+        if (!commands || !(runwayName in commands)) {
+            return;
+        }
+
+        const commandString = commands[runwayName];
+        const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
+
+        this._aircraftCommander.runCommands(aircraft, command.args, true);
     }
 
     /**

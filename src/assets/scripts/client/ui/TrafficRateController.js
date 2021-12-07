@@ -9,6 +9,8 @@ import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { REGEX } from '../constants/globalConstants';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
+import AirportController from '../airport/AirportController';
+import { radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -70,8 +72,17 @@ export default class TrafficRateController {
          */
         this._elements = null;
 
-        this.init()
-            ._setupHandlers()
+        /**
+         * Current wind
+         *
+         * @property _wind
+         * @type {object}
+         * @default null
+         */
+        this._wind = null;
+
+        this._setupHandlers()
+            .init()
             .enable();
     }
 
@@ -102,6 +113,8 @@ export default class TrafficRateController {
      */
     _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
+        this._onChangeWindDirection = this.onChangeWindDirection.bind(this);
+        this._onChangeWindSpeed = this.onChangeWindSpeed.bind(this);
 
         return this;
     }
@@ -174,6 +187,16 @@ export default class TrafficRateController {
         this._rates = {};
         this._elements = {};
 
+        const airport = AirportController.airport_get();
+        this._wind = { speed: airport.wind.speed, angle: Math.round(radiansToDegrees(airport.wind.angle)) };
+
+        const $windDirSlider = this._buildWindDirectionSlider(this._wind.angle);
+        const $windSpdSlider = this._buildWindSpeedSlider(this._wind.speed);
+
+        this.$dialogBody.append($windDirSlider);
+        this.$dialogBody.append($windSpdSlider);
+        this.$dialogBody.append('<hr />');
+
         for (const category of Object.values(FLIGHT_CATEGORY)) {
             this._rates[category] = 1;
             this._elements[category] = [];
@@ -230,6 +253,54 @@ export default class TrafficRateController {
      * Build form element
      *
      * @for TrafficRateController
+     * @method _buildWindDirectionSlider
+     *
+     * @return {jquery|HTML Element}
+     */
+    _buildWindDirectionSlider(value) {
+        const name = 'wind direction';
+        const template = `
+            <div class="form-element">
+                <div class="form-label">${name}</div>
+                <input class="form-slider" type="range" name="${name}" value="${value}" min="10" max="360" step="10" />
+                <span class="form-value">${value}</span>
+            </div>`;
+        const $element = $(template);
+
+        $element.on('change', this._onChangeWindDirection);
+
+        return $element;
+    }
+
+    /**
+     * Build form element
+     *
+     * @for TrafficRateController
+     * @method _buildWindSpeedSlider
+     * @param key {string}
+     * @param label {string}
+     * @param value {number} passed to the change handler
+     * @return {jquery|HTML Element}
+     */
+    _buildWindSpeedSlider(value) {
+        const name = 'wind speed';
+        const template = `
+            <div class="form-element">
+                <div class="form-label">${name}</div>
+                <input class="form-slider" type="range" name="${name}" value="${value}" min="0" max="25" step="1" />
+                <span class="form-value">${value}</span>
+            </div>`;
+        const $element = $(template);
+
+        $element.on('change', this._onChangeWindSpeed);
+
+        return $element;
+    }
+
+    /**
+     * Build form element
+     *
+     * @for TrafficRateController
      * @method _buildInputField
      * @param key {string}
      * @param data {string|object} passed to the change handler
@@ -250,6 +321,40 @@ export default class TrafficRateController {
         $element.on('change', { rateKey: data }, onChangeHandler);
 
         return $element;
+    }
+
+    /**
+     * Called when the wind direction is changed
+     *
+     * @for TrafficRateController
+     * @method onChangeWindDirection
+     * @param event
+     */
+    onChangeWindDirection(event) {
+        const $target = $(event.target);
+        const $nextDirection = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
+        const value = $target.val();
+        this._wind.angle = Number(value);
+
+        $nextDirection.text(value);
+        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
+    }
+
+    /**
+     * Called when the wind speed is changed
+     *
+     * @for TrafficRateController
+     * @method onChangeWindSpeed
+     * @param event
+     */
+    onChangeWindSpeed(event) {
+        const $target = $(event.target);
+        const $nextSpeed = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
+        const value = $target.val();
+        this._wind.speed = Number(value);
+
+        $nextSpeed.text(value);
+        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
     }
 
     /**
