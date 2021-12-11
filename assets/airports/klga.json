@@ -1481,19 +1481,18 @@
                 "31": "CROSS KORRY A100 S250"
             },
             "altitude": "31000",
-            "speed": "310",
+            "speed": "290",
             "method": "random",
             "rate": 12.325,
             "airlines": [
-                ["ual/short", 10],
-                ["rpa", 5],
+                ["ual/short", 8],
+                ["rpa", 10],
                 ["gjs", 8],
-                ["aal/short", 12],
+                ["aal/short", 11],
                 ["nks", 5],
                 ["fft", 3],
                 ["jbu", 8],
                 ["ash", 2],
-                ["aal/short", 7],
                 ["dal/short", 12]
             ]
         },
