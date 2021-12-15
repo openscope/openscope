@@ -24,7 +24,7 @@
     },
     "arrivalRunway": "2C",
     "departureRunway": "2R",
-    "defaultMaps": ["North Flow"],
+    "defaultMaps": ["North Flow - Rwy 2C"],
     "airspace": [
        {
         "floor": 0,
@@ -882,7 +882,7 @@
             "origin": "KBNA",
             "destination": "",
             "category": "departure",
-            "route": "KBNA31.FLAME3.GENDE",
+            "route": "KBNA2R.FLAME3.GENDE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1048,7 +1048,7 @@
             "origin": "KBNA",
             "destination": "",
             "category": "departure",
-            "route": "KBNA31.TAZMO3.BURME",
+            "route": "KBNA2R.TAZMO3.BURME",
             "altitude": "",
             "speed": "",
             "method": "random",
