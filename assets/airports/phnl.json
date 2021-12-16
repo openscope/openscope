@@ -10,7 +10,7 @@
     "magnetic_north": 11,
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
-    "initial_alt": 15000,
+    "initial_alt": 5000,
     "position": ["N21d19.06", "W157d55.22", "13ft"],
     "rangeRings": {
         "enabled": true,
@@ -85,7 +85,106 @@
         }
     ],
     "fixes": {
-
+        "_RW4L1DME": [21.332980, -157.903297],
+        "_RW4R1DME": [21.332080, -157.901151],
+        "_RW8L1DME": [21.325241, -157.901952],
+        "_RW8R1DME": [21.306789, -157.900496],
+        "_RW26L1DME": [21.306874, -157.958011],
+        "_RW26R1DME": [21.325200, -157.953997],
+        "ALANA": [21.0753278, -157.9390861],
+        "ALICA": [21.5822667, -153.3854500],
+        "ALOCA": [23.1336111, -157.0833333],
+        "APACK": [24.0437028, -156.3195417],
+        "BAMBO": [21.4165472, -157.5100111],
+        "BECAN": [22.7447222, -156.6783333],
+        "BINJO": [20.4046722, -160.7992361],
+        "BITTA": [23.5280306, -155.4788361],
+        "BLUSH": [21.3336972, -156.6738333],
+        "BOWSZ": [22.3546611, -156.6177944],
+        "CANON": [22.8015000, -162.6168889],
+        "CARRP": [19.0733333, -159.5833333],
+        "CHAIN": [20.9729944, -156.9257611],
+        "CHOKO": [20.3773472, -160.8830972],
+        "CKH"  : [21.2651122, -157.7029814],
+        "CLUTS": [23.0032583, -154.6547722],
+        "CRISI": [20.4622667, -157.0657306],
+        "CONED": [22.3691667, -156.4580556],
+        "DAFRE": [19.4963139, -157.5076111],
+        "DANNO": [23.5332333, -161.5817667],
+        "DANYA": [22.0402778, -156.3650000],
+        "DENNS": [22.3634000, -153.8805833],
+        "DLIMA": [21.8641056, -156.2893694],
+        "DOVRR": [18.7166667, -157.6666667],
+        "DZURA": [21.2380472, -157.9591833],
+        "EBBER": [21.7134333, -153.1472833],
+        "ENSKY": [21.1235333, -157.8711472],
+        "FIRES": [20.3200139, -156.9217333],
+        "FITES": [20.7945556, -153.0006333],
+        "GECKO": [21.1922500, -158.3097806],
+        "GRAIL": [21.5129917, -158.8590944],
+        "GRAMY": [20.8188806, -157.1371139],
+        "GRITL": [21.3276833, -157.6233639],
+        "HAUNA": [21.0941194, -157.7125167],
+        "HISPO": [21.6951194, -157.2023306],
+        "HNAPI": [21.8063889, -157.9988889],
+        "HNL"  : [21.3083217, -157.9304111],
+        "HOKLA": [20.2259667, -156.8267333],
+        "HOOPA": [21.1166667, -162.8333333],
+        "HUBAP": [21.2210278, -157.9299806],
+        "IHNET": [21.3253639, -157.7491194],
+        "INOYI": [21.2833361, -157.8584639],
+        "JOELE": [21.6684583, -157.1872444],
+        "JORDA": [20.6596278, -157.2661750],
+        "JULLE": [20.9599389, -157.5764694],
+        "KAENA": [21.5411111, -158.3627778],
+        "KATHS": [21.0770556, -161.3863333],
+        "KEOLA": [21.2981222, -158.4905250],
+        "KOA"  : [19.7172389, -156.0449203],
+        "KYLIO": [22.2352778, -156.8297222],
+        "LEANE": [21.2694083, -159.7146778],
+        "LIH"  : [21.9652714, -159.3380997],
+        "LILIA": [22.5077000, -161.5831833],
+        "LNY"  : [20.7645000, -156.9688889],
+        "MAGGI": [21.8405306, -156.9656111],
+        "MAKOA": [21.3251333, -158.1199167],
+        "MKK"  : [21.1381111, -157.1674167],
+        "MSONA": [22.8160333, -156.7466833],
+        "NAPUA": [21.7363694, -159.2440444],
+        "NEEEL": [21.6650000, -158.2883333],
+        "NONNI": [21.2284167, -161.0498833],
+        "OOKAH": [21.2380667, -157.9949528],
+        "OPIHI": [21.0958500, -158.0039750],
+        "PALAY": [21.1057611, -157.5703444],
+        "PIPLN": [21.1735306, -157.8757417],
+        "PULPS": [20.4721611, -155.8992944],
+        "PUPPI": [21.9213833, -161.6796333],
+        "RABBS": [21.3366667, -158.2400000],
+        "REXIE": [22.9925528, -156.9129083],
+        "SAKKI": [20.9317528, -157.4883417],
+        "SCOON": [20.2563056, -152.2366111],
+        "SEBYI": [21.0573333, -158.1175000],
+        "SECEL": [20.6242222, -158.4426889],
+        "SECJI": [20.9771667, -159.0041667],
+        "SEDDU": [19.9385611, -158.9504028],
+        "SELYY": [20.5126667, -158.2048333],
+        "SERAH": [20.8646250, -157.2790917],
+        "SERYU": [22.4550000, -156.7876667],
+        "SESXI": [21.2853333, -154.7405000],
+        "SETWE": [20.5876667, -154.0190000],
+        "SHARK": [22.5151778, -156.0897278],
+        "SOBOW": [20.8335194, -157.1825556],
+        "SOLCE": [22.3983333, -156.2426667],
+        "SOMOH": [22.3215000, -156.3425000],
+        "SOPIW": [22.3875000, -156.8073333],
+        "SOK"  : [21.9003925, -159.5288731],
+        "SYVAD": [21.9244444, -162.7579944],
+        "THOMA": [23.9434500, -160.7635000],
+        "TOADS": [22.7619556, -156.6971833],
+        "UPP"  : [20.2005411, -155.8432667],
+        "ZIGIE": [24.3136944, -157.2853611],
+        "ZILAN": [23.4136111, -157.6402778],
+        "ZORTA": [21.7302722, -157.2249278],
+        "ZUKEY": [20.7826667, -159.6220778]
     },
     "runways": [
         {
@@ -122,13 +221,301 @@
         }
     ],
     "sids": {
-
+        "KEOLA3": {
+            "icao": "KEOLA3",
+            "name": "Keola Three",
+            "rwy": {
+                "PHNL4L": ["_RW4L1DME", "#150"],
+                "PHNL4R": ["_RW4R1DME", "#150"],
+                "PHNL8L": ["_RW8L1DME", "#150"],
+                "PHNL8R": ["_RW8R1DME", "#150"],
+                "PHNL26L": ["_RW26L1DME", "#180"],
+                "PHNL26R": ["_RW26R1DME", "#180"]
+            },
+            "body": ["KEOLA"],
+            "exitPoints": {
+                "KATHS": ["LEANE", "NONNI", "KATHS"],
+                "LIH": ["GRAIL", "NAPUA", "LIH"],
+                "LILIA": ["LILIA"],
+                "NONNI": ["NONNI"],
+                "PUPPI": ["PUPPI"],
+                "SOK": ["GRAIL", "NAPUA", "SOK"]
+            },
+            "draw": [
+                ["KEOLA", "LEANE", "NONNI*", "KATHS*"],
+                ["PUPPI*", "KEOLA", "LILIA*"],
+                ["KEOLA", "GRAIL", "NAPUA", "LIH*"],
+                ["NAPUA", "SOK*"]
+            ]
+        },
+        "MKK4": {
+            "icao": "MKK4",
+            "name": "Molokai Four",
+            "rwy": {
+                "PHNL4L": ["_RW4L1DME", "#150"],
+                "PHNL4R": ["_RW4R1DME", "#150"],
+                "PHNL8L": ["_RW8L1DME", "#150"],
+                "PHNL8R": ["_RW8R1DME", "#150"],
+                "PHNL26L": ["_RW26L1DME", "#180"],
+                "PHNL26R": ["_RW26R1DME", "#180"]
+            },
+            "body": ["MKK"],
+            "exitPoints": {
+                "APACK": ["MAGGI", "SERYU", "TOADS", "APACK"],
+                "CLUTS": ["CLUTS"],
+                "EBBER": ["BLUSH", "SESXI", "ALICA", "EBBER"],
+                "FITES": ["BLUSH", "SETWE", "FITES"],
+                "PULPS": ["PULPS"],
+                "ZIGIE": ["MAGGI", "SERYU", "REXIE", "ZIGIE"]
+            },
+            "draw": [
+                ["MKK", "MAGGI", "SERYU", "TOADS", "APACK*"],
+                ["SERYU", "REXIE", "ZIGIE*"],
+                ["MKK", "CLUTS*"],
+                ["MKK", "BLUSH", "SESXI", "ALICA", "EBBER*"],
+                ["BLUSH", "SETWE", "FITES*"],
+                ["MKK", "PULPS*"]
+            ]
+        },
+        "PIPLN1": {
+            "icao": "PIPLN1",
+            "name": "Pipeline One",
+            "rwy": {
+                "PHNL8L": [["_RW8L1DME", "A005+"]],
+                "PHNL8R": [["_RW8R1DME", "A005+"]]
+            },
+            "body": [["PIPLN", "A30+|A50-|S210"], ["ENSKY", "A50"], "#164"],
+            "exitPoints": {
+                "ALANA": ["ALANA"],
+                "APACK": ["APACK"],
+                "BINJO": ["BINJO"],
+                "CANON": ["CANON"],
+                "CARRP": ["CARRP"],
+                "CLUTS": ["CLUTS"],
+                "DANNO": ["DANNO"],
+                "DOVRR": ["DOVRR"],
+                "EBBER": ["EBBER"],
+                "FITES": ["FITES"],
+                "GECKO": ["GECKO"],
+                "HAUNA": ["HAUNA"],
+                "HOOPA": ["HOOPA"],
+                "KATHS": ["KATHS"],
+                "KEOLA": ["KEOLA"],
+                "KOA": ["KOA"],
+                "LILIA": ["LILIA"],
+                "LNY": ["LNY"],
+                "OPIHI": ["OPIHI"],
+                "PALAY": ["PALAY"],
+                "PUPPI": ["PUPPI"],
+                "SCOON": ["SCOON"],
+                "SYVAD": ["SYVAD"],
+                "THOMA": ["THOMA"],
+                "UPP": ["UPP"],
+                "ZIGLE": ["ZIGLE"]
+            },
+            "draw": [
+                ["ALANA*"]
+            ]
+        },
+        "OPIHI3": {
+            "icao": "OPIHI3",
+            "name": "Opihi Three",
+            "rwy": {
+                "PHNL4L": ["_RW4L1DME", "#150"],
+                "PHNL4R": ["_RW4R1DME", "#150"],
+                "PHNL8L": ["_RW8L1DME", "#150"],
+                "PHNL8R": ["_RW8R1DME", "#150"],
+                "PHNL26L": ["_RW26L1DME", "#180"],
+                "PHNL26R": ["_RW26R1DME", "#180"]
+            },
+            "body": ["OPIHI"],
+            "exitPoints": {
+                "CARRP": ["SEBYI", "SECEL", "SEDDU", "CARRP"],
+                "CHOKO": ["SEBYI", "SECJI", "ZUKEY", "BINJO", "CHOKO"],
+                "DOVRR": ["SELYY", "DOVRR"]
+            },
+            "draw": [
+                ["OPIHI", "SEBYI", "SECEL", "SEDDU", "CARRP*"],
+                ["SEBYI", "SECJI", "ZUKEY", "BINJO", "CHOKO*"],
+                ["OPIHI", "SELYY", "DOVRR*"]
+            ]
+        }
     },
     "stars": {
-
+        "INOYI1": {
+            "icao": "INOYI1",
+            "name": "Inouye One",
+            "entryPoints": {
+                "APACK": [["APACK", "A250+"], ["MSONA", "A210+|S280"], ["KYLIO", "A190+"], ["ZORTA", "A170+|S270"]],
+                "BITTA": [["BITTA", "A250+"], "BOWSZ", ["HISPO", "A170+|S270"]],
+                "DENNS": [["DENNS", "A250+"], "DLIMA", ["JOELE", "A170+|S270"]],
+                "ZIGIE": [["ZIGIE", "A250+"], ["MSONA", "A210+|S280"], ["KYLIO", "A190+"], ["ZORTA", "A170+|S270"]]
+            },
+            "body": [["BAMBO", "A100+|A150-|S250"], ["IHNET", "A80+"], ["INOYI", "A80+|S230"]],
+            "rwy": {
+                "PHNL4L": [["^HUBAP", "A70|S220"], "#216"],
+                "PHNL4R": [["^HUBAP", "A70|S220"], "#216"],
+                "PHNL8L": ["DZURA", ["^OOKAH", "A60|S210"], "#259"],
+                "PHNL8R": ["DZURA", ["^OOKAH", "A60|S210"], "#259"]
+            },
+            "draw": [
+                ["ZIGIE", "MSONA", "KYLIO", "ZORTA", "BAMBO", "IHNET", "INOYI", "DZURA", "OOKAH"],
+                ["DENNS", "DLIMA", "JOELE", "BAMBO", "HISPO", "BOWSZ", "BITTA"],
+                ["APACK", "MSONA"],
+                ["INOYI", "HUBAP"]
+            ]
+        },
+        "JULLE5": {
+            "icao": "JULLE5",
+            "name": "Julle Five",
+            "entryPoints": {
+                "CHAIN": ["CHAIN", "SOBOW", "SERAH", "SAKKI"],
+                "DOVRR": ["DOVRR", "DAFRE", "JORDA"],
+                "HOKLA": ["HOKLA", "FIRES", "CRISI", "JORDA"],
+                "LNY": ["LNY", "GRAMY", "SOBOW", "SERAH", "SAKKI"]
+            },
+            "body": [["JULLE", "A140-"], "ALANA"],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["DOVRR", "DAFRE", "JORDA", "JULLE", "ALANA"],
+                ["HOKLA", "FIRES", "CRISI", "JORDA"],
+                ["LNY", "GRAMY", "SOBOW", "SERAH", "SAKKI", "JULLE"],
+                ["CHAIN", "SOBOW"]
+            ]
+        },
+        "KAENA2": {
+            "icao": "KAENA2",
+            "name": "Kayna Two",
+            "entryPoints": {
+                "APACK": ["APACK", "ALOCA", "NEEEL"],
+                "BITTA": ["BITTA", "BECAN", "NEEEL"],
+                "CLUTS": ["CLUTS", "CONED", "HNAPI", "NEEEL"],
+                "DENNS": ["DENNS", "DANYA", "HNAPI", "NEEEL"],
+                "ZIGIE": ["ZIGIE", "ZILAN"]
+            },
+            "body": [["KAENA", "A70+"], ["RABBS", "A40+"], ["MAKOA", "A34+|A37-|S210-"]],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["DENNS", "DANYA", "HNAPI", "NEEEL", "KAENA*", "RABBS", "MAKOA"],
+                ["CLUTS", "CONED", "HNAPI"],
+                ["APACK", "ALOCA", "NEEEL", "BECAN", "BITTA"],
+                ["ZIGIE", "ZILAN", "KAENA"]
+            ]
+        },
+        "MAGGI3": {
+            "icao": "MAGGI3",
+            "name": "Maggi Three",
+            "entryPoints": {
+                "APACK": ["APACK", "TOADS", "SOPIW"],
+                "BITTA": ["BITTA", "SOMOH"],
+                "CLUTS": ["CLUTS", "SHARK", "SOLCE", "SOMOH"],
+                "DENNS": ["DENNS", "SOLCE", "SOMOH"],
+                "ZIGIE": ["ZIGIE", "SOPIW"]
+            },
+            "body": ["MAGGI", "BAMBO", "GRITL", "CKH"],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["APACK", "TOADS", "SOPIW", "MAGGI", "BAMBO", "GRITL", "CKH"],
+                ["BITTA", "SOMOH", "MAGGI"],
+                ["CLUTS", "SHARK", "SOLCE", "SOMOH"],
+                ["DENNS", "SOLCE"],
+                ["ZIGIE", "SOPIW"]
+            ]
+        }
     },
     "spawnPatterns": [
-
+        {
+            "origin": "",
+            "destination": "phnl",
+            "category": "arrival",
+            "route": "LNY.JULLE5.PHNL8L",
+            "altitude": 24000,
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["dal/long", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "phnl",
+            "category": "arrival",
+            "route": "CLUTS.MAGGI3.PHNL8L",
+            "altitude": 33000,
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["dal/long", 1]
+            ]
+        },
+        {
+            "origin": "phnl",
+            "destination": "",
+            "category": "departure",
+            "route": "PHNL8R.MKK4.EBBER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["dal/long", 1]
+            ]
+        },
+        {
+            "origin": "phnl",
+            "destination": "",
+            "category": "departure",
+            "route": "PHNL8R.KEOLA3.KATHS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["dal/long", 1]
+            ]
+        },
+        {
+            "origin": "phnl",
+            "destination": "",
+            "category": "departure",
+            "route": "PHNL8R.OPIHI3.CHOKO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["dal/long", 1]
+            ]
+        }
     ],
     "maps": [
         {
