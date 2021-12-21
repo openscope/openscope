@@ -96,10 +96,12 @@
         "ALOCA": [23.1336111, -157.0833333],
         "APACK": [24.0437028, -156.3195417],
         "BAMBO": [21.4165472, -157.5100111],
+        "BEACH": [20.6830583, -156.5367222],
         "BECAN": [22.7447222, -156.6783333],
         "BINJO": [20.4046722, -160.7992361],
         "BITTA": [23.5280306, -155.4788361],
         "BLUSH": [21.3336972, -156.6738333],
+        "BOOKE": [21.4630972, -158.4498306],
         "BOWSZ": [22.3546611, -156.6177944],
         "CANON": [22.8015000, -162.6168889],
         "CARRP": [19.0733333, -159.5833333],
@@ -115,6 +117,8 @@
         "DENNS": [22.3634000, -153.8805833],
         "DLIMA": [21.8641056, -156.2893694],
         "DOVRR": [18.7166667, -157.6666667],
+        "DSHLL": [20.7635250, -156.9654861],
+        "DYLLI": [20.9318694, -157.4884667],
         "DZURA": [21.2380472, -157.9591833],
         "EBBER": [21.7134333, -153.1472833],
         "ENSKY": [21.1235333, -157.8711472],
@@ -129,6 +133,7 @@
         "HNAPI": [21.8063889, -157.9988889],
         "HNL"  : [21.3083217, -157.9304111],
         "HOKLA": [20.2259667, -156.8267333],
+        "HONUU": [20.8472222, -157.3205556],
         "HOOPA": [21.1166667, -162.8333333],
         "HUBAP": [21.2210278, -157.9299806],
         "IHNET": [21.3253639, -157.7491194],
@@ -141,12 +146,15 @@
         "KEOLA": [21.2981222, -158.4905250],
         "KOA"  : [19.7172389, -156.0449203],
         "KYLIO": [22.2352778, -156.8297222],
+        "LAVAS": [20.4905694, -156.4192639],
         "LEANE": [21.2694083, -159.7146778],
         "LIH"  : [21.9652714, -159.3380997],
         "LILIA": [22.5077000, -161.5831833],
         "LNY"  : [20.7645000, -156.9688889],
         "MAGGI": [21.8405306, -156.9656111],
+        "MAKAH": [20.9599972, -157.5766556],
         "MAKOA": [21.3251333, -158.1199167],
+        "MIRAA": [20.7688889, -157.3800000],
         "MKK"  : [21.1381111, -157.1674167],
         "MSONA": [22.8160333, -156.7466833],
         "NAPUA": [21.7363694, -159.2440444],
@@ -164,6 +172,7 @@
         "SCOON": [20.2563056, -152.2366111],
         "SEBYI": [21.0573333, -158.1175000],
         "SECEL": [20.6242222, -158.4426889],
+        "SECIL": [20.9317528, -157.4883417],
         "SECJI": [20.9771667, -159.0041667],
         "SEDDU": [19.9385611, -158.9504028],
         "SELYY": [20.5126667, -158.2048333],
@@ -172,15 +181,19 @@
         "SESXI": [21.2853333, -154.7405000],
         "SETWE": [20.5876667, -154.0190000],
         "SHARK": [22.5151778, -156.0897278],
+        "SHIGI": [21.3041972, -158.1715028],
+        "SHLAE": [21.0244167, -157.5865611],
         "SOBOW": [20.8335194, -157.1825556],
         "SOLCE": [22.3983333, -156.2426667],
         "SOMOH": [22.3215000, -156.3425000],
         "SOPIW": [22.3875000, -156.8073333],
         "SOK"  : [21.9003925, -159.5288731],
+        "SUCTU": [20.8525111, -157.4045056],
         "SYVAD": [21.9244444, -162.7579944],
         "THOMA": [23.9434500, -160.7635000],
         "TOADS": [22.7619556, -156.6971833],
         "UPP"  : [20.2005411, -155.8432667],
+        "WYNAI": [20.8774694, -157.3189083],
         "ZIGIE": [24.3136944, -157.2853611],
         "ZILAN": [23.4136111, -157.6402778],
         "ZORTA": [21.7302722, -157.2249278],
@@ -342,6 +355,33 @@
         }
     },
     "stars": {
+        "BOOKE8": {
+            "icao": "BOOKE8",
+            "name": "Booke Eight",
+            "entryPoints": {
+                "CANON": ["CANON", "SOK"],
+                "DANNO": ["DANNO", "LIH"],
+                "SYVAD": ["SYVAD", "PUPPI", "SOK"],
+                "THOMA": ["THOMA", "LIH"]
+            },
+            "body": ["BOOKE", "SHIGI", "HNL"],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["THOMA", "LIH", "BOOKE*", "SHIGI", "HNL"],
+                ["DANNO", "LIH"],
+                ["SYVAD", "PUPPI", "SOK", "BOOKE"],
+                ["CANON", "SOK"]
+            ]
+        },
         "INOYI1": {
             "icao": "INOYI1",
             "name": "Inouye One",
@@ -448,6 +488,106 @@
                 ["DENNS", "SOLCE"],
                 ["ZIGIE", "SOPIW"]
             ]
+        },
+        "MAKAH1": {
+            "icao": "MAKAH1",
+            "name": "Makah One",
+            "entryPoints": {
+                "BEACH": [["BEACH", "A170+"], "DSHLL", ["WYNAI", "A140+|S280"], "SAKKI"],
+                "CRISI": [["CRISI", "A160+"], ["MIRAA", "A140+|S280"]],
+                "LAVAS": [["LAVAS", "A160+"], ["HONUU", "A140+|S280"]]
+            },
+            "body": [["MAKAH", "A100+|A140-|S250"], ["ALANA", "A60|S210"], "#278"],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["BEACH", "DSHLL", "WYNAI", "SAKKI", "MAKAH*", "ALANA"],
+                ["LAVAS", "HONUU", "MAKAH", "MIRAA", "CRISI"]
+            ]
+        },
+        "SAKKI5": {
+            "icao": "SAKKI5",
+            "name": "Sakki Five",
+            "entryPoints": {
+                "CHAIN": ["CHAIN", "SOBOW", "SERAH"],
+                "DOVRR": ["DOVRR", "DAFRE", "JORDA", "SUCTU"],
+                "HOKLA": ["HOKLA", "FIRES", "CRISI", "JORDA", "SUCTU"],
+                "LNY": ["LNY", "GRAMY", "SOBOW", "SERAH"]
+            },
+            "body": [["SAKKI", "A60"], "SECIL"],
+            "rwy": {
+                
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["DOVRR", "DAFRE", "JORDA", "SUCTU", "SAKKI", "SECIL"],
+                ["HOKLA", "FIRES", "CRISI", "JORDA"],
+                ["LNY", "GRAMY", "SOBOW", "SERAH", "SAKKI", "JULLE"],
+                ["CHAIN", "SOBOW"]
+            ]
+        },
+        "SHLAE1": {
+            "icao": "SHLAE1",
+            "name": "Shlae One",
+            "entryPoints": {
+                "BEACH": ["BEACH", "LNY", "HONUU"],
+                "CHAIN": ["CHAIN", "HONUU"],
+                "CRISI": ["CRISI", "MIRAA"],
+                "LAVAS": ["LAVAS", "HONUU"]
+            },
+            "body": [["DYLLI", "A40+"], ["^SHLAE", "A40|S210"], "#304"],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["BEACH", "LNY", "HONUU", "DYLLI", "SHLAE*"],
+                ["CHAIN", "HONUU", "LAVAS"],
+                ["CRISI", "MIRAA", "DYLLI"]
+            ]
+        },
+        "SYMIN1": {
+            "icao": "SYMIN1",
+            "name": "Symin One",
+            "entryPoints": {
+                "APACK": [["APACK", "A250+"], "MSONA", ["KYLIO", "A190+"], ["ZORTA", "A130+"]],
+                "BITTA": [["BITTA", "A250+"], "BOWSZ", ["HISPO", "A130+"]],
+                "DENNS": [["DENNS", "A250+"], ["DLIMA", "A210+"], ["JOELE", "A130+"]],
+                "ZIGIE": [["ZIGIE", "A250+"], "MSONA", ["KYLIO", "A190+"], ["ZORTA", "A130+"]]
+            },
+            "body": [["SYMIN", "A90+|S250"], ["^CUDEK", "A60|S210"], "#210"],
+            "rwy": {
+                "PHNL4L": [],
+                "PHNL4R": [],
+                "PHNL8L": [],
+                "PHNL8R": [],
+                "PHNL22L": [],
+                "PHNL22R": [],
+                "PHNL26L": [],
+                "PHNL26R": []
+            },
+            "draw": [
+                ["ZIGIE", "MSONA", "KYLIO", "ZORTA", "SYMIN", "CUDEK"],
+                ["DENNS", "DLIMA", "JOELE", "SYMIN", "HISPO", "BOWSZ", "BITTA"],
+                ["APACK", "MSONA"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -469,6 +609,19 @@
             "destination": "phnl",
             "category": "arrival",
             "route": "CLUTS.MAGGI3.PHNL8L",
+            "altitude": 33000,
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["dal/long", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "phnl",
+            "category": "arrival",
+            "route": "CANON.BOOKE8.PHNL8L",
             "altitude": 33000,
             "speed": 320,
             "method": "random",
