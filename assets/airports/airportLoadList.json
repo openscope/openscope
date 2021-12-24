@@ -254,6 +254,12 @@
         "premium": false
     },
     {
+        "icao": "kmco",
+        "level": "beginner",
+        "name": "Orlando International Airport",
+        "premium": false
+    },
+    {
         "icao": "kmia",
         "level": "hard",
         "name": "Miami International Airport",
