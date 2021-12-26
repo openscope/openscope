@@ -801,14 +801,14 @@
                 "KEWR22L": [["_RWY22L01DME", "A05+"]],
                 "KEWR22R": [["_RWY22R01DME", "A05+"]]
             },
-            "body": ["BAGGA", ["PORTT", "A25"]],
+            "body": [["BAGGA, S220-"], ["PORTT", "A25"]],
             "exitPoints": {
                 "BAYYS": ["#261", "BAYYS"],
                 "BIGGY": ["RIETA", "SBJ", "BIGGY"],
                 "BREZY": ["#261", "BREZY"],
                 "COATE": ["#261", "COATE"],
                 "DIXIE": ["#261", "ELVAE", "COL","DIXIE"],
-                "ELIOT": ["SIRLY", "FENLY", "ELIOT","ELIOT"],
+                "ELIOT": ["SIRLY", "FENLY", "ELIOT"],
                 "GAYEL": ["#261", "GAYEL"],
                 "HAAYS": ["#261", "HAAYS"],
                 "LANNA": ["RIETA", "SBJ", "LANNA"],
@@ -842,8 +842,8 @@
             "icao": "LIB5",
             "name": "Liberty Five",
             "rwy": {
-                "KEWR22L": [["_RWY22L01DME", "A05+"], ["#215", "A025"]],
-                "KEWR22R": [["_RWY22R01DME", "A05+"], ["#215", "A025"]]
+                "KEWR22L": [["_RWY22L01DME", "A05+"], "#215"],
+                "KEWR22R": [["_RWY22R01DME", "A05+"], "#215"]
             },
             "body": [],
             "exitPoints": {
@@ -917,9 +917,9 @@
                 "GVE": ["GVE", "OTT", "PALEO", "PEEDS", ["FUBRR", "A270+"]],
                 "FAK": ["FAK", "OTT", "PALEO", "PEEDS", ["FUBRR", "A270+"]],
                 "PXT": ["PXT", "PEEDS", ["FUBRR", "A270+"]],
-                "DQO": ["DQO"]
+                "DQO": []
             },
-            "body": [["STEFE", "A130+"], ["SOMTO", "A110"], "ARD", ["DYLIN", "A80"], "MERSR", "METRO" ],
+            "body": [["DQO", "A200+"],["STEFE", "A130+"], ["SOMTO", "A110"], "ARD", ["DYLIN", "A80"], "MERSR", "METRO" ],
             "rwy": {
                 "KEWR4L": [],
                 "KEWR4R": [],
@@ -939,14 +939,14 @@
             "icao": "FLOSI4",
             "name": "Flossy Four",
             "entryPoints": {
-                "GEE":   ["GEE", "EXTOL", "KODEY", "HNK", "HELON", "FLOSI"],
-                "BAF":   ["BAF", "BOWAN", "WIGAN", "TALCO", "WEETS", "FLOSI"],
-                "HANAA": ["HANAA", "ALB", "ACOVE", "TALCO", "WEETS", "FLOSI"],
-                "HNK":   ["HNK", "HELON", "FLOSI"],
-                "NELIE": ["NELIE", "IGN", "FLOSI"],
-                "FLOSI": ["FLOSI"]
+                "GEE":   ["GEE", "EXTOL", "KODEY", "HNK", "HELON"],
+                "BAF":   ["BAF", "BOWAN", "WIGAN", "TALCO", "WEETS", "HELON"],
+                "HANAA": ["HANAA", "ALB", "ACOVE", "TALCO", "WEETS", "HELON"],
+                "HNK":   ["HNK", "HELON"],
+                "NELIE": ["NELIE", "IGN"],
+                "FLOSI": []
             },
-            "body": [["CRANK", "A70"], "SHAFF", "SAX", "PHLBO", "HOKIR", "#180"],
+            "body": ["FLOSI",["CRANK", "A70"], "SHAFF", "SAX", "PHLBO", "^HOKIR", "#180"],
             "rwy": {
                 "KEWR4L": [],
                 "KEWR4R": [],
@@ -957,9 +957,9 @@
             },
             "draw": [
                 ["HANAA*", "ALB", "ACOVE", "TALCO"],
-                ["GEE*", "EXTOL", "KODEY", "HNK", "HELON", "FLOSI"],
-                ["BAF*", "BOWAN", "WIGAN", "TALCO", "WEETS", "FLOSI"],
-                ["HNK*", "HELON"],
+                ["GEE*", "EXTOL", "KODEY", "HNK", "HELON"],
+                ["BAF*", "BOWAN", "WIGAN", "TALCO", "WEETS", "HELON"],
+                ["HNK*", "HELON", "FLOSI"],
                 ["NELIE*", "IGN", "FLOSI"],
                 ["FLOSI*", "CRANK", "SHAFF", "SAX", "PHLBO", "HOKIR"]
             ]
