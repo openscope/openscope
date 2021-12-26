@@ -746,12 +746,12 @@
             "icao": "EWR4",
             "name": "Newark Four",
             "rwy": {
-                "KEWR4L" : [["_RWY04L01DME", "A05+"], "_RWY04L04DME", ["#290", "A030"]],
-                "KEWR4R" : [["_RWY04R01DME", "A05+"], "_RWY04R04DME", ["#290", "A030"]],
-                "KEWR22L": [["_RWY22L01DME", "A05+"], "_RWY22L02DME", ["#220", "A025"]],
-                "KEWR22R": [["_RWY22R01DME", "A05+"], "_RWY22R02DME", ["#220", "A025"]],
-                "KEWR11": [["_RWY1101DME", "A04+"], "_RWY1104DME", ["#290", "A030"]],
-                "KEWR29": ["_RWY2901DME", ["#265", "A050"]]
+                "KEWR4L" : [["_RWY04L01DME", "A05+"], "_RWY04L04DME", "#290"],
+                "KEWR4R" : [["_RWY04R01DME", "A05+"], "_RWY04R04DME", "#290"],
+                "KEWR22L": [["_RWY22L01DME", "A05+"], "_RWY22L02DME", "#220"],
+                "KEWR22R": [["_RWY22R01DME", "A05+"], "_RWY22R02DME", "#220"],
+                "KEWR11": [["_RWY1101DME", "A04+"], "_RWY1104DME", "#290"],
+                "KEWR29": ["_RWY2901DME", "#265"]
             },
             "body": [],
             "exitPoints": {
@@ -801,14 +801,14 @@
                 "KEWR22L": [["_RWY22L01DME", "A05+"]],
                 "KEWR22R": [["_RWY22R01DME", "A05+"]]
             },
-            "body": ["BAGGA", ["PORTT", "A25"]],
+            "body": [["BAGGA, S220-"], ["PORTT", "A25"]],
             "exitPoints": {
                 "BAYYS": ["#261", "BAYYS"],
                 "BIGGY": ["RIETA", "SBJ", "BIGGY"],
                 "BREZY": ["#261", "BREZY"],
                 "COATE": ["#261", "COATE"],
                 "DIXIE": ["#261", "ELVAE", "COL","DIXIE"],
-                "ELIOT": ["SIRLY", "FENLY", "ELIOT","ELIOT"],
+                "ELIOT": ["SIRLY", "FENLY", "ELIOT"],
                 "GAYEL": ["#261", "GAYEL"],
                 "HAAYS": ["#261", "HAAYS"],
                 "LANNA": ["RIETA", "SBJ", "LANNA"],
@@ -842,8 +842,8 @@
             "icao": "LIB5",
             "name": "Liberty Five",
             "rwy": {
-                "KEWR22L": [["_RWY22L01DME", "A05+"], ["#215", "A025"]],
-                "KEWR22R": [["_RWY22R01DME", "A05+"], ["#215", "A025"]]
+                "KEWR22L": [["_RWY22L01DME", "A05+"], "#215"],
+                "KEWR22R": [["_RWY22R01DME", "A05+"], "#215"]
             },
             "body": [],
             "exitPoints": {
@@ -917,9 +917,9 @@
                 "GVE": ["GVE", "OTT", "PALEO", "PEEDS", ["FUBRR", "A270+"]],
                 "FAK": ["FAK", "OTT", "PALEO", "PEEDS", ["FUBRR", "A270+"]],
                 "PXT": ["PXT", "PEEDS", ["FUBRR", "A270+"]],
-                "DQO": ["DQO"]
+                "DQO": []
             },
-            "body": [["STEFE", "A130+"], ["SOMTO", "A110"], "ARD", ["DYLIN", "A80"], "MERSR", "METRO" ],
+            "body": [["DQO", "A200+"],["STEFE", "A130+"], ["SOMTO", "A110"], "ARD", ["DYLIN", "A80"], "MERSR", "METRO" ],
             "rwy": {
                 "KEWR4L": [],
                 "KEWR4R": [],
@@ -939,14 +939,14 @@
             "icao": "FLOSI4",
             "name": "Flossy Four",
             "entryPoints": {
-                "GEE":   ["GEE", "EXTOL", "KODEY", "HNK", "HELON", "FLOSI"],
-                "BAF":   ["BAF", "BOWAN", "WIGAN", "TALCO", "WEETS", "FLOSI"],
-                "HANAA": ["HANAA", "ALB", "ACOVE", "TALCO", "WEETS", "FLOSI"],
-                "HNK":   ["HNK", "HELON", "FLOSI"],
-                "NELIE": ["NELIE", "IGN", "FLOSI"],
-                "FLOSI": ["FLOSI"]
+                "GEE":   ["GEE", "EXTOL", "KODEY", "HNK", "HELON"],
+                "BAF":   ["BAF", "BOWAN", "WIGAN", "TALCO", "WEETS", "HELON"],
+                "HANAA": ["HANAA", "ALB", "ACOVE", "TALCO", "WEETS", "HELON"],
+                "HNK":   ["HNK", "HELON"],
+                "NELIE": ["NELIE", "IGN"],
+                "FLOSI": []
             },
-            "body": [["CRANK", "A70"], "SHAFF", "SAX", "PHLBO", "HOKIR", "#180"],
+            "body": ["FLOSI",["CRANK", "A70"], "SHAFF", "SAX", "PHLBO", "^HOKIR", "#180"],
             "rwy": {
                 "KEWR4L": [],
                 "KEWR4R": [],
@@ -957,9 +957,9 @@
             },
             "draw": [
                 ["HANAA*", "ALB", "ACOVE", "TALCO"],
-                ["GEE*", "EXTOL", "KODEY", "HNK", "HELON", "FLOSI"],
-                ["BAF*", "BOWAN", "WIGAN", "TALCO", "WEETS", "FLOSI"],
-                ["HNK*", "HELON"],
+                ["GEE*", "EXTOL", "KODEY", "HNK", "HELON"],
+                ["BAF*", "BOWAN", "WIGAN", "TALCO", "WEETS", "HELON"],
+                ["HNK*", "HELON", "FLOSI"],
                 ["NELIE*", "IGN", "FLOSI"],
                 ["FLOSI*", "CRANK", "SHAFF", "SAX", "PHLBO", "HOKIR"]
             ]
@@ -1069,6 +1069,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.BIGGY.Q75.GVE..LYH",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1084,6 +1092,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.BIGGY.V3.MXE",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1099,6 +1115,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.COATE..LAAYK..ULW..WOZEE",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1112,6 +1136,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.COATE.Q436.RAAKK.Q438.RUBYY",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1131,6 +1163,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.DIXIE.Y481.OHRYN",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1148,6 +1188,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.WHITE.J209.SBY.J79.LEESA",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1166,6 +1214,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.GAYEL.Q818.WOZEE..NOSIK",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1182,6 +1238,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.GREKI..JUDDS..CAM..PBERG",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1198,6 +1262,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.LANNA.J48.FLASK",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1217,6 +1289,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.MERIT",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1232,6 +1312,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.MERIT..HFD..PUT..FROSS..RIKAL",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1248,6 +1336,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.MERIT..HFD..PUT..BOS..TUSKY",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1262,6 +1358,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.NEION.J223.CORDS..ULW..BENEE",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1276,6 +1380,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.NEWEL.J60.PSB..UPPRR",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1290,6 +1402,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.PARKE.J6.MRB.J6.EYTEE.J6.HVQ.Q68.YOCKY",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1307,6 +1427,14 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR4L.EWR4.ZIMMZ.Q42.HIDON..RINTE",
+            "commands": {
+                "4L" : "c 30",
+                "4R" : "c 30",
+                "22L": "c 25",
+                "22R": "c 25",
+                "11" : "c 30",
+                "29" : "c 50"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
