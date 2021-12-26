@@ -26,7 +26,7 @@ It is built on a mound formed by piling up soil from mountains around it, making
 
 There are four radar positions in the Hiroshima Approach Control Area (ACA) — Depature, Approach, and Radar.
 
-As the name suggests, the Departure and Approach positions are for departing and arriving aircrafts to Sendai Airport.
+As the name suggests, the Departure and Approach positions are for departing and arriving aircrafts to Hiroshima Airport.
 
 The Radar position is used as a combined position of Depature and Approach.
 
@@ -42,7 +42,7 @@ After handed off from Control, Hiroshima Approach is responsible for:
 * issuing approach clearance
 * ensuring sufficient spacing between aircraft;
 
-MISEN is the IF (Intermediate Fix), and MACKY the FAF (Final Approach Fix) for ILS 10 approach which should be used in the scenario. Approach should issue a descent clearance so that the aircraft is at 3600ft before reaching YUCCA.
+MISEN is the IF (Intermediate Fix), and MACKY the FAF (Final Approach Fix) for ILS 10 approach which should be used in the scenario. Approach should issue a descent clearance so that the aircraft is at 3600ft before reaching MACKY.
 
 ## Sectors Available in openScope
 ```
