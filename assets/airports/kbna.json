@@ -248,6 +248,27 @@
                 ["OZCAR", "CHADM", "SWAPP*"]
             ]
         },
+        "DANLS3": {
+            "icao": "DANLS3",
+            "name": "Daniels Three",
+            "rwy": {
+                "KBNA13": ["#136"],
+                "KBNA2L": ["#021"],
+                "KBNA2C": ["#021"],
+                "KBNA2R": ["#021"],
+                "KBNA20L": ["#201"],
+                "KBNA20C": ["#201"],
+                "KBNA20R": ["#201"],
+                "KBNA31": ["#316"]
+            },
+            "body": ["BGDDY", "DANLS"],
+            "exitPoints": {
+                "SPKER": ["SPKER"]
+            },
+            "draw": [
+                ["BGDDY", "DANLS", "SPKER*"]
+            ]
+        },
         "DRURY3": {
             "icao": "DRURY3",
             "name": "Drury Three",
@@ -312,27 +333,6 @@
             },
             "draw": [
                 ["COOGR", "FLAME", "GENDE*"]
-            ]
-        },
-        "DANLS3": {
-            "icao": "DANLS3",
-            "name": "Daniels Three",
-            "rwy": {
-                "KBNA13": ["#136"],
-                "KBNA2L": ["#021"],
-                "KBNA2C": ["#021"],
-                "KBNA2R": ["#021"],
-                "KBNA20L": ["#201"],
-                "KBNA20C": ["#201"],
-                "KBNA20R": ["#201"],
-                "KBNA31": ["#316"]
-            },
-            "body": ["BGDDY", "DANLS"],
-            "exitPoints": {
-                "SPKER": ["SPKER"]
-            },
-            "draw": [
-                ["BGDDY", "DANLS", "SPKER*"]
             ]
         },
         "GDOGG3": {
@@ -571,7 +571,7 @@
             "entryPoints": {
                 "GUMMA": [["GUMMA", "A230-"]],
                 "LULOU": [["LULOU", "A230-"]],
-                "RANTS": [["RANTS", "A230-"]],
+                "RANTS": [["RANTS", "A240+"]],
                 "YACKS": ["YACKS", ["RANTS", "A230-"]]
             },
             "body": [["RYYMN", "A110+|A190-"], ["PEKIE", "A100+"], ["JONIL", "A90+"], ["OBATE", "A60+|A120-|S250"]],
