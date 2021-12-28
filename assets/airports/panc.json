@@ -325,31 +325,6 @@
                 ["EGKAJ", "LIFFE", "OUTER", "CRAFT", "RAMMA", "NOEND*"]
             ]
         },
-        "POTTER1": {
-            "icao": "POTTER1",
-            "name": "Potter One",
-            "rwy": {
-                "PANC7L": ["_RWY7L02DME", "#199"],
-                "PANC7R": ["_RWY7R02DME", "#199"]
-            },
-            "body": [],
-            "exitPoints": {
-                "ENA": ["ENA"],
-                "HOM": ["HOM"],
-                "ILI": ["ILI"],
-                "JOH": ["JOH"],
-                "MDO": ["MDO"],
-                "SQA": ["SQA"],
-            },
-            "draw": [
-                ["ENA*"],
-                ["HOM*"],
-                ["ILI*"],
-                ["JOH*"],
-                ["MDO*"],
-                ["SQA*"]
-            ]
-        },
         "TURNA8": {
             "icao": "TURNA8",
             "name": "Turn Again Eight",
