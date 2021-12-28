@@ -426,13 +426,13 @@
             "entryPoints": {
                 "BAYYR": [["BAYYR", "A130+|S270"]],
                 "DUFUR": ["DUFUR", ["RABBI", "A130+|S270"]],
-                "JKNOX": [["JKNOX", "A240+"], ["MYTOE", "A170+"], ["BAYYR", "A130+|S270"], ["HHOOD", "A90|S250"], ["SHAFR", "A67|S210"]],
+                "JKNOX": [["JKNOX", "A240+"], ["MYTOE", "A170+"], ["BAYYR", "A130+|S270"], ["SHAFR", "A67|S210"]],
                 "JORAD": [["JORAD", "A240+"], ["LUUND", "A170+"], ["YENTL", "A130+|S270"]],
                 "JOTBA": [["JOTBA", "A240+"], ["SODDA", "A170+"], "DUFUR", ["RABBI", "A130+|S270"]],
                 "RABBI": [["RABBI", "A130+|S270"]],
                 "YENTL": [["YENTL", "A130+|S270"]]
             },
-            "body": [["BLRUN"]],
+            "body": [["HHOOD", "A90|S250"], "BLRUN"],
             "rwy": {
                 "KPDX10L": [["SSDEE", "A90+|A110-"], ["THEID", "A80+|A100-"], ["EMZEY", "A70+|A80-|S230"], ["CIZZL", "A50+|S210"], ["YORKY", "A50"], "NNUTT", "#278"],
                 "KPDX10R": [["SSDEE", "A90+|A110-"], ["THEID", "A80+|A100-"], ["EMZEY", "A70+|A80-|S230"], ["CIZZL", "A50+|S210"], ["YORKY", "A50"], "NNUTT", "#278"],
