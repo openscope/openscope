@@ -432,7 +432,7 @@
                 "RABBI": [["RABBI", "A130+|S270"]],
                 "YENTL": [["YENTL", "A130+|S270"]]
             },
-            "body": [["HHOOD", "A90|S250"], "BLRUN"],
+            "body": [["HHOOD", "A90+|A150-|S250"], "BLRUN"],
             "rwy": {
                 "KPDX10L": [["SSDEE", "A90+|A110-"], ["THEID", "A80+|A100-"], ["EMZEY", "A70+|A80-|S230"], ["CIZZL", "A50+|S210"], ["YORKY", "A50"], "NNUTT", "#278"],
                 "KPDX10R": [["SSDEE", "A90+|A110-"], ["THEID", "A80+|A100-"], ["EMZEY", "A70+|A80-|S230"], ["CIZZL", "A50+|S210"], ["YORKY", "A50"], "NNUTT", "#278"],
@@ -683,7 +683,7 @@
             "category": "arrival",
             "route": "JKNOX.HHOOD4.KPDX28R",
             "altitude": [24000, 38000],
-            "speed": 320,
+            "speed": 280,
             "method": "random",
             "rate": 5.5,
             "airlines": [
