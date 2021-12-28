@@ -90,6 +90,7 @@
         "COUGA": ["N46d05.52", "W122d40.64"],
         "CUSBU": ["N47d29.91", "W122d19.05"],
         "CVO"  : ["N44d29.97", "W123d17.62"],
+        "CVV"  : ["N48d14.93", "W122d43.26"],
         "DGLAS": ["N47d32.26", "W122d18.43"],
         "DIGGN": ["N47d56.83", "W122d46.00"],
         "DODVE": ["N47d29.93", "W122d18.45"],
@@ -672,6 +673,7 @@
                 "JAWBN": [],
                 "TOU": ["TOU"],
                 "YVR": ["YVR"],
+                "CVV": ["CVV"],
                 "YYJ": ["YYJ", ["ORCUS", "A170+"]]
             },
             "body": [],
@@ -686,6 +688,7 @@
             "draw": [
                 ["TOU*", "JAWBN*"],
                 ["YVR*", "JAWBN"],
+                ["CVV*", "JAWBN"],
                 ["YYJ*", "ORCUS", "JAWBN"],
                 ["JAWBN", "DIGGN", "ALKIA"]
             ]
