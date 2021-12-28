@@ -161,6 +161,12 @@
         "premium": false
     },
     {
+        "icao": "kbwi",
+        "level": "easy",
+        "name": "Baltimore/Washington International Thurgood Marshall Airport",
+        "premium": false
+    },
+    {
         "icao": "kbos",
         "level": "hard",
         "name": "Boston Logan International Airport",
