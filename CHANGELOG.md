@@ -1,9 +1,13 @@
 # 6.27.0 (January 1, 2021)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
+- <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1870" target="_blank">#1870</a> - Add Nashville Int'l (KEWR)
 
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1782" target="_blank">#1782</a> - Update UAE fleet
 
 
 # 6.26.0 (December 1, 2021)

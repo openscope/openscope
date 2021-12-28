@@ -167,6 +167,12 @@
         "premium": false
     },
     {
+        "icao": "kbna",
+        "level": "hard",
+        "name": "Nashville International Airport",
+        "premium": false
+    },
+    {
         "icao": "kcvg",
         "level": "beginner",
         "name": "Cincinnati-Northern Kentucky International Airport",
@@ -196,6 +202,12 @@
         "icao": "kelp",
         "level": "easy",
         "name": "El Paso International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kewr",
+        "level": "hard",
+        "name": "Newark Liberty International Airport",
         "premium": false
     },
     {
@@ -433,6 +445,13 @@
         "name": "Tokyo Narita International Airport",
         "premium": false,
         "disabled": true
+    },
+	{
+        "icao": "rjoa",
+        "level": "beginner",
+        "name": "Hiroshima Airport",
+        "premium": false,
+		"disabled": false
     },
     {
         "icao": "rjss",
