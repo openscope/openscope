@@ -9,7 +9,7 @@
     },
     "fleets": {
         "default": [
-            ["CRJ2", 63]
+            ["CRJ2", 56]
         ]
     }
 }
