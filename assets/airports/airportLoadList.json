@@ -167,6 +167,12 @@
         "premium": false
     },
     {
+        "icao": "kbna",
+        "level": "hard",
+        "name": "Nashville International Airport",
+        "premium": false
+    },
+    {
         "icao": "kcvg",
         "level": "beginner",
         "name": "Cincinnati-Northern Kentucky International Airport",
