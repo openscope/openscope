@@ -2,6 +2,7 @@
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
 - <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1870" target="_blank">#1870</a> - Add Nashville Int'l (KEWR)
 
 ### Bugfixes
 
