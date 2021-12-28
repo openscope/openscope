@@ -290,9 +290,9 @@
                 ["ISACC", "RRROB", "EVRTS"]
             ]
         },
-        "KNIK2": {
-            "icao": "KNIK2",
-            "name": "Nick Two",
+        "KNIK3": {
+            "icao": "KNIK3",
+            "name": "Nick Three",
             "rwy": {
                 "PANC7L": ["_RWY7L04DME", "#329"],
                 "PANC7R": ["_RWY7R04DME", "#329"]
@@ -315,7 +315,7 @@
             "icao": "NOEND4",
             "name": "No End Four",
             "rwy": {
-                "PANC33": []
+                "PANC33": ["#329"]
             },
             "body": [["EGKAJ", "A30+"], ["LIFFE", "S230-"], ["OUTER", "A60+"], ["CRAFT", "A80+"], ["RAMMA", "A100+"]],
             "exitPoints": {
@@ -325,13 +325,38 @@
                 ["EGKAJ", "LIFFE", "OUTER", "CRAFT", "RAMMA", "NOEND*"]
             ]
         },
+        "POTTER1": {
+            "icao": "POTTER1",
+            "name": "Potter One",
+            "rwy": {
+                "PANC7L": ["_RWY7L02DME", "#199"],
+                "PANC7R": ["_RWY7R02DME", "#199"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ENA": ["ENA"],
+                "HOM": ["HOM"],
+                "ILI": ["ILI"],
+                "JOH": ["JOH"],
+                "MDO": ["MDO"],
+                "SQA": ["SQA"],
+            },
+            "draw": [
+                ["ENA*"],
+                ["HOM*"],
+                ["ILI*"],
+                ["JOH*"],
+                ["MDO*"],
+                ["SQA*"]
+            ]
+        },
         "TURNA8": {
             "icao": "TURNA8",
             "name": "Turn Again Eight",
             "rwy": {
-                "PANC33": []
+                "PANC33": ["_RWY3302DME", "#162"]
             },
-            "body": ["TED", "#200"],
+            "body": ["TED", "NAPTO"],
             "exitPoints": {
                 "BGQ": ["BGQ"],
                 "ENA": ["ENA"],
