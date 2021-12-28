@@ -277,7 +277,7 @@
         "icao": "kphx",
         "level": "easy",
         "name": "Phoenix Sky Harbor International Airport",
-        "premium": false,
+        "premium": false
     },
     {
         "icao": "kpit",
