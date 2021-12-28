@@ -244,27 +244,33 @@
         }
     ],
     "sids": {
-        "FTHLS4": {
-            "icao": "FTHLS4",
-            "name": "Fiddles Four",
+        "BALDY3": {
+            "icao": "BALDY3",
+            "name": "Baldy Three",
             "rwy": {
-                "KPHX7L":  ["_RW07L", "SPRKY"],
-                "KPHX7R":  ["_RW07R", "SPRKY"],
-                "KPHX8":   ["_RW08", "SPRKY"],
-                "KPHX25L": ["_RW25L", "DAVZZ", ["VANZZ", "A80-"], "BUNEE"],
-                "KPHX25R": ["_RW25R", "DAVZZ", ["VANZZ", "A80-"], "BUNEE"],
-                "KPHX26":  ["_RW26", "DAVZZ", ["VANZZ", "A80-"], "BUNEE"]
+                "KPHX7L":  ["_RW07L4DME", "#100"],
+                "KPHX7R":  ["_RW07R4DME", "#100"],
+                "KPHX8":   ["_RW084DME", "#100"],
+                "KPHX25L": ["_RW25L0.5DME", "_#2409DME", ["#140"],
+                "KPHX25R": ["_RW25R0.5DME", "_#2409DME", ["#140"],
+                "KPHX26":  ["_RW26L0.5DME", "_#2409DME", ["#140"],
             },
-            "body": ["BROAK", "FTHLS", "JNIPR", "JSSUA"],
+            "body": [],
             "exitPoints": {
-                "ABQ":   ["ABQ"],
-                "MAXXO": ["MAXXO"]
+                "ACH": ["ACH"],
+                "CNX": ["CNX"]
+                "IWA": ["IWA"]
+                "ONM": ["ONM"]
+                "PXR": ["MAXXO"]
+                "SJN": ["SJN"]
             },
             "draw": [
-                ["SPRKY", "BROAK", "FTHLS", "JNIPR", "JSSUA"],
-                ["DAVZZ", "VANZZ", "BUNEE", "BROAK"],
-                ["JSSUA", "MAXXO*"],
-                ["JSSUA", "ABQ*"]
+                "ACH": ["ACH"],
+                "CNX": ["CNX"]
+                "IWA": ["IWA"]
+                "ONM": ["ONM"]
+                "PXR": ["PXR"]
+                "SJN": ["SJN"]
             ]
         },
         "IZZZO4": {
@@ -530,7 +536,7 @@
             "origin": "kphx",
             "destination": "",
             "category": "departure",
-            "route": "KPHX07L.FTHLS4.MAXXO",
+            "route": "KPHX07L.BALDY3.ACH",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -551,7 +557,7 @@
             "origin": "kphx",
             "destination": "",
             "category": "departure",
-            "route": "KPHX07L.JUDTH4.MOHAK",
+            "route": "KPHX07L.BALDY3.IWA",
             "altitude": "",
             "speed": "",
             "method": "random",
