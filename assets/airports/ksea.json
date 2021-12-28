@@ -673,7 +673,6 @@
                 "JAWBN": [],
                 "TOU": ["TOU"],
                 "YVR": ["YVR"],
-                "CVV": ["CVV"],
                 "YYJ": ["YYJ", ["ORCUS", "A170+"]]
             },
             "body": [],
