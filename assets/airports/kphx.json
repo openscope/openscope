@@ -1,4 +1,5 @@
 {
+    "airac": 1801,
     "radio": {
         "twr": "Phoenix Tower",
         "app": "Phoenix Approach",
@@ -22,7 +23,8 @@
         "speed": 4
     },
     "arrivalRunway": "8",
-    "departureRunway": "8",
+    "departureRunway": "07L",
+    "defaultMaps": ["Base Map"],
     "airspace": [
         {
             "floor": 0,
@@ -700,8 +702,10 @@
             ]
         }
     ],
-    "maps": {
-        "base": [
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
             ["N32d49m42.180", "W111d39m08.327", "N32d49m28.788", "W111d38m01.959"],
             ["N32d50m04.556", "W111d38m48.698", "N32d49m08.715", "W111d38m18.844"],
             ["N33d50m14.346", "W112d04m55.652", "N33d50m44.394", "W112d03m57.565"],
