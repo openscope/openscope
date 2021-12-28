@@ -1,5 +1,6 @@
 # 6.27.0 (January 1, 2021)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
 
 ### Bugfixes
 
