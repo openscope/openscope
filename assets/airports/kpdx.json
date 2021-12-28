@@ -426,7 +426,7 @@
             "entryPoints": {
                 "BAYYR": [["BAYYR", "A130+|S270"]],
                 "DUFUR": ["DUFUR", ["RABBI", "A130+|S270"]],
-                "JKNOX": [["JKNOX", "A240+"], ["MYTOE", "A170+"], ["BAYYR", "A130+|S270"]],
+                "JKNOX": [["JKNOX", "A240+"], ["MYTOE", "A170+"], ["BAYYR", "A130+|S270"], ["HHOOD", "A90+|A150-|S250"], ["SHAFR", "A67|S210"]],
                 "JORAD": [["JORAD", "A240+"], ["LUUND", "A170+"], ["YENTL", "A130+|S270"]],
                 "JOTBA": [["JOTBA", "A240+"], ["SODDA", "A170+"], "DUFUR", ["RABBI", "A130+|S270"]],
                 "RABBI": [["RABBI", "A130+|S270"]],
