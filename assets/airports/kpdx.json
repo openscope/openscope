@@ -432,7 +432,7 @@
                 "RABBI": [["RABBI", "A130+|S270"]],
                 "YENTL": [["YENTL", "A130+|S270"]]
             },
-            "body": [["HHOOD", "A140-|S250"], "BLRUN", "A80|S210"],
+            "body": [["HHOOD", "A90|S250"], "BLRUN"],
             "rwy": {
                 "KPDX10L": [["SSDEE", "A90+|A110-"], ["THEID", "A80+|A100-"], ["EMZEY", "A70+|A80-|S230"], ["CIZZL", "A50+|S210"], ["YORKY", "A50"], "NNUTT", "#278"],
                 "KPDX10R": [["SSDEE", "A90+|A110-"], ["THEID", "A80+|A100-"], ["EMZEY", "A70+|A80-|S230"], ["CIZZL", "A50+|S210"], ["YORKY", "A50"], "NNUTT", "#278"],
