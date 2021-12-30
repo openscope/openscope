@@ -7,8 +7,9 @@
 ### Bugfixes
 
 ### Enhancements & Refactors
-- <a href="https://github.com/openscope/openscope/issues/1782" target="_blank">#1782</a> - Update UAE fleet
+- <a href="https://github.com/openscope/openscope/issues/1782" target="_blank">#1782</a> - Update UAE airline
 - <a href="https://github.com/openscope/openscope/issues/1772" target="_blank">#1772</a> - Add/Update some Scandinavian airlines
+- <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Update ASA/SWA airlines
 
 
 # 6.26.0 (December 1, 2021)
