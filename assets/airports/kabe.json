@@ -1,4 +1,5 @@
 {
+    "airac": 2111,
     "radio": {
         "twr": "Allentown Tower",
         "app": "Allentown Approach",
@@ -192,24 +193,41 @@
 		"APE"  : ["N40.1510628",  "W82.5883014"],
 		"ARD"  : ["N40.2533425", "W74.9076125", "Yardley"],
 		"BEERS": ["N40.8798611", "W75.4603778"],
+        "BIGEO": [41.16633611, -77.42913611],
+        "BOBSS": [40.29493889, -76.75020278],
+        "BOPLY": [40.54660833, -75.18529444],
 		"BOYER": ["N40.2768997","W76.0859389"],
+        "BRNAN": [40.13527778, -77.83519444],
+        "BROKK": [42.33138889, -81.58193889],
 		"BUSKY": ["N40.5022639","W75.5019058"],
 		"BWZ"  : ["N40.7984328", "W74.8218325", "Broadway"],
+        "CXR"  : [41.51692778, -81.16318611],
 		"DIXIE": ["N40.0993669","W74.1644919"],
+        "DUMMR": [40.46963333, -76.11116111],
+        "ESSBE": [42.05887778, -81.788275],
+        "ETG"  : [41.21495, -78.14275556],
         "ETX"  : ["N40.5810361", "W75.6840322", "East Texas"],
 		"EWR"  : ["N40.7033839", "W74.1874225"],
 		"FJC"  : ["N40.7266872", "W75.4547453", "Allentown"],
 		"FLOAT": ["N40.4299558","W75.8844078"],
+        "GERBS": [41.77773889, -84.42505556],
+        "GVE"  : [38.0136, -78.15302778],
+        "HOTEE": [40.34333333, -76.49361111],
+        "HWANG": [40.40905556, -76.3303],
+        "IDEAS": [41.77143889, -83.55182222],
 		"JISTO": ["N40.5131858","W75.6688028"],
 		"LANNA": ["N40.5597417", "W75.0277250"],
 		"LAAYK": ["N41.4757328","W75.4825858"],
 		"LRP"  : ["N40.1199756", "W76.2912953"],
+        "MIGET": [41.29456389, -78.86430278],
+        "MIP"  : [41.02339167, -76.66528889],
 		"PHL":   ["N39.8652806", "W75.2336500", "Philadelphia"],
 		"PINNA": ["N40.6084969","W75.8367108"],
 		"PTW"  : ["N40.2222319", "W75.5602508", "Pottstown"],
 		"PSB"  : ["N40.9162578","W77.9927169"],
 		"RAV"  : ["N40.5533931", "W76.5993808"],
         "RBV"  : ["N40.2024022", "W74.4950261", "Robbinsville"],
+        "RDU"  : [35.87252222, -78.78334167],
 		"ROCOY": ["N41.0434361","W75.4664417"],
 		"SEG":   ["N40.7908578","W76.8840419"],
 		"SARAA": ["N40.4393250", "W75.8878611"],
@@ -217,9 +235,15 @@
 		"SBJ"  : ["N40.5830442", "W74.7417914", "Solberg"],
 		"SHAGY": ["N40.5830358","W75.5550997"],
 		"SLATT": ["N40.7382333", "W75.6852306"],
+        "SLT"  : [41.51275833, -77.97011111],
 		"SPUDS": ["N40.4513639", "W75.4329333"],
 		"SUZIE": ["N40.4532556", "W75.9727639"],
-		"VCN"  : ["N39.5376711", "W74.9671439", "Cedar Lake"]
+        "TEESY": [41.42110833, -80.11182222],
+        "TROXL": [40.55528333, -75.30798889],
+		"VCN"  : ["N39.5376711", "W74.9671439", "Cedar Lake"],
+        "WEVEL": [41.25032222, -78.45807778],
+        "WOOST": [41.69578333, -82.78918611],
+        "YNG"  : [41.331025, -80.67466389]
     },
     "runways": [
         {
@@ -242,9 +266,13 @@
     ],
     "airways": {
         "V149": ["FJC","BEERS","ROCOY","LAAYK"],
-		"V30": ["ETX", "PINNA", "SEG", "PSB"],
+        "V162": ["BOBSS", "HWANG", "DUMMR"],
+		"V30": ["SBJ", "LANNA", "BOPLY", "TROXL", "ETX", "PINNA", "SEG", "PSB"],
+        "V249": ["SAX", "SBJ"],
 		"V276": ["DIXIE", "RBV", "ARD"],
-		"V39": ["LRP", "BOYER", "FLOAT", "ETX"]
+		"V39": ["LRP", "BOYER", "FLOAT", "ETX"],
+        "J146": ["GERBS", "IDEAS", "WOOST", "CXR", "TEESY", "MIGET", "WEVEL", "ETG", "MIP"],
+        "Q42" : ["BRNAN", "HOTEE"]
     },
     "spawnPatterns": [
 	    {
@@ -263,23 +291,15 @@
             "method": "random",
             "rate": 4.6,
             "airlines": [
-                ["aal", 15],
                 ["aay", 1],
                 ["ash", 2],
                 ["asq", 2],
                 ["awi", 2],
-                ["dal", 7],
-                ["edv", 10],
+                ["edv", 5],
                 ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
+                ["eja", 4],
                 ["jia", 4],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["n", 6]
             ]
         },
 		{
@@ -298,23 +318,14 @@
             "method": "random",
             "rate": 4.6,
             "airlines": [
-                ["aal", 15],
                 ["aay", 1],
                 ["ash", 2],
                 ["asq", 2],
                 ["awi", 2],
-                ["dal", 7],
-                ["edv", 10],
+                ["edv", 6],
                 ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
                 ["jia", 4],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["n", 3]
             ]
         },
 		{
@@ -333,23 +344,14 @@
             "method": "random",
             "rate": 4.6,
             "airlines": [
-                ["aal", 15],
                 ["aay", 1],
                 ["ash", 2],
                 ["asq", 2],
                 ["awi", 2],
-                ["dal", 7],
-                ["edv", 10],
+                ["edv", 6],
                 ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
                 ["jia", 4],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["n", 3]
             ]
         },
 		{
@@ -368,23 +370,14 @@
             "method": "random",
             "rate": 4.6,
             "airlines": [
-                ["aal", 15],
                 ["aay", 1],
                 ["ash", 2],
                 ["asq", 2],
                 ["awi", 2],
-                ["dal", 7],
-                ["edv", 10],
+                ["edv", 6],
                 ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
                 ["jia", 4],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["n", 3]
             ]
         },
 		{
@@ -403,113 +396,106 @@
             "method": "random",
             "rate": 4.6,
             "airlines": [
-                ["aal", 15],
                 ["aay", 1],
                 ["ash", 2],
                 ["asq", 2],
                 ["awi", 2],
-                ["dal", 7],
-                ["edv", 10],
+                ["edv", 7],
                 ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
                 ["jia", 4],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["n/fastGA", 3]
             ]
         },
 		{
             "origin": "",
             "destination": "KABE",
             "category": "arrival",
-            "route": "PHL..FJC",
-            "altitude": "4000",
-            "speed": "250",
-            "method": "random",
-            "rate": 6.6,
-            "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7],
-                ["edv", 5],
-                ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
-                ["jia", 12],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["pdt", 9],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
-            ]
-        },
-		{
-            "origin": "",
-            "destination": "KABE",
-            "category": "arrival",
-            "route": "DIXIE.V276.ARD",
-            "altitude": "5000",
-            "speed": "250",
-            "method": "random",
-            "rate": 6.6,
-            "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7],
-                ["edv", 5],
-                ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
-                ["jia", 12],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["pdt", 9],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
-            ]
-        },
-		{
-            "origin": "",
-            "destination": "KABE",
-            "category": "arrival",
-            "route": "LRP.V39.ETX",
+            "route": "SAX.V249.SBJ.V30.ETX",
             "altitude": "8000",
             "speed": "250",
             "method": "random",
-            "rate": 6.6,
+            "rate": 1,
             "airlines": [
-                ["aal", 15],
+                ["fdx", 1],
+                ["n", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KABE",
+            "category": "arrival",
+            "route": "BROKK..BIGEO..FJC",
+            "altitude": "8000",
+            "speed": "250",
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+                ["awi",1],
+                ["skw",1],
+                ["awi", 5],
+                ["eny", 5],
+                ["gjs", 2],
+                ["edv", 3],
+                ["eja", 1],
+                ["atn", 1],
+                ["n", 3]
+            ]
+        },
+		{
+            "origin": "",
+            "destination": "KABE",
+            "category": "arrival",
+            "route": "DIXIE.V276.ARD..FJC",
+            "altitude": "5000",
+            "speed": "250",
+            "method": "random",
+            "rate": 2.5,
+            "airlines": [
+                ["n", 1]
+            ]
+        },
+		{
+            "origin": "",
+            "destination": "KABE",
+            "category": "arrival",
+            "route": "RDU..GVE..ETX",
+            "altitude": "8000",
+            "speed": "250",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["eja", 1],
+                ["n", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KABE",
+            "category": "arrival",
+            "route": "BOBSS.V162.DUMMR",
+            "altitude": "8000",
+            "speed": "250",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
                 ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7],
-                ["edv", 5],
+                ["n", 3],
+                ["eja", 2],
+                ["jia", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KABE",
+            "category": "arrival",
+            "route": "BRNAN.Q42.HOTEE..ETX",
+            "altitude": "8000",
+            "speed": "310",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
                 ["fdx", 3],
-                ["fft", 4],
-                ["jbu", 5],
-                ["jia", 12],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["pdt", 9],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["n/fastGA", 1]
             ]
         }
     ],
