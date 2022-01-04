@@ -297,6 +297,16 @@ export default class SpawnPatternModel extends BaseModel {
         this.rate = INVALID_NUMBER;
 
         /**
+         * Rate at which aircaft spawn, express in aircraft per hour
+         * Used to preserve initial configuration
+         *
+         * @property defaultRate
+         * @type {number}
+         * @default INVALID_NUMBER
+         */
+        this.defaultRate = INVALID_NUMBER;
+
+        /**
          * GameTime when a specific spawn pattern started
          *
          * Used only for cycle, surge and wave patterns
@@ -498,6 +508,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this.method = spawnPatternJson.method;
         this.rate = parseFloat(spawnPatternJson.rate);
+        this.defaultRate = this.rate;
         this.entrail = _get(spawnPatternJson, 'entrail', this.entrail);
 
         this._routeModel = new RouteModel(spawnPatternJson.route);
@@ -545,6 +556,16 @@ export default class SpawnPatternModel extends BaseModel {
         this.airlines = [];
         this._weightedAirlineList = [];
         this.preSpawnAircraftList = [];
+    }
+
+    /**
+     * Reset to the spawn rate to the value found in the Airport Json
+     *
+     * @for SpawnPatternModel
+     * @method resetRate
+     */
+    resetRate() {
+        this.rate = this.defaultRate;
     }
 
     /**

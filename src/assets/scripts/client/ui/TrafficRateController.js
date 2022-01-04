@@ -21,6 +21,10 @@ const UI_TRAFFIC_MODAL_TEMPLATE = `
     <div class="traffic-dialog dialog notSelectable">
         <p class="dialog-title">Traffic rate</p>
         <div class="dialog-body nice-scrollbar"></div>
+        <div class="dialog-footer form-element">
+            <button id="reset-button" class="button">Default</button>
+            <button id="restart-button" class="button">Restart</button>
+        </div>
     </div>`;
 
 /**
@@ -98,6 +102,7 @@ export default class TrafficRateController {
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
+        this.$dialog.find('#reset-button').click(this._onFormReset)
 
         return this;
     }
@@ -115,6 +120,7 @@ export default class TrafficRateController {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
         this._onChangeWindDirection = this.onChangeWindDirection.bind(this);
         this._onChangeWindSpeed = this.onChangeWindSpeed.bind(this);
+        this._onFormReset = this.onFormReset.bind(this);
 
         return this;
     }
@@ -177,6 +183,23 @@ export default class TrafficRateController {
     }
 
     /**
+     * Resets the traffic dialog and spawn rates to default values
+     *
+     * @for TrafficRateController
+     * @method onRateReset
+     */
+    onFormReset() {
+        const airport = AirportController.airport_get();
+        this._wind = { speed: airport.defaultWind.speed, angle: Math.round(radiansToDegrees(airport.defaultWind.angle)) };
+
+        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
+        _forEach(SpawnPatternCollection.spawnPatternModels, (spawnPattern) => {
+            spawnPattern.resetRate();
+        });
+        this._buildDialogBody();
+    }
+
+    /**
      * Builds the dialog body
      *
      * @for TrafficRateController
@@ -227,7 +250,7 @@ export default class TrafficRateController {
      * Build form element
      *
      * @for TrafficRateController
-     * @method _buildFormElement
+     * @method _buildSlider
      * @param key {string}
      * @param data {string|object} passed to the change handler
      * @param onChangeMethod {function}
