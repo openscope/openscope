@@ -48,6 +48,8 @@ export const CLASSNAMES = {
     OPEN: 'open',
     OPTIONS_DIALOG: 'option-dialog',
     TRAFFIC_DIALOG: 'traffic-dialog',
+    TRAFFIC_DEFAULT_BUTTON: 'js-trafficDefaultButton',
+    TRAFFIC_RESTART_BUTTON: 'js-trafficRestartButton',
     OVERFLIGHT: 'overflight',
     PAUSED: 'paused',
     PREV: 'prev',

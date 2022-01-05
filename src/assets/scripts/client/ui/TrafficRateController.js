@@ -22,8 +22,8 @@ const UI_TRAFFIC_MODAL_TEMPLATE = `
         <p class="dialog-title">Traffic rate</p>
         <div class="dialog-body nice-scrollbar"></div>
         <div class="dialog-footer form-element">
-            <button id="reset-button" class="button">Default</button>
-            <button id="restart-button" class="button">Restart</button>
+            <button id="reset-button" class="js-trafficDefaultButton button">Default</button>
+            <button id="restart-button" class="js-trafficRestartButton button">Restart</button>
         </div>
     </div>`;
 
@@ -102,8 +102,8 @@ export default class TrafficRateController {
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
-        this.$dialog.find('#reset-button').click(this._onFormResetHandler);
-        this.$dialog.find('#restart-button').click(this._onTrafficResetHandler);
+        this.$dialog.find(SELECTORS.DOM_SELECTORS.TRAFFIC_DEFAULT_BUTTON).click(this._onFormResetHandler);
+        this.$dialog.find(SELECTORS.DOM_SELECTORS.TRAFFIC_RESTART_BUTTON).click(this._onTrafficResetHandler);
 
         return this;
     }
