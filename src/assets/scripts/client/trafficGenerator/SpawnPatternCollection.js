@@ -88,7 +88,7 @@ class SpawnPatternCollection extends BaseCollection {
     }
 
     /**
-     * Loop through each item in the collection and reset the spaend and preSpawned traffic.
+     * Loop through each item in the collection and reset the spawned and preSpawned traffic.
      *
      * Used when resetting the traffic in the traffic settings panel.
      *
