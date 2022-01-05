@@ -71,11 +71,7 @@ class SpawnScheduler {
             // set the #cycleStartTime for this `spawnPatternModel` with current game time
             spawnPatternModel.cycleStart(TimeKeeper.accumulatedDeltaTime);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
-
-            // TODO: abstract this to a class method on the `SpawnPatternModel`
-            if (spawnPatternModel.isAirborneAtSpawn() && spawnPatternModel.preSpawnAircraftList.length > 0) {
-                this._aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
-            }
+            spawnPatternModel.createPreSpawnAircraft(this._aircraftController)
         });
     }
 

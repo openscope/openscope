@@ -23,6 +23,7 @@ import { speech_init } from './speech';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
+import _forEach from "lodash/forEach";
 
 /**
  * Root controller class
@@ -82,6 +83,7 @@ export default class AppController {
      */
     setupHandlers() {
         this.onAirportChangeHandler = this.onAirportChange.bind(this);
+        this.onTrafficResetHandler = this.onTrafficReset.bind(this);
 
         return this;
     }
@@ -93,6 +95,7 @@ export default class AppController {
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.on(EVENT.TRAFFIC_RESET, this.onTrafficResetHandler);
 
         return this;
     }
@@ -104,6 +107,7 @@ export default class AppController {
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.off(EVENT.TRAFFIC_RESET, this.onTrafficResetHandler);
 
         return this.destroy();
     }
@@ -297,6 +301,25 @@ export default class AppController {
         SpawnScheduler.startScheduler();
 
         this.updateViewControls();
+    }
+
+    /**
+     * event callback fired from within the `TrafficRateController` when traffic should be cleared and respawned.
+     *
+     * @for AppController
+     * @method onTrafficReset
+     */
+    onTrafficReset() {
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'traffic-reset', AirportController.current.icao);
+        this.aircraftController.aircraft_remove_all();
+        this.scopeModel.radarTargetCollection.reset();
+        SpawnScheduler.createPreSpawnDepartures()
+
+        _forEach(SpawnPatternCollection.spawnPatternModels, (spawnPattern) => {
+            spawnPattern.preSpawnAircraftList = []
+            spawnPattern.createPreSpawnAircraft(this.aircraftController)
+            SpawnScheduler.resetTimer(spawnPattern)
+        });
     }
 
     // TODO: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing

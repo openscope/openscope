@@ -229,8 +229,6 @@ export default class AirportModel {
             angle: 0
         };
 
-
-
         /**
          * @for AirportModel
          * @property ctr_radius

@@ -334,17 +334,23 @@ const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
  * `AircraftModel` along a route.
  *
  * @function _preSpawn
- * @param spawnPatternJson {object}
+ * @param spawnPatternJson {object|SpawnPatternModel}
  * @param airport {AirportModel}
  * @return {array<object>}
  */
 const _preSpawn = (spawnPatternJson, airport) => {
-    // distance between each arriving aircraft, in nm
+    const spawnRate = spawnPatternJson.rate;
+
+    if(spawnRate == 0) {
+        return [];
+    }
+
     const airspaceCeiling = airport.maxAssignableAltitude;
     const spawnSpeed = spawnPatternJson.speed;
     const spawnAltitude = spawnPatternJson.altitude;
-    const entrailDistance = spawnSpeed / spawnPatternJson.rate;
-    const routeModel = new RouteModel(spawnPatternJson.route);
+    // distance between each arriving aircraft, in nm
+    const entrailDistance = spawnSpeed / spawnRate;
+    const routeModel = spawnPatternJson._routeModel ? spawnPatternJson._routeModel : new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
     const totalDistance = _calculateTotalDistanceAlongRoute(waypointModelList, airport);
     // calculate number of offsets
@@ -374,7 +380,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
  * for their first arrival aircraft.
  *
  * @function buildPreSpawnAircraft
- * @param spawnPatternJson {object}
+ * @param spawnPatternJson {object|SpawnPatternModel}
  * @param currentAirport {AirportModel}
  * @return {array<object>}
  */

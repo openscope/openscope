@@ -102,7 +102,8 @@ export default class TrafficRateController {
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
-        this.$dialog.find('#reset-button').click(this._onFormReset)
+        this.$dialog.find('#reset-button').click(this._onFormReset);
+        this.$dialog.find('#restart-button').click(this._onTrafficReset);
 
         return this;
     }
@@ -121,6 +122,7 @@ export default class TrafficRateController {
         this._onChangeWindDirection = this.onChangeWindDirection.bind(this);
         this._onChangeWindSpeed = this.onChangeWindSpeed.bind(this);
         this._onFormReset = this.onFormReset.bind(this);
+        this._onTrafficReset = this.onTrafficReset.bind(this);
 
         return this;
     }
@@ -186,7 +188,7 @@ export default class TrafficRateController {
      * Resets the traffic dialog and spawn rates to default values
      *
      * @for TrafficRateController
-     * @method onRateReset
+     * @method onFormReset
      */
     onFormReset() {
         const airport = AirportController.airport_get();
@@ -197,6 +199,16 @@ export default class TrafficRateController {
             spawnPattern.resetRate();
         });
         this._buildDialogBody();
+    }
+
+    /**
+     * Resets the generated traffic using the current traffic values
+     *
+     * @for TrafficRateController
+     * @method onTrafficReset
+     */
+    onTrafficReset() {
+        this._eventBus.trigger(EVENT.TRAFFIC_RESET);
     }
 
     /**

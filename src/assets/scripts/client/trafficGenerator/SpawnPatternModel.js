@@ -559,7 +559,7 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Reset to the spawn rate to the value found in the Airport Json
+     * Reset the spawn rate to the value found in the Airport Json
      *
      * @for SpawnPatternModel
      * @method resetRate
@@ -671,6 +671,23 @@ export default class SpawnPatternModel extends BaseModel {
      */
     isOverflight() {
         return this.category === FLIGHT_CATEGORY.OVERFLIGHT;
+    }
+
+    /**
+     * Use the supplied aircraft controller to generate prespawned aircraft using this model
+     *
+     * @for SpawnPatternModel
+     * @method createPreSpawnAircraft
+     * @param aircraftController {AircraftController}
+     */
+    createPreSpawnAircraft(aircraftController) {
+        if(this.preSpawnAircraftList.length == 0) {
+            this.preSpawnAircraftList = this._buildPreSpawnAircraft(this);
+        }
+
+        if (this.isAirborneAtSpawn() && this.preSpawnAircraftList.length > 0) {
+            aircraftController.createPreSpawnAircraftWithSpawnPatternModel(this);
+        }
     }
 
     /**

@@ -183,6 +183,15 @@ export const EVENT = {
     TIMEWARP_TOGGLE: 'timewarp-toggle',
 
     /**
+     * An request has been made to clear and respawn traffic at the current airport
+     *
+     * @memberof EVENT
+     * @property TRAFFIC_RESET
+     * @type {string}
+     */
+    TRAFFIC_RESET: 'traffic-reset',
+
+    /**
      * @memberof EVENT
      * @property TOGGLE_AIRPORT_GUIDE
      * @type {string}
