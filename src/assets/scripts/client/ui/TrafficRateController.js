@@ -102,8 +102,8 @@ export default class TrafficRateController {
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
-        this.$dialog.find('#reset-button').click(this._onFormReset);
-        this.$dialog.find('#restart-button').click(this._onTrafficReset);
+        this.$dialog.find('#reset-button').click(this._onFormResetHandler);
+        this.$dialog.find('#restart-button').click(this._onTrafficResetHandler);
 
         return this;
     }
@@ -119,10 +119,10 @@ export default class TrafficRateController {
      */
     _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
-        this._onChangeWindDirection = this.onChangeWindDirection.bind(this);
-        this._onChangeWindSpeed = this.onChangeWindSpeed.bind(this);
-        this._onFormReset = this.onFormReset.bind(this);
-        this._onTrafficReset = this.onTrafficReset.bind(this);
+        this._onChangeWindDirectionHandler = this.onChangeWindDirection.bind(this);
+        this._onChangeWindSpeedHandler = this.onChangeWindSpeed.bind(this);
+        this._onFormResetHandler = this.onFormReset.bind(this);
+        this._onTrafficResetHandler = this.onTrafficReset.bind(this);
 
         return this;
     }
@@ -195,9 +195,7 @@ export default class TrafficRateController {
         this._wind = { speed: airport.defaultWind.speed, angle: Math.round(radiansToDegrees(airport.defaultWind.angle)) };
 
         this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
-        _forEach(SpawnPatternCollection.spawnPatternModels, (spawnPattern) => {
-            spawnPattern.resetRate();
-        });
+        SpawnPatternCollection.resetRates();
         this._buildDialogBody();
     }
 
@@ -302,7 +300,7 @@ export default class TrafficRateController {
             </div>`;
         const $element = $(template);
 
-        $element.on('change', this._onChangeWindDirection);
+        $element.on('change', this._onChangeWindDirectionHandler);
 
         return $element;
     }
@@ -327,7 +325,7 @@ export default class TrafficRateController {
             </div>`;
         const $element = $(template);
 
-        $element.on('change', this._onChangeWindSpeed);
+        $element.on('change', this._onChangeWindSpeedHandler);
 
         return $element;
     }

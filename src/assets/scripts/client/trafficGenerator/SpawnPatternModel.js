@@ -681,7 +681,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @param aircraftController {AircraftController}
      */
     createPreSpawnAircraft(aircraftController) {
-        if(this.preSpawnAircraftList.length == 0) {
+        if (this.preSpawnAircraftList.length === 0) {
             this.preSpawnAircraftList = this._buildPreSpawnAircraft(this);
         }
 

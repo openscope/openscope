@@ -341,7 +341,7 @@ const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
 const _preSpawn = (spawnPatternJson, airport) => {
     const spawnRate = spawnPatternJson.rate;
 
-    if(spawnRate == 0) {
+    if (spawnRate == 0) {
         return [];
     }
 
