@@ -4,7 +4,7 @@ import _isNaN from 'lodash/isNaN';
 import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import SpawnPatternModel from './SpawnPatternModel';
-import SpawnScheduler from "./SpawnScheduler";
+import SpawnScheduler from './SpawnScheduler';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 
@@ -82,7 +82,7 @@ class SpawnPatternCollection extends BaseCollection {
      * @method resetRates
      */
     resetRates() {
-        this._items.forEach(spawnPatternModel => {
+        this._items.forEach((spawnPatternModel) => {
             spawnPatternModel.resetRate();
         });
     }
@@ -97,10 +97,10 @@ class SpawnPatternCollection extends BaseCollection {
      * @param aircraftController {AircraftController}
      */
     resetAirborneTraffic(aircraftController) {
-        this._items.filter(s => s.isAirborneAtSpawn()).forEach(spawnPatternModel => {
-            spawnPatternModel.preSpawnAircraftList = []
-            spawnPatternModel.createPreSpawnAircraft(aircraftController)
-            SpawnScheduler.resetTimer(spawnPatternModel)
+        this._items.filter((s) => s.isAirborneAtSpawn()).forEach((spawnPatternModel) => {
+            spawnPatternModel.preSpawnAircraftList = [];
+            spawnPatternModel.createPreSpawnAircraft(aircraftController);
+            SpawnScheduler.resetTimer(spawnPatternModel);
         });
     }
 
