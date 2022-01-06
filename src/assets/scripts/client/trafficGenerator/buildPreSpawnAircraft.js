@@ -10,6 +10,7 @@ import { TIME } from '../constants/globalConstants';
 import { nm } from '../utilities/unitConverters';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { distance2d } from '../math/distance';
+import {ENVIRONMENT} from "../constants/environmentConstants";
 
 /**
  * Return an array whose indices directly mirror those of `waypointModelList`, except it
@@ -250,14 +251,17 @@ function _calculateSpawnPositionsAndAltitudes(
  */
 const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const offsetClosestToAirspace = totalDistance - 3;
+    //dont spawn aircraft closer than 10 MIT
+    const clampedEntrailDistance = Math.max(10, entrailDistance);
     let smallestIntervalNm = 15;
-    const largestIntervalNm = entrailDistance + (entrailDistance - smallestIntervalNm);
+    //do not allow prespawned aircraft to have a spacing less than `minimumInTrailNm`
+    const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance + (clampedEntrailDistance - smallestIntervalNm));
 
     // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
     if (smallestIntervalNm > largestIntervalNm) {
         smallestIntervalNm = largestIntervalNm;
     }
-
+    
     const spawnOffsets = [offsetClosestToAirspace];
     let distanceAlongRoute = offsetClosestToAirspace;
 
@@ -348,8 +352,11 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const airspaceCeiling = airport.maxAssignableAltitude;
     const spawnSpeed = spawnPatternJson.speed;
     const spawnAltitude = spawnPatternJson.altitude;
-    // distance between each arriving aircraft, in nm
-    const entrailDistance = spawnSpeed / spawnRate;
+    // convert IAS to TAS for better estimate
+    const trueAirspeedIncreaseFactor = spawnAltitude * ENVIRONMENT.DENSITY_ALT_INCREASE_FACTOR_PER_FT;
+    const spawnEstTrueAirspeed = spawnSpeed * (1 + trueAirspeedIncreaseFactor);
+    // distance between each arriving aircraft, in nm.
+    const entrailDistance = spawnEstTrueAirspeed / spawnRate;
     const routeModel = spawnPatternJson._routeModel ? spawnPatternJson._routeModel : new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
     const totalDistance = _calculateTotalDistanceAlongRoute(waypointModelList, airport);
