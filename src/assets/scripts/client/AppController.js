@@ -313,7 +313,7 @@ export default class AppController {
         this.aircraftController.aircraft_remove_all();
         this.scopeModel.radarTargetCollection.reset();
         SpawnScheduler.createPreSpawnDepartures();
-        SpawnPatternCollection.resetAirborneTraffic(this.aircraftController);
+        SpawnScheduler.resetAirborneTraffic();
     }
 
     // TODO: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing

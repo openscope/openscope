@@ -4,7 +4,6 @@ import _isNaN from 'lodash/isNaN';
 import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import SpawnPatternModel from './SpawnPatternModel';
-import SpawnScheduler from './SpawnScheduler';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 
@@ -84,23 +83,6 @@ class SpawnPatternCollection extends BaseCollection {
     resetRates() {
         this._items.forEach((spawnPatternModel) => {
             spawnPatternModel.resetRate();
-        });
-    }
-
-    /**
-     * Loop through each item in the collection and reset the spawned and preSpawned traffic.
-     *
-     * Used when resetting the traffic in the traffic settings panel.
-     *
-     * @for SpawnPatternCollection
-     * @method resetTraffic
-     * @param aircraftController {AircraftController}
-     */
-    resetAirborneTraffic(aircraftController) {
-        this._items.filter((s) => s.isAirborneAtSpawn()).forEach((spawnPatternModel) => {
-            spawnPatternModel.preSpawnAircraftList = [];
-            spawnPatternModel.createPreSpawnAircraft(aircraftController);
-            SpawnScheduler.resetTimer(spawnPatternModel);
         });
     }
 

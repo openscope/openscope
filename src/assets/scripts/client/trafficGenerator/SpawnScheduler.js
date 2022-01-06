@@ -76,6 +76,22 @@ class SpawnScheduler {
     }
 
     /**
+     * Loop through each airborne `SpawnPatternModel` and reset the spawned and preSpawned traffic.
+     *
+     * Used when resetting the traffic in the traffic settings panel.
+     *
+     * @for SpawnScheduler
+     * @method resetAirborneTraffic
+     */
+    resetAirborneTraffic() {
+        SpawnPatternCollection.spawnPatternModels.filter((s) => s.isAirborneAtSpawn()).forEach((spawnPatternModel) => {
+            spawnPatternModel.preSpawnAircraftList = [];
+            spawnPatternModel.createPreSpawnAircraft(this._aircraftController);
+            this.resetTimer(spawnPatternModel);
+        });
+    }
+
+    /**
      * Send `SpawnPatternModel` objects off the the `AircraftController` to create
      * new aircraft onLoad or onAirportChange.
      *
