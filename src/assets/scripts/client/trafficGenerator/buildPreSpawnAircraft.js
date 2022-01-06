@@ -10,7 +10,7 @@ import { TIME } from '../constants/globalConstants';
 import { nm } from '../utilities/unitConverters';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { distance2d } from '../math/distance';
-import {ENVIRONMENT} from "../constants/environmentConstants";
+import { ENVIRONMENT } from '../constants/environmentConstants';
 
 /**
  * Return an array whose indices directly mirror those of `waypointModelList`, except it
@@ -251,17 +251,18 @@ function _calculateSpawnPositionsAndAltitudes(
  */
 const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const offsetClosestToAirspace = totalDistance - 3;
-    //dont spawn aircraft closer than 10 MIT
+    // dont spawn aircraft closer than 10 MIT
     const clampedEntrailDistance = Math.max(10, entrailDistance);
     let smallestIntervalNm = 15;
-    //do not allow prespawned aircraft to have a spacing less than `minimumInTrailNm`
-    const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance + (clampedEntrailDistance - smallestIntervalNm));
+    // do not allow prespawned aircraft to have a spacing less than `minimumInTrailNm`
+    const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance
+        + (clampedEntrailDistance - smallestIntervalNm));
 
     // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
     if (smallestIntervalNm > largestIntervalNm) {
         smallestIntervalNm = largestIntervalNm;
     }
-    
+
     const spawnOffsets = [offsetClosestToAirspace];
     let distanceAlongRoute = offsetClosestToAirspace;
 
