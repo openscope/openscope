@@ -173,7 +173,7 @@ class SpawnPatternCollection extends BaseCollection {
             }
 
             // randomly choose a spawn pattern for this runway to prespawn
-            const spawnPatterns = spawnPatternsByDepartureRunway[runway];
+            const spawnPatterns = spawnPatternsByDepartureRunway[runway].filter(p => p.rate > 0);
             const rateMap = spawnPatterns.map((pattern) => pattern.rate);
             const rateTotal = spawnPatterns.reduce((sum, pattern) => sum + pattern.rate, 0);
             const randomPosition = _random(rateTotal, true);
