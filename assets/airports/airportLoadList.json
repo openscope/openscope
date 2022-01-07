@@ -283,6 +283,12 @@
         "premium": false
     },
     {
+        "icao": "1lga",
+        "level": "medium",
+        "name": "LaGuardia Airport - Scenario - Final 22",
+        "premium": false
+    },
+    {
         "icao": "kmci",
         "level": "beginner",
         "name": "Kansas City International Airport",
