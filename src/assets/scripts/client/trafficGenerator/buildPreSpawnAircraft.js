@@ -251,12 +251,16 @@ function _calculateSpawnPositionsAndAltitudes(
  */
 const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const offsetClosestToAirspace = totalDistance - 3;
-    // dont spawn aircraft closer than 10 MIT
-    const clampedEntrailDistance = Math.max(10, entrailDistance);
+    // dont spawn aircraft closer than 6 MIT
+    const clampedEntrailDistance = Math.max(6, entrailDistance);
     let smallestIntervalNm = 15;
     // do not allow prespawned aircraft to have a spacing less than `minimumInTrailNm`
     const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance +
         (clampedEntrailDistance - smallestIntervalNm));
+
+    if (clampedEntrailDistance < 8) {
+        console.error(`Too many aircraft requested, calculated MIT is ${entrailDistance}, limiting MIT to ${clampedEntrailDistance}`);
+    }
 
     // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
     if (smallestIntervalNm > largestIntervalNm) {
