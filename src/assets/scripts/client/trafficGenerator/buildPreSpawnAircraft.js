@@ -255,8 +255,8 @@ const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const clampedEntrailDistance = Math.max(10, entrailDistance);
     let smallestIntervalNm = 15;
     // do not allow prespawned aircraft to have a spacing less than `minimumInTrailNm`
-    const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance
-        + (clampedEntrailDistance - smallestIntervalNm));
+    const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance +
+        (clampedEntrailDistance - smallestIntervalNm));
 
     // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
     if (smallestIntervalNm > largestIntervalNm) {
