@@ -11,6 +11,7 @@ import { nm } from '../utilities/unitConverters';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { distance2d } from '../math/distance';
 import { ENVIRONMENT } from '../constants/environmentConstants';
+import { avg } from '../math/core';
 
 /**
  * Return an array whose indices directly mirror those of `waypointModelList`, except it
@@ -357,8 +358,9 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const airspaceCeiling = airport.maxAssignableAltitude;
     const spawnSpeed = spawnPatternJson.speed;
     const spawnAltitude = spawnPatternJson.altitude;
+    const spawnAvgAltitude = Array.isArray(spawnAltitude) ? avg(spawnAltitude) : spawnAltitude;
     // convert IAS to TAS for better estimate
-    const trueAirspeedIncreaseFactor = spawnAltitude * ENVIRONMENT.DENSITY_ALT_INCREASE_FACTOR_PER_FT;
+    const trueAirspeedIncreaseFactor = spawnAvgAltitude * ENVIRONMENT.DENSITY_ALT_INCREASE_FACTOR_PER_FT;
     const spawnEstTrueAirspeed = spawnSpeed * (1 + trueAirspeedIncreaseFactor);
     // distance between each arriving aircraft, in nm.
     const entrailDistance = spawnEstTrueAirspeed / spawnRate;
