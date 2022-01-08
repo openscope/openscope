@@ -19,6 +19,15 @@ export function abs(n) {
 }
 
 /**
+ * @function avg
+ * @param n {Number[]}
+ * @return {number}
+ */
+export function avg(n) {
+    return n.reduce((a, b) => a + b) / n.length;
+}
+
+/**
  * @function sin
  * @return {number}
  */

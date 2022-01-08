@@ -132,6 +132,18 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
+     * Reset the runway queue
+     *
+     * @for RunwayModel
+     * @method resetQueue
+     * @returns undefined
+     */
+    resetQueue() {
+        this.queue = [];
+        this.lastDepartedAircraftModel = null;
+    }
+
+    /**
      * Fascade to access relative position
      *
      * @for RunwayModel
