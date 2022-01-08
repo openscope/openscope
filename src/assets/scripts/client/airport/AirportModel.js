@@ -733,6 +733,17 @@ export default class AirportModel {
     }
 
     /**
+     * Reset the queues for ALL runways at once
+     *
+     * @for AirportModel
+     * @method resetAllRunwayQueues
+     * @returns undefined
+     */
+    resetAllRunwayQueues() {
+        this._runwayCollection.runways.forEach((runwayModel) => runwayModel.resetQueue());
+    }
+
+    /**
      * @for AirportModel
      * @method parseTerrain
      * @param  data {object}

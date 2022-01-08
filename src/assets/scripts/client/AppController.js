@@ -312,7 +312,7 @@ export default class AppController {
         EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'traffic-reset', AirportController.current.icao);
         this.aircraftController.aircraft_remove_all();
         this.scopeModel.radarTargetCollection.reset();
-        AirportController.current.departureRunwayModel.reset();
+        AirportController.current.resetAllRunwayQueues();
         SpawnScheduler.createPreSpawnDepartures();
         SpawnScheduler.resetAirborneTraffic();
     }
