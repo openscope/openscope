@@ -53,7 +53,6 @@
         "level": "medium",
         "name": "Berlin Tegel Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -68,7 +67,6 @@
         "level": "easy",
         "name": "London Luton Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -76,7 +74,6 @@
         "level": "easy",
         "name": "London Gatwick Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -84,7 +81,6 @@
         "level": "medium",
         "name": "London City Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -92,7 +88,6 @@
         "level": "hard",
         "name": "London Heathrow Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -283,7 +278,7 @@
         "premium": false
     },
     {
-        "icao": "1lga",
+        "icao": "lgaa",
         "level": "medium",
         "name": "LaGuardia Airport - Scenario - Final 22",
         "premium": false
@@ -307,7 +302,6 @@
         "level": "hard",
         "name": "Minneapolis/St. Paul International Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {

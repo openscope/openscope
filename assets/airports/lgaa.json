@@ -5,10 +5,10 @@
         "app": "New York Approach",
         "dep": "New York Departure"
     },
-    "icao": "1LGA",
+    "icao": "LGAA",
     "iata": "LGA",
     "magnetic_north": -12.0,
-    "ctr_radius": 25,
+    "ctr_radius": 50,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
     "position": ["N40.77725", "W73.87261111", "21ft"],
@@ -348,7 +348,7 @@
             "name": "Goldman Seven",
             "altitude": "5000",
             "rwy": {
-                "1LGA13" : ["_RWY13KIWIE179",["KIWIE", "A025+|S220-"], ["VOBOZ", "A045+|S220"], "GLDMN", "#335"]
+                "LGAA13" : ["_RWY13KIWIE179",["KIWIE", "A025+|S220-"], ["VOBOZ", "A045+|S220"], "GLDMN", "#335"]
             },
             "body": [],
             "exitPoints": {
@@ -382,7 +382,7 @@
             "name": "Hopea Three",
             "altitude": "5000",
             "rwy": {
-                "1LGA22" : ["_RWY22HOPEA189",["HOPEA", "A025+|S220-"], ["CRI", "A050+|S230"], "ASALT", "#224"]
+                "LGAA22" : ["_RWY22HOPEA189",["HOPEA", "A025+|S220-"], ["CRI", "A050+|S230"], "ASALT", "#224"]
             },
             "body": [],
             "exitPoints": {
@@ -401,7 +401,7 @@
             "name": "Jutes Three",
             "altitude": "5000",
             "rwy": {
-                "1LGA22" : ["_RWY2201DME",["JUTES", "A030+|S220-"], ["TNNIS", "A050+"], "#045"]
+                "LGAA22" : ["_RWY2201DME",["JUTES", "A030+|S220-"], ["TNNIS", "A050+"], "#045"]
             },
             "body": [],
             "exitPoints": {
@@ -436,8 +436,8 @@
             "name": "LaGuardia Seven",
             "altitude": "5000",
             "rwy": {
-                "1LGA22" : ["#070"],
-                "1LGA31" :["#314"]
+                "LGAA22" : ["#070"],
+                "LGAA31" :["#314"]
             },
             "body": [],
             "exitPoints": {
@@ -484,7 +484,7 @@
             "name": "LaGuardia Seven, Bronx Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA4" : ["_RWY22", "#360"]
+                "LGAA4" : ["_RWY22", "#360"]
             },
             "body": [],
             "exitPoints": {
@@ -517,7 +517,7 @@
             "name": "LaGuardia Seven, Coney Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA13": [["_RWY13180LGA25DME", "A15"],"_RWY13180CRI043", "CRI", "#223"]
+                "LGAA13": [["_RWY13180LGA25DME", "A15"],"_RWY13180CRI043", "CRI", "#223"]
             },
             "body": [],
             "exitPoints": {
@@ -552,7 +552,7 @@
             "name": "LaGuardia Seven, Flushing Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA13": ["_RWY13134LGA25DME","#050"]
+                "LGAA13": ["_RWY13134LGA25DME","#050"]
             },
             "body": [],
             "exitPoints": {
@@ -587,7 +587,7 @@
             "name": "LaGuardia Seven, Maspeth Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA13": ["_RWY31","_RWY13180LGA41DME","#340"]
+                "LGAA13": ["_RWY31","_RWY13180LGA41DME","#340"]
             },
             "body": [],
             "exitPoints": {
@@ -622,7 +622,7 @@
             "name": "LaGuardia Seven, Pelham Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA4": ["_RWY22", "#040"]
+                "LGAA4": ["_RWY22", "#040"]
             },
             "body": [],
             "exitPoints": {
@@ -657,7 +657,7 @@
             "name": "LaGuardia Seven, Sound Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA4" : ["_RWY22", "#055"]
+                "LGAA4" : ["_RWY22", "#055"]
             },
             "body": [],
             "exitPoints": {
@@ -692,7 +692,7 @@
             "name": "LaGuardia Seven, Whitestone Climb",
             "altitude": "5000",
             "rwy": {
-                "1LGA13": ["_RWY31","_RWY13180LGA25DME","#040"]
+                "LGAA13": ["_RWY31","_RWY13180LGA25DME","#040"]
             },
             "body": [],
             "exitPoints": {
@@ -727,7 +727,7 @@
             "name": "Nathans Five",
             "altitude": "5000",
             "rwy": {
-                "1LGA13" : ["_RWY13KIWIE179",["KIWIE", "A025+|S220-"], ["NTHNS", "A030+|S220-"], ["CNRSE", "A50+|S230-"], "ASALT", "#224"]
+                "LGAA13" : ["_RWY13KIWIE179",["KIWIE", "A025+|S220-"], ["NTHNS", "A030+|S220-"], ["CNRSE", "A50+|S230-"], "ASALT", "#224"]
             },
             "body": [],
             "exitPoints": {
@@ -747,7 +747,7 @@
             "name": "Tennis Six",
             "altitude": "5000",
             "rwy": {
-                "1LGA13" : ["_RWY13JUTES050",["JUTES", "A030+|S220-"], ["TNNIS", "A050+"], "#045"]
+                "LGAA13" : ["_RWY13JUTES050",["JUTES", "A030+|S220-"], ["TNNIS", "A050+"], "#045"]
             },
             "body": [],
             "exitPoints": {
@@ -785,10 +785,10 @@
             },
             "body": ["WNDYL", ["BRAND", "A80"], "KORRY", "DEPDY", "TYKES", "MINKS", "DAMYR", "RENUE", "APPLE", "PROUD", "VADDR", "#045"],
             "rwy": {
-                "1LGA04": [],
-                "1LGA13": [],
-                "1LGA22": [],
-                "1LGA31": []
+                "LGAA04": [],
+                "LGAA13": [],
+                "LGAA22": [],
+                "LGAA31": []
             },
             "draw": [
                 ["SWANN*", "GATBY", "KERNO", "ODESA"],
@@ -804,12 +804,12 @@
                 "ALB": ["ALB", "CTR", "PWL", "IGN", "VALRE"],
                 "VALRE": ["VALRE"]
             },
-            "body": [["BASYE", "A080"], "HAARP", ["CRALY", "A040"]],
+            "body": [["BASYE", "A080"], "HAARP", ["CRALY", "A040|S210"], "#220"],
             "rwy": {
-                "1LGA04": [],
-                "1LGA13": [],
-                "1LGA22": ["YOMAN"],
-                "1LGA31": []
+                "LGAA04": [],
+                "LGAA13": [],
+                "LGAA22": [],
+                "LGAA31": []
             },
             "draw": [
                 ["RKA*", "PETER", "CYPER", "TRESA", "IGN"],
@@ -828,10 +828,10 @@
             },
             "body": [["ENO", "A240+"], "SKIPY", ["BESSI", "A170+"], "EDJER", ["DAVYS", "A130+"], "HOLEY", ["KORRY", "A100"], "RBV", "TYKES", ["MINKS", "A70"], "RENUE", "APPLE"],
             "rwy": {
-                "1LGA04": [],
-                "1LGA13": [],
-                "1LGA22": ["#010"],
-                "1LGA31": []
+                "LGAA04": [],
+                "LGAA13": [],
+                "LGAA22": ["#010"],
+                "LGAA31": []
             },
             "draw": [
                 ["AGARD", "SPEAK", "ENO"],
@@ -851,10 +851,10 @@
             },
             "body": ["MIP", "MARRC", ["BILEY", "A130"], "VIBES", "FJC", "LIZZI", ["BEUTY", "A100"], "HARLM", "DREMS", "APPLE", "PROUD", "LGA"],
             "rwy": {
-                "1LGA04": [],
-                "1LGA13": [],
-                "1LGA22": [],
-                "1LGA31": []
+                "LGAA04": [],
+                "LGAA13": [],
+                "LGAA22": [],
+                "LGAA31": []
             },
             "draw": [
                 ["ETG*", "MIP"],
@@ -876,10 +876,10 @@
             },
             "body": [["NOBBI", "A80"], "CMK", "RYMES", "HAARP", "CRALY", "LGA"],
             "rwy": {
-                "1LGA04": [],
-                "1LGA13": [],
-                "1LGA22": [],
-                "1LGA31": []
+                "LGAA04": [],
+                "LGAA13": [],
+                "LGAA22": [],
+                "LGAA31": []
             },
             "draw": [
                 ["RKA*", "PETER", "CYPER", "TRESA", "CASSH"],
@@ -894,9 +894,9 @@
     "spawnPatterns": [
         {
             "origin": "",
-            "destination": "1LGA",
+            "destination": "LGAA",
             "category": "arrival",
-            "route": "RDU.J55.HPW..HUBBS..PXT.KORRY4.1LGA22",
+            "route": "RDU.J55.HPW..HUBBS..PXT.KORRY4.LGAA22",
             "commands": {
                 "04": "CROSS KORRY A100 S250",
                 "13": "CROSS KORRY A100 S250",
@@ -921,9 +921,9 @@
         },
         {
             "origin": "",
-            "destination": "1LGA",
+            "destination": "LGAA",
             "category": "arrival",
-            "route": "PATSS..NELIE..VALRE.HAARP3.1LGA22",
+            "route": "PATSS..NELIE..VALRE.HAARP3.LGAA22",
             "commands": {
                 "22": "CROSS CRALY A40 S210"
             },
