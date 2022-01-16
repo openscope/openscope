@@ -230,6 +230,12 @@
         "premium": false
     },
     {
+        "icao": "aewr",
+        "level": "medium",
+        "name": "Newark Liberty International Airport - Scenario - ARD-Final 4s",
+        "premium": false
+    },
+    {
         "icao": "kgso",
         "level": "easy",
         "name": "Piedmont Triad International Airport",
@@ -278,7 +284,7 @@
         "premium": false
     },
     {
-        "icao": "lgaa",
+        "icao": "alga",
         "level": "medium",
         "name": "LaGuardia Airport - Scenario - Final 22",
         "premium": false
