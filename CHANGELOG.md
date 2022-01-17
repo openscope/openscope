@@ -5,6 +5,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1870" target="_blank">#1870</a> - Add Nashville Int'l (KEWR)
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1782" target="_blank">#1782</a> - Update UAE airline
