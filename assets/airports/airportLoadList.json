@@ -443,8 +443,7 @@
         "icao": "rjaa",
         "level": "hard",
         "name": "Tokyo Narita International Airport",
-        "premium": false,
-        "disabled": true
+        "premium": false
     },
 	{
         "icao": "rjoa",

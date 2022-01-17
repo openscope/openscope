@@ -3,6 +3,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
 - <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
 - <a href="https://github.com/openscope/openscope/issues/1870" target="_blank">#1870</a> - Add Nashville Int'l (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1776" target="_blank">#1776</a> - Add Tokyo Narita (RJAA)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
