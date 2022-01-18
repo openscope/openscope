@@ -232,7 +232,13 @@
     {
         "icao": "aewr",
         "level": "medium",
-        "name": "Newark Liberty International Airport - Scenario - ARD-Final 4s",
+        "name": "Newark Liberty International Airport - Scenario - ARD-Final NE",
+        "premium": false
+    },
+    {
+        "icao": "bewr",
+        "level": "medium",
+        "name": "Newark Liberty International Airport - Scenario - NOA-Final SW",
         "premium": false
     },
     {
