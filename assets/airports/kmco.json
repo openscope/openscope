@@ -80,6 +80,7 @@
         "BAYNE": ["N28.0556222", "W82.9282000"],
         "BEAUX": ["N28d58.2", "W79d58.5"],
         "BERTH": [26.9536083, -79.3253750],
+        "BIGDE": [30.7094000, -83.0101694],
         "BIGSE": ["N28.5834667", "W81.2524444"],
         "BITTE": ["N29.7382306", "W83.1479778"],
         "BITHO": ["N28.6309417", "W81.0594083"],
@@ -121,6 +122,7 @@
         "DOZES": ["N27.5238417", "W83.2306833"],
         "DVOLA": ["N28.4927389", "W81.4241667"],
         "EARRS": ["N28d32.8", "W81d19.7"],
+        "EATTR": [29.3029056, -82.2571361],
         "EPCOT": ["N28d34.7", "W82d07.7"],
         "ELITE": ["N30d12.0", "W82d14.2"],
         "ETECK": ["N29d29.1", "W78d29.2"],
@@ -192,14 +194,16 @@
         "MIEGS": ["N28d30.7", "W81d10.1"],
         "MINEE": ["N28.1183389", "W81.7444944"],
         "MLB"  : ["N28.1052822", "W80.6353400"],
+        "MMOSS": [30.4206444, -82.1644667],
         "MOANS": ["N27.9138806", "W81.7485806"],
-        "MOOTS": [	27.5647222, -80.8447917],
+        "MOOTS": [27.5647222, -80.8447917],
         "MUGLS": ["N28d39.1", "W82d30.2"],
         "MZULO": ["N28d32.1", "W80d17.5"],
         "NICCK": ["N29.1879111", "W81.1694889"],
         "NOBBS": ["N28.1644444", "W81.1875000"],
         "NOOMN": ["N29.7077917", "W81.2142472"],
         "NAVAL": ["N28.7035694", "W81.3297556"],
+        "NOLLE": [29.7157778, -82.1405444],
         "OCF"  : ["N29.1774772", "W82.2263339"],
         "OCTAL": [26.1505333, -80.2032222],
         "ODDEL": ["N28.0959750", "W81.1695111"],
@@ -220,7 +224,7 @@
         "QUAYL": ["N27.7759972", "W82.6465000"],
         "RAMEZ": ["N28.5388889", "W81.1875000"],
         "REMIS": ["N27.8840528", "W85.2578861"],
-        "RIDES": [	27.9170750, -81.0937861],
+        "RIDES": [27.9170750, -81.0937861],
         "RSW"  : ["N26.5298753", "W81.7757678"],
         "SABOT": ["N28.2514167", "W81.2269889"],
         "SAAIL": ["N28.3751278", "W81.9362417"],
@@ -229,11 +233,13 @@
         "SEEDO": ["N28.5676417", "W81.2838528"],
         "SHEMP": ["N30.9321361", "W82.3844972"],
         "SHIMM": ["N28.9664556", "W81.9279389"],
+        "SHREK": [28.9936306, -81.9198556],
         "SIMIE": ["N27.2726333", "W81.7285694"],
         "SNFLD": ["N29.0674972", "W81.1170861"],
         "SNOBE": ["N28.7423250", "W81.3685833"],
         "SPIFF": [27.8145306, -80.2966083],
         "SRQ"  : ["N27.4070156", "W82.5636625"],
+        "STNKY": [28.8977361, -81.7651472],
         "SUNDE": ["N28d25.6", "W81d11.2"],
         "SURFR": ["N28d49.9", "W80d28.5"],
         "SYKES": ["N27.6647111", "W83.0497833"],
@@ -251,6 +257,8 @@
         "VALKA": ["N27d55.1", "W80d34.3"],
         "VIYAP": ["N31.2522639", "W81.4356056"],
         "VOSSS": ["N28d32.6", "W81d11.2"],
+        "WANDD": [29.1512000, -82.1773028],
+        "WAKOS": [29.2466611, -82.3335972],
         "WAPOM": [27.3216833, -80.8559833],
         "WHOVL": ["N28d47.8", "W81d32.6"],
         "WISHH": ["N28.7140972", "W81.6382222"],
@@ -300,9 +308,50 @@
         }
    ],
     "sids": {
-        "DDANY1": {
-            "icao": "DDANY1",
-            "name": "Danny One",
+        "CITR1": {
+            "icao": "CITR1",
+            "name": "Citrus One",
+            "rwy": {
+                "KMCO17L": [],
+                "KMCO17R": [],
+                "KMCO18L": [],
+                "KMCO18R": [],
+                "KMCO35L": [],
+                "KMCO35R": [],
+                "KMCO36L": [],
+                "KMCO36R": []
+            },
+            "body": [],
+            "exitPoints": {
+                "CRG": ["CRG"],
+                "LAL": ["LAL"],
+                "MLB": ["MLB"],
+                "OCF": ["OCF"],
+                "OMN": ["OMN"],
+                "ORL": ["ORL"],
+                "PBI": ["PBI"],
+                "PIE": ["PIE"],
+                "RSW": ["RSW"],
+                "SRQ": ["SRQ"],
+                "SZW": ["SZW"]
+            },
+            "draw": [
+                ["CRG*"],
+                ["LAL*"],
+                ["MLB*"],
+                ["OCF*"],
+                ["OMN*"],
+                ["ORL*"],
+                ["PBI*"],
+                ["PIE*"],
+                ["RSW*"],
+                ["SRQ*"],
+                ["SZW*"]
+            ]
+        },
+        "DDANY2": {
+            "icao": "DDANY2",
+            "name": "Danny Two",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#176"],
                 "KMCO17R": [["_RW17R1DME", "A006+"], "#176"],
@@ -328,9 +377,9 @@
                 ["DDANY", "ZALEN*"]
             ]
         },
-        "EPCOT1": {
-            "icao": "EPCOT1",
-            "name": "Epcot One",
+        "EPCOT2": {
+            "icao": "EPCOT2",
+            "name": "Epcot Two",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#221"],
                 "KMCO17R": [["_RW17R1DME", "A006+"], "#221"],
@@ -353,16 +402,16 @@
                 ["EPCOT", "MUGLS*"]
             ]
         },
-        "FATHE1": {
-            "icao": "FATHE1",
-            "name": "Faith One",
+        "FATHE2": {
+            "icao": "FATHE2",
+            "name": "Faith Two",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#176"],
                 "KMCO17R": [["_RW17R1DME", "A006+"], "#176"],
                 "KMCO18L": [["_RW18L1DME", "A006+"], "#141"],
                 "KMCO18R": [["_RW18R1DME", "A006+"], "#141"],
                 "KMCO35L": ["^_RW35L4DME", ["JWOLF", "A26+"], ["JIRAN", "A30+"], "BIGSE"],
-                "KMCO35R": ["_RW35R1DME", ["JWOLF", "A26+"], ["JIRAN", "A30+"], "BIGSE"],
+                "KMCO35R": ["^_RW35R1DME", ["JWOLF", "A26+"], ["JIRAN", "A30+"], "BIGSE"],
                 "KMCO36L": [["_RW36L1DME", "A006+"], ["KYOTE", "A23+|S230-"], ["EARRS", "A30+|S230"]],
                 "KMCO36R": [["_RW36R1DME", "A006+"], ["FACTS", "A23+|S230-"], ["HANDD", "A30+|S230"]]
             },
@@ -377,9 +426,9 @@
                 ["FACTS", "HANDD", "BUFFI"]
             ]
         },
-        "FSHUN1": {
-            "icao": "FSHUN1",
-            "name": "Fishing One",
+        "FSHUN2": {
+            "icao": "FSHUN2",
+            "name": "Fishin Two",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#221"],
                 "KMCO17R": [["_RW17R1DME", "A006+"], "#221"],
@@ -402,30 +451,9 @@
                 ["LEFTI", "BLOSM", "TUPPY", "FSHUN*", "PLUMR*"]
             ]
         },
-        "JAG6": {
-            "icao": "JAG6",
-            "name": "Jaguar Six",
-            "rwy": {
-                "KMCO17L": [],
-                "KMCO17R": [],
-                "KMCO18L": [],
-                "KMCO18R": [],
-                "KMCO35L": [],
-                "KMCO35R": [],
-                "KMCO36L": [],
-                "KMCO36R": []
-            },
-            "body": ["ORL", "GUANO"],
-            "exitPoints": {
-                "MATEO": ["MATEO"]
-            },
-            "draw": [
-                ["ORL", "GUANO", "MATEO*"]
-            ]  
-        },
-        "JEEMY1": {
-            "icao": "JEEMY1",
-            "name": "Jimmy One",
+        "JEEMY2": {
+            "icao": "JEEMY2",
+            "name": "Jimmy Two",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#221"],
                 "KMCO17R": [["_RW17R1DME", "A006+"], "#221"],
@@ -446,8 +474,8 @@
                 ["FACTS", "HANDD", "SNOBE"]
             ]
         },
-        "LEWRD1": {
-            "icao": "LEWRD1",
+        "LEWRD2": {
+            "icao": "LEWRD2",
             "name": "Leeward One",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#221"],
@@ -471,9 +499,9 @@
                 ["KNOST", "CIGAR*"]
             ]
         },
-        "MZULO1": {
-            "icao": "MZULO1",
-            "name": "Mizulo One",
+        "MZULO2": {
+            "icao": "MZULO2",
+            "name": "Mizulo Two",
             "rwy": {
                 "KMCO17L": [["_RW17L1DME", "A006+"], "#176"],
                 "KMCO17R": [["_RW17R1DME", "A006+"], "#176"],
@@ -492,6 +520,47 @@
             "draw": [
                 ["GOHOM", "MIEGS", "ASKUE", "GERCK", "MZULO", "FAROV*"],
                 ["MZULO", "HESTA", "LENDS", "ETECK*"]
+            ]
+        },
+         "ORLA4": {
+            "icao": "ORLA4",
+            "name": "Orlando 4",
+            "rwy": {
+                "KMCO17L": [],
+                "KMCO17R": [],
+                "KMCO18L": [],
+                "KMCO18R": [],
+                "KMCO35L": [],
+                "KMCO35R": [],
+                "KMCO36L": [],
+                "KMCO36R": []
+            },
+            "body": [],
+            "exitPoints": {
+                "CRG": ["CRG"],
+                "LAL": ["LAL"],
+                "MLB": ["MLB"],
+                "OCF": ["OCF"],
+                "OMN": ["OMN"],
+                "ORL": ["ORL"],
+                "PBI": ["PBI"],
+                "PIE": ["PIE"],
+                "RSW": ["RSW"],
+                "SRQ": ["SRQ"],
+                "SZW": ["SZW"]
+            },
+            "draw": [
+                ["CRG*"],
+                ["LAL*"],
+                ["MLB*"],
+                ["OCF*"],
+                ["OMN*"],
+                ["ORL*"],
+                ["PBI*"],
+                ["PIE*"],
+                ["RSW*"],
+                ["SRQ*"],
+                ["SZW*"]
             ]
         }
     },
@@ -519,31 +588,6 @@
                 ["GRDON*", "TIMIE", "BURNE", "ALYNA", "BANYA"],
                 ["HIBAC*", "BEAUX", "SURFR", "ALYNA", "HIGGZ", "VOSSS", "SUNDE", "CUBAL"]
             ]  
-        },
-        "BAIRN4": {
-            "icao": "BAIRN4",
-            "name": "Bairn Four",
-            "entryPoints": {
-              "PBI": ["PBI", "LLNCH"],
-              "PHK": ["PHK"],
-              "TRV": ["TRV"]
-            },
-            "body": [],
-            "rwy": {
-              "KMCO17L": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
-              "KMCO17R": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
-              "KMCO18L": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
-              "KMCO18R": [["BAIRN", "A110"], "NOBBS", "MICKX", "RAMEZ", "^POPYE", "#275"],
-              "KMCO35L": [["BAIRN", "A80"], "NOBBS"],
-              "KMCO35R": [["BAIRN", "A80"], "NOBBS"],
-              "KMCO36L": [["BAIRN", "A80"], "NOBBS"],
-              "KMCO36R": [["BAIRN", "A80"], "NOBBS"]
-            },
-            "draw": [
-                ["TRV*", "BAIRN", "NOBBS", "MICKX", "RAMEZ", "POPYE"],
-                ["PBI*", "BAIRN"],
-                ["PHK*", "BAIRN"]
-            ]
         },
         "BITHO7": {
             "icao": "BITHO7",
@@ -591,14 +635,15 @@
                 ["PHK*", "BAIRN"]
             ]
         },
-        "GRNCH1": {
-            "icao": "GRNCH1",
-            "name": "Grinch One",
+        "GRNCH2": {
+            "icao": "GRNCH2",
+            "name": "Grinch Two",
             "entryPoints": {
-                "ADLYN": ["ADLYN"],
-                "CATEE": ["CATEE"]
+                "ADLYN": ["ADLYN", "ELITE", ["MAYYR", "A240+"]],
+                "CATEE": ["CATEE", "ELITE", ["MAYYR", "A240+"]],
+                "COAXE": ["COAXE"]
             },
-            "body": ["ELITE", ["MAYYR", "A240+"], "COAXE", "GRTNG", "GRNCH", ["BUGGZ", "A110+|A160-|S280"], "BLAYK"],
+            "body": ["GRTNG", "GRNCH", ["BUGGZ", "A110+|A160-|S280"], "BLAYK"],
             "rwy": {
                 "KMCO17L": [["BUNIE", "A70|S230"], ["^YAGGO", "A60|S210"], "#107"],
                 "KMCO17R": [["BUNIE", "A70|S230"], ["^YAGGO", "A60|S210"], "#107"],
@@ -610,14 +655,14 @@
                 "KMCO36R": [["WHOVL", "A90+|A140-|S250"], "HARAM", ["DORII", "A80+|S220"], ["^BRICE", "A50|S210"], "#186"]
             },
             "draw": [
-                ["ADLYN*", "ELITE", "MAYYR", "COAXE", "GRTNG", "GRNCH", "BUGGZ", "BLAYK", "BUNIE", "YAGGO"],
+                ["ADLYN*", "ELITE", "MAYYR", "COAXE*", "GRTNG", "GRNCH", "BUGGZ", "BLAYK", "BUNIE", "YAGGO"],
                 ["CATEE*", "ELITE"],
                 ["BLAYK", "WHOVL", "HARAM", "DORII", "BRICE"]
             ]  
         },
-        "JAFAR1": {
-            "icao": "JAFAR1",
-            "name": "Jafar One",
+        "JAFAR2": {
+            "icao": "JAFAR2",
+            "name": "Jafar Two",
             "entryPoints": {
                 "BITTE": ["BITTE"],
                 "COEDY": ["COEDY", "BUULL", ["HUNKR", "A260-"], ["DOWNO", "A240+"]],
@@ -641,23 +686,23 @@
                ["LAMMP", "YAGGO"]
             ]
         },
-        "JOKRS1": {
-            "icao": "JOKRS1",
-            "name": "Jokers One",
+        "JOKRS2": {
+            "icao": "JOKRS2",
+            "name": "Jokers Two",
             "entryPoints": {
               "COREA": ["COREA"],
               "FERAL": ["FERAL"]
             },
-            "body": ["SIMIE", "FAZES"],
+            "body": ["SIMIE", "FAZES", "MOANS", "JOKRS"],
             "rwy": {
-              "KMCO17L": ["MOANS", "JOKRS", ["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
-              "KMCO17R": ["MOANS", "JOKRS", ["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
-              "KMCO18L": ["MOANS", "JOKRS", ["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
-              "KMCO18R": ["MOANS", "JOKRS", ["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
-              "KMCO35L": [["MOANS", "S250"], "JOKRS", ["^LORRA", "A70|S210"], "#096"],
-              "KMCO35R": [["MOANS", "S250"], "JOKRS", ["^LORRA", "A70|S210"], "#096"],
-              "KMCO36L": [["MOANS", "S250"], "JOKRS", ["^LORRA", "A70|S210"], "#096"],
-              "KMCO36R": [["MOANS", "S250"], "JOKRS", ["^LORRA", "A70|S210"], "#096"]
+              "KMCO17L": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
+              "KMCO17R": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
+              "KMCO18L": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
+              "KMCO18R": [["TAYYE", "A100+|A120-|S250"], "ARHIP", ["GIRAF", "A80+"], "DVOLA", ["^LYENS", "A50|S220"], "#006"],
+              "KMCO35L": [["^LORRA", "A70|S210"], "#096"],
+              "KMCO35R": [["^LORRA", "A70|S210"], "#096"],
+              "KMCO36L": [["^LORRA", "A70|S210"], "#096"],
+              "KMCO36R": [["^LORRA", "A70|S210"], "#096"]
             },
             "draw": [
                 ["COREA*", "SIMIE", "FAZES", "MOANS", "JOKRS", "TAYYE", "ARHIP", "GIRAF", "DVOLA", "LYENS"],
@@ -771,6 +816,31 @@
 
             ]
         },
+        "SHREK2": {
+            "icao": "SHREK2",
+            "name": "Shrek Two",
+            "entryPoints": {
+                "BIGDE": ["BIGDE", "EATTR", "WANDD"],
+                "BITTE": ["BITTE", "WAKOS", "WANDD"],
+                "MMOSS": ["MMOSS", "NOLLE", "COAXE", "GRTNG"]
+            },
+            "body": ["SHREK", "^STNKY", "#115"],
+            "rwy": {
+                "KMCO17L": [],
+                "KMCO17R": [],
+                "KMCO18L": [],
+                "KMCO18R": [],
+                "KMCO35L": [],
+                "KMCO35R": [],
+                "KMCO36L": [],
+                "KMCO36R": []
+            },
+            "draw": [
+                ["BIGDE", "EATTR", "WANDD", "SHREK", "STNKY"],
+                ["BITTE", "WAKOS", "WANDD"],
+                ["MMOSS", "NOLLE", "COAXE", "GRTNG", "SHREK*"]
+            ]  
+        },
         "SNFLD1": {
             "icao": "SNFLD1",
             "name": "Seinfeld One",
@@ -800,7 +870,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO18L.EPCOT1.MUGLS",
+            "route": "KMCO18L.EPCOT2.MUGLS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -823,7 +893,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO18L.LEWRD1.CIGAR",
+            "route": "KMCO18L.LEWRD2.CIGAR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -852,7 +922,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO17R.FATHE1.VIYAP",
+            "route": "KMCO17R.FATHE2.VIYAP",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -879,7 +949,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO18L.JEEMY1.PAINN",
+            "route": "KMCO17R.JEEMY2.PAINN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -904,7 +974,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO17R.MZULO1.ETECK",
+            "route": "KMCO17R.MZULO2.ETECK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -932,7 +1002,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO17R.DDANY1.BORRD",
+            "route": "KMCO17R.DDANY2.BORRD",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -958,7 +1028,7 @@
             "origin": "kmco",
             "destination": "",
             "category": "departure",
-            "route": "KMCO18L.FSHUN1.PLUMR",
+            "route": "KMCO18L.FSHUN2.PLUMR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -990,7 +1060,7 @@
             "altitude": 26000,
             "speed": 280,
             "method": "random",
-            "rate": 5.7,
+            "rate": 3.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -1016,7 +1086,7 @@
             "altitude": [26000, 32000],
             "speed": 280,
             "method": "random",
-            "rate": 4.7,
+            "rate": 3.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -1069,11 +1139,11 @@
             "origin": "",
             "destination": "kmco",
             "category": "arrival",
-            "route": "COREA.JOKRS1.KMCO18R",
+            "route": "COREA.JOKRS2.KMCO18R",
             "altitude": 28000,
             "speed": 280,
             "method": "random",
-            "rate": 4.7,
+            "rate": 2.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -1105,7 +1175,7 @@
             "altitude": [31000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 6.7,
+            "rate": 3.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -1130,11 +1200,11 @@
             "origin": "",
             "destination": "kmco",
             "category": "arrival",
-            "route": "ADLYN.GRNCH1.KMCO18R",
+            "route": "ADLYN.GRNCH2.KMCO18R",
             "altitude": [31000, 36000],
             "speed": 280,
             "method": "random",
-            "rate": 5.7,
+            "rate": 4.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
@@ -1155,11 +1225,11 @@
             "origin": "",
             "destination": "kmco",
             "category": "arrival",
-            "route": "COEDY.JAFAR1.KMCO18R",
+            "route": "COEDY.JAFAR2.KMCO18R",
             "altitude": [31000, 36000],
             "speed": 280,
             "method": "random",
-            "rate": 6.7,
+            "rate": 5.7,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 28],
