@@ -251,6 +251,7 @@
             "airlines": [
                 ["dal/short", 4],
                 ["eja", 2],
+                ["lxj", 5],
                 ["jia", 4],
                 ["n/fastGA", 7]
             ]
@@ -267,6 +268,7 @@
             "airlines": [
                 ["dal/short", 4],
                 ["eja", 2],
+                ["lxj", 5],
                 ["jia", 4],
                 ["n/fastGA", 7]
             ]
@@ -321,7 +323,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["eru", 11],
                 ["n/lightGA", 6]
@@ -335,9 +337,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["eja", 2],
+                ["lxj", 5],
                 ["n/fastGA", 7]
             ]
         },
@@ -349,7 +352,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["eru", 11],
                 ["n/lightGA", 6]
@@ -360,7 +363,7 @@
             "destination": "kdab",
             "category": "arrival",
             "route": "MLB.V3.OMN",
-            "altitude": 8000,
+            "altitude": 6000,
             "speed": 130,
             "method": "random",
             "rate": 1,
@@ -401,8 +404,8 @@
             "origin": "",
             "destination": "kdab",
             "category": "arrival",
-            "route": "SSI.V3.OMN",
-            "altitude": 7000,
+            "route": "SSI.V3.MLB",
+            "altitude": 9000,
             "speed": 130,
             "method": "random",
             "rate": 1,
@@ -413,10 +416,39 @@
         },
         {
             "origin": "",
+            "destination": "kdab",
+            "category": "arrival",
+            "route": "VARZE.T210.KIZER..OMN",
+            "altitude": 5000,
+            "speed": 130,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["eru", 11],
+                ["n/lightGA", 6]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kdab",
+            "category": "arrival",
+            "route": "FOBIN.Q93.MALET..OMN",
+            "altitude": 23000,
+            "speed": 250,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["eja", 3],
+                ["lxj", 5],
+                ["n/fastGA", 6]
+            ]
+        },
+        {
+            "origin": "",
             "destination": "",
             "category": "overflight",
             "route": "MALET.T208.WALEE..GNV",
-            "altitude": 6000,
+            "altitude": 8000,
             "speed": 130,
             "method": "random",
             "rate": 1,
