@@ -806,7 +806,7 @@
                 "KEWR22L": [["_RWY22L01DME", "A05+"]],
                 "KEWR22R": [["_RWY22R01DME", "A05+"]]
             },
-            "body": [["BAGGA, S220-"], ["PORTT", "A25"]],
+            "body": [["BAGGA", "S220-"], ["PORTT", "A25"]],
             "exitPoints": {
                 "BAYYS": ["#261", "BAYYS"],
                 "BIGGY": ["RIETA", "SBJ", "BIGGY"],
@@ -1496,7 +1496,7 @@
                 ["baw/long", 2],
                 ["dlh/long", 1],
                 ["ely/long", 1],
-                ["tap/long, 3"]
+                ["tap/long", 3]
             ]
         },
         {
