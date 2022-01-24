@@ -19,8 +19,8 @@
     },
     "has_terrain": true,
     "wind": {
-        "angle": 360,
-        "speed": 5
+        "angle": 90,
+        "speed": 12
     },
     "airspace": [
         {
