@@ -218,7 +218,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     icao: 'b737',
     model: aircraftTypeDefinitionModelFixture,
     positionModel: POSITION_MODEL_MOCK,
-    routeString: 'DAG.KEPEC3.KLAS07R'
+    routeString: 'DAG.KEPEC3.KLAS25R'
 };
 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK_HEAVY = {

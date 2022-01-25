@@ -729,10 +729,10 @@ export default class Pilot {
     _interceptGlidepath(datum, course, descentAngle) {
         // TODO: I feel like our description of lateral/vertical guidance should be done with its
         // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
-        if (this._mcp.nav1Datum !== datum) {
-            return [false, 'cannot follow glidepath because we are using lateral navigation from a different origin'];
-        }
-
+        // if (this._mcp.nav1Datum !== datum) {
+        //     return [false, 'cannot follow glidepath because we are using lateral navigation from a different origin'];
+        // }
+        //
         if (this._mcp.course !== course) {
             return [
                 false,
@@ -768,7 +768,11 @@ export default class Pilot {
             return [false, 'the specified runway does not exist'];
         }
 
-        const minimumGlideslopeInterceptAltitude = runwayModel.getMinimumGlideslopeInterceptAltitude();
+        if (_isNil(runwayModel.defaultLocalizer)) {
+            return [false, 'the specified runway does not have a localizer'];
+        }
+
+        const minimumGlideslopeInterceptAltitude = runwayModel.defaultLocalizer.getMinimumGlideslopeInterceptAltitude();
 
         if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
             const readback = {};
@@ -782,11 +786,11 @@ export default class Pilot {
         }
 
         // TODO: split these two method calls and the corresponding ifs to a new method
-        const datum = runwayModel.positionModel;
-        const course = runwayModel.angle;
-        const descentAngle = runwayModel.ils.glideslopeGradient;
-        const lateralGuidance = this._interceptCourse(datum, course);
-        const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle);
+        const localizer = runwayModel.defaultLocalizer;
+        const course = localizer.angle;
+        const descentAngle = localizer.glideslopeAngle;
+        const lateralGuidance = this._interceptCourse(localizer.positionModel, course);
+        const verticalGuidance = this._interceptGlidepath(runwayModel.positionModel, course, descentAngle);
 
         // TODO: As written, `._interceptCourse()` will always return true.
         if (!lateralGuidance[0]) {

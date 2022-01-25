@@ -421,11 +421,11 @@ ava('.isOnFinal() returns true when both on the selected course and within the f
 
 ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const runwayElevationMock = 2157;
-    const expectedResult = 2261.980164261595 + runwayElevationMock;
+    const runwayElevationMock = 2157.0;
+    const expectedResult = 2175.963355278181 + runwayElevationMock;
     model.fms.arrivalRunwayModel._positionModel.elevation = runwayElevationMock;
 
-    t.true(model.fms.arrivalRunwayModel.name === '07R');
+    t.true(model.fms.arrivalRunwayModel.name === '25R');
 
     const { arrivalRunwayModel } = model.fms;
     const distanceOnFinalNm = 7;
@@ -437,7 +437,7 @@ ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s
 
     const result = model._calculateArrivalRunwayModelGlideslopeAltitude();
 
-    t.true(result === expectedResult);
+    t.true(Math.abs(expectedResult - result) < 0.000001);
 });
 
 ava('.matchCallsign() returns false when passed a flightnumber that is not included in #callsign', (t) => {

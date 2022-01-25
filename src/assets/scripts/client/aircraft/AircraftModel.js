@@ -1635,7 +1635,7 @@ export default class AircraftModel {
         const runwayModel = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinalKm = offset[1];
-        const glideslopeAltitude = runwayModel.getGlideslopeAltitude(distanceOnFinalKm);
+        const glideslopeAltitude = runwayModel.defaultLocalizer.getGlideslopeAltitude(distanceOnFinalKm);
 
         return glideslopeAltitude;
     }

@@ -176,24 +176,44 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "ZATES": ["N35.45502967300586", "W114.11500711284192"],
         "ZELMA": ["N34.78291872388267", "W115.32974712948175"]
     },
+    "localizers": {
+        "I-CUA": {
+            "position": ["N36d5m58.77", "W115d9m23.12", "2089ft"],
+            "distance": 33,
+            "angle": 14,
+            "glideslopeAngle": 3.40
+        },
+        "I-RLE": {
+            "position": ["N36d4m25.04", "W115d9m41.15", "2157ft"],
+            "distance": 33,
+            "angle": 259,
+            "glideslopeAngle": 3.0
+        },
+        "I-LAS": {
+            "position": ["N36d4m35.05", "W115d7m15.93", "2033ft"],
+            "distance": 25,
+            "angle": 259,
+            "glideslopeAngle": 3.0
+        }
+    },
     "runways":[
         {
             "name": ["07L", "25R"],
             "end": [["N36d4m34.82", "W115d10m16.98", "2179ft"], ["N36d4m35.05", "W115d7m15.93", "2033ft"]],
             "delay": [5, 5],
-            "ils": [false, true]
+            "defaultLocalizer": ["", "I-RLE"]
         },
         {
             "name": ["07R", "25L"],
             "end": [["N36d4m25.04", "W115d9m41.15", "2157ft"], ["N36d4m25.17", "W115d7m32.96", "2049ft"]],
             "delay": [3, 5],
-            "ils": [false, true]
+            "defaultLocalizer": ["", "I-LAS"]
         },
         {
             "name": ["01R", "19L"],
             "end": [["N36d4m27.19", "W115d10m3.00", "2175ft"], ["N36d5m54.85", "W115d9m12.79", "2078ft"]],
             "delay": [3, 6],
-            "ils": [false, false]
+            "ils": [false, true]
         },
         {
             "name": ["01L", "19R"],

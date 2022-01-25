@@ -591,7 +591,7 @@ ava('.conductInstrumentApproach() calls ._interceptCourse() with the correct pro
 
     aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
-    t.true(_interceptCourseSpy.calledWithExactly(runwayModelMock.positionModel, runwayModelMock.angle));
+    t.true(_interceptCourseSpy.calledWithExactly(runwayModelMock.defaultLocalizer.positionModel, runwayModelMock.defaultLocalizer.angle));
 });
 
 ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct properties', (t) => {
@@ -602,8 +602,8 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
 
     t.true(_interceptGlidepathSpy.calledWithExactly(
         runwayModelMock.positionModel,
-        runwayModelMock.angle,
-        runwayModelMock.ils.glideslopeGradient
+        runwayModelMock.defaultLocalizer.angle,
+        runwayModelMock.defaultLocalizer.glideslopeAngle
     ));
 });
 

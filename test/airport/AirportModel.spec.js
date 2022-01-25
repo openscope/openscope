@@ -5,6 +5,8 @@ import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
 import DynamicPositionModel from '../../src/assets/scripts/client/base/DynamicPositionModel';
 import { FLIGHT_CATEGORY } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
+import LocalizerCollection from '../../src/assets/scripts/client/navigationLibrary/LocalizerCollection';
+import LocalizerModel from '../../src/assets/scripts/client/navigationLibrary/LocalizerModel';
 
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK));
@@ -207,4 +209,14 @@ ava('.resetAllRunwayQueues() calls .resetQueue() for all runways', (t) => {
     t.true(resetQueueSpy19R.calledWithExactly());
     t.true(resetQueueSpy01R.calledWithExactly());
     t.true(resetQueueSpy19L.calledWithExactly());
+});
+
+ava('LocalizerCollection is populated correctly', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+    const result = LocalizerCollection.findLocalizerByName('I-LAS');
+
+    t.truthy(model);
+    t.true(result instanceof LocalizerModel);
+    t.true(result.name === 'I-LAS');
+    t.true(LocalizerCollection.length === 3);
 });

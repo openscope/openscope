@@ -1,6 +1,8 @@
 import _ceil from 'lodash/ceil';
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
+import LocalizerModel from '../../navigationLibrary/LocalizerModel';
+import LocalizerCollection from '../../navigationLibrary/LocalizerCollection';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import { PERFORMANCE } from '../../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
@@ -22,7 +24,7 @@ import {
     km,
     km_ft,
     nm,
-    degreesToRadians
+    radiansToDegrees
 } from '../../utilities/unitConverters';
 
 /**
@@ -84,15 +86,10 @@ export default class RunwayModel extends BaseModel {
         this.delay = 2;
 
         /**
-         * @property ils
-         * @type {object}
+         * @property defaultLocalizer
+         * @type {LocalizerModel}
          */
-        this.ils = {
-            enabled: true,
-            loc_maxDist: km(25),
-            // gs_maxHeight: 9999,
-            glideslopeGradient: degreesToRadians(3)
-        };
+        this.defaultLocalizer = null;
 
         /**
          * @property length
@@ -234,73 +231,35 @@ export default class RunwayModel extends BaseModel {
             this.angle = thisSide.bearingToPosition(farSide);
         }
 
-        if (data.ils) {
-            this.ils.enabled = data.ils[end];
+        // if the localizer collection is not empty and a default is specified use that,
+        // otherwise check if ils is true and set default
+        if (data.defaultLocalizer && data.defaultLocalizer[end].length > 0 && LocalizerCollection.length > 0) {
+            this.defaultLocalizer = LocalizerCollection.findLocalizerByName(data.defaultLocalizer[end]);
         }
 
-        if (data.ils_distance) {
-            this.ils.loc_maxDist = km(data.ils_distance[end]);
+        if (data.ils && data.ils[end] && !this.defaultLocalizer) {
+            const locName = `LOC${this.name}`;
+            const locData = {
+                angle: radiansToDegrees(this.angle),
+                position: data.end[end]
+            };
+
+            if (data.ils_distance) {
+                locData.distance = data.ils_distance[end];
+            }
+
+            if (data.glideslope) {
+                locData.glideslopeAngle = data.glideslope[end];
+            }
+
+            this.defaultLocalizer = new LocalizerModel(locName, locData, this.airportPositionModel);
         }
 
-        if (data.glideslope) {
-            this.ils.glideslopeGradient = degreesToRadians(data.glideslope[end]);
-        }
-
-        // TODO: neither property is defined in any airport json files
-        // if (data.ils_gs_maxHeight) {
-        //     this.ils.gs_maxHeight = data.ils_gs_maxHeight[end];
-        // }
+        // TODO: property is not defined in any airport json files
         //
         // if (data.sepFromAdjacent) {
         //     this.sepFromAdjacent = km(data.sepFromAdjacent[end]);
         // }
-    }
-
-    /**
-    * Calculate the height of the glideslope for a runway's ILS at a given distance on final
-    *
-    * @for RunwayModel
-    * @method getGlideslopeAltitude
-    * @param distance {number}                       distance from the runway threshold, in kilometers
-    * @param glideslopeGradient {number} [optional]  gradient of the glideslope in radians
-    *                                                (typically equivalent to 3.0 degrees)
-    * @return {number}
-    */
-    getGlideslopeAltitude(distance, glideslopeGradient) {
-        if (!glideslopeGradient) {
-            glideslopeGradient = this.ils.glideslopeGradient;
-        }
-
-        distance = Math.max(0, distance);
-        const rise = tan(abs(glideslopeGradient));
-
-        // TODO: this logic could be abstracted to a helper.
-        return this.elevation + (rise * km_ft(distance));
-    }
-
-    /**
-     * Calculate the height of the glideslope at (or abeam) the final approach fix
-     *
-     * @for RunwayModel
-     * @method getGlideslopeAltitudeAtFinalApproachFix
-     * @return {number} glideslope altitude in ft MSL
-     */
-    getGlideslopeAltitudeAtFinalApproachFix() {
-        return this.getGlideslopeAltitude(km(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM));
-    }
-
-    /**
-     * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
-     *
-     * @for RunwayModel
-     * @method getMinimumGlideslopeInterceptAltitude
-     * @return {number} glideslope altitude in ft MSL
-     */
-    getMinimumGlideslopeInterceptAltitude() {
-        const altitudeAtFinalApproachFix = this.getGlideslopeAltitudeAtFinalApproachFix();
-        const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
-
-        return minimumInterceptAltitude;
     }
 
     /**

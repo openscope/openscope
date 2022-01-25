@@ -532,7 +532,7 @@ export default class CanvasController {
             cc.lineTo(0, runwayLength);
             cc.stroke();
         } else { // extended centerlines
-            if (!runwayModel.ils.enabled) {
+            if (!runwayModel.defaultLocalizer) {
                 cc.restore();
 
                 return;
@@ -543,7 +543,7 @@ export default class CanvasController {
 
             cc.beginPath();
             cc.moveTo(0, 0);
-            cc.lineTo(0, CanvasStageModel._translateKilometersToPixels(runwayModel.ils.loc_maxDist));
+            cc.lineTo(0, CanvasStageModel._translateKilometersToPixels(runwayModel.defaultLocalizer.distance));
             cc.stroke();
         }
 

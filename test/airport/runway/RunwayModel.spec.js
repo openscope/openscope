@@ -72,31 +72,6 @@ ava('.calculateCrosswindAngleForRunway() returns the crosswind angle for a given
     t.true(result === expectedResult);
 });
 
-ava('.getGlideslopeAltitude() returns glideslope altitude at the specified distance', (t) => {
-    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    const distanceNm = 10;
-    const expectedResult = 1719.4153308084387 + model.positionModel.elevation;
-    const result = model.getGlideslopeAltitude(distanceNm);
-
-    t.true(result === expectedResult);
-});
-
-ava('.getGlideslopeAltitudeAtFinalApproachFix() returns glideslope altitude at the final approach fix', (t) => {
-    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    const expectedResult = 3771.178596328614;
-    const result = model.getGlideslopeAltitudeAtFinalApproachFix();
-
-    t.true(result === expectedResult);
-});
-
-ava('.getMinimumGlideslopeInterceptAltitude() returns glideslope altitude at the final approach fix', (t) => {
-    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    const expectedResult = 3800;
-    const result = model.getMinimumGlideslopeInterceptAltitude();
-
-    t.true(result === expectedResult);
-});
-
 ava('.isAircraftInQueue() returns true when an aircraftId is in the queue', (t) => {
     const aircraftIdMock = 'aircraft-221';
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
