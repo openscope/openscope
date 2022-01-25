@@ -1,9 +1,9 @@
 {
-    "airac": 1813,
+    "airac": 2201,
     "radio": {
         "twr": "Rogers Tower",
         "app": "Oke City Approach",
-        "dep": "Rogers Departure"
+        "dep": "Oke City Departure"
     },
     "icao": "KOKC",
     "iata": "OKC",
@@ -258,7 +258,7 @@
                 "KOKC35R": [["^_RW35R1DME", "A18+"], "#011"],
                 "KOKC36": [["^_RW361DME", "A18+"], "#011"]
             },
-            "body": ["SWTZR"],
+            "body": [["SWTZR", "A42+"]],
             "exitPoints": {
                 "KRMSN": ["KRMSN"],
                 "WICKS": ["KRMSN", "WICKS"]
@@ -565,7 +565,11 @@
                 "KOKC35R": [["BOSHY", "A90+"], ["HEDIK", "A80+"], ["MOVIE", "A70+|S220"], ["IMAGE", "A60|S210"], "^HALTO", "#176"]
             },
             "draw": [
-                ["AWLIV", "MURAH"]
+                ["LFRED", "PAAUL", "MOMMY", "FEDRL", "MURAH*", "JASKA", "BOSHY", "HEDIK", "MOVIE", "IMAGE"],
+                ["DRLER", "BMART", "JSTCE", "AWLIV", "MURAH", "MIICK", "BELMN"],
+                ["MPYRE", "JTUNE", "KNEWT", "FEDRL"],
+                ["GOLFS", "BECTA", "ROHAA"],
+                ["JASKA", "BECTA"]
             ]
         },
         "RIFFL3": {
@@ -827,7 +831,7 @@
             "origin": "KOKC",
             "destination": "",
             "category": "departure",
-            "route": "KOKC35R.KRMSN3.WICKS",
+            "route": "KOKC35R.KRMSN4.WICKS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -890,7 +894,7 @@
             "origin": "KOKC",
             "destination": "",
             "category": "departure",
-            "route": "KOKC35R.STPHN3.ZEEWE",
+            "route": "KOKC35L.STPHN3.ZEEWE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -932,7 +936,7 @@
             "origin": "KOKC",
             "destination": "",
             "category": "departure",
-            "route": "KOKC35R.THRPE3.FLECH",
+            "route": "KOKC35L.THRPE3.FLECH",
             "altitude": "",
             "speed": "",
             "method": "random",
