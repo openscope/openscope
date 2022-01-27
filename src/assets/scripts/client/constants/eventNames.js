@@ -251,6 +251,13 @@ export const EVENT = {
 
     /**
      * @memberof EVENT
+     * @property TOGGLE_IAP_MAP
+     * @type {string}
+     */
+    TOGGLE_IAP_MAP: 'toggle-iap-map',
+
+    /**
+     * @memberof EVENT
      * @property TOGGLE_TERRAIN
      * @type {string}
      */

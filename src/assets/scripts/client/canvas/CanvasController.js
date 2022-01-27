@@ -183,6 +183,15 @@ export default class CanvasController {
         this._shouldDrawStarMap = false;
 
         /**
+         * Flag used to determine if the iap map should be displayed
+         *
+         * @property _shouldDrawIapMap
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawIapMap = false;
+
+        /**
          * Flag used to determine if terrain should be displayed
          *
          * @property _shouldDrawTerrain
@@ -246,6 +255,7 @@ export default class CanvasController {
         this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
         this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
         this._onToggleStarMapHandler = this._onToggleStarMap.bind(this);
+        this._onToggleIapMapHandler = this._onToggleIapMap.bind(this);
         this._onAirportChangeHandler = this._onAirportChange.bind(this);
         this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
         this._onToggleVideoMapHandler = this._onToggleVideoMap.bind(this);
@@ -274,6 +284,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
         this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
         this._eventBus.on(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMapHandler);
+        this._eventBus.on(EVENT.TOGGLE_IAP_MAP, this._onToggleIapMapHandler);
         this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
         this._eventBus.on(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
         this._eventBus.on(EVENT.RANGE_RINGS_CHANGE, this._onRangeRingsChangeHandler);
@@ -418,6 +429,7 @@ export default class CanvasController {
             this._drawAirportFixesAndLabels(staticCanvasCtx);
             this._drawSids(staticCanvasCtx);
             this._drawStars(staticCanvasCtx);
+            this._drawIaps(staticCanvasCtx);
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
             this._drawAirspaceShelvesAndLabels(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
@@ -864,6 +876,60 @@ export default class CanvasController {
             }
 
             textAtFix[firstFixName].push(star.identifier);
+        }
+
+        // draw labels
+        for (const fix in textAtFix) {
+            const textItemsToPrint = textAtFix[fix];
+            const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
+
+            this._drawText(cc, fixPosition, textItemsToPrint);
+        }
+
+        cc.restore();
+    }
+
+    /**
+     * Draw IAP lines and labels
+     *
+     * POSITIONING: Before calling this method, ensure NO TRANSLATION has occurred
+     *
+     * @for CanvasController
+     * @method _drawIaps
+     * @param cc {HTMLCanvasContext}
+     * @returns undefined
+     * @private
+     */
+    _drawIaps(cc) {
+        if (!this._shouldDrawIapMap) {
+            return;
+        }
+
+        const iapLines = NavigationLibrary.getProcedureLines(PROCEDURE_TYPE.IAP);
+        const textAtFix = [];
+
+        cc.save();
+        this._ccTranslateFromCanvasOriginToAirportCenter(cc);
+        cc.strokeStyle = this.theme.SCOPE.IAP;
+        cc.fillStyle = this.theme.SCOPE.IAP;
+        cc.setLineDash([1, 10]);
+        cc.font = 'italic 14px monoOne, monospace';
+        cc.textAlign = 'right';
+
+        for (let i = 0; i < iapLines.length; i++) {
+            const iap = iapLines[i];
+
+            for (let j = 0; j < iap.lines.length; j++) {
+                this._drawPolyLineFromRelativePositions(cc, iap.lines[j]);
+            }
+
+            const { firstFixName } = iap;
+
+            if (!(firstFixName in textAtFix)) {
+                textAtFix[firstFixName] = [];
+            }
+
+            textAtFix[firstFixName].push(iap.identifier);
         }
 
         // draw labels
@@ -2628,6 +2694,23 @@ export default class CanvasController {
      */
     _onToggleStarMap() {
         this._shouldDrawStarMap = !this._shouldDrawStarMap;
+
+        this._markDeepRender();
+    }
+
+    /**
+     * Toogle display of IAP routes
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleIapMap
+     * @returns undefined
+     * @private
+     */
+    _onToggleIapMap() {
+        this._shouldDrawIapMap = !this._shouldDrawIapMap;
 
         this._markDeepRender();
     }

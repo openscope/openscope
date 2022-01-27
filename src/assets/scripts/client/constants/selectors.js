@@ -87,6 +87,7 @@ export const CLASSNAMES = {
     TOGGLE_SIDS: 'toggle-sids',
     TOGGLE_SPEECH: 'toggle-speech',
     TOGGLE_STARS: 'toggle-stars',
+    TOGGLE_IAPS: 'toggle-iaps',
     TOGGLE_TERRAIN: 'toggle-terrain',
     TOGGLE_TRAFFIC: 'toggle-traffic',
     TOGGLE_TUTORIAL: 'toggle-tutorial',

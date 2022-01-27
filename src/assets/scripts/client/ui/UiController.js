@@ -364,6 +364,7 @@ class UiController {
         this.$toggleSids = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS);
         this.$toggleSpeech = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SPEECH);
         this.$toggleStars = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STARS);
+        this.$toggleIaps = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_IAPS);
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
         this.$toggleTraffic = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TRAFFIC);
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
@@ -413,6 +414,7 @@ class UiController {
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
         this.$toggleSpeech.on('click', (event) => speech_toggle(event));
         this.$toggleStars.on('click', (event) => this.onToggleStars(event));
+        this.$toggleIaps.on('click', (event) => this.onToggleIaps(event));
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
         this.$toggleTraffic.on('click', (event) => this.onToggleTraffic(event));
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
@@ -445,6 +447,7 @@ class UiController {
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
         this.$toggleSpeech.off('click', (event) => speech_toggle(event));
         this.$toggleStars.off('click', (event) => this.onToggleStars(event));
+        this.$toggleIaps.off('click', (event) => this.onToggleIaps(event));
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
         this.$toggleTraffic.off('click', (event) => this.onToggleTraffic(event));
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
@@ -488,6 +491,7 @@ class UiController {
         this.$toggleSids = null;
         this.$toggleSpeech = null;
         this.$toggleStars = null;
+        this.$toggleIaps = null;
         this.$toggleTerrain = null;
         this.$toggleTraffic = null;
         this.$toggleTutorial = null;
@@ -902,6 +906,21 @@ class UiController {
             `${this.$toggleStars.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
         );
         this._eventBus.trigger(EVENT.TOGGLE_STAR_MAP);
+    }
+
+    /**
+     * @for UiController
+     * @method onToggleIaps
+     * @param event {jquery event}
+     */
+    onToggleIaps(event) {
+        this.$toggleIaps.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        EventTracker.recordEvent(
+            TRACKABLE_EVENT.OPTIONS,
+            'iaps',
+            `${this.$toggleIaps.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`
+        );
+        this._eventBus.trigger(EVENT.TOGGLE_IAP_MAP);
     }
 
     /**
