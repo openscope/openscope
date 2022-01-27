@@ -345,34 +345,4 @@ export default class RunwayModel extends BaseModel {
     calculateCrosswindAngleForRunway(windAngle) {
         return calculateCrosswindAngle(this.angle, windAngle);
     }
-
-    /**
-     * Boolean helper used to determine if an aircraftModel is on an approach course
-     *
-     * @for RunwayModel
-     * @method isOnApproachCourse
-     * @return {boolean}
-     */
-    isOnApproachCourse(aircraftModel) {
-        const approachOffset = getOffset(aircraftModel, this.relativePosition, this.angle);
-        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        const isNotPastRunwayThreshold = approachOffset[1] > 0;
-
-        return isAlignedWithCourse && isNotPastRunwayThreshold;
-    }
-
-    /**
-     * Boolean helper used to determine if an aircraftModel is on the correct approach heading.
-     *
-     * @for RunwayModel
-     * @method isOnCorrectApproachGroundTrack
-     * @param  aircraftGroundTrack {number}
-     * @return {boolean}
-     */
-    isOnCorrectApproachGroundTrack(aircraftGroundTrack) {
-        const angle_diff = abs(angle_offset(aircraftGroundTrack, this.angle));
-
-        return angle_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
-    }
 }

@@ -61,5 +61,6 @@ export const PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER = '.';
 */
 export const PROCEDURE_TYPE = {
     SID: 'SID',
-    STAR: 'STAR'
+    STAR: 'STAR',
+    IAP: 'IAP'
 };

@@ -158,6 +158,16 @@ export default class Fms {
     }
 
     /**
+     * The FAF of the approach, if there is one
+     *
+     * @property finalApproachWaypoint
+     * @type {WaypointModel}
+     */
+    get finalApproachWaypoint() {
+        return this._routeModel.finalApproachWaypoint;
+    }
+
+    /**
      * Return the next waypoint which has an altitude restriction
      *
      * @for Fms
@@ -891,6 +901,49 @@ export default class Fms {
         }
 
         const wasSuccessful = this._routeModel.replaceArrivalProcedure(routeString);
+
+        if (wasSuccessful) {
+            this._updateArrivalRunwayFromRoute();
+
+            return [true, ''];
+        }
+
+        return [false, `route of "${routeString}" is not valid`];
+    }
+
+    /**
+     * Find the approach procedure (if it exists) within the `#legCollection` and
+     * reset it with a new approach procedure.
+     *
+     * This method does not remove any `LegModel`s. It instead finds and updates a
+     * `LegModel` with a new routeString. If a `LegModel` without an approach
+     * procedure cannot be found, then we create a new `LegModel` and place it
+     * at the end of the `#legCollection`.
+     *
+     * @for Fms
+     * @method replaceApproachProcedure
+     * @param name {string},
+     * @param entryPoint {string}
+     * @return {array<boolean, string>}
+     */
+    replaceApproachProcedure(name, entryPoint) {
+        if (!NavigationLibrary.hasProcedure(name)) {
+            return [false, `unknown procedure "${name}"`];
+        }
+
+        // build route string here from approach procedure, if entryPoint is null, use nearest entryPoint
+        const iapProcedure = NavigationLibrary.getProcedure(name);
+        const iapEntryPoint = iapProcedure.hasEntry(entryPoint.toUpperCase()) ? entryPoint.toUpperCase() :
+            iapProcedure.getFirstEntryPoint();
+
+        const stringArray = [
+            iapEntryPoint,
+            name,
+            iapProcedure.getRandomExitPoint()
+        ];
+
+        const routeString = stringArray.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const wasSuccessful = this._routeModel.replaceApproachProcedure(routeString);
 
         if (wasSuccessful) {
             this._updateArrivalRunwayFromRoute();

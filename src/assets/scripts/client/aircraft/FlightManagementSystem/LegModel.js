@@ -178,6 +178,17 @@ export default class LegModel {
     }
 
     /**
+     * Whether this leg is an IAP Procedure leg
+     *
+     * @for RouteModel
+     * @property isIapLeg
+     * @type {boolean}
+     */
+    get isIapLeg() {
+        return this.isProcedureLeg && this._procedureModel.procedureType === PROCEDURE_TYPE.IAP;
+    }
+
+    /**
      * Returns the type of this leg
      *
      * @for LegModel
@@ -553,6 +564,21 @@ export default class LegModel {
         }
 
         return this._procedureModel.name;
+    }
+
+    /**
+     * Return the type of the procedure being used by this leg (currently IAPs only)
+     *
+     * @for LegModel
+     * @method getProcedureType
+     * @return {string}
+     */
+    getProcedureType() {
+        if (!this.isIapLeg) {
+            return;
+        }
+
+        return this._procedureModel.type;
     }
 
     /**

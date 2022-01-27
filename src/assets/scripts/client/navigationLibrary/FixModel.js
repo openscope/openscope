@@ -49,6 +49,14 @@ export default class FixModel extends BaseModel {
          */
         this._positionModel = null;
 
+        /**
+         * Is this fix a FAF
+         *
+         * @type {boolean}
+         * @private
+         */
+        this._isFinalApproachFix = false;
+
         this.init(fixName, fixData, referencePosition);
     }
 
@@ -60,6 +68,16 @@ export default class FixModel extends BaseModel {
      * @return {boolean}
      */
     get isRealFix() {
+        return this.name[0] !== RNAV_WAYPOINT_PREFIX;
+    }
+
+    /**
+     * Indicates whether the fix is a FAF
+     *
+     * @property isFinalApproachFix
+     * @return {boolean}
+     */
+    get isFinalApproachFix() {
         return this.name[0] !== RNAV_WAYPOINT_PREFIX;
     }
 

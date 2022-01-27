@@ -6,7 +6,7 @@ import AirportController from '../../airport/AirportController';
 import Fms from '../FlightManagementSystem/Fms';
 import ModeController from '../ModeControl/ModeController';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
-import { MCP_MODE } from '../ModeControl/modeControlConstants';
+import { MCP_HEADING_MODE, MCP_MODE } from '../ModeControl/modeControlConstants';
 import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { radians_normalize } from '../../math/circle';
@@ -261,6 +261,33 @@ export default class Pilot {
         const readback = {};
         readback.log = `${instruction} ${speed}`;
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * Apply the specified approach procedure by adding it to the fms route
+     * Note: SHOULD NOT change the heading mode
+     *
+     * @for Pilot
+     * @method applyApproachProcedure
+     * @param name {string}       route string in the form of `entry.procedure.airport`
+     * @param entryPoint {string}
+     * @return {array}                   [success of operation, readback]
+     */
+    applyApproachProcedure(name, entryPoint) {
+        const [successful, response] = this._fms.replaceApproachProcedure(name, entryPoint);
+
+        if (!successful) {
+            return [false, response];
+        }
+
+        this.cancelHoldingPattern();
+
+        // Build readback
+        const readback = {};
+        readback.log = `expect the ${this._fms._routeModel.getIapIcao().toUpperCase()} approach`;
+        readback.say = `expect the ${this._fms._routeModel.getIapName()} approach`;
 
         return [true, readback];
     }
@@ -700,17 +727,20 @@ export default class Pilot {
      * @method _interceptCourse
      * @param datum {StaticPositionModel}  the position the course is based upon
      * @param course {number}              the heading inbound to the datum
+     * @param setLocMode {boolean}         false for RNAV, otherwise true
      * @return {array}                     [success of operation, readback]
      * @private
      */
-    _interceptCourse(datum, course) {
+    _interceptCourse(datum, course, setLocMode = true) {
         this._mcp.setNav1Datum(datum);
         this._mcp.setCourseFieldValue(course);
-        this._mcp.setHeadingVorLoc();
+        if (setLocMode) {
+            this._mcp.setHeadingVorLoc();
+        }
 
         const readback = {};
-        readback.log = 'intercept localizer';
-        readback.say = 'intercept localizer';
+        readback.log = 'intercept course';
+        readback.say = 'intercept course';
 
         return [true, readback];
     }
@@ -721,25 +751,11 @@ export default class Pilot {
      * @for Pilot
      * @method _interceptGlidepath
      * @param datum {StaticPositionModel}  the position the glidepath is projected from
-     * @param course {number}              the heading inbound to the datum
      * @param descentAngle {number}        the angle of descent along the glidepath
      * @return {array}                     [success of operation, readback]
      * @private
      */
-    _interceptGlidepath(datum, course, descentAngle) {
-        // TODO: I feel like our description of lateral/vertical guidance should be done with its
-        // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
-        // if (this._mcp.nav1Datum !== datum) {
-        //     return [false, 'cannot follow glidepath because we are using lateral navigation from a different origin'];
-        // }
-        //
-        if (this._mcp.course !== course) {
-            return [
-                false,
-                'cannot follow glidepath because its course differs from that specified for lateral guidance'
-            ];
-        }
-
+    _interceptGlidepath(datum, descentAngle) {
         // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
         this._mcp.setDescentAngle(descentAngle);
 
@@ -759,55 +775,118 @@ export default class Pilot {
      * @for pilot
      * @method conductInstrumentApproach
      * @param aircraftModel {AircraftModel} the aircraft model belonging to this pilot
-     * @param approachType {string}         the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param approachName {string}         the "icao" name of the approach otherwise 'ils' for legacy ils
      * @param runwayModel {RunwayModel}     the runway the approach ends at
      * @return {array}                      [success of operation, readback]
      */
-    conductInstrumentApproach(aircraftModel, approachType, runwayModel) {
+    conductInstrumentApproach(aircraftModel, approachName, runwayModel) {
         if (_isNil(runwayModel)) {
             return [false, 'the specified runway does not exist'];
         }
 
-        if (_isNil(runwayModel.defaultLocalizer)) {
-            return [false, 'the specified runway does not have a localizer'];
+        // determine which method we need to use for lateral and vertical guidance
+        if (approachName === 'ils') {
+            const localizer = runwayModel.defaultLocalizer;
+            const course = localizer.angle;
+            const descentAngle = localizer.glideslopeAngle;
+            const minimumGlideslopeInterceptAltitude = localizer.getMinimumGlideslopeInterceptAltitude();
+            const procedureName = `ILS runway ${runwayModel.name}`;
+            const procedureRadioName = `ILS runway ${radio_runway(runwayModel.name)}`;
+
+            return this._conductApproach(aircraftModel, course, descentAngle, minimumGlideslopeInterceptAltitude,
+                true, localizer.positionModel, runwayModel.positionModel, runwayModel, procedureName, procedureRadioName);
         }
 
-        const minimumGlideslopeInterceptAltitude = runwayModel.defaultLocalizer.getMinimumGlideslopeInterceptAltitude();
+        if (!NavigationLibrary.hasProcedure(approachName)) {
+            const readback = {};
 
+            readback.log = `unable approach ${approachName}, we cannot find charts for this procedure`;
+            readback.say = `unable approach ${approachName}, we cannot find charts for this procedure`;
+
+            return [false, readback];
+        }
+
+        const iap = NavigationLibrary.getProcedure(approachName);
+        const procedureName = iap.name;
+        const faf = iap.getFinalApproachFix();
+
+        if (!faf) {
+            const readback = {};
+
+            readback.log = `unable approach ${procedureName}, a final approach fix is not defined for this procedure`;
+            readback.say = `unable approach ${procedureName}, a final approach fix is not defined for this procedure`;
+
+            return [false, readback];
+        }
+
+        if (this._mcp.headingMode === MCP_HEADING_MODE.LNAV) {
+            const course = faf.positionModel.bearingToPosition(runwayModel.positionModel);
+            const descentAngle = runwayModel.defaultLocalizer.glideslopeAngle;
+            const minimumGlideslopeInterceptAltitude = faf.altitudeMinimum;
+            const iapName = procedureName;
+            return this._conductApproach(aircraftModel, course, descentAngle, minimumGlideslopeInterceptAltitude,
+                false, runwayModel.positionModel, runwayModel.positionModel, runwayModel, iapName, iapName);
+        }
+
+        if (!iap.hasLocalizer()) {
+            const readback = {};
+
+            readback.log = `unable approach ${procedureName}, unable to determine final approach course`;
+            readback.say = `unable approach ${procedureName}, unable to determine final approach course`;
+
+            return [false, readback];
+        }
+
+        const { localizer } = iap;
+        const course = localizer.angle;
+        const descentAngle = localizer.glideslopeAngle;
+        const minimumGlideslopeInterceptAltitude = localizer.getMinimumGlideslopeInterceptAltitude();
+        const iapName = procedureName;
+
+        return this._conductApproach(aircraftModel, course, descentAngle, minimumGlideslopeInterceptAltitude,
+            true, localizer.positionModel, runwayModel.positionModel, runwayModel, iapName, iapName);
+    }
+
+    /**
+     * Conduct the specified approach
+     *
+     * @for pilot
+     * @method _conductApproach
+     * @param aircraftModel {AircraftModel}
+     * @param course {number}
+     * @param descentAngle {number}
+     * @param minimumGlideslopeInterceptAltitude {number}
+     * @param setLoc {boolean}
+     * @param lateralReference {StaticPositionModel}
+     * @param verticalReference {StaticPositionModel}
+     * @param runwayModel {RunwayModel}
+     * @param procedureName {string}
+     * @param procedureRadioName {string}
+     * @return {array}                      [success of operation, readback]
+     */
+    _conductApproach(aircraftModel, course, descentAngle, minimumGlideslopeInterceptAltitude,
+        setLoc, lateralReference, verticalReference, runwayModel,
+        procedureName, procedureRadioName) {
         if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
             const readback = {};
 
-            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
+            readback.log = `unable ${procedureName}, our assigned altitude is below the minimum ` +
                 `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
-            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
+            readback.say = `unable ${procedureRadioName}, our assigned altitude is below the minimum ` +
                 `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
 
             return [false, readback];
         }
 
-        // TODO: split these two method calls and the corresponding ifs to a new method
-        const localizer = runwayModel.defaultLocalizer;
-        const course = localizer.angle;
-        const descentAngle = localizer.glideslopeAngle;
-        const lateralGuidance = this._interceptCourse(localizer.positionModel, course);
-        const verticalGuidance = this._interceptGlidepath(runwayModel.positionModel, course, descentAngle);
-
-        // TODO: As written, `._interceptCourse()` will always return true.
-        if (!lateralGuidance[0]) {
-            return lateralGuidance;
-        }
-
-        if (!verticalGuidance[0]) {
-            return verticalGuidance;
-        }
-
+        this._interceptCourse(lateralReference, course, setLoc);
+        this._interceptGlidepath(verticalReference, descentAngle);
         this.cancelHoldingPattern();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
         const readback = {};
-        readback.log = `cleared ${approachType.toUpperCase()} runway ${runwayModel.name} approach`;
-        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runwayModel.name)} approach`;
+        readback.log = `cleared ${procedureName} approach`;
+        readback.say = `cleared ${procedureRadioName} approach`;
 
         return [true, readback];
     }

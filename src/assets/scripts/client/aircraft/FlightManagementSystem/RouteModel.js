@@ -97,6 +97,17 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Return the current FAF Waypoint if there is one
+     *
+     * @for RouteModel
+     * @property finalApproachWaypoint
+     * @type {WaypointModel}
+     */
+    get finalApproachWaypoint() {
+        return this.currentLeg.waypoints.find((w) => w.isFafWaypoint);
+    }
+
+    /**
      * Return the current `#_legCollection`
      *
      * @for RouteModel
@@ -302,13 +313,19 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     getArrivalRunwayName() {
-        if (!this.hasStarLeg()) {
-            return null;
+        if (this.hasStarLeg()) {
+            const starLegIndex = this._findStarLegIndex();
+
+            return this._legCollection[starLegIndex].getArrivalRunwayName();
         }
 
-        const starLegIndex = this._findStarLegIndex();
+        if (this.hasIapLeg()) {
+            const iapLegIndex = this._findIapLegIndex();
 
-        return this._legCollection[starLegIndex].getArrivalRunwayName();
+            return this._legCollection[iapLegIndex].getArrivalRunwayName();
+        }
+
+        return null;
     }
 
     /**
@@ -613,6 +630,57 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Return the ICAO identifier of the IAP in use (if any)
+     *
+     * @for RouteModel
+     * @method getIapIcao
+     * @return {string}
+     */
+    getIapIcao() {
+        if (!this.hasIapLeg()) {
+            return;
+        }
+
+        const iapLegModel = this._legCollection[this._findIapLegIndex()];
+
+        return iapLegModel.getProcedureIcao();
+    }
+
+    /**
+     * Return the name of the IAP in use (if any)
+     *
+     * @for RouteModel
+     * @method getIapName
+     * @return {string}
+     */
+    getIapName() {
+        if (!this.hasIapLeg()) {
+            return;
+        }
+
+        const iapLegModel = this._legCollection[this._findIapLegIndex()];
+
+        return iapLegModel.getProcedureName();
+    }
+
+    /**
+     * Return the type of the IAP in use (if any)
+     *
+     * @for RouteModel
+     * @method getIapName
+     * @return {string}
+     */
+    getIapType() {
+        if (!this.hasIapLeg()) {
+            return;
+        }
+
+        const iapLegModel = this._legCollection[this._findIapLegIndex()];
+
+        return iapLegModel.getProcedureType();
+    }
+
+    /**
      * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
     *
     * @for RouteModel
@@ -685,6 +753,17 @@ export default class RouteModel extends BaseModel {
      */
     hasStarLeg() {
         return this._findStarLegIndex() !== INVALID_INDEX;
+    }
+
+    /**
+     * Return whether the route has an IAP leg
+     *
+     * @for RouteModel
+     * @method hasIapLeg
+     * @return {boolean}
+     */
+    hasIapLeg() {
+        return this._findIapLegIndex() !== INVALID_INDEX;
     }
 
     /**
@@ -775,6 +854,41 @@ export default class RouteModel extends BaseModel {
         }
 
         this.currentLeg.moveToNextWaypoint();
+    }
+
+    /**
+     * Replace the approach procedure leg with a new one (if it exists in the route)
+     *
+     * Create a new IAP leg from the specified route string. If an IAP leg already
+     * exists, replace that leg with the new one. Else, add the new one at the end
+     * of the #_legCollection.
+     *
+     * @for RouteModel
+     * @method replaceApproachProcedure
+     * @param routeString {string}
+     * @return {boolean} whether operation was successful
+     */
+    replaceApproachProcedure(routeString) {
+        let iapLegModel;
+
+        try {
+            iapLegModel = new LegModel(routeString);
+        } catch (error) {
+            console.error(error);
+
+            return false;
+        }
+
+        // if no IAP leg exists, insert the new one as the new last leg
+        if (!this.hasIapLeg()) {
+            this._legCollection.push(iapLegModel);
+
+            return true;
+        }
+
+        this._legCollection[this._findIapLegIndex()] = iapLegModel;
+
+        return true;
     }
 
     /**
@@ -1521,6 +1635,21 @@ export default class RouteModel extends BaseModel {
      */
     _findStarLegIndex() {
         return _findIndex(this._legCollection, (legModel) => legModel.isStarLeg);
+    }
+
+    /**
+     * Return the index of the IAP leg within the `#_legCollection`
+     *
+     * If for some reason there are multiple, this returns the first one.
+     * This search does NOT include legs in the `#_previousLegCollection`.
+     *
+     * @for RouteModel
+     * @method _findIapLegIndex
+     * @return {number}
+     * @private
+     */
+    _findIapLegIndex() {
+        return _findIndex(this._legCollection, (legModel) => legModel.isIapLeg);
     }
 
     /**
