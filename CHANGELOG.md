@@ -16,6 +16,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Update ASA/SWA airlines
 - <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Add Embraer 175
 - <a href="https://github.com/openscope/openscope/issues/1345" target="_blank">#1345</a> - Add reset buttons to traffic config dialog
+- <a href="https://github.com/openscope/openscope/issues/1903" target="_blank">#1903</a> - Fix formatting mistake in KEWR
 
 # 6.26.0 (December 1, 2021)
 ### New Features
