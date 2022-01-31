@@ -1,5 +1,5 @@
 {
-    "airac": 2005,
+    "airac": 2201,
     "radio": {
         "twr": "Honolulu Tower",
         "app": "Honolulu Approach",
@@ -84,6 +84,36 @@
             ]
         }
     ],
+    "restricted": [
+        {
+            "name": "R-3109B",
+            "height": "19000ft",
+            "coordinates": [
+                ["N21.53274", "W158.08347"],
+                ["N21.50460", "W158.06623"],
+                ["N21.48380", "W158.08231"],
+                ["N21.45426", "W158.09669"],
+                ["N21.48266", "W158.12408"],
+                ["N21.48793", "W158.14130"],
+                ["N21.50727", "W158.14287"],
+                ["N21.54981", "W158.14102"]
+            ]
+        },
+        {
+            "name": "R-3110B",
+            "height": "19000",
+            "coordinates": [
+                ["N21.57165", "W158.21758"],
+                ["N21.54981", "W158.14102"],
+                ["N21.50727", "W158.14287"],
+                ["N21.48793", "W158.14130"],
+                ["N21.51354", "W158.23063"],
+                ["N21.53679", "W158.23804"],
+                ["N21.55005", "W158.25146"],
+                ["N21.57125", "W158.25143"]
+            ]
+        }
+    ],
     "fixes": {
         "_HNL125R5DME": [21.261986, -157.859245],
         "_HNL171R5DME": [21.225827, -157.916658],
@@ -101,6 +131,7 @@
         "APACK": [24.0437028, -156.3195417],
         "BAFRE": [21.4598694, -158.4500472],
         "BAMBO": [21.4165472, -157.5100111],
+        "BANZI": [21.1951444, -158.0356639],
         "BEACH": [20.6830583, -156.5367222],
         "BECAN": [22.7447222, -156.6783333],
         "BINJO": [20.4046722, -160.7992361],
@@ -118,9 +149,11 @@
         "CLUTS": [23.0032583, -154.6547722],
         "CRISI": [20.4622667, -157.0657306],
         "CONED": [22.3691667, -156.4580556],
+        "COZES": [21.3251694, -158.0949250],
         "DAFRE": [19.4963139, -157.5076111],
         "DANNO": [23.5332333, -161.5817667],
         "DANYA": [22.0402778, -156.3650000],
+        "DEBRY": [21.2362778, -158.0370250],
         "DEEKE": [21.7141667, -159.1094444],
         "DENKL": [22.6186111, -160.1872222],
         "DENNS": [22.3634000, -153.8805833],
@@ -131,6 +164,7 @@
         "DZURA": [21.2380472, -157.9591833],
         "EBBER": [21.7134333, -153.1472833],
         "ENSKY": [21.1235333, -157.8711472],
+        "FGTRE": [21.3251889, -158.0627917],
         "FIRES": [20.3200139, -156.9217333],
         "FITES": [20.7945556, -153.0006333],
         "GECKO": [21.1922500, -158.3097806],
@@ -148,6 +182,7 @@
         "HUBAP": [21.2210278, -157.9299806],
         "IHNET": [21.3253639, -157.7491194],
         "INOYI": [21.2833361, -157.8584639],
+        "JEVIT": [21.3251111, -158.1661750],
         "JIMMA": [21.6036111, -159.1358333],
         "JLAKE": [21.9363889, -158.9450000],
         "JOELE": [21.6684583, -157.1872444],
@@ -155,12 +190,14 @@
         "JULLE": [20.9599389, -157.5764694],
         "KAENA": [21.5411111, -158.3627778],
         "KATHS": [21.0770556, -161.3863333],
+        "KEAHI": [20.7946139, -157.6023361],
         "KEOLA": [21.2981222, -158.4905250],
         "KLANI": [21.5497222, -158.6025000],
         "KOA"  : [19.7172389, -156.0449203],
         "KYLIO": [22.2352778, -156.8297222],
         "LAVAS": [20.4905694, -156.4192639],
         "LEANE": [21.2694083, -159.7146778],
+        "LHAKE": [21.1690694, -158.0580056],
         "LIH"  : [21.9652714, -159.3380997],
         "LILIA": [22.5077000, -161.5831833],
         "LNY"  : [20.7645000, -156.9688889],
@@ -179,6 +216,7 @@
         "OPIHI": [21.0958500, -158.0039750],
         "OUCHI": [21.8452778, -159.0363889],
         "PALAY": [21.1057611, -157.5703444],
+        "PERLY": [21.2685056, -157.9914361],
         "PIPLN": [21.1735306, -157.8757417],
         "POHAI": [21.2993833, -157.9686472],
         "PULPS": [20.4721611, -155.8992944],
@@ -198,6 +236,7 @@
         "SERYU": [22.4550000, -156.7876667],
         "SESXI": [21.2853333, -154.7405000],
         "SETWE": [20.5876667, -154.0190000],
+        "SETZO": [20.7848333, -157.3938333],
         "SHARK": [22.5151778, -156.0897278],
         "SHIGI": [21.3041972, -158.1715028],
         "SHLAE": [21.0244167, -157.5865611],
@@ -215,6 +254,7 @@
         "TORKL": [22.9511111, -159.8552778],
         "UPP"  : [20.2005411, -155.8432667],
         "WYNAI": [20.8774694, -157.3189083],
+        "YEPGU": [21.1699694, -158.1307000],
         "ZIGIE": [24.3136944, -157.2853611],
         "ZILAN": [23.4136111, -157.6402778],
         "ZORTA": [21.7302722, -157.2249278],
@@ -255,8 +295,8 @@
         }
     ],
     "sids": {
-        "BANZI": {
-            "icao": "BANZI",
+        "BANZI1": {
+            "icao": "BANZI1",
             "name": "Banzai One",
             "rwy": {
                 "PHNL22L": ["_RW22L1DME"],
@@ -291,7 +331,7 @@
                 "SYVAD": ["SYVAD"],
                 "THOMA": ["THOMA"],
                 "UPP": ["UPP"],
-                "ZIGLE": ["ZIGLE"]
+                "ZIGIE": ["ZIGIE"]
             },
             "draw": [
                 ["_RW22L1DME", "BANZI", "_RW22R1DME"],
@@ -322,7 +362,7 @@
                 ["SYVAD*"],
                 ["THOMA*"],
                 ["UPP*"],
-                ["ZIGLE*"]
+                ["ZIGIE*"]
             ]
         },
         "HNL2": {
@@ -345,6 +385,26 @@
             },
             "draw": [
                 ["ALANA*", "HNL", "HAUNA*"]
+            ]
+        },
+        "KEAHI3": {
+            "icao": "KEAHI3",
+            "name": "Keahi Three",
+            "rwy": {
+                "PHNL22L": ["^_RW22L1DME", "#180"],
+                "PHNL22R": ["^_RW22R1DME", "#180"],
+                "PHNL26L": ["_RW26L1DME", "#180"],
+                "PHNL26R": ["_RW26R1DME", "#180"]
+            },
+            "body": ["KEAHI", "SETZO"],
+            "exitPoints": {
+                "JORDA": ["JORDA"],
+                "LNY": ["LNY"],
+                "UPP": ["JORDA", "UPP"]
+            },
+            "draw": [
+                ["KEAHI", "SETZO", "JORDA*", "UPP*"],
+                ["SETZO", "LNY*"]
             ]
         },
         "KEOLA3": {
@@ -403,6 +463,27 @@
                 ["MKK", "PULPS*"]
             ]
         },
+        "PALAY3": {
+            "icao": "PALAY3",
+            "name": "Pele Three",
+            "rwy": {
+                "PHNL4L": ["^_RW4L1DME", "#150"],
+                "PHNL4R": ["^_RW4R1DME", "#150"],
+                "PHNL8L": ["^_RW8L1DME", "#150"],
+                "PHNL8R": ["^_RW8R1DME", "#150"],
+                "PHNL26L": ["_RW26L1DME", "#180"],
+                "PHNL26R": ["_RW26R1DME", "#180"]
+            },
+            "body": ["PALAY"],
+            "exitPoints": {
+                "LNY": ["ROSHE", "LNY"],
+                "MKK": ["LOKIE", "MKK"]
+            },
+            "draw": [
+                ["KEAHI", "SETZO", "JORDA*", "UPP*"],
+                ["SETZO", "LNY*"]
+            ]
+        },
         "PIPLN1": {
             "icao": "PIPLN1",
             "name": "Pipeline One",
@@ -437,10 +518,37 @@
                 "SYVAD": ["SYVAD"],
                 "THOMA": ["THOMA"],
                 "UPP": ["UPP"],
-                "ZIGLE": ["ZIGLE"]
+                "ZIGIE": ["ZIGIE"]
             },
             "draw": [
-                ["ALANA*"]
+                ["_RW8L1DME", "PIPLN", "ENSKY"],
+                ["_RW8R1DME", "PIPLN", "ENSKY"],
+                ["ALANA*"],
+                ["APACK*"],
+                ["BINJO*"],
+                ["CANON*"],
+                ["CARRP*"],
+                ["CLUTS*"],
+                ["DANNO*"],
+                ["DOVRR*"],
+                ["EBBER*"],
+                ["FITES*"],
+                ["GECKO*"],
+                ["HAUNA*"],
+                ["HOOPA*"],
+                ["KATHS*"],
+                ["KEOLA*"],
+                ["KOA*"],
+                ["LILIA*"],
+                ["LNY*"],
+                ["OPIHI*"],
+                ["PALAY*"],
+                ["PUPPI*"],
+                ["SCOON*"],
+                ["SYVAD*"],
+                ["THOMA*"],
+                ["UPP*"],
+                ["ZIGIE*"]
             ]
         },
         "OPIHI3": {
@@ -759,39 +867,106 @@
             "origin": "",
             "destination": "phnl",
             "category": "arrival",
-            "route": "LNY.JULLE5.PHNL8L",
+            "route": "UPP..LAVAS.MAKAH1.PHNL8L",
             "altitude": 24000,
             "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["dal/long", 1]
+                ["aah", 6],
+                ["aal/long", 4],
+                ["asa", 7],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3]                
             ]
         },
         {
             "origin": "",
             "destination": "phnl",
             "category": "arrival",
-            "route": "CLUTS.MAGGI3.PHNL8L",
+            "route": "DENNS.INOYI1.PHNL8L",
             "altitude": 33000,
             "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["dal/long", 1]
+                ["aah", 6],
+                ["aal/long", 4],
+                ["aca/long", 4],
+                ["ana/long", 2],
+                ["asa", 7],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3]
             ]
         },
         {
             "origin": "",
             "destination": "phnl",
             "category": "arrival",
-            "route": "CANON.BOOKE8.PHNL8L",
+            "route": "ZIGIE.KAENA2.PHNL8L",
             "altitude": 33000,
             "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["dal/long", 1]
+                ["aah", 6],
+                ["aar/long", 1],
+                ["asa", 7],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3],
+                ["xax", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "phnl",
+            "category": "arrival",
+            "route": "CANON.KLANI3.PHNL8L",
+            "altitude": 33000,
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aar/long", 1],
+                ["anz/long", 1],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["fji/long", 3],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["qfa/long", 1],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["xax", 2]
             ]
         },
         {
@@ -804,7 +979,18 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["dal/long", 1]
+                ["aah", 6],
+                ["aal/long", 4],
+                ["asa", 7],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3]  
             ]
         },
         {
@@ -817,7 +1003,21 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["dal/long", 1]
+                ["aar/long", 1],
+                ["anz/long", 1],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["fji/long", 3],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["qfa/long", 1],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["xax", 2]
             ]
         },
         {
@@ -830,7 +1030,110 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["dal/long", 1]
+                ["aah", 6],
+                ["aar/long", 1],
+                ["asa", 7],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3],
+                ["xax", 2]
+            ]
+        },
+        {
+            "origin": "phnl",
+            "destination": "",
+            "category": "departure",
+            "route": "PHNL8R.PIPLN1.THOMA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aah", 6],
+                ["aar/long", 1],
+                ["asa", 7],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3],
+                ["xax", 2]
+            ]
+        },
+        {
+            "origin": "phnl",
+            "destination": "",
+            "category": "departure",
+            "route": "PHNL8R.PIPLN1.ZIGIE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aah", 6],
+                ["aar/long", 1],
+                ["asa", 7],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3],
+                ["xax", 2]
+            ]
+        },
+        {
+            "origin": "phnl",
+            "destination": "",
+            "category": "departure",
+            "route": "PHNL8R.PIPLN1.DOVRR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aah", 6],
+                ["aar/long", 1],
+                ["asa", 7],
+                ["cal/long", 1],
+                ["dal/long", 6],
+                ["fdx", 8],
+                ["gti", 6],
+                ["hal", 30],
+                ["jal/long", 3],
+                ["kal/long", 1],
+                ["pal/long", 1],
+                ["scx", 2],
+                ["swa", 12],
+                ["ual/long", 12],
+                ["ups", 12],
+                ["wja", 3],
+                ["xax", 2]
             ]
         }
     ],
