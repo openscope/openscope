@@ -245,9 +245,9 @@
                 ["VOWED", "FUNNL*", "PHARA*"]
             ]
         },
-        "KRMSN3": {
-            "icao": "KRMSN3",
-            "name": "Crimson Three",
+        "KRMSN4": {
+            "icao": "KRMSN4",
+            "name": "Crimson Four",
             "rwy": {
                 "KOKC13": [["^_RW131DME", "A18+"], "#176"],
                 "KOKC17L": [["^_RW17L1DME", "A18+"], "#176"],
