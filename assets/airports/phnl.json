@@ -117,6 +117,8 @@
     "fixes": {
         "_HNL125R5DME": [21.261986, -157.859245],
         "_HNL171R5DME": [21.225827, -157.916658],
+        "_LNY330013": [20.950614, -157.086805],
+        "_LNY300013": [20.873585, -157.168812],
         "_RW4L1DME": [21.332980, -157.903297],
         "_RW4R1DME": [21.332080, -157.901151],
         "_RW8L1DME": [21.325241, -157.901952],
@@ -150,6 +152,7 @@
         "CRISI": [20.4622667, -157.0657306],
         "CONED": [22.3691667, -156.4580556],
         "COZES": [21.3251694, -158.0949250],
+        "CUDEK": [21.2346944, -157.6112444],
         "DAFRE": [19.4963139, -157.5076111],
         "DANNO": [23.5332333, -161.5817667],
         "DANYA": [22.0402778, -156.3650000],
@@ -201,6 +204,7 @@
         "LIH"  : [21.9652714, -159.3380997],
         "LILIA": [22.5077000, -161.5831833],
         "LNY"  : [20.7645000, -156.9688889],
+        "LOKIE": [21.1239611, -157.3450500],
         "MAGGI": [21.8405306, -156.9656111],
         "MAKAH": [20.9599972, -157.5766556],
         "MAKOA": [21.3251333, -158.1199167],
@@ -223,6 +227,7 @@
         "PUPPI": [21.9213833, -161.6796333],
         "RABBS": [21.3366667, -158.2400000],
         "REXIE": [22.9925528, -156.9129083],
+        "ROSHE": [20.9266389, -157.2538083],
         "SAKKI": [20.9317528, -157.4883417],
         "SCOON": [20.2563056, -152.2366111],
         "SEBYI": [21.0573333, -158.1175000],
@@ -248,6 +253,7 @@
         "SOK"  : [21.9003925, -159.5288731],
         "SUCTU": [20.8525111, -157.4045056],
         "SYIKL": [21.7377778, -160.5422222],
+        "SYMIN": [21.4362528, -157.4230528],
         "SYVAD": [21.9244444, -162.7579944],
         "THOMA": [23.9434500, -160.7635000],
         "TOADS": [22.7619556, -156.6971833],
@@ -423,7 +429,7 @@
                 "KATHS": ["LEANE", "NONNI", "KATHS"],
                 "LIH": ["GRAIL", "NAPUA", "LIH"],
                 "LILIA": ["LILIA"],
-                "NONNI": ["NONNI"],
+                "NONNI": ["LEANE", "NONNI"],
                 "PUPPI": ["PUPPI"],
                 "SOK": ["GRAIL", "NAPUA", "SOK"]
             },
@@ -562,7 +568,7 @@
                 "PHNL26L": ["_RW26L1DME", "#180"],
                 "PHNL26R": ["_RW26R1DME", "#180"]
             },
-            "body": ["OPIHI"],
+            "body": ["^OPIHI"],
             "exitPoints": {
                 "CARRP": ["SEBYI", "SECEL", "SEDDU", "CARRP"],
                 "CHOKO": ["SEBYI", "SECJI", "ZUKEY", "BINJO", "CHOKO"],
@@ -609,6 +615,7 @@
             "entryPoints": {
                 "APACK": [["APACK", "A250+"], ["MSONA", "A210+|S280"], ["KYLIO", "A190+"], ["ZORTA", "A170+|S270"]],
                 "BITTA": [["BITTA", "A250+"], "BOWSZ", ["HISPO", "A170+|S270"]],
+                "JOELE": [["JOELE", "A170+|S270"]],
                 "DENNS": [["DENNS", "A250+"], "DLIMA", ["JOELE", "A170+|S270"]],
                 "ZIGIE": [["ZIGIE", "A250+"], ["MSONA", "A210+|S280"], ["KYLIO", "A190+"], ["ZORTA", "A170+|S270"]]
             },
@@ -630,7 +637,7 @@
             "icao": "JULLE5",
             "name": "Julle Five",
             "entryPoints": {
-                "CHAIN": ["CHAIN", "SOBOW", "SERAH", "SAKKI"],
+                "CHAIN": ["CHAIN", "_LNY330013", "_LNY300013", "SOBOW", "SERAH", "SAKKI"],
                 "DOVRR": ["DOVRR", "DAFRE", "JORDA"],
                 "HOKLA": ["HOKLA", "FIRES", "CRISI", "JORDA"],
                 "LNY": ["LNY", "GRAMY", "SOBOW", "SERAH", "SAKKI"]
@@ -650,7 +657,7 @@
                 ["DOVRR", "DAFRE", "JORDA", "JULLE", "ALANA"],
                 ["HOKLA", "FIRES", "CRISI", "JORDA"],
                 ["LNY", "GRAMY", "SOBOW", "SERAH", "SAKKI", "JULLE"],
-                ["CHAIN", "SOBOW"]
+                ["CHAIN", "_LNY330013", "_LNY300013", "SOBOW"]
             ]
         },
         "KAENA2": {
@@ -789,7 +796,7 @@
             "icao": "SAKKI5",
             "name": "Sakki Five",
             "entryPoints": {
-                "CHAIN": ["CHAIN", "SOBOW", "SERAH"],
+                "CHAIN": ["CHAIN", "_LNY330013", "_LNY300013", "SOBOW", "SERAH"],
                 "DOVRR": ["DOVRR", "DAFRE", "JORDA", "SUCTU"],
                 "HOKLA": ["HOKLA", "FIRES", "CRISI", "JORDA", "SUCTU"],
                 "LNY": ["LNY", "GRAMY", "SOBOW", "SERAH"]
@@ -806,7 +813,7 @@
                 ["DOVRR", "DAFRE", "JORDA", "SUCTU", "SAKKI", "SECIL"],
                 ["HOKLA", "FIRES", "CRISI", "JORDA"],
                 ["LNY", "GRAMY", "SOBOW", "SERAH", "SAKKI", "JULLE"],
-                ["CHAIN", "SOBOW"]
+                ["CHAIN", "_LNY330013", "_LNY300013", "SOBOW"]
             ]
         },
         "SHLAE1": {
@@ -816,7 +823,8 @@
                 "BEACH": ["BEACH", "LNY", "HONUU"],
                 "CHAIN": ["CHAIN", "HONUU"],
                 "CRISI": ["CRISI", "MIRAA"],
-                "LAVAS": ["LAVAS", "HONUU"]
+                "LAVAS": ["LAVAS", "HONUU"],
+                "LNY": ["LNY", "HONUU"]
             },
             "body": [["DYLLI", "A40+"], ["^SHLAE", "A40|S210"], "#304"],
             "rwy": {
