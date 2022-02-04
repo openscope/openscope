@@ -244,11 +244,13 @@
             "body": ["SAT"],
             "exitPoints": {
                 "AGJ": ["GOBBY", "AGJ"],
+                "GOBBY": ["GOBBY"],
+                "HENLY": ["HENLY"],
                 "JUMBO": ["HENLY", "JUMBO"]
             },
             "draw": [
-                ["SAT", "GOBBY", "AGJ*"],
-                ["SAT", "HENLY", "JUMBO*"]
+                ["SAT", "GOBBY*", "AGJ*"],
+                ["SAT", "HENLY*", "JUMBO*"]
             ]
         },
         "ALISS5": {
@@ -264,6 +266,7 @@
             },
             "body": [["TREVA", "A50+"], "TATAR", "LEJON", "ALISS"],
             "exitPoints": {
+                "DIANT": ["DIANT"],
                 "FST": ["DIANT", "FST"],
                 "JCT": ["JCT"]
             },
@@ -360,6 +363,7 @@
                 "IAH": ["IAH", "WEEED", "WAILN", "REDNK", "RODIO"],
                 "LFK": ["LFK", "WEEED", "WAILN", "REDNK", "RODIO"],
                 "MOLLR": ["MOLLR", "WEEED", "WAILN", "REDNK", "RODIO"],
+                "WAILN": ["WAILN", "REDNK", "RODIO"],
                 "WINDU": ["WINDU", "BLEWE", "CWK"]
             },
             "body": [["MARCS", "A130"], "BRAUN"],
@@ -411,7 +415,8 @@
             "entryPoints": {
                 "COT": ["COT"],
                 "CRP": ["CRP", "THX"],
-                "LRD": ["LRD"]
+                "LRD": ["LRD"],
+                "THX": ["THX"]
             },
             "body": [["LEMIG", "A100"], "WENDL", "ELKAY"],
             "rwy": {
@@ -433,6 +438,8 @@
             "name": "Marcs One",
             "entryPoints": {
                 "ACT": ["ACT", "BLEWE", "CWK"],
+                "CWK": ["CWK"],
+                "IDU": ["IDU", "CRAYS"],
                 "LFK": ["LFK", "IDU", "CRAYS"],
                 "WINDU": ["WINDU", "BLEWE", "CWK"]
             },
