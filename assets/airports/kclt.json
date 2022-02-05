@@ -806,13 +806,13 @@
                 "LYH": ["LYH", "BEMOH", "WRLLD", ["BLUEJ", "A270+"], ["BURRZ", "A240+|A270-|S280"], ["SKLES", "A220+|S280"], ["DENTT", "A160+|S270"], ["BOOTS", "A130+|A230-"]],
                 "NUUMN": ["NUUMN", ["SDAIL", "A170+|A230-|S280"], ["WLLSH", "A160+|S270"]]
             },
-            "body": [["CHSLY", "A130+|A220-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A210-"]],
+            "body": [["CHSLY", "A130+|A150-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A210-"]],
             "rwy": {
                 "KCLT5": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"],
                 "KCLT18L": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
                 "KCLT18C": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
                 "KCLT18R": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
-                "KCLT23": [["NODEW", "A80+|A90-|S230"], ["BLNCO", "A70+"], ["JEPHS", "A60+"]],
+                "KCLT23": [["NODEW", "A80+|A90-|S230"], ["BLNCO", "A70+"], ["JEPHS", "A60"]],
                 "KCLT36L": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"],
                 "KCLT36C": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"],
                 "KCLT36R": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"]
@@ -959,7 +959,7 @@
                 "TAFTT": ["TAFTT", "MAHAF", "SCRZA", ["WILUM", "A240+|A330-|S270"], ["SUZNN", "A190+|S270"]],
                 "WILUM": [["WILUM", "A240+|A330-|S270"], ["SUZNN", "A190+|S270"]]
             },
-            "body": [["PARQR", "A120+|A200-|S250"]],
+            "body": [["PARQR", "A120+|A150-|S250"]],
             "rwy": {
                 "KCLT5": [["PAYKN", "A120+|A150-"], ["THACK", "A120|S250"], "BBQEE", "CEDOX", "^VALLL", "#183"],
                 "KCLT18L": [["NCOMA", "A110+|A120-"], ["BOATN", "A90+|A100-"], ["^CAMPR", "A90|S220"], "#092"],
