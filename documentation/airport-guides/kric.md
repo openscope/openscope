@@ -10,5 +10,5 @@ The PCT JRV sector extends from the surface to 12,000ft in most areas. For the p
 RIC has two conventional SIDs, two RNAV SIDs, and three RNAV STARs. All four SIDs are "off-the-ground" and require little ATC input. The STARs are mostly automated, but require radar vectors to final after reaching the last fix. As in the real world, turbojet aircraft arriving from north and east of the field are routed from JAMIE directly to the airport. The airspace also has a significant number of Victor airways. 
 
 ## Additional Resources
-<a href="https://zjxartcc.org/media/doc/ZJX-5.D_Jacksonville_ARTCC_DAB_ATCT_TRACON_SOP.pdf" target="_blank">vZDC - Potomac TRACON JRV Sector SOPs</a>
+<a href="https://www.vzdc.org/storage/files/PCT%20%7C%20Potomac%20Consolidated%20TRACON%20SOP_1579909027.pdf" target="_blank">vZDC - Potomac TRACON JRV Sector SOPs</a>
 <a href="https://www.vzdc.org/storage/files/KRIC%20%7C%20Richmond%20Tower%20&%20TRACON%20SOP_1547179912.pdf" target="_blank">vZDC - Richmond ATCT SOPs</a>
