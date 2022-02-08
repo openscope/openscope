@@ -803,10 +803,10 @@
             "name": "Chesley Five",
             "entryPoints": {
                 "COUPN": ["COUPN", "ARGAL", "PELTS", "FEDOX", "SHANZ", ["SDAIL", "A170+|A230-|S280"], ["WLLSH", "A160+|S270"]],
-                "LYH": ["LYH", "BEMOH", "WRLLD", ["BLUEJ", "A270+"], ["BURRZ", "A240+|A270-|S280"], ["SKLES", "A220+|S280"], ["DENTT", "A160+|S270"], ["BOOTS", "A130+|A230-"]],
+                "LYH": ["LYH", "BEMOH", "WRLLD", ["BLUEJ", "A270+"], ["BURRZ", "A240+|A270-|S280"], ["SKLES", "A220+|S280"], ["DENTT", "A160+|S270"], ["BOOTS", "A130+|A160-"]],
                 "NUUMN": ["NUUMN", ["SDAIL", "A170+|A230-|S280"], ["WLLSH", "A160+|S270"]]
             },
-            "body": [["CHSLY", "A130+|A150-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A210-"]],
+            "body": [["CHSLY", "A130+|A150-|S250"], ["KRISS", "A110+"], ["SLPOH", "A100+|A130-"]],
             "rwy": {
                 "KCLT5": [["JAMGO", "A100+|A160-|S250"], ["WHIZE", "A90+|A120-"], ["CAATT", "A90|S210"], ["^EPAYE", "A60|S210"], "#183"],
                 "KCLT18L": [["NODEW", "A80+|A90-|S230"], ["^HEELZ", "A60|S210"], "#270"],
@@ -1386,8 +1386,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "PONZE.BANKR2.KCLT18R",
-            "altitude": "31000",
-            "speed": "310",
+            "altitude": 31000,
+            "speed": 290,
             "method": "random",
             "rate": 3.9,
             "airlines": [
@@ -1412,8 +1412,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "LYH.CHSLY5.KCLT23",
-            "altitude": "33000",
-            "speed": "310",
+            "altitude": 33000,
+            "speed": 290,
             "method": "random",
             "rate": 8.3,
             "airlines": [
@@ -1438,8 +1438,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "SKYWA.FILPZ3.KCLT18R",
-            "altitude": "33000",
-            "speed": "310",
+            "altitude": 33000,
+            "speed": 290,
             "method": "random",
             "rate": 5.5,
             "airlines": [
@@ -1464,8 +1464,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "BESTT.JONZE2.KCLT18R",
-            "altitude": "33000",
-            "speed": "310",
+            "altitude": 33000,
+            "speed": 290,
             "method": "random",
             "rate": 5.8,
             "airlines": [
@@ -1490,8 +1490,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "OKNEE.MLLET2.KCLT23",
-            "altitude": "30000",
-            "speed": "310",
+            "altitude": 30000,
+            "speed": 290,
             "method": "random",
             "rate": 3.1,
             "airlines": [
@@ -1514,8 +1514,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "TAFTT.PARQR3.KCLT18R",
-            "altitude": "30000",
-            "speed": "310",
+            "altitude": 30000,
+            "speed": 290,
             "method": "random",
             "rate": 5.4,
             "airlines": [
@@ -1540,8 +1540,8 @@
             "destination": "KCLT",
             "category": "arrival",
             "route": "CHS.STOCR3.KCLT23",
-            "altitude": "30000",
-            "speed": "310",
+            "altitude": 30000,
+            "speed": 290,
             "method": "random",
             "rate": 4.2,
             "airlines": [
