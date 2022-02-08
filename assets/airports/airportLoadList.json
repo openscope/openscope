@@ -281,7 +281,13 @@
     {
         "icao": "kokc",
         "level": "medium",
-        "name": "Will Rogers World",
+        "name": "Will Rogers World Airport",
+        "premium": false
+    },
+    {
+        "icao": "koma",
+        "level": "easy",
+        "name": "Omaha Eppley Airfield",
         "premium": false
     },
     {
