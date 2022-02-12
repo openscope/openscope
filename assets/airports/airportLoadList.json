@@ -307,7 +307,7 @@
         "level": "hard",
         "name": "Chicago O'Hare International Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "kpdx",
