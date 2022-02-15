@@ -22,7 +22,7 @@
         "speed": 4
     },
     "arrivalRunway": "27R",
-    "departureRunway": "28R",
+    "departureRunway": "27L",
     "defaultMaps": ["Base Map"],
     "airspace": [
         {
@@ -315,7 +315,57 @@
         "DWEEB": ["N41d51m57.0000", "W86d49m46.0000"],
         "CENAK": ["N41d59m46.0000", "W86d58m31.0000"],
         "ODAXY": ["N44d38m00.8600", "W83d12m16.2300"],
-        "SMUUV": ["N42d27m58.7700", "W86d07m38.3700"]        
+        "SMUUV": ["N42d27m58.7700", "W86d07m38.3700"],
+        "GIBNS": ["N41d55m07.9800", "W88d57m38.0800"],
+        "NORDL": ["N41d59m11.7900", "W88d30m43.4900"],
+        "KOOSS": ["N41d59m13.0900", "W88d26m30.8600"],
+        "SIKLR": ["N41d59m14.2300", "W88d22m18.2400"],
+        "MUELL": ["N41d59m15.2200", "W88d18m05.6100"],
+        "FFRAN": ["N41d59m16.0600", "W88d13m52.9700"],
+        "MIETH": ["N41d59m16.7400", "W88d09m40.3400"],
+        "EZELL": ["N41d59m17.5700", "W88d02m30.7700"],
+        "VOGLR": ["N41d56m42.0000", "W86d55m07.0000"],
+        "NCHLS": ["N41d59m12.4500", "W87d18m05.7700"],
+        "CRICO": ["N41d59m13.6800", "W87d22m18.4000"],
+        "CERMI": ["N41d59m14.7400", "W87d26m31.0300"],
+        "BOOWW": ["N41d59m15.6600", "W87d30m43.6600"],
+        "MRRFF": ["N41d59m16.4200", "W87d34m56.2900"],
+        "JMBBO": ["N41d59m17.0200", "W87d39m08.9300"],
+        "DRSCL": ["N41d59m17.7400", "W87d47m07.9100"],
+        "ELANR": ["N41d12m06.0000", "W87d32m00.0000"],
+        "ADELL": ["N41d14m59.0000", "W88d15m00.0000"],
+        "DARCY": ["N41d12m08.0000", "W87d43m33.0000"],
+        "BLOKR": ["N41d14m59.0000", "W88d05m00.0000"],
+        "ARLYN": ["N40d19m00.0000", "W88d40m00.0000"],
+        "BEKKI": ["N40d19m00.0000", "W88d20m54.0000"],
+        "CARYN": ["N41d14m59.0000", "W87d53m33.0000"],
+        "CYBIL": ["N40d19m00.0000", "W87d51m52.0000"],
+        "DREGS": ["N40d19m00.0000", "W87d36m27.0000"],
+        "EMMLY": ["N40d27m00.0000", "W87d20m00.0000"],
+        "MONNY": ["N42d04m44.2100", "W91d16m51.8000"],
+        "NIGHT": ["N41d50m18.0000", "W91d46m25.0000"],
+        "NITWT": ["N41d44m05.0000", "W93d24m51.0000"],
+        "OREOS": ["N41d54m00.7600", "W89d12m33.4300"],
+        "OBENE": ["N41d51m00.4100", "W89d43m12.5700"],
+        "OGALE": ["N41d24m09.0000", "W93d28m53.0000"],
+        "PIGGG": ["N41d45m05.6600", "W89d09m41.1700"],
+        "PIPPN": ["N41d40m24.2700", "W89d43m41.0700"],
+        "ROTTN": ["N40d59m45.0000", "W93d31m32.0000"],
+        "KAMMA": ["N43d07m02.5500", "W88d17m06.8300"],
+        "BGOSH": ["N44d15m43.3700", "W89d26m02.9600"],
+        "TAAYZ": ["N42d43m31.9300", "W87d49m16.9000"],
+        "SQUIB": ["N42d55m10.4300", "W87d03m56.1700"],
+        "WISMO": ["N42d18m56.2600", "W86d05m43.0200"],
+        "POSTS": ["N42d18m00.0000", "W85d02m00.0000"],
+        "PADDE": ["N42d17m09.0000", "W84d28m28.0000"],
+        "LOGGR": ["N42d08m39.5700", "W86d06m41.4200"],
+        "HAAKK": ["N42d08m00.0000", "W85d02m00.0000"],
+        "DOXXY": ["N42d07m21.0000", "W84d28m25.0000"],
+        "ADIME": ["N41d57m22.8600", "W86d12m51.5100"],
+        "GERBS": ["N41d46m39.8600", "W84d25m30.2000"],
+        "ZIINE": ["N41d46m11.1700", "W86d18m26.7200"],
+        "OTENS": ["N41d39m59.6000", "W84d47m00.0000"]
+
     },
     "runways":[
         {
@@ -384,9 +434,9 @@
         }
     ],
     "sids": {
-        "ORD1": {
-            "icao": "ORD1",
-            "name": "O'Hare One",
+        "ORD7": {
+            "icao": "ORD7",
+            "name": "O'Hare Seven",
             "rwy": {
                "KORD4L": [],
                "KORD4R": [],
@@ -678,6 +728,42 @@
                 ["MCW", "SUZYQ", "VIKNG", "LARVA", "JIBOR", "BRIBE", "MYTCH", "JVL", "BULLZ", "TEDDY", "KRENA"]
             ]
         },
+        "MADII6": {
+            "icao": "MADII6",
+            "name": "Ernny Seven",
+            "entryPoints": {
+                "CHDRR": [],
+                "FAALZ": [],
+                "FGHRN": [],
+                "FOLGO": ["FOLGO", "PIRPL"],
+                "KOHLL": [],
+                "VIIKS": ["VIIKS"],
+                "ZANDI": []
+            },
+            "body": ["FGHRN", "FAALZ", ["KOHLL", "A190+|A210-"], "GURNN", ["CHDRR", "A140"], "ZANDI", "HOPSS", "HUNKA", "MADII", "SOOLU"],
+            "rwy": {
+               "KORD4L": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD4R": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD9L": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD9C": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD9R": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD10L": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD10C": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD10R": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD22L": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD22R": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD27L": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD27C": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD27R": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD28L": ["JORJO", "MONKZ", "^RREGY", "#095"],
+               "KORD28C": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD28R": ["JORJO", "MONKZ", "^TONIE", "#093"] 
+            },
+            "draw": [
+                ["FOLGO", "PIRPL", "FGHRN", "FAALZ", "KOHLL", "GURNN", "CHDRR", "ZANDI", "HOPSS", "HUNKA", "MADII", "SOOLU"],
+                ["VIIKS", "FGHRN"]
+            ]
+        },
         "OXI8": {
             "icao": "OXI8",
             "name": "Knox Eight",
@@ -711,39 +797,195 @@
                 ["FWA", "SPANN"]
             ]
         },
-        "MADII6": {
-            "icao": "MADII6",
-            "name": "Ernny Seven",
+        "SHAIN2": {
+            "icao": "SHAIN2",
+            "name": "Shain Two",
             "entryPoints": {
-                "CHDRR": [],
-                "FAALZ": [],
-                "FGHRN": [],
-                "FOLGO": ["FOLGO", "PIRPL"],
-                "KOHLL": [],
-                "VIIKS": ["VIIKS"],
-                "ZANDI": []
+                "BFORD": [["BFORD", "A220+"], ["EZZRA", "A200+"], ["TRIDE", "A150+|A160-"]],
+                "CASHN": ["CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["KELTS", "A200+"], ["FNBAR", "A170+|A200-"], ["TRIDE", "A150+|A160-"]],
+                "DRAMS": ["DRAMS", ["RYELY", "A240+"], ["BFORD", "A220+"], ["EZZRA", "A200+"], ["TRIDE", "A150+|A160-"]],
+                "FTZ": ["FTZ", "GROOV", "CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["KELTS", "A200+"], ["FNBAR", "A170+|A200-"], ["TRIDE", "A150+|A160-"]],
+                "IRK": ["IRK", "LOAMY", "KEOKK", "DRAMS", ["RYELY", "A240+"], ["BFORD", "A220+"], ["EZZRA", "A200+"], ["TRIDE", "A150+|A160-"]],
+                "LOAMY": ["LOAMY", "KEOKK", "DRAMS", ["RYELY", "A240+"], ["BFORD", "A220+"], ["EZZRA", "A200+"], ["TRIDE", "A150+|A160-"]],
+                "PNTAC": ["PNTAC", "TRICH", ["TRIDE", "A150+|A160-"]],
+                "STL": ["STL", "GROOV", "CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["KELTS", "A200+"], ["FNBAR", "A170+|A200-"], ["TRIDE", "A150+|A160-"]],
+                "TRIDE": [["TRIDE", "A150+|A160-"]],
+                "VINCA": ["VINCA", ["MAROC", "A240+|A270-"], ["KELTS", "A200+"], ["FNBAR", "A170+|A200-"], ["TRIDE", "A150+|A160-"]],
+                "WELTS": ["WELTS", "MCDEE", "CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["KELTS", "A200+"], ["FNBAR", "A170+|A200-"], ["TRIDE", "A150+|A160-"]]
             },
-            "body": ["FGHRN", "FAALZ", ["KOHLL", "A190+|A210-"], "GURNN", ["CHDRR", "A140"], "ZANDI", "HOPSS", "HUNKA", "MADII", "SOOLU"],
+            "body": [["SHAIN", "A120"], "RAGSS", "JUMPN", "^NUNWS", "#072"],
             "rwy": {
-               "KORD4L": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD4R": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD9L": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD9C": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD9R": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD10L": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD10C": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD10R": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD22L": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD22R": ["KURKK", "VULCN", "^HIMGO", "#093"],
-               "KORD27L": ["KURKK", "VULCN", "^HIMGO", "#093"],
+               "KORD4L": [],
+               "KORD4R": [],
+               "KORD9L": [],
+               "KORD9C": [],
+               "KORD9R": [],
+               "KORD10L": [],
+               "KORD10C": [],
+               "KORD10R": [],
+               "KORD22L": [],
+               "KORD22R": [],
+               "KORD27L": [],
+               "KORD27C": [],
+               "KORD27R": [],
+               "KORD28L": [],
+               "KORD28C": [],
+               "KORD28R": []
+            },
+            "draw": [
+                ["IRK", "LOAMY", "KEOKK", "DRAMS", "RYELY", "BFORD", "EZZRA", "SHAIN", "RAGSS", "JUMPN", "NUNWS"],
+                ["PNTAC", "TRICH", "TRIDE", "FNBAR", "KELTS", "MAROC", "VINCA", "CASHN", "MCDEE", "WELTS"],
+                ["STL", "GROOV", "CASHN"],
+                ["FTZ", "GROOV"]
+            ]
+        },
+        "TRTLL6": {
+            "icao": "TRTLL6",
+            "name": "Turtle Six",
+            "entryPoints": {
+                "BYLAW": [["BYLAW", "A200+|A230-"]],
+                "CASHN": ["CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["TRICH", "A140+|A150-"]],
+                "FTZ": ["FTZ", "GROOV", "CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["TRICH", "A140+|A150-"]],
+                "MAROC": [["MAROC", "A240+|A270-"], ["TRICH", "A140+|A150-"]],
+                "PNTAC": ["PNTAC", ["TRICH", "A140+|A150-"]],
+                "STL": ["STL", "GROOV", "CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["TRICH", "A140+|A150-"]],
+                "VINCA": ["VINCA", ["MAROC", "A240+|A270-"], ["TRICH", "A140+|A150-"]],
+                "WELTS": ["WELTS", "MCDEE", "CASHN", "VINCA", ["MAROC", "A240+|A270-"], ["TRICH", "A140+|A150-"]]
+            },
+            "body": [["TRTLL", "A110"], "HIHRY", "RINNO"],
+            "rwy": {
+               "KORD4L": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD4R": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD9L": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD9C": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD9R": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD10L": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD10C": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD10R": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD22L": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD22R": ["JORJO", "MONKZ", "^TONIE", "#093"],
+               "KORD27L": ["JORJO", "MONKZ", "^TONIE", "#093"],
                "KORD27C": ["JORJO", "MONKZ", "^TONIE", "#093"],
                "KORD27R": ["KURKK", "VULCN", "^HIMGO", "#093"],
                "KORD28L": ["JORJO", "MONKZ", "^RREGY", "#095"],
                "KORD28C": ["JORJO", "MONKZ", "^TONIE", "#093"],
-               "KORD28R": ["JORJO", "MONKZ", "^TONIE", "#093"] 
+               "KORD28R": ["JORJO", "MONKZ", "^TONIE", "#093"]
             },
             "draw": [
-                []
+                ["WELTS", "MCDEE", "CASHN", "VINCA", "MAROC", "TRICH", "TRTLL", "HIHRY", "RINNO", "JORJO"],
+                ["RINNO", "KURKK"],
+                ["BYLAW", "TRTLL", "TRICH", "PNTAC"],
+                ["STL", "GROOV", "CASHN"],
+                ["FTZ", "GROOV"]
+            ]
+        },
+        "VEECK5": {
+            "icao": "VEECK5",
+            "name": "Veeck Five",
+            "entryPoints": {
+                "BONNT": ["BONNT", "NYLEN", "VEECK"],
+                "FWA": ["FWA", "CARVR", "ROYKO"]
+            },
+            "body": ["VEECK", "BOONE", "HANNI", "CLUSO", "KAYTO", "PINKK"],
+            "rwy": {
+               "KORD4L": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD4R": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD9L": ["VULCN", "KURKK", "^BAMBB", "#093"],
+               "KORD9C": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD9R": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD10L": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD10C": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD10R": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD22L": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD22R": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD27L": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD27C": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD27R": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD28L": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD28C": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD28R": ["MONKZ", "JORJO", "^POSSM", "#270"]
+            },
+            "draw": [
+                ["FWA", "CARVR", "ROYKO", "VEECK", "NYLEN", "BONNT"],
+                ["VEECK", "BOONE", "HANNI", "CLUSO", "KAYTO", "PINKK"],
+                ["POSSM", "JORJO", "MONKZ", "PINKK", "VULCN", "KURKK", "BAMBB"]
+            ]
+        },
+        "WATSN4": {
+            "icao": "WATSN4",
+            "name": "Watson Four",
+            "entryPoints": {
+                "BONNT": ["BONNT", "FRIDG"],
+                "DAIFE": ["DAIFE"],
+                "FWA": ["FWA", "PRONK"],
+                "ROD": ["ROD", "FWA", "PRONK"],
+                "ZANLA": ["ZANLA", "DAIFE"]
+            },
+            "body": ["WATSN", "HAUPO", "MKITA", "PRISE", "HULLS", "STYLE", "DWEEB", "^CENAK", "#270"],
+            "rwy": {
+               "KORD4L": [],
+               "KORD4R": [],
+               "KORD9L": [],
+               "KORD9C": [],
+               "KORD9R": [],
+               "KORD10L": [],
+               "KORD10C": [],
+               "KORD10R": [],
+               "KORD22L": [],
+               "KORD22R": [],
+               "KORD27L": [],
+               "KORD27C": [],
+               "KORD27R": [],
+               "KORD28L": [],
+               "KORD28C": [],
+               "KORD28R": []
+            },
+            "draw": [
+                ["ROD", "FWA", "PRONK", "DAIFE", "WATSN", "HAUPO", "MKITA", "PRISE", "HULLS", "STYLE", "DWEEB", "CENAK"],
+                ["BONNT", "FRIDG", "WATSN"],
+                ["ZANLA", "DAIFE"]
+            ]
+        },
+        "WYNDE2": {
+            "icao": "WYNDE2",
+            "name": "Windy Two",
+            "entryPoints": {
+                "EMMMA": ["EMMMA", "LTOUR", "VIO", "DITCA", "RHIVR", "PAITN"],
+                "FNT": ["FNT", "EMMMA", "LTOUR", "VIO", "DITCA", "RHIVR", "PAITN"],
+                "OBSTR": ["OBSTR", "CSTLO", "VIO", "WLTER", "RHIVR", "PAITN"],
+                "ODAXY": ["ODAXY", "GAULT", "OBSTR", "CSTLO", "VIO", "WLTER", "RHIVR", "PAITN"],
+                "SMUUV": ["SMUUV"],
+                "SSM": ["SSM", "JODEE", "GAULT", "OBSTR", "CSTLO", "VIO", "WLTER", "RHIVR", "PAITN"],
+                "TVC": ["TVC", "PECOK", "UFDUH", "BITTR", "WLTER", "PAITN"],
+                "UFDAH": ["UFDUH", "BITTR", "WLTER", "PAITN"],
+                "VIO": ["VIO", "DITCA", "RHIVR", "PAITN"]
+            },
+            "body": ["WYNDE", "FIYER", "ERNNY", "PAPPI", "TUBEZ"],
+            "rwy": {
+               "KORD4L": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD4R": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD9L": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD9C": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD9R": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD10L": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD10C": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD10R": ["MONKZ", "JORJO", "^POSSM", "#270"],
+               "KORD22L": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD22R": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD27L": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD27C": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD27R": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD28L": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD28C": ["VULCN", "KURKK", "^BAMBB", "#273"],
+               "KORD28R": ["VULCN", "KURKK", "^BAMBB", "#273"]
+            },
+            "draw": [
+                ["FNT", "EMMMA", "LTOUR", "VIO", "DITCA", "WLTER", "RHIVR", "PAITN", "WYNDE", "FIYER", "ERNNY", "PAPPI", "TUBEZ", "MONKZ"],
+                ["TVC", "PECOK", "UFDUH", "BITTR", "WLTER"],
+                ["SSM", "JODEE", "GAULT", "OBSTR", "CSTLO", "VIO"],
+                ["ODAXY", "GAULT"],
+                ["SMUUV", "WYNDE"],
+                ["TUBEZ", "VULCN"]
             ]
         }
     },
@@ -758,7 +1000,25 @@
             "method": "random",
             "rate": 10,
             "airlines":  [
-                ["aal", 10]
+                ["aal", 60],
+                ["aca", 2],
+                ["afr/long", 1],
+                ["aic/long", 2],
+                ["amx", 2],
+                ["ana/b789", 2],
+                ["anz/long", 1],
+                ["asa", 6],
+                ["aua/long", 1],
+                ["baw/long", 1],
+                ["ces/long", 1],
+                ["cmp", 1],
+                ["cpa", 1],
+                ["dal/short", 9],
+                ["edv", 5],
+                ["ein/long", 1],
+                ["ely/long", 1],
+                ["eny", 50],
+                ["jza/aus", 3]
             ]
         },
         {
@@ -783,6 +1043,307 @@
             "speed": 320,
             "method": "random",
             "rate": 10,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kord",
+            "category": "arrival",
+            "route": "WELTS.TRTLL6.KORD28L",
+            "altitude": [32000, 40000],
+            "speed": 320,
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kord",
+            "category": "arrival",
+            "route": "BONNT.VEECK5.KORD28C",
+            "commands": {
+                "28C": "x BOONE A120"
+            },
+            "altitude": [32000, 40000],
+            "speed": 320,
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kord",
+            "category": "arrival",
+            "route": "ROD.WATSN4.KORD27C",
+            "commands": {
+                "27C": "x CENAK A90"
+            },
+            "altitude": [32000, 40000],
+            "speed": 320,
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kord",
+            "category": "arrival",
+            "route": "FNT.WYNDE2.KORD27C",
+            "commands": {
+                "27C": "x WYNDE A100"
+            },
+            "altitude": [32000, 40000],
+            "speed": 320,
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD22L.ORD7.ACITO..ADELL..ARLYN",
+            "commands": {
+                "22L": "fh 180"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD22L.ORD7.BACEN..BLOKR..BEKKI",
+            "commands": {
+                "22L": "fh 180"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD22L.ORD7.CMSKY..CARYN..CYBIL",
+            "commands": {
+                "22L": "fh 180"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD22L.ORD7.DENNT..DARCY..DREGS",
+            "commands": {
+                "22L": "fh 160"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD22L.ORD7.EARND..ELANR..EMMLY",
+            "commands": {
+                "22L": "fh 160"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD27L.ORD7.EBAKE..WISMO..POSTS..PADDE",
+            "commands": {
+                "27L": "fh 330"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD27L.ORD7.DUFEE..LOGGR..HAAKK..DOXXY",
+            "commands": {
+                "27L": "fh 330"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD27L.ORD7.MOBLE..ADIME..GERBS",
+            "commands": {
+                "27L": "fh 330"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "LEWKE..ZIINE..OTENS",
+            "commands": {
+                "27L": "fh 330"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD28R.ORD7.MYKIE..MONNY",
+            "commands": {
+                "28R": "fh 270"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD28R.ORD7.NOONY..NIGHT..NITWT",
+            "commands": {
+                "28R": "fh 270"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD28R.ORD7.OLINN..OREOS..OBENE..OGALE",
+            "commands": {
+                "28R": "fh 255"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD28R.ORD7.PEKUE..PIGGG..PIPPN..ROTTN",
+            "commands": {
+                "28R": "fh 255"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD27L.ORD7.PMPKN..KAMMA..BGOSH",
+            "commands": {
+                "27L": "fh 300"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
+            "airlines":  [
+                ["aal", 10]
+            ]
+        },
+        {
+            "origin": "kord",
+            "destination": "",
+            "category": "departure",
+            "route": "KORD27L.ORD7.RAYNR..TAAYZ..SQUIB",
+            "commands": {
+                "27L": "fh 300"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.5,
             "airlines":  [
                 ["aal", 10]
             ]
