@@ -567,9 +567,9 @@
             "name": "Carson Seven",
             "rwy": {
                 "KMEM9": [["^_RW091DME", "A009+"], "#093"],
-                "KMEM18C": [["^_RW18C1DME", "A009+"], "RIBZZ", "HENIR", "WRRTZ"],
-                "KMEM18L": [["^_RW18L1DME", "A009+"], "RIBZZ", "HENIR", "WRRTZ"],
-                "KMEM18R": [["^_RW18R1DME", "A009+"], "RIBZZ", "HENIR", "WRRTZ"],
+                "KMEM18C": [["^_RW18C1DME", "A009+"], "RIBZZ", "HENIR", "WRRTZ", "WADEE", "DALGE"],
+                "KMEM18L": [["^_RW18L1DME", "A009+"], "RIBZZ", "HENIR", "WRRTZ", "WADEE", "DALGE"],
+                "KMEM18R": [["^_RW18R1DME", "A009+"], "RIBZZ", "HENIR", "WRRTZ", "WADEE", "DALGE"],
                 "KMEM27": [["^_RW271DME", "A009+"], "#273"],
                 "KMEM36C": [["^_RW36C1DME", "A009+"], "SLONN"],
                 "KMEM36L": [["^_RW36L1DME", "A009+"], "SLONN"],
@@ -581,7 +581,7 @@
             },
             "draw": [
                 ["_RW18C1DME", "RIBZZ", "_RW18L1DME"],
-                ["_RW18R1DME", "RIBZZ", "HENIR", "WRRTZ", "LYZZI", "CRSON*", "HUMMS*"],
+                ["_RW18R1DME", "RIBZZ", "HENIR", "WRRTZ", "WADEE", "DALGE", "LYZZI", "CRSON*", "HUMMS*"],
                 ["_RW36R1DME", "SLONN", "_RW36L1DME"],
                 ["_RW36C1DME", "SLONN", "LYZZI"]
             ]
@@ -918,7 +918,7 @@
             "entryPoints": {
                 "BNA": ["BNA", "CITAN", ["KELNE", "A240+|S290"]],
                 "BWG": ["BWG", "HARET", ["AXXEL", "A240+|S290"]],
-                "KELNE": [],
+                "KELNE": [["KELNE", "A240+|S290"]],
                 "PXV": ["PXV", "WISNA", "SUDOE", ["CASOT", "A240+|S290"]],
                 "SPKER": []
             },
@@ -948,7 +948,7 @@
                 "RZC": ["RZC", "MARBI", "IGLOO", ["SAUCC", "A210-|S290"]],
                 "WHOLL": ["WHOLL", ["HOOOG", "A260-|S290"]]
             },
-            "body": [["BRBBQ", "A140-|S280"]],
+            "body": [["BRBBQ", "A150-|S280"]],
             "rwy": {
                 "KMEM9": [["^JAMLA", "A100|S230"], "#113"],
                 "KMEM18C": [["^JAMLA", "A100|S230"], "#113"],
@@ -1146,7 +1146,7 @@
                 "TALLO": ["TALLO", ["FASON", "A240+|S290"]],
                 "WASER": ["WASER", ["ERASE", "A240+|S290"]]
             },
-            "body": [["CRAMM", "A230-|S290"]],
+            "body": [["CRAMM", "A230-|S290"], ["VANZE", "A230-|S280"]],
             "rwy": {
                 "KMEM9": [["^FASOP", "A100|S230"], "#284"],
                 "KMEM18C": [["MASHH", "A140+|A160-|S280"], "HLI", ["LARUE", "A100+|A120-|S250"], ["FLOND", "A90+|A110-"], "SUUZE", ["MEBEE", "A80+|A100-|S210"], ["HADSO", "A60+|A80-"], ["^HEXIN", "A30"], "#360"],
@@ -1178,9 +1178,9 @@
                 "KMEM18L": [["LTOWN", "A100|S230"], "#245"],
                 "KMEM18R": [["LTOWN", "A100|S230"], "#245"],
                 "KMEM27": [["LTOWN", "A100|S230"], "#245"],
-                "KMEM36C": ["DAPLE", ["MRCEL", "A100+|A120-|S250"], ["DASAC", "A90+|A110-"], ["CLARK", "A80|S210"], "#180"],
-                "KMEM36L": ["DAPLE", ["MRCEL", "A100+|A120-|S250"], ["DASAC", "A90+|A110-"], ["CLARK", "A80|S210"], "#180"],
-                "KMEM36R": ["DAPLE", ["MRCEL", "A100+|A120-|S250"], ["DASAC", "A90+|A110-"], ["CLARK", "A80|S210"], "#180"]
+                "KMEM36C": [["LTOWN", "A140+|A160-"], "DAPLE", ["MRCEL", "A100+|A120-|S250"], ["DASAC", "A90+|A110-"], ["CLARK", "A80|S210"], "#180"],
+                "KMEM36L": [["LTOWN", "A140+|A160-"], "DAPLE", ["MRCEL", "A100+|A120-|S250"], ["DASAC", "A90+|A110-"], ["CLARK", "A80|S210"], "#180"],
+                "KMEM36R": [["LTOWN", "A140+|A160-"], "DAPLE", ["MRCEL", "A100+|A120-|S250"], ["DASAC", "A90+|A110-"], ["CLARK", "A80|S210"], "#180"]
             },
             "draw": [
                ["PXV", "WISNA", "CASOT", "SPKER", "KELNE", "BNA"],

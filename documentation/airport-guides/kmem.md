@@ -11,7 +11,7 @@ On the passenger side, MEM averages over 80 passenger flights per day. The 164th
 The M03 airspace sector extends from the surface to 16,000ft with a roughly 40 nautical mile radius from the MEM VOR. Due to the high levels of FedEx traffic, MEM has a Class B airspace.
 
 ## Procedures
-MEM has a significant number of RNAV and conventional procedures. All RNAV SIDs are RNAV off-the-ground, and RNAV SIDs are highly automated, requiring only vectors to the final approach course. A few of these SIDs (AUTMN6, GENEH7, GMBUD7, and NIKEI5) are only useable from 0200L-0600L, due to their consistent conflict with arriving aircraft. For this reason, no aircraft will be automatically assigned these departures (although the user retains the ability to reroute them as necessary). The sim is currently set up for a SOUTH flow. The following runway assignments are recommended for departures:
+MEM has a significant number of RNAV and conventional procedures. All RNAV SIDs are RNAV off-the-ground, and RNAV STARs are highly automated, requiring only vectors to the final approach course. A few of these SIDs (AUTMN6, GENEH7, GMBUD7, and NIKEI5) are only useable from 0200L-0600L, due to their consistent conflict with arriving aircraft. For this reason, no aircraft will be automatically assigned these departures (although the user retains the ability to reroute them as necessary). The sim is currently set up for a SOUTH flow. The following runway assignments are recommended for departures:
 
 | Runway | Departures |
 |--------|------------|
