@@ -1245,72 +1245,6 @@
             "origin": "",
             "destination": "kord",
             "category": "arrival",
-            "route": "BONNT.VEECK5.KORD28C",
-            "commands": {
-                "28C": "x BOONE A120"
-            },
-            "altitude": [32000, 40000],
-            "speed": 320,
-            "method": "random",
-            "rate": 10,
-            "airlines":  [
-                ["aal", 60],
-                ["aca", 2],
-                ["afr/long", 1],
-                ["aic/long", 2],
-                ["amx", 2],
-                ["ana/b789", 2],
-                ["anz/long", 1],
-                ["asa", 6],
-                ["ash", 15],
-                ["aua/long", 1],
-                ["awi", 25],
-                ["baw/long", 1],
-                ["ces/long", 1],
-                ["chh/long", 2],
-                ["cmp", 1],
-                ["cpa", 1],
-                ["dal/short", 9],
-                ["dlh/long", 2],
-                ["edv", 5],
-                ["ein/long", 1],
-                ["ely/long", 1],
-                ["eny", 50],
-                ["etd", 1],
-                ["eth", 1],
-                ["fft", 23],
-                ["fin/long", 1],
-                ["fle", 1],
-                ["gjs", 20],
-                ["ibe/long", 1],
-                ["ice", 1],
-                ["jal/long", 2],
-                ["jbu", 3],
-                ["jza/aus", 3],
-                ["kal/long", 1],
-                ["klm/long", 1],
-                ["lot/long", 2],
-                ["nks", 22],
-                ["qtr/long", 1],
-                ["rpa", 20],
-                ["rja/long", 1],
-                ["sas/long", 2],
-                ["scx", 1],
-                ["skw", 25],
-                ["swa", 12],
-                ["swr/long", 1],
-                ["tap/long", 1],
-                ["thy/long", 1],
-                ["uae", 1],
-                ["ual", 80],
-                ["viv", 6],
-                ["voi", 9]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "kord",
-            "category": "arrival",
             "route": "ROD.WATSN4.KORD27C",
             "commands": {
                 "27C": "x CENAK A90"
@@ -1318,7 +1252,7 @@
             "altitude": [32000, 40000],
             "speed": 320,
             "method": "random",
-            "rate": 10,
+            "rate": 14,
             "airlines":  [
                 ["aal", 60],
                 ["aca", 2],
@@ -1434,9 +1368,7 @@
                 ["tap/long", 1],
                 ["thy/long", 1],
                 ["uae", 1],
-                ["ual", 80],
-                ["viv", 6],
-                ["voi", 9]
+                ["ual", 80]
             ]
         },
         {
@@ -1785,7 +1717,7 @@
             "category": "departure",
             "route": "KORD27L.ORD7.EBAKE..WISMO..POSTS..PADDE",
             "commands": {
-                "27L": "fh 330"
+                "27L": "fh 320"
             },
             "altitude": "",
             "speed": "",
@@ -1853,7 +1785,7 @@
             "category": "departure",
             "route": "KORD27L.ORD7.DUFEE..LOGGR..HAAKK..DOXXY",
             "commands": {
-                "27L": "fh 330"
+                "27L": "fh 320"
             },
             "altitude": "",
             "speed": "",
@@ -1921,7 +1853,7 @@
             "category": "departure",
             "route": "KORD27L.ORD7.MOBLE..ADIME..GERBS",
             "commands": {
-                "27L": "fh 330"
+                "27L": "fh 320"
             },
             "altitude": "",
             "speed": "",
@@ -1989,7 +1921,7 @@
             "category": "departure",
             "route": "LEWKE..ZIINE..OTENS",
             "commands": {
-                "27L": "fh 330"
+                "27L": "fh 320"
             },
             "altitude": "",
             "speed": "",
