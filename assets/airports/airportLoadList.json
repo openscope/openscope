@@ -326,6 +326,12 @@
         "disabled": true
     },
     {
+        "icao": "ksat",
+        "level": "medium",
+        "name": "San Antonio International Airport",
+        "premium": false
+    },
+    {
         "icao": "ksea",
         "level": "hard",
         "name": "Seattle-Tacoma International Airport",
