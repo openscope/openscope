@@ -266,6 +266,12 @@
         "premium": false
     },
     {
+        "icao": "kmem",
+        "level": "hard",
+        "name": "Memphis International Airport",
+        "premium": false
+    },
+    {
         "icao": "kmia",
         "level": "hard",
         "name": "Miami International Airport",
