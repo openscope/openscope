@@ -273,6 +273,12 @@
         "disabled": true
     },
     {
+        "icao": "kokc",
+        "level": "medium",
+        "name": "Will Rogers World",
+        "premium": false
+    },
+    {
         "icao": "kord",
         "level": "hard",
         "name": "Chicago O'Hare International Airport",
