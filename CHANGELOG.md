@@ -1,4 +1,4 @@
-# 6.27.0 (January 1, 2021)
+# 6.27.0 (March 9, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
 - <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
@@ -6,6 +6,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1776" target="_blank">#1776</a> - Add Tokyo Narita (RJAA)
 - <a href="https://github.com/openscope/openscope/issues/1664" target="_blank">#1664</a> - Add San Antonio (KSAT)
 - <a href="https://github.com/openscope/openscope/issues/1812" target="_blank">#1812</a> - Add Orlando (KMCO)
+- <a href="https://github.com/openscope/openscope/issues/1815" target="_blank">#1815</a> - Add Will Rogers World Airport (KOKC)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
