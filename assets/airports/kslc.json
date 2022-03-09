@@ -802,7 +802,23 @@
             "method": "random",
             "rate": 3.1,
             "airlines": [
-                ["dal", 25]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -815,7 +831,23 @@
             "method": "random",
             "rate": 3.1,
             "airlines": [
-                ["dal", 25]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -831,7 +863,23 @@
             "method": "random",
             "rate": 5.1,
             "airlines": [
-                ["dal", 25]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -847,7 +895,23 @@
             "method": "random",
             "rate": 3.1,
             "airlines": [
-                ["dal", 25]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -863,7 +927,23 @@
             "method": "random",
             "rate": 3.1,
             "airlines": [
-                ["dal", 25]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -879,7 +959,23 @@
             "method": "random",
             "rate": 3.1,
             "airlines": [
-                ["dal", 25]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -895,24 +991,23 @@
             "method": "random",
             "rate": 6.6,
             "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7],
-                ["edv", 5],
-                ["fdx", 3],
-                ["fft", 4],
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
                 ["jbu", 5],
-                ["jia", 12],
-                ["n/fastGA", 3],
-                ["nks", 6],
-                ["pdt", 9],
-                ["rpa", 15],
-                ["swa", 18],
-                ["ual", 5],
-                ["ups", 10]
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -928,12 +1023,23 @@
             "method": "random",
             "rate": 6.6,
             "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -949,12 +1055,23 @@
             "method": "random",
             "rate": 6.6,
             "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -970,12 +1087,23 @@
             "method": "random",
             "rate": 6.6,
             "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         },
         {
@@ -991,12 +1119,23 @@
             "method": "random",
             "rate": 6.6,
             "airlines": [
-                ["aal", 15],
-                ["aay", 1],
-                ["ash", 2],
-                ["asq", 2],
-                ["awi", 2],
-                ["dal", 7]
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5],
+                ["klm/long", 1],
+                ["nks", 3],
+                ["skw", 40],
+                ["swa", 20],
+                ["ual", 4],
+                ["ups", 6]
             ]
         }
     ],
