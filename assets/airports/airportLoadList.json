@@ -336,6 +336,12 @@
         "premium": false
     },
     {
+        "icao": "kric",
+        "level": "medium",
+        "name": "Richmond International Airport",
+        "premium": false
+    },
+    {
         "icao": "ksdf",
         "level": "easy",
         "name": "Louisville International Airport",
