@@ -9,6 +9,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1815" target="_blank">#1815</a> - Add Will Rogers World Airport (KOKC)
 - <a href="https://github.com/openscope/openscope/issues/1876" target="_blank">#1876</a> - Add Daytona Beach (KDAB)
 - <a href="https://github.com/openscope/openscope/issues/1909" target="_blank">#1909</a> - Add Omaha Eppley (KOMA)
+- <a href="https://github.com/openscope/openscope/issues/1913" target="_blank">#1913</a> - Add Richmond (KRIC)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
