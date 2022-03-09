@@ -179,6 +179,12 @@
         "premium": false
     },
     {
+        "icao": "kdab",
+        "level": "easy",
+        "name": "Daytona Beach International Airport",
+        "premium": false
+    },
+    {
         "icao": "kdca",
         "level": "easy",
         "name": "Ronald Reagan Washington National Airport",
