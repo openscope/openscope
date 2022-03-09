@@ -7,6 +7,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1664" target="_blank">#1664</a> - Add San Antonio (KSAT)
 - <a href="https://github.com/openscope/openscope/issues/1812" target="_blank">#1812</a> - Add Orlando (KMCO)
 - <a href="https://github.com/openscope/openscope/issues/1815" target="_blank">#1815</a> - Add Will Rogers World Airport (KOKC)
+- <a href="https://github.com/openscope/openscope/issues/1815" target="_blank">#1815</a> - Add Daytona Beach (KDAB)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
