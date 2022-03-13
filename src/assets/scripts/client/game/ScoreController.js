@@ -100,6 +100,10 @@ export default class ScoreController {
      * @param aircraftModel {AircraftModel}
      */
     _onExitAirspace(aircraftModel) {
+        if(aircraftModel.isDeparture() && aircraftModel.isOnGround()) {
+            return;
+        }
+
         if (aircraftModel.isArrival()) {
             this._onAirspaceExitForArrival(aircraftModel);
 

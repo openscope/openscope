@@ -1246,7 +1246,7 @@ export default class AircraftModel {
         let alt_log;
         let alt_say;
 
-        if (this.isArrival()) {
+        if (this.isArrival() || AirportController.airport_get().icao === 'klib') {
             const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
@@ -1274,7 +1274,7 @@ export default class AircraftModel {
             );
         }
 
-        if (this.isDeparture()) {
+        if (this.isDeparture() && AirportController.airport_get().icao != 'klib') {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say(
                 [
