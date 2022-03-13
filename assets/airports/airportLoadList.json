@@ -284,6 +284,12 @@
         "disabled": true
     },
     {
+        "icao": "klib",
+        "level": "hard",
+        "name": "N90 Liberty Departure",
+        "premium": false
+    },
+    {
         "icao": "klga",
         "level": "easy",
         "name": "LaGuardia Airport",
