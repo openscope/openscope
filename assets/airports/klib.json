@@ -19,8 +19,8 @@
     },
     "has_terrain": false,
     "wind": {
-        "angle": 290,
-        "speed": 17
+        "angle": 250,
+        "speed": 15
     },
     "arrivalRunway": "31R",
     "departureRunway": "31L",
@@ -665,6 +665,7 @@
         "_EWRNORTHGATE": [40.69981111, -74.41169722],
         "ACK"  : [41.28188611, -70.02671111],
         "ARD"  : ["N40.253333", "W74.907667"],
+        "AWLIN": [41.55624444, -71.99915833],
         "BAGGA": [40.6218, -74.19218333],
         "BAYYS": ["N41.289167", "W72.9715"],
         "BDR"  : ["N41.160693", "W73.124497"],
@@ -685,6 +686,7 @@
         "CFB"  : [42.15749167, -76.13647222],
         "CFJHV": [42.80182778, -82.48040278],
         "CFKHS": [42.57115833, -79.61789444],
+        "CHNZO": [40.89843889, -73.91047778],
         "COATE": ["N41.136333", "W74.695167", "COTE"],
         "COL"  : ["N40.311633", "W74.159736"],
         "COLNS": [38.84041111, -79.19683611],
@@ -741,9 +743,11 @@
         "ISLES": [39.4269, -71.3135],
         "JAAJA": [42.66666667, -81.26666667],
         "JUDDS": [41.63467222, -73.10824444],
+        "JULEB": [40.87411667, -74.01122222],
         "KAYNE": [40.42428056, -75.64094444],
         "KEEPM": [40.83743611, -73.54516111],
         "KELIE": [42.66036667, -77.74473611],
+        "KEMPR": [36.74945556, -76.48875556],
         "KURNL": [41.20130556, -74.45843611],
         "LAAYK": [41.47573333, -75.48258611],
         "LANNA": ["N40.559667", "W75.027667"],
@@ -751,6 +755,7 @@
         "LEESA": [37.48716667, -76.31104167],
         "LEJOY": [40.00339444, -79.41489167],
         "LGA"  : [40.78371667, -73.8686],
+        "LINNG": [43.30274722, -79.35479722],
         "LRP"  : [40.119975, -76.29129444],
         "LYH"  : [37.25457778, -79.23638056],
         "MAZIE": [40.32209722, -75.1098],
@@ -772,6 +777,7 @@
         "OWENZ": [39.82335556, -72.83052778],
         "PANZE": [39.67599444, -74.16818056],
         "PARKE": [40.68318333, -75.07647778],
+        "PBERG": [44.70173611, -73.52282778],
         "PENSY": [39.90721389, -76.18253889],
         "PERKS": [38.66134444, -80.17482222],
         "POPPN": [39.6493, -72.1933],
@@ -782,14 +788,17 @@
         "PSYKO": [40.14361111, -79.15361111],
         "PTW"  : [40.22223056, -75.56025],
         "RAAKK": [42.39972222, -78.91083333],
+        "RABBY": [40.8656, -73.94681944],
         "RAGER": [41.56831111, -74.91282222],
         "RBV"  : ["N40.202333", "W74.495", "Robbinsville"],
         "REBBL": [41.882675, -76.93279444],
         "REXXY": [42.01106389, -77.40971389],
         "RIETA": [40.58971667, -74.40905833],
         "RIFLE": [40.69005, -72.58191389],
+        "RINTE": [40.28780833, -84.04291944],
         "RNGRR": ["N40.230333", "W74.205833"],
         "RUBYY": [43.01771944, -84.58783889],
+        "RUIZE": [41.47934167, -72.20942778],
         "SAAME": [40.03106111, -76.48399722],
         "SACRI": [39.60203889, -76.17352778],
         "SAX"  : ["N41.0675", "W74.5385"],
@@ -813,6 +822,7 @@
         "TRANZ": [40.858875, -73.37522222],
         "TWIGS": [42.80947222, -82.55286111],
         "ULW"  : [42.09415556, -77.02480556],
+        "UPPRR": [41.24406944, -80.13883056],
         "VIEEW": [42.43946389, -77.02591667],
         "VILLS": [39.301075, -75.11052778],
         "VINSE": [39.97116944, -77.95588889],
@@ -1065,7 +1075,7 @@
                 "NEION": ["CHNZO", "#320", "NEION"],
                 "NEWEL": ["RABBY", "#280", "NEWEL"],
                 "PARKE": ["RABBY", "#280", "PARKE"],
-                "WHITE": ["RABBY", "JULEB", "#220","WHITE"],
+                "WHITE": ["RABBY", "JULEB", "#200","WHITE"],
                 "ZIMMZ": ["RABBY", "#280", "ZIMMZ"]
             },
             "draw": [
@@ -1098,7 +1108,7 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.WAVEY..EMJAY.J174.SWL",
             "commands": {
-                "31L": "c 120"
+                "31L": "c 120 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1131,6 +1141,9 @@
             "destination": "",
             "category": "departure",
             "route": "KJFK31L.SKORR4.RBV.Q430.COPES.Q75.GVE",
+            "commands": {
+                "31L": "speed 310"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1165,7 +1178,7 @@
             "category": "departure",
             "route": "KJFK31L.SKORR4.HAPIE..YAHOO..VITOL",
             "commands": {
-                "31L": "c 110"
+                "31L": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1200,7 +1213,7 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.GAYEL.Q818.CFB",
             "commands": {
-                "31L": "c 170"
+                "31L": "c 170 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1230,12 +1243,12 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.HAAYS.V273.HNK",
             "commands": {
-                "31L": "c 120"
+                "31L": "c 120 speed 310"
             },
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.37,
+            "rate": 1.0,
             "airlines": [
                 ["aar/long", 6],
                 ["ana/long", 7],
@@ -1260,12 +1273,12 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.GREKI..JUDDS..CAM",
             "commands": {
-                "31L": "c 110"
+                "31L": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.875,
+            "rate": 2.275,
             "airlines": [
                 ["aar/long", 4],
                 ["afl/long", 4],
@@ -1293,12 +1306,12 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.MERIT..HFD..PUT",
             "commands": {
-                "31L": "c 110"
+                "31L": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 8.77,
+            "rate": 5.77,
             "airlines": [
                 ["aal/long", 9],
                 ["aal/short", 6],
@@ -1346,7 +1359,7 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.BAYYS.V229.HFD",
             "commands": {
-                "31L": "c 110"
+                "31L": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1399,7 +1412,7 @@
             "category": "departure",
             "route": "KJFK31L.SKORR4.BETTE..ACK..TUSKY",
             "commands": {
-                "31L": "c 110"
+                "31L": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1433,6 +1446,9 @@
             "destination": "",
             "category": "departure",
             "route": "KJFK31L.DEEZZ5.CANDR.J60.PSB",
+            "commands": {
+                "31L": "speed 310"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1452,7 +1468,7 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.COATE.Q436.RAAKK",
             "commands": {
-                "31L": "c 170"
+                "31L": "c 170 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1479,7 +1495,7 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.NEION.J223.CORDS.J132.ULW",
             "commands": {
-                "31L": "c 170"
+                "31L": "c 170 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1506,7 +1522,7 @@
             "category": "departure",
             "route": "KJFK31L.JFK5.SHIPP.Y492.SQUAD",
             "commands": {
-                "31L": "c 120"
+                "31L": "c 120 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1531,7 +1547,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.BIGGY.Q75.GVE..LYH",
             "commands": {
-                "22R": "c 110"
+                "22R": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1566,6 +1582,9 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR22R.EWR4.COATE..LAAYK..ULW..WOZEE",
+            "commands": {
+                "22R": "speed 310"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1579,6 +1598,9 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR22R.EWR4.COATE.Q436.RAAKK.Q438.RUBYY",
+            "commands": {
+                "22R": "speed 310"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1599,7 +1621,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.DIXIE.Y481.OHRYN",
             "commands": {
-                "22R": "c 60"
+                "22R": "c 60 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1619,7 +1641,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.WHITE.J209.SBY.J79.LEESA",
             "commands": {
-                "22R": "c 60"
+                "22R": "c 60 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1639,6 +1661,9 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR22R.EWR4.GAYEL.Q818.WOZEE..NOSIK",
+            "commands": {
+                "22R": "speed 310"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1656,7 +1681,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.LANNA.J48.FLASK",
             "commands": {
-                "22R": "c 110"
+                "22R": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1677,6 +1702,9 @@
             "destination": "",
             "category": "departure",
             "route": "KEWR22R.EWR4.NEION.J223.CORDS..ULW..BENEE",
+            "commands": {
+                "22R": "speed 310"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1692,7 +1720,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.NEWEL.J60.PSB",
             "commands": {
-                "22R": "c 110"
+                "22R": "c 100 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1709,7 +1737,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.PARKE.J6.MRB.J6.EYTEE.J6.HVQ.Q68.YOCKY",
             "commands": {
-                "22R": "c 110"
+                "22R": "c 110 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1729,7 +1757,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.ZIMMZ.Q42.HIDON",
             "commands": {
-                "22R": "c 110"
+                "22R": "c 100 speed 310"
             },
             "altitude": "",
             "speed": "",
@@ -1741,6 +1769,243 @@
                 ["fdx", 4],
                 ["ups", 5],
                 ["rpa", 10]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.BIGGY.Q75.GVE..LYH",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.125,
+            "airlines": [
+                ["ual/short", 10],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["nks", 5],
+                ["fft", 3],
+                ["jbu", 8],
+                ["ash", 2],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.COATE..LAAYK..ULW..WOZEE",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.625,
+            "airlines": [
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.WHITE.J209.SBY..KEMPR",
+            "commands": {
+                "31": "c 120 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.25,
+            "airlines": [
+                ["ual/short", 10],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["nks", 5],
+                ["fft", 3],
+                ["jbu", 8],
+                ["ash", 2],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.GAYEL.Q818.WOZEE..LINNG",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.375,
+            "airlines": [
+                ["ual/short", 4],
+                ["jza", 3],
+                ["aca/short",2],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.GREKI..JUDDS..CAM..PBERG",
+            "commands": {
+                "31": "c 100 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.875,
+            "airlines": [
+                ["jza", 3],
+                ["aca/short", 1],
+                ["rpa", 2],
+                ["gjs", 2]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.LANNA.J48.MOL.J48.FLASK",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2.5,
+            "airlines": [
+                ["ual/short", 10],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["nks", 5],
+                ["fft", 3],
+                ["jbu", 8],
+                ["ash", 2],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.MERIT..RUIZE..AWLIN",
+            "commands": {
+                "31": "c 100 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.325,
+            "airlines": [
+                ["ual/short", 4],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.NEION.J223.CORDS..ULW..BENEE",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.875,
+            "airlines": [
+                ["ual/short", 4],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.NEWEL.J60.PSB..UPPRR",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.625,
+            "airlines": [
+                ["ual/short", 4],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.PARKE.J6.MRB.J6.EYTEE.J6.HVQ.Q68.YOCKY",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2.75,
+            "airlines": [
+                ["ual/short", 4],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
+            ]
+        },
+        {
+            "origin": "klib",
+            "destination": "",
+            "category": "departure",
+            "route": "KLGA31.LGA7.ZIMMZ.Q42.HIDON..RINTE",
+            "commands": {
+                "31": "c 150 speed 310"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.25,
+            "airlines": [
+                ["ual/short", 4],
+                ["rpa", 5],
+                ["gjs", 8],
+                ["aal/short", 12],
+                ["jbu", 8],
+                ["dal/short", 12]
             ]
         }
     ],
