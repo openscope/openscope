@@ -23,6 +23,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1345" target="_blank">#1345</a> - Add reset buttons to traffic config dialog
 - <a href="https://github.com/openscope/openscope/issues/1903" target="_blank">#1903</a> - Fix formatting mistake in KEWR
 - <a href="https://github.com/openscope/openscope/issues/1924" target="_blank">#1924</a> - Update KJFK to AIRAC 2202
+- <a href="https://github.com/openscope/openscope/issues/1933" target="_blank">#1933</a> - Add more build information to HTML
 
 # 6.26.0 (December 1, 2021)
 ### New Features

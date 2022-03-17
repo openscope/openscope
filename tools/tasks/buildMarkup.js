@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const git = require('git-rev-sync');
 
 const paths = require('../options');
 const pkg = require('../../package.json');
@@ -22,7 +23,9 @@ function buildMarkup() {
             .helpers(handlebarsLayouts)
             .data({
                 version: pkg.version,
-                buildDate: new Date().toUTCString()
+                commitDate: git.date().toUTCString(),
+                commitHash: git.long(),
+                commitMessage: git.message().split('\n')[0]
             })
         )
         .pipe(rename((path) => { path.extname = '.html'; }))
