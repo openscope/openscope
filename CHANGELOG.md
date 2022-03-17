@@ -1,4 +1,4 @@
-# 6.27.0 (March 9, 2021)
+# 6.27.0 (March 17, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
 - <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
@@ -22,6 +22,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Add Embraer 175
 - <a href="https://github.com/openscope/openscope/issues/1345" target="_blank">#1345</a> - Add reset buttons to traffic config dialog
 - <a href="https://github.com/openscope/openscope/issues/1903" target="_blank">#1903</a> - Fix formatting mistake in KEWR
+- <a href="https://github.com/openscope/openscope/issues/1924" target="_blank">#1924</a> - Update KJFK to AIRAC 2202
 
 # 6.26.0 (December 1, 2021)
 ### New Features
