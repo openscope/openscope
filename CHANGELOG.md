@@ -12,6 +12,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1913" target="_blank">#1913</a> - Add Richmond (KRIC)
 - <a href="https://github.com/openscope/openscope/issues/1915" target="_blank">#1915</a> - Add Memphis (KMEM)
 - <a href="https://github.com/openscope/openscope/issues/1584" target="_blank">#1584</a> - Add Daniel K Inouye (PHNL)
+- <a href="https://github.com/openscope/openscope/issues/1666" target="_blank">#1666</a> - Add Charlotte Douglas (KCLT)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
