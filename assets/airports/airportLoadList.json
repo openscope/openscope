@@ -475,6 +475,12 @@
         "disabled": true
     },
     {
+        "icao": "phnl",
+        "level": "medium",
+        "name": "Daniel K Inouye International Airport",
+        "premium": false
+    },
+    {
         "icao": "rjbb",
         "level": "hard",
         "name": "Osaka Kansai International Airport",
