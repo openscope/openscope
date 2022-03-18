@@ -1,15 +1,15 @@
-const gulp = require('gulp');
+/* eslint-disable import/no-extraneous-dependencies */
 const git = require('git-rev-sync');
+const gulp = require('gulp');
+const hb = require('gulp-hb');
+const rename = require('gulp-rename');
+const handlebarsHelpers = require('handlebars-helpers');
+const handlebarsLayouts = require('handlebars-layouts');
 
 const paths = require('../options');
 const pkg = require('../../package.json');
 
 function buildMarkup() {
-    const handlebarsHelpers = require('handlebars-helpers');
-    const handlebarsLayouts = require('handlebars-layouts');
-    const hb = require('gulp-hb');
-    const rename = require('gulp-rename');
-
     const src = [
         `${paths.DIR.SRC}/**/*.hbs`,
         `!${paths.DIR.SRC}/assets/**`,
