@@ -21,6 +21,10 @@ const UI_TRAFFIC_MODAL_TEMPLATE = `
     <div class="traffic-dialog dialog notSelectable">
         <p class="dialog-title">Traffic rate</p>
         <div class="dialog-body nice-scrollbar"></div>
+        <div class="dialog-footer form-element">
+            <button id="reset-button" class="js-trafficDefaultButton button">Default</button>
+            <button id="restart-button" class="js-trafficRestartButton button">Restart</button>
+        </div>
     </div>`;
 
 /**
@@ -98,6 +102,8 @@ export default class TrafficRateController {
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
+        this.$dialog.find(SELECTORS.DOM_SELECTORS.TRAFFIC_DEFAULT_BUTTON).click(this._onFormResetHandler);
+        this.$dialog.find(SELECTORS.DOM_SELECTORS.TRAFFIC_RESTART_BUTTON).click(this._onTrafficResetHandler);
 
         return this;
     }
@@ -113,8 +119,10 @@ export default class TrafficRateController {
      */
     _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
-        this._onChangeWindDirection = this.onChangeWindDirection.bind(this);
-        this._onChangeWindSpeed = this.onChangeWindSpeed.bind(this);
+        this._onChangeWindDirectionHandler = this.onChangeWindDirection.bind(this);
+        this._onChangeWindSpeedHandler = this.onChangeWindSpeed.bind(this);
+        this._onFormResetHandler = this.onFormReset.bind(this);
+        this._onTrafficResetHandler = this.onTrafficReset.bind(this);
 
         return this;
     }
@@ -177,6 +185,31 @@ export default class TrafficRateController {
     }
 
     /**
+     * Resets the traffic dialog and spawn rates to default values
+     *
+     * @for TrafficRateController
+     * @method onFormReset
+     */
+    onFormReset() {
+        const airport = AirportController.airport_get();
+        this._wind = { speed: airport.defaultWind.speed, angle: Math.round(radiansToDegrees(airport.defaultWind.angle)) };
+
+        this._eventBus.trigger(EVENT.WIND_CHANGE, this._wind);
+        SpawnPatternCollection.resetRates();
+        this._buildDialogBody();
+    }
+
+    /**
+     * Resets the generated traffic using the current traffic values
+     *
+     * @for TrafficRateController
+     * @method onTrafficReset
+     */
+    onTrafficReset() {
+        this._eventBus.trigger(EVENT.TRAFFIC_RESET);
+    }
+
+    /**
      * Builds the dialog body
      *
      * @for TrafficRateController
@@ -227,7 +260,7 @@ export default class TrafficRateController {
      * Build form element
      *
      * @for TrafficRateController
-     * @method _buildFormElement
+     * @method _buildSlider
      * @param key {string}
      * @param data {string|object} passed to the change handler
      * @param onChangeMethod {function}
@@ -267,7 +300,7 @@ export default class TrafficRateController {
             </div>`;
         const $element = $(template);
 
-        $element.on('change', this._onChangeWindDirection);
+        $element.on('change', this._onChangeWindDirectionHandler);
 
         return $element;
     }
@@ -292,7 +325,7 @@ export default class TrafficRateController {
             </div>`;
         const $element = $(template);
 
-        $element.on('change', this._onChangeWindSpeed);
+        $element.on('change', this._onChangeWindSpeedHandler);
 
         return $element;
     }

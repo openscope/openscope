@@ -71,11 +71,23 @@ class SpawnScheduler {
             // set the #cycleStartTime for this `spawnPatternModel` with current game time
             spawnPatternModel.cycleStart(TimeKeeper.accumulatedDeltaTime);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
+            spawnPatternModel.createPreSpawnAircraft(this._aircraftController);
+        });
+    }
 
-            // TODO: abstract this to a class method on the `SpawnPatternModel`
-            if (spawnPatternModel.isAirborneAtSpawn() && spawnPatternModel.preSpawnAircraftList.length > 0) {
-                this._aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
-            }
+    /**
+     * Loop through each airborne `SpawnPatternModel` and reset the spawned and preSpawned traffic.
+     *
+     * Used when resetting the traffic in the traffic settings panel.
+     *
+     * @for SpawnScheduler
+     * @method resetAirborneTraffic
+     */
+    resetAirborneTraffic() {
+        SpawnPatternCollection.spawnPatternModels.filter((s) => s.isAirborneAtSpawn()).forEach((spawnPatternModel) => {
+            spawnPatternModel.preSpawnAircraftList = [];
+            spawnPatternModel.createPreSpawnAircraft(this._aircraftController);
+            this.resetTimer(spawnPatternModel);
         });
     }
 

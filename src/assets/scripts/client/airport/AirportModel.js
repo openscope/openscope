@@ -207,12 +207,24 @@ export default class AirportModel {
         };
 
         /**
-         * default wind settings for an airport
+         * current wind settings for an airport
          *
          * @property wind
          * @type {object}
          */
         this.wind = {
+            speed: 10,
+            angle: 0
+        };
+
+        /**
+         * default wind settings for an airport
+         * to preserve initial configuration
+         *
+         * @property wind
+         * @type {object}
+         */
+        this.defaultWind = {
             speed: 10,
             angle: 0
         };
@@ -362,6 +374,8 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
+        this.defaultWind.speed = data.wind.speed;
+        this.defaultWind.angle = degreesToRadians(data.wind.angle);
 
         this._initRangeRings(data.rangeRings);
         this.loadTerrain();
@@ -716,6 +730,17 @@ export default class AirportModel {
      */
     removeAircraftFromAllRunwayQueues(aircraftId) {
         return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
+    }
+
+    /**
+     * Reset the queues for ALL runways at once
+     *
+     * @for AirportModel
+     * @method resetAllRunwayQueues
+     * @returns undefined
+     */
+    resetAllRunwayQueues() {
+        this._runwayCollection.runways.forEach((runwayModel) => runwayModel.resetQueue());
     }
 
     /**
