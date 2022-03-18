@@ -185,6 +185,12 @@
         "premium": false
     },
     {
+        "icao": "kclt",
+        "level": "hard",
+        "name": "Charlotte-Douglas International Airport",
+        "premium": false
+    },
+    {
         "icao": "kdca",
         "level": "easy",
         "name": "Ronald Reagan Washington National Airport",
