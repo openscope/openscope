@@ -1,0 +1,37 @@
+{
+    "name": "Diamond DA-42 Twin Star",
+    "icao": "DA42",
+    "engines": {
+        "number": 2,
+        "type": "P"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": 1,
+        "recat": "F"
+    },
+    "ceiling": 18000,
+    "rate": {
+        "climb":      1550,
+        "descent":    1550,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 0.514,
+        "landing": 0.395
+    },
+    "speed":{
+        "min":     70,
+        "landing": 85,
+        "cruise":  176,
+        "cruiseM": null,
+        "max":     197,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

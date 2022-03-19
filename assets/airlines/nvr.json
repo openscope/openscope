@@ -1,0 +1,15 @@
+{
+    "icao": "nvr",
+    "name": "Novair",
+    "callsign": {
+        "name": "Navigator",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A21N", 2]
+        ]
+    }
+}

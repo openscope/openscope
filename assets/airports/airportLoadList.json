@@ -189,11 +189,32 @@
         "disabled": true
     },
     {
+        "icao": "kbna",
+        "level": "hard",
+        "name": "Nashville International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
         "icao": "kcvg",
         "level": "beginner",
         "name": "Cincinnati-Northern Kentucky International Airport",
         "premium": false,
         "disabled": true
+    },
+    {
+        "icao": "kdab",
+        "level": "easy",
+        "name": "Daytona Beach International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kclt",
+        "level": "hard",
+        "name": "Charlotte-Douglas International Airport",
+        "premium": false,
+        "disabled":true
     },
     {
         "icao": "kdca",
@@ -239,6 +260,12 @@
         "icao": "bewr",
         "level": "medium",
         "name": "Newark Liberty International Airport - Scenario - NOA-Final SW",
+        "premium": false
+    },
+    {
+        "icao": "kewr",
+        "level": "hard",
+        "name": "Newark Liberty International Airport",
         "premium": false
     },
     {
@@ -309,6 +336,20 @@
         "disabled": true
     },
     {
+        "icao": "kmco",
+        "level": "hard",
+        "name": "Orlando International Airport",
+        "premium": false,
+        "disabled":true
+    },
+    {
+        "icao": "kmem",
+        "level": "hard",
+        "name": "Memphis International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
         "icao": "kmia",
         "level": "hard",
         "name": "Miami International Airport",
@@ -319,6 +360,20 @@
         "icao": "kmsp",
         "level": "hard",
         "name": "Minneapolis/St. Paul International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "kokc",
+        "level": "medium",
+        "name": "Will Rogers World Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "koma",
+        "level": "medium",
+        "name": "Omaha Eppley Airfield",
         "premium": false,
         "disabled": true
     },
@@ -371,6 +426,13 @@
         "disabled": true
     },
     {
+        "icao": "kric",
+        "level": "medium",
+        "name": "Richmond International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
         "icao": "ksdf",
         "level": "easy",
         "name": "Louisville International Airport",
@@ -381,6 +443,13 @@
         "icao": "ksan",
         "level": "easy",
         "name": "San Diego International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
+        "icao": "ksat",
+        "level": "medium",
+        "name": "San Antonio International Airport",
         "premium": false,
         "disabled": true
     },
@@ -504,6 +573,13 @@
         "disabled": true
     },
     {
+        "icao": "phnl",
+        "level": "medium",
+        "name": "Daniel K Inouye International Airport",
+        "premium": false,
+        "disabled": true
+    },
+    {
         "icao": "rjbb",
         "level": "hard",
         "name": "Osaka Kansai International Airport",
@@ -516,6 +592,13 @@
         "name": "Tokyo Narita International Airport",
         "premium": false,
         "disabled": true
+    },
+	{
+        "icao": "rjoa",
+        "level": "beginner",
+        "name": "Hiroshima Airport",
+        "premium": false,
+		"disabled": true
     },
     {
         "icao": "rjss",
