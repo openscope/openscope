@@ -1,9 +1,38 @@
-# 6.27.0 (January 1, 2021)
+# 6.28.0 (June 1, 2021)
 ### New Features
 
 ### Bugfixes
 
 ### Enhancements & Refactors
+
+
+# 6.27.0 (March 18, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
+- <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1870" target="_blank">#1870</a> - Add Nashville Int'l (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1776" target="_blank">#1776</a> - Add Tokyo Narita (RJAA)
+- <a href="https://github.com/openscope/openscope/issues/1664" target="_blank">#1664</a> - Add San Antonio (KSAT)
+- <a href="https://github.com/openscope/openscope/issues/1812" target="_blank">#1812</a> - Add Orlando (KMCO)
+- <a href="https://github.com/openscope/openscope/issues/1815" target="_blank">#1815</a> - Add Will Rogers World Airport (KOKC)
+- <a href="https://github.com/openscope/openscope/issues/1876" target="_blank">#1876</a> - Add Daytona Beach (KDAB)
+- <a href="https://github.com/openscope/openscope/issues/1909" target="_blank">#1909</a> - Add Omaha Eppley (KOMA)
+- <a href="https://github.com/openscope/openscope/issues/1913" target="_blank">#1913</a> - Add Richmond (KRIC)
+- <a href="https://github.com/openscope/openscope/issues/1915" target="_blank">#1915</a> - Add Memphis (KMEM)
+- <a href="https://github.com/openscope/openscope/issues/1584" target="_blank">#1584</a> - Add Daniel K Inouye (PHNL)
+- <a href="https://github.com/openscope/openscope/issues/1666" target="_blank">#1666</a> - Add Charlotte Douglas (KCLT)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1782" target="_blank">#1782</a> - Update UAE airline
+- <a href="https://github.com/openscope/openscope/issues/1772" target="_blank">#1772</a> - Add/Update some Scandinavian airlines
+- <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Update ASA/SWA airlines
+- <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Add Embraer 175
+- <a href="https://github.com/openscope/openscope/issues/1345" target="_blank">#1345</a> - Add reset buttons to traffic config dialog
+- <a href="https://github.com/openscope/openscope/issues/1903" target="_blank">#1903</a> - Fix formatting mistake in KEWR
+- <a href="https://github.com/openscope/openscope/issues/1924" target="_blank">#1924</a> - Update KJFK to AIRAC 2202
 
 
 # 6.26.0 (December 1, 2021)

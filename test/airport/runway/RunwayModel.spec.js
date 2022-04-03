@@ -131,3 +131,14 @@ ava('.removeAircraftFromQueue() removes an aircraft#id from the queue', (t) => {
     t.true(model.queue.length === 3);
     t.true(model.queue.indexOf(aircraftIdMock) === -1);
 });
+
+ava('.resetQueue() removes all aircraft from the queue and clears #lastDepartedAircraftModel', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    model.queue = ['aircraft1', 'aircraft2', 'aircraft3'];
+    model.lastDepartedAircraftModel = { callsign: 'aircraft2' };
+
+    model.resetQueue();
+
+    t.true(model.queue.length === 0);
+    t.true(model.lastDepartedAircraftModel === null);
+});

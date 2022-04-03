@@ -55,7 +55,7 @@ class SpawnPatternCollection extends BaseCollection {
     }
 
     /**
-     * Loop through each item in the collection andd call `.destroy()` on that model.
+     * Loop through each item in the collection and call `.destroy()` on that model.
      *
      * Used when resetting the collection, like onAirportChange.
      *
@@ -70,6 +70,20 @@ class SpawnPatternCollection extends BaseCollection {
         });
 
         this._items = [];
+    }
+
+    /**
+     * Loop through each item in the collection and reset the spaen rate.
+     *
+     * Used when resetting the rate in the traffic settings panel.
+     *
+     * @for SpawnPatternCollection
+     * @method resetRates
+     */
+    resetRates() {
+        this._items.forEach((spawnPatternModel) => {
+            spawnPatternModel.resetRate();
+        });
     }
 
     /**
@@ -159,7 +173,7 @@ class SpawnPatternCollection extends BaseCollection {
             }
 
             // randomly choose a spawn pattern for this runway to prespawn
-            const spawnPatterns = spawnPatternsByDepartureRunway[runway];
+            const spawnPatterns = spawnPatternsByDepartureRunway[runway].filter((p) => p.rate > 0);
             const rateMap = spawnPatterns.map((pattern) => pattern.rate);
             const rateTotal = spawnPatterns.reduce((sum, pattern) => sum + pattern.rate, 0);
             const randomPosition = _random(rateTotal, true);
