@@ -1,0 +1,17 @@
+{
+    "icao": "hke",
+    "name": "Hong Kong Express",
+    "callsign": {
+        "name": "Hong Kong Shuttle",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A20N", 10],
+            ["A320", 6],
+            ["A321", 11]
+        ]
+    }
+}

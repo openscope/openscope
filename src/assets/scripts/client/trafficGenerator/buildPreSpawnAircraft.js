@@ -10,6 +10,8 @@ import { TIME } from '../constants/globalConstants';
 import { nm } from '../utilities/unitConverters';
 import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
 import { distance2d } from '../math/distance';
+import { ENVIRONMENT } from '../constants/environmentConstants';
+import { avg } from '../math/core';
 
 /**
  * Return an array whose indices directly mirror those of `waypointModelList`, except it
@@ -250,8 +252,16 @@ function _calculateSpawnPositionsAndAltitudes(
  */
 const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const offsetClosestToAirspace = totalDistance - 3;
+    // dont spawn aircraft closer than 6 MIT
+    const clampedEntrailDistance = Math.max(6, entrailDistance);
     let smallestIntervalNm = 15;
-    const largestIntervalNm = entrailDistance + (entrailDistance - smallestIntervalNm);
+    // do not allow prespawned aircraft to have a spacing less than `minimumInTrailNm`
+    const largestIntervalNm = Math.max(clampedEntrailDistance, clampedEntrailDistance +
+        (clampedEntrailDistance - smallestIntervalNm));
+
+    if (clampedEntrailDistance < 8) {
+        console.error(`Too many aircraft requested, calculated MIT is ${entrailDistance}, limiting MIT to ${clampedEntrailDistance}`);
+    }
 
     // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
     if (smallestIntervalNm > largestIntervalNm) {
@@ -334,17 +344,27 @@ const _calculateTotalDistanceAlongRoute = (waypointModelList, airport) => {
  * `AircraftModel` along a route.
  *
  * @function _preSpawn
- * @param spawnPatternJson {object}
+ * @param spawnPatternJson {object|SpawnPatternModel}
  * @param airport {AirportModel}
  * @return {array<object>}
  */
 const _preSpawn = (spawnPatternJson, airport) => {
-    // distance between each arriving aircraft, in nm
+    const spawnRate = spawnPatternJson.rate;
+
+    if (spawnRate <= 0) {
+        return [];
+    }
+
     const airspaceCeiling = airport.maxAssignableAltitude;
     const spawnSpeed = spawnPatternJson.speed;
     const spawnAltitude = spawnPatternJson.altitude;
-    const entrailDistance = spawnSpeed / spawnPatternJson.rate;
-    const routeModel = new RouteModel(spawnPatternJson.route);
+    const spawnAvgAltitude = Array.isArray(spawnAltitude) ? avg(spawnAltitude) : spawnAltitude;
+    // convert IAS to TAS for better estimate
+    const trueAirspeedIncreaseFactor = spawnAvgAltitude * ENVIRONMENT.DENSITY_ALT_INCREASE_FACTOR_PER_FT;
+    const spawnEstTrueAirspeed = spawnSpeed * (1 + trueAirspeedIncreaseFactor);
+    // distance between each arriving aircraft, in nm.
+    const entrailDistance = spawnEstTrueAirspeed / spawnRate;
+    const routeModel = spawnPatternJson._routeModel ? spawnPatternJson._routeModel : new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
     const totalDistance = _calculateTotalDistanceAlongRoute(waypointModelList, airport);
     // calculate number of offsets
@@ -374,7 +394,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
  * for their first arrival aircraft.
  *
  * @function buildPreSpawnAircraft
- * @param spawnPatternJson {object}
+ * @param spawnPatternJson {object|SpawnPatternModel}
  * @param currentAirport {AirportModel}
  * @return {array<object>}
  */
