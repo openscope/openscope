@@ -134,7 +134,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property RING_VIOLATION
      */
-    RING_VIOLATION: COLOR.RED,
+    RING_VIOLATION: COLOR.RED_BRIGHT,
 
     /**
      * Color of halo
@@ -142,7 +142,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HALO
      */
-    HALO: COLOR.GREEN_LIGHT,
+    HALO: COLOR.BLUE_MEDIUM,
 
     /**
      * Whether or not the small line behind aircraft established on an
@@ -159,5 +159,5 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property TRAILING_SEPARATION_INDICATOR
      */
-    TRAILING_SEPARATION_INDICATOR: COLOR.RED
+    TRAILING_SEPARATION_INDICATOR: COLOR.RED_BRIGHT
 };
