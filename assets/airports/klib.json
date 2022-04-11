@@ -1565,7 +1565,7 @@
             "category": "departure",
             "route": "KEWR22R.EWR4.BIGGY.V3.MXE",
             "commands": {
-                "22R": "c 80"
+                "22R": "c 80 dct BIGGY"
             },
             "altitude": "",
             "speed": "",
