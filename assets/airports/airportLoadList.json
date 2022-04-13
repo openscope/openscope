@@ -197,6 +197,13 @@
         "premium": false
     },
     {
+        "icao": "kden",
+        "level": "hard",
+        "name": "Denver International Airport",
+        "premium": false,
+        "disabled": false
+    },
+    {
         "icao": "kdfw",
         "level": "hard",
         "name": "Dallas-Fort Worth International Airport",
