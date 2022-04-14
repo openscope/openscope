@@ -125,6 +125,17 @@
         }
     ],
     "fixes": {
+        "_ROYYL246": [39.876554, -104.523922],
+        "_GISTT298RW16R": [39.812474, -104.697106],
+        "_GISTT298RW16L": [39.808702, -104.687901],
+        "_GISTT307RW17R": [39.810665, -104.660694],
+        "_GISTT307RW17L": [39.799847, -104.642009],
+        "_NUGGS239RW34L": [39.909313, -104.696189],
+        "_NUGGS239RW34R": [39.913752, -104.686757],
+        "_NUGGS205": [39.869621, -104.660116],
+        "_NUGGS197": [39.874731, -104.641313],
+        "_CAAZZ158": [39.954764, -104.640204],
+        "_CAAZZ162": [39.978253, -104.658662],
         "_GOROC035": [39.814189, -104.660775],
         "_GOROC039": [39.824399, -104.641812],
         "_BRKEM064": [39.854476, -104.687255],
@@ -135,6 +146,10 @@
         "_RW34R1DME": [39.905071, -104.686798],
         "_RW35L1DME": [39.869618, -104.660001],
         "_RW35R1DME": [39.872679, -104.641199],
+        "_RW16R1DME": [39.842609, -104.696789],
+        "_RW16L1DME": [39.856766, -104.687248],
+        "_RW17R1DME": [39.820310, -104.660594],
+        "_RW17L1DME": [39.823990, -104.641817],
         "NYTRO": ["N41d34m34.1600", "W103d09m14.9900"],
         "MILKK": ["N41d19m42.9700", "W103d09m48.1800"],
         "SDOUT": ["N41d02m11.7600", "W103d10m27.0900"],
@@ -245,7 +260,143 @@
         "BAYLR": ["N39d33m11.9900", "W105d37m06.0400"],
         "BOBBA": ["N39d23m41.9400", "W106d11m10.0600"],
         "TEHRU": ["N39d14m33.3800", "W106d43m15.2100"],
-        "HBU"  : [38.4521164, -107.0397142]
+        "HBU"  : [38.4521164, -107.0397142],
+        "ROYYL": ["N39d55m03.4700", "W104d24m10.3700"],
+        "TURBN": ["N40d03m21.4500", "W104d22m44.1400"],
+        "CHICN": ["N40d11m31.8700", "W104d30m31.8000"],
+        "VELAA": ["N40d18m34.8200", "W104d25m34.6200"],
+        "YOKES": ["N40d34m36.9600", "W104d14m14.1400"],
+        "LNGWD": ["N41d13m33.1100", "W103d18m00.3900"],
+        "CHUWY": ["N41d30m42.7700", "W102d52m39.4700"],
+        "CAAZZ": ["N40d02m13.6400", "W104d41m01.0500"],
+        "NKATA": ["N40d02m18.1900", "W104d41m34.2400"],
+        "MUGBE": ["N39d55m55.6000", "W104d54m16.4300"],
+        "WAZEE": ["N40d00m54.7700", "W104d57m49.5500"],
+        "LODOE": ["N40d06m41.0800", "W104d55m31.2200"],
+        "RINKR": ["N40d11m57.4700", "W104d49m34.6900"],
+        "ELCEE": ["N40d17m07.0300", "W104d41m35.3900"],
+        "KUTCH": ["N41d48m23.7300", "W101d01m44.0600"],
+        "WYYTE": ["N41d55m38.1100", "W099d08m17.9800"],
+        "MAASI": ["N41d59m36.0900", "W097d34m21.9000"],
+        "FOAMS": ["N39d50m34.0400", "W104d54m20.2000"],
+        "TAVRN": ["N39d46m11.8300", "W105d16m04.7200"],
+        "VONNN": ["N39d44m12.0700", "W105d25m51.3600"],
+        "TEEBO": ["N39d42m36.4400", "W105d33m36.8300"],
+        "CONNR": ["N39d41m19.7900", "W105d39m51.8400"],
+        "WERNR": ["N39d32m52.6500", "W106d40m16.6300"],
+        "IPALE": ["N39d51m05.4800", "W105d16m23.9100"],
+        "MOLSN": ["N39d51m20.6400", "W105d27m51.6000"],
+        "BULLT": ["N39d51m27.8200", "W105d34m35.2500"],
+        "COORZ": ["N39d51m38.1000", "W105d43m05.6000"],
+        "VOAXA": ["N39d47m18.4200", "W106d31m57.6700"],
+        "KAYOO": ["N40d05m00.0400", "W104d43m02.1900"],
+        "SHICK": ["N40d19m04.6600", "W104d50m14.6000"],
+        "YAMMI": ["N40d45m53.7900", "W105d04m04.8300"],
+        "DDRTH": ["N41d27m33.0700", "W106d14m42.0900"],
+        "HERDR": ["N40d18m57.5700", "W104d49m51.7200"],
+        "TROTO": ["N40d26m40.9800", "W104d51m35.4400"],
+        "FAARM": ["N40d17m57.1400", "W104d36m45.5900"],
+        "GISTT": ["N39d45m57.5000", "W104d35m01.1000"],
+        "NUGGS": ["N39d56m55.5700", "W104d36m38.3300"],
+        "HIDEF": ["N39d57m17.1600", "W104d24m05.9000"],
+        "KIDNG": ["N39d48m37.6700", "W104d23m39.5800"],
+        "SHOBO": ["N39d58m19.9700", "W104d09m11.5300"],
+        "KAYGG": ["N39d54m36.8000", "W104d08m44.7700"],
+        "LUPTN": ["N39d59m50.4300", "W103d55m21.7700"],
+        "MRENE": ["N40d00m26.8300", "W103d51m32.3700"],
+        "EEONS": ["N40d01m17.6200", "W103d46m11.0400"],
+        "WYNDM": ["N40d22m59.6000", "W101d25m26.2000"],
+        "TIGHT": ["N39d52m28.2400", "W104d24m12.7000"],
+        "BRSTO": ["N39d54m53.0400", "W104d12m55.5800"],
+        "GASSS": ["N39d52m17.9000", "W103d54m35.2500"],
+        "SNIPR": ["N39d52m34.1800", "W103d50m42.4200"],
+        "EMMYS": ["N39d53m01.7100", "W103d44m05.4100"],
+        "ZIRKL": ["N40d07m56.9400", "W101d22m17.2900"],
+        "HAAHN": ["N39d52m26.4600", "W104d17m02.9200"],
+        "TWEDT": ["N39d50m31.1800", "W104d08m48.3900"],
+        "MLHOS": ["N39d43m36.5400", "W104d23m47.2400"],
+        "SMTHR": ["N39d42m02.1400", "W104d16m49.2600"],
+        "SMPSN": ["N39d40m38.4300", "W104d06m37.9800"],
+        "PIDLE": ["N39d43m34.3600", "W104d09m07.5500"],
+        "APUUU": ["N39d39m19.6900", "W103d57m08.6800"],
+        "EPKEE": ["N39d35m34.2100", "W103d47m58.3000"],
+        "POIZN": ["N39d21m00.0000", "W102d57m00.0000"],
+        "GAETR": ["N39d05m00.0000", "W100d54m00.0000"],
+        "COTNN": ["N39d08m18.0200", "W102d24m45.3300"],
+        "DUUZE": ["N38d51m00.0000", "W101d42m00.0000"],
+        "BGONE": ["N39d46m06.2100", "W104d22m32.9400"],
+        "KMBEL": ["N39d48m32.9300", "W104d19m54.4400"],
+        "BHIGH": ["N39d47m17.1500", "W104d08m45.3400"],
+        "OLDDD": ["N39d46m00.6200", "W104d08m49.6400"],
+        "MMESA": ["N39d45m53.2800", "W103d55m43.5000"],
+        "FALUJ": ["N39d45m24.5200", "W103d51m53.0800"],
+        "EXTAN": ["N39d44m35.9600", "W103d45m26.0500"],
+        "CABET": ["N39d35m38.9600", "W102d00m38.7000"],
+        "SHAYK": ["N39d32m43.9800", "W101d24m34.3000"],
+        "HAWKR": ["N40d09m36.2900", "W104d40m24.6700"],
+        "CCLYD": ["N40d17m58.1200", "W104d36m30.4900"],
+        "TAGKO": ["N40d18m42.8700", "W104d43m57.7900"],
+        "KKIMM": ["N40d19m28.0700", "W104d29m19.0700"],
+        "BRYCC": ["N40d39m43.8900", "W104d26m22.2800"],
+        "HHOTH": ["N41d05m41.5900", "W104d09m19.3600"],
+        "JOBBA": ["N41d37m39.8000", "W103d33m57.7200"],
+        "SAABR": ["N41d47m40.0100", "W103d57m21.5000"],
+        "JAPEE": ["N40d17m20.3400", "W104d40m56.1000"],
+        "JDIZL": ["N40d14m50.2300", "W104d40m57.8500"],
+        "JEEPR": ["N40d12m26.1300", "W104d40m59.5300"],
+        "BJETN": ["N40d14m31.0700", "W104d42m30.2300"],
+        "JOBOB": ["N40d09m41.9400", "W104d41m01.4500"],
+        "KUURT": ["N40d05m49.8600", "W104d41m04.1500"],
+        "KIKME": ["N40d01m58.0900", "W104d41m06.8400"],
+        "LEETS": ["N39d58m49.0500", "W104d41m09.0300"],
+        "GAPPY": ["N40d17m54.9400", "W104d38m09.4800"],
+        "GIRTH": ["N40d14m54.8200", "W104d38m11.7100"],
+        "GOLFN": ["N40d11m49.2900", "W104d38m14.0100"],
+        "WAHUU": ["N40d14m59.4600", "W104d35m48.6700"],
+        "GWENS": ["N40d09m40.7700", "W104d38m15.5900"],
+        "OVVAL": ["N40d15m08.9100", "W104d41m35.1100"],
+        "GRIFS": ["N40d05m58.0400", "W104d38m18.3400"],
+        "HALTR": ["N40d03m21.3300", "W104d38m20.2700"],
+        "HHOLT": ["N40d00m09.1900", "W104d38m22.6300"],
+        "IRINE": ["N39d56m59.8900", "W104d38m24.9500"],
+        "BOSSS": ["N39d21m55.6100", "W104d35m25.7700"],
+        "LDORA": ["N39d21m36.6400", "W104d47m18.0400"],
+        "FLUFF": ["N39d22m35.4400", "W104d43m28.0300"],
+        "PAAAS": ["N39d22m54.6300", "W104d39m29.4300"],
+        "AJAKS": ["N39d25m36.7800", "W104d42m05.2800"],
+        "TELLR": ["N39d26m06.0700", "W104d45m44.1200"],
+        "ALPNE": ["N39d27m17.4400", "W104d43m23.7300"],
+        "COGGG": ["N39d29m05.7500", "W104d42m02.9000"],
+        "KALHR": ["N39d32m00.4900", "W104d42m00.9000"],
+        "MERKL": ["N39d35m15.0500", "W104d41m58.6700"],
+        "RNOLD": ["N39d39m19.9200", "W104d41m55.8600"],
+        "WINTR": ["N39d46m00.8400", "W104d41m51.2500"],
+        "BHAPY": ["N39d26m56.0800", "W104d43m03.2800"],
+        "BREKK": ["N39d25m36.9300", "W104d41m31.9500"],
+        "BFREE": ["N39d29m22.1100", "W104d41m29.3700"],
+        "BOOBU": ["N39d32m00.3800", "W104d41m27.5700"],
+        "BENGL": ["N39d35m14.9400", "W104d41m25.3400"],
+        "BOENG": ["N39d39m58.7600", "W104d41m22.0800"],
+        "CORDE": ["N39d46m51.4600", "W104d41m17.3300"],
+        "KARVE": ["N39d23m15.6800", "W104d41m46.5500"],
+        "EPICC": ["N39d23m18.1200", "W104d38m21.7300"],
+        "CPPER": ["N39d25m36.5900", "W104d39m55.2200"],
+        "VAIIL": ["N39d27m26.7600", "W104d41m27.1100"],
+        "CHAPP": ["N39d29m22.1100", "W104d39m52.5400"],
+        "CRUUP": ["N39d32m05.2800", "W104d39m50.6000"],
+        "CHOLA": ["N39d35m14.2600", "W104d39m48.3600"],
+        "CELBI": ["N39d38m29.5500", "W104d39m46.0400"],
+        "DYMON": ["N39d44m57.4700", "W104d39m41.3900"],
+        "DASHY": ["N39d22m46.3200", "W104d40m43.5800"],
+        "DRATS": ["N39d25m35.5200", "W104d38m47.9000"],
+        "DOVVE": ["N39d29m33.5200", "W104d37m49.5800"],
+        "DITSE": ["N39d29m22.1100", "W104d38m45.1600"],
+        "DORRY": ["N39d31m59.2100", "W104d38m43.2600"],
+        "DEANE": ["N39d35m13.7700", "W104d38m40.9000"],
+        "DRUMM": ["N39d38m03.6300", "W104d38m38.8500"],
+        "FRONZ": ["N39d44m59.1800", "W104d38m33.7800"],
+        "SARAH": ["N39d50m32.4100", "W104d59m14.5900"],
+        "TAILR": ["N39d50m29.7400", "W104d50m05.9300"]
     },
     "restricted": [
     
@@ -284,7 +435,7 @@
             "ils": [true, true]
         },
         {
-            "name": ["17L", "34R"],										
+            "name": ["17L", "35R"],										
             "end": [									
                 ["N39d51.897145", "W104d38.478265", "5328ft"],
                 ["N39d49.921178", "W104d38.502590", "5370ft"]
@@ -292,7 +443,7 @@
             "ils": [true, true]
         },
         {
-            "name": ["17R", "34L"],												
+            "name": ["17R", "35L"],												
             "end": [										
                 ["N39d51.674702", "W104d39.609268", "5377ft"],
                 ["N39d49.698770", "W104d39.633068", "5434ft"]
@@ -301,7 +452,7 @@
         }
     ],
     "airways": {
-        
+        "Q92": ["CHUWY", "KUTCH", "WYYTE", "MAASI"]
     },
     "sids": {
         "BAYLR6": {
@@ -331,6 +482,238 @@
                 ["TEHRU", "BOBBA", "HBU"],
                 ["_RW251DME", "BRKEM"]
             ]
+        },
+        "CHUWY1": {
+            "icao": "CHUWY1",
+            "name": "Chewee One",
+            "rwy": {                
+                "KDEN8": [["^_RW81DME", "A59+"], ["ROYYL", "A100-"], "TURBN", ["CHICN", "A140-"], ["VELAA", "A160+"]],
+                "KDEN16L": [["^_RW16L1DME", "A59+"], "#173"],
+                "KDEN16R": [["^_RW16R1DME", "A59+"], "#173"],
+                "KDEN17L": [["^_RW17L1DME", "A59+"], "#173"],
+                "KDEN17R": [["^_RW17R1DME", "A59+"], "#173"],
+                "KDEN25": [["^_RW251DME", "A59+"], ["MUGBE", "A100-"], "WAZEE", ["LODOE", "A120+"], ["RINKR", "A140+"], ["ELCEE", "A160+"]],
+                "KDEN34L": [["^_RW34L1DME", "A59+"], ["NKATA", "A100-"]],
+                "KDEN34R": [["^_RW34R1DME", "A59+"], ["CAAZZ", "A100-"]],
+                "KDEN35L": ["_CAAZZ162", ["CAAZZ", "A100-"]],
+                "KDEN35R": ["_CAAZZ158", ["CAAZZ", "A100-"]]
+            },
+            "body": [["YOKES", "A170+"], "LNGWD", "CHUWY"],
+            "exitPoints": {
+                "CHUWY": []
+            },
+            "draw": [
+                ["_RW251DME", "MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY"],
+                ["_RW81DME", "ROYYL", "TURBN", "CHICN", "VELAA", "YOKES"],
+                ["_CAAZZ162", "CAAZZ", "YOKES"],
+                ["_CAAZZ158", "CAAZZ", "_RW34R1DME"],
+                ["_RW34L1DME", "NKATA"]
+            ]
+        },
+        "CONNR7": {
+            "icao": "CONNR7",
+            "name": "Connor Seven",
+            "rwy": {                
+                "KDEN8": [["^_RW81DME", "A59+"], "#083"],
+                "KDEN16L": [["^_RW16L1DME", "A59+"]],
+                "KDEN16R": [["^_RW16R1DME", "A59+"]],
+                "KDEN17L": [["^_RW17L1DME", "A59+"]],
+                "KDEN17R": [["^_RW17R1DME", "A59+"]],
+                "KDEN25": [["^_RW251DME", "A59+"]],
+                "KDEN34L": [["^_RW34L1DME", "A59+"]],
+                "KDEN34R": [["^_RW34R1DME", "A59+"]],
+                "KDEN35L": [["^_RW35L1DME", "A59+"]],
+                "KDEN35R": [["^_RW35R1DME", "A59+"]]
+            },
+            "body": [["FOAMS", "A100-"], ["TAVRN", "A120+"], ["VONNN", "A140+"], ["TEEBO", "A160+"], ["CONNR", "A170+"], "WERNR"],
+            "exitPoints": {
+                "WERNR": []
+            },
+            "draw": [
+                ["_RW251DME", "FOAMS", "TAVRN", "VONNN", "TEEBO", "CONNR", "WERNR"]
+            ]
+        },
+        "COORZ6": {
+            "icao": "COORZ6",
+            "name": "Coors Six",
+            "rwy": {                
+                "KDEN8": [["^_RW81DME", "A59+"], "#083"],
+                "KDEN16L": [["^_RW16L1DME", "A59+"]],
+                "KDEN16R": [["^_RW16R1DME", "A59+"]],
+                "KDEN17L": [["^_RW17L1DME", "A59+"]],
+                "KDEN17R": [["^_RW17R1DME", "A59+"]],
+                "KDEN25": [["^_RW251DME", "A59+"]],
+                "KDEN34L": [["^_RW34L1DME", "A59+"]],
+                "KDEN34R": [["^_RW34R1DME", "A59+"]],
+                "KDEN35L": [["^_RW35L1DME", "A59+"]],
+                "KDEN35R": [["^_RW35R1DME", "A59+"]]
+            },
+            "body": [["FOAMS", "A100-"], ["IPALE", "A120+"], ["MOLSN", "A140+"], ["BULLT", "A160+"], ["COORZ", "A170+"], "VOAXA"],
+            "exitPoints": {
+                "VOAXA": []
+            },
+            "draw": [
+                ["_RW251DME", "FOAMS", "IPALE", "MOLSN", "BULLT", "COORZ", "VOAXA"]
+            ]
+        },
+        "DDRTH1": {
+            "icao": "DDRTH1",
+            "name": "Darth One",
+            "rwy": {                
+                "KDEN8": [["^_RW81DME", "A59+"], ["ROYYL", "A100-"], "TURBN", ["CHICN", "A140+"], ["FAARM", "A160+"]],
+                "KDEN16L": [["^_RW16L1DME", "A59+"], "#173"],
+                "KDEN16R": [["^_RW16R1DME", "A59+"], "#173"],
+                "KDEN17L": [["^_RW17L1DME", "A59+"], "#173"],
+                "KDEN17R": [["^_RW17R1DME", "A59+"], "#173"],
+                "KDEN25": [["^_RW251DME", "A59+"], ["MUGBE", "A100-"], "WAZEE", ["LODOE", "A120+"], ["RINKR", "A140+"], ["HERDR", "A160+"], "TROTO"],
+                "KDEN34L": [["^_RW34L1DME", "A59+"], ["NKATA", "A100-"], ["KAYOO", "A110-"], ["SHICK", "A130+"]],
+                "KDEN34R": [["^_RW34R1DME", "A59+"], ["CAAZZ", "A100-"], ["KAYOO", "A110-"], ["SHICK", "A130+"]],
+                "KDEN35L": ["_CAAZZ162", ["CAAZZ", "A100-"], ["KAYOO", "A110-"], ["SHICK", "A130+"]],
+                "KDEN35R": ["_CAAZZ158", ["CAAZZ", "A100-"], ["KAYOO", "A110-"], ["SHICK", "A130+"]]
+            },
+            "body": [["YAMMI", "A170+"], "DDRTH"],
+            "exitPoints": {
+                "DDRTH": []
+            },
+            "draw": [
+                ["_RW251DME", "MUGBE", "WAZEE", "LODOE", "RINKR", "HERDR", "TROTO", "YAMMI"],
+                ["_RW81DME", "ROYYL", "TURBN", "CHICN", "FAARM", "YAMMI"],
+                ["CAAZZ", "KAYOO"],
+                ["NKATA", "KAYOO", "SHICK", "YAMMI"]
+            ]
+        },
+        "EEONS8": {
+            "icao": "EEONS8",
+            "name": "Eons Eight",
+            "rwy": {                
+                "KDEN8": ["_ROYYL246", ["ROYYL", "A100-"], ["SHOBO", "A120-"]],
+                "KDEN16L": ["_GISTT298RW16L", ["GISTT", "A70+"], ["KIDNG", "A100-"], "KAYGG"],
+                "KDEN16R": ["_GISTT298RW16R", ["GISTT", "A70+"], ["KIDNG", "A100-"], "KAYGG"],
+                "KDEN17L": ["_GISTT307RW17L", ["GISTT", "A70+"], ["KIDNG", "A100-"], "KAYGG"],
+                "KDEN17R": ["_GISTT307RW17R", ["GISTT", "A70+"], ["KIDNG", "A100-"], "KAYGG"],
+                "KDEN25": [["^_RW251DME", "A59+"], "#263"],
+                "KDEN34L": ["_NUGGS239RW34L", "NUGGS", ["HIDEF", "A100-"], ["SHOBO", "A120-"]],
+                "KDEN34R": ["_NUGGS239RW34R", "NUGGS", ["HIDEF", "A100-"], ["SHOBO", "A120-"]],
+                "KDEN35L": ["_NUGGS205", "NUGGS", ["HIDEF", "A100-"], ["SHOBO", "A120-"]],
+                "KDEN35R": ["_NUGGS197", "NUGGS", ["HIDEF", "A100-"], ["SHOBO", "A120-"]]
+            },
+            "body": [["LUPTN", "A140+"], "MRENE", "EEONS", "WYNDM"],
+            "exitPoints": {
+                "WYNDM": []
+            },
+            "draw": [
+                ["_ROYYL246", "ROYYL", "SHOBO"],
+                ["_GISTT298RW16L", "GISTT", "_GISTT298RW16R"],
+                ["_GISTT307RW17L", "GISTT", "_GISTT307RW17R"],
+                ["_NUGGS239RW34L", "NUGGS", "_NUGGS239RW34R"],
+                ["_NUGGS205", "NUGGS", "_NUGGS197"],
+                ["GISTT", "KIDNG", "KAYGG", "LUPTN", "MRENE", "EEONS", "WYNDM"],
+                ["NUGGS", "HIDEF", "SHOBO", "LUPTN"]
+            ]
+        },
+        "EMMYS8": {
+            "icao": "EMMYS8",
+            "name": "Emmys Eight",
+            "rwy": {                
+                "KDEN8": [["^_RW81DME", "A59+"], ["TIGHT", "A100-"], ["HAAHN", "A120-"]],
+                "KDEN16L": ["_GISTT298RW16L", ["GISTT", "A70+"], ["KIDNG", "A100-"], "TWEDT"],
+                "KDEN16R": ["_GISTT298RW16R", ["GISTT", "A70+"], ["KIDNG", "A100-"], "TWEDT"],
+                "KDEN17L": ["_GISTT307RW17L", ["GISTT", "A70+"], ["KIDNG", "A100-"], "TWEDT"],
+                "KDEN17R": ["_GISTT307RW17R", ["GISTT", "A70+"], ["KIDNG", "A100-"], "TWEDT"],
+                "KDEN25": [["^_RW251DME", "A59+"], "#263"],
+                "KDEN34L": ["_NUGGS239RW34L", "NUGGS", ["HIDEF", "A100-"], ["SHOBO", "A120-"]],
+                "KDEN34R": ["_NUGGS239RW34R", "NUGGS", ["HIDEF", "A100-"], ["SHOBO", "A120-"]],
+                "KDEN35L": ["_NUGGS205", "NUGGS", ["HIDEF", "A100-"], ["BRSTO", "A120-"]],
+                "KDEN35R": ["_NUGGS197", "NUGGS", ["HIDEF", "A100-"], ["BRSTO", "A120-"]]
+            },
+            "body": [["GASSS", "A140+"], "SNIPR", "EMMYS", "ZIRKL"],
+            "exitPoints": {
+                "ZIRKL": []
+            },
+            "draw": [
+                ["_RW81DME", "TIGHT", "HAAHN", "GASSS"],
+                ["GISTT", "KIDNG", "TWEDT", "GASSS", "SNIPR", "EMMYS", "ZIRKL"],
+                ["NUGGS", "HIDEF", "BRSTO", "GASSS"]
+            ]
+        },
+        "EPKEE7": {
+            "icao": "EPKEE7",
+            "name": "Epkee Seven",
+            "rwy": {                
+                "KDEN8": ["^_RW81DME", ["KIDNG", "A100-"], "PIDLE"],
+                "KDEN16L": ["_GISTT298RW16L", ["GISTT", "A70+"], ["MLHOS", "A100-"], ["SMTHR", "A120-"], "SMPSN"],
+                "KDEN16R": ["_GISTT298RW16R", ["GISTT", "A70+"], ["MLHOS", "A100-"], ["SMTHR", "A120-"], "SMPSN"],
+                "KDEN17L": ["_GISTT307RW17L", ["GISTT", "A70+"], ["MLHOS", "A100-"], ["SMTHR", "A120-"], "SMPSN"],
+                "KDEN17R": ["_GISTT307RW17R", ["GISTT", "A70+"], ["MLHOS", "A100-"], ["SMTHR", "A120-"], "SMPSN"],
+                "KDEN25": [["^_RW251DME", "A59+"], "#263"],
+                "KDEN34L": [["^_RW34L1DME", "A59+"], ["KIDNG", "A100-"], "PIDLE"],
+                "KDEN34R": [["^_RW34L1DME", "A59+"], ["KIDNG", "A100-"], "PIDLE"],
+                "KDEN35L": [["^_RW35L1DME", "A59+"], ["KIDNG", "A100-"], "PIDLE"],
+                "KDEN35R": [["^_RW35R1DME", "A59+"], ["KIDNG", "A100-"], "PIDLE"]
+            },
+            "body": [["APUUU", "A140+"], ["EPKEE", "A150+"], "POIZN"],
+            "exitPoints": {
+                "COTNN": ["COTNN"],
+                "DUUZE": ["COTNN", "DUUZE"],
+                "GAETR": ["^GAETR"],
+                "POIZN": []
+            },
+            "draw": [
+                ["_RW81DME", "KIDNG", "PIDLE", "APUUU", "EPKEE", "POIZN", "GAETR"],
+                ["POIZN", "COTNN", "DUUZE"],
+                ["GISTT", "MLHOS", "SMTHR", "SMPSN", "APUUU"]
+            ]
+        },
+        "EXTAN7": {
+            "icao": "EXTAN7",
+            "name": "Extan Seven",
+            "rwy": {                
+                "KDEN8": ["^_RW81DME", ["KIDNG", "A100-"], "KMBEL", "BHIGH"],
+                "KDEN16L": ["_GISTT298RW16L", ["GISTT", "A70+"], ["BGONE", "A100-"], "OLDDD"],
+                "KDEN16R": ["_GISTT298RW16R", ["GISTT", "A70+"], ["BGONE", "A100-"], "OLDDD"],
+                "KDEN17L": ["_GISTT307RW17L", ["GISTT", "A70+"], ["BGONE", "A100-"], "OLDDD"],
+                "KDEN17R": ["_GISTT307RW17R", ["GISTT", "A70+"], ["BGONE", "A100-"], "OLDDD"],
+                "KDEN25": [["^_RW251DME", "A59+"], "#263"],
+                "KDEN34L": [["^_RW34L1DME", "A59+"], ["KIDNG", "A100-"], "KMBEL", "BHIGH"],
+                "KDEN34R": [["^_RW34L1DME", "A59+"], ["KIDNG", "A100-"], "KMBEL", "BHIGH"],
+                "KDEN35L": [["^_RW35L1DME", "A59+"], ["KIDNG", "A100-"], "KMBEL", "BHIGH"],
+                "KDEN35R": [["^_RW35R1DME", "A59+"], ["KIDNG", "A100-"], "KMBEL", "BHIGH"]
+            },
+            "body": [["MMESA", "A140+"], "FALUJ", "EXTAN", "CABET", "SHAYK"],
+            "exitPoints": {
+                "SHAYK": ["SHAYK"]
+            },
+            "draw": [
+                ["KIDNG", "KMBEL", "BHIGH", "MMESA", "FALUJ", "EXTAN", "CABET", "SHAYK"],
+                ["GISTT", "BGONE", "OLDDD", "MMESA"]
+            ]
+        },
+        "HHOTH2": {
+            "icao": "HHOTH2",
+            "name": "Hoth Two",
+            "rwy": {                
+                "KDEN8": [["^_RW81DME", "A59+"], ["ROYYL", "A100-"], "TURBN", ["CHICN", "A140-"], ["KKIMM", "A160+"]],
+                "KDEN16L": [["^_RW16L1DME", "A59+"], "#173"],
+                "KDEN16R": [["^_RW16R1DME", "A59+"], "#173"],
+                "KDEN17L": [["^_RW17L1DME", "A59+"], "#173"],
+                "KDEN17R": [["^_RW17R1DME", "A59+"], "#173"],
+                "KDEN25": [["^_RW251DME", "A59+"], ["MUGBE", "A100-"], "WAZEE", ["LODOE", "A120+"], ["RINKR", "A140+"], ["TAGKO", "A160+"]],
+                "KDEN34L": [["^_RW34L1DME", "A59+"], ["NKATA", "A100-"], "HAWKR", ["CCLYD", "A130+"]],
+                "KDEN34R": [["^_RW34R1DME", "A59+"], ["CAAZZ", "A100-"], "HAWKR", ["CCLYD", "A130+"]],
+                "KDEN35L": ["_CAAZZ162", ["CAAZZ", "A100-"], "HAWKR", ["CCLYD", "A130+"]],
+                "KDEN35R": ["_CAAZZ158", ["CAAZZ", "A100-"], "HAWKR", ["CCLYD", "A130+"]]
+            },
+            "body": [["BRYCC", "A170+"], "HHOTH"],
+            "exitPoints": {
+                "JOBBA": ["JOBBA"],
+                "SAABR": ["SAABR"]
+            },
+            "draw": [
+                ["RINKR", "TAGKO", "BRYCC", "KKIMM", "CHICN"],
+                ["CAAZZ", "HAWKR", "NKATA"],
+                ["HAWKR", "CCLYD", "BRYCC", "HHOTH", "JOBBA"],
+                ["HHOTH", "SAABR"]
+            ]
         }
     },
     "stars": {
@@ -345,10 +728,10 @@
             "rwy": {
                 "KDEN7": [["DEELO", "A150+|A170-"], ["JEPHF", "A130+|A150-|S250"], "HAZLT", ["^HAITR", "A110|S210"], "#263"],
                 "KDEN8": [["DEELO", "A150+|A170-"], ["JEPHF", "A130+|A150-|S250"], "HAZLT", ["^HAITR", "A110|S210"], "#263"],
-                "KDEN16L": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"]],
-                "KDEN16R": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"]],
-                "KDEN17L": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"]],
-                "KDEN17R": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"]],
+                "KDEN16L": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"], "HAYLY", "JAPEE", "JDIZL", "JEEPR"],
+                "KDEN16R": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"], "HAYLY", "SKIMJ", "SEEYU", "SHRED"],
+                "KDEN17L": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"], "GAPPY", "GIRTH", "GOLFN", "GWENS"],
+                "KDEN17R": [["HIGUN", "A140|S210"], ["KIPPR", "A120|S210"], "TARIE", "HALDO", "HEETT", "HISSY", "HOOPE"],
                 "KDEN25": [["^CRUNK", "A140"], "#217"],
                 "KDEN26": [["^CRUNK", "A140"], "#217"],
                 "KDEN34L": [["DEELO", "A150+|A170-"], ["JEPHF", "A130+|A150-|S250"], "HAZLT", "GRILA", ["^HIMOM", "A110|S210"], "#173"],
@@ -408,10 +791,10 @@
             "rwy": {
                 "KDEN7": [["^MLVVA", "A140"], "#132"],
                 "KDEN8": [["^MLVVA", "A140"], "#132"],
-                "KDEN16L": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"]],
-                "KDEN16R": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"]],
-                "KDEN17L": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"]],
-                "KDEN17R": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"]],
+                "KDEN16L": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"], "JAPEE", "JDIZL", "JEEPR"],
+                "KDEN16R": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"], "SKIMJ", "SEEYU", "SHRED"],
+                "KDEN17L": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"], "KLING", "GAPPY", "GIRTH", "GOLFN", "GWENS"],
+                "KDEN17R": [["BSAFE", "A150-"], ["BDUNN", "A140+|A150-|S210"], ["TSHNR", "A130|S210"], "KLING", "HALDO", "HEETT", "HISSY", "HOOPE"],
                 "KDEN25": [["TOTTT", "A150+|A170-"], "YESSS", ["SKEWD", "A130+|A150-|S250"], ["LEKEE", "A120+"], "XCUTV", ["^CAPTJ", "A110|S210"], "#083"],
                 "KDEN26": [["TOTTT", "A150+|A170-"], "YESSS", ["SKEWD", "A130+|A150-|S250"], ["LEKEE", "A120+"], "XCUTV", ["^CAPTJ", "A110|S210"], "#083"],
                 "KDEN34L": [["TOTTT", "A150+|A170-"], "YESSS", ["BAACK", "A130+"], ["BABAA", "A120+|A140-|S250"], ["^HIMOM", "A110|S210"], "#173"],
@@ -517,6 +900,132 @@
             "destination": "",
             "category": "departure",
             "route": "KDEN25.BAYLR6.TEHRU",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN25.CHUWY1.CHUWY.Q92.MAASI",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN25.CONNR7.WERNR",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN25.COORZ6.VOAXA",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN25.DDRTH1.DDRTH",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN17L.EEONS8.WYNDM",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN17L.EMMYS8.ZIRKL",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN17L.EPKEE7.DUUZE",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN17L.EXTAN7.SHAYK",
+            "altitude":  "",
+            "speed": "",
+            "method": "random",
+            "rate": 10,
+            "airlines":  [
+                ["aal", 5],
+                ["ual", 15]
+            ]
+        },
+        {
+            "origin": "kden",
+            "destination": "",
+            "category": "departure",
+            "route": "KDEN25.HHOTH2.JOBBA",
             "altitude":  "",
             "speed": "",
             "method": "random",
