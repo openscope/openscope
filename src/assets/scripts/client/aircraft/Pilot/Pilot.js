@@ -540,7 +540,9 @@ export default class Pilot {
             return altitudeCheck;
         }
 
-        nextAltitude = arrivalAirportModel.clampWithinAssignableAltitudes(nextAltitude);
+        if (arrivalAirportModel != null) {
+            nextAltitude = arrivalAirportModel.clampWithinAssignableAltitudes(nextAltitude);
+        }
 
         if (aircraftModel.altitude < nextAltitude) {
             const currentAltitude = _ceil(aircraftModel.altitude, -2);
@@ -605,7 +607,10 @@ export default class Pilot {
                 return altitudeCheck;
             }
 
-            altitude = airportModel.clampWithinAssignableAltitudes(altitude);
+            if (airportModel != null) {
+                altitude = airportModel.clampWithinAssignableAltitudes(altitude);
+            }
+
 
             waypoint.setAltitude(altitude);
             this._mcp.setAltitudeFieldValue(altitude);

@@ -531,7 +531,7 @@ export default class RadarTargetModel {
      * @return {array} [success of operation, system's response]
      */
     setDefaultScratchpad() {
-        if (this.aircraftModel.isDeparture()) {
+        if (this.aircraftModel.isDeparture() && !this.aircraftModel.destination) {
             this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
 
             return [true, 'RESET SCRATCHPAD'];

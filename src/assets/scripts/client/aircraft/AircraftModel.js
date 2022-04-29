@@ -942,7 +942,7 @@ export default class AircraftModel {
      * @returns booelan
      */
     isOverflight() {
-        return this.origin === '' && this.destination === '';
+        return this.fms.isOverflight();
     }
 
     /**
@@ -2861,7 +2861,7 @@ export default class AircraftModel {
             return [false, readback];
         }
 
-        if (nextAltitude < airportModel.minAssignableAltitude) {
+        if (airportModel != null && nextAltitude < airportModel.minAssignableAltitude) {
             const minimumAltitude = airportModel.minAssignableAltitude;
             const readback = {};
             readback.log = `unable to maintain ${nextAltitude}, the MSA is ${minimumAltitude}`;

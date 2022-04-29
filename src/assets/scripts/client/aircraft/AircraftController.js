@@ -574,12 +574,17 @@ export default class AircraftController {
         const aircraftModel = new AircraftModel(initializationProps);
         const isDeparture = initializationProps.category === 'departure';
         const isArrival = initializationProps.category === 'arrival';
+        const isOverflight = initializationProps.category === 'overflight';
         const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
         const runwayCommands = initializationProps.commands;
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
+
+        if (isOverflight) {
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, "command");
+        }
 
         if (isArrival) {
             this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);

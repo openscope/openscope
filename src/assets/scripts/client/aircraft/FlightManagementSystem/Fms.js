@@ -815,7 +815,7 @@ export default class Fms {
      * @return {boolean}
      */
     isOverflight() {
-        return !this.isArrival() && !this.isDeparture;
+        return !this.isArrival() && !this.isDeparture();
     }
 
     /**
