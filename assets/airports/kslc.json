@@ -99,6 +99,7 @@
         "EFFTA": ["N42.28396", "W113.47011"],
         "EHK"  : ["N37.78733", "W113.06823"],
         "EKR"  : ["N40.06744", "W107.92495"],
+        "ELKHO": ["N43d23m10.26", "W111d01m24.99"],
         "EYELO": ["N38.75789", "W110.78194"],
         "FFU"  : ["N40.27489", "W111.94053"],
         "FRNZY": ["N39.97078", "W112.11911"],
@@ -406,10 +407,10 @@
                 "KSLC34R": [],
                 "KSLC35": []
             },
-            "body": [["CORVR", "A130+"], ["CGULL", "A150+"], "MOFER", "SCOVL", "DRYAD", "TWF"],
+            "body": [["CORVR", "A130+"], ["CGULL", "A150+"], "MOFER", "SCOVL", "DRYAD"],
             "exitPoints": {
                "DRYAD": [],
-               "TWF": []
+               "TWF": ["TWF"]
             },
             "draw": [
                 ["CORVR", "CGULL", "MOFER", "SCOVL", "DRYAD*", "TWF*"]
@@ -488,7 +489,7 @@
         },
         "SLC4": {
             "icao": "SLC4",
-            "name": "Rugged Two",
+            "name": "Salt Lake Four",
             "rwy": {
                 "KSLC14": ["#163"],
                 "KSLC16L": ["#163"],
@@ -635,8 +636,8 @@
             "icao": "JAMMN5",
             "name": "Jammin Five",
             "entryPoints": {
-                "BCE": ["BCE", "SLINA", "DTA"],
-                "MLF": ["MLF", "BEVRR", "DTA"]
+                "BCE": ["BCE", "SLINA"],
+                "MLF": ["MLF", "BEVRR"]
             },
             "body": ["DTA", "LAZLO", "JAMMN", "SPIEK", "CHHIP", "#343"],
             "rwy": {
@@ -674,6 +675,32 @@
             "draw": [
                 ["EKR", "RACER", "MTU", "THISL", "SPANE", "LEEHY", "FFU", "DRYVE", "PITTT", "MAGNE", "QUIPA", "RROYY"],
                 ["HELPR", "GOSHU", "SPANE", "LEEHY", "BLUPE", "KAMMP", "PLAGE"]
+            ]
+        },
+        "LHO4": {
+            "icao": "LHO4",
+            "name": "Brigham City Four",
+            "entryPoints": {
+                "BPI": ["BPI"],
+                "DBS": ["DBS", "LAVAH"],
+                "JAC": ["JAC", "ELKHO", "LAVAH"],
+                "OCS": ["OCS"]
+            },
+            "body": ["LHO", ["CARTR", "A140+"]],
+            "rwy": {
+                "KSLC14": ["#173"],
+                "KSLC16L": ["#173"],
+                "KSLC16R": ["#173"],
+                "KSLC17": ["#173"],
+                "KSLC32": ["OGD", ["DYANN", "A110+"], "#160"],
+                "KSLC34L": ["OGD", ["DYANN", "A110+"], "#160"],
+                "KSLC34R": ["OGD", ["DYANN", "A110+"], "#160"],
+                "KSLC35": ["OGD", ["DYANN", "A110+"], "#160"]
+            },
+            "draw": [
+                ["BPI", "LHO", "OCS"],
+                ["DBS", "LAVAH", "ELKHO", "JAC"],
+                ["LAVAH", "LHO", "CARTR", "OGD", "DYANN"]
             ]
         },
         "NORDK6": {
@@ -861,7 +888,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5.1,
+            "rate": 7.1,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -893,7 +920,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.1,
+            "rate": 4.1,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -925,7 +952,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.1,
+            "rate": 4.1,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -957,7 +984,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.1,
+            "rate": 4.1,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -989,7 +1016,7 @@
             "altitude": 39000,
             "speed": 290,
             "method": "random",
-            "rate": 6.6,
+            "rate": 7.6,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -1021,7 +1048,7 @@
             "altitude": 39000,
             "speed": 290,
             "method": "random",
-            "rate": 6.6,
+            "rate": 7.6,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -1053,7 +1080,7 @@
             "altitude": 39000,
             "speed": 290,
             "method": "random",
-            "rate": 6.6,
+            "rate": 7.6,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -1085,7 +1112,7 @@
             "altitude": 32000,
             "speed": 290,
             "method": "random",
-            "rate": 6.6,
+            "rate": 7.6,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
@@ -1117,7 +1144,7 @@
             "altitude": 29000,
             "speed": 290,
             "method": "random",
-            "rate": 6.6,
+            "rate": 7.6,
             "airlines": [
                 ["aal", 8],
                 ["aca", 1],
