@@ -615,7 +615,7 @@
         },
         "MZULO3": {
             "icao": "MZULO3",
-            "name": "Mizulo Two",
+            "name": "Mizulo Three",
             "rwy": {
                 "KMCO17L": ["_RW17L1DME", ["KAAPE", "A15+"], "#140"],
                 "KMCO17R": ["_RW17R1DME", ["KAAPE", "A15+"], "#140"],
@@ -678,8 +678,8 @@
             ]
         },
         "OSPRY1": {
-            "icao": "RDSOX1",
-            "name": "Red Sox Two",
+            "icao": "OSPRY1",
+            "name": "Osprey One",
             "rwy": {
                 "KMCO17L": ["_RW17L1DME", ["VILNS", "A15+"], "#237"],
                 "KMCO17R": ["_RW17R1DME", ["VILNS", "A15+"], "#237"],
@@ -702,7 +702,7 @@
         },
         "RDSOX1": {
             "icao": "RDSOX1",
-            "name": "Red Sox Two",
+            "name": "Red Sox One",
             "rwy": {
                 "KMCO17L": ["_RW17L1DME", ["VILNS", "A15+"], "#237"],
                 "KMCO17R": ["_RW17R1DME", ["VILNS", "A15+"], "#237"],
