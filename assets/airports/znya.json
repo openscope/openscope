@@ -389,7 +389,7 @@
             "commands": {
                 "30": "c 180 CROSS JERES S310"
             },
-            "altitude": "",
+            "altitude": 35000,
             "speed": "",
             "method": "random",
             "rate": 1.8,
@@ -420,7 +420,7 @@
             "commands": {
                 "30": "c 180 CROSS JERES S310"
             },
-            "altitude": "",
+            "altitude": 36000,
             "speed": "",
             "method": "random",
             "rate": 0.5,
@@ -699,7 +699,7 @@
             "commands": {
                 "27L": "c 100 CROSS MXE S310"
             },
-            "altitude": "",
+            "altitude": 16000,
             "speed": "",
             "method": "random",
             "rate": 2.0,
@@ -723,7 +723,7 @@
             "commands": {
                 "27L": "c 100 CROSS MXE S310"
             },
-            "altitude": "",
+            "altitude": 38000,
             "speed": "",
             "method": "random",
             "rate": 4.1,
@@ -755,7 +755,7 @@
             "commands": {
                 "27L": "c 100 CROSS MXE S310"
             },
-            "altitude": "",
+            "altitude": 32000,
             "speed": "",
             "method": "random",
             "rate": 3.5,
@@ -787,7 +787,7 @@
             "commands": {
                 "27L": "c 100 CROSS STOEN S310"
             },
-            "altitude": "",
+            "altitude": 36000,
             "speed": "",
             "method": "random",
             "rate": 3.0,
@@ -819,7 +819,7 @@
             "commands": {
                 "27L": "c 100 CROSS STOEN S310"
             },
-            "altitude": "",
+            "altitude": 30000,
             "speed": "",
             "method": "random",
             "rate": 1.6,
