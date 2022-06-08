@@ -297,6 +297,12 @@
         "premium": false
     },
     {
+        "icao": "ajfk",
+        "level": "medium",
+        "name": "John F. Kennedy International Airport - Scenario - 31s Final",
+        "premium": false
+    },
+    {
         "icao": "klas",
         "level": "hard",
         "name": "Las Vegas McCarran International Airport",
