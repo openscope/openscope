@@ -303,6 +303,12 @@
         "premium": false
     },
     {
+        "icao": "bjfk",
+        "level": "medium",
+        "name": "John F. Kennedy International Airport - Scenario - 4s CAMRN/Final",
+        "premium": false
+    },
+    {
         "icao": "klas",
         "level": "hard",
         "name": "Las Vegas McCarran International Airport",
