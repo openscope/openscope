@@ -27,27 +27,27 @@
     "defaultMaps": ["Base Map"],
     "airspace": [
         {
-            "floor": 0,
-            "ceiling": 150,
-            "airspace_class": "B",
-            "poly": [
-                ["N30.00003", "W90.83335"],
-                ["N30.21668", "W90.88337"],
-                ["N30.43111", "W90.73222"],
-                ["N30.46750", "W89.87778"],
-                ["N30.38333", "W89.61667"],
-                ["N30.35002", "W89.61670"],
-                ["N30.00310", "W89.50191"],
-                ["N29.80838", "W89.50001"],
-                ["N29.45000", "W89.83333"],
-                ["N29.31667", "W90.01528"],
-                ["N29.31723", "W90.16718"],
-                ["N29.31671", "W90.41142"],
-                ["N29.31675", "W90.50085"],
-                ["N29.31671", "W90.52198"],
-                ["N29.31667", "W90.54279"],
-                ["N29.53338", "W90.54164"]
-            ]
+        "floor": 0,
+        "ceiling": 150,
+        "airspace_class": "B",
+        "poly": [
+            ["N30.00003", "W90.83335"],
+            ["N30.21668", "W90.88337"],
+            ["N30.43111", "W90.73222"],
+            ["N30.46750", "W89.87778"],
+            ["N30.38333", "W89.61667"],
+            ["N30.35002", "W89.61670"],
+            ["N30.00310", "W89.50191"],
+            ["N29.80838", "W89.50001"],
+            ["N29.45000", "W89.83333"],
+            ["N29.31667", "W90.01528"],
+            ["N29.31723", "W90.16718"],
+            ["N29.31671", "W90.41142"],
+            ["N29.31675", "W90.50085"],
+            ["N29.31671", "W90.52198"],
+            ["N29.31667", "W90.54279"],
+            ["N29.53338", "W90.54164"]
+        ]
         },
         {
             "floor": 0,
@@ -97,7 +97,7 @@
                 ["N30.21668", "W90.88337"],
                 ["N30.21667", "W91.05833"],
                 ["N30.02139", "W91.05837"],
-                ["N30.00000", "W90.83333"]
+                ["N30.00003", "W90.83335"]
             ]
         }
     ],
@@ -175,7 +175,11 @@
         "SQS": [33.4638494, -90.2773506],
         "ACMES": ["N30d55m27.1300", "W88d22m10.8200"],
         "BUNNZ": ["N28d00m34.9100", "W86d45m45.5200"],
-        "BACCA": ["N27d35m30.5300", "W85d20m39.6000"]
+        "BACCA": ["N27d35m30.5300", "W85d20m39.6000"],
+        "VUZ"  : [33.6701322, -86.8998372],
+        "MEM"  : [35.0151058, -89.9832017],
+        "TWOUP": ["N33d53m45.390", "W83d49m08.390"],
+        "SPA"  : [35.0336258, -81.9270100]
     },
     "restricted": [],
     "runways": [
@@ -204,7 +208,7 @@
         "L214": ["LEV", "PLNDR", "DAGGR"],
         "L333": ["HRV", "HOOCK", "TRESR"],
         "M345": ["TBD", "WAHOO", "KENGS"],
-        "Q22" : ["OYSTY", "ACMES", "CATLN"],
+        "Q22" : ["OYSTY", "ACMES", "CATLN", "TWOUP", "SPA"],
         "Q24" : ["LSU", "IRUBE", "PAYTN"],
         "Q56" : ["PEKON", "HRV", "SJI", "CATLN"],
         "Q105": ["HRV", "FATSO", "REDFN"],
@@ -379,10 +383,10 @@
             "category": "arrival",
             "route": "LCH.AWDAD1.KMSY11",
             "commands": {
-                "2": "X AWDAD A110 S250",
-                "11": "X AWDAD A110 S250",
-                "20": "X AWDAD A110 S250",
-                "29": "X AWDAD A110 S250"
+                "2": "X AWDAD A110 S250 route voodo..turtl..mudbg",
+                "11": "X AWDAD A110 S250 route voodo..turtl..mudbg",
+                "20": "X AWDAD A110 S250 route voodo..turtl..mudbg",
+                "29": "X AWDAD A110 S250 route voodo..turtl..mudbg"
             },
             "altitude": 34000,
             "speed": 280,
@@ -623,7 +627,7 @@
             "origin": "KMSY",
             "destination": "",
             "category": "departure",
-            "route": "HRV.J31.MEI",
+            "route": "MEI..VUZ",
             "commands": {
                 "2": "fph",
                 "11": "fph",
@@ -664,7 +668,7 @@
             "origin": "KMSY",
             "destination": "",
             "category": "departure",
-            "route": "HRV.Q56.CATLN",
+            "route": "CATLN.Q22.SPA",
             "commands": {
                 "2": "fph",
                 "11": "fph",
@@ -746,7 +750,7 @@
             "origin": "KMSY",
             "destination": "",
             "category": "departure",
-            "route": "LEV.L214.DAGGR",
+            "route": "PLNDR.L214.DAGGR",
             "commands": {
                 "2": "fph",
                 "11": "fph",
@@ -787,7 +791,7 @@
             "origin": "KMSY",
             "destination": "",
             "category": "departure",
-            "route": "LEV.Y290.BACCA",
+            "route": "BLVNS.Y290.BACCA",
             "commands": {
                 "2": "fph",
                 "11": "fph",
@@ -828,7 +832,7 @@
             "origin": "KMSY",
             "destination": "",
             "category": "departure",
-            "route": "SQS",
+            "route": "SQS..MEM",
             "commands": {
                 "2": "fph",
                 "11": "fph",
