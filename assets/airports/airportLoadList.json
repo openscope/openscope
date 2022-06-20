@@ -780,6 +780,13 @@
         "disabled": false
     },
     {
+        "icao": "znyc",
+        "level": "hard",
+        "name": "New York Center - Area C Combined",
+        "premium": false,
+        "disabled": false
+    },
+    {
         "icao": "zspd",
         "level": "hard",
         "name": "Shanghai Pudong International Airport",
