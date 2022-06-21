@@ -72,7 +72,7 @@
             ]
         },
         {
-            "floor": 180,
+            "floor": 160,
             "ceiling": 250,
             "airspace_class": "B",
             "poly": [
@@ -372,10 +372,14 @@
         }
     ],
     "fixes": {
+        "_CRI176002": ["N40d34.82m0", "W73d52.99m0"],
+        "_CRI223003": [40.333333, -73.929167],
+        "_RWY13RSKORR058": ["N40d39.38m0", "W73d50.15m0"],
         "_RWY22R01DME": [40.66911697, -74.18390656],
         "_RWY22R02DME": [40.63650894, -74.18187714],
-        "_EWR4SPOT1": [40.59749, -74.19808],
-        "_EWR4SPOT2": [40.71326, -74.45567],
+        "_RWY31L01DME": [40.61947646339, -73.75297764097],
+        "_JFKNORTHGATE": [40.85143056, -73.44153889],
+        "_EWRNORTHGATE": [40.69981111, -74.41169722],
         "ALB"  : [42.74727778, -73.80318611],
         "ANMAR": [40.26638889, -75.32527778],
         "ARRKK": [42.06347778, -75.31678056],
@@ -384,26 +388,35 @@
         "BEWEL": [42.28896667, -80.74513611],
         "BIGEO": [41.16633611, -77.42913611],
         "BUFFY": [41.94110833, -75.6126],
+        "CANDR": [40.97098611, -74.95982778],
+        "CESID": [40.55202778, -73.88328333],
         "CFB"  : [42.15749167, -76.13647222],
         "CFHHD": [42.46220556, -79.90221389],
+        "CHNZO": [40.89843889, -73.91047778],
         "CTR"  : [42.29131944, -72.94939444],
         "COATE": [41.13622778, -74.69516667],
         "CORDS": [41.56973333, -75.13986111],
         "CORLE": [41.44430556, -75.55255833],
         "CORTA": [42.67379167, -76.07636944],
+        "DANNR": [40.66642222, -76.24018889],
         "DARBO": [41.80032222, -75.95110556],
+        "DEEZZ": [41.11444444, -73.77777778],
         "DGRAF": [41.68625556, -76.22254167],
         "DMACK": [41.78575833, -77.55192222],
         "DNY"  : [42.17828056, -74.95694167],
         "DOORE": [41.02817778, -74.36770278],
+        "DOOTH": [40.87511389, -77.68985],
         "EMMMA": [42.88443333, -84.58066667],
         "ETX"  : [40.58103889, -75.68403056, "East Texas"],
         "EXPRS": [39.90603611, -75.50748333],
         "FABEN": [42.85334444, -75.95219722],
+        "FORTT": [40.8398, -77.43469167],
         "GAYEL": [41.40669167, -74.35714444],
+        "GYNTS": [40.86843611, -75.39898889],
         "HARTY": [41.07118889, -75.08989444],
         "HARVA": [41.96481111, -75.13184722],
         "HAYNZ": [40.77534444, -79.82256389],
+        "HEERO": [41.16885556, -74.11558056],
         "HERBA": [42.24313611, -78.2744],
         "HNK"  : [42.06305833, -75.31628333],
         "HOPCE": [41.31184722, -74.71686111],
@@ -415,6 +428,7 @@
         "JHW"  : [42.18860833, -79.12130833],
         "KELIE": [42.66036667, -77.74473611],
         "KONJE": [41.82069444, -77.10928333],
+        "KURNL": [41.20130556, -74.45843611],
         "KYILL": [39.9356, -75.38011944],
         "LAAYK": [41.47573333, -75.48258611],
         "LECOR": [41.45575833, -75.78091944],
@@ -430,11 +444,13 @@
         "MTCAF": [41.76981667, -76.52238333],
         "MUGZY": [41.03012778, -74.96936111],
         "NEION": [41.22811389, -74.58077222],
+        "NEWEL": [40.92194444, -75.17083333],
         "PSB"  : [40.91625833, -77.99271667],
         "RAAKK": [42.39972222, -78.91083333],
         "REBBL": [41.882675, -76.93279444],
         "REXXY": [42.01106389, -77.40971389],
         "SCOOL": [40.06664722, -75.41959722],
+        "SKORR": [40.60998889, -73.89711944],
         "SLATT": [40.73823333, -75.68523056],
         "SLT"  : [41.51275833, -77.97011111],
         "SPUDS": [40.45136389, -75.43293333],
@@ -442,20 +458,31 @@
         "STOMP": [41.59632778, -74.79660833],
         "STW"  : [40.99581944, -74.86903056, "Stillwater"],
         "SYR"  : [43.16051944, -76.20455833, "Syracuse"],
+        "TOWIN": [40.53521111, -75.40037778],
         "TRAAD": [42.257225, -77.52078611],
         "TULEG": [43.73190278, -76.71939722],
         "TUMPS": [43.02174167, -76.16780278],
         "ULW"  : [42.09415556, -77.02480556],
+        "UPPRR": [41.24406944, -80.13883056],
         "VESPE": [42.79767778, -76.10881389],
         "VIEEW": [42.43946389, -77.02591667],
         "WHEYY": [39.84698889, -75.79218056],
         "WOZEE": [42.93379167, -78.73878889],
+        "YNKEE": [40.48358333, -73.84921667],
         "YODAA": [41.72255278, -74.03132222],
         "YYOST": [41.58271667, -75.85584722]
     },
     "restricted": [
     ],
     "runways":[
+        {
+            "name": ["13R", "31L"],
+            "end": [
+                [40.648370, -73.816718, "12.5ft"],
+                [40.628003, -73.771789, "12.5ft"]
+            ],
+            "ils": [false, false]
+        },
         {
             "name": ["4L", "22R"],
             "end": [
@@ -475,6 +502,7 @@
     ],
     "airways": {
         "J49": ["HNK", "BUFFY", "DARBO", "DGRAF", "MAGIO", "BIGEO", "PSB"],
+        "J60": ["CANDR", "NEWEL", "GYNTS", "DANNR", "FORTT", "DOOTH", "PSB"],
         "J70": ["BEWEL", "JHW", "HOXIE", "DMACK", "STENT", "MAGIO", "LVZ"],
         "J95": ["GAYEL", "MSLIN", "STOMP", "BUFFY", "CFB"],
         "J132": ["CORDS", "DARBO", "ULW"],
@@ -486,21 +514,60 @@
         "V29":  ["CFB", "CORTA", "VESPE", "TUMPS", "SYR"]
     },
     "sids": {
+        "DEEZZ5": {
+            "icao": "DEEZZ5",
+            "name": "Deez Five",
+            "altitude": 19000,
+            "rwy": {
+                "ZNYC31L": ["_RWY13RSKORR058", "SKORR", ["CESID", "A25+"], ["YNKEE", "A070"]]
+            },
+            "body": ["_JFKNORTHGATE"],
+            "exitPoints": {
+                "DEEZZ": ["DEEZZ"],
+                "CANDR": ["DEEZZ","HEERO", "KURNL", "CANDR"],
+                "TOWIN": ["DEEZZ","HEERO", "KURNL", "CANDR", "TOWIN"]
+            },
+            "draw": [
+                ["DEEZZ*"],
+                ["DEEZZ", "HEERO", "KURNL", "CANDR*"],
+                ["CANDR", "TOWIN*"]
+            ]
+        },
         "EWR4": {
             "icao": "EWR4",
             "name": "Newark Four",
             "rwy": {
-                "ZNYC22R": [["_RWY22R01DME", "A05+"], "_RWY22R02DME", "_EWR4SPOT1", ["_EWR4SPOT2", "A80+"]]
+                "ZNYC22R": [["_RWY22R01DME", "A05+"], "_RWY22R02DME"]
             },
-            "body": [],
+            "body": ["_EWRNORTHGATE"],
             "exitPoints": {
                 "GAYEL": ["GAYEL"],
-                "NEION": ["NEION"]
+                "NEION": ["NEION"],
+                "COATE": ["COATE"]
             },
             "draw": [
                 ["GAYEL*"],
                 ["NEION*"],
                 ["COATE*"]
+            ]
+        },
+        "JFK5": {
+            "icao": "JFK5",
+            "name": "Kennedy Five",
+            "altitude": 17000,
+            "rwy": {
+                "ZNYC31L": ["_RWY13RSKORR058"]
+            },
+            "body": ["SKORR", ["CESID", "A25+"], ["YNKEE", "A070"], "_JFKNORTHGATE"],
+            "exitPoints": {
+                "COATE": ["COATE"],
+                "GAYEL": ["GAYEL"],
+                "NEION": ["NEION"]
+            },
+            "draw": [
+                ["COATE*"],
+                ["NEION*"],
+                ["GAYEL*"]
             ]
         },
         "LGA7": {
@@ -509,7 +576,7 @@
             "rwy": {
                 "ZNYC31" :[]
             },
-            "body": [],
+            "body": ["CHNZO"],
             "exitPoints": {
                 "COATE": ["COATE"],
                 "GAYEL": ["GAYEL"],
@@ -588,17 +655,39 @@
     "spawnPatterns": [
         {
             "origin": "ZNYC",
+            "destination": "KCLE",
+            "category": "departure",
+            "route": "ZNYC31L.DEEZZ5.CANDR.J60.PSB..UPPRR",
+            "commands": {
+                "31L": "SPEED 310 C 190"
+            },
+            "altitude": 34000,
+            "speed": 310,
+            "method": "random",
+            "offset": 0,
+            "rate":3,
+            "airlines": [
+                ["aal/long", 2],
+                ["dal", 16],
+                ["edv", 10],
+                ["fdx/long", 2],
+                ["jbu", 10],
+                ["rpa", 4]
+            ]
+        },
+        {
+            "origin": "ZNYC",
             "destination": "PANC",
             "category": "departure",
-            "route": "ZNYC22R.EWR4.GAYEL.Q812.SYR..TULEG",
+            "route": "ZNYC31L.JFK5.GAYEL.Q812.SYR..TULEG",
             "commands": {
-                "22R": "SPEED 310 C 170 EXPEDITE"
+                "31L": "SPEED 310 C 170"
             },
             "altitude": 38000,
             "speed": 310,
             "method": "random",
             "offset": 0,
-            "rate":1.8,
+            "rate":3,
             "airlines": [
                 ["aar/long", 6],
                 ["ana/long", 7],
@@ -621,14 +710,14 @@
             "origin": "ZNYC",
             "destination": "CYYZ",
             "category": "departure",
-            "route": "ZNYC22R.EWR4.GAYEL.Q818.WOZEE..LINNG",
+            "route": "ZNYC31L.JFK5.GAYEL.Q818.WOZEE..LINNG",
             "commands": {
-                "22R": "SPEED 310 C 170 EXPEDITE"
+                "31L": "SPEED 310 C 170"
             },
             "altitude": 34000,
             "speed": 310,
             "method": "random",
-            "rate": 2.5,
+            "rate": 3,
             "airlines": [
                 ["aar/long", 6],
                 ["ana/long", 7],
@@ -651,14 +740,14 @@
             "origin": "ZNYC",
             "destination": "KDTW",
             "category": "departure",
-            "route": "ZNYC22R.EWR4.GAYEL.J95.CFB..TRAAD..JACCI",
+            "route": "ZNYC31L.JFK5.GAYEL.J95.CFB..TRAAD..JACCI",
             "commands": {
-                "22R": "SPEED 310 C 170 EXPEDITE"
+                "31L": "SPEED 310 C 170"
             },
             "altitude": 36000,
             "speed": 310,
             "method": "random",
-            "rate": 2.1,
+            "rate": 3,
             "airlines": [
                 ["ual/short", 4],
                 ["rpa", 5],
@@ -674,9 +763,9 @@
             "category": "departure",
             "route": "ZNYC31.LGA7.NEION.J223.CORDS..CFB.V29.SYR",
             "commands": {
-                "31": "SPEED 310 C 170 EXPEDITE"
+                "31": "SPEED 310 C 160 EXPEDITE"
             },
-            "altitude": [20000,26000],
+            "altitude": [24000],
             "speed": 310,
             "method": "random",
             "rate": 3.085,
@@ -695,9 +784,9 @@
             "category": "departure",
             "route": "ZNYC31.LGA7.NEION.J223.CORDS.J132.ULW..BENEE",
             "commands": {
-                "31": "SPEED 310 C 170 EXPEDITE"
+                "31": "SPEED 310 C 160 EXPEDITE"
             },
-            "altitude": [22000,26000],
+            "altitude": [22000],
             "speed": 310,
             "method": "random",
             "rate": 3.085,
@@ -714,11 +803,11 @@
             "origin": "ZNYC",
             "destination": "KORD",
             "category": "departure",
-            "route": "ZNYC31.LGA7.COATE.Q436.EMMMA",
+            "route": "ZNYC22R.EWR4.COATE.Q436.EMMMA",
             "commands": {
-                "31": "SPEED 310 C 170 EXPEDITE"
+                "22R": "SPEED 310 C 160 EXPEDITE"
             },
-            "altitude": [32000,36000],
+            "altitude": [32000],
             "speed": 310,
             "method": "random",
             "rate": 16.05,
@@ -745,7 +834,7 @@
             "altitude": "37000",
             "speed": "310",
             "method": "random",
-            "rate": 10.05,
+            "rate": 11,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 34],
@@ -780,7 +869,7 @@
             "altitude": "20000",
             "speed": "310",
             "method": "random",
-            "rate": 4.0,
+            "rate": 11.0,
             "airlines": [
                 ["aal/long", 2],
                 ["aal/short", 34],
