@@ -232,7 +232,7 @@
             ]
         },
         {
-            "floor": 200,
+            "floor": 160,
             "ceiling": 220,
             "airspace_class": "B",
             "poly": [
@@ -250,7 +250,7 @@
             ]
         },
         {
-            "floor": 170,
+            "floor": 160,
             "ceiling": 250,
             "airspace_class": "B",
             "poly": [
@@ -350,7 +350,7 @@
             ]
         },
         {
-            "floor": 170,
+            "floor": 160,
             "ceiling": 170,
             "airspace_class": "B",
             "poly": [
@@ -765,7 +765,7 @@
             "commands": {
                 "31": "SPEED 310 C 160 EXPEDITE"
             },
-            "altitude": [24000],
+            "altitude": 24000,
             "speed": 310,
             "method": "random",
             "rate": 3.085,
@@ -786,7 +786,7 @@
             "commands": {
                 "31": "SPEED 310 C 160 EXPEDITE"
             },
-            "altitude": [22000],
+            "altitude": 22000,
             "speed": 310,
             "method": "random",
             "rate": 3.085,
@@ -807,7 +807,7 @@
             "commands": {
                 "22R": "SPEED 310 C 160 EXPEDITE"
             },
-            "altitude": [32000],
+            "altitude": 32000,
             "speed": 310,
             "method": "random",
             "rate": 16.05,
