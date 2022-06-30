@@ -396,7 +396,7 @@
         "level": "easy",
         "name": "Tampa International Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "ktus",
