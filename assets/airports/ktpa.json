@@ -779,6 +779,37 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
+            "route": "HIBAC.DADES9.KTPA19L",
+            "commands": {
+                "1L": "X GUURR A110",
+                "1R": "X GUURR A110",
+                "10": "X GUURR A110",
+                "19R": "X GUURR A110 S250",
+                "19L": "X GUURR A110 S250",
+                "28": "X GUURR A110"
+            },
+            "altitude": 31000,
+            "speed": 320,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["aal", 38],
+                ["aca", 2],
+                ["dal", 34],
+                ["edv", 2],
+                ["eny", 1],
+                ["fft", 4],
+                ["jbu", 14],
+                ["n/fastGA", 2],
+                ["nks", 7],
+                ["swa", 75],
+                ["ual", 18]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KTPA",
+            "category": "arrival",
             "route": "DEFUN.MAATY3.KTPA19L",
             "altitude": 38000,
             "speed": 320,
