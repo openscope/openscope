@@ -50,6 +50,7 @@ options.DIR = {
     DIST_FONT: path.join(distAssets, 'fonts'),
     DIST_IMAGES: path.join(distAssets, 'images'),
     DIST_TUTORIAL: path.join(distAssets, 'tutorial'),
+    DIST_AUTOCOMPLETE: path.join(distAssets, 'autocomplete'),
     DIST_SCRIPTS_CLIENT: path.join(distAssets, 'scripts/client'),
     DIST_SCRIPTS_SERVER: path.join(distAssets, 'scripts/server'),
     DIST_STYLE: path.join(distAssets, 'style')
@@ -74,6 +75,7 @@ options.GLOB = {
     FONTS: path.join(options.DIR.BUILD_ASSETS, 'fonts/**/*'),
     IMAGES: path.join(options.DIR.BUILD_ASSETS, 'images/**/*'),
     TUTORIAL: path.join(options.DIR.BUILD_ASSETS, 'tutorial/**/*'),
+    AUTOCOMPLETE: path.join(options.DIR.BUILD_ASSETS, 'autocomplete/**/*'),
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),

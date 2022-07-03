@@ -1,4 +1,17 @@
-# 6.27.0 (March 18, 2021)
+# 6.28.0 (July 3, 2022)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1938" target="_blank">#1938</a> - Add STARS theme
+- <a href="https://github.com/openscope/openscope/issues/1920" target="_blank">#1920</a> - Add Salt Lake City (KSLC)
+- <a href="https://github.com/openscope/openscope/issues/21" target="_blank">#21</a> - Add command search and autocomplete (tab key)
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1956" target="_blank">#1956</a> - Allow airport creators to specify requested cruise altitudes for departures
+- <a href="https://github.com/openscope/openscope/issues/1944" target="_blank">#1944</a> - Update airspace for KJFK
+- <a href="https://github.com/openscope/openscope/issues/1944" target="_blank">#1944</a> - Fix broken link in EINN airport guide
+- <a href="https://github.com/openscope/openscope/issues/1952" target="_blank">#1952</a> - Update KMCO to AIRAC 2205
+
+
+# 6.27.0 (March 18, 2022)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
 - <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
