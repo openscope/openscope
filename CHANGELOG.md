@@ -8,6 +8,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1956" target="_blank">#1956</a> - Allow airport creators to specify requested cruise altitudes for departures
 - <a href="https://github.com/openscope/openscope/issues/1944" target="_blank">#1944</a> - Update airspace for KJFK
+- <a href="https://github.com/openscope/openscope/issues/1944" target="_blank">#1944</a> - Fix broken link in EINN airport guide
 
 
 # 6.27.0 (March 18, 2021)
