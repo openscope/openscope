@@ -429,7 +429,7 @@ export default class Fms {
     _initializeFlightPlanAltitude(altitude, category, model) {
         this.flightPlanAltitude = altitude;
 
-        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+        if (category === FLIGHT_CATEGORY.DEPARTURE && !altitude) {
             this.flightPlanAltitude = model.ceiling;
         }
     }

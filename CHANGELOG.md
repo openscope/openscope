@@ -6,6 +6,7 @@
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1956" target="_blank">#1956</a> - Allow airport creators to specify requested cruise altitudes for departures
 
 
 # 6.27.0 (March 18, 2021)
