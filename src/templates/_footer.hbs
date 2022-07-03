@@ -1,4 +1,38 @@
 <div class="footer">
+    <div id="autocomplete">{{! autocomplete root containter, also blocks mouse events to rest of app while active }}
+        <div id="autocomplete-spacer">{{!--
+            invisible inline-block spacer div, shrinks to fit content width
+            populated with copy of left portion of input command before autocomplete target range
+            this positions autocomplete UI exactly at the point that it will insert/replace into
+        --}}</div>{{!-- no whitespace allowed here! it'll add a space and mess up the positioning
+        --}}<div id="autocomplete-ui">
+            <div id="autocomplete-popup" class="notSelectable">
+                <div id="autocomplete-legend">
+                    Legend: <b>alias</b> | <u>argument</u> | <i>optional</i>
+                </div>
+                <div id="autocomplete-suggests"></div>
+                <div id="autocomplete-instruction">
+                    <span id="autocomplete-instruction-navigate">[&#x2191;/&#x2193;] to navigate</span>
+                    <span id="autocomplete-instruction-select">[tab] to select</span>
+                    <span id="autocomplete-instruction-commit">[tab] to commit</span>
+                    <span id="autocomplete-instruction-revert">[esc] to go back</span>
+                    <span id="autocomplete-instruction-cancel">[esc] to cancel</span>
+                </div>
+            </div>
+            <div id="autocomplete-footer">
+                <input id="autocomplete-output" size="1"
+                    disabled="disabled" />{{!-- no whitespace
+                --}}<input id="autocomplete-input" size="15"
+                    placeholder="search commands"
+                    autocapitalize="off"
+                    autocorrect="off"
+                    autocomplete="off"
+                    spellcheck="false" />{{!-- no whitespace
+                --}}<span id="autocomplete-footer-fade"></span>
+            </div>
+        </div>
+    </div>
+
     <input id="command"
            placeholder="enter aircraft command"
            autocapitalize="off"

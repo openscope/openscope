@@ -2,6 +2,7 @@
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1938" target="_blank">#1938</a> - Add STARS theme
 - <a href="https://github.com/openscope/openscope/issues/1920" target="_blank">#1920</a> - Add Salt Lake City (KSLC)
+- <a href="https://github.com/openscope/openscope/issues/21" target="_blank">#21</a> - Add command search and autocomplete (tab key)
 
 ### Bugfixes
 
