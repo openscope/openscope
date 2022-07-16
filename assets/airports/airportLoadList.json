@@ -666,5 +666,11 @@
         "name": "Shanghai Pudong International Airport",
         "premium": false,
         "disabled": true
+    },
+    {
+        "icao": "lfpg",
+        "level": "hard",
+        "name": "Paris Charles-de-Gaulle International Airport",
+        "premium": false
     }
 ]
