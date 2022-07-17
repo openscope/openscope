@@ -742,7 +742,7 @@
         },
         "EVX5A": {
             "icao": "EVX5A",
-            "name": "Evx Five Alpha",
+            "name": "Evreux Five Alpha",
             "rwy": {
                 "LFPG27L": []
             },
@@ -756,7 +756,7 @@
         },
         "EVX5B": {
             "icao": "EVX5B",
-            "name": "Evx Five Bravo",
+            "name": "Evreux Five Bravo",
             "rwy": {
                 "LFPG26R": []
             },
@@ -770,7 +770,7 @@
         },
         "EVX5G": {
             "icao": "EVX5G",
-            "name": "Evx Five Golf",
+            "name": "Evreux Five Golf",
             "rwy": {
                 "LFPG09R": []
             },
@@ -784,7 +784,7 @@
         },
         "EVX5H": {
             "icao": "EVX5H",
-            "name": "Evx Five Hotel",
+            "name": "Evreux Five Hotel",
             "rwy": {
                 "LFPG08L": []
             },
@@ -798,7 +798,7 @@
         },
         "EVX5Z": {
             "icao": "EVX5Z",
-            "name": "Evx Five Zulu",
+            "name": "Evreux Five Zulu",
             "rwy": {
                 "LFPG27L": []
             },
@@ -938,7 +938,7 @@
         },
         "LGL5A": {
             "icao": "LGL5A",
-            "name": "Lgl Five Alpha",
+            "name": "Laigle Five Alpha",
             "rwy": {
                 "LFPG27L": []
             },
@@ -952,7 +952,7 @@
         },
         "LGL5B": {
             "icao": "LGL5B",
-            "name": "Lgl Five Bravo",
+            "name": "Laigle Five Bravo",
             "rwy": {
                 "LFPG26R": []
             },
@@ -966,7 +966,7 @@
         },
         "LGL5G": {
             "icao": "LGL5G",
-            "name": "Lgl Five Golf",
+            "name": "Laigle Five Golf",
             "rwy": {
                 "LFPG09R": []
             },
@@ -980,7 +980,7 @@
         },
         "LGL5H": {
             "icao": "LGL5H",
-            "name": "Lgl Five Hotel",
+            "name": "Laigle Five Hotel",
             "rwy": {
                 "LFPG08L": []
             },
@@ -994,7 +994,7 @@
         },
         "LGL5Z": {
             "icao": "LGL5Z",
-            "name": "Lgl Five Zulu",
+            "name": "Laigle Five Zulu",
             "rwy": {
                 "LFPG27L": []
             },
