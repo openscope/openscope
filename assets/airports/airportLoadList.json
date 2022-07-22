@@ -412,6 +412,12 @@
         "disabled": true
     },
     {
+        "icao": "levc",
+        "level": "beginner",
+        "name": "Valencia Airport",
+        "premium": false
+    },
+    {
         "icao": "lipz",
         "level": "easy",
         "name": "Venice Marco Polo Airport",

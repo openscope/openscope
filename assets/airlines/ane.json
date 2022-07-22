@@ -1,0 +1,24 @@
+{
+    "icao": "ane",
+    "name": "Iberia Regional",
+    "callsign": {
+        "name": "Air Nostrum",
+        "callsignFormats": [
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT76", 8],
+            ["CRJ2", 7],
+            ["CRJX", 26]
+        ],
+        "jet": [
+            ["CRJ2", 7],
+            ["CRJX", 26]            
+        ],
+        "turboprop": [
+            ["AT76", 8]
+        ]
+    }
+}
