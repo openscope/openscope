@@ -502,7 +502,7 @@
                 "AGOPA": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "RBT", "ADADA", "AGOPA", "AGOPA*"]
             ]
         },
         "AGOP5B": {
@@ -516,7 +516,7 @@
                 "AGOPA": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG268", "RBT", "ADADA", "AGOPA", "AGOPA*"]
             ]
         },
         "AGOP5G": {
@@ -530,7 +530,7 @@
                 "AGOPA": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "PG100", "PG101", "POY", "ABOBO", "ADADA", "AGOPA", "AGOPA*"]
             ]
         },
         "AGOP5H": {
@@ -544,7 +544,7 @@
                 "AGOPA": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "PG101", "POY", "ABOBO", "ADADA", "AGOPA", "AGOPA*"]
             ]
         },
         "AGOP5Z": {
@@ -558,7 +558,7 @@
                 "AGOPA": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "RBT", "ADADA", "AGOPA", "AGOPA*"]
             ]
         },
         "ATRE5A": {
@@ -572,7 +572,7 @@
                 "ATREX": []
             },
             "draw": [
-                []
+                ["PG270", "PG276", "ATREX", "ATREX*"]
             ]
         },
         "ATRE5B": {
@@ -586,7 +586,7 @@
                 "ATREX": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "ATREX", "ATREX*"]
             ]
         },
         "ATRE5G": {
@@ -600,7 +600,7 @@
                 "ATREX": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "ATREX", "ATREX*"]
             ]
         },
         "ATRE5H": {
@@ -614,7 +614,7 @@
                 "ATREX": []
             },
             "draw": [
-                []
+                ["PG081", "PG084", "ATREX", "ATREX*"]
             ]
         },
         "BAXI5A": {
@@ -628,7 +628,7 @@
                 "BAXIR": []
             },
             "draw": [
-                []
+                ["PG270", "PG274", "PG278", "BEKOS", "BAXIR", "BAXIR*"]
             ]
         },
         "BAXI5B": {
@@ -642,7 +642,7 @@
                 "BAXIR": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "PIVER", "CLM", "BEKOS", "BAXIR", "BAXIR*"]
             ]
         },
         "BAXI5G": {
@@ -656,7 +656,7 @@
                 "BAXIR": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG094", "BEKOS", "BAXIR", "BAXIR*"]
             ]
         },
         "BAXI5H": {
@@ -670,7 +670,7 @@
                 "BAXIR": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "BEKOS", "BAXIR", "BAXIR*"]
             ]
         },
         "BUBL5A": {
@@ -684,7 +684,7 @@
                 "BUBLI": []
             },
             "draw": [
-                []
+                ["PG270", "PG274", "PG278", "BEKOS", "BUBLI", "BUBLI*"]
             ]
         },
         "BUBL5B": {
@@ -698,7 +698,7 @@
                 "BUBLI": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "PIVER", "CLM", "BEKOS", "BUBLI", "BUBLI*"]
             ]
         },
         "BUBL5G": {
@@ -712,7 +712,7 @@
                 "BUBLI": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG094", "BEKOS", "BUBLI", "BUBLI*"]
             ]
         },
         "BUBL5H": {
@@ -726,7 +726,7 @@
                 "BUBLI": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "BEKOS", "BUBLI", "BUBLI*"]
             ]
         },
         "DIKO5A": {
@@ -740,7 +740,7 @@
                 "DIKOL": []
             },
             "draw": [
-                []
+                ["PG270", "PG274", "PG278", "NEPAR", "DIKOL", "DIKOL*"]
             ]
         },
         "DIKO5B": {
@@ -754,7 +754,7 @@
                 "DIKOL": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "PIVER", "CLM", "NEPAR", "DIKOL", "DIKOL*"]
             ]
         },
         "DIKO5G": {
@@ -768,7 +768,7 @@
                 "DIKOL": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG094", "NEPAR", "DIKOL", "DIKOL*"]
             ]
         },
         "DIKO5H": {
@@ -782,7 +782,7 @@
                 "DIKOL": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG086", "NEPAR", "DIKOL", "DIKOL*"]
             ]
         },
         "DORD5A": {
@@ -796,7 +796,7 @@
                 "DORDI": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG273", "PG275", "POY", "DORDI", "DORDI*"]
             ]
         },
         "DORD5B": {
@@ -810,7 +810,7 @@
                 "DORDI": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG268", "PG275", "POY", "DORDI", "DORDI*"]
             ]
         },
         "DORD5G": {
@@ -824,7 +824,7 @@
                 "DORDI": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "CLM", "PG109", "MLN", "DORDI", "DORDI*"]
             ]
         },
         "DORD5H": {
@@ -838,7 +838,7 @@
                 "DORDI": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG085", "CLM", "PG109", "MLN", "DORDI", "DORDI*"]
             ]
         },
         "DORD5Z": {
@@ -852,7 +852,7 @@
                 "DORDI": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "PG275", "POY", "DORDI", "DORDI*"]
             ]
         },
         "ERIX5A": {
@@ -866,7 +866,7 @@
                 "ERIXU": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "RBT", "EDOXA", "ERIXU", "ERIXU*"]
             ]
         },
         "ERIX5B": {
@@ -880,7 +880,7 @@
                 "ERIXU": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG268", "RBT", "EDOXA", "ERIXU", "ERIXU*"]
             ]
         },
         "ERIX5G": {
@@ -894,7 +894,7 @@
                 "ERIXU": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "PG100", "PG101", "POY", "ABOBO", "EDOXA", "ERIXU", "ERIXU*"]
             ]
         },
         "ERIX5H": {
@@ -908,7 +908,7 @@
                 "ERIXU": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "PG101", "POY", "ABOBO", "EDOXA", "ERIXU", "ERIXU*"]
             ]
         },
         "ERIX5Z": {
@@ -922,7 +922,7 @@
                 "ERIXU": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "RBT", "EDOXA", "ERIXU", "ERIXU*"]
             ]
         },
         "EVX5A": {
@@ -936,7 +936,7 @@
                 "EVX": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "PG284", "EVX", "EVX*"]
             ]
         },
         "EVX5B": {
@@ -950,7 +950,7 @@
                 "EVX": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG286", "EVX", "EVX*"]
             ]
         },
         "EVX5G": {
@@ -964,7 +964,7 @@
                 "EVX": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG093", "PG097", "PG098", "EVX", "EVX*"]
             ]
         },
         "EVX5H": {
@@ -978,7 +978,7 @@
                 "EVX": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "KELUD", "EVX", "EVX*"]
             ]
         },
         "EVX5Z": {
@@ -992,7 +992,7 @@
                 "EVX": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "EVX", "EVX*"]
             ]
         },
         "LANV5A": {
@@ -1006,7 +1006,7 @@
                 "LANVI": []
             },
             "draw": [
-                []
+                ["PG270", "PG274", "PG278", "LUPAM", "LASIV", "LANVI", "LANVI*"]
             ]
         },
         "LANV5B": {
@@ -1020,7 +1020,7 @@
                 "LANVI": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "PIVER", "CLM", "LUPAM", "LASIV", "LANVI", "LANVI*"]
             ]
         },
         "LANV5G": {
@@ -1034,7 +1034,7 @@
                 "LANVI": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG094", "LUPAM", "LASIV", "LANVI", "LANVI*"]
             ]
         },
         "LANV5H": {
@@ -1048,7 +1048,7 @@
                 "LANVI": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "LUPAM", "LASIV", "LANVI", "LANVI*"]
             ]
         },
         "LATR5A": {
@@ -1062,7 +1062,7 @@
                 "LATRA": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "DEROL", "LALUX", "LATRA", "LATRA*"]
             ]
         },
         "LATR5B": {
@@ -1076,7 +1076,7 @@
                 "LATRA": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG267", "DEROL", "LALUX", "LATRA", "LATRA*"]
             ]
         },
         "LATR5G": {
@@ -1090,7 +1090,7 @@
                 "LATRA": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "PG100", "PG102", "LAPAX", "LALUX", "LATRA", "LATRA*"]
             ]
         },
         "LATR5H": {
@@ -1104,7 +1104,7 @@
                 "LATRA": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "PG102", "LAPAX", "LALUX", "LATRA", "LATRA*"]
             ]
         },
         "LATR5Z": {
@@ -1118,7 +1118,7 @@
                 "LATRA": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "DEROL", "LALUX", "LATRA", "LATRA*"]
             ]
         },
         "LGL5A": {
@@ -1132,7 +1132,7 @@
                 "LGL": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "PG284", "EVX", "LESGA", "LGL", "LGL*"]
             ]
         },
         "LGL5B": {
@@ -1146,7 +1146,7 @@
                 "LGL": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG286", "LESGA", "LGL", "LGL*"]
             ]
         },
         "LGL5G": {
@@ -1160,7 +1160,7 @@
                 "LGL": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG093", "PG097", "PG098", "EVX", "LGL", "LGL*"]
             ]
         },
         "LGL5H": {
@@ -1174,7 +1174,7 @@
                 "LGL": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "KELUD", "LGL", "LGL*"]
             ]
         },
         "LGL5Z": {
@@ -1188,7 +1188,7 @@
                 "LGL": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "EVX", "LESGA", "LGL", "LGL*"]
             ]
         },
         "MONO5A": {
@@ -1202,7 +1202,7 @@
                 "MONOT": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG273", "PG275", "POY", "PG277", "MONOT", "MONOT*"]
             ]
         },
         "MONO5B": {
@@ -1216,7 +1216,7 @@
                 "MONOT": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG268", "PG275", "POY", "PG277", "MONOT", "MONOT*"]
             ]
         },
         "MONO5G": {
@@ -1230,7 +1230,7 @@
                 "MONOT": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "CLM", "PG111", "MONOT", "MONOT*"]
             ]
         },
         "MONO5H": {
@@ -1244,7 +1244,7 @@
                 "MONOT": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG085", "CLM", "PG111", "MONOT", "MONOT*"]
             ]
         },
         "MONO5Z": {
@@ -1258,7 +1258,7 @@
                 "MONOT": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "PG275", "POY", "PG277", "MONOT", "MONOT*"]
             ]
         },
         "NURM5A": {
@@ -1272,7 +1272,7 @@
                 "NURMO": []
             },
             "draw": [
-                []
+                ["PG270", "PG276", "NURMO", "NURMO*"]
             ]
         },
         "NURM5B": {
@@ -1286,7 +1286,7 @@
                 "NURMO": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "NURMO", "NURMO*"]
             ]
         },
         "NURM5G": {
@@ -1300,7 +1300,7 @@
                 "NURMO": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "NURMO", "NURMO*"]
             ]
         },
         "NURM5H": {
@@ -1314,7 +1314,7 @@
                 "NURMO": []
             },
             "draw": [
-                []
+                ["PG081", "PG084", "NURMO", "NURMO*"]
             ]
         },
         "OKAS5A": {
@@ -1328,7 +1328,7 @@
                 "OKASI": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "PG289", "DOPAP", "ODEBU", "OKASI", "OKASI*"]
             ]
         },
         "OKAS5B": {
@@ -1342,7 +1342,7 @@
                 "OKASI": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG266", "PG289", "DOPAP", "ODEBU", "OKASI", "OKASI*"]
             ]
         },
         "OKAS5G": {
@@ -1356,7 +1356,7 @@
                 "OKASI": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "PG100", "OSTIP", "ODEBU", "OKASI", "OKASI*"]
             ]
         },
         "OKAS5H": {
@@ -1370,7 +1370,7 @@
                 "OKASI": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "OSTIP", "ODEBU", "OKASI", "OKASI*"]
             ]
         },
         "OKAS5Z": {
@@ -1384,7 +1384,7 @@
                 "OKASI": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "PG289", "DOPAP", "ODEBU", "OKASI", "OKASI*"]
             ]
         },
         "OPAL5A": {
@@ -1398,7 +1398,7 @@
                 "OPALE": []
             },
             "draw": [
-                []
+                ["BOV", "OPALE*"]
             ]
         },
         "OPAL5B": {
@@ -1412,7 +1412,7 @@
                 "OPALE": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "BOV", "OPALE", "OPALE*"]
             ]
         },
         "OPAL5G": {
@@ -1426,7 +1426,7 @@
                 "OPALE": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG099", "OPALE", "OPALE*"]
             ]
         },
         "OPAL5H": {
@@ -1440,7 +1440,7 @@
                 "OPALE": []
             },
             "draw": [
-                []
+                ["PG081", "PG084", "OPALE", "OPALE*"]
             ]
         },
         "PILU5A": {
@@ -1454,7 +1454,7 @@
                 "PILUL": []
             },
             "draw": [
-                []
+                ["PG271", "PG272", "PG280", "PG289", "POY", "PEKIM", "PILUL", "PILUL*"]
             ]
         },
         "PILU5B": {
@@ -1468,7 +1468,7 @@
                 "PILUL": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG266", "PG289", "POY", "PEKIM", "PILUL", "PILUL*"]
             ]
         },
         "PILU5G": {
@@ -1482,7 +1482,7 @@
                 "PILUL": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG095", "CLM", "MLN", "PEKIM", "PILUL", "PILUL*"]
             ]
         },
         "PILU5H": {
@@ -1496,7 +1496,7 @@
                 "PILUL": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG088", "CLM", "MLN", "PEKIM", "PILUL", "PILUL*"]
             ]
         },
         "PILU5Z": {
@@ -1510,7 +1510,7 @@
                 "PILUL": []
             },
             "draw": [
-                []
+                ["PG270", "PG290", "PON", "PG289", "POY", "PEKIM", "PILUL", "PILUL*"]
             ]
         },
         "RANU5A": {
@@ -1524,7 +1524,7 @@
                 "RANUX": []
             },
             "draw": [
-                []
+                ["PG270", "PG274", "PG278", "NEPAR", "RANUX", "RANUX*"]
             ]
         },
         "RANU5B": {
@@ -1538,7 +1538,7 @@
                 "RANUX": []
             },
             "draw": [
-                []
+                ["PG263", "PG264", "PG265", "PIVER", "CLM", "NEPAR", "RANUX", "RANUX*"]
             ]
         },
         "RANU5G": {
@@ -1552,7 +1552,7 @@
                 "RANUX": []
             },
             "draw": [
-                []
+                ["PG091", "PG092", "PG094", "NEPAR", "RANUX", "RANUX*"]
             ]
         },
         "RANU5H": {
@@ -1566,11 +1566,10 @@
                 "RANUX": []
             },
             "draw": [
-                []
+                ["PG081", "PG082", "PG086", "NEPAR", "RANUX", "RANUX*"]
             ]
         }
     },
-
     "stars": {
         "BIBA9E": {
             "icao": "BIBA9E",
@@ -1583,7 +1582,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["BIBAX*", "KOLIV", "MOPAR", "PG527"]]
         },
         "BIBA9W": {
             "icao": "BIBA9W",
@@ -1596,7 +1595,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["BIBAX*", "KOLIV", "MOPAR", "PG534", "CREIL", "PG536"]]
         },
         "DINA9E": {
             "icao": "DINA9E",
@@ -1609,7 +1608,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["DINAN*", "FF101", "XERAM", "ENORI", "DEVIM", "LORNI", "BUNOR", "PG501"]]
         },
         "DINA9W": {
             "icao": "DINA9W",
@@ -1622,7 +1621,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["DINAN*", "FF101", "XERAM", "ENORI", "DEVIM", "LORNI", "PG520"]]
         },
         "DJL9E": {
             "icao": "DJL9E",
@@ -1635,7 +1634,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["DJL*", "TRO", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "DJL9W": {
             "icao": "DJL9W",
@@ -1648,7 +1647,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["DJL*", "FF304", "TRO", "URELO", "OKIPA", "PG522"]]
         },
         "EPL9E": {
             "icao": "EPL9E",
@@ -1661,7 +1660,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["EPL*", "NANOP", "FF301", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "EPL9W": {
             "icao": "EPL9W",
@@ -1674,7 +1673,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["EPL*", "NANOP", "FF301", "URELO", "OKIPA", "PG522"]]
         },
         "KEPE9E": {
             "icao": "KEPE9E",
@@ -1687,7 +1686,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["KEPER*", "LUMAN", "ROMGO", "FF501", "NERKI", "BANOX", "SUBOX"]]
         },
         "KEPE9W": {
             "icao": "KEPE9W",
@@ -1700,7 +1699,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["KEPER*", "LUMAN", "ROMGO", "FF501", "NERKI", "BANOX", "DOMUS", "PG510", "PG515", "PG516"]]
         },
         "KOVA9E": {
             "icao": "KOVA9E",
@@ -1713,7 +1712,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["KOVAK*", "BENAR", "ROMGO", "FF501", "NERKI", "BANOX", "SUBOX"]]
         },
         "KOVA9W": {
             "icao": "KOVA9W",
@@ -1726,7 +1725,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["KOVAK*", "BENAR", "ROMGO", "FF501", "NERKI", "BANOX", "DOMUS", "PG510", "PG515", "PG516"]]
         },
         "LUKI9E": {
             "icao": "LUKI9E",
@@ -1739,7 +1738,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["LUKIP*", "KOLIV", "MOPAR", "PG527"]]
         },
         "LUKI9W": {
             "icao": "LUKI9W",
@@ -1752,7 +1751,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["LUKIP*", "KOLIV", "MOPAR", "PG534", "CREIL", "PG536"]]
         },
         "MATI9E": {
             "icao": "MATI9E",
@@ -1765,7 +1764,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["MATIX*", "VAKOS", "ENORI", "DEVIM", "LORNI", "BUNOR", "PG501"]]
         },
         "MATI9W": {
             "icao": "MATI9W",
@@ -1778,7 +1777,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["MATIX*", "VAKOS", "ENORI", "DEVIM", "LORNI", "PG520"]]
         },
         "MOPI9E": {
             "icao": "MOPI9E",
@@ -1791,7 +1790,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["MOPIL*", "XERAM", "ENORI", "DEVIM", "LORNI", "BUNOR", "PG501"]]
         },
         "MOPI9W": {
             "icao": "MOPI9W",
@@ -1804,7 +1803,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["MOPIL*", "XERAM", "ENORI", "DEVIM", "LORNI", "PG520"]]
         },
         "MOU9E": {
             "icao": "MOU9E",
@@ -1817,7 +1816,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["MOU*", "TRO", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "MOU9W": {
             "icao": "MOU9W",
@@ -1830,7 +1829,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["MOU*", "TRO", "URELO", "OKIPA", "PG522"]]
         },
         "PIBA9E": {
             "icao": "PIBA9E",
@@ -1843,7 +1842,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["PIBAT*", "AVLON", "TRO", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "PIBA9W": {
             "icao": "PIBA9W",
@@ -1856,7 +1855,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["PIBAT*", "AVLON", "TRO", "URELO", "OKIPA", "PG522"]]
         },
         "RLP9E": {
             "icao": "RLP9E",
@@ -1869,7 +1868,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["RLP*", "ERTIP", "NANOP", "FF301", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "RLP9W": {
             "icao": "RLP9W",
@@ -1882,7 +1881,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["RLP*", "ERTIP", "NANOP", "FF301", "URELO", "OKIPA", "PG522"]]
         },
         "ROMG9E": {
             "icao": "ROMG9E",
@@ -1895,7 +1894,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["ROMGO*", "FF501", "NERKI", "BANOX", "SUBOX"]]
         },
         "ROMG9W": {
             "icao": "ROMG9W",
@@ -1908,7 +1907,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["ROMGO*", "FF501", "NERKI", "BANOX", "DOMUS", "PG510", "PG515", "PG516"]]
         },
         "SABL9E": {
             "icao": "SABL9E",
@@ -1921,7 +1920,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["SABLE*", "LUMAN", "ROMGO", "FF501", "NERKI", "BANOX", "SUBOX"]]
         },
         "SABL9W": {
             "icao": "SABL9W",
@@ -1934,7 +1933,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["SABLE*", "LUMAN", "ROMGO", "FF501", "NERKI", "BANOX", "DOMUS", "PG510", "PG515", "PG516"]]
         },
         "TINI9E": {
             "icao": "TINI9E",
@@ -1947,7 +1946,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["TINIL*", "FF302", "NANOP", "FF301", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "TINI9W": {
             "icao": "TINI9W",
@@ -1960,7 +1959,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["TINIL*", "FF302", "NANOP", "FF301", "URELO", "OKIPA", "PG522"]]
         },
         "TRO9E": {
             "icao": "TRO9E",
@@ -1973,7 +1972,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["TRO*", "URELO", "OKIPA", "CLM", "MOSUD", "PG503"]]
         },
         "TRO9W": {
             "icao": "TRO9W",
@@ -1986,7 +1985,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["TRO*", "URELO", "OKIPA", "PG522"]]
         },
         "VEDU9E": {
             "icao": "VEDU9E",
@@ -1999,7 +1998,7 @@
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [[]]
+            "draw": [["VEDUS*", "XERAM", "ENORI", "DEVIM", "LORNI", "BUNOR", "PG501"]]
         },
         "VEDU9W": {
             "icao": "VEDU9W",
@@ -2012,7 +2011,7 @@
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [[]]
+            "draw": [["VEDUS*", "XERAM", "ENORI", "DEVIM", "LORNI", "PG520"]]
         }
     },
     "spawnPatterns": [{
