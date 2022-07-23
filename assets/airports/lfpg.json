@@ -26,7 +26,137 @@
     "departureRunway": "26R",
     "defaultMaps": ["Base Map"],
     "airspace": [{
+        "floor": 45,
+        "ceiling": 65,
+        "airspace_class": "A",
+        "poly": [
+            ["N49.510556", "E2.708889"],
+            ["N49.4375", "E3.157778"],
+            ["N49.468611", "E3.314722"],
+            ["N49.445", "E3.461667"],
+            ["N49.140556", "E3.662222"],
+            ["N49.105833", "E3.661667"],
+            ["N48.736667", "E3.656944"],
+            ["N48.698889", "E3.509167"],
+            ["N48.608056", "E3.158611"],
+            ["N48.376667", "E2.885"],
+            ["N48.377222", "E2.747222"],
+            ["N48.3775", "E1.871944"],
+            ["N48.376944", "E1.753889"],
+            ["N48.498333", "E1.552222"],
+            ["N48.606667", "E1.576111"],
+            ["N48.705833", "E1.425278"],
+            ["N48.917222", "E1.419167"],
+            ["N49.101111", "E1.495278"],
+            ["N49.138611", "E1.488611"],
+            ["N49.2525", "E1.468056"],
+            ["N49.3", "E1.570556"],
+            ["N49.380278", "E1.613056"],
+            ["N49.375278", "E1.723056"],
+            ["N49.41", "E1.8525"],
+            ["N49.433889", "E1.941111"],
+            ["N49.340556", "E2.2425"],
+            ["N49.433333", "E2.5"],
+            ["N49.471389", "E2.602778"],
+            ["N49.510556", "E2.708889"]
+        ]
+    },
+    {
+        "floor": 35,
+        "ceiling": 45,
+        "airspace_class": "A",
+        "poly": [
+            ["N49.510556", "E2.708889"],
+            ["N49.4375", "E3.157778"],
+            ["N49.383333", "E3.164722"],
+            ["N49.316667", "E3.373056"],
+            ["N49.033333", "E3.483333"],
+            ["N48.809722", "E3.500833"],
+            ["N48.790278", "E3.213056"],
+            ["N48.699167", "E3.084444"],
+            ["N48.6275", "E3.123889"],
+            ["N48.455833", "E2.813333"],
+            ["N48.377222", "E2.747222"],
+            ["N48.3775", "E1.871944"],
+            ["N48.546667", "E1.676111"],
+            ["N48.606667", "E1.576111"],
+            ["N48.705833", "E1.425278"],
+            ["N49.059722", "E1.606111"],
+            ["N49.375278", "E1.723056"],
+            ["N49.41", "E1.8525"],
+            ["N49.389444", "E1.899167"],
+            ["N49.32", "E2.055833"],
+            ["N49.3125", "E2.165833"],
+            ["N49.340556", "E2.2425"],
+            ["N49.433333", "E2.5"],
+            ["N49.471389", "E2.602778"],
+            ["N49.510556", "E2.708889"]
+        ]
+    },
+    {
+        "floor": 25,
+        "ceiling": 35,
+        "airspace_class": "A",
+        "poly": [
+            ["N49.510556", "E2.708889"],
+            ["N49.4375", "E3.157778"],
+            ["N49.383333", "E3.164722"],
+            ["N48.848333", "E3.238889"],
+            ["N48.845833", "E3.093056"],
+            ["N48.777778", "E2.98"],
+            ["N48.647222", "E2.911667"],
+            ["N48.522222", "E2.847222"],
+            ["N48.483333", "E2.685278"],
+            ["N48.505", "E2.489167"],
+            ["N48.406389", "E2.395833"],
+            ["N48.429444", "E1.885278"],
+            ["N48.546667", "E1.676111"],
+            ["N48.621667", "E1.695833"],
+            ["N48.7875", "E1.739444"],
+            ["N48.899167", "E1.768889"],
+            ["N49.021111", "E1.742222"],
+            ["N49.104167", "E1.777778"],
+            ["N49.389444", "E1.899167"],
+            ["N49.32", "E2.055833"],
+            ["N49.3125", "E2.165833"],
+            ["N49.340556", "E2.2425"],
+            ["N49.433333", "E2.5"],
+            ["N49.471389", "E2.602778"],
+            ["N49.510556", "E2.708889"]
+        ]
+    },
+    {
         "floor": 15,
+        "ceiling": 25,
+        "airspace_class": "A",
+        "poly": [
+            ["N49.232778", "E2.866667"],
+            ["N48.907778", "E3.060833"],
+            ["N48.813889", "E2.857778"],
+            ["N48.728611", "E2.848333"],
+            ["N48.681389", "E2.721944"],
+            ["N48.698611", "E2.618889"],
+            ["N48.618889", "E2.488889"],
+            ["N48.556111", "E2.489167"],
+            ["N48.480556", "E2.368333"],
+            ["N48.490833", "E2.174444"],
+            ["N48.524167", "E2.025833"],
+            ["N48.633333", "E1.999167"],
+            ["N48.653889", "E1.994167"],
+            ["N48.754167", "E1.988889"],
+            ["N48.795833", "E1.986944"],
+            ["N48.798611", "E1.986667"],
+            ["N48.798889", "E1.996667"],
+            ["N48.890833", "E1.998333"],
+            ["N48.990278", "E2.000556"],
+            ["N49.121111", "E2.197222"],
+            ["N49.141111", "E2.314444"],
+            ["N49.16", "E2.419444"],
+            ["N49.232778", "E2.866667"]
+        ]
+    },
+    {
+        "floor": 65,
         "ceiling": 195,
         "airspace_class": "A",
         "poly": [
@@ -182,27 +312,55 @@
         "PEKIM": [48.275833, 2.825556],
         "PILUL": [48.083333, 3.048056],
         "RANUX": [49.138778, 4.361528],
-        "BANOX": [48.574194, 1.5055],
-        "SUBOX": [48.749722, 1.635278],
+        "BIBAX": [50.057500, 1.008056],
+        "MOPAR": [49.291722, 1.757278],
+        "PG527": [49.169889, 1.839500],
+        "PG534": [49.261722, 2.387972],
+        "CREIL": [49.255278, 2.514778],
+        "PG536": [49.231694, 2.715000],
+        "DINAN": [49.831944, 5.331389],
+        "FF101": [49.671111, 4.458333],
+        "XERAM": [49.596667, 4.067222],
+        "ENORI": [49.474694, 3.777944],
         "LORNI": [49.419417, 3.451389],
         "BUNOR": [49.181056, 2.573528],
         "PG501": [49.176639, 2.370389],
-        "MOPAR": [49.291722, 1.757278],
-        "PG527": [49.169889, 1.8395],
-        "OKIPA": [48.611306, 3.5635],
+        "PG520": [49.274500, 3.325972],
+        "DJL"  : [47.270778, 5.097333],
+        "TRO"  : [48.251222, 3.963139],
+        "OKIPA": [48.611306, 3.563500],
         "MOSUD": [48.937722, 2.859333],
         "PG503": [48.916333, 2.459611],
-        "LARPO": [49.108278, 2.589611],
-        "PG502": [49.104611, 2.386861],
+        "FF304": [47.604722, 4.717222],
+        "PG522": [48.784500, 3.412722],
+        "EPL"  : [48.317833, 6.059417],
+        "NANOP": [48.261944, 4.239444],
+        "FF301": [48.347500, 4.083611],
+        "KEPER": [47.806111, 0.273889],
+        "LUMAN": [47.939444, 0.413333],
+        "ROMGO": [48.346583, 0.844111],
+        "FF501": [48.411944, 1.032500],
+        "BANOX": [48.574194, 1.505500],
+        "SUBOX": [48.749722, 1.635278],
         "DOMUS": [48.888083, 1.963861],
         "PG510": [48.902528, 2.213833],
         "PG515": [48.916222, 2.459417],
         "PG516": [48.918528, 2.661556],
-        "PG520": [49.2745, 3.325972],
-        "PG534": [49.261722, 2.387972],
-        "CREIL": [49.255278, 2.514778],
-        "PG536": [49.231694, 2.715],
-        "PG522": [48.7845, 3.412722]
+        "KOVAK": [47.993056, 0.846667],
+        "BENAR": [48.253056, 0.744444],
+        "LUKIP": [49.315833, 0.496389],
+        "MATIX": [50.098333, 3.914167],
+        "VAKOS": [49.569639, 4.002861],
+        "MOPIL": [50.147778, 4.107778],
+        "MOU"  : [46.706778, 3.631667],
+        "PIBAT": [46.805944, 4.259139],
+        "AVLON": [47.560000, 3.813333],
+        "RLP"  : [47.906306, 5.249167],
+        "ERTIP": [48.134444, 4.406667],
+        "SABLE": [47.853056, -0.250000],
+        "TINIL": [47.588889, 5.098611],
+        "FF302": [47.736944, 4.912778],
+        "VEDUS": [49.594722, 4.781389]
     },
     "restricted": [{
         "name": "P23",
@@ -1385,141 +1543,449 @@
             ]
         }
     },
+
     "stars": {
-        "BAN6E": {
-            "icao": "BAN6E",
-            "name": "Banox Six Echo",
+        "BIBA9E": {
+            "icao": "BIBA9E",
+            "name": "Bibax Niner Echo",
             "entryPoints": {
-                "NERKI": ["NERKI"]
+                "BIBAX": [["BIBAX", "A240-|S280"]]
             },
-            "body": ["BANOX", "SUBOX", "#025"],
+            "body": [["KOLIV", "A100+|A110-|S250"], ["MOPAR", "A80+|A100-"], "PG527", "#155"],
             "rwy": {
                 "LFPG09L": [],
                 "LFPG08R": []
             },
-            "draw": [
-                []
-            ]
+            "draw": [[]]
         },
-        "LOR6E": {
-            "icao": "LOR6E",
-            "name": "Lorni Six Echo",
+        "BIBA9W": {
+            "icao": "BIBA9W",
+            "name": "Bibax Niner Whiskey",
             "entryPoints": {
-                "DEVIM": ["DEVIM"]
+                "BIBAX": [["BIBAX", "A240-|S300"]]
             },
-            "body": ["LORNI", "BUNOR", "PG501", "#267"],
-            "rwy": {
-                "LFPG09L": [],
-                "LFPG08R": []
-            },
-            "draw": [
-                []
-            ]
-        },
-        "MOP6E": {
-            "icao": "MOP6E",
-            "name": "Mopar Six Echo",
-            "entryPoints": {
-                "KOLIV": ["KOLIV"]
-            },
-            "body": ["MOPAR", "PG527", "#155"],
-            "rwy": {
-                "LFPG09L": [],
-                "LFPG08R": []
-            },
-            "draw": [
-                []
-            ]
-        },
-        "OKI6E": {
-            "icao": "OKI6E",
-            "name": "Okipa Six Echo",
-            "entryPoints": {
-                "URELO": ["URELO"]
-            },
-            "body": ["OKIPA", "CLM", "MOSUD", "PG503", "#264"],
-            "rwy": {
-                "LFPG09L": [],
-                "LFPG08R": []
-            },
-            "draw": [
-                []
-            ]
-        },
-        "OKI6N": {
-            "icao": "OKI6N",
-            "name": "Okipa Six November",
-            "entryPoints": {
-                "URELO": ["URELO"]
-            },
-            "body": ["OKIPA", "CLM", "MOSUD", "LARPO", "PG502", "#267"],
-            "rwy": {
-                "LFPG09L": [],
-                "LFPG08R": []
-            },
-            "draw": [
-                []
-            ]
-        },
-        "BAN6W": {
-            "icao": "BAN6W",
-            "name": "Banox Six Whiskey",
-            "entryPoints": {
-                "NERKI": ["NERKI"]
-            },
-            "body": ["BANOX", "DOMUS", "PG510", "PG515", "PG516", "#088"],
+            "body": [["KOLIV", "A130-|S300"], ["MOPAR", "A110+|A120-"], "PG534", "CREIL", "PG536", "#099"],
             "rwy": {
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [
-                []
-            ]
+            "draw": [[]]
         },
-        "LOR6W": {
-            "icao": "LOR6W",
-            "name": "Lorni Six Whiskey",
+        "DINA9E": {
+            "icao": "DINA9E",
+            "name": "Dinan Niner Echo",
             "entryPoints": {
-                "DEVIM": ["DEVIM"]
+                "DINAN": ["DINAN"]
             },
-            "body": ["LORNI", "PG520", "#208"],
+            "body": [["FF101", "A240-|S300"], "XERAM", "ENORI", ["DEVIM", "A160-"], ["LORNI", "A110+|A150-"], "BUNOR", "PG501", "#267"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "DINA9W": {
+            "icao": "DINA9W",
+            "name": "Dinan Niner Whiskey",
+            "entryPoints": {
+                "DINAN": ["DINAN"]
+            },
+            "body": [["FF101", "A240-|S280"], "XERAM", "ENORI", ["DEVIM", "A130-|S250"], ["LORNI", "A70+|A130-"], "PG520", "#208"],
             "rwy": {
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [
-                []
-            ]
+            "draw": [[]]
         },
-        "MOP6W": {
-            "icao": "MOP6W",
-            "name": "Mopar Six Whiskey",
+        "DJL9E": {
+            "icao": "DJL9E",
+            "name": "Djl Niner Echo",
             "entryPoints": {
-                "KOLIV": ["KOLIV"]
+                "DJL": ["DJL"]
             },
-            "body": ["MOPAR", "PG534", "CREIL", "PG536", "#099"],
+            "body": [["TRO", "S300"], ["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "DJL9W": {
+            "icao": "DJL9W",
+            "name": "Djl Niner Whiskey",
+            "entryPoints": {
+                "DJL": ["DJL"]
+            },
+            "body": ["FF304", ["TRO", "A160-|S250"], ["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
             "rwy": {
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [
-                []
-            ]
+            "draw": [[]]
         },
-        "OKI6W": {
-            "icao": "OKI6W",
-            "name": "Okipa Six Whiskey",
+        "EPL9E": {
+            "icao": "EPL9E",
+            "name": "Epl Niner Echo",
             "entryPoints": {
-                "URELO": ["URELO"]
+                "EPL": ["EPL"]
             },
-            "body": ["OKIPA", "PG522", "#329"],
+            "body": ["NANOP", ["FF301", "A200-|S300"], ["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "EPL9W": {
+            "icao": "EPL9W",
+            "name": "Epl Niner Whiskey",
+            "entryPoints": {
+                "EPL": ["EPL"]
+            },
+            "body": ["NANOP", ["FF301", "A160-|S250"], ["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
             "rwy": {
                 "LFPG27R": [],
                 "LFPG26L": []
             },
-            "draw": [
-                []
-            ]
+            "draw": [[]]
+        },
+        "KEPE9E": {
+            "icao": "KEPE9E",
+            "name": "Keper Niner Echo",
+            "entryPoints": {
+                "KEPER": [["KEPER", "A240"]]
+            },
+            "body": [["LUMAN", "S280"], "ROMGO", ["FF501", "A150"], ["NERKI", "A120-|S250"], ["BANOX", "A90+|A110-"], "SUBOX", "#025"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "KEPE9W": {
+            "icao": "KEPE9W",
+            "name": "Keper Niner Whiskey",
+            "entryPoints": {
+                "KEPER": [["KEPER", "A280"]]
+            },
+            "body": [["LUMAN", "S300"], "ROMGO", ["FF501", "A190"], ["NERKI", "A160-"], ["BANOX", "A140+|A150-"], "DOMUS", "PG510", "PG515", "PG516", "#088"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "KOVA9E": {
+            "icao": "KOVA9E",
+            "name": "Kovak Niner Echo",
+            "entryPoints": {
+                "KOVAK": [["KOVAK", "S280"]]
+            },
+            "body": ["BENAR", "ROMGO", ["FF501", "A150"], ["NERKI", "A120-|S250"], ["BANOX", "A90+|A110-"], "SUBOX", "#025"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "KOVA9W": {
+            "icao": "KOVA9W",
+            "name": "Kovak Niner Whiskey",
+            "entryPoints": {
+                "KOVAK": [["KOVAK", "S300"]]
+            },
+            "body": ["BENAR", "ROMGO", ["FF501", "A190"], ["NERKI", "A160-"], ["BANOX", "A140+|A150-"], "DOMUS", "PG510", "PG515", "PG516", "#088"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "LUKI9E": {
+            "icao": "LUKI9E",
+            "name": "Lukip Niner Echo",
+            "entryPoints": {
+                "LUKIP": [["LUKIP", "A240-|S280"]]
+            },
+            "body": [["KOLIV", "A100+|A110-|S250"], ["MOPAR", "A80+|A100-"], "PG527", "#155"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "LUKI9W": {
+            "icao": "LUKI9W",
+            "name": "Lukip Niner Whiskey",
+            "entryPoints": {
+                "LUKIP": [["LUKIP", "A240-|S300"]]
+            },
+            "body": [["KOLIV", "A130-|S300"], ["MOPAR", "A110+|A120-"], "PG534", "CREIL", "PG536", "#099"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "MATI9E": {
+            "icao": "MATI9E",
+            "name": "Matix Niner Echo",
+            "entryPoints": {
+                "MATIX": [["MATIX", "S300"]]
+            },
+            "body": ["VAKOS", "ENORI", ["DEVIM", "A160-"], ["LORNI", "A110+|A150-"], "BUNOR", "PG501", "#267"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "MATI9W": {
+            "icao": "MATI9W",
+            "name": "Matix Niner Whiskey",
+            "entryPoints": {
+                "MATIX": [["MATIX", "S280"]]
+            },
+            "body": ["VAKOS", "ENORI", ["DEVIM", "A130-|S250"], ["LORNI", "A70+|A130-"], "PG520", "#208"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "MOPI9E": {
+            "icao": "MOPI9E",
+            "name": "Mopil Niner Echo",
+            "entryPoints": {
+                "MOPIL": [["MOPIL", "A260-|S300"]]
+            },
+            "body": ["XERAM", "ENORI", ["DEVIM", "A160-"], ["LORNI", "A110+|A150-"], "BUNOR", "PG501", "#267"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "MOPI9W": {
+            "icao": "MOPI9W",
+            "name": "Mopil Niner Whiskey",
+            "entryPoints": {
+                "MOPIL": [["MOPIL", "A260-|S280"]]
+            },
+            "body": ["XERAM", "ENORI", ["DEVIM", "A130-|S250"], ["LORNI", "A70+|A130-"], "PG520", "#208"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "MOU9E": {
+            "icao": "MOU9E",
+            "name": "Mou Niner Echo",
+            "entryPoints": {
+                "MOU": ["MOU"]
+            },
+            "body": [["TRO", "S300"], ["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "MOU9W": {
+            "icao": "MOU9W",
+            "name": "Mou Niner Whiskey",
+            "entryPoints": {
+                "MOU": ["MOU"]
+            },
+            "body": [["TRO", "A160-|S250"], ["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "PIBA9E": {
+            "icao": "PIBA9E",
+            "name": "Pibat Niner Echo",
+            "entryPoints": {
+                "PIBAT": ["PIBAT"]
+            },
+            "body": ["AVLON", ["TRO", "S300"], ["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "PIBA9W": {
+            "icao": "PIBA9W",
+            "name": "Pibat Niner Whiskey",
+            "entryPoints": {
+                "PIBAT": ["PIBAT"]
+            },
+            "body": ["AVLON", ["TRO", "A160-|S250"], ["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "RLP9E": {
+            "icao": "RLP9E",
+            "name": "Rlp Niner Echo",
+            "entryPoints": {
+                "RLP": ["RLP"]
+            },
+            "body": ["ERTIP", "NANOP", ["FF301", "S300"], ["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "RLP9W": {
+            "icao": "RLP9W",
+            "name": "Rlp Niner Whiskey",
+            "entryPoints": {
+                "RLP": ["RLP"]
+            },
+            "body": ["ERTIP", "NANOP", ["FF301", "A160-|S250"], ["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "ROMG9E": {
+            "icao": "ROMG9E",
+            "name": "Romgo Niner Echo",
+            "entryPoints": {
+                "ROMGO": ["ROMGO"]
+            },
+            "body": [["FF501", "A150"], ["NERKI", "A120-|S250"], ["BANOX", "A90+|A110-"], "SUBOX", "#025"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "ROMG9W": {
+            "icao": "ROMG9W",
+            "name": "Romgo Niner Whiskey",
+            "entryPoints": {
+                "ROMGO": [["ROMGO", "S300"]]
+            },
+            "body": [["FF501", "A190"], ["NERKI", "A160-"], ["BANOX", "A140+|A150-"], "DOMUS", "PG510", "PG515", "PG516", "#088"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "SABL9E": {
+            "icao": "SABL9E",
+            "name": "Sable Niner Echo",
+            "entryPoints": {
+                "SABLE": ["SABLE"]
+            },
+            "body": [["LUMAN", "S280"], "ROMGO", ["FF501", "A150"], ["NERKI", "A120-|S250"], ["BANOX", "A90+|A110-"], "SUBOX", "#025"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "SABL9W": {
+            "icao": "SABL9W",
+            "name": "Sable Niner Whiskey",
+            "entryPoints": {
+                "SABLE": ["SABLE"]
+            },
+            "body": [["LUMAN", "S300"], "ROMGO", ["FF501", "A190"], ["NERKI", "A160-"], ["BANOX", "A140+|A150-"], "DOMUS", "PG510", "PG515", "PG516", "#088"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "TINI9E": {
+            "icao": "TINI9E",
+            "name": "Tinil Niner Echo",
+            "entryPoints": {
+                "TINIL": ["TINIL"]
+            },
+            "body": [["FF302", "A280-"], "NANOP", ["FF301", "A200-|S300"], ["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "TINI9W": {
+            "icao": "TINI9W",
+            "name": "Tinil Niner Whiskey",
+            "entryPoints": {
+                "TINIL": ["TINIL"]
+            },
+            "body": [["FF302", "A280-|S280"], "NANOP", ["FF301", "A160-|S250"], ["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "TRO9E": {
+            "icao": "TRO9E",
+            "name": "Tro Niner Echo",
+            "entryPoints": {
+                "TRO": [["TRO", "A190-|S300"]]
+            },
+            "body": [["URELO", "A160-"], ["OKIPA", "A140+|A150-"], "CLM", "MOSUD", "PG503", "#264"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "TRO9W": {
+            "icao": "TRO9W",
+            "name": "Tro Niner Whiskey",
+            "entryPoints": {
+                "TRO": [["TRO", "A160-|S250"]]
+            },
+            "body": [["URELO", "A120-"], ["OKIPA", "A70+|A110-"], "PG522", "#329"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
+        },
+        "VEDU9E": {
+            "icao": "VEDU9E",
+            "name": "Vedus Niner Echo",
+            "entryPoints": {
+                "VEDUS": [["VEDUS", "A280-|S300"]]
+            },
+            "body": ["XERAM", "ENORI", ["DEVIM", "A160-"], ["LORNI", "A110+|A150-"], "BUNOR", "PG501", "#267"],
+            "rwy": {
+                "LFPG09L": [],
+                "LFPG08R": []
+            },
+            "draw": [[]]
+        },
+        "VEDU9W": {
+            "icao": "VEDU9W",
+            "name": "Vedus Niner Whiskey",
+            "entryPoints": {
+                "VEDUS": [["VEDUS", "A260-|S280"]]
+            },
+            "body": ["XERAM", "ENORI", ["DEVIM", "A130-|S250"], ["LORNI", "A70+|A130-"], "PG520", "#208"],
+            "rwy": {
+                "LFPG27R": [],
+                "LFPG26L": []
+            },
+            "draw": [[]]
         }
     },
     "spawnPatterns": [{
@@ -1530,7 +1996,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1545,7 +2011,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1560,7 +2026,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1575,7 +2041,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1590,7 +2056,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1605,7 +2071,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1620,7 +2086,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1635,7 +2101,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1650,7 +2116,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1665,7 +2131,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1680,7 +2146,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1695,7 +2161,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1710,7 +2176,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
@@ -1725,9 +2191,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 9,
+            "rate": 4,
             "airlines": [
-                ["afr", 10],
+                ["afr/long", 10],
                 ["ezy", 1],
                 ["eju", 4]
             ]
@@ -1736,59 +2202,76 @@
             "origin": "",
             "destination": "LFPG",
             "category": "arrival",
-            "route": "NERKI.BAN6W.LFPG26L",
-            "altitude": 15000,
+            "route": "BIBAX.BIBA9W.LFPG27R",
+            "commands": {
+                "27R": "cross MOPAR A120"
+            },
+            "altitude": 24000,
             "speed": 300,
             "method": "random",
-            "rate": 6,
+            "rate": 7,
             "airlines": [
-                ["afr", 4],
-                ["ezy", 1],
-                ["eju", 3]
+                ["afr/long", 4],
+                ["aal/long", 2],
+                ["aca/long", 2],
+                ["baw/short", 2],
+                ["ein/short", 2],
+                ["ezy", 3],
+                ["eju", 1]
             ]
         },
         {
             "origin": "",
             "destination": "LFPG",
             "category": "arrival",
-            "route": "DEVIM.LOR6W.LFPG27R",
-            "altitude": 13000,
-            "speed": 250,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["afr", 4],
-                ["ezy", 1],
-                ["eju", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LFPG",
-            "category": "arrival",
-            "route": "URELO.OKI6W.LFPG26L",
-            "altitude": 11000,
-            "speed": 250,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["afr", 4],
-                ["ezy", 1],
-                ["eju", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "LFPG",
-            "category": "arrival",
-            "route": "KOLIV.MOP6W.LFPG27R",
-            "altitude": 12000,
+            "route": "KEPER.KEPE9W.LFPG26L",
+            "commands": {
+                "26L": "cross BANOX A150"
+            },
+            "altitude": 24000,
             "speed": 300,
             "method": "random",
-            "rate": 6,
+            "rate": 8,
             "airlines": [
                 ["afr", 4],
                 ["ezy", 1],
+                ["eju", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LFPG",
+            "category": "arrival",
+            "route": "MATIX.MATI9W.LFPG27R",
+            "commands": {
+                "27R": "cross LORNI A130"
+            },
+            "altitude": 24000,
+            "speed": 300,
+            "method": "random",
+            "rate": 8,
+            "airlines": [
+                ["dlh", 2],
+                ["eju", 4],
+                ["klm", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LFPG",
+            "category": "arrival",
+            "route": "TINIL.TINI9W.LFPG26L",
+            "commands": {
+                "26L": "cross OKIPA A110"
+            },
+            "altitude": 24000,
+            "speed": 300,
+            "method": "random",
+            "rate": 8,
+            "airlines": [
+                ["afr", 4],
+                ["ity", 1],
+                ["swr", 1],
                 ["eju", 3]
             ]
         }
@@ -1796,11 +2279,145 @@
     "maps": [{
         "name": "Base Map",
         "lines": [
-            ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
-            ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
-            ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
-            ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
-            ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
+                ["N48d41m00.025", "E03d30m02.049", "N48d45m19.079", "E03d26m16.009"],
+                ["N48d49m39.033", "E03d22m29.035", "N48d53m58.088", "E03d18m42.027"],
+                ["N48d32m19.079", "E03d43m55.030", "N48d30m45.021", "E03d46m50.057"],
+                ["N48d27m36.000", "E03d52m40.078", "N48d24m26.079", "E03d58m30.062"],
+                ["N48d32m19.079", "E03d43m55.030", "N48d33m41.031", "E03d40m45.057"],
+                ["N48d38m02.097", "E01d35m33.064", "N48d41m38.087", "E01d40m47.087"],
+                ["N48d45m33.030", "E01d46m29.019", "N48d47m42.085", "E01d49m38.011"],
+                ["N48d45m33.030", "E01d46m29.019", "N48d45m44.029", "E01d51m01.024"],
+                ["N48d53m17.009", "E01d57m49.088", "N48d51m08.019", "E01d54m39.057"],
+                ["N48d53m17.009", "E01d57m49.088", "N48d53m32.098", "E02d02m22.010"],
+                ["N48d54m09.009", "E02d12m49.079", "N48d54m24.044", "E02d17m22.015"],
+                ["N48d54m58.039", "E02d27m33.090", "N48d54m45.046", "E02d23m46.091"],
+                ["N48d54m58.039", "E02d27m33.090", "N48d55m01.012", "E02d31m21.071"],
+                ["N48d54m09.009", "E02d12m49.079", "N48d54m29.083", "E02d12m05.014"],
+                ["N48d54m09.009", "E02d12m49.079", "N48d53m43.079", "E02d12m10.096"],
+                ["N48d30m47.000", "E01d19m37.070", "N48d29m38.054", "E01d16m16.071"],
+                ["N48d30m47.000", "E01d19m37.070", "N48d31m55.079", "E01d22m58.049"],
+                ["N48d49m53.009", "E02d31m19.088", "N48d51m13.089", "E02d38m38.002"],
+                ["N48d49m53.009", "E02d31m19.088", "N48d50m10.067", "E02d30m32.027"],
+                ["N48d49m53.009", "E02d31m19.088", "N48d49m21.074", "E02d30m53.017"],
+                ["N49d20m49.027", "E03d23m18.042", "N49d16m28.065", "E03d19m32.017"],
+                ["N49d27m00.060", "E03d37m55.098", "N49d26m30.047", "E03d34m57.067"],
+                ["N49d27m00.060", "E03d37m55.098", "N49d27m45.060", "E03d42m23.059"],
+                ["N49d17m09.047", "E01d53m04.022", "N49d16m48.076", "E02d00m42.020"],
+                ["N49d15m19.000", "E02d30m53.020", "N49d15m28.033", "E02d27m50.021"],
+                ["N49d15m19.000", "E02d30m53.020", "N49d14m47.033", "E02d35m24.015"],
+                ["N49d13m54.009", "E02d42m54.000", "N49d13m01.020", "E02d50m25.032"],
+                ["N49d17m59.088", "E01d34m14.000", "N49d18m04.027", "E01d30m24.047"],
+                ["N49d17m59.088", "E01d34m14.000", "N49d20m15.000", "E01d32m35.002"],
+                ["N49d17m59.088", "E01d34m14.000", "N49d17m49.091", "E01d38m03.009"],
+                ["N49d27m19.059", "E01d36m23.018", "N49d27m07.049", "E01d42m31.025"],
+                ["N49d26m10.089", "E02d09m11.048", "N49d26m18.028", "E02d05m21.051"],
+                ["N49d26m10.089", "E02d09m11.048", "N49d25m26.045", "E02d12m51.033"],
+                ["N49d21m30.099", "E02d32m00.099", "N49d20m01.098", "E02d39m19.088"],
+                ["N49d27m19.059", "E01d36m23.018", "N49d30m41.048", "E01d33m04.067"],
+                ["N48d27m25.059", "E03d38m15.028", "N48d25m42.073", "E03d40m59.030"],
+                ["N48d22m16.094", "E03d46m26.097", "N48d18m51.014", "E03d51m54.029"],
+                ["N48d27m25.059", "E03d38m15.028", "N48d29m08.041", "E03d35m31.012"],
+                ["N48d36m49.079", "E03d23m13.058", "N48d42m36.079", "E03d19m55.079"],
+                ["N48d46m55.009", "E03d16m09.060", "N48d51m14.023", "E03d12m21.071"],
+                ["N48d56m25.085", "E03d16m44.000", "N48d52m53.060", "E03d11m22.059"],
+                ["N48d56m25.085", "E03d16m44.000", "N48d56m25.091", "E03d17m38.072"],
+                ["N48d56m25.085", "E03d16m44.000", "N48d57m01.080", "E03d16m43.091"],
+                ["N49d02m39.058", "E03d26m10.038", "N49d05m16.079", "E03d30m08.079"],
+                ["N49d08m15.089", "E03d34m39.069", "N49d12m40.079", "E03d38m13.031"],
+                ["N49d18m23.033", "E03d47m47.076", "N49d20m39.067", "E03d54m36.085"],
+                ["N49d15m35.014", "E02d24m22.010", "N49d22m15.080", "E02d28m26.070"],
+                ["N49d16m47.015", "E02d03m17.021", "N49d24m23.045", "E02d07m55.097"],
+                ["N48d46m03.060", "E01d44m24.028", "N48d50m41.036", "E01d47m14.019"],
+                ["N48d46m03.060", "E01d44m24.028", "N48d43m20.443", "E01d50m18.443"],
+                ["N48d39m18.263", "E01d56m35.792", "N48d39m50.298", "E01d53m40.898"],
+                ["N48d41m19.698", "E01d46m27.867", "N48d39m50.298", "E01d53m40.898"],
+                ["N49d03m08.089", "E02d22m52.000", "N49d06m16.091", "E02d19m52.094"],
+                ["N49d05m37.085", "E02d13m07.064", "N49d05m32.036", "E02d20m44.088"],
+                ["N49d01m00.054", "E02d26m32.014", "N49d00m50.079", "E02d23m30.010"],
+                ["N48d59m30.082", "E02d28m55.012", "N48d59m21.010", "E02d25m53.018"],
+                ["N49d02m17.057", "E02d08m57.002", "N49d02m01.066", "E02d16m33.015"],
+                ["N48d58m32.054", "E02d11m32.054", "N48d58m58.082", "E02d19m07.004"],
+                ["N48d57m56.045", "E02d13m45.066", "N49d00m03.045", "E02d10m31.099"],
+                ["N48d56m46.051", "E02d21m32.045", "N48d55m58.072", "E02d18m45.024"],
+                ["N48d55m29.004", "E02d11m58.069", "N48d56m23.057", "E02d03m44.018"],
+                ["N48d43m13.076", "E01d59m42.008", "N48d49m13.009", "E01d59m46.042"],
+                ["N48d14m42.034", "E02d00m18.021", "N48d06m43.030", "E02d00m32.009"],
+                ["N48d14m29.064", "E02d13m17.022", "N48d06m48.048", "E02d15m09.037"],
+                ["N48d14m21.070", "E02d26m02.040", "N48d06m55.084", "E02d29m59.094"],
+                ["N48d14m12.018", "E02d39m37.033", "N48d07m05.091", "E02d45m05.048"],
+                ["N48d14m10.096", "E02d52m17.028", "N48d07m52.006", "E02d59m37.017"],
+                ["N48d57m29.089", "E01d53m33.029", "N48d58m20.001", "E01d46m03.057"],
+                ["N48d57m29.089", "E01d53m33.029", "N48d57m02.067", "E01d45m59.014"],
+                ["N48d56m19.044", "E01d34m01.074", "N48d55m21.013", "E01d17m59.048"],
+                ["N49d02m25.024", "E01d19m35.084", "N49d03m43.091", "E01d35m46.027"],
+                ["N49d01m17.067", "E01d18m57.072", "N48d59m41.021", "E01d33m58.085"],
+                ["N49d40m46.033", "E02d39m49.051", "N49d31m19.077", "E02d33m56.091"],
+                ["N49d43m19.067", "E02d21m50.003", "N49d33m21.042", "E02d21m05.052"],
+                ["N49d44m33.003", "E01d58m36.094", "N49d35m01.038", "E02d04m09.077"],
+                ["N49d07m20.004", "E03d53m54.027", "N49d06m07.054", "E03d41m59.097"],
+                ["N49d06m33.064", "E03d54m11.050", "N49d05m46.094", "E03d42m03.013"],
+                ["N48d55m54.064", "E03d40m05.014", "N48d55m17.030", "E03d51m53.091"],
+                ["N48d47m26.000", "E03d52m12.000", "N48d48m11.093", "E03d40m35.037"],
+                ["N49d31m25.094", "E02d54m21.025", "N49d31m57.030", "E02d47m00.098"],
+                ["N49d33m23.064", "E03d17m59.072", "N49d34m34.017", "E03d25m28.047"],
+                ["N48d34m32.073", "E01d59m46.061", "N48d26m57.061", "E01d59m58.060"],
+                ["N48d34m41.027", "E02d02m22.042", "N48d27m15.067", "E02d06m48.027"],
+                ["N48d35m12.064", "E02d11m03.041", "N48d27m53.039", "E02d16m35.009"],
+                ["N48d35m43.087", "E02d20m27.065", "N48d28m38.097", "E02d26m57.034"],
+                ["N48d36m34.073", "E02d30m23.080", "N48d29m20.097", "E02d37m23.042"],
+                ["N48d59m46.262", "E02d37m39.847", "N48d59m50.947", "E02d39m10.929"],
+                ["N48d59m55.609", "E02d40m42.017", "N49d00m00.253", "E02d42m13.109"],
+                ["N49d00m04.876", "E02d43m44.206", "N49d00m18.626", "E02d48m17.524"],
+                ["N49d00m32.198", "E02d52m50.886", "N49d00m45.590", "E02d57m24.286"],
+                ["N49d00m58.802", "E03d01m57.729", "N49d01m11.836", "E03d06m31.211"],
+                ["N49d01m24.689", "E03d11m04.734", "N49d01m25.440", "E03d11m20.824"],
+                ["N49d01m26.190", "E03d11m36.914", "N49d01m26.939", "E03d11m53.006"],
+                ["N49d01m27.687", "E03d12m09.096", "N49d01m28.434", "E03d12m25.189"],
+                ["N49d01m29.182", "E03d12m41.280", "N49d01m29.929", "E03d12m57.371"],
+                ["N49d01m30.675", "E03d13m13.462", "N49d01m31.420", "E03d13m29.554"],
+                ["N49d01m32.165", "E03d13m45.646", "N49d01m32.909", "E03d14m01.738"],
+                ["N49d01m33.654", "E03d14m17.830", "N49d01m34.396", "E03d14m33.923"],
+                ["N49d01m35.140", "E03d14m50.015", "N49d01m35.881", "E03d15m06.108"],
+                ["N49d01m36.621", "E03d15m22.202", "N49d01m37.362", "E03d15m38.293"],
+                ["N49d01m49.856", "E03d20m11.894", "N49d01m50.587", "E03d20m27.989"],
+                ["N49d01m51.314", "E03d20m44.084", "N49d01m52.042", "E03d21m00.180"],
+                ["N49d01m52.771", "E03d21m16.274", "N49d01m53.497", "E03d21m32.371"],
+                ["N49d01m54.223", "E03d21m48.466", "N49d01m54.950", "E03d22m04.562"],
+                ["N49d01m55.674", "E03d22m20.658", "N49d01m56.399", "E03d22m36.756"],
+                ["N49d01m57.122", "E03d22m52.851", "N49d01m57.845", "E03d23m08.948"],
+                ["N49d01m58.567", "E03d23m25.045", "N49d01m59.289", "E03d23m41.142"],
+                ["N49d02m00.012", "E03d23m57.238", "N49d02m00.732", "E03d24m13.336"],
+                ["N49d02m01.451", "E03d24m29.432", "N49d02m02.172", "E03d24m45.530"],
+                ["N49d00m08.744", "E02d53m02.871", "N49d00m56.551", "E02d52m57.124"],
+                ["N49d00m15.678", "E02d57m18.248", "N49d00m42.926", "E02d56m29.603"],
+                ["N49d00m29.364", "E03d02m00.802", "N49d00m56.612", "E03d01m12.153"],
+                ["N49d00m56.612", "E03d01m12.153", "N49d01m28.521", "E03d01m53.703"],
+                ["N49d01m40.810", "E02d35m13.226", "N49d01m45.502", "E02d36m44.365"],
+                ["N49d01m50.174", "E02d38m15.509", "N49d01m54.826", "E02d39m46.659"],
+                ["N49d01m59.459", "E02d41m17.814", "N49d02m13.237", "E02d45m51.304"],
+                ["N49d02m26.835", "E02d50m24.836", "N49d02m40.253", "E02d54m58.409"],
+                ["N49d02m53.491", "E02d59m32.024", "N49d03m06.551", "E03d04m05.679"],
+                ["N49d03m19.431", "E03d08m39.374", "N49d03m20.182", "E03d08m55.475"],
+                ["N49d03m20.934", "E03d09m11.576", "N49d03m21.684", "E03d09m27.676"],
+                ["N49d03m22.434", "E03d09m43.777", "N49d03m23.184", "E03d09m59.878"],
+                ["N49d03m23.932", "E03d10m15.980", "N49d03m24.681", "E03d10m32.082"],
+                ["N49d03m25.428", "E03d10m48.185", "N49d03m26.175", "E03d11m04.285"],
+                ["N49d03m26.923", "E03d11m20.388", "N49d03m27.667", "E03d11m36.490"],
+                ["N49d03m28.414", "E03d11m52.593", "N49d03m29.158", "E03d12m08.695"],
+                ["N49d03m29.902", "E03d12m24.798", "N49d03m30.644", "E03d12m40.901"],
+                ["N49d03m31.388", "E03d12m57.003", "N49d03m32.130", "E03d13m13.106"],
+                ["N49d03m44.649", "E03d17m46.878", "N49d03m45.381", "E03d18m02.984"],
+                ["N49d03m46.110", "E03d18m19.089", "N49d03m46.841", "E03d18m35.195"],
+                ["N49d03m47.570", "E03d18m51.301", "N49d03m48.298", "E03d19m07.407"],
+                ["N49d03m49.026", "E03d19m23.513", "N49d03m49.753", "E03d19m39.619"],
+                ["N49d03m50.478", "E03d19m55.725", "N49d03m51.204", "E03d20m11.833"],
+                ["N49d03m51.929", "E03d20m27.939", "N49d03m52.655", "E03d20m44.045"],
+                ["N49d03m53.378", "E03d21m00.153", "N49d03m54.101", "E03d21m16.260"],
+                ["N49d03m54.825", "E03d21m32.366", "N49d03m55.546", "E03d21m48.473"],
+                ["N49d03m56.268", "E03d22m04.580", "N49d03m56.990", "E03d22m20.689"],
+                ["N49d02m15.016", "E02d54m33.932", "N49d03m02.822", "E02d54m28.169"],
+                ["N49d02m20.533", "E02d58m22.138", "N49d02m47.777", "E02d57m33.454"],
+                ["N49d02m47.777", "E02d57m33.454", "N49d03m19.690", "E02d58m15.021"]
         ]
     }]
 }
