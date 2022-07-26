@@ -2518,6 +2518,8 @@
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
+                ["ram/b738", 1],
+                ["bcs", 1],
                 ["eju", 4]
             ]
         },
@@ -2533,6 +2535,7 @@
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
+                ["vlg", 1],
                 ["eju", 4]
             ]
         },
@@ -2608,6 +2611,25 @@
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
+                ["eju", 4],
+                ["fdx/long", 2],
+                ["thy/long", 1],
+                ["msr/short", 1]
+            ]
+        },
+        {
+            "origin": "LFPG",
+            "destination": "",
+            "category": "departure",
+            "route": "LFPG26R.LANV5B.LANVI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["afr", 10],
+                ["ezy", 1],
+                ["thy/long", 1],
                 ["eju", 4]
             ]
         },
@@ -2638,6 +2660,7 @@
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
+                ["fdx/long", 1],
                 ["eju", 4]
             ]
         },
@@ -2668,6 +2691,7 @@
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
+                ["sas/short", 1],
                 ["eju", 4]
             ]
         },
@@ -2698,6 +2722,7 @@
             "airlines": [
                 ["afr", 10],
                 ["ezy", 1],
+                ["lgl/dh8d", 1],
                 ["eju", 4]
             ]
         },
@@ -2734,7 +2759,9 @@
                 ["aca/long", 2],
                 ["baw/short", 2],
                 ["ein/short", 2],
+                ["fdx/long", 1],
                 ["ezy", 3],
+                ["ice", 1],
                 ["eju", 1]
             ]
         },
@@ -2753,6 +2780,9 @@
             "airlines": [
                 ["afr", 4],
                 ["ezy", 1],
+                ["ram/b738", 1],
+                ["bcs", 1],
+                ["vlg", 1],
                 ["eju", 3]
             ]
         },
@@ -2771,6 +2801,7 @@
             "airlines": [
                 ["dlh", 2],
                 ["eju", 4],
+                ["sas/short", 1],
                 ["klm", 2]
             ]
         },
@@ -2790,7 +2821,11 @@
                 ["afr", 4],
                 ["ity", 1],
                 ["swr", 1],
-                ["eju", 3]
+                ["lbt", 1],
+                ["eju", 3],
+                ["fdx/long", 2],
+                ["thy/long", 1],
+                ["msr/short", 1]
             ]
         }
     ],
