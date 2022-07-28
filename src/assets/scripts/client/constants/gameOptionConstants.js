@@ -50,6 +50,10 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'Celestial',
                 value: 'CELESTIAL'
+            },
+            {
+                displayLabel: 'Gray',
+                value: 'GRAY'
             }
         ]
     },
