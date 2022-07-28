@@ -115,7 +115,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property HALF_HEIGHT
      */
-    HALF_HEIGHT: 16,
+    HALF_HEIGHT: 32,
 
     /**
      * One half of the width of a data block
@@ -123,7 +123,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property HALF_HEIGHT
      */
-    HALF_WIDTH: 30,
+    HALF_WIDTH: 60,
 
     /**
      * Height of a data block
@@ -131,7 +131,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property HEIGHT
      */
-    HEIGHT: 32,
+    HEIGHT: 64,
 
     /**
      * Direction to extend the data block away from the target
@@ -202,6 +202,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_FONT
      */
+    // TODO: make bold
     TEXT_FONT: '10px monoOne, monospace',
 
     /**
@@ -211,7 +212,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_IN_RANGE
      */
-    TEXT_IN_RANGE: COLOR.WHITE,
+    TEXT_IN_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of text used in the data block
@@ -220,7 +221,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_OUT_OF_RANGE
      */
-    TEXT_OUT_OF_RANGE: COLOR.GREEN_DARK,
+    TEXT_OUT_OF_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of text used in the data block
@@ -229,7 +230,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_SELECTED
      */
-    TEXT_SELECTED: COLOR.WHITE,
+    TEXT_SELECTED: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Width of the data block
@@ -237,5 +238,5 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property WIDTH
      */
-    WIDTH: 60
+    WIDTH: 120
 };

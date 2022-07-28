@@ -15,7 +15,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_INSIDE_RANGE
      */
-    HISTORY_DOT_INSIDE_RANGE: COLOR.BLUE_02,
+    HISTORY_DOT_INSIDE_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the dots behind the aircraft, showing where it has been
@@ -24,7 +24,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_OUTSIDE_RANGE
      */
-    HISTORY_DOT_OUTSIDE_RANGE: COLOR.BLUE_02,
+    HISTORY_DOT_OUTSIDE_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Radius of the history dots, in kilometers
@@ -57,7 +57,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property PROJECTION_ARRIVAL
      */
-    PROJECTION_ARRIVAL: COLOR.RED,
+    PROJECTION_ARRIVAL: COLOR.SALMON,
 
     /**
      * Color of projection lines showing an arrival aircraft will go
@@ -66,7 +66,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property PROJECTION_ARRIVAL_ALL
      */
-    PROJECTION_ARRIVAL_ALL: COLOR.RED_02,
+    PROJECTION_ARRIVAL_ALL: COLOR.SALMON_02,
 
     /**
      * Color of projection lines showing where a departure aircraft will go
@@ -93,7 +93,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property PROJECTION_ESTABLISHED_ON_APPROACH
      */
-    PROJECTION_ESTABLISHED_ON_APPROACH: COLOR.RED,
+    PROJECTION_ESTABLISHED_ON_APPROACH: COLOR.SALMON,
 
     /**
      * Color of any radar target, including that of aircraft
@@ -102,7 +102,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property RADAR_TARGET
      */
-    RADAR_TARGET: COLOR.BLUE_01,
+    RADAR_TARGET: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Radius to draw all radar targets
@@ -151,7 +151,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property TRAILING_SEPARATION_INDICATOR_ENABLED
      */
-    TRAILING_SEPARATION_INDICATOR_ENABLED: false,
+    TRAILING_SEPARATION_INDICATOR_ENABLED: true,
 
     /**
      * Color of small line behind aircraft established on an instrument approach
@@ -159,5 +159,5 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property TRAILING_SEPARATION_INDICATOR
      */
-    TRAILING_SEPARATION_INDICATOR: COLOR.RED_BRIGHT
+    TRAILING_SEPARATION_INDICATOR: COLOR.SALMON
 };

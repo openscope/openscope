@@ -22,7 +22,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property AIRSPACE_PERIMETER
      */
-    AIRSPACE_PERIMETER: COLOR.TRANSPARENT,
+    AIRSPACE_PERIMETER: COLOR.GRAY_LIGHT,
 
     /**
      * Color of the overall background of the scope
@@ -66,7 +66,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property FIX_FILL
      */
-    FIX_FILL: COLOR.GRAY_DIM,
+    FIX_FILL: COLOR.BLACK,
 
     /**
      * Color to use for the labels on each of the fixes
@@ -74,7 +74,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property FIX_TEXT
      */
-    FIX_TEXT: COLOR.GRAY_DIM,
+    FIX_TEXT: COLOR.BLACK,
 
     /**
      * Size to draw halos when size is not specified
@@ -122,7 +122,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RANGE_RING_COLOR
      */
-    RANGE_RING_COLOR: COLOR.GRAY_DIMMER,
+    RANGE_RING_COLOR: COLOR.GRAY_BRIGHTER,
 
     /**
      * Color used to depict the restricted airspace areas
@@ -130,7 +130,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RESTRICTED_AIRSPACE
      */
-    RESTRICTED_AIRSPACE: COLOR.GRAY_DIMMER,
+    RESTRICTED_AIRSPACE: COLOR.GRAY,
 
     /**
      * Color of the lines extending out from the runway thresholds
@@ -170,7 +170,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property STAR
      */
-    STAR: COLOR.RED,
+    STAR: COLOR.SALMON,
 
     /**
      * Color of the lines drawn between fixes on STARs
