@@ -23,7 +23,7 @@
     box-shadow: 0 0 0 6px @blue-medium;
     pointer-events: none;
     transition: opacity 0.5s ease;
-    z-index: 200;
+    z-index: @dialog-z;
 }
 
 .option-dialog.open {
@@ -31,7 +31,7 @@
     pointer-events: auto;
 }
 
-.option-description {
+.option-label {
     width: 65%;
     display: inline-block;
 }
@@ -56,7 +56,7 @@
 .option-dialog select {
     width: 100%;
     padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
-    background-color: transparent;
+    background-color: #141414;
     color: @light-gray;
     font-family: inherit;
     border: 0;

@@ -51,7 +51,7 @@ export default class ModeController {
         /**
          * The current headingeMode
          *
-         * This mode informs what value to use for `aircraft.target.headinge`
+         * This mode informs what value to use for `aircraft.targetHeading`
          *
          *
          * @property headingMode
@@ -370,14 +370,15 @@ export default class ModeController {
      * @param {number} currentSpeed - aircraft's current speed, in knots
      */
     initializeForAirborneFlight(bottomAltitude, airspaceCeiling, currentAltitude, currentHeading, currentSpeed) {
-        this.setAltitudeFieldValue(bottomAltitude);
+        // ensure aircraft will always descend at least to reach our airspace ceiling
+        const descentAltitude = Math.min(bottomAltitude, airspaceCeiling, currentAltitude);
+
+        this.setAltitudeFieldValue(descentAltitude);
         this.setAltitudeVnav();
 
         // if unable to descend via STAR, force a descent to the top of our airspace
-        if (bottomAltitude === Infinity) {
-            const descentAltitude = Math.min(currentAltitude, airspaceCeiling);
-
-            this.setAltitudeFieldValue(descentAltitude);
+        if (bottomAltitude === -1) {
+            this.setAltitudeFieldValue(Math.min(airspaceCeiling, currentAltitude));
             this.setAltitudeHold();
         }
 

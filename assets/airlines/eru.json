@@ -1,0 +1,17 @@
+{
+    "icao": "eru",
+    "name": "Embry-Riddle Aeronautical University",
+    "callsign": {
+        "name": "Riddle",
+        "callsignFormats": [
+            "10#",
+            "4##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C172", 70],
+            ["DA42", 10]
+        ]
+    }
+}

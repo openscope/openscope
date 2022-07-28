@@ -1,0 +1,15 @@
+{
+    "icao": "pev",
+    "name": "People's",
+    "callsign": {
+        "name": "Peoples",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E170", 2]
+        ]
+    }
+}

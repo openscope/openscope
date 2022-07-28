@@ -1,0 +1,19 @@
+{
+    "icao": "sdr",
+    "name": "Sundair",
+    "callsign": {
+        "name": "Sundair",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2],
+            ["A320", 4]
+        ],
+        "a320": [
+            ["A320", 4]
+        ]
+    }
+}

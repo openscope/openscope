@@ -1,16 +1,20 @@
 const fs = require('fs');
 const path = require('path');
-const gutil = require('gulp-util');
 const mkdirp = require('mkdirp');
-
-const paths = require('../paths');
+const fancyLog = require('fancy-log');
+const colors = require('ansi-colors');
+const OPTIONS = require('../options');
 
 const BUILD_CONFIG = [
-    [paths.DIR.ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.DIST_AIRCRAFT],
-    [paths.DIR.ASSETS_AIRLINES, 'airlines.json', paths.DIR.DIST_AIRLINES]
+    [OPTIONS.DIR.ASSETS_AIRCRAFT, 'aircraft.json', OPTIONS.DIR.DIST_AIRCRAFT],
+    [OPTIONS.DIR.ASSETS_AIRLINES, 'airlines.json', OPTIONS.DIR.DIST_AIRLINES]
 ];
 
 /**
+ * Read `source` and build object in memory of contents.
+ *
+ * Gets called before attempting to write single file
+ * to destination directory
  *
  * @function _buildResultList
  * @param  source {string}
@@ -27,7 +31,7 @@ function _buildResultList(source, outputFilename) {
 
         // if the file contains the outputFilename, we don't want to add it to our list
         if (fileSource.indexOf(outputFilename) !== -1) {
-            gutil.log(gutil.colors.yellow(`::: Skipping ${outputFilename}`));
+            fancyLog(colors.yellow(`--- Skipping ${outputFilename}`));
 
             return;
         }
@@ -42,11 +46,14 @@ function _buildResultList(source, outputFilename) {
 }
 
 /**
+ * Create a `destination` dir if one does not exist then attempt to
+ * write `outputFilename` to that directory
  *
  * @function _createDestinationDirAndFile
- * @param  destination {string}
+ * @param  destination {string}     destination directory name
  * @param  outputFilename {string}
- * @param  data {array<object>}
+ * @param  data {array<object>}     object in memory to write to file
+ * @returns {void|Promise.reject}
  */
 function _createDestinationDirAndFile(destination, outputFilename, data) {
     const rootKey = outputFilename.split('.')[0];
@@ -57,19 +64,21 @@ function _createDestinationDirAndFile(destination, outputFilename, data) {
     // create `destination` directory, with parents, if it doesnt exist
     mkdirp(destination, (error) => {
         if (error) {
-            throw error;
+            return Promise.reject(error);
         }
 
         // write the new file
         fs.writeFile(outFilenameWithPath, jsonOutput, (error) => {
             if (error) {
-                throw error;
+                return Promise.reject(error);
             }
         });
     });
 }
 
 /**
+ * Crawl a `source` dir for json files, create a `destination` dir
+ * and write a single json file with `outputFilename`
  *
  * @function jsonAssembler
  * @param source {string}
@@ -77,25 +86,30 @@ function _createDestinationDirAndFile(destination, outputFilename, data) {
  * @param destination {string}
  */
 function _jsonAssembler(source, outputFilename, destination) {
-    gutil.log(gutil.colors.cyan(`::: Preparing ${outputFilename}`));
+    fancyLog(colors.cyan(`--- Preparing ${outputFilename}`));
 
     const result = _buildResultList(source, outputFilename);
 
     _createDestinationDirAndFile(destination, outputFilename, result);
-
-    gutil.log(gutil.colors.green(`::: ${result.length} items written sucessfully to ${outputFilename}`));
+    fancyLog(colors.green(`--- ${result.length} items written sucessfully to ${outputFilename}`));
 }
 
 /**
+ * Combines multiple json files into single, minified json file
  *
+ * Used to combine small airlines and aircraft files into single
+ * json file that can be consumed in production
  *
- * @function jsonAssembler
  * @public
+ * @function jsonAssembler
+ * @returns {Promise.resolve}
  */
 function jsonAssembler() {
     for (let i = 0; i < BUILD_CONFIG.length; i++) {
         _jsonAssembler(...BUILD_CONFIG[i]);
     }
+
+    return Promise.resolve();
 }
 
 module.exports = jsonAssembler;

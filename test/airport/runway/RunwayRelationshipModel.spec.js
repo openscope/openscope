@@ -31,7 +31,7 @@ ava('.calculateSeparationMinimums() returns 1.852 when #lateral_dist is between 
     t.true(result === 1.852);
 });
 
-ava('.calculateSeparationMinimums() returns 2.778 when #lateral_dist is between 3601 and 4300', (t) => {
+ava('.calculateSeparationMinimums() returns 2.778 when #lateral_dist is between 3601 and 8300', (t) => {
     const model = new RunwayRelationshipModel(runwayModel07lFixture, runwayModel07rFixture);
     model.lateral_dist = 1.1;
     const result = model.calculateSeparationMinimums();
@@ -39,20 +39,12 @@ ava('.calculateSeparationMinimums() returns 2.778 when #lateral_dist is between 
     t.true(result === 2.778);
 });
 
-ava('.calculateSeparationMinimums() returns 3.704 when #lateral_dist is between 4301 and 9000', (t) => {
+ava('.calculateSeparationMinimums() returns 3.704 when #lateral_dist is between 8301 and 9000', (t) => {
     const model = new RunwayRelationshipModel(runwayModel07lFixture, runwayModel07rFixture);
-    model.lateral_dist = 2;
+    model.lateral_dist = 2.6;
     const result = model.calculateSeparationMinimums();
 
     t.true(result === 3.704);
-});
-
-ava('.calculateSeparationMinimums() returns 5.556 when #lateral_dist is grerater than 9001', (t) => {
-    const model = new RunwayRelationshipModel(runwayModel07lFixture, runwayModel07rFixture);
-    model.lateral_dist = 5;
-    const result = model.calculateSeparationMinimums();
-
-    t.true(result === 5.556);
 });
 
 ava('.calculateSeparationMinimums() returns 5.556 when #lateral_dist is grerater than 9001', (t) => {

@@ -1,0 +1,40 @@
+/*
+    These are designed for use with "black-boxed" content - that is,
+    we generate the HTML from something else (i.e. markdown), so we
+    shouldn't modify it.
+
+    Because the HTML is generated from markdown, we can't assign classes
+    to it directly, so we have to use element selectors.
+*/
+.blackBox h1,
+.blackBox h2,
+.blackBox h3,
+.blackBox h4,
+.blackBox h5,
+.blackBox h6 {
+    font-size: 16px;
+    padding: 30px 0 10px 0;
+}
+
+.blackBox li {
+    padding: 5px 0 0 0;
+}
+
+.blackBox a {
+    color: @light-gray;
+}
+
+.blackBox table,
+.blackBox th,
+.blackBox td {
+    border: 1px solid #666666;
+    border-collapse: collapse;
+}
+
+.blackBox th {
+    padding: 5px;
+}
+
+.blackBox td {
+    padding: 3px;
+}

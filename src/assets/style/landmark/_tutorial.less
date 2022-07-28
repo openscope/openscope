@@ -13,7 +13,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 0 6px @blue-medium;
     pointer-events: none;
-    z-index: 200;
+    z-index: @dialog-z;
 }
 
 #tutorial.open {
@@ -22,8 +22,7 @@
 }
 
 #tutorial h1 {
-    padding-left: 20px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     font-size: 120%;
 }
 
@@ -75,4 +74,8 @@
 
 #tutorial ul {
     margin: 0.5em 2em;
+}
+
+#tutorial a {
+    color: cornflowerblue;
 }

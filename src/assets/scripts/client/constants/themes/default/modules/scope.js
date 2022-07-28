@@ -77,6 +77,46 @@ export const SCOPE_THEME = {
     FIX_TEXT: COLOR.BLUE_MEDIUM,
 
     /**
+     * Size to draw halos when size is not specified
+     *
+     * @memberof SCOPE_THEME
+     * @property HALO_DEFAULT_RADIUS_NM
+     */
+    HALO_DEFAULT_RADIUS_NM: 3,
+
+    /**
+     * Maximum size to draw halos when size is not specified
+     *
+     * @memberof SCOPE_THEME
+     * @property HALO_MAX_RADIUS_NM
+     */
+    HALO_MAX_RADIUS_NM: 20,
+
+    /**
+     * Color to use for the background on the `MeasureTool` labels
+     *
+     * @memberof SCOPE_THEME
+     * @property MEASURE_BACKGROUND
+     */
+    MEASURE_BACKGROUND: COLOR.BLUE_MEDIUM_DARK,
+
+    /**
+     * Color to use for the text on the `MeasureTool` line
+     *
+     * @memberof SCOPE_THEME
+     * @property MEASURE_LINE
+     */
+    MEASURE_LINE: COLOR.BLUE_VERY_LIGHT,
+
+    /**
+     * Color to use for the labels on the `MeasureTool` labels
+     *
+     * @memberof SCOPE_THEME
+     * @property MEASURE_TEXT
+     */
+    MEASURE_TEXT: COLOR.WHITE,
+
+    /**
      * Color of the range rings shown on the scope around the airport
      *
      * @memberof SCOPE_THEME
@@ -123,6 +163,14 @@ export const SCOPE_THEME = {
      * @property SID
      */
     SID: COLOR.BLUE_VERY_LIGHT,
+
+    /**
+     * Color of the lines drawn between fixes on STARs
+     *
+     * @memberof SCOPE_THEME
+     * @property STAR
+     */
+    STAR: COLOR.RED,
 
     /**
      * Color of the lines drawn between fixes on STARs

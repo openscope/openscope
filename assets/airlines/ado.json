@@ -3,13 +3,14 @@
     "name": "Air Do",
     "callsign": {
         "name": "Air Do",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B735", 1],
-            ["B737", 9],
-            ["B763", 4]
+            ["B737", 8],
+            ["B763", 6]
         ]
     }
 }

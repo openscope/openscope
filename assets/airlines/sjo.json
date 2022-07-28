@@ -3,11 +3,13 @@
     "name": "Spring Airlines Japan",
     "callsign": {
         "name": "Jey Spring",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 3]
+            ["B738", 6]
         ]
     }
 }

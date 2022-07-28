@@ -1,0 +1,24 @@
+{
+    "icao": "ezs",
+    "name": "easyJet Switzerland",
+    "callsign": {
+        "name": "Topswiss",
+        "callsignFormats": [
+            "####",
+            "###@",
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 7],
+            ["A320", 21]
+        ],
+        "a319": [
+            ["A319", 7]
+        ],
+        "a320": [
+            ["A320", 21]
+        ]
+    }
+}

@@ -1,15 +1,24 @@
 {
     "icao": "vkg",
-    "name": "Thomas Cook Airlines Scandinavia",
+    "name": "Sunclass Airlines",
     "callsign": {
         "name": "Viking",
-        "length": 3
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
             ["A321", 8],
             ["A332", 1],
             ["A333", 3]
+        ],
+        "long": [
+            ["A332", 1],
+            ["A333", 3]
+        ],
+        "short": [
+            ["A321", 8]
         ]
     }
 }

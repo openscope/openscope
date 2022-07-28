@@ -3,12 +3,13 @@
     "name": "Firefly",
     "callsign": {
         "name": "Firefly",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["AT72", 12],
-            ["AT76",  8]
+            ["AT72", 12]
         ]
     }
 }

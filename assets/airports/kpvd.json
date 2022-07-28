@@ -11,8 +11,11 @@
     "ctr_ceiling": 10000,
     "initial_alt": 4000,
     "position": ["N41d43m44.00", "W071d25m69.00", "54ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N41d43m44.00", "W071d25m69.00"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N41d43m44.00", "W071d25m69.00"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 310,
@@ -117,7 +120,7 @@
         {
             "name": "R4 102A/B",
             "height": "3995ft",
-            "coordinates": [
+            "poly": [
                 ["N42d31m15", "W071d36m28"],
                 ["N42d31m00", "W071d39m13"],
                 ["N42d30m45", "W071d39m13"],

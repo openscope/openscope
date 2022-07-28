@@ -1,6 +1,5 @@
 {{#extend "layout"}}
     {{#content "body" mode="append" }}
-        <div id="clock" class="notSelectable"></div>
         <div id="canvases"></div>
         <div id="log"></div>
 
@@ -14,10 +13,12 @@
         --}}
         {{> _airportSwitch}}
 
+        {{> _airportGuide}}
+
+        {{> _changelog}}
+
         {{> _paused}}
 
         {{> _loadingView}}
-
-        {{> _loadingIndicator}}
     {{/content}}
 {{/extend}}

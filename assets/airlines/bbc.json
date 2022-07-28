@@ -1,0 +1,25 @@
+{
+    "icao": "bbc",
+    "name": "Biman Bangladesh Airlines",
+    "callsign": {
+        "name": "Bangladesh",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A310", 2],
+            ["B738", 4],
+            ["B772", 2],
+            ["B77W", 4],
+            ["DH8D", 2]
+        ],
+        "b738": [
+            ["B738", 4]
+        ],
+        "b77w": [
+            ["B77W", 4]
+        ]
+    }
+}

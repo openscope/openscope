@@ -1,18 +1,15 @@
 import _ceil from 'lodash/ceil';
+import _find from 'lodash/find';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
-import _isEmpty from 'lodash/isEmpty';
 import AirportController from '../../airport/AirportController';
-import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import Fms from '../FlightManagementSystem/Fms';
+import ModeController from '../ModeControl/ModeController';
+import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import { MCP_MODE } from '../ModeControl/modeControlConstants';
-import {
-    FLIGHT_CATEGORY,
-    FLIGHT_PHASE
-} from '../../constants/aircraftConstants';
+import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { radians_normalize } from '../../math/circle';
-import { clamp } from '../../math/core';
 import {
     groupNumbers,
     radio_altitude,
@@ -24,7 +21,8 @@ import {
 } from '../../utilities/radioUtilities';
 import {
     degreesToRadians,
-    heading_to_string
+    heading_to_string,
+    radiansToDegrees
 } from '../../utilities/unitConverters';
 
 /**
@@ -40,34 +38,36 @@ export default class Pilot {
      * @param modeController {ModeController}
      * @param fms {Fms}
      */
-    constructor(modeController, fms) {
-        if (!_isObject(modeController) || _isEmpty(modeController)) {
-            throw new TypeError('Invalid parameter. expected modeController to an instance of ModeController');
+    constructor(fms, modeController) {
+        if (!(fms instanceof Fms)) {
+            throw new TypeError(`Expected fms to an instance of Fms but received ${typeof fms}`);
         }
 
-        if (!_isObject(fms) || _isEmpty(fms)) {
-            throw new TypeError('Invalid parameter. expected fms to an instance of Fms');
+        if (!(modeController instanceof ModeController)) {
+            throw new TypeError('Expected modeController to an instance of ' +
+                `ModeController, but received ${typeof modeController}`);
         }
 
         /**
-         * @property _mcp
-         * @type {ModeController}
-         * @default modeController
-         * @private
-         */
-        this._mcp = modeController;
-
-        /**
+         * @for Pilot
          * @property _fms
          * @type {Fms}
-         * @default fms
          * @private
          */
-        this._fms = fms;
+        this._fms = null;
+
+        /**
+         * @for Pilot
+         * @property _mcp
+         * @type {ModeController}
+         * @private
+         */
+        this._mcp = null;
 
         /**
          * Whether the aircraft has received a clearance to conduct an approach to a runway
          *
+         * @for Pilot
          * @property hasApproachClearance
          * @type {boolean}
          * @default false
@@ -77,29 +77,42 @@ export default class Pilot {
         /**
          * Whether the aircraft has received an IFR clearance to their destination
          *
+         * @for Pilot
          * @property hasDepartureClearance
          * @type {boolean}
          * @default false
          */
         this.hasDepartureClearance = false;
+
+        return this.init(fms, modeController);
     }
 
     /**
      * @for Pilot
-     * @method enable
+     * @method init
+     * @chainable
      */
-    enable() {
-        return;
-    }
-
-    /**
-     * @for Pilot
-     * @method destroy
-     */
-    destroy() {
-        this._mcp = null;
-        this._fms = null;
+    init(fms, modeController) {
+        this._fms = fms;
+        this._mcp = modeController;
         this.hasApproachClearance = false;
+        this.hasDepartureClearance = false;
+
+        return this;
+    }
+
+    /**
+     * @for Pilot
+     * @method reset
+     * @chainable
+     */
+    reset() {
+        this._fms = null;
+        this._mcp = null;
+        this.hasApproachClearance = false;
+        this.hasDepartureClearance = false;
+
+        return this;
     }
 
     /**
@@ -115,22 +128,16 @@ export default class Pilot {
      * @return {array} [success of operation, readback]
      */
     maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
-        if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
-            const verbalRequestedAltitude = radio_altitude(altitude);
-            const readback = {};
-            readback.log = `unable to maintain ${altitude} due to performance`;
-            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
+        const response = aircraftModel.validateNextAltitude(altitude, airportModel);
 
-            this._mcp.setAltitudeFieldValue(aircraftModel.altitude);
-
-            return [false, readback];
+        if (!response[0]) {
+            return response;
         }
 
         const currentAltitude = aircraftModel.altitude;
-        const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
-        let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
+        let clampedAltitude = airportModel.clampWithinAssignableAltitudes(altitude);
 
-        if (shouldUseSoftCeiling && clampedAltitude === maxAssignableAltitude) {
+        if (shouldUseSoftCeiling && clampedAltitude === airportModel.maxAssignableAltitude) {
             // causes aircraft to 'leave' airspace, and continue climb through ceiling
             clampedAltitude += 1;
         }
@@ -138,6 +145,7 @@ export default class Pilot {
         this.cancelApproachClearance(aircraftModel);
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
+        this._mcp.shouldExpediteAltitudeChange = false;
 
         // Build readback
         const readbackAltitude = _floor(clampedAltitude, -2);
@@ -185,7 +193,7 @@ export default class Pilot {
         }
 
         this.cancelApproachClearance(aircraftModel);
-        this._fms.leaveHoldFlightPhase();
+        this.cancelHoldingPattern();
         this._mcp.setHeadingFieldValue(correctedHeading);
         this._mcp.setHeadingHold();
 
@@ -264,26 +272,22 @@ export default class Pilot {
      * @for Pilot
      * @method applyArrivalProcedure
      * @param routeString {string}       route string in the form of `entry.procedure.airport`
-     * @param runwayModel {RunwayModel}
      * @param airportName {string}
      * @return {array}                   [success of operation, readback]
      */
-    applyArrivalProcedure(routeString, runwayModel, airportName) {
-        if (!this._fms.isValidProcedureRoute(routeString, runwayModel, FLIGHT_CATEGORY.ARRIVAL)) {
-            // TODO: may need a better message here
-            return [false, 'STAR name not understood'];
+    applyArrivalProcedure(routeString, airportName) {
+        const [successful, response] = this._fms.replaceArrivalProcedure(routeString);
+
+        if (!successful) {
+            return [false, response];
         }
 
-        const routeStringModel = new RouteModel(routeString);
-        const starModel = this._fms.findStarByProcedureId(routeStringModel.procedure);
-
-        // TODO: set mcp modes here
-        this._fms.replaceArrivalProcedure(routeStringModel.routeCode, runwayModel);
+        this.cancelHoldingPattern();
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${routeStringModel.procedure.toUpperCase()} arrival`;
-        readback.say = `cleared to ${airportName} via the ${starModel.name.toUpperCase()} arrival`;
+        readback.log = `cleared to ${airportName} via the ${this._fms._routeModel.getStarIcao().toUpperCase()} arrival`;
+        readback.say = `cleared to ${airportName} via the ${this._fms._routeModel.getStarName().toUpperCase()} arrival`;
 
         return [true, readback];
     }
@@ -294,75 +298,24 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param procedureId {String}          the identifier for the procedure
-     * @param runwayModel {RunwayModel}     RunwayModel used for departure
+     * @param routeString {String}          the route
      * @param airportIcao {string}          airport icao identifier
      * @return {array}                      [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, runwayModel, airportIcao) {
-        const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
+    applyDepartureProcedure(routeString, airportIcao) {
+        const [successful, response] = this._fms.replaceDepartureProcedure(routeString, airportIcao);
 
-        if (_isNil(standardRouteModel)) {
-            return [false, 'SID name not understood'];
-        }
-
-        if (!runwayModel) {
-            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-        }
-
-        // TODO: this should not be randomized
-        const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
-        const routeStr = `${airportIcao}.${procedureId}.${exit}`;
-
-        if (!standardRouteModel.hasFixName(runwayModel.name)) {
-            return [
-                false,
-                `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid ` +
-                `from Runway ${runwayModel.name.toUpperCase()}`
-            ];
+        if (!successful) {
+            return [false, response];
         }
 
         this.hasDepartureClearance = true;
 
-        this._mcp.setAltitudeVnav();
-        this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeStr, runwayModel);
-
+        const sidIcao = this._fms.getSidIcao();
+        const sidName = this._fms.getSidName();
         const readback = {};
-        readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
-        readback.say = `cleared to destination via the ${standardRouteModel.name} departure, then as filed`;
-
-        return [true, readback];
-    }
-
-    /**
-     * Replace the entire route stored in the FMS with legs freshly generated
-     * based on the provided route string
-     *
-     * @for Pilot
-     * @method applyNewRoute
-     * @param routeString {string}  routeString defining the new route to use
-     * @return {array}              [success of operation, readback]
-     */
-    applyNewRoute(routeString, runway) {
-        this.hasDepartureClearance = true;
-
-        const isValid = this._fms.isValidRoute(routeString, runway);
-
-        if (!isValid) {
-            const readback = {};
-            readback.log = `requested route of "${routeString}" is invalid`;
-            readback.say = 'that route is invalid';
-
-            return [false, readback];
-        }
-
-        this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
-
-        // Build readback
-        const readback = {};
-        readback.log = `rerouting to: ${this._fms.currentRoute}`;
-        readback.say = 'rerouting as requested';
+        readback.log = `cleared to destination via the ${sidIcao.toUpperCase()} departure, then as filed`;
+        readback.say = `cleared to destination via the ${sidName.toUpperCase()} departure, then as filed`;
 
         return [true, readback];
     }
@@ -376,29 +329,33 @@ export default class Pilot {
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        const isValid = this._fms.isValidRoute(routeString);
+        const readback = this._fms.applyPartialRouteAmendment(routeString);
 
-        if (!isValid) {
-            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
+        if (readback[0]) {
+            this.hasDepartureClearance = true;
+
+            this.cancelHoldingPattern();
         }
 
-        if (!this._fms.isValidRouteAmendment(routeString)) {
-            return [
-                false,
-                `requested route of "${routeString.toUpperCase()}" is invalid, it ` +
-                    'must contain a Waypoint in the current route'
-            ];
+        return readback;
+    }
+
+    /**
+     * Ensure the STAR leg has the specified arrival runway as the exit point and
+     * set the specified runway as the new arrival runway.
+     *
+     * @for Pilot
+     * @method updateStarLegForArrivalRunway
+     * @param aircraft {AircraftModel}
+     * @param nextRunwayModel {RunwayModel}
+     * @return {array} [success of operation, response]
+     */
+    updateStarLegForArrivalRunway(aircraft, nextRunwayModel) {
+        if (aircraft.isOnGround()) {
+            return [false, 'unable to accept arrival runway assignment until airborne'];
         }
 
-        this._fms.replaceRouteUpToSharedRouteSegment(routeString);
-        this._fms.leaveHoldFlightPhase();
-
-        // Build readback
-        const readback = {};
-        readback.log = `rerouting to: ${this._fms.currentRoute.toUpperCase()}`;
-        readback.say = 'rerouting as requested';
-
-        return [true, readback];
+        return this._fms.updateStarLegForArrivalRunway(nextRunwayModel);
     }
 
     /**
@@ -418,7 +375,8 @@ export default class Pilot {
         }
 
         const airport = AirportController.airport_get();
-        const descentAltitude = Math.min(aircraftModel.altitude, this._mcp.altitude);
+        const currentAltitude = _floor(aircraftModel.altitude, -2);
+        const descentAltitude = Math.min(currentAltitude, this._mcp.altitude);
         const altitudeToMaintain = Math.max(descentAltitude, airport.minAssignableAltitude);
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
@@ -436,11 +394,62 @@ export default class Pilot {
     }
 
     /**
+     * Cancel departure clearance
+     *
+     * @for Pilot
+     * @method cancelDepartureClearance
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, response]
+     */
+    cancelDepartureClearance(aircraftModel) {
+        if (aircraftModel.isAirborne()) {
+            return;
+        }
+
+        this.hasDepartureClearance = false;
+
+        return [true, 'roger, understand IFR clearance is cancelled, standing by'];
+    }
+
+    /**
+    * Arm the exit of the holding pattern
+    *
+    * @for Pilot
+    * @method cancelHoldingPattern
+    * @param fixName {string} name of the fix at which the hold should be canceled (optional)
+    * @return {array} [success of operation, readback]
+    */
+    cancelHoldingPattern(fixName) {
+        let holdWaypointModel = _find(this._fms.waypoints, (waypointModel) => waypointModel.isHoldWaypoint);
+
+        if (!holdWaypointModel) {
+            return [false, 'that must be for somebody else, we weren\'t given any holding instructions'];
+        }
+
+        if (fixName) {
+            holdWaypointModel = this._fms.findWaypoint(fixName);
+
+            if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
+                return [false, {
+                    log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
+                    say: `that must be for somebody else, we weren't given holding over ${NavigationLibrary.getFixSpokenName(fixName)}`
+                }];
+            }
+        }
+
+        holdWaypointModel.deactivateHold();
+
+        return [true, {
+            log: `roger, we'll cancel the hold at ${holdWaypointModel.getDisplayName()}`,
+            say: `roger, we'll cancel the hold at ${NavigationLibrary.getFixSpokenName(holdWaypointModel.name)}`
+        }];
+    }
+
+    /**
      * Configure the aircraft to fly in accordance with the requested flightplan
      *
      * @for Pilot
      * @method clearedAsFiled
-     * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
      * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled() {
@@ -457,25 +466,49 @@ export default class Pilot {
      * Climb in accordance with the altitude restrictions, and sets
      * altitude at which the climb will end regardless of fix restrictions.
      *
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/
+     *      media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
+     *
      * @for Pilot
      * @method climbViaSid
+     * @param aircraftModel {AircraftModel}
+     * @param maximumAltitude {number} (optional) altitude at which the climb will end (regardless of fix restrictions)
      * @return {array}           [success of operation, readback]
      */
-    climbViaSid() {
-        if (this._fms.flightPlanAltitude === INVALID_NUMBER) {
+    climbViaSid(aircraftModel, maximumAltitude) {
+        let nextAltitude = maximumAltitude;
+
+
+        if (typeof nextAltitude === 'undefined') {
+            nextAltitude = this._fms.flightPlanAltitude;
+        }
+
+        const { departureAirportModel } = this._fms;
+        const altitudeCheck = aircraftModel.validateNextAltitude(nextAltitude, departureAirportModel);
+
+        if (!altitudeCheck[0]) {
+            return altitudeCheck;
+        }
+
+        nextAltitude = departureAirportModel.clampWithinAssignableAltitudes(nextAltitude);
+
+        if (aircraftModel.altitude > nextAltitude) {
+            const currentAltitude = _ceil(aircraftModel.altitude, -2);
             const readback = {};
-            readback.log = 'unable to climb via SID, no altitude assigned';
-            readback.say = 'unable to climb via SID, no altitude assigned';
+            readback.log = `unable, we're already at ${currentAltitude}`;
+            readback.say = `unable, we're already at ${radio_altitude(currentAltitude)}`;
 
             return [false, readback];
         }
 
-        this._mcp.setAltitudeFieldValue(this._fms.flightPlanAltitude);
+        this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
 
         const readback = {};
-        readback.log = 'climb via SID';
-        readback.say = 'climb via SID';
+        readback.log = `climb via SID and maintain ${nextAltitude}`;
+        readback.say = `climb via SID and maintain ${radio_altitude(nextAltitude)}`;
 
         return [true, readback];
     }
@@ -483,27 +516,154 @@ export default class Pilot {
     /**
      * Descend in accordance with the altitude restrictions
      *
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/
+     *      media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
+     *
      * @for Pilot
      * @method descendViaStar
+     * @param aircraftModel {AircraftModel}
      * @param bottomAltitude {number} (optional) altitude at which the descent will end (regardless of fix restrictions)
      * @return {array}                [success of operation, readback]
      */
-    descendViaStar(bottomAltitude) {
+    descendViaStar(aircraftModel, bottomAltitude) {
         let nextAltitude = bottomAltitude;
 
         if (typeof nextAltitude === 'undefined') {
             nextAltitude = this._fms.getBottomAltitude();
         }
 
-        if (isNaN(nextAltitude) || nextAltitude === Infinity) {
-            return [false, 'unable to descend via STAR'];
+        const { arrivalAirportModel } = this._fms;
+        const altitudeCheck = aircraftModel.validateNextAltitude(nextAltitude, arrivalAirportModel);
+
+        if (!altitudeCheck[0]) {
+            return altitudeCheck;
+        }
+
+        nextAltitude = arrivalAirportModel.clampWithinAssignableAltitudes(nextAltitude);
+
+        if (aircraftModel.altitude < nextAltitude) {
+            const currentAltitude = _ceil(aircraftModel.altitude, -2);
+            const readback = {};
+            readback.log = `unable, we're already at ${currentAltitude}`;
+            readback.say = `unable, we're already at ${radio_altitude(currentAltitude)}`;
+
+            return [false, readback];
         }
 
         this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
 
-        return [true, 'descend via STAR'];
+        const readback = {};
+        readback.log = `descend via STAR and maintain ${nextAltitude}`;
+        readback.say = `descend via STAR and maintain ${radio_altitude(nextAltitude)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * Cross a fix at a certain altitude and/or speed
+     *
+     * @for Pilot
+     * @method crossFix
+     * @param aircraftModel {AircraftModel}
+     * @param fixName  {string} name of the fix
+     * @param altitude {number} the altitude
+     * @param speed {number} the speed
+     * @return {array}  success of operation, readback]
+     */
+    crossFix(aircraftModel, fixName, altitude, speed) {
+        if (!altitude && !speed) {
+            return [false, 'say again? In crossing restrictions, prefix altitudes with A and speeds with S!'];
+        }
+
+        if (!NavigationLibrary.hasFixName(fixName)) {
+            const readback = {
+                log: `unable to find '${fixName.toUpperCase()}'`,
+                say: `unable to find ${NavigationLibrary.getFixSpokenName(fixName)}`
+            };
+            return [false, readback];
+        }
+
+        if (!this._fms.hasWaypointName(fixName)) {
+            const readback = {
+                log: `unable, '${fixName.toUpperCase()}' is not on our route`,
+                say: `unable, ${NavigationLibrary.getFixSpokenName(fixName)} is not on our route`
+            };
+            return [false, readback];
+        }
+
+        const airportModel = this._fms.arrivalAirportModel || this._fms.departureAirportModel;
+        const waypoint = this._fms.findWaypoint(fixName);
+
+        // altitude-only crossing restriction
+        if (!speed) {
+            const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
+
+            if (!altitudeCheck[0]) {
+                return altitudeCheck;
+            }
+
+            altitude = airportModel.clampWithinAssignableAltitudes(altitude);
+
+            waypoint.setAltitude(altitude);
+            this._mcp.setAltitudeFieldValue(altitude);
+            this._mcp.setAltitudeVnav();
+
+            const readback = {
+                log: `cross ${fixName.toUpperCase()} at ${altitude}`,
+                say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)}`
+            };
+
+            return [true, readback];
+        }
+
+        // speed-only crossing restriction
+        if (!altitude) {
+            const speedCheck = aircraftModel.validateNextSpeed(speed);
+
+            if (!speedCheck[0]) {
+                return speedCheck;
+            }
+
+            waypoint.setSpeed(speed);
+            this._mcp.setSpeedFieldValue(speed);
+            this._mcp.setSpeedVnav();
+
+            const readback = {
+                log: `cross ${fixName.toUpperCase()} at ${speed}kt`,
+                say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_spellOut(speed)} knots`
+            };
+
+            return [true, readback];
+        }
+
+        // altitude AND speed crossing restriction
+        const altitudeCheck = aircraftModel.validateNextAltitude(altitude, airportModel);
+        const speedCheck = aircraftModel.validateNextSpeed(speed);
+
+        if (!altitudeCheck[0]) {
+            return altitudeCheck;
+        }
+
+        if (!speedCheck[0]) {
+            return speedCheck;
+        }
+
+        waypoint.setAltitude(altitude);
+        waypoint.setSpeed(speed);
+        this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
+
+        const readback = {
+            log: `cross ${fixName.toUpperCase()} at ${altitude} and ${speed}kt`,
+            say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)} and ${radio_spellOut(speed)} knots`
+        };
+
+        return [true, readback];
     }
 
     /**
@@ -588,11 +748,7 @@ export default class Pilot {
         // 'APP' until established on the localizer. This will prevent improper descent behaviors.
         this._mcp.setAltitudeApproach();
 
-        const readback = {};
-        readback.log = 'intercept glidepath';
-        readback.log = 'intercept glidepath';
-
-        return [true, readback];
+        return [true, 'intercept glidepath'];
     }
 
     /**
@@ -602,13 +758,27 @@ export default class Pilot {
      *
      * @for pilot
      * @method conductInstrumentApproach
-     * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
-     * @param runwayModel {RunwayModel}   the runway the approach ends at
-     * @return {array}                    [success of operation, readback]
+     * @param aircraftModel {AircraftModel} the aircraft model belonging to this pilot
+     * @param approachType {string}         the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param runwayModel {RunwayModel}     the runway the approach ends at
+     * @return {array}                      [success of operation, readback]
      */
-    conductInstrumentApproach(approachType, runwayModel) {
+    conductInstrumentApproach(aircraftModel, approachType, runwayModel) {
         if (_isNil(runwayModel)) {
             return [false, 'the specified runway does not exist'];
+        }
+
+        const minimumGlideslopeInterceptAltitude = runwayModel.getMinimumGlideslopeInterceptAltitude();
+
+        if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
+            const readback = {};
+
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+
+            return [false, readback];
         }
 
         // TODO: split these two method calls and the corresponding ifs to a new method
@@ -627,7 +797,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
-        this._fms.leaveHoldFlightPhase();
+        this.cancelHoldingPattern();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
@@ -638,45 +808,40 @@ export default class Pilot {
         return [true, readback];
     }
 
+    // TODO: Add ability to hold at present position
     /**
-     * Conduct a holding pattern at a specific Fix/Waypoint/Position
+     * Conduct a holding pattern at a specific fix
      *
      * @for Fms
      * @method initiateHoldingPattern
-     * @param inboundHeading {number}
-     * @param turnDirection {string}                     direction to turn once established in a holding pattern
-     * @param legLength {string}                         in either `min` or `nm` length of each side of the
-     *                                                   holding pattern.
-     * @param fixName {string|null}                      name of the fix to hold at, only `null` if holding at
-     *                                                   current position
-     * @param holdPosition {StaticPositionModel}         StaticPositionModel of the position to hold over
+     * @param fixName {string} name of the fix to hold over
+     * @param holdParameters {object} parameters to apply to WaypointModel._holdParameters
+     * @param fallbackInboundHeading {number} the inboundHeading that is used if no default is available
      * @return {array} [success of operation, readback]
      */
-    initiateHoldingPattern(
-        inboundHeading,
-        turnDirection,
-        legLength,
-        fixName = null,
-        holdPosition = null
-    ) {
-        let holdRouteSegment = `@${fixName}`;
-        const inboundDirection = getRadioCardinalDirectionNameForHeading(inboundHeading);
-        let successMessage = `proceed direct ${fixName} and hold inbound, ${turnDirection} turns, ${legLength} legs`;
+    initiateHoldingPattern(fixName, holdParameters, fallbackInboundHeading) {
+        const [success, responseValue] = this._fms.activateHoldForWaypointName(fixName, holdParameters, fallbackInboundHeading);
 
-        if (!holdPosition) {
-            return [false, `unable to find fix ${fixName}`];
+        if (!success) {
+            return [success, responseValue];
         }
 
-        if (!fixName) {
-            holdRouteSegment = 'GPS';
-            successMessage = `hold ${inboundDirection} of present position, ${turnDirection} turns, ${legLength} legs`;
-        }
+        // When successful, the responseValue contains the actual holdParameters used by the
+        // `WaypointModel`. This means that we can send partial holdParameters, to patch
+        // the `WaypointModel`s _holdParameters property
+        holdParameters = responseValue;
 
-        // TODO: there are probably some `_mcp` updates that should happen here too.
+        const radialText = heading_to_string(holdParameters.inboundHeading + Math.PI);
+        const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
+        const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
+        const radialReadbackLog = `on the ${radialText} radial`;
+        const radialReadbackSay = `on the ${radio_heading(radialText)} radial`;
 
-        this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition);
-
-        return [true, successMessage];
+        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
+        return [true, {
+            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()} ${radialReadbackLog}, ${holdParametersReadback}`,
+            say: `hold ${cardinalDirectionFromFix} of ${NavigationLibrary.getFixSpokenName(fixName)} ${radialReadbackSay}, ${holdParametersReadback}`
+        }];
     }
 
     /**
@@ -736,15 +901,23 @@ export default class Pilot {
      * @return {array}               [success of operation, readback]
      */
     proceedDirect(waypointName) {
-        if (!this._fms.hasWaypoint(waypointName)) {
-            return [false, `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`];
+        if (!this._fms.hasWaypointName(waypointName)) {
+            const readback = {
+                log: `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`,
+                say: `cannot proceed direct to ${NavigationLibrary.getFixSpokenName(waypointName)}, it does not exist in our flight plan`
+            };
+            return [false, readback];
         }
 
-        this._fms.skipToWaypoint(waypointName);
-        this._fms.leaveHoldFlightPhase();
+        this._fms.skipToWaypointName(waypointName);
+        this.cancelHoldingPattern();
         this._mcp.setHeadingLnav();
 
-        return [true, `proceed direct ${waypointName}`];
+        const readback = {
+            log: `proceed direct ${waypointName}`,
+            say: `proceed direct ${NavigationLibrary.getFixSpokenName(waypointName)}`
+        };
+        return [true, readback];
     }
 
     /**
@@ -758,6 +931,24 @@ export default class Pilot {
      */
     raiseLandingGearAndActivateAutopilot() {
         this._mcp.enable();
+    }
+
+    /**
+     * Replace the entire route with a new one built from the provided route string
+     *
+     * @for Pilot
+     * @method replaceFlightPlanWithNewRoute
+     * @param routeString {string}  routeString defining the new route to use
+     * @return {array}              [success of operation, readback]
+     */
+    replaceFlightPlanWithNewRoute(routeString) {
+        const readback = this._fms.replaceFlightPlanWithNewRoute(routeString);
+
+        if (readback[0]) {
+            this.hasDepartureClearance = true;
+        }
+
+        return readback;
     }
 
     /**
@@ -801,14 +992,12 @@ export default class Pilot {
                 return [true, readback];
 
             case MCP_MODE.HEADING.LNAV: {
-                // the currentWaypoint does not contain any heading information, that can only be calculated
-                // from two waypoints.
-                // TODO: this block needs some work.
-                const heading = this._fms.currentWaypoint.heading;
-                const fixName = this._fms.currentWaypoint.name;
+                const waypoint = this._fms.currentWaypoint;
+                const waypointPosition = waypoint.positionModel;
+                const bearing = Math.round(radiansToDegrees(this.positionModel.bearingToPosition(waypointPosition)));
 
-                readback.log = `we're heading ${heading} toward ${fixName}`;
-                readback.say = `we're heading ${radio_heading(heading)} toward ${fixName}`;
+                readback.log = `our on-course heading to ${waypoint.getDisplayName()} is ${bearing}`;
+                readback.say = `our on-course heading to ${NavigationLibrary.getFixSpokenName(waypoint.getDisplayName())} is ${radio_heading(bearing)}`;
 
                 return [true, readback];
             }
@@ -861,38 +1050,5 @@ export default class Pilot {
         this._fms.flightPhase = FLIGHT_PHASE.APRON;
 
         return [true, 'taxiing back to the gate'];
-    }
-
-    /**
-     * Taxi the aircraft
-     *
-     * @for Pilot
-     * @method taxiToRunway
-     * @param taxiDestination {RunwayModel}  runway has already been verified by the
-     *                                       time it is sent to this method
-     * @param isDeparture {boolean}         whether the aircraft's flightPhase is DEPARTURE
-     * @param flightPhase {string}          the flight phase of the aircraft
-     * @return {array}                      [success of operation, readback]
-     */
-    taxiToRunway(taxiDestination, isDeparture, flightPhase) {
-        if (flightPhase === FLIGHT_PHASE.TAXI) {
-            return [false, 'already taxiing'];
-        }
-
-        if (flightPhase === FLIGHT_PHASE.WAITING) {
-            return [false, 'already taxiied and waiting in runway queue'];
-        }
-
-        if (!isDeparture || flightPhase !== FLIGHT_PHASE.APRON) {
-            return [false, 'unable to taxi'];
-        }
-
-        this._fms.setDepartureRunway(taxiDestination);
-
-        const readback = {};
-        readback.log = `taxi to runway ${taxiDestination.name}`;
-        readback.say = `taxi to runway ${radio_runway(taxiDestination.name)}`;
-
-        return [true, readback];
     }
 }

@@ -1,8 +1,11 @@
 import $ from 'jquery';
+import _isNil from 'lodash/isNil';
+import _lowerCase from 'lodash/lowerCase';
 import AppController from './AppController';
 import EventBus from './lib/EventBus';
 import TimeKeeper from './engine/TimeKeeper';
 import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
+import { STORAGE_KEY } from './constants/storageKeys';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
@@ -28,10 +31,8 @@ export default class App {
     /**
      * @constructor
      * @param $element {HTML Element|null}
-     * @param airportLoadList {array<object>}  List of airports to load
-     * @param initialAirportToLoad {string}    ICAO id of the initial airport. may be the default or a stored airport
      */
-    constructor(element, airportLoadList, initialAirportToLoad) {
+    constructor(element) {
         /**
          * Root DOM element.
          *
@@ -50,8 +51,65 @@ export default class App {
         this.prop.log = LOG.DEBUG;
         this.prop.loaded = false;
 
-        return this.setupHandlers()
-            .loadInitialAirport(airportLoadList, initialAirportToLoad);
+        this.setupHandlers()
+            ._fetchAirportLoadList();
+    }
+
+    /**
+     * Fetch airportLoadList.json containing the list of available airports
+     *
+     * @for App
+     * @method _fetchAirportLoadList
+     */
+    _fetchAirportLoadList() {
+        $.getJSON('assets/airports/airportLoadList.json')
+            .done((response) => this.onAirportLoadListFetchedHandler(response))
+            .fail((jqXHR) => console.error(`Unable to load airport list: ${jqXHR.status}: ${jqXHR.statusText}`));
+    }
+
+    /**
+     * Handler method called after successfully fetching airportLoadList.json
+     *
+     * @for App
+     * @method _onAirportLoadListFetched
+     */
+    _onAirportLoadListFetched(data) {
+        const airportLoadList = data.filter((airport) => airport.disabled !== true);
+        // ICAO id of the initial airport. may be the default or a stored airport
+        const initialAirportToLoad = this._getInitialAirport(airportLoadList);
+
+        this.loadInitialAirport(airportLoadList, initialAirportToLoad);
+    }
+
+    /**
+     * Check if a given icao exists in the list of available airports
+     *
+     * @for App
+     * @method _isAirportIcaoInLoadList
+     * @param icao {string}  icao
+     * @param airportLoadList {array<object>}  List of available airports
+     */
+    _isAirportIcaoInLoadList(icao, airportLoadList) {
+        return !_isNil(icao) && airportLoadList.some((airport) => airport.icao === icao);
+    }
+
+    /**
+     * Obtain icao for the initial airport from localStorage if available
+     * otherwise use `DEFAULT_AIRPORT_ICAO`
+     *
+     * @for App
+     * @method _getInitialAirport
+     * @param airportLoadList {array<object>}  List of airports to load
+     */
+    _getInitialAirport(airportLoadList) {
+        let airportName = DEFAULT_AIRPORT_ICAO;
+        const previousAirportIcaoFromLocalStorage = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
+
+        if (this._isAirportIcaoInLoadList(previousAirportIcaoFromLocalStorage, airportLoadList)) {
+            airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
+        }
+
+        return airportName;
     }
 
     /**
@@ -62,6 +120,7 @@ export default class App {
      * @chainable
      */
     setupHandlers() {
+        this.onAirportLoadListFetchedHandler = this._onAirportLoadListFetched.bind(this);
         this.loadDefaultAiportAfterStorageIcaoFailureHandler = this.loadDefaultAiportAfterStorageIcaoFailure.bind(this);
         this.loadAirlinesAndAircraftHandler = this.loadAirlinesAndAircraft.bind(this);
         this.setupChildrenHandler = this.setupChildren.bind(this);
@@ -127,18 +186,20 @@ export default class App {
     loadAirlinesAndAircraft(airportLoadList, initialAirportIcao, initialAirportResponse) {
         const airlineListPromise = $.getJSON('assets/airlines/airlines.json');
         const aircraftListPromise = $.getJSON('assets/aircraft/aircraft.json');
+        const airportGuideListPromise = $.getJSON('assets/guides/guides.json');
 
         // This is provides a way to get async data from several sources in the app before anything else runs
         // we need to resolve data from two sources before the app can proceede. This data should always
         // exist, if it doesn't, something has gone terribly wrong.
-        $.when(airlineListPromise, aircraftListPromise)
-            .done((airlineResponse, aircraftResponse) => {
+        $.when(airlineListPromise, aircraftListPromise, airportGuideListPromise)
+            .done((airlineResponse, aircraftResponse, airportGuideResponse) => {
                 this.setupChildrenHandler(
                     airportLoadList,
                     initialAirportIcao,
                     initialAirportResponse,
                     airlineResponse[0].airlines,
-                    aircraftResponse[0].aircraft
+                    aircraftResponse[0].aircraft,
+                    airportGuideResponse[0]
                 );
             });
     }
@@ -159,14 +220,23 @@ export default class App {
      * @param initialAirportData {object}     Airport json for the initial airport, could be default or stored airport
      * @param airlineList {array}             List of all Airline definitions
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
+     * @param airportGuides {object}          Airport guide JSON
      */
-    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(
+        airportLoadList,
+        initialAirportIcao,
+        initialAirportData,
+        airlineList,
+        aircraftTypeDefinitionList,
+        airportGuides
+    ) {
         this._appController.setupChildren(
             airportLoadList,
             initialAirportIcao,
             initialAirportData,
             airlineList,
-            aircraftTypeDefinitionList
+            aircraftTypeDefinitionList,
+            airportGuides
         );
 
         this.enable();

@@ -1,0 +1,37 @@
+{
+    "name": "Gulfstream G200",
+    "icao": "GALX",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "S+",
+    "category": {
+        "srs": 3,
+        "lahso": 5,
+        "recat": "F"
+    },
+    "ceiling": 45000,
+    "rate": {
+        "climb": 3500,
+        "descent": 4000,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.800,
+        "landing": 1.050
+    },
+    "speed":{
+        "min": 110,
+        "landing": 130,
+        "cruise": 470,
+        "cruiseM": 0.81,
+        "max": 498,
+        "maxM": null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

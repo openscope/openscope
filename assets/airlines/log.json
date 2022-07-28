@@ -1,0 +1,28 @@
+{
+    "icao": "log",
+    "name": "Loganair",
+    "callsign": {
+        "name": "Logan",
+        "callsignFormats": [
+            "###@",
+            "##@@",
+            "#@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT45", 1],
+            ["BN2P", 2],
+            ["DHC6", 3],
+            ["E135", 4],
+            ["E145", 13],
+            ["SB20", 4],
+            ["SF34", 13]
+
+        ],
+        "eidw": [
+            ["E145", 13],
+            ["SF34", 13]
+        ]
+    }
+}

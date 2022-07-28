@@ -1,0 +1,15 @@
+{
+    "icao": "bvn",
+    "name": "Baron Aviation Services",
+    "callsign": {
+        "name": "Show Me",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C208", 34]
+        ]
+    }
+}

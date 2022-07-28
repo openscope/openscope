@@ -11,33 +11,41 @@
     background-color: @dark-06;
     box-sizing: border-box;
     transition: all ease-in-out 0.3s;
-    z-index: 100;
+    z-index: @stripView-z;
 }
 
 .mix-stripView_isHidden {
     right: -390px;
 }
 
+.stripTitle {
+    background-color: #222222;
+    color: #ffffff;
+    font-size: 1.25em;
+    padding: 5px 0;
+    text-align: center;
+}
+
 .stripView-list {
-    max-height: 100%;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     width: ~"calc(100% - " @spacing-2x ~")";
-    position: absolute;
-    top: @spacing-2x;
-    bottom: @spacing-2x;
-    left: @spacing-2x;
     overflow-y: scroll;
     list-style-type: none;
-    transform: scaleY(-1);
+    height: ~"calc(50% - 1.25em - 10px)";
+    display: flex;
+    flex-direction: column;
 }
 
 .stripViewItem {
     border: 1px solid #222;
     transition: ease-in-out margin 0.15s;
-    transform: scaleY(-1);
 }
 
-.active,
+.stripViewItem:first-child {
+    margin-top: auto;
+}
+
+.stripViewItem.active,
 .stripViewItem:hover {
     margin-left: @spacing-1x;
     cursor: pointer;
@@ -83,6 +91,16 @@
 
 .stripView-table-tr > .stripView-table-td:nth-child(0n+4) {
     text-align: left;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+5) {
+    width: 50px;
+    text-align: right;
+    border: none;
+}
+
+.stripView-preplanning {
+    color: red;
 }
 
 .mix-stripView-table_borderTop {
@@ -146,4 +164,8 @@
 
 .arrival {
     border-left: 5px solid @arrival-accent;
+}
+
+.overflight {
+    border-left: 5px solid @overflight-accent;
 }

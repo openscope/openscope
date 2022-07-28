@@ -14,7 +14,7 @@ const SIMULATION_RATE_FOR_TRACK_PROJECTIONS = 5;
 /**
  * Singleton used to manage game time and the advancement of animation frames
  *
- * You will notice a large number of the class properties are private with exposed getters.
+ * You will notice a large number of the instance properties are private with exposed getters.
  * This is done to ensure that other classes are not able to modify the property values
  * of this class. TimeKeeping is an integral part of the app and must be able to keep accurate,
  * consistent time. Other classes can use these values but should never, directly, edit them.
@@ -51,7 +51,7 @@ class TimeKeeper {
         this._elapsedFrameCount = 0;
 
         /**
-         * Time difference in milliseconds between the `#lastFrame` and `#_frameStartTimestamp`
+         * Time difference in seconds between the `#lastFrame` and `#_frameStartTimestamp`
          *
          * **This is the most important value of this class.**
          *
@@ -71,7 +71,7 @@ class TimeKeeper {
          *
          * This value is the single source of truth for true `deltaTime`, however,
          * we will only ever use this value locally. Every other external method needs
-         * `deltaTime * simulationRate`, as provided by `#detlaTie`, to account for
+         * `deltaTime * simulationRate`, as provided by `#deltaTime`, to account for
          * any timewarp adjustments by the user
          *
          * @property _frameDeltaTime
@@ -91,7 +91,7 @@ class TimeKeeper {
          */
         this._frameStartTimestamp = 0;
 
-        // FIXME: not entirely sure what this is for
+        // TODO: not entirely sure what this is for
         /**
          *
          *
@@ -178,6 +178,8 @@ class TimeKeeper {
     }
 
     /**
+     * Accumulated time since the start of the simulation in seconds
+     *
      * @property accumulatedDeltaTime
      * @type {number}
      */
@@ -202,7 +204,7 @@ class TimeKeeper {
     /**
      * Current timestamp in seconds
      *
-     * @property gameTimeMilliseconds
+     * @property gameTimeSeconds
      * @return {number}
      */
     get gameTimeSeconds() {
@@ -220,7 +222,7 @@ class TimeKeeper {
      * https://en.wikipedia.org/wiki/Delta_timing
      *
      * @property deltaTime
-     * @return {number} current delta time in milliseconds
+     * @return {number} current delta time in seconds
      */
     get deltaTime() {
         const deltaTimeOffsetBySimulationRate = this._frameDeltaTime * this._simulationRate;
@@ -290,7 +292,7 @@ class TimeKeeper {
      *
      * @for TimeKeeper
      * @method getDeltaTimeForGameStateAndTimewarp
-     * @return {number}
+     * @return {number} delta time in seconds
      */
     getDeltaTimeForGameStateAndTimewarp() {
         if (this.isPaused || this._isReturningFromPauseAndNotFutureTrack()) {
@@ -436,7 +438,7 @@ class TimeKeeper {
      *
      * @for TimeKeeper
      * @method _calculateNextDelatTime
-     * @param currentTime {Date}  current date string (in ms)
+     * @param currentTime {number} current time in seconds
      * @private
      */
     _calculateNextDeltaTime(currentTime) {

@@ -1,0 +1,23 @@
+{
+    "icao": "kne",
+    "name": "Flynas",
+    "callsign": {
+        "name": "Nas Express",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2],
+            ["A320", 26],
+            ["A20N", 3]
+        ],
+        "a319": [
+            ["A319", 2]
+        ],
+        "a320": [
+            ["A320", 26]
+        ]
+    }
+}

@@ -3,7 +3,9 @@
     "name": "Peninsula Airways",
     "callsign": {
         "name": "Peninsula",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

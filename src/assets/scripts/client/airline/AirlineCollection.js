@@ -1,12 +1,12 @@
 import _find from 'lodash/find';
 import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
 import { AIRLINE_NAME_FLEET_SEPARATOR } from '../constants/airlineConstants';
 import { INVALID_INDEX } from '../constants/globalConstants';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 
 /**
  * Houses an `AirlineModel` for each possible airline in the app.
@@ -27,9 +27,9 @@ export default class AirlineCollection extends BaseCollection {
     constructor(airlineList) {
         super(airlineList);
 
-        if (!_isArray(airlineList)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid parameter. AirlineCollection expected and array but found ${typeof airlineList}`);
+        if (isEmptyOrNotArray(airlineList)) {
+            throw new TypeError('Invalid airlineList passed to AirlineCollection constructor. ' +
+                `Expected a non-empty array, but received ${typeof airlineList}`);
         }
 
         this.init(airlineList);
@@ -53,7 +53,7 @@ export default class AirlineCollection extends BaseCollection {
     /**
      * Lifecycle method. Should be run only once on instantiation
      *
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for AirlineCollection
      * @method init
@@ -102,9 +102,9 @@ export default class AirlineCollection extends BaseCollection {
             // and `AirlineModel` object and not a list of aircraft from a fleet
             console.warn(
                 `Found a specific fleet with airline id ${id}. This method should be used to find an ` +
-                `AirlineModel instance and not a fleet within an AirlineModel. If you need to find a ` +
-                `specific fleet from an airline, you can use the AirlineModel method: ` +
-                `airlineModel._getRandomAircraftTypeFromFleet(fleetName)`
+                'AirlineModel instance and not a fleet within an AirlineModel. If you need to find a ' +
+                'specific fleet from an airline, you can use the AirlineModel method: ' +
+                'airlineModel._getRandomAircraftTypeFromFleet(fleetName)'
             );
             airlineId = id.split(AIRLINE_NAME_FLEET_SEPARATOR)[0];
         }

@@ -2,7 +2,7 @@ export const DEPARTURE_PATTERN_MOCK = {
     origin: 'KLAS',
     destination: '',
     category: 'departure',
-    route: 'KLAS.BOACH6.HEC',
+    route: 'KLAS07L.BOACH6.HEC',
     altitude: null,
     speed: null,
     method: 'random',
@@ -24,7 +24,6 @@ export const DEPARTURE_PATTERN_MOCK = {
         ['swa', 15],
         ['nks', 12],
         ['scx', 5],
-        ['tcx/long', 3],
         ['ual', 10],
         ['vrd', 7],
         ['vir', 4],
@@ -36,7 +35,7 @@ export const DEPARTURE_PATTERN_ROUTE_STRING_MOCK = {
     origin: 'KLAS',
     destination: '',
     category: 'departure',
-    route: 'BESSI..BOACH..HEC',
+    route: 'BESSY..BOACH..HEC',
     altitude: null,
     speed: null,
     method: 'random',
@@ -58,7 +57,6 @@ export const DEPARTURE_PATTERN_ROUTE_STRING_MOCK = {
         ['swa', 15],
         ['nks', 12],
         ['scx', 5],
-        ['tcx/long', 3],
         ['ual', 10],
         ['vrd', 7],
         ['vir', 4],
@@ -70,7 +68,7 @@ export const ARRIVAL_PATTERN_MOCK = {
     origin: '',
     destination: 'KLAS',
     category: 'arrival',
-    route: 'BETHL.GRNPA1.KLAS',
+    route: 'BETHL.GRNPA1.KLAS07R',
     altitude: [30000, 40000],
     speed: 320,
     method: 'random',
@@ -88,10 +86,37 @@ export const ARRIVAL_PATTERN_MOCK = {
         ['swa', 15],
         ['nks', 12],
         ['scx', 5],
-        ['tcx/long', 3],
         ['ual', 10],
         ['vrd', 7],
         ['vir', 4],
+        ['wja', 7]
+    ]
+};
+
+export const ARRIVAL_PATTERN_MOCK_ALL_STRINGS = {
+    origin: '',
+    destination: 'KLAS',
+    category: 'arrival',
+    route: 'BETHL.GRNPA1.KLAS07R',
+    altitude: '36000',
+    speed: '320',
+    method: 'random',
+    rate: '10',
+    airlines: [
+        ['wja', 7]
+    ]
+};
+
+export const ARRIVAL_PATTERN_FLOAT_RATE_MOCK = {
+    origin: '',
+    destination: 'KLAS',
+    category: 'arrival',
+    route: 'BETHL.GRNPA1.KLAS07R',
+    altitude: '36000',
+    speed: '320',
+    method: 'random',
+    rate: 3.3,
+    airlines: [
         ['wja', 7]
     ]
 };
@@ -100,7 +125,7 @@ export const ARRIVAL_PATTERN_ROUTE_STRING_MOCK = Object.assign(
     {},
     ARRIVAL_PATTERN_MOCK,
     {
-        route: 'COWBY..TRALR..GRNPA..PRINO..25R'
+        route: 'COWBY..TRALR..GRNPA..PRINO'
     }
 );
 
@@ -124,7 +149,7 @@ export const ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK = Object.assign(
     {},
     ARRIVAL_PATTERN_MOCK,
     {
-        route: 'MLF.GRNPA9.KLAS'
+        route: 'MLF.GRNPA9.KLAS07R'
     }
 );
 
@@ -142,7 +167,7 @@ export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
     origin: '',
     destination: 'KLAS',
     category: 'arrival',
-    route: 'DAG.KEPEC3.KLAS',
+    route: 'DAG.KEPEC3.KLAS07R',
     altitude: 28000,
     speed: 320,
     method: 'random',
@@ -158,7 +183,7 @@ export const SPAWN_PATTERN_MODEL_FOR_DEPARTURE_FIXTURE = {
     origin: 'KLAS',
     destination: '',
     category: 'departure',
-    route: 'KLAS.COWBY6.GUP',
+    route: 'KLAS07L.COWBY6.GUP',
     altitude: null,
     speed: null,
     method: 'random',

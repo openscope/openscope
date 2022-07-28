@@ -27,15 +27,22 @@ export const EVENT = {
     AIRPORT_CHANGE: 'airport-change',
 
     /**
+     * @memberof EVENT
+     * @property WIND_CHANGE
+     * @type {string}
+     */
+    WIND_CHANGE: 'wind-change',
+
+    /**
      * A click was registered outside of a specific `StripViewModel`
      * and the active strip, if any, should have the `active`
      * css classname removed
      *
      * @memberof EVENT
-     * @property DESELECT_ACTIVE_STRIP_VIEW
+     * @property DESELECT_AIRCRAFT
      * @type {string}
      */
-    DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
+    DESELECT_AIRCRAFT: 'deselect-aircraft',
 
     /**
      * Event used to notify the `CanvasController` when a re-draw
@@ -44,10 +51,10 @@ export const EVENT = {
      * This should only occur as a result of a user action
      *
      * @memberof EVENT
-     * @property MARK_CANVAS_DIRTY
+     * @property MARK_SHALLOW_RENDER
      * @type {string}
      */
-    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+    MARK_SHALLOW_RENDER: 'mark-shallow-render',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
@@ -61,15 +68,6 @@ export const EVENT = {
     PAN_VIEWPORT: 'pan-viewport',
 
     /**
-     * Pause/unpause the game loop
-     *
-     * @memberof EVENT
-     * @property PAUSE_TOGGLE
-     * @type {string}
-     */
-    PAUSE_TOGGLE: 'pause-toggle',
-
-     /**
      * Fired when the update loop should be either paused or resumed.
      *
      * Usually called when airport data is changing (ie, when a new airport
@@ -80,6 +78,24 @@ export const EVENT = {
      * @type {string}
      */
     PAUSE_UPDATE_LOOP: 'pause-update-loop',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_DECREASE_LENGTH
+     * @type {string}
+     */
+    PTL_DECREASE_LENGTH: 'ptl-decrease-length',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_INCREASE_LENGTH
+     * @type {string}
+     */
+    PTL_INCREASE_LENGTH: 'ptl-increase-length',
 
     /**
      * Remove an aircraft from the sim
@@ -111,14 +127,24 @@ export const EVENT = {
     REQUEST_TO_CENTER_POINT_IN_VIEW: 'request-to-center-point-in-view',
 
     /**
-     * An aircraft data block was clicked and the corresponding
+     * An aircraft radar return was double clicked and the corresponding
+     * `StripViewModel` must be scrolled into view
+     *
+     * @memberof EVENT
+     * @property SCROLL_TO_AIRCRAFT
+     * @type {string}
+     */
+    SCROLL_TO_AIRCRAFT: 'scroll-to-aircraft',
+
+    /**
+     * An aircraft radar return was clicked and the corresponding
      * `StripViewModel` must also be selected
      *
      * @memberof EVENT
-     * @property SELECT_STRIP_VIEW_FROM_DATA_BLOCK
+     * @property SELECT_AIRCRAFT
      * @type {string}
      */
-    SELECT_STRIP_VIEW_FROM_DATA_BLOCK: 'select-strip-view-from-data-block',
+    SELECT_AIRCRAFT: 'select-aircraft',
 
     /**
      * An aircraft progress strip was clicked
@@ -157,11 +183,50 @@ export const EVENT = {
     TIMEWARP_TOGGLE: 'timewarp-toggle',
 
     /**
+     * An request has been made to clear and respawn traffic at the current airport
+     *
+     * @memberof EVENT
+     * @property TRAFFIC_RESET
+     * @type {string}
+     */
+    TRAFFIC_RESET: 'traffic-reset',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_AIRPORT_GUIDE
+     * @type {string}
+     */
+    TOGGLE_AIRPORT_GUIDE: 'toggle-airport-guide',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_AIRSPACE
+     * @type {string}
+     */
+    TOGGLE_AIRSPACE: 'toggle-airspace',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_CHANGELOG
+     * @type {string}
+     */
+    TOGGLE_CHANGELOG: 'toggle-changelog',
+
+    /**
      * @memberof EVENT
      * @property TOGGLE_LABELS
      * @type {string}
      */
     TOGGLE_LABELS: 'toggle-labels',
+
+    /**
+     * Pause/unpause the game loop
+     *
+     * @memberof EVENT
+     * @property TOGGLE_PAUSE
+     * @type {string}
+     */
+    TOGGLE_PAUSE: 'toggle-pause',
 
     /**
      * @memberof EVENT
@@ -175,14 +240,28 @@ export const EVENT = {
      * @property TOGGLE_SID_MAP
      * @type {string}
      */
-    TOGGLE_SID_MAP: 'should-toggle-sid-map',
+    TOGGLE_SID_MAP: 'toggle-sid-map',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_STAR_MAP
+     * @type {string}
+     */
+    TOGGLE_STAR_MAP: 'toggle-star-map',
 
     /**
      * @memberof EVENT
      * @property TOGGLE_TERRAIN
      * @type {string}
      */
-    TOGGLE_TERRAIN: 'should-toggle-terrain',
+    TOGGLE_TERRAIN: 'toggle-terrain',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_TRAFFIC
+     * @type {string}
+     */
+    TOGGLE_TRAFFIC: 'toggle-traffic',
 
     /**
      * Open/close the tutorial modal
@@ -192,6 +271,27 @@ export const EVENT = {
      * @type {string}
      */
     TOGGLE_TUTORIAL: 'toggle-tutorial',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_VIDEO_MAP
+     * @type {string}
+     */
+    TOGGLE_VIDEO_MAP: 'toggle-video-map',
+
+    /**
+     * @memberof EVENT
+     * @property RANGE_RINGS_CHANGE
+     * @type {string}
+     */
+    RANGE_RINGS_CHANGE: 'range-rings-change',
+
+    /**
+     * @memberof EVENT
+     * @property MEASURE_TOOL_STYLE_CHANGE
+     * @type {string}
+     */
+    MEASURE_TOOL_STYLE_CHANGE: 'measure-tool-style-change',
 
     /**
      * A click has been registered in the unpause button shown within the
@@ -211,4 +311,60 @@ export const EVENT = {
      * @type {string}
      */
     ZOOM_VIEWPORT: 'zoom-viewport'
+};
+
+export const AIRCRAFT_EVENT = {
+    /**
+     * Triggered when the aircraft received takeoff clearance.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property TAKEOFF
+     * @type {string}
+     */
+    TAKEOFF: 'takeoff',
+
+    /**
+     * Trigged when the aircraft enters the approach
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property APPROACH
+     * @type {string}
+     */
+    APPROACH: 'approach',
+
+    /**
+     * Trigged when the aircraft reaches its final approach
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property FINAL_APPROACH
+     * @type {string}
+     */
+    FINAL_APPROACH: 'final-approach',
+
+    /**
+     * FOR FUTURE USE. Should be trigged when the aircraft landed on the runway.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property LANDING
+     * @type {string}
+     */
+    LANDING: 'landing',
+
+    /**
+     * The aircraft landed and came to a fullstop.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property FULLSTOP
+     * @type {string}
+     */
+    FULLSTOP: 'fullstop',
+
+    /**
+     * Triggered when the aircraft exits the airspace.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property AIRSPACE_EXIT
+     * @type {string}
+     */
+    AIRSPACE_EXIT: 'airspace-exit'
 };

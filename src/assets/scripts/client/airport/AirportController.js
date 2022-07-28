@@ -23,7 +23,7 @@ class AirportController {
         /**
          * Local reference to `window.AIRPORT_LOAD_LIST`
          *
-         * This is defined in `assets/airports/airportLoadList.js`
+         * This is defined in `assets/airports/airportLoadList.json`
          * This property is the only way the possible list of airports
          * makes its way into the app.
          *
@@ -91,10 +91,8 @@ class AirportController {
      * @param icao {string}
      * @param level {string}
      * @param name {string}
-     * @param wip {boolean}
-     * @return airportModel {AirtportInstance}
      */
-    airport_load({ icao, level, name, wip }) {
+    airport_load({ icao, level, name }) {
         icao = icao.toLowerCase();
 
         if (this.hasAirport(icao)) {
@@ -103,7 +101,7 @@ class AirportController {
             return null;
         }
 
-        const airportModel = new AirportModel({ icao, level, name, wip });
+        const airportModel = new AirportModel({ icao, level, name });
 
         this.airport_add(airportModel);
     }
@@ -128,7 +126,10 @@ class AirportController {
      * @method reset
      */
     reset() {
-        return;
+        this._eventBus = EventBus;
+        this._airportListToLoad = [];
+        this.airports = {};
+        this.current = null;
     }
 
     /**
@@ -147,7 +148,7 @@ class AirportController {
         icao = icao.toLowerCase();
 
         if (!this.airports[icao]) {
-            console.log(`${icao}: no such airport`);
+            console.warn(`${icao}: no such airport`);
 
             return;
         }
@@ -163,6 +164,17 @@ class AirportController {
 
         nextAirportModel.set(airportJson);
     }
+
+    /**
+     * @for AirportController
+     * @method getAiracCycle
+     * @property airac
+     * @return {number}
+    */
+    getAiracCycle() {
+        return this.current.airac;
+    }
+
     /**
      * Retrieve a specific `AirportModel` instance
      *

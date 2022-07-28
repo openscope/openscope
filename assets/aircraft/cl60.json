@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier Challenger 600",
+    "icao": "CL60",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 8,
+        "recat": "E"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb": 4500,
+        "descent": 3000,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.800,
+        "landing": 1.050
+    },
+    "speed":{
+        "min": 110,
+        "landing": 130,
+        "cruise": 460,
+        "cruiseM": 0.75,
+        "max": 478,
+        "maxM": null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

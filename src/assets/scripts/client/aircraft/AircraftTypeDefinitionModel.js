@@ -1,6 +1,8 @@
 import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isEmptyOrNotObject } from '../utilities/validatorUtilities';
+import { WAKE_TURBULENCE_CATEGORY } from '../constants/aircraftConstants';
+import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 
 /**
  * Provides a definition for a specific type of aircraft.
@@ -21,8 +23,10 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     constructor(aircraftTypeDefinition) {
         super();
-        if (isEmptyObject(aircraftTypeDefinition)) {
-            throw new TypeError('Invalid parameter. Expected aircraftTypeDefinition to be an object');
+
+        if (isEmptyOrNotObject(aircraftTypeDefinition)) {
+            throw new TypeError('Invalid aircraftTypeDefinition passed to AircraftTypeDefinitionModel constructor. ' +
+                `Expected a non-empty object, but received ${typeof aircraftTypeDefinition}`);
         }
 
         /**
@@ -44,7 +48,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.icao = '';
 
         /**
-         * Icao identifier that includes a weightclass
+         * Icao identifier that includes a weightClass
          * designation when `Heavy` or `Super`
          *
          * @property icaoWithWeightClass
@@ -63,11 +67,11 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.engines = null;
 
         /**
-         * @property weightclass
+         * @property weightClass
          * @type {string}
          * @default ''
          */
-        this.weightclass = '';
+        this.weightClass = '';
 
         /**
          * @property category
@@ -86,7 +90,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.ceiling = INVALID_NUMBER;
 
         /**
-         * Decsribes rate of:
+         * Describes rate of:
          * - climb
          * - descent
          * - acceleration
@@ -137,7 +141,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     /**
      * Lifecycle method, should be run only once on instantiation.
      *
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for AircraftDefinitionModel
      * @method init
@@ -145,9 +149,9 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     init(aircraftTypeDefinition) {
         this.name = aircraftTypeDefinition.name;
-        this.icao = aircraftTypeDefinition.icao.toLowerCase();
+        this.icao = aircraftTypeDefinition.icao;
         this.engines = aircraftTypeDefinition.engines;
-        this.weightclass = aircraftTypeDefinition.weightclass;
+        this.weightClass = aircraftTypeDefinition.weightClass;
         this.category = aircraftTypeDefinition.category;
         this.ceiling = aircraftTypeDefinition.ceiling;
         this.rate = aircraftTypeDefinition.rate;
@@ -169,7 +173,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.icao = '';
         this.icaoWithWeightClass = '';
         this.engines = null;
-        this.weightclass = '';
+        this.weightClass = '';
         this.category = null;
         this.ceiling = INVALID_NUMBER;
         this.rate = null;
@@ -187,21 +191,15 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @private
      */
     _buildTypeForStripView() {
-        const HEAVY_LETTER = 'H';
-        const SUPER_LETTER = 'U';
         let aircraftIcao = `${this.icao}/L`;
 
-        switch (this.weightclass) {
-            case SUPER_LETTER:
-            case HEAVY_LETTER:
-                aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
+        const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.weightClass) ?? { APPEND: false };
 
-                break;
-            default:
-                break;
+        if (wtc.APPEND) {
+            aircraftIcao = `${wtc.LETTER}/${this.icao}/L`;
         }
 
-        return aircraftIcao.toUpperCase();
+        return aircraftIcao;
     }
 
     /**
@@ -222,5 +220,60 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     isAbleToMaintainSpeed(speed) {
         return speed >= this.speed.min && speed <= this.speed.max;
+    }
+
+    /**
+     * @for AircraftTypeDefinitionModel
+     * @method isHeavyOrSuper
+     * @returns {Boolean}
+     */
+    isHeavyOrSuper() {
+        return this.weightClass === WAKE_TURBULENCE_CATEGORY.HEAVY.LETTER ||
+            this.weightClass === WAKE_TURBULENCE_CATEGORY.SUPER.LETTER;
+    }
+
+    /**
+     * Returns the minimal distance that is required to a previous aircraft before another aircraft is allowed to use the runway.
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method calculateSameRunwaySeparationDistanceInFeet
+     * @param previousTypeModel {AircraftTypeDefinitionModel} the aircraft type that used the runway before us.
+     * @returns {number} distance in feet
+     */
+    calculateSameRunwaySeparationDistanceInFeet(previousTypeModel) {
+        if (previousTypeModel.isSameRunwaySeparationCatThree()) {
+            return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT3;
+        }
+
+        switch (this.category.srs) {
+            case 1:
+                return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT1;
+            case 2:
+                return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT2;
+            default:
+                return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT3;
+        }
+    }
+
+    /**
+     * Returns true if srs cat 3 is required
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method isSameRunwaySeparationCatThree
+     * @returns true if srs cat 3 is required
+     */
+    isSameRunwaySeparationCatThree() {
+        return typeof this.category.srs === 'undefined' || this.category.srs === 3;
+    }
+
+    /**
+     * Get the weight classifier for an aircraft's callsign, as spoken over the radio
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method getRadioWeightClass
+     * @return {string}
+     */
+    getRadioWeightClass() {
+        return Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.weightClass)?.SPOKEN ?? '';
     }
 }

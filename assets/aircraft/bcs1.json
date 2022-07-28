@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier CSeries CS100",
+    "icao": "BCS1",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "E"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3000,
+        "descent":    3000,
+        "accelerate": 7,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.200,
+        "landing": 1.300
+    },
+    "speed":{
+        "min":     110,
+        "landing": 120,
+        "cruise":  447,
+        "cruiseM": 0.78,
+        "max":     470,
+        "maxM":    0.82
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

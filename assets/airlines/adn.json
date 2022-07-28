@@ -1,0 +1,16 @@
+{
+    "icao": "adn",
+    "name": "Aero-Dienst",
+    "callsign": {
+        "name": "Aerodienst",
+        "callsignFormats": [
+            "##@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E55P", 1],
+            ["J328", 2]
+        ]
+    }
+}

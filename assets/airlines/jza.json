@@ -1,0 +1,23 @@
+{
+    "icao": "jza",
+    "name": "Jazz Aviation",
+    "callsign": {
+        "name": "Jazz",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["DH8C", 10],
+            ["DH8D", 37],
+            ["CRJ2", 15],
+            ["CRJ9", 35],
+            ["E75L", 23]
+        ],
+        "aus": [
+            ["CRJ9", 35],
+            ["E75L", 23]
+        ]
+    }
+}

@@ -1,15 +1,20 @@
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNaN from 'lodash/isNaN';
+import _padEnd from 'lodash/padEnd';
 import EventBus from '../lib/EventBus';
+import { round } from '../math/core';
+import { vadd } from '../math/vector';
+import { leftPad } from '../utilities/generalUtilities';
 import { EVENT } from '../constants/eventNames';
 import { INVALID_NUMBER } from '../constants/globalConstants';
-import { DECIMAL_RADIX } from '../constants/navigation/waypointConstants';
+import { DECIMAL_RADIX } from '../utilities/unitConverters';
 import {
     DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR,
     DATA_BLOCK_POSITION_MAP
-} from '../constants/scopeCommandConstants';
+} from '../constants/scopeConstants';
 import { THEME } from '../constants/themes';
+import { WAKE_TURBULENCE_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * A single radar target observed by the radar system and shown on the scope
@@ -88,14 +93,16 @@ export default class RadarTargetModel {
         this._hasFullDataBlock = true;
 
         /**
-         * Boolean value representing whether the radar target should have a
-         * 'halo' (circle with a given radius) drawn around it.
+         * Radius of the halo to be drawn around the radar taget
+         *
+         * If no halo is to be drawn, the value will be INVALID_NUMBER
          *
          * @for RadarTargetModel
-         * @property _hasHalo
-         * @type {boolean}
+         * @property _haloRadius
+         * @type {number}
+         * @default INVALID_NUMBER
          */
-        this._hasHalo = false;
+        this._haloRadius = INVALID_NUMBER;
 
         /**
          * Boolean value representing whether the full data block is being suppressed
@@ -162,7 +169,6 @@ export default class RadarTargetModel {
         this._theme = theme;
 
         this._init(aircraftModel)
-            ._initializeScratchPad()
             .enable();
     }
 
@@ -211,6 +217,37 @@ export default class RadarTargetModel {
     }
 
     /**
+     * @for RadarTargetModel
+     * @property scratchPadText
+     * @type {string}
+     */
+    get scratchPadText() {
+        return this._scratchPadText;
+    }
+
+    set scratchPadText(text) {
+        this._scratchPadText = text.slice(0, 3).toUpperCase();
+    }
+
+    /**
+     * @for RadarTargetModel
+     * @property haloRadius
+     * @type {number}
+     */
+    get haloRadius() {
+        return this._haloRadius;
+    }
+
+    /**
+     * @for RadarTargetModel
+     * @property hasHalo
+     * @type {boolean}
+     */
+    get hasHalo() {
+        return this._haloRadius > 0;
+    }
+
+    /**
      * Complete initialization tasks
      *
      * @for RadarTargetModel
@@ -225,27 +262,9 @@ export default class RadarTargetModel {
         this._cruiseAltitude = aircraftModel.fms.flightPlanAltitude;
         this._dataBlockLeaderDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
-        this._routeString = aircraftModel.fms.getFlightPlanRouteStringWithDots();
+        this._routeString = aircraftModel.fms.getRouteString();
 
-        return this;
-    }
-
-    /**
-     * Initialize the value of the scratchpad
-     *
-     * @for RadarTargetModel
-     * @method _initializeScratchPad
-     * @private
-     * @chainable
-     */
-    _initializeScratchPad() {
-        if (!this.aircraftModel.destination) {
-            this._scratchPadText = 'XXX';
-
-            return this;
-        }
-
-        this._scratchPadText = this.aircraftModel.destination.substr(1);
+        this.setDefaultScratchpad();
 
         return this;
     }
@@ -255,9 +274,12 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method enable
+    * @chainable
     */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
+        return this;
     }
 
     /**
@@ -265,9 +287,12 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method disable
+    * @chainable
     */
     disable() {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
+        return this;
     }
 
     /**
@@ -275,6 +300,7 @@ export default class RadarTargetModel {
     *
     * @for RadarTargetModel
     * @method reset
+    * @chainable
     */
     reset() {
         this.aircraftModel = null;
@@ -282,12 +308,13 @@ export default class RadarTargetModel {
         this._dataBlockLeaderDirection = INVALID_NUMBER;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._hasFullDataBlock = true;
-        this._hasHalo = false;
+        this._haloRadius = INVALID_NUMBER;
         this._hasSuppressedDataBlock = false;
         this._interimAltitude = INVALID_NUMBER;
         this._isUnderOurControl = true;
         this._routeString = '';
-        this._scratchPadText = '';
+
+        return this;
     }
 
     /**
@@ -301,6 +328,89 @@ export default class RadarTargetModel {
         this._cruiseAltitude = altitude;
 
         return [true, 'AMEND ALTITUDE'];
+    }
+
+    /**
+     * Generate a string to be used for the first row of a datablock
+     *
+     * @for RadarTargetModel
+     * @method buildDataBlockRowOne
+     * @returns {string}
+     */
+    buildDataBlockRowOne() {
+        let dataBlockRowOne = this.aircraftModel.callsign;
+
+        const wtc = Object.values(WAKE_TURBULENCE_CATEGORY).find((WTC) => WTC.LETTER === this.aircraftModel.model.weightClass) ??
+            { APPEND: false };
+
+        if (wtc.APPEND) {
+            // NOTE: using empty space before the letter on purpose so this gets rendered appropriately within a canvas
+            dataBlockRowOne += ` ${wtc.LETTER}`;
+        }
+
+        return dataBlockRowOne;
+    }
+
+    /**
+     * Generate a string to be used for the second row of a datablock
+     *
+     * @for RadarTargetModel
+     * @method buildDataBlockRowTwoPrimaryInfo
+     * @returns {string}
+     */
+    buildDataBlockRowTwoPrimaryInfo() {
+        const aircraftAltitude = round(this.aircraftModel.altitude / 100);
+        const aircraftSpeed = round(this.aircraftModel.groundSpeed / 10);
+
+        return `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
+    }
+
+    /**
+     * Generate a string to be used for the second row of a datablock
+     * when the timeshare section is active
+     *
+     * @for RadarTargetModel
+     * @method buildDataBlockRowTwoSecondaryInfo
+     * @returns {string}
+     */
+    buildDataBlockRowTwoSecondaryInfo() {
+        const paddedScratchPadText = _padEnd(
+            this.scratchPadText,
+            this._theme.DATA_BLOCK.SCRATCHPAD_CHARACTER_LIMIT,
+            ' '
+        );
+        const paddedAircraftModelIcao = _padEnd(
+            this.aircraftModel.model.icao.toUpperCase(),
+            this._theme.DATA_BLOCK.AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT,
+            ' '
+        );
+        const scratchPadText = paddedScratchPadText.slice(0, this._theme.DATA_BLOCK.SCRATCHPAD_CHARACTER_LIMIT);
+        const aircraftModelIcao = paddedAircraftModelIcao.slice(0, this._theme.DATA_BLOCK.AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT);
+
+        return `${scratchPadText} ${aircraftModelIcao}`;
+    }
+
+    /**
+     * Abstracts the math from the `CanvasController` used to determine
+     * where the center of a datablock should be located
+     *
+     * @param {number} leaderIntersectionWithBlock
+     */
+    calculateDataBlockCenter(leaderIntersectionWithBlock) {
+        const blockCenterOffset = {
+            ctr: [0, 0],
+            360: [0, -this._theme.DATA_BLOCK.HALF_HEIGHT],
+            45: [this._theme.DATA_BLOCK.HALF_WIDTH, -this._theme.DATA_BLOCK.HALF_HEIGHT],
+            90: [this._theme.DATA_BLOCK.HALF_WIDTH, 0],
+            135: [this._theme.DATA_BLOCK.HALF_WIDTH, this._theme.DATA_BLOCK.HALF_HEIGHT],
+            180: [0, this._theme.DATA_BLOCK.HALF_HEIGHT],
+            225: [-this._theme.DATA_BLOCK.HALF_WIDTH, this._theme.DATA_BLOCK.HALF_HEIGHT],
+            270: [-this._theme.DATA_BLOCK.HALF_WIDTH, 0],
+            315: [-this._theme.DATA_BLOCK.HALF_WIDTH, -this._theme.DATA_BLOCK.HALF_HEIGHT]
+        };
+        const leaderEndToBlockCenter = blockCenterOffset[this.dataBlockLeaderDirection];
+
+        return vadd(leaderIntersectionWithBlock, leaderEndToBlockCenter);
     }
 
     /**
@@ -373,6 +483,66 @@ export default class RadarTargetModel {
     }
 
     /**
+     * Clear any existing halo
+     *
+     * @for RadarTargetModel
+     * @method removeHalo
+     * @return {array} [success of operation, system's response]
+     */
+    removeHalo() {
+        if (!this.hasHalo) {
+            return;
+        }
+
+        this._haloRadius = INVALID_NUMBER;
+
+        return [true, 'TOGGLE HALO'];
+    }
+
+    /**
+     * Set the radius of the halo
+     *
+     * @for RadarTargetModel
+     * @method setHalo
+     * @param radius {number}
+     * @return {array} [success of operation, system's response]
+     */
+    setHalo(radius) {
+        if (!this.hasHalo) {
+            this._haloRadius = radius;
+
+            return [true, 'TOGGLE HALO'];
+        }
+
+        if (radius === this._haloRadius) {
+            return this.removeHalo();
+        }
+
+        this._haloRadius = radius;
+
+        return [true, 'ADJUST HALO'];
+    }
+
+    /**
+     * Set default value of the scratchpad
+     *
+     * @for RadarTargetModel
+     * @method setDefaultScratchpad
+     * @return {array} [success of operation, system's response]
+     */
+    setDefaultScratchpad() {
+        if (this.aircraftModel.isDeparture()) {
+            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
+
+            return [true, 'RESET SCRATCHPAD'];
+        }
+
+        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
+
+        return [true, 'RESET SCRATCHPAD'];
+    }
+
+    /**
      * Set the value of the scratchpad
      *
      * @for RadarTargetModel
@@ -381,22 +551,9 @@ export default class RadarTargetModel {
      * @return {array} [success of operation, system's response]
      */
     setScratchpad(scratchPadText) {
-        this._scratchPadText = scratchPadText;
+        this.scratchPadText = scratchPadText;
 
         return [true, 'SET SCRATCHPAD'];
-    }
-
-    /**
-     * Toggle halo (circle) on and off
-     *
-     * @for RadarTargetModel
-     * @method toggleHalo
-     * @return {array} [success of operation, system's response]
-     */
-    toggleHalo() {
-        this._hasHalo = !this._hasHalo;
-
-        return [true, 'TOGGLE HALO'];
     }
 
     /**

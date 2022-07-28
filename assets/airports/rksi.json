@@ -11,8 +11,11 @@
     "ctr_ceiling": 18500,
     "initial_alt": 3000,
     "position": ["N37d27m45.00", "E126d26m21.00"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N37d27m45.00", "E126d26m21.00"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N37d27m45.00", "E126d26m21.00"],
+        "radius_nm": 5.0
+    },
     "has_terrain": false,
     "wind": {
         "angle": 110,
@@ -748,7 +751,7 @@
                 ["qtr",   2],
                 ["sco",   2],
                 ["sia",   3],
-                ["sqc",   1],
+                ["sia/cargo", 1],
                 ["qfa",   2],
                 ["apj",   3],
                 ["sbi",   2],
@@ -889,7 +892,7 @@
                 ["mas",   2],
                 ["sco",   2],
                 ["sia",   3],
-                ["sqc",   1],
+                ["sia/cargo", 1],
                 ["qfa",   2],
                 ["cqh",   2],
                 ["iah",   5]
@@ -1097,7 +1100,7 @@
                 ["mas",   2],
                 ["sco",   2],
                 ["sia",   3],
-                ["sqc",   1],
+                ["sia/cargo", 1],
                 ["qfa",   2],
                 ["cqh",   2],
                 ["iah",   5]
@@ -1313,7 +1316,7 @@
                 ["mas",   2],
                 ["sco",   2],
                 ["sia",   3],
-                ["sqc",   1],
+                ["sia/cargo", 1],
                 ["qfa",   2],
                 ["cqh",   2],
                 ["iah",   5]

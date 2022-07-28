@@ -1,0 +1,26 @@
+{
+    "icao": "bms",
+    "name": "Blue Air",
+    "callsign": {
+        "name": "Blue Messenger",
+        "callsignFormats": [
+            "#@",
+            "###",
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 1],
+            ["B734", 2],
+            ["B735", 6],
+            ["B738", 12]
+        ],
+        "b734": [
+            ["B734", 2]
+        ],
+        "b738": [
+            ["B738", 12]
+        ]
+    }
+}

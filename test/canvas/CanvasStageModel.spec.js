@@ -23,32 +23,42 @@ ava('.translatePixelsToKilometers() divides pixels by scale', (t) => {
     t.true(result === expectedResult);
 });
 
-ava('.translatePostionModelToPreciseCanvasPosition() returns an object with x, y keys with precise values', (t) => {
-    const expectedResult = {
-        x: 533.6571116862411,
-        y: -529.6559736409592
-    };
-    const positionMock = [66.70713896078014, 66.2069967051199];
-    const result = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(positionMock);
+ava('.calculateCanvasPositionFromPagePosition() returns an [x, y] array with precise canvas coordinate values', (t) => {
+    const pagePositionMock = [533.6571116862411, 529.6559736409592];
+    const expectedCanvasPosition = [213.65711168624114, -289.65597364095925];
+    const canvasPosition = CanvasStageModel.calculateCanvasPositionFromPagePosition(...pagePositionMock);
+
+    t.deepEqual(canvasPosition, expectedCanvasPosition);
+});
+
+ava('.calculateRelativePositionFromCanvasPosition() returns an [x, y] array of kilometers offset from the airport', (t) => {
+    const canvasPositionMock = [533.6571116862411, -529.6559736409592];
+    const expectedResult = [66.70713896078014, -66.2069967051199];
+    const result = CanvasStageModel.calculateRelativePositionFromCanvasPosition(...canvasPositionMock);
 
     t.deepEqual(result, expectedResult);
 });
 
-ava('.translatePostionModelToPreciseCanvasPosition() returns an object with x, y keys and rounded values', (t) => {
-    const expectedResult = {
-        x: 534,
-        y: -530
-    };
+ava('.calculatePreciseCanvasPositionFromRelativePosition() returns an [x, y] array with precise canvas coordinate values', (t) => {
+    const expectedResult = [533.6571116862411, -529.6559736409592];
     const positionMock = [66.70713896078014, 66.2069967051199];
-    const result = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(positionMock);
+    const result = CanvasStageModel.calculatePreciseCanvasPositionFromRelativePosition(positionMock);
 
     t.deepEqual(result, expectedResult);
 });
 
-ava('.translateKilometersToPixels() multiplies kilometers by scale', (t) => {
+ava('.calculateRoundedCanvasPositionFromRelativePosition() returns an [x, y] array and rounded canvas coordinate values', (t) => {
+    const expectedResult = [534, -530];
+    const positionMock = [66.70713896078014, 66.2069967051199];
+    const result = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(positionMock);
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('._translateKilometersToPixels() multiplies kilometers by scale', (t) => {
     const expectedResult = 100;
     const kilometerValueMock = 12.5;
-    const result = CanvasStageModel.translateKilometersToPixels(kilometerValueMock);
+    const result = CanvasStageModel._translateKilometersToPixels(kilometerValueMock);
 
     t.true(result === expectedResult);
 });
@@ -111,7 +121,7 @@ ava('.zoomIn() increases #_scale by SCALE.CHANGE_FACTOR', (t) => {
 });
 
 ava('.zoomIn() resets #_scale to #_scaleMax when #_scale is > #scaleMax', (t) => {
-    CanvasStageModel._scale = 80;
+    CanvasStageModel._scale = 999999;
     CanvasStageModel.zoomIn();
 
     t.true(CanvasStageModel._scale === CanvasStageModel._scaleMax);

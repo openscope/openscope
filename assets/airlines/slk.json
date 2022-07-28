@@ -3,12 +3,20 @@
     "name": "Silk Air",
     "callsign": {
         "name": "Silkair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 20],
-            ["A320", 20]
+            ["A319", 3],
+            ["CRJ7", 2],
+            ["CRJ9", 9],
+            ["SB20", 6]
+        ],
+        "crj": [
+            ["CRJ7", 2],
+            ["CRJ9", 9]
         ]
     }
 }

@@ -1,0 +1,27 @@
+{
+    "icao": "tua",
+    "name": "Turkmenistan Airlines",
+    "callsign": {
+        "name": "Turkmenistan",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B712", 7],
+            ["B737", 5],
+            ["B738", 8],
+            ["B752", 2],
+            ["B772", 3]
+        ],
+        "b738": [
+            ["B738", 8]
+        ],
+        "ltba": [
+            ["B738", 8],
+            ["B772", 3]
+        ]
+    }
+}

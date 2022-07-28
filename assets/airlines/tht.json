@@ -1,0 +1,17 @@
+{
+    "icao": "tht",
+    "name": "Air Tahiti Nui",
+    "callsign": {
+        "name": "Tahiti Airlines",
+        "callsignFormats": [
+            "#",
+            "##",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B789", 4]
+        ]
+    }
+}

@@ -15,7 +15,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_INSIDE_RANGE
      */
-    HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE,
+    HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE_05,
 
     /**
      * Color of the dots behind the aircraft, showing where it has been
@@ -24,7 +24,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_OUTSIDE_RANGE
      */
-    HISTORY_DOT_OUTSIDE_RANGE: COLOR.WHITE,
+    HISTORY_DOT_OUTSIDE_RANGE: COLOR.WHITE_05,
 
     /**
      * Radius of the history dots, in kilometers
@@ -43,14 +43,6 @@ export const RADAR_TARGET_THEME = {
     HISTORY_LENGTH: 7,
 
     /**
-     * Initial length of PTLs, in minutes
-     *
-     * @memberof RADAR_TARGET_THEME
-     * @property PROJECTED_TRACK_LINE_LENGTH
-     */
-    PROJECTED_TRACK_LINE_LENGTH: 0,
-
-    /**
      * Color of projected track lines
      *
      * @memberof RADAR_TARGET_THEME
@@ -60,6 +52,7 @@ export const RADAR_TARGET_THEME = {
 
     /**
      * Color of projection lines showing an arrival aircraft will go
+     * (for selected aircraft)
      *
      * @memberof RADAR_TARGET_THEME
      * @property PROJECTION_ARRIVAL
@@ -67,12 +60,31 @@ export const RADAR_TARGET_THEME = {
     PROJECTION_ARRIVAL: COLOR.RED,
 
     /**
+     * Color of projection lines showing an arrival aircraft will go
+     * (for non-selected aircraft when projected path set to "always")
+     *
+     * @memberof RADAR_TARGET_THEME
+     * @property PROJECTION_ARRIVAL_ALL
+     */
+    PROJECTION_ARRIVAL_ALL: COLOR.RED_02,
+
+    /**
      * Color of projection lines showing where a departure aircraft will go
+     * (for selected aircraft)
      *
      * @memberof RADAR_TARGET_THEME
      * @property PROJECTION_DEPARTURE
      */
     PROJECTION_DEPARTURE: COLOR.BLUE_VERY_LIGHT,
+
+    /**
+     * Color of projection lines showing where a departure aircraft will go
+     * (for non-selected aircraft when projected path set to "always")
+     *
+     * @memberof RADAR_TARGET_THEME
+     * @property PROJECTION_DEPARTURE_ALL
+     */
+    PROJECTION_DEPARTURE_ALL: COLOR.BLUE_VERY_LIGHT_02,
 
     /**
      * Color of projection lines used when the aircraft is
@@ -125,6 +137,14 @@ export const RADAR_TARGET_THEME = {
     RING_VIOLATION: COLOR.RED,
 
     /**
+     * Color of halo
+     *
+     * @memberof RADAR_TARGET_THEME
+     * @property HALO
+     */
+    HALO: COLOR.GREEN_LIGHT,
+
+    /**
      * Whether or not the small line behind aircraft established on an
      * instrument approach should be drawn
      *
@@ -139,5 +159,5 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property TRAILING_SEPARATION_INDICATOR
      */
-    TRAILING_SEPARATION_INDICATOR: COLOR.BLUE_DARK
+    TRAILING_SEPARATION_INDICATOR: COLOR.RED
 };

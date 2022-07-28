@@ -3,7 +3,9 @@
     "name": "Centurion Air Cargo",
     "callsign": {
         "name": "Challenge Cargo",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

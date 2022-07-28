@@ -16,8 +16,10 @@ const ACCEPTED_KEYS = [
 ];
 
 const ACCEPTED_OPTIONAL_KEYS = [
+    'commands',
     'offset',
-    'period'
+    'period',
+    'variation'
 ];
 
 const ALL_KEYS = [
@@ -88,7 +90,7 @@ export const spawnPatternModelJsonValidator = (json) => {
         }
 
         if (!_has(json, key) && !_has(ACCEPTED_OPTIONAL_KEYS, key)) {
-            console.log(`spawnPattern is missing a required key: ${key}`);
+            console.warn(`spawnPattern is missing a required key: ${key}`);
 
             isValid = false;
         }

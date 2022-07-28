@@ -3,12 +3,15 @@
     "name": "Winair",
     "callsign": {
         "name": "Windward",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["dhc6", 4],
-            ["at43", 2]
+            ["at45", 3],
+            ["at76", 1],
+            ["dhc6", 4]
         ]
     }
 }

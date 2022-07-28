@@ -1,5 +1,7 @@
-## Naming Convention
+# Naming Convention
+
 Each issue and corresponding pull request will be placed in one of the following categories:
+
 - `feature`: addition of a _completely new feature_
 - `enhancement`: notable _improvement or expansion upon an existing feature_
 - `refactor`: code changes that _neither fix a defect nor add functionality_
@@ -8,6 +10,7 @@ Each issue and corresponding pull request will be placed in one of the following
 - `documentation`: changes to _documentation files only_
 
 All GitHub issues will be have a label that places it in one of these categories. All branches and pull requests should use names in the shape of `ISSUE_CATEGORY/ISSUE_NUMBER`.
+
 ```bash
 # Github issue #333 in category 'bugfix'
 bugfix/333
@@ -20,6 +23,7 @@ refactor/347
 ```
 
 Pull Requests should reference the issue number in the first line of the description:
+
 ```bash
 Resolves #321.
 
@@ -34,7 +38,7 @@ The post linked below has a thorough explanation of a very effective git branchi
 
 Below you will find a helpful flow chart showing the exact git branching strategy employed at openScope. Additional information on the phases of our development lifecycle can be found [here](development-processes-checklists.md).
 
-```
+```text
          +------------------------+-------------------------+-----------------------------------+
          |      DEVELOPMENT       |         TESTING         |          INITIALIZATION           |
          +------------------------+-------------------------+-----------------------------------+

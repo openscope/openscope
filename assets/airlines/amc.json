@@ -3,12 +3,18 @@
     "name": "Air Malta",
     "callsign": {
         "name": "Air Malta",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A319", 2],
-            ["A320", 6]
+            ["A20N", 3],
+            ["A320", 7]
+        ],
+        "short": [
+            ["A20N", 3],
+            ["A320", 7]
         ]
     }
 }

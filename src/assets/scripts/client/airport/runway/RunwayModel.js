@@ -1,7 +1,9 @@
+import _ceil from 'lodash/ceil';
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import { PERFORMANCE } from '../../constants/aircraftConstants';
+import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import {
     angle_offset,
@@ -15,6 +17,7 @@ import {
     calculateCrosswindAngle,
     getOffset
 } from '../../math/flightMath';
+import { radio_runway } from '../../utilities/radioUtilities';
 import {
     km,
     km_ft,
@@ -36,7 +39,7 @@ export default class RunwayModel extends BaseModel {
      * @param end {number}
      * @param airportPositionModel {StaticPositionModel}
      */
-     // istanbul ignore next
+    // istanbul ignore next
     constructor(options = {}, end, airportPositionModel) {
         super();
 
@@ -65,7 +68,7 @@ export default class RunwayModel extends BaseModel {
         this.name = '';
 
         /**
-         * Angle (heading) of the runway in radians
+         * Runway magnetic heading (from landing end to liftoff end), in radians
          *
          * @property angle
          * @type {number}
@@ -116,7 +119,28 @@ export default class RunwayModel extends BaseModel {
          */
         this.queue = [];
 
+        /**
+         * The flight number of the last aircraft that used the runway for takeoff.
+         *
+         * @property lastDepartedAircraftModel
+         * @type {AircraftModel}
+         * @default null
+         */
+        this.lastDepartedAircraftModel = null;
+
         this._init(options, end, airportPositionModel);
+    }
+
+    /**
+     * Reset the runway queue
+     *
+     * @for RunwayModel
+     * @method resetQueue
+     * @returns undefined
+     */
+    resetQueue() {
+        this.queue = [];
+        this.lastDepartedAircraftModel = null;
     }
 
     /**
@@ -162,7 +186,7 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     * Opposite of runway's heading, in radians
+     * Reverse of runway magnetic heading, in radians
      *
      * @for RunwayModel
      * @property oppositeAngle
@@ -189,9 +213,9 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const farSideIndex = end === 0
-                ? 1
-                : 0;
+            const farSideIndex = end === 0 ?
+                1 :
+                0;
 
             const thisSide = new StaticPositionModel(
                 data.end[end],
@@ -252,6 +276,44 @@ export default class RunwayModel extends BaseModel {
 
         // TODO: this logic could be abstracted to a helper.
         return this.elevation + (rise * km_ft(distance));
+    }
+
+    /**
+     * Calculate the height of the glideslope at (or abeam) the final approach fix
+     *
+     * @for RunwayModel
+     * @method getGlideslopeAltitudeAtFinalApproachFix
+     * @return {number} glideslope altitude in ft MSL
+     */
+    getGlideslopeAltitudeAtFinalApproachFix() {
+        return this.getGlideslopeAltitude(km(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM));
+    }
+
+    /**
+     * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
+     *
+     * @for RunwayModel
+     * @method getMinimumGlideslopeInterceptAltitude
+     * @return {number} glideslope altitude in ft MSL
+     */
+    getMinimumGlideslopeInterceptAltitude() {
+        const altitudeAtFinalApproachFix = this.getGlideslopeAltitudeAtFinalApproachFix();
+        const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
+
+        return minimumInterceptAltitude;
+    }
+
+    /**
+     * Return the spoken name of the runway, spelled out into words
+     *
+     * Ex: "two six left"
+     *
+     * @for RunwayModel
+     * @method getRadioName
+     * @return {string}
+     */
+    getRadioName() {
+        return radio_runway(this.name);
     }
 
     /**
@@ -335,21 +397,23 @@ export default class RunwayModel extends BaseModel {
     isOnApproachCourse(aircraftModel) {
         const approachOffset = getOffset(aircraftModel, this.relativePosition, this.angle);
         const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
+        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isNotPastRunwayThreshold = approachOffset[1] > 0;
 
-        return lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        return isAlignedWithCourse && isNotPastRunwayThreshold;
     }
 
     /**
      * Boolean helper used to determine if an aircraftModel is on the correct approach heading.
      *
      * @for RunwayModel
-     * @method isOnCorrectApproachHeading
-     * @param  aircraftheading {number}
+     * @method isOnCorrectApproachGroundTrack
+     * @param  aircraftGroundTrack {number}
      * @return {boolean}
      */
-    isOnCorrectApproachHeading(aircraftheading) {
-        const heading_diff = abs(angle_offset(aircraftheading, this.angle));
+    isOnCorrectApproachGroundTrack(aircraftGroundTrack) {
+        const angle_diff = abs(angle_offset(aircraftGroundTrack, this.angle));
 
-        return heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+        return angle_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
     }
 }

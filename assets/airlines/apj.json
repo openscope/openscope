@@ -3,11 +3,15 @@
     "name": "Peach",
     "callsign": {
         "name": "Air Peach",
-        "length": 3
+        "callsignFormats": [
+            "#",
+            "##",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 17]
+            ["A320", 33]
         ]
     }
 }

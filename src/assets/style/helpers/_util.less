@@ -2,6 +2,15 @@
     display: none !important;
 }
 
+.notSelectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .u-float-right {
     float: right;
 }
@@ -11,4 +20,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.placeholder(@color) {
+    &::placeholder {color: @color;}
+    &::-webkit-input-placeholder {color: @color;}
+    &::-moz-placeholder {color: @color;}
+    &:-ms-input-placeholder {color: @color;}
 }

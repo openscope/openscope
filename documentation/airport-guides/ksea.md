@@ -1,6 +1,8 @@
+# S46 - Seattle TRACON
+
 ### About this facility
-Seattle TRACON (S46), Seattle, Washington, USA
-582,394 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+Seattle, Washington, USA
+582,394 annual operations in 2016 (<a href="https://aspm.faa.gov/opsnet/sys/Tracon.asp" target="_blank">FAA ATADS</a>)
 
 Located less than a quarter mile west of SeaTac's Runway 16R-34L, this consolidated approach control facility works all traffic in the Seattle metropolitan area. The facility is fairly new, with a large, open control floor sporting about 15-20 STARS scopes, and an in-house Traffic Management Unit.
 
@@ -14,7 +16,7 @@ Of unique note here is the location of Boeing Field (KBFI), which is less than 5
 ### Instrument Procedures
 For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final. Aircraft are still manually vectored to the final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 _To be completed. Currently still in search of information on S46 sectorization._
 ```
 F - final  (default)

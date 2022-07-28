@@ -1,0 +1,24 @@
+{
+    "icao": "eze",
+    "name": "Eastern Airways",
+    "callsign": {
+        "name": "Eastflight",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT76", 2],
+            ["E145", 4],
+            ["E170", 2],
+            ["JS41", 13],
+            ["SB20", 8]
+        ],
+        "e170": [
+            ["E170", 2]
+        ]
+    }
+}

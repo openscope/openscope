@@ -1,0 +1,27 @@
+{
+    "icao": "uzb",
+    "name": "Uzbekistan Airways",
+    "callsign": {
+        "name": "Uzbekistan",
+        "callsignFormats": [
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 10],
+            ["B752", 5],
+            ["B763", 9],
+            ["B788", 2]
+        ],
+        "b788": [
+            ["B788", 2]
+        ],
+        "long": [
+            ["B752",  6],
+            ["B763",  7],
+            ["B788",  2]
+        ]
+    }
+}

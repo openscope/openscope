@@ -2,13 +2,15 @@
     "icao": "ent",
     "name": "Enter Air",
     "callsign": {
-        "name": "ENTERAIR",
-        "length": 3
+        "name": "EnterAir",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B734", 8 ],
-            ["B738", 13 ]
+            ["B38M", 2],
+            ["B738", 21]
         ]
     }
 }

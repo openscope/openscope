@@ -1,4 +1,5 @@
 import { EVENT } from './eventNames';
+import { MEASURE_TOOL_STYLE } from './inputConstants';
 
 /* eslint-disable max-len, import/prefer-default-export */
 /**
@@ -9,14 +10,16 @@ import { EVENT } from './eventNames';
  * @final
  */
 export const GAME_OPTION_NAMES = {
-    THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
-    PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
-    SOFT_CEILING: 'softCeiling',
-    INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
-    MOUSE_CLICK_DRAG: 'mouseClickDrag'
+    MEASURE_TOOL_PATH: 'measureToolPath',
+    MOUSE_CLICK_DRAG: 'mouseClickDrag',
+    PROJECTED_TRACK_LINE_LENGTHS: 'ptlLengths',
+    RANGE_RINGS: 'rangeRings',
+    SOFT_CEILING: 'softCeiling',
+    THEME: 'theme',
+    TOWER_CONTROLLER: 'towerController'
 };
 
 /**
@@ -43,6 +46,27 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'Default',
                 value: 'DEFAULT'
+            },
+            {
+                displayLabel: 'Celestial',
+                value: 'CELESTIAL'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.TOWER_CONTROLLER,
+        defaultValue: 'SYSTEM',
+        description: 'Tower Control (Experimental)',
+        type: 'select',
+        onChangeEventHandler: null,
+        optionList: [
+            {
+                displayLabel: 'System Controlled',
+                value: 'SYSTEM'
+            },
+            {
+                displayLabel: 'User Controlled',
+                value: 'USER'
             }
         ]
     },
@@ -86,31 +110,31 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH,
-        defaultValue: 'from-theme',
-        description: 'Projected Track Line (PTL)',
+        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTHS,
+        defaultValue: '1-2-4-8',
+        description: 'Projected Track Line (PTL) increments, in minutes',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: 'From Theme',
-                value: 'from-theme'
+                displayLabel: '0.5 x n ... 8',
+                value: '0.5-1-1.5-2-2.5-3-3.5-4-4.5-5-5.5-6-6.5-7-7.5-8'
             },
             {
-                displayLabel: 'Off',
-                value: 0
+                displayLabel: '1.0 x n ... 8',
+                value: '1-2-3-4-5-6-7-8'
             },
             {
-                displayLabel: '30sec',
-                value: 0.5
+                displayLabel: '1-2-4-6-8-10-12-14-16',
+                value: '1-2-4-6-8-10-12-14-16'
             },
             {
-                displayLabel: '1min',
-                value: 1
+                displayLabel: '0.5-1-2-4-8',
+                value: '0.5-1-2-4-8'
             },
             {
-                displayLabel: '2min',
-                value: 2
+                displayLabel: '1-2-4-8',
+                value: '1-2-4-8'
             }
         ]
     },
@@ -154,20 +178,84 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS,
-        defaultValue: 'no',
-        description: 'Include WIP Airports',
-        help: 'Will include all available airports including those marked as Work In Progress.',
+        name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
+        defaultValue: 'right',
+        description: 'Panning Button',
+        help: 'Which mouse button (left or right) should drag the canvas when held',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [
             {
-                displayLabel: 'Yes',
-                value: 'yes'
+                displayLabel: 'Left Click',
+                value: 'left'
             },
             {
-                displayLabel: 'No',
-                value: 'no'
+                displayLabel: 'Right Click',
+                value: 'right'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.RANGE_RINGS,
+        defaultValue: 'default',
+        description: 'Range rings',
+        help: 'Radius of range rings, in nautical miles',
+        type: 'select',
+        onChangeEventHandler: EVENT.RANGE_RINGS_CHANGE,
+        optionList: [
+            {
+                displayLabel: 'Default',
+                value: 'default'
+            },
+            {
+                displayLabel: 'Off',
+                value: 'off'
+            },
+            {
+                displayLabel: '1 nm',
+                value: 1
+            },
+            {
+                displayLabel: '2 nm',
+                value: 2
+            },
+            {
+                displayLabel: '5 nm',
+                value: 5
+            },
+            {
+                displayLabel: '10 nm',
+                value: 10
+            },
+            {
+                displayLabel: '15 nm',
+                value: 15
+            },
+            {
+                displayLabel: '20 nm',
+                value: 20
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.MEASURE_TOOL_PATH,
+        defaultValue: '0',
+        description: 'Measure path style',
+        help: 'How the path is rendered when using the range/bearing measuring tool',
+        type: 'select',
+        onChangeEventHandler: EVENT.MEASURE_TOOL_STYLE_CHANGE,
+        optionList: [
+            {
+                displayLabel: 'Straight lines only',
+                value: MEASURE_TOOL_STYLE.STRAIGHT
+            },
+            {
+                displayLabel: 'Arc to next fix, then straight',
+                value: MEASURE_TOOL_STYLE.ARC_TO_NEXT
+            },
+            {
+                displayLabel: 'All lines arced',
+                value: MEASURE_TOOL_STYLE.ALL_ARCED
             }
         ]
     }

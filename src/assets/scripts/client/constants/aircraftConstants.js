@@ -5,7 +5,8 @@
  */
 export const FLIGHT_CATEGORY = {
     ARRIVAL: 'arrival',
-    DEPARTURE: 'departure'
+    DEPARTURE: 'departure',
+    OVERFLIGHT: 'overflight'
 };
 
 /**
@@ -52,15 +53,19 @@ export const FLIGHT_PHASE = {
      */
     TAKEOFF: 'TAKEOFF',
     /**
+     * Not yet reached requested cruise altitude
+     *
+     * Aircraft remain in this phase until reaching their requested cruise altitude (CRUISE)
+     *
      * @memberof FLIGHT_PHASE
      * @property CLIMB
      * @type {string}
      */
     CLIMB: 'CLIMB',
     /**
-     * describes an aircraft currently in flight and not following an ILS path. Aircraft entering
-     * controlled airspace also have this state. If an ILS path is picked up, the aircraft
-     * will transition to 'landing'
+     * Not yet cleared to descend below requested cruise altitude
+     *
+     * Aircraft remain in this phase until cleared to descend (DESCENT)
      *
      * @memberof FLIGHT_PHASE
      * @property CRUISE
@@ -68,54 +73,46 @@ export const FLIGHT_PHASE = {
      */
     CRUISE: 'CRUISE',
     /**
+     * Instructed to enter (or already in) airborne holding pattern
+     *
+     * Aircraft remain in this phase until cleared out of the hold (CLIMB/CRUISE/DESCENT)
+     *
      * @memberof FLIGHT_PHASE
      * @property HOLD
      * @type {string}
      */
     HOLD: 'HOLD',
     /**
+     * Configured for (or already in) descent out of requested cruise altitude
+     *
+     * Aircraft remain in this phase until fully established on an approach (APPROACH)
+     *
      * @memberof FLIGHT_PHASE
      * @property DESCENT
      * @type {string}
      */
     DESCENT: 'DESCENT',
     /**
+     * Fully established on the approach, outside of the final approach fix
+     *
+     * Aircraft remain in this phase until within the final approach fix (LANDING)
+     *
      * @memberof FLIGHT_PHASE
      * @property APPROACH
      * @type {string}
      */
     APPROACH: 'APPROACH',
     /**
-     * aircraft following an ILS path or is on the runway in the process of stopping.
-     * If an ILS approach or a landing is aborted, the aircraft re-enters 'cruise' mode
+     * Fully established on the approach, within the final approach fix
+     *
+     * Aircraft remain in this phase until instructed to go around (DESCENT)
+     *   - If landing successful, they will remain in this phase until deletion
      *
      * @memberof FLIGHT_PHASE
      * @property LANDING
      * @type {string}
      */
     LANDING: 'LANDING'
-};
-
-/**
- * @property WAYPOINT_NAV_MODE
- * @type {Object}
- * @final
- */
-export const WAYPOINT_NAV_MODE = {
-    FIX: 'fix',
-    HEADING: 'heading',
-    HOLD: 'hold',
-    RWY: 'rwy'
-};
-
-/**
- * @property PROCEDURE_TYPE
- * @type {Object}
- * @final
- */
-export const PROCEDURE_TYPE = {
-    SID: 'SID',
-    STAR: 'STAR'
 };
 
 /**
@@ -136,23 +133,15 @@ export const PERFORMANCE = {
      */
     DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING: 3.5,
 
-    /*
-     * Distance from landing threshold at which to establish on final approach speed
-     *
-     * @property LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM
-     * @type {number}
-     * @final
-     */
-    LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM: 1,
-
     /**
-     * Distance from landing threshold outside of which you must maintain assigned speed
+     * Maximum vertical distance between the aircraft and the glidepath to
+     * consider the aircraft to be "established on the glidepath"
      *
-     * @property LANDING_ASSIGNED_SPEED_DISTANCE_NM
+     * @property MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH
      * @type {number}
      * @final
      */
-    LANDING_ASSIGNED_SPEED_DISTANCE_NM: 5,
+    MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH: 100,
 
     /**
     * Maximum distance from the current waypoint to allow us to proceed to the next waypoint
@@ -183,10 +172,10 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894,   // appx. 500 feet
+    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894, // appx. 500 feet
 
     /**
-     * Maximum angular differce from the approach course heading to consider the aircraft close
+     * Maximum angular difference from the approach course heading to consider the aircraft close
      * to be "established on the approach course", which is an important condition for applying
      * rules of separation.
      *
@@ -197,6 +186,16 @@ export const PERFORMANCE = {
     MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0872665, // appx. 5 degrees
 
     /**
+     * Maximum angular difference from the hold outbound heading to consider the aircraft close
+     * to be "established on the hold course".
+     *
+     * @property MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_HOLD_COURSE: 0.0017453, // appx. 0.1 degrees
+
+    /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.
      * Note: Below this altitude, the aircraft is in landing mode
      *
@@ -205,6 +204,18 @@ export const PERFORMANCE = {
      * @final
      */
     INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE: 200,
+
+    /**
+     * Length of time individual aircraft will require themselves to be established at Vref
+     * (their landing speed) before landing. If they cannot reach that speed by that time, they
+     * will not consider themselves on a "stable approach", and will likely go around.
+     *
+     * @memberof PERFORMANCE
+     * @property STABLE_APPROACH_TIME_SECONDS
+     * @type {number}
+     * @final
+     */
+    STABLE_APPROACH_TIME_SECONDS: 60,
 
     /**
      * Altitude above the runway at which aircraft begin their on-course turn, in feet
@@ -222,7 +233,7 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    TURN_RATE: 0.0523598776,    // 3 degrees
+    TURN_RATE: 0.0523598776, // 3 degrees
 
     /**
      * Proportion of the maximum capable descent rate that aircraft will use by default
@@ -240,7 +251,16 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    TYPICAL_CLIMB_FACTOR: 0.7
+    TYPICAL_CLIMB_FACTOR: 0.7,
+
+    /**
+     * Standard pressure, the baseline used universally, is 1013.25 hPa, which is equivalent to 1013.25 mb or 29.92 inHg
+     *
+     * @property DEFAULT_ALTIMETER_IN_INHG
+     * @type {number}
+     * @final
+     */
+    DEFAULT_ALTIMETER_IN_INHG: 29.92
 };
 
 /**
@@ -278,4 +298,49 @@ export const SEPARATION = {
      * @final
      */
     VERTICAL_FT: 1000
+};
+
+/**
+ * Wake turbulence categories
+ *
+ * @property WAKE_TURBULENCE_CATEGORY
+ * @type {Object}
+ * @final
+ */
+export const WAKE_TURBULENCE_CATEGORY = {
+    LIGHT: {
+        LETTER: 'L',
+        APPEND: false,
+        SPOKEN: ''
+    },
+    MEDIUM: {
+        LETTER: 'M',
+        APPEND: false,
+        SPOKEN: ''
+    },
+    HEAVY: {
+        LETTER: 'H',
+        APPEND: true,
+        SPOKEN: 'heavy'
+    },
+    SUPER: {
+        LETTER: 'J',
+        APPEND: true,
+        SPOKEN: 'super'
+    }
+};
+
+/**
+ * Engine types
+ *
+ * @property ENGINE_TYPE
+ * @type {Object}
+ * @final
+ */
+export const ENGINE_TYPE = {
+    ELECTRIC: 'E',
+    JET: 'J',
+    PISTON: 'P',
+    ROCKET: 'R',
+    TURBOPROP: 'T'
 };

@@ -1,0 +1,25 @@
+{
+    "icao": "cub",
+    "name": "Cubana de Aviación",
+    "callsign": {
+        "name": "Cubana",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT72", 2],
+            ["IL96", 4],
+            ["T204", 3]
+        ],
+        "short": [
+            ["AT72", 2],
+            ["T204", 3]
+        ],
+        "long": [
+            ["IL96", 4]
+        ]
+    }
+}

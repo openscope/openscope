@@ -1,0 +1,23 @@
+{
+    "icao": "wif",
+    "name": "Wideroe",
+    "callsign": {
+        "name": "Wideroe",
+        "callsignFormats": [
+            "###",
+            "##@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["DH8A", 22],
+            ["DH8B", 3],
+            ["DH8C", 7],
+            ["DH8D", 10],
+            ["E290", 4]
+        ],
+        "e290": [
+            ["E290", 3]
+        ]
+    }
+}

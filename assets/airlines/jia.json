@@ -3,13 +3,15 @@
     "name": "PSA Airlines",
     "callsign": {
         "name": "Blue Streak",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["CRJ2", 35 ],
-            ["CRJ7", 26 ],
-            ["CRJ9", 42 ]
+            ["CRJ2", 35],
+            ["CRJ7", 39],
+            ["CRJ9", 54]
         ]
     }
 }

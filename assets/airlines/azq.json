@@ -3,15 +3,20 @@
     "name": "Silk Way Airlines",
     "callsign": {
         "name": "Silk Line",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["AN12", 3],
-            ["B744", 3],
-            ["B748", 3],
-            ["B763", 2],
+            ["B744", 5],
+            ["B748", 9],
             ["IL76", 7]
+        ],
+        "b747": [
+            ["B744", 5],
+            ["B748", 9]
         ]
     }
 }

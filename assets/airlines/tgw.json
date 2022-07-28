@@ -1,15 +1,18 @@
 {
     "icao": "tgw",
-    "name": "Tigerair",
+    "name": "Scoot",
     "callsign": {
-        "name": "Go Cat",
-        "length": 3
+        "name": "Scooter",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A319",  2],
-            ["A320", 36],
-            ["B738",  3]
+            ["A319", 2],
+            ["A320", 23],
+            ["B788", 10],
+            ["B789", 7]
         ]
     }
 }

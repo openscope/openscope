@@ -3,14 +3,15 @@
     "name": "Empire Airlines",
     "callsign": {
         "name": "Empire",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["AT43", 11],
-            ["AT45", 3 ],
-            ["AT72", 7 ],
-            ["C208", 35]
+            ["AT43", 3],
+            ["AT45", 4],
+            ["AT72", 7]
         ]
     }
 }

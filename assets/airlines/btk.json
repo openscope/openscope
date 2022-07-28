@@ -3,13 +3,15 @@
     "name": "Batik Air",
     "callsign": {
         "name": "Batik",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 14],
+            ["B738", 8],
             ["B739", 6],
-            ["A320", 20]
+            ["A320", 40]
         ]
     }
 }

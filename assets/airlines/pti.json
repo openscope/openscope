@@ -1,0 +1,16 @@
+{
+    "icao": "pti",
+    "name": "PrivatAir",
+    "callsign": {
+        "name": "PrivatAir",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B737", 2],
+            ["B752", 1]
+        ]
+    }
+}

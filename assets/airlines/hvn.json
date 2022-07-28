@@ -1,0 +1,26 @@
+{
+    "icao": "hvn",
+    "name": "Vietnam Airlines",
+    "callsign": {
+        "name": "Viet Nam Airlines",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A321", 57],
+            ["A332", 5],
+            ["A359", 12],
+            ["AT76", 3],
+            ["B789", 11]
+        ],
+        "long": [
+            ["A332", 5],
+            ["A359", 12],
+            ["B789", 11]
+        ]
+    }
+}

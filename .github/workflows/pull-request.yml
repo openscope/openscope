@@ -1,0 +1,51 @@
+name: checks
+
+on: pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2 # makes available shas HEAD (head of feature branch) and HEAD~1 (head of target branch) - Note: this is different in a push action!
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    - name: Install dependencies
+      run: npm install
+    - name: Find lint errors on changed lines
+      run: npm run lint-diff HEAD~1..HEAD
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    - name: Install dependencies
+      run: npm install
+    - name: Build application
+      run: npm run build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.JS v11.3
+      uses: actions/setup-node@v1
+      with:
+        node-version: 11.3
+    - name: Install dependencies
+      run: npm install
+    - name: Run test suite
+      run: npm run test
+    - name: Check test coverage versus target branch (via coveralls.io)
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      if: ${{ always() }}

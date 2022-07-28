@@ -1,64 +1,35 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
 import _get from 'lodash/get';
-import _isObject from 'lodash/isObject';
+import _isNil from 'lodash/isNil';
 import _without from 'lodash/without';
+import AirlineController from '../airline/AirlineController';
 import AirportController from '../airport/AirportController';
-import UiController from '../UiController';
+import ScopeModel from '../scope/ScopeModel';
+import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
+import AircraftCommander from './AircraftCommander';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
+import CommandParser from '../commands/parsers/CommandParser';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
-import {
-    abs,
-    generateRandomOctalWithLength
-} from '../math/core';
+import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen } from '../math/vector';
 import { speech_say } from '../speech';
+import { generateTransponderCode, isDiscreteTransponderCode, isValidTransponderCode } from '../utilities/transponderUtilities';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { EVENT } from '../constants/eventNames';
-import {
-    INVALID_INDEX,
-    REGEX
-} from '../constants/globalConstants';
+import { FLIGHT_CATEGORY, FLIGHT_PHASE } from '../constants/aircraftConstants';
+import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
+import { INVALID_INDEX } from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
-
-/**
- * List of transponder codes that are invalid for random assignment
- *
- * This enum should be used only during the generation of
- * `AircraftModel` objects.
- *
- * The codes listed should still be assignable at the
- * controler's discretion
- *
- * @property RESERVED_SQUAWK_CODES
- * @type {array<number>}
- * @final
- */
-const RESERVED_SQUAWK_CODES = [
-    // VFR
-    1200,
-    // gliders
-    1202,
-    // hijack
-    7500,
-    // communication failure
-    7600,
-    // emergency
-    7700,
-    // military
-    7777
-];
 
 /**
  *
@@ -71,18 +42,29 @@ export default class AircraftController {
      * @for AircraftController
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
-     * @param navigationLibrary {NavigationLibrary}
+     * @param scopeModel {ScopeModel}
+     * @param aircraftCommander {AircraftCommander}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary, scopeModel) {
-        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
-            // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
-                `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
+    constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
+        if (_isNil(aircraftTypeDefinitionList) || _isNil(airlineController) || _isNil(scopeModel)) {
+            throw new TypeError('Invalid parameter(s) passed to AircraftController constructor. ' +
+                'Expected aircraftTypeDefinitionList, airlineController and scopeModel to be defined, ' +
+                `but received ${typeof aircraftTypeDefinitionList}, ${typeof airlineController} and ${typeof scopeModel}`);
         }
 
-        // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineController) || !_isObject(navigationLibrary)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftController constructor. ' +
+                `Expected a non-empty array, but received ${typeof aircraftTypeDefinitionList}`);
+        }
+
+        if (!(airlineController instanceof AirlineController)) {
+            throw new TypeError('Invalid airlineController passed to AircraftController constructor. ' +
+                `Expected instance of AirlineController, but received ${typeof airlineController}`);
+        }
+
+        if (!(scopeModel instanceof ScopeModel)) {
+            throw new TypeError('Invalid scopeModel passed to AircraftController constructor. ' +
+                `Expected instance of ScopeModel, but received ${typeof scopeModel}`);
         }
 
         /**
@@ -96,14 +78,17 @@ export default class AircraftController {
         this._airlineController = airlineController;
 
         /**
-         * Reference to a `NavigationLibrary` instance
+         * Reference to an `AircraftCommander` instance
          *
-         * @property _navigationLibrary
-         * @type NavigationLibrary
-         * @default navigationLibrary
+         * @property _aircraftCommander
+         * @type {AircraftCommander}
+         * @default aircraftCommander
          * @private
          */
-        this._navigationLibrary = navigationLibrary;
+        this._aircraftCommander = new AircraftCommander(
+            this.onRequestToChangeTransponderCode.bind(this),
+            this.findAircraftById.bind(this)
+        );
 
         /**
          * Local reference to static `EventBus` class
@@ -142,7 +127,7 @@ export default class AircraftController {
          * so we can know which codes are active.
          *
          * @property _transponderCodesInUse
-         * @type {array<number>}
+         * @type {array<string>}
          * @private
          */
         this._transponderCodesInUse = [];
@@ -154,11 +139,30 @@ export default class AircraftController {
         this.aircraft.list = [];
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
+
+        /**
+         * Instance of the `StripViewController`
+         *
+         * @property _stripViewController
+         * @type {StripViewController}
+         * @private
+         */
         this._stripViewController = new StripViewController();
 
         return this.init()
             ._setupHandlers()
             .enable();
+    }
+
+    /**
+     * Get the instance of AircraftCommander that was created by this Controller
+     *
+     * @for AircraftController
+     * @property aircraftCommander
+     * @type {AircraftCommander}
+     */
+    get aircraftCommander() {
+        return this._aircraftCommander;
     }
 
     /**
@@ -191,9 +195,10 @@ export default class AircraftController {
      */
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
-        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
-        this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
+        this._eventBus.on(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
+        this._eventBus.on(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
+        this._eventBus.on(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
@@ -207,9 +212,10 @@ export default class AircraftController {
      */
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
-        this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
-        this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
+        this._eventBus.off(EVENT.SELECT_AIRCRAFT, this._onSelectAircraft);
+        this._eventBus.off(EVENT.DESELECT_AIRCRAFT, this._onDeselectAircraft);
+        this._eventBus.off(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
@@ -282,7 +288,7 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_get_nearest
-     * @param position {StaticPositionModel}
+     * @param position {array<number>} These are x, y canvas units (km)
      */
     aircraft_get_nearest(position) {
         let nearest = null;
@@ -302,13 +308,18 @@ export default class AircraftController {
     }
 
     /**
+     * Returns whether the specified aircraft model is in an area where they are controllable
+     *
      * @for AircraftController
-     * @method aircraft_visible
+     * @method isAircraftVisible
      * @param aircraft {AircraftModel}
      * @param factor {number}
+     * @returns {boolean}
      */
-    aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
+    isAircraftVisible(aircraft, factor = 1) {
+        const visibleDistance = AirportController.airport_get().ctr_radius * factor;
+
+        return aircraft.distance < visibleDistance;
     }
 
     /**
@@ -316,11 +327,11 @@ export default class AircraftController {
      * @method aircraft_remove_all
      */
     aircraft_remove_all() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.removeStripView(this.aircraft.list[i]);
+        // iterating backwards because each iteration removes a list item
+        // iterating forward would cause skipping as the array shifts
+        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
+            this.aircraft_remove(this.aircraft.list[i]);
         }
-
-        this.aircraft.list = [];
     }
 
     /**
@@ -334,7 +345,11 @@ export default class AircraftController {
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
-        this.removeStripView(aircraftModel);
+
+        if (aircraftModel.isControllable) {
+            this.removeStripView(aircraftModel);
+        }
+
         this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 
@@ -345,105 +360,67 @@ export default class AircraftController {
      * any other methods called from within
      *
      * @for AircraftController
-     * @method aircraft_update
+     * @method update
      */
-    aircraft_update() {
+    update() {
+        if (this.aircraft.list.length === 0) {
+            return;
+        }
+
+        // TODO: this is getting better, but still needs more simplification
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-            aircraft.update();
-            aircraft.updateWarning();
+            const aircraftModel = this.aircraft.list[i];
 
-            if (aircraft.isTaxiing()) {
+            aircraftModel.update();
+            aircraftModel.updateWarning();
+
+            // TODO: conflict checking eats up a lot of resources when there are more than
+            //       30 aircraft, exit early if we're still taxiing
+            if (aircraftModel.isTaxiing()) {
                 continue;
             }
 
-            // TODO: this section eats up a lot of resources when there are more than 30 aircraft and we
-            //       don't check for taxiing aircraft
-            for (let j = i + 1; j < this.aircraft.list.length; j++) {
-                const otherAircraft = this.aircraft.list[j];
+            this._updateAircraftConflicts(aircraftModel, i);
+            this._updateAircraftVisibility(aircraftModel);
 
-                if (aircraft.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
-                    continue;
-                }
-
-                // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
-                // no violation can occur in this case.
-                // Variation of:
-                // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-                const dx = abs(aircraft.relativePosition[0] - otherAircraft.relativePosition[0]);
-                const dy = abs(aircraft.relativePosition[1] - otherAircraft.relativePosition[1]);
-                const boundingBoxLength = km(8);
-
-                if (dx < boundingBoxLength && dy < boundingBoxLength) {
-                    this.addConflict(aircraft, otherAircraft);
-                }
-            }
-        }
-
-        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            const aircraft = this.aircraft.list[i];
-
-            // TODO: these next 3 logic blocks could use some cleaning/abstraction
-            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL && aircraft.isStopped()) {
-                // TODO: move this to the GAME_EVENTS constant
-                // TODO: move this out of the aircraft model
-                aircraft.scoreWind('landed');
-
-                UiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
-                speech_say([
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: ', switching to ground, good day' }
-                ]);
-
-                GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-                aircraft.setIsRemovable();
-                this.aircraft_remove(aircraft);
-
-                continue;
-            }
-
-            if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
-                aircraft.setIsRemovable();
-
-                speech_say([
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: ', radar contact lost' }
-                ]);
-            }
-
-            // Clean up the screen from aircraft that are too far
-            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
-                this.aircraft_remove(aircraft);
-                i -= 1;
+            // `#isFlightStripRemovable` will be true even when there is no corresponding
+            // `StripView` for and `aircraftModel`
+            if (aircraftModel.isFlightStripRemovable && this._stripViewController.hasStripViewModel(aircraftModel)) {
+                this._stripViewController.removeStripView(aircraftModel);
             }
         }
     }
 
     /**
+     * Finds an aircraft by its callsign
+     *
      * @method findAircraftByCallsign
-     * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
+     * @param  {string} callsign
+     * @return {AircraftModel}
      */
-    findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
+    findAircraftByCallsign(callsign) {
+        if (!callsign) {
+            return;
         }
 
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+        const normalizedCallsign = callsign.toUpperCase();
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign === normalizedCallsign);
     }
 
     /**
-     * Create a new `StripViewModel` for a new `AircraftModel` instance
+     * Finds an aircraft by its internal id
      *
-     * This method should only be run during instantiation of a new `AircraftModel`
-     *
-     * @for AircraftController
-     * @method initAircraftStripView
-     * @param  aircraftModel {AircraftModel}
+     * @method findAircraftById
+     * @param  {string} id
+     * @return {AircraftModel}
      */
-    initAircraftStripView(aircraftModel) {
-        this._stripViewController.createStripView(aircraftModel);
+    findAircraftById(id) {
+        if (!id) {
+            return;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.id === id);
     }
 
     /**
@@ -459,20 +436,9 @@ export default class AircraftController {
     }
 
     /**
-     * Public facade for `._onSelectAircraftStrip`
-     *
-     * @for AircraftController
-     * @method onSelectAircraftStrip
-     * @param aircaftModel {AircraftModel}
-     */
-    onSelectAircraftStrip = (aircraftModel) => {
-        this._onSelectAircraftStrip(aircraftModel);
-    }
-
-    /**
      * @method debug
      * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
+     * @return {AircraftModel}
      */
     debug(callsign = '') {
         return this.findAircraftByCallsign(callsign);
@@ -578,7 +544,7 @@ export default class AircraftController {
      * @return {boolean}
      */
     onRequestToChangeTransponderCode = (transponderCode, aircraftModel) => {
-        if (!this._isValidTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
+        if (!isValidTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
             return false;
         }
 
@@ -605,12 +571,32 @@ export default class AircraftController {
      * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
+        const aircraftModel = new AircraftModel(initializationProps);
+        const isDeparture = initializationProps.category === 'departure';
+        const isArrival = initializationProps.category === 'arrival';
+        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+        const runwayCommands = initializationProps.commands;
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
-        this.initAircraftStripView(aircraftModel);
+
+        if (isArrival) {
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
+        }
+
+        if (isDeparture && isAutoTower) {
+            // create the StripView immediately for departures; arrival strips are made when controllable
+            this._stripViewController.createStripView(aircraftModel);
+            aircraftModel.pilot.clearedAsFiled();
+            aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
+            aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
+            aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
+
+            aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
+
+            this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.departureRunwayModel.name);
+        }
     }
 
     /**
@@ -627,7 +613,14 @@ export default class AircraftController {
         const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
         // TODO: update `airlineNameAndFleetHelper` to accept a string
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
-        const airlineModel = this._airlineController.findAirlineById(name);
+        let airlineModel = this._airlineController.findAirlineById(name);
+
+        if (typeof airlineModel === 'undefined') {
+            console.warn(`Expected airline "${name}" to be defined, but it is not! Using AAL instead.`);
+
+            airlineModel = this._airlineController.findAirlineById('aal');
+        }
+
         // TODO: impove the `airlineModel` logic here
         // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
@@ -636,14 +629,14 @@ export default class AircraftController {
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
         // airspace can safely enter controlled airspace properly
-        let altitude = spawnPatternModel.altitude;
+        let { altitude } = spawnPatternModel;
 
         if (isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL) {
             altitude = Math.min(18000, altitude);
         }
 
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
-        const transponderCode = this._generateUniqueTransponderCode();
+        const transponderCode = this._generateUniqueTransponderCode(AirportController.airport_get().icao);
 
         return {
             fleet,
@@ -660,10 +653,32 @@ export default class AircraftController {
             positionModel: dynamicPositionModel,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
-            route: spawnPatternModel.routeString,
+            routeString: spawnPatternModel.routeString,
+            commands: spawnPatternModel.commands,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
+    }
+
+    /**
+     * Execute a command on a new or preSpawned aircraft.
+     *
+     * @for AircraftController
+     * @method _runCommandOnPreSpawnAircraft
+     * @param aircraft {AircraftModel}
+     * @param command {Object}
+     * @param runwayName {String}
+     * @private
+     */
+    _runCommandOnPreSpawnAircraft(aircraft, commands, runwayName) {
+        if (!commands || !(runwayName in commands)) {
+            return;
+        }
+
+        const commandString = commands[runwayName];
+        const command = new CommandParser(`${aircraft.getCallsign()} ${commandString}`).parse();
+
+        this._aircraftCommander.runCommands(aircraft, command.args, true);
     }
 
     /**
@@ -687,19 +702,21 @@ export default class AircraftController {
      * Generate a unique `transponderCode`
      *
      * This method should only be run while building props for a
-     * soon-to-be-instantiated `AircraftModel`
+     * soon-to-be-instantiated `AircraftModel` at the specified
+     * `icao` airport code
      *
      * @for AircraftController
      * @method _generateUniqueTransponderCode
-     * @return {number}
+     * @param icao {sting}
+     * @return {string}
      * @private
      */
-    _generateUniqueTransponderCode() {
-        const transponderCode = generateRandomOctalWithLength(4);
+    _generateUniqueTransponderCode(icao) {
+        const transponderCode = generateTransponderCode();
 
-        if (!this._isDiscreteTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
-            // the value generated is already in use, recurse back through this method and try again
-            this._generateUniqueTransponderCode();
+        if (!isDiscreteTransponderCode(icao, transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
+            // the value generated isn't valid or is already in use, recurse back through this method and try again
+            return this._generateUniqueTransponderCode(icao);
         }
 
         this._addTransponderCodeToInUse(transponderCode);
@@ -712,7 +729,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method _addTransponderCodeToInUse
-     * @param transponderCode {number}
+     * @param transponderCode {string}
      */
     _addTransponderCodeToInUse(transponderCode) {
         this._transponderCodesInUse.push(transponderCode);
@@ -723,7 +740,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method _removeTransponderCodeFromUse
-     * @param transponderCode {number}
+     * @param transponderCode {string}
      */
     _removeTransponderCodeFromUse({ transponderCode }) {
         this._transponderCodesInUse = _without(this._transponderCodesInUse, transponderCode);
@@ -735,7 +752,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method _isTransponderCodeInUse
-     * @param transponderCode {number}
+     * @param transponderCode {string}
      * @return {booelean}
      */
     _isTransponderCodeInUse(transponderCode) {
@@ -743,41 +760,15 @@ export default class AircraftController {
     }
 
     /**
-     * Boolean helper used to determine if a given `transponderCode` is both
-     * the correct length and an octal number.
-     *
-     * @for AircraftController
-     * @method _isValidTransponderCode
-     * @param transponderCode {number}
-     * @return {boolean}
-     */
-    _isValidTransponderCode(transponderCode) {
-        return REGEX.FOUR_DIGIT_OCTAL.test(transponderCode);
-    }
-
-    /**
-     * Helper used to determine if a given `transponderCode` is both
-     * valid and not in use.
-     *
-     * @for AircraftController
-     * @method _isDiscreteTransponderCode
-     * @param transponderCode {number}
-     * @return {boolean}
-     */
-    _isDiscreteTransponderCode(transponderCode) {
-        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === INVALID_INDEX;
-    }
-
-    /**
      * Show a `StripViewModel` as selected
      *
      * @for AircraftController
-     * @method _onSelectAircraftStrip
+     * @method _onSelectAircraft
      * @param  aircraftModel {AircraftModel}
      * @private
      */
-    _onSelectAircraftStrip = (aircraftModel) => {
-        if (!aircraftModel.inside_ctr) {
+    _onSelectAircraft = (aircraftModel) => {
+        if (!aircraftModel.isControllable) {
             return;
         }
 
@@ -793,11 +784,27 @@ export default class AircraftController {
      * This method is called as the result of an event
      *
      * @for AircraftController
-     * @method _onDeselectActiveStripView
+     * @method _onDeselectAircraft
      * @private
      */
-    _onDeselectActiveStripView = () => {
+    _onDeselectAircraft = () => {
         this._stripViewController.findAndDeselectActiveStripView();
+    };
+
+    /**
+     * Scroll a `StripViewModel` into view
+     *
+     * @for AircraftController
+     * @method _onScrollToAircraft
+     * @param  aircraftModel {AircraftModel}
+     * @private
+     */
+    _onScrollToAircraft = (aircraftModel) => {
+        if (!aircraftModel.isControllable) {
+            return;
+        }
+
+        this._stripViewController.scrollToStripView(aircraftModel);
     };
 
     /**
@@ -807,14 +814,121 @@ export default class AircraftController {
      * then trigger another event for the `CanvasController`.
      *
      * @for AircraftController
-     * @method _onStripDoubleClickhandler
+     * @method _onStripDoubleClickHandler
      * @param callsign {string}
      * @private
      */
-    _onStripDoubleClickhandler = (callsign) => {
+    _onStripDoubleClickHandler = (callsign) => {
         const { relativePosition } = this.findAircraftByCallsign(callsign);
-        const [x, y] = relativePosition;
 
-        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
+        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, relativePosition);
     };
+
+    /**
+     * Encapsulates math and logic used to detrmine if a new `AircraftConflict` should
+     * be created for two specific aircraft
+     *
+     * Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
+     * no violation can occur in this case
+     * Variation of:
+     * http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+     *
+     * @for AircraftController
+     * @method _shouldAddNewConflict
+     * @param {AircraftModel} aircraftModel
+     * @param {AircraftModel} comparisonAircraftModel
+     * @return {boolean}
+     * @private
+     */
+    _shouldAddNewConflict(aircraftModel, comparisonAircraftModel) {
+        const boundingBoxLength = km(8);
+        const dx = abs(aircraftModel.relativePosition[0] - comparisonAircraftModel.relativePosition[0]);
+        const dy = abs(aircraftModel.relativePosition[1] - comparisonAircraftModel.relativePosition[1]);
+
+        return dx < boundingBoxLength && dy < boundingBoxLength;
+    }
+
+    /**
+     * Given an `aircraftModel` check against each other aircraft for conflicts
+     * after physics (current position) have been updated
+     *
+     * @for AircraftController
+     * @param {AircraftModel} aircraftModel
+     * @param {number} currentUpdateIndex
+     * @private
+     */
+    _updateAircraftConflicts(aircraftModel, currentUpdateIndex) {
+        for (let j = currentUpdateIndex + 1; j < this.aircraft.list.length; j++) {
+            const otherAircraftModel = this.aircraft.list[j];
+
+            // TODO: though looking better, this logic still needs some work
+            if (otherAircraftModel.isTaxiing()) {
+                continue;
+            }
+
+            if (aircraftModel.hasConflictWithAircraftModel(otherAircraftModel)) {
+                aircraftModel.conflicts[otherAircraftModel.callsign].update();
+
+                continue;
+            }
+
+            if (this._shouldAddNewConflict(aircraftModel, otherAircraftModel)) {
+                this.addConflict(aircraftModel, otherAircraftModel);
+            }
+        }
+    }
+
+    /**
+     * Determine if an `aircraftModel` has exited controlled airspace then notify
+     * user and score event
+     *
+     * TODO: This method needs to include some logic currently happeing in `AircraftModel`
+     *       used to remove a departing aricraft
+     *
+     * @for AircraftController
+     * @param {AircraftModel} aircraftModel
+     * @private
+     */
+    _updateAircraftVisibility(aircraftModel) {
+        // TODO: these next 3 logic blocks could use some cleaning/abstraction
+        if (aircraftModel.isArrival() && aircraftModel.isStopped() && !aircraftModel.hit) {
+            EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
+
+            UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraftModel },
+                    { type: 'text', content: ', switching to ground, good day' }
+                ],
+                aircraftModel.pilotVoice
+            );
+
+            GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+            aircraftModel.setIsFlightStripRemovable();
+            aircraftModel.setIsRemovable();
+            this.aircraft_remove(aircraftModel);
+
+            return;
+        }
+
+        if (aircraftModel.hit && aircraftModel.isOnGround()) {
+            UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
+            aircraftModel.setIsFlightStripRemovable();
+            aircraftModel.setIsRemovable();
+            this.aircraft_remove(aircraftModel);
+
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraftModel },
+                    { type: 'text', content: ', radar contact lost' }
+                ],
+                aircraftModel.pilotVoice
+            );
+        }
+
+        // Clean up the screen from aircraft that are too far
+        if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.isControllable && aircraftModel.isRemovable) {
+            this.aircraft_remove(aircraftModel);
+        }
+    }
 }

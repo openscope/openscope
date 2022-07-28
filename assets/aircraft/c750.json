@@ -5,7 +5,7 @@
         "number": 2,
         "type": "J"
     },
-    "weightclass": "S+",
+    "weightClass": "S+",
     "category": {
         "srs": 3,
         "lahso": 9,
@@ -13,7 +13,7 @@
     },
     "ceiling": 51000,
     "rate": {
-        "climb":      4400,
+        "climb":      3500,
         "descent":    3000,
         "accelerate": 10,
         "decelerate": 5

@@ -1,0 +1,18 @@
+{
+    "icao": "iwy",
+    "name": "interCaribbean Airways",
+    "callsign": {
+        "name": "Islandways",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["BN2P", 1],
+            ["DHC6", 4],
+            ["E120", 7],
+            ["E145", 2]
+        ]
+    }
+}

@@ -8,7 +8,7 @@ import EventModel from './EventModel';
  * that performs an action need only `trigger` and any listening classes can respond
  * with their own internal callback.
  *
- * As a rule, when this class is used it should be reassigned to a class property `#eventBus`.
+ * As a rule, when this class is used it should be reassigned to an instance property `#eventBus`.
  *
  * Example:
  * - triggering class `this.eventBus.trigger('EVENT_NAME', DATA_TO_PASS)`
@@ -95,13 +95,15 @@ class EventBus {
      *
      * @for EventBus
      * @method trigger
+     * @param eventName {string}
+     * @param args {rest parameter}
      */
     trigger(eventName, ...args) {
         if (!this.has(eventName)) {
             return;
         }
 
-        const observers = this._events[eventName].observers;
+        const { observers } = this._events[eventName];
 
         for (let i = 0; i < observers.length; i++) {
             observers[i](...args);

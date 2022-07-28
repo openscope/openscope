@@ -48,7 +48,7 @@ ava('#elevation returns #airportPositionModel.elevation if #_positionModel.eleva
 ava('#oppositeAngle returns opposite of runway heading', (t) => {
     const runwayModel = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
     const result = runwayModel.oppositeAngle;
-    const expectedResult = 3.9758603503842274;
+    const expectedResult = 4.502864578080533;
 
     t.true(result === expectedResult);
 });
@@ -63,15 +63,38 @@ ava('.addAircraftToQueue() adds an aircraft#id to the queue', (t) => {
     t.true(model.queue[0] === aircraftIdMock);
 });
 
-ava('.removeAircraftFromQueue() removes an aircraft#id from the queue', (t) => {
-    const aircraftIdMock = 'aircraft-221';
+ava('.calculateCrosswindAngleForRunway() returns the crosswind angle for a given runway based on a given windAngle', (t) => {
+    const windAngleMock = 3.839724354387525;
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    model.queue = ['1', '2', aircraftIdMock, '4'];
+    const expectedResult = 2.478452429896785;
+    const result = model.calculateCrosswindAngleForRunway(windAngleMock);
 
-    model.removeAircraftFromQueue(aircraftIdMock);
+    t.true(result === expectedResult);
+});
 
-    t.true(model.queue.length === 3);
-    t.true(model.queue.indexOf(aircraftIdMock) === -1);
+ava('.getGlideslopeAltitude() returns glideslope altitude at the specified distance', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    const distanceNm = 10;
+    const expectedResult = 1719.4153308084387 + model.positionModel.elevation;
+    const result = model.getGlideslopeAltitude(distanceNm);
+
+    t.true(result === expectedResult);
+});
+
+ava('.getGlideslopeAltitudeAtFinalApproachFix() returns glideslope altitude at the final approach fix', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    const expectedResult = 3771.178596328614;
+    const result = model.getGlideslopeAltitudeAtFinalApproachFix();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getMinimumGlideslopeInterceptAltitude() returns glideslope altitude at the final approach fix', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    const expectedResult = 3800;
+    const result = model.getMinimumGlideslopeInterceptAltitude();
+
+    t.true(result === expectedResult);
 });
 
 ava('.isAircraftInQueue() returns true when an aircraftId is in the queue', (t) => {
@@ -92,14 +115,30 @@ ava('.isAircraftNextInQueue() returns true only when an aircraftId is at index 0
     t.false(model.isAircraftNextInQueue('threeve'));
 });
 
-// these two need an aircraftModel to be able to test
+// need an aircraftModel to be able to test
 ava.todo('.isOnApproachCourse()');
-ava.todo('.isOnCorrectApproachHeading()');
 
-ava('.calculateCrosswindAngleForRunway() returns the crosswind angle for a given runway based on a given windAngle', (t) => {
-    const windAngleMock = 3.839724354387525;
+// need an aircraftModel to be able to test
+ava.todo('.isOnCorrectApproachGroundTrack()');
+
+ava('.removeAircraftFromQueue() removes an aircraft#id from the queue', (t) => {
+    const aircraftIdMock = 'aircraft-221';
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
-    const result = model.calculateCrosswindAngleForRunway(windAngleMock);
+    model.queue = ['1', '2', aircraftIdMock, '4'];
 
-    t.true(result === 3.005456657593091);
+    model.removeAircraftFromQueue(aircraftIdMock);
+
+    t.true(model.queue.length === 3);
+    t.true(model.queue.indexOf(aircraftIdMock) === -1);
+});
+
+ava('.resetQueue() removes all aircraft from the queue and clears #lastDepartedAircraftModel', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    model.queue = ['aircraft1', 'aircraft2', 'aircraft3'];
+    model.lastDepartedAircraftModel = { callsign: 'aircraft2' };
+
+    model.resetQueue();
+
+    t.true(model.queue.length === 0);
+    t.true(model.lastDepartedAircraftModel === null);
 });

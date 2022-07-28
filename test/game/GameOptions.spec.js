@@ -12,12 +12,15 @@ ava('does not throw on instantiation', (t) => {
 ava('sets #_options on instantiation', (t) => {
     const expectedResult = [
         'theme',
+        'towerController',
         'controlMethod',
         'drawIlsDistanceSeparator',
-        'ptlLength',
+        'ptlLengths',
         'drawProjectedPaths',
         'softCeiling',
-        'includeWipAirports'
+        'mouseClickDrag',
+        'rangeRings',
+        'measureToolPath'
     ];
 
     const model = new GameOptions();

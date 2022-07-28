@@ -36,7 +36,7 @@ export const AIRPORT_CONSTANTS = {
      * @type {number}
      * @final
      */
-    FINAL_APPROACH_FIX_DISTANCE_NM: 4,
+    FINAL_APPROACH_FIX_DISTANCE_NM: 5,
 
     /**
      * Maximum allowable indicated airspeed for aircraft below 10,000 feet MSL
@@ -54,7 +54,13 @@ export const AIRPORT_CONSTANTS = {
      * @type {number}
      * @final
      */
-    MIN_ENTRAIL_DISTANCE_NM: 5.5
+    MIN_ENTRAIL_DISTANCE_NM: 5.5,
+
+    SRS_REDUCED_MINIMA_FEET: {
+        CAT1: 3000,
+        CAT2: 4500,
+        CAT3: 6000
+    }
 };
 
 /**

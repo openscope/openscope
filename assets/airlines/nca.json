@@ -3,7 +3,9 @@
     "name": "Nippon Cargo Airlines",
     "callsign": {
         "name": "Nippon Cargo",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

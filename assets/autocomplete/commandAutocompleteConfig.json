@@ -1,0 +1,821 @@
+{
+  "transmit": [
+    {
+      "id": "caf",
+      "variants": [
+        {
+          "aliases": [
+            "caf"
+          ],
+          "altkeys": [
+            "clear as filed"
+          ],
+          "explain": "<b>c</b>lear <b>a</b>s <b>f</b>iled"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "cvs",
+      "variants": [
+        {
+          "aliases": [
+            "cvs"
+          ],
+          "altkeys": [
+            "climb via sid"
+          ],
+          "explain": "<b>c</b>limb <b>v</b>ia <b>S</b>ID"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "",
+          "explain": "climb via SID to cruise altitude",
+          "candidate": "^$",
+          "validate": "^$"
+        },
+        {
+          "example": "13",
+          "explain": "climb via SID to specific <u>altitude</u>",
+          "candidate": "^[0-9]*$",
+          "validate": "^([0-9]+)$"
+        }
+      ]
+    },
+    {
+      "id": "takeoff",
+      "variants": [
+        {
+          "aliases": [
+            "to",
+            "takeoff"
+          ],
+          "altkeys": [
+            "take off"
+          ],
+          "explain": "clear for <b>t</b>ake<b>o</b>ff"
+        },
+        {
+          "aliases": [
+            "cto"
+          ],
+          "altkeys": [
+            "clear for takeoff"
+          ],
+          "explain": "<b>c</b>lear for <b>t</b>ake<b>o</b>ff"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "taxi",
+      "variants": [
+        {
+          "aliases": [
+            "w",
+            "wait"
+          ],
+          "altkeys": [
+            "hold short",
+            "prepare",
+            "runway"
+          ],
+          "explain": "taxi to and hold short (<b>w</b>ait) of <u>runway</u>"
+        },
+        {
+          "aliases": [
+            "taxi"
+          ],
+          "altkeys": [],
+          "explain": "taxi to and hold short of <u>runway</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "25R",
+          "explain": "taxi to and hold short of <u>runway</u>",
+          "candidate": "^(?:[1-9]|0[1-9]|[1-2][0-9]|3[0-6])[LCRlcr]?$",
+          "validate": "^((?:[1-9]|0[1-9]|[1-2][0-9]|3[0-6])[LCRlcr]?)$"
+        }
+      ]
+    },
+    {
+      "id": "e",
+      "variants": [
+        {
+          "aliases": [
+            "e"
+          ],
+          "altkeys": [
+            "expect runway",
+            "runway"
+          ],
+          "explain": "<b>e</b>xpect <u>runway</u> for landing"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "25R",
+          "explain": "expect <u>runway</u> for landing",
+          "candidate": "^(?:[1-9]|0[1-9]|[1-2][0-9]|3[0-6])[LCRlcr]?$",
+          "validate": "^((?:[1-9]|0[1-9]|[1-2][0-9]|3[0-6])[LCRlcr]?)$"
+        }
+      ]
+    },
+    {
+      "id": "dvs",
+      "variants": [
+        {
+          "aliases": [
+            "dvs"
+          ],
+          "altkeys": [
+            "descend via star"
+          ],
+          "explain": "<b>d</b>escend <b>v</b>ia <b>S</b>TAR"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "",
+          "explain": "descend via STAR",
+          "candidate": "^$",
+          "validate": "^$"
+        },
+        {
+          "example": "13",
+          "explain": "descend via STAR to specific <u>altitude</u>",
+          "candidate": "^[0-9]*$",
+          "validate": "^([0-9]+)$"
+        }
+      ]
+    },
+    {
+      "id": "ils",
+      "variants": [
+        {
+          "aliases": [
+            "i",
+            "ils"
+          ],
+          "altkeys": [
+            "land",
+            "intercept",
+            "localizer",
+            "glide path",
+            "glide slope"
+          ],
+          "explain": "clear for <b>I</b>LS approach to <u>runway</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "25R",
+          "explain": "clear for ILS approach to <u>runway</u>",
+          "candidate": "^(?:[1-9]|0[1-9]|[1-2][0-9]|3[0-6])[LCRlcr]?$",
+          "validate": "^((?:[1-9]|0[1-9]|[1-2][0-9]|3[0-6])[LCRlcr]?)$"
+        }
+      ]
+    },
+    {
+      "id": "hold",
+      "variants": [
+        {
+          "aliases": [
+            "hold"
+          ],
+          "altkeys": [],
+          "explain": "enter a holding pattern"
+        }
+      ],
+      "paramsets": [
+        {
+          "_comment": "used to work as documented, but this functionality was lost at some point. See: #1318, #873",
+          "example": "",
+          "explain": "enter standard holding pattern over present position",
+          "candidate": "^$",
+          "validate": "^$"
+        },
+        {
+          "example": "ABBOT",
+          "explain": "enter standard holding pattern over <u>fix</u>",
+          "candidate": "^[a-z]{0,5}$",
+          "validate": "^([a-z]{3}|[a-z]{5})$"
+        },
+        {
+          "example": "ABBOT <i>r</i> <i>1min</i> <i>265</i>",
+          "explain": "hold over <u>fix</u> in <i><u>direction</u></i> with <i><u>leg length (time)</u></i> at <i><u>radial</u></i>",
+          "candidate": [
+            "^[a-z]{0,5}$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min))?(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))? +(?:l(?:e(?:ft?)?)?|r(?:i(?:g(?:ht?)?)?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min))? +(?:l(?:e(?:ft?)?)?|r(?:i(?:g(?:ht?)?)?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:l(?:eft)?|r(?:ight)?))?(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))? +(?:(?:[0-9]|[1-4][0-9])\\.?|(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?(?:m(?:in?)?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?(?: +(?:l(?:eft)?|r(?:ight)?))? +(?:(?:[0-9]|[1-4][0-9])\\.?|(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?(?:m(?:in?)?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:l(?:eft)?|r(?:ight)?))?(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min))? +(?:[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min))?(?: +(?:l(?:eft)?|r(?:ight)?))? +(?:[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+          ],
+          "validate": [
+            "^([a-z]{3}|[a-z]{5}) +(l(?:eft)?|r(?:ight)?)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +(l(?:eft)?|r(?:ight)?)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min)(?: +(l(?:eft)?|r(?:ight)?)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +(l(?:eft)?|r(?:ight)?))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +(l(?:eft)?|r(?:ight)?)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?min)(?: +(l(?:eft)?|r(?:ight)?))?)?$"
+          ]
+        },
+        {
+          "example": "ABBOT <i>r</i> <i>4nm</i> <i>265</i>",
+          "explain": "hold over <u>fix</u> in <i><u>direction</u></i> with <i><u>leg length (distance)</u></i> at <i><u>radial</u></i>",
+          "candidate": [
+            "^[a-z]{0,5}$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm))?(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))? +(?:l(?:e(?:ft?)?)?|r(?:i(?:g(?:ht?)?)?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm))? +(?:l(?:e(?:ft?)?)?|r(?:i(?:g(?:ht?)?)?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:l(?:eft)?|r(?:ight)?))?(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))? +(?:(?:[0-9]|[1-4][0-9])\\.?|(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?(?:nm?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?(?: +(?:l(?:eft)?|r(?:ight)?))? +(?:(?:[0-9]|[1-4][0-9])\\.?|(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?(?:nm?)?)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:l(?:eft)?|r(?:ight)?))?(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm))? +(?:[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$",
+            "^(?:[a-z]{3}|[a-z]{5})(?: +(?:(?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm))?(?: +(?:l(?:eft)?|r(?:ight)?))? +(?:[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+          ],
+          "validate": [
+            "^([a-z]{3}|[a-z]{5}) +(l(?:eft)?|r(?:ight)?)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +(l(?:eft)?|r(?:ight)?)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm)(?: +(l(?:eft)?|r(?:ight)?)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm)(?: +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +(l(?:eft)?|r(?:ight)?))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +(l(?:eft)?|r(?:ight)?)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm))?)?$",
+            "^([a-z]{3}|[a-z]{5}) +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)(?: +((?:0(?=\\.)|[1-9]|[1-4][0-9])(?:(?<!\\b0)\\.0|\\.[1-9])?nm)(?: +(l(?:eft)?|r(?:ight)?))?)?$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cancelhold",
+      "variants": [
+        {
+          "aliases": [
+            "cancelhold",
+            "continue",
+            "nohold"
+          ],
+          "altkeys": [
+            "cancel hold",
+            "stop holding"
+          ],
+          "explain": "cancel hold"
+        },
+        {
+          "aliases": [
+            "xh",
+            "exithold"
+          ],
+          "altkeys": [
+            "exit hold"
+          ],
+          "explain": "e<b>x</b>it <b>h</b>old"
+        }
+      ],
+      "paramsets": [
+        {
+          "_comment": "explanation given here is per intended functionality #1333; note that according to actual implemented behavior, next hold on the route will be cancelled if not currently in a holding pattern",
+          "example": "",
+          "explain": "cancel holding at current fix/position",
+          "candidate": "^$",
+          "validate": "^$"
+        },
+        {
+          "example": "ABBOT",
+          "explain": "cancel holding at a specific <u>fix</u>",
+          "candidate": "^[a-z]{0,5}$",
+          "validate": "^([a-z]{3}|[a-z]{5})$"
+        }
+      ]
+    },
+    {
+      "id": "direct",
+      "variants": [
+        {
+          "aliases": [
+            "pd",
+            "direct"
+          ],
+          "altkeys": [
+            "proceed direct",
+            "straight ahead",
+            "skip"
+          ],
+          "explain": "<b>p</b>roceed <b>d</b>irect to a <u>fix</u>"
+        },
+        {
+          "aliases": [
+            "dct"
+          ],
+          "altkeys": [],
+          "explain": "proceed <b>d</b>ire<b>ct</b> to a <u>fix</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "ABBOT",
+          "explain": "proceed direct to a <u>fix</u>",
+          "candidate": "^[a-z]{0,5}$",
+          "validate": "^([a-z]{3}|[a-z]{5})$"
+        }
+      ]
+    },
+    {
+      "id": "route",
+      "variants": [
+        {
+          "aliases": [
+            "route"
+          ],
+          "altkeys": [],
+          "explain": "shortcut or extend <u>route</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "FESKO..RUFUS..CHOIR",
+          "explain": "shortcut or extend <u>route</u>",
+          "_comment": "ref: ICAO Annex 11 Appendices 1~3",
+          "candidate": [
+            "^[a-z]{0,5}$",
+            "^[a-z]{3,5}(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{5}))*\\.(?:|[kusabgrlmnphjvwqtyz]|[kus]?[abgrlmnphjvwqtyz](?:[1-9][0-9]{0,2}[fgyz]?)?)$",
+            "^[a-z]{3,5}(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{5}))*\\.(?:[a-z]{0,5}|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)$",
+            "^[a-z]{3,5}(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{5}))*\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.[a-z]{0,5}$"
+          ],
+          "validate": "^((?:[a-z]{3,5})(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{4}(?=$)|[a-z]{5}))+)$"
+        }
+      ]
+    },
+    {
+      "id": "reroute",
+      "variants": [
+        {
+          "aliases": [
+            "rr",
+            "reroute"
+          ],
+          "altkeys": [
+            "re-route"
+          ],
+          "explain": "<b>r</b>e<b>r</b>oute aircraft's entire <u>route</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "KSEA.HAROB5.ERAVE.Q1.ETCHY..MLBEC.BDEGA2.KSFO",
+          "explain": "reroute aircraft's entire <u>route</u>",
+          "_comment": "ref: ICAO Annex 11 Appendices 1~3",
+          "candidate": [
+            "^[a-z]{0,5}$",
+            "^[a-z]{3,5}(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{5}))*\\.(?:|[kusabgrlmnphjvwqtyz]|[kus]?[abgrlmnphjvwqtyz](?:[1-9][0-9]{0,2}[fgyz]?)?)$",
+            "^[a-z]{3,5}(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{5}))*\\.(?:[a-z]{0,5}|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)$",
+            "^[a-z]{3,5}(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{5}))*\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.[a-z]{0,5}$"
+          ],
+          "validate": "^((?:[a-z]{3,5})(?:\\.(?:[kus]?[abgrlmnphjvwqtyz][1-9][0-9]{0,2}[fgyz]?|(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)?\\.(?:[a-z]{3}|[a-z]{4}(?=$)|[a-z]{5}))*)$"
+        }
+      ]
+    },
+    {
+      "id": "sid",
+      "variants": [
+        {
+          "aliases": [
+            "sid"
+          ],
+          "altkeys": [
+            "standard instrument departure",
+            "departure"
+          ],
+          "explain": "follow <u><b>SID</b></u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "HAROB5",
+          "explain": "follow <u>SID</u>",
+          "_comment": "ref: ICAO Annex 11 Appendix 3",
+          "candidate": "^[a-z]{0,5}$|^(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?$",
+          "validate": "^((?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?)$"
+        }
+      ]
+    },
+    {
+      "id": "star",
+      "variants": [
+        {
+          "aliases": [
+            "star"
+          ],
+          "altkeys": [
+            "standard terminal arrival route",
+            "arrival"
+          ],
+          "explain": "add or change <u><b>STAR</b></u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "MLP.GLASR9.KSEA",
+          "explain": "add or change <u>STAR</u>",
+          "_comment": "ref: ICAO Annex 11 Appendix 3",
+          "candidate": "^[a-z]{0,5}$|^(?:[a-z]{3}|[a-z]{5})\\.[a-z]{0,5}$|^(?:[a-z]{3}|[a-z]{5})\\.(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?(?:\\.[a-z]{0,4})?$",
+          "validate": "^((?:[a-z]{3}|[a-z]{5})\\.(?:[a-z]{3}|[a-z]{5})[1-9][a-hj-np-z]?\\.[a-z]{4})$"
+        }
+      ]
+    },
+    {
+      "id": "altitude",
+      "variants": [
+        {
+          "aliases": [
+            "a",
+            "altitude"
+          ],
+          "altkeys": [
+            "height"
+          ],
+          "explain": "travel to <u><b>a</b>ltitude</u>"
+        },
+        {
+          "aliases": [
+            "c",
+            "climb"
+          ],
+          "altkeys": [
+            "increase altitude"
+          ],
+          "explain": "travel (<b>c</b>limb) to <u>altitude</u>"
+        },
+        {
+          "aliases": [
+            "d",
+            "descend"
+          ],
+          "altkeys": [
+            "decrease altitude"
+          ],
+          "explain": "travel (<b>d</b>escend) to <u>altitude</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "30",
+          "explain": "travel to <u>altitude</u>",
+          "candidate": "^[0-9]*$",
+          "validate": "^([0-9]+)$"
+        },
+        {
+          "example": "30 ex",
+          "explain": "travel to <u>altitude</u> and <u><b>ex</b>pedite</u>",
+          "candidate": "^[0-9]*$|^[0-9]+ +e(?:x(?:p(?:e(?:d(?:i(?:te?)?)?)?)?)?)?$",
+          "validate": "^([0-9]+)(?: +(ex(?:pedite)?))?$"
+        }
+      ]
+    },
+    {
+      "id": "fph",
+      "variants": [
+        {
+          "aliases": [
+            "fph"
+          ],
+          "altkeys": [
+            "fly present heading",
+            "maintain heading",
+            "straight ahead"
+          ],
+          "explain": "<b>f</b>ly <b>p</b>resent <b>h</b>eading"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "heading",
+      "variants": [
+        {
+          "aliases": [
+            "h",
+            "heading"
+          ],
+          "altkeys": [
+            "direction"
+          ],
+          "explain": "fly <u><b>h</b>eading</u>"
+        },
+        {
+          "aliases": [
+            "fh"
+          ],
+          "altkeys": [
+            "fly heading"
+          ],
+          "explain": "<b>f</b>ly <u><b>h</b>eading</u>"
+        },
+        {
+          "aliases": [
+            "t",
+            "turn"
+          ],
+          "altkeys": [],
+          "explain": "<b>t</b>urn to <u>heading</u>, or by given <u>number of degrees</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "270",
+          "explain": "fly <u>heading</u>",
+          "candidate": "^(?:|[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$",
+          "validate": "^(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+        },
+        {
+          "example": "l 060",
+          "explain": "turn in <u>direction</u> to fly <u>heading</u>",
+          "candidate": [
+            "^$",
+            "^(?:l(?:e(?:ft?)?)?|r(?:i(?:g(?:ht?)?)?)?)$",
+            "^(?:l(?:eft)?|r(?:ight)?) +(?:[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+          ],
+          "validate": "^(l(?:eft)?|r(?:ight)?) +(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+        },
+        {
+          "example": "r 30",
+          "explain": "turn in <u>direction</u> by <u>number of degrees</u>",
+          "candidate": [
+            "^$",
+            "^(?:l(?:e(?:ft?)?)?|r(?:i(?:g(?:ht?)?)?)?)$",
+            "^(?:l(?:eft)?|r(?:ight)?) +[1-9][0-9]?$"
+          ],
+          "validate": "^(l(?:eft)?|r(?:ight)?) +([1-9][0-9]?)$"
+        }
+      ]
+    },
+    {
+      "id": "speed",
+      "variants": [
+        {
+          "aliases": [
+            "sp",
+            "speed"
+          ],
+          "altkeys": [],
+          "explain": "set target <u><b>sp</b>eed</u>"
+        },
+        {
+          "aliases": [
+            "+"
+          ],
+          "altkeys": [
+            "speed up",
+            "accelerate",
+            "increase speed"
+          ],
+          "explain": "speed up (<b>+</b>) to target <u>speed</u>"
+        },
+        {
+          "aliases": [
+            "-",
+            "slow"
+          ],
+          "altkeys": [
+            "slow down",
+            "decelerate",
+            "decrease speed"
+          ],
+          "explain": "slow down (<b>-</b>) to target <u>speed</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "220",
+          "explain": "set target <u>speed</u>",
+          "candidate": "^[0-9]*$",
+          "validate": "^([0-9]+)$"
+        }
+      ]
+    },
+    {
+      "id": "cross",
+      "variants": [
+        {
+          "aliases": [
+            "x",
+            "cr",
+            "cross"
+          ],
+          "altkeys": [
+            "pass",
+            "fly over"
+          ],
+          "explain": "<b>cr</b>oss (<b>x</b>) a <u>point</u> with <u>altitude</u> and/or <u>speed</u> restriction"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "aubrn <i>a130</i> <i>s210</i>",
+          "explain": "cross a <u>point</u> with <i><u>altitude</u></i> and/or <i><u>speed</u></i> restriction",
+          "candidate": [
+            "^[a-z]{0,5}$",
+            "^(?:[a-z]{3}|[a-z]{5}) +a(?:[0-9]+(?: +s[0-9]*)?)?$",
+            "^(?:[a-z]{3}|[a-z]{5}) +s(?:[0-9]+(?: +a[0-9]*)?)?$"
+          ],
+          "validate": [
+            "^([a-z]{3}|[a-z]{5}) +(a[0-9]+)(?: +(s[0-9]+))?$",
+            "^([a-z]{3}|[a-z]{5}) +(s[0-9]+)(?: +(a[0-9]+))?$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sa",
+      "variants": [
+        {
+          "aliases": [
+            "sa"
+          ],
+          "altkeys": [
+            "say altitude"
+          ],
+          "explain": "<b>s</b>ay <b>a</b>ltitude"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "saa",
+      "variants": [
+        {
+          "aliases": [
+            "saa"
+          ],
+          "altkeys": [
+            "say assigned altitude"
+          ],
+          "explain": "<b>s</b>ay <b>a</b>ssigned <b>a</b>ltitude"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "sh",
+      "variants": [
+        {
+          "aliases": [
+            "sh"
+          ],
+          "altkeys": [
+            "say heading"
+          ],
+          "explain": "<b>s</b>ay <b>h</b>eading"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "sah",
+      "variants": [
+        {
+          "aliases": [
+            "sah"
+          ],
+          "altkeys": [
+            "say assigned heading"
+          ],
+          "explain": "<b>s</b>ay <b>a</b>ssigned <b>h</b>eading"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "si",
+      "variants": [
+        {
+          "aliases": [
+            "si"
+          ],
+          "altkeys": [
+            "say indicated airspeed"
+          ],
+          "explain": "<b>s</b>ay <b>i</b>ndicated airspeed"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "sas",
+      "variants": [
+        {
+          "aliases": [
+            "sas"
+          ],
+          "altkeys": [
+            "say assigned airspeed"
+          ],
+          "explain": "<b>s</b>ay <b>a</b>ssigned air<b>s</b>peed"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "squawk",
+      "variants": [
+        {
+          "aliases": [
+            "squawk"
+          ],
+          "altkeys": [
+            "transponder"
+          ],
+          "explain": "squawk <u>transponder code</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "0736",
+          "explain": "squawk <u>transponder code</u>",
+          "candidate": "^[0-7]{0,4}$",
+          "validate": "^([0-7]{4})$"
+        }
+      ]
+    }
+  ],
+  "system": [
+    {
+      "id": "airport",
+      "variants": [
+        {
+          "aliases": [
+            "airport"
+          ],
+          "altkeys": [],
+          "explain": "change to <u>airport</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "KSEA",
+          "explain": "change to <u>airport</u>",
+          "candidate": "^[a-z]{0,4}$",
+          "validate": "^([a-z]{4})$"
+        }
+      ]
+    },
+    {
+      "id": "pause",
+      "variants": [
+        {
+          "aliases": [
+            "pause"
+          ],
+          "altkeys": [],
+          "explain": "pause the simulation"
+        }
+      ],
+      "paramsets": []
+    },
+    {
+      "id": "timewarp",
+      "variants": [
+        {
+          "aliases": [
+            "timewarp"
+          ],
+          "altkeys": [
+            "tw",
+            "time warp"
+          ],
+          "explain": "set time warp <u>rate</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "",
+          "explain": "reset time warp to 1x",
+          "candidate": "^$",
+          "validate": "^$"
+        },
+        {
+          "example": "2",
+          "explain": "set time warp <u>rate</u>",
+          "candidate": "^$|^[1-9][0-9]*$",
+          "validate": "^([1-9][0-9]*)$"
+        }
+      ]
+    },
+    {
+      "id": "tutorial",
+      "variants": [
+        {
+          "aliases": [
+            "tutorial"
+          ],
+          "altkeys": [
+            "help"
+          ],
+          "explain": "open the tutorial"
+        }
+      ],
+      "paramsets": []
+    }
+  ]
+}

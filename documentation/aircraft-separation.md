@@ -1,8 +1,3 @@
----
-title: Aircraft Separation rules
----
-[back to index](index.html)
-
 # Aircraft separation
 
 ## General Separation
@@ -46,12 +41,11 @@ centerlines):
 
   Reduced Separation on Adjacent Final Approach Courses
   See FAA JO 7110.65, para. 5-9-6
-  +-----------------------+---------------------+
-  | Dist btwn ctrln (ft)  |  Separation Minima  |
-  +-----------------------+---------------------+
-  |    < 2,500'           |  Standard Sep (3nm) |
-  |    2,500' --> 3,600'  |  1.0 nautical mile  |
-  |    3,601' --> 4,300'  |  1.5 nautical miles |
-  |    4,301' --> 9,000'  |  2.0 nautical miles |
-  |             > 9,000'  |  Standard Sep (3nm) |
-  +-----------------------+---------------------+
+
+  | Dist btwn ctrln (ft) | Separation Minima  |
+  |:--------------------:|:------------------:|
+  | < 2,500'             | Standard Sep (3nm) |
+  | 2,500' --> 3,600'    | 1.0 nautical mile  |
+  | 3,601' --> 4,300'    | 1.5 nautical miles |
+  | 4,301' --> 9,000'    | 2.0 nautical miles |
+  | > 9,000'             | Standard Sep (3nm) |

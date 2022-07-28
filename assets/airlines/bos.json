@@ -1,0 +1,14 @@
+{
+    "icao": "bos",
+    "name": "OpenSkies",
+    "callsign": {
+        "name": "Mistral",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B752", 3],
+            ["B763", 1]
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "icao": "abl",
+    "name": "Air Busan",
+    "callsign": {
+        "name": "Air Busan",
+        "callsignFormats": [
+			"#",
+			"##",
+            "###",
+			"####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 8],
+            ["A321", 16]
+        ]
+    }
+}

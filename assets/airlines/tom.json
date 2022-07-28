@@ -1,25 +1,34 @@
 {
     "icao": "tom",
-    "name": "Thomson Airways",
+    "name": "TUI Airways",
     "callsign": {
-        "name": "Tomson",
-        "length": 3,
-        "alpha": true
+        "name": "Tomjet",
+        "callsignFormats": [
+            "##@@",
+            "###"
+        ]
     },
     "fleets": {
+        "default": [
+            ["B38M", 6],
+            ["B738", 31],
+            ["B752", 12],
+            ["B763", 2],
+            ["B788", 8],
+            ["B789", 4]
+        ],
         "long": [
-            ["B752", 14],
-            ["B788", 9],
-            ["B763", 3]
+            ["B752", 12],
+            ["B763", 2],
+            ["B788", 8],
+            ["B789", 4]
         ],
         "short": [
+            ["B38M", 6],
             ["B738", 31]
         ],
-        "default": [
-            ["B738", 31],
-            ["B752", 14],
-            ["B788", 9],
-            ["B763", 3]
+        "b738": [
+            ["B738", 31]
         ]
     }
 }
