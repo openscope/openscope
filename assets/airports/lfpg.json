@@ -27,7 +27,7 @@
     "defaultMaps": ["Runways", "Vectors WL", "Constraints WL", "CDG/Orly Boundary", "Centerline 26L", "Centerline 27R", "Centerline 27 (Le Bourget)"],
     "airspace": [{
         "floor": 0,
-        "ceiling": 20,
+        "ceiling": 25,
         "airspace_class": "D",
         "poly": [
             [48.69861111405117, 2.618888888865614],
