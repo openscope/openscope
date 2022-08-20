@@ -1,0 +1,16 @@
+{
+    "icao": "jsx",
+    "name": "JSX",
+    "callsign": {
+        "name": "Big Stripe",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E135", 16],
+            ["E145", 2]
+        ]
+    }
+}
