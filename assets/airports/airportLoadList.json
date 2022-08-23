@@ -82,7 +82,7 @@
         "level": "hard",
         "name": "London Heathrow Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "egnm",
@@ -170,6 +170,12 @@
         "icao": "kbna",
         "level": "hard",
         "name": "Nashville International Airport",
+        "premium": false
+    },
+    {
+        "icao": "kcle",
+        "level": "medium",
+        "name": "Cleveland-Hopkins International Airport",
         "premium": false
     },
     {
