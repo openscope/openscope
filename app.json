@@ -14,13 +14,10 @@
   "addons": [
     "logentries"
   ],
-  "stack": "heroku-22",
+  "stack": "container",
   "buildpacks": [
     {
       "url": "heroku/nodejs"
-    },
-    {
-      "url": "https://github.com/abhishekmunie/heroku-buildpack-nginx.git"
     }
   ]
 }
