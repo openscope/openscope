@@ -4,7 +4,7 @@
   "env": {
     "LANG": "en_US.UTF-8",
     "NODE_ENV": "staging",
-    "NPM_CONFIG_PRODUCTION": "true"
+    "NPM_CONFIG_PRODUCTION": "false"
   },
   "formation": {
     "web": {
