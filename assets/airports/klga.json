@@ -1,5 +1,5 @@
 {
-    "airac": 2112,
+    "airac": 2209,
     "radio": {
         "twr": "LaGuardia Tower",
         "app": "New York Approach",
@@ -856,7 +856,14 @@
             "altitude": "5000",
             "rwy": {
                 "KLGA22" : ["#070"],
-                "KLGA31" :["#314"]
+                "KLGA31" :["#314"],
+                "CBRX4" : ["_RWY22", "#360"],
+                "CPEL4": ["_RWY22", "#040"],
+                "CSND4" : ["_RWY22", "#055"],
+                "CCNY13": [["_RWY13180LGA25DME", "A15"],"_RWY13180CRI043", "CRI", "#223"],
+                "CFSH13": ["_RWY13134LGA25DME","#050"],
+                "CMPH13": ["_RWY31","_RWY13180LGA41DME","#340"],
+                "CWHI13": ["_RWY31","_RWY13180LGA25DME","#040"]
             },
             "body": [],
             "exitPoints": {
@@ -896,249 +903,6 @@
                 ["WAVEY*"],
                 ["WHITE*"],
                 ["ZIMMZ*"]
-            ]
-        },
-        "LGA7-BRX": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Bronx Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA4" : ["_RWY22", "#360"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [["BIGGY"]]
-        },
-        "LGA7-CNY": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Coney Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA13": [["_RWY13180LGA25DME", "A15"],"_RWY13180CRI043", "CRI", "#223"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
-        },
-        "LGA7-FSH": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Flushing Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA13": ["_RWY13134LGA25DME","#050"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
-        },
-        "LGA7-MPH": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Maspeth Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA13": ["_RWY31","_RWY13180LGA41DME","#340"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
-        },
-        "LGA7-PEL": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Pelham Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA4": ["_RWY22", "#040"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
-        },
-        "LGA7-SND": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Sound Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA4" : ["_RWY22", "#055"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
-            ]
-        },
-        "LGA7-WHI": {
-            "icao": "LGA7",
-            "name": "LaGuardia Seven, Whitestone Climb",
-            "altitude": "5000",
-            "rwy": {
-                "KLGA13": ["_RWY31","_RWY13180LGA25DME","#040"]
-            },
-            "body": [],
-            "exitPoints": {
-                "BAYYS": ["BAYYS"],
-                "BDR"  : ["BDR"],
-                "BIGGY": ["BIGGY"],
-                "COATE": ["COATE"],
-                "COL"  : ["COL"],
-                "DIXIE": ["DIXIE"],
-                "ELIOT": ["ELIOT"],
-                "GAYEL": ["GAYEL"],
-                "GREKI": ["GREKI"],
-                "HAAYS": ["HAAYS"],
-                "HUO"  : ["HUO"],
-                "LANNA": ["LANNA"],
-                "MERIT": ["MERIT"],
-                "NEION": ["NEION"],
-                "NEWEL": ["NEWEL"],
-                "PARKE": ["PARKE"],
-                "RBV"  : ["RBV"],
-                "SHIPP": ["SHIPP"],
-                "WAVEY": ["WAVEY"],
-                "WHITE": ["WHITE"],
-                "ZIMMZ": ["ZIMMZ"]
-            },
-            "draw": [
-                ["BIGGY"]
             ]
         },
         "NTHNS5": {
@@ -1315,7 +1079,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.BIGGY.Q75.GVE..LYH",
+            "route": "CWHI13.LGA7.BIGGY.Q75.GVE..LYH",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1336,7 +1100,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.COATE..LAAYK..ULW..WOZEE",
+            "route": "CWHI13.LGA7.COATE..LAAYK..ULW..WOZEE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1351,7 +1115,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-CNY.DIXIE.Y481.OHRYN",
+            "route": "CCNY13.LGA7.DIXIE.Y481.OHRYN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1366,7 +1130,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-CNY.WHITE.J209.SBY..KEMPR",
+            "route": "CCNY13.LGA7.WHITE.J209.SBY..KEMPR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1387,7 +1151,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.GAYEL.Q818.WOZEE..LINNG",
+            "route": "CWHI13.LGA7.GAYEL.Q818.WOZEE..LINNG",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1407,7 +1171,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.GREKI..JUDDS..CAM..PBERG",
+            "route": "CWHI13.LGA7.GREKI..JUDDS..CAM..PBERG",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1423,7 +1187,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.LANNA.J48.MOL.J48.FLASK",
+            "route": "CWHI13.LGA7.LANNA.J48.MOL.J48.FLASK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1444,7 +1208,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.MERIT..RUIZE..AWLIN",
+            "route": "CWHI13.LGA7.MERIT..RUIZE..AWLIN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1462,7 +1226,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.NEION.J223.CORDS..ULW..BENEE",
+            "route": "CWHI13.LGA7.NEION.J223.CORDS..ULW..BENEE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1480,7 +1244,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.NEWEL.J60.PSB..UPPRR",
+            "route": "CWHI13.LGA7.NEWEL.J60.PSB..UPPRR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1498,7 +1262,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.PARKE.J6.MRB.J6.EYTEE.J6.HVQ.Q68.YOCKY",
+            "route": "CWHI13.LGA7.PARKE.J6.MRB.J6.EYTEE.J6.HVQ.Q68.YOCKY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1516,7 +1280,7 @@
             "origin": "KLGA",
             "destination": "",
             "category": "departure",
-            "route": "KLGA13.LGA7-WHI.ZIMMZ.Q42.HIDON..RINTE",
+            "route": "CWHI13.LGA7.ZIMMZ.Q42.HIDON..RINTE",
             "altitude": "",
             "speed": "",
             "method": "random",
