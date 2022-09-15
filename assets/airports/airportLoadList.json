@@ -102,7 +102,6 @@
         "level": "medium",
         "name": "Amsterdam Airport Schiphol",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -287,7 +286,6 @@
         "level": "easy",
         "name": "Jacksonville International Airport",
         "premium": false,
-        "disabled": true,
         "disabled": true
     },
     {
@@ -489,7 +487,8 @@
         "icao": "kslc",
         "level": "hard",
         "name": "Salt Lake City International Airport",
-        "premium": false
+        "premium": false,
+        "disabled": true
     },
     {
         "icao": "kstl",
