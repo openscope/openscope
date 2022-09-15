@@ -486,6 +486,12 @@
         "disabled": true
     },
     {
+        "icao": "kslc",
+        "level": "hard",
+        "name": "Salt Lake City International Airport",
+        "premium": false
+    },
+    {
         "icao": "kstl",
         "level": "medium",
         "name": "St. Louis Lambert International Airport",

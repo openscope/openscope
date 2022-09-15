@@ -1,6 +1,6 @@
 # Command Reference
 
-Here you can find a list of all commands available in the simulator, what they do, and how to use them. There are two different sets of commands: _aircraft commands_ and _scope commands_. To toggle between entering aircraft commands and scope commands, use the `tab` key.
+Here you can find a list of all commands available in the simulator, what they do, and how to use them. There are two different sets of commands: _aircraft commands_ and _scope commands_. To toggle between entering aircraft commands and scope commands, use the backquote (`` ` ``) key.
 
 ## Aircraft Commands Overview
 
