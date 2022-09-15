@@ -185,3 +185,26 @@ ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {
 
     t.true(removeAircraftFromAllRunwayQueuesSpy.calledOnce);
 });
+
+ava('.resetAllRunwayQueues() calls .resetQueue() for all runways', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+    const resetQueueSpy07L = sinon.spy(model._runwayCollection.findRunwayModelByName('07L'), 'resetQueue');
+    const resetQueueSpy25R = sinon.spy(model._runwayCollection.findRunwayModelByName('25R'), 'resetQueue');
+    const resetQueueSpy07R = sinon.spy(model._runwayCollection.findRunwayModelByName('07R'), 'resetQueue');
+    const resetQueueSpy25L = sinon.spy(model._runwayCollection.findRunwayModelByName('25L'), 'resetQueue');
+    const resetQueueSpy01L = sinon.spy(model._runwayCollection.findRunwayModelByName('01L'), 'resetQueue');
+    const resetQueueSpy19R = sinon.spy(model._runwayCollection.findRunwayModelByName('19R'), 'resetQueue');
+    const resetQueueSpy01R = sinon.spy(model._runwayCollection.findRunwayModelByName('01R'), 'resetQueue');
+    const resetQueueSpy19L = sinon.spy(model._runwayCollection.findRunwayModelByName('19L'), 'resetQueue');
+
+    model.resetAllRunwayQueues();
+
+    t.true(resetQueueSpy07L.calledWithExactly());
+    t.true(resetQueueSpy25R.calledWithExactly());
+    t.true(resetQueueSpy07R.calledWithExactly());
+    t.true(resetQueueSpy25L.calledWithExactly());
+    t.true(resetQueueSpy01L.calledWithExactly());
+    t.true(resetQueueSpy19R.calledWithExactly());
+    t.true(resetQueueSpy01R.calledWithExactly());
+    t.true(resetQueueSpy19L.calledWithExactly());
+});

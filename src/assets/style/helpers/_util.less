@@ -21,3 +21,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.placeholder(@color) {
+    &::placeholder {color: @color;}
+    &::-webkit-input-placeholder {color: @color;}
+    &::-moz-placeholder {color: @color;}
+    &:-ms-input-placeholder {color: @color;}
+}

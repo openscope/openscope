@@ -1,0 +1,37 @@
+{
+    "name": "Embraer 175",
+    "icao": "E75L",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "E"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3400,
+        "descent":    3000,
+        "accelerate": 7,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.700,
+        "landing": 1.200
+    },
+    "speed":{
+        "min":     110,
+        "landing": 120,
+        "cruise":  475,
+        "cruiseM": null,
+        "max":     481,
+        "maxM":    0.82
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

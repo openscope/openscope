@@ -335,7 +335,7 @@ ava('._initializeFlightPhaseForCategory() calls .setFlightPhase() with apron pha
     t.true(setFlightPhaseSpy.calledWithExactly(FLIGHT_PHASE.APRON));
 });
 
-ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude to specified value when flight is not a departure', (t) => {
+ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude for arrival a/c to specified value', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const altitudeMock = 12345;
     const ceilingMock = 38000;
@@ -345,14 +345,24 @@ ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude to specified valu
     t.true(fms.flightPlanAltitude === altitudeMock);
 });
 
-ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude to service ceiling when flight is a departure', (t) => {
+ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude for departure a/c to service ceiling when none is specified', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
+    const altitudeMock = '';
+    const ceilingMock = 38000;
+
+    fms.reset()._initializeFlightPlanAltitude(altitudeMock, FLIGHT_CATEGORY.DEPARTURE, { ceiling: ceilingMock });
+
+    t.true(fms.flightPlanAltitude === ceilingMock);
+});
+
+ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude for departure a/c to correct altitude when one is specified', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const altitudeMock = 12345;
     const ceilingMock = 38000;
 
     fms.reset()._initializeFlightPlanAltitude(altitudeMock, FLIGHT_CATEGORY.DEPARTURE, { ceiling: ceilingMock });
 
-    t.true(fms.flightPlanAltitude === ceilingMock);
+    t.true(fms.flightPlanAltitude === altitudeMock);
 });
 
 ava('._initializePositionInRouteToBeginAtFixName() returns early when flight is a departure', (t) => {

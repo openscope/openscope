@@ -1,0 +1,17 @@
+{
+    "icao": "lpa",
+    "name": "Air Leap",
+    "callsign": {
+        "name": "Leap",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["SB20", 1],
+            ["SF34", 4],
+            ["AT75", 1]
+        ]
+    }
+}

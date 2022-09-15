@@ -46,6 +46,10 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'Default',
                 value: 'DEFAULT'
+            },
+            {
+                displayLabel: 'Celestial',
+                value: 'CELESTIAL'
             }
         ]
     },

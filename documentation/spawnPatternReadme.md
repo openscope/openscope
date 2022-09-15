@@ -107,9 +107,13 @@ Commands to pass to an aircraft when it spawns. This could be used for tower ass
 * One entry per runway
 * Command string can be any valid command as defined in the aircraft-command guide
 
-### altitude (* _for arrivals and overflights_)
+### altitude
 
-Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft. This should be a _number_ (eg. `18000`), _not a string_ (eg `"18000"`).
+For arrivals/overflights: *Altitude an aircraft spawns at.*
+For departures: *Altitude the aircraft is requesting in their flight plan.*
+ ---> Altitude may be omitted for departures; the a/c will then request the highest altitude their aircraft is capable of reaching.
+
+You can specify either an exact altitude or an array of two altitudes (in which case an altitude will be randomly chosen within the specified range). Always enter altitudes as a _number_ (eg. `18000`), _not as a string_ (eg `"18000"`).
 
 * Should be a number in MSL altitude.
 * Should always have a shape of either:

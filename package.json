@@ -1,6 +1,6 @@
 {
   "name": "openscope",
-  "version": "6.27.0-BETA",
+  "version": "6.28.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "11.3.0",
@@ -73,6 +73,7 @@
   "dependencies": {
     "ansi-colors": "3.2.4",
     "express": "4.16.4",
+    "handlebars": "4.1.2",
     "jquery": "3.5.0",
     "lodash": "4.17.21",
     "raf": "3.4.1"
