@@ -1,3 +1,11 @@
+# 6.29.0 (September 1, 2022)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+
+
 # 6.28.0 (July 3, 2022)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1938" target="_blank">#1938</a> - Add STARS theme
