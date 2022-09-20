@@ -1033,7 +1033,7 @@
                 "SFK": ["SFK"],
                 "MIP": []
             },
-            "body": ["MIP", "MARRC", ["BILEY", "A130"], "VIBES", "FJC", "LIZZI", ["BEUTY", "A100"], "HARLM", "DREMS", "APPLE", "PROUD"],
+            "body": ["MIP", ["MARRC", "A180"], ["BILEY", "A130"], "VIBES", "FJC", "LIZZI", ["BEUTY", "A100"], "HARLM", "DREMS", "APPLE", "PROUD"],
             "rwy": {
                 "KLGA04": [],
                 "KLGA13": [],
@@ -1051,11 +1051,11 @@
             "icao": "NOBBI5",
             "name": "Nobby Five",
             "entryPoints": {
-                "RKA": ["RKA", "PETER", "CYPER", "TRESA", "CASSH"],
+                "RKA": ["RKA", ["PETER", "A170-"], "CYPER", "TRESA", "CASSH"],
                 "ALB": ["ALB", "WIGAN", "TRESA", "CASSH"],
                 "BAF": ["BAF", "PWL", "CASSH"],
                 "CTR": ["CTR", "PWL", "CASSH"],
-                "DNY": ["DNY", "PETER", "CYPER", "TRESA", "CASSH"],
+                "DNY": ["DNY", ["PETER", "A170-"], "CYPER", "TRESA", "CASSH"],
                 "NOBBI": []
             },
             "body": [["NOBBI", "A80"], "CMK", "RYMES", "HAARP", "CRALY", "LGA"],
