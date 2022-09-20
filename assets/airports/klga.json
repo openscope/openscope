@@ -698,6 +698,7 @@
         "STEED": [40.8311, -73.980925],
         "STOEN": [39.83820556, -75.79858889],
         "STOMP": [41.59632778, -74.79660833],
+        "STOTT": [42.33537222, -73.71705833],
         "SWANN": [39.15146667, -76.22887222],
         "TEESY": [41.42110833, -80.11182222],
         "TNNIS": [40.87944444, -73.70375833],
@@ -984,7 +985,7 @@
             "name": "Harp Three",
             "entryPoints": {
                 "RKA": ["RKA", "PETER", "CYPER", "TRESA", "IGN", "VALRE"],
-                "ALB": ["ALB", "CTR", "PWL", "IGN", "VALRE"],
+                "ALB": ["ALB", "STOTT", "PWL", "IGN", "VALRE"],
                 "VALRE": ["VALRE"]
             },
             "body": [["BASYE", "A080"], "HAARP", "CRALY", "LGA"],
@@ -996,7 +997,7 @@
             },
             "draw": [
                 ["RKA*", "PETER", "CYPER", "TRESA", "IGN"],
-                ["ALB*", "CTR", "PWL", "IGN", "VALRE"],
+                ["ALB*", "STOTT", "PWL", "IGN", "VALRE"],
                 ["VALRE", "BASYE", "HAARP", "CRALY", "LGA"]
             ]
         },
@@ -1009,7 +1010,7 @@
                 "PXT": ["PXT", "GARED", ["RIDGY", "A270+"]],
                 "ENO": []
             },
-            "body": [["ENO", "A240+"], "SKIPY", ["BESSI", "A170+"], "EDJER", ["DAVYS", "A130+"], "HOLEY", ["KORRY", "A100"], "RBV", "TYKES", "MINKS", "RENUE", "APPLE", "PROUD", "LGA"],
+            "body": [["ENO", "A240+"], ["SKIPY", "A190+"], ["BESSI", "A170+"], "EDJER", ["DAVYS", "A130+"], "HOLEY", ["BRAND", "A110+"], ["KORRY", "A100"], "RBV", "TYKES", "MINKS", "RENUE", "APPLE", "PROUD"],
             "rwy": {
                 "KLGA04": [],
                 "KLGA13": [],
@@ -1020,7 +1021,7 @@
                 ["AGARD", "SPEAK", "ENO"],
                 ["GVE*", "COLIN", "PXT"],
                 ["PXT", "GARED", "RIDGY", "ENO"],
-                ["ENO", "SKIPY", "BESSI", "EDJER", "DAVYS", "HOLEY", "KORRY", "RBV", "TYKES", "MINKS", "RENUE", "APPLE", "PROUD", "LGA"]
+                ["ENO", "SKIPY", "BESSI", "EDJER", "DAVYS", "HOLEY", "BRAND", "KORRY", "RBV", "TYKES", "MINKS", "RENUE", "APPLE", "PROUD"]
             ]
         },
         "MIP4": {
@@ -1032,7 +1033,7 @@
                 "SFK": ["SFK"],
                 "MIP": []
             },
-            "body": ["MIP", "MARRC", ["BILEY", "A130"], "VIBES", "FJC", "LIZZI", ["BEUTY", "A100"], "HARLM", "DREMS", "APPLE", "PROUD", "LGA"],
+            "body": ["MIP", "MARRC", ["BILEY", "A130"], "VIBES", "FJC", "LIZZI", ["BEUTY", "A100"], "HARLM", "DREMS", "APPLE", "PROUD"],
             "rwy": {
                 "KLGA04": [],
                 "KLGA13": [],
@@ -1043,7 +1044,7 @@
                 ["ETG*", "MIP"],
                 ["PSB", "MIP"],
                 ["SFK", "MIP"],
-                ["MIP", "MARRC", "BILEY", "VIBES", "FJC", "LIZZI", "BEUTY", "HARLM", "DREMS", "APPLE", "PROUD", "LGA"]
+                ["MIP", "MARRC", "BILEY", "VIBES", "FJC", "LIZZI", "BEUTY", "HARLM", "DREMS", "APPLE", "PROUD"]
             ]
         },
         "NOBBI5": {
