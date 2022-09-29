@@ -137,7 +137,7 @@
             ]
         },
         {
-            "floor": 25,
+            "floor": 10,
             "ceiling": 40,
             "airspace_class": "B",
             "poly": [
