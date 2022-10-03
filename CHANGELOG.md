@@ -1,9 +1,10 @@
-# 6.29.0 (September 1, 2022)
+# 6.29.0 (October 1, 2022)
 ### New Features
 
 ### Bugfixes
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
 
 
 # 6.28.0 (July 3, 2022)
