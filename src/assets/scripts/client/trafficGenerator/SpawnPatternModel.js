@@ -217,6 +217,15 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = '';
 
         /**
+         * Object defining runway specific commands to send to an aircraft at spawn time
+         *
+         * @property commands
+         * @type {object}
+         * @default
+         */
+        this.commands = {};
+
+        /**
          * List of fixes to follow on spawn.
          *
          * This property will be set to an array of strings representing
@@ -286,6 +295,16 @@ export default class SpawnPatternModel extends BaseModel {
          * @default INVALID_NUMBER
          */
         this.rate = INVALID_NUMBER;
+
+        /**
+         * Rate at which aircaft spawn, express in aircraft per hour
+         * Used to preserve initial configuration
+         *
+         * @property defaultRate
+         * @type {number}
+         * @default INVALID_NUMBER
+         */
+        this.defaultRate = INVALID_NUMBER;
 
         /**
          * GameTime when a specific spawn pattern started
@@ -485,9 +504,11 @@ export default class SpawnPatternModel extends BaseModel {
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
         this.routeString = spawnPatternJson.route;
+        this.commands = spawnPatternJson.commands;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this.method = spawnPatternJson.method;
         this.rate = parseFloat(spawnPatternJson.rate);
+        this.defaultRate = this.rate;
         this.entrail = _get(spawnPatternJson, 'entrail', this.entrail);
 
         this._routeModel = new RouteModel(spawnPatternJson.route);
@@ -519,6 +540,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.origin = '';
         this.destination = '';
         this.routeString = '';
+        this.commands = {};
         this._minimumAltitude = INVALID_NUMBER;
         this._maximumAltitude = INVALID_NUMBER;
         this.speed = 0;
@@ -534,6 +556,16 @@ export default class SpawnPatternModel extends BaseModel {
         this.airlines = [];
         this._weightedAirlineList = [];
         this.preSpawnAircraftList = [];
+    }
+
+    /**
+     * Reset the spawn rate to the value found in the Airport Json
+     *
+     * @for SpawnPatternModel
+     * @method resetRate
+     */
+    resetRate() {
+        this.rate = this.defaultRate;
     }
 
     /**
@@ -639,6 +671,23 @@ export default class SpawnPatternModel extends BaseModel {
      */
     isOverflight() {
         return this.category === FLIGHT_CATEGORY.OVERFLIGHT;
+    }
+
+    /**
+     * Use the supplied aircraft controller to generate prespawned aircraft using this model
+     *
+     * @for SpawnPatternModel
+     * @method createPreSpawnAircraft
+     * @param aircraftController {AircraftController}
+     */
+    createPreSpawnAircraft(aircraftController) {
+        if (this.preSpawnAircraftList.length === 0) {
+            this.preSpawnAircraftList = this._buildPreSpawnAircraft(this);
+        }
+
+        if (this.isAirborneAtSpawn() && this.preSpawnAircraftList.length > 0) {
+            aircraftController.createPreSpawnAircraftWithSpawnPatternModel(this);
+        }
     }
 
     /**

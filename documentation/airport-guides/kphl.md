@@ -9,10 +9,13 @@ The airspace around PHL (Class B) is highly complex, with PHL TRACON owning mult
 ### Instrument Procedures
 PHL is served by four RNAV arrivals. The arrivals are not automated and have a number of "expect" altitudes. All "expect" altitudes that would have been assigned by the center prior to entering PHL's airspace have been included in the sim. PHL only has one departure procedure, the PHL2. It is a radar-vectored departure to several departure fixes. An aircraft's initial heading on departure is based on the departure fix. These headings have been included in the sim and do not have to be specifically assigned by the player. However, for your information, the table of headings is below.
 
-| Direction   | Fixes         | Heading (RWY 9L/R)   | 
-|-------------|---------------|----------------------|
-| North       | PTW, ARD      | 095                  | 
-| East        | DITCH, RUUTH  | 110                  | 
-| South       | OOD           | 125                  | 
-| West        | MXE, STOEN    | 080                  | 
+| Fixes         | Heading (RWY 9L/R)   | Heading (RWY 27L/R) |
+|---------------|----------------------|---------------------|
+| PTW           | 095                  | 265                 | 
+| ARD           | 095                  | 265                 |
+| DITCH         | 110                  | 230                 |
+| RUUTH         | 110                  | 230                 |
+| OOD           | 125                  | 230                 |
+| MXE           | 125                  | 265                 |
+| STOEN         | 080                  | 245                 |
 

@@ -42,8 +42,8 @@ Aircraft arriving from airways should expect the following arrivals
 
 | Runway | Suffix | Description | AD | Date |
 | -- | -- | -- | -- | -- |
-| 06 | 2E | RNAV Standard Arrival Chart RWY 06 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EIN" target="_blank">EINN AD 2.24-7</a>_24-7_en.pdf) | 06 Dec 2018 |
-| 24 | 2D, 3D | RNAV Standard Arrival Chart RWY 24 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24" target="_blank">EINN AD 2.24-8</a>8_en.pdf) | 31 Jan 2019 |
+| 06 | 2E | RNAV Standard Arrival Chart RWY 06 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-7_en.pdf" target="_blank">EINN AD 2.24-7</a> | 06 Dec 2018 |
+| 24 | 2D, 3D | RNAV Standard Arrival Chart RWY 24 – ICAO | <a href="http://iaip.iaa.ie/iaip/Published%20Files/AIP%20Files/AD/Chart%20Files/EINN/EI_AD_2_EINN_24-8_en.pdf" target="_blank">EINN AD 2.24-8</a> | 31 Jan 2019 |
 
 ### Other aerodromes of interest
 The videomap includes the position of the following aerodromes within or around the Shannon CTA, including:

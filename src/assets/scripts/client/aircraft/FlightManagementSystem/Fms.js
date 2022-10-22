@@ -429,7 +429,7 @@ export default class Fms {
     _initializeFlightPlanAltitude(altitude, category, model) {
         this.flightPlanAltitude = altitude;
 
-        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+        if (category === FLIGHT_CATEGORY.DEPARTURE && !altitude) {
             this.flightPlanAltitude = model.ceiling;
         }
     }
@@ -481,10 +481,9 @@ export default class Fms {
      */
     activateHoldForWaypointName(waypointName, holdParameters, fallbackInboundHeading = undefined) {
         if (!this._routeModel.hasWaypointName(waypointName)) {
-            // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
             return [false, {
                 log: `unable to hold at ${waypointName.toUpperCase()}; it is not on our route!`,
-                say: `unable to hold at ${waypointName.toLowerCase()}; it is not on our route!`
+                say: `unable to hold at ${NavigationLibrary.getFixSpokenName(waypointName)}; it is not on our route!`
             }];
         }
 

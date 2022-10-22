@@ -207,12 +207,24 @@ export default class AirportModel {
         };
 
         /**
-         * default wind settings for an airport
+         * current wind settings for an airport
          *
          * @property wind
          * @type {object}
          */
         this.wind = {
+            speed: 10,
+            angle: 0
+        };
+
+        /**
+         * default wind settings for an airport
+         * to preserve initial configuration
+         *
+         * @property wind
+         * @type {object}
+         */
+        this.defaultWind = {
             speed: 10,
             angle: 0
         };
@@ -362,6 +374,8 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
+        this.defaultWind.speed = data.wind.speed;
+        this.defaultWind.angle = degreesToRadians(data.wind.angle);
 
         this._initRangeRings(data.rangeRings);
         this.loadTerrain();
@@ -369,6 +383,8 @@ export default class AirportModel {
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
+
+        this.eventBus.on(EVENT.WIND_CHANGE, this.updateCurrentWind.bind(this));
     }
 
     /**
@@ -460,14 +476,14 @@ export default class AirportModel {
             }
 
             restrictedArea.height = parseElevation(areaData.height);
-            restrictedArea.coordinates = areaData.coordinates.map((gps) => {
+            restrictedArea.poly = areaData.poly.map((gps) => {
                 return DynamicPositionModel.calculateRelativePosition(gps, this._positionModel, this.magneticNorth);
             });
 
-            let coords_max = restrictedArea.coordinates[0];
-            let coords_min = restrictedArea.coordinates[0];
+            let coords_max = restrictedArea.poly[0];
+            let coords_min = restrictedArea.poly[0];
 
-            _forEach(restrictedArea.coordinates, (v) => {
+            _forEach(restrictedArea.poly, (v) => {
                 coords_max = [
                     Math.max(v[0], coords_max[0]),
                     Math.max(v[1], coords_max[1])
@@ -714,6 +730,17 @@ export default class AirportModel {
      */
     removeAircraftFromAllRunwayQueues(aircraftId) {
         return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
+    }
+
+    /**
+     * Reset the queues for ALL runways at once
+     *
+     * @for AirportModel
+     * @method resetAllRunwayQueues
+     * @returns undefined
+     */
+    resetAllRunwayQueues() {
+        this._runwayCollection.runways.forEach((runwayModel) => runwayModel.resetQueue());
     }
 
     /**

@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
-import AircraftCommander from './aircraft/AircraftCommander';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
@@ -54,7 +53,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.aircraftCommander = null;
         this.airportGuideController = null;
         this.inputController = null;
         this.canvasController = null;
@@ -84,6 +82,7 @@ export default class AppController {
      */
     setupHandlers() {
         this.onAirportChangeHandler = this.onAirportChange.bind(this);
+        this.onTrafficResetHandler = this.onTrafficReset.bind(this);
 
         return this;
     }
@@ -95,6 +94,7 @@ export default class AppController {
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.on(EVENT.TRAFFIC_RESET, this.onTrafficResetHandler);
 
         return this;
     }
@@ -106,6 +106,7 @@ export default class AppController {
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.off(EVENT.TRAFFIC_RESET, this.onTrafficResetHandler);
 
         return this.destroy();
     }
@@ -123,7 +124,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.aircraftCommander = null;
         this.airportGuideController = null;
         this.inputController = null;
         this.canvasController = null;
@@ -188,8 +188,8 @@ export default class AppController {
         UiController.init(this.$element);
 
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
-        this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
+
+        this.inputController = new InputController(this.$element, this.aircraftController, this.scopeModel);
         this.airportInfoController = new AirportInfoController(this.$element);
         this.airportGuideController = new AirportGuideViewController(this.$element, airportGuideData, initialAirportData.icao);
         this.changelogController = new ChangelogController(this.contentQueue);
@@ -300,6 +300,21 @@ export default class AppController {
         SpawnScheduler.startScheduler();
 
         this.updateViewControls();
+    }
+
+    /**
+     * event callback fired from within the `TrafficRateController` when traffic should be cleared and respawned.
+     *
+     * @for AppController
+     * @method onTrafficReset
+     */
+    onTrafficReset() {
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'traffic-reset', AirportController.current.icao);
+        this.aircraftController.aircraft_remove_all();
+        this.scopeModel.radarTargetCollection.reset();
+        AirportController.current.resetAllRunwayQueues();
+        SpawnScheduler.createPreSpawnDepartures();
+        SpawnScheduler.resetAirborneTraffic();
     }
 
     // TODO: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing

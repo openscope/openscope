@@ -102,7 +102,7 @@ ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prependi
 ava.serial('.addItems() resets _items when it is called with an existing collection', t => {
     t.true(FixCollection.length === 106);
 
-    FixCollection.addItems(SMALL_FIX_LIST_MOCK);
+    FixCollection.addItems(SMALL_FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
     t.false(FixCollection.length === 105);
     t.true(FixCollection.length === 2);
