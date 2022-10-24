@@ -1,0 +1,15 @@
+{
+	"icao": "maitai",
+	"name": "199th Fighter Squadron",
+	"callsign": {
+		"name": "Mai Tai",
+		"callsignFormats": [
+			"##"
+		]
+	},
+	"fleets": {
+		"default": [
+			["F22", 20]
+		]
+	}
+}
