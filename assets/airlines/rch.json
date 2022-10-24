@@ -4,8 +4,8 @@
     "callsign": {
         "name": "Reach",
         "callsignFormats": [
-            "##"
-            "###"
+            "##",
+            "###",
             "####"
         ]
     },
