@@ -1,0 +1,37 @@
+{
+    "name": "McDonnell Douglas F-15 Eagle",
+    "icao": "F15",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "E"
+    },
+    "ceiling": 65000,
+    "rate": {
+        "climb":      10000,
+        "descent":    4000,
+        "accelerate": 5,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 1.003,
+        "landing": 0.427
+    },
+    "speed":{
+        "min":     100,
+        "landing": 125,
+        "cruise":  500,
+        "cruiseM": 0.86,
+        "max":     1816,
+        "maxM":    2.5
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
