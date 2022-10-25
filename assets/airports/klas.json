@@ -734,6 +734,19 @@
             "origin": "KLAS",
             "destination": "",
             "category": "departure",
+            "route": "KLAS26R.MCCRN5.BTY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2.0,
+            "airlines": [
+                ["www", 3]
+            ]
+        },
+        {
+            "origin": "KLAS",
+            "destination": "",
+            "category": "departure",
             "route": "KLAS26R.PRFUM4.DRK",
             "altitude": "",
             "speed": "",
