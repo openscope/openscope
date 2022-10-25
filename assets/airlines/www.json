@@ -1,0 +1,17 @@
+{
+    "icao": "www",
+    "name": "Janet Air",
+    "callsign": {
+        "name": "Janet",
+        "callsignFormats": [
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B736", 6],
+            ["B350", 6],
+            ["B190", 1]
+        ]
+    }
+}
