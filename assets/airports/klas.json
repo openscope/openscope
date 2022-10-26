@@ -702,7 +702,8 @@
                 ["nks", 20],
                 ["skw", 3],
                 ["swa/short", 50],
-                ["ual/short", 11]
+                ["ual/short", 11],
+                ["www", 1]
             ]
         },
         {
@@ -838,7 +839,8 @@
                 ["nks", 20],
                 ["skw", 3],
                 ["swa/short", 50],
-                ["ual/short", 11]
+                ["ual/short", 11],
+                ["www", 1]
             ]
         },
         {
@@ -896,7 +898,8 @@
                 ["nks", 20],
                 ["skw", 3],
                 ["swa/short", 50],
-                ["ual/short", 11]
+                ["ual/short", 11],
+                ["www", 3]
             ]
         },
         {
