@@ -92,8 +92,11 @@
     "fixes": {
         "_RWY051DME"  : ["N35.225754", "W80.926807"],
         "_RWY18L1DME" : ["N35.195176", "W80.933626"],
+		"_RWY18L2DME" : ["N35.16747861", "W80.93095139"],
         "_RWY18C1DME" : ["N35.194788", "W80.950368"],
+		"_RWY18C2DME" : ["N35.16585333", "W80.94776667"],
         "_RWY18R1DME" : ["N35.196043", "W80.964905"],
+		"_RWY18R2DME" : ["N35.16665139", "W80.96237583"],
         "_RWY231DME"  : ["N35.205219", "W80.955134"],
         "_RWY36L1DME" : ["N35.231970", "W80.968082"],
         "_RWY36C1DME" : ["N35.233662", "W80.953717"],
@@ -373,8 +376,8 @@
                     "name": "Barmy Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#140"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#120"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -400,8 +403,8 @@
                     "name": "Beavy Five",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#200"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#200"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -425,8 +428,8 @@
                     "name": "Bobzy Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#240"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#240"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -481,8 +484,8 @@
                     "name": "Easter Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#240"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#240"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -503,8 +506,8 @@
                     "name": "Icons Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#183"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#200"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -525,8 +528,8 @@
                     "name": "Jo Jo Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#240"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#240"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -553,9 +556,9 @@
                     "name": "Kermit Three",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": ["#183"],
-                        "KCLT18C": ["#183"],
-                        "KCLT18R": ["#200"],
+                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
+                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#200"],
+                        "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A18+"], "#315"],
                         "KCLT36C": [["_RWY36C1DME", "A14+"], "#330"],
@@ -586,8 +589,8 @@
                     "name": "Kilns Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#140"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#120"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -608,9 +611,9 @@
                     "name": "Knights Two",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
-                        "KCLT18R": [["_RWY18R1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#100"],
+                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#270"],
+                        "KCLT18R": [["_RWY18R1DME", "A12+"], "#270"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A18+"], "#003"],
                         "KCLT36C": [["_RWY36C1DME", "A14+"], "#003"],
@@ -641,8 +644,8 @@
                     "name": "Critter Five",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#140"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#240"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -665,8 +668,8 @@
                     "name": "Queen Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#183"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#200"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -688,8 +691,8 @@
                     "name": "Lills Two",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L2DME", "A12+"], "#140"],
+                        "KCLT18C": [["_RWY18C2DME", "A12+"], "#120"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -709,8 +712,8 @@
                     "name": "Weasel Four",
                     "rwy": {
                         "KCLT5": [["_RWY051DME", "A12+"], "#055"],
-                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#183"],
-                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#183"],
+                        "KCLT18L": [["_RWY18L1DME", "A12+"], "#140"],
+                        "KCLT18C": [["_RWY18C1DME", "A12+"], "#240"],
                         "KCLT18R": [["_RWY18R1DME", "A12+"], "#200"],
                         "KCLT23": [["_RWY231DME", "A12+"], "#235"],
                         "KCLT36L": [["_RWY36L1DME", "A12+"], "#315"],
@@ -998,7 +1001,7 @@
             ]
         },
         "STOCR3": {
-            "icao": "PSTOCR",
+            "icao": "STOCR3",
             "name": "Stock Car Three",
             "entryPoints": {
                 "CHECR": ["CHECR", "CHVEE", ["CRVET", "A240+|A290-|S280"]],
@@ -1064,7 +1067,7 @@
                 ["aal/long", 1],
                 ["asq", 6.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
+                ["dlh/a359", 0.1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1072,7 +1075,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },{
             "origin": "KCLT",
@@ -1088,7 +1091,6 @@
                 ["aal/long", 1],
                 ["asq", 6.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1096,7 +1098,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1113,7 +1115,6 @@
                 ["aal/long", 1],
                 ["asq", 6.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1122,7 +1123,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1139,8 +1140,9 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
+                ["fdx/B763", 0.1],
+                ["fdx/B306", 0.1],
                 ["jia", 14],
                 ["fft", 1.8],
                 ["nks", 1.8],
@@ -1148,7 +1150,7 @@
                 ["skw", 3],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1165,7 +1167,6 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1173,7 +1174,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1190,7 +1191,6 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1198,7 +1198,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1215,16 +1215,16 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
+                ["fdx/B306", 0.1],				
                 ["jia", 14],
                 ["fft", 1.8],
-                ["n/fastGA", 3],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+                ["ups", 0.1],
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1241,16 +1241,14 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["n/fastGA", 3],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1267,7 +1265,6 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1275,7 +1272,8 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+                ["ups", 0.1],
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1292,18 +1290,16 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["jbu", 2],
                 ["fft", 1.8],
-                ["n/fastGA", 3],
+                ["n/fastGA", 1],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["skv", 3],
                 ["swa", 4.6],
-                ["ual", 1.9],
-                ["ups", 1]
+                ["ual", 1.9]
             ]
         },
         {
@@ -1320,7 +1316,6 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1328,8 +1323,8 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
-            ]
+				["n/fastGA", 1]
+			]
         },
         {
             "origin": "KCLT",
@@ -1345,7 +1340,6 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1353,7 +1347,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 1]
             ]
         },
         {
@@ -1370,7 +1364,6 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
@@ -1378,7 +1371,7 @@
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+				["n/fastGA", 0.5]
             ]
         },
         {
@@ -1395,42 +1388,42 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["n/fastGA", 3],
+                ["n/fastGA", 1],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
-                ["ual", 1.9],
-                ["ups", 1]
+                ["ual", 1.9]
             ]
         },
         {
             "origin": "",
             "destination": "KCLT",
             "category": "arrival",
-            "route": "LYH.CHSLY5.KCLT23",
+            "route": "LYH.CHSLY5.KCLT18L",
             "altitude": 33000,
             "speed": 290,
             "method": "random",
             "rate": 8.3,
             "airlines": [
                 ["aal", 14],
-                ["aal/long", 1],
+                ["aal/B777", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
+				["dlh/A359", 0.5],
+                ["eja", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["jbu", 2],
                 ["fft", 1.8],
+				["n/fastGA", 1],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+                ["ups/B752", 0.4]
             ]
         },
         {
@@ -1447,16 +1440,18 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
+                ["fdx/B763", 1],
+				["fdx/A306", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
+				["n/fastGA", 2],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["skw", 3],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1]
+                ["ups/B752", 1]
             ]
         },
         {
@@ -1473,15 +1468,14 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
+				["n/fastGA", 1],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
                 ["ual", 1.9],
-                ["ups", 1],
                 ["voi", 2]
             ]
         },
@@ -1489,7 +1483,7 @@
             "origin": "",
             "destination": "KCLT",
             "category": "arrival",
-            "route": "OKNEE.MLLET2.KCLT23",
+            "route": "OKNEE.MLLET2.KCLT18L",
             "altitude": 30000,
             "speed": 290,
             "method": "random",
@@ -1499,10 +1493,11 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
+                ["eja/short", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
+				["n/fastGA", 1],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
@@ -1523,11 +1518,10 @@
                 ["aal/long", 1],
                 ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["dlh/a346", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["n/fastGA", 3],
+                ["n/fastGA", 1],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["skv", 2],
@@ -1539,7 +1533,7 @@
             "origin": "",
             "destination": "KCLT",
             "category": "arrival",
-            "route": "CHS.STOCR3.KCLT23",
+            "route": "CHS.STOCR3.KCLT18L",
             "altitude": 30000,
             "speed": 290,
             "method": "random",
@@ -1552,7 +1546,7 @@
                 ["jia", 14],
                 ["jbu", 5],
                 ["fft", 3.8],
-                ["n/fastGA", 3],
+                ["n/fastGA", 2],
                 ["nks", 1.8],
                 ["pdt", 6.2],
                 ["swa", 4.6],
