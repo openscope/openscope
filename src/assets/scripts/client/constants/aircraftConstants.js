@@ -299,3 +299,48 @@ export const SEPARATION = {
      */
     VERTICAL_FT: 1000
 };
+
+/**
+ * Wake turbulence categories
+ *
+ * @property WAKE_TURBULENCE_CATEGORY
+ * @type {Object}
+ * @final
+ */
+export const WAKE_TURBULENCE_CATEGORY = {
+    LIGHT: {
+        LETTER: 'L',
+        APPEND: false,
+        SPOKEN: ''
+    },
+    MEDIUM: {
+        LETTER: 'M',
+        APPEND: false,
+        SPOKEN: ''
+    },
+    HEAVY: {
+        LETTER: 'H',
+        APPEND: true,
+        SPOKEN: 'heavy'
+    },
+    SUPER: {
+        LETTER: 'J',
+        APPEND: true,
+        SPOKEN: 'super'
+    }
+};
+
+/**
+ * Engine types
+ *
+ * @property ENGINE_TYPE
+ * @type {Object}
+ * @final
+ */
+export const ENGINE_TYPE = {
+    ELECTRIC: 'E',
+    JET: 'J',
+    PISTON: 'P',
+    ROCKET: 'R',
+    TURBOPROP: 'T'
+};

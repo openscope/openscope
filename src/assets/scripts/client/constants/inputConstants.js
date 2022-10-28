@@ -54,7 +54,7 @@ export const KEY_CODES = {
     F11: 'F11',
     F12: 'F12',
     // `
-    BAT_TICK: 'Backquote'
+    BACKQUOTE: 'Backquote'
 };
 
 /**
@@ -95,7 +95,7 @@ export const LEGACY_KEY_CODES = {
     F11: 122,
     F12: 123,
     // `
-    BAT_TICK: 220
+    BACKQUOTE: 220
 };
 
 /**

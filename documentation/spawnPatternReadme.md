@@ -11,6 +11,10 @@ Lets look at some examples before we continue:
      "destination": "",
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
+     "commands": {
+        "19L": "fh 180",
+        "1R": "fh 360"
+     },
      "altitude": "",
      "speed": "",
      "method": "random",
@@ -28,6 +32,10 @@ Lets look at some examples before we continue:
     "destination": "KLAS",
     "category": "arrival",
     "route": "BETHL.GRNPA1.KLAS",
+    "commands": {
+        "19L": "cross TOROO A100",
+        "1R": "cross TOROO A100"
+    },
     "altitude": [30000, 40000],
     "speed": 320,
     "method": "cyclic",
@@ -93,9 +101,19 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
   * Prepend a fix name with `@` to _hold_ at that fix `FIXXA..@FIXXB..FIXXC`
   * Prepend a three digit heading with `#` to _fly that heading until given further instructions_
 
-### altitude (* _for arrivals and overflights_)
+### commands
 
-Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft. This should be a _number_ (eg. `18000`), _not a string_ (eg `"18000"`).
+Commands to pass to an aircraft when it spawns. This could be used for tower assigned departure headings, altitude crossings that might be assigned by another controller, etc.
+* One entry per runway
+* Command string can be any valid command as defined in the aircraft-command guide
+
+### altitude
+
+For arrivals/overflights: *Altitude an aircraft spawns at.*
+For departures: *Altitude the aircraft is requesting in their flight plan.*
+ ---> Altitude may be omitted for departures; the a/c will then request the highest altitude their aircraft is capable of reaching.
+
+You can specify either an exact altitude or an array of two altitudes (in which case an altitude will be randomly chosen within the specified range). Always enter altitudes as a _number_ (eg. `18000`), _not as a string_ (eg `"18000"`).
 
 * Should be a number in MSL altitude.
 * Should always have a shape of either:

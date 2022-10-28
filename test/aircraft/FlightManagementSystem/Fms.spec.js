@@ -223,20 +223,34 @@ ava('.reset() resets all instance properties to appropriate default values', (t)
     t.true(!fms._routeModel);
 });
 
-ava('._initializeArrivalAirport() returns early when destination ICAO is an empty string', (t) => {
-    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-    const result = fms.reset()._initializeArrivalAirport('');
+ava('._initializeAirportsAndRunways() does not make calls to initialize departure airport+runway when origin ICAO is an empty string', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(starRouteStringMock);
+    const _initializeDepartureAirportSpy = sinon.spy(fms, '_initializeDepartureAirport');
+    const _initializeDepartureRunwaySpy = sinon.spy(fms, '_initializeDepartureRunway');
+    const result = fms._initializeAirportsAndRunways('', 'klas');
 
     t.true(typeof result === 'undefined');
-    t.true(!fms.arrivalAirportModel);
+    t.true(_initializeDepartureAirportSpy.notCalled);
+    t.true(_initializeDepartureRunwaySpy.notCalled);
+});
+
+ava('._initializeAirportsAndRunways() does not make calls to initialize arrival airport+runway when destination ICAO is an empty string', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(sidRouteStringMock);
+    const _initializeArrivalAirportSpy = sinon.spy(fms, '_initializeArrivalAirport');
+    const _initializeArrivalRunwaySpy = sinon.spy(fms, '_initializeArrivalRunway');
+    const result = fms._initializeAirportsAndRunways('klas', '');
+
+    t.true(typeof result === 'undefined');
+    t.true(_initializeArrivalAirportSpy.notCalled);
+    t.true(_initializeArrivalRunwaySpy.notCalled);
 });
 
 ava('._initializeArrivalAirport() sets #arrivalAirportModel to the specified destination airport', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-    const result = fms.reset()._initializeArrivalAirport('ksea');
+    const result = fms.reset()._initializeArrivalAirport('klas');
 
     t.true(typeof result === 'undefined');
-    t.true(fms.arrivalAirportModel.icao === 'ksea');
+    t.true(fms.arrivalAirportModel.icao === 'klas');
 });
 
 ava('._initializeArrivalRunway() returns early when #arrivalAirportModel is null', (t) => {
@@ -264,21 +278,12 @@ ava('._initializeArrivalRunway() sets #arrivalRunwayModel IAW the route model', 
     t.true(fms.arrivalRunwayModel.name === '07R');
 });
 
-ava('._initializeDepartureAirport() returns early when destination ICAO is an empty string', (t) => {
-    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-
-    const result = fms.reset()._initializeDepartureAirport('');
-
-    t.true(typeof result === 'undefined');
-    t.true(!fms.departureAirportModel);
-});
-
 ava('._initializeDepartureAirport() sets #departureAirportModel to the specified origin airport', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-    const result = fms.reset()._initializeDepartureAirport('ksea');
+    const result = fms.reset()._initializeDepartureAirport('klas');
 
     t.true(typeof result === 'undefined');
-    t.true(fms.departureAirportModel.icao === 'ksea');
+    t.true(fms.departureAirportModel.icao === 'klas');
 });
 
 ava('._initializeDepartureRunway() returns early when #departureAirportModel is null', (t) => {
@@ -330,7 +335,7 @@ ava('._initializeFlightPhaseForCategory() calls .setFlightPhase() with apron pha
     t.true(setFlightPhaseSpy.calledWithExactly(FLIGHT_PHASE.APRON));
 });
 
-ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude to specified value when flight is not a departure', (t) => {
+ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude for arrival a/c to specified value', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const altitudeMock = 12345;
     const ceilingMock = 38000;
@@ -340,14 +345,24 @@ ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude to specified valu
     t.true(fms.flightPlanAltitude === altitudeMock);
 });
 
-ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude to service ceiling when flight is a departure', (t) => {
+ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude for departure a/c to service ceiling when none is specified', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
+    const altitudeMock = '';
+    const ceilingMock = 38000;
+
+    fms.reset()._initializeFlightPlanAltitude(altitudeMock, FLIGHT_CATEGORY.DEPARTURE, { ceiling: ceilingMock });
+
+    t.true(fms.flightPlanAltitude === ceilingMock);
+});
+
+ava('._initializeFlightPlanAltitude() sets #flightPlanAltitude for departure a/c to correct altitude when one is specified', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const altitudeMock = 12345;
     const ceilingMock = 38000;
 
     fms.reset()._initializeFlightPlanAltitude(altitudeMock, FLIGHT_CATEGORY.DEPARTURE, { ceiling: ceilingMock });
 
-    t.true(fms.flightPlanAltitude === ceilingMock);
+    t.true(fms.flightPlanAltitude === altitudeMock);
 });
 
 ava('._initializePositionInRouteToBeginAtFixName() returns early when flight is a departure', (t) => {

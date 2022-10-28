@@ -9,6 +9,7 @@ import {
 import { radians_normalize } from '../math/circle';
 import {
     degreesToRadians,
+    nm,
     parseCoordinate,
     parseElevation,
     radiansToDegrees
@@ -19,6 +20,10 @@ import {
     GPS_COORDINATE_INDEX,
     RELATIVE_POSITION_OFFSET_INDEX
 } from '../constants/positionConstants';
+import {
+    vlen,
+    vradial
+} from '../math/vector';
 
 /**
  * @class Position
@@ -380,4 +385,29 @@ DynamicPositionModel.calculateRelativePosition = (coordinates, referencePosition
     const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, magneticNorth);
 
     return [x, y];
+};
+
+/**
+ * Calculate lat/lon position from an x/y offset, relative to a referencePosition
+ *
+ * Provides a static method to calculate lat/lon coordinates without instantiating a `DynamicPositionModel` class.
+ *
+ * @for DynamicPositionModel
+ * @method calculateGpsCoordinatesFromRelativePosition
+ * @param offsetKm {array<number>} the relative position, in km offset [x, y] from the airport center
+ * @param referencePosition {DynamicPositionModel|StaticPositionModel|null}
+ * @return {array<number>}
+ * @static
+ */
+DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition = (offsetKm, referencePosition) => {
+    if (!offsetKm || !referencePosition) {
+        throw new TypeError('Invalid parameter. DynamicPositionModel.calculateGpsCoordinatesFromRelativePosition() requires ' +
+            'coordinates, referencePosition and magneticNorth as parameters');
+    }
+
+    const magneticBearing = vradial(offsetKm);
+    const distance = nm(vlen(offsetKm));
+    const coordinates = referencePosition.generateCoordinatesFromBearingAndDistance(magneticBearing, distance);
+
+    return coordinates;
 };

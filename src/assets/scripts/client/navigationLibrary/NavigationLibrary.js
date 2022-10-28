@@ -429,7 +429,7 @@ class NavigationLibrary {
     }
 
     /**
-     * Fascade Method
+     * Facade Method
      *
      * @for NavigationLibrary
      * @method findFixByName
@@ -486,7 +486,7 @@ class NavigationLibrary {
     }
 
     /**
-     * Fascade Method
+     * Facade Method
      *
      * @for NavigationLibrary
      * @method getFixRelativePosition
@@ -495,6 +495,18 @@ class NavigationLibrary {
      */
     getFixRelativePosition(fixName) {
         return FixCollection.getFixRelativePosition(fixName);
+    }
+
+    /**
+     * Facade Method
+     *
+     * @for NavigationLibrary
+     * @method getFixSpokenName
+     * @param fixName {string}
+     * @return {string}
+     */
+    getFixSpokenName(fixName) {
+        return FixCollection.getFixSpokenName(fixName);
     }
 
     /**

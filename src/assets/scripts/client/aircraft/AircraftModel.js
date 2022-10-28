@@ -8,7 +8,6 @@ import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _uniqueId from 'lodash/uniqueId';
-import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import AirportController from '../airport/AirportController';
 import Fms from './FlightManagementSystem/Fms';
 import GameController, { GAME_EVENTS } from '../game/GameController';
@@ -56,6 +55,7 @@ import {
 import {
     degreesToRadians,
     nm,
+    nm_ft,
     UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
 import {
@@ -65,7 +65,8 @@ import {
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
-    PERFORMANCE
+    PERFORMANCE,
+    ENGINE_TYPE
 } from '../constants/aircraftConstants';
 import {
     AIRPORT_CONSTANTS,
@@ -157,6 +158,16 @@ export default class AircraftModel {
          * @default ''
          */
         this.flightNumber = '';
+
+        /**
+         * Option to tell aircraft to take off on its own when there is no other traffic on the runway
+         *
+         * @for AircraftModel
+         * @property shouldTakeOffWhenRunwayIsClear
+         * @type boolean
+         * @default false
+         */
+        this.shouldTakeOffWhenRunwayIsClear = false;
 
         /**
          * Trasponder code
@@ -456,16 +467,6 @@ export default class AircraftModel {
 
         this.category = options.category; // 'arrival' or 'departure'
 
-        /**
-         * the following diagram illustrates all allowed mode transitions:
-         *
-         * apron -> taxi -> waiting -> takeoff -> cruise <-> landing
-         *   ^                                       ^
-         *   |                                       |
-         * new planes with                      new planes with
-         * category 'departure'                 category 'arrival'
-         */
-
         // target represents what the pilot makes of the tower's commands. It is
         // most important when the plane is in a 'guided' situation, that is it is
         // not given a heading directly, but has a fix or is following an ILS path
@@ -489,7 +490,7 @@ export default class AircraftModel {
          * @property model
          * @type {AircraftTypeDefinitionModel}
          */
-        this.model = new AircraftTypeDefinitionModel(options.model);
+        this.model = options.model;
 
         /**
          * @for AircraftModel
@@ -794,7 +795,7 @@ export default class AircraftModel {
         const rate = this.model.rate.climb;
         const { ceiling } = this.model;
 
-        if (this.model.engines.type === 'J') {
+        if (this.model.engines.type === ENGINE_TYPE.JET) {
             serviceCeilingClimbRate = 500;
         } else {
             serviceCeilingClimbRate = 100;
@@ -1356,7 +1357,7 @@ export default class AircraftModel {
         EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        runway.lastDepartedAircraftCallsign = this.callsign;
+        runway.lastDepartedAircraftModel = this;
     }
 
     /**
@@ -1540,6 +1541,26 @@ export default class AircraftModel {
             }
 
             case FLIGHT_PHASE.WAITING:
+                const iAmTheNextDeparture = this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
+
+                if (this.shouldTakeOffWhenRunwayIsClear && iAmTheNextDeparture) {
+                    const lastDeparture = this.fms.departureRunwayModel.lastDepartedAircraftModel;
+                    const iAmTheFirstEverDeparture = lastDeparture === null;
+
+                    if (!iAmTheFirstEverDeparture) {
+                        const actualDistance = nm_ft(this.distanceToAircraft(lastDeparture));
+                        const requiredDistance = this.model.calculateSameRunwaySeparationDistanceInFeet(lastDeparture.model);
+                        const towerUtilizedDistance = requiredDistance + 2000;
+
+                        if (actualDistance < towerUtilizedDistance || lastDeparture.isOnGround()) {
+                            break;
+                        }
+                    }
+
+                    this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
+                    this.takeoff(this.fms.departureRunwayModel);
+                }
+
                 break;
 
             case FLIGHT_PHASE.TAKEOFF:
@@ -2605,7 +2626,7 @@ export default class AircraftModel {
 
                 // recalculate for new areas or those that should be checked
                 if (!area.range || area.range <= 0) {
-                    new_inside = point_in_poly(this.positionModel.relativePosition, area.data.coordinates);
+                    new_inside = point_in_poly(this.positionModel.relativePosition, area.data.poly);
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
@@ -2617,7 +2638,7 @@ export default class AircraftModel {
                         // don't calculate more often than every 10 seconds
                         area.range = Math.max(
                             this.speed * 1.85 / 36 / 1000 * 10,
-                            distance_to_poly(this.positionModel.relativePosition, area.data.coordinates)
+                            distance_to_poly(this.positionModel.relativePosition, area.data.poly)
                         );
                     }
 

@@ -27,6 +27,13 @@ export const EVENT = {
     AIRPORT_CHANGE: 'airport-change',
 
     /**
+     * @memberof EVENT
+     * @property WIND_CHANGE
+     * @type {string}
+     */
+    WIND_CHANGE: 'wind-change',
+
+    /**
      * A click was registered outside of a specific `StripViewModel`
      * and the active strip, if any, should have the `active`
      * css classname removed
@@ -174,6 +181,15 @@ export const EVENT = {
      * @type {string}
      */
     TIMEWARP_TOGGLE: 'timewarp-toggle',
+
+    /**
+     * An request has been made to clear and respawn traffic at the current airport
+     *
+     * @memberof EVENT
+     * @property TRAFFIC_RESET
+     * @type {string}
+     */
+    TRAFFIC_RESET: 'traffic-reset',
 
     /**
      * @memberof EVENT

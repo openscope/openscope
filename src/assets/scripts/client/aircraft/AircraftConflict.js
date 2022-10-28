@@ -126,8 +126,8 @@ export default class AircraftConflict {
 
         // TODO: replace magic numbers with enum
         // Ignore aircraft in the first minute of their flight
-        if (gameTime - this.aircraft[0].takeoffTime < 60 ||
-            gameTime - this.aircraft[1].takeoffTime < 60) {
+        if (gameTime - this.aircraft[0].takeoffTime < 90 ||
+            gameTime - this.aircraft[1].takeoffTime < 90) {
             return;
         }
 
@@ -212,14 +212,17 @@ export default class AircraftConflict {
         // test the below only if separation is currently considered insufficient
         if (conflict) {
             const hdg_difference = abs(angle_offset(a1.heading, a2.heading));
+            let minHdgDifference = degreesToRadians(15); // FAA JO 7110.65, Para. 5-8-3-a
 
-            // TODO: couldnt these two ifs be combined to something like:
-            // if (hdg_difference >= degreesToRadians(15) && hdg_difference > degreesToRadians(165)) {}
-            if (hdg_difference >= degreesToRadians(15)) {
-                if (hdg_difference > degreesToRadians(165)) {
+            if (a1.fms.currentLeg.isSidLeg && a2.fms.currentLeg.isSidLeg) {
+                minHdgDifference = degreesToRadians(10); // FAA JO 7110.65, Para. 5-8-3-c
+            }
+
+            if (hdg_difference >= minHdgDifference) {
+                if (hdg_difference > degreesToRadians(135)) {
                     // 'opposite' courses
                     if (this.distance_delta > 0) {
-                        // OKAY IF the distance is increasing
+                        // OKAY IF the distance is increasing, since the targets have passed each other
                         conflict = false;
                         violation = false;
                     }

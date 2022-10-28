@@ -207,12 +207,24 @@ export default class AirportModel {
         };
 
         /**
-         * default wind settings for an airport
+         * current wind settings for an airport
          *
          * @property wind
          * @type {object}
          */
         this.wind = {
+            speed: 10,
+            angle: 0
+        };
+
+        /**
+         * default wind settings for an airport
+         * to preserve initial configuration
+         *
+         * @property wind
+         * @type {object}
+         */
+        this.defaultWind = {
             speed: 10,
             angle: 0
         };
@@ -362,6 +374,8 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
+        this.defaultWind.speed = data.wind.speed;
+        this.defaultWind.angle = degreesToRadians(data.wind.angle);
 
         this._initRangeRings(data.rangeRings);
         this.loadTerrain();
@@ -369,6 +383,8 @@ export default class AirportModel {
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
+
+        this.eventBus.on(EVENT.WIND_CHANGE, this.updateCurrentWind.bind(this));
     }
 
     /**
@@ -445,31 +461,29 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method buildRestrictedAreas
-     * @param restrictedAreas
+     * @param data
      */
-    buildRestrictedAreas(restrictedAreas) {
-        if (!restrictedAreas) {
+    buildRestrictedAreas(data) {
+        if (!data) {
             return;
         }
 
-        _forEach(restrictedAreas, (area) => {
-            // TODO: find a better name for `obj`
-            const obj = {};
+        _forEach(data, (areaData) => {
+            const restrictedArea = {};
 
-            if (area.name) {
-                obj.name = area.name;
+            if (areaData.name) {
+                restrictedArea.name = areaData.name;
             }
 
-            obj.height = parseElevation(area.height);
-            obj.coordinates = _map(
-                area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
-            );
+            restrictedArea.height = parseElevation(areaData.height);
+            restrictedArea.poly = areaData.poly.map((gps) => {
+                return DynamicPositionModel.calculateRelativePosition(gps, this._positionModel, this.magneticNorth);
+            });
 
-            let coords_max = obj.coordinates[0];
-            let coords_min = obj.coordinates[0];
+            let coords_max = restrictedArea.poly[0];
+            let coords_min = restrictedArea.poly[0];
 
-            _forEach(obj.coordinates, (v) => {
+            _forEach(restrictedArea.poly, (v) => {
                 coords_max = [
                     Math.max(v[0], coords_max[0]),
                     Math.max(v[1], coords_max[1])
@@ -480,9 +494,17 @@ export default class AirportModel {
                 ];
             });
 
-            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+            let labelRelativePositions = [vscale(vadd(coords_max, coords_min), 0.5)];
 
-            this.restricted_areas.push(obj);
+            if (areaData.labelPositions) {
+                labelRelativePositions = areaData.labelPositions.map((v) => {
+                    return DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth);
+                });
+            }
+
+            restrictedArea.labelRelativePositions = labelRelativePositions;
+
+            this.restricted_areas.push(restrictedArea);
         });
     }
 
@@ -708,6 +730,17 @@ export default class AirportModel {
      */
     removeAircraftFromAllRunwayQueues(aircraftId) {
         return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
+    }
+
+    /**
+     * Reset the queues for ALL runways at once
+     *
+     * @for AirportModel
+     * @method resetAllRunwayQueues
+     * @returns undefined
+     */
+    resetAllRunwayQueues() {
+        this._runwayCollection.runways.forEach((runwayModel) => runwayModel.resetQueue());
     }
 
     /**

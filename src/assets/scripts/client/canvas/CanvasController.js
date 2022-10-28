@@ -192,15 +192,6 @@ export default class CanvasController {
         this._shouldDrawTerrain = true;
 
         /**
-         * Flag used to determine if the video map should be displayed
-         *
-         * @property _shouldDrawVideoMap
-         * @type {boolean}
-         * @default true
-         */
-        this._shouldDrawVideoMap = true;
-
-        /**
          * has a console.warn been output for terrain?
          *
          * This is meant for airport contributors designing new airports
@@ -1956,8 +1947,8 @@ export default class CanvasController {
             this._ccTranslateFromCanvasOriginToAirportCenter(cc);
 
             // draw labels
-            for (const labelPosition of airspace.labelPositions) {
-                this._drawText(cc, labelPosition, [content]);
+            for (const labelRelativePosition of airspace.labelRelativePositions) {
+                this._drawText(cc, labelRelativePosition, [content]);
             }
 
             cc.restore();
@@ -2244,24 +2235,29 @@ export default class CanvasController {
 
         for (let i = 0; i < airportModel.restricted_areas.length; i++) {
             const area = airportModel.restricted_areas[i];
-            const areaRelativePositions = area.coordinates;
+            const areaRelativePositions = area.poly;
 
             this._drawRelativePoly(cc, areaRelativePositions, false);
 
             const height = area.height === Infinity ? 'UNL' : `FL ${Math.ceil(area.height / 1000) * 10}`;
-            const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(area.center);
-            let linePaddingPx = 0;
 
-            if (area.name) {
-                linePaddingPx = 6;
-                const nameLineCanvasPosition = [canvasPosition[0], canvasPosition[1] - linePaddingPx];
+            for (let j = 0; j < area.labelRelativePositions.length; j++) {
+                const canvasPosition = CanvasStageModel.calculateRoundedCanvasPositionFromRelativePosition(
+                    area.labelRelativePositions[j]
+                );
+                let linePaddingPx = 0;
 
-                cc.fillText(area.name, ...nameLineCanvasPosition);
+                if (area.name) {
+                    linePaddingPx = 6;
+                    const nameLineCanvasPosition = [canvasPosition[0], canvasPosition[1] - linePaddingPx];
+
+                    cc.fillText(area.name, ...nameLineCanvasPosition);
+                }
+
+                const altLineCanvasPosition = [canvasPosition[0], canvasPosition[1] + linePaddingPx];
+
+                cc.fillText(height, ...altLineCanvasPosition);
             }
-
-            const altLineCanvasPosition = [canvasPosition[0], canvasPosition[1] + linePaddingPx];
-
-            cc.fillText(height, ...altLineCanvasPosition);
         }
 
         cc.restore();
@@ -2282,7 +2278,7 @@ export default class CanvasController {
         const airportModel = AirportController.airport_get();
 
         // Don't bother with the canvas set up if the airport has no visible maps
-        if (!airportModel.mapCollection.hasVisibleMaps || !this._shouldDrawVideoMap) {
+        if (!airportModel.mapCollection.hasVisibleMaps) {
             return;
         }
 
@@ -2664,8 +2660,8 @@ export default class CanvasController {
      * @returns undefined
      * @private
      */
-    _onToggleVideoMap() {
-        this._shouldDrawVideoMap = !this._shouldDrawVideoMap;
+    _onToggleVideoMap(mapNames) {
+        AirportController.airport_get().mapCollection.setVisibleMaps(mapNames);
 
         this._markDeepRender();
     }

@@ -1,18 +1,108 @@
-# 6.24.0 (March 1, 2021)
+# 6.29.0 (October 1, 2022)
+### New Features
+
+### Bugfixes
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
+- <a href="https://github.com/openscope/openscope/issues/1991" target="_blank">#1991</a> - Update KPHL magnetic variation
+
+
+# 6.28.0 (July 3, 2022)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1938" target="_blank">#1938</a> - Add STARS theme
+- <a href="https://github.com/openscope/openscope/issues/1920" target="_blank">#1920</a> - Add Salt Lake City (KSLC)
+- <a href="https://github.com/openscope/openscope/issues/21" target="_blank">#21</a> - Add command search and autocomplete (tab key)
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1956" target="_blank">#1956</a> - Allow airport creators to specify requested cruise altitudes for departures
+- <a href="https://github.com/openscope/openscope/issues/1944" target="_blank">#1944</a> - Update airspace for KJFK
+- <a href="https://github.com/openscope/openscope/issues/1944" target="_blank">#1944</a> - Fix broken link in EINN airport guide
+- <a href="https://github.com/openscope/openscope/issues/1952" target="_blank">#1952</a> - Update KMCO to AIRAC 2205
+
+
+# 6.27.0 (March 18, 2022)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1829" target="_blank">#1829</a> - Add Hiroshima Airport (RJOA)
+- <a href="https://github.com/openscope/openscope/issues/1495" target="_blank">#1495</a> - Add Newark Liberty (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1870" target="_blank">#1870</a> - Add Nashville Int'l (KEWR)
+- <a href="https://github.com/openscope/openscope/issues/1776" target="_blank">#1776</a> - Add Tokyo Narita (RJAA)
+- <a href="https://github.com/openscope/openscope/issues/1664" target="_blank">#1664</a> - Add San Antonio (KSAT)
+- <a href="https://github.com/openscope/openscope/issues/1812" target="_blank">#1812</a> - Add Orlando (KMCO)
+- <a href="https://github.com/openscope/openscope/issues/1815" target="_blank">#1815</a> - Add Will Rogers World Airport (KOKC)
+- <a href="https://github.com/openscope/openscope/issues/1876" target="_blank">#1876</a> - Add Daytona Beach (KDAB)
+- <a href="https://github.com/openscope/openscope/issues/1909" target="_blank">#1909</a> - Add Omaha Eppley (KOMA)
+- <a href="https://github.com/openscope/openscope/issues/1913" target="_blank">#1913</a> - Add Richmond (KRIC)
+- <a href="https://github.com/openscope/openscope/issues/1915" target="_blank">#1915</a> - Add Memphis (KMEM)
+- <a href="https://github.com/openscope/openscope/issues/1584" target="_blank">#1584</a> - Add Daniel K Inouye (PHNL)
+- <a href="https://github.com/openscope/openscope/issues/1666" target="_blank">#1666</a> - Add Charlotte Douglas (KCLT)
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1900" target="_blank">#1900</a> - Raise descent rates of all jets to at least 3000fpm
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1782" target="_blank">#1782</a> - Update UAE airline
+- <a href="https://github.com/openscope/openscope/issues/1772" target="_blank">#1772</a> - Add/Update some Scandinavian airlines
+- <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Update ASA/SWA airlines
+- <a href="https://github.com/openscope/openscope/issues/1878" target="_blank">#1878</a> - Add Embraer 175
+- <a href="https://github.com/openscope/openscope/issues/1345" target="_blank">#1345</a> - Add reset buttons to traffic config dialog
+- <a href="https://github.com/openscope/openscope/issues/1903" target="_blank">#1903</a> - Fix formatting mistake in KEWR
+- <a href="https://github.com/openscope/openscope/issues/1924" target="_blank">#1924</a> - Update KJFK to AIRAC 2202
+
+
+# 6.26.0 (December 1, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1847" target="_blank">#1847</a> - Allow user to change the wind
+- <a href="https://github.com/openscope/openscope/issues/1848" target="_blank">#1848</a> - Allow user to toggle individual video maps on/off
+- <a href="https://github.com/openscope/openscope/issues/1854" target="_blank">#1854</a> - Accept commands to be run at spawn time
+
+### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1845" target="_blank">#1845</a> - Fix Safari compatibility issue
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KRDU to AIRAC 2106
+- <a href="https://github.com/openscope/openscope/issues/1834" target="_blank">#1834</a> - Update KAUS to AIRAC 2109
+
+
+# 6.25.0 (June 2, 2021)
+### New Features
+- <a href="https://github.com/openscope/openscope/issues/1593" target="_blank">#1593</a> - Add search bar to airport selection dialog
+- <a href="https://github.com/openscope/openscope/issues/1405" target="_blank">#1405</a> - Implement automatic departures
+
+### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Change syntax of restricted airspace definitions
+- <a href="https://github.com/openscope/openscope/issues/1722" target="_blank">#1722</a> - Update Cape Air (KAP) fleet
+- <a href="https://github.com/openscope/openscope/issues/1732" target="_blank">#1732</a> - Add support for custom pronunciation of fixes
+- <a href="https://github.com/openscope/openscope/issues/1818" target="_blank">#1818</a> - Update lodash & dependencies
+- <a href="https://github.com/openscope/openscope/issues/1820" target="_blank">#1820</a> - Update simultaneous dependent approach separation minima
+
+
+# 6.24.0 (April 1, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1756" target="_blank">#1756</a> - Add Contour Airlines (VTE)
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1762" target="_blank">#1762</a> - FMS initialization checks against current airport
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1752" target="_blank">#1752</a> - Install browser-env for tests, reclassify dev dependencies and remove unused dependencies
 - <a href="https://github.com/openscope/openscope/issues/1758" target="_blank">#1758</a> - Update GitHub build status badge
 - <a href="https://github.com/openscope/openscope/issues/1749" target="_blank">#1749</a> - Improve user input validation and associated tests
+- <a href="https://github.com/openscope/openscope/issues/1763" target="_blank">#1763</a> - Reflect merging of Singapore Cargo Airlines (SQC) into SIA
+- <a href="https://github.com/openscope/openscope/issues/1778" target="_blank">#1778</a> - Code gardening in StripViewModel.js
+- <a href="https://github.com/openscope/openscope/issues/1780" target="_blank">#1780</a> - Implement constants for wake turbulence category & engine type
+- <a href="https://github.com/openscope/openscope/issues/1771" target="_blank">#1771</a> - Change VKG airline from Thomas Cook to Sunclass
+- <a href="https://github.com/openscope/openscope/issues/1417" target="_blank">#1417</a> - Update and re-enable RJTT (Tokyo Haneda)
+- <a href="https://github.com/openscope/openscope/issues/1783" target="_blank">#1783</a> - Avoid making unnecessary copies of AircraftTypeDefinitionModel
+- <a href="https://github.com/openscope/openscope/issues/1785" target="_blank">#1785</a> - File location & EoL housekeeping
+- <a href="https://github.com/openscope/openscope/issues/1791" target="_blank">#1791</a> - Add test coverage for all command aliases
+- <a href="https://github.com/openscope/openscope/issues/1721" target="_blank">#1721</a> - Add support for restricted area custom labeling
 
 
 # 6.23.0 (February 5, 2021)
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/1656" target="_blank">#1656</a> - Add Philadelphia International Airport (KPHL)
+- <a href="https://github.com/openscope/openscope/issues/1670" target="_blank">#1670</a> - Display GPS coordinates on shift+alt+rightClick
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/1280" target="_blank">#1280</a> - Remove redundant timeout-based TAXI->WAITING mechanism

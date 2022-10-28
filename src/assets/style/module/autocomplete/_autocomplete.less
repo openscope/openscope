@@ -1,0 +1,155 @@
+#autocomplete {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: @autocomplete-z;
+    display: flex;
+    align-items: flex-end;
+    visibility: hidden;
+}
+
+#autocomplete.active {
+    visibility: visible;
+}
+
+#autocomplete > div {
+    display: inline-block;
+}
+
+#autocomplete-spacer {
+    padding: 0 0 0 18px;
+    font-size: 100%;
+    font-family: inherit;
+    white-space: pre; // don't collapse spaces
+    visibility: hidden;
+}
+
+#autocomplete-ui {
+    margin-left: -5px;
+}
+
+#autocomplete-footer {
+    height: @command-bar-height;
+    display: flex;
+    align-items: stretch;
+}
+
+#autocomplete-output,
+#autocomplete-input {
+    padding: 0 5px;
+    background-color: @medium-light-gray;
+    font-size: 100%;
+    font-family: inherit;
+    color: @dark;
+    user-select: text;
+    border: none;
+    overflow: hidden; // TODO: width imprecision with long contents despite monospace font
+    outline: none;
+    .placeholder(@medium-gray);
+}
+
+#autocomplete-output {
+    padding-right: 0;
+    color: @dark-085;
+    display: none;
+}
+
+.autocomplete_params_invalid #autocomplete-output,
+.autocomplete_params_valid #autocomplete-output {
+    display: inline-block;
+}
+
+.autocomplete_params_invalid #autocomplete-input,
+.autocomplete_params_valid #autocomplete-input {
+    padding-left: 0;
+}
+
+#autocomplete-footer-fade {
+    width: 100px;
+    background: linear-gradient(to right, @dark, @dark-0);
+}
+
+#autocomplete-popup {
+    display: inline-block; // do not grow beyond max-content even when #autocomplete-footer is wider
+    background-color: @dark;
+    color: @medium-gray;
+    box-shadow: 0 0 50px -10px rgba(0, 0, 0, 0.3);
+}
+
+#autocomplete-popup b {
+    font-weight: normal;
+    color: @medium-light-gray;
+}
+#autocomplete-popup u {
+    text-decoration: underline;
+}
+#autocomplete-popup i {
+    font-style: italic;
+}
+
+#autocomplete-suggests > table {
+    table-layout: auto; // fit contents, redistribute any extra width proportionately
+    width: 100%; // fill available width if legend/instruction are wider
+}
+
+#autocomplete-suggests td {
+    width: 100%;
+    padding: 0 10px;
+    white-space: nowrap;
+    line-height: @command-bar-height;
+    border-bottom: 1px @dark-gray solid;
+}
+
+#autocomplete-suggests tr.highlight > td,
+#autocomplete-suggests tr:hover > td {
+    background-color: @white-01;
+}
+
+#autocomplete-suggests td.autocomplete-suggestion {
+    width: 0; // do not accept redistributed extra width
+    padding: 0 20px 0 5px;
+    color: @light-gray;
+}
+
+#autocomplete-suggests td.autocomplete-param-explanation {
+    padding-left: 15px;
+}
+
+tr.valid > td.autocomplete-param-explanation {
+    box-shadow: inset 4px 0 0 @green;
+}
+tr.invalid > td.autocomplete-param-explanation {
+    box-shadow: inset 4px 0 0 @red;
+}
+
+#autocomplete-legend,
+#autocomplete-instruction {
+    padding: 3px 5px;
+    font-size: 75%;
+    border-bottom: 1px @dark-gray solid;
+}
+
+#autocomplete-instruction > span {
+    padding-right: 5px;
+}
+
+#autocomplete-instruction-navigate,
+#autocomplete-instruction-select,
+#autocomplete-instruction-commit,
+#autocomplete-instruction-revert,
+.autocomplete_params_valid #autocomplete-instruction-cancel,
+.autocomplete_params_invalid #autocomplete-instruction-cancel {
+    display: none;
+}
+
+.autocomplete_commands_matches #autocomplete-instruction-navigate,
+.autocomplete_commands_highlight #autocomplete-instruction-navigate,
+.autocomplete_commands_highlight #autocomplete-instruction-select,
+.autocomplete_params_valid #autocomplete-instruction-commit,
+.autocomplete_params_valid #autocomplete-instruction-revert,
+.autocomplete_params_invalid #autocomplete-instruction-revert,
+#autocomplete-instruction-cancel {
+    display: inline;
+}

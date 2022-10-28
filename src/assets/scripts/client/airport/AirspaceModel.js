@@ -1,10 +1,11 @@
+import _isEqual from 'lodash/isEqual';
 import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { convertToThousands, nm } from '../utilities/unitConverters';
-import { buildPolyPositionModels, point_in_poly, distance_to_poly } from '../math/vector';
+import { point_in_poly, distance_to_poly } from '../math/vector';
 
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
@@ -80,17 +81,19 @@ export default class AirspaceModel extends BaseModel {
         this.airspace_class = '';
 
         /**
-         * Position of the label of the airspace on the screen
+         * Relative positions at which to draw airspace labels
          *
          * @for AirspaceModel
-         * @property labelPositions
-         * @type {object} x,y in km
-         * @default null
+         * @property labelRelativePositions
+         * @type {array<array<number>>} [ [x,y], [x,y], ... ], in km
+         * @default []
          */
-        this.labelPositions = [];
+        this.labelRelativePositions = [];
 
         return this._init(data, airportPosition, magneticNorth);
     }
+
+    // ------------------------------ LIFECYCLE ------------------------------
 
     /**
      * Initialize the model
@@ -107,7 +110,7 @@ export default class AirspaceModel extends BaseModel {
         this.floor = convertToThousands(data.floor);
         this.ceiling = convertToThousands(data.ceiling);
         this.airspace_class = data.airspace_class;
-        this.poly = buildPolyPositionModels(data.poly, airportPosition, magneticNorth);
+        this.poly = this._buildPolyPositionModels(data.poly, airportPosition, magneticNorth);
         this.relativePoly = _map(this.poly, (v) => v.relativePosition);
 
         this._initLabelPositions(data, airportPosition, magneticNorth);
@@ -117,33 +120,30 @@ export default class AirspaceModel extends BaseModel {
 
     _initLabelPositions(data, airportPosition, magneticNorth) {
         if (!data.labelPositions) {
-            this.labelPositions = [this._calculateLabelPosition()];
+            const centerRelativePosition = this._calculateAirspaceCenterRelativePosition();
+            this.labelRelativePositions = [centerRelativePosition];
 
             return;
         }
 
-        this.labelPositions = [];
+        const labelRelativePositions = data.labelPositions.map((position) => {
+            const labelPositionModel = new StaticPositionModel(position, airportPosition, magneticNorth);
 
-        for (const position of data.labelPositions) {
-            const labelPositionModel = new StaticPositionModel(
-                position,
-                airportPosition,
-                magneticNorth
-            );
+            return labelPositionModel.relativePosition;
+        });
 
-            this.labelPositions.push(labelPositionModel.relativePosition);
-        }
+        this.labelRelativePositions = labelRelativePositions;
     }
 
     /**
-     * Calculates the center of the airspace
+     * Calculates the relative position of the center of the airspace
      *
-     * @for _calculateLabelPosition
-     * @method _calculateLabelPosition
-     * @returns {object} {x,y} coordinates in km
+     * @for AirspaceModel
+     * @method _calculateAirspaceCenterRelativePosition
+     * @returns {array} [x,y] coordinates in km
      * @private
      */
-    _calculateLabelPosition() {
+    _calculateAirspaceCenterRelativePosition() {
         let [minX, minY] = this.relativePoly[0];
         let [maxX, maxY] = this.relativePoly[0];
 
@@ -172,6 +172,8 @@ export default class AirspaceModel extends BaseModel {
         this.ceiling = INVALID_NUMBER;
         this.airspace_class = '';
     }
+
+    // ------------------------------ PUBLIC ------------------------------
 
     /**
      * Checks if a point (2D position and altitude) is within this airspace
@@ -212,5 +214,38 @@ export default class AirspaceModel extends BaseModel {
      */
     distanceToBoundary(point) {
         return nm(distance_to_poly(point, this.relativePoly));
+    }
+
+    // ------------------------------ PRIVATE ------------------------------
+
+    /**
+     * Create a StaticPositionModel for each poly
+     *
+     * If the last entry is the same as the first, remove it because the path will be closed automatically.
+     *
+     * @for AirspaceModel
+     * @method _buildPolyPositionModels
+     * @param polyList {array}
+     * @param airportPosition {StaticPositionModel}
+     * @param magneticNorth {number}
+     * @return polyPositionModels {array}
+     */
+    _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
+        const polyPositionModels = _map(polyList, (poly) => {
+            return new StaticPositionModel(poly, airportPosition, magneticNorth);
+        });
+
+        // TODO: Though its reusability is not real likely, this might as well be made into an external helper
+        // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
+        const firstIndex = 0;
+        const lastIndex = polyPositionModels.length - 1;
+        const firstIndexRelativePosition = polyPositionModels[firstIndex].relativePosition;
+        const lastIndexRelativePosition = polyPositionModels[lastIndex].relativePosition;
+
+        if (_isEqual(firstIndexRelativePosition, lastIndexRelativePosition)) {
+            polyPositionModels.pop();
+        }
+
+        return polyPositionModels;
     }
 }

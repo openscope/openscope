@@ -1,15 +1,18 @@
 {
-    "icao": "sqc",
-    "name": "Singapore Airlines Cargo",
+    "icao": "twb",
+    "name": "T'Way Airlines",
     "callsign": {
-        "name": "Singcargo",
+        "name": "Teeway",
         "callsignFormats": [
+			"#",
+			"##",
+			"###",
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B744", 7]
+            ["B738", 20]
         ]
     }
 }

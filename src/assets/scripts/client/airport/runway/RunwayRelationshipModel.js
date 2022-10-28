@@ -119,11 +119,11 @@ export default class RunwayRelationshipModel {
         if (runwaySeparationDistanceFeet >= 2500 && runwaySeparationDistanceFeet <= 3600) {
             // 2500'-3600'
             applicableLatSepMin = km(1); // 1.852km
-        } else if (runwaySeparationDistanceFeet > 3600 && runwaySeparationDistanceFeet <= 4300) {
-            // 3600'-4300'
+        } else if (runwaySeparationDistanceFeet > 3600 && runwaySeparationDistanceFeet <= 8300) {
+            // 3601'-8300'
             applicableLatSepMin = km(1.5); // 2.778km
-        } else if (runwaySeparationDistanceFeet > 4300 && runwaySeparationDistanceFeet <= 9000) {
-            // 4300'-9000'
+        } else if (runwaySeparationDistanceFeet > 8300 && runwaySeparationDistanceFeet <= 9000) {
+            // 8301'-9000'
             applicableLatSepMin = km(2); // 3.704km
         }
 
