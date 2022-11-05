@@ -482,9 +482,9 @@
                 ["LBV", "ROGAN"]
             ]
         },
-        "DADES9": {
-            "icao": "DADES9",
-            "name": "Dades Nine",
+        "DADES1": {
+            "icao": "DADES1",
+            "name": "Dades One",
             "entryPoints": {
                 "BAAMF": ["BAAMF", "CORYY", "CAPOH", "EDISN", "OLENE", "MARVI", "KOKOH"],
                 "BEAUX": ["BEAUX", ["ZINGR", "A100+"], "WORAK", "ZOPER", "CAMKO", "ROSTR", "GUURR"],
@@ -495,12 +495,12 @@
             },
             "body": ["DADES", "LZARD"],
             "rwy": {
-                "KTPA1L": ["LISAF", "GUZDA",["BORST", "A50|S210"], ["^JSTRM", "A50|S210"], "#277"],
-                "KTPA1R": ["LISAF", "GUZDA",["BORST", "A50|S210"], ["^JSTRM", "A50|S210"], "#277"],
+                "KTPA1L": ["LISAF", "GUZDA",["BORST", "A50|S210"], ["^JSTRM", "A50|S210"], "#186"],
+                "KTPA1R": ["LISAF", "GUZDA",["BORST", "A50|S210"], ["^JSTRM", "A50|S210"], "#186"],
                 "KTPA10": [["^JKBAL", "A60|S230"], "#277"],
                 "KTPA19L": [["^JKBAL", "A60|S230"], "#277"],
                 "KTPA19R": [["^JKBAL", "A60|S230"], "#277"],
-                "KTPA28": ["LISAF", "GUZDA",["BORST", "A50|S210"], ["^JSTRM", "A50|S210"], "#277"]
+                "KTPA28": ["LISAF", "GUZDA",["BORST", "A50|S210"], ["^JSTRM", "A50|S210"], "#186"]
             },
             "draw": [
                 ["BAAMF", "CORYY", "CAPOH", "EDISN", "OLENE", "MARVI", "KOKOH", "DADES"],
@@ -546,9 +546,9 @@
                 ["LZARD", "TUMPY", "PIE"]
             ]
         },
-        "MAATY3": {
-            "icao": "MAATY3",
-            "name": "Matey Three",
+        "MAATY4": {
+            "icao": "MAATY4",
+            "name": "Matey Four",
             "entryPoints": {
                "ACORI": ["ACORI", "CABLO"],
                "BADDD": ["BADDD", "GPEEE"],
@@ -748,7 +748,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "BAAMF.DADES9.KTPA19L",
+            "route": "BAAMF.DADES1.KTPA19L",
             "commands": {
                 "1L": "X OLENE A130",
                 "1R": "X OLENE A130",
@@ -779,7 +779,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "HIBAC.DADES9.KTPA19L",
+            "route": "HIBAC.DADES1.KTPA19L",
             "commands": {
                 "1L": "X GUURR A110",
                 "1R": "X GUURR A110",
@@ -810,7 +810,12 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "DEFUN.MAATY3.KTPA19L",
+            "route": "DEFUN.MAATY4.KTPA19L",
+            "commands": {
+                "19R": "X MAATY S250",
+                "19L": "X MAATY S250",
+                "28": "X MAATY S250"
+            },
             "altitude": 38000,
             "speed": 320,
             "method": "random",
