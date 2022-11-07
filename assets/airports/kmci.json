@@ -135,7 +135,6 @@
         "NOAHS": ["N39d10.44", "W94d53.82"],
         "OATHE": ["N38d50.98", "W01d47.66"],
         "OVR"  : ["N41d10.03", "W95d44.21"],
-        "OVR"  : ["N41d10.03", "W95d44.21"],
         "OZAKI": ["N39d17.72", "W95d21.57"],
         "PEGGI": ["N39d34.19", "W95d07.75"],
         "PWE"  : ["N40d12.02", "W96d12.38"],
@@ -172,7 +171,88 @@
         "YOVNU": ["N39d30.55", "W94d38.49"],
         "ZASBO": ["N39d27.49", "W94d39.40"],
         "ZESAB": ["N39d21.09", "W94d42.73"],
-        "ZUGOR": ["N39d15.65", "W94d44.34"]
+        "ZUGOR": ["N39d15.65", "W94d44.34"],
+        "DPEAK": ["N40d05m27.63", "W96d33m58.24"],
+        "ASIIX": ["N40d16m11.03", "W95d22m31.42"],
+        "JSONN": ["N39d49m07.77", "W95d21m36.09"],
+        "SDKIS": ["N39d35m57.26", "W95d05m26.47"],
+        "HHOLE": ["N39d28m15.81", "W95d02m18.28"],
+        "GURRA": ["N39d20m34.19", "W94d59m10.21"],
+        "BURBS": ["N39d32m48.44", "W94d51m57.38"],
+        "FARMS": ["N39d29m48.39", "W94d41m05.35"],
+        "GRYBL": ["N39d32m21.93", "W94d52m20.14"],
+        "HOLMS": ["N39d29m41.96", "W94d42m29.98"],
+        "ARCOS": ["N39d29m17.67", "W94d54m06.37"],
+        "INNIE": ["N39d22m29.24", "W94d42m35.40"],
+        "BHAMA": ["N39d22m19.40", "W94d40m35.34"],
+        "SHIBA": ["N39d26m18.12", "W94d55m57.20"],
+        "FIDVU": ["N39d17m53.15", "W94d48m58.47"],
+        "BOOMY": ["N39d14m15.43", "W94d50m02.87"],
+        "STAKE": ["N39d26m32.04", "W94d57m32.02"],
+        "KALEB": ["N39d17m53.04", "W94d50m24.89"],
+        "GOONR": ["N39d14m57.40", "W94d51m16.47"],
+        "KRTNY": ["N37d21m20.86", "W93d20m02.24"],
+        "NELVY": ["N37d54m58.87", "W93d38m56.56"],
+        "FLTCH": ["N38d16m21.34", "W93d50m54.36"],
+        "MHOMS": ["N38d45m43.64", "W94d10m06.23"],
+        "RWLND": ["N38d54m09.35", "W94d19m11.56"],
+        "SALVY": ["N39d05m41.36", "W94d22m57.82"],
+        "DMANN": ["N39d13m55.88", "W94d25m40.41"],
+        "CLRKS": ["N39d05m06.85", "W94d28m31.86"],
+        "JAZEN": ["N39d13m46.11", "W94d35m56.84"],
+        "BYKER": ["N39d17m44.94", "W94d34m46.32"],
+        "LEAHH": ["N39d04m47.50", "W94d29m01.60"],
+        "JUNOS": ["N39d14m17.49", "W94d37m14.24"],
+        "KAALA": ["N39d16m50.70", "W94d36m28.76"],
+        "MAGGE": ["N39d03m14.19", "W94d31m11.19"],
+        "POINT": ["N39d12m16.53", "W94d43m12.23"],
+        "MAMMA": ["N39d12m27.75", "W94d45m25.02"],
+        "WILII": ["N39d00m25.20", "W94d34m19.95"],
+        "PAWWS": ["N38d59m59.28", "W94d35m12.23"],
+        "COOKD": ["N39d04m20.88", "W94d43m58.24"],
+        "JERLD": ["N39d04m12.23", "W94d44m54.42"],
+        "BLWRS": ["N40d35m48.89", "W93d58m03.39"],
+        "BULET": ["N40d07m58.57", "W92d35m29.10"],
+        "LAPOW": ["N38d47m45.26", "W90d28m31.00"],
+        "MLOTT": ["N39d00m04.69", "W90d56m39.58"],
+        "OKOYE": ["N39d30m30.74", "W92d08m42.58"],
+        "EUING": ["N39d44m11.25", "W92d41m51.67"],
+        "RUDDH": ["N39d37m50.27", "W93d52m30.32"],
+        "PAHLL": ["N39d31m59.80", "W94d08m31.37"],
+        "LAMNT": ["N39d30m48.02", "W94d23m23.69"],
+        "SCIPR": ["N39d29m20.51", "W94d37m34.25"],
+        "BUDIE": ["N39d28m56.86", "W94d36m38.18"],
+        "EVALN": ["N39d30m24.92", "W94d23m11.55"],
+        "CHRZZ": ["N39d27m02.14", "W94d25m16.31"],
+        "GINJR": ["N39d22m21.20", "W94d40m55.28"],
+        "GIRLZ": ["N39d22m36.88", "W94d44m01.21"],
+        "CROKS": ["N39d22m37.90", "W94d26m44.31"],
+        "FLRNC": ["N39d17m05.64", "W94d37m10.44"],
+        "DAUSN": ["N39d15m36.10", "W94d37m36.96"],
+        "BRSKT": ["N39d14m53.98", "W94d36m23.42"],
+        "HULLL": ["N39d17m02.71", "W94d35m45.16"],
+        "FAKIR": ["N39d22m13.71", "W94d26m21.39"],
+        "MINNO": ["N39d23m03.76", "W94d19m03.78"],
+        "SAWKY": ["N39d17m54.72", "W94d25m07.33"],
+        "ZOURA": ["N38d17m27.71", "W96d08m17.78"],
+        "STASN": ["N37d37m33.59", "W95d35m36.61"],
+        "WUTNG": ["N38d48m30.42", "W95d24m58.59"],
+        "SMALS": ["N38d58m57.93", "W95d10m12.32"],
+        "MENEY": ["N39d08m18.91", "W95d04m43.41"],
+        "NOMEE": ["N39d16m56.59", "W94d59m40.71"],
+        "OVALE": ["N39d05m45.60", "W95d03m20.99"],
+        "BUZZR": ["N39d18m33.42", "W94d50m21.55"],
+        "ERICM": ["N39d20m32.43", "W94d49m46.35"],
+        "ONEEL": ["N39d19m27.74", "W94d48m39.42"],
+        "TOBYN": ["N39d17m18.88", "W94d49m17.44"],
+        "RAHBB": ["N39d05m21.88", "W95d02m56.41"],
+        "THICC": ["N39d05m51.65", "W94d57m38.95"],
+        "ROCNE": ["N39d12m28.01", "W94d45m32.56"],
+        "VERNS": ["N39d12m10.51", "W94d41m59.65"],
+        "TAHCO": ["N39d02m30.52", "W94d59m28.99"],
+        "GUACC": ["N39d02m05.23", "W94d59m04.75"],
+        "GAYLZ": ["N39d05m46.87", "W94d49m27.50"],
+        "BAUNR": ["N39d05m05.35", "W94d48m13.79"]
     },
     "runways":[
         {
@@ -225,9 +305,9 @@
                 ["MCI", "STJ*"]
             ]
         },
-        "LAKES2": {
-            "icao": "LAKES2",
-            "name": "Lakes Two",
+        "LAKES3": {
+            "icao": "LAKES3",
+            "name": "Lakes Three",
             "rwy": {
                 "KMCI1L": [],
                 "KMCI1R": [],
@@ -338,13 +418,12 @@
         }
     },
     "stars": {
-        "BQS5": {
-            "icao": "BQS5",
-            "name": "Braymer Five",
+        "BQS7": {
+            "icao": "BQS7",
+            "name": "Braymer Seven",
             "entryPoints": {
                 "IRK": ["IRK", "FONIX"],
                 "LMN": ["LMN"],
-                "MCM": ["MCM", "CORIM"],
                 "SPI": ["SPI", "UIN", "HUGIN"]
             },
             "body": ["BQS", "DONNS"],
@@ -359,8 +438,7 @@
             "draw": [
                 ["LMN*", "BQS", "DONNS", "MATTZ", "BYGEC"],
                 ["SPI*", "UIN", "HUGIN", "BQS"],
-                ["IRK*", "FONIX", "BQS"],
-                ["MCM*", "CORIM", "BQS"]
+                ["IRK*", "FONIX", "BQS"]
             ]
         },
         "JHAWK6": {
@@ -384,27 +462,80 @@
                 ["EMP*", "JHAWK"]
             ]
         },
-        "RBA3": {
-            "icao": "RBA3",
-            "name": "Robinson Three",
+        "JSONN2": {
+            "icao": "JSONN2",
+            "name": "Jason Two",
             "entryPoints": {
-                "FOD": ["FOD", "KARAA"],
-                "OVR": ["OVR", "HILDE"],
-                "PWE": ["PWE"]
+                "ASIIX": [["ASIIX", "A190+|A230-"]],
+                "DPEAK": [["DPEAK", "A190+|A230-"]],
+                "JSONN": []
             },
-            "body": ["RBA", "JUDAA"],
+            "body": [["JSONN", "A120"], "SDKIS"],
             "rwy": {
-                "KMCI1L": ["PEGGI", ["HUGGY", "S210"], "#190"],
-                "KMCI1R": ["PEGGI", ["HUGGY", "S210"], "#190"],
-                "KMCI9": [],
-                "KMCI19L": ["#110"],
-                "KMCI19R": ["#110"],
-                "KMCI27": []
+                "KMCI1L": ["STAKE", ["KALEB", "A70|S210"], ["^GOONR", "A70"], "#191"],
+                "KMCI1R": ["SHIBA", ["FIDVU", "A70|S210"], ["^BOOMY", "A70"], "#191"],
+                "KMCI9": ["HHOLE", ["GURRA", "A50|S210"]],
+                "KMCI19L": [["BURBS", "A50+"], ["FARMS", "A40|S210"]],
+                "KMCI19R": [["GRYBL", "A50+"], ["HOLMS", "A40|S210"]],
+                "KMCI27": ["ARCOS", "INNIE", ["^BHAMA", "A60|S210"], "#094"]
             },
             "draw": [
-                ["PWE*", "RBA", "JUDAA", "PEGGI", "HUGGY"],
-                ["FOD*", "KARAA", "RBA"],
-                ["OVR*", "HILDE", "RBA"]
+                ["DPEAK", "JSONN", "ASIIX"],
+                ["JSONN", "SDKIS", "HHOLE", "GURRA"],
+                ["FARMS", "BURBS", "SDKIS", "GRYBL", "HOLMS"],
+                ["BHAMA", "INNIE", "ARCOS", "SDKIS", "SHIBA", "FIDVU", "BOOMY"],
+                ["SDKIS", "STAKE", "KALEB", "GOONR"]
+            ]
+        },
+        "MHOMS2": {
+            "icao": "MHOMS2",
+            "name": "Mahomes Two",
+            "entryPoints": {
+                "KRTNY": ["KRTNY", "NELVY", "KRAZO", "FLTCH", "TYGER"],
+                "MHOMS": [],
+                "NELVY": ["NELVY", "KRAZO", "FLTCH", "TYGER"]
+            },
+            "body": [["MHOMS", "A120"], ["RWLND", "A70+"]],
+            "rwy": {
+                "KMCI1L": [["PAWWS", "A60+"], ["JERLD", "A50|S210"]],
+                "KMCI1R": [["WILII", "A60+"], ["COOKD", "A50|S210"]],
+                "KMCI9": ["MAGGE", "POINT", ["^MAMMA", "A60|S210"], "#274"],
+                "KMCI19L": ["CLRKS", "JAZEN", ["^BYKER", "A70|S210"], "#011"],
+                "KMCI19R": ["LEAHH", "JUNOS", ["^KAALA", "A70|S210"], "#011"],
+                "KMCI27": [["SALVY", "A60+"], ["DMANN", "A40"]]
+            },
+            "draw": [
+                ["KRTNY", "NELVY", "KRAZO", "FLTCH", "TYGER", "MHOMS", "RWLND"],
+                ["DMANN", "SALVY", "RWLND", "CLRKS", "JAZEN", "BYKER"],
+                ["KAALA", "JUNOS", "LEAHH", "RWLND", "MAGGE", "POINT", "MAMMA"],
+                ["COOKD", "WILII", "RWLND", "PAWWS", "JERLD"]
+            ]
+        },
+        "RUDDH1": {
+            "icao": "RUDDH1",
+            "name": "Ruddy One",
+            "entryPoints": {
+                "BLWRS": [["BLWRS", "A230"]],
+                "BULET": [["BULET", "A240"]],
+                "EUING": ["EUING"],
+                "LAPOW": ["LAPOW", "MLOTT", ["OKOYE", "A240+"], "EUING"],
+                "RUDDH": []
+            },
+            "body": [["RUDDH", "A120"], ["PAHLL", "A70+"]],
+            "rwy": {
+                "KMCI1L": ["CROKS", "FLRNC", ["DAUSN", "A70|S210"], "#191"],
+                "KMCI1R": ["FAKIR", "HULLL", ["BRSKT", "A70|S210"], "#191"],
+                "KMCI9": ["CHRZZ", "GINJR", ["^GIRLZ", "A60|S210"], "#274"],
+                "KMCI19L": [["EVALN", "A60+"], ["BUDIE", "A40|S210"]],
+                "KMCI19R": [["LAMNT", "A60+"], ["SCIPR", "A40|S210"]],
+                "KMCI27": [["MINNO", "A60+"], ["SAWKY", "A50|S210"]]
+            },
+            "draw": [
+                ["LAPOW", "MLOTT", "OKOYE", "EUING", "RUDDH", "FONIX", "BULET"],
+                ["BLWRS", "RUDDH", "PAHLL"],
+                ["SCIPR", "LAMNT", "PAHLL", "EVALN", "BUDIE"],
+                ["GIRLZ", "GINJR", "CHRZZ", "PAHLL", "MINNO", "SAWKY"],
+                ["BRSKT", "HULLL", "FAKIR", "PAHLL", "CROKS", "FLRNC", "DAUSN"]
             ]
         },
         "TYGER6": {
@@ -425,6 +556,31 @@
             "draw": [
                 ["SGF*", "KRAZO", "TYGER", "TRIKE", "MORAY", "SLABB"]
             ]
+        },
+        "WUTNG1": {
+            "icao": "WUTNG1",
+            "name": "Wutang One",
+            "entryPoints": {
+                "STASN": ["STASN"],
+                "WUTNG": [],
+                "ZOURA": ["ZOURA"]
+            },
+            "body": [["WUTNG", "A120"], "HOOZE", ["SMALS", "A70+"]],
+            "rwy": {
+                "KMCI1L": [["TAHCO", "A60+"], ["GAYLZ", "A50|S210"]],
+                "KMCI1R": [["GUACC", "A60+"], ["BAUNR", "A50|S210"]],
+                "KMCI9": [["MENEY", "A60+"], ["NOMEE", "A50|S210"]],
+                "KMCI19L": ["RAHBB", ["TOBYN", "A70|S210"], ["^ONEEL", "A70"], "#011"],
+                "KMCI19R": ["OVALE", ["BUZZR", "A70|S210"], ["^ERICM", "A70"], "#011"],
+                "KMCI27": ["ROCNE", ["^VERNS", "A60|S210"], "#094"]
+            },
+            "draw": [
+                ["ZOURA", "WUTNG", "STASN"],
+                ["WUTNG", "HOOZE", "SMALS"],
+                ["NOMEE", "MENEY", "SMALS", "THICC", "ROCNE", "VERNS"],
+                ["ONEEL", "TOBYN", "RAHBB", "SMALS", "OVALE", "BUZZR", "ERICM"],
+                ["GAYLZ", "TAHCO", "SMALS", "GUACC", "BAUNR"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -433,6 +589,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.CHIEF7.CATTS..SLOWR..HLC",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -459,7 +623,15 @@
             "origin": "KMCI",
             "destination": "",
             "category": "departure",
-            "route": "KMCI1R.LAKES2.COU..FAM",
+            "route": "KMCI1R.LAKES3.COU..FAM",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -491,7 +663,15 @@
             "origin": "KMCI",
             "destination": "",
             "category": "departure",
-            "route": "KMCI1R.LAKES2.SPI..VHP",
+            "route": "KMCI1R.LAKES3.SPI..VHP",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -524,6 +704,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.RACER7.DOSOA..TUL",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -552,6 +740,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1R.RACER7.SGF..MEM",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -580,6 +776,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1R.ROYAL9.ARENZ..IOW",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -612,6 +816,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1R.ROYAL9.BODYN..LOAMY..KEOKK..BDF",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -644,6 +856,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.ROYAL9.TONCE..OVR",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -672,6 +892,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.TIFTO6.TIFTO..MCK",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -701,6 +929,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.WLDCT5.SLN..HYS..OATHE..HGO",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -728,6 +964,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.WLDCT5.SLN..GCK",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -755,6 +999,14 @@
             "destination": "",
             "category": "departure",
             "route": "KMCI1L.WLDCT5.SLN..LAA",
+            "commands": {
+                "1L": "fph",
+                "1R": "fph",
+                "9": "fph",
+                "19L": "fph",
+                "19": "fph",
+                "27": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -781,7 +1033,7 @@
             "origin": "",
             "destination": "KMCI",
             "category": "arrival",
-            "route": "BDF.J26.IRK.BQS5.KMCI1R",
+            "route": "LAPOW.RUDDH1.KMCI1R",
             "altitude": 34000,
             "speed": 320,
             "method": "random",
@@ -813,8 +1065,8 @@
             "origin": "",
             "destination": "KMCI",
             "category": "arrival",
-            "route": "ICT..EMP.JHAWK6.KMCI1L",
-            "altitude": 18000,
+            "route": "STASN.WUTNG1.KMCI1L",
+            "altitude": 36000,
             "speed": 320,
             "method": "random",
             "rate": 2,
@@ -841,11 +1093,11 @@
             "origin": "",
             "destination": "KMCI",
             "category": "arrival",
-            "route": "PWE.RBA3.KMCI1L",
-            "altitude": 18000,
+            "route": "OVR..ASIIX.JSONN2.KMCI1L",
+            "altitude": 37000,
             "speed": 320,
             "method": "random",
-            "rate": 1.1,
+            "rate": 5.1,
             "airlines": [
                 ["aal", 15],
                 ["asa", 2],
@@ -869,11 +1121,11 @@
             "origin": "",
             "destination": "KMCI",
             "category": "arrival",
-            "route": "SGF.TYGER6.KMCI1R",
+            "route": "KRTNY.MHOMS2.KMCI1R",
             "altitude": 18000,
             "speed": 320,
             "method": "random",
-            "rate": 1.1,
+            "rate": 5.1,
             "airlines": [
                 ["aal", 15],
                 ["ash", 5],
