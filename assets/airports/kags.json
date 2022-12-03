@@ -93,10 +93,43 @@
         "JACET": ["N33d29m41.42", "W82d06m27.81"],
         "BOBBR": ["N33d19m57.07", "W83d08m19.47"],
         "BBOAT": ["N33d16m50.57", "W83d28m10.00"],
-        "GAIRY": ["N33d30m35.72", "W83d38m18.20"]
+        "GAIRY": ["N33d30m35.72", "W83d38m18.20"],
+        "LIDAS": ["N33d38m01.09", "W84d16m09.13"],
+        "ERWIN": ["N33d38m03.00", "W84d06m02.00"],
+        "HRS": [34.9429978, -83.9156736],
+        "BBASS": ["N33d11m32.70", "W83d59m21.10"],
+        "BBAIT": ["N33d07m14.23", "W84d46m13.19"],
+        "SCAIL": ["N33d02m01.32", "W85d39m31.56"],
+        "MGM": [32.2222817, -86.3197272],
+        "SUG": [35.4065064, -82.2686142],
+        "UNMAN": ["N35d01m19.02", "W82d13m48.50"],
+        "PELAM": ["N34d57m43.12", "W82d13m27.00"],
+        "ILEYO": ["N34d54m45.30", "W82d13m09.54"],
+        "DUNKE": ["N34d49m54.23", "W82d12m40.51"],
+        "PETON": ["N34d38m45.05", "W82d11m34.30"],
+        "REEDY": ["N34d27m43.06", "W82d10m29.14"],
+        "GRD": [34.2515661, -82.1541489],
+        "LUKES": ["N34d01m51.15", "W82d09m26.54"],
+        "BLANE": ["N33d54m23.26", "W82d09m33.04"],
+        "COLON": ["N33d49m02.96", "W82d09m37.73"],
+        "HEDIL": ["N33d06m46.27", "W81d45m12.61"],
+        "MILEN": ["N32d54m02.88", "W81d36m33.99"],
+        "SPONG": ["N32d29m36.13", "W81d23m13.03"],
+        "RIPPI": ["N32d54m20.25", "W83d20m19.52"]
     },
     "restricted": [
-        
+        {
+            "name": "R-3004A",
+            "height": "3499ft",
+            "poly": [
+                ["N33d21m54", "W82d12m14"],
+                ["N33d19m44", "W82d12m14"],
+                ["N33d16m21", "W82d17m59"],
+                ["N33d17m30", "W82d22m59"],
+                ["N33d21m16", "W82d18m46"],
+                ["N33d22m16", "W82d16m59"]
+            ]
+        }
     ],
     "runways":[
         {
@@ -118,7 +151,9 @@
         
     ],
     "airways": {
-        "T290": ["BBOAT", "BOBBR", "JACET"]
+        "GAIRY2": ["LIDAS", "ERWIN", "GAIRY", "IRQ"],
+        "T290": ["MGM", "SCAIL", "BBAIT", "BBASS", "BBOAT", "BOBBR", "JACET"],
+        "V185": ["SUG", "UNMAN", "PELAM", "ILEYO", "DUNKE", "PETON", "REEDY", "GRD", "LUKES", "BLANE", "COLON", "IRQ", "BEANS", "HEDIL", "SARDY", "MILEN", "DOVER", "SPONG", "SAV"]
     },
     "sids": {
         "CHATT6": {
@@ -303,23 +338,22 @@
             "origin": "",
             "destination": "kags",
             "category": "arrival",
-            "route": "GAIRY..IRQ",
+            "route": "LIDAS.GAIRY2.IRQ",
             "altitude": 13000,
             "speed": 290,
             "method": "random",
             "rate": 1.5,
             "airlines": [
                 ["dal/short", 3],
-                ["edv", 13],
-                ["n/fastGA", 9]
+                ["edv", 13]
             ]
         },
         {
             "origin": "",
             "destination": "kags",
             "category": "arrival",
-            "route": "AHN..IRQ",
-            "altitude": 13000,
+            "route": "HRS..AHN..IRQ",
+            "altitude": 15000,
             "speed": 290,
             "method": "random",
             "rate": 1.5,
@@ -332,7 +366,7 @@
             "origin": "",
             "destination": "kags",
             "category": "arrival",
-            "route": "BBOAT.T290.JACET",
+            "route": "MGM.T290.JACET",
             "altitude": 19000,
             "speed": 290,
             "method": "random",
@@ -340,6 +374,19 @@
             "airlines": [
                 ["eny", 3],
                 ["n/fastGA", 9]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kags",
+            "category": "arrival",
+            "route": "SUG.V185.IRQ",
+            "altitude": 12000,
+            "speed": 290,
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
             ]
         },
         {
