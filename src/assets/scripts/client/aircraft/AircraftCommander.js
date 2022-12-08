@@ -411,6 +411,19 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
+        if (aircraft.flightPhase === FLIGHT_PHASE.APRON) {
+            return [false, 'we\'re still at the gate'];
+        }
+
+        if (aircraft.flightPhase === FLIGHT_PHASE.TAXI) {
+            const runway = aircraft.fms.departureRunwayModel;
+            const readback = {};
+            readback.log = `we're still taxiing to Runway ${runway.name}`;
+            readback.say = `we're still taxiing to Runway ${radio_runway(runway.name)}`;
+
+            return [false, readback];
+        }
+
         return aircraft.pilot.maintainPresentHeading(aircraft);
     }
 
