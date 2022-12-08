@@ -53,6 +53,27 @@
     bottom: @command-bar-height;
 }
 
+.control-item-content.wide {
+    right: 0;
+    width: 450px;
+}
+
+.control-item-content ul {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.control-item-content li {
+    color: @medium-light-gray;
+    padding: calc(@command-bar-height / 4) 10px;
+    
+    line-height: 19px;
+
+    border-bottom-color: @medium-gray;
+    border-bottom-width: 1px;
+    border-bottom-style: inset;
+}
+
 .control-item-content a {
     color: @medium-light-gray;
     text-decoration: none;
