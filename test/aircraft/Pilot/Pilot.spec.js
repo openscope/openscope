@@ -16,6 +16,7 @@ import {
 } from '../../fixtures/aircraftFixtures';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // mocks
@@ -1126,7 +1127,7 @@ ava('.maintainPresentHeading() sets the #mcp with the correct modes and values',
     t.true(aircraftModel.pilot._mcp.heading === aircraftModel.heading);
 });
 
-ava('.maintainPresentHeading() returns a success message when finished', (t) => {
+ava('.maintainPresentHeading() returns a success message when finished (general case)', (t) => {
     const expectedResult = [
         true,
         {
@@ -1135,6 +1136,21 @@ ava('.maintainPresentHeading() returns a success message when finished', (t) => 
         }
     ];
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const result = aircraftModel.pilot.maintainPresentHeading(aircraftModel);
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.maintainPresentHeading() returns a success message when finished (pre-departure)', (t) => {
+    const expectedResult = [
+        true,
+        {
+            log: 'fly runway heading',
+            say: 'fly runway heading'
+        }
+    ];
+    const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
     const result = aircraftModel.pilot.maintainPresentHeading(aircraftModel);
 
     t.deepEqual(result, expectedResult);
