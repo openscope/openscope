@@ -328,6 +328,12 @@ _Aliases -_ `fph`
 
 _Information -_ This command has the aircraft fly straight ahead, regardless of assigned routing. 
 
+For departure aircraft prior to take off, this command is interpreted as "fly
+runway heading". The aircraft will ignore any assigned routing and will instead
+maintain runway heading upon take off, until otherwise instructed.
+
+The command is invalid for aircraft that are at the gate, or still in the process of taxiing.
+
 _Syntax -_ `AAL123 fph`
 
 ### Heading
