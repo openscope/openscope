@@ -227,7 +227,9 @@ export default class Pilot {
         this._mcp.setHeadingHold();
 
         const readback = {};
-        const runwayOrPresent = aircraftModel.flightPhase === FLIGHT_PHASE.WAITING ? 'runway' : 'present';
+        const runwayOrPresent = (
+                aircraftModel.flightPhase === FLIGHT_PHASE.WAITING || aircraftModel.flightPhase === FLIGHT_PHASE.TAKEOFF
+            ) ? 'runway' : 'present';
         readback.log = `fly ${runwayOrPresent} heading`;
         readback.say = `fly ${runwayOrPresent} heading`;
 
