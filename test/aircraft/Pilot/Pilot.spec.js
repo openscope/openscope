@@ -1118,6 +1118,21 @@ ava('.maintainHeading() calls .cancelApproachClearance()', (t) => {
     t.true(cancelApproachClearanceSpy.called);
 });
 
+ava('.maintainPresentHeading() calls .cancelApproachClearance()', (t) => {
+    const approachTypeMock = 'ils';
+    const runwayModelMock = airportModelFixture.getRunway('19L');
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
+
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
+
+    t.true(aircraftModel.pilot.hasApproachClearance);
+
+    aircraftModel.pilot.maintainPresentHeading(aircraftModel);
+
+    t.true(cancelApproachClearanceSpy.called);
+});
+
 ava('.maintainPresentHeading() sets the #mcp with the correct modes and values', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
@@ -1154,21 +1169,6 @@ ava('.maintainPresentHeading() returns a success message when finished (pre-depa
     const result = aircraftModel.pilot.maintainPresentHeading(aircraftModel);
 
     t.deepEqual(result, expectedResult);
-});
-
-ava('.maintainPresentHeading() calls .cancelApproachClearance()', (t) => {
-    const approachTypeMock = 'ils';
-    const runwayModelMock = airportModelFixture.getRunway('19L');
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
-
-    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
-
-    t.true(aircraftModel.pilot.hasApproachClearance);
-
-    aircraftModel.pilot.maintainPresentHeading(aircraftModel);
-
-    t.true(cancelApproachClearanceSpy.called);
 });
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
