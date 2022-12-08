@@ -681,10 +681,6 @@ export default class AircraftCommander {
         const roundedWindSpeed = round(wind.speed);
         const readback = {};
 
-        if (!isInQueue) {
-            return [false, 'unable to take off, we\'re not at any runway'];
-        }
-
         if (aircraft.isAirborne()) {
             return [false, 'unable to take off, we\'re already airborne'];
         }
@@ -702,6 +698,10 @@ export default class AircraftCommander {
 
         if (aircraft.flightPhase === FLIGHT_PHASE.TAKEOFF) {
             return [false, 'already taking off'];
+        }
+
+        if (!isInQueue) {
+            return [false, 'unable to take off, we\'re not at any runway'];
         }
 
         if (spotInQueue > 0) {
