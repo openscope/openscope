@@ -243,7 +243,7 @@ class GameController {
         this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
 
         this.game_updateScore();
-        this.game_updateScoreHistory(GAME_EVENTS_DESCRIPTION[gameEvent], GAME_EVENTS_POINT_VALUES[gameEvent]);
+        this.updateScoreHistory(gameEvent);
     }
 
 
@@ -474,15 +474,17 @@ class GameController {
 
     /**
      * @for GameController
-     * @method game_updateScoreHistory
-     * @param message {string}
+     * @method updateScoreHistory
+     * @param event {String} one of the events listed in GAME_EVENTS
      */
-    game_updateScoreHistory(message, points) {
+    updateScoreHistory(event) {
+        var points = GAME_EVENTS_POINT_VALUES[event]
+
         if (points < 0) {
             points = '<span style="color: rgba(255, 64, 64, 0.8)">' + points + '</span>'
         }
 
-        const html = $(`<li>${message}: ${points}</li>`);
+        const html = $(`<li>${GAME_EVENTS_DESCRIPTION[event]}: ${points}</li>`);
         const listView = $(SELECTORS.DOM_SELECTORS.SCORE_LOG);
 
         listView.append(html);
