@@ -4,6 +4,7 @@
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/2022" target="_blank">#2022</a> - Improve handling of "fph" while still on ground
+- <a href="https://github.com/openscope/openscope/issues/2026" target="_blank">#2026</a> - Improve error messages from invalid takeoff commands
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
