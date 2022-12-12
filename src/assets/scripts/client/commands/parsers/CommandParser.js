@@ -300,6 +300,6 @@ export default class CommandParser {
             return false;
         }
 
-        return command.isSystemCommand && callsignOrSystemCommandName !== PARSED_COMMAND_NAME.TRANSMIT;
+        return command.isSystemCommand;
     }
 }
