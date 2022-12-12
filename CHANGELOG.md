@@ -11,6 +11,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1991" target="_blank">#1991</a> - Update KPHL magnetic variation
 - <a href="https://github.com/openscope/openscope/issues/1787" target="_blank">#1787</a> - Standardize JSON schemas
 - <a href="https://github.com/openscope/openscope/issues/1912" target="_blank">#1912</a> - Update tutorial for auto-departure feature
+- <a href="https://github.com/openscope/openscope/issues/2030" target="_blank">#2030</a> - Implement 'tw' alias for 'timewarp' command
 
 
 # 6.28.0 (July 3, 2022)
