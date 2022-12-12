@@ -481,7 +481,7 @@ _Syntax -_ `pause`
 
 ### Timewarp
 
-~~_Aliases -_ `tw`~~
+_Aliases -_ `tw`
 
 _Information -_ Sets the rate at which time passes, normal is `1`. While the time warp button can only set the rate to `1`, `2`, or `5`, the timewarp command accepts any value greater than or equal to 1.
 
