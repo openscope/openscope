@@ -63,6 +63,13 @@ ava('sets #command with the correct name when provided a system command', t => {
     t.true(tutorialModel.command === PARSED_COMMAND_NAME.TUTORIAL);
 });
 
+ava('sets #command with identical name when provided an alias of a system command', t => {
+    const twModel = new CommandParser(TW_50_MOCK);
+    const timewarpModel = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.is(twModel.command, timewarpModel.command);
+});
+
 ava('sets #command with the correct name when provided a transmit command', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const model = new CommandParser(commandStringMock);
@@ -129,4 +136,14 @@ ava('._isSystemCommand() returns true if callsignOrSystemCommandName exists with
     t.true(pauseModel._isSystemCommand(PAUSE_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
     t.true(timewarpModel._isSystemCommand(TIMEWARP_50_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
     t.true(tutorialModel._isSystemCommand(TUTORIAL_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
+});
+
+ava('._isSystemCommand() returns identical outcome for alias of a system command', t => {
+    const twModel = new CommandParser(TW_50_MOCK);
+    const timewarpModel = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.is(
+        twModel._isSystemCommand(TW_50_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]),
+        timewarpModel._isSystemCommand(TIMEWARP_50_MOCK.split(COMMAND_ARGS_SEPARATOR)[0])
+    );
 });
