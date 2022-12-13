@@ -98,13 +98,13 @@ export default class SettingsController {
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
-            if (opt.type !== 'select') {
-                return;
+            if (opt.type === 'select') {
+                const $container = this._buildSelectInputTemplate(opt);
+                this.$dialogBody.append($container);
+            } else {
+                const $container = this._buildTextInputTemplate(opt);
+                this.$dialogBody.append($container);
             }
-
-            const $container = this._buildOptionTemplate(opt);
-
-            this.$dialogBody.append($container);
         });
 
         const $version = this._buildVersionTemplate();
@@ -138,12 +138,12 @@ export default class SettingsController {
      * Build the html for a game option and its corresponding value elements.
      *
      * @for SettingsController
-     * @method _buildOptionTemplate
+     * @method _buildSelectInputTemplate
      * @param option {object}
      * @return $container {jquery Element}
      * @private
      */
-    _buildOptionTemplate(option) {
+    _buildSelectInputTemplate(option) {
         const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
         const $label = $(UI_OPTION_LABEL_TEMPLATE);
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
@@ -155,7 +155,7 @@ export default class SettingsController {
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
-            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.optionList[i], selectedOption);
+            const $optionSelectTempalate = this._buildSelectOptionTemplate(option.optionList[i], selectedOption);
 
             $selector.append($optionSelectTempalate);
         }
@@ -177,18 +177,63 @@ export default class SettingsController {
      * Build the html for a select option.
      *
      * @for SettingsController
-     * @method _buildOptionTemplate
+     * @method _buildSelectOptionTemplate
      * @param optionData {array<string>}
      * @param selectedOption {string}
      * @return optionSelectTempalate {HTML Element}
      * @private
      */
-    _buildOptionSelectTemplate(optionData, selectedOption) {
+    _buildSelectOptionTemplate(optionData, selectedOption) {
         if (optionData.value === selectedOption) {
             return `<option value="${optionData.value}" selected>${optionData.displayLabel}</option>`;
         }
 
         return `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
+    }
+
+    /**
+     * Build text input form element
+     *
+     * @for SettingsController
+     * @method _buildTextInputTemplate
+     * @param option {object}
+     * @return $container {jquery Element}
+     */
+    _buildTextInputTemplate(option) {
+        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
+        const $label = $(UI_OPTION_LABEL_TEMPLATE);
+        const currentValue = GameController.game.option.getOptionByName(option.name);
+        const $selector = $(`<input class="form-input" step="any"
+                                    type="${option.type}"
+                                    name="${option.name}"
+                                    value="${currentValue}">`);
+        const $unit = $(`<span class="form-value">${option.unit}</span>`);
+
+        $container.append($label);
+        $label.text(option.description);
+
+        // TODO: this should be moved to proper event handler method and only assigned here.
+        $selector.change((event) => {
+            const $currentTarget = $(event.currentTarget);
+
+            if (!option.validationHandler($currentTarget.val())) {
+                // User didn't enter a valid value, revert to the old value
+                $selector.val(currentValue);
+                return;
+            }
+
+            let value = $currentTarget.val();
+            if (option.type === 'number') {
+                value = parseFloat(value);
+            }
+
+            GameController.game.option.setOptionByName($currentTarget.attr('name'), value);
+        });
+
+        $container.append($selector);
+        $container.append($unit);
+
+        return $container;
     }
 
     /**

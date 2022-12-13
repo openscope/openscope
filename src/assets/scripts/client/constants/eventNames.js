@@ -310,7 +310,14 @@ export const EVENT = {
      * @property ZOOM_VIEWPORT
      * @type {string}
      */
-    ZOOM_VIEWPORT: 'zoom-viewport'
+    ZOOM_VIEWPORT: 'zoom-viewport',
+
+    /**
+     * @memberof EVENT
+     * @property CHAT_LOG_DURATION_CHANGE
+     * @type {string}
+     */
+    CHAT_LOG_DURATION_CHANGE: 'chat-log-duration-change'
 };
 
 export const AIRCRAFT_EVENT = {

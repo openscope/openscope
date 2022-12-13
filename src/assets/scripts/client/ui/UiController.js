@@ -157,6 +157,16 @@ class UiController {
         this.$log = null;
 
         /**
+         * Duration for chat log transmissions to remain visible
+         *
+         * @for UiController
+         * @property $chatLogDuration
+         * @type number
+         * @default null
+         */
+        this.$chatLogDuration = null;
+
+        /**
          * Element in center of screen to unpause when paused
          *
          * @for UiController
@@ -370,6 +380,8 @@ class UiController {
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
         this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TUTORIAL);
 
+        this.$chatLogDuration = GameController.game.option.getOptionByName('chatLogDuration');
+
         return this.setupHandlers()
             .enable();
     }
@@ -381,6 +393,7 @@ class UiController {
      */
     setupHandlers() {
         this.onAirportChangeHandler = this.onAirportChange.bind(this);
+        this.onChatLogDurationChangeHandler = this.onChatLogDurationChange.bind(this);
 
         return this;
     }
@@ -394,6 +407,7 @@ class UiController {
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.on(EVENT.CHAT_LOG_DURATION_CHANGE, this.onChatLogDurationChangeHandler);
 
         // TODO: move these to properly bound handler methods
 
@@ -430,6 +444,7 @@ class UiController {
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.off(EVENT.CHAT_LOG_DURATION_CHANGE, this.onChatLogDurationChangeHandler);
         this.$airportSearch.off('keyup', (event) => this._onInitiateAirportSearch(event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
@@ -476,6 +491,7 @@ class UiController {
         this.$fastForwards = null;
         this.$githubLinkElement = null;
         this.$log = null;
+        this.$chatLogDuration = null;
         this.$pausedImg = null;
         this.$switchAirport = null;
         this.$toggleAirportGuide = null;
@@ -535,7 +551,7 @@ class UiController {
             setTimeout(() => {
                 uiLogView.remove();
             }, 10000);
-        }, 3, window, html);
+        }, this.$chatLogDuration, window, html);
     }
 
     /**
@@ -544,6 +560,14 @@ class UiController {
      */
     onAirportChange() {
         this.$log.empty();
+    }
+
+    /**
+     * @for UiController
+     * @method onAirportChange
+     */
+    onChatLogDurationChange() {
+        this.$chatLogDuration = GameController.game.option.getOptionByName('chatLogDuration');
     }
 
     /**
