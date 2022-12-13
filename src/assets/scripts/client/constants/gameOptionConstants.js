@@ -270,10 +270,8 @@ export const GAME_OPTION_VALUES = [
         unit: 'sec',
         validationHandler(newVal) {
             const output = parseFloat(newVal);
-            if (Number.isNaN(output) || output <= 0) {
-                return false;
-            }
-            return true;
+
+            return !Number.isNaN(output) && output > 0;
         }
     }
 ];

@@ -28,10 +28,10 @@ export const EVENT = {
 
     /**
      * @memberof EVENT
-     * @property WIND_CHANGE
+     * @property CHAT_LOG_DURATION_CHANGE
      * @type {string}
      */
-    WIND_CHANGE: 'wind-change',
+    CHAT_LOG_DURATION_CHANGE: 'chat-log-duration-change',
 
     /**
      * A click was registered outside of a specific `StripViewModel`
@@ -55,6 +55,13 @@ export const EVENT = {
      * @type {string}
      */
     MARK_SHALLOW_RENDER: 'mark-shallow-render',
+
+    /**
+     * @memberof EVENT
+     * @property MEASURE_TOOL_STYLE_CHANGE
+     * @type {string}
+     */
+    MEASURE_TOOL_STYLE_CHANGE: 'measure-tool-style-change',
 
     /**
      * A pan event has been detected necessitating an entire redraw of each canvas
@@ -287,13 +294,6 @@ export const EVENT = {
     RANGE_RINGS_CHANGE: 'range-rings-change',
 
     /**
-     * @memberof EVENT
-     * @property MEASURE_TOOL_STYLE_CHANGE
-     * @type {string}
-     */
-    MEASURE_TOOL_STYLE_CHANGE: 'measure-tool-style-change',
-
-    /**
      * A click has been registered in the unpause button shown within the
      * screen overlay whil the app is paused
      *
@@ -304,20 +304,20 @@ export const EVENT = {
     UNPAUSE: 'unpause',
 
     /**
+     * @memberof EVENT
+     * @property WIND_CHANGE
+     * @type {string}
+     */
+    WIND_CHANGE: 'wind-change',
+
+    /**
      * The zoom level has changed necessitating an entire redraw of each canvas
      *
      * @memberof EVENT
      * @property ZOOM_VIEWPORT
      * @type {string}
      */
-    ZOOM_VIEWPORT: 'zoom-viewport',
-
-    /**
-     * @memberof EVENT
-     * @property CHAT_LOG_DURATION_CHANGE
-     * @type {string}
-     */
-    CHAT_LOG_DURATION_CHANGE: 'chat-log-duration-change'
+    ZOOM_VIEWPORT: 'zoom-viewport'
 };
 
 export const AIRCRAFT_EVENT = {

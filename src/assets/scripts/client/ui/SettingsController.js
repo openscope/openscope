@@ -98,13 +98,13 @@ export default class SettingsController {
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
+            let $container = this._buildTextInputTemplate(opt);
+
             if (opt.type === 'select') {
-                const $container = this._buildSelectInputTemplate(opt);
-                this.$dialogBody.append($container);
-            } else {
-                const $container = this._buildTextInputTemplate(opt);
-                this.$dialogBody.append($container);
+                $container = this._buildSelectInputTemplate(opt);
             }
+
+            this.$dialogBody.append($container);
         });
 
         const $version = this._buildVersionTemplate();
@@ -150,8 +150,8 @@ export default class SettingsController {
         const $selector = $(`<select name="${option.name}"></select>`);
         const selectedOption = GameController.game.option.getOptionByName(option.name);
 
-        $container.append($label);
         $label.text(option.description);
+        $container.append($label);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -209,25 +209,27 @@ export default class SettingsController {
                                     value="${currentValue}">`);
         const $unit = $(`<span class="form-value">${option.unit}</span>`);
 
-        $container.append($label);
         $label.text(option.description);
+        $container.append($label);
 
         // TODO: this should be moved to proper event handler method and only assigned here.
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
+            const currentValue = $currentTarget.val();
 
-            if (!option.validationHandler($currentTarget.val())) {
+            if (!option.validationHandler(currentValue)) {
                 // User didn't enter a valid value, revert to the old value
                 $selector.val(currentValue);
+
                 return;
             }
 
-            let value = $currentTarget.val();
+            let nextValue = currentValue;
             if (option.type === 'number') {
-                value = parseFloat(value);
+                nextValue = parseFloat(nextValue);
             }
 
-            GameController.game.option.setOptionByName($currentTarget.attr('name'), value);
+            GameController.game.option.setOptionByName($currentTarget.attr('name'), nextValue);
         });
 
         $container.append($selector);
