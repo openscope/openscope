@@ -440,6 +440,7 @@
         {
           "aliases": [
             "c",
+            "cm",
             "climb"
           ],
           "altkeys": [
@@ -450,6 +451,7 @@
         {
           "aliases": [
             "d",
+            "dm",
             "descend"
           ],
           "altkeys": [
