@@ -553,6 +553,64 @@
       ]
     },
     {
+      "id": "tl",
+      "variants": [
+        {
+          "aliases": [
+            "tl"
+          ],
+          "altkeys": [
+            "turn left",
+            "left turn"
+          ],
+          "explain": "<b>t</b>urn left to <u>heading</u>, or by given <u>number of degrees</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "060",
+          "explain": "turn left to fly <u>heading</u>",
+          "candidate": "^(?:|[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$",
+          "validate": "^(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+        },
+        {
+          "example": "30",
+          "explain": "turn left by <u>number of degrees</u>",
+          "candidate": "^(?:[1-9][0-9]?)?$",
+          "validate": "^([1-9][0-9]?)$"
+        }
+      ]
+    },
+    {
+      "id": "tr",
+      "variants": [
+        {
+          "aliases": [
+            "tr"
+          ],
+          "altkeys": [
+            "turn right",
+            "right turn"
+          ],
+          "explain": "<b>t</b>urn right to <u>heading</u>, or by given <u>number of degrees</u>"
+        }
+      ],
+      "paramsets": [
+        {
+          "example": "060",
+          "explain": "turn right to fly <u>heading</u>",
+          "candidate": "^(?:|[0-3]|[0-2][0-9]|3[0-6]|00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$",
+          "validate": "^(00[1-9]|0[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|360)$"
+        },
+        {
+          "example": "30",
+          "explain": "turn right by <u>number of degrees</u>",
+          "candidate": "^(?:[1-9][0-9]?)?$",
+          "validate": "^([1-9][0-9]?)$"
+        }
+      ]
+    },
+    {
       "id": "speed",
       "variants": [
         {

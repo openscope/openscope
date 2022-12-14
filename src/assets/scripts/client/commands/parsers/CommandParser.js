@@ -219,6 +219,14 @@ export default class CommandParser {
                 }
 
                 aircraftCommandModel = new AircraftCommandModel(commandName);
+                // hack for #1821
+                if (commandName === 'heading') {
+                    if (commandOrArg === 'tl') {
+                        aircraftCommandModel.args.push('l');
+                    } else if (commandOrArg === 'tr') {
+                        aircraftCommandModel.args.push('r');
+                    }
+                }
             } else {
                 if (typeof commandName === 'undefined') {
                     aircraftCommandModel.args.push(commandOrArg);
@@ -229,6 +237,14 @@ export default class CommandParser {
                 commandList.push(aircraftCommandModel);
 
                 aircraftCommandModel = new AircraftCommandModel(commandName);
+                // hack for #1821
+                if (commandName === 'heading') {
+                    if (commandOrArg === 'tl') {
+                        aircraftCommandModel.args.push('l');
+                    } else if (commandOrArg === 'tr') {
+                        aircraftCommandModel.args.push('r');
+                    }
+                }
             }
         }
 

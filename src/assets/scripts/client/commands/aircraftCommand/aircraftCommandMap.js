@@ -100,7 +100,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     heading: {
-        aliases: ['fh', 'h', 'heading', 't', 'turn'],
+        aliases: ['fh', 'h', 'heading', 't', 'tl', 'tr', 'turn'],
         functionName: 'runHeading',
         isSystemCommand: false
     },
