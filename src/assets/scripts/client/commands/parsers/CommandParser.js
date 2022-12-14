@@ -206,11 +206,6 @@ export default class CommandParser {
 
         for (let i = 0; i < commandArgSegments.length; i++) {
             const commandOrArg = commandArgSegments[i];
-
-            if (commandOrArg === '') {
-                continue;
-            }
-
             const commandName = findCommandNameWithAlias(commandOrArg);
 
             if (typeof aircraftCommandModel === 'undefined') {
