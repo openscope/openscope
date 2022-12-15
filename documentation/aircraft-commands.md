@@ -307,7 +307,7 @@ These commands control the three most basic ways we can control aircraft, collec
 
 ### Altitude
 
-_Aliases -_ `climb`, `c`, `descend`, `d`, `altitude`, `a`
+_Aliases -_ `climb`, `c`, `cm`, `descend`, `d`, `dm`, `altitude`, `a`
 
 _Hotkeys -_ `up arrow`, `down arrow` (if "Control Method" setting = "Arrow Keys")
 
@@ -332,7 +332,7 @@ _Syntax -_ `AAL123 fph`
 
 ### Heading
 
-_Aliases -_ `heading`, `h`, `turn`, `t`, `fh`
+_Aliases -_ `heading`, `h`, `turn`, `t`, `fh`; `tl` and `tr` to force direction of turn
 
 _Hotkeys -_ `left arrow`, `right arrow` (if "Control Method" setting = "Arrow Keys")
 

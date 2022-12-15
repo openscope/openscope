@@ -6,6 +6,7 @@
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
 - <a href="https://github.com/openscope/openscope/issues/1991" target="_blank">#1991</a> - Update KPHL magnetic variation
+- <a href="https://github.com/openscope/openscope/issues/1821" target="_blank">#1821</a> - Add aliases cm, dm for altitude, tl, tr for turn
 
 
 # 6.28.0 (July 3, 2022)
