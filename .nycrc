@@ -1,0 +1,11 @@
+{
+    "all": false,
+    "include": [
+      "src/assets/scripts/**/*.js",
+      "!src/assets/scripts/client/constants/**/*.js",
+      "!**/_mocks/**",
+      "!**/fixtures/**",
+      "!**/testHelpers/**",
+      "!**/public/**"
+    ]
+  }

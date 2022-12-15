@@ -41,17 +41,6 @@
     "url": "https://github.com/openscope/openscope/issues"
   },
   "homepage": "https://github.com/openscope/openscope",
-  "nyc": {
-    "all": false,
-    "include": [
-      "src/assets/scripts/**/*.js",
-      "!src/assets/scripts/client/constants/**/*.js",
-      "!**/_mocks/**",
-      "!**/fixtures/**",
-      "!**/testHelpers/**",
-      "!**/public/**"
-    ]
-  },
   "dependencies": {
     "ansi-colors": "3.2.4",
     "express": "4.16.4",
