@@ -1,6 +1,7 @@
 import _includes from 'lodash/includes';
 import _isNumber from 'lodash/isNumber';
 import _startsWith from 'lodash/startsWith';
+// eslint-disable-next-line import/no-cycle
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
 import { TIME, REGEX } from '../constants/globalConstants';

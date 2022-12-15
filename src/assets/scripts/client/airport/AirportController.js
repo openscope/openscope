@@ -1,4 +1,5 @@
 import _has from 'lodash/has';
+// eslint-disable-next-line import/no-cycle
 import AirportModel from './AirportModel';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';

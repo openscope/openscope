@@ -6,6 +6,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
+// eslint-disable-next-line import/no-cycle
 import AirwayModel from './AirwayModel';
 import FixCollection from './FixCollection';
 import HoldCollection from './HoldCollection';

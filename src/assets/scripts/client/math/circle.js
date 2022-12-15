@@ -1,4 +1,5 @@
 import { mod } from './core';
+// eslint-disable-next-line import/no-cycle
 import { radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 /**
