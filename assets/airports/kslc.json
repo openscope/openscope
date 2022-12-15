@@ -559,7 +559,7 @@
             },
             "draw": [
                 ["HOPTO", "ZIONZ", "KOOGR", "ROMMN", "KIMMR*"],
-                ["ROMNN", "PLEZZ", "EYELO*"],
+                ["ROMMN", "PLEZZ", "EYELO*"],
                 ["ZIONZ", "GITLN", "LODUY", "KROST*"],
                 ["LODUY", "URNUW", "BCE*"],
                 ["URNUW", "EHK*"]
@@ -779,7 +779,7 @@
                 "EKR": ["EKR", "RACER", "MTU", "THISL"],
                 "HELPR": ["HELPR", "GOSHU"]
             },
-            "body": ["SPANE", "BOAGY", "FFU", "DRYVE", "CCHIP", "#345"],
+            "body": ["SPANE", "BOAGY", "FFU", "DRYVE", "CHHIP", "#345"],
             "rwy": {
                 "KSLC14": [],
                 "KSLC16L": [],
@@ -791,7 +791,7 @@
                 "KSLC35": []
             },
             "draw": [
-                ["EKR", "RACER", "MTU", "THISL", "SPANE", "BOAGY", "FFU", "DRYVE", "CCHIP"],
+                ["EKR", "RACER", "MTU", "THISL", "SPANE", "BOAGY", "FFU", "DRYVE", "CHHIP"],
                 ["HELPR", "GOSHU"]
             ]
         },
