@@ -2708,7 +2708,7 @@ export default class AircraftModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
-        this._updateAircraftVisibility();
+        this._updateAircraftControllability();
     }
 
     /**
@@ -2792,13 +2792,17 @@ export default class AircraftModel {
 
     /**
      * @for AircraftModel
-     * @method _updateAircraftVisibility
+     * @method _updateAircraftControllability
      * @private
      */
-    _updateAircraftVisibility() {
+    _updateAircraftControllability() {
+        if (this.projected) {
+            return;
+        }
+
         const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
 
-        if (isInsideAirspace === this.isControllable || this.projected) {
+        if (this.isControllable === isInsideAirspace) {
             return;
         }
 
