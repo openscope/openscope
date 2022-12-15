@@ -250,7 +250,7 @@ export default class CommandParser {
 
         if (validationErrors.length > 0) {
             _forEach(validationErrors, (error) => {
-                throw error;
+                throw new Error(error);
             });
         }
     }
