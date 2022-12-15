@@ -21,6 +21,7 @@ const INVALID_ARG_LENGTH = `${INVALID_ARG} length`;
  * @final
  */
 export const ERROR_MESSAGE = {
+    INVALID_CMD: 'Invalid command',
     ZERO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly zero arguments`,
     SINGLE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly one argument`,
     TWO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly two arguments`,
