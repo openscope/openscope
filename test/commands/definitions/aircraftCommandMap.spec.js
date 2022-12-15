@@ -195,7 +195,7 @@ ava('aliases, altitude parser and altitude validator used by altitude', t => {
     const p = altitudeParser;
     const v = altitudeValidator;
     t.true(parse === p.toString() && validate === v.toString());
-    test_aliases(t, AIRCRAFT_COMMAND_MAP, 'altitude', ['a', 'altitude', 'c', 'climb', 'd', 'descend']);
+    test_aliases(t, AIRCRAFT_COMMAND_MAP, 'altitude', ['a', 'altitude', 'c', 'cm', 'climb', 'd', 'dm', 'descend']);
 });
 
 ava('aliases, crossing parser and crossing validator used by cross', t => {
@@ -218,7 +218,7 @@ ava('aliases, heading parser and heading validator used by heading', t => {
     const p = headingParser;
     const v = headingValidator;
     t.true(parse === p.toString() && validate === v.toString());
-    test_aliases(t, AIRCRAFT_COMMAND_MAP, 'heading', ['fh', 'h', 'heading', 't', 'turn']);
+    test_aliases(t, AIRCRAFT_COMMAND_MAP, 'heading', ['fh', 'h', 'heading', 't', 'tl', 'tr', 'turn']);
 });
 
 ava('aliases, hold parser and hold validator used by hold', t => {

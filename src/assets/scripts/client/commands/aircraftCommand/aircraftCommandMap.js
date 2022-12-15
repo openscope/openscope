@@ -35,7 +35,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: true
     },
     altitude: {
-        aliases: ['a', 'altitude', 'c', 'climb', 'd', 'descend'],
+        aliases: ['a', 'altitude', 'c', 'cm', 'climb', 'd', 'dm', 'descend'],
         functionName: 'runAltitude',
         isSystemCommand: false
     },
@@ -100,7 +100,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     heading: {
-        aliases: ['fh', 'h', 'heading', 't', 'turn'],
+        aliases: ['fh', 'h', 'heading', 't', 'tl', 'tr', 'turn'],
         functionName: 'runHeading',
         isSystemCommand: false
     },
