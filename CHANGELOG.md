@@ -2,6 +2,7 @@
 ### New Features
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/1965" target="_blank">#1965</a> - Fix typos of fix names in KSLC airport file
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
