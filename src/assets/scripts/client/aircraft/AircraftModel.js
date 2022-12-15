@@ -637,7 +637,7 @@ export default class AircraftModel {
      * @method buildCurrentTerrainRanges
      */
     buildCurrentTerrainRanges() {
-        const terrain = _get(prop, 'airport.current.terrain', null);
+        const terrain = _get(window.prop, 'airport.current.terrain', null);
 
         if (!terrain) {
             return;

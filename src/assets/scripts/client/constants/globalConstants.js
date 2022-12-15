@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 /**
  * Commonly used time conversion rates
  *
@@ -82,7 +83,7 @@ export const PHYSICS_CONSTANTS = {
 /**
  * Value used to indicate an invalid or otherwise unset Value
  * Examples include invalid array index, and numeric properties that have
- * no real value set other than the value (this value) set at initilization.
+ * no real value set other than the value (this value) set at initialization.
  *
  * @enum INVALID_NUMBER
  * @type {number}

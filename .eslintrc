@@ -21,8 +21,9 @@
         "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
         "no-unused-vars": [2, { "argsIgnorePattern": "event|error" }],
         "operator-linebreak": [1, "after"],
+        "prefer-destructuring": 0,
+        "prefer-exponentiation-operator": 0,
         "prefer-spread": 1,
-        "prefer-exponentiation-operator": "off",
         "semi": [2, "always"],
         "space-before-function-paren": [2, "never"],
 

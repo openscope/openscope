@@ -101,7 +101,7 @@ export default class SpawnPatternModel extends BaseModel {
          * Schedule reference id
          *
          * Stored here so a specific interval can be associated with a
-         * specfic `SpawnPatternModel` instance. An Interval may be reset
+         * specific `SpawnPatternModel` instance. An Interval may be reset
          * or changed during the life of the app.
          *
          * Provides easy access to a specific scheduleId
@@ -152,7 +152,7 @@ export default class SpawnPatternModel extends BaseModel {
          *     ['ual', 2]
          * ]
          * ```
-         * This property would have a length of 7, with 5 entires of `aal` and two entries of `ual`.
+         * This property would have a length of 7, with 5 entries of `aal` and two entries of `ual`.
          * The reason for this is to provide an easy way to find a weighted value. Now all we need is
          * a random index and the value located at that index.
          *
@@ -229,7 +229,7 @@ export default class SpawnPatternModel extends BaseModel {
          * List of fixes to follow on spawn.
          *
          * This property will be set to an array of strings representing
-         * fixnames. this is only used when a DirectRouteString has been
+         * fix names. this is only used when a DirectRouteString has been
          * passed for the route parameter.
          *
          * @property waypoints
@@ -288,7 +288,7 @@ export default class SpawnPatternModel extends BaseModel {
         // SPAWN PATTERN PROPERTIES
 
         /**
-         * Rate at which aircaft spawn, express in aircraft per hour
+         * Rate at which aircraft spawn, express in aircraft per hour
          *
          * @property rate
          * @type {number}
@@ -297,7 +297,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.rate = INVALID_NUMBER;
 
         /**
-         * Rate at which aircaft spawn, express in aircraft per hour
+         * Rate at which aircraft spawn, express in aircraft per hour
          * Used to preserve initial configuration
          *
          * @property defaultRate
@@ -352,7 +352,7 @@ export default class SpawnPatternModel extends BaseModel {
          * Miles entrail during the surge [fast, slow]
          *
          * Used only for `surge` spawn patterns. set as a class
-         * property to allow maintainence of state between spawns
+         * property to allow maintenance of state between spawns
          *
          * @property entrail
          * @type {number}
@@ -364,7 +364,7 @@ export default class SpawnPatternModel extends BaseModel {
          * calculated arrival rate when "in the surge"
          *
          * Used only for `surge` spawn patterns. set as a class
-         * property to allow maintainence of state between spawns
+         * property to allow maintenance of state between spawns
          *
          * @property _aircraftPerHourUp
          * @type {number}
@@ -377,7 +377,7 @@ export default class SpawnPatternModel extends BaseModel {
          * calculated arrival rate when not "in the surge"
          *
          * Used only for `surge` spawn patterns. set as a class
-         * property to allow maintainence of state between spawns
+         * property to allow maintenance of state between spawns
          *
          * @property _aircraftPerHourDown
          * @type {number}
@@ -390,7 +390,7 @@ export default class SpawnPatternModel extends BaseModel {
          * Calculated time length of surge, in minutes
          *
          * Used only for `surge` spawn patterns. set as a class
-         * property to allow maintainence of state between spawns
+         * property to allow maintenance of state between spawns
          *
          * @property _uptime
          * @type {number}
@@ -437,9 +437,9 @@ export default class SpawnPatternModel extends BaseModel {
             return 'overflight';
         }
 
-        return this.isArrival()
-            ? this.destination
-            : this.origin;
+        return this.isArrival() ?
+            this.destination :
+            this.origin;
     }
 
     /**
@@ -674,7 +674,7 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Use the supplied aircraft controller to generate prespawned aircraft using this model
+     * Use the supplied aircraft controller to generate pre-spawned aircraft using this model
      *
      * @for SpawnPatternModel
      * @method createPreSpawnAircraft
@@ -717,9 +717,7 @@ export default class SpawnPatternModel extends BaseModel {
         const elevatedSpawnRate = this._aircraftPerHourUp * this.uptime * TIME.ONE_SECOND_IN_HOURS;
         const downTime = this.period - this.uptime;
         const hoursSpentAtReducedSpawnRate = downTime * TIME.ONE_SECOND_IN_HOURS;
-        const reducedSpawnRate = (averageSpawnRate - elevatedSpawnRate) * hoursSpentAtReducedSpawnRate;
-
-        this._aircraftPerHourDown = reducedSpawnRate;
+        this._aircraftPerHourDown = (averageSpawnRate - elevatedSpawnRate) * hoursSpentAtReducedSpawnRate;
 
         // TODO: abstract this if/else block to helper method
         // Verify we can comply with the requested arrival rate based on entrail spacing
@@ -959,21 +957,6 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Abstracted boolean logic used to determine if a category is valid.
-     *
-     * @for SpawnPatternModel
-     * @method _isValidCategory
-     * @param _isValidCategory {string}
-     * @return {boolean}
-     * @private
-     */
-    _isValidCategory(category) {
-        return category === FLIGHT_CATEGORY.ARRIVAL ||
-            category === FLIGHT_CATEGORY.DEPARTURE ||
-            category === FLIGHT_CATEGORY.OVERFLIGHT;
-    }
-
-    /**
      * Returns a random index number for an array
      *
      * @for SpawnPatternModel
@@ -1017,12 +1000,10 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _assembleAirlineNamesAndFrequencyForSpawn(spawnPatternAirlines) {
-        const spawnPatternAirlineModels = _map(spawnPatternAirlines, (spawnPatternAirline) => ({
+        return _map(spawnPatternAirlines, (spawnPatternAirline) => ({
             name: spawnPatternAirline[0],
             rate: spawnPatternAirline[1]
         }));
-
-        return spawnPatternAirlineModels;
     }
 
     /**
@@ -1066,12 +1047,10 @@ export default class SpawnPatternModel extends BaseModel {
             return preSpawnDepartureAircraft;
         }
 
-        const preSpawnArrivalAircraftList = buildPreSpawnAircraft(
+        return buildPreSpawnAircraft(
             spawnPatternJson,
             AirportController.current
         );
-
-        return preSpawnArrivalAircraftList;
     }
 
     /**
@@ -1105,9 +1084,8 @@ export default class SpawnPatternModel extends BaseModel {
     _calculateSpawnHeading() {
         const firstWaypointPositionModel = this._routeModel.waypoints[0].positionModel;
         const secondWaypointPositionModel = this._routeModel.waypoints[1].positionModel;
-        const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
 
-        return heading;
+        return firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
     }
 
     /**
@@ -1118,12 +1096,11 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _generateSelfReferencedAirportPositionModel() {
         const airportPosition = AirportController.airport_get().positionModel;
-        const selfReferencingPosition = new StaticPositionModel(
+
+        return new StaticPositionModel(
             airportPosition.gps,
             airportPosition,
             airportPosition.magneticNorth
         );
-
-        return selfReferencingPosition;
     }
 }

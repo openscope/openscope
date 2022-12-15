@@ -51,7 +51,7 @@ export default class App {
          * Root DOM element.
          *
          * @property $element
-         * @type {jQuery|HTML Element}
+         * @type {$}
          * @default body
          */
         this.$element = $(element);
@@ -203,7 +203,7 @@ export default class App {
         const airportGuideListPromise = $.getJSON('assets/guides/guides.json');
 
         // This is provides a way to get async data from several sources in the app before anything else runs
-        // we need to resolve data from two sources before the app can proceede. This data should always
+        // we need to resolve data from two sources before the app can proceed. This data should always
         // exist, if it doesn't, something has gone terribly wrong.
         $.when(airlineListPromise, aircraftListPromise, airportGuideListPromise)
             .done((airlineResponse, aircraftResponse, airportGuideResponse) => {

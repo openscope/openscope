@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
-import _isNaN from 'lodash/isNaN';
 import GameController from '../game/GameController';
 import { SELECTORS } from '../constants/selectors';
 

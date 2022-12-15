@@ -298,9 +298,8 @@ export default class RunwayModel extends BaseModel {
      */
     getMinimumGlideslopeInterceptAltitude() {
         const altitudeAtFinalApproachFix = this.getGlideslopeAltitudeAtFinalApproachFix();
-        const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
 
-        return minimumInterceptAltitude;
+        return _ceil(altitudeAtFinalApproachFix, -2);
     }
 
     /**
@@ -397,7 +396,8 @@ export default class RunwayModel extends BaseModel {
     isOnApproachCourse(aircraftModel) {
         const approachOffset = getOffset(aircraftModel, this.relativePosition, this.angle);
         const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isAlignedWithCourse =
+            lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
         const isNotPastRunwayThreshold = approachOffset[1] > 0;
 
         return isAlignedWithCourse && isNotPastRunwayThreshold;

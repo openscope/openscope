@@ -132,7 +132,7 @@ export default class AircraftController {
          */
         this._transponderCodesInUse = [];
 
-        prop.aircraft = aircraft;
+        window.prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
         // TODO: this should its own collection class
