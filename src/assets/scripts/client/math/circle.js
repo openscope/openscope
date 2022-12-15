@@ -97,7 +97,9 @@ export const distanceToPoint = (startLatitude, startLongitude, endLatitude, endL
     const distanceLongitude = degreesToRadians(startLongitude - endLongitude);
 
     // the square of half the chord length between points
+    // eslint-disable-next-line no-restricted-properties
     const a = Math.pow(Math.sin(distanceLatitude / 2), 2) +
+        // eslint-disable-next-line no-restricted-properties
         (Math.cos(startLatitudeRadians) * Math.cos(endLatitudeRadians) * Math.pow(Math.sin(distanceLongitude / 2), 2));
 
 
@@ -105,25 +107,3 @@ export const distanceToPoint = (startLatitude, startLongitude, endLatitude, endL
 
     return angularDistanceInRadians * EARTH_RADIUS_KM;
 };
-
-// /**
-//  *
-//  * @function distEuclid
-//  * @param
-//  * @param
-//  * @return
-//  */
-// export const distEuclid = (lat1, lon1, lat2, lon2) => {
-//     // TODO: add to global constants
-//     const EARTH_RADIUS_KM = 6371;
-//     const lat1 = degreesToRadians(lat1);
-//     const lat2 = degreesToRadians(lat2);
-//     const dlat = degreesToRadians(lat2 - lat1);
-//     const dlon = degreesToRadians(lon2 - lon1);
-//
-//     const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
-//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//     const d = EARTH_RADIUS_KM * c;
-//
-//     return d; // distance, in kilometers
-// };

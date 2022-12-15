@@ -9,10 +9,24 @@ import { STORAGE_KEY } from './constants/storageKeys';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
+/**
+ * @global
+ * @type {{}}
+ */
 window.zlsa = {};
+/**
+ * @global
+ * @type {{}}
+ */
 window.zlsa.atc = {};
 
-// TODO: KILL THE PROP!
+/**
+ * TODO: KILL THE PROP!
+ *
+ * @deprecated
+ * @global
+ * @type {{}}
+ */
 const prop = {};
 
 // IIEFs are pulled in here to add functions to the global space.

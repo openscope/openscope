@@ -141,7 +141,7 @@ export const km_ft = (kilometers = 0) => {
  * feet --> kilometers
  *
  * @function ft_km
- * @param nm {number}
+ * @param ft {number}
  * @return {number}
  */
 export const ft_km = (ft = 0) => {

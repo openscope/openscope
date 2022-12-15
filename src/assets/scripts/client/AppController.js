@@ -162,6 +162,7 @@ export default class AppController {
         // in a different class and the window methods should disappear.
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
+        // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
 
         // IMPORTANT:

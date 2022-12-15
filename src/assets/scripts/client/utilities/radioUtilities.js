@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-properties, no-plusplus, no-restricted-globals */
 import _clone from 'lodash/clone';
 import _compact from 'lodash/compact';
 import _map from 'lodash/map';
@@ -49,7 +50,7 @@ export const radio_names = {
     19: 'nineteen',
     20: 'twenty',
     30: 'thirty',
-    40: 'fourty',
+    40: 'forty',
     50: 'fifty',
     60: 'sixty',
     70: 'seventy',
@@ -108,6 +109,28 @@ export const radio_runway_names = _clone(radio_names);
 radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
+
+/**
+ *
+ * @function radio_spellOut
+ * @param alphanumeric
+ * @return
+ */
+export const radio_spellOut = (alphanumeric) => {
+    const str = alphanumeric.toString();
+    const arr = [];
+
+    if (!str) {
+        return;
+    }
+
+    // TODO: change to _map()
+    for (let i = 0; i < str.length; i++) {
+        arr.push(radio_names[str[i]]);
+    }
+
+    return arr.join(' ');
+};
 
 // TODO: how is this different from lpad?
 // NOT IN USE
@@ -186,9 +209,9 @@ export const digits_decimal = (number, digits, force, truncate) => {
 
                 const len = number.length - (trailingDigits - digits + 1);
                 const part1 = number.substr(0, len);
-                const part2 = (digits === 0)
-                    ? ''
-                    : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
+                const part2 = (digits === 0) ?
+                    '' :
+                    shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
 
                 return part1 + part2;
             }
@@ -310,34 +333,31 @@ export const groupNumbers = (callsign, airline) => {
         }
 
         return s.join(' ');
-    } else {
-        // TODO: this block is unreachable
-        switch (callsign.length) {
-            case 0:
-                return callsign; break;
-            case 1:
-                return radio_names[callsign]; break;
-            case 2:
-                return getGrouping(callsign); break;
-            case 3:
-                return `${radio_names[callsign[0]]} ${getGrouping(callsign.substr(1))}`;
-                break;
-            case 4:
-                if (callsign[1] === '0' && callsign[2] === '0' && callsign[3] === '0') {
-                    return `${radio_names[callsign[0]]} thousand`;
-                }
+    }
+    // TODO: this block is unreachable
+    switch (callsign.length) {
+        case 0:
+            return callsign;
+        case 1:
+            return radio_names[callsign];
+        case 2:
+            return getGrouping(callsign);
+        case 3:
+            return `${radio_names[callsign[0]]} ${getGrouping(callsign.substr(1))}`;
+        case 4:
+            if (callsign[1] === '0' && callsign[2] === '0' && callsign[3] === '0') {
+                return `${radio_names[callsign[0]]} thousand`;
+            }
 
-                return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(callsign.substr(2))}`;
-                break;
-            default:
-                return callsign;
-        }
+            return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(callsign.substr(2))}`;
+        default:
+            return callsign;
     }
 };
 
 /**
  *
- * @funtion radio_runway
+ * @function radio_runway
  * @param input {string}
  * @return
  */
@@ -365,30 +385,6 @@ export const radio_heading = (heading) => {
         default:
             return `${radio_names[str[0]]} ${radio_names[str[1]]} ${radio_names[str[2]]}`;
     }
-
-    return heading;
-};
-
-/**
- *
- * @function radio_spellOut
- * @param alphanumeric
- * @return
- */
-export const radio_spellOut = (alphanumeric) => {
-    const str = alphanumeric.toString();
-    const arr = [];
-
-    if (!str) {
-        return;
-    }
-
-    // TODO: change to _map()
-    for (let i = 0; i < str.length; i++) {
-        arr.push(radio_names[str[i]]);
-    }
-
-    return arr.join(' ');
 };
 
 /**
