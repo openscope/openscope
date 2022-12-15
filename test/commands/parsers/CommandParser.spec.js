@@ -82,14 +82,21 @@ ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit
     t.true(_buildCommandListSpy.calledWithExactly(_tail(expectedArgs)));
 });
 
-ava('._buildCommandList() returns an empty array when adding args to an undefined AircraftCommandModel', t => {
-    const model = new CommandParser('threeve');
+ava('._buildCommandList() returns an empty array when fed with no commands', t => {
+    const model = new CommandParser(CALLSIGN_MOCK);
 
-    t.notThrows(() => model._buildCommandList(['$texas']));
+    t.notThrows(() => model._buildCommandList([]));
 
-    const result = model._buildCommandList(['$texas']);
+    const result = model._buildCommandList([]);
 
     t.deepEqual(result, []);
+});
+
+ava('._buildCommandList() throws if unrecognized token encountered when expecting a valid command', t => {
+    const model = new CommandParser(CALLSIGN_MOCK);
+    const expectedResult = 'Invalid command';
+
+    t.throws(() => model._buildCommandList(['nonsense']), null, expectedResult);
 });
 
 ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t => {
