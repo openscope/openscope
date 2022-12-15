@@ -3,8 +3,8 @@
   "version": "6.29.0-BETA",
   "description": "An ATC simulator in HTML5",
   "engines": {
-    "node": "11.3.0",
-    "npm": "6.4.0"
+    "node": "18.12.0",
+    "npm": "8.19.2"
   },
   "scripts": {
     "build": "gulp build --prod",
@@ -41,23 +41,6 @@
     "url": "https://github.com/openscope/openscope/issues"
   },
   "homepage": "https://github.com/openscope/openscope",
-  "ava": {
-    "files": [
-      "test/**/*.spec.js"
-    ],
-    "sources": [
-      "!**/_mocks/**",
-      "!**/fixtures/**",
-      "!**/testHelpers/**"
-    ],
-    "verbose": true,
-    "require": [
-      "@babel/register",
-      "./test/testHelpers/globalProps.js",
-      "./test/testHelpers/localStorage.js",
-      "./test/testHelpers/setupBrowserEnv.js"
-    ]
-  },
   "nyc": {
     "all": false,
     "include": [
