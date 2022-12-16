@@ -257,7 +257,7 @@ export const getGrouping = (groupable) => {
  *
  * @function groupNumbers
  * @param callsign {string}
- * @param airline {string} (optional)
+ * @param airline {string?} (optional)
  * @return
  */
 export const groupNumbers = (callsign, airline) => {

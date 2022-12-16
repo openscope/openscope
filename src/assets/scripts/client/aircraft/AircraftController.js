@@ -43,7 +43,6 @@ export default class AircraftController {
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
      * @param scopeModel {ScopeModel}
-     * @param aircraftCommander {AircraftCommander}
      */
     constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (_isNil(aircraftTypeDefinitionList) || _isNil(airlineController) || _isNil(scopeModel)) {
@@ -132,7 +131,8 @@ export default class AircraftController {
          */
         this._transponderCodesInUse = [];
 
-        window.prop.aircraft = aircraft;
+        // eslint-disable-next-line no-undef
+        prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
         // TODO: this should its own collection class

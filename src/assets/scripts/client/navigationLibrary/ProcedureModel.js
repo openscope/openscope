@@ -588,7 +588,7 @@ export default class ProcedureModel {
      * @for ProcedureModel
      * @method _getFixNameFromRestrictedFixArray
      * @param restrictedFix {string|string[]}
-     * @return {string}
+     * @return {string|undefined}
      * @private
      */
     _getFixNameFromRestrictedFixArray(restrictedFix) {
@@ -597,7 +597,7 @@ export default class ProcedureModel {
         }
 
         if (restrictedFix.indexOf('#') !== -1) {
-            return '';
+            return;
         }
 
         return restrictedFix.replace('^', '').replace('@', '');

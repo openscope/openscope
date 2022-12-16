@@ -71,5 +71,5 @@ ava('groupNumbers() returns appropriate string for "5000"', (t) => {
 });
 
 ava('groupNumbers() returns appropriate string for "6641"', (t) => {
-    t.true(groupNumbers('6641') === 'sixty six fourty one');
+    t.true(groupNumbers('6641') === 'sixty six forty one');
 });
