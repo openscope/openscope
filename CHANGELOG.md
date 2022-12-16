@@ -16,6 +16,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1787" target="_blank">#1787</a> - Standardize JSON schemas
 - <a href="https://github.com/openscope/openscope/issues/1912" target="_blank">#1912</a> - Update tutorial for auto-departure feature
 - <a href="https://github.com/openscope/openscope/issues/2030" target="_blank">#2030</a> - Implement 'tw' alias for 'timewarp' command
+- <a href="https://github.com/openscope/openscope/issues/2042" target="_blank">#2042</a> - Update readme badges and slack links
 
 
 # 6.28.0 (July 3, 2022)
