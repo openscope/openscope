@@ -57,10 +57,8 @@ export default class InputController {
         prop.input = input;
         this.input = input;
         this.input.callsign = '';
-        this.input.data = '';
         this.input.history = [];
         this.input.history_item = null;
-        this.input.click = [0, 0];
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
@@ -161,10 +159,8 @@ export default class InputController {
 
         this.input = input;
         this.input.callsign = '';
-        // this.input.data = '';
         this.input.history = [];
         this.input.history_item = null;
-        this.input.click = [0, 0];
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
@@ -180,10 +176,8 @@ export default class InputController {
         // TODO: these prop properties can be removed except for `this.input`
         this.input = input;
         this.input.callsign = '';
-        this.input.data = '';
         this.input.history = [];
         this.input.history_item = null;
-        this.input.click = [0, 0];
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
@@ -204,7 +198,6 @@ export default class InputController {
         // TODO: Refactor out the prop
         // using `prop` here so CanvasController knows which aircraft is selected
         prop.input.callsign = '';
-        prop.input.command = '';
         this.input.callsign = '';
         this.$commandInput.val('');
 
@@ -434,7 +427,6 @@ export default class InputController {
         // TODO: Refactor out the prop
         // using `prop` here so CanvasController knows which aircraft is selected
         prop.input.callsign = aircraftModel.callsign;
-        prop.input.command = '';
         this.input.callsign = aircraftModel.callsign;
         this.$commandInput.val(`${aircraftModel.callsign} `);
 
