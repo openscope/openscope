@@ -488,7 +488,6 @@ export default class AutocompleteController {
 
         cmdstr = before.concat((before.length > 0) ? ' ' : '', this.params.command, ' ', paramstr);
         this._inputController.$commandInput.val(cmdstr + after);
-        this._inputController.onCommandInputChangeHandler();
         this._inputController.$commandInput.prop('selectionStart', cmdstr.length);
         this._inputController.$commandInput.prop('selectionEnd', cmdstr.length);
         this._inputController.$commandInput.focus();
