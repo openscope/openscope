@@ -10,6 +10,7 @@ import {
 } from '../aircraftCommand/aircraftCommandMap';
 import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 import ParsedCommand from '../ParsedCommand';
+import { ERROR_MESSAGE } from './parserMessages';
 
 /**
  * Symbol used to split the command string as it enters the class.
@@ -213,21 +214,20 @@ export default class CommandParser {
 
             const commandName = findCommandNameWithAlias(commandOrArg);
 
-            if (typeof aircraftCommandModel === 'undefined') {
-                if (typeof commandName === 'undefined') {
-                    continue;
+            if (typeof commandName === 'undefined') {
+                // token not recognized as a command
+                if (typeof aircraftCommandModel === 'undefined') {
+                    // token was expected to be a valid command (#2034)
+                    throw new Error(ERROR_MESSAGE.INVALID_CMD);
                 }
-
-                aircraftCommandModel = new AircraftCommandModel(commandName);
+                // it might be an argument
+                aircraftCommandModel.args.push(commandOrArg);
             } else {
-                if (typeof commandName === 'undefined') {
-                    aircraftCommandModel.args.push(commandOrArg);
-
-                    continue;
+                // new command encountered
+                if (typeof aircraftCommandModel !== 'undefined') {
+                    // "flush" prior command first
+                    commandList.push(aircraftCommandModel);
                 }
-
-                commandList.push(aircraftCommandModel);
-
                 aircraftCommandModel = new AircraftCommandModel(commandName);
             }
         }
@@ -250,7 +250,7 @@ export default class CommandParser {
 
         if (validationErrors.length > 0) {
             _forEach(validationErrors, (error) => {
-                throw error;
+                throw new Error(error);
             });
         }
     }

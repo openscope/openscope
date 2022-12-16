@@ -2,6 +2,7 @@
 ### New Features
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/2034" target="_blank">#2034</a> - Fix parser accepting and silently ignoring unrecognized tokens
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
