@@ -452,8 +452,8 @@ export default class InputController {
         prop.input.callsign = aircraftModel.callsign;
         prop.input.command = '';
         this.input.callsign = aircraftModel.callsign;
-        this.input.command = '';
         this.$commandInput.val(`${aircraftModel.callsign} `);
+        this._onCommandInputChange();
 
         if (!this.$commandInput.is(':focus')) {
             this.$commandInput.focus();
