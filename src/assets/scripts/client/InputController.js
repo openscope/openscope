@@ -59,7 +59,6 @@ export default class InputController {
         this.input.callsign = '';
         this.input.history = [];
         this.input.history_item = null;
-        this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
@@ -161,7 +160,6 @@ export default class InputController {
         this.input.callsign = '';
         this.input.history = [];
         this.input.history_item = null;
-        this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
 
@@ -178,7 +176,6 @@ export default class InputController {
         this.input.callsign = '';
         this.input.history = [];
         this.input.history_item = null;
-        this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
     }
@@ -344,13 +341,6 @@ export default class InputController {
 
         const nextXPan = event.pageX - this._mouseDownScreenPosition[0];
         const nextYPan = event.pageY - this._mouseDownScreenPosition[1];
-
-        // TODO: investigate `_mouseDelta` and what exactly it does
-        // this updates the current mouseDelta so the next time through we have correct values
-        this._mouseDelta = [
-            nextXPan,
-            nextYPan
-        ];
 
         CanvasStageModel.updatePan(nextXPan, nextYPan);
     }
