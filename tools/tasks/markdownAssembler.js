@@ -28,7 +28,6 @@ function _generateHtmlFromMarkdown(markdown) {
  * Grabs the markdown files and returns the data and icao in an object
  *
  * @method _generateAirportGuideDict
- // * @returns {[key: string]: string}  object with airport icao as key and markdown as values
  * @returns { { [string]: string } }  object with airport icao as key and markdown as values
  */
 function _generateAirportGuideDict() {
