@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
@@ -62,17 +63,17 @@ function _createDestinationDirAndFile(destination, outputFilename, data) {
     const jsonOutput = JSON.stringify({ [rootKey]: data });
 
     // create `destination` directory, with parents, if it doesnt exist
-    mkdirp(destination, (error) => {
-        if (error) {
-            return Promise.reject(error);
-        }
-
+    mkdirp(destination).then(() => {
         // write the new file
         fs.writeFile(outFilenameWithPath, jsonOutput, (error) => {
             if (error) {
                 return Promise.reject(error);
             }
         });
+    }).catch((error) => {
+        if (error) {
+            return Promise.reject(error);
+        }
     });
 }
 
@@ -91,7 +92,7 @@ function _jsonAssembler(source, outputFilename, destination) {
     const result = _buildResultList(source, outputFilename);
 
     _createDestinationDirAndFile(destination, outputFilename, result);
-    fancyLog(colors.green(`--- ${result.length} items written sucessfully to ${outputFilename}`));
+    fancyLog(colors.green(`--- ${result.length} items written successfully to ${outputFilename}`));
 }
 
 /**

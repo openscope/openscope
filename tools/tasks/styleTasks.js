@@ -13,8 +13,8 @@ module.exports = function(gulp, config) {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
+            cascade: false,
+            overrideBrowserslist: ['last 2 versions'],
         }))
         .pipe(cleanCSS({compatibility: 'ie11'}))
         .pipe(concat('main.min.css'))
