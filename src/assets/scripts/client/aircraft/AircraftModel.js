@@ -1109,7 +1109,6 @@ export default class AircraftModel {
             this.flightPhase === FLIGHT_PHASE.WAITING;
     }
 
-    // TODO: The function description and what it actually does do not match
     /**
      * Returns whether the aircraft is currently taking off
      *
@@ -1117,7 +1116,7 @@ export default class AircraftModel {
      * @method isTakeoff
      */
     isTakeoff() {
-        return this.isTaxiing() || this.flightPhase === FLIGHT_PHASE.TAKEOFF;
+        return this.flightPhase === FLIGHT_PHASE.TAKEOFF;
     }
 
     /**
@@ -2481,7 +2480,6 @@ export default class AircraftModel {
         const altitude_diff = this.altitude - this.target.altitude;
         let climbRate = this.getClimbRate() * PERFORMANCE.TYPICAL_CLIMB_FACTOR;
 
-        // TODO: Ensure expediting is STOPPED when the altitude is reached
         if (this.mcp.shouldExpediteAltitudeChange || this.isTakeoff()) {
             climbRate = this.model.rate.climb;
         }
