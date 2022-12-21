@@ -154,10 +154,10 @@ export default class Pilot {
         let expediteReadback = '';
 
         if (expedite) {
+            this._mcp.shouldExpediteAltitudeChange = true;
+
             // including space here so when expedite is false there isnt an extra space after altitude
             expediteReadback = ' and expedite';
-
-            this.shouldExpediteAltitudeChange();
         }
 
         const readback = {};
@@ -880,19 +880,6 @@ export default class Pilot {
         if (this._mcp.speedMode === MCP_MODE.SPEED.OFF) {
             this._mcp.setSpeedN1();
         }
-    }
-
-    /**
-     * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
-     *
-     * @for Pilot
-     * @method shouldExpediteAltitudeChange
-     * @return {Array} [success of operation, readback]
-     */
-    shouldExpediteAltitudeChange() {
-        this._mcp.shouldExpediteAltitudeChange = true;
-
-        return [true, 'expediting to assigned altitude'];
     }
 
     /**
