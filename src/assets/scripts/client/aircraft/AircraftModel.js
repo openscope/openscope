@@ -1047,12 +1047,12 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isOnGround() {
-        let airportModel = this.fms.departureAirportModel;
-        let runwayModel = this.fms.departureRunwayModel;
-
         if (this.isOverflight()) {
             return false;
         }
+
+        let airportModel = this.fms.departureAirportModel;
+        let runwayModel = this.fms.departureRunwayModel;
 
         if (this.isArrival()) {
             airportModel = this.fms.arrivalAirportModel;
