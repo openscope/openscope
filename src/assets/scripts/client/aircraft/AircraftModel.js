@@ -530,9 +530,7 @@ export default class AircraftModel {
             this.speed = 0;
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
             throw new Error('Invalid #category found in AircraftModel');
-        }
-
-        if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
+        } else {
             const bottomAltitude = this.fms.getBottomAltitude();
             const airportModel = AirportController.airport_get();
             const airspaceCeiling = airportModel.maxAssignableAltitude;
