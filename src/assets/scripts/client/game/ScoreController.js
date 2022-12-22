@@ -189,7 +189,7 @@ export default class ScoreController {
         const previousAircraft = runwayModel.lastDepartedAircraftModel;
 
         // do not penalize departures launched automatically; only those launched by the user
-        if (!previousAircraft || previousAircraft.shouldTakeOffWhenRunwayIsClear) {
+        if (!previousAircraft || previousAircraft.tookOffUnderAutoTowerControl) {
             return;
         }
 

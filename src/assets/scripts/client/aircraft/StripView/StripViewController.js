@@ -157,8 +157,6 @@ export default class StripViewController {
 
             let stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            // Here we create the StripViewModel for ARRIVALS at the moment they become
-            // "controllable". By contrast, departure strips are created immediately.
             if (typeof stripViewModel === 'undefined') {
                 stripViewModel = this.createStripView(aircraftModel);
             }
@@ -181,7 +179,7 @@ export default class StripViewController {
 
         this._collection.addItem(stripViewModel);
 
-        if (aircraftModel.isDeparture() || aircraftModel.isControllable) {
+        if (aircraftModel.isControllable) {
             this._addViewToStripList(stripViewModel);
         }
 

@@ -4,6 +4,7 @@ import _findIndex from 'lodash/findIndex';
 import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
+import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
@@ -88,6 +89,13 @@ const FLIGHT_RULES = {
     IFR: 'ifr'
 };
 
+const AUTOTOWER_FLIGHT_PHASES = [
+    FLIGHT_PHASE.APRON,
+    FLIGHT_PHASE.TAXI,
+    FLIGHT_PHASE.WAITING,
+    FLIGHT_PHASE.TAKEOFF
+];
+
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
  *
@@ -160,14 +168,14 @@ export default class AircraftModel {
         this.flightNumber = '';
 
         /**
-         * Option to tell aircraft to take off on its own when there is no other traffic on the runway
+         * Denotes an aircraft that took off under auto tower rather than manual control
          *
          * @for AircraftModel
-         * @property shouldTakeOffWhenRunwayIsClear
+         * @property tookOffUnderAutoTowerControl
          * @type boolean
          * @default false
          */
-        this.shouldTakeOffWhenRunwayIsClear = false;
+        this.tookOffUnderAutoTowerControl = false;
 
         /**
          * Trasponder code
@@ -1486,8 +1494,9 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method updateFlightPhase
+     * @param isAutoTower {boolean}
      */
-    updateFlightPhase() {
+    updateFlightPhase(isAutoTower) {
         const runwayModel = this.fms.departureRunwayModel;
 
         switch (this.flightPhase) {
@@ -1503,10 +1512,9 @@ export default class AircraftModel {
             }
 
             case FLIGHT_PHASE.WAITING:
-                const iAmTheNextDeparture = this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
-
-                if (this.shouldTakeOffWhenRunwayIsClear && iAmTheNextDeparture) {
-                    const lastDeparture = this.fms.departureRunwayModel.lastDepartedAircraftModel;
+                const runway = this.fms.departureRunwayModel;
+                if (isAutoTower && runway.isAircraftNextInQueue(this.id)) {
+                    const lastDeparture = runway.lastDepartedAircraftModel;
                     const iAmTheFirstEverDeparture = lastDeparture === null;
 
                     if (!iAmTheFirstEverDeparture) {
@@ -1519,8 +1527,9 @@ export default class AircraftModel {
                         }
                     }
 
-                    this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
-                    this.takeoff(this.fms.departureRunwayModel);
+                    runway.removeAircraftFromQueue(this.id);
+                    this.takeoff(runway);
+                    this.tookOffUnderAutoTowerControl = true;
                 }
 
                 break;
@@ -2666,12 +2675,13 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method update
+     * @param isAutoTower {boolean}
      */
-    update() {
-        this.updateFlightPhase();
+    update(isAutoTower) {
+        this.updateFlightPhase(isAutoTower);
         this.updateTarget();
         this.updatePhysics();
-        this._updateAircraftControllability();
+        this._updateAircraftControllability(isAutoTower);
     }
 
     /**
@@ -2732,14 +2742,26 @@ export default class AircraftModel {
         delete this.conflicts[conflictingAircraft.callsign];
     }
 
-    // TODO: needs better name
     /**
      * @for AircraftModel
-     * @method _contactAircraftAfterControllabilityChange
+     * @method _updateAircraftControllability
+     * @param isAutoTower {boolean}
      * @private
      */
-    _contactAircraftAfterControllabilityChange() {
-        // Crossing into the center
+    _updateAircraftControllability(isAutoTower) {
+        if (this.projected) {
+            return;
+        }
+
+        const newControllability = (isAutoTower && this._isUnderTowerControl()) ?
+            false : this.isInsideAirspace(AirportController.airport_get());
+
+        if (this.isControllable === newControllability) {
+            return;
+        }
+
+        this.isControllable = newControllability;
+
         if (this.isControllable) {
             this.callUp();
 
@@ -2752,22 +2774,20 @@ export default class AircraftModel {
 
     /**
      * @for AircraftModel
-     * @method _updateAircraftControllability
+     * @method _isUnderTowerControl
      * @private
      */
-    _updateAircraftControllability() {
-        if (this.projected) {
-            return;
+    _isUnderTowerControl() {
+        if (_includes(AUTOTOWER_FLIGHT_PHASES, this.flightPhase)) {
+            return true;
+        }
+        if (this.category !== FLIGHT_CATEGORY.DEPARTURE || this.flightPhase !== FLIGHT_PHASE.CLIMB) {
+            return false;
         }
 
-        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
-
-        if (this.isControllable === isInsideAirspace) {
-            return;
-        }
-
-        this.isControllable = isInsideAirspace;
-        this._contactAircraftAfterControllabilityChange();
+        // FAA JO 7110.65, Para. 3-9-3-b (civil acft)
+        const runway = this.fms.departureRunwayModel;
+        return this.positionModel.distanceToPosition(runway.positionModel) < nm(runway.length) + 0.5;
     }
 
     /**
