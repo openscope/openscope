@@ -93,7 +93,8 @@ const AUTOTOWER_FLIGHT_PHASES = [
     FLIGHT_PHASE.APRON,
     FLIGHT_PHASE.TAXI,
     FLIGHT_PHASE.WAITING,
-    FLIGHT_PHASE.TAKEOFF
+    FLIGHT_PHASE.TAKEOFF,
+    FLIGHT_PHASE.LANDING
 ];
 
 /**
@@ -1585,8 +1586,21 @@ export default class AircraftModel {
 
                 this.setFlightPhase(FLIGHT_PHASE.LANDING);
 
-                if (!this.projected) {
-                    EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
+                if (this.projected) {
+                    break;
+                }
+
+                EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
+
+                if (isAutoTower) {
+                    UiController.ui_log(`${this.callsign} switching to tower, good day`);
+                    speech_say(
+                        [
+                            { type: 'callsign', content: this },
+                            { type: 'text', content: ', switching to tower, good day' }
+                        ],
+                        this.pilotVoice
+                    );
                 }
 
                 break;
@@ -2774,7 +2788,9 @@ export default class AircraftModel {
         }
 
         this.setIsRemovable();
-        EventBus.trigger(AIRCRAFT_EVENT.AIRSPACE_EXIT, this);
+        if (this.flightPhase !== FLIGHT_PHASE.LANDING) {
+            EventBus.trigger(AIRCRAFT_EVENT.AIRSPACE_EXIT, this);
+        }
     }
 
     /**
