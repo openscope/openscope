@@ -59,7 +59,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'SYSTEM',
         description: 'Tower Control (Experimental)',
         type: 'select',
-        onChangeEventHandler: null,
+        onChangeEventHandler: EVENT.TOWER_CONTROLLER_CHANGE,
         optionList: [
             {
                 displayLabel: 'System Controlled',

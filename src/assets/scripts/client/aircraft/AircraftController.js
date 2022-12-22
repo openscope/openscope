@@ -184,6 +184,7 @@ export default class AircraftController {
      */
     _setupHandlers() {
         this._onRemoveAircraftHandler = this.aircraft_remove.bind(this);
+        this._onTowerControllerChangeHandler = this._onTowerControllerChange.bind(this);
 
         return this;
     }
@@ -201,6 +202,7 @@ export default class AircraftController {
         this._eventBus.on(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
+        this._eventBus.on(EVENT.TOWER_CONTROLLER_CHANGE, this._onTowerControllerChangeHandler);
 
         return this;
     }
@@ -218,6 +220,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
+        this._eventBus.off(EVENT.TOWER_CONTROLLER_CHANGE, this._onTowerControllerChangeHandler);
 
         return this;
     }
@@ -915,6 +918,19 @@ export default class AircraftController {
         // Clean up the screen from aircraft that are too far
         if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.isControllable && aircraftModel.isRemovable) {
             this.aircraft_remove(aircraftModel);
+        }
+    }
+
+    /**
+     * Respond to user changing the tower control (autotower) settings
+     *
+     * @for AircraftController
+     * @private
+     */
+    _onTowerControllerChange() {
+        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            this.aircraft.list[i].onTowerControllerChange(isAutoTower);
         }
     }
 }

@@ -2812,6 +2812,20 @@ export default class AircraftModel {
     }
 
     /**
+     * Respond to user changing the tower control (autotower) settings
+     * by adjusting controllability as needed *without* making radio calls
+     *
+     * @for AircraftModel
+     * @method onTowerControllerChange
+     * @param isAutoTower {boolean}
+     */
+    onTowerControllerChange(isAutoTower) {
+        if (this._isUnderTowerControl()) {
+            this.isControllable = !isAutoTower;
+        }
+    }
+
+    /**
      * Returns the distance to another aircraft in nm
      *
      * @for AircraftModel
