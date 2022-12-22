@@ -669,9 +669,6 @@ export default class AircraftModel {
         this.target.altitude = this.altitude;
         this.targetHeading = this.heading;
         this.target.speed = this.speed;
-
-        // This assumes and arrival spawns outside the airspace
-        this.isControllable = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     /**
