@@ -1219,6 +1219,8 @@ export default class AircraftModel {
         let alt_say;
 
         if (this.isAirborne()) {
+            const controller = this.isDeparture() ?
+                AirportController.airport_get().radio.dep : AirportController.airport_get().radio.app;
             const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
@@ -1235,10 +1237,10 @@ export default class AircraftModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
+            UiController.ui_log(`${controller}, ${this.callsign} with you ${alt_log}`);
             speech_say(
                 [
-                    { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
+                    { type: 'text', content: `${controller}, ` },
                     { type: 'callsign', content: this },
                     { type: 'text', content: `with you ${alt_say}` }
                 ],
