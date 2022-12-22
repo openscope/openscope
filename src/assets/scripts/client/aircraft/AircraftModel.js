@@ -1317,14 +1317,17 @@ export default class AircraftModel {
      * @for AircraftModel
      * @method takeoff
      * @param runway {RunwayModel} the runway taking off on
+     * @param byAutoTower {boolean}
      */
-    takeoff(runway) {
+    takeoff(runway, byAutoTower = false) {
         const cruiseSpeed = this.model.speed.cruise;
         const initialAltitude = this.fms.getInitialClimbClearance();
 
         this._prepareMcpForTakeoff(initialAltitude, runway.angle, cruiseSpeed);
         this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
+        if (!byAutoTower) {
+            EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
+        }
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
         runway.lastDepartedAircraftModel = this;
@@ -1528,7 +1531,7 @@ export default class AircraftModel {
                     }
 
                     runway.removeAircraftFromQueue(this.id);
-                    this.takeoff(runway);
+                    this.takeoff(runway, true);
                     this.tookOffUnderAutoTowerControl = true;
                 }
 
