@@ -431,24 +431,6 @@ export default class AircraftModel {
         /**
          * Flag used to determine if an aircraft can be removed from the sim.
          *
-         * This tells the `AircraftController` that `AircraftStripView` associated with this
-         * instance is safe to remove. This property should only be changed via the
-         * `.setIsFlightStripRemovable()` method
-         *
-         * The `AircraftModel` will know when conditions are correct for the `StripView`
-         * to be removed, however, only the `AircraftController` has access to an aircraft's
-         * `StripView`.
-         *
-         * @for AircraftModel
-         * @property isRemovable
-         * @type {boolean}
-         * @default false
-         */
-        this.isFlightStripRemovable = false;
-
-        /**
-         * Flag used to determine if an aircraft can be removed from the sim.
-         *
          * This tells the `AircraftController` that this instance is safe to remove.
          * This property should only be changed via the `.setIsRemovable()` method.
          *
@@ -1136,18 +1118,6 @@ export default class AircraftModel {
         }
 
         return true;
-    }
-
-    /**
-     * Sets `#isFlightStripRemovable` to true
-     *
-     * Provides a single source of change for the value of `#isFlightStripRemovable`
-     *
-     * @for AircraftModel
-     * @method isFlightStripRemovable
-     */
-    setIsFlightStripRemovable() {
-        this.isFlightStripRemovable = true;
     }
 
     /**
@@ -2776,9 +2746,6 @@ export default class AircraftModel {
         if (this.isControllable) {
             this.callUp();
 
-            // for reentry, see #993
-            this.isFlightStripRemovable = false;
-
             return;
         }
 
@@ -2802,24 +2769,8 @@ export default class AircraftModel {
             return;
         }
 
-        this._updateControllableStatus(isInsideAirspace);
+        this.isControllable = isInsideAirspace;
         this._contactAircraftAfterControllabilityChange();
-    }
-
-    /**
-     * Updates the `#isControllable` property when an aircraft either
-     * enters or exits controlled airspace
-     *
-     * @for AircraftModel
-     * @method _updateControllableStatus
-     * @param {booelan} nextControllableStatus
-     */
-    _updateControllableStatus(nextControllableStatus) {
-        this.isControllable = nextControllableStatus;
-
-        if (!nextControllableStatus) {
-            this.setIsFlightStripRemovable();
-        }
     }
 
     /**
