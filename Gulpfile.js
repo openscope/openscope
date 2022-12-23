@@ -13,10 +13,10 @@ require('./tools/tasks/styleTasks')(gulp, OPTIONS);
 require('./tools/tasks/mediaTasks')(gulp, OPTIONS);
 require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 
-gulp.task(OPTIONS.TASKS.MARKUP, gulp.series(buildMarkup));
-gulp.task(OPTIONS.TASKS.JSON.ASSEMBLE, gulp.series(jsonAssembler));
-gulp.task(OPTIONS.TASKS.MARKDOWN.ASSEMBLE, gulp.series(markdownAssembler));
-gulp.task(OPTIONS.TASKS.MARKDOWN.CHANGELOG, gulp.series(copyChangelog));
+gulp.task(OPTIONS.TASKS.MARKUP, buildMarkup);
+gulp.task(OPTIONS.TASKS.JSON.ASSEMBLE, jsonAssembler);
+gulp.task(OPTIONS.TASKS.MARKDOWN.ASSEMBLE, markdownAssembler);
+gulp.task(OPTIONS.TASKS.MARKDOWN.CHANGELOG, copyChangelog);
 
 const buildAndMarkup = gulp.parallel(
     OPTIONS.TASKS.BUILD.SCRIPTS,

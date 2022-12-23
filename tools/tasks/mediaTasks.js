@@ -27,9 +27,9 @@ module.exports = function(gulp, config) {
         return merge(fonts, images, tutorial, autocomplete);
     };
 
-    gulp.task(OPTIONS.TASKS.JSON.MINIFY, gulp.series(jsonMinify));
-    gulp.task(OPTIONS.TASKS.COPY.AIRPORTS, gulp.series(copyAirportFiles));
-    gulp.task(OPTIONS.TASKS.COPY.STATIC, gulp.series(copyStatic));
+    gulp.task(OPTIONS.TASKS.JSON.MINIFY, jsonMinify);
+    gulp.task(OPTIONS.TASKS.COPY.AIRPORTS, copyAirportFiles);
+    gulp.task(OPTIONS.TASKS.COPY.STATIC, copyStatic);
     gulp.task(OPTIONS.TASKS.COPY.DIST, gulp.series(
             OPTIONS.TASKS.COPY.STATIC,
             OPTIONS.TASKS.COPY.AIRPORTS,

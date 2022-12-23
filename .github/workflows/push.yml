@@ -28,7 +28,8 @@ jobs:
       run: npm install
 
     - name: Find lint errors on changed lines
-      run: npm run lint-diff HEAD~1..HEAD
+      run: npm run lint
+
   build:
     runs-on: ubuntu-latest
     steps:

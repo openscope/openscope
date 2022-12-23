@@ -21,7 +21,7 @@ module.exports = function(gulp, config) {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
 
-    gulp.task(OPTIONS.TASKS.BUILD.STYLES, gulp.series(buildStyles));
+    gulp.task(OPTIONS.TASKS.BUILD.STYLES, buildStyles);
     gulp.task(OPTIONS.TASKS.WATCH.STYLES, () => {
         gulp.watch(OPTIONS.GLOB.LESS).on('change', () => buildStyles());
     });
