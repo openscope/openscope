@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://openscope.co/assets/tutorial/tutorial.schema.json",
+  "$id": "http://openscope.io/assets/tutorial/tutorial.schema.json",
   "title": "Openscope ATC simulator tutorial configuration schema",
   "type": "array",
   "items": {

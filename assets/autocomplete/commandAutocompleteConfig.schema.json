@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://www.openscope.co/assets/autocomplete/commandAutocompleteConfig.schema.json",
+  "$id": "http://www.openscope.io/assets/autocomplete/commandAutocompleteConfig.schema.json",
   "title": "Openscope ATC simulator command autocomplete configuration file schema",
   "type": "object",
   "properties": {

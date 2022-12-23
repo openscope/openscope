@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://openscope.co/assets/airports/airportLoadList.schema.json",
+  "$id": "http://openscope.io/assets/airports/airportLoadList.schema.json",
   "title": "Openscope ATC simulator airport load list schema",
   "type": "array",
   "items": {
