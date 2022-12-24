@@ -382,7 +382,7 @@ export default class AircraftController {
             }
 
             this._updateAircraftConflicts(aircraftModel, i);
-            this._updateAircraftVisibility(aircraftModel);
+            this._updateAircraftVisibility(aircraftModel, isAutoTower);
 
             if (!aircraftModel.isControllable) {
                 this.removeStripView(aircraftModel);
@@ -879,21 +879,26 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @param {AircraftModel} aircraftModel
+     * @param {boolean} isAutoTower
      * @private
      */
-    _updateAircraftVisibility(aircraftModel) {
+    _updateAircraftVisibility(aircraftModel, isAutoTower) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
         if (aircraftModel.isArrival() && aircraftModel.isStopped() && !aircraftModel.hit) {
+            // trigger this for scoring purposes even if autotower is on, to give credit for a safe arrival
+            // (since there is no separate scoring for TRACON -> TWR handover)
             EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
 
-            UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
-            speech_say(
-                [
-                    { type: 'callsign', content: aircraftModel },
-                    { type: 'text', content: ', switching to ground, good day' }
-                ],
-                aircraftModel.pilotVoice
-            );
+            if (!isAutoTower) {
+                UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
+                speech_say(
+                    [
+                        { type: 'callsign', content: aircraftModel },
+                        { type: 'text', content: ', switching to ground, good day' }
+                    ],
+                    aircraftModel.pilotVoice
+                );
+            }
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
             this.aircraft_remove(aircraftModel);
