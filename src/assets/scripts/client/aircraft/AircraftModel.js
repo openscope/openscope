@@ -89,6 +89,16 @@ const FLIGHT_RULES = {
     IFR: 'ifr'
 };
 
+/**
+ * List of flight phases that are *unambiguously* fully under the purview of tower rather than TRACON.
+ * Used by _isUnderTowerControl() to quickly classify aircraft based on which controller they are under.
+ * FLIGHT_PHASE.CLIMB not included here as additional logic is needed to assess whether we are dealing with
+ * departure aircraft that has freshly taken off and not yet switched from TWR frequency vs. other contexts
+ *
+ * @property AUTOTOWER_FLIGHT_PHASES
+ * @type {Object}
+ * @final
+ */
 const AUTOTOWER_FLIGHT_PHASES = [
     FLIGHT_PHASE.APRON,
     FLIGHT_PHASE.TAXI,
@@ -1328,6 +1338,7 @@ export default class AircraftModel {
 
         this._prepareMcpForTakeoff(initialAltitude, runway.angle, cruiseSpeed);
         this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
+
         if (!byAutoTower) {
             EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
         }
@@ -1519,11 +1530,12 @@ export default class AircraftModel {
 
             case FLIGHT_PHASE.WAITING:
                 const runway = this.fms.departureRunwayModel;
+
                 if (isAutoTower && runway.isAircraftNextInQueue(this.id)) {
                     const lastDeparture = runway.lastDepartedAircraftModel;
-                    const iAmTheFirstEverDeparture = lastDeparture === null;
+                    const isFirstEverDeparture = lastDeparture === null;
 
-                    if (!iAmTheFirstEverDeparture) {
+                    if (!isFirstEverDeparture) {
                         const actualDistance = nm_ft(this.distanceToAircraft(lastDeparture));
                         const requiredDistance = this.model.calculateSameRunwaySeparationDistanceInFeet(lastDeparture.model);
                         const towerUtilizedDistance = requiredDistance + 2000;
@@ -2772,14 +2784,14 @@ export default class AircraftModel {
             return;
         }
 
-        const newControllability = (isAutoTower && this._isUnderTowerControl()) ?
+        const nextControllability = (isAutoTower && this._isUnderTowerControl()) ?
             false : this.isInsideAirspace(AirportController.airport_get());
 
-        if (this.isControllable === newControllability) {
+        if (this.isControllable === nextControllability) {
             return;
         }
 
-        this.isControllable = newControllability;
+        this.isControllable = nextControllability;
 
         if (this.isControllable) {
             this.callUp();
@@ -2788,6 +2800,7 @@ export default class AircraftModel {
         }
 
         this.setIsRemovable();
+
         if (this.flightPhase !== FLIGHT_PHASE.LANDING) {
             EventBus.trigger(AIRCRAFT_EVENT.AIRSPACE_EXIT, this);
         }
@@ -2802,12 +2815,14 @@ export default class AircraftModel {
         if (_includes(AUTOTOWER_FLIGHT_PHASES, this.flightPhase)) {
             return true;
         }
+
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE || this.flightPhase !== FLIGHT_PHASE.CLIMB) {
             return false;
         }
 
-        // FAA JO 7110.65, Para. 3-9-3-b (civil acft)
         const runway = this.fms.departureRunwayModel;
+
+        // FAA JO 7110.65, Para. 3-9-3-b (civil acft)
         return this.positionModel.distanceToPosition(runway.positionModel) < nm(runway.length) + 0.5;
     }
 
@@ -2820,9 +2835,11 @@ export default class AircraftModel {
      * @param isAutoTower {boolean}
      */
     onTowerControllerChange(isAutoTower) {
-        if (this._isUnderTowerControl()) {
-            this.isControllable = !isAutoTower;
+        if (!this._isUnderTowerControl()) {
+            return;
         }
+
+        this.isControllable = !isAutoTower;
     }
 
     /**

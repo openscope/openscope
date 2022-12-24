@@ -562,6 +562,16 @@ class GameController {
     }
 
     /**
+     * Check whether the auto tower game option is activated.
+     * @for GameController
+     * @method isAutoTower
+     * @return {boolean}
+     */
+    isAutoTower() {
+        return this.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+    }
+
+    /**
      * Check whether or not the trailing distance separator should be drawn.
      *
      * Used by the `CanvasController` to determine whether or not to proceed with

@@ -366,7 +366,7 @@ export default class AircraftController {
             return;
         }
 
-        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+        const isAutoTower = GameController.isAutoTower();
 
         // TODO: this is getting better, but still needs more simplification
         for (let i = 0; i < this.aircraft.list.length; i++) {
@@ -573,7 +573,6 @@ export default class AircraftController {
         const aircraftModel = new AircraftModel(initializationProps);
         const isDeparture = initializationProps.category === 'departure';
         const isArrival = initializationProps.category === 'arrival';
-        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
         const runwayCommands = initializationProps.commands;
 
         // triggering event bus rather than calling locally because multiple classes
@@ -584,7 +583,7 @@ export default class AircraftController {
             this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
         }
 
-        if (isDeparture && isAutoTower) {
+        if (isDeparture && GameController.isAutoTower()) {
             aircraftModel.pilot.clearedAsFiled();
             aircraftModel.taxiToRunway(aircraftModel.fms.departureRunwayModel);
 
@@ -928,7 +927,7 @@ export default class AircraftController {
      * @private
      */
     _onTowerControllerChange() {
-        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
+        const isAutoTower = GameController.isAutoTower();
         for (let i = 0; i < this.aircraft.list.length; i++) {
             this.aircraft.list[i].onTowerControllerChange(isAutoTower);
         }
