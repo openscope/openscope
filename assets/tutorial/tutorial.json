@@ -215,7 +215,7 @@
           "object": "airport",
           "propPath": "arrivalRunwayModel.name"
         },
-        "comment": "This isn't robust. If there are multiple runways in use, or the arrival a/c has filed to land elsewhere then the tutorial message will not be correct. However, it's not a bad guess, and hopefully the player hasn't dicked with it too much."
+        "_comment": "This isn't robust. If there are multiple runways in use, or the arrival a/c has filed to land elsewhere then the tutorial message will not be correct. However, it's not a bad guess, and hopefully the player hasn't dicked with it too much."
       }
     ],
     "side": "left",
