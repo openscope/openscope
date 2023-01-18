@@ -7,6 +7,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
 - <a href="https://github.com/openscope/openscope/issues/1991" target="_blank">#1991</a> - Update KPHL magnetic variation
 - <a href="https://github.com/openscope/openscope/issues/1787" target="_blank">#1787</a> - Standardize JSON schemas
+- <a href="https://github.com/openscope/openscope/issues/1912" target="_blank">#1912</a> - Update tutorial for auto-departure feature
 
 
 # 6.28.0 (July 3, 2022)

@@ -57,8 +57,8 @@
     ]
   },
   {
-    "title": "Departures: Issuing IFR Clearance",
-    "text": "Let's work on getting some departures moving. The first step is always to clear the aircraft to its destination. With {CALLSIGN} selected, simply type \"caf\" (for \"cleared as filed\") and press enter. As needed, you can also change the aircraft's routing, and much more -- refer to the full list of commands <a title=\"openScope Command Reference\" href=\"https://github.com/openscope/openscope/blob/develop/documentation/commands.md\" target=\"_blank\">here</a>.",
+    "title": "Departures",
+    "text": "Let's look at departures. The selected aircraft, ({CALLSIGN}) has already been given enroute, taxi, takeoff and initial climb clearance. You can manually control these clearances by changing \"Settings\" -> \"Tower Control\" to \"User Controlled\" -- though this setting may be removed in a future release. But be careful: if you switch to user tower control your departures will not depart until you clear them, causing them to stack up. For enroute and taxi clearance refer to <a title=\"openScope Command Reference\" href=\"https://github.com/openscope/openscope/blob/develop/documentation/commands.md\" target=\"_blank\">the full list of commands</a>.",
     "replace": [
       {
         "findWhat": "{CALLSIGN}",
@@ -75,35 +75,8 @@
     ]
   },
   {
-    "title": "Taxiing",
-    "text": "Now tell them \"taxi {RUNWAY}\" to have them taxi to the runway. The aircraft should appear on the scope after about 3 seconds.",
-    "replace": [
-      {
-        "findWhat": "{RUNWAY}",
-        "replaceWith": {
-          "object": "departureAircraft",
-          "propPath": "fms.departureRunwayModel.name"
-        }
-      }
-    ],
-    "side": "left",
-    "position": [
-      0.1,
-      0.85
-    ]
-  },
-  {
-    "title": "Takeoff",
-    "text": "Now the aircraft is ready for takeoff. Click the aircraft again (or use the PgUp key) and type \"takeoff\" (or \"to\") to clear the aircraft for takeoff. Once it's going fast enough, it should lift off the ground and you should see its altitude increasing. Meanwhile, read the next step.",
-    "side": "left",
-    "position": [
-      0.1,
-      0.85
-    ]
-  },
-  {
     "title": "Moving aircraft",
-    "text": "Once {CALLSIGN} has taken off, you'll notice it will climb to {INIT_ALT} by itself. This is one of the instructions we gave them when we cleared them \"as filed\". Aircraft get better fuel efficiency when they are able to climb directly from the ground to their cruise altitude without leveling off, so let's keep them climbing! Click it and type \"cvs\" (for \"climb via SID\"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure. You can also simply give a direct climb, lifting the restrictions on the SID. Feel free to click the speedup button on the right side of the  input box (it's two small arrows) to watch the departure climb along the SID. Then just click it again to return to 1x speed.",
+    "text": "Once {CALLSIGN} has taken off, you'll notice it will climb to {INIT_ALT} by itself. This is the initial climb clearance they were given by the tower. Aircraft get better fuel efficiency when they are able to climb directly from the ground to their cruise altitude without leveling off, so let's keep them climbing! Click it and type \"cvs\" (for \"climb via SID\"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure. You can also simply give a direct climb, lifting the restrictions on the SID (example: \"climb 150\" for \"climb to 15,000 ft\").",
     "replace": [
       {
         "findWhat": "{CALLSIGN}",
@@ -127,6 +100,15 @@
         }
       }
     ],
+    "side": "left",
+    "position": [
+      0.1,
+      0.85
+    ]
+  },
+  {
+    "title": "Simulation Speed",
+    "text": "You can speed up the simulation at any time by clicking the speedup button (two small arrows on the right side of the input box). Watch the departure climb along the SID at 2X speed. Click it again to cycle to 5X speed, and click it a third time to return to 1X.",
     "side": "left",
     "position": [
       0.1,
