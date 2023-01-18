@@ -1,0 +1,11 @@
+{
+    "airac": 2213,
+    "radio": {
+        "twr": "Pensacola Tower",
+        "app": "Pensacola Approach",
+        "dep": "Pensacola Departure"
+    },
+    "icao": "KPNS",
+    "iata": "PNS",
+    "magnetic_north": -3.2333333333333334
+}
