@@ -2,7 +2,7 @@
 ### New Features
 
 ### Bugfixes
-- <a href="https://github.com/openscope/openscope/issues/2022" target="_blank">#2022</a> - "Fly present heading" treated by departures as "fly runway heading" prior to take off; invalid while on apron and during taxi
+- <a href="https://github.com/openscope/openscope/issues/2022" target="_blank">#2022</a> - Improve handling of "fph" while still on ground
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
