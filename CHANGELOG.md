@@ -18,6 +18,7 @@
 - <a href="https://github.com/openscope/openscope/issues/1912" target="_blank">#1912</a> - Update tutorial for auto-departure feature
 - <a href="https://github.com/openscope/openscope/issues/2030" target="_blank">#2030</a> - Implement 'tw' alias for 'timewarp' command
 - <a href="https://github.com/openscope/openscope/issues/2042" target="_blank">#2042</a> - Update readme badges and slack links
+- <a href="https://github.com/openscope/openscope/issues/2052" target="_blank">#2052</a> - Fix script minification issues in build process
 
 
 # 6.28.0 (July 3, 2022)
