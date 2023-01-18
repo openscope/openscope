@@ -237,7 +237,15 @@ export default class StripViewController {
             throw Error(`No StripViewModel found for selected Aircraft: ${aircraftModel.callsign}`);
         }
 
-        stripModel.scrollIntoView();
+        if (this.$stripView.hasClass(SELECTORS.CLASSNAMES.STRIP_VIEW_IS_HIDDEN)) {
+            this.$stripView.removeClass(SELECTORS.CLASSNAMES.STRIP_VIEW_IS_HIDDEN);
+            // wait 0.3s for strip view drawer slide out transition to complete
+            setTimeout(() => {
+                stripModel.scrollIntoView();
+            }, 300);
+        } else {
+            stripModel.scrollIntoView();
+        }
     }
 
     /**
@@ -311,7 +319,7 @@ export default class StripViewController {
     }
 
     /**
-     * Event handler for when a `StripViewModel` instance is clicked
+     * Event handler for when a the strip view drawer toggle is clicked
      *
      * @for StripViewController
      * @method _onStripListToggle
