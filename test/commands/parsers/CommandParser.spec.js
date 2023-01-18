@@ -1,6 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _map from 'lodash/map';
+import _some from 'lodash/some';
 import _tail from 'lodash/tail';
 
 import CommandParser from '../../../src/assets/scripts/client/commands/parsers/CommandParser';
@@ -93,6 +94,17 @@ ava('sets #commandList with AircraftCommandModel objects when it receives transm
     _map(model.commandList, (command) => {
         t.true(command instanceof AircraftCommandModel);
     });
+});
+
+ava('._extractCommandsAndArgs() discards empty tokens caused by multiple spaces', t => {
+    const extraSpacesMock = 'timewarp  50';
+    const model = new CommandParser(extraSpacesMock);
+    const _buildSystemCommandModelSpy = sinon.spy(model, '_buildSystemCommandModel');
+
+    model._extractCommandsAndArgs(extraSpacesMock);
+
+    t.true(_buildSystemCommandModelSpy.calledOnce);
+    t.false(_some(_buildSystemCommandModelSpy.lastCall.args[0], { length: 0 }));
 });
 
 ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {

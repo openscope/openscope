@@ -128,7 +128,7 @@ export default class CommandParser {
      */
     _extractCommandsAndArgs(rawCommandWithArgs) {
         const commandOrCallsignIndex = 0;
-        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(COMMAND_ARGS_SEPARATOR);
+        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(COMMAND_ARGS_SEPARATOR).filter((t) => t);
         const callsignOrSystemCommandName = commandArgSegmentsWithCallsign[commandOrCallsignIndex];
         // effectively a slice of the array that returns everything but the first item
         const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
@@ -206,11 +206,6 @@ export default class CommandParser {
 
         for (let i = 0; i < commandArgSegments.length; i++) {
             const commandOrArg = commandArgSegments[i];
-
-            if (commandOrArg === '') {
-                continue;
-            }
-
             const commandName = findCommandNameWithAlias(commandOrArg);
 
             if (typeof aircraftCommandModel === 'undefined') {
