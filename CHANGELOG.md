@@ -7,9 +7,10 @@
 - <a href="https://github.com/openscope/openscope/issues/2022" target="_blank">#2022</a> - Improve handling of "fph" while still on ground
 - <a href="https://github.com/openscope/openscope/issues/2026" target="_blank">#2026</a> - Improve error messages from invalid takeoff commands
 - <a href="https://github.com/openscope/openscope/issues/1249" target="_blank">#1249</a> - Fix handling of consecutive spaces in commands
-- <a href="https://github.com/openscope/openscope/issues/1795" target="_blank">#1795</a> - Fix strip bay alignment bug when opening by cliking aircraft
+- <a href="https://github.com/openscope/openscope/issues/1795" target="_blank">#1795</a> - Fix strip bay alignment bug when opening by clicking aircraft
 - <a href="https://github.com/openscope/openscope/issues/1852" target="_blank">#1852</a> - Fix bug where airborne aircraft report "ready to taxi"
 - <a href="https://github.com/openscope/openscope/issues/2040" target="_blank">#2040</a> - Fix spurious "no such aircraft, say again" error
+- <a href="https://github.com/openscope/openscope/issues/2049" target="_blank">#2049</a> - Fix missing "ready to taxi" call up from spawning departures 
 
 ### Enhancements & Refactors
 - <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
@@ -20,6 +21,7 @@
 - <a href="https://github.com/openscope/openscope/issues/2042" target="_blank">#2042</a> - Update readme badges and slack links
 - <a href="https://github.com/openscope/openscope/issues/2052" target="_blank">#2052</a> - Fix script minification issues in build process
 - <a href="https://github.com/openscope/openscope/issues/2045" target="_blank">#2045</a> - Assorted code cleanup and optimizations
+- <a href="https://github.com/openscope/openscope/issues/2050" target="_blank">#2050</a> - System tower control: sim behavior and aircraft controllability
 
 
 # 6.28.0 (July 3, 2022)
