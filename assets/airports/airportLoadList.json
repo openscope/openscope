@@ -13,6 +13,13 @@
         "disabled": true
     },
     {
+        "icao": "cyyc",
+        "level": "medium",
+        "name": "YYC Calgary International Airport",
+        "premium": false,
+        "disabled": false
+    },
+    {
         "icao": "ebbr",
         "level": "easy",
         "name": "Brussels-National",
