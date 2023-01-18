@@ -1246,7 +1246,7 @@ export default class AircraftModel {
         let alt_log;
         let alt_say;
 
-        if (this.isArrival()) {
+        if (this.isAirborne()) {
             const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
@@ -1272,9 +1272,7 @@ export default class AircraftModel {
                 ],
                 this.pilotVoice
             );
-        }
-
-        if (this.isDeparture()) {
+        } else {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say(
                 [
@@ -2710,7 +2708,7 @@ export default class AircraftModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
-        this._updateAircraftVisibility();
+        this._updateAircraftControllability();
     }
 
     /**
@@ -2794,13 +2792,17 @@ export default class AircraftModel {
 
     /**
      * @for AircraftModel
-     * @method _updateAircraftVisibility
+     * @method _updateAircraftControllability
      * @private
      */
-    _updateAircraftVisibility() {
+    _updateAircraftControllability() {
+        if (this.projected) {
+            return;
+        }
+
         const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
 
-        if (isInsideAirspace === this.isControllable || this.projected) {
+        if (this.isControllable === isInsideAirspace) {
             return;
         }
 
