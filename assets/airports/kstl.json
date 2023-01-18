@@ -571,9 +571,9 @@
                 ["TRAVS", "JAHNY"]
             ]
         },
-        "JHART5": {
-            "icao": "JHART5",
-            "name": "Jayhart Five",
+        "JHART6": {
+            "icao": "JHART6",
+            "name": "Jayhart Six",
             "rwy": {
                 "KSTL6": ["#064"],
                 "KSTL11": [["FUNKE", "A25+"], "RAMKR"],
@@ -1213,7 +1213,7 @@
             "origin": "kstl",
             "destination": "",
             "category": "departure",
-            "route": "KSTL30L.JHART5.VHP",
+            "route": "KSTL30L.JHART6.VHP",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1227,6 +1227,22 @@
                 ["rpa", 1],
                 ["skw", 2],
                 ["swa", 22]
+            ]
+        },
+        {
+            "origin":"kstl",
+            "destination":"kind",
+            "category": "departure",
+            "route": "KSTL30L.JHART6.BIB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["fdx", 1],
+                ["fdx/feeder", 1],
+                ["n", 2],
+                ["vte", 2]
             ]
         },
         {
@@ -1369,7 +1385,8 @@
                 ["rpa", 1],
                 ["swa", 22],
                 ["ual", 3],
-                ["ups", 3]
+                ["ups", 3],
+                ["vte", 2]
             ]
         },
         {
