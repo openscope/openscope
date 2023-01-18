@@ -674,9 +674,9 @@
             "name": "Arney Two",
             "rwy": {
                 "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX14": ["#100"],
+                "KJAX26": ["#320"],
+                "KJAX32": ["#320"]
             },
             "body": ["KIMML", ["ARNEY", "A110+"]],
             "exitPoints": {
@@ -690,12 +690,12 @@
         },
         "CROSB2": {
             "icao": "CROSB2",
-            "name": "Crossbow Two",
+            "name": "Crossbee Two",
             "rwy": {
                 "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX14": ["#100"],
+                "KJAX26": ["#320"],
+                "KJAX32": ["#320"]
             },
             "body": ["GIGLZ", ["CROSB", "A110+"]],
             "exitPoints": {
@@ -709,10 +709,10 @@
             "icao": "EXBOX2",
             "name": "X-Box Two",
             "rwy": {
-                "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX8": ["#140"],
+                "KJAX14": ["#140"],
+                "KJAX26": ["#220"],
+                "KJAX32": ["#220"]
             },
             "body": ["SAWGY", ["EXBOX", "A120+"]],
             "exitPoints": {
@@ -723,7 +723,7 @@
             ]
         },
         "JAX7": {
-            "icao": "JAX6",
+            "icao": "JAX7",
             "name": "Jacksonville Seven",
             "rwy": {
                 "KJAX8": ["#077"],
@@ -760,9 +760,9 @@
             "name": "Jettin' Two",
             "rwy": {
                 "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX14": ["#100"],
+                "KJAX26": ["#260"],
+                "KJAX32": ["#260"]
             },
             "body": ["DURTE", ["JETIN", "A100+"]],
             "exitPoints": {
@@ -778,10 +778,10 @@
             "icao": "SAWGY2",
             "name": "Soggy Two",
             "rwy": {
-                "KJAX8": [],
-                "KJAX14": [],
-                "KJAX26": [],
-                "KJAX32": []
+                "KJAX8": ["#140"],
+                "KJAX14": ["#140"],
+                "KJAX26": ["#220"],
+                "KJAX32": ["#220"]
             },
             "body": ["CRG", "SAWGY"],
             "exitPoints": {
