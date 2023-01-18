@@ -123,6 +123,7 @@ export const IDS = {
     TUTORIAL: 'tutorial',
     GITHUB_EXTERNAL_LINK: 'js-github-external-link',
     SCORE: 'score',
+    SCORE_LOG: 'score-log',
     SIDEBAR: 'sidebar'
 };
 
