@@ -21,6 +21,7 @@
 - <a href="https://github.com/openscope/openscope/issues/2052" target="_blank">#2052</a> - Fix script minification issues in build process
 - <a href="https://github.com/openscope/openscope/issues/2045" target="_blank">#2045</a> - Assorted code cleanup and optimizations
 - <a href="https://github.com/openscope/openscope/issues/1916" target="_blank">#1916</a> - Fix KORD
+- <a href="https://github.com/openscope/openscope/issues/1916" target="_blank">#1916</a> - Fix KJAX
 
 
 # 6.28.0 (July 3, 2022)
