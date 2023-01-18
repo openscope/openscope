@@ -101,15 +101,6 @@ ava('.reset() properly resets the instance properties to their null state', (t) 
     t.true(pilotModel.hasDepartureClearance === false);
 });
 
-ava('.shouldExpediteAltitudeChange() sets #shouldExpediteAltitudeChange to true and responds with a success message', (t) => {
-    const expectedResult = [true, 'expediting to assigned altitude'];
-    const pilot = createPilotFixture();
-    const result = pilot.shouldExpediteAltitudeChange();
-
-    t.true(pilot._mcp.shouldExpediteAltitudeChange);
-    t.deepEqual(result, expectedResult);
-});
-
 ava('.applyArrivalProcedure() returns an error when passed an invalid routeString', (t) => {
     const expectedResult = [false, 'arrival procedure format not understood'];
     const pilot = createPilotFixture();
@@ -926,12 +917,13 @@ ava('.maintainAltitude() sets mcp.altitudeMode to `HOLD` and set mcp.altitude to
     t.true(aircraftModel.mcp.altitude === 13000);
 });
 
-ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedite is true', (t) => {
+ava('.maintainAltitude() sets #shouldExpediteAltitudeChange to true when shouldExpedite is true', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
-    const shouldExpediteAltitudeChangeSpy = sinon.spy(aircraftModel.pilot, 'shouldExpediteAltitudeChange');
+
+    aircraftModel.pilot._mcp.shouldExpediteAltitudeChange = false;
 
     aircraftModel.pilot.maintainAltitude(
         nextAltitudeMock,
@@ -941,7 +933,7 @@ ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedi
         aircraftModel
     );
 
-    t.true(shouldExpediteAltitudeChangeSpy.calledOnce);
+    t.true(aircraftModel.pilot._mcp.shouldExpediteAltitudeChange);
 });
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is false', (t) => {

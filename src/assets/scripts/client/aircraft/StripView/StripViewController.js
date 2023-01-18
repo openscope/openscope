@@ -281,11 +281,6 @@ export default class StripViewController {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
         if (!stripViewModel) {
-            console.warn(
-                `Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist.` +
-                'This is likely not a fatal problem, but if you are seeing this, please let somebody know.'
-            );
-
             return;
         }
 
