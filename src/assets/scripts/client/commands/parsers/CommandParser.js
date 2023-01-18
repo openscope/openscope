@@ -152,7 +152,7 @@ export default class CommandParser {
     _buildSystemCommandModel(commandArgSegments) {
         const commandIndex = 0;
         const argIndex = 1;
-        const commandName = commandArgSegments[commandIndex];
+        const commandName = findCommandNameWithAlias(commandArgSegments[commandIndex]);
         const commandArgs = commandArgSegments[argIndex];
         const aircraftCommandModel = new AircraftCommandModel(commandName);
 
@@ -294,12 +294,12 @@ export default class CommandParser {
      * @return {boolean}
      */
     _isSystemCommand(callsignOrSystemCommandName) {
-        const command = AIRCRAFT_COMMAND_MAP[callsignOrSystemCommandName];
+        const commandName = findCommandNameWithAlias(callsignOrSystemCommandName);
 
-        if (typeof command === 'undefined') {
+        if (typeof commandName === 'undefined') {
             return false;
         }
 
-        return command.isSystemCommand && callsignOrSystemCommandName !== PARSED_COMMAND_NAME.TRANSMIT;
+        return AIRCRAFT_COMMAND_MAP[commandName].isSystemCommand;
     }
 }

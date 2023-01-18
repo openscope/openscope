@@ -781,10 +781,10 @@
       "variants": [
         {
           "aliases": [
+            "tw",
             "timewarp"
           ],
           "altkeys": [
-            "tw",
             "time warp"
           ],
           "explain": "set time warp <u>rate</u>"
