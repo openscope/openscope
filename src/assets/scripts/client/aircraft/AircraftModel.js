@@ -4,6 +4,7 @@ import _findIndex from 'lodash/findIndex';
 import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
+import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
@@ -89,6 +90,24 @@ const FLIGHT_RULES = {
 };
 
 /**
+ * List of flight phases that are *unambiguously* fully under the purview of tower rather than TRACON.
+ * Used by _isUnderTowerControl() to quickly classify aircraft based on which controller they are under.
+ * FLIGHT_PHASE.CLIMB not included here as additional logic is needed to assess whether we are dealing with
+ * departure aircraft that has freshly taken off and not yet switched from TWR frequency vs. other contexts
+ *
+ * @property AUTOTOWER_FLIGHT_PHASES
+ * @type {Object}
+ * @final
+ */
+const AUTOTOWER_FLIGHT_PHASES = [
+    FLIGHT_PHASE.APRON,
+    FLIGHT_PHASE.TAXI,
+    FLIGHT_PHASE.WAITING,
+    FLIGHT_PHASE.TAKEOFF,
+    FLIGHT_PHASE.LANDING
+];
+
+/**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
  *
  * @class AircraftModel
@@ -160,14 +179,14 @@ export default class AircraftModel {
         this.flightNumber = '';
 
         /**
-         * Option to tell aircraft to take off on its own when there is no other traffic on the runway
+         * Denotes an aircraft that took off under auto tower rather than manual control
          *
          * @for AircraftModel
-         * @property shouldTakeOffWhenRunwayIsClear
+         * @property tookOffUnderAutoTowerControl
          * @type boolean
          * @default false
          */
-        this.shouldTakeOffWhenRunwayIsClear = false;
+        this.tookOffUnderAutoTowerControl = false;
 
         /**
          * Trasponder code
@@ -669,9 +688,6 @@ export default class AircraftModel {
         this.target.altitude = this.altitude;
         this.targetHeading = this.heading;
         this.target.speed = this.speed;
-
-        // This assumes and arrival spawns outside the airspace
-        this.isControllable = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     /**
@@ -1214,6 +1230,8 @@ export default class AircraftModel {
         let alt_say;
 
         if (this.isAirborne()) {
+            const controller = this.isDeparture() ?
+                AirportController.airport_get().radio.dep : AirportController.airport_get().radio.app;
             const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
@@ -1230,10 +1248,10 @@ export default class AircraftModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
+            UiController.ui_log(`${controller}, ${this.callsign} with you ${alt_log}`);
             speech_say(
                 [
-                    { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
+                    { type: 'text', content: `${controller}, ` },
                     { type: 'callsign', content: this },
                     { type: 'text', content: `with you ${alt_say}` }
                 ],
@@ -1312,14 +1330,18 @@ export default class AircraftModel {
      * @for AircraftModel
      * @method takeoff
      * @param runway {RunwayModel} the runway taking off on
+     * @param byAutoTower {boolean}
      */
-    takeoff(runway) {
+    takeoff(runway, byAutoTower = false) {
         const cruiseSpeed = this.model.speed.cruise;
         const initialAltitude = this.fms.getInitialClimbClearance();
 
         this._prepareMcpForTakeoff(initialAltitude, runway.angle, cruiseSpeed);
         this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
+
+        if (!byAutoTower) {
+            EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
+        }
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
         runway.lastDepartedAircraftModel = this;
@@ -1489,8 +1511,9 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method updateFlightPhase
+     * @param isAutoTower {boolean}
      */
-    updateFlightPhase() {
+    updateFlightPhase(isAutoTower) {
         const runwayModel = this.fms.departureRunwayModel;
 
         switch (this.flightPhase) {
@@ -1506,13 +1529,13 @@ export default class AircraftModel {
             }
 
             case FLIGHT_PHASE.WAITING:
-                const iAmTheNextDeparture = this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
+                const runway = this.fms.departureRunwayModel;
 
-                if (this.shouldTakeOffWhenRunwayIsClear && iAmTheNextDeparture) {
-                    const lastDeparture = this.fms.departureRunwayModel.lastDepartedAircraftModel;
-                    const iAmTheFirstEverDeparture = lastDeparture === null;
+                if (isAutoTower && runway.isAircraftNextInQueue(this.id)) {
+                    const lastDeparture = runway.lastDepartedAircraftModel;
+                    const isFirstEverDeparture = lastDeparture === null;
 
-                    if (!iAmTheFirstEverDeparture) {
+                    if (!isFirstEverDeparture) {
                         const actualDistance = nm_ft(this.distanceToAircraft(lastDeparture));
                         const requiredDistance = this.model.calculateSameRunwaySeparationDistanceInFeet(lastDeparture.model);
                         const towerUtilizedDistance = requiredDistance + 2000;
@@ -1522,8 +1545,9 @@ export default class AircraftModel {
                         }
                     }
 
-                    this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
-                    this.takeoff(this.fms.departureRunwayModel);
+                    runway.removeAircraftFromQueue(this.id);
+                    this.takeoff(runway, true);
+                    this.tookOffUnderAutoTowerControl = true;
                 }
 
                 break;
@@ -1574,8 +1598,21 @@ export default class AircraftModel {
 
                 this.setFlightPhase(FLIGHT_PHASE.LANDING);
 
-                if (!this.projected) {
-                    EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
+                if (this.projected) {
+                    break;
+                }
+
+                EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
+
+                if (isAutoTower) {
+                    UiController.ui_log(`${this.callsign} switching to tower, good day`);
+                    speech_say(
+                        [
+                            { type: 'callsign', content: this },
+                            { type: 'text', content: ', switching to tower, good day' }
+                        ],
+                        this.pilotVoice
+                    );
                 }
 
                 break;
@@ -2669,12 +2706,13 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method update
+     * @param isAutoTower {boolean}
      */
-    update() {
-        this.updateFlightPhase();
+    update(isAutoTower) {
+        this.updateFlightPhase(isAutoTower);
         this.updateTarget();
         this.updatePhysics();
-        this._updateAircraftControllability();
+        this._updateAircraftControllability(isAutoTower);
     }
 
     /**
@@ -2735,14 +2773,26 @@ export default class AircraftModel {
         delete this.conflicts[conflictingAircraft.callsign];
     }
 
-    // TODO: needs better name
     /**
      * @for AircraftModel
-     * @method _contactAircraftAfterControllabilityChange
+     * @method _updateAircraftControllability
+     * @param isAutoTower {boolean}
      * @private
      */
-    _contactAircraftAfterControllabilityChange() {
-        // Crossing into the center
+    _updateAircraftControllability(isAutoTower) {
+        if (this.projected) {
+            return;
+        }
+
+        const nextControllability = (isAutoTower && this._isUnderTowerControl()) ?
+            false : this.isInsideAirspace(AirportController.airport_get());
+
+        if (this.isControllable === nextControllability) {
+            return;
+        }
+
+        this.isControllable = nextControllability;
+
         if (this.isControllable) {
             this.callUp();
 
@@ -2750,27 +2800,46 @@ export default class AircraftModel {
         }
 
         this.setIsRemovable();
-        EventBus.trigger(AIRCRAFT_EVENT.AIRSPACE_EXIT, this);
+
+        if (this.flightPhase !== FLIGHT_PHASE.LANDING) {
+            EventBus.trigger(AIRCRAFT_EVENT.AIRSPACE_EXIT, this);
+        }
     }
 
     /**
      * @for AircraftModel
-     * @method _updateAircraftControllability
+     * @method _isUnderTowerControl
      * @private
      */
-    _updateAircraftControllability() {
-        if (this.projected) {
+    _isUnderTowerControl() {
+        if (_includes(AUTOTOWER_FLIGHT_PHASES, this.flightPhase)) {
+            return true;
+        }
+
+        if (this.category !== FLIGHT_CATEGORY.DEPARTURE || this.flightPhase !== FLIGHT_PHASE.CLIMB) {
+            return false;
+        }
+
+        const runway = this.fms.departureRunwayModel;
+
+        // FAA JO 7110.65, Para. 3-9-3-b (civil acft)
+        return this.positionModel.distanceToPosition(runway.positionModel) < nm(runway.length) + 0.5;
+    }
+
+    /**
+     * Respond to user changing the tower control (autotower) settings
+     * by adjusting controllability as needed *without* making radio calls
+     *
+     * @for AircraftModel
+     * @method onTowerControllerChange
+     * @param isAutoTower {boolean}
+     */
+    onTowerControllerChange(isAutoTower) {
+        if (!this._isUnderTowerControl()) {
             return;
         }
 
-        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
-
-        if (this.isControllable === isInsideAirspace) {
-            return;
-        }
-
-        this.isControllable = isInsideAirspace;
-        this._contactAircraftAfterControllabilityChange();
+        this.isControllable = !isAutoTower;
     }
 
     /**

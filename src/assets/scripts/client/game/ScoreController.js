@@ -36,6 +36,7 @@ export default class ScoreController {
      * @chainable
      */
     setupHandlers() {
+        this._onTakeoffHandler = this._onTakeoff.bind(this);
         this._onApproachHandler = this._onApproach.bind(this);
         this._onLandingHandler = this._onLanding.bind(this);
         this._onExitAirspaceHandler = this._onExitAirspace.bind(this);
@@ -49,6 +50,7 @@ export default class ScoreController {
      * @chainable
      */
     enable() {
+        EventBus.on(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
         EventBus.on(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.on(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
         EventBus.on(AIRCRAFT_EVENT.AIRSPACE_EXIT, this._onExitAirspaceHandler);
@@ -62,11 +64,23 @@ export default class ScoreController {
      * @chainable
      */
     disable() {
+        EventBus.off(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
         EventBus.off(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.off(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
         EventBus.off(AIRCRAFT_EVENT.AIRSPACE_EXIT, this._onExitAirspaceHandler);
 
         return this;
+    }
+
+    /**
+     * @for ScoreController
+     * @method _onTakeoff
+     * @param aircraftModel {AircraftModel}
+     * @param runwayModel {RunwayModel}
+     */
+    _onTakeoff(aircraftModel, runwayModel) {
+        this._scoreWind(aircraftModel, 'taking off');
+        this._scoreRunwaySeparation(aircraftModel, runwayModel, 'taking off');
     }
 
     /**
@@ -189,7 +203,7 @@ export default class ScoreController {
         const previousAircraft = runwayModel.lastDepartedAircraftModel;
 
         // do not penalize departures launched automatically; only those launched by the user
-        if (!previousAircraft || previousAircraft.shouldTakeOffWhenRunwayIsClear) {
+        if (!previousAircraft || previousAircraft.tookOffUnderAutoTowerControl) {
             return;
         }
 

@@ -23,7 +23,7 @@ import { speech_say } from '../speech';
 import { generateTransponderCode, isDiscreteTransponderCode, isValidTransponderCode } from '../utilities/transponderUtilities';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
-import { FLIGHT_CATEGORY, FLIGHT_PHASE } from '../constants/aircraftConstants';
+import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { INVALID_INDEX } from '../constants/globalConstants';
@@ -184,6 +184,7 @@ export default class AircraftController {
      */
     _setupHandlers() {
         this._onRemoveAircraftHandler = this.aircraft_remove.bind(this);
+        this._onTowerControllerChangeHandler = this._onTowerControllerChange.bind(this);
 
         return this;
     }
@@ -201,6 +202,7 @@ export default class AircraftController {
         this._eventBus.on(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
+        this._eventBus.on(EVENT.TOWER_CONTROLLER_CHANGE, this._onTowerControllerChangeHandler);
 
         return this;
     }
@@ -218,6 +220,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.SCROLL_TO_AIRCRAFT, this._onScrollToAircraft);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
+        this._eventBus.off(EVENT.TOWER_CONTROLLER_CHANGE, this._onTowerControllerChangeHandler);
 
         return this;
     }
@@ -363,11 +366,13 @@ export default class AircraftController {
             return;
         }
 
+        const isAutoTower = GameController.isAutoTower();
+
         // TODO: this is getting better, but still needs more simplification
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraftModel = this.aircraft.list[i];
 
-            aircraftModel.update();
+            aircraftModel.update(isAutoTower);
             aircraftModel.updateWarning();
 
             // TODO: conflict checking eats up a lot of resources when there are more than
@@ -377,7 +382,7 @@ export default class AircraftController {
             }
 
             this._updateAircraftConflicts(aircraftModel, i);
-            this._updateAircraftVisibility(aircraftModel);
+            this._updateAircraftVisibility(aircraftModel, isAutoTower);
 
             if (!aircraftModel.isControllable) {
                 this.removeStripView(aircraftModel);
@@ -568,7 +573,6 @@ export default class AircraftController {
         const aircraftModel = new AircraftModel(initializationProps);
         const isDeparture = initializationProps.category === 'departure';
         const isArrival = initializationProps.category === 'arrival';
-        const isAutoTower = GameController.getGameOption(GAME_OPTION_NAMES.TOWER_CONTROLLER) === 'SYSTEM';
         const runwayCommands = initializationProps.commands;
 
         // triggering event bus rather than calling locally because multiple classes
@@ -579,15 +583,9 @@ export default class AircraftController {
             this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.arrivalRunwayModel.name);
         }
 
-        if (isDeparture && isAutoTower) {
-            // create the StripView immediately for departures; arrival strips are made when controllable
-            this._stripViewController.createStripView(aircraftModel);
+        if (isDeparture && GameController.isAutoTower()) {
             aircraftModel.pilot.clearedAsFiled();
-            aircraftModel.moveToRunway(aircraftModel.fms.departureRunwayModel);
-            aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
-            aircraftModel.setFlightPhase(FLIGHT_PHASE.WAITING);
-
-            aircraftModel.shouldTakeOffWhenRunwayIsClear = true;
+            aircraftModel.taxiToRunway(aircraftModel.fms.departureRunwayModel);
 
             this._runCommandOnPreSpawnAircraft(aircraftModel, runwayCommands, aircraftModel.fms.departureRunwayModel.name);
         }
@@ -881,21 +879,26 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @param {AircraftModel} aircraftModel
+     * @param {boolean} isAutoTower
      * @private
      */
-    _updateAircraftVisibility(aircraftModel) {
+    _updateAircraftVisibility(aircraftModel, isAutoTower) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
         if (aircraftModel.isArrival() && aircraftModel.isStopped() && !aircraftModel.hit) {
+            // trigger this for scoring purposes even if autotower is on, to give credit for a safe arrival
+            // (since there is no separate scoring for TRACON -> TWR handover)
             EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
 
-            UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
-            speech_say(
-                [
-                    { type: 'callsign', content: aircraftModel },
-                    { type: 'text', content: ', switching to ground, good day' }
-                ],
-                aircraftModel.pilotVoice
-            );
+            if (!isAutoTower) {
+                UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
+                speech_say(
+                    [
+                        { type: 'callsign', content: aircraftModel },
+                        { type: 'text', content: ', switching to ground, good day' }
+                    ],
+                    aircraftModel.pilotVoice
+                );
+            }
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
             this.aircraft_remove(aircraftModel);
@@ -919,6 +922,19 @@ export default class AircraftController {
         // Clean up the screen from aircraft that are too far
         if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.isControllable && aircraftModel.isRemovable) {
             this.aircraft_remove(aircraftModel);
+        }
+    }
+
+    /**
+     * Respond to user changing the tower control (autotower) settings
+     *
+     * @for AircraftController
+     * @private
+     */
+    _onTowerControllerChange() {
+        const isAutoTower = GameController.isAutoTower();
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            this.aircraft.list[i].onTowerControllerChange(isAutoTower);
         }
     }
 }

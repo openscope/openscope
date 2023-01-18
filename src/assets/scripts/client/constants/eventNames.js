@@ -181,6 +181,15 @@ export const EVENT = {
     SET_THEME: 'set-theme',
 
     /**
+     * Change in tower control setting
+     *
+     * @memberof EVENT
+     * @property TOWER_CONTROLLER_CHANGE
+     * @type {string}
+     */
+    TOWER_CONTROLLER_CHANGE: 'tower-controller-change',
+
+    /**
      * Step through pre-defined timewarp speeds
      *
      * @memberof EVENT
