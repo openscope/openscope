@@ -98,3 +98,16 @@ _Shortcut -_ `[F7] [callsign]` or `[F7] [radius] [callsign]`
 _Description -_ This toggles a circle around the center of the radar target, with a radius you can specify in the command. If the radius is not specified, the default halo size will be used (generally 3nm for terminal, or 5nm for en route).
 
 _More Info -_ Note that if a resized halo exists, entering `[F7] [callsign]` will actually be interpreted by the system as `[F7] 3 [callsign]`-- meaning the halo will be resized to 3nm, not removed. With the halo back to 3nm, entering `[F7] [callsign]` again will remove the halo. If you add a 10nm halo with `[F7] 10 [callsign]`, it can be removed instead of resized by specifying `[F7] 10 [callsign]`, or use the above method of entering `[F7] [callsign]` twice.
+
+### Range/Bearing Measurement Tool
+
+_Syntax -_ N/A
+
+_Shortcut -_ N/A
+
+_Description -_ To easily determine the heading/distance between two points/fixes/aircraft, simply hold the \"Ctrl\" button and left click two points. Pressing Shift+Ctrl will cause the click to snap to the nearest aircraft or fix. If snapped to an aircraft, a time will also be displayed, based on the aircraft's current speed. To clear all range/bearing lines, press the ESC key.
+
+_More Info -_ If the measurement starts with an aircraft, the setting in "Settings" -> "Measure path style" affects the way the distance is calculated:
+- **Straight lines only**: The direct bearing and distance between the aircraft the the referenced point/fix/aircraft (e.g. as if the aircraft _instantly_ turned in the measured direction).
+- **Arc to next fix, then straight**: A simulated line, as though the aircraft continued to its next assigned fix, _and then_ turned to the measured point/fix/aircraft.
+- **All Lines Arced**: A simulted line, as though the aircraft turned towared the measured point/fix/aircraft at a standard turn rate, at its current speed.
