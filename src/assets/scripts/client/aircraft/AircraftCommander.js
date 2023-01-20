@@ -411,6 +411,19 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
+        if (aircraft.flightPhase === FLIGHT_PHASE.APRON) {
+            return [false, 'we\'re still at the gate'];
+        }
+
+        if (aircraft.flightPhase === FLIGHT_PHASE.TAXI) {
+            const runway = aircraft.fms.departureRunwayModel;
+            const readback = {};
+            readback.log = `we're still taxiing to Runway ${runway.name}`;
+            readback.say = `we're still taxiing to Runway ${radio_runway(runway.name)}`;
+
+            return [false, readback];
+        }
+
         return aircraft.pilot.maintainPresentHeading(aircraft);
     }
 
@@ -668,10 +681,6 @@ export default class AircraftCommander {
         const roundedWindSpeed = round(wind.speed);
         const readback = {};
 
-        if (!isInQueue) {
-            return [false, 'unable to take off, we\'re not at any runway'];
-        }
-
         if (aircraft.isAirborne()) {
             return [false, 'unable to take off, we\'re already airborne'];
         }
@@ -689,6 +698,10 @@ export default class AircraftCommander {
 
         if (aircraft.flightPhase === FLIGHT_PHASE.TAKEOFF) {
             return [false, 'already taking off'];
+        }
+
+        if (!isInQueue) {
+            return [false, 'unable to take off, we\'re not at any runway'];
         }
 
         if (spotInQueue > 0) {

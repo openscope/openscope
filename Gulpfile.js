@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 const gulp = require('gulp');
+const argv = require('yargs').argv;
 const OPTIONS = require('./tools/options');
 
 const buildMarkup = require('./tools/tasks/buildMarkup');
@@ -8,7 +9,7 @@ const jsonAssembler = require('./tools/tasks/jsonAssembler');
 const markdownAssembler = require('./tools/tasks/markdownAssembler');
 const copyChangelog = require('./tools/tasks/copyChangelog');
 
-require('./tools/tasks/scriptTasks')(gulp, OPTIONS);
+require('./tools/tasks/scriptTasks')(gulp, OPTIONS, argv);
 require('./tools/tasks/styleTasks')(gulp, OPTIONS);
 require('./tools/tasks/mediaTasks')(gulp, OPTIONS);
 require('./tools/tasks/utilityTasks')(gulp, OPTIONS);

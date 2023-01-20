@@ -1,7 +1,7 @@
 [![openScope Current Release](https://img.shields.io/github/v/release/openscope/openscope.svg)](https://github.com/openscope/openscope/releases)
-[![Production Build State](https://img.shields.io/github/workflow/status/openscope/openscope/protected-branch-checks/master.svg)](https://github.com/openscope/openscope/tree/master)
+[![Production Build State](https://img.shields.io/github/actions/workflow/status/openscope/openscope/push.yml?branch=master)](https://github.com/openscope/openscope/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/openscope/openscope/badge.svg?branch=develop)](https://coveralls.io/github/openscope/openscope?branch=develop)
-[![Slack Status](http://slack.openscope.io/badge.svg)](http://slack.openscope.io)
+[![Slack Status](https://img.shields.io/badge/slack-join-yellow)](https://join.slack.com/t/openscopeatc/shared_invite/zt-g9wq2mch-B7Z9IltlgxgCBC2dBYPjiw)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
 # openScope Air Traffic Control Simulator
@@ -10,7 +10,7 @@ Visit http://openscope.io to begin playing now!
 
 If you're just getting started, try the tutorial and see the [command reference](documentation/commands.md) for a full list of commands you can use. For information on each airport, see the [airport guide](documentation/airport-guides/airport-guide-directory.md).
 
-Feel free to [join us on slack](http://slack.openscope.io/) if you have questions, comments or would like to contribute to the project. We can then add you to the organization so you can begin committing to this repo.
+Feel free to [join us on slack](https://join.slack.com/t/openscopeatc/shared_invite/zt-g9wq2mch-B7Z9IltlgxgCBC2dBYPjiw) if you have questions, comments or would like to contribute to the project. We can then add you to the organization so you can begin committing to this repo.
 
 ---
 
@@ -41,7 +41,7 @@ Listening on PORT 3003
 
 Success!!
 
-You you do not see this message and are having trouble getting set up, please join us on [Slack](http://slack.openscope.io) and someone will be able to troubleshoot with you.
+You you do not see this message and are having trouble getting set up, please join us on [Slack](https://join.slack.com/t/openscopeatc/shared_invite/zt-g9wq2mch-B7Z9IltlgxgCBC2dBYPjiw) and someone will be able to troubleshoot with you.
 
 For more information on the available tools, please view the [Tools Readme](tools/README.md).
 
@@ -56,12 +56,6 @@ Don't know Javascript?  That's cool, we're always looking for beta testers and/o
 ## Privacy Disclosures
 
 We use Google Analytics for gathering data about how our app is used. See [Event Tracking](documentation/event-tracking.md) for more information.
-
-## Credits
-
-OpenScope is supported by the following awesome projects. Thank you!
-
-- [![pullreminders](https://pullreminders.com/badge.svg)](https://pullreminders.com?ref=badge) - Slack integration to improve our PR response time
 
 ## License
 

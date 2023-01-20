@@ -68,6 +68,27 @@ export const GAME_EVENTS = {
 };
 
 /**
+ * Event log description for a point event
+ * @type {Object}
+ */
+const GAME_EVENTS_DESCRIPTION = {
+    AIRSPACE_BUST: 'Aircraft left radar coverage as arrival',
+    ARRIVAL: 'Aircraft landed successfully',
+    COLLISION: 'Multiple aircraft collided',
+    DEPARTURE: 'Departing aircraft switched to center',
+    EXTREME_CROSSWIND_OPERATION: 'Aircraft operated with extreme crosswind',
+    EXTREME_TAILWIND_OPERATION: 'Aircraft operated with extreme tailwind',
+    GO_AROUND: 'Aircraft had to go around',
+    HIGH_CROSSWIND_OPERATION: 'Aircraft operated with high crosswind',
+    HIGH_TAILWIND_OPERATION: 'Aircraft operated with high tailwind',
+    ILLEGAL_APPROACH_CLEARANCE: 'Aircraft intercept angle was > 30 degrees',
+    LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE: 'Aircraft intercepted localizer above glidescope',
+    NOT_CLEARED_ON_ROUTE: 'Aircraft left airspace without being on route',
+    SEPARATION_LOSS: 'Aircraft violated separation requirements',
+    NO_TAKEOFF_SEPARATION: 'Aircraft violated same runway separation requirements'
+};
+
+/**
  * @class GameController
  */
 class GameController {
@@ -222,6 +243,7 @@ class GameController {
         this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
 
         this.game_updateScore();
+        this.updateScoreHistory(gameEvent);
     }
 
 
@@ -448,6 +470,25 @@ class GameController {
         }
 
         this.game.last_score = this.game.score;
+    }
+
+    /**
+     * @for GameController
+     * @method updateScoreHistory
+     * @param event {String} one of the events listed in GAME_EVENTS
+     */
+    updateScoreHistory(event) {
+        let points = GAME_EVENTS_POINT_VALUES[event];
+
+        if (points < 0) {
+            points = `<span class="gameScoreHistory-points_negative">${points}</span>`;
+        }
+
+        const html = $(`<li>${GAME_EVENTS_DESCRIPTION[event]}: ${points}</li>`);
+        const listView = $(SELECTORS.DOM_SELECTORS.SCORE_LOG);
+
+        listView.append(html);
+        listView.scrollTop(listView.get(0).scrollHeight);
     }
 
     /**

@@ -34,7 +34,7 @@
 
 ## Introduction
 
-This guide will show you how to generate a terrain file for any airport in openScope. This is mainly done using QGIS, a free and open source Geographic Information System. The process can be quite tedious and often frustrating, so if you get stuck somewhere, you can talk to us on [Slack](http://slack.openscope.io/), where we will be happy to help you!
+This guide will show you how to generate a terrain file for any airport in openScope. This is mainly done using QGIS, a free and open source Geographic Information System. The process can be quite tedious and often frustrating, so if you get stuck somewhere, you can talk to us on [Slack](https://join.slack.com/t/openscopeatc/shared_invite/zt-g9wq2mch-B7Z9IltlgxgCBC2dBYPjiw), where we will be happy to help you!
 
 ## Initial setup (QGIS 2.18)
 
@@ -216,7 +216,7 @@ Download and install QGIS from the [QGIS website](http://www.qgis.org/en/site/fo
 
 If you've made it this far, you have successfully generated a terrain file for openScope. Give yourself a break now, you deserve it!
 
-If you're having any problems while following this guide, you can talk to us on [Slack](http://slack.openscope.io/), where we will be happy to help you!
+If you're having any problems while following this guide, you can talk to us on [Slack](https://join.slack.com/t/openscopeatc/shared_invite/zt-g9wq2mch-B7Z9IltlgxgCBC2dBYPjiw), where we will be happy to help you!
 
 # Terrain Generation (QGIS 3.4+)
 

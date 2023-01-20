@@ -20,7 +20,8 @@ ava('sets #_options on instantiation', (t) => {
         'softCeiling',
         'mouseClickDrag',
         'rangeRings',
-        'measureToolPath'
+        'measureToolPath',
+        'chatLogDuration'
     ];
 
     const model = new GameOptions();
