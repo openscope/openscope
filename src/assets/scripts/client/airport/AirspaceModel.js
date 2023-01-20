@@ -185,11 +185,11 @@ export default class AirspaceModel extends BaseModel {
      * @return {boolean}
      */
     isPointInside(point, altitude) {
-        if (!this.isPointInside2D(point)) {
+        if (altitude < this.floor || this.ceiling < altitude) {
             return false;
         }
 
-        return this.floor <= altitude && altitude <= this.ceiling;
+        return this.isPointInside2D(point);
     }
 
     /**

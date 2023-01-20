@@ -328,6 +328,12 @@ _Aliases -_ `fph`
 
 _Information -_ This command has the aircraft fly straight ahead, regardless of assigned routing. 
 
+For departure aircraft prior to take off, this command is interpreted as "fly
+runway heading". The aircraft will ignore any assigned routing and will instead
+maintain runway heading upon take off, until otherwise instructed.
+
+The command is invalid for aircraft that are at the gate, or still in the process of taxiing.
+
 _Syntax -_ `AAL123 fph`
 
 ### Heading
@@ -475,11 +481,11 @@ _Syntax -_ `pause`
 
 ### Timewarp
 
-~~_Aliases -_ `tw`~~
+_Aliases -_ `tw`
 
 _Information -_ Sets the rate at which time passes, normal is `1`. While the time warp button can only set the rate to `1`, `2`, or `5`, the timewarp command accepts any value greater than or equal to 1.
 
-_Parameters -_ A number to multiply the rate at which time passes. `1` resets to normal time.
+_Parameters -_ A number to multiply the rate at which time passes. Omitting the parameter, or setting it to `1`, resets to normal time.
 
 _Syntax -_ `timewarp [rate]`
 

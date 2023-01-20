@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-module.exports = function(gulp, config) {
+module.exports = function(gulp, config, argv) {
     const path = require('path');
     const browserify = require('browserify');
     const babelify = require('babelify');
@@ -10,7 +10,6 @@ module.exports = function(gulp, config) {
     const gulpif = require('gulp-if');
     const uglify = require('gulp-uglify');
     const rename = require('gulp-rename');
-    const cli = require('../cli');
     const OPTIONS = config;
 
     const buildScripts = () => {
@@ -25,9 +24,10 @@ module.exports = function(gulp, config) {
             .pipe(source('bundle.js'))
             .pipe(buffer())
             .pipe(sourcemaps.init({ loadMaps: true }))
-            .pipe(gulpif(cli.argv.isProd, uglify({
-                mangle: false
-            })))
+            .pipe(gulpif(
+                argv.prod,
+                uglify({ mangle: false })
+            ))
             .pipe(rename({ suffix: '.min' }))
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));

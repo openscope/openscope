@@ -345,11 +345,7 @@ export default class AircraftController {
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
-
-        if (aircraftModel.isControllable) {
-            this.removeStripView(aircraftModel);
-        }
-
+        this.removeStripView(aircraftModel);
         this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 
@@ -383,10 +379,8 @@ export default class AircraftController {
             this._updateAircraftConflicts(aircraftModel, i);
             this._updateAircraftVisibility(aircraftModel);
 
-            // `#isFlightStripRemovable` will be true even when there is no corresponding
-            // `StripView` for and `aircraftModel`
-            if (aircraftModel.isFlightStripRemovable && this._stripViewController.hasStripViewModel(aircraftModel)) {
-                this._stripViewController.removeStripView(aircraftModel);
+            if (!aircraftModel.isControllable) {
+                this.removeStripView(aircraftModel);
             }
         }
     }
@@ -904,8 +898,6 @@ export default class AircraftController {
             );
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-            aircraftModel.setIsFlightStripRemovable();
-            aircraftModel.setIsRemovable();
             this.aircraft_remove(aircraftModel);
 
             return;
@@ -913,8 +905,6 @@ export default class AircraftController {
 
         if (aircraftModel.hit && aircraftModel.isOnGround()) {
             UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
-            aircraftModel.setIsFlightStripRemovable();
-            aircraftModel.setIsRemovable();
             this.aircraft_remove(aircraftModel);
 
             speech_say(
