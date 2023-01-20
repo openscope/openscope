@@ -11,6 +11,7 @@ import { MEASURE_TOOL_STYLE } from './inputConstants';
  */
 export const GAME_OPTION_NAMES = {
     CONTROL_METHOD: 'controlMethod',
+    CHAT_LOG_DURATION: 'chatLogDuration',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
     MEASURE_TOOL_PATH: 'measureToolPath',
@@ -258,5 +259,19 @@ export const GAME_OPTION_VALUES = [
                 value: MEASURE_TOOL_STYLE.ALL_ARCED
             }
         ]
+    },
+    {
+        name: GAME_OPTION_NAMES.CHAT_LOG_DURATION,
+        defaultValue: '3',
+        description: 'Chat Log Duration',
+        help: 'How long chat transmissions will remain visible before fading out',
+        type: 'number',
+        onChangeEventHandler: EVENT.CHAT_LOG_DURATION_CHANGE,
+        unit: 'sec',
+        validationHandler(newVal) {
+            const output = parseFloat(newVal);
+
+            return !Number.isNaN(output) && output > 0;
+        }
     }
 ];

@@ -128,7 +128,7 @@ export default class CommandParser {
      */
     _extractCommandsAndArgs(rawCommandWithArgs) {
         const commandOrCallsignIndex = 0;
-        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(COMMAND_ARGS_SEPARATOR);
+        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(COMMAND_ARGS_SEPARATOR).filter((t) => t);
         const callsignOrSystemCommandName = commandArgSegmentsWithCallsign[commandOrCallsignIndex];
         // effectively a slice of the array that returns everything but the first item
         const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
@@ -152,7 +152,7 @@ export default class CommandParser {
     _buildSystemCommandModel(commandArgSegments) {
         const commandIndex = 0;
         const argIndex = 1;
-        const commandName = commandArgSegments[commandIndex];
+        const commandName = findCommandNameWithAlias(commandArgSegments[commandIndex]);
         const commandArgs = commandArgSegments[argIndex];
         const aircraftCommandModel = new AircraftCommandModel(commandName);
 
@@ -206,11 +206,6 @@ export default class CommandParser {
 
         for (let i = 0; i < commandArgSegments.length; i++) {
             const commandOrArg = commandArgSegments[i];
-
-            if (commandOrArg === '') {
-                continue;
-            }
-
             const commandName = findCommandNameWithAlias(commandOrArg);
 
             if (typeof aircraftCommandModel === 'undefined') {
@@ -294,12 +289,12 @@ export default class CommandParser {
      * @return {boolean}
      */
     _isSystemCommand(callsignOrSystemCommandName) {
-        const command = AIRCRAFT_COMMAND_MAP[callsignOrSystemCommandName];
+        const commandName = findCommandNameWithAlias(callsignOrSystemCommandName);
 
-        if (typeof command === 'undefined') {
+        if (typeof commandName === 'undefined') {
             return false;
         }
 
-        return command.isSystemCommand && callsignOrSystemCommandName !== PARSED_COMMAND_NAME.TRANSMIT;
+        return AIRCRAFT_COMMAND_MAP[commandName].isSystemCommand;
     }
 }
