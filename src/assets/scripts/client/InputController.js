@@ -60,7 +60,6 @@ export default class InputController {
         this.input.callsign = '';
         this.input.history = [];
         this.input.history_item = null;
-        this.input.click = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
@@ -140,7 +139,6 @@ export default class InputController {
         this.$canvases.off('mousedown', this.onMouseDownHandler);
         this.$canvases.off('dblclick', this.onMouseDblclickHandler);
         this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
-
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
         return this.destroy();
@@ -156,15 +154,11 @@ export default class InputController {
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
-
         this._autocompleteController = null;
-
         this.input = input;
         this.input.callsign = '';
         this.input.history = [];
         this.input.history_item = null;
-        this.input.click = [0, 0];
-        this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
 
@@ -205,7 +199,6 @@ export default class InputController {
         prop.input.command = '';
         this.input.callsign = '';
         this.$commandInput.val('');
-
         this._eventBus.trigger(EVENT.DESELECT_AIRCRAFT, {});
     }
 
@@ -426,8 +419,6 @@ export default class InputController {
         // using `prop` here so CanvasController knows which aircraft is selected
         // eslint-disable-next-line no-undef
         prop.input.callsign = aircraftModel.callsign;
-        // eslint-disable-next-line no-undef
-        prop.input.command = '';
         this.input.callsign = aircraftModel.callsign;
         this.$commandInput.val(`${aircraftModel.callsign} `);
 
