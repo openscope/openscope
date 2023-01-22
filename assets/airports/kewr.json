@@ -224,7 +224,7 @@
         },
         {
             "floor": 0,
-            "ceiling": 60,
+            "ceiling": 70,
             "airspace_class": "B",
             "poly": [
                 ["N41.27792", "W74.32251"],
@@ -237,7 +237,7 @@
         },
         {
             "floor": 60,
-            "ceiling": 60,
+            "ceiling": 70,
             "airspace_class": "B",
             "poly": [
                 ["N41.34159", "W74.06158"],
@@ -288,7 +288,7 @@
         },
         {
             "floor": 50,
-            "ceiling": 60,
+            "ceiling": 70,
             "airspace_class": "B",
             "poly": [
                 ["N41.27187", "W74.46759"],
