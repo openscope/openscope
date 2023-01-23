@@ -722,8 +722,8 @@ export default class InputController {
 
         if (this.input.history_item <= 0) {
             this.$commandInput.val(this.input.history[0]);
-            this.input.history.splice(0, 1);
 
+            this.input.history.splice(0, 1);
             this.input.history_item = null;
 
             return;
