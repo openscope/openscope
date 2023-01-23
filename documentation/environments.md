@@ -1,5 +1,9 @@
 # Environments
 
+THIS DOCUMENT IS OUT OF DATE AND NOT ACCURATE. ONCE THE HOSTING MOVE IS COMPLETE, THIS DOC SHOULD BE UPDATED TO REFLECT CURRENT STATE.
+
+---
+
 We use several environments hosted on Heroku.
 
 ## Production
