@@ -1185,7 +1185,7 @@
             "altitude": [17000, 18000],
             "speed": 280,
             "method": "random",
-            "rate": 1,
+            "rate": 0.5,
             "airlines": [
                 ["aal", 10],
                 ["aay", 3],
