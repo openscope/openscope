@@ -71,11 +71,13 @@
         "GIPPL":  ["N31d22m53.957", "W81d09m53.696"],
         "HARPS":  ["N31d41m29.560", "W81d15m15.735"],
         "HENIG":  ["N32d10m17.993", "W80d48m13.464"],
+        "JAMEB":  ["N32d22m10.265", "W81d58m36.549"],
         "JANIE":  ["N31d51m33.930", "W81d17m44.602"],
         "JROSS":  ["N32d42m40.008", "W80d37m37.990"],
         "KUCES":  ["N32d42m40.008", "W80d37m37.990"],
         "KSAV":   ["N32d07m39.298", "W81d12m07.675", "Savannah"],
         "LOTTS":  ["N32d20m11.534", "W81d51m17.258"],
+        "LUCNE":  ["N32d49m46.236", "W81d12m24.162"],
         "MAYAR":  ["N32d14m38.620", "W81d32m03.949"],
         "MIZLU":  ["N32d01m04.134", "W81d11m57.267"],
         "MQQ":    ["N31d49m52.344", "W81d30m36.648", "Mc Intosh"],
@@ -97,6 +99,7 @@
         "TILLS":  ["N32d28m44.099", "W81d14m04.844"],
         "TOSEA":  ["N32d14m03.037", "W81d12m03.199"],
         "VIYAP":  ["N31d15m08.147", "W81d26m08.188"],
+        "VP334":  ["N32d02m50.000", "W81d43m58.700"],
         "VPBFE":  ["N31d15m08.147", "W81d26m08.188"],
         "VPIWA":  ["N31d48m19.998", "W81d25m50.989"],
         "VPZIE":  ["N32d01m36.996", "W80d53m24.982"],
@@ -119,6 +122,14 @@
                 ["N32d07m42.503", "W81d11m18.920", "10ft"]
             ],
             "ils": [true, true]
+        },
+        {
+            "name": ["19", "28"],
+            "end": [
+                ["N32d08m08.967", "W81d12m00.511", "10ft"],
+                ["N32d06m59.665", "W81d11m59.981", "10ft"]
+            ],
+            "ils": [true, true]
         }
     ],
     "spawnPatterns": [
@@ -126,65 +137,65 @@
             "origin": "KSAV",
             "destination": "",
             "category": "departure",
-            "route": "SMALZ",
+            "route": "KSAV..SMALZ",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 15,
             "airlines": [
-                ["aal", 3],
-                ["aca", 1],
-                ["dal", 3],
-                ["ual", 3]
+                ["aal", 43],
+                ["aca", 27],
+                ["dal", 34],
+                ["ual", 45]
             ]
         },
         {
             "origin":"KSAV",
             "destination": "",
             "category": "departure",
-            "route": "JROSS",
+            "route": "KSAV..JROSS",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 15,
             "airlines": [
-                ["aal", 3],
-                ["aca", 1],
-                ["jbu", 3],
-                ["ual", 3]
+                ["aal", 30],
+                ["aca", 11],
+                ["jbu", 24],
+                ["ual", 43]
             ]
         },
         {
             "origin": "KSAV",
             "destination": "",
             "category": "departure",
-            "route": "GIPPL",
+            "route": "KSAV..GIPPL",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 15,
             "airlines": [
-                ["aal", 3],
-                ["aca", 1],
-                ["dal", 3],
-                ["ual", 3]
+                ["aal", 30],
+                ["aca", 10],
+                ["dal", 30],
+                ["ual", 30]
             ]
         },
         {
             "origin": "",
             "destination": "KSAV",
             "category": "arrival",
-            "route": "PLZZZ..SAV",
+            "route": "LUCNE..PLZZZ..SAV",
             "altitude": [10000, 10000],
             "speed": 250,
             "method": "random",
-            "rate": 5,
+            "rate": 10,
             "airlines": [
-                ["aal", 3],
-                ["aca", 1],
-                ["dal", 3],
-                ["ual", 3],
-                ["vxp", 1]
+                ["aal", 35],
+                ["aca", 11],
+                ["dal", 33],
+                ["ual", 33],
+                ["vxp", 15]
             ]
         },
         {
@@ -195,30 +206,30 @@
             "altitude": [10000, 10000],
             "speed": 250,
             "method": "random",
-            "rate": 6,
+            "rate": 10,
             "airlines": [
-                ["aal", 3],
-                ["jbu", 3],
-                ["dal", 3],
-                ["ual", 4],
-                ["bwa", 2]
+                ["aal", 31],
+                ["jbu", 35],
+                ["dal", 33],
+                ["ual", 41],
+                ["bwa", 24]
             ]
         },
         {
             "origin": "",
             "destination": "KSAV",
             "category": "arrival",
-            "route": "LOTTS..SAV",
+            "route": "JAMEB..LOTTS..SAV",
             "altitude": [10000, 10000],
             "speed": 250,
             "method": "random",
-            "rate": 6,
+            "rate":10,
             "airlines": [
-                ["aal", 3],
-                ["jbu", 3],
-                ["dal", 3],
-                ["ual", 4],
-                ["nks", 2]
+                ["aal", 38],
+                ["jbu", 36],
+                ["dal", 31],
+                ["ual", 44],
+                ["nks", 22]
             ]
         }
     ],
@@ -226,7 +237,7 @@
             {
                 "name": "Base Map",
                 "lines": [
-                    ["N31d27m32.536", "W80d47m54.451"],
+                ["N31d27m32.536", "W80d47m54.451"],
                 ["N31d36m54.489", "W80d40m59.545"],
                 ["N31d59m60.000", "W80d28m59.533"],
                 ["N32d09m26.793", "W80d38m00.780"],
