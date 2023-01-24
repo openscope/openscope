@@ -1,0 +1,20 @@
+{
+    "airac": 2213,
+    "radio":{
+        "twr": "Manchester Tower",
+        "app": "Manchester Approach",
+        "dep": "Manchester Departure"
+    },
+    "icao": "KMHT",
+    "iata": "MHT",
+    "magnetic_north": -9,
+    "ctr_radius": 110,
+    "ctr_ceiling": 10000,
+    "initial_alt": 3000,
+    "position": ["N42d55m57.009", "W71d26m08.635"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N42d55m57.009", "W71d26m08.635"],
+        "radius_nm": 5.0
+    },
+    }
