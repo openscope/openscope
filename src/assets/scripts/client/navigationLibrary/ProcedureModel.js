@@ -581,14 +581,14 @@ export default class ProcedureModel {
     }
 
     /**
-     * Return the name of a fix from a restrited-fix array
+     * Return the name of a fix from a restricted-fix array
      *
-     * Ex:    ['FIXXA', 'A100']    -->    'FIXXA'
+     * Ex: ['FIXXA', 'A100'] --> 'FIXXA'
      *
      * @for ProcedureModel
      * @method _getFixNameFromRestrictedFixArray
-     * @param restrictedFix {array<string>}
-     * @return {string}
+     * @param restrictedFix {string|string[]}
+     * @return {string|undefined}
      * @private
      */
     _getFixNameFromRestrictedFixArray(restrictedFix) {

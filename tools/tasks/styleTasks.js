@@ -13,15 +13,15 @@ module.exports = function(gulp, config) {
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
+            cascade: false,
+            overrideBrowserslist: ['last 2 versions'],
         }))
         .pipe(cleanCSS({compatibility: 'ie11'}))
         .pipe(concat('main.min.css'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
 
-    gulp.task(OPTIONS.TASKS.BUILD.STYLES, gulp.series(buildStyles));
+    gulp.task(OPTIONS.TASKS.BUILD.STYLES, buildStyles);
     gulp.task(OPTIONS.TASKS.WATCH.STYLES, () => {
         gulp.watch(OPTIONS.GLOB.LESS).on('change', () => buildStyles());
     });

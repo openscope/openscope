@@ -156,7 +156,7 @@ export default class Pilot {
         if (expedite) {
             this._mcp.shouldExpediteAltitudeChange = true;
 
-            // including space here so when expedite is false there isnt an extra space after altitude
+            // including space here so when expedite is false there isn't an extra space after altitude
             expediteReadback = ' and expedite';
         }
 
@@ -177,7 +177,7 @@ export default class Pilot {
      * @param direction      {string|null}  (optional)  the direction of turn; either 'left' or 'right'
      * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a
      *                                                  number of degrees to turn
-     * @return {array}                                  [success of operation, readback]
+     * @return {array}                      [success of operation, readback]
      */
     maintainHeading(aircraftModel, headingInDegrees, direction, incremental) {
         const nextHeadingInRadians = degreesToRadians(headingInDegrees);
@@ -328,8 +328,8 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyPartialRouteAmendment
-     * @param routeString {tring}  route string in the form of `entry.procedure.airport`
-     * @return {array}             [success of operation, readback]
+     * @param routeString {string}  route string in the form of `entry.procedure.airport`
+     * @return {array}              [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
         const readback = this._fms.applyPartialRouteAmendment(routeString);
@@ -399,6 +399,7 @@ export default class Pilot {
     /**
      * Cancel departure clearance
      *
+     * @deprecated
      * @for Pilot
      * @method cancelDepartureClearance
      * @param aircraftModel {AircraftModel}
@@ -435,6 +436,7 @@ export default class Pilot {
             if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
                 return [false, {
                     log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
+                    // eslint-disable-next-line max-len
                     say: `that must be for somebody else, we weren't given holding over ${NavigationLibrary.getFixSpokenName(fixName)}`
                 }];
             }
@@ -663,6 +665,7 @@ export default class Pilot {
 
         const readback = {
             log: `cross ${fixName.toUpperCase()} at ${altitude} and ${speed}kt`,
+            // eslint-disable-next-line max-len
             say: `cross ${NavigationLibrary.getFixSpokenName(fixName)} at ${radio_altitude(altitude)} and ${radio_spellOut(speed)} knots`
         };
 
@@ -843,6 +846,7 @@ export default class Pilot {
         // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of spelling it
         return [true, {
             log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()} ${radialReadbackLog}, ${holdParametersReadback}`,
+            // eslint-disable-next-line max-len
             say: `hold ${cardinalDirectionFromFix} of ${NavigationLibrary.getFixSpokenName(fixName)} ${radialReadbackSay}, ${holdParametersReadback}`
         }];
     }
@@ -850,6 +854,7 @@ export default class Pilot {
     /**
      * Initialize all autopilot systems after being given an IFR clearance to destination
      *
+     * @deprecated
      * @for Pilot
      * @method configureForTakeoff
      * @param initialAltitude {number} the altitude aircraft can automatically climb to at this airport
@@ -894,6 +899,7 @@ export default class Pilot {
         if (!this._fms.hasWaypointName(waypointName)) {
             const readback = {
                 log: `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`,
+                // eslint-disable-next-line max-len
                 say: `cannot proceed direct to ${NavigationLibrary.getFixSpokenName(waypointName)}, it does not exist in our flight plan`
             };
             return [false, readback];
@@ -945,6 +951,7 @@ export default class Pilot {
      * Return the altitude the aircraft is currently assigned. May be moving toward this altitude,
      * or already established at that altitude.
      *
+     * @deprecated
      * @for Pilot
      * @method sayTargetedAltitude
      * @return {Array} [success of operation, readback]
@@ -987,6 +994,7 @@ export default class Pilot {
                 const bearing = Math.round(radiansToDegrees(this.positionModel.bearingToPosition(waypointPosition)));
 
                 readback.log = `our on-course heading to ${waypoint.getDisplayName()} is ${bearing}`;
+                // eslint-disable-next-line max-len
                 readback.say = `our on-course heading to ${NavigationLibrary.getFixSpokenName(waypoint.getDisplayName())} is ${radio_heading(bearing)}`;
 
                 return [true, readback];
@@ -1004,6 +1012,7 @@ export default class Pilot {
      * Return the speed the aircraft is currently assigned. May be moving toward this speed, or
      * already established at this speed.
      *
+     * @deprecated
      * @for Pilot
      * @method sayTargetedSpeed
      */
@@ -1015,6 +1024,7 @@ export default class Pilot {
     /**
      * Stop taxiing to the runway and return to the gate
      *
+     * @deprecated
      * @for Pilot
      * @method stopOutboundTaxiAndReturnToGate
      * @return {Array} [success of operation, readback]
@@ -1030,6 +1040,7 @@ export default class Pilot {
     /**
      * Leave the departure line and return to the gate
      *
+     * @deprecated
      * @for Pilot
      * @method stopWaitingInRunwayQueueAndReturnToGate
      * @return {Array} [success of operation, readback]

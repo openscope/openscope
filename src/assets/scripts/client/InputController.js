@@ -29,7 +29,7 @@ import {
 import { SELECTORS, CLASSNAMES } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
-// Temporary const declaration here to attach to the window AND use as internal propert
+// Temporary const declaration here to attach to the window AND use as internal property
 const input = {};
 
 /**
@@ -54,6 +54,7 @@ export default class InputController {
         this._scopeModel = scopeModel;
         this._autocompleteController = new AutocompleteController(this.$element, this, this._aircraftController);
 
+        // eslint-disable-next-line no-undef
         prop.input = input;
         this.input = input;
         this.input.callsign = '';
@@ -71,6 +72,7 @@ export default class InputController {
      * @method _init
      */
     _init() {
+        // eslint-disable-next-line prefer-destructuring
         this.$body = this.$element[0];
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
@@ -185,6 +187,7 @@ export default class InputController {
      *
      * This clears the current aircraft callsign from the command input
      * and de-selects an active aircraft's:
+     *
      * - flight strip
      * - radar target
      *
@@ -194,10 +197,10 @@ export default class InputController {
     deselectAircraft() {
         // TODO: Refactor out the prop
         // using `prop` here so CanvasController knows which aircraft is selected
+        // eslint-disable-next-line no-undef
         prop.input.callsign = '';
         this.input.callsign = '';
         this.$commandInput.val('');
-
         this._eventBus.trigger(EVENT.DESELECT_AIRCRAFT, {});
     }
 
@@ -386,11 +389,11 @@ export default class InputController {
      * @param event {jquery Event}
      */
     _onMouseDblclick(event) {
-        // HACK: for "when an aircraft's radar return is double clicked"
+        // HACK: for "when an aircraft's radar return is double-clicked"
         // caveat: double click is series of mousedown-mouseup-mousedown-mouseup events in rapid succession
         // there is no guarantee that pointer is stationary throughout the process!
         // event handler is for entire canvas, not for things drawn on it; need to resolve which aircraft
-        // _onLeftMouseButtonPress identifies and selects nearest aircraft within 50px of mousedown events
+        // _onLeftMouseButtonPress identifies and selects the nearest aircraft within 50px of mousedown events
         // so we can just piggyback off the aircraft (if any) already selected by the second mousedown
         if (!this.input.callsign) {
             return;
@@ -416,6 +419,7 @@ export default class InputController {
 
         // TODO: Refactor out the prop
         // using `prop` here so CanvasController knows which aircraft is selected
+        // eslint-disable-next-line no-undef
         prop.input.callsign = aircraftModel.callsign;
         this.input.callsign = aircraftModel.callsign;
         this.$commandInput.val(`${aircraftModel.callsign} `);
@@ -455,7 +459,7 @@ export default class InputController {
             return;
         }
 
-        // pass keboard inputs to autocomplete if it is active
+        // pass keyboard inputs to autocomplete if it is active
         if (this._autocompleteController.active) {
             this._autocompleteController.onKeydownHandler(event);
             return;
@@ -662,7 +666,7 @@ export default class InputController {
      *
      * @for InputController
      * @method _isDialog
-     * @param element {jquery element}
+     * @param $element {$}
      * @return {boolean}
      * @private
      */
@@ -892,7 +896,7 @@ export default class InputController {
 
             case PARSED_COMMAND_NAME.CLEAR:
                 localStorage.clear();
-                location.reload();
+                window.location.reload();
 
                 break;
             case PARSED_COMMAND_NAME.AIRPORT: {
@@ -976,9 +980,8 @@ export default class InputController {
      */
     _calculateRelativePositionFromEvent(event) {
         const canvasPosition = CanvasStageModel.calculateCanvasPositionFromPagePosition(event.pageX, event.pageY);
-        const relativePosition = CanvasStageModel.calculateRelativePositionFromCanvasPosition(...canvasPosition);
 
-        return relativePosition;
+        return CanvasStageModel.calculateRelativePositionFromCanvasPosition(...canvasPosition);
     }
 
     /**

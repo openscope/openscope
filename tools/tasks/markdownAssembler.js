@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs');
 const fancyLog = require('fancy-log');
 const colors = require('ansi-colors');
@@ -27,7 +28,7 @@ function _generateHtmlFromMarkdown(markdown) {
  * Grabs the markdown files and returns the data and icao in an object
  *
  * @method _generateAirportGuideDict
- * @returns {[key: string]: string}  object with airport icao as key and markdown as values
+ * @returns { { [string]: string } }  object with airport icao as key and markdown as values
  */
 function _generateAirportGuideDict() {
     const airportGuideDict = {};
@@ -85,23 +86,23 @@ function _writeFileOutput(input) {
     const filePathToWrite = path.join(options.DIR.DIST_GUIDES, 'guides.json');
     const jsonOutput = JSON.stringify(input);
 
-    mkdirp(options.DIR.DIST_GUIDES, (err) => {
-        if (err) {
+    mkdirp(options.DIR.DIST_GUIDES)
+        .then(() => {
+            fs.writeFile(filePathToWrite, jsonOutput, (writeFileError) => {
+                if (writeFileError) {
+                    fancyLog(colors.red('--- Failed to write guide file guides.json'));
+
+                    return Promise.reject(writeFileError);
+                }
+
+                fancyLog(colors.green('--- successfully created guides.json'));
+            });
+        })
+        .catch((err) => {
             fancyLog(colors.red(`--- Failed to create ${options.DIR.DIST_GUIDES}`));
 
             return Promise.reject(err);
-        }
-
-        fs.writeFile(filePathToWrite, jsonOutput, (writeFileError) => {
-            if (writeFileError) {
-                fancyLog(colors.red('--- Failed to write guidefile guides.json'));
-
-                return Promise.reject(writeFileError);
-            }
-
-            fancyLog(colors.green('--- sucessfully created guides.json'));
         });
-    });
 }
 
 /**

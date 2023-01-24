@@ -1,6 +1,7 @@
 import _includes from 'lodash/includes';
 import _isNumber from 'lodash/isNumber';
 import _startsWith from 'lodash/startsWith';
+// eslint-disable-next-line import/no-cycle
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
 import { TIME, REGEX } from '../constants/globalConstants';
@@ -141,7 +142,7 @@ export const km_ft = (kilometers = 0) => {
  * feet --> kilometers
  *
  * @function ft_km
- * @param nm {number}
+ * @param ft {number}
  * @return {number}
  */
 export const ft_km = (ft = 0) => {

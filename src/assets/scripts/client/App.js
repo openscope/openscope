@@ -9,10 +9,24 @@ import { STORAGE_KEY } from './constants/storageKeys';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
+/**
+ * @global
+ * @type {{}}
+ */
 window.zlsa = {};
+/**
+ * @global
+ * @type {{}}
+ */
 window.zlsa.atc = {};
 
-// TODO: KILL THE PROP!
+/**
+ * TODO: KILL THE PROP!
+ *
+ * @deprecated
+ * @global
+ * @type {{}}
+ */
 const prop = {};
 
 // IIEFs are pulled in here to add functions to the global space.
@@ -37,7 +51,7 @@ export default class App {
          * Root DOM element.
          *
          * @property $element
-         * @type {jQuery|HTML Element}
+         * @type {$}
          * @default body
          */
         this.$element = $(element);
@@ -189,7 +203,7 @@ export default class App {
         const airportGuideListPromise = $.getJSON('assets/guides/guides.json');
 
         // This is provides a way to get async data from several sources in the app before anything else runs
-        // we need to resolve data from two sources before the app can proceede. This data should always
+        // we need to resolve data from two sources before the app can proceed. This data should always
         // exist, if it doesn't, something has gone terribly wrong.
         $.when(airlineListPromise, aircraftListPromise, airportGuideListPromise)
             .done((airlineResponse, aircraftResponse, airportGuideResponse) => {

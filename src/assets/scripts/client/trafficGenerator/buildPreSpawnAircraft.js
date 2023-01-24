@@ -18,8 +18,8 @@ import { avg } from '../math/core';
  * contains the distances along the route at which each waypoint lies from the spawn point
  *
  * @function _calculateOffsetsToEachWaypointInRoute
- * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
- * @return {array<number>} offset distance from spawn point to each waypoint
+ * @param waypointModelList {WaypointModel[]} array of all waypoints along the route
+ * @return {number[]} offset distance from spawn point to each waypoint
  */
 export function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
     // begin by storing the first fix's offset: a distance of 0 from the spawn point
@@ -53,9 +53,9 @@ export function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
  * be reused for departures, just by doing a Math.max() instead of Math.min() below
  *
  * @function _calculateAltitudeOffsets
- * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
- * @param waypointOffsetMap {array<number>} offset distance from spawn point to each waypoint
- * @return {array<array<number>>} [[offsetDistance, altitude], [offsetDistance, altitude], ...]
+ * @param waypointModelList {WaypointModel[]} array of all waypoints along the route
+ * @param waypointOffsetMap {number[]} offset distance from spawn point to each waypoint
+ * @return {number[][]} [[offsetDistance, altitude], [offsetDistance, altitude], ...]
  */
 export function _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap) {
     const altitudeOffsets = [];
@@ -82,7 +82,7 @@ export function _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap) 
  * Calculate the interpolated altitude along the glidepath at the given distance along the route from the spawn point
  *
  * @function _calculateAltitudeAtOffset
- * @param altitudeOffsets {array<array<number>>} information about location of altitude restrictions
+ * @param altitudeOffsets {number[][]} information about location of altitude restrictions
  * @param offsetDistance {number} distance along route at which we want to know the ideal spawn altitude
  * @return {number} ideal spawn altitude, in feet (rounded up to nearest thousand)
  */
@@ -100,7 +100,9 @@ export function _calculateAltitudeAtOffset(altitudeOffsets, offsetDistance) {
 
     if (indexOfNextAltitudeRestriction < 0) { // no restrictions ahead
         if (indexOfPreviousAltitudeRestriction < 0) { // no restrictions ahead or behind
-            throw new TypeError('Expected altitude restrictions to calculate appropriate spawn altiude, but none were received.');
+            throw new TypeError(
+                'Expected altitude restrictions to calculate appropriate spawn altitude, but none were received.'
+            );
         }
 
         return altitudeOffsets[indexOfPreviousAltitudeRestriction][indexOfAltitude];
@@ -125,7 +127,7 @@ export function _calculateAltitudeAtOffset(altitudeOffsets, offsetDistance) {
  * Calculate the ideal spawn altitude at the given distance along the route from the spawn point
  *
  * @function _calculateIdealSpawnAltitudeAtOffset
- * @param altitudeOffsets {array<array<number>>} information about location of altitude restrictions
+ * @param altitudeOffsets {number[][]} information about location of altitude restrictions
  * @param offsetDistance {number} distance along route at which we want to know the ideal spawn altitude
  * @param spawnSpeed {number} airspeed at which to spawn the aircraft
  * @param spawnAltitude {number|array<number>} altitude specified in the spawn pattern json
@@ -176,7 +178,8 @@ export function _calculateIdealSpawnAltitudeAtOffset(
  * @param spawnSpeed {number}
  * @param spawnAltitude {number}
  * @param totalDistance {number} distance along route from spawn point to airspace boundary
- * @return spawnPositions {array<number>} distances along route, in nm
+ * @param airspaceCeiling {number}
+ * @return spawnPositions {umber[]} distances along route, in nm
  */
 function _calculateSpawnPositionsAndAltitudes(
     waypointModelList,
@@ -260,7 +263,9 @@ const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
         (clampedEntrailDistance - smallestIntervalNm));
 
     if (clampedEntrailDistance < 8) {
-        console.error(`Too many aircraft requested, calculated MIT is ${entrailDistance}, limiting MIT to ${clampedEntrailDistance}`);
+        console.error(
+            `Too many aircraft requested, calculated MIT is ${entrailDistance}, limiting MIT to ${clampedEntrailDistance}`
+        );
     }
 
     // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
@@ -370,7 +375,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
     // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
-    const spawnPositions = _calculateSpawnPositionsAndAltitudes(
+    return _calculateSpawnPositionsAndAltitudes(
         waypointModelList,
         spawnOffsets,
         spawnSpeed,
@@ -378,8 +383,6 @@ const _preSpawn = (spawnPatternJson, airport) => {
         totalDistance,
         airspaceCeiling
     );
-
-    return spawnPositions;
 };
 
 /**

@@ -495,7 +495,7 @@ export default class Fms {
      *
      * @for Fms
      * @method applyPartialRouteAmendment
-     * @param routeString {tring}  route string in the form of `entry.procedure.airport`
+     * @param routeString {string}  route string in the form of `entry.procedure.airport`
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {

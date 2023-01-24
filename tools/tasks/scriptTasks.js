@@ -36,8 +36,8 @@ module.exports = function(gulp, config, argv) {
     const buildServer = () => gulp.src('**/*.js', {cwd: OPTIONS.DIR.SRC_SCRIPTS_SERVER})
         .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_SERVER));
 
-    gulp.task(OPTIONS.TASKS.BUILD.SCRIPTS, gulp.series(buildScripts));
-    gulp.task(OPTIONS.TASKS.BUILD.SERVER, gulp.series(buildServer));
+    gulp.task(OPTIONS.TASKS.BUILD.SCRIPTS, buildScripts);
+    gulp.task(OPTIONS.TASKS.BUILD.SERVER, buildServer);
     gulp.task(OPTIONS.TASKS.WATCH.SCRIPTS, () => {
         gulp.watch(OPTIONS.GLOB.JS).on('change', () => buildScripts());
     });

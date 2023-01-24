@@ -53,7 +53,7 @@ import {
 export default class CanvasController {
     /**
      * @constructor
-     * @param $element {JQuery|HTML Element}
+     * @param $element {JQuery}
      * @param aircraftController {AircraftController}
      * @param scopeModel {ScopeModel}
      */
@@ -62,7 +62,7 @@ export default class CanvasController {
          * Reference to the `window` object
          *
          * @property $window
-         * @type {JQuery|HTML Element}
+         * @type {$}
          */
         this.$window = $(window);
 
@@ -71,7 +71,7 @@ export default class CanvasController {
          * element for all the `<canvas />` elements
          *
          * @property $element
-         * @type $element {JQuery|HTML Element}
+         * @type $element {JQuery}
          * @default $element
          */
         this.$element = $element;
@@ -1063,6 +1063,7 @@ export default class CanvasController {
         cc.save();
 
         // TODO: death to the `prop`!!!
+        // eslint-disable-next-line no-undef
         const match = prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign);
         let fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
 
@@ -1538,6 +1539,7 @@ export default class CanvasController {
         let match = false;
 
         // Callsign Matching
+        // eslint-disable-next-line no-undef
         if (prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign)) {
             match = true;
         }
@@ -1663,6 +1665,7 @@ export default class CanvasController {
         let match = false;
 
         // Callsign Matching
+        // eslint-disable-next-line no-undef
         if (prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign)) {
             match = true;
         }
@@ -2325,6 +2328,7 @@ export default class CanvasController {
             return;
         }
 
+        // eslint-disable-next-line no-undef
         const callsign = prop.input.callsign.toUpperCase();
 
         if (callsign.length === 0) {

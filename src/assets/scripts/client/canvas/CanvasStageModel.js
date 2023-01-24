@@ -217,14 +217,12 @@ class CanvasStageModel {
      * @param x {number} canvas position X value, in px
      * @param y {number} canvas position Y value, in px
      * @returns {array<number>} [x, y], in km
-     * @private
      */
     calculateRelativePositionFromCanvasPosition(x, y) {
         const relativePositionX = this.translatePixelsToKilometers(x - this._panX);
         const relativePositionY = this.translatePixelsToKilometers(y + this._panY);
-        const relativePosition = [relativePositionX, relativePositionY];
 
-        return relativePosition;
+        return [relativePositionX, relativePositionY];
     }
 
     /**
