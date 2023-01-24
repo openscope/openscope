@@ -1,0 +1,514 @@
+{
+    "airac": 2213,
+    "radio": {
+        "twr": "Denver Tower",
+        "app": "Denver Approach",
+        "dep": "Denver Departure"
+    },
+    "icao": "KDEN",
+    "iata": "DEN",
+    "magnetic_north": 9.9,
+    "ctr_radius": 180,
+    "ctr_ceiling": 23000,
+    "initial_alt": 10000,
+    "position": ["N39d51m41.981", "W104d40m23.385", "5434ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N39d51m41.981", "W104d40m23.385"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": true,
+    "wind": {
+        "angle": 300,
+        "speed": 6
+    },
+    "arrivalRunway": "34L",
+    "departureRunway": "34R",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 80,
+            "ceiling": 230,
+            "airspace_class": "B",
+            "poly": [
+                ["N39d51m41.981", "W104d40m23.385"],
+                ["N39d58m44.261", "W103d57m27.247"],
+                ["N39d58m40.845", "W103d57m05.708"],
+                ["N39d58m22.276", "W103d56m06.116"],
+                ["N39d58m22.332", "W103d56m06.182"],
+                ["N39d58m03.087", "W103d55m29.936"],
+                ["N39d57m52.516", "W103d55m15.320"],
+                ["N39d57m27.116", "W103d54m47.332"],
+                ["N39d57m13.434", "W103d54m35.413"],
+                ["N39d56m58.644", "W103d54m24.836"],
+                ["N39d56m28.235", "W103d54m09.237"],
+                ["N39d55m55.731", "W103d54m01.825"],
+                ["N39d55m39.172", "W103d54m00.843"],
+                ["N39d55m22.512", "W103d54m01.290"],
+                ["N39d55m06.715", "W103d54m04.326"],
+                ["N39d54m50.181", "W103d54m08.866"],
+                ["N39d54m34.530", "W103d54m14.522"],
+                ["N39d54m19.329", "W103d54m23.022"],
+                ["N39d53m50.404", "W103d54m43.974"],
+                ["N39d53m36.648", "W103d54m56.798"],
+                ["N39d53m24.378", "W103d55m10.516"],
+                ["N39d53m24.378", "W103d55m10.516"],
+                ["N39d52m54.124", "W103d56m01.214"],
+                ["N39d52m39.657", "W103d56m41.259"],
+                ["N39d52m34.892", "W103d57m01.226"],
+                ["N39d52m31.157", "W103d57m21.444"],
+                ["N39d52m28.032", "W103d57m44.256"],
+                ["N39d52m27.385", "W103d58m05.834"],
+                ["N39d52m27.385", "W103d58m05.834"],
+                ["N39d52m33.383", "W103d59m09.131"],
+                ["N39d52m44.482", "W103d59m49.956"],
+                ["N39d53m00.584", "W104d00m27.521"],
+                ["N39d53m21.990", "W104d01m01.508"],
+                ["N39d53m33.237", "W104d01m15.438"],
+                ["N39d54m30.712", "W104d01m59.647"],
+                ["N39d55m01.324", "W104d02m10.769"],
+                ["N39d55m51.664", "W104d02m13.697"],
+                ["N39d55m51.682", "W104d02m13.868"],
+                ["N39d56m39.815", "W104d02m00.446"],
+                ["N39d57m09.812", "W104d01m43.152"],
+                ["N39d57m37.292", "W104d01m18.549"],
+                ["N39d58m20.563", "W104d00m13.139"],
+                ["N39d58m34.481", "W103d59m34.852"],
+                ["N39d58m43.351", "W103d58m53.117"],
+                ["N39d58m43.351", "W103d58m53.117"],
+                ["N39d58m44.030", "W103d57m26.452"],
+                ["N39d58m40.666", "W103d57m05.513"]
+            ] 
+        }
+    ],
+    "fixes": {
+     "AALLE": ["N40.27.12.251", "W103.45.24.935"],
+     "ABASN": ["N38.59.47.937", "W106.34.51.514"],
+     "ADANE": ["N38.54.57.257", "W104.23.56.345"],
+     "AJAKS": ["N39.25.36.770", "W104.42.05.233"],
+     "AKO":   ["N39.25.36.770", "W104.42.05.233", "Akron"],
+     "ALLAN": ["N40.25.22.653", "W105.31.09.307"],
+     "ALPNE": ["N39.27.17.438", "W104.43.23.725"],
+     "ALPOE": ["N40.57.28.548", "W106.18.56.910"], 
+     "ALS"  : ["N37.20.56.973", "W105.48.55.916"],
+     "APUUI": ["N39.39.19.692", "W103.57.08.676"],
+     "ARCHY": ["N40.01.48.151", "W104.52.49.157"],
+     "ASHBY": ["N40.19.02.061", "W102.00.05.427"],
+     "AUTIM": ["N40.45.17.630", "W105.30.41.525"],
+     "AZARO": ["N38.30.16.300", "W104.09.33.914"],
+     "BAACK": ["N40.02.49.430", "W104.50.51.836"],
+     "BABAA": ["N39.58.14.551", "W104.48.14.824"],
+     "BASEE": ["N39.12.22.160", "W105.48.00.114"],
+     "BASHE": ["N40.06.07.808", "W105.08.24.803"],
+     "BAYLR": ["N39.33.11.968", "W105.37.05.905"],
+     "BBOCO": ["N40.38.33.946", "W105.41.04.407"],
+     "BBOOK": ["N39.44.39.664", "W104.44.56.794"],
+     "BBRRO": ["N38.39.10.173", "W106.14.09.236"],
+     "BCORP": ["N39.13.18.414", "W104.24.33.999"],
+     "BDVIN": ["N39.18.51.039", "W105.00.12.536"]
+    },
+    "runways":[
+        {
+            "name": ["34L", "16R"],
+            "end" : [
+                ["N39.51.06.796", "W104.41.47.727", "5434ft"],
+                ["N39.53.44.883", "W104.41.45.893", "5434ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["34R", "16L"],
+            "end" : [
+                ["N39.51.50.772", "W104.41.13.915", "5434ft"],
+                ["N39.53.49.350", "W104.41.12.435", "5434ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "runways": ["07", "30"],
+            "end": [
+                ["N39.50.27.485", "W104.43.35.990", "5434ft"],
+                ["N39.50.26.432", "W104.41.02.186", "5434ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["35L, 17R"],
+            "end": [
+                ["N39.49.41.942", "W104.39.38.069", "5434ft"],
+                ["N39.51.40.504", "W104.39.36.513", "5434ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["35R", "17L"],
+            "end": [
+                ["N39.49.55.263", "W104.38.30.146", "5434ft"],
+                ["N39.51.53.841", "W104.38.28.674", "5434ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["26", "08"],
+            "end": [
+                ["N39.52.38.160", "W104.37.10.168"],
+                ["N39.52.39.222", "W104.39.44.071"]
+            ],
+            "ils": [true, true]
+        }
+    ],
+    "sids": {
+        "PIKES2": {
+            "icao": "PIKES2",
+            "name": "Pikes Two",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["ADANE", "DRAKE", "PUB"],
+                "KDEN34l": ["SOLAR", "TEHEV", "BINKE", "ALS"],
+                "KDEN26": ["ADANE", "DRAKE", "PUB"]
+            },
+            "body": [],
+            "exitPoints": {
+                "PUB": ["PUB"],
+                "ALS": ["ALS"]
+            },
+            "draw": [
+                ["ADANE", "DRAKE", "PUB*"],
+                ["SOLAR", "TEHEV", "BINKE", "ALS"]
+            ]
+        },
+        "PLAINS1": {
+            "icao": "PLAINS1",
+            "name": "Plains One",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["EEONS", "AKO", " ASHBY", "HCT"],
+                "KDEN34L": ["EMMYS", "TEKMY", "BELKE", "MCK"],
+                "KDEN26": ["EPKEE", "WEEDS", "GCK"]
+            },
+            "body": [],
+            "exitPoints": {
+                "HCT": ["HCT"],
+                "GCK": ["GCK"],
+                "MCK": ["MCK"]
+            },
+            "draw": [
+                ["EEONS", "AKO", "ASHBY", "HCT*"],
+                ["EMMYS", "TEKMY", "BELKE", "MCK*"],
+                ["EPKEE", "WEEDS", "GCK*"]
+            ]
+        },
+        "ROCKIES5": {
+            "icao": "ROCKI5",
+            "name": "Rockies Five",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["ZIMMR", "RLG", " EKR"],
+                "KDEN26": ["BAYLR", "BOBBA", "HBU"],
+                "KDEN34l":["BAYLR", "BOBBA", "TEHRU", "MTJ", "DVC"]
+            },
+            "body": [],
+            "exitPoints": {
+                "EKR": ["EKR"],
+                "HBU": ["HBU"],
+                "DVC": ["DVC"]
+            },
+            "draw": [
+                ["ZIMMR", "RLG", "EKR*"],
+                ["BAYLR", "BOBBA", "HBU*"],
+                ["BOBBA", "TEHRU", "MTJ", "DVC*"]
+            ]
+        }, 
+        "BALYR6": {
+            "icao": "BALYR6",
+            "name": "Balyr Six",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["BRKEM", "WAKIR", "TUULO", "HLTON", "MTSUI", "BAYLR", "BOBBA", "HBU"],
+                "KDEN26": ["BRKEM", "WAKIR", "TUULO", "HLTON", "MTSUI", "BAYLR", "BOBBA", "HBU"],
+                "KDEN34L": ["BRKEM", "WAKIR", "TUULO", "HLTON", "MTSUI", "BAYLR", "BOBBA","TEHRU"]
+            },
+            "body": [],
+            "exitPoints": {
+                "HBU": ["HBU"],
+                "TEHRU": ["TEHRU"]
+            },
+            "draw": [
+                ["BRKEM", "WAKIR", "TUULO", "HLTON", "MTSUI", "BAYLR", "BOBBA", "HBU"],
+                ["BOBBA", "TEHRU"]
+            ]
+        },
+        "CHUWY1": {
+            "icao": "CHUWY1",
+            "name": "Chuwy One",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY"],
+                "KDEN26": ["MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY"],
+                "KDEN34L": ["NKATA", "YOKES", "LNGWD", "CHUWY"]
+            },
+            "body": [],
+            "exitPoints": {
+                "CHUWY": ["CHUWY"]
+            },
+            "draw": [
+                ["MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY"],
+                ["NKATA", "YOKES", "LNGWD", "CHUWY"]
+            ]
+        },
+        "CONNR7": {
+            "icao": "CONNR7",
+            "name": "Conner Seven",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["FOAMS", "TAVRN", "VONNN", "TEEBO", "CONNR", "WERNR"],
+                "KDEN26": ["FOAMS", "TAVRN", "VONNN", "TEEBO", "CONNR", "WERNR"],
+                "KDEN34L": ["FOAMS", "TAVRN", "VONNN", "TEEBO", "CONNR", "WERNR"]
+            },
+            "body": [],
+            "exitPoints": {
+                "CONNR": ["CONNR"],
+                "WERNR": ["WERNR"]
+            },
+            "draw": [
+                ["FOAMS", "TAVRN", "VONNN", "TEEBO", "CONNR", "WERNR"]
+            ]
+        },
+        "COORZ6": {
+            "icao": "COORZ6",
+            "name": "Coors Six",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["FOAMS", "IPALE", "MOLSN", "BULLT", "COORZ", "VOAXA"],
+                "KDEN26": ["FOAMS", "IPALE", "MOLSN", "BULLT", "COORZ", "VOAXA"],
+                "KDEN34L": ["FOAMS", "IPALE", "MOLSN", "BULLT", "COORZ", "VOAXA"]
+            },
+            "body": [],
+            "exitPoints": {
+                "VOAXA": ["VOAXA"]
+            },
+            "draw": [
+                ["FOAMS", "IPALE", "MOLSN", "BULLT", "COORZ", "VOAXA"]
+            ]
+        },
+        "DDRTH1": {
+            "icao": "DDRTH1",
+            "name": "Dorothy One",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25": ["MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY", "DDRTH"],
+                "KDEN26": ["MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY", "DDRTH"],
+                "KDEN34L": ["NKATA", "YOKES", "LNGWD", "CHUWY", "DDRTH"]
+            },
+            "body": [],
+            "exitPoints": {
+                "DDRTH": ["DDRTH"]
+            },
+            "draw": [
+                ["MUGBE", "WAZEE", "LODOE", "RINKR", "ELCEE", "YOKES", "LNGWD", "CHUWY", "DDRTH"],
+                ["NKATA", "YOKES", "LNGWD", "CHUWY", "DDRTH"]
+            ]
+            },
+            "EEONS6": {
+                "icao": "EEONS6",
+                "name": "Eons Six",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["GISTT", "KIDNG", "KAYGG", "LUPTN", "MRENE", "EEONS", "WYNDM"],
+                    "KDEN26": ["NUGGS", "HIDEF", "SHOBO", "LUPTN", "MRENE", "EEONS", "WYNDM"],
+                    "KDEN34L": ["NUGGS", "HIDEF", "SHOBO", "LUPTN", "MRENE", "EEONS", "WYNDM"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "WYNDM": ["WYNDM"]
+                },
+                "draw": [
+                    ["GISTT", "KIDNG", "KAYGG", "LUPTN", "MRENE", "EEONS", "WYNDM"],
+                    ["NUGGS", "HIDEF", "SHOBO", "LUPTN", "MRENE", "EEONS", "WYNDM"]
+                ]
+            },
+            "EMMYS5": {
+                "icao": "EMMYS5",
+                "name": "Emmies Five",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["GISIT", "KIDNG", "TWEDT", "GLASS", "SNIPR", "EMMYS", "ZIRKL"],
+                    "KDEN26": ["NUGGS", "HIDEF", "BRSTO", "GLASS", "SNIPR", "EMMYS", "ZIRKL"],
+                    "KDEN34L": ["NUGGS", "HIDEF", "BRSTO", "GLASS", "SNIPR", "EMMYS", "ZIRKL"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "ZIRKL": ["ZIRKL"]
+                },
+                "draw": [
+                    ["GISIT", "KIDNG", "TWEDT", "GLASS", "SNIPR", "EMMYS", "ZIRKL"],
+                    ["NUGGS", "HIDEF", "BRSTO", "GLASS", "SNIPR", "EMMYS", "ZIRKL"]
+                ]
+            },
+            "EPKEE7": {
+                "icao": "EPKEE7",
+                "name": "Epic Seven",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["GISIT", "MLHOS", "SMTHR", "SMPSN", "APUUU","EPKEE", "POIZN", "COTNN", "DUUZE"],
+                    "KDEN26": ["GISIT", "MLHOS", "SMTHR", "SMPSN", "APUUU","EPKEE", "POIZN", "COTNN", "DUUZE"],
+                    "KDEN34L": ["KDING", "PIDLE", "APUUU", "EPKEE", "POIZN", "GAETR"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "DUUZE": ["DUUZE"],
+                    "GAETR": ["GAETR"]
+                },
+                "draw": [
+                    ["GISIT", "MLHOS", "SMTHR", "SMPSN", "APUUU", "EPKEE", "POIZN", "COTNN", "DUUZE"],
+                    ["KDING", "PIDLE", "APUUU", "EPKEE", "POIZN", "GAETR"]
+                ]
+            },
+            "EXTAM7" : {
+            "icao": "EXTAM7",
+            "name": "Extem Seven",
+            "altitude": 10000,
+            "rwy": {
+                "KDEN25" : ["GISIT", "BGONE", "OLDDD", "MMESA", "FALUJ", "EXTAN", "CABET", "SHAYK"],
+                "KDEN26" : ["GISIT", "BGONE", "OLDDD", "MMESA", "FALUJ", "EXTAN", "CABET", "SHAYK"],
+                "KDEN34L": ["KDING", "KMBEL", "BHIGH", "MMESA", "FALUJ", "EXTAN", "CABET", "SHAYK"]
+            },
+            "body": [],
+            "exitPoints": {
+                "SHAYK": ["SHAYK"]
+            },
+            "draw": [
+                ["GISIT", "BGONE", "OLDDD", "MMESA", "FALUJ", "EXTAN", "CABET", "SHAYK"],
+                ["KDING", "KMBEL", "BHIGH", "MMESA", "FALUJ", "EXTAN", "CABET", "SHAYK"]
+            ]
+            },
+            "HHOTH2": {
+                "icao": "HHOTH2",
+                "name": "Hoth Two",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["MUGBE", "WAZEE", "LODOE", "RINKR", "TAGKO", "BRYCC", "HHOTH", "SAABR"],
+                    "KDEN26": ["MUGBE", "WAZEE", "LODOE", "RINKR", "TAGKO", "BRYCC", "HHOTH", "SAABR"],
+                    "KDEN34L": ["NKATA", "HAWKR", "CCLYD", "BRYCC", "HHOTH", "SAABR"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "SAABR": ["SAABR"]
+                },
+                "draw": [
+                    ["MUGBE", "WAZEE", "LODOE", "RINKR", "TAGKO", "BRYCC", "HHOTH", "SAABR"],
+                    ["NKATA", "HAWKR", "CCLYD", "BRYCC", "HHOTH", "SAABR"]
+                ]
+            },
+            "SABTH2": {
+                "icao": "SABTH2",
+                "name": "Sabath Two",
+                "altitude": 10000,
+                "rwy": {
+                        "KDEN25": ["BRKEM", "LENNN", "TIKLR", "CIROS", "ICECI", "JSMMN", "SHOJO", "SABTH", "JOPLN"],
+                        "KDEN26": ["BRKEM", "LENNN", "TIKLR", "CIROS", "ICECI", "JSMMN", "SHOJO", "SABTH", "JOPLN"],
+                        "KDEN34L": ["KDING", "TWWIN", "FIGTR", "PACMN", "SHOJO", "SABTH", "VRONI"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "JOPLN": ["JOPLN"],
+                    "VRONI": ["VRONI"]
+                },
+                "draw": [
+                    ["BRKEM", "LENNN", "TIKLR", "CIROS", "ICECI", "JSMMN", "SHOJO", "SABTH", "JOPLN"],
+                    ["KDING", "TWWIN", "FIGTR", "PACMN", "SHOJO", "SABTH", "VRONI"]
+                ]
+            },
+            "SLEEK2": {
+                "icao": "SLEEK2",
+                "name": "Sleek Two",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["BRKEM", "LENNN", "TIKLR", "CIROS", "WEPON", "STAKR", "AZARO", "SLEEK"],
+                    "KDEN26": ["BRKEM", "LENNN", "TIKLR", "CIROS", "WEPON", "STAKR", "AZARO", "SLEEK"],
+                    "KDEN34L": ["KDING", "TWWIN", "FIGTR", "SEGAH", "BCORP", "BCORP", "STAKR", "AZARO", "SLEEK"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "SLEEK": ["SLEEK"]
+                },
+                "draw": [
+                    ["BRKEM", "LENNN", "TIKLR", "CIROS", "WEPON", "STAKR", "AZARO", "SLEEK"],
+                    ["KDING", "TWWIN", "FIGTR", "SEGAH", "BCORP", "STAKR", "AZARO", "SLEEK"]
+                ]
+            },
+            "SMMUR2": {
+                "icao": "SMMUR2",
+                "name": "Smur Two",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["BRKEM", "LENNN", "TIKLR", "CIROS", "RKYMT", "SOLAR", "SMMUR", "RAIIT"],
+                    "KDEN26": ["BRKEM", "LENNN", "TIKLR", "CIROS", "RKYMT", "SOLAR", "SMMUR", "RAIIT"],
+                    "KDEN34L": ["KDING", "TWWIN", "FIGTR", "WEPON", "SOLAR", "SMMUR", "DAAVE"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "RAIIT": ["RAIIT"],
+                    "DAAVE": ["DAAVE"]
+                },
+                "draw": [
+                    ["BRKEM", "LENNN", "TIKLR", "CIROS", "RKYMT", "SOLAR", "SMMUR", "RAIIT"],
+                    ["KDING", "TWWIN", "FIGTR", "WEPON", "SOLAR", "SMMUR", "DAAVE"]
+                ]
+            },
+            "SUDDZ1": {
+                "icao": "SUDDZ1",
+                "name": "Suddz One",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["BRKEM", "LENNN", "TIKLR", "CIROS", "RKYMT", "CONRD", "FRNKE", "SUDDZ"],
+                    "KDEN26": ["BRKEM", "LENNN", "TIKLR", "CIROS", "RKYMT", "CONRD", "FRNKE", "SUDDZ"],
+                    "KDEN34L": ["KDING", "TWWIN", "FIGTR", "HANGR", "SCAGS", "FRNKE", "SUDDZ"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "SUDDZ": ["SUDDZ"]
+                },
+                "draw": [
+                    ["BRKEM", "LENNN", "TIKLR", "CIROS", "RKYMT", "CONRD", "FRNKE", "SUDDZ"],
+                    ["KDING", "TWWIN", "FIGTR", "HANGR", "SCAGS", "FRNKE", "SUDDZ"]
+                ]
+            },
+            "XXWNG1": {
+                "icao": "XXWNG1",
+                "name": "Xxwng One",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["MUGBE", "WAZEE", "LODOE", "RINKR", "HERDR", "RIKKK", "XXWNG"],
+                    "KDEN26": ["MUGBE", "WAZEE", "LODOE", "RINKR", "HERDR", "RIKKK", "XXWNG"],
+                    "KDEN34L": ["NKATA", "HAWKR", "BNITA","RIKKK", "XXWNG"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "XXWNG": ["XXWNG"]
+                },
+                "draw": [
+                    ["MUGBE", "WAZEE", "LODOE", "RINKR", "HERDR", "RIKKK", "XXWNG"],
+                    ["NKATA", "HAWKR", "BNITA", "RIKKK", "XXWNG"]
+                ]
+            },
+            "ZIMMR3": {
+                "icao": "ZIMMR3",
+                "name": "Zimmr Three",
+                "altitude": 10000,
+                "rwy": {
+                    "KDEN25": ["MUGBE", "RALFI", "RAPDS", "PCKNS", "ZIMMR", "CHNGY"],
+                    "KDEN26": ["MUGBE", "RALFI", "RAPDS", "PCKNS", "ZIMMR", "CHNGY"],
+                    "KDEN34L": ["NKATA", "HAWKR", "BNITA", "ZIMMR", "CHNGY"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "CHNGY": ["CHNGY"]
+                },
+                "draw": [
+                    ["MUGBE", "RALFI", "RAPDS", "PCKNS", "ZIMMR", "CHNGY"],
+                    ["NKATA", "HAWKR", "BNITA", "ZIMMR", "CHNGY"]
+                ]
+            }
+        }
+    }
