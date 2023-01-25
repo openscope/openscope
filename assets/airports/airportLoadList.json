@@ -185,6 +185,12 @@
         "premium": false
     },
     {
+        "icao": "kden",
+        "level": "hard",
+        "name": "Denver International Airport",
+        "premium": false
+    },
+    {
         "icao": "kclt",
         "level": "hard",
         "name": "Charlotte-Douglas International Airport",
