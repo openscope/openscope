@@ -176,6 +176,6 @@
             "icao": "ROZZE2",
             "name": "Rozze Two",
             "entryPoints": {
-                "MUCOW": [["MUCOW", "A190-|S280"], ["FFATY", "A200-|A160+"], ["CRIBB", "A160-|A130+"], ["ROZZE", "A90+"],],
+                "MUCOW": [["MUCOW", "A190-|S280"], ["FFATY", "A200-|A160+"], ["CRIBB", "A160-|A130+"], ["MONRC", "A90+"],],
             }
 }
