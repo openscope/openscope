@@ -11,10 +11,171 @@
     "ctr_radius": 110,
     "ctr_ceiling": 10000,
     "initial_alt": 3000,
-    "position": ["N42d55m57.009", "W71d26m08.635"],
+    "position": ["N42d55m57.202", "W71d26m08.392"],
     "rangeRings": {
         "enabled": true,
-        "center": ["N42d55m57.009", "W71d26m08.635"],
+        "center": ["N42d55m57.202", "W71d26m08.392"],
         "radius_nm": 5.0
     },
-    }
+    "has_terrain": false,
+    "wind": {
+        "angle": 346,
+        "speed": 7
+    },
+    "arrivalRunway": "35",
+    "departureRunway": "35",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 100,
+            "airspace_class": "C",
+            "poly": [
+                ["N42d51m23.742", "W71d06m26.880"],
+                ["N42d41m53.615", "W71d15m48.414"],
+                ["N42d32m50.501", "W71d52m16.756"],
+                ["N42d36m47.498", "W71d53m41.854"],
+                ["N42d51m29.903", "W71d52m29.405"],
+                ["N43d07m59.014", "W71d58m36.580"],
+                ["N43d19m49.220", "W71d56m13.200"],
+                ["N43d21m21.750", "W71d45m55.910"],
+                ["N43d18m15.083", "W71d18m55.977"],
+                ["N43d10m11.593", "W71d18m51.907"]
+            ]
+        }  
+    ],
+    "fixes": {
+        "BAF"  :["N42d09m43.053", "W72d42m58.318", "BARNES"],
+        "BLSSM":["N43d04m50.930", "W71d33m58.710"],
+        "BLUUM":["N43d03m02.760", "W71d30m14.910"],
+        "BOS"  :["N42d21m26.820", "W70d59m22.370", "BOSTON"],
+        "CAM"  :["N42d59m39.440", "W73d20m38.468", "CAMBRIDGE"],
+        "CCC"  :["N40d55m46.625", "W72d47m55.893", "CALVERTON"],
+        "CON"  :["N43d13m11.233", "W71d34m31.631", "CONCORD"],
+        "COTEE":["N42d29m42.230", "W71d07m07.920"],
+        "CRIBB":["N42d39m55.940", "W72d27m00.860"],
+        "CUTSA":["N42d51m47.850", "W71d31m47.060"],
+        "CUXOV":["N43d00m01.440", "W71d21m33.200"],
+        "ELEEE":["N42d45m20.440", "W71d22m24.460"],
+        "ENE"  :["N43d25m32.420", "W70d36m48.692", "KENNEBUNK"],
+        "FABIG":["N43d01m11.720", "W71d10m50.530"],
+        "FFATY":["N42d35m27.400", "W72d39m20.460"],
+        "FLYZZ":["N42d48m13.410", "W72d29m25.200"],
+        "FOSAN":["N42d50m32.370", "W71d42m31.750"],
+        "FREEH":["N43d01m14.770", "W71d33m34.210"],
+        "FYSHR":["N42d49m14.090", "W72d09m14.190"],
+        "GDM"  :["N42d32m45.315", "W72d03m29.478", "GARDNER"],
+        "HAKAM":["N42d43m48.530", "W71d32m28.980"],
+        "HEDGI":["N42d47m10.560", "W71d37m30.090"],
+        "IHOBB":["N42d43m41.250", "W71d29m11.660"],
+        "JAAZZ":["N42d48m16.570", "W71d36m08.720"],
+        "JJIMY":["N42d25m04.090", "W71d09m23.060"],
+        "JSTNN":["N43d01m03.780", "W71d29m31.710"],
+        "KHRIS":["N42d57m01.090", "W71d15m35.560"],
+        "LLIVE":["N42d59m28.060", "W71d37m09.800"],
+        "LUCIC":["N42d47m24.050", "W72d44m34.660"],
+        "LYLAC":["N43d03m46.000", "W71d39m33.000"],
+        "MNTIN":["N42d51m33.010", "W71d23m26.910"],
+        "MONRC":["N42d46m36.280", "W72d08m21.310"],
+        "MUCOW":["N42d28m58.950", "W72d57m08.230"],
+        "NELIE":["N41d56m27.640", "W72d41m18.880"],
+        "NUUKM":["N42d49m54.440", "W71d55m40.460"],
+        "OFTHE":["N42d48m03.370", "W71d26m42.780"],
+        "OLDMN":["N42d48m11.090", "W71d30m47.400"],
+        "ONGEE":["N43d00m04.590", "W71d21m29.410"],
+        "ORDIE":["N43d00m10.220", "W71d28m32.590"],
+        "PELAN":["N42d45m20.000", "W71d19m47.410"],
+        "PNARD":["N42d45m20.000", "W71d19m47.410"],
+        "PONCT":["N42d44m48.830", "W73d48m48.070"],
+        "PPORT":["N43d05m23.590", "W70d59m29.080"],
+        "PURBL":["N42d57m44.520", "W71d40m38.570"],
+        "PUTRE":["N43d07m56.630", "W71d20m54.780"],
+        "QUINZ":["N42d46m23.520", "W73d03m00.520"],
+        "RBELA":["N42d49m57.990", "W70d57m17.960"],
+        "ROZZE":["N42d49m45.260", "W71d59m32.850"],
+        "SHOEL":["N42d59m27.000", "W70d52m40.390"],
+        "SHOWZ":["N42d48m19.530", "W71d34m51.650"],
+        "SITLE":["N42d57m55.390", "W71d27m12.740"],
+        "SMYTH":["N42d30m16.560", "W73d53m05.860"],
+        "TEETO":["N42d48m47.150", "W71d42m27.410"],
+        "TYLIR":["N43d03m32.930", "W71d10m01.620"],
+        "WAVBO":["N43d04m34.290", "W71d15m52.380"],
+        "WOBLY":["N42d45m30.080", "W73d29m55.810"],
+        "XOHWI":["N42d53m29.660", "W71d24m35.710"],
+        "YANTC":["N41d33m22.810", "W71d59m56.950"],
+        "YOULL":["N42d48m47.080", "W71d21m49.170"]
+    },
+    "runways":[
+        {
+            "name": ["6", "24"],
+            "end": [
+                ["N42d55m40.065", "W71d26m58.686", "221ft"],
+                ["N42d56m37.069", "W71d25m47.900", "242ft"]
+            ],
+            "ils": [true, false]
+        },
+        {
+            "name": ["17", "35"],
+            "end": [
+                ["N42d56m37.069", "W71d25m47.900", "216ft"],
+                ["N42d55m04.633", "W71d25m31.975", "266ft"]
+            ],
+            "ils": [true, true]
+        }
+    ],
+    "sids": {
+        "MHT1": {
+            "icao": "MHT1",
+            "name": "Manchester One",
+            "rwy": {
+                "KMHT6" : ["#039"],
+                "KMHT24": ["#237"],
+                "KMHT17": ["#172"],
+                "KMHT35": ["#352"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BOS": ["BOS"],
+                "CAM": ["CAM"],
+                "CON": ["CON"],
+                "ENE": ["ENE"],
+                "GDM": ["GDM"]
+            },
+            "draw": [
+                ["BOS*"],
+                ["CAM*"],
+                ["CON*"],
+                ["ENE*"],
+                ["GDM*"]
+            ]
+        }
+    },
+        "PPORT4": {
+            "icao": "PPORT4",
+            "name": "Port 4",
+            "rwy": {
+                "KMHT6" : [["TYLIR", "A30+"]],
+                "KMHT24": [["TYLIR", "A30+"]],
+                "KMHT17": [["TYLIR", "A30+"]],
+                "KMHT35": [["TYLIR", "A30+"]]
+            },
+            "body": ["TYLIR", "PPORT", "SHOEL", "RBELA","COTEE"],
+            "exitPoints": {
+                "BAF":["BAF"],
+                "CCC":["JJIMY", "YANCT", "CCC"],
+                "NELIE":["JJIMY", "NELIE"]
+            },
+            "draw": [
+                ["TYLIR", "PPORT", "SHOEL", "RBELA","COTEE", "BAF*"],
+                ["TYLIR", "PPORT", "SHOEL", "RBELA","COTEE", "JJIMY", "YANCT", "CCC*"],
+                ["TYLIR", "PPORT", "SHOEL", "RBELA","COTEE", "JJIMY", "NELIE*"]
+            ]
+       },
+       "stars": {
+            "ROZZE2",
+            "icao": "ROZZE2",
+            "name": "Rozze Two",
+            "entryPoints": {
+                "MUCOW": [["MUCOW", "A190-|S280"], ["FFATY", "A200-|A160+"], ["CRIBB", "A160-|A130+"], ["ROZZE", "A90+"],],
+            }
+}
