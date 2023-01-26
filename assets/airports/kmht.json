@@ -60,7 +60,9 @@
         "BLSSM":["N43d04m50.930", "W71d33m58.710"],
         "BLUUM":["N43d03m02.760", "W71d30m14.910"],
         "BOS"  :["N42d21m26.820", "W70d59m22.370", "BOSTON"],
+        "BROOD":["N42d45m25.780", "W75d18m57.537"],
         "CAM"  :["N42d59m39.440", "W73d20m38.468", "CAMBRIDGE"],
+        "CASIL":["N42d44m39.977", "W74d34m53.217"],
         "CCC"  :["N40d55m46.625", "W72d47m55.893", "CALVERTON"],
         "CON"  :["N43d13m11.233", "W71d34m31.631", "CONCORD"],
         "COTEE":["N42d29m42.230", "W71d07m07.920"],
@@ -78,6 +80,7 @@
         "GDM"  :["N42d32m45.315", "W72d03m29.478", "GARDNER"],
         "HAKAM":["N42d43m48.530", "W71d32m28.980"],
         "HEDGI":["N42d47m10.560", "W71d37m30.090"],
+        "HINGZ":["N42d09m27.103", "W74.21.33.840"],
         "IHOBB":["N42d43m41.250", "W71d29m11.660"],
         "JAAZZ":["N42d48m16.570", "W71d36m08.720"],
         "JJIMY":["N42d25m04.090", "W71d09m23.060"],
@@ -103,11 +106,13 @@
         "PUTRE":["N43d07m56.630", "W71d20m54.780"],
         "QUINZ":["N42d46m23.520", "W73d03m00.520"],
         "RBELA":["N42d49m57.990", "W70d57m17.960"],
+        "RKA":  ["N42d27m58.790", "W75d14m21.221"],
         "ROZZE":["N42d49m45.260", "W71d59m32.850"],
         "SHOEL":["N42d59m27.000", "W70d52m40.390"],
         "SHOWZ":["N42d48m19.530", "W71d34m51.650"],
         "SITLE":["N42d57m55.390", "W71d27m12.740"],
         "SMYTH":["N42d30m16.560", "W73d53m05.860"],
+        "SWEDE":["N42d28m40.120", "N74d40m08.110"],
         "TEETO":["N42d48m47.150", "W71d42m27.410"],
         "TYLIR":["N43d03m32.930", "W71d10m01.620"],
         "WAVBO":["N43d03m33.726", "W71d16m39.454"],
@@ -208,7 +213,7 @@
     },
     "spawnPatterns": [
         {
-            "Origin": "KMHT",
+            "origin": "KMHT",
             "destination": "",
             "category": "departure",
             "route": "KMHT35.MHT1.BOS",
@@ -288,7 +293,7 @@
             ]
         },
         {
-            "Origin": "KMHT",
+            "origin": "KMHT",
             "destination": "",
             "category": "departure",
             "route": "KMHT35.PPORT4.BAF",
@@ -304,7 +309,7 @@
             ]
         },
         {
-            "Origin": "KMHT",
+            "origin": "KMHT",
             "destination": "",
             "category": "departure",
             "route": "KMHT35.PPORT4.CCC",
@@ -320,7 +325,7 @@
             ]
         },
         {
-            "Origin": "KMHT",
+            "origin": "KMHT",
             "destination": "",
             "category": "departure",
             "route": "KMHT35.PPORT4.NELIE",
@@ -339,15 +344,15 @@
             "origin": "",
             "destination": "KMHT",
             "category": "arrival",
-            "route": "ATHOS..MUCOW.ROZZE2.KMHT35",
+            "route": "HINGZ..ATHOS..MUCOW.ROZZE2.KMHT35",
             "altitude": [19000, 22000],
             "speed": 320,
             "method": "random",
-            "rate": 25,
+            "rate": 20,
             "airlines": [
                 ["AAL", "5"],
                 ["NKS", "5"],
-                ["SWA", "10"],
+                ["SWA", "5"],
                 ["UAL", "5"]
             ]
         },
@@ -355,15 +360,15 @@
             "origin": "",
             "destination": "KMHT",
             "category": "arrival",
-            "route": "PONCT.ROZZE2.KMHT35",
+            "route": "BROOD..CASIL..PONCT.ROZZE2.KMHT35",
             "altitude": [20000, 22000],
             "speed": 320,
             "method": "random",
-            "rate": 25,
+            "rate": 20,
             "airlines": [
                 ["AAL", "5"],
                 ["NKS", "5"],
-                ["SWA", "10"],
+                ["SWA", "5"],
                 ["UAL", "5"]
             ]
         },
@@ -371,15 +376,15 @@
             "origin": "",
             "destination": "KMHT",
             "category": "arrival",
-            "route": "SMYTH.ROZZE2.KMHT35",
+            "route": "RKA..SWEDE..SMYTH.ROZZE2.KMHT35",
             "altitude": [20000, 22000],
             "speed": 320,
             "method": "random",
-            "rate": 25,
+            "rate": 20,
             "airlines": [
                 ["AAL", "5"],
                 ["NKS", "5"],
-                ["SWA", "10"],
+                ["SWA", "5"],
                 ["UAL", "5"]
             ]
         }
