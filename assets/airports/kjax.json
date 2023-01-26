@@ -177,6 +177,7 @@
         "KIPLE": ["N30d52.91", "W82d08.12"],
         "KITZO": ["N30d39.72", "W81d57.52"],
         "KRISO": ["N30d29.01", "W81d49.07"],
+        "LAL"  : ["N27d59.17", "W82d00.83"],
         "LAYON": ["N30d35.95", "W81d32.34"],
         "LUNNI": ["N30d51.54", "W81d19.45"],
         "MAHKA": ["N30d43.49", "W81d58.59"],
@@ -674,9 +675,9 @@
             "name": "Arney Two",
             "rwy": {
                 "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX14": ["#100"],
+                "KJAX26": ["#320"],
+                "KJAX32": ["#320"]
             },
             "body": ["KIMML", ["ARNEY", "A110+"]],
             "exitPoints": {
@@ -690,12 +691,12 @@
         },
         "CROSB2": {
             "icao": "CROSB2",
-            "name": "Crossbow Two",
+            "name": "Crossbee Two",
             "rwy": {
                 "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX14": ["#100"],
+                "KJAX26": ["#320"],
+                "KJAX32": ["#320"]
             },
             "body": ["GIGLZ", ["CROSB", "A110+"]],
             "exitPoints": {
@@ -709,10 +710,10 @@
             "icao": "EXBOX2",
             "name": "X-Box Two",
             "rwy": {
-                "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX8": ["#140"],
+                "KJAX14": ["#140"],
+                "KJAX26": ["#220"],
+                "KJAX32": ["#220"]
             },
             "body": ["SAWGY", ["EXBOX", "A120+"]],
             "exitPoints": {
@@ -723,7 +724,7 @@
             ]
         },
         "JAX7": {
-            "icao": "JAX6",
+            "icao": "JAX7",
             "name": "Jacksonville Seven",
             "rwy": {
                 "KJAX8": ["#077"],
@@ -760,9 +761,9 @@
             "name": "Jettin' Two",
             "rwy": {
                 "KJAX8": ["#077"],
-                "KJAX14": ["#137"],
-                "KJAX26": ["#257"],
-                "KJAX32": ["#317"]
+                "KJAX14": ["#100"],
+                "KJAX26": ["#260"],
+                "KJAX32": ["#260"]
             },
             "body": ["DURTE", ["JETIN", "A100+"]],
             "exitPoints": {
@@ -778,10 +779,10 @@
             "icao": "SAWGY2",
             "name": "Soggy Two",
             "rwy": {
-                "KJAX8": [],
-                "KJAX14": [],
-                "KJAX26": [],
-                "KJAX32": []
+                "KJAX8": ["#140"],
+                "KJAX14": ["#140"],
+                "KJAX26": ["#220"],
+                "KJAX32": ["#220"]
             },
             "body": ["CRG", "SAWGY"],
             "exitPoints": {
@@ -1181,11 +1182,11 @@
             "origin": "",
             "destination": "kjax",
             "category": "arrival",
-            "route": "HILIS.TEBOW1.KJAX8",
+            "route": "LAL..HILIS.TEBOW1.KJAX8",
             "altitude": [17000, 18000],
             "speed": 280,
             "method": "random",
-            "rate": 1,
+            "rate": 0.5,
             "airlines": [
                 ["aal", 10],
                 ["aay", 3],
