@@ -206,7 +206,7 @@
         ]
         }
     },
-    "spawnpatterns": [
+    "spawnPatterns": [
         {
             "Origin": "KMHT",
             "destination": "",
