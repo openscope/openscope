@@ -152,10 +152,14 @@
             "method": "random",
             "rate":2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -171,10 +175,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -190,10 +198,14 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -209,10 +221,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -228,10 +244,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -247,10 +267,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -263,10 +287,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -279,10 +307,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -295,10 +327,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         },
         {
@@ -311,10 +347,14 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["aal", 2],
-                ["aca", 1],
-                ["dal", 2],
-                ["ual", 2]
+                ["swa", 2],
+                ["dal", 3],
+                ["nks", 2],
+                ["fft", 1],
+                ["aal", 3],
+                ["ual", 3],
+                ["ups", 1],
+                ["sil", 1]
             ]
         }
     ],
