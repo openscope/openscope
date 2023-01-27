@@ -192,8 +192,6 @@
         "icao": "ROZZE2",
         "name": "Rozze Two",
         "entryPoints": {
-            "MUCOW": [["MUCOW", "A190-|S280"], ["FFATY", "A200-|A160+"], ["CRIBB", "A160-|A130+"], ["MONRC", "A90+"]],
-            "PONCT": ["PONCT", "WOBLY", ["QUINZ", "A190+|S280"], ["LUCIC", "A160+"], ["FLYZZ", "A130+"], ["FYSHR", "A90+"]],
             "SMYTH": ["SMYTH", ["QUINZ", "A190+|S280"], ["LUCIC", "A160+"], ["FLYZZ", "A130+"], ["FYSHR", "A90+"]]
         },
         "body": ["ROZZE"],
@@ -204,8 +202,6 @@
             "KMHT35": [["NUUKM", "A90-|A70+"], ["SHOWZ", "A50|S210"]]
         },
         "draw": [
-            ["MUCOW", "FFATY", "CRIBB", "MONRC", "ROZZE", "PNARD", "TEETO"],
-            ["PONCT", "WOBLY", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "JSTNN"],
             ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "PURBL"],
             ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "SHOWZ"]
         ]
@@ -344,30 +340,14 @@
             "origin": "",
             "destination": "KMHT",
             "category": "arrival",
-            "route": "HINGZ..ATHOS..MUCOW.ROZZE2.KMHT35",
-            "altitude": [19000, 22000],
-            "speed": 320,
-            "method": "random",
-            "rate": 9,
-            "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KMHT",
-            "category": "arrival",
             "route": "RKA..SWEDE..SMYTH.ROZZE2.KMHT35",
             "altitude": [20000, 22000],
             "speed": 280,
             "method": "random",
-            "rate": 9,
+            "rate": 15,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
+                ["AAL", "7"],
+                ["NKS", "6"],
                 ["SWA", "10"],
                 ["UAL", "5"]
             ]
