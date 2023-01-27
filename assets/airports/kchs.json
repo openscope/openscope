@@ -500,7 +500,7 @@
             "altitude": [14000, 23000],
             "speed": 320,
             "method": "random",
-            "rate": 5,
+            "rate": 3,
             "airlines": [
                 ["aal",  3],
                 ["aca",  1],
@@ -519,7 +519,7 @@
         "altitude": [14000, 23000],
         "speed": 320,
         "method": "random",
-        "rate": 5,
+        "rate": 7,
         "airlines": [
             ["aal",  3],
             ["aca",  1],
@@ -538,7 +538,7 @@
             "altitude": [7000, 7000],
             "speed": 320,
             "method": "random",
-            "rate": 5,
+            "rate": 2,
             "airlines": [
                 ["aal",  3],
                 ["aca",  1],
@@ -595,7 +595,7 @@
             "altitude": [14000, 23000],
             "speed": 320,
             "method": "random",
-            "rate": 5,
+            "rate": 2,
             "airlines": [
                 ["aal",  3],
                 ["aca",  1],
@@ -614,7 +614,7 @@
             "altitude": [27000, 25000],
             "speed": 320,
             "method": "random",
-            "rate": 5,
+            "rate": 6,
             "airlines": [
                 ["aal",  3],
                 ["aca",  1],
@@ -633,7 +633,7 @@
             "altitude": [27000, 25000],
             "speed": 320,
             "method": "random",
-            "rate": 5,
+            "rate": 8,
             "airlines": [
                 ["aal",  3],
                 ["aca",  1],
