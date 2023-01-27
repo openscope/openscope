@@ -204,10 +204,10 @@
             "KMHT35": [["NUUKM", "A90-|A70+"], ["SHOWZ", "A50|S210"]]
         },
         "draw": [
+            ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "SHOWZ"],
             ["MUCOW", "FFATY", "CRIBB", "MONRC", "ROZZE", "PNARD", "TEETO"],
             ["PONCT", "WOBLY", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "JSTNN"],
-            ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "PURBL"],
-            ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "SHOWZ"]
+            ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "PURBL"]
         ]
         }
     },
@@ -216,7 +216,7 @@
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.MHT1.BOS",
+            "route": "KMHT24.MHT1.BOS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -235,7 +235,7 @@
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.MHT1.CAM",
+            "route": "KMHT24.MHT1.CAM",
             "altitude": "",
             "speed": "",
             "method": "random",
