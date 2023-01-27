@@ -346,25 +346,9 @@
             "category": "arrival",
             "route": "HINGZ..ATHOS..MUCOW.ROZZE2.KMHT35",
             "altitude": [19000, 22000],
-            "speed": 300,
-            "method": "random",
-            "rate": 9,
-            "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KMHT",
-            "category": "arrival",
-            "route": "BROOD..CASIL..PONCT.ROZZE2.KMHT35",
-            "altitude": [20000, 22000],
             "speed": 320,
             "method": "random",
-            "rate": 6,
+            "rate": 9,
             "airlines": [
                 ["AAL", "5"],
                 ["NKS", "5"],
@@ -380,7 +364,7 @@
             "altitude": [20000, 22000],
             "speed": 280,
             "method": "random",
-            "rate": 4,
+            "rate": 9,
             "airlines": [
                 ["AAL", "5"],
                 ["NKS", "5"],
