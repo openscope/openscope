@@ -1,6 +1,6 @@
 # KMCO - Orlando (F11 TRACON)
 
-## About MDO
+## About MCO
 Orlando International Airport (IATA: MCO, ICAO: KMCO, FAA LID: MCO) is a major public airport located 6 miles (10 km) southeast of Downtown Orlando, Florida. In 2019, it handled 50,613,072 passengers, making it the busiest airport in the state and tenth busiest airport in the United States. The airport code MCO stands for the airport's former name, McCoy Air Force Base, a Strategic Air Command (SAC) installation, that was closed in 1975 as part of a general military drawdown following the end of the Vietnam War.
 
 The airport serves as a hub for Silver Airways, an operating base for JetBlue, Southwest Airlines and Spirit Airlines, as well as a focus city for Frontier Airlines. Southwest is the airport's largest carrier by passengers carried. The airport is also a major international gateway for the mid-Florida region, with over 850 daily flights on 44 airlines. The airport also serves 135 domestic and international destinations. At 12,600 acres (5,100 ha), MCO is one of the largest commercial airports in terms of land area in the United States. In addition, the airport is home to a maintenance base for United Airlines. The airport was also a hub for Delta Air Lines until 2007.(Wikipedia)
