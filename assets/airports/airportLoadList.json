@@ -173,6 +173,12 @@
         "premium": false
     },
     {
+        "icao": "kchs",
+        "level": "easy",
+        "name": "Charleston International Airport",
+        "premium": false
+    },
+    {
         "icao": "kcvg",
         "level": "beginner",
         "name": "Cincinnati-Northern Kentucky International Airport",
