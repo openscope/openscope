@@ -491,10 +491,10 @@
             "destination": "kdab",
             "category": "arrival",
             "route": "MLB.V3.OMN",
-            "altitude": 6000,
+            "altitude": 5000,
             "speed": 130,
             "method": "random",
-            "rate": 1,
+            "rate": 0.9,
             "airlines": [
                 ["eru", 11],
                 ["n/lightGA", 6]
@@ -561,7 +561,7 @@
             "destination": "kdab",
             "category": "arrival",
             "route": "FOBIN.Q93.MALET..OMN",
-            "altitude": 23000,
+            "altitude": 6000,
             "speed": 250,
             "method": "random",
             "rate": 1,

@@ -13,7 +13,7 @@ DAB has one conventional SID and one RNAV STAR. Additionally, the airspace has a
 
 vZJX Recommends a flow for aircraft on the `TTHOR3`, crossing `TTHOR` at 12,000, `BIKEZ` at 8,000. All aircraft arriving from the north get direct `OMN` at 6,000. From there, they should get heading 260, and a descent down to 4,000. Then, turn them South Bound (I like to wait until they pass `TIGAE`) which can be anything from a `150` to a `180` heading, and a descent down to 3,000. The final turn is a `090` heading and clearing them for the ILS (`i 7L`). 
 
-For aircraft arriving from the south (crossing `SMYRA`), they should be handed off at 6,000. Turn them to heading `260` around the 5 NM range ring, passing them over Spruce Creek (Pvt), and descend them to 4,000. Then give them a north bound turn to final (Once again, I like to do it once they pass `TIGAE`) which can be anything from a 360 to 020 heading, and a descent down to **2,000**. Finally, give them a right to `090` and clear them for the ils (`i 7L`)
+For aircraft arriving from the south (crossing `SMYRA`), they should be handed off no higher than 6,000. Turn them to heading `260` around the 5 NM range ring, passing them over Spruce Creek (Pvt), and descend them to 4,000. Then give them a north bound turn to final (Once again, I like to do it once they pass `TIGAE`) which can be anything from a 360 to 020 heading, and a descent down to **2,000**. Finally, give them a right to `090` and clear them for the ils (`i 7L`)
 
 <br>
 Note:
@@ -22,7 +22,7 @@ There is no ILS for runway 7R, but in openscope you can still issue the command 
 <br>
 
 ### Departures
-There is no "correct" way to handle departures, so I like do to it this way. `ROYES3` departures fly runway heading until 5 DME from runway 25R, then I issue direct `BARBS` and a climb to 15,000 (`pd BARBS c 150`). All other departure routes fly on course and climbed to 5,000 (which seems like a good safe altitude from the `BIKEZ..OMN` planes and ``SMYRA..OMN`` planes.)
+There is no "correct" way to handle departures, so I like do to it this way. `ROYES3` departures fly runway heading until 5 DME from runway 25R, then I issue direct `BARBS` and a climb to 11,000 (`pd BARBS c 110`). All other departure routes fly on course and climbed to 5,000 (which seems like a good altitude to maintain separation between the `BIKEZ..OMN` arrivals and `SMYRA..OMN` arrivals). Northbound departures get climbed to 11,000 once clear of planes direct `OMN`, and southbound departures stay at 5,000 unless they are going to `KIZER`.
 
 
 
