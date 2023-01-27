@@ -63,6 +63,7 @@
         "BASLE" : ["N32d09m43.362", "W80d45m48.490"],
         "BROSE" : ["N32d17m12.687", "W81d40m56.549"],
         "CATHY" : ["N31d40m11.624", "W81d10m17.264"],
+        "CESOR":  ["N32d36m13.089", "W81d38m32.314"],
         "CINBA":  ["N32d17m06.491", "W80d58m40.208"],
         "ESENT":  ["N32d09m28.130", "W80d55m03.779"],
         "FAPLI":  ["N32d15m12.715", "W81d20m58.781"],
@@ -137,7 +138,7 @@
             "origin": "KSAV",
             "destination": "",
             "category": "departure",
-            "route": "KSAV..SMALZ",
+            "route": "KSAV..SMALZ..CESOR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -173,7 +174,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 15,
+            "rate": 9,
             "airlines": [
                 ["aal", 30],
                 ["aca", 10],
@@ -189,7 +190,7 @@
             "altitude": [10000, 10000],
             "speed": 250,
             "method": "random",
-            "rate": 10,
+            "rate": 5,
             "airlines": [
                 ["aal", 35],
                 ["aca", 11],
@@ -206,7 +207,7 @@
             "altitude": [10000, 10000],
             "speed": 250,
             "method": "random",
-            "rate": 10,
+            "rate": 5,
             "airlines": [
                 ["aal", 31],
                 ["jbu", 35],
@@ -223,7 +224,24 @@
             "altitude": [10000, 10000],
             "speed": 250,
             "method": "random",
-            "rate":10,
+            "rate":5,
+            "airlines": [
+                ["aal", 38],
+                ["jbu", 36],
+                ["dal", 31],
+                ["ual", 44],
+                ["nks", 22]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KSAV",
+            "category": "arrival",
+            "route": "SOOOP..SAV",
+            "altitude": [10000, 10000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
             "airlines": [
                 ["aal", 38],
                 ["jbu", 36],
