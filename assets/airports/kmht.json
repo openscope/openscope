@@ -192,6 +192,8 @@
         "icao": "ROZZE2",
         "name": "Rozze Two",
         "entryPoints": {
+            "MUCOW": [["MUCOW", "A190-|S280"], ["FFATY", "A200-|A160+"], ["CRIBB", "A160-|A130+"], ["MONRC", "A90+"]],
+            "PONCT": ["PONCT", "WOBLY", ["QUINZ", "A190+|S280"], ["LUCIC", "A160+"], ["FLYZZ", "A130+"], ["FYSHR", "A90+"]],
             "SMYTH": ["SMYTH", ["QUINZ", "A190+|S280"], ["LUCIC", "A160+"], ["FLYZZ", "A130+"], ["FYSHR", "A90+"]]
         },
         "body": ["ROZZE"],
@@ -202,6 +204,8 @@
             "KMHT35": [["NUUKM", "A90-|A70+"], ["SHOWZ", "A50|S210"]]
         },
         "draw": [
+            ["MUCOW", "FFATY", "CRIBB", "MONRC", "ROZZE", "PNARD", "TEETO"],
+            ["PONCT", "WOBLY", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "JSTNN"],
             ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "PURBL"],
             ["SMYTH", "QUINZ", "LUCIC", "FLYZZ", "FYSHR", "ROZZE", "NUUKM", "SHOWZ"]
         ]
@@ -218,10 +222,13 @@
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
@@ -234,106 +241,127 @@
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.MHT1.CON",
+            "route": "KMHT24.MHT1.CON",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
             "origin":"KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.MHT1.ENE",
+            "route": "KMHT24.MHT1.ENE",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.MHT1.GDM",
+            "route": "KMHT24.MHT1.GDM",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.PPORT4.BAF",
+            "route": "KMHT24.PPORT4.BAF",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.PPORT4.CCC",
+            "route": "KMHT24.PPORT4.CCC",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 4,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
             "origin": "KMHT",
             "destination": "",
             "category": "departure",
-            "route": "KMHT35.PPORT4.NELIE",
+            "route": "KMHT24.PPORT4.NELIE",
             "altitude": "",
             "speed": "",
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["AAL", "5"],
-                ["NKS", "5"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         },
         {
@@ -346,10 +374,13 @@
             "method": "random",
             "rate": 15,
             "airlines": [
-                ["AAL", "7"],
-                ["NKS", "6"],
-                ["SWA", "10"],
-                ["UAL", "5"]
+                ["FDX", "2"],
+                ["JIA", "5"],
+                ["NKS", "8"],
+                ["PDT", "5"],
+                ["RPA", "5"],
+                ["SWA", "8"],
+                ["UPS", "2"]
             ]
         }
     ],
