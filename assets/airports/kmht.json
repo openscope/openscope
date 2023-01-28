@@ -368,7 +368,7 @@
             "origin": "",
             "destination": "KMHT",
             "category": "arrival",
-            "route": "RKA..SWEDE..SMYTH.ROZZE2..IHOBB..ELEEE..YOULL.KMHT35",
+            "route": "RKA..SWEDE..SMYTH.ROZZE2.KMHT35",
             "altitude": [20000, 22000],
             "speed": 280,
             "method": "random",
