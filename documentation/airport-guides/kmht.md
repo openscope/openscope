@@ -50,6 +50,6 @@ Here is a list of the airlines that serve MHT and their names:
 
 ## Additional Resources
 
-<a href="https://atchub.bvartcc.com/atcfiles/BVA_KMHT.pdf" target="_blank">BVARTCC - Manchester Airport Air Traffic Control Tower SOP                                               </a>
-<a href="https://atchub.bvartcc.com/atcfiles/BVA_A90.pdf" target="_blank">BVARTCC - Boston TRACON (A90) SOP (MHT on Page 24)</a>
-<a href="https://www.youtube.com/watch?v=kWbOr8JjO-g" target="_blank">BVARTCC Minor Facility Showcase - Manchester-Boston Regional Airport</a>
+<a href="https://atchub.bvartcc.com/atcfiles/BVA_KMHT.pdf" target="_blank">BVARTCC - Manchester Airport Air Traffic Control Tower SOP. |||</a>
+<a href="https://atchub.bvartcc.com/atcfiles/BVA_A90.pdf" target="_blank">BVARTCC - Boston TRACON (A90) SOP (MHT on Page 24). |||</a>
+<a href="https://www.youtube.com/watch?v=kWbOr8JjO-g" target="_blank">BVARTCC Minor Facility Showcase - Manchester-Boston Regional Airport.</a>
