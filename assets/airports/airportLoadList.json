@@ -412,6 +412,12 @@
         "disabled": true
     },
     {
+        "icao": "ktvc",
+        "level": "easy",
+        "name": "Cherry Capital Airport",
+        "premium": false
+    },
+    {
         "icao": "lipz",
         "level": "easy",
         "name": "Venice Marco Polo Airport",
