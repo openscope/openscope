@@ -1,0 +1,1561 @@
+{
+    "airac": 2301,
+    "radio": {
+        "twr": "Keflavik Tower",
+        "app": "Reykjavik Control",
+        "dep": "Reykjavik Control"
+    },
+    "icao": "BIKF",
+    "iata": "KEF",
+    "magnetic_north": -14,
+    "ctr_radius": 80,
+    "ctr_ceiling": 29000,
+    "initial_alt": 29000,
+    "position": ["N63d59m05.999", "W022d36m20.001", "169ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N63d59m05.999", "W022d36m20.001"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": true,
+    "wind": {
+        "angle": 230,
+        "speed": 9
+    },
+    "arrivalRunway": "19",
+    "departureRunway": "28",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 290,
+            "airspace_class": "C",
+            "poly": [
+                ["N66.75000", "W26.00000"],
+                ["N66.75000", "W11.00000"],
+                ["N64.00000", "W11.00000"],
+                ["N63.00000", "W16.00000"],
+                ["N63.00000", "W18.55361"],
+                ["N62.84968", "W18.86324"],
+                ["N62.71062", "W19.10352"],
+                ["N62.58128", "W19.37051"],
+                ["N62.46263", "W19.66220"],
+                ["N62.35558", "W19.97635"],
+                ["N62.26095", "W20.31058"],
+                ["N62.17945", "W20.66235"],
+                ["N62.11171", "W21.02897"],
+                ["N62.05825", "W21.40765"],
+                ["N62.01946", "W21.79552"],
+                ["N61.99564", "W22.18963"],
+                ["N61.98698", "W22.58697"],
+                ["N61.99354", "W22.98451"],
+                ["N62.01527", "W23.37924"],
+                ["N62.05201", "W23.76815"],
+                ["N62.10347", "W24.14828"],
+                ["N62.16927", "W24.51673"],
+                ["N62.24890", "W24.87071"],
+                ["N62.34176", "W25.20752"],
+                ["N62.44714", "W25.52459"],
+                ["N62.56423", "W25.81951"],
+                ["N62.69216", "W26.09004"],
+                ["N62.82994", "W26.33412"],
+                ["N62.97653", "W26.54989"],
+                ["N63.13080", "W26.73571"],
+                ["N63.29159", "W26.89017"],
+                ["N63.45767", "W27.01208"],
+                ["N63.62779", "W27.10052"],
+                ["N63.80063", "W27.15483"],
+                ["N63.97489", "W27.17457"],
+                ["N64.14925", "W27.15962"],
+                ["N64.32237", "W27.11007"],
+                ["N64.49293", "W27.02630"],
+                ["N64.65965", "W26.90896"],
+                ["N64.82124", "W26.75894"],
+                ["N65.11280", "W26.30708"],
+                ["N65.28274", "W26.00715"],
+                ["N65.35528", "W26.00000"]
+            ]
+        }
+    ],
+    "fixes": {
+        "_RW191DME": [63.952857, -22.605337],
+        "KF102": ["N64d05m36.250", "W020d46m53.821"],
+        "KF103": ["N64d00m08.420", "W020d56m47.968"],
+        "KF113": ["N63d40m30.039", "W021d33m38.260"],
+        "KF121": ["N63d38m35.559", "W021d50m47.849"],
+        "KF122": ["N63d45m41.198", "W021d59m58.671"],
+        "KF124": ["N63d49m20.380", "W021d27m09.439"],
+        "KF125": ["N63d55m32.350", "W021d48m08.060"],
+        "KF127": ["N63d58m13.328", "W021d17m22.469"],
+        "KF131": ["N64d05m40.199", "W021d30m48.740"],
+        "KF132": ["N64d02m34.890", "W021d44m27.171"],
+        "KF148": ["N64d04m31.209", "W021d58m48.939"],
+        "KF149": ["N64d07m20.179", "W022d13m05.001"],
+        "KF151": ["N63d37m43.589", "W021d45m56.840"],
+        "KF152": ["N64d11m39.379", "W021d56m29.500"],
+        "KF154": ["N63d58m51.409", "W022d10m26.950"],
+        "KF155": ["N64d05m37.330", "W022d18m26.200"],
+        "KF156": ["N63d39m59.018", "W021d04m30.259"],
+        "KF157": ["N64d10m39.928", "W022d12m01.738"],
+        "KF158": ["N63d55m04.238", "W021d47m25.540"],
+        "KF159": ["N64d00m56.869", "W022d04m38.938"],
+        "KF162": ["N63d51m01.828", "W023d18m28.080"],
+        "KF164": ["N63d56m38.331", "W023d00m51.368"],
+        "KF165": ["N63d41m39.598", "W024d24m58.201"],
+        "KF166": ["N63d32m06.381", "W023d45m53.089"],
+        "KF168": ["N63d44m32.179", "W023d25m14.959"],
+        "KF169": ["N63d39m22.860", "W023d34m46.599"],
+        "KF172": ["N63d56m56.130", "W023d21m45.550"],
+        "KF174": ["N63d59m58.988", "W023d22m33.718"],
+        "KF175": ["N64d03m31.381", "W024d09m41.900"],
+        "KF176": ["N64d02m06.759", "W023d50m28.838"],
+        "KF177": ["N63d50m44.800", "W023d17m11.011"],
+        "KF178": ["N63d49m49.180", "W023d58m55.761"],
+        "KF179": ["N63d52m59.908", "W023d42m27.990"],
+        "KF181": ["N63d43m26.669", "W023d11m47.889"],
+        "KF182": ["N64d12m15.771", "W022d27m40.989"],
+        "KF183": ["N64d10m59.811", "W022d54m58.201"],
+        "KF184": ["N63d55m01.739", "W021d22m24.218"],
+        "KF185": ["N63d53m28.050", "W022d06m59.939"],
+        "KF186": ["N63d52m57.680", "W022d20m10.348"],
+        "KF187": ["N63d51m52.520", "W022d54m50.670"],
+        "KF189": ["N63d41m26.260", "W021d27m22.348"],
+        "KF191": ["N63d52m01.448", "W024d00m23.270"],
+        "KF192": ["N63d47m35.761", "W024d18m03.171"],
+        "KF193": ["N63d58m36.879", "W023d33m38.811"],
+        "KF194": ["N64d05m58.819", "W023d03m05.810"],
+        "KF195": ["N64d04m03.691", "W022d56m11.641"],
+        "KF196": ["N64d08m34.540", "W023d41m38.130"],
+        "KF197": ["N64d09m11.368", "W023d15m46.209"],
+        "KF199": ["N64d13m39.241", "W023d03m02.491"],
+        "KF211": ["N64d03m46.810", "W022d24m56.570"],
+        "KF214": ["N63d42m59.669", "W021d55m23.080"],
+        "KF215": ["N63d33m50.821", "W021d38m25.879"],
+        "KF218": ["N64d03m47.908", "W022d36m19.360"],
+        "KF221": ["N63d55m49.310", "W022d05m40.498"],
+        "KF222": ["N63d53m24.568", "W021d51m07.019"],
+        "KF223": ["N63d50m37.838", "W021d34m34.809"],
+        "KF224": ["N63d48m18.190", "W021d13m58.681"],
+        "KF234": ["N64d06m35.189", "W020d45m06.458"],
+        "KF235": ["N63d59m05.769", "W022d47m41.859"],
+        "KF236": ["N63d54m06.749", "W022d47m39.951"],
+        "KF239": ["N63d45m03.171", "W021d41m00.178"],
+        "KF241": ["N63d43m25.820", "W022d02m38.248"],
+        "KF242": ["N63d36m56.721", "W021d41m28.669"],
+        "KF243": ["N63d30m16.311", "W021d20m02.140"],
+        "KF244": ["N63d50m14.211", "W022d00m22.640"],
+        "KF245": ["N63d48m25.779", "W021d28m24.628"],
+        "KF246": ["N63d46m45.091", "W021d00m30.391"],
+        "KF248": ["N64d04m09.861", "W020d34m53.198"],
+        "KF252": ["N63d50m51.399", "W021d04m05.620"],
+        "KF253": ["N64d05m04.981", "W021d12m24.739"],
+        "KF255": ["N63d59m05.848", "W022d46m33.769"],
+        "KF256": ["N63d39m03.898", "W024d01m03.820"],
+        "KF257": ["N63d34m59.318", "W024d15m43.560"],
+        "KF258": ["N64d09m33.559", "W023d23m47.500"],
+        "KF259": ["N64d13m01.390", "W023d36m21.020"],
+        "KF261": ["N64d03m27.439", "W023d54m30.589"],
+        "KF262": ["N64d00m09.439", "W024d12m56.710"],
+        "KF263": ["N63d58m06.211", "W024d24m16.351"],
+        "KF264": ["N63d56m09.031", "W024d34m56.629"],
+        "KF266": ["N64d10m52.100", "W023d33m34.290"],
+        "KF267": ["N64d03m44.110", "W023d08m19.489"],
+        "KF269": ["N63d39m31.201", "W024d10m14.361"],
+        "KF272": ["N63d59m05.719", "W022d25m44.389"],
+        "KF273": ["N64d04m04.738", "W022d25m43.291"],
+        "KF279": ["N63d56m09.319", "W024d05m13.570"],
+        "KF283": ["N63d34m43.939", "W024d22m08.461"],
+        "KF284": ["N64d03m38.228", "W023d29m04.030"],
+        "KF285": ["N63d53m34.929", "W022d36m19.828"],
+        "KF287": ["N63d39m43.650", "W023d46m15.419"],
+        "KF288": ["N63d37m39.529", "W023d56m21.721"],
+        "KF289": ["N63d53m36.848", "W022d47m38.439"],
+        "KF293": ["N63d53m15.129", "W024d27m28.990"],
+        "KF294": ["N64d06m27.079", "W023d34m14.401"],
+        "KF295": ["N64d12m08.571", "W023d55m26.018"],
+        "KF296": ["N64d14m57.829", "W024d06m03.931"],
+        "KF297": ["N63d53m35.790", "W023d31m56.168"],
+        "KF298": ["N63d53m32.661", "W023d45m33.109"],
+        "KF301": ["N64d12m02.210", "W020d35m07.681"],
+        "KF319": ["N63d51m10.108", "W021d34m54.890"],
+        "KF328": ["N63d58m43.658", "W021d42m27.219"],
+        "KF329": ["N64d12m51.998", "W020d53m32.179"],
+        "KF361": ["N64d01m15.038", "W024d19m39.179"],
+        "KF372": ["N63d46m29.409", "W022d23m25.688"],
+        "KF374": ["N63d44m21.530", "W023d21m31.010"],
+        "KF375": ["N63d43m04.699", "W023d52m02.769"],
+        "KF376": ["N64d06m01.710", "W023d36m44.308"],
+        "KF377": ["N64d05m25.508", "W022d51m03.880"],
+        "KF378": ["N64d07m56.330", "W023d09m19.238"],
+        "KF379": ["N63d44m14.359", "W022d06m26.910"],
+        "KF381": ["N63d46m31.670", "W022d06m42.458"],
+        "KF382": ["N63d24m25.768", "W021d47m21.321"],
+        "KF383": ["N63d57m58.161", "W021d07m57.619"],
+        "KF384": ["N63d51m26.528", "W021d31m30.730"],
+        "KF385": ["N63d50m32.611", "W021d42m37.180"],
+        "KF386": ["N63d32m44.779", "W021d56m54.398"],
+        "KF387": ["N63d37m16.600", "W022d05m40.099"],
+        "KF388": ["N63d41m32.359", "W022d13m58.281"],
+        "KF402": ["N63d53m22.160", "W024d13m54.940"],
+        "KF416": ["N63d54m07.019", "W021d46m26.490"],
+        "KF417": ["N63d45m46.191", "W021d14m04.030"],
+        "KF419": ["N64d05m10.528", "W021d40m24.099"],
+        "KF428": ["N63d47m28.230", "W023d30m18.658"],
+        "KF433": ["N64d06m05.140", "W021d06m22.438"],
+        "KF437": ["N63d53m40.250", "W022d30m42.199"],
+        "KF438": ["N64d01m49.609", "W021d38m16.148"],
+        "KF439": ["N63d51m59.788", "W021d35m54.128"],
+        "KF440": ["N64d05m11.580", "W022d49m36.850"],
+        "KF441": ["N64d06m05.828", "W023d10m09.570"],
+        "KF442": ["N64d08m17.390", "W023d20m51.831"],
+        "KF443": ["N64d01m37.448", "W023d20m14.200"],
+        "KF444": ["N63d59m00.099", "W023d42m05.320"],
+        "KF445": ["N64d04m38.348", "W022d37m33.430"],
+        "KF446": ["N64d01m09.058", "W022d48m37.029"],
+        "KF447": ["N63d55m58.868", "W023d04m50.588"],
+        "KF448": ["N63d52m48.338", "W023d14m42.799"],
+        "KF449": ["N63d47m41.679", "W023d30m26.938"],
+        "KF450": ["N63d31m26.421", "W022d09m07.700"],
+        "KF451": ["N63d52m22.249", "W021d47m08.541"],
+        "KF452": ["N64d02m24.460", "W021d37m41.509"],
+        "KF453": ["N63d47m51.309", "W022d17m04.660"],
+        "KF454": ["N63d42m59.040", "W022d14m42.129"],
+        "KF455": ["N63d51m03.509", "W021d57m06.339"],
+        "KF456": ["N63d41m22.149", "W021d39m52.189"],
+        "KF457": ["N63d36m51.699", "W021d31m56.370"],
+        "KF459": ["N63d39m49.420", "W021d53m13.441"],
+        "KF460": ["N63d20m15.860", "W021d46m35.349"],
+        "KF461": ["N63d13m42.268", "W021d44m23.888"],
+        "KF462": ["N63d51m55.000", "W021d38m24.388"],
+        "KF463": ["N63d52m56.629", "W021d24m34.369"],
+        "KF464": ["N64d00m09.179", "W020d52m52.319"],
+        "KF465": ["N63d40m35.209", "W022d19m22.249"],
+        "KF466": ["N63d49m29.528", "W021d46m56.431"],
+        "KF467": ["N63d49m15.081", "W022d17m39.839"],
+        "KF801": ["N63d39m02.440", "W022d36m20.498"],
+        "KFI01": ["N63d48m14.490", "W022d36m20.070"],
+        "KFI10": ["N63d59m04.459", "W022d59m12.310"],
+        "KFI19": ["N64d08m04.851", "W022d36m19.159"],
+        "KFI28": ["N63d59m04.390", "W022d14m29.608"],
+        "ASRUN": ["N63d33m26.978", "W020d34m54.339"],
+        "BASLU": ["N63d11m19.478", "W021d16m19.711"],
+        "BETLU": ["N63d44m54.160", "W021d54m12.189"],
+        "RAVLA": ["N63d51m24.479", "W021d36m56.599"],
+        "ELVUM": ["N64d09m46.630", "W022d25m35.151"],
+        "LALTI": ["N63d43m57.010", "W021d44m26.149"],
+        "PEKUS": ["N63d30m31.708", "W022d02m03.188"],
+        "SONAX": ["N63d54m22.831", "W023d03m00.788"],
+        "TIMLU": ["N63d37m43.831", "W021d10m05.998"],
+        "ELSIG": ["N63d22m00.659", "W021d36m23.889"],
+        "DEXON": ["N63d46m03.129", "W022d22m49.479"],
+        "DISMO": ["N63d44m57.231", "W021d12m31.510"],
+        "GIPSI": ["N63d31m08.288", "W021d41m14.819"],
+        "OLGES": ["N63d53m04.531", "W022d09m38.149"],
+        "ELDIS": ["N63d40m33.700", "W024d45m38.098"],
+        "BIRNA": ["N63d19m59.001", "W024d18m57.841"],
+        "GARSU": ["N63d46m38.420", "W023d23m34.411"],
+        "NAPAT": ["N63d56m24.928", "W023d42m37.868"],
+        "VALUX": ["N64d09m46.828", "W022d47m03.008"],
+        "ELROS": ["N63d45m43.239", "W024d19m49.839"],
+        "GEGNI": ["N63d30m06.710", "W023d50m22.840"],
+        "MALAB": ["N63d45m11.080", "W023d00m16.200"],
+        "ADBAR": ["N63d39m09.899", "W022d56m25.018"],
+        "VIBER": ["N63d42m41.320", "W024d04m40.670"],
+        "UMTAL": ["N63d27m52.999", "W023d52m36.001"],
+        "RENDU": ["N63d46m03.370", "W022d49m50.858"],
+        "DEVUD": ["N64d16m50.519", "W020d26m15.471"],
+        "NASBU": ["N63d56m48.019", "W020d20m53.451"],
+        "RANAS": ["N64d10m37.200", "W021d08m38.590"],
+        "ADOVA": ["N63d59m01.388", "W022d00m00.201"],
+        "ERTIR": ["N63d57m52.279", "W021d02m29.309"],
+        "MEBUN": ["N64d13m50.919", "W021d50m28.499"],
+        "SOTUG": ["N63d54m20.159", "W021d43m01.509"],
+        "NONBO": ["N64d03m44.791", "W023d03m09.568"],
+        "ABEXI": ["N63d53m11.799", "W021d09m15.699"],
+        "KOPUM": ["N63d48m36.529", "W022d05m54.751"],
+        "UNLOS": ["N64d13m47.668", "W021d21m17.319"],
+        "TESGO": ["N63d58m23.739", "W021d28m21.118"],
+        "INGAN": ["N64d33m43.941", "W024d29m14.730"],
+        "GIRUG": ["N64d06m29.901", "W024d52m26.018"],
+        "ORTES": ["N64d14m58.729", "W023d02m33.939"],
+        "LIMBU": ["N64d05m39.839", "W023d07m03.990"],
+        "LUKAR": ["N64d05m02.151", "W022d09m25.750"],
+        "RUVET": ["N64d23m15.298", "W023d43m35.040"],
+        "KULUS": ["N64d08m18.650", "W023d51m53.279"],
+        "VERUT": ["N64d25m47.481", "W023d58m03.179"],
+        "BEGOT": ["N64d04m38.819", "W024d25m28.390"],
+        "NIZOL": ["N64d16m18.289", "W023d21m43.718"],
+        "RIKUG": ["N63d58m04.879", "W024d00m19.079"],
+        "SORIR": ["N64d24m12.650", "W024d41m31.520"],
+        "RALOV": ["N63d52m58.789", "W024d52m03.838"],
+        "DELES": ["N63d29m40.689", "W024d34m35.309"],
+        "LUTER": ["N64d07m04.659", "W020d21m39.718"],
+        "OSKUM": ["N63d42m43.999", "W020d26m34.000"],
+        "PIXUM": ["N63d21m29.541", "W020d52m21.939"],
+        "RIMUM": ["N63d04m32.998", "W021d41m21.998"],
+        "SUVIL": ["N63d52m53.461", "W022d36m19.861"],
+        "MADAX": ["N63d59m05.499", "W022d50m51.010"],
+        "NOMTA": ["N64d04m24.690", "W022d36m19.328"],
+        "ARDAL": ["N63d59m05.611", "W022d24m25.570"],
+        "SUKED": ["N64d59m39.998", "W026d37m09.998"],
+        "SOPEN": ["N64d42m00.000", "W026d55m30.000"],
+        "6630N": ["N66d00m00.000", "W030d00m00.000"],
+        "6530N": ["N65d00m00.000", "W030d00m00.000"],
+        "6640N": ["N66d00m00.000", "W040d00m00.000"],
+        "6540N": ["N65d00m00.000", "W040d00m00.000"],
+        "6430N": ["N64d00m00.000", "W030d00m00.000"],
+        "6330N": ["N63d00m00.000", "W030d00m00.000"],
+        "6230N": ["N62d00m00.000", "W030d00m00.000"],
+        "6130N": ["N61d00m00.000", "W030d00m00.000"],
+        "ROTIN": ["N63d55m00.001", "W027d09m37.000"],
+        "RAKIS": ["N63d35m04.999", "W027d02m40.999"],
+        "DOPOD": ["N62d53m49.999", "W026d21m38.001"],
+        "PODAR": ["N61d30m00.000", "W014d58m00.001"],
+        "RAPAX": ["N61d30m00.000", "W018d22m59.998"],
+        "PETUX": ["N62d43m59.998", "W019d07m00.001"],
+        "RUMUX": ["N62d22m27.001", "W020d00m00.000"],
+        "CELLO": ["N62d14m17.998", "W020d28m05.998"],
+        "6019N": ["N60d00m00.000", "W019d00m00.000"],
+        "INDES": ["N65d10m00.001", "W026d22m05.998"],
+        "GOKIK": ["N64d30m05.000", "W027d03m24.998"],
+        "NONRO": ["N65d10m59.998", "W030d00m00.000"],
+        "GISTU": ["N64d07m19.999", "W027d10m09.998"],
+        "EPENI": ["N63d22m59.998", "W026d54m42.001"],
+        "ELREX": ["N63d07m00.001", "W026d39m11.998"],
+        "BAXER": ["N62d41m48.001", "W026d00m52.999"],
+        "ING"  : ["N63d48m11.300", "W016d38m16.641"],
+        "ALDAN": ["N62d58m49.000", "W018d45m50.000"],
+        "BREKI": ["N62d32m17.998", "W019d32m48.001"],
+        "ATSIX": ["N60d00m00.000", "W010d00m00.000"],
+        "6410N": ["N64d00m00.000", "W010d00m00.000"],
+        "6015N": ["N60d00m00.000", "W015d00m00.000"],
+        "6600E": ["N66d00m00.000", "E000d00m00.000"],
+        "6500E": ["N65d00m00.000", "E000d00m00.000"],
+        "6635N": ["N66d00m00.000", "W035d00m00.000"],
+        "6535N": ["N65d00m00.000", "W035d00m00.000"],
+        "6435N": ["N64d00m00.000", "W035d00m00.000"],
+        "6335N": ["N63d00m00.000", "W035d00m00.000"],
+        "6235N": ["N62d00m00.000", "W035d00m00.000"],
+        "6135N": ["N61d00m00.000", "W035d00m00.000"],
+        "VESOX": ["N63d59m02.270", "W023d10m33.139"],
+        "RATSU": ["N61d00m00.000", "W010d00m00.000"]
+    },
+    "restricted": [
+        {
+            "name": "BI (R)-2",
+            "height": "2500ft",
+            "poly": [
+                ["N63d56.6", "W022d25.2"],
+                ["N63d56.5", "W022d10.2"],
+                ["N64d02.2", "W022d00.6"],
+                ["N63d58.6", "W021d48.5"],
+                ["N63d49.8", "W022d10.2"],
+                ["N63d52.2", "W022d25.4"]
+            ]
+        }
+    ],
+    "runways": [
+        {
+            "name": ["01", "19"],  
+            "end": [
+                ["N63d57m52.120", "W022d36m19.630", "135ft"],
+                ["N63d59m30.760", "W022d36m19.558", "161ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["10", "28"],
+            "end": [
+                ["N63d59m06.140", "W022d39m18.021", "109ft"],
+                ["N63d59m06.151", "W022d35m32.611", "168ft"]
+            ],
+            "ils": [true, true]
+        }
+    ],
+    "airways": {
+    },
+    "sids": {
+        "DELE2A": {
+            "icao": "DELES2A",
+            "name": "Deles Two Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": ["KF218", "KF267", "DELES"],
+            "exitPoints": {
+                "DELES": []
+            },
+            "draw": [
+                ["KF218", "KF267", "DELES"]
+            ]
+        },
+        "DELE3B": {
+            "icao": "DELES3B",
+            "name": "Deles Three Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", "KF273", "KF445", "KF449", "DELES"],
+            "exitPoints": {
+                "DELES": []
+            },
+            "draw": [
+                ["KF272", "KF273", "KF445", "KF449", "DELES"]
+            ]
+        },
+        "DELE2C": {
+            "icao": "DELES2C",
+            "name": "Deles Two Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [["KF285", "S220-"], "DELES"],
+            "exitPoints": {
+                "DELES": []
+            },
+            "draw": [
+                ["KF285", "DELES"]
+            ]
+        },
+        "DELE3D": {
+            "icao": "DELES3D",
+            "name": "Deles Three Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": ["KF255", "DELES"],
+            "exitPoints": {
+                "DELES": []
+            },
+            "draw": [
+                ["KF255", "DELES"]
+            ]
+        },
+        "LUTE2A": {
+            "icao": "LUTER2A",
+            "name": "Luter Two Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": [["KF218", "S210-"], "KF211", ["KF419", "A130+"], ["KF433", "A160+"], ["KF234", "A170+"], "LUTER"],
+            "exitPoints": {
+                "LUTER": []
+            },
+            "draw": [
+                ["KF218", "KF211", "KF419", "KF433", "KF234", "LUTER"]
+            ]
+        },
+        "LUTE2B": {
+            "icao": "LUTER3B",
+            "name": "Luter Two Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", ["KF452", "A100+"], "LUTER"],
+            "exitPoints": {
+                "LUTER": []
+            },
+            "draw": [
+                ["KF272", "KF452", "LUTER"]
+            ]
+        },
+        "LUTE3C": {
+            "icao": "LUTER2C",
+            "name": "Luter Three Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [["_RW191DME", "A10+"], ["KF244", "A40+"], ["KF462", "A60-"], ["KF463", "A70"], ["KF464", "A100-"], ["KF248", "A120-"], "LUTER"],
+            "exitPoints": {
+                "LUTER": []
+            },
+            "draw": [
+                ["_RW191DME", "KF244", "KF462", "KF463", "KF464", "KF248", "LUTER"]
+            ]
+        },
+        "LUTE3D": {
+            "icao": "LUTER3D",
+            "name": "Luter Three Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": [["KF235", "S210-"], ["KF236", "S240-"], ["KF437", "A70+"], ["ADOVA", "A120+"], ["KF438", "A140+"], ["KF253", "A160+"], "LUTER"],
+            "exitPoints": {
+                "LUTER": []
+            },
+            "draw": [
+                ["KF235", "KF236", "KF437", "ADOVA", "KF438", "KF253", "LUTER"]
+            ]
+        },
+        "OSKU3A": {
+            "icao": "OSKUM3A",
+            "name": "Oskum Three Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": [["KF218", "S210-"], "KF211", ["KF416", "A130+"], ["KF319", "A140+"], ["KF417", "A160+"], "OSKUM"],
+            "exitPoints": {
+                "OSKUM": []
+            },
+            "draw": [
+                ["KF218", "KF211", "KF416", "KF319", "KF417", "OSKUM"]
+            ]
+        },
+        "OSKU1B": {
+            "icao": "OSKUM1B",
+            "name": "Oskum One Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", ["KF221", "A60-"], ["KF222", "A70-"], ["KF223", "A100-"], ["KF224", "A130-"], "OSKUM"],
+            "exitPoints": {
+                "OSKUM": []
+            },
+            "draw": [
+                ["KF272", "KF221", "KF222", "KF223", "KF224", "OSKUM"]
+            ]
+        },
+        "OSKU3C": {
+            "icao": "OSKUM3C",
+            "name": "Oskum Three Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [["^_RW191DME", "A10+"], ["KF244", "A40+"], ["KF466", "A60-"], ["KF245", "A70"], ["KF246", "A100-"], "OSKUM"],
+            "exitPoints": {
+                "OSKUM": []
+            },
+            "draw": [
+                ["_RW191DME", "KF244", "KF466", "KF245", "KF246", "OSKUM"]
+            ]
+        },
+        "OSKU3D": {
+            "icao": "OSKUM3D",
+            "name": "Oskum Three Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": [["KF235", "S210-"], ["KF236", "S240-"], ["KF437", "A70+"], ["OLGES", "A110+"], ["KF451", "A130+"], ["KF439", "A140+"], ["KF252", "A160+"], "OSKUM"],
+            "exitPoints": {
+                "OSKUM": []
+            },
+            "draw": [
+                ["KF235", "KF236", "KF437", "OLGES", "KF451", "KF439", "KF252", "OSKUM"]
+            ]
+        },
+        "PIXU1A": {
+            "icao": "PIXUM1A",
+            "name": "Pixum One Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": [["KF218", "S210-"], "KF211", ["KOPUM", "A120+"], ["KF214", "A130+"], "KF215", "PIXUM"],
+            "exitPoints": {
+                "PIXUM": []
+            },
+            "draw": [
+                ["KF218", "KF211", "KOPUM", "KF214", "KF215", "PIXUM"]
+            ]
+        },
+        "PIXU3B": {
+            "icao": "PIXUM3B",
+            "name": "Pixum Two Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", ["KF221", "A60-"], ["KF455", "A60-"], ["KF456", "A70-"], ["KF457", "A120-"], "PIXUM"],
+            "exitPoints": {
+                "PIXUM": []
+            },
+            "draw": [
+                ["KF272", "KF221", "KF455", "KF456", "KF457", "PIXUM"]
+            ]
+        },
+        "PIXU2C": {
+            "icao": "PIXUM2C",
+            "name": "Pixum Two Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [["_RW191DME", "A10+"], ["KF241", "A70-"], ["KF242", "A100-"], ["KF243", "A120-"], "PIXUM"],
+            "exitPoints": {
+                "PIXUM": []
+            },
+            "draw": [
+                ["_RW191DME", "KF241", "KF242", "KF243", "PIXUM"]
+            ]
+        },
+        "PIXU2D": {
+            "icao": "PIXUM2D",
+            "name": "Pixum Two Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": [["KF235", "S210-"], ["KF236", "S240-"], ["KF437", "A70+"], ["OLGES", "A110+"], ["KF239", "A140+"], "PIXUM"],
+            "exitPoints": {
+                "PIXUM": []
+            },
+            "draw": [
+                ["KF235", "KF236", "KF437", "OLGES", "KF239", "PIXUM"]
+            ]
+        },
+        "RALO3A": {
+            "icao": "RALOV3A",
+            "name": "Ralov Three Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": ["KF218", "KF267", "KF261", "RALOV"],
+            "exitPoints": {
+                "RALOV": []
+            },
+            "draw": [
+                ["KF218", "KF267", "KF261", "RALOV"]
+            ]
+        },
+        "RALO4B": {
+            "icao": "RALOV4B",
+            "name": "Ralov Four Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", "KF273", "KF445", "KF440", "KF279", "RALOV"],
+            "exitPoints": {
+                "RALOV": []
+            },
+            "draw": [
+                ["KF272", "KF273", "KF445", "KF440", "KF279", "RALOV"]
+            ]
+        },
+        "RALO3C": {
+            "icao": "RALOV3C",
+            "name": "Ralov Three Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [],
+            "exitPoints": {
+                "RALOV": [["KF285", "S220-"], "KF289", "RALOV"]
+            },
+            "draw": [
+                ["KF285", "KF289", "RALOV"]
+            ]
+        },
+        "RALO1D": {
+            "icao": "RALOV1D",
+            "name": "Ralov One Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": ["KF255", "RALOV"],
+            "exitPoints": {
+                "RALOV": []
+            },
+            "draw": [
+                ["KF255", "RALOV"]
+            ]
+        },
+        "RIMU1A": {
+            "icao": "RIMUM1A",
+            "name": "Rimum One Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": [["KF218", "S210-"], ["KF211", "S230-"], ["KF453", "A100+"], ["KF454", "A110+"], ["KF450", "A130-"], "RIMUM"],
+            "exitPoints": {
+                "RIMUM": []
+            },
+            "draw": [
+                ["KF218", "KF211", "KF453", "KF454", "KF450", "RIMUM"]
+            ]
+        },
+        "RIMU1B": {
+            "icao": "RIMUM1B",
+            "name": "Rimum One Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", ["KF221", "A60-"], ["KF455", "A60-"], ["KF459", "A70-"], ["KF460", "A120-"], ["KF461", "A140-"], "RIMUM"],
+            "exitPoints": {
+                "RIMUM": []
+            },
+            "draw": [
+                ["KF272", "KF221", "KF455", "KF459", "KF460", "KF461", "RIMUM"]
+            ]
+        },
+        "RIMU1C": {
+            "icao": "RIMUM1C",
+            "name": "Rimum One Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [["_RW191DME", "A10+"], "KF465", "RIMUM"],
+            "exitPoints": {
+                "RIMUM": []
+            },
+            "draw": [
+                ["_RW191DME", "KF465", "RIMUM"]
+            ]
+        },
+        "RIMU1D": {
+            "icao": "RIMUM1D",
+            "name": "Rimum One Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": [["KF235", "S210-"], ["KF236", "S240-"], ["KF437", "A70+"], ["KF467", "A100+"], "RIMUM"],
+            "exitPoints": {
+                "RIMUM": []
+            },
+            "draw": [
+                ["KF235", "KF236", "KF437", "KF467", "RIMUM"]
+            ]
+        },
+        "SORI3A": {
+            "icao": "SORIR3A",
+            "name": "Sorir Three Alpha",
+            "rwy": {
+                "BIKF01": []
+            },
+            "body": ["KF218", "KF266", "SORIR"],
+            "exitPoints": {
+                "SORIR": []
+            },
+            "draw": [
+                ["KF218", "KF266", "SORIR"]
+            ]
+        },
+        "SORI3B": {
+            "icao": "SORIR3B",
+            "name": "Sorir Three Bravo",
+            "rwy": {
+                "BIKF10": []
+            },
+            "body": ["KF272", "KF273", "KF445", "KF440", "KF441", "SORIR"],
+            "exitPoints": {
+                "SORIR": []
+            },
+            "draw": [
+                ["KF272", "KF273", "KF445", "KF440", "KF441", "SORIR"]
+            ]
+        },
+        "SORI2C": {
+            "icao": "SORIR2C",
+            "name": "Sorir Two Charlie",
+            "rwy": {
+                "BIKF19": []
+            },
+            "body": [],
+            "exitPoints": {
+                "SORIR": [["KF285", "S220-"], "KF289", "SORIR"]
+            },
+            "draw": [
+                ["KF285", "KF289", "SORIR"]
+            ]
+        },
+        "SORI2D": {
+            "icao": "SORIR2D",
+            "name": "Sorir Two Delta",
+            "rwy": {
+                "BIKF28": []
+            },
+            "body": ["KF255", "KF259", "SORIR"],
+            "exitPoints": {
+                "SORIR": []
+            },
+            "draw": [
+                ["KF255", "KF259", "SORIR"]
+            ]
+        }
+    },
+    "stars": {
+        "ASRU1H": {
+            "icao": "ASRUN1H",
+            "name": "Asrun One Hotel",
+            "entryPoints": {
+                "ASRUN": []
+            },
+            "body": ["ASRUN", ["DISMO", "A140-"], ["KF124", "A120-"], ["KF125", "A50+|A70-"], ["ADOVA", "A35+|A60-|S230"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["ASRUN", "DISMO", "KF124", "KF125", "ADOVA", "KFI28", "ARDAL"]
+            ]
+        },
+        "ASRU2K": {
+            "icao": "ASRUN2K",
+            "name": "Asrun Two Kilo",
+            "entryPoints": {
+                "ASRUN": []
+            },
+            "body": ["ASRUN", ["KF156", "A150+"], ["RAVLA", "A110+"], ["KF158", "A100+"], ["KF159", "A70+"], ["KF155", "A45+"], ["ELVUM", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["ASRUN", "KF156", "RAVLA", "KF158", "KF159", "KF155", "ELVUM", "KFI19", "NOMTA"]
+            ]
+        },
+        "ASRU3M": {
+            "icao": "ASRUN3M",
+            "name": "Asrun Three Mike",
+            "entryPoints": {
+                "ASRUN": []
+            },
+            "body": ["ASRUN", ["KF189", "A150+"], ["LALTI", "A130+"], ["KF381", "A100+"], ["KF187", "A60-"], ["SONAX", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["ASRUN", "KF189", "LALTI", "KF381", "KF187", "SONAX", "KFI10", "MADAX"]
+            ]
+        },
+        "ASRU3N": {
+            "icao": "ASRUN3N",
+            "name": "Asrun Three November",
+            "entryPoints": {
+                "ASRUN": []
+            },
+            "body": ["ASRUN", ["TIMLU", "A100+"], ["KF113", "A120-"], ["KF379", "A70-"], ["DEXON", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["ASRUN", "TIMLU", "KF113", "KF379", "DEXON", "KFI01", "SUVIL"]
+            ]
+        },
+        "BASL2H": {
+            "icao": "BASLU2H",
+            "name": "Baslu Two Hotel",
+            "entryPoints": {
+                "BASLU": []
+            },
+            "body": ["BASLU", "GIPSI", ["KF121", "A120-"], ["KF122", "A100-"], ["OLGES", "A35+|A50-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["ASRUN", "DISMO", "KF124", "KF125", "ADOVA", "KFI28", "ARDAL"]
+            ]
+        },
+        "BASL2K": {
+            "icao": "BASLU2K",
+            "name": "Baslu Two Kilo",
+            "entryPoints": {
+                "BASLU": []
+            },
+            "body": ["BASLU", ["KF151", "A150+"], ["BETLU", "A110+"], ["KF244", "A100+"], ["KF154", "A70+"], ["KF155", "A45+"], ["ELVUM", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["BASLU", "KF151", "BETLU", "KF244", "KF154", "KF155"]
+            ]
+        },
+        "BASL3M": {
+            "icao": "BASLU3M",
+            "name": "Baslu Three Mike",
+            "entryPoints": {
+                "BASLU": []
+            },
+            "body": ["BASLU", ["KF382", "A150+"], ["PEKUS", "A130+"], ["KF187", "A60-"], ["SONAX", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["BASLU", "KF382", "PEKUS", "KF187"]
+            ]
+        },
+        "BASL3N": {
+            "icao": "BASLU3N",
+            "name": "Baslu Three November",
+            "entryPoints": {
+                "BASLU": []
+            },
+            "body": ["BASLU", "ELSIG", ["KF386", "A120-"], ["KF387", "A100-"], ["KF388", "A70-"], ["DEXON", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["BASLU", "ELSIG", "KF386", "KF387", "KF388", "DEXON"]
+            ]
+        },
+        "BIRN2H": {
+            "icao": "BIRNA2H",
+            "name": "Birna Two Hotel",
+            "entryPoints": {
+                "BIRNA": []
+            },
+            "body": ["BIRNA", "ADBAR", ["KF372", "A60-"], ["OLGES", "A35+|A50-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["BIRNA", "ADBAR", "KF372", "OLGES"]
+            ]
+        },
+        "BIRN3K": {
+            "icao": "BIRNA3K",
+            "name": "Birna Three Kilo",
+            "entryPoints": {
+                "BIRNA": []
+            },
+            "body": ["BIRNA", "KF166", "GARSU", ["VALUX", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["BIRNA", "KF166", "GARSU", "VALUX"]
+            ]
+        },
+        "BIRN3M": {
+            "icao": "BIRNA3M",
+            "name": "Birna Three Mike",
+            "entryPoints": {
+                "BIRNA": []
+            },
+            "body": ["BIRNA", "GEGNI", "KF181", ["SONAX", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["BIRNA", "GEGNI", "KF181", "SONAX"]
+            ]
+        },
+        "BIRN2N": {
+            "icao": "BIRNA2N",
+            "name": "Birna Two November",
+            "entryPoints": {
+                "BIRNA": []
+            },
+            "body": ["BIRNA", "UMTAL", ["RENDU", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["BIRNA", "UMTAL", "RENDU"]
+            ]
+        },
+        "DEVU1H": {
+            "icao": "DEVUD1H",
+            "name": "Devud One Hotel",
+            "entryPoints": {
+                "DEVUD": []
+            },
+            "body": ["DEVUD", ["KF329", "A150-"], ["RANAS", "A110+|A130-"], ["KF131", "A90+|A100-"], ["KF132", "A70"], ["ADOVA", "A35+|A60-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["DEVUD", "KF329", "RANAS", "KF131", "KF132", "ADOVA"]
+            ]
+        },
+        "DEVU2K": {
+            "icao": "DEVUD2K",
+            "name": "Devud Two Kilo",
+            "entryPoints": {
+                "DEVUD": []
+            },
+            "body": ["DEVUD", ["UNLOS", "A110+"], ["KF152", "A70+"], ["KF157", "A50+"], ["ELVUM", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["DEVUD", "UNLOS", "KF152", "KF157", "ELVUM"]
+            ]
+        },
+        "DEVU2M": {
+            "icao": "DEVUD2M",
+            "name": "Devud Two Mike",
+            "entryPoints": {
+                "DEVUD": []
+            },
+            "body": ["DEVUD", ["MEBUN", "A120+"], ["KF182", "A70+"], ["KF183", "A60-"], ["NONBO", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["DEVUD", "MEBUN", "KF182", "KF183", "NONBO"]
+            ]
+        },
+        "DEVU4N": {
+            "icao": "DEVUD4N",
+            "name": "Devud Four November",
+            "entryPoints": {
+                "DEVUD": []
+            },
+            "body": ["DEVUD", ["KF301", "A160-"], ["KF102", "A150-"], ["KF103", "A110+"], ["ABEXI", "A100+|A130-"], ["KF384", "A110-"], ["KF385", "A70+"], ["KOPUM", "A70-"], ["DEXON", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["DEVUD", "KF301", "KF102", "KF103", "ABEXI", "KF384", "KF385", "KOPUM", "DEXON"]
+            ]
+        },
+        "ELDI3H": {
+            "icao": "ELDIS3H",
+            "name": "Eldis Three Hotel",
+            "entryPoints": {
+                "ELDIS": []
+            },
+            "body": ["ELDIS", "MALAB", ["KF372", "A60-"], ["OLGES", "A35+|A50-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["ELDIS", "MALAB", "KF372", "OLGES"]
+            ]
+        },
+        "ELDI3K": {
+            "icao": "ELDIS3K",
+            "name": "Eldis Three Kilo",
+            "entryPoints": {
+                "ELDIS": []
+            },
+            "body": ["ELDIS", "NAPAT", ["VALUX", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["ELDIS", "NAPAT", "VALUX"]
+            ]
+        },
+        "ELDI3M": {
+            "icao": "ELDIS3M",
+            "name": "Eldis Three Mike",
+            "entryPoints": {
+                "ELDIS": []
+            },
+            "body": ["ELDIS", "ELROS", ["VESOX", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["ELDIS", "ELROS", "VESOX"]
+            ]
+        },
+        "ELDI3N": {
+            "icao": "ELDIS3N",
+            "name": "Eldis Three November",
+            "entryPoints": {
+                "ELDIS": []
+            },
+            "body": ["ELDIS", "VIBER", ["RENDU", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["ELDIS", "VIBER", "RENDU"]
+            ]
+        },
+        "GIRU2H": {
+            "icao": "GIRUG2H",
+            "name": "Girug Two Hotel",
+            "entryPoints": {
+                "GIRUG": []
+            },
+            "body": ["GIRUG", "LIMBU", ["LUKAR", "A35+|A60-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["GIRUG", "LIMBU", "LUKAR"]
+            ]
+        },
+        "GIRU3K": {
+            "icao": "GIRUG3K",
+            "name": "Girug Three Kilo",
+            "entryPoints": {
+                "GIRUG": []
+            },
+            "body": ["GIRUG", "KULUS", ["VALUX", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["GIRUG", "KULUS", "VALUX"]
+            ]
+        },
+        "GIRU3M": {
+            "icao": "GIRUG3M",
+            "name": "Girug Three Mike",
+            "entryPoints": {
+                "GIRUG": []
+            },
+            "body": ["GIRUG", "BEGOT", ["VESOX", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["GIRUG", "BEGOT", "VESOX"]
+            ]
+        },
+        "GIRU3N": {
+            "icao": "GIRUG3N",
+            "name": "Girug Three November",
+            "entryPoints": {
+                "GIRUG": []
+            },
+            "body": ["GIRUG", "RIKUG", ["RENDU", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["GIRUG", "RIKUG", "RENDU"]
+            ]
+        },
+        "INGA2H": {
+            "icao": "INGAN2H",
+            "name": "Ingan Two Hotel",
+            "entryPoints": {
+                "INGAN": []
+            },
+            "body": ["INGAN", "ORTES", ["LUKAR", "A35+|A60-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["INGAN", "ORTES", "LUKAR"]
+            ]
+        },
+        "INGA3K": {
+            "icao": "INGAN3K",
+            "name": "Ingan Three Kilo",
+            "entryPoints": {
+                "INGAN": []
+            },
+            "body": ["INGAN", "RUVET", ["VALUX", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["INGAN", "RUVET", "VALUX"]
+            ]
+        },
+        "INGA4M": {
+            "icao": "INGAN4M",
+            "name": "Ingan Four Mike",
+            "entryPoints": {
+                "INGAN": []
+            },
+            "body": ["INGAN", "VERUT", "NIZOL", ["NONBO", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["INGAN", "VERUT", "NIZOL", "NONBO"]
+            ]
+        },
+        "INGA5N": {
+            "icao": "INGAN5N",
+            "name": "Ingan Five November",
+            "entryPoints": {
+                "INGAN": []
+            },
+            "body": ["INGAN", "NIZOL", ["RENDU", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["INGAN", "NIZOL", "RENDU"]
+            ]
+        },
+        "NASB1H": {
+            "icao": "NASBU1H",
+            "name": "Nasbu One Hotel",
+            "entryPoints": {
+                "NASBU": []
+            },
+            "body": ["NASBU", ["ERTIR", "A110+"], ["KF127", "A100+|A110-"], ["KF328", "A70"], ["ADOVA", "A35+|A60-|S230-"]],
+            "rwy": {
+                "BIKF28": ["KFI28", "ARDAL"]
+            },
+            "draw": [
+                ["NASBU", "ERTIR", "KF127", "KF328", "ADOVA"]
+            ]
+        },
+        "NASB3K": {
+            "icao": "NASBU3K",
+            "name": "Nasbu Three Kilo",
+            "entryPoints": {
+                "NASBU": []
+            },
+            "body": ["NASBU", ["KF383", "A130+"], ["TESGO", "A110+"], ["KF148", "A70+"], ["KF149", "A50+"], ["ELVUM", "A30|S220-"]],
+            "rwy": {
+                "BIKF19": ["KFI19", "NOMTA"]
+            },
+            "draw": [
+                ["NASBU", "KF383", "TESGO", "KF148", "KF149", "ELVUM"]
+            ]
+        },
+        "NASB2M": {
+            "icao": "NASBU2M",
+            "name": "Nasbu Two Mike",
+            "entryPoints": {
+                "NASBU": []
+            },
+            "body": ["NASBU", ["KF184", "A150+"], ["SOTUG", "A130+"], ["KF185", "A100+"], ["KF186", "A70+"], ["KF187", "A60-"], ["SONAX", "A30|S220-"]],
+            "rwy": {
+                "BIKF10": ["KFI10", "MADAX"]
+            },
+            "draw": [
+                ["NASBU", "KF184", "SOTUG", "KF185", "KF186", "KF187", "SONAX"]
+            ]
+        },
+        "NASB4N": {
+            "icao": "NASBU4N",
+            "name": "Nasbu Four November",
+            "entryPoints": {
+                "NASBU": []
+            },
+            "body": ["NASBU", ["ABEXI", "A100+|A130-"], ["KF384", "A110-"], ["KF385", "A70+"], ["KOPUM", "A70-"], ["DEXON", "A35|S230-"]],
+            "rwy": {
+                "BIKF01": ["KFI01", "SUVIL"]
+            },
+            "draw": [
+                ["NASBU", "ABEXI"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "ATSIX..ALDAN..ASRUN.ASRU3M.BIKF10",
+            "altitude": 38000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6015N..BREKI..BASLU.BASL3M.BIKF10",
+            "altitude": 38000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6135N..6130N..BAXER..BIRNA.BIRN3M.BIKF10",
+            "altitude": 39000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6600E..DEVUD.DEVU2M.BIKF10",
+            "altitude": 39000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6230N..ELREX..ELDIS.ELDI3M.BIKF10",
+            "altitude": 39000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6430N..GISTU..GIRUG.GIRU3M.BIKF10",
+            "altitude": 39000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6630N..INDES..INGAN.INGA4M.BIKF10",
+            "altitude": 39000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "bikf",
+            "category": "arrival",
+            "route": "6410N..ING..NASBU.NASB2M.BIKF10",
+            "altitude": 39000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.DELE2A.DELES..DOPOD..6230N..6235N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.DELE2A.DELES..DOPOD..6130N..6135N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.LUTE2A.LUTER..6500E",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.OSKU3A.OSKUM..RATSU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.PIXU1A.PIXUM..PETUX..PODAR..ATSIX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.RALO3A.RALOV..RAKIS..6330N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.RALO3A.RALOV..ROTIN..6430N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.RIMU1A.RIMUM..RUMUX..RAPAX..6015N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.RIMU1A.RIMUM..CELLO..6019N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.SORI3A.SORIR..SUKED..6630N..6640N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        },
+        {
+            "origin": "bikf",
+            "destination": "",
+            "category": "departure",
+            "route": "BIKF01.SORI3A.SORIR..SOPEN..6530N..6540N",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ice", 1]
+            ]
+        }
+    ],
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
+                ["N64d38m00.000", "W022d58m00.000", "N64d37m11.201", "W023d05m02.399"],
+                ["N64d37m11.201", "W023d05m02.399", "N64d34m43.948", "W023d18m15.375"],
+                ["N64d34m43.948", "W023d18m15.375", "N64d31m23.252", "W023d30m27.142"],
+                ["N64d31m23.252", "W023d30m27.142", "N64d27m14.363", "W023d41m19.681"],
+                ["N64d27m14.363", "W023d41m19.681", "N64d22m23.748", "W023d50m36.942"],
+                ["N64d22m23.748", "W023d50m36.942", "N64d16m58.894", "W023d58m05.227"],
+                ["N64d16m58.894", "W023d58m05.227", "N64d11m08.093", "W024d03m33.527"],
+                ["N64d11m08.093", "W024d03m33.527", "N64d05m00.208", "W024d06m53.784"],
+                ["N64d05m00.208", "W024d06m53.784", "N63d58m44.432", "W024d08m01.087"],
+                ["N63d58m44.432", "W024d08m01.087", "N63d52m30.053", "W024d06m53.784"],
+                ["N63d52m30.053", "W024d06m53.784", "N63d46m26.222", "W024d03m33.527"],
+                ["N63d46m26.222", "W024d03m33.527", "N63d40m41.738", "W023d58m05.227"],
+                ["N63d40m41.738", "W023d58m05.227", "N63d35m24.845", "W023d50m36.942"],
+                ["N63d35m24.845", "W023d50m36.942", "N63d30m43.057", "W023d41m19.681"],
+                ["N63d30m43.057", "W023d41m19.681", "N63d26m42.998", "W023d30m27.142"],
+                ["N63d26m42.998", "W023d30m27.142", "N63d23m30.268", "W023d18m15.375"],
+                ["N63d23m30.268", "W023d18m15.375", "N63d21m09.339", "W023d05m02.399"],
+                ["N63d21m09.339", "W023d05m02.399", "N63d19m43.463", "W022d51m07.749"],
+                ["N63d19m43.463", "W022d51m07.749", "N63d19m14.617", "W022d36m52.000"],
+                ["N63d19m14.617", "W022d36m52.000", "N63d19m43.463", "W022d22m36.251"],
+                ["N63d19m43.463", "W022d22m36.251", "N63d21m09.339", "W022d08m41.601"],
+                ["N63d21m09.339", "W022d08m41.601", "N63d23m30.268", "W021d55m28.625"],
+                ["N63d23m30.268", "W021d55m28.625", "N63d26m42.998", "W021d43m16.859"],
+                ["N63d26m42.998", "W021d43m16.859", "N63d30m43.057", "W021d32m24.319"],
+                ["N63d30m43.057", "W021d32m24.319", "N63d35m24.845", "W021d23m07.058"],
+                ["N63d35m24.845", "W021d23m07.058", "N63d40m41.738", "W021d15m38.773"],
+                ["N63d40m41.738", "W021d15m38.773", "N63d43m25.000", "W021d13m54.000"],
+                ["N64d38m00.000", "W022d58m00.000", "N64d47m08.999", "W022d52m14.999"],
+                ["N64d47m08.999", "W022d52m14.999", "N64d42m52.999", "W022d28m23.999"],
+                ["N64d42m52.999", "W022d28m23.999", "N64d42m07.999", "W022d08m53.002"],
+                ["N64d42m07.999", "W022d08m53.002", "N64d39m51.001", "W021d17m11.000"],
+                ["N64d39m51.001", "W021d17m11.000", "N64d17m34.001", "W020d55m41.999"],
+                ["N64d17m34.001", "W020d55m41.999", "N63d52m03.000", "W021d17m39.001"],
+                ["N63d52m03.000", "W021d17m39.001", "N63d43m25.000", "W021d13m54.000"],
+                ["N63d49m24.000", "W011d52m56.000", "N64d00m00.000", "W011d00m00.000"],
+                ["N64d00m00.000", "W011d00m00.000", "N66d45m00.000", "W011d00m00.000"],
+                ["N66d45m00.000", "W015d10m36.000", "N66d45m00.000", "W011d00m00.000"],
+                ["N66d45m00.000", "W011d00m00.000", "N67d30m00.000", "W011d00m00.000"],
+                ["N67d30m00.000", "W011d00m00.000", "N67d30m00.000", "W026d00m00.000"],
+                ["N67d30m00.000", "W026d00m00.000", "N66d45m00.000", "W026d00m00.000"],
+                ["N66d45m00.000", "W015d10m36.000", "N66d45m00.000", "W022d58m17.810"],
+                ["N66d45m00.000", "W022d58m17.810", "N66d45m00.000", "W026d00m00.000"],
+                ["N63d00m00.000", "W018d33m13.000", "N62d50m58.862", "W018d51m47.672"],
+                ["N62d50m58.862", "W018d51m47.672", "N62d42m38.247", "W019d06m12.665"],
+                ["N62d42m38.247", "W019d06m12.665", "N62d34m52.600", "W019d22m13.851"],
+                ["N62d34m52.600", "W019d22m13.851", "N62d27m45.466", "W019d39m43.914"],
+                ["N62d27m45.466", "W019d39m43.914", "N62d21m20.096", "W019d58m34.864"],
+                ["N62d21m20.096", "W019d58m34.864", "N62d15m39.421", "W020d18m38.092"],
+                ["N62d15m39.421", "W020d18m38.092", "N62d10m46.036", "W020d39m44.443"],
+                ["N62d10m46.036", "W020d39m44.443", "N62d06m42.173", "W021d01m44.277"],
+                ["N62d06m42.173", "W021d01m44.277", "N62d03m29.688", "W021d24m27.550"],
+                ["N62d03m29.688", "W021d24m27.550", "N62d01m10.045", "W021d47m43.887"],
+                ["N62d01m10.045", "W021d47m43.887", "N61d59m44.308", "W022d11m22.661"],
+                ["N61d59m44.308", "W022d11m22.661", "N61d59m13.129", "W022d35m13.075"],
+                ["N61d59m13.129", "W022d35m13.075", "N61d59m36.745", "W022d59m04.241"],
+                ["N61d59m36.745", "W022d59m04.241", "N62d00m54.977", "W023d22m45.268"],
+                ["N62d00m54.977", "W023d22m45.268", "N62d03m07.230", "W023d46m05.341"],
+                ["N62d03m07.230", "W023d46m05.341", "N62d06m12.496", "W024d08m53.804"],
+                ["N62d06m12.496", "W024d08m53.804", "N62d10m09.365", "W024d31m00.244"],
+                ["N62d10m09.365", "W024d31m00.244", "N62d14m56.036", "W024d52m14.563"],
+                ["N62d14m56.036", "W024d52m14.563", "N62d20m30.326", "W025d12m27.066"],
+                ["N62d20m30.326", "W025d12m27.066", "N62d26m49.691", "W025d31m28.523"],
+                ["N62d26m49.691", "W025d31m28.523", "N62d33m51.244", "W025d49m10.247"],
+                ["N62d33m51.244", "W025d49m10.247", "N62d41m31.776", "W026d05m24.158"],
+                ["N62d41m31.776", "W026d05m24.158", "N62d49m47.784", "W026d20m02.844"],
+                ["N62d49m47.784", "W026d20m02.844", "N62d58m35.491", "W026d32m59.618"],
+                ["N62d58m35.491", "W026d32m59.618", "N63d07m50.881", "W026d44m08.567"],
+                ["N63d07m50.881", "W026d44m08.567", "N63d17m29.729", "W026d53m24.601"],
+                ["N63d17m29.729", "W026d53m24.601", "N63d27m27.628", "W027d00m43.488"],
+                ["N63d27m27.628", "W027d00m43.488", "N63d37m40.028", "W027d06m01.888"],
+                ["N63d37m40.028", "W027d06m01.888", "N63d48m02.268", "W027d09m17.378"],
+                ["N63d48m02.268", "W027d09m17.378", "N63d58m29.613", "W027d10m28.469"],
+                ["N63d58m29.613", "W027d10m28.469", "N64d08m57.288", "W027d09m34.622"],
+                ["N64d08m57.288", "W027d09m34.622", "N64d19m20.516", "W027d06m36.244"],
+                ["N64d19m20.516", "W027d06m36.244", "N64d29m34.554", "W027d01m34.695"],
+                ["N64d29m34.554", "W027d01m34.695", "N64d39m34.730", "W026d54m32.269"],
+                ["N64d39m34.730", "W026d54m32.269", "N64d49m16.474", "W026d45m32.181"],
+                ["N64d49m16.474", "W026d45m32.181", "N65d06m46.074", "W026d18m25.471"],
+                ["N65d06m46.074", "W026d18m25.471", "N65d16m57.875", "W026d00m25.723"],
+                ["N65d16m57.875", "W026d00m25.723", "N65d21m19.000", "W026d00m00.000"],
+                ["N65d21m19.000", "W026d00m00.000", "N66d45m00.000", "W026d00m00.000"],
+                ["N63d49m24.000", "W011d52m56.000", "N63d00m00.000", "W016d00m00.000"],
+                ["N63d00m00.000", "W016d00m00.000", "N63d00m00.000", "W018d33m13.000"],
+                ["N66d45m00.000", "W011d00m00.000", "N66d45m00.000", "W026d00m00.000"]
+            ]
+        }
+    ]
+}

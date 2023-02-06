@@ -1,5 +1,11 @@
 [
     {
+        "icao": "bikf",
+        "level": "easy",
+        "name": "Keflavik International Airport",
+        "premium": false
+    },
+    {
         "icao": "cyhz",
         "level": "beginner",
         "name": "Halifax Stanfield International Airport",
