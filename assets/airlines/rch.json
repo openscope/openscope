@@ -1,0 +1,18 @@
+{
+    "icao": "rch",
+    "name": "USAF Air Mobility Command",
+    "callsign": {
+        "name": "Reach",
+        "callsignFormats": [
+            "##",
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["C17", 221],
+            ["C5", 52]
+        ]
+    }
+}

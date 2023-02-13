@@ -1,0 +1,15 @@
+{
+	"icao": "manu",
+	"name": "204th Airlift Squadron",
+	"callsign": {
+		"name": "Manu",
+		"callsignFormats": [
+			"##"
+		]
+	},
+	"fleets": {
+		"default": [
+			["C17", 8]
+		]
+	}
+}

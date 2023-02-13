@@ -1,0 +1,15 @@
+{
+	"icao": "hoku",
+	"name": "203rd Air Refuelling Squadron",
+	"callsign": {
+		"name": "Hoku",
+		"callsignFormats": [
+			"##"
+		]
+	},
+	"fleets": {
+		"default": [
+			["K35R", 8]
+		]
+	}
+}

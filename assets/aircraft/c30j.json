@@ -1,0 +1,37 @@
+{
+    "name": "Lockheed Martin C-130J Super Hercules",
+    "icao": "C30J",
+    "engines": {
+        "number": 4,
+        "type": "T"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": null,
+        "recat": "D"
+    },
+    "ceiling": 28000,
+    "rate": {
+        "climb":      1500,
+        "descent":    1500,
+        "accelerate": 3,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 1.003,
+        "landing": 0.427
+    },
+    "speed":{
+        "min":     100,
+        "landing": 130,
+        "cruise":  330,
+        "cruiseM": 0.58,
+        "max":     378,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
