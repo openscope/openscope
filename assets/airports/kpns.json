@@ -23,7 +23,7 @@
         "speed": 10
     },
     "arrivalRunway": "17",
-    "departureRunway": "17",
+    "departureRunway": "08",
     "defaultMaps": ["Base Map"],
     "airspace": [
         {
@@ -122,7 +122,8 @@
                 ["N30d28m58.513", "W87d11m26.302", "121ft"],
                 ["N30d27m50.855", "W87d11m08.284", "103ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, true],
+            "ils_distance": [20, 12]
         },
         {
             "name": ["08", "26"],
@@ -130,7 +131,8 @@
                 ["N30d28m16.735", "W87d11m45.374", "97ft"],
                 ["N30d28m31.096", "W87d10m26.970", "113ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, true],
+            "ils_distance": [12, 15]
         }
     ],
     "airways": {
@@ -145,7 +147,7 @@
             "category": "departure",
             "route": "INBRD..DARED",
             "commands": {
-                "17": "fh 170"
+                "08": "fph"
             },
             "altitude": "",
             "speed": "",
@@ -168,7 +170,7 @@
             "category": "departure",
             "route": "NSE..LGC",
             "commands": {
-                "17": "fh 170"
+                "08": "fph"
             },
             "altitude": "",
             "speed": "",
@@ -191,7 +193,7 @@
             "category": "departure",
             "route": "ITNEW..CEW",
             "commands": {
-                "17": "fh 170"
+                "08": "fph"
             },
             "altitude": "",
             "speed": "",
@@ -214,7 +216,7 @@
             "category": "departure",
             "route": "VARRE..HEVVN",
             "commands": {
-                "17": "fh 170"
+                "08": "fph"
             },
             "altitude": "",
             "speed": "",
@@ -237,7 +239,7 @@
             "category": "departure",
             "route": "PENSI.V198.LOXLY",
             "commands": {
-                "17": "fh 170"
+                "08": "fph"
             },
             "altitude": "",
             "speed": "",
@@ -260,7 +262,7 @@
             "category": "departure",
             "route": "CILEB..VLKNN",
             "commands": {
-                "17": "fh 170"
+                "08": "fph"
             },
             "altitude": "",
             "speed": "",
@@ -2615,5 +2617,5 @@
             ]
         }
     ]
-    
+
 }
