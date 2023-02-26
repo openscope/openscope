@@ -2,8 +2,8 @@
     "airac": 2213,
     "radio":{
         "twr": "Manchester Tower",
-        "app": "Manchester Approach",
-        "dep": "Manchester Departure"
+        "app": "Boston Approach",
+        "dep": "Boston Departure"
     },
     "icao": "KMHT",
     "iata": "MHT",
