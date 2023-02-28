@@ -484,7 +484,7 @@
         "level": "easy",
         "name": "Ted Stevens Anchorage International Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "phnl",
