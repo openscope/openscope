@@ -193,7 +193,7 @@
         "TIGAE": [29.0861500, -81.2904361],
         "TOMDY": [30.9351778, -81.4235917],
         "TTHOR": [29.6647778, -81.2333417],
-        "VARZE": [28.2738472, -82.0290306], 
+        "VARZE": [28.2738472, -82.0290306],
         "VEDRA": [30.4517667, -81.3303889],
         "WALEE": [29.6933472, -82.2352972],
         "WAMAL": [29.0631778, -81.3466000],
@@ -304,7 +304,7 @@
                 [29.1756710, -81.0490371, "33ft"]
             ],
             "ils": [false, false]
-        } 
+        }
     ],
     "airways": {
         "T207": ["OMN", "CARRA", "MONIA", "AYS"],
@@ -491,10 +491,10 @@
             "destination": "kdab",
             "category": "arrival",
             "route": "MLB.V3.OMN",
-            "altitude": 6000,
+            "altitude": 5000,
             "speed": 130,
             "method": "random",
-            "rate": 1,
+            "rate": 0.9,
             "airlines": [
                 ["eru", 11],
                 ["n/lightGA", 6]
@@ -562,6 +562,10 @@
             "category": "arrival",
             "route": "FOBIN.Q93.MALET..OMN",
             "altitude": 23000,
+            "commands": {
+                "7L": "cross MALET A060",
+                "7R": "cross MALET A060"
+            },
             "speed": 250,
             "method": "random",
             "rate": 1,
@@ -6893,6 +6897,6 @@
                 [29.4781253, -81.2829686, 29.4782083, -81.2839464],
                 [29.4782083, -81.2839464, 29.4780969, -81.2853547]
             ]
-        } 
+        }
     ]
 }
