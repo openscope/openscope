@@ -335,6 +335,12 @@
         "premium": false
     },
     {
+        "icao": "kpns",
+        "level": "easy",
+        "name": "Pensacola International Airport",
+        "premium": false
+    },
+    {
         "icao": "kpvd",
         "level": "beginner",
         "name": "Theodore Francis Green Memorial State Airport",
