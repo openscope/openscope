@@ -174,10 +174,10 @@
                 "KMHT17": [["TYLIR", "A30+"]],
                 "KMHT35": [["TYLIR", "A30+"]]
             },
-            "body": ["TYLIR", "PPORT", ["SHOEL", "A50+"], ["RBELA", "A68+"], ["COTEE", "A93+"]],
+            "body": ["TYLIR", "PPORT", ["SHOEL", "A50+"], ["RBELA", "A68+"]],
             "exitPoints": {
-                "BAF":[["BAF", "A168"]],
-                "CCC":["JJIMY", ["YANTC", "A163+"], ["PPORT", "A170"]],
+                "BAF":[["COTEE", "A93+"], ["BAF", "A168"]],
+                "CCC":["JJIMY", ["YANTC", "A163+"], ["CCC", "A170"]],
                 "NELIE":["JJIMY", ["NELIE", "A170"]]
             },
             "draw": [
@@ -192,14 +192,14 @@
         "icao": "ROZZE2",
         "name": "Rozze Two",
         "entryPoints": {
-            "MUCOW": [["MUCOW", "A190-|S280"], ["FFATY", "A200-|A160+"], ["CRIBB", "A160-|A130+"], ["MONRC", "A90+"]],
+            "MUCOW": [["MUCOW", "A190+|S280"], ["FFATY", "A160+|A200-"], ["CRIBB", "A130+|A160-"], ["MONRC", "A90+"]],
             "PONCT": ["PONCT", "WOBLY", ["QUINZ", "A190+|S280"], ["LUCIC", "A160+"], ["FLYZZ", "A130+"], ["FYSHR", "A90+"]],
             "SMYTH": ["SMYTH", ["QUINZ", "A190+|S280"], ["LUCIC", "A160+"], ["FLYZZ", "A130+"], ["FYSHR", "A90+"]]
         },
         "body": ["ROZZE"],
         "rwy": {
-            "KMHT6" : [["PNARD", "A90-|A70+|S230"], ["TEETO", "A50"]],
-            "KMHT24": [["NUUKM", "A90-|A70+"], ["JSTNN", "A50"]],
+            "KMHT6" : [["PNARD", "A90-|A70+|S230"], ["TEETO", "A50|S210"]],
+            "KMHT24": [["NUUKM", "A90-|A70+"], ["JSTNN", "A50|S210"]],
             "KMHT17": [["NUUKM", "A90-|A70+"], ["PURBL", "A50|S210"]],
             "KMHT35": [["NUUKM", "A90-|A70+"], ["SHOWZ", "A50|S210"]]
         },
