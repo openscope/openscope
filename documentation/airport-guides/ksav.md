@@ -9,7 +9,7 @@ Owned by the City of Savannah and managed by the Savannah Airport Commission, Sa
 The SAV TRACON airspace covers about 40nm from the Savannah Airport and from the surface to 10,000 feet.
 
 ## Procedures
-Savannah has no SIDS or STARS, so all aircraft enter and exit the airspace through ATA’s and DTA’s. All aircraft will exit or enter the airspace through a fix listed below. All arrivals will fly to their entry fix first and then proceed direct to the Savannah VOR (SAV). All departure will proceed direct to their first fix. 
+Savannah has no SIDS or STARS, so all aircraft enter and exit the airspace through ATAs and DTAs. All aircraft will exit or enter the airspace through a fix listed below. All arrivals will fly to their entry fix first and then proceed direct to the Savannah VOR (SAV). All departures will fly runway heading and should be cleared to their first fix.
 
 | Fixes | Type     | Area   |
 |-------|----------|--------|     
@@ -22,4 +22,4 @@ Savannah has no SIDS or STARS, so all aircraft enter and exit the airspace throu
 |PLZZZ  |Arrival   |West    |
 
 ## Additional Resources
-[ZJX- Savannah SOP] https://zjxartcc.org/media/doc/ZJX-3.B%20Jacksonville%20ARTCC%20SAV%20ATCT_TRACON%20SOP.pdf
+[ZJX- Savannah SOP] https://www.idszjxartcc.org/index.php?title=SAV_SOP
