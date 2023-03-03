@@ -64,12 +64,14 @@
         "BROSE" : ["N32d17m12.687", "W81d40m56.549"],
         "CATHY" : ["N31d40m11.624", "W81d10m17.264"],
         "CESOR":  ["N32d36m13.089", "W81d38m32.314"],
+        "CHS"  :  ["N32d53m39.543", "W80d02m16.121"],
         "CINBA":  ["N32d17m06.491", "W80d58m40.208"],
         "ESENT":  ["N32d09m28.130", "W80d55m03.779"],
         "FAPLI":  ["N32d15m12.715", "W81d20m58.781"],
         "FILOX":  ["N32d19m42.713", "W81d38m27.873"],
         "FRIES":  ["N32d13m52.696", "W80d47m37.956"],
         "GIPPL":  ["N31d22m53.957", "W81d09m53.696"],
+        "GULLA":  ["N32d56m17.705", "W80d29m57.116"],
         "HARPS":  ["N31d41m29.560", "W81d15m15.735"],
         "HENIG":  ["N32d10m17.993", "W80d48m13.464"],
         "JAMEB":  ["N32d22m10.265", "W81d58m36.549"],
@@ -300,7 +302,10 @@
             "origin": "KSAV",
             "destination": "",
             "category": "departure",
-            "route": "#097..SMALZ..CESOR",
+            "route": "SMALZ..CESOR",
+            "commands": {
+                "10": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -316,7 +321,10 @@
             "origin":"KSAV",
             "destination": "",
             "category": "departure",
-            "route": "#097..JROSS",
+            "route": "JROSS..GULLA",
+            "commands": {
+                "10": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -332,7 +340,10 @@
             "origin": "KSAV",
             "destination": "",
             "category": "departure",
-            "route": "#097..GIPPL",
+            "route": "GIPPL..CHS",
+            "commands": {
+                "10": "fph"
+            },
             "altitude": "",
             "speed": "",
             "method": "random",
