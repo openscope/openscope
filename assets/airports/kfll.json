@@ -50,19 +50,19 @@
     }
 ],
 "fixes": {
-          "AARPS" : [""],
-          "ACORI" : [""],
-          "ADUBE" : [""],
-          "AGERS" : [""],
-          "ALNZO" : [""],
-          "AUSTI" : [""],
-          "AYBID" : [""],
-          "BAGGS" : [""],
-          "BAIRN" : [""],
-          "BANTY" : [""],
-          "BBALE" : [""],
-          "BEECH" : [""],
-          "BEKNE" : [""],
+          "AARPS" : ["N026.42.24.330", "W080.16.15.280"],
+          "ACORI" : ["N031.46.23.360", "W085.51.29.510"],
+          "ADUBE" : ["N026.00.44.710", "W080.51.06.540"],
+          "AGERS" : ["N026.22.36.230", "W080.13.39.930"],
+          "ALNZO" : ["N026.29.03.830", "W080.33.52.710"],
+          "AUSTI" : ["N025.14.05.560", "W080.26.25.740"],
+          "AYBID" : ["N028.19.29.680", "W079.15.45.110"],
+          "BAGGS" : ["N027.08.03.280", "W082.50.27.200"],
+          "BAIRN" : ["N027.56.52.370", "W081.06.54.350"],
+          "BANTY" : ["N026.08.49.480", "W080.58.45.570"],
+          "BBALE" : ["N027.17.23.320", "W082.46.58.080"],
+          "BEECH" : ["N025.58.30.370", "W079.23.03.150"],
+          "BEKNE" : ["N026.08.57.010", "W079.59.03.510"],
           "BENNS" : [""],
           "BEPAC" : [""],
           "BEZER" : [""],
@@ -353,6 +353,517 @@
             ["LLBOW", "ROOOM", "YOLOO", "LRICK", "MRENO", "BNICE", "MERKS*"],
             ["TIDEZ", "DUSKE", "KBUNK", "MRENO", "BNICE", "COREA", "DOLIE*"]
         ]
-    }
-}
-}
+    },
+    "DORRL1": {
+        "icao": "DORRL1",
+        "name": "Dorrell One",
+        "altitude": 4000,
+        "rwy": {
+            "KFLL10L": ["#060"],
+            "KFLL10R": ["#060"],
+            "KFLL28L": ["#305"],
+            "KFLL28R": ["#305"]
+        },
+        "body": [["LIFRR", "A40"], "BOGYY", "DORRL", "BENNS", "FUNNR"],
+        "exitPoints" : {
+            "MATLK": ["MATLK"],
+            "ONEWY": ["ONEWY"]
+        },
+        "draw": [
+            ["LIFRR", "BOGYY", "DORRL", "BENNS", "FUNNR", "MATLK*"],
+            ["LIFRR", "BOGYY", "DORRL", "BENNS", "FUNNR", "ONEWY*"]
+        ]
+        },
+        "FEALX2": {
+            "icao": "FEALX2",
+            "name": "Felix Two",
+            "altitude": 4000,
+            "rwy": {
+                "KFLL10L": ["MRLEE", "MIMSE"],
+                "KFLL10R": ["MRLEE", "MIMSE"],
+                "KFLL28L": ["DREDS", "SHELZ", "JMACA", "BEEDZ"],
+                "KFLL28R": ["DREDS", "SHELZ", "JMACA", "BEEDZ"]
+            },
+            "body": [["FEALX", "A40+"]],
+            "exitPoints": {
+                "PADUS": ["PADUS"],
+                "ZFP": ["PREDA", "ZFP"],
+                "ETECK": ["BKING", "WOLFO", "ETECK"],
+                "SUMRS": ["BKING", "WOLFO", "SUMRS"],
+                "SNAGY": ["BKING", "WOLFO", "SNAGY"]
+            },
+            "draw": [
+                ["MRLEE", "MIMSE", "FEALX", "PADUS*"],
+                ["DREDS", "SHELZ", "JMACA", "BEEDZ", "FEALX", "PREDA", "ZFP*"],
+                ["FEALX", "BKING", "WOLFO", "ETECK*"],
+                ["FEALX", "BKING", "WOLFO", "SUMRS*"],
+                ["FEALX", "BKING", "WOLFO", "SNAGY*"]
+            ]
+            },
+            "FLL9": {
+                "icao": "FLL9",
+                "name": "Fort Lauderdale Nine",
+                "altitude": 4000,
+                "rwu": {
+                    "KFLL10L": ["#060"],
+                    "KFLL10R": ["#060"],
+                    "KFLL28L": ["#305"],
+                    "KFLL28R": ["#305"]
+                },
+                "body": [],
+                "exitPoints": {
+                    "ZBV": ["BEECH", "ZBV"],
+                    "HROCK": ["HROCK"],
+                    "ZFP": ["FEALX", "ZFP"],
+                    "MAYNR" : ["DHP", "MAYNR"],
+                    "AARPS": ["PERTS", "AARPS"],
+                    "DORRL": ["BOGYY", "DORRL"],
+                    "FRSBE": ["ALNZO", "FRSBE"]
+                },
+                "draw": [
+                    ["BEECH", "ZBV*"],
+                    ["HROCK*"],
+                    ["FEALX", "ZFP*"],
+                    ["DHP", "MAYNR*"],
+                    ["PERTS", "AARPS*"],
+                    ["BOGYY", "DORRL*"],
+                    ["ALNZO", "FRSBE*"]
+                ]
+                },
+                "FRSBE1": {
+                    "icao": "FRSBE1",
+                    "name": "Frisbee One",
+                    "altitude": 4000,
+                    "rwy": {
+                        "KFLL10L": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                        "KFLL10R": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                        "KFLL28L": ["DREDS", "SHELZ"],
+                        "KFLL28R": ["DREDS", "SHELZ"]
+                    },
+                    "body": ["ALNZO", "FRSBE", "WAPOM"],
+                    "exitPoints" : {
+                        "STYMY": ["STYMY"]
+                    },
+                    "draw": [
+                        ["LLBOW", "ROOOM", "YOLOO", "LRICK", "ALNZO", "FRSBE", "WAPOM", "STYMY*"],
+                        ["DREDS", "SHELZ", "ALNZO", "FRSBE", "WAPOM", "STYMY*"]
+                    ]
+                    },
+                    "GLADZ2": {
+                        "icao": "GLADZ2",
+                        "name": "Glades Two",
+                        "altitude": 4000,
+                        "rwy": {
+                            "KFLL10L": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                            "KFLL10R": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                            "KFLL28L": ["TIDEZ"],
+                            "KFLL28R": ["SEAZZ"]
+                        },
+                        "body": [["GAYTR", "A40"], "RUTLG", "GLADZ"],
+                        "exitPoints" : {
+                            "BAGGS": ["MARCI", "BAGGS"],
+                            "SHAQQ": ["MARCI" ,"SHAQQ"],
+                            "LULLS": ["WIGNA", "LULLS"]
+                        },
+                        "draw": [
+                            ["LLBOW", "ROOOM", "YOLOO", "LRICK", "GAYTR", "RUTLG", "GLADZ", "MARCI", "BAGGS", "MARCI", "SHAQQ", "WIGNA", "LULLS"],
+                            ["TIDEZ", "SEAZZ", "GAYTR", "RUTLG", "GLADZ", "MARCI", "BAGGS", "MARCI", "SHAQQ", "WIGNA", "LULLS"]
+                        ]
+                    },
+                    "HROCK1" : {
+                        "icao": "HROCK1",
+                        "name": "Hollywood Rock One",
+                        "altitude": 4000,
+                        "rwy": {
+                            "KFLL10L": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                            "KFLL10R": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                            "KFLL28L": ["TIDEZ", "DUSKE", "KBUNK"],
+                            "KFLL28R": ["SEAZZ", "HEPAD", "KBUNK"]
+                        },
+                        "body": ["JOENZ", "HROCK"],
+                        "exitPoints": {
+                            "KPASA": ["BLAAK", "PYROS", "KPASA"],
+                            "SMLEZ": ["THEUU", "GNARL", "SMLEZ"]
+                        },
+                        "draw": [
+                            ["LLBOW", "ROOOM", "YOLOO", "LRICK", "JOENZ", "HROCK", "BLAAK", "PYROS", "KPASA"],
+                            ["TIDEZ", "DUSKE", "KBUNK", "JOENZ", "HROCK", "THEUU", "GNARL", "SMLEZ"]
+                        ]
+                    },
+                    "LIFRR1": {
+                        "icao": "LIFRR1",
+                        "name": "Lifrr One",
+                        "altitude": 4000,
+                        "rwy": {
+                            "KFLL10L": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                            "KFLL10R": ["LLBOW", ["ROOOM", "A40+"], "YOLOO", "LRICK"],
+                            "KFLL28L": ["DREDS", "SHELZ"],
+                            "KFLL28R": ["DREDS", "SHELZ"]
+                        },
+                        "body": [["LIFRR", "A40"], "BOBOE", "DURRY", "CLEFF"],
+                        "exitPoints": {
+                            "WIXED": ["WIXED"],
+                            "BAIRN": ["BAIRN"]
+                        },
+                        "draw": [
+                            ["LLBOW", "ROOOM", "YOLOO", "LRICK", "LIFRR", "BOBOE", "DURRY", "CLEFF", "WIXED"],
+                            ["DREDS", "SHELZ", "LIFRR", "BOBOE", "DURRY", "CLEFF", "BAIRN"]
+                        ]
+                    },
+                    "MAYNR1": {
+                        "icao": "MAYNR1",
+                        "name": "Mayner One",
+                        "altitude": 4000,
+                        "rwy": {
+                            "KFLL10L": ["MRLEE"],
+                            "KFLL10R": ["CLPSO"],
+                            "KFLL28L": ["TIDEZ"],
+                            "KFLL28R": ["SEAZZ"]
+                        },
+                        "body": [["AUSTI", "A50"], "MAYNR"],
+                        "exitPoints": {
+                            "FUNDI": ["MCLAW", "FUNDI"],
+                            "MAXIM": ["MCLAW", "SLIPT", "JABOX", "MAXIM"],
+                            "CANOA": ["MCLAW", "SLIPT", "JABOX", "CANOA"]
+                        },
+                        "draw": [
+                            ["MRLEE", "AUSTI", "MAYNR", "MCLAW", "FUNDI"],
+                            ["CLPSO", "AUSTI", "MAYNR", "MCLAW", "SLIPT", "JABOX", "MAXIM"],
+                            ["TIDEZ", "SEAZZ", "AUSTI", "MAYNR", "MCLAW", "SLIPT", "JABOX", "CANOA"]
+                        ]
+                        },
+                        "REGAE2": {
+                            "icao": "REGAE2",
+                            "name": "Regae Two",
+                            "altitude": 4000,
+                            "rwy": {
+                                "KFLL10L": ["MRLEE", "REELZ", ["ZOMBI", "A100+"]],
+                                "KFLL10R": ["CLPSO", "CUDEL", ["ZOMBI", "A100+"]],
+                                "KFLL28L": ["DREDS", "SHELZ", "JMACA", "BEEDZ", "LNKIN",["GTWAY", "A100"]],
+                                "KFLL28R": ["DREDS", "SHELZ", "JMACA", "BEEDZ", "LNKIN",["GTWAY", "A100"]]
+                            },
+                            "body": ["PASTL", "REGAE", ["NINKO", "A170+"], "CRUZN", "GLAMS", "LROOD", "URSUS"],
+                            "exitPoints": {
+                                "URSUS": ["URSUS"]
+                            },
+                            "draw": [
+                                ["MRLEE", "REELZ", "ZOMBI", "PASTL", "REGAE", "NINKO", "CRUZN", "GLAMS", "LROOD", "URSUS"],
+                                ["CLPSO", "CUDEL", "ZOMBI", "PASTL", "REGAE", "NINKO", "CRUZN", "GLAMS", "LROOD", "URSUS"],
+                                ["DREDS", "SHELZ", "JMACA", "BEEDZ", "LNKIN", "GTWAY", "PASTL", "REGAE", "NINKO", "CRUZN", "GLAMS", "LROOD", "URSUS"]
+                            ]
+                        },
+                        "SNAPR2": {
+                            "icao": "SNAPR2",
+                            "name": "Snapper Two",
+                            "altitude": 4000,
+                            "rwy": {
+                                "KFLL10L": ["MRLEE", "REELZ", "ZOMBI", "SNAPR"],
+                                "KFLL10R": ["CLPSO" ,"CUDEL", "ZOMBI", "SNAPR"],
+                                "KFLL28L": ["DREDS", "SHELZ", "JMACA", "BEEDZ", "LNKIN", "GTWAY", "SNAPR"],
+                                "KFLL28R": ["DREDS", "SHELZ", "JMACA", "BEEDZ", "LNKIN", "GTWAY", "SNAPR"]
+                            },
+                            "body": ["KRAFT", "HEYDR"],
+                            "exitPoints": {
+                                "RAJAY" : ["RAJAY"],
+                                "SUMAC" : ["SUMAC"]
+                            },
+                            "draw": [
+                                ["MRLEE", "REELZ", "ZOMBI", "SNAPR", "KRAFT", "HEYDR", "RAJAY"],
+                                ["CLPSO", "CUDEL", "ZOMBI", "SNAPR", "KRAFT", "HEYDR", "RAJAY"],
+                                ["DREDS", "SHELZ", "JMACA", "BEEDZ", "LNKIN", "GTWAY", "SNAPR", "KRAFT", "HEYDR", "SUMAC"]
+                            ]
+                        }
+                    },
+                    "stars": {
+                        "BHHIA3": {
+                            "icao": "BHHIA3",
+                            "name": "Beechey Three",
+                            "entryPoints": {
+                                "CANOA": ["CANOA", "LULLS", ["GRACK", "A270+|S280"],[ "PYREX", "A150+|S280"], "TWNKL"],
+                                "MAXIM": ["MAXIM", "LULLS",[ "GRACK", "A270+|S280"],[ "PYREX", "A150+|S280"], "TWNKL"],
+                                "IKBIX": ["IKBIX", "PEAKY", ["STOGY", "A200-"], ["PYREX", "A150+|S280"], "TWNKL"],
+                                "CITAG": ["CITAG", ["CRATR", "A190-"], "TWNKL"]
+                            },
+                            "body": [["HULKY", "A90+"], ["KERRA", "A70"], ["BHHIA", "A70"],["ADUBE", "A70"]],
+                            "rwy": {
+                                "KFLL10L": [["HOLID", "A50"]],
+                                "KFLL10R": [["BUNKR", "a50"]],
+                                "KFLL28L": ["FIPKO", ["BEPAC", "A60"], ["FAMBA", "A60"], "#096"],
+                                "KFLL28R": ["FIPKO", ["BEPAC", "A60"], ["FAMBA", "A60"], "#096"]
+                            },
+                            "draw": [
+                                ["CANOA", "LULLS", "GRACK", "PYREX", "TWNKL", "HULKY", "KERRA", "BHHIA", "ADUBE", "HOLID"],
+                                ["MAXIM", "LULLS", "GRACK", "PYREX", "TWNKL", "HULKY", "KERRA", "BHHIA", "ADUBE", "HOLID"],
+                                ["IKBIX", "PEAKY", "STOGY", "PYREX", "TWNKL", "HULKY", "KERRA", "BHHIA", "ADUBE", "HOLID"],
+                                ["CITAG", "CRATR", "TWNKL", "HULKY", "KERRA", "BHHIA", "ADUBE", "HOLID"],
+                                ["HOLID", "BUNKR", "FIPKO", "BEPAC", "FAMBA"]
+                            ]
+                        },
+                        "BLUFI1": {
+                            "icao": "BLUFI1",
+                            "name": "Blue Five One",
+                            "entryPoints": {
+                                "MLB": ["MLB", "LEBUR", ["DALOO", "A120"]],
+                                "TRV": ["TRV", ["DALOO", "A120"]]
+                            },
+                            "body": ["TOPPR", "BLUFI", ["HEATT", "A70"], "FLL"],
+                            "rwy" : {
+                                "KFLL10L": [],
+                                "KFLL10R": [],
+                                "KFLL28L": [],
+                                "KFLL28R": []
+                            },
+                            "draw": [
+                                ["MLB", "LEBUR", "DALOO", "TOPPR", "BLUFI", "HEATT", "FLL"],
+                                ["TRV", "DALOO", "TOPPR", "BLUFI", "HEATT", "FLL"]
+                            ]
+                        },
+                        "CUUDA2": {
+                            "icao": "CUUDA2",
+                            "name": "Cooooda Two",
+                            "entryPoints": {
+                                "MAJIK": ["MAJIKR", "AYBID", "PLUMP", ["BRDMN", "A240+|A280-|S280"], ["JUNIX", "A210+"], ["HOLTT", "A150+|S270"], ["WEHOO", "A130+"], ["MACKL", "A110+|S260"]],
+                                "PRMUS": ["PRMUS", "CHRCH", "JIPOD", "COPIN", "ROSNE", ["COLAT", "A240+|A280-|S280"], "HIKTO", ["WILOX", "A150|270"], ["WEHOO", "A130+"], ["MACKL", "A110+|S260"]],
+                                "WOPNR": ["WOPNR" , "DEBRL", "EBAYY", ["COLAT", "A240+|A280-|S280"], "HIKTO", ["WILOX", "A150|S270"], ["WEHOO", "A130+"], ["MACKL", "A110+|S260"]],
+                                "FIROL": ["FIROL", "JITIL", "REPEE", "MUNRO", "PLAID"]
+                            },
+                            "body": [["CUUDA", "A80"], "LOKKR"],
+                            "rwy": {
+                                "KFLL10L": ["SERIF", "BEPAC", "WANAR", "#276"],
+                                "KFLL10R": ["SERIF", "BEPAC", "WANAR", "#276"],
+                                "KFLL28L": ["BEKNE", "QDAWG", "#096"],
+                                "KFLL28R": ["BEKNE", "QDAWG", "#096"]
+                            },
+                            "draw": [
+                                ["MAJIK", "AYBID", "PLUMP", "BRDMN", "JUNIX", "HOLTT", "WEHOO", "MACKL", "CUUDA", "LOKKR", "SERIF", "BEPAC", "WANAR"],
+                                ["PRMUS", "CHRCH", "JIPOD", "COPIN", "ROSNE", "COLAT", "HIKTO", "WILOX", "WEHOO", "MACKL", "CUUDA", "LOKKR", "SERIF", "BEPAC", "WANAR"],
+                                ["WOPNR", "DEBRL", "EBAYY", "COLAT", "HIKTO", "WILOX", "WEHOO", "MACKL", "CUUDA", "LOKKR", "SERIF", "BEPAC", "WANAR"],
+                                ["FIROL", "JITIL", "REPEE", "MUNRO", "PLAID", "CUUDA", "LOKKR", "BEKNE", "QDAWG"]
+                            ]
+                        },
+                        "DEKAL8": {
+                            "icao": "DEKAL8",
+                            "name": "Dekal Eight",
+                            "entryPoints": {
+                                "ZQA": ["ZQA", "RAJAY", "ZBV"],
+                                "ZFP": ["ZFP", "ZBV"],
+                                "BORDO": ["BORDO", "MENDL", "ZBV"]
+                            },
+                            "body": ["DEKAL", "FLL"],
+                            "rwy": {
+                                "KFLL10L": [],
+                                "KFLL10R": [],
+                                "KFLL28L": [],
+                                "KFLL28R": []
+                            },
+                            "draw" : [
+                                ["ZQA", "RAJAY", "ZBV", "DEKAL", "FLL"],
+                                ["ZFP", "ZBV", "DEKAL", "FLL"],
+                                ["BORDO", "MENDL", "ZBV", "DEKAL", "FLL"]
+                            ]
+                        },
+                        "DVALL3": {
+                            "icao": "DVALL3",
+                            "name": "Duval Three",
+                            "entryPoints": {
+                                "MTH": ["MTH", "DVALl"],
+                                "EYW": ["EYW", "CARNU", "DVALL"]
+                            },
+                            "body": ["WEVER", "FAMIN", "DHP"],
+                            "rwy": {
+                                "KFLL10L": [],
+                                "KFLL10R": [],
+                                "KFLL28L": [],
+                                "KFLL28R": []
+                            },
+                            "draw": [
+                                ["MTH", "DVALL", "WEVER", "FAMIN", "DHP"],
+                                ["EYW", "CARNU", "DVALL", "WEVER", "FAMIN", "DHP"]
+                            ]
+                        },
+                                "FORTL9": {
+                                "icao": "FORTL9",
+                                "name": "Fort Lauderdale Nine",
+                                "entryPoints": {
+                                    "PIE": ["PIE", "SRQ", "RSW", "FORTL"],
+                                    "LBV": ["LBV", "FORTL"]
+                                },
+                                "body": ["CHICK", "BANTY", "FLL"],
+                                "rwy": {
+                                    "KFLL10L": [],
+                                    "KFLL10R": [],
+                                    "KFLL28L": [],
+                                    "KFLL28R": []
+                                },
+                                "draw": [
+                                    ["PIE", "SRQ", "RSW", "FORTL", "CHICK", "BANTY", "FLL"],
+                                    ["LBV", "FORTL", "CHICK", "BANTY", "FLL"]
+                                ]
+                            },
+                            "KYAKS3": {
+                                "icao": "KYAKS3",
+                                "name": "Kayaks Three",
+                                "entryPoints": {
+                                    "PEACH": ["PEACH"]
+                                },
+                                "body": ["SOFAR",["HEYDR", "A160-"], ["UBUGY", "A120-|S270"], ["ZERUG", "A90-"], ["JEKER", "A70+"], ["JASAG", "A60-"], ["SWABS", "A40"], "KYAKS", "JEPSI", ["FRRDY", "A40"]],
+                                "rwy": {
+                                    "KFLL10L": [],
+                                    "KFLL10R": [],
+                                    "KFLL28L": [],
+                                    "KFLL28R": []
+                                },
+                                "draw": [
+                                    ["PEACH", "SOFAR", "HEYDR", "UBUGY", "ZERUG", "JEKER", "JASAG", "SWABS", "KYAKS", "JEPSI", "FRRDY"]
+                                ]
+                                },
+                                "OLAHS3": {
+                                    "icao": "OLAHS3",
+                                    "name": "Olahs Three",
+                                    "entryPoints": {
+                                        "BORDO": ["BORDO", "IRRIS", ["WEBAB", "A260-|A240+|S280"], ["UZHER", "A240+|S280"],["CIPOD", "A190+|S270"], ["SOCKI", "A140+"], ["CIREX", "A100+"], "OLAHS" ],
+                                        "ZQA": ["ZQA", "RAJAY", ["UZHER", "A240+|S280"],["CIPOD", "A190+|S270"], ["SOCKI", "A140+"], ["CIREX", "A100+"], "OLAHS" ],
+                                        "PEACH": ["PEACH", "SOFAR", "HEYDR",["FANUP", "A190+|S270"], ["JEKER", "A140+"], ["DOPLY", "A100+"], "OLAHS" ]
+                                    },
+                                    "body": [],
+                                    "rwy": {
+                                        "KFLL10L": [["LATNN", "A60|S250"], "WAVUN", "KEVEY", ["BEPAC", "A60"], ["WANAR", "A50"]],
+                                        "KFLL10R": [["LATNN", "A60|S250"], "WAVUN", "KEVEY", ["BEPAC", "A60"], ["WANAR", "A50"]],
+                                        "KFLL28L": [["FISHB", "A50|S250"], ["CRNVL", "A50"]],
+                                        "KFLL28R": [["FISHB", "A50|S250"], ["CRNVL", "A50"]]
+                                    },
+                                    "draw": [
+                                        ["BORDO", "IRRIS", "WEBAB", "UZHER", "CIPOD", "SOCKI", "CIREX", "OLAHS", "LATNN", "WAVUN", "KEVEY", "BEPAC", "WANAR"],
+                                        ["ZQA", "RAJAY", "UZHER", "CIPOD", "SOCKI", "CIREX", "OLAHS", "LATNN", "WAVUN", "KEVEY", "BEPAC", "WANAR"],
+                                        ["PEACH", "SOFAR", "HEYDR", "FANUP", "JEKER", "DOPLY", "OLAHS", "LATNN", "WAVUN", "KEVEY", "BEPAC", "WANAR"],
+                                        ["OLAHS", "FISHB", "CRNVL"]
+                                    ]
+                                },
+                                "TARPN3": {
+                                    "icao": "TARPN3",
+                                    "name": "Tarpon Three",
+                                    "entryPoints": {
+                                        "KENLL": ["KENLL", "JIPOD", "WIDET", "RONQU"],
+                                        "HIBAC": ["HIBAC", "JIPOD", "WIDET", "RONQU"],
+                                        "DEBRL": ["DEBRL", "DAVEC", "RONQU"]
+                                    },
+                                    "body": ["BLUFI", "TARPN", "SPNER", "IMAPY", "#191"],
+                                    "rwy": {
+                                        "KFLL10L": [],
+                                        "KFLL10R": [],
+                                        "KFLL28L": [],
+                                        "KFLL28R": []
+                                    },
+                                    "draw": [
+                                        ["KENLL", "JIPOD", "WIDET", "RONQU", "BLUFI", "TARPN", "SPNER", "IMAPY"],
+                                        ["HIBAC", "JIPOD", "WIDET", "RONQU", "BLUFI", "TARPN", "SPNER", "IMAPY"],
+                                        ["DEBRL", "DAVEC", "RONQU", "BLUFI", "TARPN", "SPNER", "IMAPY"]
+                                    ]
+                                },
+                                "TEEKY3": {
+                                    "icao": "TEEKY3",
+                                    "name": "Teeky Three",
+                                    "entryPoints": {
+                                        "ENEME": ["ENEME", "FETAL", "DOFFY", "CLEOO", "FEDRR", ["FIGNA", "A310-"], ["JASBO", "A260+|S280"], ["DANNA", "A230+|A260-"], "PCOCK"],
+                                        "MARCI": ["MARCI"],
+                                        "SABEE": [["SABEE", "A250-|S280"], "EXACT", "INKES", "PCOCK"],
+                                        "VNECK": ["VNECK", ["BBALE", "A330-"], ["FIGNA", "A310-"], ["JASBO", "A260+|S280"], ["DANNA", "A230+|A260-"], "PCOCK"],
+                                        "ZPLEN": ["ZPLEN", "IISLY", "DOFFY", "CLEOO", "FEDRR", ["FIGNA", "A310-"], ["JASBO", "A260+|S280"], ["DANNA", "A230+|A260-"], "PCOCK"],
+                                        "DEFUN": ["DEFUN", "CABLO", "BULZI", "SNAPY", "NICKI", "CLEOO", "FEDRR", ["FIGNA", "A310-"], ["JASBO", "A260+|S280"], ["DANNA", "A230+|A260-"], "PCOCK"],
+                                        "ACORI": ["ACORI", "BULZI", "SNAPY", "NICKI", "CLEOO", "FEDRR", ["FIGNA", "A310-"], ["JASBO", "A260+|S280"], ["DANNA", "A230+|A260-"], "PCOCK"]
+                                    },
+                                    "body": [["TEEKY", "A120+"], ["BANTY", "A100+|A110-|S250"], ["HEEZE", "A70"]],
+                                    "rwy" : {
+                                        "KFLL10L": [["HOLID", "A50"]],
+                                        "KFLL10R": [["BUNKR", "A50"]],
+                                        "KFLL28L": [["GOYLE", "A70"], ["BEPAC", "A60"], ["FAMBA", "A60"]],
+                                        "KFLL28R": [["GOYLE", "A70"], ["BEPAC", "A60"], ["FAMBA", "A60"]]
+                                    },
+                                    "draw": [
+                                        ["ENEME", "FETAL", "DOFFY", "CLEOO", "FEDRR", "FIGNA", "JASBO", "DANNA", "PCOCK", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["MARCI", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["SABEE", "EXACT", "INKES", "PCOCK", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["VNECK", "BBALE", "FIGNA", "JASBO", "DANNA", "PCOCK", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["ZPLEN", "IISLY", "DOFFY", "CLEOO", "FEDRR", "FIGNA", "JASBO", "DANNA", "PCOCK", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["DEFUN", "CABLO", "BULZI", "SNAPY", "NICKI", "CLEOO", "FEDRR", "FIGNA", "JASBO", "DANNA", "PCOCK", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["ACORI", "BULZI", "SNAPY", "NICKI", "CLEOO", "FEDRR", "FIGNA", "JASBO", "DANNA", "PCOCK", "TEEKY", "BANTY", "HEEZE", "HOLID"],
+                                        ["TEEKY", "BANTY", "HEEZE", "GOYLE", "BEPAC", "FAMBA", "BUNKR"]
+                                    ]
+                                }
+                        },
+                        "spawnPatterns": [
+                            {
+                                "origin": "KFLL",
+                                "destination": "",
+                                "category": "departure",
+                                "route": "KFLL10L.AGERS1.HURGI",
+                                "altitude": "",
+                                "speed": "",
+                                "method": "random",
+                                "rate": 5,
+                                "airlines": [
+                                    ["aal",  3],
+                                    ["aca",  1],
+                                    ["afr",  1],
+                                    ["dal",  3],
+                                    ["fdx",  1],
+                                    ["nks",  1],
+                                    ["ual",  3],
+                                    ["ups",  1],
+                                    ["jbu",  4],
+                                    ["swa",  3],
+                                    ["aal/long",  1],
+                                    ["aal/short",  1]
+                                ]
+                            },
+                            {
+                                "origin": "KFLL",
+                                "destination": "",
+                                "category": "departure",
+                                "route": "KFLL10L.AGERS1.DUCEN",
+                                "altitude": "",
+                                "speed": "",
+                                "method": "random",
+                                "rate": 5,
+                                "airlines": [
+                                    ["aal",  3],
+                                    ["aca",  1],
+                                    ["afr",  1],
+                                    ["dal",  3],
+                                    ["fdx",  1],
+                                    ["nks",  1],
+                                    ["ual",  3],
+                                    ["ups",  1],
+                                    ["jbu",  4],
+                                    ["swa",  3],
+                                    ["aal/long",  1],
+                                    ["aal/short",  1]
+                                ]
+                            },
+                            {
+                                "origin": "KFLL",
+                                "destination": "",
+                                "category": "departure",
+                                "route": "KFLL10L.BNICE1.DOLIE",
+                                "altitude": "",
+                                "speed": "",
+                                "method": "random",
+                                "rate": 5,
+                                "airlines": [
+                                    ["aal",  3],
+                                    ["aca",  1],
+                                    ["afr",  1],
+                                    ["dal",  3],
+                                    ["fdx",  1],
+                                    ["nks",  1],
+                                    ["ual",  3],
+                                    ["ups",  1],
+                                    ["jbu",  4],
+                                    ["swa",  3],
+                                    ["aal/long",  1],
+                                    ["aal/short",  1]
+                                ]
+                            }
+                        ]
+
+                    }
