@@ -341,6 +341,12 @@
         "premium": false,
         "disabled": true
     },
+    {   "icao": "kpwm",
+        "level": "easy",
+        "name": "Portland International Jetport",
+        "premium": false
+
+    },
     {
         "icao": "krdu",
         "level": "easy",

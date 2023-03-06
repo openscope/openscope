@@ -1,0 +1,55 @@
+{
+    "airac": "2302",
+    "radio": {
+        "twr": "Portland Tower",
+        "app": "Portland Approach",
+        "dep": "Portland Departure"
+    },
+    "icao": "KPWM",
+    "iata": "PWM",
+    "magnetic_north": -15,
+    "ctr_radius": 80,
+    "ctr_ceiling": 10000,
+    "initial_alt": 3000,
+    "position": ["N43d38m44.135", "W70d18m24.538"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N43d38m44.135", "W70d18m24.538"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": false,
+    "wind": {
+        "angle": 260,
+        "speed": 10
+    },
+    "arrivalRunway": "29",
+    "departureRunway": "29",
+    "defaultMaps": ["PWM IFR"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 100,
+            "airspace_class": "C",
+            "poly":[
+            ["N43d40m59.926", "W69d29m45.497"],
+            ["N43d51m57.588", "W68d47m55.246"],
+            ["N44d05m43.890", "W68d48m53.351"],
+            ["N44d10m51.665", "W68d59m33.880"],
+            ["N44d15m42.356", "W69d23m47.593"],
+            ["N44d29m30.470", "W69d42m26.621"],
+            ["N44d39m03.613", "W69d41m52.090"],
+            ["N44d32m38.887", "W70d12m44.884"],
+            ["N44d19m47.195", "W70d21m46.121"],
+            ["N44d19m56.878", "W70d51m53.381"],
+            ["N44d09m56.635", "W70d48m26.903"],
+            ["N44d02m52.819", "W70d59m55.827"],
+            ["N43d47m05.171", "W71d09m15.699"],
+            ["N43d43m01.823", "W71d10m47.359"],
+            ["N43d24m56.864", "W70d59m24.955"],
+            ["N43d17m27.188", "W70d38m46.621"],
+            ["N43d26m30.976", "W69d57m22.917"]
+
+        }
+    ]
+
+}
