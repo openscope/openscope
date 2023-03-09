@@ -114,7 +114,7 @@
         "MYERS": ["N33d01m41.314", "W80d04m02.681"],
         "NALVE": ["N34d31m53.947", "W80d37m35.793"],
         "NINJA": ["N34d31m53.947", "W80d37m35.793"],
-        "ONBEE": ["N34d44m24.301", "W80d37m35.303"],
+        "OBNEE": ["N34d44m24.301", "W80d37m35.303"],
         "OSPRI": ["N33d08m10.967", "W80d23m18.004"],
         "PALLI": ["N33d13m14.063", "W79d56m31.049"],
         "PAMJE": ["N33d03m02.428", "W80d18m23.579"],
@@ -170,13 +170,15 @@
             "name": "Logger head Three",
             "altitude": 4000,
             "rwy": {
-                "KCHS3": ["HALEE", "LGRHD", "GIPPL"],
-                "KCHS15": ["LGRHD", "GIPPL"],
-                "KCHS21": ["LGRHD", "GIPPL"],
-                "KCHS33": ["HALEE", "LGRHD", "GIPPL"]
+                "KCHS3": ["HALEE", "LGRHD"],
+                "KCHS15": ["LGRHD"],
+                "KCHS21": ["LGRHD"],
+                "KCHS33": ["HALEE", "LGRHD"]
             },
+            "body": {
+                "GIPPL": ["GIPPL"],
             "exitPoints": {
-                "GIPPL": ["GIPPL"]
+                "GIPPL": [""]
             },
             "draw": [
                 ["HALEE", "LGRHD", "GIPPL"],
@@ -208,11 +210,12 @@
             "name": "Plumtree Three",
             "altitude": 4000,
             "rwy": {
-                "KCHS3": ["LOIRN", "PLMTO"],
-                "KCHS15": ["JAYLN", "PLMTO"],
-                "KCHS21": ["JAYLN", "PLMTO"],
-                "KCHS33": ["LOIRN", "PLMTO"]
+                "KCHS3": [""],
+                "KCHS15": ["JAYLN"],
+                "KCHS21": ["JAYLN"],
+                "KCHS33": [""]
             },
+            "body": ["LOIRN", "PLMTO"],
             "exitPoints": {
                 "CRE":  ["CRE"]
             },
@@ -227,11 +230,12 @@
             "name": "Stuno One",
             "altitude": 4000,
             "rwy": {
-                "KCHS3": [ "BRYSE", "STUNO"],
-                "KCHS15": ["TYLOR", "STUNO"],
-                "KCHS21": ["TYLOR", "STUNO"],
-                "KCHS33": ["GULLA", "STUNO"]
+                "KCHS3": [ "BRYSE"],
+                "KCHS15": ["STUNO", "GECHE"],
+                "KCHS21": ["TYLOR", "GECHE"],
+                "KCHS33": [""]
             },
+            "body": ["GULLA", "STUNO"],
             "exitPoints": {
                 "DBN": ["DBN"],
                 "ALD": ["ALD"],
@@ -251,11 +255,12 @@
             "name": "Swap Fox Two",
             "altitude": 4000,
             "rwy": {
-                "KCHS3": ["PALLI", "SWPFX"],
-                "KCHS15": ["ANGRE", "PALLI", "SWPFX"],
-                "KCHS21": ["ANGRE", "PALLI", "SWPFX"],
-                "KCHS33": ["PALLI", "SWPFX"]
+                "KCHS3": [""],
+                "KCHS15": ["ANGRE"],
+                "KCHS21": ["ANGRE"],
+                "KCHS33": [""]
             },
+            "body": ["PALLI", "SWPFX"],
             "exitPoints": {
                 "FILLI": ["FILLI"]
             },
@@ -275,10 +280,10 @@
             },
             "body": [["AMYLU", "A140+|A230-"], "WILIT", ["CRAAW", "A110+"], "FOURD", "RSRVE"],
             "rwy": {
-                "KCHS3": [["ROHLO", "A50+|S210"], ["STNNS", "A40|S210"]],
-                "KCHS15": [["KREIS", "A30"]],
-                "KCHS21": [["BAMDE", "A30"]],
-                "KCHS33": [["SNOBB", "A30|S210"]]
+                "KCHS3": [["ROHLO", "A50+|S210"], ["STNNS", "A40|S210"], "#219"],
+                "KCHS15": [["KREIS", "A30"], "#250"],
+                "KCHS21": [["BAMDE", "A30"], "#247"],
+                "KCHS33": [["SNOBB", "A30|S210"], "#218"]
             },
             "draw": [
                 ["RAPZZ", "AMYLU"],
@@ -299,8 +304,8 @@
             "body": [["BAGGY", "A70+"],["DDENA", "A50+"]],
             "rwy": {
                 "KCHS3": [["FEPID", "A30"]],
-                "KCHS15": [["PIPPY", "A50"]],
-                "KCHS21": [["MURAY", "A50"], ["ADERY", "A40"], ["MRISS", "A30"]],
+                "KCHS15": [["PIPPY", "A50"], "#030"],
+                "KCHS21": [["MURAY", "A50+"], ["ADERY", "A40+"], ["MRISS", "A30"], "#031"],
                 "KCHS33": [["CZSAR", "A30"], "#077"]
             },
             "draw": [
@@ -316,20 +321,20 @@
             "icao": "OSPRI7",
             "name": "Ospry Seven",
             "entryPoints": {
-                "ONBEE": ["ONBEE", "NALVE", "COINT", "COBDA", ["NINJA", "A110+|A220-"]],
+                "OBNEE": ["OBNEE", "NALVE", "COINT", "COBDA", ["NINJA", "A110+|A220-"]],
                 "UNJAM": ["UNJAM", "COBDA",["NINJA", "A110+|A220-"]],
                 "DEFFN": ["DEFFN", "WBODY", "BJETS",["GMAST", "A240+"]],
-                "IRQ":   ["IRQ",["BEEFE", "A240+"], ["BUBOO", "A110+|A220-"]]
+                "IRQ":   ["IRQ",["BEEFE", "A240+"], ["BUBOO", "A110+|A210-"]]
             },
-            "body": [["TRTLS", "A100"], "OSPRI"],
+            "body": [["TRTLS", "A100+"], "OSPRI"],
             "rwy": {
-                "KCHS3" : [["AALEX", "A50"], ["RECHY", "A40|S210"]],
+                "KCHS3" : [["AALEX", "A50"], ["RECHY", "A40|S210"], "#125"],
                 "KCHS15": [["LUTHR", "A40"]],
                 "KCHS21": [["LUTHR", "A40"],["MYERS", "A30"]],
                 "KCHS33": [["PAMJE", "A50"],[ "LLEXI", "S250"], ["JAARD", "A30|S210"]]
             },
             "draw": [
-                ["ONBEE", "NALVE", "COINT", "COBDA", "NINJA", "TRTLS", "OSPRI", "AALEX", "RECHY"],
+                ["OBNEE", "NALVE", "COINT", "COBDA", "NINJA", "TRTLS", "OSPRI", "AALEX", "RECHY"],
                 ["UNJAM", "COBDA", "NINJA"],
                 ["DEFFN", "WBODY", "BJETS", "GMAST", "TRTLS"],
                 ["IRQ", "BEEFE", "BUBOO", "TRTLS"],
@@ -586,7 +591,7 @@
             "origin": "",
             "destination": "KCHS",
             "category": "arrival",
-            "route": "ONBEE.OSPRI7.KCHS33",
+            "route": "OBNEE.OSPRI7.KCHS33",
             "altitude": [14000, 23000],
             "speed": 320,
             "method": "random",
@@ -10033,5 +10038,6 @@
              ]
         }
     ]
+    }
 }
 
