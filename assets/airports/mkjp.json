@@ -9,7 +9,7 @@
     "iata": "KIN",
     "magnetic_north": -8,
     "ctr_radius": 80,
-    "ctr_ceiling": 14000,
+    "ctr_ceiling": 140,
     "initial_alt": 6000,
     "position": ["N017d56m08.054","W076d47m15.059", "10ft"],
     "rangeRings": {
@@ -57,6 +57,37 @@
         }
     ],
     "fixes": {
+        "_MLY17AB": ["N17d38m54.884", "W76d44m09.460"],
+        "_MLY17AC": ["N17d38m46.383", "W76d45m43.147"],
+        "_MLY17AD": ["N17d38m45.503", "W76d47m17.261"],
+        "_MLY17AE": ["N17d38m52.319", "W76d48m51.083"],
+        "_MLY17AF": ["N17d39m07.320", "W76d50m24.155"],
+        "_MLY17DA": ["N17d39m59.327", "W76d53m22.864"],
+        "_MLY17DB": ["N17d40m36.469", "W76d54m48.412"],
+        "_MLY17DC": ["N17d41m20.349", "W76d56m09.640"],
+        "_MLY17DD": ["N17d42m11.312", "W76d57m27.815"],
+        "_MLY17DE": ["N17d43m07.972", "W76d58m40.092"],
+        "_MLY17DF": ["N17d44m10.737", "W76d59m47.113"],
+        "_MLY17DG": ["N17d45m18.830", "W77d00m48.239"],
+        "_MLY17DH": ["N17d46m31.563", "W77d01m42.597"],
+        "_MLY17DI": ["N17d47m48.565", "W77d02m30.208"],
+        "_MLY17DJ": ["N17d49m06.462", "W77d03m16.330"],
+        "_MLY17DK": ["N17d50m33.307", "W77d03m43.624"],
+        "_MLY17DL": ["N17d51m37.947", "W77d04m02.303"],
+        "_MLY17DM": ["N17d51m59.473", "W77d04m08.633"],
+        "_MLY17DN": ["N17d53m27.303", "W77d04m25.622"],
+        "_MLY17DO": ["N17d54m11.863", "W77d04m30.110"],
+        "_MLY17DP": ["N17d54m56.216", "W77d04m34.474"],
+        "_MLY17DQ": ["N17d56m25.850", "W77d04m35.303"],
+        "_MLY17DR": ["N17d57m54.776", "W77d04m27.805"],
+        "_MLY17LA": ["N18d04m34.076", "W77d01m57.485"],
+        "_MLY17LB": ["N18d03m24.119", "W77d02m37.461"],
+        "_MLY17KA":["N18d00m49.496", "W77d03m48.534"],
+        "_MLY17SA": ["N18d10m44.391", "W76d55m21.327"],
+        "_MLY17SB": ["N18d09m56.343", "W76d56m43.516"],
+        "_MLY17SC": ["N18d09m01.493", "W76d58m00.181"],
+        "_MLY17SD": ["N18d08m00.257", "W76d59m12.410"],
+        "_MLY12D":  ["N17d50m24.189", "W76d35m57.422"],
         "ACEDA": ["N17d39m11.011", "W76d42m37.026"],
         "ALKOL": ["N17d47m18.010", "W76d41m06.012"],
         "ALPEN": ["N17d17m28.016", "W76d35m57.021"],
@@ -85,36 +116,6 @@
         "LIBEX": ["N18d23m21.083", "W77d21m17.145"],
         "MKJP":  ["N17d56m08.054", "W76d47m15.059"],
         "MLY":   ["N17d55m48.889", "W76d46m39.460"],
-        "MLY17AB": ["N17d38m54.884", "W76d44m09.460"],
-        "MLY17AC": ["N17d38m46.383", "W76d45m43.147"],
-        "MLY17AD": ["N17d38m45.503", "W76d47m17.261"],
-        "MLY17AE": ["N17d38m52.319", "W76d48m51.083"],
-        "MLY17AF": ["N17d39m07.320", "W76d50m24.155"],
-        "MLY17DA": ["N17d39m59.327", "W76d53m22.864"],
-        "MLY17DB": ["N17d40m36.469", "W76d54m48.412"],
-        "MLY17DC": ["N17d41m20.349", "W76d56m09.640"],
-        "MLY17DD": ["N17d42m11.312", "W76d57m27.815"],
-        "MLY17DE": ["N17d43m07.972", "W76d58m40.092"],
-        "MLY17DF": ["N17d44m10.737", "W76d59m47.113"],
-        "MLY17DG": ["N17d45m18.830", "W77d00m48.239"],
-        "MLY17DH": ["N17d46m31.563", "W77d01m42.597"],
-        "MLY17DI": ["N17d47m48.565", "W77d02m30.208"],
-        "MLY17DJ": ["N17d49m06.462", "W77d03m16.330"],
-        "MLY17DK": ["N17d50m33.307", "W77d03m43.624"],
-        "MLY17DL": ["N17d51m37.947", "W77d04m02.303"],
-        "MLY17DM": ["N17d51m59.473", "W77d04m08.633"],
-        "MLY17DN": ["N17d53m27.303", "W77d04m25.622"],
-        "MLY17DO": ["N17d54m11.863", "W77d04m30.110"],
-        "MLY17DP": ["N17d54m56.216", "W77d04m34.474"],
-        "MLY17DQ": ["N17d56m25.850", "W77d04m35.303"],
-        "MLY17DR": ["N17d57m54.776", "W77d04m27.805"],
-        "MLY17LA": ["N18d04m34.076", "W77d01m57.485"],
-        "MLY17LB": ["N18d03m24.119", "W77d02m37.461"],
-        "MLY17KAA":["N18d00m49.496", "W77d03m48.534"],
-        "MLY17SA": ["N18d10m44.391", "W76d55m21.327"],
-        "MLY17SB": ["N18d09m56.343", "W76d56m43.516"],
-        "MLY17SC": ["N18d09m01.493", "W76d58m00.181"],
-        "MLY17SD": ["N18d08m00.257", "W76d59m12.410"],
         "NOELL": ["N18d30m56.539", "W76d08m25.530"],
         "OZARK": ["N16d59m54.002", "W76d31m06.016"],
         "PIBLI": ["N18d25m27.001", "W76d50m40.998"],
@@ -151,6 +152,36 @@
     }
     ],
     "sids": {
+        "ALKOL5": {
+            "icao": "ALKOL5",
+            "name": "Alkol Five",
+            "rwy": {
+                "MKJP12": ["_MLY12D", "ALKOL"],
+                "MKJP30": ["MLY"]
+            },
+            "body": ["MLY"],
+            "exitPoints": {
+                "ALKOL": ["ALKOL"]
+            },
+            "draw": [
+                ["_MLY12D", "ALKOL*"]
+            ]
+            },
+        "ALPEN3": {
+            "icao": "ALPEN3",
+            "name": "Alpen Three",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": ["GUDIL"]
+            },
+            "body": ["ALPEN"],
+            "exitPoints": {
+                "ALPEN": ["ALPEN"]
+            },
+            "draw": [
+                ["GUDIL", "ALPEN*"]
+            ]
+        },
         "AMEKO2": {
             "icao": "AMEKO2",
             "name": "Ameko Two",
@@ -177,6 +208,171 @@
             "draw": [
                 ["AMEKO"]
             ]
+        },
+        "DATOM3": {
+            "icao": "DATOM3",
+            "name": "Datom Three",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": ["GUDIL"]
+            },
+            "body": [""],
+            "exitPoints": {
+                "DATOM": ["DATOM"]
+            },
+            "draw": [
+                ["GUDIL", "DATOM*"]
+            ]
+        },
+        "ENEKA7": {
+            "icao": "ENEKA7",
+            "name": "Eneka Seven",
+            "rwy": {
+                "MKJP12": [["_MLY12D", "A032+"]],
+                "MKJP30": ["GUDIL"]
+            },
+            "body": [["ENEKA", "A90+"]],
+            "exitPoints": {
+                "ENEKA": ["ENEKA"]
+            },
+            "draw": [
+                ["GUDIL", "ENEKA*"]
+            ]
+        },
+        "GUDIL5": {
+            "icao": "GUDIL5",
+            "name": "Gudil Five",
+            "rwy": {
+                "MKJP12": ["MLY"],
+                "MKJP30": [["GUDIL", "A28+"]]
+            },
+            "body": [["GUDIL", "A28+"]],
+            "exitPoints": {
+                "LIBEX" : ["LIBEX"],
+                "KEMBO" : ["KEMBO"],
+                "KESPA" : ["KESPA"],
+                "BOSOM": ["BOSOM"]
+            },
+            "draw": [
+                ["GUDIL", "LIBEX*"],
+                ["GUDIL", "KEMBO*"],
+                ["GUDIL", "KESPA*"],
+                ["GUDIL", "BOSOM*"]
+            ]
+        },
+        "KEYNO2": {
+            "icao": "KEYNO2",
+            "name": "Keyno Two",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": [""]
+            },
+            "body": ["KEYNO"],
+            "exitPoints": {
+                "KEYNO": ["KEYNO"]
+            },
+            "draw": [
+                ["KEYNO*"]
+            ]
+        },
+        "LEXUV5": {
+            "icao": "LEXUV5",
+            "name": "Lexuv Five",
+            "rwy": {
+                "MKJP12": [["UKIMO", "A4+"], ["PEMPE", "S220"]],
+                "MKJP30": [""]
+            },
+            "body": ["LEXUV"],
+            "exitPoints": {
+                "KEMBO": ["KEMBO"],
+                "RADOK" : ["RADOK"]
+            },
+            "draw": [
+                ["UKIMO", "PEMPE", "LEXUV*"],
+                ["LEXUV", "KEMBO*"],
+                ["LEXUV", "RADOK*"]
+            ]
+        },
+        "MLY7": {
+            "icao": "MLY7",
+            "name": "Manley Seven",
+            "rwy": {
+                "MKJP12": ["MLY"],
+                "MKJP30": ["MLY"]
+            },
+            "body": ["MLY"],
+            "exitPoints": {
+                "LIBEX": ["LIBEX"],
+                "KEMBO": ["KEMBO"],
+                "KESPA": ["KESPA"],
+                "BOSOM": ["BOSOM"]
+            },
+            "draw": [
+                ["MLY", "LIBEX*"],
+                ["MLY", "KEMBO*"],
+                ["MLY", "KESPA*"],
+                ["MLY", "BOSOM*"]
+            ]
+        },
+        "OMPAL3": {
+            "icao": "OMPAL3",
+            "name": "Ompal Three",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": ["GUDIl"]
+            },
+            "body": [""],
+            "exitPoints": {
+                "OMPAL": ["OMPAL"]
+            },
+            "draw": [
+                ["GUDIL", "OMPAL*"]
+            ]
+        },
+        "RADOK7": {
+            "icao": "RADOK7",
+            "name": "Radok Seven",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": ["ELSER"]
+            },
+            "body": ["RADOK"],
+            "exitPoints": {
+                "RADOK": ["RADOK"]
+            },
+            "draw": [
+                ["RADOK*"]
+            ]
+        },
+        "TIBEL3": {
+            "icao": "TIBEL3",
+            "name": "Tibel Three",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": ["GUDIL"]
+            },
+            "body": [""],
+            "exitPoints": {
+                "TIBEL": ["TIBEL"]
+            },
+            "draw": [
+                ["GUDIL", "TIBEL*"]
+            ]
+        },
+        "URMAN3": {
+            "icao": "URMAN3",
+            "name": "Urman Three",
+            "rwy": {
+                "MKJP12": [""],
+                "MKJP30": ["GUDIL"]
+            },
+            "body": [""],
+            "exitPoints": {
+                "URMAN": ["URMAN"]
+            },
+            "draw": [
+                ["GUDIL", "URMAN*"]
+            ]
         }
     },
     "stars": {
@@ -184,12 +380,12 @@
             "icao": "ELSER5",
             "name": "Elsers Five",
             "entryPoints": {
-                "DATOM" : ["DATOM", "R205Q", "MLY17DA", "MLY17DB", "MLY17DC", "MLY17DD", "MLY17DE", "MLY17DF", "MLY17DG", "MLY17DH", "MLY17DI", "MLY17DI", "MLY17DJ", "MLY17DK", "MLY17DL", "MLY17DM", "MLY17DN", "MLY17DO", "MLY17DP", "MLY17DQ", "MLY17DR", "R290Q", "MLY17KAA", "R300Q", "ELSER"],
-                "SAVEM"  :["SAVEM", "R343T", "HAVBO", "MLY17SA", "MLY17SB", "MLY17SC", "MLY17SD",  "R318Q", "ZINAN", "MLY17LA", "MLY17LB", "R300Q", "ELSER"],
-                "RADOK"  :["RADOK", "R355T", "R355Q", "R343Q", "HAVBO", "MLY17SA", "MLY17SB", "MLY17SC", "MLY17SD", "R318Q", "ZINAN", "MLY17LA", "MLY17LB", "R300Q", "ELSER"],
-                "KESPA" : ["KESPA", "R290Q", "MLY17KAA", "R300Q", "ELSER"],
-                "LIBEX":  ["LIBEX", "R318S", "R318Q", "ZINAN", "MLY17LA", "MLY17LB", "R300Q", "ELSER"],
-                "ALPEN":  ["ALPEN", "R173Q", "ACEDA", "MLY17AB", "MLY17AC", "MLY17AD", "MLY17AE", "MLY17AF", "R205Q", "MLY17DA", "MLY17DB", "MLY17DC", "MLY17DD", "MLY17DE", "MLY17DF", "MLY17DG", "MLY17DH", "MLY17DI", "MLY17DI", "MLY17DJ", "MLY17DK", "MLY17DL", "MLY17DM", "MLY17DN", "MLY17DO", "MLY17DP", "MLY17DQ", "MLY17DR", "R290Q", "MLY17KAA", "R300Q", "ELSER" ],
+                "DATOM" : ["DATOM", "R205Q", "_MLY17DA", "_MLY17DB", "_MLY17DC", "_MLY17DD", "_MLY17DE", "_MLY17DF", "_MLY17DG", "_MLY17DH", "_MLY17DI", "_MLY17DI", "_MLY17DJ", "_MLY17DK", "_MLY17DL", "_MLY17DM", "_MLY17DN", "_MLY17DO", "_MLY17DP", "_MLY17DQ", "_MLY17DR", "R290Q", "_MLY17KA", "R300Q", "ELSER"],
+                "SAVEM"  :["SAVEM", "R343T", "HAVBO", "_MLY17SA", "_MLY17SB", "_MLY17SC", "_MLY17SD",  "R318Q", "ZINAN", "_MLY17LA", "_MLY17LB", "R300Q", "ELSER"],
+                "RADOK"  :["RADOK", "R355T", "R355Q", "R343Q", "HAVBO", "_MLY17SA", "_MLY17SB", "_MLY17SC", "_MLY17SD", "R318Q", "ZINAN", "_MLY17LA", "_MLY17LB", "R300Q", "ELSER"],
+                "KESPA" : ["KESPA", "R290Q", "_MLY17KA", "R300Q", "ELSER"],
+                "LIBEX":  ["LIBEX", "R318S", "R318Q", "ZINAN", "_MLY17LA", "_MLY17LB", "R300Q", "ELSER"],
+                "ALPEN":  ["ALPEN", "R173Q", "ACEDA", "_MLY17AB", "_MLY17AC", "_MLY17AD", "_MLY17AE", "_MLY17AF", "R205Q", "_MLY17DA", "_MLY17DB", "_MLY17DC", "_MLY17DD", "_MLY17DE", "_MLY17DF", "_MLY17DG", "_MLY17DH", "_MLY17DI", "_MLY17DI", "_MLY17DJ", "_MLY17DK", "_MLY17DL", "_MLY17DM", "_MLY17DN", "_MLY17DO", "_MLY17DP", "_MLY17DQ", "_MLY17DR", "R290Q", "_MLY17KA", "R300Q", "ELSER" ],
                 "KEMBO":  ["KEMBO", "R306Y", "RESEP", "R300Q", "ELSER"]
             },
             "body": [],
@@ -207,7 +403,34 @@
                 ["DATOM", "ELSER"],
                 ["GUDIL", "MLY"]
             ]
-        }
+        },
+        "KEYNO3": {
+            "icao": "KEYNO3",
+            "name": "Keyno Three",
+            "entryPoints": {
+                "DATOM" : ["DATOM", "R205Q", "_MLY17DA", "_MLY17DB", "_MLY17DC", "_MLY17DD", "_MLY17DE", "_MLY17DF", "_MLY17DG", "_MLY17DH", "_MLY17DI", "_MLY17DI", "_MLY17DJ", "_MLY17DK", "_MLY17DL", "_MLY17DM", "_MLY17DN", "_MLY17DO", "_MLY17DP", "_MLY17DQ", "_MLY17DR", "R290Q", "_MLY17KA", "R300Q", "KEYNO"],
+                "SAVEM"  :["SAVEM", "R343T", "HAVBO", "_MLY17SA", "_MLY17SB", "_MLY17SC", "_MLY17SD",  "R318Q", "ZINAN", "_MLY17LA", "_MLY17LB", "R300Q", "KEYNO"],
+                "RADOK"  :["RADOK", "R355T", "R355Q", "R343Q", "HAVBO", "_MLY17SA", "_MLY17SB", "_MLY17SC", "_MLY17SD", "R318Q", "ZINAN", "_MLY17LA", "_MLY17LB", "R300Q", "KEYNO"],
+                "KESPA" : ["KESPA", "R290Q", "_MLY17KA", "R300Q", "KEYNO"],
+                "LIBEX":  ["LIBEX", "R318S", "R318Q", "ZINAN", "_MLY17LA", "_MLY17LB", "R300Q", "KEYNO"],
+                "ALPEN":  ["ALPEN", "R173Q", "ACEDA", "_MLY17AB", "_MLY17AC", "_MLY17AD", "_MLY17AE", "_MLY17AF", "R205Q", "_MLY17DA", "_MLY17DB", "_MLY17DC", "_MLY17DD", "_MLY17DE", "_MLY17DF", "_MLY17DG", "_MLY17DH", "_MLY17DI", "_MLY17DI", "_MLY17DJ", "_MLY17DK", "_MLY17DL", "_MLY17DM", "_MLY17DN", "_MLY17DO", "_MLY17DP", "_MLY17DQ", "_MLY17DR", "R290Q", "_MLY17KA", "R300Q", "KEYNO" ],
+                "KEMBO":  ["KEMBO", "R306Y", "RESEP", "R300Q", "KEYNO"]
+        },
+        "body": [],
+        "rwy": {
+            "MKJP12": ["CIBUG"],
+            "MKJP30": ["#MLY"]
+        },
+        "draw": [
+            ["LIBEX", "KEYNO"],
+            ["SAVEM", "KEYNO"],
+            ["RADOK", "KEYNO"],
+            ["KESPA", "KEYNO"],
+            ["KEMBO", "KEYNO"],
+            ["ALPEN", "KEYNO"],
+            ["DATOM", "KEYNO"],
+            ["CIBUG", "MLY"]
+        ]
     },
     "spawnPatterns": [
         {
@@ -344,7 +567,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 6,
+            "rate": 2,
             "airlines": [
                 ["aal", 4],
                 ["bwa", 3],
@@ -470,7 +693,7 @@
             "altitude": [7000, 9000],
             "speed": 250,
             "method": "random",
-            "rate": 5,
+            "rate": 2,
             "airlines": [
                 ["aal", 4],
                 ["bwa", 3],
@@ -488,7 +711,7 @@
             "altitude": [7000, 9000],
             "speed": 250,
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
                 ["aal", 4],
                 ["bwa", 3],
@@ -542,7 +765,7 @@
             "altitude": [14500, 14500],
             "speed": 250,
             "method": "random",
-            "rate": 6,
+            "rate": 3,
             "airlines": [
                 ["aal", 4],
                 ["bwa", 3],
@@ -43021,4 +43244,5 @@
             ]
         }
     ]
+    }
 }
