@@ -455,6 +455,12 @@
         "disabled": true
     },
     {
+        "icao": "mkjp",
+        "level": "easy",
+        "name": "Norman Manley International Airport",
+        "premium": false
+    },
+    {
         "icao": "omaa",
         "level": "easy",
         "name": "Abu Dhabi International Airport",
