@@ -374,6 +374,12 @@
         "premium": false
     },
     {
+        "icao": "ksav",
+        "level": "easy",
+        "name":"Savannah International Airport",
+        "premium": false
+    },
+    {
         "icao": "ksea",
         "level": "hard",
         "name": "Seattle-Tacoma International Airport",
