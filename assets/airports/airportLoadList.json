@@ -235,6 +235,12 @@
         "premium": false
     },
     {
+        "icao": "kind",
+        "level": "medium",
+        "name": "Indianapolis International Airport",
+        "premium": false
+    },
+    {
         "icao": "kjax",
         "level": "easy",
         "name": "Jacksonville International Airport",
