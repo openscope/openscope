@@ -291,6 +291,13 @@
         "disabled": true
     },
     {
+        "icao": "kmsy",
+        "level": "medium",
+        "name": "Louis Armstrong New Orleans International Airport",
+        "premium": false,
+        "disabled": false
+    },
+    {
         "icao": "kokc",
         "level": "medium",
         "name": "Will Rogers World Airport",
