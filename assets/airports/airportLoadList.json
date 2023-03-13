@@ -173,6 +173,12 @@
         "premium": false
     },
     {
+        "icao": "kcle",
+        "level": "medium",
+        "name": "Cleveland-Hopkins International Airport",
+        "premium": false
+    },
+    {
         "icao": "kcvg",
         "level": "beginner",
         "name": "Cincinnati-Northern Kentucky International Airport",
