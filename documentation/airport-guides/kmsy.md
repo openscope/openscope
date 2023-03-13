@@ -7,7 +7,7 @@ Louis Armstrong New Orleans International Airport (IATA: MSY, ICAO: KMSY, FAA LI
 The MSY airspace is fairly large and covers multiple smaller airports in the region from the surface to 15,000'.
 
 ## Procedures
-MSY is served by four conventional STARs and no SIDs. Aircraft have be programmed to make the "EXPECT" crossing restrictions found in each STAR.
+MSY is served by four conventional STARs and no SIDs. Aircraft have been programmed to make the "EXPECT" crossing restrictions found in each STAR.
 
 Standard runway configurations are as follows:
 
