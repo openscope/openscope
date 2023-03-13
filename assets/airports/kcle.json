@@ -448,6 +448,7 @@
             "entryPoints": {
                 "BENJO": ["BENJO", "COWCH", ["FRYYE", "A240+|S280"], ["MCKOY", "A210+"], ["WEEDN", "A190+|S280"], ["RDZON", "A170+"], ["WINNZ", "A140+"], "GOLIC"],
                 "DETMR": ["DETMR", "CHUUB", ["FRYYE", "A240+|S280"], ["MCKOY", "A210+"], ["WEEDN", "A190+|S280"], ["RDZON", "A170+"], ["WINNZ", "A140+"], "GOLIC"],
+                "DOZRR": ["DOZRR", "A110+"],
                 "FRYYE": [["FRYYE", "A240+|S280"], ["MCKOY", "A210+"], ["WEEDN", "A190+|S280"], ["RDZON", "A170+"], ["WINNZ", "A140+"], "GOLIC"],
                 "HASTE": ["HASTE", "MNZEL", "KWYNN", ["FRYYE", "A240+|S280"], ["MCKOY", "A210+"], ["WEEDN", "A190+|S280"], ["RDZON", "A170+"], ["WINNZ", "A140+"], "GOLIC"],
                 "OLYEE": ["OLYEE", "SCHAM", "HAVEN", "KWYNN", ["FRYYE", "A240+|S280"], ["MCKOY", "A210+"], ["WEEDN", "A190+|S280"], ["RDZON", "A170+"], ["WINNZ", "A140+"], "GOLIC"],
@@ -466,7 +467,8 @@
                 ["TRRKY", "DYXON", "OZZYY"],
                 ["BRWNZ", "MAAAK", "KLLAY", "JIIMM", "HICKR"],
                 ["HASTE", "MNZEL", "KWYNN"],
-                ["DETMR", "CHUUB", "FRYYE", "COWCH", "BENJO"]
+                ["DETMR", "CHUUB", "FRYYE", "COWCH", "BENJO"],
+                ["DOZRR", "BRWNZ"]
             ]
         },
         "ROKNN3": {

@@ -82,7 +82,7 @@
         "level": "hard",
         "name": "London Heathrow Airport",
         "premium": false,
-        "disabled": false
+        "disabled": true
     },
     {
         "icao": "egnm",
