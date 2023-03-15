@@ -591,6 +591,13 @@
         "disabled": true
     },
     {
+        "icao": "uuww",
+        "level": "easy",
+        "name": "Vnukovo Airport",
+        "premium": false,
+        "disabled": false
+    },
+    {
         "icao": "vabb",
         "level": "hard",
         "name": "Chhatrapati Shivaji International Airport",
