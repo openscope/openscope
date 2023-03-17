@@ -284,6 +284,12 @@
         "premium": false
     },
     {
+        "icao": "kmht",
+        "level": "medium",
+        "name": "Manchester-Boston Regional Airport",
+        "premium": false
+    },
+    {
         "icao": "kmsp",
         "level": "hard",
         "name": "Minneapolis/St. Paul International Airport",
