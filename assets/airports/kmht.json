@@ -24,7 +24,7 @@
     },
     "arrivalRunway": "35",
     "departureRunway": "35",
-    "defaultMaps": [""],
+    "defaultMaps": ["MHT IFR"],
     "airspace": [
         {
             "floor": 0,
