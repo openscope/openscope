@@ -174,11 +174,11 @@
                 "KMHT17": [["TYLIR", "A30+"]],
                 "KMHT35": [["TYLIR", "A30+"]]
             },
-            "body": ["TYLIR", "PPORT", ["SHOEL", "A50+"], ["RBELA", "A68+"]],
+            "body": ["PPORT", "SHOEL", "RBELA"],
             "exitPoints": {
-                "BAF":[["COTEE", "A93+"], ["BAF", "A168"]],
-                "CCC":["JJIMY", ["YANTC", "A163+"], ["CCC", "A170"]],
-                "NELIE":["JJIMY", ["NELIE", "A170"]]
+                "BAF":["COTEE", "BAF"],
+                "CCC":["JJIMY", "YANTC", "CCC"],
+                "NELIE":["JJIMY", "NELIE"]
             },
             "draw": [
                 ["TYLIR", "PPORT", "SHOEL", "RBELA","COTEE", "BAF*"],
