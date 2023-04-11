@@ -288,7 +288,7 @@
         "level": "hard",
         "name": "Minneapolis/St. Paul International Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "kokc",
