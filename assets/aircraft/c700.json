@@ -1,34 +1,34 @@
 {
-    "name": "Cessna Citation Mustang",
-    "icao": "C510",
+    "name": "Cessna Citation Longitude",
+    "icao": "C700",
     "engines": {
         "number": 2,
         "type": "J"
     },
-    "weightClass": "S",
+    "weightClass": "S+",
     "category": {
         "srs": 3,
-        "lahso": null,
-        "recat": "F"
+        "lahso": 9,
+        "recat": "E"
     },
-    "ceiling": 41000,
+    "ceiling": 45000,
     "rate": {
-        "climb":      4000,
+        "climb":      3500,
         "descent":    3000,
         "accelerate": 10,
         "decelerate": 5
     },
     "runway": {
-        "takeoff": 0.948,
-        "landing": 0.729
+        "takeoff": 1.494,
+        "landing": 1.036
     },
     "speed":{
         "min":     120,
-        "landing": 130,
-        "cruise":  340,
-        "cruiseM": 0.60,
+        "landing": 135,
+        "cruise":  457,
+        "cruiseM": 0.80,
         "max":     483,
-        "maxM":    0.63
+        "maxM":    0.84
     },
     "capability": {
         "ils": true,

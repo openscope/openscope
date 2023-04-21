@@ -1,6 +1,6 @@
 {
-    "name": "Piper PA-28 Cherokee",
-    "icao": "P28A",
+    "name": "Piper PA-28 Cherokee Arrow",
+    "icao": "P28R",
     "engines": {
         "number": 1,
         "type": "P"
@@ -13,21 +13,21 @@
     },
     "ceiling": 12000,
     "rate": {
-        "climb":      700,
-        "descent":    700,
+        "climb":      1000,
+        "descent":    1000,
         "accelerate": 4,
         "decelerate": 3
     },
     "runway": {
-        "takeoff": 0.275,
-        "landing": 0.130
+        "takeoff": 0.300,
+        "landing": 0.300
     },
     "speed":{
-        "min":     50,
-        "landing": 65,
-        "cruise":  120,
+        "min":     55,
+        "landing": 70,
+        "cruise":  140,
+        "max":     183,
         "cruiseM": null,
-        "max":     133,
         "maxM":    null
     },
     "capability": {

@@ -1,0 +1,37 @@
+{
+    "name": "Citation CJ2",
+    "icao": "C25A",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "F"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3500,
+        "descent":    2500,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 1.042,
+        "landing": 0.908
+    },
+    "speed":{
+        "min":     120,
+        "landing": 110,
+        "cruise":  412,
+        "cruiseM": 0.70,
+        "max":     413,
+        "maxM":    0.72
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

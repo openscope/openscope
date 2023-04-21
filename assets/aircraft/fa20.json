@@ -1,33 +1,33 @@
 {
-    "name": "Beechcraft Super King Air",
-    "icao": "B350",
+    "name": "Fokker 100",
+    "icao": "F100",
     "engines": {
         "number": 2,
-        "type": "T"
+        "type": "J"
     },
-    "weightClass": "S+",
+    "weightClass": "L",
     "category": {
         "srs": 3,
         "lahso": 7,
-        "recat": "F"
+        "recat": "D"
     },
     "ceiling": 35000,
     "rate": {
         "climb":      2500,
         "descent":    2000,
-        "accelerate": 5,
+        "accelerate": 6,
         "decelerate": 3
     },
     "runway": {
-        "takeoff": 1.000,
-        "landing": 0.820
+        "takeoff": 1.825,
+        "landing": 1.350
     },
     "speed":{
-        "min":     95,
-        "landing": 110,
-        "cruise":  300,
-        "cruiseM": 0.47,
-        "max":     320,
+        "min":     130,
+        "landing": 140,
+        "cruise":  414,
+        "cruiseM": null,
+        "max":     456,
         "maxM":    null
     },
     "capability": {

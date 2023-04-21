@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier Global 7000",
+    "icao": "GL7T",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "D"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb": 3000,
+        "descent": 2500,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.814,
+        "landing": 0.814
+    },
+    "speed":{
+        "min": 135,
+        "landing": 122,
+        "cruise": 488,
+        "cruiseM": 0.86,
+        "max": 516,
+        "maxM": 0.90
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

@@ -1,37 +1,37 @@
 {
-    "name": "Piper PA-28 Cherokee",
-    "icao": "P28A",
+    "name": "Piper Seneca",
+    "icao": "PA34",
     "engines": {
-        "number": 1,
+        "number": 2,
         "type": "P"
     },
     "weightClass": "S",
     "category": {
         "srs": 1,
-        "lahso": 1,
+        "lahso": 2,
         "recat": "F"
     },
-    "ceiling": 12000,
+    "ceiling": 20000,
     "rate": {
-        "climb":      700,
-        "descent":    700,
+        "climb":      1460,
+        "descent":    1200,
         "accelerate": 4,
         "decelerate": 3
     },
     "runway": {
-        "takeoff": 0.275,
-        "landing": 0.130
+        "takeoff": 0.603,
+        "landing": 0.369
     },
     "speed":{
-        "min":     50,
-        "landing": 65,
-        "cruise":  120,
+        "min":     58,
+        "landing": 85,
+        "cruise":  202,
+        "max":     195,
         "cruiseM": null,
-        "max":     133,
         "maxM":    null
     },
     "capability": {
         "ils": true,
-        "fix": false
+        "fix": true
     }
 }

@@ -1,9 +1,9 @@
 {
-    "name": "Beechcraft Super King Air",
-    "icao": "B350",
+    "name": "Citation CJ4",
+    "icao": "C25C",
     "engines": {
         "number": 2,
-        "type": "T"
+        "type": "J"
     },
     "weightClass": "S+",
     "category": {
@@ -11,24 +11,24 @@
         "lahso": 7,
         "recat": "F"
     },
-    "ceiling": 35000,
+    "ceiling": 45000,
     "rate": {
-        "climb":      2500,
-        "descent":    2000,
+        "climb":      3854,
+        "descent":    2500,
         "accelerate": 5,
         "decelerate": 3
     },
     "runway": {
-        "takeoff": 1.000,
-        "landing": 0.820
+        "takeoff": 1.042,
+        "landing": 0.908
     },
     "speed":{
-        "min":     95,
+        "min":     120,
         "landing": 110,
-        "cruise":  300,
-        "cruiseM": 0.47,
-        "max":     320,
-        "maxM":    null
+        "cruise":  418,
+        "cruiseM": 0.71,
+        "max":     441,
+        "maxM":    0.77
     },
     "capability": {
         "ils": true,

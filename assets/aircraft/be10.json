@@ -1,6 +1,6 @@
 {
-    "name": "Beechcraft Super King Air",
-    "icao": "B350",
+    "name": "Beechcraft King Air 100",
+    "icao": "BE10",
     "engines": {
         "number": 2,
         "type": "T"
@@ -11,23 +11,23 @@
         "lahso": 7,
         "recat": "F"
     },
-    "ceiling": 35000,
+    "ceiling": 26000,
     "rate": {
-        "climb":      2500,
-        "descent":    2000,
+        "climb":      2100,
+        "descent":    1700,
         "accelerate": 5,
-        "decelerate": 3
+        "decelerate": 5
     },
     "runway": {
-        "takeoff": 1.000,
-        "landing": 0.820
+        "takeoff": 0.899,
+        "landing": 0.817
     },
     "speed":{
-        "min":     95,
-        "landing": 110,
-        "cruise":  300,
-        "cruiseM": 0.47,
-        "max":     320,
+        "min":     83,
+        "landing": 100,
+        "cruise":  265,
+        "cruiseM": 0.45,
+        "max":     265,
         "maxM":    null
     },
     "capability": {
