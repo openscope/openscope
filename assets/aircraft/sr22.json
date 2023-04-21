@@ -1,0 +1,37 @@
+{
+    "name": "Cirrus SR22",
+    "icao": "SR22",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": 1,
+        "recat": "F"
+    },
+    "ceiling": 17500,
+    "rate": {
+        "climb":      1300,
+        "descent":    1500,
+        "accelerate": 4,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 0.570,
+        "landing": 0.360
+    },
+    "speed":{
+        "min":     60,
+        "landing": 65,
+        "cruise":  183,
+        "cruiseM": null,
+        "max":     197,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

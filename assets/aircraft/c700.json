@@ -1,0 +1,37 @@
+{
+    "name": "Cessna Citation Longitude",
+    "icao": "C700",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "S+",
+    "category": {
+        "srs": 3,
+        "lahso": 9,
+        "recat": "E"
+    },
+    "ceiling": 45000,
+    "rate": {
+        "climb":      3500,
+        "descent":    3000,
+        "accelerate": 10,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.494,
+        "landing": 1.036
+    },
+    "speed":{
+        "min":     120,
+        "landing": 135,
+        "cruise":  457,
+        "cruiseM": 0.80,
+        "max":     483,
+        "maxM":    0.84
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "name": "Cirrus SR20",
+    "icao": "SR20",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": 1,
+        "recat": "F"
+    },
+    "ceiling": 17500,
+    "rate": {
+        "climb":      820,
+        "descent":    1500,
+        "accelerate": 4,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 0.570,
+        "landing": 0.360
+    },
+    "speed":{
+        "min":     56,
+        "landing": 73,
+        "cruise":  155,
+        "cruiseM": null,
+        "max":     197,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

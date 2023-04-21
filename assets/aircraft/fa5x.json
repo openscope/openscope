@@ -1,0 +1,37 @@
+{
+    "name": "Dassault Falcon 5X",
+    "icao": "FA5X",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "D"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb":      3500,
+        "descent":    2200,
+        "accelerate": 6,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 1.670,
+        "landing": 0.760
+    },
+    "speed":{
+        "min":     120,
+        "landing": 104,
+        "cruise":  480,
+        "cruiseM": 0.84,
+        "max":     516,
+        "maxM":    0.90
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

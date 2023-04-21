@@ -26,7 +26,7 @@
         "min":     120,
         "landing": 130,
         "cruise":  340,
-        "cruiseM": null,
+        "cruiseM": 0.60,
         "max":     483,
         "maxM":    0.63
     },

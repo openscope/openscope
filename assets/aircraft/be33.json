@@ -1,0 +1,37 @@
+{
+    "name": "Beechcraft Debonair",
+    "icao": "BE33",
+    "engines": {
+        "number": 1,
+        "type": "P"
+    },
+    "weightClass": "S",
+    "category": {
+        "srs": 1,
+        "lahso": 4,
+        "recat": "F"
+    },
+    "ceiling": 17500,
+    "rate": {
+        "climb":      960,
+        "descent":    700,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 0.314,
+        "landing": 0.239
+    },
+    "speed":{
+        "min":     52,
+        "landing": 68,
+        "cruise":  161,
+        "cruiseM": null,
+        "max":     170,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

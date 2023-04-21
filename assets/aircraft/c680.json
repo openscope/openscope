@@ -28,7 +28,7 @@
         "cruise":  460,
         "cruiseM": 0.79,
         "max":     470,
-        "maxM":    null
+        "maxM":    0.82
     },
     "capability": {
         "ils": true,

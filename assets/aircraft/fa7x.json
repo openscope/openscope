@@ -1,0 +1,37 @@
+{
+    "name": "Dassault Falcon 7X",
+    "icao": "FA7X",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 4,
+        "recat": "D"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb":      3500,
+        "descent":    2200,
+        "accelerate": 6,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 1.740,
+        "landing": 0.631
+    },
+    "speed":{
+        "min":     120,
+        "landing": 104,
+        "cruise":  459,
+        "cruiseM": 0.80,
+        "max":     516,
+        "maxM":    0.90
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
