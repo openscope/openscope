@@ -1066,15 +1066,12 @@
                 ["aal", 14],
                 ["aal/long", 1],
                 ["asq", 6.1],
-                ["dal/short", 7.5],
                 ["dlh/a359", 0.1],
                 ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
+				["jbu", 0.1],
+                ["nks", 1],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
             ]
         },
@@ -1091,63 +1088,12 @@
                 ["aal", 14],
                 ["aal/long", 1],
                 ["asq", 6.1],
-                ["dal/short", 7.5],
                 ["dlh/a359", 0.1],
                 ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
+				["jbu", 0.5],
+                ["nks", 1],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
-				["n/fastGA", 1]
-            ]
-        },
-		{
-            "origin": "KCLT",
-            "destination": "",
-            "category": "departure",
-            "route": "KCLT18L.BARMY4.TYI",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2.2,
-            "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
-                ["asq", 6.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
-                ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
-				["n/fastGA", 1]
-            ]
-        },
-		{
-            "origin": "KCLT",
-            "destination": "",
-            "category": "departure",
-            "route": "KCLT36R.BARMY4.TYI",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0,
-            "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
-                ["asq", 6.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
-                ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
             ]
         },
@@ -1164,15 +1110,11 @@
                 ["aal", 14],
                 ["aal/long", 1],
                 ["asq", 6.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["eny", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
+                ["fft", 1],
                 ["n/fastGA", 3],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1188,15 +1130,11 @@
                 ["aal", 14],
                 ["aal/long", 1],
                 ["asq", 6.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["eny", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
+                ["fft", 1],
                 ["n/fastGA", 3],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1211,18 +1149,17 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["edv", 0.5],
+				["eny", 0.1],
                 ["fdx/B763", 0.1],
                 ["fdx/B306", 0.1],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["nks", 1.8],
+                ["nks", 1],
                 ["pdt", 6.2],
                 ["skw", 3],
                 ["swa", 4.6],
-                ["ual", 1.9],
+                ["ual", 1],
 				["n/fastGA", 1]
             ]
         },
@@ -1238,18 +1175,17 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["edv", 0.5],
+				["eny", 0.1],
                 ["fdx/B763", 0.1],
                 ["fdx/B306", 0.1],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["nks", 1.8],
+                ["nks", 1],
                 ["pdt", 6.2],
                 ["skw", 3],
                 ["swa", 4.6],
-                ["ual", 1.9],
+                ["ual", 1],
 				["n/fastGA", 1]
             ]
         },
@@ -1265,15 +1201,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["ash", 0.1],
+				["eny", 0.1],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+                ["swa", 1],
 				["n/fastGA", 1]
             ]
         },
@@ -1289,15 +1221,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["ash", 0.1],
+				["eny", 0.1],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+                ["swa", 1],
 				["n/fastGA", 1]
             ]
         },
@@ -1313,15 +1241,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["eny", 0.1],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["nks", 1.8],
+                ["nks", 2.5],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
             ]
         },
@@ -1337,15 +1261,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["eny", 0.1],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["nks", 1.8],
+                ["nks", 2.5],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
             ]
         },
@@ -1361,15 +1281,12 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+                ["dal/short", 1],
                 ["fdx/B306", 0.1],				
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
+				["rpa/E75L",0.1],
+                ["swa", 1.5],
                 ["ual", 1.9],
                 ["ups", 0.1],
 				["n/fastGA", 1]
@@ -1387,65 +1304,14 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+                ["dal/short", 1],
                 ["fdx/B306", 0.1],				
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
+				["rpa/E75L",0.1],
+                ["swa", 1.5],
                 ["ual", 1.9],
                 ["ups", 0.1],
-				["n/fastGA", 1]
-            ]
-        },
-        {
-            "origin": "KCLT",
-            "destination": "",
-            "category": "departure",
-            "route": "KCLT18C.JOJJO4.NOONN",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2.6,
-            "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
-                ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
-				["n/fastGA", 1]
-            ]
-        },
-        {
-            "origin": "KCLT",
-            "destination": "",
-            "category": "departure",
-            "route": "KCLT36R.JOJJO4.NOONN",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0,
-            "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
-                ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
             ]
         },
@@ -1461,15 +1327,13 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["ash", 0.1],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
+                ["fft", 1.2],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+				["rpa/E75L",3],
+                ["swa", 2],
+                ["ual", 4],
                 ["ups", 0.1],
 				["n/fastGA", 1]
             ]
@@ -1486,15 +1350,13 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["ash", 0.1],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
+                ["fft", 1.2],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+				["rpa",3],
+                ["swa", 2],
+                ["ual", 4],
                 ["ups", 0.1],
 				["n/fastGA", 1]
             ]
@@ -1511,18 +1373,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
-                ["jbu", 2],
-                ["fft", 1.8],
+				["jza", 0.1],
                 ["n/fastGA", 1],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["skv", 3],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["nks", 1],
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1537,18 +1392,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
-                ["jbu", 2],
-                ["fft", 1.8],
+				["jza", 0.1],
                 ["n/fastGA", 1],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["skv", 3],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["nks", 1],
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1563,15 +1411,8 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
 			]
         },
@@ -1587,15 +1428,8 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 1]
 			]
         },
@@ -1607,19 +1441,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.5,
+            "rate": 1,
             "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
-                ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+                ["aal/short", 1],
+				["pdt",1],
 				["n/fastGA", 1]
             ]
         },
@@ -1633,17 +1458,9 @@
             "method": "random",
             "rate": 0,
             "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
-                ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+                ["aal/short", 1],
+				["jia",1],
+				["pdt",1],
 				["n/fastGA", 1]
             ]
         },
@@ -1659,15 +1476,9 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 0.5]
             ]
         },
@@ -1683,15 +1494,10 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
                 ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
                 ["fft", 1.8],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
 				["n/fastGA", 0.5]
             ]
         },
@@ -1703,20 +1509,15 @@
             "altitude": 31000,
             "speed": 290,
             "method": "random",
-            "rate": 3.9,
+            "rate": 5,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
+				["env", 1],
                 ["n/fastGA", 1],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["nks", 1],
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1731,16 +1532,11 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
-                ["edv", 0.5],
+				["env", 1],
                 ["jia", 14],
-                ["fft", 1.8],
                 ["n/fastGA", 1],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["nks", 1],
+                ["pdt", 6.2]
             ]
         },	
         {
@@ -1751,23 +1547,22 @@
             "altitude": 33000,
             "speed": 290,
             "method": "random",
-            "rate": 8.3,
+            "rate": 6,
             "airlines": [
                 ["aal", 14],
                 ["aal/B777", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
+				["ash", 0.1],
 				["dlh/A359", 0.5],
                 ["eja", 1],
-                ["edv", 0.5],
                 ["jia", 14],
                 ["jbu", 2],
-                ["fft", 1.8],
+                ["fft", 1],
 				["n/fastGA", 1],
-                ["nks", 1.8],
+                ["nks", 1],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+				["rpa/E75L",3],
+                ["swa", 1],
+                ["ual", 3],
                 ["ups/B752", 0.4]
             ]
         },
@@ -1783,19 +1578,19 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/B777", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
+				["ash", 0.1],
 				["dlh/A359", 0.5],
                 ["eja", 1],
                 ["edv", 0.5],
                 ["jia", 14],
                 ["jbu", 2],
-                ["fft", 1.8],
+                ["fft", 1],
 				["n/fastGA", 1],
-                ["nks", 1.8],
+                ["nks", 1],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+				["rpa/E75L",3],
+                ["swa", 1],
+                ["ual", 3],
                 ["ups/B752", 0.4]
             ]
         },
@@ -1807,23 +1602,24 @@
             "altitude": 33000,
             "speed": 290,
             "method": "random",
-            "rate": 5.5,
+            "rate": 6,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
+				["atn", 0.1],
+                ["dal/short", 1],
                 ["fdx/B763", 1],
 				["fdx/A306", 1],
-                ["edv", 0.5],
+				["env", 1],
                 ["jia", 14],
                 ["fft", 1.8],
 				["n/fastGA", 2],
-                ["nks", 1.8],
+                ["nks", 1],
                 ["pdt", 6.2],
-                ["skw", 3],
+				["rpa",0.1],
+                ["skw", 1],
                 ["swa", 4.6],
-                ["ual", 1.9],
+                ["ual", 1],
                 ["ups/B752", 1]
             ]
         },
@@ -1839,19 +1635,19 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
+                ["dal/short", 1],
                 ["fdx/B763", 1],
 				["fdx/A306", 1],
-                ["edv", 0.5],
+				["env", 1],
                 ["jia", 14],
                 ["fft", 1.8],
 				["n/fastGA", 2],
-                ["nks", 1.8],
+                ["nks", 1],
                 ["pdt", 6.2],
-                ["skw", 3],
+				["rpa/E75L",0.1],
+                ["skw", 1],
                 ["swa", 4.6],
-                ["ual", 1.9],
+                ["ual", 1],
                 ["ups/B752", 1]
             ]
         },
@@ -1863,20 +1659,19 @@
             "altitude": 33000,
             "speed": 290,
             "method": "random",
-            "rate": 5.8,
+            "rate": 6,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
+				["ash", 0.1],
                 ["dal/short", 7.5],
                 ["edv", 0.5],
+				["env", 1],
                 ["jia", 14],
-                ["fft", 1.8],
 				["n/fastGA", 1],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+                ["swa", 1.5],
+                ["ual", 2],
                 ["voi", 2]
             ]
         },
@@ -1892,16 +1687,15 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
+				["ash", 0.1],
                 ["dal/short", 7.5],
                 ["edv", 0.5],
+				["env", 1],
                 ["jia", 14],
-                ["fft", 1.8],
 				["n/fastGA", 1],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9],
+                ["swa", 1.5],
+                ["ual", 2],
                 ["voi", 2]
             ]
         },
@@ -1913,21 +1707,16 @@
             "altitude": 30000,
             "speed": 290,
             "method": "random",
-            "rate": 3.1,
+            "rate": 2,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
                 ["eja/short", 1],
                 ["edv", 0.5],
+				["env", 0.1],
                 ["jia", 14],
-                ["fft", 1.8],
 				["n/fastGA", 1],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1942,17 +1731,12 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
-                ["dal/short", 7.5],
                 ["eja/short", 1],
                 ["edv", 0.5],
+				["env", 0.1],
                 ["jia", 14],
-                ["fft", 1.8],
 				["n/fastGA", 1],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["pdt", 6.2]
             ]
         },
         {
@@ -1963,21 +1747,18 @@
             "altitude": 30000,
             "speed": 290,
             "method": "random",
-            "rate": 5.4,
+            "rate": 3,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
+				["atn", 0.1],
                 ["dal/short", 7.5],
                 ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
                 ["n/fastGA", 1],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["skv", 2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["swa", 3],
+                ["ual", 2]
             ]
         },
         {
@@ -1992,17 +1773,13 @@
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
-                ["asa", 3.1],
                 ["dal/short", 7.5],
                 ["edv", 0.5],
                 ["jia", 14],
-                ["fft", 1.8],
                 ["n/fastGA", 1],
-                ["nks", 1.8],
                 ["pdt", 6.2],
-                ["skv", 2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["swa", 3],
+                ["ual", 2]
             ]
         },
         {
@@ -2018,15 +1795,12 @@
                 ["aal", 14],
                 ["aal/long", 1],
                 ["cks", 2.1],
-                ["dal/short", 7.5],
+				["env", 0.1],
                 ["jia", 14],
-                ["jbu", 5],
-                ["fft", 3.8],
+                ["fft", 2],
                 ["n/fastGA", 2],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["nks", 3],
+                ["pdt", 6.2]
             ]
         },
         {
@@ -2042,15 +1816,95 @@
                 ["aal", 14],
                 ["aal/long", 1],
                 ["cks", 2.1],
-                ["dal/short", 7.5],
+				["env", 0.1],
                 ["jia", 14],
-                ["jbu", 5],
-                ["fft", 3.8],
+                ["fft", 2],
                 ["n/fastGA", 2],
-                ["nks", 1.8],
-                ["pdt", 6.2],
-                ["swa", 4.6],
-                ["ual", 1.9]
+                ["nks", 3],
+                ["pdt", 6.2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCLT",
+            "category": "arrival",
+            "route": "JTEEA..BTSEY..CLT",
+            "altitude": 11000,
+            "speed": 250,
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+                ["n/fastGA", 0.2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCLT",
+            "category": "arrival",
+            "route": "EYPAD..CHPTR..CLT",
+            "altitude": 7000,
+            "speed": 150,
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+                ["n/mediumGA", 0.01],
+				["n/turboGA", 0.1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCLT",
+            "category": "arrival",
+            "route": "JALIT..LIINN..CLT",
+            "altitude": 9000,
+            "speed": 150,
+            "method": "random",
+            "rate": 0.01,
+            "airlines": [
+                ["n/mediumGA", 0.1],
+				["n/turboGA", 0.1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCLT",
+            "category": "arrival",
+            "route": "LIB..MAJIC..CLT",
+            "altitude": 10000,
+            "speed": 150,
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+                ["n/mediumGA", 0.01],
+				["n/turboGA", 0.1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCLT",
+            "category": "arrival",
+            "route": "DSTEE..RASLN..CLT",
+            "altitude": 10000,
+            "speed": 150,
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+                ["n/mediumGA", 0.01],
+				["n/turboGA", 0.1]
+            ]
+        },
+		{
+            "origin": "",
+            "destination": "KCLT",
+            "category": "arrival",
+            "route": "BIFFS..UNARM..ADENA..LOCKS..CLT",
+            "altitude": 7000,
+            "speed": 150,
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+                ["n/mediumGA", 0.1],
+				["n/turboGA", 0.1]
             ]
         }
     ],
