@@ -1323,12 +1323,12 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.1,
+            "rate": 6,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
 				["ash", 0.1],
-                ["jia", 14],
+                ["jia", 10],
                 ["fft", 1.2],
                 ["pdt", 6.2],
 				["rpa/E75L",3],
@@ -1546,15 +1546,16 @@
             "route": "LYH.CHSLY5.KCLT18L",
             "altitude": 33000,
             "speed": 290,
-            "method": "random",
-            "rate": 6,
+            "method": "surge",
+			"entrail": [7,25],
+			"rate": 10,
             "airlines": [
                 ["aal", 14],
                 ["aal/B777", 1],
 				["ash", 0.1],
 				["dlh/A359", 0.5],
                 ["eja", 1],
-                ["jia", 14],
+                ["jia", 10],
                 ["jbu", 2],
                 ["fft", 1],
 				["n/fastGA", 1],
@@ -1707,16 +1708,15 @@
             "altitude": 30000,
             "speed": 290,
             "method": "random",
-            "rate": 2,
+            "rate": 1,
             "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
+                ["aal", 2],
                 ["eja/short", 1],
                 ["edv", 0.5],
 				["env", 0.1],
                 ["jia", 14],
 				["n/fastGA", 1],
-                ["pdt", 6.2]
+                ["pdt", 2]
             ]
         },
         {
@@ -1729,14 +1729,13 @@
             "method": "random",
             "rate": 0,
             "airlines": [
-                ["aal", 14],
-                ["aal/long", 1],
+                ["aal", 2],
                 ["eja/short", 1],
                 ["edv", 0.5],
 				["env", 0.1],
-                ["jia", 14],
+                ["jia", 1],
 				["n/fastGA", 1],
-                ["pdt", 6.2]
+                ["pdt", 2]
             ]
         },
         {
@@ -1747,7 +1746,7 @@
             "altitude": 30000,
             "speed": 290,
             "method": "random",
-            "rate": 3,
+            "rate": 4,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
@@ -1790,7 +1789,7 @@
             "altitude": 30000,
             "speed": 290,
             "method": "random",
-            "rate": 4.2,
+            "rate": 6,
             "airlines": [
                 ["aal", 14],
                 ["aal/long", 1],
@@ -1859,7 +1858,7 @@
             "altitude": 9000,
             "speed": 150,
             "method": "random",
-            "rate": 0.01,
+            "rate": 0,
             "airlines": [
                 ["n/mediumGA", 0.1],
 				["n/turboGA", 0.1]
