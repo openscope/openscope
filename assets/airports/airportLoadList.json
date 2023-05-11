@@ -149,6 +149,12 @@
         "premium": false
     },
     {
+        "icao": "kags",
+        "level": "beginner",
+        "name": "Augusta Regional Airport",
+        "premium": false
+    },
+    {
         "icao": "katl",
         "level": "hard",
         "name": "Hartsfield–Jackson Atlanta International Airport",
