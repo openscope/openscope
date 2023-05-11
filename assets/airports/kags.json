@@ -115,7 +115,32 @@
         "HEDIL": ["N33d06m46.27", "W81d45m12.61"],
         "MILEN": ["N32d54m02.88", "W81d36m33.99"],
         "SPONG": ["N32d29m36.13", "W81d23m13.03"],
-        "RIPPI": ["N32d54m20.25", "W83d20m19.52"]
+        "WANSA": [33.707250, -82.162219],
+        "TRREE": [33.787439, -82.925061],
+        "REELL": [34.025697, -83.528917],
+        "HARLE": [33.378764, -82.648958],
+        "MISTY": [33.246247, -82.843506],
+        "HADOC": [33.120500, -83.027144],
+        "RIPPI": [32.905625, -83.338756],
+        "ANNAN": [33.458406, -82.742775],
+        "BEYLO": [33.306083, -83.093425],
+        "SINCA": [33.081189, -83.604867],
+        "TREAD": [33.764131, -82.051256],
+        "JOKER": [33.838131, -81.906278],
+        "MONET": [33.916217, -81.752689],
+        "LEDAS": [34.029258, -81.529297],
+        "OCENU": [33.900317, -83.091189],
+        "DANBI": [33.876119, -82.972647],
+        "TIGNA": [33.832489, -82.760142],
+        "MSTRS": [33.803431, -82.619856],
+        "KANDY": [33.776681, -82.491547],
+        "GRAZE": [33.742939, -81.905806],
+        "STEET": [33.814722, -81.376303],
+        "STYLZ": [35.406342, -82.268614],
+        "HRTWL": [34.251481, -82.154319],
+        "LASHE": [33.560664, -81.768692],
+        "NORMS": [33.345078, -81.198975],
+        "HARAB": [33.229783, -80.898200]
     },
     "restricted": [
         {
@@ -151,9 +176,14 @@
         
     ],
     "airways": {
-        "GAIRY2": ["LIDAS", "ERWIN", "GAIRY", "IRQ"],
+        "T209": ["STYLZ", "UNMAN", "PELAM", "ILEYO", "DUNKE", "PETON", "REEDY", "HRTWL", "LUKES", "BLANE", "COLON", "WANSA", "BEANS", "HEDIL", "SARDY", "MILEN", "DOVER"],
         "T290": ["MGM", "SCAIL", "BBAIT", "BBASS", "BBOAT", "BOBBR", "JACET"],
-        "V185": ["SUG", "UNMAN", "PELAM", "ILEYO", "DUNKE", "PETON", "REEDY", "GRD", "LUKES", "BLANE", "COLON", "IRQ", "BEANS", "HEDIL", "SARDY", "MILEN", "DOVER", "SPONG", "SAV"]
+        "T292": ["JACET", "TRREE", "REELL"],
+        "T404": ["NOKIE", "RIPPI", "HADOC", "MISTY", "HARLE", "WANSA", "GRAZE", "SAMMI", "STEET"],
+        "T410": ["SINCA", "BEYLO", "ANNAN", "WANSA", "TREAD", "JOKER", "MONET", "LEDAS"],
+        "V18": ["IRQ", "LASHE", "NORMS", "HARAB"],
+        "V185": ["IRQ", "BEANS", "HEDIL", "SARDY", "MILEN", "DOVER", "SPONG", "SAV"],
+        "V417": ["AHN", "OCENU", "DANBI", "TIGNA", "MSTRS", "KANDY", "IRQ", "STUGE", "ALD"]
     },
     "sids": {
         "CHATT6": {
@@ -338,7 +368,7 @@
             "origin": "",
             "destination": "kags",
             "category": "arrival",
-            "route": "LIDAS.GAIRY2.IRQ",
+            "route": "LIDAS..ERWIN..GAIRY..IRQ",
             "altitude": 13000,
             "speed": 290,
             "method": "random",
@@ -380,7 +410,7 @@
             "origin": "",
             "destination": "kags",
             "category": "arrival",
-            "route": "SUG.V185.IRQ",
+            "route": "STYLZ.T209.WANSA",
             "altitude": 12000,
             "speed": 290,
             "method": "random",
@@ -525,7 +555,7 @@
             "origin": "kags",
             "destination": "",
             "category": "departure",
-            "route": "LAYUH..BOBBR.T290.BBOAT",
+            "route": "JACET.T290.MGM",
             "commands": {
                 "8": "fph",
                 "17": "fph",
@@ -537,9 +567,121 @@
             "method": "random",
             "rate": 1.5,
             "airlines": [
-                ["dal/short", 3],
-                ["edv", 3],
-                ["n/fastGA", 9]
+                ["n", 9]
+            ]
+        },
+        {
+            "origin": "kags",
+            "destination": "",
+            "category": "departure",
+            "route": "JACET.T292.REELL",
+            "commands": {
+                "8": "fph",
+                "17": "fph",
+                "26": "fph",
+                "35": "fph"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
+            ]
+        },
+        {
+            "origin": "kags",
+            "destination": "",
+            "category": "departure",
+            "route": "WANSA.T209.STYLZ",
+            "commands": {
+                "8": "fph",
+                "17": "fph",
+                "26": "fph",
+                "35": "fph"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
+            ]
+        },
+        {
+            "origin": "kags",
+            "destination": "",
+            "category": "departure",
+            "route": "WANSA.T410.LEDAS",
+            "commands": {
+                "8": "fph",
+                "17": "fph",
+                "26": "fph",
+                "35": "fph"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
+            ]
+        },
+        {
+            "origin": "kags",
+            "destination": "",
+            "category": "departure",
+            "route": "WANSA.T404.STEET",
+            "commands": {
+                "8": "fph",
+                "17": "fph",
+                "26": "fph",
+                "35": "fph"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
+            ]
+        },
+        {
+            "origin": "kags",
+            "destination": "",
+            "category": "departure",
+            "route": "LASHE.V18.HARAB",
+            "commands": {
+                "8": "fph",
+                "17": "fph",
+                "26": "fph",
+                "35": "fph"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
+            ]
+        },
+        {
+            "origin": "kags",
+            "destination": "",
+            "category": "departure",
+            "route": "BEANS.T209.DOVER",
+            "commands": {
+                "8": "fph",
+                "17": "fph",
+                "26": "fph",
+                "35": "fph"
+            },
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["n", 9]
             ]
         }
     ],
