@@ -24,5 +24,8 @@ export const ENVIRONMENT = {
      * @type {number}
      * @final
      */
-    DENSITY_ALT_INCREASE_FACTOR_PER_FT: 0.000016 // 0.16% per thousand feet
+    DENSITY_ALT_INCREASE_FACTOR_PER_FT: 0.000016, // 0.16% per thousand feet
+    DEFAULT_SEA_LEVEL_WIND_VECTOR_KT: [0, 0],
+    DEFAULT_SEA_LEVEL_TEMPERATURE_K: 288.15,
+    DEFAULT_SEA_LEVEL_PRESSURE_INHG: 29.92
 };
