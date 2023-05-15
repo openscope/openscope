@@ -1,0 +1,1238 @@
+{
+    "radio": {
+        "twr": "Porto Tower",
+        "app": "Porto Approach",
+        "dep": "Porto Approach"
+    },
+    "icao": "LPPR",
+    "iata": "OPO",
+    "magnetic_north": -2.0,
+    "ctr_radius": 80,
+    "ctr_ceiling": 24500,
+    "initial_alt": 10000,
+    "position": ["N41d14m08.00", "W008d40m41.00", "227ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N41d14m08.00", "W008d40m41.00"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": false,
+    "wind": {
+        "angle": 305,
+        "speed": 9
+    },
+    "arrivalRunway": "35",
+    "departureRunway": "35",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 245,
+            "airspace_class": "B",
+            "poly": [
+                ["N41d53m35.00", "W009d01m57.00"],
+
+                ["N41d52m21.00", "W008d51m26.00"],
+                ["N42d04m04.53", "W008d33m48.30"],
+                ["N42d08m23.33", "W008d13m41.84"],
+                ["N41d48m54.49", "W008d04m52.32"],
+                ["N41d53m53.30", "W007d45m11.50"],
+                ["N41d51m20.05", "W007d36m17.21"],
+                ["N41d51m45.00", "W007d27m08.00"],
+                ["N41d02m13.00", "W007d58m54.00"],
+				[41.034255100,  -7.983142500],	
+				[41.006826700,	-8.000706600],	
+				[40.980118400,	-8.020128500],	
+				[40.954202600,	-8.041356100],	
+				[40.929149200,	-8.064332300],	
+				[40.905026500,	-8.088995600],	
+				[40.881900200,	-8.115280200],	
+				[40.859833700,	-8.143115400],	
+				[40.838887400,	-8.172427100],	
+				[40.819119200,	-8.203136700],	
+				[40.800583900,	-8.235161600],	
+				[40.783332800,	-8.268416100],	
+				[40.767414200,	-8.302810600],	
+				[40.752872600,	-8.338252400],	
+				[40.739748900,	-8.374645700],	
+				[40.728080000,	-8.411892100],	
+				[40.717899000,	-8.449890600],	
+				[40.709234800,	-8.488538000],	
+				[40.702111900,	-8.527729000],	
+				[40.696550700,	-8.567357100],	
+				[40.692567000,	-8.607314100],	
+				[40.690172200,	-8.647490900],	
+				[40.689373200,	-8.687777800],	
+				[40.690172200,	-8.728064600],	
+				[40.692567000,	-8.768241500],	
+				[40.696550700,	-8.808198400],	
+				[40.702111900,	-8.847826500],	
+				[40.709234800,	-8.887017600],	
+				[40.717899000,	-8.925665000],	
+				[40.728080000,	-8.963663500],	
+				[40.739748900,	-9.000909900],	
+				[40.752872600,	-9.037303200],	
+				[40.767414200,	-9.072744900],	
+				[40.783332800,	-9.107139500],	
+				[40.800583800,	-9.140393900],	
+				[40.819119200,	-9.172418900],	
+				[40.838887400,	-9.203128400],	
+				[40.859833700,	-9.232440200],	
+				[40.881900200,	-9.260275400],	
+				[40.905026500,	-9.286559900],	
+				[40.929149200,	-9.311223300],	
+				[40.954202600,	-9.334199500],	
+				[40.980118400,	-9.355427000],	
+				[41.006826700,	-9.374849000],	
+				[41.034255100,	-9.392413000],	
+				[41.062330000,	-9.408071800],	
+				[41.090975700,	-9.421782400],	
+				[41.120115600,	-9.433507500],	
+				[41.149671400,	-9.443214300],	
+				[41.179564400,	-9.450875300],		
+                ["N41d12m14.00", "W009d27m20.00"],
+                ["N41d53m35.00", "W009d01m57.00"]
+            ]
+        }
+    ],
+    "fixes": {
+        "ABLEG": ["N40d43m21.57", "W008d25m52.21"],
+        "ABETO": ["N40.42981", "W8.05638"],
+        "ADNOV": ["N41d31m05.68", "W008d45m11.39"],
+        "ADORO": ["N41d28m59.00", "W006d16m48.00"],
+        "AKULU": ["N40d59m02.56", "W008d36m42.55"],
+        "ASMOV": ["N40d58m09.81", "W009d20m49.33"],
+        "ASPOR": ["N41d48m54.49", "W008d04m52.32"],
+        "BEDAL": ["N42d06m16.80", "W007d45m14.20"],
+        "BELDU": ["N41d21m30.63", "W007d46m38.02"],
+        "DIRMA": ["N40d51m06.00", "W009d30m03.00"],
+        "DIVUT": ["N41d01m42.79", "W008d19m33.37"],
+        "ELGIX": ["N41d31m16.35", "W007d40m22.55"],
+        "FINAM": ["N42d25m19.82", "W007d23m18.91"],
+        "INKIT": ["N41d10m49.05", "W007d53m26.91"],
+        "MALIS": ["N41d51m20.05", "W007d36m17.21"],
+ 		"MANIK": ["N40d41m30.65", "W008d36m58.21"],
+        "PESUL": ["N40d52m55.32", "W008d06m54.37"],
+        "PR541": ["N41d03m39.64", "W008d37m56.48"],
+        "PR542": ["N41d05m38.03", "W008d38m27.35"],
+        "PR543": ["N41d14m01.99", "W008d40m39.13"],
+        "PR544": ["N41d18m56.44", "W008d41m56.39"],
+        "PR611": ["N41d29m55.61", "W008d53m01.40"], 
+        "PR612": ["N41d32m15.21", "W008d37m21.09"],       
+        "PR613": ["N41d24m17.18", "W008d51m28.48"],
+        "PR614": ["N41d26m36.94", "W008d35m49.57"],
+        "PR615": ["N41d17m24.96", "W008d49m39.25"],
+        "PR616": ["N41d19m44.73", "W008d34m01.99"],
+        "PR618": ["N41d07m05.95", "W008d17m47.88"],
+        "PR631": ["N41d09m55.09", "W008d47m40.45"],
+        "PR633": ["N41d03m30.97", "W008d45m58.39"],
+        "PR634": ["N41d05m50.74", "W008d30m24.43"],
+        "PR635": ["N40d57m52.51", "W008d44m28.75"],
+        "PR636": ["N41d00m12.08", "W008d28m56.07"],
+        "PR637": ["N41d42m14.34", "W008d09m51.99"],
+        "PR638": ["N41d34m57.82", "W008d31m24.66"],
+        "PR640": ["N41d35m53.07", "W008d35m19.79"],
+        "PR641": ["N41d36m01.74", "W008d46m18.00"],
+        "PR643": ["N41d44m50.88", "W008d14m08.49"],
+        "PR646": ["N41d00m55.55", "W008d24m27.11"],
+        "PR650": ["N41d33m01.38", "W008d26m30.74"],
+        "PR653": ["N40d55m30.00", "W008d34m15.13"],
+        "PR655": ["N41d25m23.53", "W008d17m33.63"],
+        "PR656": ["N41d24m43.11", "W008d17m07.95"],
+        "PR658": ["N41d11m09.65", "W008d15m40.82"],
+        "PR660": ["N41d06m20.52", "W008d18m21.18"],
+        "PR662": ["N40d57m54.19", "W008d31m06.37"],
+        "PR664": ["N41d00m05.29", "W008d25m53.92"],
+        "PR665": ["N40d56m32.70", "W008d37m45.69"],
+        "PR674": ["N41d36m23.27", "W008d40m53.12"],
+        "PRT"  : ["N41d16m23.00", "W008d41m16.00"],
+        "RETMO": ["N41d13m40.07", "W009d00m49.71"],
+        "RIVRO": ["N40d37m22.00", "W006d43m22.00"],
+        "STG"  : ["N42d55m36.00", "W008d25m31.00"],
+        "TURON": ["N42d04m04.53", "W008d33m48.30"],
+        "UBANI": ["N41d33m28.27", "W009d14m22.27"],
+        "UDRUB": ["N41d25m27.33", "W008d43m39.16"],
+        "VASIP": ["N41d33m17.92", "W008d22m34.08"],
+        "VEDEL": ["N39d51m27.00", "W012d40m12.00"],
+        "VIS"  : ["N40d43m24.00", "W007d53m09.00"],
+        "XAMAX": ["N40d01m51.96", "W008d32m10.34"],
+        "XAPIM": ["N41d04m41.12", "W008d38m11.55"],
+        "XERES": ["N42d01m26.02", "W010d04m04.71"]
+    },
+    "restricted": [
+        {
+            "name": "LPR-40A",
+            "height": "2000ft",
+            "poly": [
+                ["N41d04m00.00", "W008d59m05.00"],
+                ["N41d04m00.00", "W008d45m59.00"],
+                ["N41d04m00.00", "W008d30m05.00"],
+                ["N40d52m51.00", "W008d30m05.00"],
+                ["N40d49m24.00", "W008d30m05.00"],
+                ["N40d49m24.00", "W008d59m05.00"],
+                ["N40d55m19.00", "W008d59m05.00"]
+            ]
+        }
+    ],
+    "runways": [
+        {
+            "name": ["17", "35"],
+            "end": [
+                ["N41d15m38.00", "W008d41m04.00", "151ft"],
+                ["N41d14m02.00", "W008d40m39.00", "227ft"]
+            ],
+            "ils": [true, false],
+            "glideslope": [2.70, 3.00]
+        }
+    ],
+    
+    
+    "sids": {
+    
+        "ASMOV2R": {
+            "icao": "ASMOV2R",
+            "name": "Asmov Two Romeo",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR633", "A40+"], ["ASMOV", "A100+"]],
+            "exitPoints": {
+                "ASMOV": []
+            },
+            "draw": [
+                ["XAPIM", "PR633", "ASMOV*"]
+            ]
+        },
+ 
+         "ASMOV2W": {
+            "icao": "ASMOV2W",
+            "name": "Asmov Two Whisky",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["PR613", "A40+"], ["ASMOV", "A100+"]],
+            "exitPoints": {
+                "ASMOV": []
+            },
+            "draw": [
+                ["UDRUB", "PR613", "ASMOV*"]
+            ]
+        },       
+        
+        "BELDU9E": {
+            "icao": "BELDU9E",
+            "name": "Beldu Niner Echo",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["PR614", "A40+"], ["PR656", "A70+"], ["BELDU", "A100+"]],
+            "exitPoints": {
+                "BELDU": []
+            },
+            "draw": [
+                ["UDRUB", "PR614", "PR656", "BELDU*"]
+            ]
+        },
+        
+        "BELDU9L": {
+            "icao": "BELDU9E",
+            "name": "Beldu Niner Lima",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR634", "A40+"], ["PR658", "A70+"], ["BELDU", "A100+"]],
+            "exitPoints": {
+                "BELDU": []
+            },
+            "draw": [
+                ["XAPIM", "PR634", "PR658", "BELDU*"]
+            ]
+        },
+        
+        "MANIK2E": {
+            "icao": "MANIK2E",
+            "name": "Manik Two Echo",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["PR614", "A40+"], ["PR634", "A70+"], ["MANIK", "A100+"]],
+            "exitPoints": {
+                "MANIK": []
+            },
+            "draw": [
+                ["UDRUB", "PR614", "PR634", "MANIK*"]
+            ]
+        },
+
+        "MANIK2R": {
+            "icao": "MANIK2R",
+            "name": "Manik Two Romeo",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR665", "A60+"], ["MANIK", "A100+"]],
+            "exitPoints": {
+                "MANIK": []
+            },
+            "draw": [
+                ["XAPIM", "PR665", "MANIK*"]
+            ]
+        },
+        
+        "MANIK2W": {
+            "icao": "MANIK2W",
+            "name": "Manik Two Whisky",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["PR613", "A40+"], ["PR633", "A70+"], ["MANIK", "A100+"]],
+            "exitPoints": {
+                "MANIK": []
+            },
+            "draw": [
+                ["UDRUB", "PR613", "PR633", "MANIK*"]
+            ]
+        },       
+
+        "PESUL9E": {
+            "icao": "PESUL9E",
+            "name": "Pesul Niner Echo",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["PR614", "A40+"], ["PR660", "A70+"], ["PESUL", "A100+"]],
+            "exitPoints": {
+                "PESUL": []
+            },
+            "draw": [
+                ["UDRUB", "PR614", "PR660", "PESUL*"]
+            ]
+        }, 
+
+        "PESUL9L": {
+            "icao": "PESUL9L",
+            "name": "Pesul Niner Lima",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR664", "A70+"], ["PESUL", "A100+"]],
+            "exitPoints": {
+                "PESUL": []
+            },
+            "draw": [
+                ["XAPIM", "PR664", "PESUL*"]
+            ]
+        },       
+        
+        "TURON9L": {
+            "icao": "TURON9L",
+            "name": "Turon Niner Lima",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR634", "A40+"], ["PR638", "A70+"], ["TURON", "A100+"]],
+            "exitPoints": {
+                "TURON": []
+            },
+            "draw": [
+                ["XAPIM", "PR634", "PR638", "TURON*"]
+            ]
+        },
+  
+        "TURON9E": {
+            "icao": "TURON9E",
+            "name": "Turon Niner Echo",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["PR674", "A70+"], ["TURON", "A100+"]],
+            "exitPoints": {
+                "TURON": []
+            },
+            "draw": [
+                ["UDRUB", "PR674", "TURON*"]
+            ]
+        },
+   
+        "TURON9R": {
+            "icao": "TURON9R",
+            "name": "Turon Niner Romeo",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR633", "A40+"], ["PR613", "A40+"], ["PR641", "A70+"], ["TURON", "A100+"]],
+            "exitPoints": {
+                "TURON": []
+            },
+            "draw": [
+                ["XAPIM", "PR633", "PR613", "PR641", "TURON*"]
+            ]
+        },
+        
+        "UBANI2R": {
+            "icao": "UBANI2R",
+            "name": "Ubani Two Romeo",
+            "rwy": {
+                "LPPR17": []
+            },
+            "body": [["XAPIM", "A30+"], ["PR633", "A40+"], ["UBANI", "A100+"]],
+            "exitPoints": {
+                "UBANI": []
+            },
+            "draw": [
+                ["XAPIM", "PR633", "UBANI*"]
+            ]
+        },
+        
+        "UBANI2W": {
+            "icao": "UBANI2W",
+            "name": "Ubani Two Whisky",
+            "rwy": {
+                "LPPR35": []
+            },
+            "body": [["UDRUB", "A30+"], ["UBANI", "A100+"]],
+            "exitPoints": {
+                "UBANI": []
+            },
+            "draw": [
+                ["UDRUB", "UBANI*"]
+            ]
+        }                          
+        
+        
+    },
+
+
+    "stars": {
+        "ABLEG3M": {
+            "icao": "ABLEG3M",
+            "name": "Ableg Tree Mike Transition",
+            "entryPoints": {
+                "ABLEG": []
+            },
+            "body": [["ABLEG", "A200"], ["PR635", "A110+"], ["PR615", "A70+"], ["PR613", "A40+"], ["PR611", "A40+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["ABLEG*", "PR635", "PR615", "PR613","PR611", "ADNOV"]
+            ]
+        },
+        
+        "ABLEG3T": {
+            "icao": "ABLEG3T",
+            "name": "Ableg Tree Tango Transition",
+            "entryPoints": {
+                "ABLEG": []
+            },
+            "body": [["ABLEG", "A200"], ["PR636", "A110+"], ["PR616", "A40+"], ["PR614", "A40+"], ["PR612", "A40+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["ABLEG*", "PR636", "PR616", "PR614", "PR612", "ADNOV"]
+            ]
+        },        
+        
+        
+        "ABLEG6C": {
+            "icao": "ABLEG6C",
+            "name": "Ableg Six Charlie Transition",
+            "entryPoints": {
+                "ABLEG": []
+            },
+            "body": [["ABLEG", "A120"], ["PR653", "A60+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["ABLEG*", "PR653", "AKULU"]
+            ]
+        },
+
+        "ASMOV3A": {
+            "icao": "ASMOV3A",
+            "name": "Asmov Tree Alpha Transition",
+            "entryPoints": {
+                "ASMOV": []
+            },
+            "body": [["ASMOV", "A120"], ["PR635", "A40+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["ASMOV*", "PR635", "AKULU"]
+            ]
+        },        
+ 
+        "ASMOV3M": {
+            "icao": "ASMOV3M",
+            "name": "Asmov Tree Mike Transition",
+            "entryPoints": {
+                "ASMOV": []
+            },
+            "body": [["ASMOV", "A120"], ["RETMO", "A70+"], ["PR611", "A40+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["ASMOV*", "RETMO", "PR611", "ADNOV"]
+            ]
+        },
+ 
+ 
+        
+        "ASPOR3T": {
+            "icao": "ASPOR3T",
+            "name": "Aspor Tree Tango Transition",
+            "entryPoints": {
+                "ASPOR": []
+            },
+            "body": [["ASPOR", "A120"], ["PR643", "A90+"], ["PR640", "A70+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["ASPOR*", "PR643", "PR640", "ADNOV"]
+            ]
+        },         
+        
+        
+         "ASPOR6A": {
+            "icao": "ASPOR6A",
+            "name": "Aspor Six Alpha Transition",
+            "entryPoints": {
+                "ASPOR": []
+            },
+            "body": [["ASPOR", "A200"], ["PR611", "A110+"], ["PR631", "A70+"], ["PR633", "A40+"], ["PR635", "A40+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["ASPOR*","PR611", "PR631", "PR633", "PR635", "AKULU"]
+            ]
+        },
+        
+        "ASPOR6C": {
+            "icao": "ASPOR6C",
+            "name": "Aspor Six Charlie Transition",
+            "entryPoints": {
+                "ASPOR": []
+            },
+            "body": [["ASPOR", "A200"], ["PR637", "A90+"], ["PR655", "A70+"], ["PR636", "A40+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["ASPOR*","PR637", "PR655", "PR636", "AKULU"]
+            ]
+        },                    
+ 
+        "ELGIX3T": {
+            "icao": "ELGIX3T",
+            "name": "Elgix Tree Tango Transition",
+            "entryPoints": {
+                "ELGIX": []
+            },
+            "body": [["ELGIX", "A120"], ["VASIP", "A80+"], ["PR650", "A70+"], ["PR612", "A40+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["ELGIX*", "VASIP", "PR650", "PR612", "ADNOV"]
+            ]
+        },
+  
+        "INKIT6C": {
+            "icao": "INKIT6C",
+            "name": "Inkit Six Charlie Transition",
+            "entryPoints": {
+                "INKIT": []
+            },
+            "body": [["INKIT", "A120"], ["DIVUT", "A80+"], ["PR646", "A70+"], ["PR636", "A40+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["INKIT*","DIVUT", "PR646", "PR636", "AKULU"]
+            ]
+        },    
+
+        "MALIS5C": {
+            "icao": "MALIS5C",
+            "name": "Malis Five Charlie Transition",
+            "entryPoints": {
+                "MALIS": []
+            },
+            "body": [["MALIS", "A200"], ["DIVUT", "A90+"], ["PR646", "A70+"], ["PR636", "A40+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["MALIS*", "DIVUT", "PR646", "PR636", "AKULU"]
+            ]
+        },
+
+        
+        "MALIS5T": {
+            "icao": "MALIS5T",
+            "name": "Malis Five Tango Transition",
+            "entryPoints": {
+                "MALIS": []
+            },
+            "body": [["MALIS", "A120"], ["VASIP", "A80+"], ["PR650", "A70+"], ["PR612", "A40+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["MALIS*", "VASIP", "PR650", "PR612", "ADNOV"]
+            ]
+        },
+         
+        "PESUL4T": {
+            "icao": "PESUL4T",
+            "name": "Pesul Four Tango Transition",
+            "entryPoints": {
+                "PESUL": []
+            },
+            "body": [["PESUL", "A200"], ["PR618", "A70+"], ["PR612", "A40+"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["PESUL*", "PR618", "PR612", "ADNOV"]
+            ]
+        },
+        
+        "PESUL6C": {
+            "icao": "PESUL6C",
+            "name": "Pesul Six Charlie Transition",
+            "entryPoints": {
+                "PESUL": []
+            },
+            "body": [["PESUL", "A120"], ["PR662", "A70+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["PESUL*", "PR662", "AKULU"]
+            ]
+        },
+                
+        "UBANI3A": {
+            "icao": "UBANI3A",
+            "name": "Ubani Tree Alpha Transition",
+            "entryPoints": {
+                "UBANI": []
+            },
+            "body": [["UBANI", "A120"], ["RETMO", "A70+"], ["PR635", "A40+"], ["AKULU", "A40+|S220-"]],
+            "rwy": {
+                "LPPR35": []
+            },
+            "draw": [
+                ["UBANI*", "RETMO", "PR635", "AKULU"]
+            ]
+        },          
+                
+        "UBANI3M": {
+            "icao": "UBANI3M",
+            "name": "Ubani Tree Mike Transition",
+            "entryPoints": {
+                "UBANI": []
+            },
+            "body": [["UBANI", "A120"], ["ADNOV", "A40+|S220-"]],
+            "rwy": {
+                "LPPR17": []
+            },
+            "draw": [
+                ["UBANI*", "ADNOV"]
+            ]
+        }                          
+                         
+        
+  },
+  
+  
+  "spawnPatterns": [
+       {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.BELDU9E.BELDU..ADORO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.75,
+            "airlines": [
+            ["ezy", 13],
+            ["dlh/a20n", 1],
+            ["lgl/b738", 1], 
+            ["ryr", 12],
+            ["swr/a320", 3],    
+            ["tap/airbusShort", 1],    
+            ["tra", 1],               
+			["thy/b39m", 1],
+            ["vlg", 3], 
+            ["wzz", 1]
+            ]
+        },
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.ASMOV2W.ASMOV..DIRMA..VEDEL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.25,
+            "airlines": [
+            ["ezy", 2],
+            ["ryr", 3],
+            ["tap/airbusShort", 4],
+            ["tra", 1]              
+            ]
+        },        
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.PESUL9E.PESUL..VIS..RIVRO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.25,
+            "airlines": [
+            ["ezy", 2],
+            ["ibe/short", 3],            
+            ["ryr", 6]
+            ]
+        },         
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.MANIK2E.MANIK..XAMAX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["ryr", 2],
+            ["tap/short", 8]
+            ]
+        },  
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.MANIK2W.MANIK..XAMAX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+            ["ryr", 2],
+            ["tap/short", 8]
+            ]
+        },
+       {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.TURON9E.TURON..STG",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.75,
+            "airlines": [
+            ["afr/a319", 1],
+            ["baw/short", 1],
+            ["bel/short", 2],
+            ["dlh/a321", 3],
+            ["ezy", 9], 
+            ["ewg/a319", 1],
+            ["klm/b738", 2],
+            ["klm/e190", 2],
+            ["ryr", 16],
+            ["tap/airbusShort", 5],    
+            ["tra", 8],               
+			["vlg", 1] 
+            ]
+        },              
+       {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR35.UBANI2W.UBANI..XERES",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.25,
+            "airlines": [
+            ["tap/long", 1],
+            ["ual/long", 1]
+            ]
+        },    
+ 
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "XAMAX..ABLEG.ABLEG6C.LPPR35",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 1,
+        "airlines": [
+            ["ryr", 2],
+            ["tap/short", 8]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "FINAM..BEDAL..ASPOR.ASPOR6A.LPPR35",
+        "altitude": "20000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["afr/a319", 1],
+            ["baw/short", 1],
+            ["bel/short", 2],
+            ["dlh/a321", 3],
+            ["ezy", 9], 
+            ["ewg/a319", 1],
+            ["klm/b738", 2],
+            ["klm/e190", 2],
+            ["ryr", 16],
+            ["tap/airbusShort", 5],    
+            ["tra", 8],               
+			["vlg", 1] 
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "FINAM..BEDAL..ASPOR.ASPOR6C.LPPR35",
+        "altitude": "20000",
+        "speed": "320",
+        "method": "random",
+        "rate": 4.75,
+        "airlines": [
+            ["afr/a319", 1],
+            ["baw/short", 1],
+            ["bel/short", 2],
+            ["dlh/a321", 3],
+            ["ezy", 9], 
+            ["ewg/a319", 1],
+            ["klm/b738", 2],
+            ["klm/e190", 2],
+            ["ryr", 16],
+            ["tap/airbusShort", 5],    
+            ["tra", 8],               
+			["vlg", 1] 
+            ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "ADORO..INKIT.INKIT6C.LPPR35",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 3.75,
+        "airlines": [
+            ["ezy", 13],
+            ["dlh/a20n", 1],
+            ["lgl/b738", 1], 
+            ["ryr", 12],
+            ["swr/a320", 3],    
+            ["tap/airbusShort", 1],    
+            ["tra", 1],               
+			["thy/b39m", 1],
+            ["vlg", 3], 
+            ["wzz", 1]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "VEDEL..DIRMA..ASMOV.ASMOV3A.LPPR35",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 1.25,
+        "airlines": [
+            ["ezy", 2],
+            ["ryr", 3],
+            ["tap/airbusShort", 4],
+            ["tra", 1]              
+
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "MALIS.MALIS5C.LPPR35",
+        "altitude": "20000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["cfg", 1]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "RIVRO..PESUL.PESUL6C.LPPR35",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 1.25,
+        "airlines": [
+            ["ezy", 2],
+            ["ibe/short", 3],            
+            ["ryr", 6]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "XERES..UBANI.UBANI3A.LPPR35",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0.25,
+        "airlines": [
+            ["tap/long", 1],
+            ["ual/long", 1]
+        ]
+    },
+    
+    
+    
+    {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.BELDU9L.BELDU..ADORO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["ezy", 13],
+            ["dlh/a20n", 1],
+            ["lgl/b738", 1], 
+            ["ryr", 12],
+            ["swr/a320", 3],    
+            ["tap/airbusShort", 1],    
+            ["tra", 1],               
+			["thy/b39m", 1],
+            ["vlg", 3], 
+            ["wzz", 1]
+            ]
+        },
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.ASMOV2R.ASMOV..DIRMA..VEDEL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["ezy", 2],
+            ["ryr", 3],
+            ["tap/airbusShort", 4],
+            ["tra", 1]              
+            ]
+        },        
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.PESUL9L.PESUL..VIS..RIVRO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["ezy", 2],
+            ["ibe/short", 3],            
+            ["ryr", 6]
+            ]
+        },         
+      {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.MANIK2R.MANIK..XAMAX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["ryr", 2],
+            ["tap/short", 8]
+            ]
+        },  
+       {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.TURON9L.TURON..STG",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["afr/a319", 1],
+            ["baw/short", 1],
+            ["bel/short", 2],
+            ["dlh/a321", 3],
+            ["ezy", 9], 
+            ["ewg/a319", 1],
+            ["klm/b738", 2],
+            ["klm/e190", 2],
+            ["ryr", 16],
+            ["tap/airbusShort", 5],    
+            ["tra", 8],               
+			["vlg", 1] 
+            ]
+        },
+       {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.TURON9R.TURON..STG",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["afr/a319", 1],
+            ["baw/short", 1],
+            ["bel/short", 2],
+            ["dlh/a321", 3],
+            ["ezy", 9], 
+            ["ewg/a319", 1],
+            ["klm/b738", 2],
+            ["klm/e190", 2],
+            ["ryr", 16],
+            ["tap/airbusShort", 5],    
+            ["tra", 8],               
+			["vlg", 1] 
+            ]
+        },                      
+       {
+            "origin": "LPPR",
+            "destination": "",
+            "category": "departure",
+            "route": "LPPR17.UBANI2R.UBANI..XERES",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+            ["tap/long", 1],
+            ["ual/long", 1]
+            ]
+        },    
+ 
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "XAMAX..ABLEG.ABLEG3M.LPPR17",
+        "altitude": "20000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["ryr", 2],
+            ["tap/short", 8]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "XAMAX..ABLEG.ABLEG3T.LPPR17",
+        "altitude": "20000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["ryr", 2],
+            ["tap/short", 8]
+        ]
+    },     
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "FINAM..BEDAL..ASPOR.ASPOR3T.LPPR17",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["afr/a319", 1],
+            ["baw/short", 1],
+            ["bel/short", 2],
+            ["dlh/a321", 3],
+            ["ezy", 9], 
+            ["ewg/a319", 1],
+            ["klm/b738", 2],
+            ["klm/e190", 2],
+            ["ryr", 16],
+            ["tap/airbusShort", 5],    
+            ["tra", 8],               
+			["vlg", 1] 
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "ADORO..ELGIX.ELGIX3T.LPPR17",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["ezy", 13],
+            ["dlh/a20n", 1],
+            ["lgl/b738", 1], 
+            ["ryr", 12],
+            ["swr/a320", 3],    
+            ["tap/airbusShort", 1],    
+            ["tra", 1],               
+			["thy/b39m", 1],
+            ["vlg", 3], 
+            ["wzz", 1]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "VEDEL..DIRMA..ASMOV.ASMOV3M.LPPR17",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["ezy", 2],
+            ["ryr", 3],
+            ["tap/airbusShort", 4],
+            ["tra", 1]              
+
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "MALIS.MALIS5T.LPPR17",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["cfg", 1]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "RIVRO..PESUL.PESUL4T.LPPR17",
+        "altitude": "20000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["ezy", 2],
+            ["ibe/short", 3],            
+            ["ryr", 6]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "LPPR",
+        "category": "arrival",
+        "route": "XERES..UBANI.UBANI3M.LPPR17",
+        "altitude": "12000",
+        "speed": "320",
+        "method": "random",
+        "rate": 0,
+        "airlines": [
+            ["tap/long", 1],
+            ["ual/long", 1]
+        ]
+    } 
+    
+    
+                                                 
+    ],
+    
+    
+  "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
+                ["N41d05m38.03", "W008d38m27.35", 41.09864807259, -8.60846595459],
+                ["N41d05m38.03", "W008d38m27.35", 41.0891372355, -8.67339047808], 
+                ["N41d14m02.00", "W008d40m39.00", 40.86557529644, -8.58284072228],
+                ["N41d15m38.00", "W008d41m04.00", 41.6287657547, -8.78020701481],
+                [41.37956905887, -8.74921047547, 41.3890981876, -8.68400272758],
+                ["N41d23m00.00", "W008d51m00.00", "N41d23m00.00", "W008d35m01.00"],
+                ["N41d23m00.00", "W008d35m01.00", "N41d04m00.00", "W008d30m05.00"],
+                ["N41d04m00.00", "W008d30m05.00", "N41d04m00.00", "W008d45m59.00"],
+                ["N41d04m00.00", "W008d45m59.00", "N41d23m00.00", "W008d51m00.00"],
+                ["N41d16.5300", "W007d43.2000", 41.34641904195, -7.68747047848],
+                ["N41d16.5300", "W007d43.2000", 41.20457098819, -7.75245947574],
+                [41.34371326324, -7.67700527422, 41.34912391283, -7.69793652859],
+                [41.20727585697, -7.76290292312, 41.20186514982, -7.74201689826],
+                [41.27414723552, -7.71477294682, 41.27685256442, -7.72522725191],
+                
+                ["N40d43.5300", "W007d53.3400", 40.65049731432, -7.88554779138],
+                ["N40d43.5300", "W007d53.3400", 40.80050160678, -7.89245988227],
+                [40.65020691152, -7.89648959473, 40.65078669024, -7.87460589378],
+                [40.80079098597, -7.88149339032, 40.80021121362, -7.9034262801],
+                [40.72564479314, -7.88352292484, 40.72535490532, -7.89447704949],
+             
+                ["N41d35.2200", "W008d26.7100", 41.61857830783, -8.35447919631],
+                ["N41d35.2200", "W008d26.7100", 41.55535025779, -8.53576582565],
+                [41.62612899562, -8.35919085664, 41.6110270666, -8.34976963263],
+                [41.56290138039, -8.54047189115, 41.54779852562, -8.53106201347],
+                [41.58322438627, -8.44281288861, 41.59077557422, -8.4475206872],
+                
+                ["N40d39.4300", "W008d44.5000", 40.7296364038, -8.76729213515],
+                ["N40d39.4300", "W008d44.5000", 40.5846903894, -8.71609637016],
+                [40.72748550571, -8.77788246269, 40.73178637437, -8.75670114152], 
+                [40.58684040359, -8.70552827078, 40.58253940532, -8.7266637918],
+                [40.65824174504, -8.73637697478, 40.65609134261, -8.7469561876], 
+                          
+                ["N41d16.7500", "W008d31.0300", 41.34712253215, -8.55938192038],
+                ["N41d16.7500", "W008d31.0300", 41.21119464665, -8.47503863123],
+                [41.34536608519, -8.56439904335, 41.34887881354, -8.55436456085],
+                [41.21295094702, -8.47003165718, 41.20943815029, -8.48004535114],
+                [41.28092293536, -8.51215449452, 41.27741017764, -8.52217856909]                     
+                
+            ]
+        }
+    ]
+}
