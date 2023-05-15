@@ -26,6 +26,7 @@ import {
 } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../../src/assets/scripts/client/constants/airportConstants';
 import { DEFAULT_HOLD_PARAMETERS } from '../../src/assets/scripts/client/constants/waypointConstants';
+import { degreesToRadians } from '../../src/assets/scripts/client/utilities/unitConverters';
 
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
 
@@ -253,54 +254,60 @@ ava('.isEstablishedOnCourse() returns false when no arrival runway has been assi
     t.false(result);
 });
 
-// using `sinon.stub` directly for these tests because the stubs via `sandbox` are not getting restored
-// in time for the next assertion that is also stubbing the same methods
 ava('.isEstablishedOnCourse() returns false when neither aligned with approach course nor on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(false);
-    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(false);
+    model.mcp.nav1Datum = model.fms.arrivalRunwayModel.positionModel;
+    model.mcp.course = model.fms.arrivalRunwayModel.angle;
+    model.heading = degreesToRadians(134);
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
-
-    isOnApproachCourseStub.restore();
-    isOnCorrectApproachGroundTrackStub.restore();
-});
-
-ava('.isEstablishedOnCourse() returns false when aligned with approach course but not on approach heading', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(true);
-    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(false);
-    const result = model.isEstablishedOnCourse();
-
-    t.false(result);
-
-    isOnApproachCourseStub.restore();
-    isOnCorrectApproachGroundTrackStub.restore();
 });
 
 ava('.isEstablishedOnCourse() returns false when on approach heading but not aligned with approach course', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(false);
-    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(true);
+    model.mcp.nav1Datum = model.fms.arrivalRunwayModel.positionModel;
+    model.mcp.course = model.fms.arrivalRunwayModel.angle;
+    model.heading = model.fms.arrivalRunwayModel.angle;
     const result = model.isEstablishedOnCourse();
 
     t.false(result);
+});
 
-    isOnApproachCourseStub.restore();
-    isOnCorrectApproachGroundTrackStub.restore();
+ava('.isEstablishedOnCourse() returns false when aligned with approach course but not on approach heading', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const { arrivalRunwayModel } = model.fms;
+    const distanceOnFinalNm = 7;
+    const runwayPositionModel = arrivalRunwayModel.positionModel;
+    const magneticBearingFromRunway = arrivalRunwayModel.oppositeAngle;
+
+    model.positionModel.setCoordinates(runwayPositionModel.gps);
+    model.positionModel.setCoordinatesByBearingAndDistance(magneticBearingFromRunway, distanceOnFinalNm);
+    model.mcp.nav1Datum = model.fms.arrivalRunwayModel.positionModel;
+    model.mcp.course = model.fms.arrivalRunwayModel.angle;
+    model.heading = degreesToRadians(134);
+
+    const result = model.isEstablishedOnCourse();
+
+    t.false(result);
 });
 
 ava('.isEstablishedOnCourse() returns true when aligned with approach course and on approach heading', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const isOnApproachCourseStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnApproachCourse').returns(true);
-    const isOnCorrectApproachGroundTrackStub = sinon.stub(model.fms.arrivalRunwayModel, 'isOnCorrectApproachGroundTrack').returns(true);
+    const { arrivalRunwayModel } = model.fms;
+    const distanceOnFinalNm = 7;
+    const runwayPositionModel = arrivalRunwayModel.positionModel;
+    const magneticBearingFromRunway = arrivalRunwayModel.oppositeAngle;
+
+    model.positionModel.setCoordinates(runwayPositionModel.gps);
+    model.positionModel.setCoordinatesByBearingAndDistance(magneticBearingFromRunway, distanceOnFinalNm);
+    model.mcp.nav1Datum = model.fms.arrivalRunwayModel.positionModel;
+    model.mcp.course = model.fms.arrivalRunwayModel.angle;
+    model.heading = model.fms.arrivalRunwayModel.angle;
+
     const result = model.isEstablishedOnCourse();
 
     t.true(result);
-
-    isOnApproachCourseStub.restore();
-    isOnCorrectApproachGroundTrackStub.restore();
 });
 
 ava('.isEstablishedOnGlidepath() returns false when too far above glideslope', (t) => {
@@ -421,11 +428,11 @@ ava('.isOnFinal() returns true when both on the selected course and within the f
 
 ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const runwayElevationMock = 2157;
-    const expectedResult = 2261.980164261595 + runwayElevationMock;
+    const runwayElevationMock = 2157.0;
+    const expectedResult = 2229.04787220479 + runwayElevationMock;
     model.fms.arrivalRunwayModel._positionModel.elevation = runwayElevationMock;
 
-    t.true(model.fms.arrivalRunwayModel.name === '07R');
+    t.true(model.fms.arrivalRunwayModel.name === '25R');
 
     const { arrivalRunwayModel } = model.fms;
     const distanceOnFinalNm = 7;
@@ -437,7 +444,7 @@ ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s
 
     const result = model._calculateArrivalRunwayModelGlideslopeAltitude();
 
-    t.true(result === expectedResult);
+    t.true(Math.abs(expectedResult - result) < 0.000001);
 });
 
 ava('.matchCallsign() returns false when passed a flightnumber that is not included in #callsign', (t) => {

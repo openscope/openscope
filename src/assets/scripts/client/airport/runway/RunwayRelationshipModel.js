@@ -81,7 +81,7 @@ export default class RunwayRelationshipModel {
      * @param comparatorRunway {RunwayModel}
      */
     calculateRelationshipValues(primaryRunway, comparatorRunway) {
-        const offset = getOffset(primaryRunway, comparatorRunway.relativePosition, primaryRunway.angle);
+        const offset = getOffset(primaryRunway.positionModel, comparatorRunway.positionModel, primaryRunway.angle);
 
         this.lateral_dist = abs(offset[0]);
         this.straight_dist = abs(offset[2]);

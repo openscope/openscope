@@ -388,15 +388,23 @@ export default class AircraftCommander {
      */
     runExpectArrivalRunway(aircraft, data) {
         const airportModel = AirportController.airport_get();
-        const runwayName = data[0];
-        const runwayModel = airportModel.getRunway(runwayName);
+        const name = data[0].toUpperCase();
+
+        if (NavigationLibrary.hasProcedure(name)) {
+            const response = aircraft.pilot.applyApproachProcedure(name);
+            const runwayModel = aircraft.fms.arrivalRunwayModel;
+            aircraft.pilot.updateStarLegForArrivalRunway(aircraft, runwayModel);
+            return response;
+        }
+
+        const runwayModel = airportModel.getRunway(name);
 
         if (_isNil(runwayModel)) {
             const previousRunwayModel = aircraft.fms.arrivalRunwayModel;
             const readback = {};
-            readback.log = `unable to find Runway ${runwayName} on our charts, ` +
+            readback.log = `unable to find Procedure or Runway ${name} on our charts, ` +
                 `expecting Runway ${previousRunwayModel.name} instead`;
-            readback.say = `unable to find Runway ${radio_runway(runwayName)} on our ` +
+            readback.say = `unable to find Procedure or Runway ${radio_runway(name)} on our ` +
                 `charts, expecting Runway ${previousRunwayModel.getRadioName()} instead`;
 
             return [false, readback];
@@ -746,9 +754,16 @@ export default class AircraftCommander {
      * @param data {array}
      */
     runIls(aircraft, data) {
+        const name = data[1].toUpperCase();
+
+        if (NavigationLibrary.hasProcedure(name)) {
+            const runwayModel = aircraft.fms.arrivalRunwayModel;
+
+            return aircraft.pilot.conductInstrumentApproach(aircraft, name, runwayModel);
+        }
+
         const approachType = 'ils';
-        const runwayName = data[1].toUpperCase();
-        const runwayModel = AirportController.airport_get().getRunway(runwayName);
+        const runwayModel = AirportController.airport_get().getRunway(name);
 
         return aircraft.pilot.conductInstrumentApproach(aircraft, approachType, runwayModel);
     }

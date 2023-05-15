@@ -6,6 +6,7 @@ import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import HoldCollection from './HoldCollection';
+import LocalizerCollection from './LocalizerCollection';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
 /**
@@ -142,6 +143,26 @@ export default class ProcedureModel {
          */
         this._altitude = null;
 
+        /**
+         * The localizer to use, if applicable (only for IAPs)
+         *
+         * @property _localizer
+         * @type {String}
+         * @default null
+         * @private
+         */
+        this._localizer = null;
+
+        /**
+         * The type or subtype (i.e. ils, rnav, etc) of this procedure (currently only for IAPs)
+         *
+         * @property _type
+         * @type {String}
+         * @default null
+         * @private
+         */
+        this._type = null;
+
         this.init(procedureType, data);
     }
 
@@ -190,6 +211,32 @@ export default class ProcedureModel {
     }
 
     /**
+     * Return value of `#_type`
+     *
+     * @for ProcedureModel
+     * @property type
+     * @type {string}
+     */
+    get type() {
+        return this._type;
+    }
+
+    /**
+     * Return value of `#_localizer`
+     *
+     * @for ProcedureModel
+     * @property localizer
+     * @type {LocalizerModel}
+     */
+    get localizer() {
+        if (this._localizer) {
+            return LocalizerCollection.findLocalizerByName(this._localizer);
+        }
+
+        return null;
+    }
+
+    /**
      * Return value of `#_altitude`
      *
      * @for ProcedureModel
@@ -218,12 +265,16 @@ export default class ProcedureModel {
         this._icao = data.icao;
         this._name = data.name;
         this._altitude = data.altitude;
+        this._type = data.type;
+        this._localizer = data.localizer;
         this._procedureType = procedureType;
 
         if (this._procedureType === PROCEDURE_TYPE.SID) {
             return this._initEntriesAndExitsForSid(data);
         } else if (this._procedureType === PROCEDURE_TYPE.STAR) {
             return this._initEntriesAndExitsForStar(data);
+        } else if (this._procedureType === PROCEDURE_TYPE.IAP) {
+            return this._initEntriesAndExitsForIap(data);
         }
 
         throw new TypeError('Expected procedure definition with known type, ' +
@@ -248,6 +299,15 @@ export default class ProcedureModel {
         this._altitude = null;
 
         return this;
+    }
+
+    /**
+     *  Returns if this procedure references a localizer
+     *
+     *  @return {Boolean}
+     */
+    hasLocalizer() {
+        return !!(this._localizer && LocalizerCollection.findLocalizerByName(this._localizer));
     }
 
     /**
@@ -276,6 +336,22 @@ export default class ProcedureModel {
      * @chainable
      */
     _initEntriesAndExitsForStar(data) {
+        this._entryPoints = data.entryPoints;
+        this._exitPoints = data.rwy;
+
+        return this;
+    }
+
+    /**
+     * Initialize `#_entryPoints` and `#_exitPoints` for 'IAP' procedure
+     *
+     * @for ProcedureModel
+     * @method _initEntriesAndExitsForIap
+     * @param data {object} JSON data from airport file
+     * @private
+     * @chainable
+     */
+    _initEntriesAndExitsForIap(data) {
         this._entryPoints = data.entryPoints;
         this._exitPoints = data.rwy;
 
@@ -321,6 +397,18 @@ export default class ProcedureModel {
         const randomIndex = _random(0, maxIndex);
 
         return exitNames[randomIndex];
+    }
+
+    /**
+     * Return the name of the fix decorated as the FAF in an IAP
+     *
+     * @for ProcedureModel
+     * @method getFinalApproachFix
+     * @return {WaypointModel}
+     */
+    getFinalApproachFix() {
+        const waypoints = this.getWaypointModelsForEntryAndExit(this.getFirstEntryPoint(), this.getRandomExitPoint());
+        return waypoints.find((w) => w.isFafWaypoint);
     }
 
     /**
@@ -600,6 +688,6 @@ export default class ProcedureModel {
             return;
         }
 
-        return restrictedFix.replace('^', '').replace('@', '');
+        return restrictedFix.replace('^', '').replace('@', '').replace('*', '');
     }
 }

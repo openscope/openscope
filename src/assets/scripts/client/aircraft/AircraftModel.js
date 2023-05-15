@@ -950,28 +950,21 @@ export default class AircraftModel {
      */
     isEstablishedOnCourse() {
         const runwayModel = this.fms.arrivalRunwayModel;
+        const courseDatum = this.mcp.nav1Datum;
 
-        if (!runwayModel) {
+        if (!runwayModel || !courseDatum) {
             return false;
         }
 
-        // TODO: the `this` here is ugly, but will be needed until `getOffset`
-        // is refactored (#291 - https://github.com/openscope/openscope/issues/291)
-        // TODO: The methods called here should be moved to the AircraftModel,
-        // so that it can also be used for non-runway course interception
-        return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachGroundTrack(this.groundTrack);
+        const { course } = this.mcp;
+        const courseOffset = getOffset(this.positionModel, courseDatum, course);
+        const lateralDistanceFromCourse_nm = abs(nm(courseOffset[0]));
+        const allowableLateralDistanceFromCourse = PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= allowableLateralDistanceFromCourse;
+        const heading_diff = abs(angle_offset(this.heading, course));
+        const isOnCourseHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
 
-        // TODO: Use this instead
-        // const courseDatum = this.mcp.nav1Datum;
-        // const course = this.mcp.course;
-        // const courseOffset = getOffset(this, courseDatum.relativePosition, course);
-        // const lateralDistanceFromCourse_nm = abs(nm(courseOffset[0]));
-        // const allowableLateralDistanceFromCourse = PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        // const isAlignedWithCourse = lateralDistanceFromCourse_nm <= allowableLateralDistanceFromCourse;
-        // const heading_diff = abs(angle_offset(this.heading, course));
-        // const isOnCourseHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
-        //
-        // return isAlignedWithCourse && isOnCourseHeading;
+        return isAlignedWithCourse && isOnCourseHeading;
     }
 
     /**
@@ -1598,11 +1591,9 @@ export default class AircraftModel {
      */
     _calculateArrivalRunwayModelGlideslopeAltitude() {
         const runwayModel = this.fms.arrivalRunwayModel;
-        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const offset = getOffset(this.positionModel, runwayModel.positionModel, runwayModel.angle);
         const distanceOnFinalKm = offset[1];
-        const glideslopeAltitude = runwayModel.getGlideslopeAltitude(distanceOnFinalKm);
-
-        return glideslopeAltitude;
+        return runwayModel.defaultLocalizer.getGlideslopeAltitude(distanceOnFinalKm);
     }
 
     /**
@@ -1833,7 +1824,7 @@ export default class AircraftModel {
     _calculateTargetedHeadingToInterceptCourse() {
         // Guide aircraft onto the localizer
         const { course, nav1Datum } = this.mcp;
-        const courseOffset = getOffset(this, nav1Datum.relativePosition, course);
+        const courseOffset = getOffset(this.positionModel, nav1Datum, course);
         const lateralDistanceFromCourseNm = nm(courseOffset[0]);
         const headingDifference = angle_offset(course, this.heading);
         const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(nav1Datum);
@@ -1965,7 +1956,7 @@ export default class AircraftModel {
         const { inboundHeading, legLength } = holdParameters;
         const outboundHeading = radians_normalize(inboundHeading + Math.PI);
         const groundTrack = radians_normalize(this.groundTrack);
-        const offset = getOffset(this, waypointRelativePosition, inboundHeading);
+        const offset = getOffset(this.positionModel, currentWaypoint.positionModel, inboundHeading);
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
@@ -2019,7 +2010,7 @@ export default class AircraftModel {
      */
     _calculateTargetedAltitudeDuringLanding() {
         const runwayModel = this.fms.arrivalRunwayModel;
-        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const offset = getOffset(this.positionModel, runwayModel.positionModel, runwayModel.angle);
         const distanceOnFinal_km = offset[1];
 
         if (distanceOnFinal_km > 0) {
@@ -2186,7 +2177,7 @@ export default class AircraftModel {
      */
     _calculateTargetedGroundTrackDuringLanding() {
         const runwayModel = this.fms.arrivalRunwayModel;
-        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const offset = getOffset(this.positionModel, runwayModel.positionModel, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
         if (distanceOnFinal_nm > 0) {
@@ -2208,7 +2199,7 @@ export default class AircraftModel {
     _calculateTargetedSpeedDuringLanding() {
         let startSpeed = this.speed;
         const runwayModel = this.fms.arrivalRunwayModel;
-        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const offset = getOffset(this.positionModel, runwayModel.positionModel, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
         const stableApproachTimeHours = PERFORMANCE.STABLE_APPROACH_TIME_SECONDS * TIME.ONE_SECOND_IN_HOURS;
         const stableApproachDistance = this.model.speed.landing * stableApproachTimeHours;

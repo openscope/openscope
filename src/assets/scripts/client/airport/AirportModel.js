@@ -10,6 +10,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import LocalizerCollection from '../navigationLibrary/LocalizerCollection';
 import MapCollection from './MapCollection';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
@@ -365,6 +366,7 @@ export default class AirportModel {
         }
 
         this.setCurrentPosition(data.position, degreesToRadians(data.magnetic_north));
+        this._initializeLocalizerCollection(data.localizers);
 
         this.airac = _get(data, 'airac', this.airac);
         this.radio = _get(data, 'radio', this.radio);
@@ -931,5 +933,15 @@ export default class AirportModel {
      */
     distance2d(point) {
         return distance2d(point, this.relativePosition);
+    }
+
+    /**
+     *
+     * @for AirportModel
+     * @method _initializeLocalizerCollection
+     * @param localizers {object} - localizers to add to the collection.
+     */
+    _initializeLocalizerCollection(localizers) {
+        LocalizerCollection.addItems(localizers, this.positionModel);
     }
 }

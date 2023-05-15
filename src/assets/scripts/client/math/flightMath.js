@@ -13,6 +13,7 @@ import {
     vlen
 } from './vector';
 import {
+    km,
     degreesToRadians,
     radiansToDegrees
 } from '../utilities/unitConverters';
@@ -86,31 +87,26 @@ export function bearingToPoint(startPosition, endPosition) {
 }
 
 // TODO: this may be better suited to live in an Aircraft model somewhere.
-// TODO: This is goofy like this. Should be changed to accept (PositionModel, PositionModel, heading)
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
  *
- * @param aircraft {AircraftModel}      the aircraft in question
- * @param target {array}                        positional array of the targeted position [x,y]
- * @param headingThruTarget {number} (optional) The heading the aircraft should
+ * @param source {DynamicPositionModel}         the aircraft position
+ * @param target {DynamicPositionModel}                        positional array of the targeted position [x,y]
+ * @param heading {number} (optional) The heading the aircraft should
  *                                              be established on when passing the target.
  *                                              Default value is the aircraft's heading.
  * @returns {array}                             [0] is the lateral offset, in km
  *                                              [1] is the longitudinal offset, in km
  *                                              [2] is the hypotenuse (straight-line distance), in km
  */
-export function getOffset(aircraft, target, headingThruTarget = null) {
-    if (!headingThruTarget) {
-        headingThruTarget = aircraft.heading;
-    }
-
+export function getOffset(source, target, heading) {
     const offset = [0, 0, 0];
-    const vector = vsub(target, aircraft.relativePosition); // vector from aircraft pointing to target
-    const bearingToTarget = vradial(vector);
+    const bearingToTarget = source.bearingToPosition(target);
+    const distanceToTarget = km(source.distanceToPosition(target));
 
-    offset[2] = vlen(vector);
-    offset[0] = offset[2] * sin(headingThruTarget - bearingToTarget);
-    offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
+    offset[2] = distanceToTarget;
+    offset[0] = offset[2] * sin(heading - bearingToTarget);
+    offset[1] = offset[2] * cos(heading - bearingToTarget);
 
     return offset;
 }

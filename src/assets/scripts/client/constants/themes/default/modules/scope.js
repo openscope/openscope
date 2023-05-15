@@ -173,6 +173,14 @@ export const SCOPE_THEME = {
     STAR: COLOR.RED,
 
     /**
+     * Color of the lines drawn between fixes on IAPs
+     *
+     * @memberof SCOPE_THEME
+     * @property IAP
+     */
+    IAP: COLOR.GREEN_BRIGHT,
+
+    /**
      * Color of the lines drawn between fixes on STARs
      *
      * @memberof SCOPE_THEME

@@ -46,6 +46,7 @@ export default class WaypointModel {
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
         this._isVectorWaypoint = false;
+        this._isFafWaypoint = false;
         this._name = '';
         this._positionModel = null;
 
@@ -186,6 +187,18 @@ export default class WaypointModel {
     }
 
     /**
+     * Returns whether this waypoint is a FAF waypoint
+     *
+     *
+     * @for WaypointModel
+     * @property isFafWaypoint
+     * @return {boolean}
+     */
+    get isFafWaypoint() {
+        return this._isFafWaypoint;
+    }
+
+    /**
      * Returns the value of #_name
      *
      * @for WaypointModel
@@ -266,7 +279,7 @@ export default class WaypointModel {
             [fixName, restrictions] = data;
         }
 
-        this._name = fixName.replace('@', '').replace('^', '');
+        this._name = fixName.replace('@', '').replace('^', '').replace('*', '');
 
         this._initSpecialWaypoint(fixName);
         this._applyRestrictions(restrictions);
@@ -340,6 +353,12 @@ export default class WaypointModel {
 
         if (fixName.indexOf('#') !== INVALID_INDEX) {
             this._initVectorWaypoint();
+
+            return;
+        }
+
+        if (fixName.indexOf('*') !== INVALID_INDEX) {
+            this._initFafWaypoint();
         }
     }
 
@@ -352,6 +371,17 @@ export default class WaypointModel {
      */
     _initVectorWaypoint() {
         this._isVectorWaypoint = true;
+    }
+
+    /**
+     * Initialize properties to make this waypoint a FAF waypoint
+     *
+     * @for WaypointModel
+     * @method _initFafWaypoint
+     * @private
+     */
+    _initFafWaypoint() {
+        this._isFafWaypoint = true;
     }
 
     // ------------------------------ PUBLIC ------------------------------

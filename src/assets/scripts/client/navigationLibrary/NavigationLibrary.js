@@ -38,24 +38,6 @@ class NavigationLibrary {
          */
         this._holdCollection = new HoldCollection();
 
-        // /**
-        //  *
-        //  *
-        //  * @property _sidCollection
-        //  * @type {StandardRoute}
-        //  * @default null
-        //  */
-        // this._sidCollection = null;
-        //
-        // /**
-        //  *
-        //  *
-        //  * @property _starCollection
-        //  * @type {StandardRoute}
-        //  * @default null
-        //  */
-        // this._starCollection = null;
-
         /**
          *
          *
@@ -112,13 +94,19 @@ class NavigationLibrary {
         return starProcedureModels.length > 0;
     }
 
-    // get sidCollection() {
-    //     return _filter(this._procedureCollection, (procedure) => procedure.procedureType === PROCEDURE_TYPE.SID);
-    // }
-    //
-    // get starCollection() {
-    //     return _filter(this._procedureCollection, (procedure) => procedure.procedureType === PROCEDURE_TYPE.STAR);
-    // }
+    /**
+     *
+     * @for NavigationLibrary
+     * @property hasIaps
+     * @type {boolean}
+     */
+    get hasIaps() {
+        const iapProcedureModels = _filter(this._procedureCollection, (procedure) => {
+            return procedure.procedureType === PROCEDURE_TYPE.IAP;
+        });
+
+        return iapProcedureModels.length > 0;
+    }
 
     /**
      *
@@ -141,16 +129,17 @@ class NavigationLibrary {
      */
     init(airportJson) {
         const {
-            airways, fixes, holds, sids, stars
+            airways, fixes, holds, sids, stars, iaps
         } = airportJson;
 
         this._initializeReferencePosition(airportJson);
         this._initializeFixCollection(fixes);
         this._initializeAirwayCollection(airways);
         this._initializeHoldCollection(holds);
-        this._initializeProcedureCollection(sids, stars);
+        this._initializeProcedureCollection(sids, stars, iaps);
         this._initializeSidLines();
         this._initializeStarLines();
+        this._initializeIapLines();
         this._showConsoleWarningForUndefinedFixes();
     }
 
@@ -196,8 +185,9 @@ class NavigationLibrary {
      * @method _initializeProcedureCollection
      * @param sids {object} - SIDs to add to the collection
      * @param stars {object} - STARs to add to the collection
+     * @param iaps {object} - IAPs to add to the collection
      */
-    _initializeProcedureCollection(sids, stars) {
+    _initializeProcedureCollection(sids, stars, iaps) {
         _forEach(sids, (sid, sidId) => {
             if (sidId in this._procedureCollection) {
                 throw new TypeError(`Expected single definition for '${sidId}' procedure, but received multiple`);
@@ -212,6 +202,14 @@ class NavigationLibrary {
             }
 
             this._procedureCollection[starId] = new ProcedureModel(PROCEDURE_TYPE.STAR, star);
+        });
+
+        _forEach(iaps, (iap, iapId) => {
+            if (iapId in this._procedureCollection) {
+                throw new TypeError(`Expected single definition for '${iapId}' procedure, but received multiple`);
+            }
+
+            this._procedureCollection[iapId] = new ProcedureModel(PROCEDURE_TYPE.IAP, iap);
         });
     }
 
@@ -249,6 +247,17 @@ class NavigationLibrary {
     _initializeStarLines() {
         const stars = this.getProceduresByType(PROCEDURE_TYPE.STAR);
         this._procedureLines[PROCEDURE_TYPE.STAR] = this._buildProcedureLine(stars);
+    }
+
+    /**
+     * Generate lines for IAPs and add them to the procedure lines
+     *
+     * @for NavigationLibrary
+     * @method _initializeIapLines
+     */
+    _initializeIapLines() {
+        const iaps = this.getProceduresByType(PROCEDURE_TYPE.IAP);
+        this._procedureLines[PROCEDURE_TYPE.IAP] = this._buildProcedureLine(iaps);
     }
 
     /**
