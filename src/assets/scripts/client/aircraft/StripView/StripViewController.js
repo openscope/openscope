@@ -380,3 +380,13 @@ export default class StripViewController {
         this._cidNumbersInUse = _without(this._cidNumbersInUse, cid);
     }
 }
+
+var tgt = document.getElementById('departure');
+
+tgt.onmouseover = function () {
+    tgt.style.paddingTop = '15px';
+    tgt.style.paddingBottom = '15px';
+}
+tgt.onmouseout = function () {
+    tgt.style.padding = '5px';
+}
