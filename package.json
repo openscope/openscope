@@ -73,7 +73,7 @@
   "dependencies": {
     "ansi-colors": "3.2.4",
     "express": "4.16.4",
-    "handlebars": "4.1.2",
+    "handlebars": "4.7.7",
     "jquery": "3.5.0",
     "lodash": "4.17.21",
     "raf": "3.4.1"
