@@ -260,6 +260,12 @@
         "premium": false
     },
     {
+        "icao": "kmaf",
+        "level": "easy",
+        "name": "Midland International Air and Space Port",
+        "premium": false
+    },
+    {
         "icao": "kmci",
         "level": "beginner",
         "name": "Kansas City International Airport",
