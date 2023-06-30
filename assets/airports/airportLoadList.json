@@ -284,6 +284,12 @@
         "premium": false
     },
     {
+        "icao": "kmke",
+        "level": "medium",
+        "name": "Milwaukee Mitchell International Airport",
+        "premium": false
+    },
+    {
         "icao": "kmsp",
         "level": "hard",
         "name": "Minneapolis/St. Paul International Airport",
