@@ -1,25 +1,17 @@
-import _clone from 'lodash/clone';
-import _compact from 'lodash/compact';
-import _map from 'lodash/map';
-import { round } from '../math/core';
-import { tau, radians_normalize } from '../math/circle';
+import _clone from "lodash/clone";
+import _compact from "lodash/compact";
+import _map from "lodash/map";
+import { round } from "../math/core";
+import { tau, radians_normalize } from "../math/circle";
+import AirportController from "../airport/AirportController";
+import transitionAltitudes from "./transitionAltitudes";
 
 /**
  * @property CARDINAL_DIRECTION
  * @type {Array}
  * @final
  */
-const CARDINAL_DIRECTION = [
-    'N',
-    'NE',
-    'E',
-    'SE',
-    'S',
-    'SW',
-    'W',
-    'NW',
-    'N'
-];
+const CARDINAL_DIRECTION = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
 
 /**
  * @property radio_names
@@ -27,62 +19,62 @@ const CARDINAL_DIRECTION = [
  * @final
  */
 export const radio_names = {
-    0: 'zero',
-    1: 'one',
-    2: 'two',
-    3: 'three',
-    4: 'four',
-    5: 'five',
-    6: 'six',
-    7: 'seven',
-    8: 'eight',
-    9: 'niner',
-    10: 'ten',
-    11: 'eleven',
-    12: 'twelve',
-    13: 'thirteen',
-    14: 'fourteen',
-    15: 'fifteen',
-    16: 'sixteen',
-    17: 'seventeen',
-    18: 'eighteen',
-    19: 'nineteen',
-    20: 'twenty',
-    30: 'thirty',
-    40: 'fourty',
-    50: 'fifty',
-    60: 'sixty',
-    70: 'seventy',
-    80: 'eighty',
-    90: 'ninety',
-    a: 'alpha',
-    b: 'bravo',
-    c: 'charlie',
-    d: 'delta',
-    e: 'echo',
-    f: 'foxtrot',
-    g: 'golf',
-    h: 'hotel',
-    i: 'india',
-    j: 'juliet',
-    k: 'kilo',
-    l: 'lima',
-    m: 'mike',
-    n: 'november',
-    o: 'oscar',
-    p: 'papa',
-    q: 'quebec',
-    r: 'romeo',
-    s: 'sierra',
-    t: 'tango',
-    u: 'uniform',
-    v: 'victor',
-    w: 'whiskey',
-    x: 'x-ray',
-    y: 'yankee',
-    z: 'zulu',
-    '-': 'dash',
-    '.': 'point'
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "niner",
+    10: "ten",
+    11: "eleven",
+    12: "twelve",
+    13: "thirteen",
+    14: "fourteen",
+    15: "fifteen",
+    16: "sixteen",
+    17: "seventeen",
+    18: "eighteen",
+    19: "nineteen",
+    20: "twenty",
+    30: "thirty",
+    40: "fourty",
+    50: "fifty",
+    60: "sixty",
+    70: "seventy",
+    80: "eighty",
+    90: "ninety",
+    a: "alpha",
+    b: "bravo",
+    c: "charlie",
+    d: "delta",
+    e: "echo",
+    f: "foxtrot",
+    g: "golf",
+    h: "hotel",
+    i: "india",
+    j: "juliet",
+    k: "kilo",
+    l: "lima",
+    m: "mike",
+    n: "november",
+    o: "oscar",
+    p: "papa",
+    q: "quebec",
+    r: "romeo",
+    s: "sierra",
+    t: "tango",
+    u: "uniform",
+    v: "victor",
+    w: "whiskey",
+    x: "x-ray",
+    y: "yankee",
+    z: "zulu",
+    "-": "dash",
+    ".": "point",
 };
 
 // TODO: this and CARDINAL_DIRECTION seem to be duplicating logic. look into smoothing that out by using
@@ -93,21 +85,21 @@ export const radio_names = {
  * @final
  */
 export const radio_cardinalDir_names = {
-    n: 'north',
-    nw: 'northwest',
-    w: 'west',
-    sw: 'southwest',
-    s: 'south',
-    se: 'southeast',
-    e: 'east',
-    ne: 'northeast'
+    n: "north",
+    nw: "northwest",
+    w: "west",
+    sw: "southwest",
+    s: "south",
+    se: "southeast",
+    e: "east",
+    ne: "northeast",
 };
 
 // TODO: probably do this with Object.assign
 export const radio_runway_names = _clone(radio_names);
-radio_runway_names.l = 'left';
-radio_runway_names.c = 'center';
-radio_runway_names.r = 'right';
+radio_runway_names.l = "left";
+radio_runway_names.c = "center";
+radio_runway_names.r = "right";
 
 // TODO: how is this different from lpad?
 // NOT IN USE
@@ -157,7 +149,7 @@ export const digits_integer = (number, digits, truncate = false) => {
  * @return {string}         if force
  */
 export const digits_decimal = (number, digits, force, truncate) => {
-    const shorten = (truncate) ? Math.floor : Math.round;
+    const shorten = truncate ? Math.floor : Math.round;
 
     if (!force) {
         return shorten(number * Math.pow(10, digits)) / Math.pow(10, digits);
@@ -165,30 +157,38 @@ export const digits_decimal = (number, digits, force, truncate) => {
 
     // check if needs extra trailing zeros
     if (digits <= 0) {
-        return (shorten(number * Math.pow(10, digits)) / Math.pow(10, digits)).toString();
+        return (
+            shorten(number * Math.pow(10, digits)) / Math.pow(10, digits)
+        ).toString();
     }
 
     number = number.toString();
 
     for (let i = 0; i < number.length; i++) {
-        if (number[i] === '.') {
+        if (number[i] === ".") {
             const trailingDigits = number.length - (i + 1);
 
             if (trailingDigits === digits) {
                 return number.toString();
             } else if (trailingDigits < digits) {
                 // add trailing zeros
-                return number + Array(digits - trailingDigits + 1).join('0');
+                return number + Array(digits - trailingDigits + 1).join("0");
             } else if (trailingDigits > digits) {
                 if (truncate) {
-                    return number.substr(0, number.length - (trailingDigits - digits));
+                    return number.substr(
+                        0,
+                        number.length - (trailingDigits - digits)
+                    );
                 }
 
                 const len = number.length - (trailingDigits - digits + 1);
                 const part1 = number.substr(0, len);
-                const part2 = (digits === 0)
-                    ? ''
-                    : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
+                const part2 =
+                    digits === 0
+                        ? ""
+                        : shorten(
+                              parseInt(number.substr(len, 2), 10) / 10
+                          ).toString();
 
                 return part1 + part2;
             }
@@ -206,19 +206,19 @@ export const getGrouping = (groupable) => {
     const digit1 = groupable[0];
     const digit2 = groupable[1];
 
-    if (digit1 === '0') {
-        if (digit2 === '0') {
-            return 'hundred';
+    if (digit1 === "0") {
+        if (digit2 === "0") {
+            return "hundred";
         }
         // just digits (eg 'zero seven')
         return `${radio_names[digit1]} ${radio_names[digit2]}`;
-    } else if (digit1 === '1') {
+    } else if (digit1 === "1") {
         // exact number (eg 'seventeen')
         return radio_names[groupable];
     } else if (digit1 >= 2) {
         const firstDigit = `${digit1}0`;
 
-        if (digit2 === '0') {
+        if (digit2 === "0") {
             // to avoid 'five twenty zero'
             return radio_names[firstDigit];
         }
@@ -240,7 +240,7 @@ export const getGrouping = (groupable) => {
 export const groupNumbers = (callsign, airline) => {
     if (!/^\d+$/.test(callsign)) {
         // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
-        if (airline === 'November') {
+        if (airline === "November") {
             // callsign "November"
             const s = [];
 
@@ -249,7 +249,7 @@ export const groupNumbers = (callsign, airline) => {
                 s.push(radio_names[callsign[k]]);
             }
 
-            return s.join(' ');
+            return s.join(" ");
         }
 
         // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
@@ -297,10 +297,18 @@ export const groupNumbers = (callsign, airline) => {
                         s.push(getGrouping(sections[i]));
                         break;
                     case 3:
-                        s.push(`${radio_names[sections[i][0]]} ${getGrouping(sections[i].substr(1))}`);
+                        s.push(
+                            `${radio_names[sections[i][0]]} ${getGrouping(
+                                sections[i].substr(1)
+                            )}`
+                        );
                         break;
                     case 4:
-                        s.push(`${getGrouping(sections[i].substr(0, 2))} ${getGrouping(sections[i].substr(2))}`);
+                        s.push(
+                            `${getGrouping(
+                                sections[i].substr(0, 2)
+                            )} ${getGrouping(sections[i].substr(2))}`
+                        );
                         break;
                     default:
                         s.push(radio_spellOut(sections[i]));
@@ -309,25 +317,36 @@ export const groupNumbers = (callsign, airline) => {
             }
         }
 
-        return s.join(' ');
+        return s.join(" ");
     } else {
         // TODO: this block is unreachable
         switch (callsign.length) {
             case 0:
-                return callsign; break;
+                return callsign;
+                break;
             case 1:
-                return radio_names[callsign]; break;
+                return radio_names[callsign];
+                break;
             case 2:
-                return getGrouping(callsign); break;
+                return getGrouping(callsign);
+                break;
             case 3:
-                return `${radio_names[callsign[0]]} ${getGrouping(callsign.substr(1))}`;
+                return `${radio_names[callsign[0]]} ${getGrouping(
+                    callsign.substr(1)
+                )}`;
                 break;
             case 4:
-                if (callsign[1] === '0' && callsign[2] === '0' && callsign[3] === '0') {
+                if (
+                    callsign[1] === "0" &&
+                    callsign[2] === "0" &&
+                    callsign[3] === "0"
+                ) {
                     return `${radio_names[callsign[0]]} thousand`;
                 }
 
-                return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(callsign.substr(2))}`;
+                return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(
+                    callsign.substr(2)
+                )}`;
                 break;
             default:
                 return callsign;
@@ -345,7 +364,9 @@ export const radio_runway = (input) => {
     input = `${input} `;
     input = input.toLowerCase();
 
-    return _compact(_map(input, (letterOrNumber, i) => radio_runway_names[input[i]])).join(' ');
+    return _compact(
+        _map(input, (letterOrNumber, i) => radio_runway_names[input[i]])
+    ).join(" ");
 };
 
 /**
@@ -363,7 +384,9 @@ export const radio_heading = (heading) => {
         case 2:
             return `zero ${radio_names[str[0]]} ${radio_names[str[1]]}`;
         default:
-            return `${radio_names[str[0]]} ${radio_names[str[1]]} ${radio_names[str[2]]}`;
+            return `${radio_names[str[0]]} ${radio_names[str[1]]} ${
+                radio_names[str[2]]
+            }`;
     }
 
     return heading;
@@ -388,7 +411,7 @@ export const radio_spellOut = (alphanumeric) => {
         arr.push(radio_names[str[i]]);
     }
 
-    return arr.join(' ');
+    return arr.join(" ");
 };
 
 /**
@@ -400,29 +423,47 @@ export const radio_spellOut = (alphanumeric) => {
 export const radio_altitude = (altitude) => {
     const alt_s = altitude.toString();
     const s = [];
-
+    const transalt = transitionAltitudes.getTransAlt();
     // TODO can this block be simplified?
-    if (altitude >= 18000) {
-        s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
+    // if (altitude >= 18000) {
+    //     s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
+    // } else
+    if (altitude >= transalt) {
+        console.log("NOT USA AIRPORT");
+        if (altitude >= 10000) {
+            s.push(
+                "flight level",
+                radio_names[alt_s[0]],
+                radio_names[alt_s[1]],
+                radio_names[alt_s[2]]
+            );
+        } else {
+            s.push(
+                "flight level",
+                radio_names[alt_s[0]],
+                radio_names[alt_s[1]]
+            );
+        }
+        console.log(s);
     } else if (altitude >= 10000) {
-        s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], 'thousand');
+        s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], "thousand");
 
         if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
-            s.push(radio_names[alt_s[2]], 'hundred');
+            s.push(radio_names[alt_s[2]], "hundred");
         }
     } else if (altitude >= 1000) {
-        s.push(radio_names[alt_s[0]], 'thousand');
+        s.push(radio_names[alt_s[0]], "thousand");
 
         if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
-            s.push(radio_names[alt_s[1]], 'hundred');
+            s.push(radio_names[alt_s[1]], "hundred");
         }
     } else if (altitude >= 100) {
-        s.push(radio_names[alt_s[0]], 'hundred');
+        s.push(radio_names[alt_s[0]], "hundred");
     } else {
         return altitude;
     }
 
-    return s.join(' ');
+    return s.join(" ");
 };
 
 /**
@@ -437,8 +478,12 @@ export const radio_altitude = (altitude) => {
  */
 export const radio_trend = (category, currentValue, nextValue) => {
     const CATEGORIES = {
-        altitude: ['descend and maintain', 'climb and maintain', 'maintain'],
-        speed: ['reduce speed to', 'increase speed to', 'maintain present speed of']
+        altitude: ["descend and maintain", "climb and maintain", "maintain"],
+        speed: [
+            "reduce speed to",
+            "increase speed to",
+            "maintain present speed of",
+        ],
     };
 
     if (currentValue > nextValue) {
@@ -459,7 +504,7 @@ export const radio_trend = (category, currentValue, nextValue) => {
  * @return {string}
  */
 export const getCardinalDirection = (angle) => {
-    return CARDINAL_DIRECTION[round(angle / tau() * 8)];
+    return CARDINAL_DIRECTION[round((angle / tau()) * 8)];
 };
 
 /**
@@ -470,7 +515,9 @@ export const getCardinalDirection = (angle) => {
  * @return {string}
  */
 export const getRadioCardinalDirectionNameForHeading = (heading) => {
-    const cardinalDirection = getCardinalDirection(radians_normalize(heading + Math.PI)).toLowerCase();
+    const cardinalDirection = getCardinalDirection(
+        radians_normalize(heading + Math.PI)
+    ).toLowerCase();
 
     return radio_cardinalDir_names[cardinalDirection];
 };
