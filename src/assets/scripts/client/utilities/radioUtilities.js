@@ -3,6 +3,7 @@ import _compact from 'lodash/compact';
 import _map from 'lodash/map';
 import { round } from '../math/core';
 import { tau, radians_normalize } from '../math/circle';
+import AirportController from '../airport/AirportController';
 
 /**
  * @property CARDINAL_DIRECTION
@@ -400,10 +401,26 @@ export const radio_spellOut = (alphanumeric) => {
 export const radio_altitude = (altitude) => {
     const alt_s = altitude.toString();
     const s = [];
+    const transalt = AirportController.getTransAlt();
 
     // TODO can this block be simplified?
-    if (altitude >= 18000) {
-        s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
+    if (altitude >= transalt) {
+        console.log('ENTER THE NEW IF');
+        if (altitude >= 10000) {
+            s.push(
+                'flight level',
+                radio_names[alt_s[0]],
+                radio_names[alt_s[1]],
+                radio_names[alt_s[2]]
+            );
+        } else {
+            s.push(
+                'flight level',
+                radio_names[alt_s[0]],
+                radio_names[alt_s[1]]
+            );
+        }
+        console.log(s);
     } else if (altitude >= 10000) {
         s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], 'thousand');
 

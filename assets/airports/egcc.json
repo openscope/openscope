@@ -9,6 +9,7 @@
     "magnetic_north": -1.13,
     "ctr_radius": 90,
     "ctr_ceiling": 28500,
+    "transitionAltitude": 5000,
     "initial_alt": 5000,
     "position": ["N53d21m14", "W02d16m30", "257ft"],
     "rangeRings": {
