@@ -192,7 +192,6 @@ class AirportController {
     }
 
     getTransAlt() {
-        console.log(this.current);
         if (Object.prototype.hasOwnProperty.call(this.current, 'transitionAltitude')) {
             return this.current.transitionAltitude;
         }

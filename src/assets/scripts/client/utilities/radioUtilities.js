@@ -405,7 +405,6 @@ export const radio_altitude = (altitude) => {
 
     // TODO can this block be simplified?
     if (altitude >= transalt) {
-        console.log('ENTER THE NEW IF');
         if (altitude >= 10000) {
             s.push(
                 'flight level',

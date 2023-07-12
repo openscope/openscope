@@ -133,6 +133,15 @@ export default class AirportModel {
         this.airac = null;
 
         /**
+         * Transition altitude
+         *
+         * @property transitionAltitude
+         * @type {number}
+         * @default null
+        */
+        this.transitionAltitude = null;
+
+        /**
          * @property radio
          * @type
          * @default null
