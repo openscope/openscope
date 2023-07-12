@@ -133,6 +133,15 @@ export default class AirportModel {
         this.airac = null;
 
         /**
+         * Transition altitude
+         *
+         * @property transitionAltitude
+         * @type {number}
+         * @default null
+        */
+        this.transitionAltitude = null;
+
+        /**
          * @property radio
          * @type
          * @default null
@@ -376,6 +385,8 @@ export default class AirportModel {
         this.mapCollection = new MapCollection(data.maps, data.defaultMaps, this.positionModel, this.magneticNorth);
         this.defaultWind.speed = data.wind.speed;
         this.defaultWind.angle = degreesToRadians(data.wind.angle);
+        console.log(data);
+        this.transitionAltitude = _get(data, 'transitionAltitude', this.transitionAltitude);
 
         this._initRangeRings(data.rangeRings);
         this.loadTerrain();

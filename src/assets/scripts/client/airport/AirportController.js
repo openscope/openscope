@@ -191,6 +191,13 @@ class AirportController {
         return this.airports[icao.toLowerCase()];
     }
 
+    getTransAlt() {
+        if (Object.prototype.hasOwnProperty.call(this.current, 'transitionAltitude')) {
+            return this.current.transitionAltitude;
+        }
+        return 18000; // for US airports
+    }
+
     /**
      * Return the name of the `arrivalRunwayModel`.
      *
@@ -205,6 +212,7 @@ class AirportController {
      * @method getInitialArrivalRunwayName
      * @return {string}
      */
+
     getInitialArrivalRunwayName() {
         return this.current.arrivalRunwayModel.name;
     }
