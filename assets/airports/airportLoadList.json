@@ -575,7 +575,7 @@
         "level": "easy",
         "name": "Luis Muñoz Marín International Airport",
         "premium": false,
-        "disabled": true
+        "disabled": false
     },
     {
         "icao": "tncm",
