@@ -1,13 +1,21 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _map from 'lodash/map';
+import _some from 'lodash/some';
 import _tail from 'lodash/tail';
 
 import CommandParser from '../../../src/assets/scripts/client/commands/parsers/CommandParser';
 import AircraftCommandModel from '../../../src/assets/scripts/client/commands/aircraftCommand/AircraftCommandModel';
 import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
 
+const COMMAND_ARGS_SEPARATOR = ' ';
+
+const AIRPORT_MOCK = 'airport ksea';
+const PAUSE_MOCK = 'pause';
 const TIMEWARP_50_MOCK = 'timewarp 50';
+const TW_50_MOCK = 'tw 50';
+const TUTORIAL_MOCK = 'tutorial';
+
 const CALLSIGN_MOCK = 'AAL777';
 const CAF_MOCK = 'caf';
 const CVS_MOCK = 'cvs';
@@ -44,11 +52,23 @@ ava('does not throw when called without parameters', t => {
     t.notThrows(() => new CommandParser());
 });
 
-
 ava('sets #command with the correct name when provided a system command', t => {
-    const model = new CommandParser(TIMEWARP_50_MOCK);
+    const airportModel = new CommandParser(AIRPORT_MOCK);
+    const pauseModel = new CommandParser(PAUSE_MOCK);
+    const timewarpModel = new CommandParser(TIMEWARP_50_MOCK);
+    const tutorialModel = new CommandParser(TUTORIAL_MOCK);
 
-    t.true(model.command === 'timewarp');
+    t.true(airportModel.command === PARSED_COMMAND_NAME.AIRPORT);
+    t.true(pauseModel.command === PARSED_COMMAND_NAME.PAUSE);
+    t.true(timewarpModel.command === PARSED_COMMAND_NAME.TIMEWARP);
+    t.true(tutorialModel.command === PARSED_COMMAND_NAME.TUTORIAL);
+});
+
+ava('sets #command with identical name when provided an alias of a system command', t => {
+    const twModel = new CommandParser(TW_50_MOCK);
+    const timewarpModel = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.is(twModel.command, timewarpModel.command);
 });
 
 ava('sets #command with the correct name when provided a transmit command', t => {
@@ -74,6 +94,17 @@ ava('sets #commandList with AircraftCommandModel objects when it receives transm
     _map(model.commandList, (command) => {
         t.true(command instanceof AircraftCommandModel);
     });
+});
+
+ava('._extractCommandsAndArgs() discards empty tokens caused by multiple spaces', t => {
+    const extraSpacesMock = 'timewarp  50';
+    const model = new CommandParser(extraSpacesMock);
+    const _buildSystemCommandModelSpy = sinon.spy(model, '_buildSystemCommandModel');
+
+    model._extractCommandsAndArgs(extraSpacesMock);
+
+    t.true(_buildSystemCommandModelSpy.calledOnce);
+    t.false(_some(_buildSystemCommandModelSpy.lastCall.args[0], { length: 0 }));
 });
 
 ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {
@@ -107,9 +138,24 @@ ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t
     t.true(_validateCommandArgumentsSpy.called);
 });
 
-ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists within SYSTEM_COMMANDS and is not transmit', t => {
-    const systemCommandMock = 'timewarp';
-    const model = new CommandParser(systemCommandMock);
+ava('._isSystemCommand() returns true if callsignOrSystemCommandName exists within AIRCRAFT_COMMAND_MAP and is marked as a system command there', t => {
+    const airportModel = new CommandParser(AIRPORT_MOCK);
+    const pauseModel = new CommandParser(PAUSE_MOCK);
+    const timewarpModel = new CommandParser(TIMEWARP_50_MOCK);
+    const tutorialModel = new CommandParser(TUTORIAL_MOCK);
 
-    t.true(model._isSystemCommand(systemCommandMock));
+    t.true(airportModel._isSystemCommand(AIRPORT_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
+    t.true(pauseModel._isSystemCommand(PAUSE_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
+    t.true(timewarpModel._isSystemCommand(TIMEWARP_50_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
+    t.true(tutorialModel._isSystemCommand(TUTORIAL_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]));
+});
+
+ava('._isSystemCommand() returns identical outcome for alias of a system command', t => {
+    const twModel = new CommandParser(TW_50_MOCK);
+    const timewarpModel = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.is(
+        twModel._isSystemCommand(TW_50_MOCK.split(COMMAND_ARGS_SEPARATOR)[0]),
+        timewarpModel._isSystemCommand(TIMEWARP_50_MOCK.split(COMMAND_ARGS_SEPARATOR)[0])
+    );
 });

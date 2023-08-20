@@ -1,9 +1,27 @@
-# 6.29.0 (September 1, 2022)
+# 6.29.0 (October 1, 2022)
 ### New Features
+- <a href="https://github.com/openscope/openscope/issues/2000" target="_blank">#2000</a> - Add popup info for score changes
+- <a href="https://github.com/openscope/openscope/issues/2033" target="_blank">#2033</a> - Add duration setting for log messages
 
 ### Bugfixes
+- <a href="https://github.com/openscope/openscope/issues/2022" target="_blank">#2022</a> - Improve handling of "fph" while still on ground
+- <a href="https://github.com/openscope/openscope/issues/2026" target="_blank">#2026</a> - Improve error messages from invalid takeoff commands
+- <a href="https://github.com/openscope/openscope/issues/1249" target="_blank">#1249</a> - Fix handling of consecutive spaces in commands
+- <a href="https://github.com/openscope/openscope/issues/1795" target="_blank">#1795</a> - Fix strip bay alignment bug when opening by cliking aircraft
+- <a href="https://github.com/openscope/openscope/issues/1852" target="_blank">#1852</a> - Fix bug where airborne aircraft report "ready to taxi"
+- <a href="https://github.com/openscope/openscope/issues/2040" target="_blank">#2040</a> - Fix spurious "no such aircraft, say again" error
 
 ### Enhancements & Refactors
+- <a href="https://github.com/openscope/openscope/issues/1977" target="_blank">#1977</a> - Update scoring documentation
+- <a href="https://github.com/openscope/openscope/issues/1991" target="_blank">#1991</a> - Update KPHL magnetic variation
+- <a href="https://github.com/openscope/openscope/issues/1787" target="_blank">#1787</a> - Standardize JSON schemas
+- <a href="https://github.com/openscope/openscope/issues/1912" target="_blank">#1912</a> - Update tutorial for auto-departure feature
+- <a href="https://github.com/openscope/openscope/issues/2030" target="_blank">#2030</a> - Implement 'tw' alias for 'timewarp' command
+- <a href="https://github.com/openscope/openscope/issues/2042" target="_blank">#2042</a> - Update readme badges and slack links
+- <a href="https://github.com/openscope/openscope/issues/2052" target="_blank">#2052</a> - Fix script minification issues in build process
+- <a href="https://github.com/openscope/openscope/issues/2045" target="_blank">#2045</a> - Assorted code cleanup and optimizations
+- <a href="https://github.com/openscope/openscope/issues/1916" target="_blank">#1916</a> - Fix KORD
+- <a href="https://github.com/openscope/openscope/issues/1916" target="_blank">#1916</a> - Fix KJAX
 
 
 # 6.28.0 (July 3, 2022)

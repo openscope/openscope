@@ -483,6 +483,9 @@
           "altkeys": [
             "fly present heading",
             "maintain heading",
+            "fly runway heading",
+            "maintain runway heading",
+            "runway heading",
             "straight ahead"
           ],
           "explain": "<b>f</b>ly <b>p</b>resent <b>h</b>eading"
@@ -778,10 +781,10 @@
       "variants": [
         {
           "aliases": [
+            "tw",
             "timewarp"
           ],
           "altkeys": [
-            "tw",
             "time warp"
           ],
           "explain": "set time warp <u>rate</u>"
