@@ -412,6 +412,12 @@
         "disabled": true
     },
     {
+        "icao": "lfpg",
+        "level": "hard",
+        "name": "Paris Charles-de-Gaulle International Airport",
+        "premium": false
+    },
+    {
         "icao": "lipz",
         "level": "easy",
         "name": "Venice Marco Polo Airport",
