@@ -1,0 +1,18 @@
+{
+    "icao": "tnkr",
+    "name": "10 Tanker Air Carrier",
+    "callsign": {
+        "name": "Tanker",
+        "callsignFormats": [
+            "910",
+            "911",
+            "912",
+            "914"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["DC10", 4]
+        ]
+    }
+}
