@@ -235,6 +235,12 @@
         "premium": false
     },
     {
+        "icao": "kiah",
+        "level": "hard",
+        "name": "George Bush Houston Intercontinental Airport",
+        "premium": false
+    },
+    {
         "icao": "kjax",
         "level": "easy",
         "name": "Jacksonville International Airport",
