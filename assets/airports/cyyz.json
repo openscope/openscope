@@ -19,11 +19,11 @@
     },
     "has_terrain": true,
     "wind": {
-        "angle": 270,
+        "angle": 90,
         "speed": 7
     },
-    "arrivalRunway": "24L",
-    "departureRunway": "24R",
+    "arrivalRunway": "6R",
+    "departureRunway": "6L",
     "defaultMaps": ["Base Map", "Southwest Flow"],
     "airspace": [
         {
@@ -195,7 +195,6 @@
         "REVOV": [43.618792, -79.723303],
         "NOXER": [43.474856, -79.535794],
         "ALORU": [43.438511, -79.488639],
-        "DANAV": [12.681986, -61.151278],
         "ALMAX": [43.365767, -79.394500],
         "NUDEK": [43.852842, -79.403442],
         "CALVY": [43.804336, -79.474467],
@@ -345,7 +344,24 @@
         "EBKIN": [44.086944, -79.815000],
         "KISEP": [44.315278, -79.941389],
         "SILVU": [45.743333, -81.915556],
-        "YEE": ["N44d34.9", "W079d47.6"]
+        "YEE": ["N44d34.9", "W079d47.6"],
+        "SEVBI": [43.132778, -80.662500],
+        "PEMBA": [42.873611, -81.126667],
+        "NUGID": [42.763611, -81.420833],
+        "GNTRY": [42.509722, -81.789667],
+        "SEDOG": [44.009722, -79.584722],
+        "TANGI": [44.385278, -79.401667],
+        "UDMUG": [44.881111, -78.981389],
+        "BOBSU": [45.530000, -78.408056],
+        "KASED": [44.471944, -82.198611],
+        "BESID": [43.966389, -80.779444],
+        "NOSIK": [43.983333, -82.197861],
+        "ZOHAN": [43.932500, -84.385833],
+        "AGNOB": [44.200917, -77.502000],
+        "ELSUB": [44.461667, -77.186389],
+        "LORKA": [44.769083, -76.216639],
+        "VERDO": [43.771667, -78.766389],
+        "DANAV": [43.402150, -79.441542]
     },
     "runways":[
         {
@@ -636,6 +652,135 @@
                 ["NAMGI", "EBKIN", "GOTIM"],
                 ["ETLER", "EBKIN", "KISEP*", "SILVU*"]
             ]
+        },
+        "MIXUT7": {
+            "icao": "MIXUT7",
+            "name": "Mixut Seven",
+            "rwy": {
+                "CYYZ5": [["^_RW051DME", "A010+"], "#047", "MOBEL", "BIRLI", "VIDRA", "ANCOL"],
+                "CYYZ6L": [["^_RW6L1DME", "A010+"], "#057", "MOBEL", "BIRLI", "VIDRA", "ANCOL"],
+                "CYYZ6R": [["^_RW6R1DME", "A010+"], "#057", "MOBEL", "BIRLI", "VIDRA", "ANCOL"],
+                "CYYZ15L": [["^_RW15L1DME", "A010+"], "#147", "MIXUT"],
+                "CYYZ15R": [["^_RW15R1DME", "A010+"], "#147", "MIXUT"],
+                "CYYZ23": [["^_RW231DME", "A011+"], "#245", "MIXUT"],
+                "CYYZ24L": [["^_RW24L1DME", "A010+"], "#235", "MIXUT"],
+                "CYYZ24R": [["^_RW24R1DME", "A010+"], "#235", "MIXUT"],
+                "CYYZ33L": [["^_RW33L1DME", "A011+"], "#345", "NUBAX", "TANGU", "MIXUT"],
+                "CYYZ33R": [["^_RW33R1DME", "A021+"], "#340", "NUBAX", "TANGU", "MIXUT"]
+            },
+            "body": ["LETOR"],
+            "exitPoints": {
+                "DERLO": ["SEVBI", ["DERLO", "A220-"]],
+                "GNTRY": ["PEMBA", ["NUGID", "A260+"], "GNTRY"]
+            },
+            "draw": [
+                ["ANCOL", "LETOR", "SEVBI", "DERLO*"],
+                ["LETOR", "PEMBA", "NUGID", "GNTRY*"]
+            ]
+        },
+        "RIGUS5": {
+            "icao": "RIGUS5",
+            "name": "Rigus Five",
+            "rwy": {
+                "CYYZ5": [["^_RW051DME", "A010+"], "#047", "MOBEL", "BIRLI", "VIDRA"],
+                "CYYZ6L": [["^_RW6L1DME", "A010+"], "#057", "MOBEL", "BIRLI", "VIDRA"],
+                "CYYZ6R": [["^_RW6R1DME", "A010+"], "#057", "MOBEL", "BIRLI", "VIDRA"],
+                "CYYZ15L": [["^_RW15L1DME", "A010+"], "#147"],
+                "CYYZ15R": [["^_RW15R1DME", "A010+"], "#147"],
+                "CYYZ23": [["^_RW231DME", "A011+"], "#245", "MURNO"],
+                "CYYZ24L": [["^_RW24L1DME", "A010+"], "#235", "MURNO"],
+                "CYYZ24R": [["^_RW24R1DME", "A010+"], "#235", "MURNO"],
+                "CYYZ33L": [["^_RW33L1DME", "A011+"], "#345", "NUBAX", "TANGU"],
+                "CYYZ33R": [["^_RW33R1DME", "A021+"], "#340", "NUBAX", "TANGU"]
+            },
+            "body": ["DUSOM"],
+            "exitPoints": {
+                "PSB": ["MIKKY", "PSB"],
+                "RIGUS": []
+            },
+            "draw": [
+                ["MURNO", "DUSOM", "VIDRA"],
+                ["DUSOM", "RIGUS*", "MIKKY", "PSB*"]
+            ]
+        },
+        "SEDOG6": {
+            "icao": "SEDOG6",
+            "name": "Sedog Six",
+            "rwy": {
+                "CYYZ5": [["^_RW051DME", "A010+"], "#047", "GOTIM"],
+                "CYYZ6L": [["^_RW6L1DME", "A010+"], "#057", "GOTIM"],
+                "CYYZ6R": [["^_RW6R1DME", "A010+"], "#057", "GOTIM"],
+                "CYYZ15L": [["^_RW15L1DME", "A010+"], "#147", "BORUX", "ETLER"],
+                "CYYZ15R": [["^_RW15R1DME", "A010+"], "#147", "BORUX", "ETLER"],
+                "CYYZ23": [["^_RW231DME", "A011+"], "#245", "BISTI", "NAMGI"],
+                "CYYZ24L": [["^_RW24L1DME", "A010+"], "#235", "BISTI", "NAMGI"],
+                "CYYZ24R": [["^_RW24R1DME", "A010+"], "#235", "BISTI", "NAMGI"],
+                "CYYZ33L": [["^_RW33L1DME", "A011+"], "#345"],
+                "CYYZ33R": [["^_RW33R1DME", "A021+"], "#340"]
+            },
+            "body": ["SEDOG"],
+            "exitPoints": {
+                "BOBSU": ["TANGI", "UDMUG", "BOBSU"],
+                "SEDOG": []
+            },
+            "draw": [
+                ["ETLER", "SEDOG", "GOTIM"],
+                ["NAMGI", "SEDOG*", "TANGI", "UDMUG", "BOBSU*"]
+            ]
+        },
+        "URSAL4": {
+            "icao": "URSAL4",
+            "name": "Ursal Four",
+            "rwy": {
+                "CYYZ5": [["^_RW051DME", "A010+"], "#047", "KEDSI", "DUVKO"],
+                "CYYZ6L": [["^_RW6L1DME", "A010+"], "#057", "KEDSI", "DUVKO"],
+                "CYYZ6R": [["^_RW6R1DME", "A010+"], "#057", "KEDSI", "DUVKO"],
+                "CYYZ15L": [["^_RW15L1DME", "A010+"], "#147", "BOVAL", "VIBNA", "IPSOT"],
+                "CYYZ15R": [["^_RW15R1DME", "A010+"], "#147", "BOVAL", "VIBNA", "IPSOT"],
+                "CYYZ23": [["^_RW231DME", "A011+"], "#245", "TILAM"],
+                "CYYZ24L": [["^_RW24L1DME", "A010+"], "#235", "TILAM"],
+                "CYYZ24R": [["^_RW24R1DME", "A010+"], "#235", "TILAM"],
+                "CYYZ33L": [["^_RW33L1DME", "A011+"], "#345", "TETAD"],
+                "CYYZ33R": [["^_RW33R1DME", "A021+"], "#340", "TETAD"]
+            },
+            "body": ["URSAL"],
+            "exitPoints": {
+                "KASED": ["KASED"],
+                "URSAL": [],
+                "ZOHAN": ["BESID", "NOSIK", "ZOHAN"]
+            },
+            "draw": [
+                ["DUVKO", "URSAL", "TILAM"],
+                ["IPSOT", "URSAL", "TETAD"],
+                ["KASED*", "URSAL*", "BESID", "NOSIK", "ZOHAN*"]
+            ]
+        },
+        "VERDO7": {
+            "icao": "VERDO7",
+            "name": "Verdo Seven",
+            "rwy": {
+                "CYYZ5": [["^_RW051DME", "A010+"], "#047", "ALKUT", "PUTON"],
+                "CYYZ6L": [["^_RW6L1DME", "A010+"], "#057", "ALKUT", "PUTON"],
+                "CYYZ6R": [["^_RW6R1DME", "A010+"], "#057", "ALKUT", "PUTON"],
+                "CYYZ15L": [["^_RW15L1DME", "A010+"], "#147", "ALKUT", "PUTON"],
+                "CYYZ15R": [["^_RW15R1DME", "A010+"], "#147", "ALKUT", "PUTON"],
+                "CYYZ23": [["^_RW231DME", "A011+"], "#245", "SAVUR", "SEKIT"],
+                "CYYZ24L": [["^_RW24L1DME", "A010+"], "#235", "SAVUR", "SEKIT"],
+                "CYYZ24R": [["^_RW24R1DME", "A010+"], "#235", "SAVUR", "SEKIT"],
+                "CYYZ33L": [["^_RW33L1DME", "A011+"], "#345", "VIVET", "DUVAK"],
+                "CYYZ33R": [["^_RW33R1DME", "A021+"], "#340", "VIVET", "DUVAK"]
+            },
+            "body": ["VERDO", "AGNOB"],
+            "exitPoints": {
+                "ELSUB": ["ELSUB"],
+                "IPTOS": ["IPTOS"],
+                "LORKA": ["LORKA"]
+            },
+            "draw": [
+                ["VIVET", "DUVAK", "VERDO*", "PUTON", "ALKUT"],
+                ["SEKIT", "VERDO", "AGNOB", "ELSUB*"],
+                ["IPTOS*", "AGNOB", "LORKA*"]
+            ]
         }
     },
     "stars": {
@@ -748,13 +893,13 @@
                 "CYYZ5": [["IKBAT", "A70|S220"], "ILANI", "DULPA"],
                 "CYYZ6L": [["IKBAT", "A70|S220"], "KEDRO", "FAYOL"],
                 "CYYZ6R": [["IKBAT", "A70|S220"], "KEDRO", "LOBKO"],
-                "CYYZ15L": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["PIGSO", "A80|S210"], "PILNI", "IGTIL", "GADOG", "TAGAT", "LOBNU", "#147"],
-                "CYYZ15R": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["PIGSO", "A80|S210"], "PILNI", "IGTIL", "GADOG", "TAGAT", "LOBNU", "#147"],
+                "CYYZ15L": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["PIGSO", "A80|S210"], "PILNI", "IGTIL", "GADOG", "TAGAT", "LOBNU", "#327"],
+                "CYYZ15R": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["PIGSO", "A80|S210"], "PILNI", "IGTIL", "GADOG", "TAGAT", "LOBNU", "#327"],
                 "CYYZ23": [["ROKTO", "A110+|A150-|S250"], "PENGO", ["MANUP", "A80+|S220-"], "ERBUS", ["TASKU", "A60|S210"], "DAVIK", "LEVIG", "MIPED", "SATUR", "#057"],
                 "CYYZ24L": [["ROKTO", "A110+|A150-|S250"], "PENGO", ["BOTUM", "A80|S210"], "VERKO", "MAROD", "DEKNI", "DAVNO", "DUNOL", "#057"],
                 "CYYZ24R": [["ROKTO", "A110+|A150-|S250"], "PENGO", ["BOTUM", "A80|S210"], "VERKO", "MAROD", "DEKNI", "DAVNO", "DUNOL", "#057"],
-                "CYYZ33L": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["KENPU", "A80|S210"], "REVOV", "NOXER", "ALORU", "DANAV", "ALMAX", "#327"],
-                "CYYZ33R": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["KENPU", "A80|S210"], "REVOV", "NOXER", "ALORU", "DANAV", "ALMAX", "#327"]
+                "CYYZ33L": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["KENPU", "A80|S210"], "REVOV", "NOXER", "ALORU", "DANAV", "ALMAX", "#147"],
+                "CYYZ33R": [["ROKTO", "A120+|A140-|S250"], "PENGO", ["KENPU", "A80|S210"], "REVOV", "NOXER", "ALORU", "DANAV", "ALMAX", "#147"]
             },
             "draw": [
                 ["YZEMN", "SHHOT", "MONEE"],
@@ -804,7 +949,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ24R.ANCOL5.GGUCE",
+            "route": "CYYZ6L.ANCOL5.GGUCE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -830,7 +975,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ23.AVSEP7.MUSIT",
+            "route": "CYYZ5.AVSEP7.MUSIT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -856,7 +1001,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ24R.BETES3.AIRRA",
+            "route": "CYYZ6L.BETES3.AIRRA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -882,7 +1027,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ24R.BOMET8.IPTOS",
+            "route": "CYYZ6L.BOMET8.IPTOS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -908,7 +1053,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ24R.DEDKI5.TULEG",
+            "route": "CYYZ6L.DEDKI5.TULEG",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -934,7 +1079,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ23.GOPUP4.SLLAP",
+            "route": "CYYZ5.GOPUP4.SLLAP",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -960,7 +1105,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ23.IKLEN3.TONNY..YEE",
+            "route": "CYYZ5.IKLEN3.TONNY..YEE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -986,7 +1131,7 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ24R.KEPTA3.BMPAH",
+            "route": "CYYZ6L.KEPTA3.BMPAH",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1012,7 +1157,137 @@
             "origin": "cyyz",
             "destination": "",
             "category": "departure",
-            "route": "CYYZ23.KISEP4.SILVU",
+            "route": "CYYZ5.KISEP4.SILVU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.8,
+            "airlines": [
+                ["aay", 7],
+                ["aca", 30],
+                ["asa", 1],
+                ["ash", 5],
+                ["aal/short", 5],
+                ["dal/short", 2],
+                ["edv", 6],
+                ["eny", 6],
+                ["fdx/long", 7],
+                ["fft", 4],
+                ["gti", 1],
+                ["swa", 13],
+                ["ual/short", 4],
+                ["ups", 3]
+            ]
+        },
+        {
+            "origin": "cyyz",
+            "destination": "",
+            "category": "departure",
+            "route": "CYYZ6L.MIXUT7.GNTRY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.8,
+            "airlines": [
+                ["aay", 7],
+                ["aca", 30],
+                ["asa", 1],
+                ["ash", 5],
+                ["aal/short", 5],
+                ["dal/short", 2],
+                ["edv", 6],
+                ["eny", 6],
+                ["fdx/long", 7],
+                ["fft", 4],
+                ["gti", 1],
+                ["swa", 13],
+                ["ual/short", 4],
+                ["ups", 3]
+            ]
+        },
+        {
+            "origin": "cyyz",
+            "destination": "",
+            "category": "departure",
+            "route": "CYYZ6L.RIGUS5.PSB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.8,
+            "airlines": [
+                ["aay", 7],
+                ["aca", 30],
+                ["asa", 1],
+                ["ash", 5],
+                ["aal/short", 5],
+                ["dal/short", 2],
+                ["edv", 6],
+                ["eny", 6],
+                ["fdx/long", 7],
+                ["fft", 4],
+                ["gti", 1],
+                ["swa", 13],
+                ["ual/short", 4],
+                ["ups", 3]
+            ]
+        },
+        {
+            "origin": "cyyz",
+            "destination": "",
+            "category": "departure",
+            "route": "CYYZ5.SEDOG6.BOBSU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.8,
+            "airlines": [
+                ["aay", 7],
+                ["aca", 30],
+                ["asa", 1],
+                ["ash", 5],
+                ["aal/short", 5],
+                ["dal/short", 2],
+                ["edv", 6],
+                ["eny", 6],
+                ["fdx/long", 7],
+                ["fft", 4],
+                ["gti", 1],
+                ["swa", 13],
+                ["ual/short", 4],
+                ["ups", 3]
+            ]
+        },
+        {
+            "origin": "cyyz",
+            "destination": "",
+            "category": "departure",
+            "route": "CYYZ5.URSAL4.ZOHAN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.8,
+            "airlines": [
+                ["aay", 7],
+                ["aca", 30],
+                ["asa", 1],
+                ["ash", 5],
+                ["aal/short", 5],
+                ["dal/short", 2],
+                ["edv", 6],
+                ["eny", 6],
+                ["fdx/long", 7],
+                ["fft", 4],
+                ["gti", 1],
+                ["swa", 13],
+                ["ual/short", 4],
+                ["ups", 3]
+            ]
+        },
+        {
+            "origin": "cyyz",
+            "destination": "",
+            "category": "departure",
+            "route": "CYYZ6L.VERDO7.LORKA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1038,7 +1313,7 @@
             "origin": "",
             "destination": "cyyz",
             "category": "arrival",
-            "route": "OTNIK.BOXUM6.CYYZ23",
+            "route": "OTNIK.BOXUM6.CYYZ5",
             "altitude": "33000",
             "speed": "290",
             "method": "random",
@@ -1064,7 +1339,7 @@
             "origin": "",
             "destination": "cyyz",
             "category": "arrival",
-            "route": "POLTY.IMEBA9.CYYZ23",
+            "route": "POLTY.IMEBA9.CYYZ6R",
             "altitude": "33000",
             "speed": "290",
             "method": "random",
@@ -1090,7 +1365,7 @@
             "origin": "",
             "destination": "cyyz",
             "category": "arrival",
-            "route": "OXMAN.LINNG3.CYYZ24L",
+            "route": "OXMAN.LINNG3.CYYZ6R",
             "altitude": "33000",
             "speed": "290",
             "method": "random",
@@ -1116,7 +1391,7 @@
             "origin": "",
             "destination": "cyyz",
             "category": "arrival",
-            "route": "MONEE.NUBER5.CYYZ23",
+            "route": "MONEE.NUBER5.CYYZ5",
             "altitude": "33000",
             "speed": "290",
             "method": "random",
@@ -1142,7 +1417,7 @@
             "origin": "",
             "destination": "cyyz",
             "category": "arrival",
-            "route": "TUKIR.RAGID5.CYYZ24L",
+            "route": "TUKIR.RAGID5.CYYZ6R",
             "altitude": "33000",
             "speed": "290",
             "method": "random",
