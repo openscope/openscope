@@ -600,7 +600,7 @@ export default class AircraftModel {
     }
 
     /**
-     * Fascade to access relative position
+     * Facade to access relative position
      *
      * @for AircraftModel
      * @property relativePosition
