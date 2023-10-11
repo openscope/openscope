@@ -19,7 +19,7 @@ export const ALTITUDE_RESTRICTION_PREFIX = 'A';
 /**
  * Symbol denoting a less than restriction
  *
- * @enum ABOVE_SYMBOL
+ * @enum BELOW_SYMBOL
  * @type {string}
  * @final
  */
