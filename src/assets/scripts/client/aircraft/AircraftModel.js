@@ -663,8 +663,8 @@ export default class AircraftModel {
         this.heading = data.heading;
         this.altitude = data.altitude;
         this.speed = data.speed;
-        this.origin = _get(data, 'origin', this.origin);
-        this.destination = _get(data, 'destination', this.destination);
+        this.origin = data.origin?.toUpperCase(),
+        this.destination = data.destination?.toUpperCase(),
 
         this.target.altitude = this.altitude;
         this.targetHeading = this.heading;
@@ -707,8 +707,8 @@ export default class AircraftModel {
             icaoWithWeightClass: this.model.icaoWithWeightClass,
             assignedAltitude,
             flightPlanAltitude,
-            arrivalAirportId: this.destination.toUpperCase(),
-            departureAirportId: this.origin.toUpperCase(),
+            arrivalAirportId: this.destination?.toUpperCase(),
+            departureAirportId: this.origin?.toUpperCase(),
             flightPlan: this.fms.getFullRouteStringWithoutAirportsWithSpaces()
         };
     }
