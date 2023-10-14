@@ -214,12 +214,12 @@
     "spawnPatterns": [
         {
             "origin": "KPVD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PUT..BAF",
             "method": "random",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "rate": 2,
             "airlines": [
                 ["aal", 7],
@@ -231,12 +231,12 @@
         },
         {
             "origin": "KPVD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "JUMPR..RIFLE",
             "method": "random",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "rate": 2,
             "airlines": [
                 ["aal", 7],

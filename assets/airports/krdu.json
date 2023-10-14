@@ -619,11 +619,11 @@
     "spawnPatterns": [
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.BEXGO4.BOUSY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -648,11 +648,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.HOOKZ4.DAWTS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.4,
             "airlines": [
@@ -676,11 +676,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.HURIC4.FEBEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.2,
             "airlines": [
@@ -705,11 +705,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.LWOOD4.DANCO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -734,11 +734,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.OXFRD4.CARML",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.7,
             "airlines": [
@@ -763,11 +763,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.ROZBO4.ROZBO..CHS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -791,11 +791,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.SHPRD4.SHPRD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.2,
             "airlines": [

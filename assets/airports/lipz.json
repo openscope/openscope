@@ -1129,11 +1129,11 @@
         },
         {
             "origin": "LIPZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LIPZ04R.VIC5L.VIC.L615.ADOSA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.2,
             "airlines": [
@@ -1147,11 +1147,11 @@
         },
         {
             "origin": "LIPZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LIPZ04R.ROKIB5L.ROKIB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.4,
             "airlines": [
@@ -1174,11 +1174,11 @@
         },
         {
             "origin": "LIPZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LIPZ04R.ROSKA5L.ROSKA.T132.ROTAR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.4,
             "airlines": [
@@ -1198,11 +1198,11 @@
         },
         {
             "origin": "LIPZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LIPZ04R.CHI5L.CHI.L612.BELOV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.4,
             "airlines": [

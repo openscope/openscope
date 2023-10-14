@@ -2225,11 +2225,11 @@
     "spawnPatterns": [
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26R.AKINI1N.AKINI.Y104.MAMOR.L132.AGNAV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -2267,11 +2267,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.ALG2S.ALG.Y109.UMTEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1,
             "airlines": [
@@ -2307,11 +2307,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.BIBAG3S.BIBAG.Y133.SELAR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.2,
             "airlines": [
@@ -2361,11 +2361,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26R.EVIVA5N.EVIVA.Y103.LONLI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -2431,11 +2431,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26R.GIVMI1N.GIVMI.Y101.ERNAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2501,11 +2501,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26R.INPUD2N.INPUD.Y102.UPALA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2571,11 +2571,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.KIRDI3S.KIRDI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.6,
             "airlines": [
@@ -2637,11 +2637,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.MERSI5S.MERSI.Y100.ATMAX.Y110.KPT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [
@@ -2677,11 +2677,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.OLASO2S.OLASO.Z714.PELOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -2700,11 +2700,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.RIDAR6S.RIDAR.L173.DODIL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -2770,11 +2770,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.ROTAX3S.ROTAX.UL603.LATLO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -2836,11 +2836,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.TURBU7S.TURBU.Y107.TOBSO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.9,
             "airlines": [
@@ -2874,11 +2874,11 @@
         },
         {
             "origin": "EDDM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDM26L.VAVOR3S.VAVOR.M867.VAROB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.9,
             "airlines": [

@@ -486,11 +486,11 @@
     "spawnPatterns": [
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.ALAMO3.AGJ..VUZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -512,11 +512,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.ALAMO3.JUMBO.J23.MQP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -538,11 +538,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.ALISS5.JCT.J15.INK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -565,11 +565,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.MILET4.LRD.J22.NLD.UJ11.MTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -588,11 +588,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.THX4.CRP.J25.BRO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -616,11 +616,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CHURN.Q56.HRV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6,
             "airlines": [

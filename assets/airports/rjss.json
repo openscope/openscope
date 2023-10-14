@@ -499,11 +499,11 @@
     "spawnPatterns": [
         {
             "origin": "RJSS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJSS27.STEED3.RIKYU.Y882.GYODA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.58,
             "airlines": [
@@ -517,11 +517,11 @@
         },
         {
             "origin": "RJSS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJSS27.DERBY3.GTC",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.79,
             "airlines": [
@@ -539,11 +539,11 @@
         },
         {
             "origin": "RJSS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJSS27.CUBIC3.SAMBO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.79,
             "airlines": [

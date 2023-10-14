@@ -683,11 +683,11 @@
     "spawnPatterns": [
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.BOACH8.WHIGG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.6,
             "airlines": [
@@ -707,11 +707,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.COWBY8.GUP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.8,
             "airlines": [
@@ -732,11 +732,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.PRFUM4.DRK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.4,
             "airlines": [
@@ -748,11 +748,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.SHEAD1.OAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 9,
             "airlines": [
@@ -774,11 +774,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.STAAV8.DVC",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10.2,
             "airlines": [

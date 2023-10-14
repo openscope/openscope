@@ -1861,11 +1861,11 @@
     "spawnPatterns": [
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.APLOV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1880,11 +1880,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.AVVON",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1899,11 +1899,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.IKLAX..REEDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1918,11 +1918,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.KODEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1937,11 +1937,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.LETAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1956,11 +1956,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.OLIGO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1975,11 +1975,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.RADEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1994,11 +1994,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.TUKIR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [

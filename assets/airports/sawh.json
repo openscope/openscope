@@ -325,11 +325,11 @@
     "spawnPatterns":[
         {
             "origin": "SAWH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAWH25.USU2B.GRA.UT662.SALVU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.3,
             "airlines": [
@@ -351,11 +351,11 @@
         },
         {
             "origin": "SAWH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAWH25.USU2B.KEXOP.W42.GRA.UT108.DAGOK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.15,
             "airlines": [
@@ -371,11 +371,11 @@
         },
         {
             "origin": "SAWH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAWH25.USU2B.UGIRA.W63.GAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.83,
             "airlines": [
@@ -392,8 +392,8 @@
             "destination": "SCCI",
             "category": "departure",
             "route": "SAWH25.PWL3.USU.UL670.NAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.12,
             "airlines": [
@@ -407,8 +407,8 @@
             "destination": "SAWG",
             "category": "departure",
             "route": "SAWH25.PWL3.USU.W63.MUBES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.08,
             "airlines": [
@@ -421,8 +421,8 @@
             "destination": "SAWE",
             "category": "departure",
             "route": "SAWH25.PWL3.DABLI.T108.GRA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.04,
             "airlines": [
@@ -435,8 +435,8 @@
             "destination": "SAWB",
             "category": "departure",
             "route": "SAWH25.USU2B.SUNLI..HORNO.UW100.KRILL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.03,
             "airlines": [

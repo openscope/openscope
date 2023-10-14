@@ -3027,11 +3027,11 @@
     "spawnPatterns": [
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.DAGU1A.UGIMI.A306.EZE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.94,
             "airlines": [
@@ -3048,11 +3048,11 @@
         },
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.AKPO1B.AKPOD.UM540.ILTOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.97,
             "airlines": [
@@ -3067,11 +3067,11 @@
         },
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.CRR1R.NIMBO.UL417.GUA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.23,
             "airlines": [
@@ -3080,11 +3080,11 @@
         },
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.CRR1R.MONSA.UP526.MCS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.62,
             "airlines": [

@@ -703,11 +703,11 @@
     "spawnPatterns": [
         {
             "origin": "rksi",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RKSI.BOPTA1K.BOPTA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "cyclic",
             "offset": 0,
             "rate": 17,

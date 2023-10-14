@@ -979,11 +979,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.MKK4.EBBER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1003,11 +1003,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.KEOLA3.KATHS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1030,11 +1030,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.OPIHI3.CHOKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1059,11 +1059,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.PIPLN1.THOMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1088,11 +1088,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.PIPLN1.ZIGIE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1117,11 +1117,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.PIPLN1.DOVRR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [

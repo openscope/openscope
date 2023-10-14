@@ -2328,11 +2328,11 @@
     "spawnPatterns": [
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.KURU1S.KURUM..SHA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.02,
             "airlines": [
@@ -2342,11 +2342,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.GOTE1S.GOTEM..EVRIN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.26,
             "airlines": [
@@ -2360,11 +2360,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.TISM1S.TISMO.Q36.SUTEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.1,
             "airlines": [
@@ -2376,11 +2376,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.TISM1Q.TISMO.Q36.SUTEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.51,
             "airlines": [
@@ -2389,11 +2389,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.SOVI1S.SOVIX..MAPAG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.6,
             "airlines": [
@@ -2404,11 +2404,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.ERTE1S.ERTER..LEDGO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.82,
             "airlines": [
@@ -2420,11 +2420,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.ELTI1S.ELTIG..NORLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.04,
             "airlines": [
@@ -2435,11 +2435,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.ELTI1Q.ELTIG..NORLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.16,
             "airlines": [

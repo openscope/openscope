@@ -955,11 +955,11 @@
     "spawnPatterns": [
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.ARNEY2.BAXLY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -985,11 +985,11 @@
         },
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.CROSB2.WISPR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6,
             "airlines": [
@@ -1013,11 +1013,11 @@
         },
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.EXBOX2.OMN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1038,11 +1038,11 @@
         },
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.JETIN2.CAPPS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [

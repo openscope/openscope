@@ -173,11 +173,11 @@
     "spawnPatterns": [
         {
             "origin": "sbgl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SBGL.BOTOM.BOTOM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [

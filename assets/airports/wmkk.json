@@ -729,7 +729,7 @@
     "spawnPatterns": [
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.AGOSA.AGOSA",
             "altitude": null,
@@ -767,7 +767,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.RUMID.RUMID",
             "altitude": null,
@@ -805,7 +805,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.BATAR.BATAR",
             "altitude": null,
@@ -843,7 +843,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.MITOS.MITOS",
             "altitude": null,
@@ -881,7 +881,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.DUMOK.DUMOK",
             "altitude": null,
@@ -919,7 +919,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.PIBOS.PIBOS",
             "altitude": null,
@@ -957,7 +957,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.ISTAN.ISTAN",
             "altitude": null,
@@ -995,7 +995,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.KIMAT.KIMAT",
             "altitude": null,

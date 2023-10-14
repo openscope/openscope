@@ -8,15 +8,15 @@ Lets look at some examples before we continue:
 // Departures
 {
      "origin": "KLAS",
-     "destination": "",
+     "destination": null,
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
      "commands": {
         "19L": "fh 180",
         "1R": "fh 360"
      },
-     "altitude": "",
-     "speed": "",
+     "altitude": null,
+     "speed": null,
      "method": "random",
      "rate": 5,
      "airlines": [
@@ -28,7 +28,7 @@ Lets look at some examples before we continue:
 
 // Arrivals
 {
-    "origin": "",
+    "origin": null,
     "destination": "KLAS",
     "category": "arrival",
     "route": "BETHL.GRNPA1.KLAS",
@@ -51,8 +51,8 @@ Lets look at some examples before we continue:
 
 // Overflights
 {
-    "origin": "",
-    "destination": "",
+    "origin": null,
+    "destination": null,
     "category": "overflight",
     "route": "DAG.V21.MLF",
     "altitude": 9000,
@@ -70,7 +70,7 @@ Lets look at some examples before we continue:
 ## Key descriptions
 
 * _(*) denotes a required field_
-* All keys are required to be present and can be left as an empty string when not used by a particular pattern. ex `"destination": ""` for an arrival pattern.
+* All keys are required to be present and should be set to null when not used by a particular pattern. ex `"destination": null` for an arrival pattern.
 
 ### airlines*
 

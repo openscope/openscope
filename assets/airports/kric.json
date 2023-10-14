@@ -676,11 +676,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRIC2.KALLI7.SANNY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -702,11 +702,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRIC2.KALLI7.READE..LYH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -728,11 +728,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRIC2.LUCYL6.LUCYL..PXT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.1,
             "airlines": [
@@ -754,11 +754,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "HPW.J191.ILM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.1,
             "airlines": [
@@ -780,11 +780,11 @@
         },
         {
             "origin": "KRIC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "MATOX.V157.LVL.V155.RDU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [
@@ -793,11 +793,11 @@
         },
         {
             "origin": "KRIC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "NEMAN.V38.CCV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [
@@ -806,11 +806,11 @@
         },
         {
             "origin": "KRIC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ROOKY.V38.GVE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [

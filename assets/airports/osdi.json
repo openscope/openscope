@@ -336,11 +336,11 @@
     "spawnPatterns": [
         {
             "origin": "osdi",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OSDI.ABS22.ABBAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "cyclic",
             "offset": 0,
             "rate": 10,

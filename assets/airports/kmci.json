@@ -430,11 +430,11 @@
     "spawnPatterns": [
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.CHIEF7.CATTS..SLOWR..HLC",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.7,
             "airlines": [
@@ -457,11 +457,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1R.LAKES2.COU..FAM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.7,
             "airlines": [
@@ -489,11 +489,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1R.LAKES2.SPI..VHP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.7,
             "airlines": [
@@ -521,11 +521,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.RACER7.DOSOA..TUL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [
@@ -549,11 +549,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1R.RACER7.SGF..MEM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -577,11 +577,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1R.ROYAL9.ARENZ..IOW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.4,
             "airlines": [
@@ -609,11 +609,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1R.ROYAL9.BODYN..LOAMY..KEOKK..BDF",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3,
             "airlines": [
@@ -641,11 +641,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.ROYAL9.TONCE..OVR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.4,
             "airlines": [
@@ -669,11 +669,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.TIFTO6.TIFTO..MCK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -698,11 +698,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.WLDCT5.SLN..HYS..OATHE..HGO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.35,
             "airlines": [
@@ -725,11 +725,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.WLDCT5.SLN..GCK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.35,
             "airlines": [
@@ -752,11 +752,11 @@
         },
         {
             "origin": "KMCI",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCI1L.WLDCT5.SLN..LAA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [

@@ -1029,7 +1029,7 @@
     "spawnPatterns": [
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.ANDIK.ANDIK",
             "altitude": null,
@@ -1106,7 +1106,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.ARNEM.ARNEM",
             "altitude": null,
@@ -1183,7 +1183,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.BERGI.BERGI",
             "altitude": null,
@@ -1260,7 +1260,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.LEKKO.LEKKO",
             "altitude": null,
@@ -1337,7 +1337,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.GORLO.GORLO",
             "altitude": null,
@@ -1414,7 +1414,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.LOPIK.LOPIK",
             "altitude": null,
@@ -1491,7 +1491,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.LUNIX.LUNIX",
             "altitude": null,
@@ -1568,7 +1568,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.VALKO.VALKO",
             "altitude": null,
@@ -1645,7 +1645,7 @@
         },
         {
             "origin": "EHAM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EHAM.SPY.SPY",
             "altitude": null,

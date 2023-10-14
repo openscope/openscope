@@ -1373,14 +1373,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD22L.ORD7.ACITO..ADELL..ARLYN",
             "commands": {
                 "22L": "fh 180"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1441,14 +1441,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD22L.ORD7.BACEN..BLOKR..BEKKI",
             "commands": {
                 "22L": "fh 180"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1509,14 +1509,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD22L.ORD7.CMSKY..CARYN..CYBIL",
             "commands": {
                 "22L": "fh 180"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1577,14 +1577,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD22L.ORD7.DENNT..DARCY..DREGS",
             "commands": {
                 "22L": "fh 160"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1645,14 +1645,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD22L.ORD7.EARND..ELANR..EMMLY",
             "commands": {
                 "22L": "fh 160"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1713,14 +1713,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD27L.ORD7.EBAKE..WISMO..POSTS..PADDE",
             "commands": {
                 "27L": "fh 320"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1781,14 +1781,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD27L.ORD7.DUFEE..LOGGR..HAAKK..DOXXY",
             "commands": {
                 "27L": "fh 320"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1849,14 +1849,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD27L.ORD7.MOBLE..ADIME..GERBS",
             "commands": {
                 "27L": "fh 320"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1917,14 +1917,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LEWKE..ZIINE..OTENS",
             "commands": {
                 "27L": "fh 320"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -1985,14 +1985,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD28R.ORD7.MYKIE..MONNY",
             "commands": {
                 "28R": "fh 270"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -2053,14 +2053,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD28R.ORD7.NOONY..NIGHT..NITWT",
             "commands": {
                 "28R": "fh 270"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -2121,14 +2121,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD28R.ORD7.OLINN..OREOS..OBENE..OGALE",
             "commands": {
                 "28R": "fh 255"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -2189,14 +2189,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD28R.ORD7.PEKUE..PIGGG..PIPPN..ROTTN",
             "commands": {
                 "28R": "fh 255"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -2257,14 +2257,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD27L.ORD7.PMPKN..KAMMA..BGOSH",
             "commands": {
                 "27L": "fh 300"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [
@@ -2325,14 +2325,14 @@
         },
         {
             "origin": "kord",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KORD27L.ORD7.RAYNR..TAAYZ..SQUIB",
             "commands": {
                 "27L": "fh 300"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines":  [

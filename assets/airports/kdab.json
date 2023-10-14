@@ -369,11 +369,11 @@
     "spawnPatterns": [
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDAB7L.ROYES7.CRG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -403,11 +403,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMN.T207.AYS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -417,11 +417,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMN.V3.SSI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -431,11 +431,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMN..SUUGR.T208.WALEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -445,11 +445,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "MIKBE.V3.MLB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -459,11 +459,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "MALET.Q93.FOBIN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -474,11 +474,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIZER.T210.VARZE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -573,7 +573,7 @@
         },
         {
             "origin": "",
-            "destination": "",
+            "destination": null,
             "category": "overflight",
             "route": "MALET.T208.WALEE..GNV",
             "altitude": 8000,
@@ -587,7 +587,7 @@
         },
         {
             "origin": "",
-            "destination": "",
+            "destination": null,
             "category": "overflight",
             "route": "ORL.V267.CRG",
             "altitude": 8000,

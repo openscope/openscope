@@ -381,11 +381,11 @@
     "spawnPatterns": [
         {
             "origin": "vhhh",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "VHHH.LAKES.LAKES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 30,
             "offset": 0,

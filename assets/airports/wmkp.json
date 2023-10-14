@@ -249,7 +249,7 @@
     "spawnPatterns": [
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.BIDMO.BIDMO",
             "altitude": null,
@@ -276,7 +276,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.IKILO.IKILO",
             "altitude": null,
@@ -303,7 +303,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.ISMAS.ISMAS",
             "altitude": null,
@@ -330,7 +330,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.LUNTU.LUNTU",
             "altitude": null,
@@ -357,7 +357,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.PAPDA.PAPDA",
             "altitude": null,
@@ -384,7 +384,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.MADUM.MADUM",
             "altitude": null,
@@ -411,7 +411,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.VPG.VPG",
             "altitude": null,

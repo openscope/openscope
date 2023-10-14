@@ -2309,11 +2309,11 @@
     "spawnPatterns": [
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31R.ATUDO3P.ATUDO.M318.GOLGU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -2325,11 +2325,11 @@
         },
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31L.BOSEV1K.BOSEV.N563.KUSBA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -2342,11 +2342,11 @@
         },
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31R.DAXIB1P.DAXIB.P553.UKUVO.G462.TUMAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2367,11 +2367,11 @@
         },
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31R.KANIP3P.KANIP.N318.LABRI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2387,11 +2387,11 @@
         },
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31L.MEKRI1K.MEKRI.P899.MEKMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -2408,11 +2408,11 @@
         },
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31R.TULON1P.TULON.M318.LOVEM.M677.LALDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2428,11 +2428,11 @@
         },
         {
             "origin": "OMAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMAA31R.TULON1P.TULON.M318.GABKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.05,
             "airlines": [

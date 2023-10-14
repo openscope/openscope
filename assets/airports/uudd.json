@@ -281,11 +281,11 @@
     "spawnPatterns": [
         {
             "origin": "uudd",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "UUDD.SF.SF",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.4,
             "airlines": [

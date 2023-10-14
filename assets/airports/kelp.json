@@ -737,11 +737,11 @@
     "spawnPatterns": [
         {
             "origin": "kelp",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KELP22.ATKNN5.FLOGS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -756,11 +756,11 @@
         },
         {
             "origin": "kelp",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KELP22.LATVE3.CME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -778,11 +778,11 @@
         },
         {
             "origin": "kelp",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KELP22.NEVUE3.FST",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -796,11 +796,11 @@
         },
         {
             "origin": "kelp",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KELP22.TDOWN3.SFL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [

@@ -289,7 +289,7 @@
     "spawnPatterns": [
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.SAMAR.SAMAR",
             "altitude": null,
@@ -322,7 +322,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.VASTO.VASTO",
             "altitude": null,
@@ -355,7 +355,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.KORAL.KORAL",
             "altitude": null,
@@ -388,7 +388,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.SOTAD.SOTAD",
             "altitude": null,
@@ -421,7 +421,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.LORPO.LORPO",
             "altitude": null,
@@ -454,7 +454,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.LARYS.LARYS",
             "altitude": null,

@@ -535,11 +535,11 @@
     "spawnPatterns": [
         {
             "origin": "EGNM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGNM32.DOPEK2W.DOPEK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -550,11 +550,11 @@
         },
         {
             "origin": "EGNM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGNM32.LAMIX2W.LAMIX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -565,11 +565,11 @@
         },
         {
             "origin": "EGNM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGNM32.NELSA3W.NELSA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [

@@ -320,11 +320,11 @@
     "spawnPatterns": [
         {
             "origin": "tjsj",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TJSJ.JETSS1.JUICE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 15,
             "airlines": [

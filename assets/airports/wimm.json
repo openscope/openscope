@@ -131,11 +131,11 @@
     "spawnPatterns": [
         {
             "origin": "wimm",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WIMM.GOTLA1.GOTLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "cyclic",
             "rate": 7.5,
             "period": 30,

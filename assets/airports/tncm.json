@@ -446,11 +446,11 @@
     "spawnPatterns":[
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.JUICE.B520.STT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.56,
             "airlines": [
@@ -468,11 +468,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.BOPAT2.JUICE.B520.STT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.34,
             "airlines": [
@@ -488,11 +488,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.GOUDA.R760.COY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.22,
             "airlines": [
@@ -502,11 +502,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.DANDE.M576.RAFEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.22,
             "airlines": [
@@ -516,11 +516,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.BOPAT2.DANDE.M576.RAFEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.45,
             "airlines": [
@@ -531,11 +531,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.ZPATA.A517.PPR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.06,
             "airlines": [
@@ -545,11 +545,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MULLT2.ZPATA.A517.PPR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.11,
             "airlines": [
@@ -563,11 +563,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.ELOPO.B520.ANU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.11,
             "airlines": [
@@ -577,11 +577,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MULLT2.ELOPO.B520.ANU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.95,
             "airlines": [
@@ -593,11 +593,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.MNOLO.M576.RKDIA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.45,
             "airlines": [
@@ -611,11 +611,11 @@
         },
         {
             "origin": "TNCM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TNCM10.MODOR2.TRNKY.L461.OPAUL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [

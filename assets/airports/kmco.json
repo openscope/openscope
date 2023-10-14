@@ -1058,11 +1058,11 @@
     "spawnPatterns": [
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO36R.RDSOX1.JFRYS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.7,
             "airlines": [
@@ -1081,11 +1081,11 @@
         },
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO36R.OSPRY1.CIGAR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.7,
             "airlines": [
@@ -1110,11 +1110,11 @@
         },
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO35L.FATHE3.VIYAP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 9.7,
             "airlines": [
@@ -1137,11 +1137,11 @@
         },
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO36R.JEEMY3.PAINN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.7,
             "airlines": [
@@ -1162,11 +1162,11 @@
         },
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO35L.MZULO3.ETECK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.7,
             "airlines": [
@@ -1190,11 +1190,11 @@
         },
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO35L.DDANY3.BORRD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.7,
             "airlines": [
@@ -1216,11 +1216,11 @@
         },
         {
             "origin": "kmco",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMCO36R.FSHUN3.PLUMR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.7,
             "airlines": [

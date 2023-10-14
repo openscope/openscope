@@ -1120,11 +1120,11 @@
     "spawnPatterns": [
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.AMLUH8G.AMLUH..DENIX..ULSEN..HLZ..POVEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1141,11 +1141,11 @@
         },
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.BASUM1G.BASUM..OSN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -1171,11 +1171,11 @@
         },
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.EKERN8G.EKERN..TUGDU..ALASA..ALS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1191,11 +1191,11 @@
         },
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.IDEKO4G.IDEKO..TIMEN..ROBEG..PIROT..LARBU..WRB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -1213,11 +1213,11 @@
         },
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.LUB9G.LUB..TOSPA..AMICH..PIBUL..MEGAR..GESKA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1231,11 +1231,11 @@
         },
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.RAMAR3G.RAMAR..NUSGU..LASLU..PITEN..BIRMO..RATMO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1254,11 +1254,11 @@
         },
         {
             "origin": "EDDH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDH33.WSN2G.WSN..REVLA..AVESA..DOTOB..DOBAK..EEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [

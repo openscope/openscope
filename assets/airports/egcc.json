@@ -1666,11 +1666,11 @@
     "spawnPatterns": [
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.EKLAD1Y.EKLAD.Y53.WAL.M146.IPSET",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1683,11 +1683,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.KUXEM1Y.KUXEM.P17.NOKIN.N862.DOBEM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1699,11 +1699,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.LISTO2Y.LISTO.L612.HON.UN859.KIDLI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1713,11 +1713,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.POL1Y.POL.UP17.DIGBI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -1730,11 +1730,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.SANBA1Y.SANBA.UN859.CPT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1750,11 +1750,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.SONEX1Y.SONEX.L975.DESIG.L603.LAMSO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1777,11 +1777,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.EKLAD1Y.EKLAD.Y53.WAL.L10.PENIL.L70.BAGSO..DUB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [

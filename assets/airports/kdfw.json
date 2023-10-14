@@ -909,11 +909,11 @@
     "spawnPatterns": [
         {
             "origin": "kdfw",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDFW.AKUNA6.MLC",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8.75,
             "airlines": [
@@ -927,11 +927,11 @@
         },
         {
             "origin": "kdfw",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDFW.BLECO7.ZEMMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8.75,
             "airlines": [
@@ -948,11 +948,11 @@
         },
         {
             "origin": "kdfw",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDFW.JASPA5.WINDU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8.75,
             "airlines": [
@@ -966,11 +966,11 @@
         },
         {
             "origin": "kdfw",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDFW.ZACHH2.BSKAT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8.75,
             "airlines": [

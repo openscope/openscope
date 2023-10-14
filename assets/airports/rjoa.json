@@ -420,11 +420,11 @@
     "spawnPatterns": [
         {
             "origin": "RJOA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJOA10.MOMOT3.MIDER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.68,
             "airlines": [
@@ -435,11 +435,11 @@
         },
         {
             "origin": "RJOA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJOA10.KIJYY2.YME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.46,
             "airlines": [
@@ -449,11 +449,11 @@
         },
         {
             "origin": "RJOA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJOA10.MARCO1.MARCO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.19,
             "airlines": [

@@ -638,11 +638,11 @@
     "spawnPatterns": [
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.GRZZZ3.FTI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -661,11 +661,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.JEMEZ3.JEMEZ..RSK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -684,11 +684,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.MNZNO3.CME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -706,11 +706,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.MNZNO3.TXO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -731,11 +731,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.RDRNR3.ZUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -753,11 +753,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.RDRNR3.GUP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [

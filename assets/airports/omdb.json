@@ -2696,11 +2696,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.ANVIX6F.ANVIX.L223.TARDI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.11,
             "airlines": [
@@ -2726,11 +2726,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.DAVMO3F.DAVMO.M318.GABKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.86,
             "airlines": [
@@ -2759,11 +2759,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.GETID1F.IVURO.M428.GOMTA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8.98,
             "airlines": [
@@ -2793,11 +2793,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.KUTLI3F.KUTLI.L519.ATUDO.M318.GOLGU.UM550.RIBOT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.24,
             "airlines": [
@@ -2811,11 +2811,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.KUTLI3F.KUTLI.L519.ATUDO.M318.MUXIT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.49,
             "airlines": [
@@ -2827,11 +2827,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.MIROT2F.MIROT.N566.KUSBA.N563.IMGUX.P699.ORMID",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.76,
             "airlines": [
@@ -2841,11 +2841,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.RIDAP1F.RIDAP.M557.TUMAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.99,
             "airlines": [
@@ -2869,11 +2869,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.SENPA1F.SENPA.N571.ALPOB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.11,
             "airlines": [

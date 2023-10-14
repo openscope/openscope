@@ -484,11 +484,11 @@
     "spawnPatterns": [
         {
             "origin": "KTPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KTPA.BAYPO7.DUNKN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6,
             "airlines": [
@@ -510,11 +510,11 @@
         },
         {
             "origin": "KTPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KTPA.ENDED7.CTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -534,11 +534,11 @@
         },
         {
             "origin": "KTPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KTPA.GANDY7.SABEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -553,11 +553,11 @@
         },
         {
             "origin": "KTPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KTPA.SYKES7.SIMMR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [

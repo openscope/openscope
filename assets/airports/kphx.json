@@ -527,11 +527,11 @@
     "spawnPatterns": [
         {
             "origin": "kphx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHX.FTHLS4.MAXXO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10,
             "airlines": [
@@ -548,11 +548,11 @@
         },
         {
             "origin": "kphx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHX.JUDTH4.MOHAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10,
             "airlines": [

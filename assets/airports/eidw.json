@@ -2528,11 +2528,11 @@
     "spawnPatterns": [
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.LIFY6A.LIFFY.Q37.MALUD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.27,
             "airlines": [
@@ -2561,11 +2561,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.LIFY6A.LIFFY.Q36.ALAVA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.27,
             "airlines": [
@@ -2593,11 +2593,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.DEXE1A.DEXEN.UY124.AMPIT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.05,
             "airlines": [
@@ -2615,11 +2615,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.PESI5A.PESIT..BAKUR.N546.STU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -2636,11 +2636,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.BEPA5A.BEPAN..DIMUS..BANBA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.96,
             "airlines": [
@@ -2653,11 +2653,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.OLON5A.OLONO..CML.Q36.CRK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.22,
             "airlines": [
@@ -2668,11 +2668,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.INKU5A.INKUR..DEVOL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.27,
             "airlines": [
@@ -2683,11 +2683,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.SURO1A.SUROX..ERNAN..TADEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.56,
             "airlines": [
@@ -2707,11 +2707,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.NEVR1A.NEVRI.N34.BEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.27,
             "airlines": [
@@ -2722,11 +2722,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.ROTE1A.ROTEV.P600.BLACA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.67,
             "airlines": [

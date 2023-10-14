@@ -506,7 +506,7 @@
     "spawnPatterns": [
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.ASTOS.ASTOS",
             "altitude": null,
@@ -540,7 +540,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.KEMAX.KEMAX",
             "altitude": null,
@@ -574,7 +574,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.SIMEG.SIMEG",
             "altitude": null,
@@ -608,7 +608,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.BALOX.BALOX",
             "altitude": null,
@@ -642,7 +642,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.BETUD.BETUD",
             "altitude": null,
@@ -676,7 +676,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.NEXEN.NEXEN",
             "altitude": null,
@@ -710,7 +710,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.KOPEX.KOPEX",
             "altitude": null,
@@ -744,7 +744,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.ODN.ODN",
             "altitude": null,
@@ -778,7 +778,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.MIKSI.MIKSI",
             "altitude": null,
@@ -812,7 +812,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.GOLGA.GOLGA",
             "altitude": null,
@@ -846,7 +846,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.VEDAR.VEDAR",
             "altitude": null,

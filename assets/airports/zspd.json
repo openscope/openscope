@@ -1994,7 +1994,7 @@
     "spawnPatterns": [
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.AND11D.AND",
             "altitude": null,
@@ -2051,7 +2051,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.BOL11D.BOLEX",
             "altitude": null,
@@ -2108,7 +2108,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.CGT12D.CGT",
             "altitude": null,
@@ -2165,7 +2165,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.HSN11D.HSN",
             "altitude": null,
@@ -2222,7 +2222,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.JTN11D.JTN",
             "altitude": null,
@@ -2279,7 +2279,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.LAM11D.LAMEN",
             "altitude": null,
@@ -2336,7 +2336,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.NXD11D.NXD",
             "altitude": null,
@@ -2393,7 +2393,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.ODU11D.ODULO",
             "altitude": null,
@@ -2450,7 +2450,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.PIK11D.PIKAS",
             "altitude": null,
@@ -2507,7 +2507,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.SAS11D.SASAN",
             "altitude": null,
@@ -2564,7 +2564,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.SUF11D.SUF",
             "altitude": null,
@@ -2621,7 +2621,7 @@
         },
         {
             "origin": "ZSPD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ZSPD.SUR11D.SURAK",
             "altitude": null,

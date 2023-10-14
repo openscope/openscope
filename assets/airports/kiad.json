@@ -1600,11 +1600,11 @@
     "spawnPatterns": [
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.BUNZZ3.RAMAY..HACKS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1,
             "airlines": [
@@ -1615,11 +1615,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.CLTCH2.FLASK..VIEWS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.4,
             "airlines": [
@@ -1630,11 +1630,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.CLTCH2.MAULS..ALEAN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1643,11 +1643,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JCOBY3.SWANN..BROSS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.3,
             "airlines": [
@@ -1665,11 +1665,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JERES2.JERES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.9,
             "airlines": [
@@ -1681,11 +1681,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JDUBB3.MELTN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -1695,11 +1695,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JDUBB3.RRSIN..GSO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1709,10 +1709,10 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.MCRAY2.MCRAY..IHD",
-            "altitude": "",
+            "altitude": null,
             "speed": 430,
             "method": "random",
             "rate": 1.3,
@@ -1722,11 +1722,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.RNLDI4.OTTTO..FAREV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.4,
             "airlines": [
@@ -1740,11 +1740,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.SCRAM5.GLANC..LYH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.1,
             "airlines": [
@@ -1757,11 +1757,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.WOOLY1.SWANN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.8,
             "airlines": [

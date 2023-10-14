@@ -967,11 +967,11 @@
     "spawnPatterns": [
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.BNGLE4.DJB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.2,
             "airlines": [
@@ -998,11 +998,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.CHCLL4.IIU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.4,
             "airlines": [
@@ -1029,11 +1029,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.GIPLE6.HVQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -1060,11 +1060,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.HAGOL4.DQN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1091,11 +1091,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.JBNCH5.MIE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -1122,11 +1122,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.KENLN4.HYK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1153,11 +1153,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.LOVEY6.AXC",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1184,11 +1184,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.LOVEY6.CADIZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -1215,11 +1215,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.ROCKT9.AHTIY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -1246,11 +1246,11 @@
         },
         {
             "origin": "KCVG",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCVG18L.SILKS4.TRFWA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.1,
             "airlines": [

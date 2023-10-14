@@ -834,11 +834,11 @@
     "spawnPatterns": [
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.WINCO2.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -858,11 +858,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -882,11 +882,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.HEDLY2.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -909,11 +909,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -936,11 +936,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.VALLY2.VALLY..PERMT..ADOOR..SNABS..EMCEE..SEELO..ILM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -962,11 +962,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.PADUS2.PADUS..ZFP..FLINY..HAANA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -980,11 +980,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.PADUS..ZFP..FLINY..HAANA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -998,11 +998,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.BEECH..BAHMA..ISAAC..OYSTA..HANKX..MAMML..DIAZZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1022,11 +1022,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.SKIPS2.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1047,11 +1047,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1072,11 +1072,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.EONNS2.EONNS..ELLEE..URSUS..GELOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1096,11 +1096,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.EONNS..ELLEE..URSUS..GELOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1120,11 +1120,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MNATE2.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1146,11 +1146,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [

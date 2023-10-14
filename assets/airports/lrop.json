@@ -847,11 +847,11 @@
     "spawnPatterns": [
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.SOKRU1K.SOKRU.M747.ENIMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -865,11 +865,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.BUKEL1K.BUKEL.L619.EDETA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -883,11 +883,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.DENAK1K.DENAK.P740.KODRU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -899,11 +899,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.NETUL1K.NETUL.L5.CND",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -915,11 +915,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.IDARU1K.IDARU.M747.CND",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -931,11 +931,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.POLUN1K.POLUN.N181.TIMUR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [

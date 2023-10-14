@@ -752,11 +752,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA31.DANLS3.SPKER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.20,
             "airlines": [
@@ -786,11 +786,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA2R.CHADM3.SWAPP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.10,
             "airlines": [
@@ -820,11 +820,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA31.DRURY3.JALAR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.20,
             "airlines": [
@@ -851,11 +851,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA2R.EVVAN3.EVVAN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.90,
             "airlines": [
@@ -880,11 +880,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA2R.FLAME3.GENDE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.20,
             "airlines": [
@@ -910,11 +910,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA31.GDOGG3.FAPER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.20,
             "airlines": [
@@ -944,11 +944,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA31.HGGRD3.TINGS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.80,
             "airlines": [
@@ -978,11 +978,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA31.KRSTA3.OLSIE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.40,
             "airlines": [
@@ -1012,11 +1012,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA31.PARDN3.HODJS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.20,
             "airlines": [
@@ -1046,11 +1046,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA2R.TAZMO3.BURME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.20,
             "airlines": [
@@ -1080,11 +1080,11 @@
         },
         {
             "origin": "KBNA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBNA2R.TIPPN3.BRXTN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.20,
             "airlines": [
@@ -1114,7 +1114,7 @@
         },
         {
             "origin": "",
-            "destination": "",
+            "destination": null,
             "category": "overflight",
             "route": "LVT.V140.DYR",
             "altitude": 8500,
@@ -1127,7 +1127,7 @@
         },
         {
             "origin": "",
-            "destination": "",
+            "destination": null,
             "category": "overflight",
             "route": "DYR.V140.LVT",
             "altitude": 7500,

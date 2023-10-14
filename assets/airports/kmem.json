@@ -1192,11 +1192,11 @@
     "spawnPatterns": [
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18L.AZONE7.PITEW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1220,11 +1220,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18L.BBKNG7.KERMI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1248,11 +1248,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.BINKY6.BASBE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1276,11 +1276,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.CHLDR5.ANSWA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1304,11 +1304,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18L.CRSON7.HUMMS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1332,11 +1332,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.DUCKZ5.HELAR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1360,11 +1360,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18L.GOETZ7.DIYAB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1388,11 +1388,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.GRRIZ5.MIEDZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1416,11 +1416,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.HOTRD5.TOMKE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1444,11 +1444,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.JTEEE5.ODATE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1472,11 +1472,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.OLEMS6.LEYIK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1500,11 +1500,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.PIEPE6.IBUFY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1528,11 +1528,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18L.SELPH7.OHULO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1556,11 +1556,11 @@
         },
         {
             "origin": "KMEM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMEM18C.ZUMIT5.FOXOM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [

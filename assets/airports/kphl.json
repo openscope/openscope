@@ -1002,7 +1002,7 @@
     "spawnPatterns": [
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.OOD..TEBEE..HAYDO..SBY..KEMPR..DIW",
             "commands": {
@@ -1013,8 +1013,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.6,
             "airlines": [
@@ -1039,7 +1039,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.MXE..PENSY.J110.FLIRT.J6.HVQ",
             "commands": {
@@ -1050,8 +1050,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.6,
             "airlines": [
@@ -1076,7 +1076,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.DITCH.J225.JFK..HTO",
             "commands": {
@@ -1087,8 +1087,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.6,
             "airlines": [
@@ -1115,7 +1115,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.DITCH.V312.JIMEE..WAVEY",
             "commands": {
@@ -1126,8 +1126,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.6,
             "airlines": [
@@ -1154,7 +1154,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.STOEN..REEFI..EMI.J48.CSN",
             "commands": {
@@ -1165,8 +1165,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.6,
             "airlines": [
@@ -1191,7 +1191,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.PTW..SARAA.J64.EWC",
             "commands": {
@@ -1202,8 +1202,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.6,
             "airlines": [

@@ -1090,7 +1090,7 @@
     "spawnPatterns": [
         {
             "origin": "EGLC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLC.DVR.DVR",
             "altitude": null,
@@ -1105,7 +1105,7 @@
         },
         {
             "origin": "EGLC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLC.LYD.LYD",
             "altitude": null,
@@ -1120,7 +1120,7 @@
         },
         {
             "origin": "EGLC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLC.CLN.CLN",
             "altitude": null,
@@ -1135,7 +1135,7 @@
         },
         {
             "origin": "EGLC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLC.CPT.CPT",
             "altitude": null,
@@ -1150,7 +1150,7 @@
         },
         {
             "origin": "EGLC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLC.BPK.BPK",
             "altitude": null,

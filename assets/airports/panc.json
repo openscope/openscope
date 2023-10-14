@@ -532,11 +532,11 @@
     "spawnPatterns": [
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.ANC8.TED..BGQ..FAI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -549,11 +549,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.ANC8.JOH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -574,11 +574,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.ANC8.MDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -599,11 +599,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.ANC8.SQA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -617,11 +617,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.ANC8.TED..ODK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -635,11 +635,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.FFITZ3.FFITZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -651,11 +651,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.NOEND3.NOEND",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -678,11 +678,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.TURN7.BGQ..FAI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -692,11 +692,11 @@
         },
         {
             "origin": "panc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PANC.TURN7.ENA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [

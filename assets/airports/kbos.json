@@ -784,11 +784,11 @@
     "spawnPatterns": [
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.BLZZR4.BLZZR..BAF",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -809,11 +809,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.BRUWN5.BRUWN..ACK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -828,11 +828,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.CELTK5.CELTK..FRILL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -850,11 +850,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.HYLND5.HYLND..CAM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -873,11 +873,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.LBSTA6.LBSTA..EBONY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -904,11 +904,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.PATSS5.PATSS..NELIE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -929,11 +929,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.REVSS4.REVSS..CTR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -946,11 +946,11 @@
         },
         {
             "origin": "kbos",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KBOS22R.SSOXS5.SSOXS..BUZRD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7,
             "airlines": [

@@ -2148,11 +2148,11 @@
     "spawnPatterns": [
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.ROVE2A.AGRIS.Y11.SHIRO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.31,
             "airlines": [
@@ -2164,11 +2164,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.ROVE2A.AKAGI.Y372.KALON.Y37.GOSEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "wave",
             "rate": 2,
             "period": 60,
@@ -2188,8 +2188,8 @@
             "destination": "PHNL",
             "category": "departure",
             "route": "RJTT34R.ROVE2A.INUBO.Y830.TELAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -2201,11 +2201,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.ROVE2A.INUBO.Y808.PUTER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2217,11 +2217,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y885.AZUMI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.38,
             "airlines": [
@@ -2233,8 +2233,8 @@
             "destination": "RJNK",
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y884.MBE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.63,
             "airlines": [
@@ -2244,11 +2244,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y18.PIGAP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.06,
             "airlines": [
@@ -2259,11 +2259,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.RITL2A.RITLA.Y20.SUGAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.88,
             "airlines": [
@@ -2276,11 +2276,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT05.NINOX3.NINOX.Y28.IPLES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.75,
             "airlines": [
@@ -2295,11 +2295,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT05.LAXAS3.LAXAS.Y56.TOHME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10.13,
             "airlines": [

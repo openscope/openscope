@@ -1745,11 +1745,11 @@
     "spawnPatterns": [
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.ATOVO2A.ATOVO.UW5.ROS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -1762,11 +1762,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.LANDA2A.LANDA.UW64.PADAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.36,
             "airlines": [
@@ -1784,11 +1784,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.BIVAM2A.BIVAM.UW8.PAR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.27,
             "airlines": [
@@ -1809,11 +1809,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.PTA6B.DORVO.UN857.LOMID",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.67,
             "airlines": [
@@ -1842,11 +1842,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.PTA6B.KUKEN.UM654.PUMIL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.63,
             "airlines": [
@@ -1864,11 +1864,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.TORUL1.URINO.UA306.LYE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.59,
             "airlines": [
@@ -1887,11 +1887,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.TORUL1.TORUL.UT654.BIXIM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.41,
             "airlines": [
@@ -1902,11 +1902,11 @@
         },
         {
             "origin": "SAEZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAEZ11.GBE6.GBE.UA570.ATITO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.68,
             "airlines": [

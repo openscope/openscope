@@ -1071,7 +1071,7 @@
     "spawnPatterns": [
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.BIGGY.Q75.GVE..LYH",
             "commands": {
@@ -1082,8 +1082,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.625,
             "airlines": [
@@ -1094,7 +1094,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.BIGGY.V3.MXE",
             "commands": {
@@ -1105,8 +1105,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -1117,7 +1117,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.COATE..LAAYK..ULW..WOZEE",
             "commands": {
@@ -1128,8 +1128,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.625,
             "airlines": [
@@ -1138,7 +1138,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.COATE.Q436.RAAKK.Q438.RUBYY",
             "commands": {
@@ -1149,8 +1149,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.0,
             "airlines": [
@@ -1165,7 +1165,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.DIXIE.Y481.OHRYN",
             "commands": {
@@ -1176,8 +1176,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.875,
             "airlines": [
@@ -1190,7 +1190,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.WHITE.J209.SBY.J79.LEESA",
             "commands": {
@@ -1201,8 +1201,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.25,
             "airlines": [
@@ -1216,7 +1216,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.GAYEL.Q818.WOZEE..NOSIK",
             "commands": {
@@ -1227,8 +1227,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.375,
             "airlines": [
@@ -1240,7 +1240,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.GREKI..JUDDS..CAM..PBERG",
             "commands": {
@@ -1251,8 +1251,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.875,
             "airlines": [
@@ -1264,7 +1264,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.LANNA.J48.FLASK",
             "commands": {
@@ -1275,8 +1275,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -1291,7 +1291,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.MERIT",
             "commands": {
@@ -1302,8 +1302,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.75,
             "airlines": [
@@ -1314,7 +1314,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.MERIT..HFD..PUT..FROSS..RIKAL",
             "commands": {
@@ -1325,8 +1325,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.125,
             "airlines": [
@@ -1338,7 +1338,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.MERIT..HFD..PUT..BOS..TUSKY",
             "commands": {
@@ -1349,8 +1349,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.675,
             "airlines": [
@@ -1360,7 +1360,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.NEION.J223.CORDS..ULW..BENEE",
             "commands": {
@@ -1371,8 +1371,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.875,
             "airlines": [
@@ -1382,7 +1382,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.NEWEL.J60.PSB..UPPRR",
             "commands": {
@@ -1393,8 +1393,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.625,
             "airlines": [
@@ -1404,7 +1404,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.PARKE.J6.MRB.J6.EYTEE.J6.HVQ.Q68.YOCKY",
             "commands": {
@@ -1415,8 +1415,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.75,
             "airlines": [
@@ -1429,7 +1429,7 @@
         },
         {
             "origin": "kewr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KEWR4L.EWR4.ZIMMZ.Q42.HIDON..RINTE",
             "commands": {
@@ -1440,8 +1440,8 @@
                 "11" : "c 30",
                 "29" : "c 50"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.25,
             "airlines": [

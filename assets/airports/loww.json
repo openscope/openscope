@@ -2617,11 +2617,11 @@
     "spawnPatterns": [
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.ADAMA2C.ADAMA..VEDER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1781,
             "airlines": [
@@ -2660,11 +2660,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.ARSIN1C.ARSIN..OLATI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.9259,
             "airlines": [
@@ -2699,11 +2699,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.DITIS1C.DITIS.M174.NEPUX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.2648,
             "airlines": [
@@ -2740,11 +2740,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.KOXER1C.KOXER..SOMID..VAPUS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3058,
             "airlines": [
@@ -2775,11 +2775,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.LANUX2C.LANUX..OKF.L858.HDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5577,
             "airlines": [
@@ -2804,11 +2804,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.LEDVA3C.LEDVA.L156.OGDAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5637,
             "airlines": [
@@ -2833,11 +2833,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.LUGEM1C.LUGEM..SUBEN.T161.ERNAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.8340,
             "airlines": [
@@ -2869,11 +2869,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.MEDIX1C.MEDIX..LAMSI.L604.SULUS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.0731,
             "airlines": [
@@ -2908,11 +2908,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.OSPEN4C.OSPEN..ABRUK..SETAL..DETSA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3737,
             "airlines": [
@@ -2938,11 +2938,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.RUPET2C.RUPET..GRZ..RADLY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5607,
             "airlines": [
@@ -2967,11 +2967,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.SOVIL1C.SOVIL..SITNI..BAGSI..MATIG..AMADI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.9210,
             "airlines": [
@@ -3001,11 +3001,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.STEIN3C.STEIN..NOHAT..KOPRY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1614,
             "airlines": [

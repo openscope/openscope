@@ -1022,7 +1022,7 @@
     "spawnPatterns": [
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.LAM.LAM",
             "altitude": null,
@@ -1044,7 +1044,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.BIG.BIG",
             "altitude": null,
@@ -1066,7 +1066,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.CLN.CLN",
             "altitude": null,
@@ -1088,7 +1088,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.KENET.KENET",
             "altitude": null,
@@ -1110,7 +1110,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.SAM.SAM",
             "altitude": null,
@@ -1132,7 +1132,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.BOGNA.BOGNA",
             "altitude": null,
@@ -1154,7 +1154,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.HARDY.HARDY",
             "altitude": null,
@@ -1176,7 +1176,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.ADMAG.DVR",
             "altitude": null,

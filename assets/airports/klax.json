@@ -2443,11 +2443,11 @@
     "spawnPatterns": [
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DOTSS2.CLEEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.25,
             "airlines": [
@@ -2478,11 +2478,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DOTSS2.CLEEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.25,
             "airlines": [
@@ -2513,11 +2513,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.LAXX1.TRM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.95,
             "airlines": [
@@ -2549,11 +2549,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.LAXX1.TRM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.95,
             "airlines": [
@@ -2585,11 +2585,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DOTSS2.CNERY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.68,
             "airlines": [
@@ -2616,11 +2616,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DOTSS2.CNERY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.68,
             "airlines": [
@@ -2647,11 +2647,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.LADYJ4.CSTRO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.39,
             "airlines": [
@@ -2684,11 +2684,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.LADYJ4.CSTRO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.39,
             "airlines": [
@@ -2721,11 +2721,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.SUMMR2.RIZIN..FLW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.88,
             "airlines": [
@@ -2763,11 +2763,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.SUMMR2.RIZIN..FLW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.88,
             "airlines": [
@@ -2805,11 +2805,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DARRK3.RIZIN..FLW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.88,
             "airlines": [
@@ -2846,11 +2846,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DARRK3.RIZIN..FLW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.88,
             "airlines": [
@@ -2887,11 +2887,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.LADYJ4.COREZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.27,
             "airlines": [
@@ -2911,11 +2911,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.LADYJ4.COREZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.27,
             "airlines": [
@@ -2935,11 +2935,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.ORCKA4.LAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.95,
             "airlines": [
@@ -2995,11 +2995,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.ORCKA4.LAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.95,
             "airlines": [
@@ -3055,11 +3055,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.OSHNN8.BEALE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.95,
             "airlines": [
@@ -3115,11 +3115,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.OSHNN8.BEALE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.95,
             "airlines": [
@@ -3175,11 +3175,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.PNDAH2.OTAYY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3203,11 +3203,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.PNDAH2.OTAYY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3231,11 +3231,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.LAXX1.MZB..OTAYY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3259,11 +3259,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.LAXX1.MZB..OTAYY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3287,11 +3287,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.PNDAH2.TCATE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.63,
             "airlines": [
@@ -3323,11 +3323,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.PNDAH2.TCATE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.63,
             "airlines": [
@@ -3359,11 +3359,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.LAXX1.OCN..TCATE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.63,
             "airlines": [
@@ -3395,11 +3395,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.LAXX1.OCN..TCATE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.63,
             "airlines": [
@@ -3431,11 +3431,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.SUMMR2.DINTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3458,11 +3458,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.SUMMR2.DINTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3485,11 +3485,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DARRK3.DINTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3512,11 +3512,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DARRK3.DINTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3539,11 +3539,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.SUMMR2.MCKEY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.56,
             "airlines": [
@@ -3575,11 +3575,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.SUMMR2.MCKEY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.56,
             "airlines": [
@@ -3611,11 +3611,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DARRK3.MCKEY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.56,
             "airlines": [
@@ -3647,11 +3647,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DARRK3.MCKEY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.56,
             "airlines": [
@@ -3683,11 +3683,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.SUMMR2.STOKD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3710,11 +3710,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.SUMMR2.STOKD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3737,11 +3737,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DARRK3.STOKD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3764,11 +3764,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DARRK3.STOKD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3791,11 +3791,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.SUMMR2.SCTRR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3826,11 +3826,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.SUMMR2.SCTRR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3861,11 +3861,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.DARRK3.SCTRR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3896,11 +3896,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.DARRK3.SCTRR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.92,
             "airlines": [
@@ -3931,11 +3931,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.SUMMR2.FICKY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.09,
             "airlines": [
@@ -3954,11 +3954,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.SUMMR2.FICKY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.09,
             "airlines": [
@@ -3977,11 +3977,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX24L.ZILLI4.LAUER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.09,
             "airlines": [
@@ -4000,11 +4000,11 @@
         },
         {
             "origin": "klax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAX25R.ZILLI4.LAUER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.09,
             "airlines": [

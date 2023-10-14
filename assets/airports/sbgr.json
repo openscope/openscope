@@ -213,11 +213,11 @@
     "spawnPatterns":[
         {
             "origin": "sbgr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SBGR.CGO.RCL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8,
             "airlines": [

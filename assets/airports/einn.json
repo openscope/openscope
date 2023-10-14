@@ -1674,11 +1674,11 @@
     "spawnPatterns": [
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.OSGA3B.OSGAR..DUB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1690,11 +1690,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.ABAG3B.ABAGU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1706,11 +1706,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.LUNI3B.LUNIG..NORLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.1,
             "airlines": [
@@ -1723,11 +1723,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.KURU3B.KURUM..CRK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1740,11 +1740,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.LUPO3B.LUPOR..LIMRI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1760,11 +1760,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.BUNO3B.BUNON..BEDRA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1780,11 +1780,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.UNBE3B.UNBEG..DOGAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1800,11 +1800,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.ERAB3B.ERABI..RESNO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1820,11 +1820,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.MOMI3B.MOMIN..SUNOT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [

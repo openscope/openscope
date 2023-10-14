@@ -332,7 +332,7 @@
     "spawnPatterns": [
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.BKD.BKD",
             "altitude": null,
@@ -355,7 +355,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.BRANE.BRANE",
             "altitude": null,
@@ -378,7 +378,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.GERGA.GERGA",
             "altitude": null,
@@ -401,7 +401,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.RAKIT.RAKIT",
             "altitude": null,
@@ -424,7 +424,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.TERDA.TERDA",
             "altitude": null,

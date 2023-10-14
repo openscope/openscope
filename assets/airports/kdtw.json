@@ -748,11 +748,11 @@
     "spawnPatterns": [
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.ACO5.ACO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -777,11 +777,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.ERRTH6.ETG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -806,11 +806,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.FWA7.FWA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -835,11 +835,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.MOONN8.JHW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -868,11 +868,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.RID8.RID",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -897,11 +897,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.ROD5.ROD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -926,11 +926,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.STCLR1.PISTN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -959,11 +959,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.STCLR1.MAARS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -988,11 +988,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.STCLR1.SCORR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1017,11 +1017,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.PALCE1.ANNTS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1046,11 +1046,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.PALCE1.HARWL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1075,11 +1075,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.PALCE1.DUNKS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.5,
             "airlines": [
@@ -1106,11 +1106,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.PALCE1.EARVN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -1137,11 +1137,11 @@
         },
         {
             "origin": "KDTW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDTW.PALCE1.LAYNE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [

@@ -533,11 +533,11 @@
     "spawnPatterns": [
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.AHTIY..BURGS..RANDE..HVQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -563,11 +563,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.BSV..MAYZE..NAPOL..ASHEN..GSH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -589,11 +589,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.KEMAN..COBBE..PSK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -621,11 +621,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.BSV..ROD..VHP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.2,
             "airlines": [
@@ -648,11 +648,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.EWC..WOMBT..PIGGZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -675,11 +675,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.JST",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -704,11 +704,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.MGW..BUCKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -736,11 +736,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.JST..MIP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.6,
             "airlines": [

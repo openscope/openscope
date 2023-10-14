@@ -1239,7 +1239,7 @@
     "spawnPatterns": [
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.CPT.CPT..KENET..MIMBI",
             "altitude": null,
@@ -1307,7 +1307,7 @@
         },
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.BPK.BPK..TOTRI..BRAIN..CLN..ARTOV..REDFA",
             "altitude": null,
@@ -1375,7 +1375,7 @@
         },
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.WOBUN.WOBUN..DTY..HON",
             "altitude": null,
@@ -1443,7 +1443,7 @@
         },
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.DET.DET..DVR..KONAN",
             "altitude": null,
@@ -1511,7 +1511,7 @@
         },
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.GOGSI.GOGSI..SAM",
             "altitude": null,
@@ -1579,7 +1579,7 @@
         },
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.MAY.MAY..SFD..BENBO",
             "altitude": null,
@@ -1647,7 +1647,7 @@
         },
         {
             "origin": "EGLL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGLL.MID.MID..BOGNA..BENBO",
             "altitude": null,

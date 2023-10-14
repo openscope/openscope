@@ -1102,11 +1102,11 @@
     "spawnPatterns": [
         {
             "origin": "CYHZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYHZ23.CYHZ4.ALLEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -1130,11 +1130,11 @@
         },
         {
             "origin": "CYHZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYHZ23.CYHZ4.ARDEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -1158,11 +1158,11 @@
         },
         {
             "origin": "CYHZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYHZ23.CYHZ4.CADIL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -1186,11 +1186,11 @@
         },
         {
             "origin": "CYHZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYHZ23.CYHZ4.DUSEN..XIBUL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -1214,11 +1214,11 @@
         },
         {
             "origin": "CYHZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYHZ23.CYHZ4.KEBNI..MOWND",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -1242,11 +1242,11 @@
         },
         {
             "origin": "CYHZ",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYHZ23.CYHZ4.NOTOP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.792,
             "airlines": [

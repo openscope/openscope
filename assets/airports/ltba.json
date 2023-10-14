@@ -3844,11 +3844,11 @@
     "spawnPatterns": [
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.EDASA1Y.EDASA.UW715.KFK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.61,
             "airlines": [
@@ -3871,11 +3871,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.ERSEN1Y.ERSEN.L615.BUK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3890,11 +3890,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.GOLDO1Y.GOLDO.UN79.NEVAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.22,
             "airlines": [
@@ -3910,11 +3910,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.GOLDO1Y.GOLDO.UM603.SUTIS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.21,
             "airlines": [
@@ -3930,11 +3930,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.IBLAL1Y.IBLAL.P727.BGS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.98,
             "airlines": [
@@ -3949,11 +3949,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MAKOL1Y.MAKOL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.52,
             "airlines": [
@@ -3971,11 +3971,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MARMA1Y.MARMA.Y255.BIG.UN604.LSV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.44,
             "airlines": [
@@ -3989,11 +3989,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MARMA1Y.MARMA.Y371.DUGLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.13,
             "airlines": [
@@ -4008,11 +4008,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MOPIN1Y.MOPIN.N644.ARPEM.UN644.GAKSU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.98,
             "airlines": [
@@ -4037,11 +4037,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.PIMAV1Y.PIMAV.G8.TOKER.UG8.KUBER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.80,
             "airlines": [
@@ -4073,11 +4073,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.TUDBU1Y.TUDBU.Q26.UPAMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.06,
             "airlines": [
@@ -4093,11 +4093,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.VADEN1Y.VADEN.Y520.DINEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.54,
             "airlines": [

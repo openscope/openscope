@@ -1063,11 +1063,11 @@
     "spawnPatterns": [
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.WAVEY..EMJAY.J174.SWL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.87,
             "airlines": [
@@ -1094,11 +1094,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.SKORR4.RBV.Q430.COPES.Q75.GVE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.74,
             "airlines": [
@@ -1127,11 +1127,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.SKORR4.HAPIE..YAHOO..VITOL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.43,
             "airlines": [
@@ -1159,11 +1159,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.GAYEL.Q818.CFB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.63,
             "airlines": [
@@ -1186,11 +1186,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.HAAYS.V273.HNK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.37,
             "airlines": [
@@ -1213,11 +1213,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.GREKI..JUDDS..CAM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.98,
             "airlines": [
@@ -1243,11 +1243,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.MERIT..HFD..PUT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.22,
             "airlines": [
@@ -1293,11 +1293,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.BAYYS.V229.HFD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.21,
             "airlines": [
@@ -1343,11 +1343,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.SKORR4.BETTE..ACK..TUSKY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.43,
             "airlines": [
@@ -1375,11 +1375,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.DEEZZ5.CANDR.J60.PSB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.32,
             "airlines": [
@@ -1393,11 +1393,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.COATE.Q436.RAAKK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.8,
             "airlines": [
@@ -1417,11 +1417,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.NEION.J223.CORDS.J132.ULW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.42,
             "airlines": [
@@ -1441,11 +1441,11 @@
         },
         {
             "origin": "kjfk",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJFK31L.JFK5.SHIPP.Y492.SQUAD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.57,
             "airlines": [

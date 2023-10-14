@@ -2055,11 +2055,11 @@
     "spawnPatterns": [
         {
             "origin": "EGGW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGGW26.DET2Y.DET.L6.DVR.L9.KONAN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -2078,11 +2078,11 @@
         },
         {
             "origin": "EGGW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGGW26.MATCH2Y.MATCH.Q295.CLN.UL620.REDFA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2098,11 +2098,11 @@
         },
         {
             "origin": "EGGW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGGW26.CPT3B.CPT.Y321.PEPIS.Q41.SAM.N621.LELNA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -2117,11 +2117,11 @@
         },
         {
             "origin": "EGGW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGGW26.OLNEY1B.OLNEY.T420.TNT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [

@@ -1286,11 +1286,11 @@
     "spawnPatterns": [
         {
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.GULBO2.GULBO.Y808.NOLAX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.97,
             "airlines": [
@@ -1306,11 +1306,11 @@
         },
 		{
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.BORLO2.BORLO.Y830.IPROS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.31,
             "airlines": [
@@ -1323,11 +1323,11 @@
 		},
 		{
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.PIGOK2.PIGOK.Y50.ELNIS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.69,
             "airlines": [
@@ -1351,11 +1351,11 @@
 		},
 		{
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.REDEK2.REDEK.Y60.TEKEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.49,
             "airlines": [
@@ -1379,11 +1379,11 @@
 		},
 		{
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.TETRA8.ENPAR.Y16.TEPEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.72,
             "airlines": [
@@ -1414,11 +1414,11 @@
 		},
 		{
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.TETRA8.AGRIS.Y37.AVGOK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.82,
             "airlines": [
@@ -1444,11 +1444,11 @@
 		},
 		{
             "origin": "RJAA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJAA16R.TETRA8.KIMIN.Y117.LEKOL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.91,
             "airlines": [
@@ -1463,11 +1463,11 @@
 		},
 		{
 			"origin": "RJAA",
-			"destination": "",
+			"destination": null,
 			"category": "departure",
 			"route": "RJAA16R.OLVAN2.SAMUS.Y84.HCE",
-			"altitude": "",
-			"speed": "",
+			"altitude": null,
+			"speed": null,
 			"method": "random",
 			"rate": 2.26,
 			"airlines": [
@@ -1491,11 +1491,11 @@
 		},
 		{
 			"origin": "RJAA",
-			"destination": "",
+			"destination": null,
 			"category": "departure",
 			"route": "RJAA16R.OLVAN2.OLVAN.Y823.MERED",
-			"altitude": "",
-			"speed": "",
+			"altitude": null,
+			"speed": null,
 			"method": "random",
 			"rate": 0.58,
 			"airlines": [
