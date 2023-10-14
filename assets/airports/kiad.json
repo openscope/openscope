@@ -1704,7 +1704,7 @@
             "rate": 0.3,
             "airlines": [
                 ["lxj", 1],
-                ["n/fastGA"]
+                ["n/fastGA", 1]
             ]
         },
         {

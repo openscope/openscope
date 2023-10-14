@@ -645,8 +645,8 @@
             "destination": "KSAT",
             "category": "arrival",
             "route": "ABI.STV1.KSAT31L",
-            "altitude": "31000",
-            "speed": "310",
+            "altitude": 31000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -671,8 +671,8 @@
             "destination": "KSAT",
             "category": "arrival",
             "route": "LFK.BRAUN3.KSAT31L",
-            "altitude": "32000",
-            "speed": "310",
+            "altitude": 32000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -697,8 +697,8 @@
             "destination": "KSAT",
             "category": "arrival",
             "route": "LRD.LEMIG1.KSAT31L",
-            "altitude": "31000",
-            "speed": "310",
+            "altitude": 31000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -718,8 +718,8 @@
             "destination": "KSAT",
             "category": "arrival",
             "route": "FST.CSI2.KSAT31L",
-            "altitude": "29000",
-            "speed": "310",
+            "altitude": 29000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [

@@ -1587,8 +1587,8 @@
             "destination": "kmem",
             "category": "arrival",
             "route": "PXV.BLUZZ3.KMEM18L",
-            "altitude": "32000",
-            "speed": "290",
+            "altitude": 32000,
+            "speed": 290,
             "method": "random",
             "rate": 9.2,
             "airlines": [
@@ -1615,8 +1615,8 @@
             "destination": "kmem",
             "category": "arrival",
             "route": "RZC.BRBBQ3.KMEM18R",
-            "altitude": "31000",
-            "speed": "290",
+            "altitude": 31000,
+            "speed": 290,
             "method": "random",
             "rate": 9.2,
             "airlines": [
@@ -1643,8 +1643,8 @@
             "destination": "kmem",
             "category": "arrival",
             "route": "TXK.HOBRK3.KMEM18R",
-            "altitude": "31000",
-            "speed": "290",
+            "altitude": 31000,
+            "speed": 290,
             "method": "random",
             "rate": 9.2,
             "airlines": [
@@ -1671,8 +1671,8 @@
             "destination": "kmem",
             "category": "arrival",
             "route": "TALLO.VANZE2.KMEM18L",
-            "altitude": "32000",
-            "speed": "290",
+            "altitude": 32000,
+            "speed": 290,
             "method": "random",
             "rate": 9.2,
             "airlines": [

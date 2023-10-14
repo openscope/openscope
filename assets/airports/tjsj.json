@@ -255,8 +255,8 @@
             "icao": "BEANO3",
             "name": "Beano Three",
             "entryPoints": {
-                "ELMUC": ["ELMUC", ["SHMUU", "A340-|300"]],
-                "HARDE": ["HARDE", ["SHMUU", "A340-|300"]],
+                "ELMUC": ["ELMUC", ["SHMUU", "A340-|S300"]],
+                "HARDE": ["HARDE", ["SHMUU", "A340-|S300"]],
                 "KATOK": ["KATOK"]
             },
             "body": [["BEANO", "A110|S250"]],
@@ -272,9 +272,9 @@
             "name": "Joshe Three",
             "entryPoints": {
                 "MELLA": ["MELLA"],
-                "SCAPA": ["SCAPA", ["GABYY", "A190|280"]],
-                "ARMUR": ["ARMUR", ["KYAAK", "A190|280"]],
-                "KIKER": ["KIKER", ["ZNDER", "A190|280"]]
+                "SCAPA": ["SCAPA", ["GABYY", "A190|S280"]],
+                "ARMUR": ["ARMUR", ["KYAAK", "A190|S280"]],
+                "KIKER": ["KIKER", ["ZNDER", "A190|S280"]]
             },
             "body": [["JOSHE", "A70"]],
             "rwy": {

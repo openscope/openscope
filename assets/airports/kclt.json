@@ -759,7 +759,7 @@
             "entryPoints": {
                 "GZG": ["GZG", "JTEEA"]
             },
-            "body": [["BTSEY", "A110|S250"], ["CLT"]],
+            "body": [["BTSEY", "A110|S250"], "CLT"],
             "rwy": {
                 "KCLT5": [],
                 "KCLT18L": [],
@@ -908,7 +908,7 @@
             "name": "Magic Four",
             "entryPoints": {
                 "LIB": ["LIB"],
-                "LYH": ["LYH", "KELLS", ["MAYOS", "A22O"]]
+                "LYH": ["LYH", "KELLS", ["MAYOS", "A220"]]
             },
             "body": [["MAJIC", "A130|S250"], "SUDSY", "GIZMO"],
             "rwy": {

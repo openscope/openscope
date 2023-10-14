@@ -10,7 +10,7 @@
     "ctr_radius": 92.6,
     "ctr_ceiling": 25500,
     "initial_alt": 3000,
-    "position": ["N13d11m56.00", "E077d42m20.00"],
+    "position": ["N13d11m56.00", "E077d42m20.00", "3002ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N12d56m59.00", "E077d40m52.00"],
@@ -107,9 +107,10 @@
     "runways": [
         {
             "name": ["09", "27"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N13d12m43.00", "E077d41m16.00"], ["N13d12m41.00", "E077d43m38.00"]],
-            "length": 4,
+            "end": [
+                ["N13d12m43.00", "E077d41m16.00", "3002ft"],
+                ["N13d12m41.00", "E077d43m38.00", "2919ft"]
+            ],
             "ils": [true, true]
         }
     ],

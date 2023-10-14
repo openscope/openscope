@@ -853,7 +853,7 @@
                 "AXXEE": ["AXXEE", ["FSHEN", "A310-"]],
                 "RRONY": ["RRONY", ["FRMEN", "A310-"]]
             },
-            "body": [["SEEVR", "A230|S290"], ["BRDJE", "A190|S280"], ["COVIE", "A170"], ["LEMYN", "LEMYN|S270"], ["PITHY", "A130|S250"], ["STONZ", "A110|S220"], "ROCKZ", "JEKIL"],
+            "body": [["SEEVR", "A230|S290"], ["BRDJE", "A190|S280"], ["COVIE", "A170"], ["LEMYN", "S270"], ["PITHY", "A130|S250"], ["STONZ", "A110|S220"], "ROCKZ", "JEKIL"],
             "rwy": {
                 "31R": [],
                 "35L": [],

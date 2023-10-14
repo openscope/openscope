@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 7000,
     "initial_alt": 3000,
-    "position": ["N34d26m03.00", "E135d13m58.00"],
+    "position": ["N34d26m03.00", "E135d13m58.00", "5.3m"],
     "rangeRings": {
         "enabled": true,
         "center": ["N34d26m03.00", "E135d13m58.00"],

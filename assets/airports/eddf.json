@@ -1622,7 +1622,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF197"], ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "TESGA"],
+            "body": ["DF197", ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },

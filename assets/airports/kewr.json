@@ -1457,8 +1457,8 @@
             "destination": "KEWR",
             "category": "arrival",
             "route": "AUDII..FAK.PHLBO3.KEWR4R",
-            "altitude": "24000",
-            "speed": "310",
+            "altitude": 24000,
+            "speed": 310,
             "method": "random",
             "rate": 14.325,
             "airlines": [
@@ -1479,8 +1479,8 @@
             "destination": "KEWR",
             "category": "arrival",
             "route": "BMPAH..AEVON..GEE.FLOSI4.KEWR4R",
-            "altitude": "24000",
-            "speed": "310",
+            "altitude": 24000,
+            "speed": 310,
             "method": "random",
             "rate": 8.125,
             "airlines": [
@@ -1504,8 +1504,8 @@
             "destination": "KEWR",
             "category": "arrival",
             "route": "DORET..SLT.FQM3.KEWR4R",
-            "altitude": "24000",
-            "speed": "310",
+            "altitude": 24000,
+            "speed": 310,
             "method": "random",
             "rate": 12.5,
             "airlines": [

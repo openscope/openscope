@@ -799,7 +799,7 @@
             "rwy": {
                 "LOWW11": []
             },
-            "body": [["^WW100"], "WW412", ["WW413", "S210-"], "WW401"],
+            "body": ["^WW100", "WW412", ["WW413", "S210-"], "WW401"],
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
@@ -2014,7 +2014,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+|"], ["WW296", "S205-"], "WW233", "WW391", "WW393", "UNGUT"],
+            "body": [["_LOWW291000", "A010+"], ["WW296", "S205-"], "WW233", "WW391", "WW393", "UNGUT"],
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },

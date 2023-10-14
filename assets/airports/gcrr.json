@@ -10,7 +10,7 @@
     "ctr_radius": 800.0,
     "ctr_ceiling": 24500,
     "initial_alt": 4000,
-    "position": ["N28d56m42.00", "W13d36m18.00"],
+    "position": ["N28d56m42.00", "W13d36m18.00", "14m"],
     "rangeRings": {
         "enabled": true,
         "center": ["N28d56m42.00", "W13d36m18.00"],
@@ -141,7 +141,10 @@
         {
             "name": ["21", "03"],
             "name_offset": [[0, 0.3], [0, 0.3]],
-            "end": [["N28d57m18.400", "W13d35m58.670"], ["N28d56m8.9600", "W13d36m38.940"]],
+            "end": [
+                ["N28d57m18.400", "W13d35m58.670", "47ft"],
+                ["N28d56m8.9600", "W13d36m38.940", "19ft"]
+            ],
             "delay": [2, 6],
             "ils": [false, true]
         }

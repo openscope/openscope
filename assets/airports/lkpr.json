@@ -1573,8 +1573,8 @@
             "destination": "LKPR",
             "category": "arrival",
             "route": "ASTEL.P861.GOLOP.GOLOP2S.LKPR24",
-            "altitude": "14000",
-            "speed": "320",
+            "altitude": 14000,
+            "speed": 320,
             "method" : "random",
             "rate": 7,
             "airlines": [
@@ -1601,8 +1601,8 @@
             "destination": "LKPR",
             "category": "arrival",
             "route": "ODOMO.Z35.LOMKI.LOMKI6S.LKPR24",
-            "altitude": "14000",
-            "speed": "320",
+            "altitude": 14000,
+            "speed": 320,
             "method" : "random",
             "rate": 7,
             "airlines": [
@@ -1628,8 +1628,8 @@
             "destination": "LKPR",
             "category": "arrival",
             "route": "LALIN.Z39.GOSEK.GOSEK3S.LKPR24",
-            "altitude": "14000",
-            "speed": "320",
+            "altitude": 14000,
+            "speed": 320,
             "method" : "random",
             "rate": 7,
             "airlines": [
@@ -1653,8 +1653,8 @@
             "destination": "LKPR",
             "category": "arrival",
             "route": "LANUX.M725.TABEM.Z401.VLM.VLM2S.LKPR24",
-            "altitude": "14000",
-            "speed": "320",
+            "altitude": 14000,
+            "speed": 320,
             "method" : "random",
             "rate": 7,
             "airlines": [
