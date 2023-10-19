@@ -11,7 +11,7 @@
     "ctr_radius": 40,
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
-    "position": ["N34d26m10.00", "E132d55m10.00", "1086ft"],
+    "position": ["N34d26m10.00", "E132d55m10.00", "1086 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N34d26m10.00", "E132d55m10.00"],
@@ -173,8 +173,8 @@
         {
             "name": ["10", "28"],
             "end": [
-                ["N34d26m09.69", "E132d54m11.25", "1071.7ft"],
-                ["N34d26m09.69", "E132d56m08.75", "1067.2ft"]
+                ["N34d26m09.69", "E132d54m11.25", "1071.7 ft"],
+                ["N34d26m09.69", "E132d56m08.75", "1067.2 ft"]
             ],
             "ils": [false, true],
             "ils_distance": [25, 25],

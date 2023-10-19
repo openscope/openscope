@@ -293,35 +293,30 @@ export const parseCoordinate = (coordinate) => {
  * Accept a string elevation and return a number representing elevation in ft.
  *
  * @function parseElevation
- * @param elevation {string}    ex: 13.4ft, 3m, 5ft
+ * @param elevation {string}    ex: 13.4 ft, 3 m, 5 ft
  * @return {number}             elevation in feet
  */
 export const parseElevation = (elevation) => {
-    // TODO: move to master REGEX constant
-    // this regex will catch the following: `-`, `m`, `ft`, `Infinity`, and is used to extract a number
-    // from a string containing these symbols.
-    const REGEX = /(-)|(m|ft|Infinity)/gi;
 
-    // if its a number, we're done here.
-    // This will catch whole numbers, floats, Infinity and -Infinity.
-    // This checks if strings are given will skip the regex and exit early
-    // Also stops the function from returning NaN
-    if (_isNumber(elevation) || elevation === 'Infinity' || elevation === '-Infinity') {
-        return parseFloat(elevation);
+    const matches = REGEX.ELEVATION.exec(elevation);
+
+    if (matches === null) {
+        throw new TypeError(`Invalid elevation: '${elevation}'. Must be number with optional suffix of: ft, m`);
     }
 
-    let parsedElevation = elevation.replace(REGEX, '');
-    const elevationUnit = elevation.match(REGEX);
+    const { elevationComponent, unitComponent } = matches.groups;
 
-    // if its in meters, convert it to feet
-    if (_includes(elevationUnit, 'm')) {
-        parsedElevation = m_ft(parsedElevation);
+    const parsedElevation = parseFloat(elevationComponent);
+
+    if (typeof(unitComponent) !== 'undefined') {
+        switch(unitComponent) {
+        case 'ft':
+            return parsedElevation;
+        case 'm':
+            return m_ft(parsedElevation);
+        }
+    } else {
+        // Assume feet
+        return parsedElevation;
     }
-
-    // if it came in as a negative number,return it as a negative number
-    if (_startsWith(elevation, '-')) {
-        parsedElevation *= -1;
-    }
-
-    return parseFloat(parsedElevation);
 };

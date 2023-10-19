@@ -12,7 +12,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
     "ctr_radius": 80,
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
-    "position": ["N36.080056", "W115.15225", "2181ft"],
+    "position": ["N36.080056", "W115.15225", "2181 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [36.080056, -115.15225],
@@ -179,25 +179,25 @@ export const AIRPORT_JSON_KLAS_MOCK = {
     "runways":[
         {
             "name": ["07L", "25R"],
-            "end": [["N36d4m34.82", "W115d10m16.98", "2179ft"], ["N36d4m35.05", "W115d7m15.93", "2033ft"]],
+            "end": [["N36d4m34.82", "W115d10m16.98", "2179 ft"], ["N36d4m35.05", "W115d7m15.93", "2033 ft"]],
             "delay": [5, 5],
             "ils": [false, true]
         },
         {
             "name": ["07R", "25L"],
-            "end": [["N36d4m25.04", "W115d9m41.15", "2157ft"], ["N36d4m25.17", "W115d7m32.96", "2049ft"]],
+            "end": [["N36d4m25.04", "W115d9m41.15", "2157 ft"], ["N36d4m25.17", "W115d7m32.96", "2049 ft"]],
             "delay": [3, 5],
             "ils": [false, true]
         },
         {
             "name": ["01R", "19L"],
-            "end": [["N36d4m27.19", "W115d10m3.00", "2175ft"], ["N36d5m54.85", "W115d9m12.79", "2078ft"]],
+            "end": [["N36d4m27.19", "W115d10m3.00", "2175 ft"], ["N36d5m54.85", "W115d9m12.79", "2078 ft"]],
             "delay": [3, 6],
             "ils": [false, false]
         },
         {
             "name": ["01L", "19R"],
-            "end": [["N36d4m31.19", "W115d10m13.31", "2181ft"], ["N36d5m58.77", "W115d9m23.12", "2089ft"]],
+            "end": [["N36d4m31.19", "W115d10m13.31", "2181 ft"], ["N36d5m58.77", "W115d9m23.12", "2089 ft"]],
             "delay": [4, 7],
             "ils": [true, false]
         }

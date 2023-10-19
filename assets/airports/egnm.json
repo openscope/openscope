@@ -10,7 +10,7 @@
     "ctr_radius": 32,
     "ctr_ceiling": 8500,
     "initial_alt": 7000,
-    "position": ["N53d51m57.69",  "W001d39m38.77", "681ft"],
+    "position": ["N53d51m57.69",  "W001d39m38.77", "681 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N53d51m57.69",  "W001d39m38.77"],
@@ -439,8 +439,8 @@
         {
             "name": ["14", "32"],
             "end": [
-                ["N53d52m17.15", "W001d40m08.68", "674ft"],
-                ["N53d51m37.31", "W001d39m07.44", "662ft"]
+                ["N53d52m17.15", "W001d40m08.68", "674 ft"],
+                ["N53d51m37.31", "W001d39m07.44", "662 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.50, 3.00]

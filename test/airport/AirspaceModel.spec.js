@@ -5,7 +5,7 @@ import DynamicPositionModel from '../../src/assets/scripts/client/base/DynamicPo
 import StaticPositionModel from '../../src/assets/scripts/client/base/StaticPositionModel';
 import { AIRSPACE_MOCK, AIRSPACE_MOCK_WITH_CLOSING_ENTRY } from './_mocks/airspaceModelMocks';
 
-const currentPosition = ['N36.080056', 'W115.15225', '2181ft'];
+const currentPosition = ['N36.080056', 'W115.15225', '2181 ft'];
 const magneticNorth = 11.9;
 const airportPositionFixtureKSFO = new StaticPositionModel(currentPosition, null, magneticNorth);
 

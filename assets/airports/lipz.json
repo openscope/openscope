@@ -11,7 +11,7 @@
     "ctr_radius": 90,
     "ctr_ceiling": 12500,
     "initial_alt": 4000,
-    "position": ["N45d30m19.0", "E012d21m07.0", "7ft"],
+    "position": ["N45d30m19.0", "E012d21m07.0", "7 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N45d30m19.0", "E012d21m07.0"],
@@ -24,7 +24,7 @@
     },
     "arrivalRunway": "04R",
     "departureRunway": "04R",
-    "defaultMaps": ["TAXIWAYS", "CENTERLINE", "LIPH", "LIPS", "TRE", "TES", "VIC", "ISA", "CHI", "AVI", "BORDER", "2000FTZONE1", "2000FTZONE2", "2000FTNW", "2000FTNE", "2000FTSE", "4000FTZONE3", "4500FTZONE4", "5000FT", "PADOVA5000FT", "FL90 NORTH-WEST", "FL90 SOUTH-EAST", "5000FT / FL90", "FL100 NORTH-WEST", "FL110 NORTH-EAST", "FL110 NORTH-WEST", "FL120", "FL130 NORTH-WEST", "FL130 SOUTH-WEST", "FL140", "FL160 NORTH-WEST", "FL150", "FL100 NORTH-EAST", "FL100 SOUTH-EAST", "TREVISO ZONA1", "TREVISO ZONA2", "TREVISO ZONA3", "TREVISO ZONA4"],
+    "defaultMaps": ["TAXIWAYS", "CENTERLINE", "LIPH", "LIPS", "TRE", "TES", "VIC", "ISA", "CHI", "AVI", "BORDER", "2000 ftZONE1", "2000 ftZONE2", "2000 ftNW", "2000 ftNE", "2000 ftSE", "4000 ftZONE3", "4500 ftZONE4", "5000 ft", "PADOVA5000 ft", "FL90 NORTH-WEST", "FL90 SOUTH-EAST", "5000 ft / FL90", "FL100 NORTH-WEST", "FL110 NORTH-EAST", "FL110 NORTH-WEST", "FL120", "FL130 NORTH-WEST", "FL130 SOUTH-WEST", "FL140", "FL160 NORTH-WEST", "FL150", "FL100 NORTH-EAST", "FL100 SOUTH-EAST", "TREVISO ZONA1", "TREVISO ZONA2", "TREVISO ZONA3", "TREVISO ZONA4"],
     "airspace": [
         {
             "floor": 0,
@@ -316,7 +316,7 @@
     "restricted": [
         {
             "name": "R91-B",
-            "height": "3500ft",
+            "height": "3500 ft",
             "poly": [
                 ["N45d23m00.0", "E011d37m50.0"],
                 ["N45d23m54.0", "E011d51m54.0"],
@@ -326,7 +326,7 @@
         },
         {
             "name": "R91-C",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N45d23m54", "E011d51m54"],
                 ["N45d22m11", "E011d52m25"],
@@ -340,16 +340,16 @@
         {
             "name": ["04L", "22R"],
             "end": [
-                ["N45d29m43.56", "E012d20m09.29", "143.1ft"],
-                ["N45d30m49.34", "E012d21m33.86", "143.3ft"]
+                ["N45d29m43.56", "E012d20m09.29", "143.1 ft"],
+                ["N45d30m49.34", "E012d21m33.86", "143.3 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["04R", "22L"],
             "end": [
-                ["N45d29m38.86", "E012d20m15.79", "143.3ft"],
-                ["N45d30m58.16", "E012d21m57.77", "143.0ft"]
+                ["N45d29m38.86", "E012d20m15.79", "143.3 ft"],
+                ["N45d30m58.16", "E012d21m57.77", "143.0 ft"]
             ],
             "ils": [true, false]
         }
@@ -1944,7 +1944,7 @@
             ]
         },
         {
-            "name": "2000FTZONE1",
+            "name": "2000 ftZONE1",
             "lines": [
                 ["N45d24m55", "E12d04m43", "N45d30m57", "E12d12m21"],
                 ["N45d30m57", "E12d12m21", "N45d35m14", "E12d25m13"],
@@ -1990,7 +1990,7 @@
             ]
         },
         {
-            "name": "2000FTZONE2",
+            "name": "2000 ftZONE2",
             "lines": [
                 ["N45d24m00", "E11d53m19", "N45d17m59", "E11d55m08"],
                 ["N45d17m59", "E11d55m08", "N45d08m27", "E12d07m39"],
@@ -2008,7 +2008,7 @@
             ]
         },
         {
-            "name": "2000FTNW",
+            "name": "2000 ftNW",
             "lines": [
                 ["N45d32m03", "E12d15m39", "N45d42m12", "E12d26m44"],
                 ["N45d42m12", "E12d26m44", "N45d39m59", "E11d48m28"],
@@ -2020,7 +2020,7 @@
             ]
         },
         {
-            "name": "2000FTNE",
+            "name": "2000 ftNE",
             "lines": [
                 ["N45d32m03", "E12d15m39", "N45d42m12", "E12d26m44"],
                 ["N45d42m12", "E12d26m44", "N45d43m07", "E12d43m46"],
@@ -2036,7 +2036,7 @@
             ]
         },
         {
-            "name": "2000FTSE",
+            "name": "2000 ftSE",
             "lines": [
                 ["N45d34m38", "E12d23m25", "N45d37m23", "E12d26m55"],
                 ["N45d37m23", "E12d26m55", "N45d39m48", "E12d28m12"],
@@ -2050,7 +2050,7 @@
             ]
         },
         {
-            "name": "4000FTZONE3",
+            "name": "4000 ftZONE3",
             "lines": [
                 ["N45d17m13", "E11d39m30", "N45d11m32", "E11d41m08"],
                 ["N45d11m32", "E11d41m08", "N45d00m30", "E11d53m30"],
@@ -2078,7 +2078,7 @@
             ]
         },
         {
-            "name": "4500FTZONE4",
+            "name": "4500 ftZONE4",
             "lines": [
                 ["N45d23m00", "E11d37m50", "N45d24m00", "E11d53m18"],
                 ["N45d24m00", "E11d53m18", "N45d23m31", "E11d53m27"],
@@ -2088,7 +2088,7 @@
             ]
         },
         {
-            "name": "5000FT",
+            "name": "5000 ft",
             "lines": [
                 ["N45d13m35", "E12d45m14", "N45d00m00", "E12d21m22"],
                 ["N45d00m00", "E12d21m22", "N44d58m41", "E11d57m07"],
@@ -2101,7 +2101,7 @@
             ]
         },
         {
-            "name": "PADOVA5000FT",
+            "name": "PADOVA5000 ft",
             "lines": [
                 ["N45d48m30", "E12d50m00", "N45d44m55", "E12d15m39"],
                 ["N45d44m55", "E12d15m39", "N45d43m40", "E12d04m00"],
@@ -2173,7 +2173,7 @@
             ]
         },
         {
-            "name": "5000FT / FL90",
+            "name": "5000 ft / FL90",
             "lines": [
                 ["N45d38m00", "E13d30m00", "N45d46m30", "E13d35m00"],
                 ["N45d46m30", "E13d35m00", "N46d00m04", "E13d24m56"],

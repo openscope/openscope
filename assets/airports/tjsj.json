@@ -10,7 +10,7 @@
     "ctr_radius": 40,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": ["N18d26m21.84", "W66d00m07.69", "9ft"],
+    "position": ["N18d26m21.84", "W66d00m07.69", "9 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N18d26m21.84", "W66d00m07.69"],
@@ -154,14 +154,14 @@
         {
             "name": ["8", "26"],
             "name_offset": [[1.2, 0.5], [0, 0]],
-            "end": [["N18d26m19.52", "W66d00m53.51", "8ft"], ["N18d26m57.42", "W65d59m19.97", "7ft"]],
+            "end": [["N18d26m19.52", "W66d00m53.51", "8 ft"], ["N18d26m57.42", "W65d59m19.97", "7 ft"]],
             "delay": [3, 6],
             "ils": [true, false]
         },
         {
             "name": ["10", "28"],
             "name_offset": [[1, -0.5], [0, 0]],
-            "end": [["N18d26m00.82", "W66d00m49.42", "9ft"], ["N18d26m00.62", "W65d59m26.16", "9ft"]],
+            "end": [["N18d26m00.82", "W66d00m49.42", "9 ft"], ["N18d26m00.62", "W65d59m26.16", "9 ft"]],
             "delay": [3, 5],
             "ils": [true, false]
         }

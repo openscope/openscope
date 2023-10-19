@@ -36,7 +36,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
-    "position": ["N47d26.99m0", "W122d18.71m0", "432ft"],
+    "position": ["N47d26.99m0", "W122d18.71m0", "432 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N47d26.99m0", "W122d18.71m0"],
@@ -87,7 +87,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "restricted": [
         {
             "name": "P-51",
-            "height": "2500ft",
+            "height": "2500 ft",
             "poly": [
                 ["N47.7737128", "W122.7710456"],
                 ["N47.7189169", "W122.7706794"],
@@ -101,16 +101,16 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         {
             "name": ["16L", "34R"],
             "end": [
-                [47.463767, -122.307749, "432.5ft"],
-                [47.431201, -122.308035, "346.8ft"]
+                [47.463767, -122.307749, "432.5 ft"],
+                [47.431201, -122.308035, "346.8 ft"]
             ],
             "ils": [true, true],
         },
         {
             "name": ["16R", "34L"],
             "end": [
-                [47.463806, -122.317884, "415.0ft"],
-                [47.440562, -122.318092, "356.3ft"]
+                [47.463806, -122.317884, "415.0 ft"],
+                [47.440562, -122.318092, "356.3 ft"]
             ],
             "ils": [true, true],
         }
@@ -411,7 +411,7 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 "restricted": [
     {
         "name": "P-51",
-        "height": "2500ft",
+        "height": "2500 ft",
         "poly": [
             ["N47.7737128", "W122.7710456"],
             ["N47.7189169", "W122.7706794"],
@@ -442,8 +442,8 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
     {
         "name": ["16L", "34R"],
         "end": [
-            [47.463767, -122.307749, "432.5ft"],
-            [47.431201, -122.308035, "346.8ft"]
+            [47.463767, -122.307749, "432.5 ft"],
+            [47.431201, -122.308035, "346.8 ft"]
         ],
         "ils": [false, true],
         "ils_distance":[30, 25],
@@ -469,7 +469,7 @@ Runways are defined in pairs because a runway can be used from either direction.
 {
     "name": "16L",
     "end": [
-        [47.463767, -122.307749, "432.5ft"]
+        [47.463767, -122.307749, "432.5 ft"]
     ],
     "ils": false
 }
@@ -478,7 +478,7 @@ Runways are defined in pairs because a runway can be used from either direction.
 {
     "name": "34R",
     "end": [
-        [47.431201, -122.308035, "346.8ft"]
+        [47.431201, -122.308035, "346.8 ft"]
     ],
     "ils": true
 }
@@ -724,10 +724,10 @@ Markings on the scope that depict various characteristics of the airspace. When 
 
 For `lat, lon, elev` values, these formats are acceptable:
 
-* [40.94684722, -76.61727778, "866ft"]
-* ["N40.94684722", "W76.61727778", "866ft"]
-* ["N40d56.811", "W076d37.037", "866ft"]
-* ["N40d56m48.65", "W076d37m02.20", "866ft"]
+* [40.94684722, -76.61727778, "866 ft"]
+* ["N40.94684722", "W76.61727778", "866 ft"]
+* ["N40d56.811", "W076d37.037", "866 ft"]
+* ["N40d56m48.65", "W076d37m02.20", "866 ft"]
 
 *Note: For `lat, lon` values, just omit the elevation.*
 
