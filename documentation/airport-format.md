@@ -453,14 +453,14 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 ],
 ```
 
-* **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
-* **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
-* **ils** - Boolean property used to indicate if a runway has an ILS approach
-* **ils_distance** - Distance the ILS extends away from the runway
-* **glideslope** - Descent angle of the ILS glideslope
-* **loc_maxDist** - Maximum distance from the runway threshold where the localizer is still usable by aircraft, in nm
-* **ils_gs_maxHeight** - Maximum height where the glideslope is still usable by aircraft, in ft MSL
-* **sepFromAdjacent** - A way to manually specify the separation required between this runway and an adjacent runway, in nm
+* **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. So if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
+* **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _See [lat, lon, elev](#latitude-longitude-elevation) for formatting_.
+* **ils** - Boolean property used to indicate if a runway has an ILS approach.
+* **ils_distance** - Distance the ILS extends away from the runway.  The default value is 25 nm.
+* **glideslope** - Descent angle of the ILS glideslope.  The default value is 3.0 degrees.
+* **loc_maxDist** - Maximum distance from the runway threshold where the localizer is still usable by aircraft, in nm.  The default value is 25 nm.
+* **ils_gs_maxHeight** - Maximum height where the glideslope is still usable by aircraft, in ft MSL.
+* **sepFromAdjacent** - A way to manually specify the separation required between this runway and an adjacent runway, in nm.
 
 Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
 
@@ -582,9 +582,9 @@ SID is an acronym for _Standard Instrument Departure_.
 
 * **name** - spoken name of the route used for read backs.
 * **altitude** - (number) initial climb clearance (optional).
-* **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
+* **rwy** - (dictionary with a array of string values) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment. May be empty, but must be present.
-* **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
+* **exitPoints** - (dictionary with a array of string values) considered the `Exit`. Each key corresponds to and exit transition for a route.
 * **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes. The name of the SID will be displayed on top of the fix with a `*` after it (e.g. `["SUMMA", "LKV*"]`). _Please note that the 'draw' array must contain at least one array, even if it is empty: `"draw": [[]]`_
 
 **Every possible rwy/body/exitPoint combination must result at least one fix.**
@@ -632,9 +632,9 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 ```
 
 * **name** - spoken name of the route used for read backs.
-* **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
+* **entryPoints** - (dictionary with a array of string values) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment. May be empty, but must be present.
-* **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
+* **rwy** - (dictionary with a array of string values) considered the `Exit`. Each key corresponds to a runway that is usable from this route
 * **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes. The name of the STAR will be displayed on top of the fix with a `*` after it (e.g. `["PDT*", "BRUKK"]`)
 
 ### Spawn Patterns
