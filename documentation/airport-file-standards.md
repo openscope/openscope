@@ -44,18 +44,18 @@ To maintain uniformity in all airport files, only single spaces should be used.
 The _single_ exception to this rule is in the `fixes` section, where all five-and-fewer-character fixes should have their colons aligned, as in the accepted example below:
 
 ```json
-"CUSBU": ["N47d29.91m0", "W122d19.05m0"],
-"CVO"  : ["N44d29.97m0", "W123d17.62m0"],
-"GRIFY": ["N47d46.15m0", "W122d24.12m0"],
-"HAROB": ["N47d14.60m0", "W123d02.45m0"],
-"HAWKZ": ["N46d47.08m0", "W122d44.34m0"],
-"HETHR": ["N47d33.54m0", "W122d08.70m0"],
-"HISKU": ["N44d30.00m0", "W122d56.65m0"],
-"HQM"  : ["N46d56.82m0", "W124d08.96m0"],
-"LACEE": ["N47d02.82m0", "W122d48.35m0"],
-"LIINE": ["N46d50.65m0", "W122d40.11m0"],
-"LKV"  : ["N42d29.57m0", "W120d30.42m0"],
-"MARNR": ["N48d02.33m0", "W122d50.99m0"]
+"CUSBU": ["N47d29.91", "W122d19.05"],
+"CVO"  : ["N44d29.97", "W123d17.62"],
+"GRIFY": ["N47d46.15", "W122d24.12"],
+"HAROB": ["N47d14.60", "W123d02.45"],
+"HAWKZ": ["N46d47.08", "W122d44.34"],
+"HETHR": ["N47d33.54", "W122d08.70"],
+"HISKU": ["N44d30.00", "W122d56.65"],
+"HQM"  : ["N46d56.82", "W124d08.96"],
+"LACEE": ["N47d02.82", "W122d48.35"],
+"LIINE": ["N46d50.65", "W122d40.11"],
+"LKV"  : ["N42d29.57", "W120d30.42"],
+"MARNR": ["N48d02.33", "W122d50.99"]
 ```
 
 For custom RNAV fixes, such as `_RWY22L05DME`, these shall use single spaces.
