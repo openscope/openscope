@@ -283,28 +283,28 @@ export default class AircraftModel {
         this.distance = 0;
 
         /**
-         * The origin ariport for an aircraft
+         * The origin airport for an aircraft
          *
-         * This will only be populated for dpearture aircraft
+         * This will only be populated for departure aircraft
          *
          * @for AircraftModel
          * @property origin
          * @type {string}
-         * @default ''
+         * @default null
          */
-        this.origin = '';
+        this.origin = null;
 
         /**
-         * The destination airpot of an aircraft
+         * The destination airport of an aircraft
          *
          * This will only be populated for arrivals
          *
          * @for AircraftModel
          * @property destination
          * @type {string}
-         * @default ''
+         * @default null
          */
-        this.destination = '';
+        this.destination = null;
 
         /**
          * Indicator of descent/level/climb (-1, 0, or 1)
