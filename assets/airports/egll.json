@@ -893,14 +893,12 @@
     "runways": [
         {
             "name": ["09L", "27R"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N51d28m38.89", "W0d29m22.65", "79 ft"], ["N51d28m39.63", "W0d25m59.74", "78 ft"]],
             "length": 3.8946,
             "ils": [true, true]
         },
         {
             "name": ["09R", "27L"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N51d27m53.19", "W0d29m13.01", "75 ft"], ["N51d27m53.83", "W0d26m2.68", "77 ft"]],
             "length": 3.6532,
             "ils": [true, true]

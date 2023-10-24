@@ -298,14 +298,12 @@
     "runways":[
         {
             "name": ["07L", "25R"],
-            "name_offset": [[0, 0], [0, 0]],
             "end":    [["N22d18m37.73", "E113d53m46.99", "22 ft"], ["N22d19m18.15", "E113d55m52.44", "22 ft"]],
             "length": 3.8,
             "ils": [true, true]
         },
         {
             "name": ["07R", "25L"],
-            "name_offset": [[0, 0], [0, 0]],
             "end":    [["N22d17m46.6", "E113d53m52.75", "27 ft"], ["N22d18m27.03", "E113d55m58.2", "27 ft"]],
             "length": 3.8,
             "ils": [true, true]
