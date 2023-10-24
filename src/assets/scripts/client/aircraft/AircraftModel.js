@@ -663,8 +663,8 @@ export default class AircraftModel {
         this.heading = data.heading;
         this.altitude = data.altitude;
         this.speed = data.speed;
-        this.origin = data.origin?.toUpperCase(),
-        this.destination = data.destination?.toUpperCase(),
+        this.origin = data.origin?.toUpperCase();
+        this.destination = data.destination?.toUpperCase();
 
         this.target.altitude = this.altitude;
         this.targetHeading = this.heading;
