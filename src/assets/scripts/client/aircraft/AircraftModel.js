@@ -922,7 +922,7 @@ export default class AircraftModel {
      * @returns booelan
      */
     isOverflight() {
-        return this.origin === '' && this.destination === '';
+        return this.origin === null && this.destination === null;
     }
 
     /**
