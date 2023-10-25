@@ -48,7 +48,7 @@ const SPAWN_METHOD = {
  * // Departures
  * {
  *    "origin": "KLAS",
- *    "destination": "",
+ *    "destination": null,
  *    "category": "departure",
  *    "route": "KLAS.BOACH6.HEC",
  *    "altitude": "",
@@ -64,7 +64,7 @@ const SPAWN_METHOD = {
  *
  * // Arrivals
  * {
- *   "origin": "",
+ *   "origin": null,
  *   "destination": "KLAS",
  *   "category": "arrival",
  *   "route": "BETHL.GRNPA1.KLAS",
@@ -193,9 +193,9 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * @property origin
          * @type {string}
-         * @default ''
+         * @default null
          */
-        this.origin = '';
+        this.origin = null;
 
         /**
          * The airport icao id this pattern's aircraft will land at
@@ -203,9 +203,9 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * @property destination
          * @type {string}
-         * @default ''
+         * @default null
          */
-        this.destination = '';
+        this.destination = null;
 
         /**
          * String representation of a `StandardRoute` or a list of fixes
@@ -537,8 +537,8 @@ export default class SpawnPatternModel extends BaseModel {
         this.scheduleId = INVALID_NUMBER;
         this.category = '';
         this.method = '';
-        this.origin = '';
-        this.destination = '';
+        this.origin = null;
+        this.destination = null;
         this.routeString = '';
         this.commands = {};
         this._minimumAltitude = INVALID_NUMBER;
