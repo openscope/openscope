@@ -4,7 +4,7 @@ import { POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
 export const AIRCRAFT_MOCK_BASE = {
     transponderCode: 3377,
     callsign: '1567',
-    destination: '',
+    destination: null,
     origin: 'KLAS',
     fleet: 'default',
     airline: 'ual',

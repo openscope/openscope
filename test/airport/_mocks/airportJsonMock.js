@@ -509,7 +509,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["vir", 4],
                 ["wja", 7]
             ],
-            "destination": "",
+            "destination": null,
             "origin": "KLAS",
             "category": "departure",
             "route": "KLAS.BOACH6.HEC",
@@ -541,7 +541,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["vir", 4],
                 ["wja", 7]
             ],
-            "destination": "",
+            "destination": null,
             "origin": "KLAS",
             "category": "departure",
             "route": "KLAS.COWBY6.GUP",
@@ -573,7 +573,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["vir", 4],
                 ["wja", 7]
             ],
-            "destination": "",
+            "destination": null,
             "origin": "KLAS",
             "category": "departure",
             "route": "KLAS.SHEAD9.KENNO",
@@ -605,7 +605,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["vir", 4],
                 ["wja", 7]
             ],
-            "destination": "",
+            "destination": null,
             "origin": "KLAS",
             "category": "departure",
             "route": "KLAS.TRALR6.BCE",
@@ -634,7 +634,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["wja", 7]
             ],
             "destination": "KLAS",
-            "origin": "",
+            "origin": null,
             "category": "arrival",
             "route": "BETHL.GRNPA1.KLAS",
             "altitude": [30000, 40000],
@@ -657,7 +657,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["vrd",      7]
             ],
             "destination": "KLAS",
-            "origin": "",
+            "origin": null,
             "category": "arrival",
             "route": "DAG.KEPEC3.KLAS",
             "altitude": 28000,
@@ -684,7 +684,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["wja", 7]
             ],
             "destination": "KLAS",
-            "origin": "",
+            "origin": null,
             "category": "arrival",
             "route": "BTY.SUNST3.KLAS",
             "altitude": [28000, 34000],
@@ -707,7 +707,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["vrd", 7]
             ],
             "destination": "KLAS",
-            "origin": "",
+            "origin": null,
             "category": "arrival",
             "route": "PGS.TYSSN4.KLAS",
             "altitude": 25000,

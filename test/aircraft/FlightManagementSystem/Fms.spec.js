@@ -223,22 +223,22 @@ ava('.reset() resets all instance properties to appropriate default values', (t)
     t.true(!fms._routeModel);
 });
 
-ava('._initializeAirportsAndRunways() does not make calls to initialize departure airport+runway when origin ICAO is an empty string', (t) => {
+ava('._initializeAirportsAndRunways() does not make calls to initialize departure airport+runway when origin ICAO is null', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(starRouteStringMock);
     const _initializeDepartureAirportSpy = sinon.spy(fms, '_initializeDepartureAirport');
     const _initializeDepartureRunwaySpy = sinon.spy(fms, '_initializeDepartureRunway');
-    const result = fms._initializeAirportsAndRunways('', 'klas');
+    const result = fms._initializeAirportsAndRunways(null, 'klas');
 
     t.true(typeof result === 'undefined');
     t.true(_initializeDepartureAirportSpy.notCalled);
     t.true(_initializeDepartureRunwaySpy.notCalled);
 });
 
-ava('._initializeAirportsAndRunways() does not make calls to initialize arrival airport+runway when destination ICAO is an empty string', (t) => {
+ava('._initializeAirportsAndRunways() does not make calls to initialize arrival airport+runway when destination ICAO is null', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(sidRouteStringMock);
     const _initializeArrivalAirportSpy = sinon.spy(fms, '_initializeArrivalAirport');
     const _initializeArrivalRunwaySpy = sinon.spy(fms, '_initializeArrivalRunway');
-    const result = fms._initializeAirportsAndRunways('klas', '');
+    const result = fms._initializeAirportsAndRunways('klas', null);
 
     t.true(typeof result === 'undefined');
     t.true(_initializeArrivalAirportSpy.notCalled);
