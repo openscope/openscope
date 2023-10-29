@@ -1,6 +1,6 @@
 export const DEPARTURE_PATTERN_MOCK = {
     origin: 'KLAS',
-    destination: '',
+    destination: null,
     category: 'departure',
     route: 'KLAS07L.BOACH6.HEC',
     altitude: null,
@@ -33,7 +33,7 @@ export const DEPARTURE_PATTERN_MOCK = {
 
 export const DEPARTURE_PATTERN_ROUTE_STRING_MOCK = {
     origin: 'KLAS',
-    destination: '',
+    destination: null,
     category: 'departure',
     route: 'BESSY..BOACH..HEC',
     altitude: null,
@@ -65,7 +65,7 @@ export const DEPARTURE_PATTERN_ROUTE_STRING_MOCK = {
 };
 
 export const ARRIVAL_PATTERN_MOCK = {
-    origin: '',
+    origin: null,
     destination: 'KLAS',
     category: 'arrival',
     route: 'BETHL.GRNPA1.KLAS07R',
@@ -94,7 +94,7 @@ export const ARRIVAL_PATTERN_MOCK = {
 };
 
 export const ARRIVAL_PATTERN_MOCK_ALL_STRINGS = {
-    origin: '',
+    origin: null,
     destination: 'KLAS',
     category: 'arrival',
     route: 'BETHL.GRNPA1.KLAS07R',
@@ -108,7 +108,7 @@ export const ARRIVAL_PATTERN_MOCK_ALL_STRINGS = {
 };
 
 export const ARRIVAL_PATTERN_FLOAT_RATE_MOCK = {
-    origin: '',
+    origin: null,
     destination: 'KLAS',
     category: 'arrival',
     route: 'BETHL.GRNPA1.KLAS07R',
@@ -164,7 +164,7 @@ export const AIRPORT_JSON_FOR_SPAWN_MOCK = {
 
 // Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftTypeDefinitionCollection.spec`
 export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
-    origin: '',
+    origin: null,
     destination: 'KLAS',
     category: 'arrival',
     route: 'DAG.KEPEC3.KLAS07R',
@@ -181,7 +181,7 @@ export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
 // Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftTypeDefinitionCollection.spec`
 export const SPAWN_PATTERN_MODEL_FOR_DEPARTURE_FIXTURE = {
     origin: 'KLAS',
-    destination: '',
+    destination: null,
     category: 'departure',
     route: 'KLAS07L.COWBY6.GUP',
     altitude: null,
