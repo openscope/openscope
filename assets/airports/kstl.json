@@ -1354,7 +1354,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "VHP.AARCH2.KSTL30R",
@@ -1373,7 +1373,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "VISQA.BOOSH2.KSTL29",
@@ -1393,7 +1393,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "BUM.KAYLA3.KSTL29",
@@ -1413,7 +1413,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "GUZIK.LORLE3.KSTL30R",
@@ -1431,7 +1431,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "SPI.VLA9.KSTL30R",

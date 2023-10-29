@@ -730,7 +730,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "WINDU.SEWZY6.KAUS18L",
@@ -759,7 +759,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "UCOKA.LAIKS3.KAUS18R",
@@ -782,7 +782,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "HFMAN.DXEEE2.KAUS18R",
@@ -799,7 +799,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "IAH..LUKKN.WLEEE6.KAUS18L",
@@ -822,7 +822,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "AGJ..CWK",
@@ -836,7 +836,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "BWD..CWK",
@@ -850,7 +850,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "SJT..CWK",

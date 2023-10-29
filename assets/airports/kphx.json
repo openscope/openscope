@@ -571,7 +571,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kphx",
             "category": "arrival",
             "route":   "WOTRO.BRUSR1.KPHX",
@@ -603,7 +603,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kphx",
             "category": "arrival",
             "route":   "ZUN.EAGUL6.KPHX",
@@ -636,7 +636,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kphx",
             "category": "arrival",
             "route":   "BLH.HYDRR1.KPHX",
@@ -668,7 +668,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kphx",
             "category": "arrival",
             "route":   "DRRVR.PINNG1.KPHX",

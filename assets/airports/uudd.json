@@ -298,7 +298,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "uudd",
             "category": "arrival",
             "route":   "RELTO..NEMOR..AO..OKMEL",
@@ -316,7 +316,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "uudd",
             "category": "arrival",
             "route": "IN..KUPAR..DMD..RAPAG",
@@ -333,7 +333,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "uudd",
             "category": "arrival",
             "route": "KN..BESTA..RUGEL..GEKLA..ABMAS..RAPAG",

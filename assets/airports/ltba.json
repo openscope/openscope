@@ -4119,7 +4119,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4146,7 +4146,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4177,7 +4177,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4196,7 +4196,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4216,7 +4216,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4245,7 +4245,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4281,7 +4281,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4303,7 +4303,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",

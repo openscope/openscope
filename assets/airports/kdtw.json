@@ -1169,7 +1169,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KDTW",
             "category": "arrival",
             "route": "MOL.GEMNI4.KDTW",
@@ -1197,7 +1197,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KDTW",
             "category": "arrival",
             "route": "FWA.MIZAR4.KDTW",
@@ -1225,7 +1225,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KDTW",
             "category": "arrival",
             "route": "BAE.POLAR6.KDTW",
@@ -1256,7 +1256,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KDTW",
             "category": "arrival",
             "route": "BUF.SPICA2.KDTW",
@@ -1287,7 +1287,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KDTW",
             "category": "arrival",
             "route": "HNN.WEEDA2.KDTW",

@@ -678,7 +678,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kpdx",
             "category": "arrival",
             "route": "JKNOX.HHOOD4.KPDX28R",
@@ -702,7 +702,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kpdx",
             "category": "arrival",
             "route": "BUWZO.KRATR2.KPDX28R",
@@ -718,7 +718,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kpdx",
             "category": "arrival",
             "route": "MOXEE.TMBRS2.KPDX28L",

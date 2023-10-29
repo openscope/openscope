@@ -436,7 +436,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "BIDMO.BIDMO_STAR.WMKP",
@@ -456,7 +456,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "ISMAS.ISMAS_STAR.WMKP",
@@ -469,7 +469,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "MADUM.MADUM_STAR.WMKP",
@@ -483,7 +483,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "NURLA.NURLA.WMKP",
@@ -502,7 +502,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "LUNTU.LUNTU_STAR.WMKP",

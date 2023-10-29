@@ -1715,7 +1715,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "REDFA.REDFA1A.EHAM",
@@ -1747,7 +1747,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "LAMSO.LAMSO1A.EHAM",
@@ -1779,7 +1779,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "MOLIX.MOLIX2A.EHAM",
@@ -1811,7 +1811,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "TOPPA.TOPPA2A.EHAM",
@@ -1845,7 +1845,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "EEL.EEL1A.EHAM",
@@ -1895,7 +1895,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "NORKU.NORKU2A.EHAM",
@@ -1938,7 +1938,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "REKKEN.RKN2A.EHAM",
@@ -1970,7 +1970,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "DENUT.DENUT1A.EHAM",
@@ -1993,7 +1993,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "HELEN.HELEN1A.EHAM",
@@ -2016,7 +2016,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "PUTTY.PUTTY1A.EHAM",
@@ -2031,7 +2031,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EHAM",
             "category": "arrival",
             "route": "PESER.PESER2A.EHAM",

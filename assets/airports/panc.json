@@ -705,7 +705,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "HOM.AMOTT3.PANC",
@@ -721,7 +721,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "PUYVO.KROTO3.PANC",
@@ -738,7 +738,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "HAMND.NEELL5.PANC",
@@ -760,7 +760,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "TKA.TAGER8.PANC",
@@ -774,7 +774,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "MDO.WITTI3.PANC",
@@ -795,7 +795,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "TMSON.WITTI3.PANC",
@@ -821,7 +821,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "PANC",
             "category": "arrival",
             "route": "JOH.YESKA6.PANC",

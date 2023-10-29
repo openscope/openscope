@@ -2440,7 +2440,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMAA",
             "category": "arrival",
             "route": "GOLGU.M318.ATUDO.ATUDO2C.OMAA31R",
@@ -2463,7 +2463,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMAA",
             "category": "arrival",
             "route": "NALPO.P559.KIVUS.G666.ELOVU.ELOVU2C.OMAA31R",
@@ -2492,7 +2492,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMAA",
             "category": "arrival",
             "route": "KUSEN.M677.TUKSI.P699.IVOXI.P311.EMERU.EMERU2C.OMAA31R",
@@ -2518,7 +2518,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMAA",
             "category": "arrival",
             "route": "TOSNA.N685.GIDOB.GIDOB2J.OMAA31L",
@@ -2548,7 +2548,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMAA",
             "category": "arrival",
             "route": "SODEX.N563.NOBTO.NOBTO5C.OMAA31L",
@@ -2571,7 +2571,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMAA",
             "category": "arrival",
             "route": "ITRAX.P899.ROVOS.ROVOS2J.OMAA31L",

@@ -1703,7 +1703,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "BETIR..PIXAR..BETUM..GABOK..BIBOK.BIBOK.MDSD",
@@ -1722,7 +1722,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "BEROX..MAREV..DELPO.DELPO.MDSD",
@@ -1740,7 +1740,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "PALAS..KATIN..KASOS..RAGUS..GABRA.GABRA.MDSD",
@@ -1759,7 +1759,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "POKAK..IMEDO..KARIB.KARIB.MDSD",
@@ -1777,7 +1777,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "BQN..ANTEX..GOSUL.GOSUL.MDSD",
@@ -1796,7 +1796,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "ONPAD..POBIN..BIBAS..KODIX.KODIX.MDSD",
@@ -1818,7 +1818,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "ETBOD..PITEX..OKOSO.OKOSO.MDSD",
@@ -1837,7 +1837,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "MDSD",
             "category": "arrival",
             "route": "PTA..BORAS..RIBES.RIBES.MDSD",

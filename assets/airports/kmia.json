@@ -1171,7 +1171,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "JORAY.HILEY7.KMIA9",
@@ -1214,7 +1214,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "BAGGS.SSCOT5.KMIA9",
@@ -1238,7 +1238,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "URSUS.FLIPR6.KMIA9",
@@ -1271,7 +1271,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "MTH.CURSO5.KMIA9",

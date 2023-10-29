@@ -573,7 +573,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KTPA",
             "category": "arrival",
             "route": "SIMMR.BLOND4.KTPA",
@@ -594,7 +594,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KTPA",
             "category": "arrival",
             "route": "PHK.BRDGE8.KTPA",
@@ -607,7 +607,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KTPA",
             "category": "arrival",
             "route": "TAY.DADES4.KTPA",
@@ -633,7 +633,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KTPA",
             "category": "arrival",
             "route": "LBV.DEAKK5.KTPA",
@@ -651,7 +651,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KTPA",
             "category": "arrival",
             "route": "SZW.FOOXX4.KTPA",

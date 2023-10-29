@@ -982,7 +982,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdfw",
             "category": "arrival",
             "route":   "CRIED.BEREE1.KDFW",
@@ -1010,7 +1010,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdfw",
             "category": "arrival",
             "route":   "GUTZZ.BOOVE4.KDFW",
@@ -1038,7 +1038,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdfw",
             "category": "arrival",
             "route":   "FEWWW.SEEVR3.KDFW",
@@ -1071,7 +1071,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdfw",
             "category": "arrival",
             "route":   "TURKI.VKTRY2.KDFW",

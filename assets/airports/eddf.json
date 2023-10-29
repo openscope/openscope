@@ -2528,7 +2528,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "TADUV.T173.KERAX.KER25N.EDDF25R",
@@ -2562,7 +2562,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "ERNAS.Y101.ERMEL.UQ162.SPESA.SPE25S.EDDF25L",
@@ -2605,7 +2605,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "LIPMI.T150.ROLIS.ROL25N.EDDF25R",
@@ -2633,7 +2633,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "SPI.UT180.PESOV.T180.UNOKO.UNO25N.EDDF25R",

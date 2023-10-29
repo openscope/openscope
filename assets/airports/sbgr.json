@@ -245,7 +245,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "MOXEP..IBDIK",
@@ -280,7 +280,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "VUKIK..TOGES..SAT",
@@ -297,7 +297,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "ANISE..SIPUK..SAT",
@@ -314,7 +314,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "MOXEP..IBDIK",

@@ -819,7 +819,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "KPASS.ALDAN3.KRDU23R",
@@ -847,7 +847,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "GARIC.BLOGS3.KRDU23R",
@@ -874,7 +874,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "ZJAAY.TAQLE1.KRDU23R",
@@ -903,7 +903,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "PYRES.MALNR5.KRDU23L",

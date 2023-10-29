@@ -2012,7 +2012,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "MIVOK.CAPTL4.CYOW32",
@@ -2029,7 +2029,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "ART.DEANS8.CYOW32",
@@ -2044,7 +2044,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "SMARE.MEECH1.CYOW32",
@@ -2058,7 +2058,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "CATOG.RIVER2.CYOW32",

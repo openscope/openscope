@@ -1366,7 +1366,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "FLS.L24.ADOPI.ADOPI3L.ENGM01L",
@@ -1385,7 +1385,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "GIGIR.Z313.BELGU.BELGU3L.ENGM01L",
@@ -1404,7 +1404,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "ARS.N623.ESEBA.ESEBA4L.ENGM01R",
@@ -1428,7 +1428,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "OVDAL.P600.INREX.INREX4L.ENGM01R",
@@ -1444,7 +1444,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "SABAK.L997.LUNIP.LUNIP4L.ENGM01R",
@@ -1463,7 +1463,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "ZOL.Z132.OSKOM.Z316.RIPAM.RIPAM3L.ENGM01L",

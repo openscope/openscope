@@ -1003,7 +1003,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "PDT.CHINS3.KSEA16R",
@@ -1035,7 +1035,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "MLP.GLASR1.KSEA16R",
@@ -1067,7 +1067,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "LMT.HAWKZ7.KSEA16R",
@@ -1099,7 +1099,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "YVR.MARNR7.KSEA16R",

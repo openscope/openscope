@@ -749,7 +749,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "DIPAS..AKBAN",
@@ -773,7 +773,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "BADAT..AKBAN",
@@ -798,7 +798,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "LKA..AKBAN",
@@ -824,7 +824,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "UXIDA..IGINO..SAM",
@@ -849,7 +849,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "SP..SAM",
@@ -876,7 +876,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "D186N..SAPLO",
@@ -898,7 +898,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "JAL..SIBAD",
@@ -915,7 +915,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "PUMOT..SIBAD",
@@ -936,7 +936,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "HW..SIBAD",

@@ -778,7 +778,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KMCI",
             "category": "arrival",
             "route": "BDF.J26.IRK.BQS5.KMCI1R",
@@ -810,7 +810,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KMCI",
             "category": "arrival",
             "route": "ICT..EMP.JHAWK6.KMCI1L",
@@ -838,7 +838,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KMCI",
             "category": "arrival",
             "route": "PWE.RBA3.KMCI1L",
@@ -866,7 +866,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KMCI",
             "category": "arrival",
             "route": "SGF.TYGER6.KMCI1R",

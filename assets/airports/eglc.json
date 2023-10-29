@@ -1163,7 +1163,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGLC",
             "category": "arrival",
             "route": "BEDEK..BIG..UMTUM..GODLU..ELMIV..LCE11..LCE12..LCE13..RAVSA",
@@ -1178,7 +1178,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGLC",
             "category": "arrival",
             "route": "KENET..WCO..BOMBO..BKY..BRAIN..CLN..JACKO..NONVA..BABKU..LCE21..LCE23..RAVSA",

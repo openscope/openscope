@@ -2447,7 +2447,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "SHA..KURUM.KURU1R.EICK16",
@@ -2461,7 +2461,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "BANBA..VAPAL.VAPA1R.EICK16",
@@ -2481,7 +2481,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "LIFFY.Q36.TISMO.TISM1R.EICK16",
@@ -2500,7 +2500,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "MAPAG..ORTOM.ORTO1R.EICK16",
@@ -2515,7 +2515,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "LEDGO..ERTER.ERTE1R.EICK16",

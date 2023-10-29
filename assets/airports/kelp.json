@@ -818,7 +818,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kelp",
             "category": "arrival",
             "route": "TXSAS.BEAHR3.KELP22",
@@ -841,7 +841,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kelp",
             "category": "arrival",
             "route": "TEEES.MOLLY4.KELP22",
@@ -860,7 +860,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kelp",
             "category": "arrival",
             "route": "LIFFT.SAMMR3.KELP22",
@@ -882,7 +882,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kelp",
             "category": "arrival",
             "route": "SLNNK.WAZKO1.KELP22",

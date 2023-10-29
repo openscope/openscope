@@ -2547,7 +2547,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "RIBOT.UM550.GOLGU.M318.RURAL.P317.LORID.LORID4D.OMDB30L",
@@ -2563,7 +2563,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "GISMO.P574.IMPED.IMPED3C.OMDB30L",
@@ -2614,7 +2614,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "OBNET.M677.VUTEB.VUTEB3C.OMDB30L",
@@ -2667,7 +2667,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "PATAT.L519.PUVAL.PUVAL5C.OMDB30R",

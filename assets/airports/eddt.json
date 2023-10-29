@@ -444,7 +444,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "BATEL..GIRIT..NASAT",
@@ -461,7 +461,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "_EDDT016060..GOLBO..NASAT",
@@ -476,7 +476,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "RUDAK..KLF..IRMAS",
@@ -491,7 +491,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "AKUDI..ATGUP..NATAV",
@@ -506,7 +506,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "NUKRO..FWE",

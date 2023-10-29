@@ -347,7 +347,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",
@@ -371,7 +371,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",
@@ -387,7 +387,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",
@@ -410,7 +410,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",

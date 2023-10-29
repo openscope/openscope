@@ -1790,7 +1790,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "DUB.L975.MALUD.MIRSI2B.EGCC23R",
@@ -1804,7 +1804,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "MIMVA.L602.NALAX.L46.LIBSO.ROSUN1G.EGCC23R",
@@ -1823,7 +1823,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "NATEB.UP18.TILNI.ROSUN4D.EGCC23R",
@@ -1838,7 +1838,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "DCS.UL612.LAKEY.ROSUN2A.EGCC23R",
@@ -1852,7 +1852,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "RINGA.Q39.DANDI.UL28.PENIL.MIRSI2C.EGCC23R",
@@ -1867,7 +1867,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "PEPOD.Q38.GIGTO.MIRSI2D.EGCC23R",
@@ -1880,7 +1880,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "LESTA.DAYNE1B.EGCC23R",
@@ -1911,7 +1911,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "KESUP.UP16.MONTY.MIRSI1A.EGCC23R",

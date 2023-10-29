@@ -2911,7 +2911,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDM",
             "category": "arrival",
             "route": "SITNI..BAGSI..MATIG..AMADI.Q113.NAPSA.NAPSA3A.EDDM26L",
@@ -2977,7 +2977,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDM",
             "category": "arrival",
             "route": "HAREM.T104.ANORA.ANORA3A.EDDM26L",
@@ -3047,7 +3047,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDM",
             "category": "arrival",
             "route": "ARMUT.T703.LULAR.T105.EXUSI.EXUSI4A.EDDM26L",
@@ -3105,7 +3105,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDM",
             "category": "arrival",
             "route": "BRENO.M726.KOGOL.KOGOL4A.EDDM26L",
@@ -3143,7 +3143,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDM",
             "category": "arrival",
             "route": "NUNRI.T103.OSDER.OSDER4A.EDDM26L",
@@ -3183,7 +3183,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDM",
             "category": "arrival",
             "route": "SUL.T126.PELOG.PELOG3A.EDDM26R",

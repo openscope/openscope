@@ -1382,7 +1382,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "PONZE.BANKR2.KCLT18R",
@@ -1408,7 +1408,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "LYH.CHSLY5.KCLT23",
@@ -1434,7 +1434,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "SKYWA.FILPZ3.KCLT18R",
@@ -1460,7 +1460,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "BESTT.JONZE2.KCLT18R",
@@ -1486,7 +1486,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "OKNEE.MLLET2.KCLT23",
@@ -1510,7 +1510,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "TAFTT.PARQR3.KCLT18R",
@@ -1536,7 +1536,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "CHS.STOCR3.KCLT23",

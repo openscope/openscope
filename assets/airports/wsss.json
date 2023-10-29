@@ -929,7 +929,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "ARAMA.ARAMA.WSSS",
@@ -963,7 +963,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "ASUNA.ASUNA.WSSS",
@@ -997,7 +997,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "KARTO.KARTO.WSSS",
@@ -1023,7 +1023,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "OBDOS.OBDOS.WSSS",
@@ -1049,7 +1049,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "PASPU.LEBAR2A.WSSS",
@@ -1090,7 +1090,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "VEPLI.VEPLI.WSSS",
@@ -1131,7 +1131,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "REPOV.REPOV.WSSS",
@@ -1157,7 +1157,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WSSS",
             "category": "arrival",
             "route": "SURGA.SURGA.WSSS",

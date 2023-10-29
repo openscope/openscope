@@ -1453,7 +1453,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KEWR",
             "category": "arrival",
             "route": "AUDII..FAK.PHLBO3.KEWR4R",
@@ -1475,7 +1475,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KEWR",
             "category": "arrival",
             "route": "BMPAH..AEVON..GEE.FLOSI4.KEWR4R",
@@ -1500,7 +1500,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KEWR",
             "category": "arrival",
             "route": "DORET..SLT.FQM3.KEWR4R",

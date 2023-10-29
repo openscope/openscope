@@ -218,7 +218,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EBBR",
             "category": "arrival",
             "route": "TULNI..AKOVI..EBBR",
@@ -234,7 +234,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EBBR",
             "category": "arrival",
             "route": "BATTY..BR205..FLO..EBBR",
@@ -250,7 +250,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EBBR",
             "category": "arrival",
             "route": "KOK..NIK..ANT..EBBR",

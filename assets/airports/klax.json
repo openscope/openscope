@@ -4022,7 +4022,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "GABBL.HLYWD1.KLAX25L",
@@ -4058,7 +4058,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "BURGL.IRNMN2.KLAX24R",
@@ -4121,7 +4121,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "RDHOT.DIRBY1.KLAX25L",
@@ -4156,7 +4156,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "HAKMN.ANJLL4.KLAX25L",
@@ -4216,7 +4216,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "AMMOR.OLAAA2.KLAX25L",
@@ -4255,7 +4255,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "ELKEY.RYDRR2.KLAX24R",
@@ -4282,7 +4282,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "FICKY.GOATZ1.KLAX25L",
@@ -4305,7 +4305,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "klax",
             "category": "arrival",
             "route": "BOGET.BOGET2.KLAX24R",

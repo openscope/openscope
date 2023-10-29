@@ -2660,7 +2660,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OTHH",
             "category": "arrival",
             "method": "random",
@@ -2684,7 +2684,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OTHH",
             "category": "arrival",
             "method": "random",
@@ -2698,7 +2698,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OTHH",
             "category": "arrival",
             "method": "random",
@@ -2721,7 +2721,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OTHH",
             "category": "arrival",
             "method": "random",
@@ -2736,7 +2736,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OTHH",
             "category": "arrival",
             "method": "random",

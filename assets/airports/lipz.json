@@ -1051,7 +1051,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "LIPZ",
             "category": "arrival",
             "route": "RESIA.P131.ADOSA.L612.ALBET.ALBET1E.LIPZ04R",
@@ -1079,7 +1079,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LIPZ",
             "category": "arrival",
             "route": "BIKTU.N503.LOBSI.Z456.OTGIG.OTGIG1E.LIPZ04R",
@@ -1101,7 +1101,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LIPZ",
             "category": "arrival",
             "route": "BARPI.M859.TULIK.Z71.BASOG.BASOG1E.LIPZ04R",

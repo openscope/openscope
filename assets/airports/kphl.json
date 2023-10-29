@@ -1227,7 +1227,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "JST.BOJID2.KPHL9R",
@@ -1264,7 +1264,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "HTO.J121.BRIGS.JIIMS3.KPHL9R",
@@ -1302,7 +1302,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "RDU..FAK.PAATS3.KPHL9R",
@@ -1339,7 +1339,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "DNY.SPUDS4.KPHL9R",

@@ -404,7 +404,7 @@
         },
         {
             "_name":  "ABBEY",
-            "origin": "",
+            "origin": null,
             "destination": "vhhh",
             "category": "arrival",
             "route":    "ABBEY..MUSEL..TAMAR..TD",
@@ -426,7 +426,7 @@
         },
         {
             "_name":  "BETTY",
-            "origin": "",
+            "origin": null,
             "destination": "vhhh",
             "category": "arrival",
             "route":   "BETTY..MANGO",
@@ -447,7 +447,7 @@
         },
         {
             "_name":  "CANTO",
-            "origin": "",
+            "origin": null,
             "destination": "vhhh",
             "category": "arrival",
             "route":    "COMBI..ROCCA..CANTO..MURRY",

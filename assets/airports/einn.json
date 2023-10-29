@@ -1839,7 +1839,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "DUB.M145.DIGAN.DIGA2D.EINN24",
@@ -1855,7 +1855,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "SLANY..ABAGU..TIPUR.TIPU2D.EINN24",
@@ -1873,7 +1873,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "LEDGO..ERTER..CRK..KURUM.KURU2D.EINN24",
@@ -1890,7 +1890,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "SOMAX..ATSUR..BUNON.BUNO3D.EINN24",
@@ -1908,7 +1908,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "LIMRI..XETBO..LUPOR.LUPO3D.EINN24",
@@ -1926,7 +1926,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "MALOT..GISTI..UNBEG.UNBE3D.EINN24",
@@ -1944,7 +1944,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "VENER..KOKIB..ERABI.ERAB3D.EINN24",
@@ -1962,7 +1962,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "PIKIL..SOVED..MOMIN.MOMI3D.EINN24",

@@ -2740,7 +2740,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "PENIL.L28.LELDO.M145.BAGSO.BAGS2L.EIDW28L",
@@ -2773,7 +2773,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "DIKAS.L18.ABLIN.ABLI2L.EIDW28L",
@@ -2803,7 +2803,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "STU.M17.VATRY.VATR2L.EIDW28L",
@@ -2833,7 +2833,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "EVRIN..BUNED.BUNE2L.EIDW28L",
@@ -2848,7 +2848,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "CRK.Q36.SUTEX.SUTE2L.EIDW28L",
@@ -2868,7 +2868,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "REVNU..OLAPO.OLAP2L.EIDW28L",
@@ -2887,7 +2887,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "BLACA.P620.NIMAT.NIMA2L.EIDW28L",
@@ -2908,7 +2908,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "IOM.Y911.BOYNE.BOYN2L.EIDW28L",
@@ -2922,7 +2922,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "EGT..BAMLI.BAML2L.EIDW28L",

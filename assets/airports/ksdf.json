@@ -780,7 +780,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSDF",
             "category": "arrival",
             "route": "DAAVE.DAMEN3.KSDF",
@@ -807,7 +807,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSDF",
             "category": "arrival",
             "route": "UKATS.DLAMP4.KSDF",
@@ -833,7 +833,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSDF",
             "category": "arrival",
             "route": "RAMSE.FRIZN3.KSDF",
@@ -859,7 +859,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSDF",
             "category": "arrival",
             "route": "LAFOX.MAUDD4.KSDF",
@@ -886,7 +886,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSDF",
             "category": "arrival",
             "route": "WANAV.MBELL2.KSDF",

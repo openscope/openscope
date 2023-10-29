@@ -1284,7 +1284,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDH",
             "category": "arrival",
             "route": "GOLMI..MAXEL..MARIP..BAGOS..KUXOD..MIC..BOGMU.BOGMU23.EDDH23",
@@ -1302,7 +1302,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDH",
             "category": "arrival",
             "route": "PEXAM..NORTA..DLE..MADOR..AGATI..NOLGO.NOLGO23.EDDH23",
@@ -1323,7 +1323,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDH",
             "category": "arrival",
             "route": "SOGMA..ERNUD..GURLO..BUMIL..ABMAL..RARUP.RARUP23.EDDH23",
@@ -1346,7 +1346,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDH",
             "category": "arrival",
             "route": "EEL..NDO..RIBSO.RIBSO23.EDDH23",

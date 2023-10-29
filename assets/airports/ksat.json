@@ -641,7 +641,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "ABI.STV1.KSAT31L",
@@ -667,7 +667,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "LFK.BRAUN3.KSAT31L",
@@ -693,7 +693,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "LRD.LEMIG1.KSAT31L",
@@ -714,7 +714,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "FST.CSI2.KSAT31L",

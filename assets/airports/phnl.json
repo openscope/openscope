@@ -872,7 +872,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "UPP..LAVAS.MAKAH1.PHNL8L",
@@ -896,7 +896,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "DENNS.INOYI1.PHNL8L",
@@ -922,7 +922,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "ZIGIE.KAENA2.PHNL8L",
@@ -951,7 +951,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "CANON.KLANI3.PHNL8L",

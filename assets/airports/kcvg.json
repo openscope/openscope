@@ -1276,7 +1276,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "COLNS.GAVNN4.KCVG18L",
@@ -1307,7 +1307,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "JOT.CEGRM5.KCVG18L",
@@ -1338,7 +1338,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "VXV.JAKIE4.KCVG18L",
@@ -1369,7 +1369,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "PXV.SARGO3.KCVG18L",
@@ -1399,7 +1399,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "CTW.TIGRR2.KCVG18L",
@@ -1430,7 +1430,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "COLNS.BRUSH3.KCVG18L",
@@ -1443,7 +1443,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "CTW.CINCE8.KCVG18L",
@@ -1456,7 +1456,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "HMV.HARDU4.KCVG18L",
@@ -1469,7 +1469,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCVG",
             "category": "arrival",
             "route": "BVT.SHB6.KCVG18L",

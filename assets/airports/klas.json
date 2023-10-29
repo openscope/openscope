@@ -805,7 +805,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "MISEN.KEPEC6.KLAS26L",
@@ -829,7 +829,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "GGAPP.SITEE3.KLAS26L",
@@ -861,7 +861,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "BTY.SUNST4.KLAS26L",
@@ -887,7 +887,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "PGS.TYSSN5.KLAS26L",

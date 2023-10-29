@@ -1917,7 +1917,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "ROS.UT672.MULTA.W24.SNT.SNT6A.SAEZ11",
@@ -1943,7 +1943,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "DALAB.UL793.GUA.UW65.PAGON.PAGO6A.SAEZ11",
@@ -1963,7 +1963,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "LOGAM.UM424.ASADA.ASAD6A.SAEZ11",
@@ -1983,7 +1983,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "DUR.UN741.PAPIX.PAPI6A.SAEZ11",
@@ -2012,7 +2012,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "ENSAS.UL324.KUKEN.KUKE6A.SAEZ11",
@@ -2034,7 +2034,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "PULAS.UW22.VALOS.VALO7A.SAEZ11",
@@ -2048,7 +2048,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "ATITO.W18.GBE.GBE6A.SAEZ11",
@@ -2063,7 +2063,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAEZ",
             "category": "arrival",
             "route": "DAGUS.A306.UGIMI.UGIM6A.SAEZ11",

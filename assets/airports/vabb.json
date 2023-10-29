@@ -625,7 +625,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vabb",
             "category": "arrival",
             "route":      "OPAKA.EMRAK.VABB",
@@ -651,7 +651,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vabb",
             "category": "arrival",
             "route":      "IGBAN.IGBAN.VABB",
@@ -678,7 +678,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vabb",
             "category": "arrival",
             "route":      "KETOR.KETOR.VABB",
@@ -707,7 +707,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vabb",
             "category": "arrival",
             "route":      "MOLGO.MOLGO.VABB",
@@ -731,7 +731,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vabb",
             "category": "arrival",
             "route":      "EXOLU.POKON.VABB",

@@ -153,7 +153,7 @@
         },
         {
             "_name": "PUGER",
-            "origin": "",
+            "origin": null,
             "destination": "wimm",
             "category": "arrival",
             "route": "BANVA..NAGAH",
@@ -176,7 +176,7 @@
         },
         {
             "_name": "GOTLA",
-            "origin": "",
+            "origin": null,
             "destination": "wimm",
             "category": "arrival",
             "route": "GOTLA..NAGAH",
@@ -195,7 +195,7 @@
         },
         {
             "_name": "DALEM",
-            "origin": "",
+            "origin": null,
             "destination": "wimm",
             "category": "arrival",
             "route": "DALEM..BANVA..NAGAH",
@@ -218,7 +218,7 @@
         },
         {
             "_name": "KABUP",
-            "origin": "",
+            "origin": null,
             "destination": "wimm",
             "category": "arrival",
             "route": "KABUP..NAGAH",

@@ -461,7 +461,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJOA",
             "category": "arrival",
             "route": "MARCO.Y453.SUNFL..MISEN..HGE",
@@ -474,7 +474,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJOA",
             "category": "arrival",
             "route": "KAMMY.Y202.AMURO.MISEN.RJOA10",

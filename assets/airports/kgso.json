@@ -674,7 +674,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KGSO",
             "category": "arrival",
             "route": "SPA.TRAKS3.KGSO23L",
@@ -700,7 +700,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KGSO",
             "category": "arrival",
             "route": "CAE.BLOCC2.KGSO23L",
@@ -726,7 +726,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KGSO",
             "category": "arrival",
             "route": "ROA.HENBY3.KGSO23L",
@@ -752,7 +752,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KGSO",
             "category": "arrival",
             "route": "RDU.V45.GSO",
@@ -765,7 +765,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KGSO",
             "category": "arrival",
             "route": "HMV.V310.GSO",

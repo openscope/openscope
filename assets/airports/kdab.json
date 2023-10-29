@@ -385,7 +385,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "KYLEG.TTHOR2.KDAB7L",
@@ -487,7 +487,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "MLB.V3.OMN",
@@ -501,7 +501,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "MONIA.T207.OMN",
@@ -515,7 +515,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "CRG.V51.OMN",
@@ -529,7 +529,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "SSI.V3.OMN",
@@ -543,7 +543,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "VARZE.T210.KIZER..OMN",
@@ -557,7 +557,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "FOBIN.Q93.MALET..OMN",
@@ -572,7 +572,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": null,
             "category": "overflight",
             "route": "MALET.T208.WALEE..GNV",
@@ -586,7 +586,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": null,
             "category": "overflight",
             "route": "ORL.V267.CRG",

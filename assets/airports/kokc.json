@@ -647,7 +647,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "ROLLS.CAMET3.KOKC35L",
@@ -670,7 +670,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "RUSTS.GHOST3.KOKC35L",
@@ -694,7 +694,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "GIMLE.YUCKS3.KOKC35L",
@@ -715,7 +715,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "MPYRE.MURAH3.KOKC35R",
@@ -737,7 +737,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "LIT.J14.DWINE.RIFFL3.KOKC35R",
@@ -758,7 +758,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "BYP..ZEMMA.TSDEL3.KOKC35R",

@@ -880,7 +880,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EKCH",
             "category": "arrival",
             "route": "TESPI.TESPI.EKCH",
@@ -899,7 +899,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EKCH",
             "category": "arrival",
             "route": "MONAK.MONAK.EKCH",
@@ -924,7 +924,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EKCH",
             "category": "arrival",
             "route": "TUDLO.TUDLO.EKCH",

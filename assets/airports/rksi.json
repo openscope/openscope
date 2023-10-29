@@ -774,7 +774,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "ANYANG.SEL1T.RKSI",
@@ -807,7 +807,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GUKDO.GUKDO1A.RKSI",
@@ -840,7 +840,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "G597.KARBU1A.RKSI",
@@ -873,7 +873,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "OLMEN.OLMEN1N.RKSI",
@@ -910,7 +910,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GUKDO.GUKDO1N.RKSI",
@@ -943,7 +943,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "G597.KARBU1N.RKSI",
@@ -976,7 +976,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "REBIT.REBIT1N.RKSI",
@@ -1015,7 +1015,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "BIKSI.BIKSI1M.RKSI",
@@ -1048,7 +1048,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "YECHON.CUN1M.RKSI",
@@ -1081,7 +1081,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "MAKSA.MAKSA1M.RKSI",
@@ -1118,7 +1118,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GONAV.GONAV2M.RKSI",
@@ -1159,7 +1159,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GUKDO.GUKDO1P.RKSI",
@@ -1192,7 +1192,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "G597.KARBU1P.RKSI",
@@ -1225,7 +1225,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "COWAY.COWAY1A.RKSI",
@@ -1261,7 +1261,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "COWAY.COWAY1P.RKSI",
@@ -1297,7 +1297,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "OLMEN.OLMEN1P.RKSI",

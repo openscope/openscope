@@ -1196,7 +1196,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGKK",
             "category": "arrival",
             "route": "REFSO..RIMBU..ODROB..ERING..ABTUM..ARNUN..KKE63..LARCK..TIMBA",
@@ -1214,7 +1214,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGKK",
             "category": "arrival",
             "route": "DOMUT..KATHY..AVANT..GWC..HOLLY.._MID22..WILLO",

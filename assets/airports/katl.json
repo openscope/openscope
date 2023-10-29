@@ -1696,7 +1696,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KATL",
             "category": "arrival",
             "route": "MTHEW.CHPPR1.KATL26R",
@@ -1723,7 +1723,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KATL",
             "category": "arrival",
             "route": "RUSSA.GLAVN1.KATL26R",
@@ -1746,7 +1746,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KATL",
             "category": "arrival",
             "route": "GCV..SHYRE.HOBTT2.KATL28",
@@ -1769,7 +1769,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "katl",
             "category": "arrival",
             "route": "VQQ..AMG..LARZZ.JJEDI2.KATL27L",
@@ -1791,7 +1791,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "katl",
             "category": "arrival",
             "route": "HLRRY.ONDRE1.KATL26R",
@@ -1814,7 +1814,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "katl",
             "category": "arrival",
             "route": "FLASK.OZZZI1.KATL27L",

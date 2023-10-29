@@ -247,7 +247,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPVD",
             "category": "arrival",
             "route": "GEDIC..RIFLE..HTO.JORDN2.KPVD",
@@ -262,7 +262,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPVD",
             "category": "arrival",
             "route": "HNK.WIPOR3.KPVD",

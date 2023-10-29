@@ -488,7 +488,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "DEVLA.DEVL3P.GCRR",
@@ -510,7 +510,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "TERTO.TERT6P.GCRR",
@@ -531,7 +531,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "LARYS.LARY2P.GCRR",
@@ -545,7 +545,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "RASEP.RASE2P.GCRR",

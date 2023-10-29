@@ -1462,7 +1462,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjfk",
             "category": "arrival",
             "route": "SIE.CAMRN4.KJFK31R",
@@ -1517,7 +1517,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjfk",
             "category": "arrival",
             "route": "LVZ.LENDY6.KJFK31R",
@@ -1562,7 +1562,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjfk",
             "category": "arrival",
             "route": "BGR..ENE.PARCH3.KJFK31R",

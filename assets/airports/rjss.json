@@ -555,7 +555,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJSS",
             "category": "arrival",
             "route": "AIZUH.Y515.LANCE.LANCEA.RJSS27",
@@ -573,7 +573,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJSS",
             "category": "arrival",
             "route": "HEIKE.Y15.OWLET.OWLEEA.RJSS27",
@@ -592,7 +592,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJSS",
             "category": "arrival",
             "route": "HPE.Y102.SDE",

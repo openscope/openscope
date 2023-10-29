@@ -2681,7 +2681,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ZSPD",
             "category": "arrival",
             "route": "ANDONG.AND11A.ZSPD",
@@ -2715,7 +2715,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ZSPD",
             "category": "arrival",
             "route": "LISHE.BK11A.ZSPD",
@@ -2747,7 +2747,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ZSPD",
             "category": "arrival",
             "route": "DUMET.DUM21A.ZSPD",
@@ -2778,7 +2778,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ZSPD",
             "category": "arrival",
             "route": "MATNU.MAT21A.ZSPD",
@@ -2809,7 +2809,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ZSPD",
             "category": "arrival",
             "route": "SASAN.SAS11A.ZSPD",
@@ -2842,7 +2842,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ZSPD",
             "category": "arrival",
             "route": "SHUOFANG.SUF10A.ZSPD",

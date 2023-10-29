@@ -1006,7 +1006,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kslc",
             "category": "arrival",
             "route": "BCE.DELTA6.KSLC16L",
@@ -1038,7 +1038,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kslc",
             "category": "arrival",
             "route": "EKR.LEEHY5.KSLC16L",
@@ -1070,7 +1070,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kslc",
             "category": "arrival",
             "route": "JAC.NORDK6.KSLC16L",
@@ -1102,7 +1102,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kslc",
             "category": "arrival",
             "route": "PIH.SKEES5.KSLC16L",
@@ -1134,7 +1134,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kslc",
             "category": "arrival",
             "route": "BVL.WAATS5.KSLC16L",

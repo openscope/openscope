@@ -352,7 +352,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "FSD..MZEEE.AANDY1.KOMA32R",
@@ -379,7 +379,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "ONL.HOWRY2.KOMA32R",
@@ -406,7 +406,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "FOD.LANTK1.KOMA32R",
@@ -433,7 +433,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "BDF.J64.LMN.MARWI3.KOMA32L",
@@ -460,7 +460,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "SLN..HTHWY.TIMMO1.KOMA32L",

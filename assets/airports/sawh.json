@@ -445,7 +445,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAWH",
             "category": "arrival",
             "route": "SALVU.UT662.ASKAS.UT704.DABLI.DABLI2.SAWH25",
@@ -470,7 +470,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAWH",
             "category": "arrival",
             "route": "GRA.T108.DABLI.DABLI2.SAWH25",

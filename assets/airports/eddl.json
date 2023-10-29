@@ -2276,7 +2276,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDL",
             "category": "arrival",
             "route": "DIK.UN853.ARCKY.UT853.IBESA.T853.NVO.T857.BIKMU.BIKMU1G.EDDL23R",
@@ -2315,7 +2315,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDL",
             "category": "arrival",
             "route": "TESDU.T852.TINSA.T854.DOMUX.DOMUX2G.EDDL23R",
@@ -2374,7 +2374,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDL",
             "category": "arrival",
             "route": "LAMSO.UL603.TEBRO.TEBRO3G.EDDL23R",

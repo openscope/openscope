@@ -2314,7 +2314,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "SASAP.Y10.GODIN.GODI1C.RJTT34R",
@@ -2352,7 +2352,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "NOGIX.Y807.POLIX.POLI1C.RJTT34R",
@@ -2368,7 +2368,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "SHOOT.Y71.XAC.XAC1A.RJTT34L",
@@ -2386,7 +2386,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "MENUR.Y21.AKSEL.AKSE1A.RJTT34L",

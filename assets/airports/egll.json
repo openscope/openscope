@@ -1712,7 +1712,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGLL",
             "category": "arrival",
             "route": "BIG3C.BIG.EGLL",
@@ -1758,7 +1758,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGLL",
             "category": "arrival",
             "route": "BNN1B.BNN.EGLL",
@@ -1777,7 +1777,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGLL",
             "category": "arrival",
             "route": "LAM3A.LAM.EGLL",
@@ -1803,7 +1803,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGLL",
             "category": "arrival",
             "route": "OCK1A.OCK.EGLL",

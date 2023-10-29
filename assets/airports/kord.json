@@ -990,7 +990,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "kord",
             "category": "arrival",
             "route": "IRK.BENKY6.KORD28L",
@@ -1053,7 +1053,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kord",
             "category": "arrival",
             "route": "ZZIPR.FYTTE7.KORD27R",
@@ -1116,7 +1116,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kord",
             "category": "arrival",
             "route": "FOLGO.MADII6.KORD27R",
@@ -1179,7 +1179,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kord",
             "category": "arrival",
             "route": "WELTS.TRTLL6.KORD28L",
@@ -1242,7 +1242,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kord",
             "category": "arrival",
             "route": "ROD.WATSN4.KORD27C",
@@ -1308,7 +1308,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kord",
             "category": "arrival",
             "route": "FNT.WYNDE2.KORD27C",

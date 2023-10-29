@@ -765,7 +765,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "BUFFR.J518.IHD.DEMME3.KPIT28L",
@@ -793,7 +793,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "BULEY.J91.HNN.FEWGA4.KPIT28L",
@@ -822,7 +822,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "HNK..KONJE.J190.SLT.HAYNZ5.KPIT28L",
@@ -849,7 +849,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "GSH.J60.DJB..ACO.JESEY3.KPIT28L",

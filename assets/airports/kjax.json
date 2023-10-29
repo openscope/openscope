@@ -1066,7 +1066,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "ESENT.LUNNI1.KJAX8",
@@ -1094,7 +1094,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "CAPPS.MARQO2.KJAX8",
@@ -1123,7 +1123,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "DUCHY.OHDEA1.KJAX8",
@@ -1153,7 +1153,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "HAINY.QUBEN1.KJAX8",
@@ -1178,7 +1178,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "HILIS.TEBOW1.KJAX8",

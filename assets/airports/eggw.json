@@ -2133,7 +2133,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGGW",
             "category": "arrival",
             "route": "XAMAN.L980.LOGAN.ABBOT1D.EGGW26",
@@ -2150,7 +2150,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGGW",
             "category": "arrival",
             "route": "BARMI.ABBOT2B.EGGW26",
@@ -2169,7 +2169,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGGW",
             "category": "arrival",
             "route": "DAWLY.L620.GIBSO.LOREL2D.EGGW26",

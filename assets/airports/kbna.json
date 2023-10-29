@@ -621,7 +621,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbna",
             "category": "arrival",
             "route": "MEM.CHSNE2.KBNA2C",
@@ -651,7 +651,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbna",
             "category": "arrival",
             "route": "YOCKY..GROAT.PASLY4.KBNA2C",
@@ -686,7 +686,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbna",
             "category": "arrival",
             "route": "YACKS.RYYMN2.KBNA2L",
@@ -721,7 +721,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbna",
             "category": "arrival",
             "route": "VXV.SWFFT2.KBNA2C",
@@ -1113,7 +1113,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": null,
             "category": "overflight",
             "route": "LVT.V140.DYR",
@@ -1126,7 +1126,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": null,
             "category": "overflight",
             "route": "DYR.V140.LVT",

@@ -405,7 +405,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC112..AVPOP..CC210..CC304",
@@ -431,7 +431,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC102..BAMUR..CC321..CC303..CC316",
@@ -453,7 +453,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "BEMAK..DIXON..CC330..DINAP..CC329",
@@ -479,7 +479,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "NOKAT..DIKAK..CC302..TONOP",
@@ -505,7 +505,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC101..JATEN..CC319..CC306..CC335",
@@ -527,7 +527,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "BOKEV..KEBAM..CC304",
@@ -546,7 +546,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC108..KUMAD..CC318..CC302..TONOP",
@@ -565,7 +565,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "PITAM..LATEP..CC301",
@@ -590,7 +590,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC106..NOSIM..CC321..CC334..CC319..CC306..CC335",
@@ -615,7 +615,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "DOPID..SEGOL..DINAP..CC329",

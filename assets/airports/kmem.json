@@ -1583,7 +1583,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmem",
             "category": "arrival",
             "route": "PXV.BLUZZ3.KMEM18L",
@@ -1611,7 +1611,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmem",
             "category": "arrival",
             "route": "RZC.BRBBQ3.KMEM18R",
@@ -1639,7 +1639,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmem",
             "category": "arrival",
             "route": "TXK.HOBRK3.KMEM18R",
@@ -1667,7 +1667,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmem",
             "category": "arrival",
             "route": "TALLO.VANZE2.KMEM18L",

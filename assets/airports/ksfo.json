@@ -1225,7 +1225,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "AMAKR.BDEGA3.KSFO28L",
@@ -1261,7 +1261,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "INYOE.DYAMD5.KSFO28R",
@@ -1286,7 +1286,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "PAINT.PIRAT2.KSFO28L",
@@ -1309,7 +1309,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "SERFR.SERFR3.KSFO28R",

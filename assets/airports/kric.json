@@ -532,7 +532,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "MOL.SPIDR4.KRIC34",
@@ -558,7 +558,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "LYH.POWTN5.KRIC34",
@@ -584,7 +584,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "RDU..LVL..NEAVL.DUCXS5.KRIC34",
@@ -610,7 +610,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "SBY.V1.JAMIE..RIC",
@@ -636,7 +636,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "CCV.V38.RIC",
@@ -649,7 +649,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "OTT.V20.RIC",
@@ -662,7 +662,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "MOL..GVE.V38.RIC",

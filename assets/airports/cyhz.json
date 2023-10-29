@@ -1269,7 +1269,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYHZ",
             "category": "arrival",
             "route": "CAYLY.CABOT2.CYHZ23",
@@ -1293,7 +1293,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYHZ",
             "category": "arrival",
             "route": "ALLEX.FUNDY2.CYHZ23",
@@ -1317,7 +1317,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYHZ",
             "category": "arrival",
             "route": "AGMIR.LIRLA2.CYHZ23",
@@ -1336,7 +1336,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYHZ",
             "category": "arrival",
             "route": "TUSKY.PEGGY2.CYHZ23",

@@ -1035,7 +1035,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "DAKUS.DAKUS1V.WMKK",
@@ -1062,7 +1062,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "PULIP.PULIP1V.WMKK",
@@ -1089,7 +1089,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "SAROX.SAROX1V.WMKK",
@@ -1116,7 +1116,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "GUPTA.GUPTA1V.WMKK",
@@ -1141,7 +1141,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "SALAX.SALAX1V.WMKK",
@@ -1166,7 +1166,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "INTOT.INTOT1V.WMKK",
@@ -1191,7 +1191,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "INTOT.INTOT1V.WMKK",
@@ -1203,7 +1203,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "BATU_ARANG.KIKAL3.WMKK",
@@ -1230,7 +1230,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "GOKAD.OLBON1B.WMKK",
@@ -1255,7 +1255,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "DUMOK.LAPIR3.WMKK",

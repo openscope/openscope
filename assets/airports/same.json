@@ -2564,7 +2564,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAME",
             "category": "arrival",
             "route": "JUA.UW3.MEBRA.MEBR2Q.SAME36",
@@ -2583,7 +2583,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAME",
             "category": "arrival",
             "route": "CBA.UA307.SALBO.SALB2Q.SAME36",
@@ -2601,7 +2601,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAME",
             "category": "arrival",
             "route": "NIN.UL405.PAPIR.PAPI2Q.SAME36",
@@ -2634,7 +2634,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAME",
             "category": "arrival",
             "route": "NEU.UW37.ESITO.ESIT1Q.SAME36",

@@ -968,7 +968,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbos",
             "category": "arrival",
             "route": "PONCT.JFUND2.KBOS22L",
@@ -995,7 +995,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbos",
             "category": "arrival",
             "route": "AJJAY.OOSHN5.KBOS22L",
@@ -1027,7 +1027,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kbos",
             "category": "arrival",
             "route": "JFK.ROBUC3.KBOS27",

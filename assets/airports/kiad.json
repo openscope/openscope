@@ -1771,7 +1771,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "THHMP.CAVLR3.KIAD1R",
@@ -1794,7 +1794,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "BKW.GIBBZ3.KIAD1C",
@@ -1819,7 +1819,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "MGW.GIBBZ3.KIAD1C",
@@ -1843,7 +1843,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "PARKE.HYPER7.KIAD1R",
@@ -1864,7 +1864,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "PSB.MAPEL2.KIAD1L",
@@ -1885,7 +1885,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "FQM.SEG6.KIAD1R",
@@ -1898,7 +1898,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "DORRN.WIGOL1.KIAD1C",

@@ -349,10 +349,10 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "osdi",
             "category": "departure",
-            "origin": "",
+            "origin": null,
             "destination": "osdi",
             "category": "departure",
             "method":         "cyclic",
@@ -368,7 +368,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "osdi",
             "category": "departure",
             "method":         "cyclic",
@@ -383,7 +383,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "osdi",
             "category": "departure",
             "method":         "cyclic",
@@ -398,7 +398,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "osdi",
             "category": "departure",
             "method":         "cyclic",
@@ -414,7 +414,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "osdi",
             "category": "departure",
             "method":         "cyclic",

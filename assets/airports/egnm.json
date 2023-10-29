@@ -582,7 +582,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "EMBOR..TNT..DENBY..LBA",
@@ -598,7 +598,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "GASKO..LBA",
@@ -611,7 +611,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "GOLES..BATLI..LBA",
@@ -626,7 +626,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "REXAM..BARTN..POL..LBA",

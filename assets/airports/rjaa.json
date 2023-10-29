@@ -1514,7 +1514,7 @@
 			]
 		},
 		{
-            "origin": "",
+            "origin": null,
             "destination": "RJAA",
             "category": "arrival",
             "route": "IDLAN.Y809.SUPOK.SUPOKN.RJAA16L",
@@ -1536,7 +1536,7 @@
             ]
         },
 		{
-            "origin": "",
+            "origin": null,
             "destination": "RJAA",
             "category": "arrival",
             "route": "ENSAT.Y817.MENIX.Y813.LUBLA.LUBLAN.RJAA16L",
@@ -1560,7 +1560,7 @@
             ]
         },
 		{
-            "origin": "",
+            "origin": null,
             "destination": "RJAA",
             "category": "arrival",
             "route": "ENTAK.Y30.SWAMP.SWAMPN.RJAA16L",
@@ -1611,7 +1611,7 @@
             ]
         },
 		{
-            "origin": "",
+            "origin": null,
             "destination": "RJAA",
             "category": "arrival",
             "route": "GUPER.Y81.RUTAS.RUTASN.RJAA16L",

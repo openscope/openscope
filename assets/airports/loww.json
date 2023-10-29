@@ -3025,7 +3025,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "HDO.L858.LANUX.LANUX6W.LOWW34",
@@ -3062,7 +3062,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "MAXUR..VALLU..LAPNA.LAPNA1W.LOWW34",
@@ -3093,7 +3093,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "ABRAX.T135.MIKOV.MIKOV7W.LOWW34",
@@ -3120,7 +3120,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "KULOG..ZOLKU..NATEX.NATEX1W.LOWW34",
@@ -3169,7 +3169,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "NEMAL.NEMAL1W.LOWW34",
@@ -3207,7 +3207,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "BABNI..ETIPA..REKLU.REKLU2W.LOWW34",
@@ -3243,7 +3243,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "ABITU..ASTON..TOVKA.TOVKA2W.LOWW34",
@@ -3276,7 +3276,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "ADLET..VENEN.VENEN2W.LOWW34",
