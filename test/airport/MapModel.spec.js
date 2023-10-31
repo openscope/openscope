@@ -8,7 +8,7 @@ import {
     MAP_MOCK_NO_NAME
 } from './_mocks/mapModelMocks';
 
-const currentPosition = ['N44.879722', 'W063.510278', '2181ft'];
+const currentPosition = ['N44.879722', 'W063.510278', '2181 ft'];
 const magneticNorth = -18;
 const airportPositionFixtureKCYHZ = new StaticPositionModel(currentPosition, null, magneticNorth);
 

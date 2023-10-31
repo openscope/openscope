@@ -11,7 +11,7 @@
     "ctr_radius": 120,
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
-    "position": ["N36.080056", "W115.15225", "2181ft"],
+    "position": ["N36.080056", "W115.15225", "2181 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [36.080056, -115.15225],
@@ -191,32 +191,32 @@
         {
             "name": ["1L", "19R"],
             "end": [
-                ["N36d04.52", "W115d10.22", "2181.3ft"],
-                ["N36d05.86", "W115d09.45", "2088.7ft"]
+                ["N36d04.52", "W115d10.22", "2181.3 ft"],
+                ["N36d05.86", "W115d09.45", "2088.7 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["1R", "19L"],
             "end": [
-                ["N36d04.45", "W115d10.05", "2175.2ft"],
-                ["N36d05.91", "W115d09.21", "2077.8ft"]
+                ["N36d04.45", "W115d10.05", "2175.2 ft"],
+                ["N36d05.91", "W115d09.21", "2077.8 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["8L", "26R"],
             "end": [
-                ["N36d04.58", "W115d10.21", "2179.4ft"],
-                ["N36d04.58", "W115d07.27", "2032.9ft"]
+                ["N36d04.58", "W115d10.21", "2179.4 ft"],
+                ["N36d04.58", "W115d07.27", "2032.9 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["8R", "26L"],
             "end": [
-                ["N36d04.42", "W115d09.69", "2157.0ft"],
-                ["N36d04.42", "W115d07.55", "2048.5ft"]
+                ["N36d04.42", "W115d09.69", "2157.0 ft"],
+                ["N36d04.42", "W115d07.55", "2048.5 ft"]
             ],
             "ils": [false, true]
         }
@@ -683,11 +683,11 @@
     "spawnPatterns": [
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.BOACH8.WHIGG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.6,
             "airlines": [
@@ -707,11 +707,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.COWBY8.GUP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.8,
             "airlines": [
@@ -732,11 +732,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.PRFUM4.DRK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.4,
             "airlines": [
@@ -748,11 +748,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.SHEAD1.OAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 9,
             "airlines": [
@@ -774,11 +774,11 @@
         },
         {
             "origin": "KLAS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KLAS26R.STAAV8.DVC",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10.2,
             "airlines": [
@@ -805,7 +805,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "MISEN.KEPEC6.KLAS26L",
@@ -829,7 +829,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "GGAPP.SITEE3.KLAS26L",
@@ -861,7 +861,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "BTY.SUNST4.KLAS26L",
@@ -887,7 +887,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KLAS",
             "category": "arrival",
             "route": "PGS.TYSSN5.KLAS26L",

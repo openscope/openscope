@@ -11,7 +11,7 @@
     "ctr_radius": 44.448,
     "ctr_ceiling": 18000,
     "initial_alt": 3000,
-    "position": ["N45d19m35.00", "W075d40m04.00", "374ft"],
+    "position": ["N45d19m35.00", "W075d40m04.00", "374 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N45d19m35.00", "W075d40m04.00"],
@@ -1019,7 +1019,7 @@
     "restricted": [
         {
             "name": "CYR508",
-            "height": "1400ft",
+            "height": "1400 ft",
             "poly": [
                 ["N45.328332200", "W75.875555600"],
                 ["N45.328323100", "W75.875059400"],
@@ -1146,7 +1146,7 @@
         },
         {
             "name": "CYR508",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N46d01m06.00", "W077d25m21.00"],
                 ["N46d00m59.00", "W077d25m17.00"],
@@ -1230,7 +1230,7 @@
         },
         {
             "name": "CYR511",
-            "height": "20000ft",
+            "height": "20000 ft",
             "poly": [
                 ["N45d55m24.00", "W077d17m34.00"],
                 ["N45d53m40.00", "W077d19m30.00"],
@@ -1246,7 +1246,7 @@
         },
         {
             "name": "CYR531",
-            "height": "1000ft",
+            "height": "1000 ft",
             "poly": [
                 ["N45d24m00.00", "W075d55m00.00"],
                 ["N45d22m00.00", "W075d53m00.00"],
@@ -1257,7 +1257,7 @@
         },
         {
             "name": "CYR536",
-            "height": "2500ft",
+            "height": "2500 ft",
             "poly": [
                 ["N45d09m46.00", "W075d56m24.00"],
                 ["N45d07m25.00", "W075d53m37.00"],
@@ -1268,7 +1268,7 @@
         },
         {
             "name": "CYR537",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N45.430554500", "W75.699722200"],
                 ["N45.430546500", "W75.699287300"],
@@ -1395,7 +1395,7 @@
         },
         {
             "name": "CYR538",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N45.450276700", "W75.692222200"],
                 ["N45.450268700", "W75.691787100"],
@@ -1522,8 +1522,8 @@
         },
         {
             "name": "CYR540",
-            "floor": "3000ft",
-            "height": "18000ft",
+            "floor": "3000 ft",
+            "height": "18000 ft",
             "poly": [
                 ["N46d11m00.00", "W077d57m00.00"],
                 ["N46d11m00.00", "W077d44m00.33"],
@@ -1534,8 +1534,8 @@
         },
         {
             "name": "CYR541",
-            "floor": "3000ft",
-            "height": "18000ft",
+            "floor": "3000 ft",
+            "height": "18000 ft",
             "poly": [
                 ["N46d11m00.00", "W077d44m00.33"],
                 ["N46d11m00.00", "W077d32m00.00"],
@@ -1547,8 +1547,8 @@
         },
         {
             "name": "CYR543",
-            "floor": "4500ft",
-            "height": "18000ft",
+            "floor": "4500 ft",
+            "height": "18000 ft",
             "poly": [
                 ["N46d07m00.00", "W077d06m00.00"],
                 ["N45d55m00.00", "W077d02m00.00"],
@@ -1562,7 +1562,7 @@
         },
         {
             "name": "CYR620",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N45.568329900", "W75.929166700"],
                 ["N45.568306900", "W75.927920900"],
@@ -1692,24 +1692,24 @@
         {
             "name": ["04", "22"],
             "end": [
-                ["N45d19m36.00", "W075d41m20.50", "347ft"],
-                ["N45d20m03.10", "W075d41m02.30", "335ft"]
+                ["N45d19m36.00", "W075d41m20.50", "347 ft"],
+                ["N45d20m03.10", "W075d41m02.30", "335 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["07", "25"],
             "end": [
-                ["N45d18m47.80", "W075d40m16.80", "369ft"],
-                ["N45d19m30.20", "W075d38m42.40", "362ft"]
+                ["N45d18m47.80", "W075d40m16.80", "369 ft"],
+                ["N45d19m30.20", "W075d38m42.40", "362 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["14", "32"],
             "end": [
-                ["N45d19m37.30", "W075d41m10.40", "140ft"],
-                ["N45d18m38.80", "W075d39m17.70", "367ft"]
+                ["N45d19m37.30", "W075d41m10.40", "140 ft"],
+                ["N45d18m38.80", "W075d39m17.70", "367 ft"]
             ],
             "ils": [false, true]
         }
@@ -1861,11 +1861,11 @@
     "spawnPatterns": [
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.APLOV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1880,11 +1880,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.AVVON",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1899,11 +1899,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.IKLAX..REEDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1918,11 +1918,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.KODEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1937,11 +1937,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.LETAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1956,11 +1956,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.OLIGO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1975,11 +1975,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.RADEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1994,11 +1994,11 @@
         },
         {
             "origin": "CYOW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CYOW25.CYOW4.TUKIR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -2012,7 +2012,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "MIVOK.CAPTL4.CYOW32",
@@ -2029,7 +2029,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "ART.DEANS8.CYOW32",
@@ -2044,7 +2044,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "SMARE.MEECH1.CYOW32",
@@ -2058,7 +2058,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "CYOW",
             "category": "arrival",
             "route": "CATOG.RIVER2.CYOW32",

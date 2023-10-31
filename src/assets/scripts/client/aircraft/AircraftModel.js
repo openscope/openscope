@@ -283,28 +283,28 @@ export default class AircraftModel {
         this.distance = 0;
 
         /**
-         * The origin ariport for an aircraft
+         * The origin airport for an aircraft
          *
-         * This will only be populated for dpearture aircraft
+         * This will only be populated for departure aircraft
          *
          * @for AircraftModel
          * @property origin
          * @type {string}
-         * @default ''
+         * @default null
          */
-        this.origin = '';
+        this.origin = null;
 
         /**
-         * The destination airpot of an aircraft
+         * The destination airport of an aircraft
          *
          * This will only be populated for arrivals
          *
          * @for AircraftModel
          * @property destination
          * @type {string}
-         * @default ''
+         * @default null
          */
-        this.destination = '';
+        this.destination = null;
 
         /**
          * Indicator of descent/level/climb (-1, 0, or 1)
@@ -663,8 +663,8 @@ export default class AircraftModel {
         this.heading = data.heading;
         this.altitude = data.altitude;
         this.speed = data.speed;
-        this.origin = _get(data, 'origin', this.origin);
-        this.destination = _get(data, 'destination', this.destination);
+        this.origin = data.origin?.toUpperCase();
+        this.destination = data.destination?.toUpperCase();
 
         this.target.altitude = this.altitude;
         this.targetHeading = this.heading;
@@ -707,8 +707,8 @@ export default class AircraftModel {
             icaoWithWeightClass: this.model.icaoWithWeightClass,
             assignedAltitude,
             flightPlanAltitude,
-            arrivalAirportId: this.destination.toUpperCase(),
-            departureAirportId: this.origin.toUpperCase(),
+            arrivalAirportId: this.destination?.toUpperCase(),
+            departureAirportId: this.origin?.toUpperCase(),
             flightPlan: this.fms.getFullRouteStringWithoutAirportsWithSpaces()
         };
     }
@@ -922,7 +922,7 @@ export default class AircraftModel {
      * @returns booelan
      */
     isOverflight() {
-        return this.origin === '' && this.destination === '';
+        return this.origin === null && this.destination === null;
     }
 
     /**

@@ -10,7 +10,7 @@
     "ctr_radius": 40,
     "ctr_ceiling": 19500,
     "initial_alt": 5500,
-    "position": ["N65d32m36.00", "E022d07m25.00", "65ft"],
+    "position": ["N65d32m36.00", "E022d07m25.00", "65 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N65d32m36.00", "E022d07m25.00"],
@@ -125,8 +125,7 @@
     "runways": [
         {
             "name": ["14", "32"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N65d33m28.00", "E022d05m84.00", "65.3ft"], ["N65d31m96.00", "E022d08m79.00", "21.0ft"]],
+            "end": [["N65d33m28.00", "E022d05m84.00", "65.3 ft"], ["N65d31m96.00", "E022d08m79.00", "21.0 ft"]],
             "length": 3.350,
             "ils": [true, true]
         }
@@ -188,7 +187,7 @@
     "spawnPatterns": [
         {
             "origin": "ESPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ESPA.BESLA.BESLA",
             "altitude": null,
@@ -202,7 +201,7 @@
         },
         {
             "origin": "ESPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ESPA.RISEM.RISEM",
             "altitude": null,
@@ -216,7 +215,7 @@
         },
         {
             "origin": "ESPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ESPA.SONIN.SONIN",
             "altitude": null,
@@ -230,7 +229,7 @@
         },
         {
             "origin": "ESPA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ESPA.VERAG.VERAG",
             "altitude": null,
@@ -243,7 +242,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ESPA",
             "category": "arrival",
             "route": "BESLA..D005M..D358K..D343K..D320K",
@@ -257,7 +256,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ESPA",
             "category": "arrival",
             "route": "BASTI..PA652..PA650",
@@ -271,7 +270,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ESPA",
             "category": "arrival",
             "route": "D190J..BOLPA..PA952..PA950",
@@ -285,7 +284,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ESPA",
             "category": "arrival",
             "route": "VERAG..NAREX..PA650",
@@ -299,7 +298,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ESPA",
             "category": "arrival",
             "route": "SONIN..ROPAK..PA950",
@@ -313,7 +312,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ESPA",
             "category": "arrival",
             "route": "VERAG..TOMBA..PA651..PA650",

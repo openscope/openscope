@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 6000,
-    "position": ["N51d08m53.00", "W0d11m25.00", "203ft"],
+    "position": ["N51d08m53.00", "W0d11m25.00", "203 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N51d08m53.00", "W0d11m25.00"],
@@ -198,7 +198,7 @@
     "restricted": [
         {
             "name": "R157",
-            "height": "1400ft",
+            "height": "1400 ft",
             "poly": [
                 ["N51.4939959", "W0.1943893"],
                 ["N51.4995531", "W0.2053756"],
@@ -216,7 +216,7 @@
         },
         {
             "name": "R158",
-            "height": "1400ft",
+            "height": "1400 ft",
             "poly": [
                 ["N51d31m25", "W0d05m47"],
                 ["N51d31m18", "W0d04m39"],
@@ -229,7 +229,7 @@
         },
         {
             "name": "R159",
-            "height": "1400ft",
+            "height": "1400 ft",
             "poly": [
                 ["N51.5105373", "W0.0059051"],
                 ["N51.4981425", "W0.0093383"],
@@ -244,7 +244,7 @@
         },
         {
             "name": "D146",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N51.478154800", "E0.700555600"],
                 ["N51.478142500", "E0.701310800"],
@@ -371,7 +371,7 @@
         },
         {
             "name": "D136",
-            "height": "13000ft",
+            "height": "13000 ft",
             "poly": [
                 ["N51d32m17", "E0d48m04"],
                 ["N51d30m17", "E0d51m04"],
@@ -380,7 +380,7 @@
         },
         {
             "name": "D138",
-            "height": "13000ft",
+            "height": "13000 ft",
             "poly": [
                 ["N51d37m14", "E0d55m36"],
                 ["N51d37m14", "E1d12m03"],
@@ -405,7 +405,7 @@
         },
         {
             "name": "D138A",
-            "height": "6000ft",
+            "height": "6000 ft",
             "poly": [
                 ["N51d40m00", "E1d04m00"],
                 ["N51d40m00", "E1d16m13"],
@@ -415,7 +415,7 @@
         },
         {
             "name": "D138B",
-            "height": "6000ft",
+            "height": "6000 ft",
             "poly": [
                 ["N51d42m00", "E1d11m24"],
                 ["N51d42m00", "E1d19m12"],
@@ -425,7 +425,7 @@
         },
         {
             "name": "R156",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N51.775512800", "E0.897777800"],
                 ["N51.775466900", "E0.900593600"],
@@ -552,7 +552,7 @@
         },
         {
             "name": "D139",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N51d50m00", "E0d54m58"],
                 ["N51d49m54", "E0d58m52"],
@@ -562,7 +562,7 @@
         },
         {
             "name": "D206",
-            "height": "6000ft",
+            "height": "6000 ft",
             "poly": [
                 ["N52.122477600", "W0.422500000"],
                 ["N52.122454700", "W0.421081300"],
@@ -689,7 +689,7 @@
         },
         {
             "name": "D130",
-            "height": "2300ft",
+            "height": "2300 ft",
             "poly": [
                 ["N51d05m59", "W0d52m13"],
                 ["N51d05m41", "W0d49m38"],
@@ -699,7 +699,7 @@
         },
         {
             "name": "D132",
-            "height": "2500ft",
+            "height": "2500 ft",
             "poly": [
                 ["N51d17m45", "W0d39m56"],
                 ["N51d16m23", "W0d39m42"],
@@ -712,7 +712,7 @@
         },
         {
             "name": "D133",
-            "height": "1200ft",
+            "height": "1200 ft",
             "poly": [
                 ["N51d20m40", "W0d40m29"],
                 ["N51d20m34", "W0d39m57"],
@@ -724,7 +724,7 @@
         },
         {
             "name": "D133A",
-            "height": "1200ft",
+            "height": "1200 ft",
             "poly": [
                 ["N51d19m22", "W0d39m07"],
                 ["N51d19m15", "W0d38m58"],
@@ -736,7 +736,7 @@
         },
         {
             "name": "D044",
-            "height": "4000ft",
+            "height": "4000 ft",
             "poly": [
                 ["N50d55m25", "E0d55m34"],
                 ["N50d53m28", "E0d56m13"],
@@ -749,7 +749,7 @@
         },
         {
             "name": "D141",
-            "height": "4000ft",
+            "height": "4000 ft",
             "poly": [
                 ["N51d04m19", "E1d04m26"],
                 ["N51d02m12", "E1d05m31"],
@@ -760,7 +760,7 @@
         },
         {
             "name": "R063",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N50.946906400", "E0.954722200"],
                 ["N50.946860500", "E0.957488000"],
@@ -889,8 +889,7 @@
     "runways":[
         {
             "name": ["08R", "26L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N51d08m45.10", "W0d12m24.59", "196ft"], ["N51d09m02.43", "W0d10m18.93", "196ft"]],
+            "end": [["N51d08m45.10", "W0d12m24.59", "196 ft"], ["N51d09m02.43", "W0d10m18.93", "196 ft"]],
             "ils": [true, true]
         }
     ],
@@ -900,8 +899,8 @@
             "name": "Lambourne",
             "suffix": {"08R":"1Z", "26L":"1X"},
             "rwy": {
-                "08R": [["KKE02", "A20+|K250"], ["KKE12", "A30+"]],
-                "26L": [["KKW04", "A25+|K220"], ["KKN06", "A30+|K220"], ["KKE14", "A40-|K250"]]
+                "08R": [["KKE02", "A20+|S250"], ["KKE12", "A30+"]],
+                "26L": [["KKW04", "A25+|S220"], ["KKN06", "A30+|S220"], ["KKE14", "A40-|S250"]]
             },
             "body": [["SUNAV", "A50"], ["KKE35", "A50"], ["KKN43", "A50"], ["KKN48", "A60"]],
             "exitPoints": {
@@ -914,8 +913,8 @@
             "name": "Biggin",
             "suffix": {"08R":"1Z", "26L":"1X"},
             "rwy": {
-                "08R": [["KKE02", "A20+|K250"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["KKE23", "A6000|K210"], "_BIG20"],
-                "26L": [["KKW04", "A25+|K220"], ["KKN06", "A30+|K220"], ["KKE14", "A40-|K230-"], ["SUNAV", "A5000|K230-"], ["KKE38", "A6000|K230-"], "_BIG18"]
+                "08R": [["KKE02", "A20+|S250"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["KKE23", "A60|S210"], "_BIG20"],
+                "26L": [["KKW04", "A25+|S220"], ["KKN06", "A30+|S220"], ["KKE14", "A40-|S230-"], ["SUNAV", "A50|S230-"], ["KKE38", "A60|S230-"], "_BIG18"]
             },
             "body": ["BPK"],
             "exitPoints": {
@@ -928,8 +927,8 @@
             "name": "Clacton",
             "suffix": {"08R":"1Z", "26L":"3X"},
             "rwy": {
-                "08R": [["KKE02", "A20+|K250"], ["KKE10", "A30+"], ["KKE17", "A5000"], ["KKE25", "A5000"]],
-                "26L": [["KKW04", "A25+|K220"], ["KKN06", "A30+|K220"], ["KKE14", "A40-|K250"], ["SUNAV", "A50"], ["KKE42", "A50"]]
+                "08R": [["KKE02", "A20+|S250"], ["KKE10", "A30+"], ["KKE17", "A50"], ["KKE25", "A50"]],
+                "26L": [["KKW04", "A25+|S220"], ["KKN06", "A30+|S220"], ["KKE14", "A40-|S250"], ["SUNAV", "A50"], ["KKE42", "A50"]]
             },
             "body": [["DET", "A50"], ["KKN52", "A60"], ["DAGGA", "A60"]],
             "exitPoints": {
@@ -942,8 +941,8 @@
             "name": "Kenet",
             "suffix": {"08R":"1Z", "26L":"1X"},
             "rwy": {
-                "08R": [["KKE05", "A25+|K220"], ["KKN09", "A3000|K220"], ["KKW19", "A3000|K250"], ["KKW26", "A4000"], ["KKW44", "A4000"]],
-                "26L": [["KKW07", "A25+|K250"], ["KKW09", "A3000"], ["MID", "A4000"], ["KKW28", "A4000"]]
+                "08R": [["KKE05", "A25+|S220"], ["KKN09", "A30|S220"], ["KKW19", "A30|S250"], ["KKW26", "A40"], ["KKW44", "A40"]],
+                "26L": [["KKW07", "A25+|S250"], ["KKW09", "A30"], ["MID", "A40"], ["KKW28", "A40"]]
             },
             "body": [],
             "exitPoints": {
@@ -956,8 +955,8 @@
             "name": "Southampton",
             "suffix": {"08R":"3Z", "26L":"1X"},
             "rwy": {
-                "08R": [["KKE05", "A25+|K220"], ["KKN09", "A3000|K220"], ["KKW19", "A3000|K250"], ["KKW26", "A4000"]],
-                "26L": [["KKW07", "A25+|K250"], ["KKW09", "A3000"], ["MID", "A4000"]]
+                "08R": [["KKE05", "A25+|S220"], ["KKN09", "A30|S220"], ["KKW19", "A30|S250"], ["KKW26", "S40"]],
+                "26L": [["KKW07", "A25+|S250"], ["KKW09", "A30"], ["MID", "A40"]]
             },
             "body": [],
             "exitPoints": {
@@ -970,7 +969,7 @@
             "name": "Bogna",
             "suffix": {"26L":"1X"},
             "rwy": {
-                "26L": [["KKW06", "A25+|K220"], ["KKW08", "K220"], ["KKS11", "A40+|K220"], ["KKS17", "A5000|K250"], ["KKS20", "A6000"], ["KKS25", "A6000"]]
+                "26L": [["KKW06", "A25+|S220"], ["KKW08", "S220"], ["KKS11", "A40+|S220"], ["KKS17", "A50|S250"], ["KKS20", "A60"], ["KKS25", "A60"]]
             },
             "body": [],
             "exitPoints": {
@@ -983,7 +982,7 @@
             "name": "Hardy",
             "suffix": {"26L":"1X"},
             "rwy": {
-                "26L": [["KKW06", "A25+|K220"], ["KKW08", "K220"], ["KKS11", "A40+|K220"], ["KKS17", "A5000|K250"], ["KKS20", "A6000"], ["KKS25", "A6000"], ["BOGNA", "A6000"]]
+                "26L": [["KKW06", "A25+|S220"], ["KKW08", "S220"], ["KKS11", "A40+|S220"], ["KKS17", "A50|S250"], ["KKS20", "A60"], ["KKS25", "A60"], ["BOGNA", "A60"]]
             },
             "body": [],
             "exitPoints": {
@@ -996,7 +995,7 @@
             "name": "Admag",
             "suffix": {"26L":"1X"},
             "rwy": {
-                "26L": [["KKW04", "A25+|K220"], ["KKN06", "A30+|K220"], ["KKE14", "A40-|K250"], ["SUNAV", "A5000"], ["ADMAG", "A6000"]]
+                "26L": [["KKW04", "A25+|S220"], ["KKN06", "A30+|S220"], ["KKE14", "A40-|S250"], ["SUNAV", "A50"], ["ADMAG", "A60"]]
             },
             "body": [],
             "exitPoints": {
@@ -1009,7 +1008,7 @@
             "name": "Odvik",
             "suffix": {"08R":"1Z"},
             "rwy": {
-                "08R": [["KKE02", "A20+|K250"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["ODVIK", "A6000"]]
+                "08R": [["KKE02", "A20+|S250"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["ODVIK", "A60"]]
             },
             "body": [],
             "exitPoints": {
@@ -1022,7 +1021,7 @@
     "spawnPatterns": [
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.LAM.LAM",
             "altitude": null,
@@ -1044,7 +1043,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.BIG.BIG",
             "altitude": null,
@@ -1066,7 +1065,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.CLN.CLN",
             "altitude": null,
@@ -1088,7 +1087,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.KENET.KENET",
             "altitude": null,
@@ -1110,7 +1109,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.SAM.SAM",
             "altitude": null,
@@ -1132,7 +1131,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.BOGNA.BOGNA",
             "altitude": null,
@@ -1154,7 +1153,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.HARDY.HARDY",
             "altitude": null,
@@ -1176,7 +1175,7 @@
         },
         {
             "origin": "EGKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGKK.ADMAG.DVR",
             "altitude": null,
@@ -1197,7 +1196,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGKK",
             "category": "arrival",
             "route": "REFSO..RIMBU..ODROB..ERING..ABTUM..ARNUN..KKE63..LARCK..TIMBA",
@@ -1215,7 +1214,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGKK",
             "category": "arrival",
             "route": "DOMUT..KATHY..AVANT..GWC..HOLLY.._MID22..WILLO",
@@ -1231,8 +1230,5 @@
                 ["tom", 60]
             ]
         }
-    ],
-    "maps": {
-        "base": []
-    }
+    ]
 }

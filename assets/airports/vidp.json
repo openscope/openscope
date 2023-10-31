@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 19500,
     "initial_alt": 5500,
-    "position": ["N28d34m07.00", "E077d06m44.00", "777ft"],
+    "position": ["N28d34m07.00", "E077d06m44.00", "777 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N28d34m07.00", "E077d06m44.00"],
@@ -225,22 +225,19 @@
     "runways": [
         {
             "name": ["09", "27"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N28d34m23.00", "E077d05m28.00", "716.9ft"], ["N28d34m19.00", "E077d06m92.00", "750.5ft"]],
+            "end": [["N28d34m23.00", "E077d05m28.00", "716.9 ft"], ["N28d34m19.00", "E077d06m92.00", "750.5 ft"]],
             "length": 2.813,
             "ils": [true, true]
         },
         {
             "name": ["10", "28"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N28d34m03.00", "E077d05m09.00", "719.2ft"], ["N28d33m51.00", "E077d07m35.00", "776.8ft"]],
+            "end": [["N28d34m03.00", "E077d05m09.00", "719.2 ft"], ["N28d33m51.00", "E077d07m35.00", "776.8 ft"]],
             "length": 3.810,
             "ils": [true, true]
         },
         {
             "name": ["11", "29"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N28d32m74.00", "E077d04m31.00", "723.2ft"], ["N28d32m45.00", "E077d05m69.00", "751.1ft"]],
+            "end": [["N28d32m74.00", "E077d04m31.00", "723.2 ft"], ["N28d32m45.00", "E077d05m69.00", "751.1 ft"]],
             "length": 4.430,
             "ils": [true, true]
         }
@@ -706,11 +703,11 @@
     "spawnPatterns": [
         {
             "origin": "vidp",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "VIDP.HINDA.ALI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "offset": 0,
             "rate": 20,
@@ -730,11 +727,11 @@
         },
         {
             "origin": "vidp",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "VIDP.BIPAN.BUTOP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 20,
             "offset": 0,
@@ -752,7 +749,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "DIPAS..AKBAN",
@@ -776,7 +773,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "BADAT..AKBAN",
@@ -801,7 +798,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "LKA..AKBAN",
@@ -827,7 +824,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "UXIDA..IGINO..SAM",
@@ -852,7 +849,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "SP..SAM",
@@ -879,7 +876,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "D186N..SAPLO",
@@ -901,7 +898,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "JAL..SIBAD",
@@ -918,7 +915,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "PUMOT..SIBAD",
@@ -939,7 +936,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vidp",
             "category": "arrival",
             "route":    "HW..SIBAD",

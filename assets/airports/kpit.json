@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": ["N40.49140066838058", "W80.23267363882009", "1203ft"],
+    "position": ["N40.49140066838058", "W80.23267363882009", "1203 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [40.49140066838058, -80.23267363882009],
@@ -350,32 +350,32 @@
         {
             "name": ["10L", "28R"],
             "end": [
-                ["N40d30.14", "W80d16.27", "1203ft"],
-                ["N40d30.08", "W80d14.01", "1174ft"]
+                ["N40d30.14", "W80d16.27", "1203 ft"],
+                ["N40d30.08", "W80d14.01", "1174 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["10C", "28C"],
             "end": [
-                ["N40d29.39", "W80d14.88", "1140ft"],
-                ["N40d29.33", "W80d12.55", "1137ft"]
+                ["N40d29.39", "W80d14.88", "1140 ft"],
+                ["N40d29.33", "W80d12.55", "1137 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["10R", "28L"],
             "end": [
-                ["N40d29.20", "W80d15.11", "1135ft"],
-                ["N40d29.14", "W80d12.64", "1122ft"]
+                ["N40d29.20", "W80d15.11", "1135 ft"],
+                ["N40d29.14", "W80d12.64", "1122 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["14", "32"],
             "end": [
-                ["N40d29.76", "W80d13.49", "1148ft"],
-                ["N40d28.79", "W80d12.29", "1113ft"]
+                ["N40d29.76", "W80d13.49", "1148 ft"],
+                ["N40d28.79", "W80d12.29", "1113 ft"]
             ],
             "ils": [false, true]
         }
@@ -533,11 +533,11 @@
     "spawnPatterns": [
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.AHTIY..BURGS..RANDE..HVQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -563,11 +563,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.BSV..MAYZE..NAPOL..ASHEN..GSH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -589,11 +589,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.KEMAN..COBBE..PSK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.8,
             "airlines": [
@@ -621,11 +621,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.BSV..ROD..VHP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.2,
             "airlines": [
@@ -648,11 +648,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.EWC..WOMBT..PIGGZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -675,11 +675,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.JST",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -704,11 +704,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.MGW..BUCKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -736,11 +736,11 @@
         },
         {
             "origin": "KPIT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPIT28R.PIT3.JST..MIP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.6,
             "airlines": [
@@ -765,7 +765,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "BUFFR.J518.IHD.DEMME3.KPIT28L",
@@ -793,7 +793,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "BULEY.J91.HNN.FEWGA4.KPIT28L",
@@ -822,7 +822,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "HNK..KONJE.J190.SLT.HAYNZ5.KPIT28L",
@@ -849,7 +849,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPIT",
             "category": "arrival",
             "route": "GSH.J60.DJB..ACO.JESEY3.KPIT28L",

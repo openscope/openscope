@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 12000,
     "initial_alt": 3000,
-    "position": ["N38.9472032", "W77.4481094", "313ft"],
+    "position": ["N38.9472032", "W77.4481094", "313 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [38.925931, -77.448284],
@@ -379,7 +379,7 @@
     "restricted": [
         {
             "name": "P-40",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 [39.698096800, -77.466666700],
                 [39.698027600, -77.463262900],
@@ -506,7 +506,7 @@
         },
         {
             "name": "P-56A",
-            "height": "18000ft",
+            "height": "18000 ft",
             "poly": [
                 ["N38d53m20", "W077d03m02"],
                 ["N38d53m45", "W077d03m23"],
@@ -524,7 +524,7 @@
         },
         {
             "name": "P-56B",
-            "height": "18000ft",
+            "height": "18000 ft",
             "poly": [
                 [38.929730200, -77.066944400],
                 [38.929718600, -77.066383300],
@@ -651,7 +651,7 @@
         },
         {
             "name": "P-73",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [38.716119400, -77.086111100],
                 [38.716107800, -77.085551600],
@@ -800,7 +800,7 @@
         },
         {
             "name": "R-4001B",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N39d17m30", "W076d12m58"],
                 ["N39d12m10", "W076d16m29"],
@@ -818,7 +818,7 @@
         },
         {
             "name": "R-4001C",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N39d21m50", "W076d21m59"],
                 ["N39d23m01", "W076d16m35"],
@@ -829,7 +829,7 @@
         },
         {
             "name": "R-4002",
-            "height": "20000ft",
+            "height": "20000 ft",
             "poly": [
                 ["N38d13m00", "W075d59m59"],
                 ["N38d08m00", "W075d59m59"],
@@ -839,7 +839,7 @@
         },
         {
             "name": "R-4005",
-            "height": "25000ft",
+            "height": "25000 ft",
             "poly": [
                 ["N38d05m40", "W076d33m31"],
                 ["N38d11m10", "W076d25m09"],
@@ -854,7 +854,7 @@
         },
         {
             "name": "R-4006",
-            "height": "24900ft",
+            "height": "24900 ft",
             "poly": [
                 ["N38d41m15", "W075d45m59"],
                 ["N38d32m30", "W075d43m44"],
@@ -872,7 +872,7 @@
         },
         {
             "name": "R-4007",
-            "height": "4900ft",
+            "height": "4900 ft",
             "poly": [
                 ["N38d21m00", "W076d13m59"],
                 ["N38d11m10", "W076d25m09"],
@@ -885,7 +885,7 @@
         },
         {
             "name": "R-6601A",
-            "height": "4500ft",
+            "height": "4500 ft",
             "poly": [
                 ["N38d04m37", "W077d18m44"],
                 ["N38d09m45", "W077d11m59"],
@@ -902,7 +902,7 @@
         },
         {
             "name": "R-6602",
-            "height": "4000ft",
+            "height": "4000 ft",
             "poly": [
                 ["N37d05m38", "W077d51m53"],
                 ["N37d04m26", "W077d51m44"],
@@ -921,7 +921,7 @@
         },
         {
             "name": "R-6608A",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N38d35m10", "W077d34m06"],
                 ["N38d37m00", "W077d34m06"],
@@ -932,7 +932,7 @@
         },
         {
             "name": "R-6608B",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N38d35m10", "W077d34m06"],
                 ["N38d35m35", "W077d27m44"],
@@ -943,7 +943,7 @@
         },
         {
             "name": "R-6608C",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N38d37m17", "W077d27m44"],
                 ["N38d37m00", "W077d25m33"],
@@ -954,7 +954,7 @@
         },
         {
             "name": "Demo 1 MOA",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["N38d37m00", "W077d34m06"],
                 ["N38d32m20", "W077d39m39"],
@@ -968,7 +968,7 @@
         },
         {
             "name": "Hill MOA",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N38d04m37", "W077d18m44"],
                 ["N38d08m01", "W077d14m03"],
@@ -980,7 +980,7 @@
         },
         {
             "name": "R-6611",
-            "height": "60000ft",
+            "height": "60000 ft",
             "poly": [
                 ["N38d21m30", "W077d01m14"],
                 ["N38d17m30", "W076d55m59"],
@@ -991,7 +991,7 @@
         },
         {
             "name": "R-6613",
-            "height": "60000ft",
+            "height": "60000 ft",
             "poly": [
                 ["N38d15m45", "W076d51m59"],
                 ["N38d13m30", "W076d46m34"],
@@ -1004,32 +1004,32 @@
         {
             "name": ["1L", "19R"],
             "end": [
-                ["N38d56.698000", "W77d28.488585", "296ft"],
-                ["N38d58.246408", "W77d28.466375", "276.9ft"]
+                ["N38d56.698000", "W77d28.488585", "296 ft"],
+                ["N38d58.246408", "W77d28.466375", "276.9 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["1C", "19C"],
             "end": [
-                ["N38d56.343987", "W77d27.586652", "286.1ft"],
-                ["N38d58.238443", "W77d27.559087", "268.5ft"]
+                ["N38d56.343987", "W77d27.586652", "286.1 ft"],
+                ["N38d58.238443", "W77d27.559087", "268.5 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["1R", "19L"],
             "end": [
-                ["N38d55.425433", "W77d26.187033", "311.7ft"],
-                ["N38d57.319750", "W77d26.158767", "293.2ft"]
+                ["N38d55.425433", "W77d26.187033", "311.7 ft"],
+                ["N38d57.319750", "W77d26.158767", "293.2 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["12", "30"],
             "end": [
-                ["N38d56.626333", "W77d29.426650", "309.8ft"],
-                ["N38d56.016617", "W77d27.353883", "287.8ft"]
+                ["N38d56.626333", "W77d29.426650", "309.8 ft"],
+                ["N38d56.016617", "W77d27.353883", "287.8 ft"]
             ],
             "ils": [true, false]
         }
@@ -1600,11 +1600,11 @@
     "spawnPatterns": [
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.BUNZZ3.RAMAY..HACKS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1,
             "airlines": [
@@ -1615,11 +1615,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.CLTCH2.FLASK..VIEWS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.4,
             "airlines": [
@@ -1630,11 +1630,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.CLTCH2.MAULS..ALEAN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1643,11 +1643,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JCOBY3.SWANN..BROSS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.3,
             "airlines": [
@@ -1665,11 +1665,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JERES2.JERES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.9,
             "airlines": [
@@ -1681,11 +1681,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JDUBB3.MELTN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -1695,24 +1695,24 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.JDUBB3.RRSIN..GSO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
                 ["lxj", 1],
-                ["n/fastGA"]
+                ["n/fastGA", 1]
             ]
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.MCRAY2.MCRAY..IHD",
-            "altitude": "",
+            "altitude": null,
             "speed": 430,
             "method": "random",
             "rate": 1.3,
@@ -1722,11 +1722,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.RNLDI4.OTTTO..FAREV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.4,
             "airlines": [
@@ -1740,11 +1740,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.SCRAM5.GLANC..LYH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.1,
             "airlines": [
@@ -1757,11 +1757,11 @@
         },
         {
             "origin": "KIAD",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIAD30.WOOLY1.SWANN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.8,
             "airlines": [
@@ -1771,7 +1771,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "THHMP.CAVLR3.KIAD1R",
@@ -1794,7 +1794,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "BKW.GIBBZ3.KIAD1C",
@@ -1819,7 +1819,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "MGW.GIBBZ3.KIAD1C",
@@ -1843,7 +1843,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "PARKE.HYPER7.KIAD1R",
@@ -1864,7 +1864,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "PSB.MAPEL2.KIAD1L",
@@ -1885,7 +1885,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "FQM.SEG6.KIAD1R",
@@ -1898,7 +1898,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KIAD",
             "category": "arrival",
             "route": "DORRN.WIGOL1.KIAD1C",

@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 20000,
     "initial_alt": 20000,
-    "position": ["N35.03891707960476", "W106.60830688023069", "5355ft"],
+    "position": ["N35.03891707960476", "W106.60830688023069", "5355 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [35.03891707960476, -106.60830688023069],
@@ -183,24 +183,24 @@
         {
             "name": ["3", "21"],
             "end": [
-                ["N35d01m20.09", "W106d37m50.17", "5305ft"],
-                ["N35d02m30.27", "W106d36m25.46", "5316ft"]
+                ["N35d01m20.09", "W106d37m50.17", "5305 ft"],
+                ["N35d02m30.27", "W106d36m25.46", "5316 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["8", "26"],
             "end": [
-                ["N35d02m39.67", "W106d37m17.72", "5312ft"],
-                ["N35d02m38.63", "W106d34m31.89", "5355ft"]
+                ["N35d02m39.67", "W106d37m17.72", "5312 ft"],
+                ["N35d02m38.63", "W106d34m31.89", "5355 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["12", "30"],
             "end": [
-                ["N35d02m36.72", "W106d37m14.71", "5312ft"],
-                ["N35d01m59.5", "W106d36m18.53", "5314ft"]
+                ["N35d02m36.72", "W106d37m14.71", "5312 ft"],
+                ["N35d01m59.5", "W106d36m18.53", "5314 ft"]
             ],
             "ils": [false, false]
         }
@@ -638,11 +638,11 @@
     "spawnPatterns": [
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.GRZZZ3.FTI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -661,11 +661,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.JEMEZ3.JEMEZ..RSK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -684,11 +684,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.MNZNO3.CME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -706,11 +706,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.MNZNO3.TXO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -731,11 +731,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.RDRNR3.ZUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -753,11 +753,11 @@
         },
         {
             "origin": "kabq",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KABQ8.RDRNR3.GUP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -774,7 +774,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kabq",
             "category": "arrival",
             "route": "RECKN.COLTR3.KABQ3",
@@ -798,7 +798,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kabq",
             "category": "arrival",
             "route": "SJN..CABNO.KRKEE3.KABQ3",
@@ -818,7 +818,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kabq",
             "category": "arrival",
             "route": "RSK..BRMLY.LOWBO3.KABQ3",
@@ -839,7 +839,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kabq",
             "category": "arrival",
             "route": "CME.LZZRD3.KABQ3",
@@ -859,7 +859,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kabq",
             "category": "arrival",
             "route": "DATME.SNDIA3.KABQ3",

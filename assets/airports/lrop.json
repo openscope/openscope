@@ -10,7 +10,7 @@
     "ctr_radius": 180,
     "ctr_ceiling": 17500,
     "initial_alt": 6000,
-    "position": ["N44d34m16.00", "E26d05m06.00", "314ft"],
+    "position": ["N44d34m16.00", "E26d05m06.00", "314 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N44d34m16.00", "E26d05m06.00"],
@@ -102,7 +102,7 @@
     "restricted": [
         {
             "name": "LRD100 - Clinceni",
-            "height": "6000ft",
+            "height": "6000 ft",
             "poly": [
                 ["N44d23m58.631", "E25d55m16.236"],
                 ["N44d23m59.997", "E25d55m57.155"],
@@ -185,7 +185,7 @@
         },
         {
             "name": "LRR206",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N44d40m45.790", "E25d36m32.000"],
                 ["N44d40m43.960", "E25d37m01.250"],
@@ -227,7 +227,7 @@
         },
         {
             "name": "LRR3 - Bucharest",
-            "height": "10500ft",
+            "height": "10500 ft",
             "poly": [
                 ["N44d30m25.000", "E26d14m00.000"],
                 ["N44d27m20.000", "E25d58m30.000"],
@@ -388,8 +388,8 @@
         {
             "name": ["08L", "26R"],
             "end": [
-                ["N44d34m35.84", "E26d05m02.76", "313ft"],
-                ["N44d34m47.73", "E26d07m39.95", "303ft"]
+                ["N44d34m35.84", "E26d05m02.76", "313 ft"],
+                ["N44d34m47.73", "E26d07m39.95", "303 ft"]
             ],
             "ils": [true, true],
             "ils_distance": [30, 30],
@@ -399,8 +399,8 @@
         {
             "name": ["08R", "26L"],
             "end": [
-                ["N44d33m52.78", "E26d04m36.29", "314ft"],
-                ["N44d34m04.69", "E26d07m13.54", "303ft"]
+                ["N44d33m52.78", "E26d04m36.29", "314 ft"],
+                ["N44d34m04.69", "E26d07m13.54", "303 ft"]
             ],
             "ils": [true, true],
             "ils_distance": [30, 30],
@@ -847,11 +847,11 @@
     "spawnPatterns": [
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.SOKRU1K.SOKRU.M747.ENIMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -865,11 +865,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.BUKEL1K.BUKEL.L619.EDETA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -883,11 +883,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.DENAK1K.DENAK.P740.KODRU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -899,11 +899,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.NETUL1K.NETUL.L5.CND",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -915,11 +915,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.IDARU1K.IDARU.M747.CND",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -931,11 +931,11 @@
         },
         {
             "origin": "LROP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LROP08L.POLUN1K.POLUN.N181.TIMUR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -945,7 +945,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LROP",
             "category": "arrival",
             "route": "LAMIT.P981.TOSVI.TOSVI2U.LROP08R",
@@ -967,7 +967,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LROP",
             "category": "arrival",
             "route": "BALIK.T777.KOMAN.L622.OBUGA.OBUGA2U.LROP08R",
@@ -983,7 +983,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LROP",
             "category": "arrival",
             "route": "BALIK.L619.ARGES.P727.OSTAL.OSTAL1U.LROP08R",
@@ -999,7 +999,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LROP",
             "category": "arrival",
             "route": "FOCSA.T74.DENAK.DENAK1U.LROP08R",
@@ -1015,7 +1015,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LROP",
             "category": "arrival",
             "route": "CND.L5.NETUL.NETUL2U.LROP08R",
@@ -1028,7 +1028,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LROP",
             "category": "arrival",
             "route": "SOMOV.M987.SORDU.SORDU1U.LROP08R",

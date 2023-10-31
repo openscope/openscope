@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
-    "position": ["S23d26.13m0", "W046d28.38m0", "2461.0ft"],
+    "position": ["S23d26.13m0", "W046d28.38m0", "2461.0 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["S23d26.13m0", "W046d28.38m0"],
@@ -101,16 +101,14 @@
     "runways": [
         {
             "name": ["9L", "27R"],
-            "name_offset": [[0.4,0.5], [-0.1, 0.5]],
-            "end": [["S23d26m04.24", "W46d29m03.54", "2445ft"], ["S23d25m28.94", "W46d26m52.79", "2441ft"]],
+            "end": [["S23d26m04.24", "W46d29m03.54", "2445 ft"], ["S23d25m28.94", "W46d26m52.79", "2441 ft"]],
             "length": 3.700,
             "delay": [10, 50],
             "ils": [true, true]
         },
         {
             "name": ["9R", "27L"],
-            "name_offset": [[0.1, -0.5], [-0.3, -0.5]],
-            "end": [["S23d26m20.07", "W46d29m14.82", "2450ft"], ["S23d25m52.35", "W46d27m32.18", "2444ft"]],
+            "end": [["S23d26m20.07", "W46d29m14.82", "2450 ft"], ["S23d25m52.35", "W46d27m32.18", "2444 ft"]],
             "length": 2.900,
             "delay": [15, 60],
             "ils": [true, false]
@@ -213,11 +211,11 @@
     "spawnPatterns":[
         {
             "origin": "sbgr",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SBGR.CGO.RCL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8,
             "airlines": [
@@ -247,7 +245,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "MOXEP..IBDIK",
@@ -282,7 +280,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "VUKIK..TOGES..SAT",
@@ -299,7 +297,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "ANISE..SIPUK..SAT",
@@ -316,7 +314,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "sbgr",
             "category": "arrival",
             "route": "MOXEP..IBDIK",

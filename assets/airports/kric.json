@@ -11,7 +11,7 @@
     "ctr_radius": 70,
     "ctr_ceiling": 12000,
     "initial_alt": 5000,
-    "position": [37.5051811, -77.3197386, "168ft"],
+    "position": [37.5051811, -77.3197386, "168 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [37.5051811, -77.3197386],
@@ -212,7 +212,7 @@
     "restricted": [
         {
             "name": "PICKETT MOA",
-            "height": "6000ft",
+            "height": "6000 ft",
             "poly": [
                 ["N36.86692", "W78.21640"],
                 ["N36.90038", "W77.93305"],
@@ -225,7 +225,7 @@
         },
         {
             "name": "R-4006",
-            "height": "24999ft",
+            "height": "24999 ft",
             "poly": [
                 ["N38.68750", "W75.76639"],
                 ["N38.54167", "W75.72889"],
@@ -242,7 +242,7 @@
         },
         {
             "name": "R-4007",
-            "height": "4999ft",
+            "height": "4999 ft",
             "poly": [
                 ["N38.35000", "W76.23306"],
                 ["N38.18611", "W76.41917"],
@@ -254,7 +254,7 @@
         },
         {
             "name": "R-6601C",
-            "height": "9000ft",
+            "height": "9000 ft",
             "poly": [
                 ["N38.07706", "W77.31214"],
                 ["N38.09011", "W77.29053"],
@@ -278,7 +278,7 @@
         },
         {
             "name": "R-6602",
-            "height": "17999ft",
+            "height": "17999 ft",
             "poly": [
                 ["N37.09389", "W77.86472"],
                 ["N37.07389", "W77.86222"],
@@ -297,7 +297,7 @@
         },
         {
             "name": "R-6611A",
-            "height": "40000ft",
+            "height": "40000 ft",
             "poly": [
                 ["N38.35867", "W77.02096"],
                 ["N38.29202", "W76.93372"],
@@ -309,7 +309,7 @@
         },
         {
             "name": "R-6612",
-            "height": "7000ft",
+            "height": "7000 ft",
             "poly": [
                 ["N38.29395", "W77.06973"],
                 ["N38.29720", "W77.07237"],
@@ -350,7 +350,7 @@
         },
         {
             "name": "R-6613A",
-            "height": "40000ft",
+            "height": "40000 ft",
             "poly": [
                 ["N38.26267", "W76.86710"],
                 ["N38.22501", "W76.77654"],
@@ -363,16 +363,16 @@
         {
             "name": ["2", "20"],
             "end": [
-                ["N37d29.932348", "W77d19.779457", "158ft"],
-                ["N37d30.991123", "W77d19.461292", "165ft"]
+                ["N37d29.932348", "W77d19.779457", "158 ft"],
+                ["N37d30.991123", "W77d19.461292", "165 ft"]
             ],
             "ils": [true, false]
         },	
         {
             "name": ["16", "34"],
             "end": [
-                ["N37d30.998187", "W77d19.414595", "166ft"],
-                ["N37d29.747552", "W77d18.413082", "160ft"]
+                ["N37d30.998187", "W77d19.414595", "166 ft"],
+                ["N37d29.747552", "W77d18.413082", "160 ft"]
             ],
             "ils": [true, true]
         }
@@ -532,7 +532,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "MOL.SPIDR4.KRIC34",
@@ -558,7 +558,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "LYH.POWTN5.KRIC34",
@@ -584,7 +584,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "RDU..LVL..NEAVL.DUCXS5.KRIC34",
@@ -610,7 +610,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "SBY.V1.JAMIE..RIC",
@@ -636,7 +636,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "CCV.V38.RIC",
@@ -649,7 +649,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "OTT.V20.RIC",
@@ -662,7 +662,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRIC",
             "category": "arrival",
             "route": "MOL..GVE.V38.RIC",
@@ -676,11 +676,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRIC2.KALLI7.SANNY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -702,11 +702,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRIC2.KALLI7.READE..LYH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -728,11 +728,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRIC2.LUCYL6.LUCYL..PXT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.1,
             "airlines": [
@@ -754,11 +754,11 @@
         },
         {
             "origin": "kric",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "HPW.J191.ILM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.1,
             "airlines": [
@@ -780,11 +780,11 @@
         },
         {
             "origin": "KRIC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "MATOX.V157.LVL.V155.RDU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [
@@ -793,11 +793,11 @@
         },
         {
             "origin": "KRIC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "NEMAN.V38.CCV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [
@@ -806,11 +806,11 @@
         },
         {
             "origin": "KRIC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ROOKY.V38.GVE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1,
             "airlines": [

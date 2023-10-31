@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 18500,
     "initial_alt": 3000,
-    "position": ["N37d27m45.00", "E126d26m21.00"],
+    "position": ["N37d27m45.00", "E126d26m21.00", "23 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N37d27m45.00", "E126d26m21.00"],
@@ -21,8 +21,8 @@
         "angle": 110,
         "speed": 0
     },
-    "arrivalRunway": "16",
-    "departureRunway": "16",
+    "arrivalRunway": "16L",
+    "departureRunway": "16L",
     "airspace": [
         {
             "floor":             0,
@@ -213,23 +213,34 @@
     "runways": [
         {
             "name": ["15L", "33R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N37d29m02.20", "E126d26m24.56"], ["N37d27m22.97", "E126d27m52.82"]],
-            "length": 3.750,
+            "end": [
+                ["N37d29m02.20", "E126d26m24.56", "23 ft"],
+                ["N37d27m22.97", "E126d27m52.82", "23 ft"]
+            ],
             "ils": [true, true]
         },
         {
             "name": ["15R", "33L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N37d28m54.44", "E126d26m10.82"], ["N37d27m15.21", "E126d27m39.08"]],
-            "length": 4,
+            "end": [
+                ["N37d28m54.44", "E126d26m10.82", "23 ft"],
+                ["N37d27m15.21", "E126d27m39.08", "23 ft"]
+            ],
             "ils": [true, true]
         },
         {
-            "name": ["16", "34"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N37d28m22.11", "E126d24m56.06"], ["N37d26m36.29", "E126d26m30.22"]],
-            "length": 4,
+            "name": ["16L", "34R"],
+            "end": [
+                ["N37d28.37", "E126d24.93", "23 ft"],
+                ["N37d26.50", "E126d26.50", "23 ft"]
+            ],
+            "ils": [true, true]
+        },
+        {
+            "name": ["16R", "34L"],
+            "end": [
+                ["N37d28.13", "E126d24.80", "23 ft"],
+                ["N37d26.47", "E126d26.27", "23 ft"]
+            ],
             "ils": [true, true]
         }
     ],
@@ -249,7 +260,7 @@
             "icao": "BINIL1S",
             "name": "Binil One Sierra",
             "rwy": {
-                "16": ["SI701", ["SI702", "A30+"], ["SI711", "A70"], ["SI712", "A120-"], ["BELTU", "A170+"], "BINIL"]
+                "16L": ["SI701", ["SI702", "A30+"], ["SI711", "A70"], ["SI712", "A120-"], ["BELTU", "A170+"], "BINIL"]
             },
             "draw": [
                 ["SI701", "SI702", "SI711"],
@@ -282,7 +293,7 @@
             "icao": "BOPTA1S",
             "name": "Bopta One Sierra",
             "rwy": {
-                "16": ["SI701", ["SI702", "A30+"], ["BONSA", "A130-"], ["SI721", "A140+"], ["BOPTA", "A170+"]]
+                "16L": ["SI701", ["SI702", "A30+"], ["BONSA", "A130-"], ["SI721", "A140+"], ["BOPTA", "A170+"]]
             },
             "draw": [
                 ["SI702", "BONSA"]
@@ -292,7 +303,7 @@
             "icao": "BOPTA1Y",
             "name": "Bopta One Yankee",
             "rwy": {
-                "34": [["SI705", "S240-"], ["SI706", "A40+"], ["RANOS", "A70+"], ["SOSIK", "A100+"], ["IROMA", "A130+"], ["SI722", "A160+"], ["SI723", "A190+"], "BOPTA"]
+                "34R": [["SI705", "S240-"], ["SI706", "A40+"], ["RANOS", "A70+"], ["SOSIK", "A100+"], ["IROMA", "A130+"], ["SI722", "A160+"], ["SI723", "A190+"], "BOPTA"]
             },
             "draw": [
                 ["SI705", "SI706", "RANOS"],
@@ -349,7 +360,7 @@
             "icao": "OSPOT1S",
             "name": "Ospot One Sierra",
             "rwy": {
-                "16": ["SI701", ["SI702", "A30+"], ["SI704", "A50+"], ["JUNHA", "A100"], ["SI730", "A130+"], ["SOT", "A150+"], ["SI731", "A190+"], ["OSPOT", "A230+"]]
+                "16L": ["SI701", ["SI702", "A30+"], ["SI704", "A50+"], ["JUNHA", "A100"], ["SI730", "A130+"], ["SOT", "A150+"], ["SI731", "A190+"], ["OSPOT", "A230+"]]
             },
             "draw": [
                 ["SI702", "SI704"],
@@ -360,7 +371,7 @@
             "icao": "OSPOT1Y",
             "name": "Ospot One Yankee",
             "rwy": {
-                "34": [["SI705", "S240-"], ["SI706", "A40+"], ["RANOS", "A70+"], ["SOSIK", "A100+"], ["IROMA", "A130+"], ["SI732", "A160+"], "OSPOT"]
+                "34R": [["SI705", "S240-"], ["SI706", "A40+"], ["RANOS", "A70+"], ["SOSIK", "A100+"], ["IROMA", "A130+"], ["SI732", "A160+"], "OSPOT"]
             },
             "draw": [
                 ["OSPOT"]
@@ -415,7 +426,7 @@
             "icao": "EGOBA1S",
             "name": "Egoba One Sierra",
             "rwy": {
-                "16": ["SI701", ["SI702", "A30+"], ["SI704", "A50+"], ["JUNHA", "A100"], ["SI740", "A100"], ["EGOBA", "A150-"]]
+                "16L": ["SI701", ["SI702", "A30+"], ["SI704", "A50+"], ["JUNHA", "A100"], ["SI740", "A100"], ["EGOBA", "A150-"]]
             },
             "draw": [
                 ["EGOBA"]
@@ -425,7 +436,7 @@
             "icao": "EGOBA1Y",
             "name": "Egoba One Yankee",
             "rwy": {
-                "34": [["SI705", "S240-"], ["SI706", "A40+"], ["RANOS", "A70+"], ["SOSIK", "A100+"], ["SI741", "A130+"], ["SI742", "A170+"], "SI743", "EGOBA"]
+                "34R": [["SI705", "S240-"], ["SI706", "A40+"], ["RANOS", "A70+"], ["SOSIK", "A100+"], ["SI741", "A130+"], ["SI742", "A170+"], "SI743", "EGOBA"]
             },
             "draw": [
                 ["EGOBA"]
@@ -501,7 +512,7 @@
             "icao": "NOPIK1Y",
             "name": "Nopik One Yankee",
             "rwy": {
-                "34": [["SI705", "S240-"], ["SI706", "A40+"], ["SONJA", "A80+"], ["NOPIK", "A130+"]]
+                "34R": [["SI705", "S240-"], ["SI706", "A40+"], ["SONJA", "A80+"], ["NOPIK", "A130+"]]
             },
             "draw": [
                 ["SI706", "SONJA"],
@@ -703,11 +714,11 @@
     "spawnPatterns": [
         {
             "origin": "rksi",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RKSI.BOPTA1K.BOPTA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "cyclic",
             "offset": 0,
             "rate": 17,
@@ -763,7 +774,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "ANYANG.SEL1T.RKSI",
@@ -796,7 +807,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GUKDO.GUKDO1A.RKSI",
@@ -829,7 +840,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "G597.KARBU1A.RKSI",
@@ -862,7 +873,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "OLMEN.OLMEN1N.RKSI",
@@ -899,7 +910,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GUKDO.GUKDO1N.RKSI",
@@ -932,7 +943,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "G597.KARBU1N.RKSI",
@@ -965,7 +976,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "REBIT.REBIT1N.RKSI",
@@ -1004,7 +1015,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "BIKSI.BIKSI1M.RKSI",
@@ -1037,7 +1048,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "YECHON.CUN1M.RKSI",
@@ -1070,7 +1081,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "MAKSA.MAKSA1M.RKSI",
@@ -1107,7 +1118,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GONAV.GONAV2M.RKSI",
@@ -1148,7 +1159,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "GUKDO.GUKDO1P.RKSI",
@@ -1181,7 +1192,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "G597.KARBU1P.RKSI",
@@ -1214,7 +1225,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "COWAY.COWAY1A.RKSI",
@@ -1250,7 +1261,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "COWAY.COWAY1P.RKSI",
@@ -1286,7 +1297,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "rksi",
             "category": "arrival",
             "route":        "OLMEN.OLMEN1P.RKSI",

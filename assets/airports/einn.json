@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
-    "position": ["N52d42m07", "W008d55m29", "46ft"],
+    "position": ["N52d42m07", "W008d55m29", "46 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N52d42m07", "W008d55m29"],
@@ -902,7 +902,7 @@
     "restricted": [
         {
             "name": "EIP09",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N52.674953100", "W8.614952400"],
                 ["N52.674884400", "W8.613519900"],
@@ -1031,8 +1031,8 @@
         {
             "name": ["06", "24"],
             "end": [
-                ["N52d41m35.42", "W8d56m36.67", "46ft"],
-                ["N52d42m36.03", "W8d54m27.87", "15ft"]
+                ["N52d41m35.42", "W8d56m36.67", "46 ft"],
+                ["N52d42m36.03", "W8d54m27.87", "15 ft"]
             ],
             "ils": [true, true]
         }
@@ -1674,11 +1674,11 @@
     "spawnPatterns": [
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.OSGA3B.OSGAR..DUB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1690,11 +1690,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.ABAG3B.ABAGU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1706,11 +1706,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.LUNI3B.LUNIG..NORLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.1,
             "airlines": [
@@ -1723,11 +1723,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.KURU3B.KURUM..CRK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1740,11 +1740,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.LUPO3B.LUPOR..LIMRI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1760,11 +1760,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.BUNO3B.BUNON..BEDRA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1780,11 +1780,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.UNBE3B.UNBEG..DOGAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1800,11 +1800,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.ERAB3B.ERABI..RESNO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1820,11 +1820,11 @@
         },
         {
             "origin": "EINN",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EINN24.MOMI3B.MOMIN..SUNOT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.2,
             "airlines": [
@@ -1839,7 +1839,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "DUB.M145.DIGAN.DIGA2D.EINN24",
@@ -1855,7 +1855,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "SLANY..ABAGU..TIPUR.TIPU2D.EINN24",
@@ -1873,7 +1873,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "LEDGO..ERTER..CRK..KURUM.KURU2D.EINN24",
@@ -1890,7 +1890,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "SOMAX..ATSUR..BUNON.BUNO3D.EINN24",
@@ -1908,7 +1908,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "LIMRI..XETBO..LUPOR.LUPO3D.EINN24",
@@ -1926,7 +1926,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "MALOT..GISTI..UNBEG.UNBE3D.EINN24",
@@ -1944,7 +1944,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "VENER..KOKIB..ERABI.ERAB3D.EINN24",
@@ -1962,7 +1962,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EINN",
             "category": "arrival",
             "route": "PIKIL..SOVED..MOMIN.MOMI3D.EINN24",

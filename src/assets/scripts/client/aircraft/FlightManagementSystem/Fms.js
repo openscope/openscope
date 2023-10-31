@@ -308,8 +308,8 @@ export default class Fms {
      * @private
      */
     _initializeAirportsAndRunways(origin, destination) {
-        const originLowerCase = origin.toLowerCase();
-        const destinationLowerCase = destination.toLowerCase();
+        const originLowerCase = origin?.toLowerCase();
+        const destinationLowerCase = destination?.toLowerCase();
 
         if (originLowerCase === AirportController.current.icao) {
             this._initializeDepartureAirport(origin);

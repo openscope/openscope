@@ -10,7 +10,7 @@
     "ctr_radius": 40,
     "ctr_ceiling": 24500,
     "initial_alt": 11000,
-    "position": ["N05d17m44.00", "E100d16m20.00", "11ft"],
+    "position": ["N05d17m44.00", "E100d16m20.00", "11 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N05d28m36.00", "E100d23m42.00"],
@@ -54,8 +54,7 @@
     "runways": [
         {
             "name": ["04", "22"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N05d17m09.41",  "E100d16m00.14", "8.9ft"], ["N05d18m30.25",  "E100d17m13.37", "10.2ft"]],
+            "end": [["N05d17m09.41",  "E100d16m00.14", "8.9 ft"], ["N05d18m30.25",  "E100d17m13.37", "10.2 ft"]],
             "length": 3.354,
             "ils": [true, false]
         }
@@ -249,7 +248,7 @@
     "spawnPatterns": [
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.BIDMO.BIDMO",
             "altitude": null,
@@ -276,7 +275,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.IKILO.IKILO",
             "altitude": null,
@@ -303,7 +302,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.ISMAS.ISMAS",
             "altitude": null,
@@ -330,7 +329,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.LUNTU.LUNTU",
             "altitude": null,
@@ -357,7 +356,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.PAPDA.PAPDA",
             "altitude": null,
@@ -384,7 +383,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.MADUM.MADUM",
             "altitude": null,
@@ -411,7 +410,7 @@
         },
         {
             "origin": "WMKP",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKP.VPG.VPG",
             "altitude": null,
@@ -437,7 +436,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "BIDMO.BIDMO_STAR.WMKP",
@@ -457,7 +456,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "ISMAS.ISMAS_STAR.WMKP",
@@ -470,7 +469,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "MADUM.MADUM_STAR.WMKP",
@@ -484,7 +483,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "NURLA.NURLA.WMKP",
@@ -503,7 +502,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKP",
             "category": "arrival",
             "route": "LUNTU.LUNTU_STAR.WMKP",

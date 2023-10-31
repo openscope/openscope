@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
-    "position": ["N48d06m37.07", "E16d34m10.92", "600ft"],
+    "position": ["N48d06m37.07", "E16d34m10.92", "600 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N48d06m37.07", "E16d34m10.92"],
@@ -191,7 +191,7 @@
     "restricted": [
         {
             "name": "LO R-01",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N47d58m19", "E016d30m30"],
                 ["N47d58m36", "E016d30m54"],
@@ -201,7 +201,7 @@
         },
         {
             "name": "LO R-02A",
-            "height": "1800ft",
+            "height": "1800 ft",
             "poly": [
                 ["N47d53m25", "E016d16m48"],
                 ["N47d52m42", "E016d16m51"],
@@ -212,7 +212,7 @@
         },
         {
             "name": "LO R-02B",
-            "height": "20000ft",
+            "height": "20000 ft",
             "poly": [
                 ["N47d54m13", "E016d16m11"],
                 ["N47d53m25", "E016d16m48"],
@@ -225,7 +225,7 @@
         },
         {
             "name": "LO R-02C",
-            "height": "20000ft",
+            "height": "20000 ft",
             "poly": [
                 ["N47d54m13", "E016d16m11"],
                 ["N47d53m25", "E016d16m48"],
@@ -235,7 +235,7 @@
         },
         {
             "name": "LO R-15",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N48d16m59", "E016d29m06"],
                 ["N48d12m00", "E016d32m56"],
@@ -248,7 +248,7 @@
         },
         {
             "name": "LO R-16",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N47d53m32", "E016d40m06"],
                 ["N47d56m22", "E016d44m38"],
@@ -267,7 +267,7 @@
         },
         {
             "name": "LO R-4",
-            "height": "2500ft",
+            "height": "2500 ft",
             "poly": [
                 ["N47d59m57", "E016d42m19"],
                 ["N47d58m40", "E016d42m04"],
@@ -279,7 +279,7 @@
         },
         {
             "name": "LO R-6",
-            "height": "12500ft",
+            "height": "12500 ft",
             "poly": [
                 ["N48d35m27", "E015d26m58"],
                 ["N48d45m06", "E015d09m32"],
@@ -291,7 +291,7 @@
         },
         {
             "name": "LHCC FIR",
-            "height": "5500ft",
+            "height": "5500 ft",
             "poly": [
                 ["N47d36m27", "E017d30m00"],
                 ["N47d44m49", "E017d30m00"],
@@ -654,8 +654,8 @@
 		{
             "name": ["11", "29"],
             "end": [
-                ["N48d7m22.13", "E16d32m00.15", "574.1ft"],
-                ["N48d6m32.57", "E16d34m32.3", "600.4ft"]
+                ["N48d7m22.13", "E16d32m00.15", "574.1 ft"],
+                ["N48d6m32.57", "E16d34m32.3", "600.4 ft"]
             ],
             "ils": [true, true],
             "ils_distance":[28, 23],
@@ -665,8 +665,8 @@
 		{
             "name": ["16", "34"],
             "end": [
-                ["N48d7m11.21", "E16d34m41.46", "579.1ft"],
-                ["N48d5m19.07", "E16d35m28.87", "585.6ft"]
+                ["N48d7m11.21", "E16d34m41.46", "579.1 ft"],
+                ["N48d5m19.07", "E16d35m28.87", "585.6 ft"]
             ],
             "ils": [true, true],
             "ils_distance":[29, 23],
@@ -799,7 +799,7 @@
             "rwy": {
                 "LOWW11": []
             },
-            "body": [["^WW100"], "WW412", ["WW413", "S210-"], "WW401"],
+            "body": ["^WW100", "WW412", ["WW413", "S210-"], "WW401"],
             "exitPoints": {
                 "ARSIN": ["ARSIN"]
             },
@@ -2014,7 +2014,7 @@
             "rwy": {
                 "LOWW29": []
             },
-            "body": [["_LOWW291000", "A010+|"], ["WW296", "S205-"], "WW233", "WW391", "WW393", "UNGUT"],
+            "body": [["_LOWW291000", "A010+"], ["WW296", "S205-"], "WW233", "WW391", "WW393", "UNGUT"],
             "exitPoints": {
                 "LANUX": ["LANUX"]
             },
@@ -2617,11 +2617,11 @@
     "spawnPatterns": [
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.ADAMA2C.ADAMA..VEDER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1781,
             "airlines": [
@@ -2660,11 +2660,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.ARSIN1C.ARSIN..OLATI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.9259,
             "airlines": [
@@ -2699,11 +2699,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.DITIS1C.DITIS.M174.NEPUX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.2648,
             "airlines": [
@@ -2740,11 +2740,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.KOXER1C.KOXER..SOMID..VAPUS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3058,
             "airlines": [
@@ -2775,11 +2775,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.LANUX2C.LANUX..OKF.L858.HDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5577,
             "airlines": [
@@ -2804,11 +2804,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.LEDVA3C.LEDVA.L156.OGDAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5637,
             "airlines": [
@@ -2833,11 +2833,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.LUGEM1C.LUGEM..SUBEN.T161.ERNAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.8340,
             "airlines": [
@@ -2869,11 +2869,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.MEDIX1C.MEDIX..LAMSI.L604.SULUS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.0731,
             "airlines": [
@@ -2908,11 +2908,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.OSPEN4C.OSPEN..ABRUK..SETAL..DETSA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3737,
             "airlines": [
@@ -2938,11 +2938,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.RUPET2C.RUPET..GRZ..RADLY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5607,
             "airlines": [
@@ -2967,11 +2967,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.SOVIL1C.SOVIL..SITNI..BAGSI..MATIG..AMADI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.9210,
             "airlines": [
@@ -3001,11 +3001,11 @@
         },
         {
             "origin": "LOWW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LOWW29.STEIN3C.STEIN..NOHAT..KOPRY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.1614,
             "airlines": [
@@ -3025,7 +3025,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "HDO.L858.LANUX.LANUX6W.LOWW34",
@@ -3062,7 +3062,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "MAXUR..VALLU..LAPNA.LAPNA1W.LOWW34",
@@ -3093,7 +3093,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "ABRAX.T135.MIKOV.MIKOV7W.LOWW34",
@@ -3120,7 +3120,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "KULOG..ZOLKU..NATEX.NATEX1W.LOWW34",
@@ -3169,7 +3169,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "NEMAL.NEMAL1W.LOWW34",
@@ -3207,7 +3207,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "BABNI..ETIPA..REKLU.REKLU2W.LOWW34",
@@ -3243,7 +3243,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "ABITU..ASTON..TOVKA.TOVKA2W.LOWW34",
@@ -3276,7 +3276,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LOWW",
             "category": "arrival",
             "route": "ADLET..VENEN.VENEN2W.LOWW34",

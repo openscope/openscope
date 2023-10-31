@@ -11,7 +11,7 @@
     "ctr_radius": 72,
     "ctr_ceiling": 45000,
     "initial_alt": 8000,
-    "position": ["S54.84331", "W68.294897", "102ft"],
+    "position": ["S54.84331", "W68.294897", "102 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["S54.83806563867309", "W68.28420167323435"],
@@ -213,8 +213,8 @@
         {
             "name": ["07", "25"],
             "end": [
-                ["S54d50m39.12", "W68d19m03.09"],
-                ["S54d50m32.72", "W68d16m20.17"]
+                ["S54d50m39.12", "W68d19m03.09", "82 ft"],
+                ["S54d50m32.72", "W68d16m20.17", "69 ft"]
             ],
             "ils": [false, true],
             "glideslope": [3.00, 3.5]
@@ -325,11 +325,11 @@
     "spawnPatterns":[
         {
             "origin": "SAWH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAWH25.USU2B.GRA.UT662.SALVU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.3,
             "airlines": [
@@ -351,11 +351,11 @@
         },
         {
             "origin": "SAWH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAWH25.USU2B.KEXOP.W42.GRA.UT108.DAGOK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.15,
             "airlines": [
@@ -371,11 +371,11 @@
         },
         {
             "origin": "SAWH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SAWH25.USU2B.UGIRA.W63.GAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.83,
             "airlines": [
@@ -392,8 +392,8 @@
             "destination": "SCCI",
             "category": "departure",
             "route": "SAWH25.PWL3.USU.UL670.NAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.12,
             "airlines": [
@@ -407,8 +407,8 @@
             "destination": "SAWG",
             "category": "departure",
             "route": "SAWH25.PWL3.USU.W63.MUBES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.08,
             "airlines": [
@@ -421,8 +421,8 @@
             "destination": "SAWE",
             "category": "departure",
             "route": "SAWH25.PWL3.DABLI.T108.GRA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.04,
             "airlines": [
@@ -435,8 +435,8 @@
             "destination": "SAWB",
             "category": "departure",
             "route": "SAWH25.USU2B.SUNLI..HORNO.UW100.KRILL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.03,
             "airlines": [
@@ -445,7 +445,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAWH",
             "category": "arrival",
             "route": "SALVU.UT662.ASKAS.UT704.DABLI.DABLI2.SAWH25",
@@ -470,7 +470,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SAWH",
             "category": "arrival",
             "route": "GRA.T108.DABLI.DABLI2.SAWH25",

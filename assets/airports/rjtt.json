@@ -11,7 +11,7 @@
     "ctr_radius": 120,
     "ctr_ceiling": 24000,
     "initial_alt": 24000,
-    "position": ["N35d33m12.00", "E139d46m52.00"],
+    "position": ["N35d33m12.00", "E139d46m52.00", "6.4 m"],
     "rangeRings": {
         "enabled": true,
         "center": ["N35d33m12.00", "E139d46m52.00"],
@@ -786,7 +786,7 @@
     "restricted": [
         {
             "name": "R-116",
-            "height": "12000ft",
+            "height": "12000 ft",
             "poly": [
                 ["N34d35m12.00", "E140d16m48.00"],
                 ["N34d18m23.00", "E140d33m06.00"],
@@ -799,32 +799,32 @@
 		{
             "name": ["04", "22"],
             "end": [
-                ["N35d32m56.47", "E139d45m40.60"],
-                ["N35d34m02.88", "E139d46m37.61"]
+                ["N35d32m56.47", "E139d45m40.60", "19 ft"],
+                ["N35d34m02.88", "E139d46m37.61", "35 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["05", "23"],
             "end": [
-                ["N35d31m26.41", "E139d48m12.47"],
-                ["N35d32m26.15", "E139d49m19.61"]
+                ["N35d31m26.41", "E139d48m12.47", "46 ft"],
+                ["N35d32m26.15", "E139d49m19.61", "55 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["16L", "34R"],
             "end": [
-                ["N35d33m57.23", "E139d47m11.59"],
-                ["N35d32m22.90", "E139d48m18.49"]
+                ["N35d33m57.23", "E139d47m11.59", "19 ft"],
+                ["N35d32m22.90", "E139d48m18.49", "20 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["16R", "34L"],
             "end": [
-                ["N35d33m35.95", "E139d46m08.64"],
-                ["N35d32m11.76", "E139d47m08.41"]
+                ["N35d33m35.95", "E139d46m08.64", "16 ft"],
+                ["N35d32m11.76", "E139d47m08.41", "18 ft"]
             ],
             "ils": [true, true]
         }
@@ -2148,11 +2148,11 @@
     "spawnPatterns": [
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.ROVE2A.AGRIS.Y11.SHIRO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.31,
             "airlines": [
@@ -2164,11 +2164,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.ROVE2A.AKAGI.Y372.KALON.Y37.GOSEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "wave",
             "rate": 2,
             "period": 60,
@@ -2188,8 +2188,8 @@
             "destination": "PHNL",
             "category": "departure",
             "route": "RJTT34R.ROVE2A.INUBO.Y830.TELAS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -2201,11 +2201,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.ROVE2A.INUBO.Y808.PUTER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2217,11 +2217,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y885.AZUMI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.38,
             "airlines": [
@@ -2233,8 +2233,8 @@
             "destination": "RJNK",
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y884.MBE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.63,
             "airlines": [
@@ -2244,11 +2244,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.BEKL2A.BEKLA.Y18.PIGAP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.06,
             "airlines": [
@@ -2259,11 +2259,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT34R.RITL2A.RITLA.Y20.SUGAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.88,
             "airlines": [
@@ -2276,11 +2276,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT05.NINOX3.NINOX.Y28.IPLES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.75,
             "airlines": [
@@ -2295,11 +2295,11 @@
         },
         {
             "origin": "RJTT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJTT05.LAXAS3.LAXAS.Y56.TOHME",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10.13,
             "airlines": [
@@ -2314,7 +2314,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "SASAP.Y10.GODIN.GODI1C.RJTT34R",
@@ -2352,7 +2352,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "NOGIX.Y807.POLIX.POLI1C.RJTT34R",
@@ -2368,7 +2368,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "SHOOT.Y71.XAC.XAC1A.RJTT34L",
@@ -2386,7 +2386,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJTT",
             "category": "arrival",
             "route": "MENUR.Y21.AKSEL.AKSE1A.RJTT34L",

@@ -36,7 +36,7 @@ const ALL_KEYS = [
  * // Departures
  * {
  *      "origin": "KLAS",
- *      "destination": "",
+ *      "destination": null,
  *      "category": "departure",
  *      "route": "KLAS.BOACH6.HEC",
  *      "altitude": "",
@@ -52,7 +52,7 @@ const ALL_KEYS = [
  *
  *  // Arrivals
  *  {
- *      "origin": "",
+ *      "origin": null,
  *      "destination": "KLAS",
  *      "category": "arrival",
  *      "route": "BETHL.GRNPA1.KLAS",

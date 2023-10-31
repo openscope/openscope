@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
-    "position": ["N51d50m29", "W008d29m28", "502ft"],
+    "position": ["N51d50m29", "W008d29m28", "502 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N51d50m29", "W008d29m28"],
@@ -723,7 +723,7 @@
     "restricted": [
         {
             "name": "EIP09",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N52.674953100", "W8.614952400"],
                 ["N52.674884400", "W8.613519900"],
@@ -849,7 +849,7 @@
         },
         {
             "name": "EID13",
-            "height": "45000ft",
+            "height": "45000 ft",
             "poly": [
                 ["N51d34m12", "W008d42m36"],
                 ["N51d20m12", "W008d34m36"],
@@ -860,7 +860,7 @@
         },
         {
             "name": "EID6",
-            "height": "8000ft",
+            "height": "8000 ft",
             "poly": [
                 ["N52d14m00", "W008d15m05"],
                 ["N52d14m30", "W008d12m00"],
@@ -874,16 +874,16 @@
         {
             "name": ["07", "25"],
             "end": [
-                ["N51d50m29.78", "W008d29m45.59", "471ft"],
-                ["N51d50m49.27", "W008d28m44.84", "502ft"]
+                ["N51d50m29.78", "W008d29m45.59", "471 ft"],
+                ["N51d50m49.27", "W008d28m44.84", "502 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["16", "34"],
             "end": [
-                ["N51d51m00.97", "W008d29m47.18", "477ft"],
-                ["N51d49m56.16", "W008d29m08.84", "461ft"]
+                ["N51d51m00.97", "W008d29m47.18", "477 ft"],
+                ["N51d49m56.16", "W008d29m08.84", "461 ft"]
             ],
             "ils": [true, true]
         }
@@ -2328,11 +2328,11 @@
     "spawnPatterns": [
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.KURU1S.KURUM..SHA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.02,
             "airlines": [
@@ -2342,11 +2342,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.GOTE1S.GOTEM..EVRIN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.26,
             "airlines": [
@@ -2360,11 +2360,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.TISM1S.TISMO.Q36.SUTEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.1,
             "airlines": [
@@ -2376,11 +2376,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.TISM1Q.TISMO.Q36.SUTEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.51,
             "airlines": [
@@ -2389,11 +2389,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.SOVI1S.SOVIX..MAPAG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.6,
             "airlines": [
@@ -2404,11 +2404,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.ERTE1S.ERTER..LEDGO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.82,
             "airlines": [
@@ -2420,11 +2420,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.ELTI1S.ELTIG..NORLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.04,
             "airlines": [
@@ -2435,11 +2435,11 @@
         },
         {
             "origin": "EICK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EICK16.ELTI1Q.ELTIG..NORLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.16,
             "airlines": [
@@ -2447,7 +2447,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "SHA..KURUM.KURU1R.EICK16",
@@ -2461,7 +2461,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "BANBA..VAPAL.VAPA1R.EICK16",
@@ -2481,7 +2481,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "LIFFY.Q36.TISMO.TISM1R.EICK16",
@@ -2500,7 +2500,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "MAPAG..ORTOM.ORTO1R.EICK16",
@@ -2515,7 +2515,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EICK",
             "category": "arrival",
             "route": "LEDGO..ERTER.ERTE1R.EICK16",

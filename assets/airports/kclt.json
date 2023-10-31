@@ -11,7 +11,7 @@
     "ctr_radius": 70,
     "ctr_ceiling": 16000,
     "initial_alt": 8000,
-    "position": ["N35.2137500", "W80.9490556", "748ft"],
+    "position": ["N35.2137500", "W80.9490556", "748 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N35.2137500", "W80.9490556"],
@@ -337,32 +337,32 @@
         {
             "name": ["5", "23"],
             "end": [
-                ["N35.2089524", "W80.9499457", "705.3ft"],
-                ["N35.2226162", "W80.9311454", "746.9ft"]
+                ["N35.2089524", "W80.9499457", "705.3 ft"],
+                ["N35.2226162", "W80.9311454", "746.9 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["18L", "36R"],
             "end": [
-                ["N35.2247354", "W80.9361570", "746.6ft"],
-                ["N35.2009571", "W80.9341172", "723.9ft"]
+                ["N35.2247354", "W80.9361570", "746.6 ft"],
+                ["N35.2009571", "W80.9341172", "723.9 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["18C", "36C"],
             "end": [
-                ["N35.2273964", "W80.9531693", "742.2ft"],
-                ["N35.1999923", "W80.9508116", "692.2ft"]
+                ["N35.2273964", "W80.9531693", "742.2 ft"],
+                ["N35.1999923", "W80.9508116", "692.2 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["18R", "36L"],
             "end": [
-                ["N35.2252828", "W80.9674186", "744.4ft"],
-                ["N35.2006188", "W80.9652964", "743.4ft"]
+                ["N35.2252828", "W80.9674186", "744.4 ft"],
+                ["N35.2006188", "W80.9652964", "743.4 ft"]
             ],
             "ils": [true, true]
         }
@@ -759,7 +759,7 @@
             "entryPoints": {
                 "GZG": ["GZG", "JTEEA"]
             },
-            "body": [["BTSEY", "A110|S250"], ["CLT"]],
+            "body": [["BTSEY", "A110|S250"], "CLT"],
             "rwy": {
                 "KCLT5": [],
                 "KCLT18L": [],
@@ -908,7 +908,7 @@
             "name": "Magic Four",
             "entryPoints": {
                 "LIB": ["LIB"],
-                "LYH": ["LYH", "KELLS", ["MAYOS", "A22O"]]
+                "LYH": ["LYH", "KELLS", ["MAYOS", "A220"]]
             },
             "body": [["MAJIC", "A130|S250"], "SUDSY", "GIZMO"],
             "rwy": {
@@ -1052,11 +1052,11 @@
     "spawnPatterns": [
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18L.BARMY4.RDU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.2,
             "airlines": [
@@ -1076,11 +1076,11 @@
             ]
         },{
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18L.BARMY4.TYI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.2,
             "airlines": [
@@ -1101,11 +1101,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.BEAVY5.JENDO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.3,
             "airlines": [
@@ -1127,11 +1127,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.BOBZY4.BNA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.7,
             "airlines": [
@@ -1153,11 +1153,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.ESTRR4.IPTAY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.7,
             "airlines": [
@@ -1178,11 +1178,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18L.ICONS4.NOOKS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1,
             "airlines": [
@@ -1203,11 +1203,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.JOJJO4.CUBIM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.6,
             "airlines": [
@@ -1229,11 +1229,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.JOJJO4.NOONN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.6,
             "airlines": [
@@ -1255,11 +1255,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18L.KILNS4.AUDII",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.1,
             "airlines": [
@@ -1280,11 +1280,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.KRITR5.FILDS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.1,
             "airlines": [
@@ -1308,11 +1308,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18L.KWEEN4.PITRW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.5,
             "airlines": [
@@ -1333,11 +1333,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18L.LILLS2.LILLS..ILM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.5,
             "airlines": [
@@ -1358,11 +1358,11 @@
         },
         {
             "origin": "KCLT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KCLT18C.WEAZL4.CLAWD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.3,
             "airlines": [
@@ -1382,7 +1382,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "PONZE.BANKR2.KCLT18R",
@@ -1408,7 +1408,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "LYH.CHSLY5.KCLT23",
@@ -1434,7 +1434,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "SKYWA.FILPZ3.KCLT18R",
@@ -1460,7 +1460,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "BESTT.JONZE2.KCLT18R",
@@ -1486,7 +1486,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "OKNEE.MLLET2.KCLT23",
@@ -1510,7 +1510,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "TAFTT.PARQR3.KCLT18R",
@@ -1536,7 +1536,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KCLT",
             "category": "arrival",
             "route": "CHS.STOCR3.KCLT23",

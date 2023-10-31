@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 13000,
     "initial_alt": 4000,
-    "position": ["N50d01m18.38", "E008d33m23.24", "364ft"],
+    "position": ["N50d01m18.38", "E008d33m23.24", "364 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N50d01m18.38", "E008d33m23.24"],
@@ -581,32 +581,32 @@
         {
             "name": ["07L", "25R"],
             "end": [
-                ["N50d02m13.396", "E008d29m49.482", "305ft"],
-                ["N50d02m44.971", "E008d32m01.377", "353ft"]
+                ["N50d02m13.396", "E008d29m49.482", "305 ft"],
+                ["N50d02m44.971", "E008d32m01.377", "353 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["07C", "25C"],
             "end": [
-                ["N50d01m57.421", "E008d32m04.667", "329ft"],
-                ["N50d02m42.456", "E008d35m13.131", "364ft"]
+                ["N50d01m57.421", "E008d32m04.667", "329 ft"],
+                ["N50d02m42.456", "E008d35m13.131", "364 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["07R", "25L"],
             "end": [
-                ["N50d01m39.151", "E008d32m03.025", "328ft"],
-                ["N50d02m24.187", "E008d35m11.505", "362ft"]
+                ["N50d01m39.151", "E008d32m03.025", "328 ft"],
+                ["N50d02m24.187", "E008d35m11.505", "362 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["18", "36"],
             "end": [
-                ["N50d02m03.010", "E008d31m33.350", "326ft"],
-                ["N49d59m53.550", "E008d31m34.650", "316ft"]
+                ["N50d02m03.010", "E008d31m33.350", "326 ft"],
+                ["N49d59m53.550", "E008d31m34.650", "316 ft"]
             ],
             "ils": [false, false]
         }
@@ -1622,7 +1622,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF197"], ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "TESGA"],
+            "body": ["DF197", ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -2397,11 +2397,11 @@
     "spawnPatterns": [
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF18.ANEK9L.ANEKI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.6,
             "airlines": [
@@ -2414,11 +2414,11 @@
         },
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF18.CIND1S.CINDY.Z74.HAREM.T104.ANORA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -2428,11 +2428,11 @@
         },
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF25C.MARU2W.MARUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.9,
             "airlines": [
@@ -2444,11 +2444,11 @@
         },
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF25C.OBOK2W.OBOKA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 9.1,
             "airlines": [
@@ -2464,11 +2464,11 @@
         },
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF18.SOBR1L.SOBRA.Y180.RUDOT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.9,
             "airlines": [
@@ -2480,11 +2480,11 @@
         },
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF18.SULU9S.SULUS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.8,
             "airlines": [
@@ -2511,11 +2511,11 @@
         },
         {
             "origin": "EDDF",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDF25C.TOBA2W.TOBAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.8,
             "airlines": [
@@ -2528,7 +2528,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "TADUV.T173.KERAX.KER25N.EDDF25R",
@@ -2562,7 +2562,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "ERNAS.Y101.ERMEL.UQ162.SPESA.SPE25S.EDDF25L",
@@ -2605,7 +2605,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "LIPMI.T150.ROLIS.ROL25N.EDDF25R",
@@ -2633,7 +2633,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDF",
             "category": "arrival",
             "route": "SPI.UT180.PESOV.T180.UNOKO.UNO25N.EDDF25R",

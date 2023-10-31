@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15500,
     "initial_alt": 4000,
-    "position": ["N25d15m10", "E055d21m52", "62ft"],
+    "position": ["N25d15m10", "E055d21m52", "62 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N25d15m10", "E055d21m52"],
@@ -732,7 +732,7 @@
     "restricted": [
         {
             "name": "OMP 43",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [25.205051800, 55.953055600],
                 [25.205028600, 55.954022600],
@@ -859,7 +859,7 @@
         },
         {
             "name": "OMP 46",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [25.341995900, 55.660277800],
                 [25.341972700, 55.661245900],
@@ -986,7 +986,7 @@
         },
         {
             "name": "OMR 57",
-            "height": "3500ft",
+            "height": "3500 ft",
             "poly": [
                 ["N25d47m40", "E054d44m54"],
                 ["N25d37m02", "E054d58m37"],
@@ -999,7 +999,7 @@
         },
         {
             "name": "OMR 60",
-            "height": "3500ft",
+            "height": "3500 ft",
             "poly": [
                 ["N25d21m00", "E053d21m00"],
                 ["N25d38m13", "E054d05m16"],
@@ -1013,7 +1013,7 @@
         },
         {
             "name": "OMR 62",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [25.233359200, 55.302777800],
                 [25.233347600, 55.303261500],
@@ -1140,7 +1140,7 @@
         },
         {
             "name": "OMR 63",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [25.411247700, 55.412500000],
                 [25.411210100, 55.414069100],
@@ -1267,7 +1267,7 @@
         },
         {
             "name": "OMR 71",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 [25.172022200, 55.186666700],
                 [25.171987500, 55.188116900],
@@ -1394,7 +1394,7 @@
         },
         {
             "name": "OMR 72",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [25.284304900, 55.562777800],
                 [25.284292400, 55.563300200],
@@ -1521,7 +1521,7 @@
         },
         {
             "name": "OMR 75",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N25d06m00", "E055d18m40"],
                 ["N25d06m00", "E055d27m50"],
@@ -1535,7 +1535,7 @@
         },
         {
             "name": "OMR 81",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N25d32m38.51", "E055d34m28.19"],
                 ["N25d30m45.36", "E055d36m31.59"],
@@ -1546,7 +1546,7 @@
         },
         {
             "name": "OMR 82",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N25d44m24.67", "E055d40m47.06"],
                 ["N25d41m33.96", "E055d37m11.27"],
@@ -1557,7 +1557,7 @@
         },
         {
             "name": "OMR 83",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N25d54m35.89", "E055d38m18.87"],
                 ["N25d37m36.98", "E055d20m12.26"],
@@ -1571,7 +1571,7 @@
         },
         {
             "name": "OMR 94",
-            "height": "1000ft",
+            "height": "1000 ft",
             "poly": [
                 [25.047829900, 55.067500000],
                 [25.047806700, 55.068465800],
@@ -1698,7 +1698,7 @@
         },
         {
             "name": "OMR 95",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 [25.115633500, 55.135833300],
                 [25.115598800, 55.137282900],
@@ -1825,7 +1825,7 @@
         },
         {
             "name": "OMR 96",
-            "height": "4000ft",
+            "height": "4000 ft",
             "poly": [
                 [25.222299900, 55.274166700],
                 [25.222265100, 55.275617500],
@@ -1952,7 +1952,7 @@
         },
         {
             "name": "OMR 97",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 ["N25d08m07", "E055d20m21"],
                 ["N25d06m00", "E055d22m19"],
@@ -1967,16 +1967,16 @@
         {
             "name": ["12L", "30R"],
             "end": [
-                ["N25d15m52.66", "E055d21m01.52", "11.2ft"],
-                ["N25d14m51.75", "E055d22m51.35", "32.3ft"]
+                ["N25d15m52.66", "E055d21m01.52", "11.2 ft"],
+                ["N25d14m51.75", "E055d22m51.35", "32.3 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["12R", "30L"],
             "end": [
-                ["N25d15m10.21", "E055d21m51.75", "10.9ft"],
-                ["N25d14m09.31", "E055d23m41.57", "59.8ft"]
+                ["N25d15m10.21", "E055d21m51.75", "10.9 ft"],
+                ["N25d14m09.31", "E055d23m41.57", "59.8 ft"]
             ],
             "ils": [true, true]
         }
@@ -2547,7 +2547,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "RIBOT.UM550.GOLGU.M318.RURAL.P317.LORID.LORID4D.OMDB30L",
@@ -2563,7 +2563,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "GISMO.P574.IMPED.IMPED3C.OMDB30L",
@@ -2614,7 +2614,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "OBNET.M677.VUTEB.VUTEB3C.OMDB30L",
@@ -2667,7 +2667,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "OMDB",
             "category": "arrival",
             "route": "PATAT.L519.PUVAL.PUVAL5C.OMDB30R",
@@ -2696,11 +2696,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.ANVIX6F.ANVIX.L223.TARDI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.11,
             "airlines": [
@@ -2726,11 +2726,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.DAVMO3F.DAVMO.M318.GABKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.86,
             "airlines": [
@@ -2759,11 +2759,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.GETID1F.IVURO.M428.GOMTA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8.98,
             "airlines": [
@@ -2793,11 +2793,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.KUTLI3F.KUTLI.L519.ATUDO.M318.GOLGU.UM550.RIBOT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.24,
             "airlines": [
@@ -2811,11 +2811,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.KUTLI3F.KUTLI.L519.ATUDO.M318.MUXIT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.49,
             "airlines": [
@@ -2827,11 +2827,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.MIROT2F.MIROT.N566.KUSBA.N563.IMGUX.P699.ORMID",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.76,
             "airlines": [
@@ -2841,11 +2841,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.RIDAP1F.RIDAP.M557.TUMAK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.99,
             "airlines": [
@@ -2869,11 +2869,11 @@
         },
         {
             "origin": "OMDB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMDB30R.SENPA1F.SENPA.N571.ALPOB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.11,
             "airlines": [

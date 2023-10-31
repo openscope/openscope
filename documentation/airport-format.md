@@ -36,10 +36,10 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
-    "position": ["N47d26.99m0", "W122d18.71m0", "432ft"],
+    "position": ["N47d26.99", "W122d18.71", "432 ft"],
     "rangeRings": {
         "enabled": true,
-        "center": ["N47d26.99m0", "W122d18.71m0"],
+        "center": ["N47d26.99", "W122d18.71"],
         "radius_nm": 5.0,
     },
     "has_terrain": true,
@@ -65,29 +65,29 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         }
     ],
     "fixes": {
-        "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
-        "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
-        "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
-        "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
-        "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
-        "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
-        "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
-        "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-        "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
-        "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
-        "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-        "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
-        "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-        "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
-        "WESET": ["N47d24.35m0", "W122d19.10m0"],
-        "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
-        "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
+        "_NEZUG070010": ["N47d34.80", "W122d03.84"],
+        "_NEZUG070PAE139": ["N47d34.77", "W122d05.11"],
+        "_NICHY250SEA230": ["N47d19.92", "W122d42.78"],
+        "_OLM161026": ["N46d32.31", "W122d54.11"],
+        "_SEA161002": ["N47d24.12", "W122d18.58"],
+        "_SEA341004": ["N47d30.12", "W122d18.58"],
+        "_SUMMA326017": ["N46d53.20", "W122d07.08"],
+        "AAYRR": ["N46d38.81", "W123d43.34"],
+        "BOANE": ["N47d59.10", "W122d43.52"],
+        "EUG"  : ["N44d07.25", "W123d13.37", "Eugene"],
+        "FEPOT": ["N47d04.85", "W123d13.13"],
+        "GEG"  : ["N47d33.90", "W117d37.61"],
+        "KRUZR": ["N48d04.65", "W120d34.68", "cruiser"],
+        "ONSET": ["N48d57.48", "W118d00.00"],
+        "PAE"  : ["N47d55.19", "W122d16.67", "Paine"],
+        "WESET": ["N47d24.35", "W122d19.10"],
+        "YXC"  : ["N49d33.30", "W116d05.26"],
+        "ZUVEN": ["N47d47.98", "W122d25.15"]
     },
     "restricted": [
         {
             "name": "P-51",
-            "height": "2500ft",
+            "height": "2500 ft",
             "poly": [
                 ["N47.7737128", "W122.7710456"],
                 ["N47.7189169", "W122.7706794"],
@@ -101,16 +101,16 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         {
             "name": ["16L", "34R"],
             "end": [
-                [47.463767, -122.307749, "432.5ft"],
-                [47.431201, -122.308035, "346.8ft"]
+                [47.463767, -122.307749, "432.5 ft"],
+                [47.431201, -122.308035, "346.8 ft"]
             ],
             "ils": [true, true],
         },
         {
             "name": ["16R", "34L"],
             "end": [
-                [47.463806, -122.317884, "415.0ft"],
-                [47.440562, -122.318092, "356.3ft"]
+                [47.463806, -122.317884, "415.0 ft"],
+                [47.440562, -122.318092, "356.3 ft"]
             ],
             "ils": [true, true],
         }
@@ -311,39 +311,39 @@ All fixes listed within the Standard Routes need to be defined within this secti
 
 ```json
 "fixes": {
-    "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
-    "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
-    "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-    "_OLM161026": ["N46d32.31m0", "W122d54.11m0"],
-    "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
-    "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
-    "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
-    "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
-    "BOANE": ["N47d59.10m0", "W122d43.52m0"],
-    "EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
-    "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
-    "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
-    "KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
-    "ONSET": ["N48d57.48m0", "W118d00.00m0"],
-    "PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
-    "WESET": ["N47d24.35m0", "W122d19.10m0"],
-    "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
-    "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
+    "_NEZUG070010": ["N47d34.80", "W122d03.84"],
+    "_NEZUG070PAE139": ["N47d34.77", "W122d05.11"],
+    "_NICHY250SEA230": ["N47d19.92", "W122d42.78"],
+    "_OLM161026": ["N46d32.31", "W122d54.11"],
+    "_SEA161002": ["N47d24.12", "W122d18.58"],
+    "_SEA341004": ["N47d30.12", "W122d18.58"],
+    "_SUMMA326017": ["N46d53.20", "W122d07.08"],
+    "AAYRR": ["N46d38.81", "W123d43.34"],
+    "BOANE": ["N47d59.10", "W122d43.52"],
+    "EUG"  : ["N44d07.25", "W123d13.37", "Eugene"],
+    "FEPOT": ["N47d04.85", "W123d13.13"],
+    "GEG"  : ["N47d33.90", "W117d37.61"],
+    "KRUZR": ["N48d04.65", "W120d34.68", "cruiser"],
+    "ONSET": ["N48d57.48", "W118d00.00"],
+    "PAE"  : ["N47d55.19", "W122d16.67", "Paine"],
+    "WESET": ["N47d24.35", "W122d19.10"],
+    "YXC"  : ["N49d33.30", "W116d05.26"],
+    "ZUVEN": ["N47d47.98", "W122d25.15"]
 },
 ```
 
 Each navaid located within or around the airport airspace in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_.  Real life fixes are defined thusly:
 
 ```json
-"AAYRR": ["N46d38.81m0", "W123d43.34m0"]
+"AAYRR": ["N46d38.81", "W123d43.34"]
 ```
 
 Each fix can have an optional third parameter which defines how the name is pronounced by the speech engine. This parameter can either be a real place name (appearing on the charts) or a logical pronunciation of an arbitrary letter combination. Capitalization of this parameter _does not affect_ the way the fix is pronounced in-sim.
 
 ```json
-"EUG"  : ["N44d07.25m0", "W123d13.37m0", "Eugene"],
-"KRUZR": ["N48d04.65m0", "W120d34.68m0", "cruiser"],
-"PAE"  : ["N47d55.19m0", "W122d16.67m0", "Paine"],
+"EUG"  : ["N44d07.25", "W123d13.37", "Eugene"],
+"KRUZR": ["N48d04.65", "W120d34.68", "cruiser"],
+"PAE"  : ["N47d55.19", "W122d16.67", "Paine"],
 ```
 
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
@@ -411,7 +411,7 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 "restricted": [
     {
         "name": "P-51",
-        "height": "2500ft",
+        "height": "2500 ft",
         "poly": [
             ["N47.7737128", "W122.7710456"],
             ["N47.7189169", "W122.7706794"],
@@ -442,8 +442,8 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
     {
         "name": ["16L", "34R"],
         "end": [
-            [47.463767, -122.307749, "432.5ft"],
-            [47.431201, -122.308035, "346.8ft"]
+            [47.463767, -122.307749, "432.5 ft"],
+            [47.431201, -122.308035, "346.8 ft"]
         ],
         "ils": [false, true],
         "ils_distance":[30, 25],
@@ -453,14 +453,14 @@ Areas of restricted airspace may be added to the `restricted` property of the ai
 ],
 ```
 
-* **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
-* **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
-* **ils** - Boolean property used to indicate if a runway has an ILS approach
-* **ils_distance** - Distance the ILS extends away from the runway
-* **glideslope** - Descent angle of the ILS glideslope
-* **loc_maxDist** - Maximum distance from the runway threshold where the localizer is still usable by aircraft, in nm
-* **ils_gs_maxHeight** - Maximum height where the glideslope is still usable by aircraft, in ft MSL
-* **sepFromAdjacent** - A way to manually specify the separation required between this runway and an adjacent runway, in nm
+* **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. So if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
+* **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _See [lat, lon, elev](#latitude-longitude-elevation) for formatting_.
+* **ils** - Boolean property used to indicate if a runway has an ILS approach.
+* **ils_distance** - Distance the ILS extends away from the runway.  The default value is 25 nm.
+* **glideslope** - Descent angle of the ILS glideslope.  The default value is 3.0 degrees.
+* **loc_maxDist** - Maximum distance from the runway threshold where the localizer is still usable by aircraft, in nm.  The default value is 25 nm.
+* **ils_gs_maxHeight** - Maximum height where the glideslope is still usable by aircraft, in ft MSL.
+* **sepFromAdjacent** - A way to manually specify the separation required between this runway and an adjacent runway, in nm.
 
 Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
 
@@ -469,7 +469,7 @@ Runways are defined in pairs because a runway can be used from either direction.
 {
     "name": "16L",
     "end": [
-        [47.463767, -122.307749, "432.5ft"]
+        [47.463767, -122.307749, "432.5 ft"]
     ],
     "ils": false
 }
@@ -478,7 +478,7 @@ Runways are defined in pairs because a runway can be used from either direction.
 {
     "name": "34R",
     "end": [
-        [47.431201, -122.308035, "346.8ft"]
+        [47.431201, -122.308035, "346.8 ft"]
     ],
     "ils": true
 }
@@ -582,9 +582,9 @@ SID is an acronym for _Standard Instrument Departure_.
 
 * **name** - spoken name of the route used for read backs.
 * **altitude** - (number) initial climb clearance (optional).
-* **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
+* **rwy** - (dictionary with a array of string values) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment. May be empty, but must be present.
-* **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
+* **exitPoints** - (dictionary with a array of string values) considered the `Exit`. Each key corresponds to and exit transition for a route.
 * **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes. The name of the SID will be displayed on top of the fix with a `*` after it (e.g. `["SUMMA", "LKV*"]`). _Please note that the 'draw' array must contain at least one array, even if it is empty: `"draw": [[]]`_
 
 **Every possible rwy/body/exitPoint combination must result at least one fix.**
@@ -632,9 +632,9 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 ```
 
 * **name** - spoken name of the route used for read backs.
-* **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
+* **entryPoints** - (dictionary with a array of string values) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment. May be empty, but must be present.
-* **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
+* **rwy** - (dictionary with a array of string values) considered the `Exit`. Each key corresponds to a runway that is usable from this route
 * **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes. The name of the STAR will be displayed on top of the fix with a `*` after it (e.g. `["PDT*", "BRUKK"]`)
 
 ### Spawn Patterns
@@ -724,10 +724,10 @@ Markings on the scope that depict various characteristics of the airspace. When 
 
 For `lat, lon, elev` values, these formats are acceptable:
 
-* [40.94684722, -76.61727778, "866ft"]
-* ["N40.94684722", "W76.61727778", "866ft"]
-* ["N40d56.811", "W076d37.037", "866ft"]
-* ["N40d56m48.65", "W076d37m02.20", "866ft"]
+* [40.94684722, -76.61727778, "866 ft"]
+* ["N40.94684722", "W76.61727778", "866 ft"]
+* ["N40d56.811", "W076d37.037", "866 ft"]
+* ["N40d56m48.65", "W076d37m02.20", "866 ft"]
 
 *Note: For `lat, lon` values, just omit the elevation.*
 

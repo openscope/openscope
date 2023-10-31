@@ -11,7 +11,7 @@
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 7000,
-    "position": ["N47d26.99m0", "W122d18.71m0", "432ft"],
+    "position": ["N47d26.99", "W122d18.71", "432 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [47.449833333, -122.311833333],
@@ -53,13 +53,13 @@
         }
     ],
     "fixes": {
-        "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
-        "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
-        "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
-        "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
-        "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
-        "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
+        "_NEZUG070010": ["N47d34.80", "W122d03.84"],
+        "_NEZUG070PAE139": ["N47d34.77", "W122d05.11"],
+        "_NICHY250SEA230": ["N47d19.92", "W122d42.78"],
+        "_OLM161026" : ["N46d32.31", "W122d54.11"],
+        "_SEA161002": ["N47d24.12", "W122d18.58"],
+        "_SEA341004": ["N47d30.12", "W122d18.58"],
+        "_SUMMA326017": ["N46d53.20", "W122d07.08"],
         "AAYRR": ["N46d38.81", "W123d43.34"],
         "ALDER": ["N46d49.29", "W122d24.85"],
         "ALKIA": ["N47d37.26", "W122d28.45"],
@@ -211,7 +211,7 @@
     "restricted": [
         {
             "name": "P-51",
-            "height": "2500ft",
+            "height": "2500 ft",
             "poly": [
                 ["N47.7737128", "W122.7710456"],
                 ["N47.7189169", "W122.7706794"],
@@ -222,7 +222,7 @@
         },
         {
             "name": "R-6701",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["N48d09m59.0", "W122d34m53.0"],
                 ["N48d05m44.0", "W122d31m35.0"],
@@ -232,7 +232,7 @@
         },
         {
             "name": "R-6703",
-            "height": "14000ft",
+            "height": "14000 ft",
             "poly": [
                 ["N47.0748375", "W122.6872544"],
                 ["N47.0498750", "W122.6892869"],
@@ -246,7 +246,7 @@
         },
         {
             "name": "R-6703",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["N47.0597075", "W122.5953322"],
                 ["N46.9723142", "W122.6294256"],
@@ -268,8 +268,8 @@
         {
             "name": ["16L", "34R"],
             "end": [
-                [47.463767, -122.307749, "432.5ft"],
-                [47.431201, -122.308035, "346.8ft"]
+                [47.463767, -122.307749, "432.5 ft"],
+                [47.431201, -122.308035, "346.8 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 2.75]
@@ -277,8 +277,8 @@
         {
             "name": ["16C", "34C"],
             "end": [
-                [47.463780, -122.310986, "429.6ft"],
-                [47.437999, -122.311211, "363.0ft"]
+                [47.463780, -122.310986, "429.6 ft"],
+                [47.437999, -122.311211, "363.0 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 3.00]
@@ -286,8 +286,8 @@
         {
             "name": ["16R", "34L"],
             "end": [
-                [47.463806, -122.317884, "415.0ft"],
-                [47.440562, -122.318092, "356.3ft"]
+                [47.463806, -122.317884, "415.0 ft"],
+                [47.440562, -122.318092, "356.3 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 3.00]
@@ -748,11 +748,11 @@
     "spawnPatterns": [
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.BANGR9.ARRIE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -780,11 +780,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.BANGR9.PANGL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -812,11 +812,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.HAROB6.ERAVE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.75,
             "airlines": [
@@ -844,11 +844,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.HAROB6.FEPOT.Q3.FAMUK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.75,
             "airlines": [
@@ -876,11 +876,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.HAROB6.HISKU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.75,
             "airlines": [
@@ -908,11 +908,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.HAROB6.HQM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.75,
             "airlines": [
@@ -940,11 +940,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.SUMMA1.BKE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 9,
             "airlines": [
@@ -972,11 +972,11 @@
         },
         {
             "origin": "ksea",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSEA16L.SUMMA1.LKV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 9,
             "airlines": [
@@ -1003,7 +1003,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "PDT.CHINS3.KSEA16R",
@@ -1035,7 +1035,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "MLP.GLASR1.KSEA16R",
@@ -1067,7 +1067,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "LMT.HAWKZ7.KSEA16R",
@@ -1099,7 +1099,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ksea",
             "category": "arrival",
             "route": "YVR.MARNR7.KSEA16R",

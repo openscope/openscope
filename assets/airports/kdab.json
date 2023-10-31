@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 11000,
     "initial_alt": 4000,
-    "position": [29.1799089, -81.0580422, "34ft"],
+    "position": [29.1799089, -81.0580422, "34 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [29.1799089, -81.0580422],
@@ -204,7 +204,7 @@
     "restricted": [
         {
             "name": "R-2907A",
-            "height": "23000ft",
+            "height": "23000 ft",
             "poly": [
                 [29.38083, -81.52194],
                 [29.20861, -81.49972],
@@ -219,7 +219,7 @@
         },
         {
             "name": "R-2907B",
-            "height": "23000ft",
+            "height": "23000 ft",
             "poly": [
                 [29.42806, -81.69639],
                 [29.38361, -81.66639],
@@ -230,7 +230,7 @@
         },
         {
             "name": "R-2910A",
-            "height": "23000ft",
+            "height": "23000 ft",
             "poly": [
                 [29.13278, -81.80806],
                 [29.16694, -81.84278],
@@ -253,7 +253,7 @@
         },
         {
             "name": "R-2910B",
-            "height": "6000ft",
+            "height": "6000 ft",
             "poly": [
                 [29.00000, -81.50000],
                 [28.96556, -81.47333],
@@ -264,7 +264,7 @@
         },
         {
             "name": "R-2910D",
-            "height": "23000ft",
+            "height": "23000 ft",
             "poly": [
                 [29.20861, -81.49972],
                 [29.00000, -81.50000],
@@ -284,24 +284,24 @@
         {
             "name": ["7L", "25R"],
             "end": [
-                [29.1725498, -81.0777877, "28ft"],
-                [29.1846516, -81.0479155, "32ft"]
+                [29.1725498, -81.0777877, "28 ft"],
+                [29.1846516, -81.0479155, "32 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["7R", "25L"],
             "end": [
-                [29.1760323, -81.0568415, "28ft"],
-                [29.1797261, -81.0477565, "32ft"]
+                [29.1760323, -81.0568415, "28 ft"],
+                [29.1797261, -81.0477565, "32 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["16", "34"],
             "end": [
-                [29.1908816, -81.0563311, "31ft"],
-                [29.1756710, -81.0490371, "33ft"]
+                [29.1908816, -81.0563311, "31 ft"],
+                [29.1756710, -81.0490371, "33 ft"]
             ],
             "ils": [false, false]
         } 
@@ -369,11 +369,11 @@
     "spawnPatterns": [
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KDAB7L.ROYES7.CRG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -385,7 +385,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "KYLEG.TTHOR2.KDAB7L",
@@ -403,11 +403,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMN.T207.AYS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -417,11 +417,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMN.V3.SSI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -431,11 +431,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "OMN..SUUGR.T208.WALEE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -445,11 +445,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "MIKBE.V3.MLB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -459,11 +459,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "MALET.Q93.FOBIN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -474,11 +474,11 @@
         },
         {
             "origin": "kdab",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KIZER.T210.VARZE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -487,7 +487,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "MLB.V3.OMN",
@@ -501,7 +501,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "MONIA.T207.OMN",
@@ -515,7 +515,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "CRG.V51.OMN",
@@ -529,7 +529,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "SSI.V3.OMN",
@@ -543,7 +543,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "VARZE.T210.KIZER..OMN",
@@ -557,7 +557,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kdab",
             "category": "arrival",
             "route": "FOBIN.Q93.MALET..OMN",
@@ -572,8 +572,8 @@
             ]
         },
         {
-            "origin": "",
-            "destination": "",
+            "origin": null,
+            "destination": null,
             "category": "overflight",
             "route": "MALET.T208.WALEE..GNV",
             "altitude": 8000,
@@ -586,8 +586,8 @@
             ]
         },
         {
-            "origin": "",
-            "destination": "",
+            "origin": null,
+            "destination": null,
             "category": "overflight",
             "route": "ORL.V267.CRG",
             "altitude": 8000,

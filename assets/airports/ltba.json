@@ -10,7 +10,7 @@
     "ctr_radius": 120,
     "ctr_ceiling": 24000,
     "initial_alt": 5000,
-    "position": ["N40d58.57", "E028d48.85", "163.0ft"],
+    "position": ["N40d58.57", "E028d48.85", "163.0 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [40.965697, 28.809985],
@@ -415,7 +415,7 @@
     "restricted": [
         {
             "name": "LTP-7",
-            "height": "28000ft",
+            "height": "28000 ft",
             "poly": [
                 ["N40d37m00", "E028d27m00"],
                 ["N40d37m00", "E028d37m00"],
@@ -425,7 +425,7 @@
         },
         {
             "name": "LTR-4",
-            "height": "4500ft",
+            "height": "4500 ft",
             "poly": [
                 ["N41d02m16", "E028d45m38"],
                 ["N41d02m16", "E028d46m21"],
@@ -435,7 +435,7 @@
         },
         {
             "name": "LTR-8",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N40d25m08", "E029d06m32"],
                 ["N40d25m08", "E029d07m12"],
@@ -445,7 +445,7 @@
         },
         {
             "name": "LTR-10",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N40d59m22", "E028d41m20"],
                 ["N40d58m51", "E028d42m04"],
@@ -457,7 +457,7 @@
         },
         {
             "name": "LTR-31",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [41.037232100, 29.061388900],
                 [41.037209000, 29.062545900],
@@ -584,7 +584,7 @@
         },
         {
             "name": "LTR-32",
-            "height": "1500ft",
+            "height": "1500 ft",
             "poly": [
                 [41.046948400, 29.004444400],
                 [41.046939100, 29.004907400],
@@ -714,24 +714,24 @@
         {
             "name": ["05", "23"],
             "end": [
-                ["N40d57m58.55", "E028d48m40.75", "93ft"],
-                ["N40d58m39.95", "E028d50m10.16", "90ft"]
+                ["N40d57m58.55", "E028d48m40.75", "93 ft"],
+                ["N40d58m39.95", "E028d50m10.16", "90 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["17L", "35R"],
             "end": [
-                ["N40d59m46.89", "E028d48m30.69", "157ft"],
-                ["N40d58m10.04", "E028d48m34.09", "100ft"]
+                ["N40d59m46.89", "E028d48m30.69", "157 ft"],
+                ["N40d58m10.04", "E028d48m34.09", "100 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["17R", "35L"],
             "end": [
-                ["N40d59m46.88", "E028d48m21.71", "163ft"],
-                ["N40d58m09.66", "E028d48m25.12", "102ft"]
+                ["N40d59m46.88", "E028d48m21.71", "163 ft"],
+                ["N40d58m09.66", "E028d48m25.12", "102 ft"]
             ],
             "ils": [false, true]
         }
@@ -3844,11 +3844,11 @@
     "spawnPatterns": [
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.EDASA1Y.EDASA.UW715.KFK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.61,
             "airlines": [
@@ -3871,11 +3871,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.ERSEN1Y.ERSEN.L615.BUK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.39,
             "airlines": [
@@ -3890,11 +3890,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.GOLDO1Y.GOLDO.UN79.NEVAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.22,
             "airlines": [
@@ -3910,11 +3910,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.GOLDO1Y.GOLDO.UM603.SUTIS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.21,
             "airlines": [
@@ -3930,11 +3930,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.IBLAL1Y.IBLAL.P727.BGS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.98,
             "airlines": [
@@ -3949,11 +3949,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MAKOL1Y.MAKOL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.52,
             "airlines": [
@@ -3971,11 +3971,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MARMA1Y.MARMA.Y255.BIG.UN604.LSV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.44,
             "airlines": [
@@ -3989,11 +3989,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MARMA1Y.MARMA.Y371.DUGLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.13,
             "airlines": [
@@ -4008,11 +4008,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.MOPIN1Y.MOPIN.N644.ARPEM.UN644.GAKSU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.98,
             "airlines": [
@@ -4037,11 +4037,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.PIMAV1Y.PIMAV.G8.TOKER.UG8.KUBER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.80,
             "airlines": [
@@ -4073,11 +4073,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.TUDBU1Y.TUDBU.Q26.UPAMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.06,
             "airlines": [
@@ -4093,11 +4093,11 @@
         },
         {
             "origin": "LTBA",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LTBA35L.VADEN1Y.VADEN.Y520.DINEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.54,
             "airlines": [
@@ -4119,7 +4119,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4146,7 +4146,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4177,7 +4177,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4196,7 +4196,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4216,7 +4216,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4245,7 +4245,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4281,7 +4281,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -4303,7 +4303,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LTBA",
             "category": "arrival",
             "method": "random",
@@ -5795,14 +5795,14 @@
                 [40.14624603918, 27.97342996991, 40.13790798851, 27.97322494984],
                 [40.22120960939, 27.98071520552, 40.22136599025, 27.96983804789],
                 [40.13782960869, 27.97865686774, 40.13798609189, 27.96779301895],
-                ["N40m16d00", "E028m01d00", "N40m16d00", "E028m03d00"],
-                ["N40m16d00", "E028m03d00", "N40m13d00", "E028m01d00"],
-                ["N40m13d00", "E028m01d00", "N40m13d00", "E028m03d00"],
-                ["N40m13d00", "E028m03d00", "N40m16d00", "E028m01d00"],
-                ["N40d09m00", "E027d59m00", "N40d08m00", "E027d59m00"],
-                ["N40d08m00", "E027d59m00", "N40d08m00", "E027d58m00"],
-                ["N40d08m00", "E027d58m00", "N40d09m00", "E027d58m00"],
-                ["N40d09m00", "E027d58m00", "N40d09m00", "E027d59m00"],
+                ["N40d16", "E28d01", "N40d16", "E28d03"],
+                ["N40d16", "E28d03", "N40d13", "E28d01"],
+                ["N40d13", "E28d01", "N40d13", "E28d03"],
+                ["N40d13", "E28d03", "N40d16", "E28d01"],
+                ["N40d09", "E27d59", "N40d08", "E27d59"],
+                ["N40d08", "E27d59", "N40d08", "E27d58"],
+                ["N40d08", "E27d58", "N40d09", "E27d58"],
+                ["N40d09", "E27d58", "N40d09", "E27d59"],
                 [40.9140300891, 27.42277062454, 40.87243853982, 27.4189545182],
                 [40.83546791671, 27.4155664056, 40.79387555753, 27.41175937436],
                 [40.75690421858, 27.40837924292, 40.71531106479, 27.40458097844],

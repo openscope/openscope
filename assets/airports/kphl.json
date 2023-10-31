@@ -11,7 +11,7 @@
     "ctr_radius": 70,
     "ctr_ceiling": 12000,
     "initial_alt": 5000,
-    "position": ["N39.8720839", "W75.2406631", "36ft"],
+    "position": ["N39.8720839", "W75.2406631", "36 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N39.8720839", "W75.2406631"],
@@ -760,32 +760,32 @@
         {
             "name": ["8", "26"],
             "end": [
-                ["N39.8783374", "W75.2300139", "9.3ft"],
-                ["N39.8817729", "W75.2127633", "35.6ft"]
+                ["N39.8783374", "W75.2300139", "9.3 ft"],
+                ["N39.8817729", "W75.2127633", "35.6 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["9L", "27R"],
             "end": [
-                ["N39.8686828", "W75.2556614", "13.2ft"],
-                ["N39.8752204", "W75.2228970", "10.4ft"]
+                ["N39.8686828", "W75.2556614", "13.2 ft"],
+                ["N39.8752204", "W75.2228970", "10.4 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["9R", "27L"],
             "end": [
-                ["N39.8608095", "W75.2751961", "20.3ft"],
-                ["N39.8690695", "W75.2338111", "10.6ft"]
+                ["N39.8608095", "W75.2751961", "20.3 ft"],
+                ["N39.8690695", "W75.2338111", "10.6 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["17", "35"],
             "end": [
-                ["N39.8876587", "W75.2360908", "8.2ft"],
-                ["N39.8709938", "W75.2278143", "12.9ft"]
+                ["N39.8876587", "W75.2360908", "8.2 ft"],
+                ["N39.8709938", "W75.2278143", "12.9 ft"]
             ],
             "ils": [true, false]
         }
@@ -1002,7 +1002,7 @@
     "spawnPatterns": [
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.OOD..TEBEE..HAYDO..SBY..KEMPR..DIW",
             "commands": {
@@ -1013,8 +1013,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 7.6,
             "airlines": [
@@ -1039,7 +1039,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.MXE..PENSY.J110.FLIRT.J6.HVQ",
             "commands": {
@@ -1050,8 +1050,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5.6,
             "airlines": [
@@ -1076,7 +1076,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.DITCH.J225.JFK..HTO",
             "commands": {
@@ -1087,8 +1087,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.6,
             "airlines": [
@@ -1115,7 +1115,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.DITCH.V312.JIMEE..WAVEY",
             "commands": {
@@ -1126,8 +1126,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.6,
             "airlines": [
@@ -1154,7 +1154,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.STOEN..REEFI..EMI.J48.CSN",
             "commands": {
@@ -1165,8 +1165,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.6,
             "airlines": [
@@ -1191,7 +1191,7 @@
         },
         {
             "origin": "KPHL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPHL9L.PHL2.PTW..SARAA.J64.EWC",
             "commands": {
@@ -1202,8 +1202,8 @@
                 "35": "fh 300",
                 "17": "fh 130"
             },
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6.6,
             "airlines": [
@@ -1227,7 +1227,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "JST.BOJID2.KPHL9R",
@@ -1239,8 +1239,8 @@
                 "35": "cross bunts A80",
                 "17": "cross bunts A80"
             },
-            "altitude": "28000",
-            "speed": "310",
+            "altitude": 28000,
+            "speed": 310,
             "method": "random",
             "rate": 7.6,
             "airlines": [
@@ -1264,7 +1264,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "HTO.J121.BRIGS.JIIMS3.KPHL9R",
@@ -1276,8 +1276,8 @@
                 "35": "CROSS BRIGS A140 CROSS IROKT A90",
                 "17": "CROSS BRIGS A140 CROSS IROKT A90"
             },
-            "altitude": "24000",
-            "speed": "310",
+            "altitude": 24000,
+            "speed": 310,
             "method": "random",
             "rate": 6.6,
             "airlines": [
@@ -1302,7 +1302,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "RDU..FAK.PAATS3.KPHL9R",
@@ -1314,8 +1314,8 @@
                 "35": "CROSS BUKYY A240 CROSS JAYBO A150 CROSS ESSSO A100 S250",
                 "17": "CROSS BUKYY A240 CROSS JAYBO A150 CROSS ESSSO A100 S250"
             },
-            "altitude": "28000",
-            "speed": "310",
+            "altitude": 28000,
+            "speed": 310,
             "method": "random",
             "rate": 9.6,
             "airlines": [
@@ -1339,7 +1339,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KPHL",
             "category": "arrival",
             "route": "DNY.SPUDS4.KPHL9R",
@@ -1351,8 +1351,8 @@
                 "35": "cross spuds A100 S250",
                 "17": "cross spuds A100 S250"
             },
-            "altitude": "23000",
-            "speed": "310",
+            "altitude": 23000,
+            "speed": 310,
             "method": "random",
             "rate": 6.6,
             "airlines": [

@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 9000,
-    "position": ["N53d25m17.00", "W6d16m12.00", "242ft"],
+    "position": ["N53d25m17.00", "W6d16m12.00", "242 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N53d25m17.00", "W6d16m12.00"],
@@ -682,7 +682,7 @@
     "restricted": [
         {
             "name": "EIP10",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["N53.15444", "W6.87972"],
                 ["N53.16194", "W6.82417"],
@@ -693,7 +693,7 @@
         },
         {
             "name": "EIP11",
-            "height": "1000ft",
+            "height": "1000 ft",
             "poly": [
                 ["N53.37609", "W6.31639"],
                 ["N53.37606", "W6.31493"],
@@ -819,7 +819,7 @@
         },
         {
             "name": "EIP18",
-            "height": "550ft",
+            "height": "550 ft",
             "poly": [
                 ["N53.37054", "W6.26694"],
                 ["N53.37053", "W6.26621"],
@@ -945,7 +945,7 @@
         },
         {
             "name": "EIP8",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["N53.05824", "W7.29710"],
                 ["N53.05810", "W7.29421"],
@@ -1071,7 +1071,7 @@
         },
         {
             "name": "EIR15",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N53.33333", "W6.35833"],
                 ["N53.24417", "W6.35833"],
@@ -1082,7 +1082,7 @@
         },
         {
             "name": "EIR16B",
-            "height": "24000ft",
+            "height": "24000 ft",
             "poly": [
                 ["N53.39417", "W6.73056"],
                 ["N53.24361", "W6.61861"],
@@ -1109,7 +1109,7 @@
         },
         {
             "name": "EIR16C",
-            "height": "24000ft",
+            "height": "24000 ft",
             "poly": [
                 ["N53.17806", "W6.81556"],
                 ["N53.18937", "W6.82576"],
@@ -1151,7 +1151,7 @@
         },
         {
             "name": "EIR16D",
-            "height": "4500ft",
+            "height": "4500 ft",
             "poly": [
                 ["N53.24417", "W6.42833"],
                 ["N53.17250", "W6.56639"],
@@ -1160,7 +1160,7 @@
         },
         {
             "name": "EIR16E",
-            "height": "24000ft",
+            "height": "24000 ft",
             "poly": [
                 ["N53.24361", "W6.61861"],
                 ["N53.17250", "W6.56639"],
@@ -1177,7 +1177,7 @@
         },
         {
             "name": "EIR16F",
-            "height": "24000ft",
+            "height": "24000 ft",
             "poly": [
                 ["N53.17806", "W6.81556"],
                 ["N53.16682", "W6.80390"],
@@ -1200,7 +1200,7 @@
         },
         {
             "name": "EIR16G",
-            "height": "24000ft",
+            "height": "24000 ft",
             "poly": [
                 ["N53.13750", "W6.93667"],
                 ["N53.12119", "W6.91961"],
@@ -1221,7 +1221,7 @@
         },
         {
             "name": "EIR16H",
-            "height": "24000ft",
+            "height": "24000 ft",
             "poly": [
                 ["N53.40694", "W6.98667"],
                 ["N53.38779", "W6.99311"],
@@ -1260,7 +1260,7 @@
         },
         {
             "name": "EIR23",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 ["N53.31662", "W6.44632"],
                 ["N53.31655", "W6.44487"],
@@ -1389,16 +1389,16 @@
         {
             "name": ["10R", "28L"],
             "end": [
-                ["N53d25m20.75", "W6d17m24.27", "242ft"],
-                ["N53d25m12.94", "W6d15m02.08", "202ft"]
+                ["N53d25m20.75", "W6d17m24.27", "242 ft"],
+                ["N53d25m12.94", "W6d15m02.08", "202 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["16", "34"],
             "end": [
-                ["N53d26m13.16", "W6d15m43.12", "217ft"],
-                ["N53d25m11.66", "W6d14m58.54", "202ft"]
+                ["N53d26m13.16", "W6d15m43.12", "217 ft"],
+                ["N53d25m11.66", "W6d14m58.54", "202 ft"]
             ],
             "ils": [true, false]
         }
@@ -2528,11 +2528,11 @@
     "spawnPatterns": [
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.LIFY6A.LIFFY.Q37.MALUD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.27,
             "airlines": [
@@ -2561,11 +2561,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.LIFY6A.LIFFY.Q36.ALAVA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.27,
             "airlines": [
@@ -2593,11 +2593,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.DEXE1A.DEXEN.UY124.AMPIT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.05,
             "airlines": [
@@ -2615,11 +2615,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.PESI5A.PESIT..BAKUR.N546.STU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -2636,11 +2636,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.BEPA5A.BEPAN..DIMUS..BANBA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.96,
             "airlines": [
@@ -2653,11 +2653,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.OLON5A.OLONO..CML.Q36.CRK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.22,
             "airlines": [
@@ -2668,11 +2668,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.INKU5A.INKUR..DEVOL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.27,
             "airlines": [
@@ -2683,11 +2683,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.SURO1A.SUROX..ERNAN..TADEX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.56,
             "airlines": [
@@ -2707,11 +2707,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.NEVR1A.NEVRI.N34.BEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.27,
             "airlines": [
@@ -2722,11 +2722,11 @@
         },
         {
             "origin": "EIDW",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EIDW28L.ROTE1A.ROTEV.P600.BLACA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.67,
             "airlines": [
@@ -2740,7 +2740,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "PENIL.L28.LELDO.M145.BAGSO.BAGS2L.EIDW28L",
@@ -2773,7 +2773,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "DIKAS.L18.ABLIN.ABLI2L.EIDW28L",
@@ -2803,7 +2803,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "STU.M17.VATRY.VATR2L.EIDW28L",
@@ -2833,7 +2833,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "EVRIN..BUNED.BUNE2L.EIDW28L",
@@ -2848,7 +2848,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "CRK.Q36.SUTEX.SUTE2L.EIDW28L",
@@ -2868,7 +2868,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "REVNU..OLAPO.OLAP2L.EIDW28L",
@@ -2887,7 +2887,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "BLACA.P620.NIMAT.NIMA2L.EIDW28L",
@@ -2908,7 +2908,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "IOM.Y911.BOYNE.BOYN2L.EIDW28L",
@@ -2922,7 +2922,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EIDW",
             "category": "arrival",
             "route": "EGT..BAMLI.BAML2L.EIDW28L",

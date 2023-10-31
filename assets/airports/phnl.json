@@ -11,7 +11,7 @@
     "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": ["N21d19.06", "W157d55.22", "13ft"],
+    "position": ["N21d19.06", "W157d55.22", "13 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N21d19.06", "W157d55.22"],
@@ -87,7 +87,7 @@
     "restricted": [
         {
             "name": "R-3109B",
-            "height": "19000ft",
+            "height": "19000 ft",
             "poly": [
                 ["N21.53274", "W158.08347"],
                 ["N21.50460", "W158.06623"],
@@ -101,7 +101,7 @@
         },
         {
             "name": "R-3110B",
-            "height": "19000",
+            "height": "19000 ft",
             "poly": [
                 ["N21.57165", "W158.21758"],
                 ["N21.54981", "W158.14102"],
@@ -270,32 +270,32 @@
         {
             "name": ["8L", "26R"],
             "end": [
-                ["N21d19.51", "W157d56.59", "11.6ft"],
-                ["N21d19.51", "W157d54.42", "8.4ft"]
+                ["N21d19.51", "W157d56.59", "11.6 ft"],
+                ["N21d19.51", "W157d54.42", "8.4 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["8R", "26L"],
             "end": [
-                ["N21d18.41", "W157d56.75", "10ft"],
-                ["N21d18.41", "W157d54.64", "10ft"]
+                ["N21d18.41", "W157d56.75", "10 ft"],
+                ["N21d18.41", "W157d54.64", "10 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["4R", "22L"],
             "end": [
-                ["N21d18.84", "W157d55.63", "8ft"],
-                ["N21d19.73", "W157d54.36", "8.3ft"]
+                ["N21d18.84", "W157d55.63", "8 ft"],
+                ["N21d19.73", "W157d54.36", "8.3 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["4L", "22R"],
             "end": [
-                ["N21d19.10", "W157d55.40", "9.8ft"],
-                ["N21d19.79", "W157d54.42", "7.4ft"]
+                ["N21d19.10", "W157d55.40", "9.8 ft"],
+                ["N21d19.79", "W157d54.42", "7.4 ft"]
             ],
             "ils": [false, false]
         }
@@ -872,7 +872,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "UPP..LAVAS.MAKAH1.PHNL8L",
@@ -896,7 +896,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "DENNS.INOYI1.PHNL8L",
@@ -922,7 +922,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "ZIGIE.KAENA2.PHNL8L",
@@ -951,7 +951,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "phnl",
             "category": "arrival",
             "route": "CANON.KLANI3.PHNL8L",
@@ -979,11 +979,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.MKK4.EBBER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1003,11 +1003,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.KEOLA3.KATHS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1030,11 +1030,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.OPIHI3.CHOKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1059,11 +1059,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.PIPLN1.THOMA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1088,11 +1088,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.PIPLN1.ZIGIE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1117,11 +1117,11 @@
         },
         {
             "origin": "phnl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "PHNL8R.PIPLN1.DOVRR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [

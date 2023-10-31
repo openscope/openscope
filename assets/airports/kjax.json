@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 3000,
-    "position": ["N30d29m38.4", "W81d41m16.2", "29ft"],
+    "position": ["N30d29m38.4", "W81d41m16.2", "29 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N30d29m38.4", "W81d41m16.2"],
@@ -225,7 +225,7 @@
     "restricted": [
         {
             "name": "R-2903A&B",
-            "height": "32000ft",
+            "height": "32000 ft",
             "poly": [
                 ["N29d58m06", "W81d59m09"],
                 ["N29d58m56", "W81d59m32"],
@@ -297,7 +297,7 @@
         },
         {
             "name": "R-2903C",
-            "height": "7000ft",
+            "height": "7000 ft",
             "poly": [
                 ["N29d52m31", "W81d53m25"],
                 ["N29d51m14", "W81d50m56"],
@@ -327,7 +327,7 @@
         },
         {
             "name": "R-2903D",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["N29d51m14", "W81d50m56"],
                 ["N29d48m51", "W81d46m09"],
@@ -338,7 +338,7 @@
         },
         {
             "name": "R-2904A",
-            "height": "1800ft",
+            "height": "1800 ft",
             "poly": [
                 ["N30d03m31", "W81d55m39"],
                 ["N29d58m56", "W81d55m39"],
@@ -348,7 +348,7 @@
         },
         {
             "name": "R-2906",
-            "height": "14000ft",
+            "height": "14000 ft",
             "poly": [
                 ["N29.567035800", "W81.761362200"],
                 ["N29.566688900", "W81.756349800"],
@@ -481,7 +481,7 @@
         },
         {
             "name": "P-50",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N30.833363300", "W81.514630300"],
                 ["N30.833224700", "W81.512599800"],
@@ -607,7 +607,7 @@
         },
         {
             "name": "W-135",
-            "height": "1200ft",
+            "height": "1200 ft",
             "poly": [
                 ["N30d36m00", "W81d19m27"],
                 ["N30d36m00", "W80d57m39"],
@@ -654,16 +654,16 @@
         {
             "name": ["8", "26"],
             "end": [
-                ["N30.49618528", "W81.69997139", "29.1ft"],
-                ["N30.50535111", "W81.67000889", "26.1ft"]
+                ["N30.49618528", "W81.69997139", "29.1 ft"],
+                ["N30.50535111", "W81.67000889", "26.1 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["14", "32"],
             "end": [
-                ["N30.49215139", "W81.70081806", "26.7ft"],
-                ["N30.47839944", "W81.68229361", "23.8ft"]
+                ["N30.49215139", "W81.70081806", "26.7 ft"],
+                ["N30.47839944", "W81.68229361", "23.8 ft"]
             ],
             "ils": [true, false]
         }
@@ -955,11 +955,11 @@
     "spawnPatterns": [
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.ARNEY2.BAXLY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -985,11 +985,11 @@
         },
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.CROSB2.WISPR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6,
             "airlines": [
@@ -1013,11 +1013,11 @@
         },
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.EXBOX2.OMN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1038,11 +1038,11 @@
         },
         {
             "origin": "kjax",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KJAX14.JETIN2.CAPPS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1066,7 +1066,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "ESENT.LUNNI1.KJAX8",
@@ -1094,7 +1094,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "CAPPS.MARQO2.KJAX8",
@@ -1123,7 +1123,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "DUCHY.OHDEA1.KJAX8",
@@ -1153,7 +1153,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "HAINY.QUBEN1.KJAX8",
@@ -1178,7 +1178,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kjax",
             "category": "arrival",
             "route": "HILIS.TEBOW1.KJAX8",

@@ -10,7 +10,7 @@
     "ctr_radius": 32,
     "ctr_ceiling": 8500,
     "initial_alt": 7000,
-    "position": ["N53d51m57.69",  "W001d39m38.77", "681ft"],
+    "position": ["N53d51m57.69",  "W001d39m38.77", "681 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N53d51m57.69",  "W001d39m38.77"],
@@ -439,8 +439,8 @@
         {
             "name": ["14", "32"],
             "end": [
-                ["N53d52m17.15", "W001d40m08.68", "674ft"],
-                ["N53d51m37.31", "W001d39m07.44", "662ft"]
+                ["N53d52m17.15", "W001d40m08.68", "674 ft"],
+                ["N53d51m37.31", "W001d39m07.44", "662 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.50, 3.00]
@@ -535,11 +535,11 @@
     "spawnPatterns": [
         {
             "origin": "EGNM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGNM32.DOPEK2W.DOPEK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -550,11 +550,11 @@
         },
         {
             "origin": "EGNM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGNM32.LAMIX2W.LAMIX",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -565,11 +565,11 @@
         },
         {
             "origin": "EGNM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGNM32.NELSA3W.NELSA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -582,7 +582,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "EMBOR..TNT..DENBY..LBA",
@@ -598,7 +598,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "GASKO..LBA",
@@ -611,7 +611,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "GOLES..BATLI..LBA",
@@ -626,7 +626,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGNM",
             "category": "arrival",
             "route": "REXAM..BARTN..POL..LBA",

@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 13000,
     "initial_alt": 5000,
-    "position": ["N29.5339580", "W98.4690571", "809ft"],
+    "position": ["N29.5339580", "W98.4690571", "809 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N29.5339580", "W98.4690571"],
@@ -199,24 +199,24 @@
         {
             "name": ["4", "22"],
             "end": [
-                ["N29.5232339", "W98.4699046", "786ft"],
-                ["N29.5409422", "W98.4524364", "754ft"]
+                ["N29.5232339", "W98.4699046", "786 ft"],
+                ["N29.5409422", "W98.4524364", "754 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["13L", "31R"],
             "end": [
-                ["N29.5402985", "W98.4776981", "797ft"],
-                ["N29.5302177", "W98.4647266", "779ft"]
+                ["N29.5402985", "W98.4776981", "797 ft"],
+                ["N29.5302177", "W98.4647266", "779 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["13R", "31L"],
             "end": [
-                ["N29.5427459", "W98.4855410", "809ft"],
-                ["N29.5272235", "W98.4655536", "778ft"]
+                ["N29.5427459", "W98.4855410", "809 ft"],
+                ["N29.5272235", "W98.4655536", "778 ft"]
             ],
             "ils": [true, true]
         }
@@ -486,11 +486,11 @@
     "spawnPatterns": [
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.ALAMO3.AGJ..VUZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -512,11 +512,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.ALAMO3.JUMBO.J23.MQP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -538,11 +538,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.ALISS5.JCT.J15.INK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -565,11 +565,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.MILET4.LRD.J22.NLD.UJ11.MTY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -588,11 +588,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSAT4.THX4.CRP.J25.BRO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -616,11 +616,11 @@
         },
         {
             "origin": "KSAT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "CHURN.Q56.HRV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 6,
             "airlines": [
@@ -641,12 +641,12 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "ABI.STV1.KSAT31L",
-            "altitude": "31000",
-            "speed": "310",
+            "altitude": 31000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -667,12 +667,12 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "LFK.BRAUN3.KSAT31L",
-            "altitude": "32000",
-            "speed": "310",
+            "altitude": 32000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -693,12 +693,12 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "LRD.LEMIG1.KSAT31L",
-            "altitude": "31000",
-            "speed": "310",
+            "altitude": 31000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -714,12 +714,12 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSAT",
             "category": "arrival",
             "route": "FST.CSI2.KSAT31L",
-            "altitude": "29000",
-            "speed": "310",
+            "altitude": 29000,
+            "speed": 310,
             "method": "random",
             "rate": 4,
             "airlines": [

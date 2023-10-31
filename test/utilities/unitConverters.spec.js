@@ -133,17 +133,34 @@ ava('.parseCoordinate() should accept a lat/long coordinate and convet it to dec
     t.true(parseCoordinate(longitudeMock) === -115.85416666666666);
 });
 
-ava('.parseElevation() should parse a string elevation into an elevation in feet', t => {
-    t.false(parseElevation('5.5m') === 5.5);
-    t.false(parseElevation('-23m') === -23);
+ava('.parseElevation() should throw an exception on invalid input', t => {
+    // No numeric value
+    t.throws(() => { parseElevation('invalid elevation'); }, { instanceOf: TypeError} );
 
-    t.true(parseElevation('13.3ft') === 13.3);
-    t.true(parseElevation('13ft') === 13);
-    t.true(parseElevation(13) === 13);
-    t.true(parseElevation('5.5m') === 18.04461942257218);
+    // Space is required
+    t.throws(() => { parseElevation('15ft'); }, { instanceOf: TypeError} );
+
+    // nm is an unrecognized unit
+    t.throws(() => { parseElevation('15 nm'); }, { instanceOf: TypeError} );
+
+    // Infinity is not a unit
+    t.throws(() => { parseElevation('15 Infinity'); }, { instanceOf: TypeError} );
+
+    // Infinity does not accept units
+    t.throws(() => { parseElevation('Infinity 15'); }, { instanceOf: TypeError} );
+});
+
+ava('.parseElevation() should parse a string elevation into an elevation in feet', t => {
+    t.false(parseElevation('5.5 m') === 5.5);
+    t.false(parseElevation('-23 m') === -23);
+
+    t.true(parseElevation('13.3 ft') === 13.3);
+    t.true(parseElevation('13 ft') === 13.0);
+    t.true(parseElevation(13) === 13.0);
+    t.true(parseElevation('5.5 m') === 18.04461942257218);
     t.true(parseElevation(5.5) === 5.5);
-    t.true(parseElevation('-11ft') === -11);
-    t.true(parseElevation('-23m') === -75.45931758530183);
+    t.true(parseElevation('-11 ft') === -11);
+    t.true(parseElevation('-23 m') === -75.45931758530183);
     t.true(parseElevation(Infinity) === Infinity);
     t.true(parseElevation(-Infinity) === -Infinity);
     t.true(parseElevation('Infinity') === Infinity);

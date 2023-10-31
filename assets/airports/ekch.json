@@ -10,12 +10,13 @@
     "ctr_radius": 80,
     "ctr_ceiling": 19500,
     "initial_alt": 7000,
-    "position": ["N55d37m4.50", "E12d39m21.50", "17ft"],
+    "position": ["N55d37m4.50", "E12d39m21.50", "17 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N55d37m4.50", "E12d39m21.50"],
         "radius_nm": 5.0
     },
+    "has_terrain": false,
     "wind": {
         "angle": 70,
         "speed": 8
@@ -132,7 +133,7 @@
     "restricted": [
         {
             "name": "EKR17",
-            "height": "12000ft",
+            "height": "12000 ft",
             "poly": [
                 ["N55d55m35", "E11d52m31"],
                 ["N55d53m33", "E11d50m14"],
@@ -145,7 +146,7 @@
         },
         {
             "name": "EKR18",
-            "height": "12000ft",
+            "height": "12000 ft",
             "poly": [
                 ["N55d54m55", "E11d51m47"],
                 ["N55d54m00", "E11d57m56"],
@@ -159,17 +160,17 @@
     "runways":[
         {
             "name": ["4R", "22L"],
-            "end": [["N55d36m11.16", "E12d37m58.95", "12ft"], ["N55d37m31.48", "E12d40m03.28", "8ft"]],
+            "end": [["N55d36m11.16", "E12d37m58.95", "12 ft"], ["N55d37m31.48", "E12d40m03.28", "8 ft"]],
             "ils": [true, true]
         },
         {
             "name": ["4L", "22R"],
-            "end": [["N55d35m31.92", "E12d36m12.73", "13ft"], ["N55d36m59.91", "E12d38m28.92", "14ft"]],
+            "end": [["N55d35m31.92", "E12d36m12.73", "13 ft"], ["N55d36m59.91", "E12d38m28.92", "14 ft"]],
             "ils": [true, true]
         },
         {
             "name": ["12", "30"],
-            "end": [["N55d37m39.41", "E12d37m47.02", "13ft"], ["N55d36m45.09", "E12d40m13.86", "8ft"]],
+            "end": [["N55d37m39.41", "E12d37m47.02", "13 ft"], ["N55d36m45.09", "E12d40m13.86", "8 ft"]],
             "ils": [true, true]
         }
     ],
@@ -506,7 +507,7 @@
     "spawnPatterns": [
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.ASTOS.ASTOS",
             "altitude": null,
@@ -540,7 +541,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.KEMAX.KEMAX",
             "altitude": null,
@@ -574,7 +575,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.SIMEG.SIMEG",
             "altitude": null,
@@ -608,7 +609,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.BALOX.BALOX",
             "altitude": null,
@@ -642,7 +643,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.BETUD.BETUD",
             "altitude": null,
@@ -676,7 +677,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.NEXEN.NEXEN",
             "altitude": null,
@@ -710,7 +711,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.KOPEX.KOPEX",
             "altitude": null,
@@ -744,7 +745,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.ODN.ODN",
             "altitude": null,
@@ -778,7 +779,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.MIKSI.MIKSI",
             "altitude": null,
@@ -812,7 +813,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.GOLGA.GOLGA",
             "altitude": null,
@@ -846,7 +847,7 @@
         },
         {
             "origin": "EKCH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EKCH.VEDAR.VEDAR",
             "altitude": null,
@@ -879,7 +880,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EKCH",
             "category": "arrival",
             "route": "TESPI.TESPI.EKCH",
@@ -898,7 +899,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EKCH",
             "category": "arrival",
             "route": "MONAK.MONAK.EKCH",
@@ -923,7 +924,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EKCH",
             "category": "arrival",
             "route": "TUDLO.TUDLO.EKCH",
@@ -947,8 +948,5 @@
                 ["vkg", 21]
             ]
         }
-    ],
-    "maps": {
-        "base": []
-    }
+    ]
 }

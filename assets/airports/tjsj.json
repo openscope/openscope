@@ -10,7 +10,7 @@
     "ctr_radius": 40,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": ["N18d26m21.84", "W66d00m07.69", "9ft"],
+    "position": ["N18d26m21.84", "W66d00m07.69", "9 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N18d26m21.84", "W66d00m07.69"],
@@ -153,15 +153,13 @@
     "runways":[
         {
             "name": ["8", "26"],
-            "name_offset": [[1.2, 0.5], [0, 0]],
-            "end": [["N18d26m19.52", "W66d00m53.51", "8ft"], ["N18d26m57.42", "W65d59m19.97", "7ft"]],
+            "end": [["N18d26m19.52", "W66d00m53.51", "8 ft"], ["N18d26m57.42", "W65d59m19.97", "7 ft"]],
             "delay": [3, 6],
             "ils": [true, false]
         },
         {
             "name": ["10", "28"],
-            "name_offset": [[1, -0.5], [0, 0]],
-            "end": [["N18d26m00.82", "W66d00m49.42", "9ft"], ["N18d26m00.62", "W65d59m26.16", "9ft"]],
+            "end": [["N18d26m00.82", "W66d00m49.42", "9 ft"], ["N18d26m00.62", "W65d59m26.16", "9 ft"]],
             "delay": [3, 5],
             "ils": [true, false]
         }
@@ -255,8 +253,8 @@
             "icao": "BEANO3",
             "name": "Beano Three",
             "entryPoints": {
-                "ELMUC": ["ELMUC", ["SHMUU", "A340-|300"]],
-                "HARDE": ["HARDE", ["SHMUU", "A340-|300"]],
+                "ELMUC": ["ELMUC", ["SHMUU", "A340-|S300"]],
+                "HARDE": ["HARDE", ["SHMUU", "A340-|S300"]],
                 "KATOK": ["KATOK"]
             },
             "body": [["BEANO", "A110|S250"]],
@@ -272,9 +270,9 @@
             "name": "Joshe Three",
             "entryPoints": {
                 "MELLA": ["MELLA"],
-                "SCAPA": ["SCAPA", ["GABYY", "A190|280"]],
-                "ARMUR": ["ARMUR", ["KYAAK", "A190|280"]],
-                "KIKER": ["KIKER", ["ZNDER", "A190|280"]]
+                "SCAPA": ["SCAPA", ["GABYY", "A190|S280"]],
+                "ARMUR": ["ARMUR", ["KYAAK", "A190|S280"]],
+                "KIKER": ["KIKER", ["ZNDER", "A190|S280"]]
             },
             "body": [["JOSHE", "A70"]],
             "rwy": {
@@ -320,11 +318,11 @@
     "spawnPatterns": [
         {
             "origin": "tjsj",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "TJSJ.JETSS1.JUICE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 15,
             "airlines": [
@@ -349,7 +347,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",
@@ -373,7 +371,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",
@@ -389,7 +387,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",
@@ -412,7 +410,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "tjsj",
             "category": "arrival",
             "method": "random",

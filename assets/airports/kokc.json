@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": [35.3930740, -97.6007617, "1296ft"],
+    "position": [35.3930740, -97.6007617, "1296 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [35.3930740, -97.6007617],
@@ -201,32 +201,32 @@
         {
             "name": ["13", "31"],
             "end": [
-                ["N35.4046081", "W97.6159091", "1278ft"],
-                ["N35.3894382", "W97.5974253", "1286ft"]
+                ["N35.4046081", "W97.6159091", "1278 ft"],
+                ["N35.3894382", "W97.5974253", "1286 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["17L", "35R"],
             "end": [
-                ["N35.4051598", "W97.5889466", "1286ft"],
-                ["N35.3782305", "W97.5889253", "1283ft"]
+                ["N35.4051598", "W97.5889466", "1286 ft"],
+                ["N35.3782305", "W97.5889253", "1283 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["17R", "35L"],
             "end": [
-                ["N35.4059491", "W97.6057269", "1281ft"],
-                ["N35.3790257", "W97.6057022", "1263ft"]
+                ["N35.4059491", "W97.6057269", "1281 ft"],
+                ["N35.3790257", "W97.6057022", "1263 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["18", "36"],
             "end": [
-                ["N35.3935433", "W97.6077274", "1274ft"],
-                ["N35.3850866", "W97.6077215", "1271ft"]
+                ["N35.3935433", "W97.6077274", "1274 ft"],
+                ["N35.3850866", "W97.6077215", "1271 ft"]
             ],
             "ils": [false, false]
         }
@@ -647,12 +647,12 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "ROLLS.CAMET3.KOKC35L",
-            "altitude": "29000",
-            "speed": "320",
+            "altitude": 29000,
+            "speed": 320,
             "method": "random",
             "rate": 3.5,
             "airlines": [
@@ -670,12 +670,12 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "RUSTS.GHOST3.KOKC35L",
-            "altitude": "29000",
-            "speed": "320",
+            "altitude": 29000,
+            "speed": 320,
             "method": "random",
             "rate": 2.2,
             "airlines": [
@@ -694,12 +694,12 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "GIMLE.YUCKS3.KOKC35L",
-            "altitude": "29000",
-            "speed": "320",
+            "altitude": 29000,
+            "speed": 320,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -715,12 +715,12 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "MPYRE.MURAH3.KOKC35R",
-            "altitude": "29000",
-            "speed": "320",
+            "altitude": 29000,
+            "speed": 320,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -737,12 +737,12 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "LIT.J14.DWINE.RIFFL3.KOKC35R",
-            "altitude": "37000",
-            "speed": "320",
+            "altitude": 37000,
+            "speed": 320,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -758,12 +758,12 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KOKC",
             "category": "arrival",
             "route": "BYP..ZEMMA.TSDEL3.KOKC35R",
-            "altitude": "37000",
-            "speed": "320",
+            "altitude": 37000,
+            "speed": 320,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -780,11 +780,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.FUNNL3.PHARA..FSM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -800,11 +800,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35L.MUDDE3.MOOSE..UKW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -821,11 +821,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35L.OLGUY3.YOUSE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -841,11 +841,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.KRMSN4.WICKS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -862,11 +862,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.RDHWK3.HOLLE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -883,11 +883,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.SSYKO3.KAYOS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -904,11 +904,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35L.STPHN3.ZEEWE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -925,11 +925,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.TEBRD3.ATOKA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -946,11 +946,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35L.THRPE3.FLECH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -967,11 +967,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.TRUPR3.GTYER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -988,11 +988,11 @@
         },
         {
             "origin": "KOKC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOKC35R.WENDY3.HNGER..PER",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [

@@ -1,3 +1,4 @@
+
 {
     "airac": 2201,
     "radio": {
@@ -11,7 +12,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": [41.3031667, -95.8940556, "985ft"],
+    "position": [41.3031667, -95.8940556, "985 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [41.3031667, -95.8940556],
@@ -128,24 +129,24 @@
         {
             "name": ["14R", "32L"],
             "end": [
-                ["N41d18.830502", "W95d54.365122", "984ft"],
-                ["N41d17.558412", "W95d53.157002", "980ft"]
+                ["N41d18.830502", "W95d54.365122", "984 ft"],
+                ["N41d17.558412", "W95d53.157002", "980 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["14L", "32R"],
             "end": [
-                ["N41d18.811830", "W95d54.025042", "983ft"],
-                ["N41d17.673862", "W95d52.944387", "981ft"]
+                ["N41d18.811830", "W95d54.025042", "983 ft"],
+                ["N41d17.673862", "W95d52.944387", "981 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["18", "36"],
             "end": [
-                ["N41d18.801083", "W95d53.670578", "983ft"],
-                ["N41d17.458483", "W95d53.677163", "981ft"]
+                ["N41d18.801083", "W95d53.670578", "983 ft"],
+                ["N41d17.458483", "W95d53.677163", "981 ft"]
             ],
             "ils": [true, true]
         }
@@ -351,7 +352,7 @@
     },
     "spawnPatterns": [
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "FSD..MZEEE.AANDY1.KOMA32R",
@@ -378,7 +379,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "ONL.HOWRY2.KOMA32R",
@@ -405,7 +406,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "FOD.LANTK1.KOMA32R",
@@ -432,7 +433,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "BDF.J64.LMN.MARWI3.KOMA32L",
@@ -459,7 +460,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "koma",
             "category": "arrival",
             "route": "SLN..HTHWY.TIMMO1.KOMA32L",
@@ -487,11 +488,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.FOD.J82.DBQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -514,11 +515,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.DSM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -541,11 +542,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.FSD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -568,11 +569,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.GEP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -595,11 +596,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.IOW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -622,11 +623,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.LMN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -649,11 +650,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.MCI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -676,11 +677,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.STJ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -703,11 +704,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.BLUFS4.YKN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -730,11 +731,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.ICT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -757,11 +758,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.LBF",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -798,11 +799,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.LNK.J44.MCK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -825,11 +826,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.OBH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -852,11 +853,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.OFK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -879,11 +880,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.ONL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [
@@ -906,11 +907,11 @@
         },
         {
             "origin": "koma",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KOMA32L.CATTL3.PWE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.8,
             "airlines": [

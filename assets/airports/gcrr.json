@@ -10,7 +10,7 @@
     "ctr_radius": 800.0,
     "ctr_ceiling": 24500,
     "initial_alt": 4000,
-    "position": ["N28d56m42.00", "W13d36m18.00"],
+    "position": ["N28d56m42.00", "W13d36m18.00", "14 m"],
     "rangeRings": {
         "enabled": true,
         "center": ["N28d56m42.00", "W13d36m18.00"],
@@ -43,7 +43,7 @@
     "restricted": [
         {
             "name": "D-15",
-            "height": "10000ft",
+            "height": "10000 ft",
             "poly": [
                 ["N28.9533333", "W13.8266833"],
                 ["N28.9667000", "W13.8266833"],
@@ -53,7 +53,7 @@
         },
         {
             "name": "D-3",
-            "height": "6500ft",
+            "height": "6500 ft",
             "poly": [
                 ["N28.3472500", "W14.1555667"],
                 ["N28.2555833", "W14.1555667"],
@@ -63,7 +63,7 @@
         },
         {
             "name": "R-150",
-            "height": "3500ft",
+            "height": "3500 ft",
             "poly": [
                 ["N28.9764167", "W13.7683333"],
                 ["N28.9861167", "W13.8400167"],
@@ -140,8 +140,10 @@
     "runways": [
         {
             "name": ["21", "03"],
-            "name_offset": [[0, 0.3], [0, 0.3]],
-            "end": [["N28d57m18.400", "W13d35m58.670"], ["N28d56m8.9600", "W13d36m38.940"]],
+            "end": [
+                ["N28d57m18.400", "W13d35m58.670", "47 ft"],
+                ["N28d56m8.9600", "W13d36m38.940", "19 ft"]
+            ],
             "delay": [2, 6],
             "ils": [false, true]
         }
@@ -289,7 +291,7 @@
     "spawnPatterns": [
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.SAMAR.SAMAR",
             "altitude": null,
@@ -322,7 +324,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.VASTO.VASTO",
             "altitude": null,
@@ -355,7 +357,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.KORAL.KORAL",
             "altitude": null,
@@ -388,7 +390,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.SOTAD.SOTAD",
             "altitude": null,
@@ -421,7 +423,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.LORPO.LORPO",
             "altitude": null,
@@ -454,7 +456,7 @@
         },
         {
             "origin": "GCRR",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "GCRR.LARYS.LARYS",
             "altitude": null,
@@ -486,7 +488,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "DEVLA.DEVL3P.GCRR",
@@ -508,7 +510,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "TERTO.TERT6P.GCRR",
@@ -529,7 +531,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "LARYS.LARY2P.GCRR",
@@ -543,7 +545,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "GCRR",
             "category": "arrival",
             "route": "RASEP.RASE2P.GCRR",
@@ -556,8 +558,5 @@
                 ["ibb", 3]
             ]
         }
-    ],
-    "maps": {
-        "base": []
-    }
+    ]
 }

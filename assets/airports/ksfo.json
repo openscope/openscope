@@ -11,7 +11,7 @@
     "ctr_radius": 200,
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
-    "position": ["N37d37.13", "W122d22.53", "13ft"],
+    "position": ["N37d37.13", "W122d22.53", "13 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N37d37.13", "W122d22.53"],
@@ -257,7 +257,7 @@
     "restricted":[
         {
             "name": "R-2531",
-            "height": "4000ft",
+            "height": "4000 ft",
             "poly": [
                 ["N37d40m34.000", "W121d33m46.000"],
                 ["N37d40m45.000", "W121d31m33.000"],
@@ -271,32 +271,32 @@
         {
             "name": ["1L", "19R"],
             "end": [
-                ["N37d36.47", "W122d22.982", "10.7ft"],
-                ["N37d37.59", "W122d22.242", "9.2ft"]
+                ["N37d36.47", "W122d22.982", "10.7 ft"],
+                ["N37d37.59", "W122d22.242", "9.2 ft"]
             ],
             "ils": [false, false]
         },
         {
             "name": ["1R", "19L"],
             "end": [
-                ["N37d36.38", "W122d22.862", "11.4ft"],
-                ["N37d37.64", "W122d22.032", "10.5ft"]
+                ["N37d36.38", "W122d22.862", "11.4 ft"],
+                ["N37d37.64", "W122d22.032", "10.5 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["10L", "28R"],
             "end": [
-                ["N37d37.72", "W122d23.602", "5.5ft"],
-                ["N37d36.81", "W122d21.432", "13ft"]
+                ["N37d37.72", "W122d23.602", "5.5 ft"],
+                ["N37d36.81", "W122d21.432", "13 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["10R", "28L"],
             "end": [
-                ["N37d37.58", "W122d23.592", "7.1ft"],
-                ["N37d36.70", "W122d21.502", "12.6ft"]
+                ["N37d37.58", "W122d23.592", "7.1 ft"],
+                ["N37d36.70", "W122d21.502", "12.6 ft"]
             ],
             "ils": [false, true]
         }
@@ -875,11 +875,11 @@
     "spawnPatterns": [
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO28L.GNNRR2.AMAKR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -896,11 +896,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO28L.GNNRR2.ALCOA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -919,11 +919,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO28L.GNNRR2.ALANN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -934,11 +934,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1L.NIITE3.SYRAH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -959,11 +959,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1L.NIITE3.TIPRE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -986,11 +986,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1L.NIITE3.GRTFL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1022,11 +1022,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1R.TRUKN2.SYRAH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1047,11 +1047,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1R.TRUKN2.TIPRE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1074,11 +1074,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1R.TRUKN2.DEDHD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1110,11 +1110,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO28L.SNTNA2.TIPRE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1134,11 +1134,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1L.SSTIK4.LOSHN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1157,11 +1157,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1L.SSTIK4.EBAYE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1180,11 +1180,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO1L.SSTIK4.NTELL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1203,11 +1203,11 @@
         },
         {
             "origin": "KSFO",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSFO28L.OFFSH2.MCKEY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1225,7 +1225,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "AMAKR.BDEGA3.KSFO28L",
@@ -1261,7 +1261,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "INYOE.DYAMD5.KSFO28R",
@@ -1286,7 +1286,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "PAINT.PIRAT2.KSFO28L",
@@ -1309,7 +1309,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KSFO",
             "category": "arrival",
             "route": "SERFR.SERFR3.KSFO28R",

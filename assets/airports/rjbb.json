@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 7000,
     "initial_alt": 3000,
-    "position": ["N34d26m03.00", "E135d13m58.00"],
+    "position": ["N34d26m03.00", "E135d13m58.00", "5.3 m"],
     "rangeRings": {
         "enabled": true,
         "center": ["N34d26m03.00", "E135d13m58.00"],
@@ -132,16 +132,16 @@
         {
             "name": ["06L", "24R"],
             "end": [
-                ["N34d25m42.86", "E135d12m22.33", "122.5ft"],
-                ["N34d27m04.58", "E135d14m24.08", "122.6ft"]
+                ["N34d25m42.86", "E135d12m22.33", "122.5 ft"],
+                ["N34d27m04.58", "E135d14m24.08", "122.6 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["06R", "24L"],
             "end": [
-                ["N34d25m02.56", "E135d13m45.40", "122.8ft"],
-                ["N34d26m14.04", "E135d15m31.92", "123.0ft"]
+                ["N34d25m02.56", "E135d13m45.40", "122.8 ft"],
+                ["N34d26m14.04", "E135d15m31.92", "123.0 ft"]
             ],
             "ils": [true, true]
         }
@@ -494,7 +494,7 @@
     "spawnPatterns": [
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.MAIKO6.MAIKO",
             "altitude": null,
@@ -547,7 +547,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.FERRY5.OYE",
             "altitude": null,
@@ -600,7 +600,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.FERRY5.KTE",
             "altitude": null,
@@ -653,7 +653,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.TOMOH1.KRE",
             "altitude": null,
@@ -706,7 +706,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.TOMOH1.KEC",
             "altitude": null,
@@ -759,7 +759,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.KITAN1.TONDA",
             "altitude": null,
@@ -812,7 +812,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.KITAN1.YOSAK",
             "altitude": null,
@@ -865,7 +865,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.SUSAN1.TONDA",
             "altitude": null,
@@ -918,7 +918,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.SUSAN1.YOSAK",
             "altitude": null,
@@ -971,7 +971,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.KNE1.NARAH",
             "altitude": null,
@@ -1024,7 +1024,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.KNE1.SHTLE",
             "altitude": null,
@@ -1077,7 +1077,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.KNE1.GUJYO",
             "altitude": null,
@@ -1130,7 +1130,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.NANKO1.SIGAK",
             "altitude": null,
@@ -1183,7 +1183,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.NANKO1.KCC",
             "altitude": null,
@@ -1236,7 +1236,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.HELEN1.SHION",
             "altitude": null,
@@ -1289,7 +1289,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.HELEN1.SOUJA",
             "altitude": null,
@@ -1342,7 +1342,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.HELEN1.WASYU",
             "altitude": null,
@@ -1395,7 +1395,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.HELEN1.HABAR",
             "altitude": null,
@@ -1448,7 +1448,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.HELEN1.CHIZU",
             "altitude": null,
@@ -1501,7 +1501,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.IWAYA1.SHION",
             "altitude": null,
@@ -1554,7 +1554,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.IWAYA1.SOUJA",
             "altitude": null,
@@ -1607,7 +1607,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.IWAYA1.WASYU",
             "altitude": null,
@@ -1660,7 +1660,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.IWAYA1.HABAR",
             "altitude": null,
@@ -1713,7 +1713,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.IWAYA1.CHIZU",
             "altitude": null,
@@ -1766,7 +1766,7 @@
         },
         {
             "origin": "RJBB",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "RJBB.DAISY1.HIBIS",
             "altitude": null,
@@ -1818,7 +1818,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJBB",
             "category": "arrival",
             "route": "SUC.BECKY.RJBB",
@@ -1854,7 +1854,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJBB",
             "category": "arrival",
             "route": "KEC.CANDY.RJBB",
@@ -1872,7 +1872,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJBB",
             "category": "arrival",
             "route": "TAPOP.CANDY.RJBB",
@@ -1901,7 +1901,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJBB",
             "category": "arrival",
             "route": "FUE.BERTH.RJBB",
@@ -1936,7 +1936,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "RJBB",
             "category": "arrival",
             "route": "OOITA.BERTH.RJBB",

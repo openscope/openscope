@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 4000,
-    "position": ["N52d33m33.53", "E13d17m16.82", "122.0ft"],
+    "position": ["N52d33m33.53", "E13d17m16.82", "122.0 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N52d33m33.53", "E13d17m16.82"],
@@ -62,7 +62,7 @@
         }
     ],
     "fixes": {
-        "_EDDT016060": ["N53d30.15m0", "E13d50.00m0"],
+        "_EDDT016060": ["N53d30.15", "E13d50.00"],
         "TGL":   ["N52d33m41.40", "E13d17m15.20"],
         "BATEL": ["N52d32m49.00", "E11d05m59.00"],
         "VIBIS": ["N52d58m30.74", "E12d20m18.90"],
@@ -222,15 +222,13 @@
     "runways": [
         {
             "name": ["08L", "26R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N52d33m27.05", "E13d15m56.74", "110ft"], ["N52d33m43.02", "E13d18m35.01", "117ft"]],
+            "end": [["N52d33m27.05", "E13d15m56.74", "110 ft"], ["N52d33m43.02", "E13d18m35.01", "117 ft"]],
             "length": 3.0095,
             "ils": [true, true]
         },
         {
             "name": ["08R","26L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N52d33m24.05", "E13d16m29.96", "109ft"], ["N52d33m36.47", "E13d18m36.09", "121ft"]],
+            "end": [["N52d33m24.05", "E13d16m29.96", "109 ft"], ["N52d33m36.47", "E13d18m36.09", "121 ft"]],
             "length": 2.414,
             "ils": [true, true]
         }
@@ -332,7 +330,7 @@
     "spawnPatterns": [
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.BKD.BKD",
             "altitude": null,
@@ -355,7 +353,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.BRANE.BRANE",
             "altitude": null,
@@ -378,7 +376,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.GERGA.GERGA",
             "altitude": null,
@@ -401,7 +399,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.RAKIT.RAKIT",
             "altitude": null,
@@ -424,7 +422,7 @@
         },
         {
             "origin": "EDDT",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDT.TERDA.TERDA",
             "altitude": null,
@@ -446,7 +444,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "BATEL..GIRIT..NASAT",
@@ -463,7 +461,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "_EDDT016060..GOLBO..NASAT",
@@ -478,7 +476,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "RUDAK..KLF..IRMAS",
@@ -493,7 +491,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "AKUDI..ATGUP..NATAV",
@@ -508,7 +506,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDT",
             "category": "arrival",
             "route": "NUKRO..FWE",
@@ -524,8 +522,5 @@
                 ["thy", 5]
             ]
         }
-    ],
-    "maps": {
-        "base": []
-    }
+    ]
 }

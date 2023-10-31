@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 12000,
     "initial_alt": 4000,
-    "position": ["N30.195105", "W97.666406", "542ft"],
+    "position": ["N30.195105", "W97.666406", "542 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [30.195105, -97.666406],
@@ -179,8 +179,8 @@
         {
             "name": ["18L", "36R"],
             "end": [
-                ["N30d12.23", "W97d39.47", "491ft"],
-                ["N30d10.75", "W97d39.43", "473ft"]
+                ["N30d12.23", "W97d39.47", "491 ft"],
+                ["N30d10.75", "W97d39.43", "473 ft"]
            ],
             "ils": [true, true],
             "ils_distance": [25, 25],
@@ -189,8 +189,8 @@
         {
             "name": ["18R", "36L"],
             "end": [
-                ["N30d12.82", "W97d40.76", "541ft"],
-                ["N30d10.80", "W97d40.71", "487ft"]
+                ["N30d12.82", "W97d40.76", "541 ft"],
+                ["N30d10.80", "W97d40.71", "487 ft"]
            ],
             "ils": [true, true],
             "ils_distance": [25, 25],
@@ -536,11 +536,11 @@
     "spawnPatterns": [
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18R.ELOEL3.KLNGR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.46,
             "airlines": [
@@ -557,11 +557,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18R.ELOEL3.FORSS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.54,
             "airlines": [
@@ -571,11 +571,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18R.ELOEL3.ABI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.42,
             "airlines": [
@@ -585,11 +585,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18L.ILEXY3.ZENZI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.20,
             "airlines": [
@@ -613,11 +613,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18L.ILEXY3.JAYJO.V306.BLUBL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.67,
             "airlines": [
@@ -629,11 +629,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18R.MUCKY3.MUCKY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.75,
             "airlines": [
@@ -651,11 +651,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18R.AEROZ2.SJT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.38,
             "airlines": [
@@ -671,11 +671,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18L.AUS6.AGJ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.04,
             "airlines": [
@@ -687,11 +687,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18R.BNDIA3.BNDIA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.167,
             "airlines": [
@@ -703,11 +703,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18L.SAYBR3.SAYBR",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.46,
             "airlines": [
@@ -717,11 +717,11 @@
         },
         {
             "origin": "KAUS",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KAUS18L.CWK7.ACT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.96,
             "airlines": [
@@ -730,7 +730,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "WINDU.SEWZY6.KAUS18L",
@@ -759,7 +759,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "UCOKA.LAIKS3.KAUS18R",
@@ -782,7 +782,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "HFMAN.DXEEE2.KAUS18R",
@@ -799,7 +799,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "IAH..LUKKN.WLEEE6.KAUS18L",
@@ -822,7 +822,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "AGJ..CWK",
@@ -836,7 +836,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "BWD..CWK",
@@ -850,7 +850,7 @@
           ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KAUS",
             "category": "arrival",
             "route": "SJT..CWK",

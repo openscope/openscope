@@ -11,7 +11,7 @@
     "ctr_radius": 100,
     "ctr_ceiling": 24500,
     "initial_alt": 5000,
-    "position": [-34.832742948940826,-56.02519225301508, "105.0ft"],
+    "position": [-34.832742948940826,-56.02519225301508, "105.0 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [-34.832742948940826,-56.02519225301508],
@@ -398,7 +398,7 @@
         },
         {
             "name": "SU-P15",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.39100", "W55.28276"],
                 ["S34.39104", "W55.28219"],
@@ -524,7 +524,7 @@
         },
         {
             "name": "SU-P2",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.98833", "W54.88045"],
                 ["S34.98851", "W54.87758"],
@@ -650,7 +650,7 @@
         },
         {
             "name": "SU-P20",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.62372", "W56.64553"],
                 ["S34.62378", "W56.64467"],
@@ -776,7 +776,7 @@
         },
         {
             "name": "SU-P21",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.90056", "W54.98500"],
                 ["S34.90056", "W54.94917"],
@@ -787,7 +787,7 @@
         },
         {
             "name": "SU-P25",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.81578", "W56.24221"],
                 ["S34.81580", "W56.24193"],
@@ -913,7 +913,7 @@
         },
         {
             "name": "SU-P26",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.86572", "W56.22915"],
                 ["S34.86576", "W56.22857"],
@@ -1039,7 +1039,7 @@
         },
         {
             "name": "SU-P27",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.83755", "W54.73079"],
                 ["S34.83763", "W54.72965"],
@@ -1165,7 +1165,7 @@
         },
         {
             "name": "SU-P28",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.78872", "W56.34914"],
                 ["S34.78878", "W56.34828"],
@@ -1291,7 +1291,7 @@
         },
         {
             "name": "SU-P29",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.78744", "W56.23027"],
                 ["S34.78746", "W56.22998"],
@@ -1417,7 +1417,7 @@
         },
         {
             "name": "SU-P30",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.83019", "W56.08790"],
                 ["S34.83022", "W56.08747"],
@@ -1543,7 +1543,7 @@
         },
         {
             "name": "SU-P31",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.51911", "W56.26082"],
                 ["S34.51913", "W56.26054"],
@@ -1669,7 +1669,7 @@
         },
         {
             "name": "SU-P33",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.83272", "W54.95360"],
                 ["S34.83274", "W54.95332"],
@@ -1795,7 +1795,7 @@
         },
         {
             "name": "SU-P37",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.35436", "W55.17902"],
                 ["S34.35439", "W55.17859"],
@@ -1921,7 +1921,7 @@
         },
         {
             "name": "SU-P41",
-            "height": "450m",
+            "height": "450 m",
             "poly": [
                 ["S34.89867", "W56.19945"],
                 ["S34.89871", "W56.19891"],
@@ -2047,7 +2047,7 @@
         },
         {
             "name": "SU-P42",
-            "height": "450m",
+            "height": "450 m",
             "poly": [
                 ["S34.85173", "W56.19668"],
                 ["S34.85176", "W56.19613"],
@@ -2173,7 +2173,7 @@
         },
         {
             "name": "SU-P9",
-            "height": "600m",
+            "height": "600 m",
             "poly": [
                 ["S34.93350", "W55.92581"],
                 ["S34.93354", "W55.92524"],
@@ -2299,7 +2299,7 @@
         },
         {
             "name": "SU-R5 (E)",
-            "height": "7000ft",
+            "height": "7000 ft",
             "poly": [
                 ["S34.55000", "W55.86667"],
                 ["S34.53333", "W55.61667"],
@@ -2312,7 +2312,7 @@
         },
         {
             "name": "SU-R5 (W)",
-            "height": "5000ft",
+            "height": "5000 ft",
             "poly": [
                 ["S34.73374", "W55.93271"],
                 ["S34.73499", "W55.93190"],
@@ -2422,7 +2422,7 @@
         },
         {
             "name": "SU-R8",
-            "height": "1000ft",
+            "height": "1000 ft",
             "poly": [
                 ["S34.78583", "W56.16202"],
                 ["S34.78593", "W56.16042"],
@@ -2551,16 +2551,16 @@
         {
             "name": ["01", "19"],
             "end": [
-                ["S34d50m31.09", "W56d01m50.65", "62ft"],
-                ["S34d49m18.08", "W56d01m51.56", "51ft"]
+                ["S34d50m31.09", "W56d01m50.65", "62 ft"],
+                ["S34d49m18.08", "W56d01m51.56", "51 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["06", "24"],
             "end": [
-                ["S34d50m31.64", "W56d02m12.96", "59ft"],
-                ["S34d49m39.56", "W56d00m47.49", "102ft"]
+                ["S34d50m31.64", "W56d02m12.96", "59 ft"],
+                ["S34d49m39.56", "W56d00m47.49", "102 ft"]
             ],
             "ils": [false, true]
         }
@@ -3027,11 +3027,11 @@
     "spawnPatterns": [
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.DAGU1A.UGIMI.A306.EZE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.94,
             "airlines": [
@@ -3048,11 +3048,11 @@
         },
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.AKPO1B.AKPOD.UM540.ILTOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.97,
             "airlines": [
@@ -3067,11 +3067,11 @@
         },
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.CRR1R.NIMBO.UL417.GUA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.23,
             "airlines": [
@@ -3080,11 +3080,11 @@
         },
         {
             "origin": "SUMU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "SUMU06.CRR1R.MONSA.UP526.MCS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.62,
             "airlines": [
@@ -3100,7 +3100,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SUMU",
             "category": "arrival",
             "route": "EZE.A305.TOKAM.TOKA1C.SUMU06",
@@ -3122,7 +3122,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SUMU",
             "category": "arrival",
             "route": "GUA.UL417.NIMBO.NIMB1C.SUMU06",
@@ -3139,7 +3139,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SUMU",
             "category": "arrival",
             "route": "STO.W25.DRACA.DRAC1C.SUMU06",
@@ -3155,7 +3155,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SUMU",
             "category": "arrival",
             "route": "MCS.UP526.MONSA.MONS1C.SUMU06",
@@ -3174,7 +3174,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SUMU",
             "category": "arrival",
             "route": "MLO.UM792.TELAK.TELA1C.SUMU06",
@@ -3193,7 +3193,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "SUMU",
             "category": "arrival",
             "route": "TOLEP.UM424.LDS.LDS1C.SUMU06",

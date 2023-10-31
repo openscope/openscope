@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 21500,
     "initial_alt": 7000,
-    "position": ["N60d12m10.00", "E11d05m02.00", "681ft"],
+    "position": ["N60d12m10.00", "E11d05m02.00", "681 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N60d12m10.00", "E11d05m02.00"],
@@ -334,7 +334,7 @@
     "restricted": [
         {
             "name": "R102",
-            "height": "3000ft",
+            "height": "3000 ft",
             "poly": [
                 ["N59.933289800", "E10.733333300"],
                 ["N59.933266900", "E10.735069800"],
@@ -460,7 +460,7 @@
         },
         {
             "name": "D104",
-            "height": "4000ft",
+            "height": "4000 ft",
             "poly": [
                 ["N60.725787800", "E10.546666700"],
                 ["N60.725764900", "E10.548445600"],
@@ -589,16 +589,16 @@
         {
             "name": ["01L", "19R"],
             "end": [
-                ["N60d11m06.00", "E11d04m25.48", "655.5ft"],
-                ["N60d12m57.84", "E11d05m29.99", "675.1ft"]
+                ["N60d11m06.00", "E11d04m25.48", "655.5 ft"],
+                ["N60d12m57.84", "E11d05m29.99", "675.1 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["01R", "19L"],
             "end": [
-                ["N60d10m32.72", "E11d06m28.02", "669.9ft"],
-                ["N60d12m04.35", "E11d07m20.95", "681.0ft"]
+                ["N60d10m32.72", "E11d06m28.02", "669.9 ft"],
+                ["N60d12m04.35", "E11d07m20.95", "681.0 ft"]
             ],
             "ils": [true, true]
         }
@@ -1207,11 +1207,11 @@
     "spawnPatterns": [
        {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.ATLAP5A.ATLAP.P600.KLONN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.2,
             "airlines": [
@@ -1224,11 +1224,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.ATLAP5A.ATLAP.N623.FLS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3,
             "airlines": [
@@ -1241,11 +1241,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.EVTOG5A.EVTOG.L997.VIG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1260,11 +1260,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.MASEV4A.MASEV.Z183.ELTOK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -1284,11 +1284,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.NUVSA4A.NUVSA.Z125.SOMUB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.1,
             "airlines": [
@@ -1300,11 +1300,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.OKSAT4A.OKSAT.L996.TOPLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1,
             "airlines": [
@@ -1319,11 +1319,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.TOR4A.TOR.P615.AAL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -1345,11 +1345,11 @@
         },
         {
             "origin": "ENGM",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "ENGM01L.TOR4A.TOR.P850.DANKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.1,
             "airlines": [
@@ -1366,7 +1366,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "FLS.L24.ADOPI.ADOPI3L.ENGM01L",
@@ -1385,7 +1385,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "GIGIR.Z313.BELGU.BELGU3L.ENGM01L",
@@ -1404,7 +1404,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "ARS.N623.ESEBA.ESEBA4L.ENGM01R",
@@ -1428,7 +1428,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "OVDAL.P600.INREX.INREX4L.ENGM01R",
@@ -1444,7 +1444,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "SABAK.L997.LUNIP.LUNIP4L.ENGM01R",
@@ -1463,7 +1463,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "ENGM",
             "category": "arrival",
             "route": "ZOL.Z132.OSKOM.Z316.RIPAM.RIPAM3L.ENGM01L",

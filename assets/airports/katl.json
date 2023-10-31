@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 14000,
     "initial_alt": 10000,
-    "position": ["N33.6367", "W84.427864", "1026ft"],
+    "position": ["N33.6367", "W84.427864", "1026 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [33.631832, -84.418441],
@@ -364,40 +364,40 @@
         {
             "name": ["8L", "26R"],
             "end": [
-                ["N33d38m58.31", "W84d26m20.71", "1015ft"],
-                ["N33d38m58.34", "W84d24m34.24", "990ft"]
+                ["N33d38m58.31", "W84d26m20.71", "1015 ft"],
+                ["N33d38m58.34", "W84d24m34.24", "990 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["8R", "26L"],
             "end": [
-                ["N33d38m48.42", "W84d26m18.18", "1024ft"],
-                ["N33d38m48.45", "W84d24m19.09", "995ft"]
+                ["N33d38m48.42", "W84d26m18.18", "1024 ft"],
+                ["N33d38m48.45", "W84d24m19.09", "995 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["9L", "27R"],
             "end": [
-                ["N33d38m04.94", "W84d26m52.75", "1019ft"],
-                ["N33d38m04.92", "W84d24m32.15", "977ft"]
+                ["N33d38m04.94", "W84d26m52.75", "1019 ft"],
+                ["N33d38m04.92", "W84d24m32.15", "977 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["9R", "27L"],
             "end": [
-                ["N33d37m54.52", "W84d26m52.75", "1026ft"],
-                ["N33d37m54.55", "W84d25m06.31", "985ft"]
+                ["N33d37m54.52", "W84d26m52.75", "1026 ft"],
+                ["N33d37m54.55", "W84d25m06.31", "985 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["10", "28"],
             "end": [
-                ["N33d37m12.97", "W84d26m52.43", "1000ft"],
-                ["N33d37m13.01", "W84d25m06.01", "998ft"]
+                ["N33d37m12.97", "W84d26m52.43", "1000 ft"],
+                ["N33d37m13.01", "W84d25m06.01", "998 ft"]
             ],
             "ils": [true, true]
         }
@@ -1313,11 +1313,11 @@
     "spawnPatterns": [
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.BANNG2.LUCKK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1337,11 +1337,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.CUTTN2.HANKO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1361,11 +1361,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.GAIRY2.IRQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1385,11 +1385,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.JACCC2.KELLN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1409,11 +1409,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.KAJIN2.STNGA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -1433,11 +1433,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.NASSA2.VUZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1457,11 +1457,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.PADGT2.SMTTH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1485,11 +1485,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.PENCL2.EMAHH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1513,11 +1513,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.PHIIL2.GRD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1537,11 +1537,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.PLMMR2.SPA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 8,
             "airlines": [
@@ -1569,11 +1569,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.POUNC2.STEIT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1593,11 +1593,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.SMKEY2.BOBBD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1621,11 +1621,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.SMLTZ2.WALET",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1645,11 +1645,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL26L.VARNM2.RESPE",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1673,11 +1673,11 @@
         },
         {
             "origin": "KATL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KATL27R.VRSTY2.MCN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1696,7 +1696,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KATL",
             "category": "arrival",
             "route": "MTHEW.CHPPR1.KATL26R",
@@ -1723,7 +1723,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KATL",
             "category": "arrival",
             "route": "RUSSA.GLAVN1.KATL26R",
@@ -1746,7 +1746,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KATL",
             "category": "arrival",
             "route": "GCV..SHYRE.HOBTT2.KATL28",
@@ -1769,7 +1769,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "katl",
             "category": "arrival",
             "route": "VQQ..AMG..LARZZ.JJEDI2.KATL27L",
@@ -1791,7 +1791,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "katl",
             "category": "arrival",
             "route": "HLRRY.ONDRE1.KATL26R",
@@ -1814,7 +1814,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "katl",
             "category": "arrival",
             "route": "FLASK.OZZZI1.KATL27L",

@@ -10,7 +10,7 @@
     "ctr_radius": 90,
     "ctr_ceiling": 28500,
     "initial_alt": 5000,
-    "position": ["N53d21m14", "W02d16m30", "257ft"],
+    "position": ["N53d21m14", "W02d16m30", "257 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N53d21m14", "W02d16m30"],
@@ -331,7 +331,7 @@
     "restricted": [
         {
             "name": "EG R311",
-            "height": "2200ft",
+            "height": "2200 ft",
             "poly": [
                 [53.297170800,-2.952222200],
                 [53.297125000,-2.949307800],
@@ -458,7 +458,7 @@
         },
         {
             "name": "EG R312",
-            "height": "2100ft",
+            "height": "2100 ft",
             "poly": [
                 [53.809390200, -2.804166700],
                 [53.809344300, -2.801217000],
@@ -585,7 +585,7 @@
         },
         {
             "name": "EG R322",
-            "height": "2100ft",
+            "height": "2100 ft",
             "poly": [
                 [53.449392200, -4.481111100],
                 [53.449346300, -4.478186400],
@@ -712,7 +712,7 @@
         },
         {
             "name": "EG R444",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 [54.062999900, -2.914444400],
                 [54.062954000, -2.911477000],
@@ -839,7 +839,7 @@
         },
         {
             "name": "EG R445",
-            "height": "2000ft",
+            "height": "2000 ft",
             "poly": [
                 [54.118041500, -3.236111100],
                 [54.118030100, -3.235368200],
@@ -969,16 +969,16 @@
         {
             "name": ["05L", "23R"],
             "end": [
-                ["N53d20m51.20", "W002d17m15.95", "212ft"],
-                ["N53d21m40.75", "W002d15m33.41", "249ft"]
+                ["N53d20m51.20", "W002d17m15.95", "212 ft"],
+                ["N53d21m40.75", "W002d15m33.41", "249 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["05R", "23L"],
             "end": [
-                ["N53d19m55.10", "W002d18m38.38", "186ft"],
-                ["N53d20m53.35", "W002d16m37.95", "227ft"]
+                ["N53d19m55.10", "W002d18m38.38", "186 ft"],
+                ["N53d20m53.35", "W002d16m37.95", "227 ft"]
             ],
             "ils": [true, false]
         }
@@ -1666,11 +1666,11 @@
     "spawnPatterns": [
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.EKLAD1Y.EKLAD.Y53.WAL.M146.IPSET",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1683,11 +1683,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.KUXEM1Y.KUXEM.P17.NOKIN.N862.DOBEM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1699,11 +1699,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.LISTO2Y.LISTO.L612.HON.UN859.KIDLI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1713,11 +1713,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.POL1Y.POL.UP17.DIGBI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -1730,11 +1730,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.SANBA1Y.SANBA.UN859.CPT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1750,11 +1750,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.SONEX1Y.SONEX.L975.DESIG.L603.LAMSO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1777,11 +1777,11 @@
         },
         {
             "origin": "EGCC",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EGCC23L.EKLAD1Y.EKLAD.Y53.WAL.L10.PENIL.L70.BAGSO..DUB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5,
             "airlines": [
@@ -1790,7 +1790,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "DUB.L975.MALUD.MIRSI2B.EGCC23R",
@@ -1804,7 +1804,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "MIMVA.L602.NALAX.L46.LIBSO.ROSUN1G.EGCC23R",
@@ -1823,7 +1823,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "NATEB.UP18.TILNI.ROSUN4D.EGCC23R",
@@ -1838,7 +1838,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "DCS.UL612.LAKEY.ROSUN2A.EGCC23R",
@@ -1852,7 +1852,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "RINGA.Q39.DANDI.UL28.PENIL.MIRSI2C.EGCC23R",
@@ -1867,7 +1867,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "PEPOD.Q38.GIGTO.MIRSI2D.EGCC23R",
@@ -1880,7 +1880,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "LESTA.DAYNE1B.EGCC23R",
@@ -1911,7 +1911,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EGCC",
             "category": "arrival",
             "route": "KESUP.UP16.MONTY.MIRSI1A.EGCC23R",

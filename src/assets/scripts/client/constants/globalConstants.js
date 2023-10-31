@@ -31,6 +31,7 @@ export const REGEX = {
     ALTITUDE_RESTRICTION: /^A([0-9]{1,3})([+-]?)$/,
     COMPASS_DIRECTION: /^[NESW]/,
     DOUBLE_DOT: /\.\./g,
+    ELEVATION: /^(?<elevationComponent>-?((\d+(\.\d+)?(\s(?<unitComponent>(ft|m)))?)|Infinity))$/i,
     HOLD_DISTANCE: /^((?:0(?=\.[1-9])|[1-9]|[1-4][0-9])(?:\.[0-9])?)(nm|min)$/i,
     LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
     SPEED_RESTRICTION: /^S([1-9][0-9]{2})([+-]?)$/,

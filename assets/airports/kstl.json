@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": ["N38d44m55.31", "W90d22m12.01", "618ft"],
+    "position": ["N38d44m55.31", "W90d22m12.01", "618 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N38d44m55.31", "W90d22m12.01"],
@@ -287,32 +287,32 @@
         {
             "name": ["6", "24"],
             "end": [
-                ["N38d44m48.04", "W90d22m52.43", "551ft"],
-                ["N38d45m22.38", "W90d21m27.02", "534ft"]
+                ["N38d44m48.04", "W90d22m52.43", "551 ft"],
+                ["N38d45m22.38", "W90d21m27.02", "534 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["11", "29"],
             "end": [
-                ["N38d45m35.83", "W90d24m35.55", "618ft"],
-                ["N38d44m48.46", "W90d22m59.39", "556ft"]
+                ["N38d45m35.83", "W90d24m35.55", "618 ft"],
+                ["N38d44m48.46", "W90d22m59.39", "556 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["12L", "30R"],
             "end": [
-                ["N38d45m06.41", "W90d21m58.66", "528ft"],
-                ["N38d44m18.99", "W90d20m22.51", "605ft"]
+                ["N38d45m06.41", "W90d21m58.66", "528 ft"],
+                ["N38d44m18.99", "W90d20m22.51", "605 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["12R", "30L"],
             "end": [
-                ["N38d45m14.05", "W90d22m44.97", "542ft"],
-                ["N38d44m16.01", "W90d20m47.27", "586ft"]
+                ["N38d45m14.05", "W90d22m44.97", "542 ft"],
+                ["N38d44m16.01", "W90d20m47.27", "586 ft"]
             ],
             "ils": [true, true]
         }
@@ -1039,11 +1039,11 @@
     "spawnPatterns": [
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.BERYY4.LIT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1056,11 +1056,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.BGOOD4.VIH",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1075,11 +1075,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.BLUES6.IIU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1088,11 +1088,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.BRAKK4.HLV",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1109,11 +1109,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.CARDS1.BDF",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1122,11 +1122,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.CHUUC4.MAW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1141,11 +1141,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.DRUSE4.BNA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1161,11 +1161,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.EEMOS4.NEENS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1180,11 +1180,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.GATWY9.ROD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1193,11 +1193,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.JAHNY4.MAP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1211,11 +1211,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.JHART5.VHP",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1231,11 +1231,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.KSHEE4.SEXTN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1249,11 +1249,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.LINDY6.ARG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1262,11 +1262,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.NATCA4.SPI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1279,11 +1279,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.OZARK7.MCM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1292,11 +1292,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL29.PLESS5.BNA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1305,11 +1305,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.TEDDD4.IIU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1324,11 +1324,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.TURBO9.GENTS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1337,11 +1337,11 @@
         },
         {
             "origin": "kstl",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KSTL30L.WHRLI5.MCM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1354,7 +1354,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "VHP.AARCH2.KSTL30R",
@@ -1373,7 +1373,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "VISQA.BOOSH2.KSTL29",
@@ -1393,7 +1393,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "BUM.KAYLA3.KSTL29",
@@ -1413,7 +1413,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "GUZIK.LORLE3.KSTL30R",
@@ -1431,7 +1431,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kstl",
             "category": "arrival",
             "route": "SPI.VLA9.KSTL30R",

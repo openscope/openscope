@@ -117,7 +117,7 @@ export const SMALL_FIX_LIST_MOCK = {
 
 export const AIRPORT_JSON_FIXES_MOCK = {
     magnetic_north: 11.9,
-    position: ['N36.080056', 'W115.15225', '2181ft'],
+    position: ['N36.080056', 'W115.15225', '2181 ft'],
     fixes: FIX_LIST_MOCK
 };
 

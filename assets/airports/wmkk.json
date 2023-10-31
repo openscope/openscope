@@ -12,7 +12,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
     "initial_alt": 3000,
-    "position": ["N02d44m36.00", "E101d41m53.00"],
+    "position": ["N02d44m36.00", "E101d41m53.00", "69 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N02d44m36.00", "E101d41m53.00"],
@@ -151,23 +151,26 @@
     "runways": [
         {
             "name": ["14L", "32R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N02d46m42.52", "E101d42m06.67"], ["N02d44m54.03", "E101d43m19.41"]],
-            "length": 4.019,
+            "end": [
+                ["N02d46m42.52", "E101d42m06.67", "54 ft"],
+                ["N02d44m54.03", "E101d43m19.41", "69 ft"]
+            ],
             "ils": [true, true]
         },
         {
             "name": ["14R", "32L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N02d44m35.84", "E101d41m52.63"], ["N02d42m47.86", "E101d43m05.03"]],
-            "length": 4,
+            "end": [
+                ["N02d44m35.84", "E101d41m52.63", "54 ft"],
+                ["N02d42m47.86", "E101d43m05.03", "48 ft"]
+            ],
             "ils": [true, true]
         },
         {
             "name": ["15", "33"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N02d44m17.57", "E101d40m38.97"], ["N02d42m30.67" ,"E101d41m50.65"]],
-            "length": 3.96,
+            "end": [
+                ["N02d44m17.57", "E101d40m38.97", "28 ft"],
+                ["N02d42m30.67" ,"E101d41m50.65", "28 ft"]
+            ],
             "ils": [true, true]
         }
     ],
@@ -729,7 +732,7 @@
     "spawnPatterns": [
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.AGOSA.AGOSA",
             "altitude": null,
@@ -767,7 +770,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.RUMID.RUMID",
             "altitude": null,
@@ -805,7 +808,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.BATAR.BATAR",
             "altitude": null,
@@ -843,7 +846,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.MITOS.MITOS",
             "altitude": null,
@@ -881,7 +884,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.DUMOK.DUMOK",
             "altitude": null,
@@ -919,7 +922,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.PIBOS.PIBOS",
             "altitude": null,
@@ -957,7 +960,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.ISTAN.ISTAN",
             "altitude": null,
@@ -995,7 +998,7 @@
         },
         {
             "origin": "WMKK",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "WMKK.KIMAT.KIMAT",
             "altitude": null,
@@ -1032,7 +1035,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "DAKUS.DAKUS1V.WMKK",
@@ -1059,7 +1062,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "PULIP.PULIP1V.WMKK",
@@ -1086,7 +1089,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "SAROX.SAROX1V.WMKK",
@@ -1113,7 +1116,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "GUPTA.GUPTA1V.WMKK",
@@ -1138,7 +1141,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "SALAX.SALAX1V.WMKK",
@@ -1163,7 +1166,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "INTOT.INTOT1V.WMKK",
@@ -1188,7 +1191,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "INTOT.INTOT1V.WMKK",
@@ -1200,7 +1203,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "BATU_ARANG.KIKAL3.WMKK",
@@ -1227,7 +1230,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "GOKAD.OLBON1B.WMKK",
@@ -1252,7 +1255,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "WMKK",
             "category": "arrival",
             "route": "DUMOK.LAPIR3.WMKK",

@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 16000,
     "initial_alt": 5000,
-    "position": ["N25d47m43.3", "W80d17m24.4"],
+    "position": ["N25d47m43.3", "W80d17m24.4", "9 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N25d47m43.3", "W80d17m24.4"],
@@ -233,8 +233,8 @@
         {
             "name": ["8L", "26R"],
             "end": [
-                ["N25d48.173872", "W80d18.092530"],
-                ["N25d48.238693", "W80d16.525820"]
+                ["N25d48.173872", "W80d18.092530", "9 ft"],
+                ["N25d48.238693", "W80d16.525820", "9 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 3.00]
@@ -242,8 +242,8 @@
         {
             "name": ["8R", "26L"],
             "end": [
-                ["N25d48.041917", "W80d18.086010"],
-                ["N25d48.121120", "W80d16.172155"]
+                ["N25d48.041917", "W80d18.086010", "9 ft"],
+                ["N25d48.121120", "W80d16.172155", "9 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 3.00]
@@ -251,8 +251,8 @@
         {
             "name": ["9", "27"],
             "end": [
-                ["N25d47.165675", "W80d18.890300"],
-                ["N25d47.263888", "W80d16.519535"]
+                ["N25d47.165675", "W80d18.890300", "8 ft"],
+                ["N25d47.263888", "W80d16.519535", "9 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 3.00]
@@ -260,8 +260,8 @@
         {
             "name": ["12", "30"],
             "end": [
-                ["N25d47.957103", "W80d18.137422"],
-                ["N25d47.197495", "W80d16.652202"]
+                ["N25d47.957103", "W80d18.137422", "9 ft"],
+                ["N25d47.197495", "W80d16.652202", "9 ft"]
             ],
             "ils": [true, true],
             "glideslope": [3.00, 3.00]
@@ -834,11 +834,11 @@
     "spawnPatterns": [
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.WINCO2.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -858,11 +858,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -882,11 +882,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.HEDLY2.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -909,11 +909,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -936,11 +936,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.VALLY2.VALLY..PERMT..ADOOR..SNABS..EMCEE..SEELO..ILM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -962,11 +962,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.PADUS2.PADUS..ZFP..FLINY..HAANA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -980,11 +980,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.PADUS..ZFP..FLINY..HAANA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -998,11 +998,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.BEECH..BAHMA..ISAAC..OYSTA..HANKX..MAMML..DIAZZ",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1022,11 +1022,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.SKIPS2.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1047,11 +1047,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1072,11 +1072,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.EONNS2.EONNS..ELLEE..URSUS..GELOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1096,11 +1096,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.EONNS..ELLEE..URSUS..GELOG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1120,11 +1120,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MNATE2.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1146,11 +1146,11 @@
         },
         {
             "origin": "kmia",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KMIA8R.MIA6.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1171,7 +1171,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "JORAY.HILEY7.KMIA9",
@@ -1214,7 +1214,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "BAGGS.SSCOT5.KMIA9",
@@ -1238,7 +1238,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "URSUS.FLIPR6.KMIA9",
@@ -1271,7 +1271,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kmia",
             "category": "arrival",
             "route": "MTH.CURSO5.KMIA9",

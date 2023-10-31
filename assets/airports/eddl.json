@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
-    "position": ["N51d16m51.33", "E006d45m26.32", "147ft"],
+    "position": ["N51d16m51.33", "E006d45m26.32", "147 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N51d16m51.33", "E006d45m26.32"],
@@ -649,7 +649,7 @@
     "restricted": [
         {
             "name": "ED-R 111",
-            "height": "2300ft",
+            "height": "2300 ft",
             "poly": [
                 [50.933295400, 6.416666700],
                 [50.933249500, 6.419431600],
@@ -779,16 +779,16 @@
         {
             "name": ["05L", "23R"],
             "end": [
-                ["N51d17m07.132", "E006d45m07.643", "116ft"],
-                ["N51d17m48.248", "E006d46m33.931", "124ft"]
+                ["N51d17m07.132", "E006d45m07.643", "116 ft"],
+                ["N51d17m48.248", "E006d46m33.931", "124 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["05R", "23L"],
             "end": [
-                ["N51d16m52.445", "E006d45m19.467", "121ft"],
-                ["N51d17m39.431", "E006d46m58.073", "138ft"]
+                ["N51d16m52.445", "E006d45m19.467", "121 ft"],
+                ["N51d17m39.431", "E006d46m58.073", "138 ft"]
             ],
             "ils": [true, true]
         }
@@ -2093,11 +2093,11 @@
     "spawnPatterns": [
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.COL5T.COL.UZ738.TUSUK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.31,
             "airlines": [
@@ -2107,11 +2107,11 @@
         },
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.DODEN9T.DODEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 13.47,
             "airlines": [
@@ -2155,11 +2155,11 @@
         },
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.KUMIK6T.KUMIK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.04,
             "airlines": [
@@ -2178,11 +2178,11 @@
         },
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.MEVEL3T.MEVEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.98,
             "airlines": [
@@ -2204,11 +2204,11 @@
         },
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.MODRU1T.MODRU",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 10.18,
             "airlines": [
@@ -2241,11 +2241,11 @@
         },
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.NUDGO5T.NUDGO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.31,
             "airlines": [
@@ -2255,11 +2255,11 @@
         },
         {
             "origin": "EDDL",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "EDDL23L.SONEB7T.SONEB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.19,
             "airlines": [
@@ -2276,7 +2276,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDL",
             "category": "arrival",
             "route": "DIK.UN853.ARCKY.UT853.IBESA.T853.NVO.T857.BIKMU.BIKMU1G.EDDL23R",
@@ -2315,7 +2315,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDL",
             "category": "arrival",
             "route": "TESDU.T852.TINSA.T854.DOMUX.DOMUX2G.EDDL23R",
@@ -2374,7 +2374,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "EDDL",
             "category": "arrival",
             "route": "LAMSO.UL603.TEBRO.TEBRO3G.EDDL23R",

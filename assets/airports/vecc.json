@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 19500,
     "initial_alt": 5500,
-    "position": ["N22d40m24.00", "E088d26m96.00", "23ft"],
+    "position": ["N22d40m24.00", "E088d26m96.00", "23 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N22d40m24.00", "E088d26m96.00"],
@@ -157,15 +157,13 @@
     "runways": [
         {
             "name": ["01L", "19R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N22d38m24.71", "E088d26m38.37", "19.0ft"], ["N22d39m42.00", "E088d26m46.90", "19.0ft"]],
+            "end": [["N22d38m24.71", "E088d26m38.37", "19.0 ft"], ["N22d39m42.00", "E088d26m46.90", "19.0 ft"]],
             "length": 3.270,
             "ils": [false, true]
         },
         {
             "name": ["01R", "19L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N22d38m31.91", "E088d26m46.73", "20.0ft"], ["N22d40m14.70", "E088d26m57.80", "19.0ft"]],
+            "end": [["N22d38m31.91", "E088d26m46.73", "20.0 ft"], ["N22d40m14.70", "E088d26m57.80", "19.0 ft"]],
             "length": 3.672,
             "ils": [true, true]
         }
@@ -380,11 +378,11 @@
     "spawnPatterns": [
         {
             "origin": "vecc",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "VECC.BAMUR.JJS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 20,
             "offset": 0,
@@ -407,7 +405,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC112..AVPOP..CC210..CC304",
@@ -433,7 +431,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC102..BAMUR..CC321..CC303..CC316",
@@ -455,7 +453,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "BEMAK..DIXON..CC330..DINAP..CC329",
@@ -481,7 +479,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "NOKAT..DIKAK..CC302..TONOP",
@@ -507,7 +505,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC101..JATEN..CC319..CC306..CC335",
@@ -529,7 +527,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "BOKEV..KEBAM..CC304",
@@ -548,7 +546,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC108..KUMAD..CC318..CC302..TONOP",
@@ -567,7 +565,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "PITAM..LATEP..CC301",
@@ -592,7 +590,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "CC106..NOSIM..CC321..CC334..CC319..CC306..CC335",
@@ -617,7 +615,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "vecc",
             "category": "arrival",
             "route":    "DOPID..SEGOL..DINAP..CC329",

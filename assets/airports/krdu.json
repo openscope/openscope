@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 12000,
     "initial_alt": 6000,
-    "position": ["N35.87764533903037", "W78.78749083843593", "435ft"],
+    "position": ["N35.87764533903037", "W78.78749083843593", "435 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [35.87764533903037, -78.78749083843593],
@@ -205,7 +205,7 @@
     "restricted": [
         {
             "name": "R-5311",
-            "height": "29000ft",
+            "height": "29000 ft",
             "poly": [
                 ["N35.17693778", "W79.03287361"],
                 ["N35.15147000", "W79.03424194"],
@@ -278,24 +278,24 @@
         {
             "name": ["5L", "23R"],
             "end": [
-                ["N35d52.47", "W78d48.12", "366.9ft"],
-                ["N35d53.63", "W78d46.68", "408.7ft"]
+                ["N35d52.47", "W78d48.12", "366.9 ft"],
+                ["N35d53.63", "W78d46.68", "408.7 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["5R", "23L"],
             "end": [
-                ["N35d51.88", "W78d47.84", "397.4ft"],
-                ["N35d52.75", "W78d46.76", "430.6ft"]
+                ["N35d51.88", "W78d47.84", "397.4 ft"],
+                ["N35d52.75", "W78d46.76", "430.6 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["14", "32"],
             "end": [
-                ["N35d52.50", "W78d46.96", "432.0ft"],
-                ["N35d52.08", "W78d46.45", "424.7ft"]
+                ["N35d52.50", "W78d46.96", "432.0 ft"],
+                ["N35d52.08", "W78d46.45", "424.7 ft"]
             ],
             "ils": [false, false]
         }
@@ -619,11 +619,11 @@
     "spawnPatterns": [
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.BEXGO4.BOUSY",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -648,11 +648,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.HOOKZ4.DAWTS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.4,
             "airlines": [
@@ -676,11 +676,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.HURIC4.FEBEL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.2,
             "airlines": [
@@ -705,11 +705,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.LWOOD4.DANCO",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -734,11 +734,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.OXFRD4.CARML",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.7,
             "airlines": [
@@ -763,11 +763,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.ROZBO4.ROZBO..CHS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.6,
             "airlines": [
@@ -791,11 +791,11 @@
         },
         {
             "origin": "KRDU",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KRDU23L.SHPRD4.SHPRD",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.2,
             "airlines": [
@@ -819,7 +819,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "KPASS.ALDAN3.KRDU23R",
@@ -847,7 +847,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "GARIC.BLOGS3.KRDU23R",
@@ -874,7 +874,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "ZJAAY.TAQLE1.KRDU23R",
@@ -903,7 +903,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "KRDU",
             "category": "arrival",
             "route": "PYRES.MALNR5.KRDU23L",

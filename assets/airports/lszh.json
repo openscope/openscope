@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 19000,
     "initial_alt": 5000,
-    "position": ["N47d27m52.92", "E8d32m57.01", "1416.0ft"],
+    "position": ["N47d27m52.92", "E8d32m57.01", "1416.0 ft"],
     "rangeRings": {
         "enabled": true,
         "center": ["N47d27m52.92", "E8d32m57.01"],
@@ -293,7 +293,7 @@
     "restricted": [
         {
             "name": "LS-R31",
-            "height": "8500ft",
+            "height": "8500 ft",
             "poly": [
                 ["N47d11m16", "E08d28m04"],
                 ["N47d10m09", "E08d30m00"],
@@ -309,24 +309,24 @@
         {
             "name": ["10", "28"],
             "end": [
-                ["N47.459000", "E8.537500", "1391ft"],
-                ["N47.456667", "E8.570500", "1416ft"]
+                ["N47.459000", "E8.537500", "1391 ft"],
+                ["N47.456667", "E8.570500", "1416 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["14", "32"],
             "end": [
-                ["N47.482167", "E8.536000", "1402ft"],
-                ["N47.461333", "E8.564500", "1402ft"]
+                ["N47.482167", "E8.536000", "1402 ft"],
+                ["N47.461333", "E8.564500", "1402 ft"]
             ],
             "ils": [true, false]
         },
         {
             "name": ["16", "34"],
             "end": [
-                ["N47.475667", "E8.536000", "1390ft"],
-                ["N47.449333", "E8.554167", "1388ft"]
+                ["N47.475667", "E8.536000", "1390 ft"],
+                ["N47.449333", "E8.554167", "1388 ft"]
             ],
             "ils": [true, true]
         }
@@ -918,11 +918,11 @@
     "spawnPatterns": [
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.DEGES2W.DEGES.Z1.SUDEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 4.995323,
             "airlines": [
@@ -945,11 +945,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.DEGES2S.DEGES.Z1.SUDEN",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.774677,
             "airlines": [
@@ -959,11 +959,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.DEGES2W.DEGES.N871.MADEB.UN606.ELMEM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.7179,
             "airlines": [
@@ -987,11 +987,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.DEGES2S.DEGES.N871.MADEB.UN606.ELMEM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.19207,
             "airlines": [
@@ -1009,11 +1009,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.DEGES2W.DEGES.Z1.BODAN.Z601.KPT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.5085,
             "airlines": [
@@ -1031,11 +1031,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.DEGES2S.DEGES.Z1.BODAN.Z601.KPT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.0565,
             "airlines": [
@@ -1045,11 +1045,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.DEGES2W.DEGES.Z2.TUNUM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.7,
             "airlines": [
@@ -1068,11 +1068,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.DEGES2S.DEGES.Z2.TUNUM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.3,
             "airlines": [
@@ -1082,11 +1082,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.VEBIT3W.VEBIT.T52.LUMEL.UT10.TORPA.UM624.LUL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2.7525,
             "airlines": [
@@ -1106,11 +1106,11 @@
         },
                 {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.VEBIT3S.VEBIT.T52.LUMEL.UT10.TORPA.UM624.LUL",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.3574,
             "airlines": [
@@ -1124,11 +1124,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.VEBIT3W.VEBIT.T52.LUMEL.UT10.REKLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.926478,
             "airlines": [
@@ -1148,11 +1148,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.VEBIT3S.VEBIT.T52.LUMEL.UT10.REKLA",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.4535,
             "airlines": [
@@ -1166,11 +1166,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.VEBIT3W.VEBIT.T50.ROTOS.UZ669.ULMES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3.105,
             "airlines": [
@@ -1185,11 +1185,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH16.VEBIT3S.VEBIT.T50.ROTOS.UZ669.ULMES",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 0.36,
             "airlines": [
@@ -1198,11 +1198,11 @@
         },
         {
             "origin": "LSZH",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "LSZH28.VEBIT3W.VEBIT.T53.GERSA.UN850.SOSON",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1.00,
             "airlines": [
@@ -1216,7 +1216,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "LUL.G42.BLM.BLM2G.LSZH14",
@@ -1247,7 +1247,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "KORED.UN871.BERSU.BERSU1G.LSZH14",
@@ -1267,7 +1267,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "LAMUR.Z57.DOPIL.DOPIL1G.LSZH14",
@@ -1287,7 +1287,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "LUL.UL613.HOC.HOC1G.LSZH14",
@@ -1317,7 +1317,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "CANNE.UZ651.KELIP.KELIP2G.LSZH14",
@@ -1336,7 +1336,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "KOGOL.UL608.KPT.UL856.RAVED.NEGRA1A.LSZH14",
@@ -1377,7 +1377,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "SUNEG.T721.RILAX.RILAX1A.LSZH14",
@@ -1407,7 +1407,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "LSZH",
             "category": "arrival",
             "route": "SPR.G5.WIL.WIL2Z.LSZH14",

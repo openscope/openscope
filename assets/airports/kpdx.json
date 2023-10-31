@@ -11,7 +11,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
-    "position": ["N45.588708", "W122.596869", "31ft"],
+    "position": ["N45.588708", "W122.596869", "31 ft"],
     "rangeRings": {
         "enabled": true,
         "center": [45.588708, -122.596869],
@@ -224,24 +224,24 @@
         {
             "name": ["3", "21"],
             "end": [
-                ["N45d34.95", "W122d37.01", "22.2ft"],
-                ["N45d35.64", "W122d36.01", "26.4ft"]
+                ["N45d34.95", "W122d37.01", "22.2 ft"],
+                ["N45d35.64", "W122d36.01", "26.4 ft"]
             ],
             "ils": [false, true]
         },
         {
             "name": ["10L", "28R"],
             "end": [
-                ["N45d35.79", "W122d36.00", "29.5ft"],
-                ["N45d35.01", "W122d33.99", "30.8ft"]
+                ["N45d35.79", "W122d36.00", "29.5 ft"],
+                ["N45d35.01", "W122d33.99", "30.8 ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["10R", "28L"],
             "end": [
-                ["N45d35.71", "W122d37.29", "22.7ft"],
-                ["N45d34.83", "W122d35.03", "22.7ft"]
+                ["N45d35.71", "W122d37.29", "22.7 ft"],
+                ["N45d34.83", "W122d35.03", "22.7 ft"]
             ],
             "ils": [true, true]
         }
@@ -524,11 +524,11 @@
     "spawnPatterns": [
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28L.CASCD2.PAWLI",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -548,11 +548,11 @@
         },
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28L.HRMNS5.HRMNS",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -571,11 +571,11 @@
         },
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28R.LAVAA6.PDT",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -598,11 +598,11 @@
         },
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28R.MINNE5.FAMUK",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -621,11 +621,11 @@
         },
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28R.PTLD1.OLM",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -639,11 +639,11 @@
         },
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28R.PTLD1.EUG",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -655,11 +655,11 @@
         },
         {
             "origin": "kpdx",
-            "destination": "",
+            "destination": null,
             "category": "departure",
             "route": "KPDX28L.WHAMY4.IMB",
-            "altitude": "",
-            "speed": "",
+            "altitude": null,
+            "speed": null,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -678,7 +678,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kpdx",
             "category": "arrival",
             "route": "JKNOX.HHOOD4.KPDX28R",
@@ -702,7 +702,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kpdx",
             "category": "arrival",
             "route": "BUWZO.KRATR2.KPDX28R",
@@ -718,7 +718,7 @@
             ]
         },
         {
-            "origin": "",
+            "origin": null,
             "destination": "kpdx",
             "category": "arrival",
             "route": "MOXEE.TMBRS2.KPDX28L",
