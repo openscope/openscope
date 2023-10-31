@@ -299,21 +299,24 @@ export const parseCoordinate = (coordinate) => {
 export const parseElevation = (elevation) => {
 
     const matches = REGEX.ELEVATION.exec(elevation);
+    const error_message = `Invalid elevation: '${elevation}'. Must be number with optional suffix of: ft, m`;
 
     if (matches === null) {
-        throw new TypeError(`Invalid elevation: '${elevation}'. Must be number with optional suffix of: ft, m`);
+        throw new TypeError(error_message);
     }
 
     const { elevationComponent, unitComponent } = matches.groups;
 
     const parsedElevation = parseFloat(elevationComponent);
 
-    if (typeof(unitComponent) !== 'undefined') {
-        switch(unitComponent) {
-        case 'ft':
-            return parsedElevation;
-        case 'm':
-            return m_ft(parsedElevation);
+    if (typeof unitComponent !== 'undefined') {
+        switch (unitComponent) {
+            case 'ft':
+                return parsedElevation;
+            case 'm':
+                return m_ft(parsedElevation);
+            default: 
+                throw new TypeError(error_message);
         }
     } else {
         // Assume feet

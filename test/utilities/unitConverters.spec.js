@@ -135,20 +135,19 @@ ava('.parseCoordinate() should accept a lat/long coordinate and convet it to dec
 
 ava('.parseElevation() should throw an exception on invalid input', t => {
     // No numeric value
-    t.throws(() => { parseElevation('invalid elevation') }, {instanceOf: TypeError});
+    t.throws(() => { parseElevation('invalid elevation'); }, { instanceOf: TypeError} );
 
     // Space is required
-    t.throws(() => { parseElevation('15ft') }, {instanceOf: TypeError});
+    t.throws(() => { parseElevation('15ft'); }, { instanceOf: TypeError} );
 
     // nm is an unrecognized unit
-    t.throws(() => { parseElevation('15 nm') }, {instanceOf: TypeError});
+    t.throws(() => { parseElevation('15 nm'); }, { instanceOf: TypeError} );
 
     // Infinity is not a unit
-    t.throws(() => { parseElevation('15 Infinity') }, {instanceOf: TypeError});
+    t.throws(() => { parseElevation('15 Infinity'); }, { instanceOf: TypeError} );
 
     // Infinity does not accept units
-    t.throws(() => { parseElevation('Infinity 15') }, {instanceOf: TypeError});
-
+    t.throws(() => { parseElevation('Infinity 15'); }, { instanceOf: TypeError} );
 });
 
 ava('.parseElevation() should parse a string elevation into an elevation in feet', t => {
