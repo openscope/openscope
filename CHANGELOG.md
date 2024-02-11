@@ -2,6 +2,7 @@
 ### New Features
 - <a href="https://github.com/openscope/openscope/issues/2000" target="_blank">#2000</a> - Add popup info for score changes
 - <a href="https://github.com/openscope/openscope/issues/2033" target="_blank">#2033</a> - Add duration setting for log messages
+- <a href="https://github.com/openscope/openscope/issues/1867" target="_blank">#1867</a> - Add LaGuardia (KLGA)
 
 ### Bugfixes
 - <a href="https://github.com/openscope/openscope/issues/2022" target="_blank">#2022</a> - Improve handling of "fph" while still on ground
