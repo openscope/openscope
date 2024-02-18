@@ -1,0 +1,27 @@
+{
+    "airac": 2401,
+    "radio": {
+        "twr": "Denver Tower",
+        "app": "Denver Approach",
+        "dep": "Denver Departure"
+    },
+  "icao": "KDEN",
+  "iata": "DEN",
+  "magnetic_north": 8,
+  "ctr_radius": xxxxx,
+  "ctr_ceiling": xxxxx,
+  "initial_alt": xxxxx,
+  "position": ["39.861667", "-104.673056", "5434ft"]
+  "rangeRings": {
+        "enabled": true,
+        "center": [39.861667, -104.673056],
+        "radius_nm": 5.0
+  },
+   "has_terrain": false,
+   "wind": {
+        "angle": 055,
+        "speed": 12
+    },
+  "arrivalRunway": "34L",
+  "departureRunway": "16L",
+  "defaultMaps": ["Base Map"],
