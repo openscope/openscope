@@ -1,0 +1,21 @@
+{
+    "icao": "fpy",
+    "name": "Play",
+    "callsign": {
+        "name": "Player",
+        "callsignFormats": [
+            "###",
+            "#@",
+            "#"
+        ]
+    },
+  "fleets": {
+        "default": [
+          ["A20N", 6],
+          ["A21N", 4]
+        ],
+  "short": [
+          ["A20N", 6],
+          ["A21N", 4]
+        ]
+  }
