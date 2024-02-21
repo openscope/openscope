@@ -1,1 +1,19 @@
-
+{
+    "airac": 2402,
+    "radio": {
+        "twr": "Istanbul Tower",
+        "app": "Yesilkoy Approach",
+        "dep": "Yesilkoy Departure"
+    },
+    "icao": "LTFM",
+    "iata": "IST",
+    "magnetic_north": 5,
+    "ctr_radius": xx,
+    "ctr_ceiling": xx,
+    "initial_alt": xx,
+    "position": ["41.262222", "28.727778", "325ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [41.262222, 28.727778],
+        "radius_nm": 5.0
+    },
