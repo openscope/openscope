@@ -1,0 +1,10 @@
+{
+    "airac": 2402,
+    "radio": {
+        "twr": "Midland International Tower",
+        "app": "Midland International Approach",
+        "dep": "Midland International Departure"
+    },
+    "icao": "KMAF",
+    "iata": "MAF",
+  
