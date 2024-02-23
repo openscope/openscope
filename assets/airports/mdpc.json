@@ -1,0 +1,1840 @@
+{
+    "airac": 2403,
+    "radio": {
+        "twr": "Punta Cana Tower",
+        "app": "Punta Cana Approach",
+        "dep": "Punta Cana Departure"
+    },
+    "icao": "MDPC",
+    "iata": "PUJ",
+    "magnetic_north": -12,
+    "ctr_radius": 80,
+    "ctr_ceiling": 15000,
+    "initial_alt": 5000,
+    "position": ["N18d34m14.811", "W068d21m58.269", "47ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N18d34m14.811", "W068d21m58.269"],
+        "radius_nm": 5.0
+    },
+    "has_terrain": true,
+    "wind": {
+        "angle": 120,
+        "speed": 8
+    },
+    "arrivalRunway": "8",
+    "departureRunway": "9",
+    "defaultMaps": ["Base Map"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 150,
+            "airspace_class": "C",
+            "poly": [
+                ["N17.93968", "W68.96039"],
+                ["N17.97003", "W68.93845"],
+                ["N18.00686", "W68.91392"],
+                ["N18.04485", "W68.89144"],
+                ["N18.08390", "W68.87110"],
+                ["N18.12391", "W68.85293"],
+                ["N18.16477", "W68.83700"],
+                ["N18.20076", "W68.82560"],
+                ["N18.20410", "W68.81492"],
+                ["N18.20926", "W68.80126"],
+                ["N18.21508", "W68.78791"],
+                ["N18.22156", "W68.77490"],
+                ["N18.22868", "W68.76226"],
+                ["N18.23641", "W68.75003"],
+                ["N18.24475", "W68.73825"],
+                ["N18.25365", "W68.72694"],
+                ["N18.26310", "W68.71614"],
+                ["N18.27308", "W68.70588"],
+                ["N18.28356", "W68.69618"],
+                ["N18.29450", "W68.68707"],
+                ["N18.30587", "W68.67858"],
+                ["N18.31766", "W68.67073"],
+                ["N18.32981", "W68.66353"],
+                ["N18.34231", "W68.65702"],
+                ["N18.35512", "W68.65121"],
+                ["N18.36819", "W68.64611"],
+                ["N18.38150", "W68.64174"],
+                ["N18.39501", "W68.63811"],
+                ["N18.40868", "W68.63523"],
+                ["N18.42247", "W68.63311"],
+                ["N18.43635", "W68.63175"],
+                ["N18.45028", "W68.63116"],
+                ["N18.46422", "W68.63134"],
+                ["N18.47814", "W68.63229"],
+                ["N18.49198", "W68.63400"],
+                ["N18.50572", "W68.63648"],
+                ["N18.51932", "W68.63971"],
+                ["N18.53274", "W68.64369"],
+                ["N18.54595", "W68.64840"],
+                ["N18.55890", "W68.65383"],
+                ["N18.57157", "W68.65997"],
+                ["N18.58391", "W68.66681"],
+                ["N18.59590", "W68.67431"],
+                ["N18.60749", "W68.68246"],
+                ["N18.61867", "W68.69125"],
+                ["N18.62940", "W68.70063"],
+                ["N18.63964", "W68.71060"],
+                ["N18.64938", "W68.72112"],
+                ["N18.65858", "W68.73216"],
+                ["N18.66722", "W68.74369"],
+                ["N18.67528", "W68.75569"],
+                ["N18.68272", "W68.76811"],
+                ["N18.68955", "W68.78093"],
+                ["N18.69572", "W68.79410"],
+                ["N18.70124", "W68.80760"],
+                ["N18.70607", "W68.82138"],
+                ["N18.71022", "W68.83541"],
+                ["N18.71175", "W68.84088"],
+                ["N18.76196", "W68.86114"],
+                ["N18.80154", "W68.88033"],
+                ["N18.84011", "W68.90168"],
+                ["N18.87757", "W68.92512"],
+                ["N18.91382", "W68.95060"],
+                ["N18.94875", "W68.97804"],
+                ["N18.98226", "W69.00738"],
+                ["N19.01428", "W69.03852"],
+                ["N19.04471", "W69.07138"],
+                ["N19.05978", "W69.09076"],
+                ["N19.07497", "W69.07880"],
+                ["N19.09767", "W69.05968"],
+                ["N19.11972", "W69.03974"],
+                ["N19.14110", "W69.01900"],
+                ["N19.16179", "W68.99749"],
+                ["N19.18174", "W68.97523"],
+                ["N19.20095", "W68.95224"],
+                ["N19.21939", "W68.92857"],
+                ["N19.23703", "W68.90423"],
+                ["N19.25385", "W68.87925"],
+                ["N19.26984", "W68.85367"],
+                ["N19.28497", "W68.82752"],
+                ["N19.29923", "W68.80082"],
+                ["N19.31260", "W68.77362"],
+                ["N19.32506", "W68.74594"],
+                ["N19.33659", "W68.71782"],
+                ["N19.34719", "W68.68930"],
+                ["N19.35684", "W68.66040"],
+                ["N19.36394", "W68.63795"],
+                ["N19.00000", "W68.00000"],
+                ["N17.81770", "W68.00000"],
+                ["N17.80946", "W68.02069"],
+                ["N17.79792", "W68.04881"],
+                ["N17.77768", "W68.10623"],
+                ["N17.76899", "W68.13547"],
+                ["N17.75455", "W68.19482"],
+                ["N17.74406", "W68.25508"],
+                ["N17.73759", "W68.31597"],
+                ["N17.73515", "W68.37719"],
+                ["N17.73546", "W68.40782"],
+                ["N17.73678", "W68.43843"],
+                ["N17.73911", "W68.46897"],
+                ["N17.74244", "W68.49941"],
+                ["N17.74679", "W68.52971"],
+                ["N17.75213", "W68.55982"],
+                ["N17.75847", "W68.58973"],
+                ["N17.76579", "W68.61938"],
+                ["N17.78335", "W68.67778"],
+                ["N17.79357", "W68.70646"],
+                ["N17.80473", "W68.73475"],
+                ["N17.82983", "W68.79000"],
+                ["N17.84373", "W68.81690"],
+                ["N17.85852", "W68.84328"],
+                ["N17.87416", "W68.86909"],
+                ["N17.89066", "W68.89431"],
+                ["N17.90797", "W68.91891"],
+                ["N17.92610", "W68.94285"]
+            ]
+        }
+    ],
+    "fixes": {
+        "CDO": ["N18.43290", "W69.66732"],
+        "SGO": ["N19d24.4", "W070d36.2"],
+        "PAP": ["N18d34.6", "W072d18.3"],
+        "TEXOS": [18.592036, -68.304267],
+        "PC101": [18.706481, -68.320206],
+        "PC115": [18.761803, -68.386072],
+        "PIXAR": [19.141667, -68.840278],
+        "PC114": [18.789408, -68.331778],
+        "CHUMA": [19.222333, -68.392333],
+        "PC102": [18.647172, -68.234875],
+        "KATOK": [18.833333, -68.000000],
+        "PC103": [18.525906, -68.250539],
+        "PC104": [18.476214, -68.210200],
+        "MELLA": [18.216667, -68.000000],
+        "PC105": [18.474594, -68.257047],
+        "POKAK": [16.000000, -68.566667],
+        "PC106": [18.472961, -68.303983],
+        "PC109": [18.008031, -68.771322],
+        "VESKA": [16.000000, -70.750000],
+        "PC108": [18.203942, -68.791544],
+        "PC110": [18.090822, -68.995414],
+        "PALAS": [16.566667, -71.683333],
+        "PC107": [18.464314, -68.547000],
+        "ETBOD": [18.516667, -71.883333],
+        "PC116": [18.633028, -68.909633],
+        "RETAK": [20.195000, -71.691667],
+        "MALVN": [20.416667, -71.392686],
+        "MAROG": [18.572997, -68.296367],
+        "PC100": [18.638314, -68.222150],
+        "PC200": [18.556453, -68.433642],
+        "PC202": [18.717606, -68.482128],
+        "PC204": [18.395942, -68.385419],
+        "PC198": [18.561719, -68.430489],
+        "PC199": [18.538500, -68.706303],
+        "PC201": [18.502778, -68.629478],
+        "POKEG": [20.175000, -70.055000],
+        "PC113": [19.793014, -69.874856],
+        "VOGEP": [18.971264, -69.152367],
+        "BEREL": [18.828333, -68.873056],
+        "BETIR": [19.343086, -68.604575],
+        "PC099": [18.687592, -68.686106],
+        "AGNAL": [18.604775, -68.575789],
+        "PC112": [18.674272, -68.401225],
+        "ANTEX": [18.483333, -68.000000],
+        "PC111": [18.165672, -69.055706],
+        "NADAX": [18.316214, -68.803139],
+        "ANEBI": [18.443872, -68.527678],
+        "PC098": [18.694508, -68.673803],
+        "DASVO": [18.634244, -68.560425],
+        "EMUTI": [18.467614, -68.544528],
+        "PC203": [18.651033, -68.407314],
+        "APLAL": [18.705031, -68.210347],
+        "PC205": [18.490211, -68.359008],
+        "MESPA": [18.544131, -68.162208],
+        "LETAD": [18.666983, -68.181544],
+        "VIRTO": [18.500328, -68.165947],
+        "VOLID": [18.523611, -68.551667],
+        "RIKIK": [18.547328, -68.467397],
+        "PC250": [18.550931, -68.552472],
+        "LIBAN": [18.557031, -68.482594],
+        "BOBUL": [18.623911, -68.186064],
+        "VIVAK": [18.601356, -68.270561],
+        "PC260": [18.583656, -68.173742],
+        "BEPAX": [18.577678, -68.243644],
+        "RUMFO": [23.088972, -75.093564],
+        "ONGAN": [20.248111, -71.818350],
+        "TUMAR": [20.268333, -71.866667],
+        "ALBBE": [20.416667, -72.248806],
+        "MASEN": [15.984083, -72.289194],
+        "SINKU": [15.740278, -71.070556],
+        "GADIR": [15.209722, -68.399167],
+        "ZADAV": [18.233664, -67.500456],
+        "AQABA": [18.595878, -67.374692],
+        "DOZGO": [20.002944, -67.464492],
+        "ASIVO": [19.960000, -69.692500],
+        "MACKI": [20.443536, -69.728389],
+        "PUYYA": [20.397883, -67.347956],
+        "HAGIT": [21.577822, -71.031317],
+        "STIIV": [18.176750, -64.978033]
+    },
+    "runways":[ 
+        {
+            "name": ["8", "26"],
+            "end": [
+                ["N18d34m13.058", "W068d22m58.979", "43ft"],
+                ["N18d34m41.131", "W068d21m17.398", "37ft"]
+            ],
+            "ils": [false, false]
+        },
+        {
+            "name": ["9", "27"],     
+            "end": [
+                ["N18d33m57.970", "W068d22m41.008", "47ft"],
+                ["N18d34m07.071", "W068d20m55.679", "36ft"]
+            ],
+            "ils": [false, false]
+        }
+    ],
+    "airways": {
+        "G633": ["ZADAV", "MELLA"],
+        "L453": ["ASIVO", "MACKI"],
+        "L577": ["ANTEX", "STIIV"],
+        "M348": ["KATOK", "AQABA"],
+        "M597": ["BETIR", "PUYYA"],
+        "UL216": ["POKAK", "GADIR"],
+        "UM525": ["VESKA", "SINKU"],
+        "UL577": ["ETBOD", "PAP"],
+        "UM348": ["RETAK", "ONGAN", "TUMAR", "ALBBE"],
+        "UM597": ["PALAS", "MASEN"], 
+        "UW10": ["PIXAR", "ASIVO"],
+        "Y306": ["POKEG", "HAGIT"],
+        "Y315": ["CHUMA", "DOZGO"],
+        "Y396": ["MALVN", "RUMFO"]   
+    },
+    "sids": {
+        "CHUMA2Q": {
+            "icao": "CHUMA2Q",
+            "name": "Chuma Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC202", "A70-"], "CHUMA"],
+            "exitPoints": {
+                "CHUMA": []
+            },
+            "draw": [
+                ["PC198", "PC202", "CHUMA"]
+            ]
+        },
+        "CHUMA2T": {
+            "icao": "CHUMA2T",
+            "name": "Chuma Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", ["PC101", "A50-"], ["PC114", "A60-"], "CHUMA"],
+            "exitPoints": {
+                "CHUMA": []
+            },
+            "draw": [
+                ["MAROG", "PC101", "PC114", "CHUMA"]
+            ]
+        },
+        "CHUMA2W": {
+            "icao": "CHUMA2W",
+            "name": "Chuma Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", ["PC101", "A50-"], ["PC114", "A60-"], "CHUMA"],
+            "exitPoints": {
+                "CHUMA": []
+            },
+            "draw": [
+                ["TEXOS", "PC101", "PC114", "CHUMA"]
+            ]
+        },
+        "CHUMA3T": {
+            "icao": "CHUMA3T",
+            "name": "Chuma Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC202", "A70-"], "CHUMA"],
+            "exitPoints": {
+                "CHUMA": []
+            },
+            "draw": [
+                ["PC200", "PC202", "CHUMA"]
+            ]
+        },
+        "ETBOD2Q": {
+            "icao": "ETBOD2Q",
+            "name": "Etbod Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A100-"], ["PC199", "A100-"], "CDO", "ETBOD"],
+            "exitPoints": {
+                "ETBOD": []
+            },
+            "draw": [
+                ["PC198", "PC199", "CDO", "ETBOD"]
+            ]
+        },
+        "ETBOD2T": {
+            "icao": "ETBOD2T",
+            "name": "Etbod Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC106", "A60-"], ["PC107", "A110-"], "CDO", "ETBOD"],
+            "exitPoints": {
+                "ETBOD": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC106", "PC107", "CDO", "ETBOD"]
+            ]
+        },
+        "ETBOD2W": {
+            "icao": "ETBOD2W",
+            "name": "Etbod Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC106", "A60-"], ["PC107", "A110-"], "CDO", "ETBOD"],
+            "exitPoints": {
+                "ETBOD": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC106", "PC107", "CDO", "ETBOD"]
+            ]
+        },
+        "ETBOD3T": {
+            "icao": "ETBOD3T",
+            "name": "Etbod Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A110-"], ["PC201", "A110-"], "CDO", "ETBOD"],
+            "exitPoints": {
+                "ETBOD": []
+            },
+            "draw": [
+                ["PC200", "PC201", "CDO", "ETBOD"]
+            ]
+        },
+        "KATOK2Q": {
+            "icao": "KATOK2Q",
+            "name": "Katok Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC202", "A70-"], ["KATOK", "A130+"]],
+            "exitPoints": {
+                "KATOK": []
+            },
+            "draw": [
+                ["PC198", "PC202", "KATOK"]
+            ]
+        },
+        "KATOK2T": {
+            "icao": "KATOK2T",
+            "name": "Katok Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", ["PC100", "A50-"], ["KATOK", "A70-"]],
+            "exitPoints": {
+                "KATOK": []
+            },
+            "draw": [
+                ["MAROG", "PC100", "KATOK"]
+            ]
+        },
+        "KATOK2W": {
+            "icao": "KATOK2W",
+            "name": "Katok Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", ["PC100", "A50-"], ["KATOK", "A70-"]],
+            "exitPoints": {
+                "KATOK": []
+            },
+            "draw": [
+                ["TEXOS", "PC100", "KATOK"]
+            ]
+        },
+        "KATOK3T": {
+            "icao": "KATOK3T",
+            "name": "Katok Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC202", "A70-"], ["KATOK", "A130+"]],
+            "exitPoints": {
+                "KATOK": []
+            },
+            "draw": [
+                ["PC200", "PC202", "KATOK"]
+            ]
+        },
+        "MALVN2Q": {
+            "icao": "MALVN2Q",
+            "name": "Malvin Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A100-"], ["PC199", "A100-"], "SGO", "MALVN"],
+            "exitPoints": {
+                "MALVN": []
+            },
+            "draw": [
+                ["PC198", "PC199", "SGO", "MALVN"]
+            ]
+        },
+        "MALVN2T": {
+            "icao": "MALVN2T",
+            "name": "Malvin Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC106", "A50-"], ["PC107", "A110-"], ["PC116", "A110+"], "SGO", "MALVN"],
+            "exitPoints": {
+                "MALVN": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC106", "PC107", "PC116", "SGO", "MALVN"]
+            ]
+        },
+        "MALVN2W": {
+            "icao": "MALVN2W",
+            "name": "Malvin Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC106", "A50-"], ["PC107", "A110-"], ["PC116", "A110+"], "SGO", "MALVN"],
+            "exitPoints": {
+                "MALVN": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC106", "PC107", "PC116", "SGO", "MALVN"]
+            ]
+        },
+        "MALVN3T": {
+            "icao": "MALVN3T",
+            "name": "Malvin Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A110-"], ["PC201", "A110-"], "SGO", "MALVN"],
+            "exitPoints": {
+                "MALVN": []
+            },
+            "draw": [
+                ["PC200", "PC201", "SGO", "MALVN"]
+            ]
+        },
+        "MELLA2Q": {
+            "icao": "MELLA2Q",
+            "name": "Mella Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC204", "A70-"], "MELLA"],
+            "exitPoints": {
+                "MELLA": []
+            },
+            "draw": [
+                ["PC198", "PC204", "MELLA"]
+            ]
+        },
+        "MELLA2T": {
+            "icao": "MELLA2T",
+            "name": "Mella Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC104", "A50-"], "MELLA"],
+            "exitPoints": {
+                "MELLA": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC104", "MELLA"]
+            ]
+        },
+        "MELLA2W": {
+            "icao": "MELLA2W",
+            "name": "Mella Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC104", "A50-"], "MELLA"],
+            "exitPoints": {
+                "MELLA": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC104", "MELLA"]
+            ]
+        },
+        "MELLA3T": {
+            "icao": "MELLA3T",
+            "name": "Mella Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC204", "A70-"], "MELLA"],
+            "exitPoints": {
+                "MELLA": []
+            },
+            "draw": [
+                ["PC200", "PC204", "MELLA"]
+            ]
+        },
+        "PALAS2Q": {
+            "icao": "PALAS2Q",
+            "name": "Palas Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC204", "A70-"], ["PC108", "A200+"], ["PC110", "A200+"], "PALAS"],
+            "exitPoints": {
+                "PALAS": []
+            },
+            "draw": [
+                ["PC198", "PC204", "PC108", "PC110", "PALAS"]
+            ]
+        },
+        "PALAS2T": {
+            "icao": "PALAS2T",
+            "name": "Palas Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC106", "A50-"], ["PC108", "A130+"], ["PC110", "A170+"], "PALAS"],
+            "exitPoints": {
+                "PALAS": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC106", "PC108", "PC110", "PALAS"]
+            ]
+        },
+        "PALAS2W": {
+            "icao": "PALAS2W",
+            "name": "Palas Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC106", "A50-"], ["PC108", "A130+"], ["PC110", "A170+"], "PALAS"],
+            "exitPoints": {
+                "PALAS": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC106", "PC108", "PC110", "PALAS"]
+            ]
+        },
+        "PALAS3T": {
+            "icao": "PALAS3T",
+            "name": "Palas Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC204", "A70-"], ["PC108", "A200+"], ["PC110", "A200+"], "PALAS"],
+            "exitPoints": {
+                "PALAS": []
+            },
+            "draw": [
+                ["PC200", "PC204", "PC108", "PC110", "PALAS"]
+            ]
+        },
+        "PIXAR2Q": {
+            "icao": "PIXAR2Q",
+            "name": "Pixar Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC202", "A70-"], ["PIXAR", "A200+|A230-"]],
+            "exitPoints": {
+                "PIXAR": []
+            },
+            "draw": [
+                ["PC198", "PC202", "PIXAR"]
+            ]
+        },
+        "PIXAR2T": {
+            "icao": "PIXAR2T",
+            "name": "Pixar Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", ["PC101", "A50-"], ["PC115", "A60-"], "PIXAR"],
+            "exitPoints": {
+                "PIXAR": []
+            },
+            "draw": [
+                ["MAROG", "PC101", "PC115", "PIXAR"]
+            ]
+        },
+        "PIXAR2W": {
+            "icao": "PIXAR2W",
+            "name": "Pixar Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", ["PC101", "A50-"], ["PC115", "A60-"], "PIXAR"],
+            "exitPoints": {
+                "PIXAR": []
+            },
+            "draw": [
+                ["TEXOS", "PC101", "PC115", "PIXAR"]
+            ]
+        },
+        "PIXAR3T": {
+            "icao": "PIXAR3T",
+            "name": "Pixar Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC202", "A70-"], ["PIXAR", "A200+|A230-"]],
+            "exitPoints": {
+                "PIXAR": []
+            },
+            "draw": [
+                ["PC200", "PC202", "PIXAR"]
+            ]
+        },
+        "POKAK2Q": {
+            "icao": "POKAK2Q",
+            "name": "Pokak Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC204", "A70-"], "POKAK"],
+            "exitPoints": {
+                "POKAK": []
+            },
+            "draw": [
+                ["PC198", "PC204", "POKAK"]
+            ]
+        },
+        "POKAK2T": {
+            "icao": "POKAK2T",
+            "name": "Pokak Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC105", "A50-"], "POKAK"],
+            "exitPoints": {
+                "POKAK": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC105", "POKAK"]
+            ]
+        },
+        "POKAK2W": {
+            "icao": "POKAK2W",
+            "name": "Pokak Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC105", "A50-"], "POKAK"],
+            "exitPoints": {
+                "POKAK": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC105", "POKAK"]
+            ]
+        },
+        "POKAK3T": {
+            "icao": "POKAK3T",
+            "name": "Pokak Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC204", "A70-"], "POKAK"],
+            "exitPoints": {
+                "POKAK": []
+            },
+            "draw": [
+                ["PC200", "PC204", "POKAK"]
+            ]
+        },
+        "RETAK2Q": {
+            "icao": "RETAK2Q",
+            "name": "Retak Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A70-"], ["PC199", "A100-"], "SGO", "RETAK"],
+            "exitPoints": {
+                "RETAK": []
+            },
+            "draw": [
+                ["PC198", "PC199", "SGO", "RETAK"]
+            ]
+        },
+        "RETAK2T": {
+            "icao": "RETAK2T",
+            "name": "Retak Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC106", "A50-"], ["PC107", "A110-"], ["PC116", "A110+"], "SGO", "RETAK"],
+            "exitPoints": {
+                "RETAK": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC106", "PC107", "PC116", "SGO", "RETAK"]
+            ]
+        },
+        "RETAK2W": {
+            "icao": "RETAK2W",
+            "name": "Retak Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC106", "A50-"], ["PC107", "A110-"], ["PC116", "A110+"], "SGO", "RETAK"],
+            "exitPoints": {
+                "RETAK": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC106", "PC107", "PC116", "SGO", "RETAK"]
+            ]
+        },
+        "RETAK3T": {
+            "icao": "RETAK3T",
+            "name": "Retak Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A110-"], ["PC201", "A110-"], "SGO", "RETAK"],
+            "exitPoints": {
+                "RETAK": []
+            },
+            "draw": [
+                ["PC200", "PC201", "SGO", "RETAK"]
+            ]
+        },
+        "VESKA2Q": {
+            "icao": "VESKA2Q",
+            "name": "Veska Two Quebec",
+            "rwy": {
+                "MDPC27": []
+            },
+            "body": [["PC198", "A100-"], ["PC204", "A70-"], ["PC109", "A200+"], "VESKA"],
+            "exitPoints": {
+                "VESKA": []
+            },
+            "draw": [
+                ["PC198", "PC204", "PC108", "PC110", "VESKA"]
+            ]
+        },
+        "VESKA2T": {
+            "icao": "VESKA2T",
+            "name": "Veska Two Tango",
+            "rwy": {
+                "MDPC9": []
+            },
+            "body": ["MAROG", "PC103", ["PC106", "A50-"], ["PC109", "A130+"], "VESKA"],
+            "exitPoints": {
+                "VESKA": []
+            },
+            "draw": [
+                ["MAROG", "PC103", "PC106", "PC108", "PC110", "VESKA"]
+            ]
+        },
+        "VESKA2W": {
+            "icao": "VESKA2W",
+            "name": "Veska Two Whiskey",
+            "rwy": {
+                "MDPC8": []
+            },
+            "body": ["TEXOS", "PC103", ["PC106", "A50-"], ["PC109", "A130+"], "VESKA"],
+            "exitPoints": {
+                "VESKA": []
+            },
+            "draw": [
+                ["TEXOS", "PC103", "PC106", "PC108", "PC110", "VESKA"]
+            ]
+        },
+        "VESKA3T": {
+            "icao": "VESKA3T",
+            "name": "Veska Three Tango",
+            "rwy": {
+                "MDPC26": []
+            },
+            "body": [["PC200", "A70-"], ["PC204", "A70-"], ["PC109", "A200+"], "VESKA"],
+            "exitPoints": {
+                "VESKA": []
+            },
+            "draw": [
+                ["PC200", "PC204", "PC108", "PC110", "VESKA"]
+            ]
+        }
+    },
+    "stars": {
+        "ANTEX1C": {
+            "icao": "ANTEX1C",
+            "name": "Antex One Charlie",
+            "entryPoints": {
+                "ANTEX": []
+            },
+            "body": [["ANTEX", "A40+|S210-"], ["MESPA", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["ANTEX", "MESPA"]
+            ]
+        },
+        "ANTEX1W": {
+            "icao": "ANTEX1W",
+            "name": "Antex One Whiskey",
+            "entryPoints": {
+                "ANTEX": []
+            },
+            "body": [["ANTEX", "A80+|S230-"], ["PC102", "A80+|S230"], ["PC101", "A80+|S210-"], ["PC112", "A70+|S210-"], ["AGNAL", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["ANTEX", "PC102", "PC101", "PC112", "AGNAL"]
+            ]
+        },
+        "ANTEX2B": {
+            "icao": "ANTEX2B",
+            "name": "Antex Two Bravo",
+            "entryPoints": {
+                "ANTEX": []
+            },
+            "body": [["ANTEX", "A80+|S230-"], ["PC102", "A80+|S230"], ["PC101", "A80+|S210-"], ["PC112", "A70+|S210-"], ["DASVO", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["ANTEX", "PC102", "PC101", "PC112", "DASVO"]
+            ]
+        },
+        "ANTEX2C": {
+            "icao": "ANTEX2C",
+            "name": "Antex Two Charlie",
+            "entryPoints": {
+                "ANTEX": []
+            },
+            "body": [["ANTEX", "A40+|S210-"], ["VIRTO", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["ANTEX", "VIRTO"]
+            ]
+        },
+        "BEREL1C": {
+            "icao": "BEREL1C",
+            "name": "Berel One Charlie",
+            "entryPoints": {
+                "BEREL": []
+            },
+            "body": [["BEREL", "A160-|S230-"], ["PC098", "A120+|S220-"], ["DASVO", "A120+|S210-"], ["PC203", "A80+|S210-"], ["APLAL", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["BEREL", "PC098", "DASVO", "PC203", "APLAL"]
+            ]
+        },
+        "BEREL1W": {
+            "icao": "BEREL1W",
+            "name": "Berel One Whiskey",
+            "entryPoints": {
+                "BEREL": []
+            },
+            "body": [["BEREL", "A120-|S220-"], ["PC099", "A40+|S220-"], ["AGNAL", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["BEREL", "PC099", "AGNAL"]
+            ]
+        },
+        "BEREL2B": {
+            "icao": "BEREL2B",
+            "name": "Berel Two Bravo",
+            "entryPoints": {
+                "BEREL": []
+            },
+            "body": [["BEREL", "A120-|S220-"], ["PC098", "A40+|S220-"], ["DASVO", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["BEREL", "PC098", "DASVO"]
+            ]
+        },
+        "BEREL2C": {
+            "icao": "BEREL2C",
+            "name": "Berel Two Charlie",
+            "entryPoints": {
+                "BEREL": []
+            },
+            "body": [["BEREL", "A160-|S230-"], ["PC098", "A120+|S220-"], ["DASVO", "A120+|S210-"], ["PC203", "A80+|S210-"], ["LETAD", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["BEREL", "PC098", "DASVO", "PC203", "LETAD"]
+            ]
+        },
+        "BETIR1C": {
+            "icao": "BETIR1C",
+            "name": "Betir One Charlie",
+            "entryPoints": {
+                "BETIR": []
+            },
+            "body": [["BETIR", "A180-|S250-"], ["PIXAR", "A180-|S250-"], ["BEREL", "A160-|S230-"], ["PC098", "A120+|S220-"], ["DASVO", "A120+|S210-"], ["PC203", "A80+|S210-"], ["APLAL", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["BEREL", "PC098", "DASVO", "PC203", "APLAL"]
+            ]
+        },
+        "BETIR1W": {
+            "icao": "BETIR1W",
+            "name": "Betir One Whiskey",
+            "entryPoints": {
+                "BETIR": []
+            },
+            "body": [["BETIR", "A160-|S250-"], ["PIXAR", "A150-|S230-"], ["BEREL", "A120-|S220-"], ["PC099", "A40+|S220-"], ["AGNAL", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["BETIR", "PIXAR", "BEREL", "PC099", "AGNAL"]
+            ]
+        },
+        "BETIR2B": {
+            "icao": "BETIR2B",
+            "name": "Betir Two Bravo",
+            "entryPoints": {
+                "BETIR": []
+            },
+            "body": [["BETIR", "A160-|S250-"], ["PIXAR", "A150-|S230-"], ["BEREL", "A120-|S220-"], ["PC098", "A40+|S220-"], ["DASVO", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["BETIR", "PIXAR", "BEREL", "PC098", "DASVO"]
+            ]
+        },
+        "BETIR2C": {
+            "icao": "BETIR2C",
+            "name": "Betir Two Charlie",
+            "entryPoints": {
+                "BETIR": []
+            },
+            "body": [["BETIR", "A180-|S250-"], ["PIXAR", "A180-|S250-"], ["BEREL", "A160-|S230-"], ["PC098", "A120+|S220-"], ["DASVO", "A120+|S210-"], ["PC203", "A80+|S210-"], ["LETAD", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["BETIR", "PIXAR", "BEREL", "PC098", "DASVO", "PC203", "LETAD"]
+            ]
+        },
+        "KATOK1C": {
+            "icao": "KATOK1C",
+            "name": "Katok One Charlie",
+            "entryPoints": {
+                "KATOK": []
+            },
+            "body": [["KATOK", "A100-|S210-"], ["APLAL", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["KATOK", "APLAL"]
+            ]
+        },
+        "KATOK1W": {
+            "icao": "KATOK1W",
+            "name": "Katok One Whiskey",
+            "entryPoints": {
+                "KATOK": []
+            },
+            "body": [["KATOK", "A80+|S230-"], ["PC101", "A80+|S210-"], ["PC112", "A70+|S210-"], ["AGNAL", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["KATOK", "PC101", "PC112", "AGNAL"]
+            ]
+        },
+        "KATOK2B": {
+            "icao": "KATOK2B",
+            "name": "Katok Two Bravo",
+            "entryPoints": {
+                "KATOK": []
+            },
+            "body": [["KATOK", "A80+|S230-"], ["PC101", "A80+|S210-"], ["PC112", "A70+|S210-"], ["DASVO", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["KATOK", "PC101", "PC112", "DASVO"]
+            ]
+        },
+        "KATOK2C": {
+            "icao": "KATOK2C",
+            "name": "Katok Two Charlie",
+            "entryPoints": {
+                "KATOK": []
+            },
+            "body": [["KATOK", "A100-|S210-"], ["LETAD", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["KATOK", "LETAD"]
+            ]
+        },
+        "PALAS1C": {
+            "icao": "PALAS1C",
+            "name": "Palas One Charlie",
+            "entryPoints": {
+                "PALAS": []
+            },
+            "body": [["PALAS", "A160+"], ["PC111", "A190-|S250-"], ["NADAX", "A170-|S210-"], ["ANEBI", "A120+|S210-"], ["PC205", "A80+|S210-"], ["MESPA", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["PALAS", "PC111", "NADAX", "ANEBI", "PC205", "MESPA"]
+            ]
+        },
+        "PALAS1W": {
+            "icao": "PALAS1W",
+            "name": "Palas One Whiskey",
+            "entryPoints": {
+                "PALAS": []
+            },
+            "body": [["PALAS", "A160+"], ["PC111", "A150-|S230"], ["NADAX", "A50+|A110-|S210-"], ["ANEBI", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["PALAS", "PC111", "NADAX", "AGNAL"]
+            ]
+        },
+        "PALAS2B": {
+            "icao": "PALAS2B",
+            "name": "Palas Two Bravo",
+            "entryPoints": {
+                "PALAS": []
+            },
+            "body": [["PALAS", "A160+"], ["PC111", "A150-|S230"], ["NADAX", "A50+|A110-|S210-"], ["EMUTI", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["PALAS", "PC111", "NADAX", "EMUTI"]
+            ]
+        },
+        "PALAS2C": {
+            "icao": "PALAS2C",
+            "name": "Palas Two Charlie",
+            "entryPoints": {
+                "PALAS": []
+            },
+            "body": [["PALAS", "A160+"], ["PC111", "A190-|S250-"], ["NADAX", "A170-|S230-"], ["EMUTI", "A110+|S210-"], ["PC205", "A80+|S210-"], ["VIRTO", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["PALAS", "PC111", "NADAX", "EMUTI", "PC205", "VIRTO"]
+            ]
+        },
+        "POKAK1C": {
+            "icao": "POKAK1C",
+            "name": "Pokak One Charlie",
+            "entryPoints": {
+                "POKAK": []
+            },
+            "body": [["POKAK", "A160+"], ["PC109", "A190-|S250-"], ["PC108", "A190-|S250-"], ["NADAX", "A170-|S210-"], ["ANEBI", "A120+|S210-"], ["PC205", "A80+|S210-"], ["MESPA", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["POKAK", "PC109", "PC108", "NADAX", "ANEBI", "PC205", "MESPA"]
+            ]
+        },
+        "POKAK1W": {
+            "icao": "POKAK1W",
+            "name": "Pokak One Whiskey",
+            "entryPoints": {
+                "POKAK": []
+            },
+            "body": [["POKAK", "A160+"], ["PC109", "A190-|S250-"], ["PC108", "A190-|S250-"], ["NADAX", "A50+|A110-|S210-"], ["ANEBI", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["POKAK", "PC109", "PC108", "NADAX", "AGNAL"]
+            ]
+        },
+        "POKAK2B": {
+            "icao": "POKAK2B",
+            "name": "Pokak Two Bravo",
+            "entryPoints": {
+                "POKAK": []
+            },
+            "body": [["POKAK", "A160+"], ["PC109", "A190-|S250-"], ["PC108", "A190-|S250-"], ["NADAX", "A50+|A110-|S210-"], ["EMUTI", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["POKAK", "PC109", "PC108", "NADAX", "EMUTI"]
+            ]
+        },
+        "POKAK2C": {
+            "icao": "POKAK2C",
+            "name": "Pokak Two Charlie",
+            "entryPoints": {
+                "POKAK": []
+            },
+            "body": [["POKAK", "A160+"], ["PC109", "A190-|S250-"], ["PC108", "A190-|S250-"], ["NADAX", "A170-|S230-"], ["EMUTI", "A110+|S210-"], ["PC205", "A80+|S210-"], ["VIRTO", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["POKAK", "PC109", "PC108", "NADAX", "EMUTI", "PC205", "VIRTO"]
+            ]
+        },
+        "POKEG1C": {
+            "icao": "POKEG1C",
+            "name": "Pokeg One Charlie",
+            "entryPoints": {
+                "POKEG": []
+            },
+            "body": [["POKEG", "A160+"], ["PC113", "A160+"], ["BEREL", "A160-|S230-"], ["PC098", "A120+|S220-"], ["DASVO", "A120+|S210-"], ["PC203", "A80+|S210-"], ["APLAL", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["POKEG", "PC113", "BEREL", "PC098", "DASVO", "PC203", "APLAL"]
+            ]
+        },
+        "POKEG1W": {
+            "icao": "POKEG1W",
+            "name": "Pokeg One Whiskey",
+            "entryPoints": {
+                "POKEG": []
+            },
+            "body": [["POKEG", "A160+"], ["PC113", "A160+"], ["BEREL", "A120-|S220-"], ["PC099", "A40+|S220-"], ["AGNAL", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["POKEG", "PC113", "BEREL", "PC099", "AGNAL"]
+            ]
+        },
+        "POKEG2B": {
+            "icao": "POKEG2B",
+            "name": "Pokeg Two Bravo",
+            "entryPoints": {
+                "POKEG": []
+            },
+            "body": [["POKEG", "A160+"], ["PC113", "A160+"], ["BEREL", "A120-|S220-"], ["PC098", "A40+|S220-"], ["DASVO", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["POKEG", "PC113", "BEREL", "PC098", "DASVO"]
+            ]
+        },
+        "POKEG2C": {
+            "icao": "POKEG2C",
+            "name": "Pokeg Two Charlie",
+            "entryPoints": {
+                "POKEG": []
+            },
+            "body": [["POKEG", "A160+"], ["PC113", "A160+"], ["BEREL", "A160-|S230-"], ["PC098", "A120+|S220-"], ["DASVO", "A120+|S210-"], ["PC203", "A80+|S210-"], ["LETAD", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["POKEG", "PC113", "BEREL", "PC098", "DASVO", "PC203", "LETAD"]
+            ]
+        },
+        "VESKA1C": {
+            "icao": "VESKA1C",
+            "name": "Veska One Charlie",
+            "entryPoints": {
+                "VESKA": []
+            },
+            "body": [["VESKA", "A160+"], ["PC110", "A190-|S250-"], ["NADAX", "A170-|S210-"], ["ANEBI", "A120+|S210-"], ["PC205", "A80+|S210-"], ["MESPA", "A30|S210-"]],
+            "rwy": {
+                "MDPC26": []
+            },
+            "draw": [
+                ["VESKA", "PC110", "NADAX", "ANEBI", "PC205", "MESPA"]
+            ]
+        },
+        "VESKA1W": {
+            "icao": "VESKA1W",
+            "name": "Veska One Whiskey",
+            "entryPoints": {
+                "VESKA": []
+            },
+            "body": [["VESKA", "A160+"], ["PC110", "A150-|S230"], ["NADAX", "A50+|A110-|S210-"], ["ANEBI", "A30|S210"]],
+            "rwy": {
+                "MDPC8": []
+            },
+            "draw": [
+                ["VESKA", "PC110", "NADAX", "AGNAL"]
+            ]
+        },
+        "VESKA2B": {
+            "icao": "VESKA2B",
+            "name": "Veska Two Bravo",
+            "entryPoints": {
+                "VESKA": []
+            },
+            "body": [["VESKA", "A160+"], ["PC110", "A150-|S230"], ["NADAX", "A50+|A110-|S210-"], ["EMUTI", "A30|S210"]],
+            "rwy": {
+                "MDPC9": []
+            },
+            "draw": [
+                ["VESKA", "PC110", "NADAX", "EMUTI"]
+            ]
+        },
+        "VESKA2C": {
+            "icao": "VESKA2C",
+            "name": "Veska Two Charlie",
+            "entryPoints": {
+                "VESKA": []
+            },
+            "body": [["VESKA", "A160+"], ["PC110", "A190-|S250-"], ["NADAX", "A170-|S230-"], ["EMUTI", "A110+|S210-"], ["PC205", "A80+|S210-"], ["VIRTO", "A30|S210-"]],
+            "rwy": {
+                "MDPC27": []
+            },
+            "draw": [
+                ["VESKA", "PC110", "NADAX", "EMUTI", "PC205", "VIRTO"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "",
+            "destination": "mdpc",
+            "category": "arrival",
+            "route": "STIIV.L577.ANTEX.ANTEX1W.MDPC8",
+            "altitude": "36000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "mdpc",
+            "category": "arrival",
+            "route": "PUYYA.M597.BETIR.BETIR1W.MDPC8",
+            "altitude": "36000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "mdpc",
+            "category": "arrival",
+            "route": "AQABA.M348.KATOK.KATOK1W.MDPC8",
+            "altitude": "16000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "mdpc",
+            "category": "arrival",
+            "route": "MASEN.UM597.PALAS.PALAS1W.MDPC8",
+            "altitude": "37000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "mdpc",
+            "category": "arrival",
+            "route": "GADIR.UL216.POKAK.POKAK1W.MDPC8",
+            "altitude": "36000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "mdpc",
+            "category": "arrival",
+            "route": "HAGIT.Y306.POKEG.POKEG1W.MDPC8",
+            "altitude": "36000",
+            "speed": "320",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.CHUMA2T.CHUMA.Y315.DOZGO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.ETBOD2T.ETBOD.UL577.PAP",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.KATOK2T.KATOK.M348.AQABA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.MALVN2T.MALVN.Y396.RUMFO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.MELLA2T.MELLA.G633.ZADAV",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.PALAS2T.PALAS.UM597.MASEN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.PIXAR2T.PIXAR.UW10.ASIVO.L453.MACKI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.POKAK2T.POKAK.UL216.GADIR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.RETAK2T.RETAK.UM348.ALBBE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        },
+        {
+            "origin": "mdpc",
+            "destination": "",
+            "category": "departure",
+            "route": "MDPC9.VESKA2T.VESKA.UM525.SINKU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.1,
+            "airlines": [
+                ["aal", 8],
+                ["aca", 1],
+                ["amx", 1],
+                ["asa", 6],
+                ["ash", 3],
+                ["dal", 50],
+                ["eny", 3],
+                ["fdx", 7],
+                ["fft", 6],
+                ["gti", 3],
+                ["jbu", 5]
+            ]
+        }
+    ],
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
+                ["N19.00000", "W68.00000", "N17.81770", "W68.00000"],
+                ["N17.81770", "W68.00000", "N17.80946", "W68.02069"],
+                ["N17.80946", "W68.02069", "N17.79792", "W68.04881"],
+                ["N17.79792", "W68.04881", "N17.78732", "W68.07733"],
+                ["N17.78732", "W68.07733", "N17.77768", "W68.10623"],
+                ["N17.77768", "W68.10623", "N17.76899", "W68.13547"],
+                ["N17.76899", "W68.13547", "N17.76128", "W68.16501"],
+                ["N17.76128", "W68.16501", "N17.75455", "W68.19482"],
+                ["N17.75455", "W68.19482", "N17.74881", "W68.22485"],
+                ["N17.74881", "W68.22485", "N17.74406", "W68.25508"],
+                ["N17.74406", "W68.25508", "N17.74032", "W68.28547"],
+                ["N17.74032", "W68.28547", "N17.73759", "W68.31597"],
+                ["N17.73759", "W68.31597", "N17.73586", "W68.34656"],
+                ["N17.73586", "W68.34656", "N17.73515", "W68.37719"],
+                ["N17.73515", "W68.37719", "N17.73546", "W68.40782"],
+                ["N17.73546", "W68.40782", "N17.73678", "W68.43843"],
+                ["N17.73678", "W68.43843", "N17.73911", "W68.46897"],
+                ["N17.73911", "W68.46897", "N17.74244", "W68.49941"],
+                ["N17.74244", "W68.49941", "N17.74679", "W68.52971"],
+                ["N17.74679", "W68.52971", "N17.75213", "W68.55982"],
+                ["N17.75213", "W68.55982", "N17.75847", "W68.58973"],
+                ["N17.75847", "W68.58973", "N17.76579", "W68.61938"],
+                ["N17.76579", "W68.61938", "N17.77409", "W68.64874"],
+                ["N17.77409", "W68.64874", "N17.78335", "W68.67778"],
+                ["N17.78335", "W68.67778", "N17.79357", "W68.70646"],
+                ["N17.79357", "W68.70646", "N17.80473", "W68.73475"],
+                ["N17.80473", "W68.73475", "N17.81682", "W68.76261"],
+                ["N17.81682", "W68.76261", "N17.82983", "W68.79000"],
+                ["N17.82983", "W68.79000", "N17.84373", "W68.81690"],
+                ["N17.84373", "W68.81690", "N17.85852", "W68.84328"],
+                ["N17.85852", "W68.84328", "N17.87416", "W68.86909"],
+                ["N17.87416", "W68.86909", "N17.89066", "W68.89431"],
+                ["N17.89066", "W68.89431", "N17.90797", "W68.91891"],
+                ["N17.90797", "W68.91891", "N17.92610", "W68.94285"],
+                ["N17.92610", "W68.94285", "N17.93968", "W68.96039"],
+                ["N17.93968", "W68.96039", "N17.97003", "W68.93845"],
+                ["N17.97003", "W68.93845", "N18.00686", "W68.91392"],
+                ["N18.00686", "W68.91392", "N18.04485", "W68.89144"],
+                ["N18.04485", "W68.89144", "N18.08390", "W68.87110"],
+                ["N18.08390", "W68.87110", "N18.12391", "W68.85293"],
+                ["N18.12391", "W68.85293", "N18.16477", "W68.83700"],
+                ["N18.16477", "W68.83700", "N18.20076", "W68.82560"],
+                ["N18.20076", "W68.82560", "N18.20410", "W68.81492"],
+                ["N18.20410", "W68.81492", "N18.20926", "W68.80126"],
+                ["N18.20926", "W68.80126", "N18.21508", "W68.78791"],
+                ["N18.21508", "W68.78791", "N18.22156", "W68.77490"],
+                ["N18.22156", "W68.77490", "N18.22868", "W68.76226"],
+                ["N18.22868", "W68.76226", "N18.23641", "W68.75003"],
+                ["N18.23641", "W68.75003", "N18.24475", "W68.73825"],
+                ["N18.24475", "W68.73825", "N18.25365", "W68.72694"],
+                ["N18.25365", "W68.72694", "N18.26310", "W68.71614"],
+                ["N18.26310", "W68.71614", "N18.27308", "W68.70588"],
+                ["N18.27308", "W68.70588", "N18.28356", "W68.69618"],
+                ["N18.28356", "W68.69618", "N18.29450", "W68.68707"],
+                ["N18.29450", "W68.68707", "N18.30587", "W68.67858"],
+                ["N18.30587", "W68.67858", "N18.31766", "W68.67073"],
+                ["N18.31766", "W68.67073", "N18.32981", "W68.66353"],
+                ["N18.32981", "W68.66353", "N18.34231", "W68.65702"],
+                ["N18.34231", "W68.65702", "N18.35512", "W68.65121"],
+                ["N18.35512", "W68.65121", "N18.36819", "W68.64611"],
+                ["N18.36819", "W68.64611", "N18.38150", "W68.64174"],
+                ["N18.38150", "W68.64174", "N18.39501", "W68.63811"],
+                ["N18.39501", "W68.63811", "N18.40868", "W68.63523"],
+                ["N18.40868", "W68.63523", "N18.42247", "W68.63311"],
+                ["N18.42247", "W68.63311", "N18.43635", "W68.63175"],
+                ["N18.43635", "W68.63175", "N18.45028", "W68.63116"],
+                ["N18.45028", "W68.63116", "N18.46422", "W68.63134"],
+                ["N18.46422", "W68.63134", "N18.47814", "W68.63229"],
+                ["N18.47814", "W68.63229", "N18.49198", "W68.63400"],
+                ["N18.49198", "W68.63400", "N18.50572", "W68.63648"],
+                ["N18.50572", "W68.63648", "N18.51932", "W68.63971"],
+                ["N18.51932", "W68.63971", "N18.53274", "W68.64369"],
+                ["N18.53274", "W68.64369", "N18.54595", "W68.64840"],
+                ["N18.54595", "W68.64840", "N18.55890", "W68.65383"],
+                ["N18.55890", "W68.65383", "N18.57157", "W68.65997"],
+                ["N18.57157", "W68.65997", "N18.58391", "W68.66681"],
+                ["N18.58391", "W68.66681", "N18.59590", "W68.67431"],
+                ["N18.59590", "W68.67431", "N18.60749", "W68.68246"],
+                ["N18.60749", "W68.68246", "N18.61867", "W68.69125"],
+                ["N18.61867", "W68.69125", "N18.62940", "W68.70063"],
+                ["N18.62940", "W68.70063", "N18.63964", "W68.71060"],
+                ["N18.63964", "W68.71060", "N18.64938", "W68.72112"],
+                ["N18.64938", "W68.72112", "N18.65858", "W68.73216"],
+                ["N18.65858", "W68.73216", "N18.66722", "W68.74369"],
+                ["N18.66722", "W68.74369", "N18.67528", "W68.75569"],
+                ["N18.67528", "W68.75569", "N18.68272", "W68.76811"],
+                ["N18.68272", "W68.76811", "N18.68955", "W68.78093"],
+                ["N18.68955", "W68.78093", "N18.69572", "W68.79410"],
+                ["N18.69572", "W68.79410", "N18.70124", "W68.80760"],
+                ["N18.70124", "W68.80760", "N18.70607", "W68.82138"],
+                ["N18.70607", "W68.82138", "N18.71022", "W68.83541"],
+                ["N18.71022", "W68.83541", "N18.71175", "W68.84088"],
+                ["N18.71175", "W68.84088", "N18.76196", "W68.86114"],
+                ["N18.76196", "W68.86114", "N18.80154", "W68.88033"],
+                ["N18.80154", "W68.88033", "N18.84011", "W68.90168"],
+                ["N18.84011", "W68.90168", "N18.87757", "W68.92512"],
+                ["N18.87757", "W68.92512", "N18.91382", "W68.95060"],
+                ["N18.91382", "W68.95060", "N18.94875", "W68.97804"],
+                ["N18.94875", "W68.97804", "N18.98226", "W69.00738"],
+                ["N18.98226", "W69.00738", "N19.01428", "W69.03852"],
+                ["N19.01428", "W69.03852", "N19.04471", "W69.07138"],
+                ["N19.04471", "W69.07138", "N19.05978", "W69.09076"],
+                ["N19.05978", "W69.09076", "N19.07497", "W69.07880"],
+                ["N19.07497", "W69.07880", "N19.09767", "W69.05968"],
+                ["N19.09767", "W69.05968", "N19.11972", "W69.03974"],
+                ["N19.11972", "W69.03974", "N19.14110", "W69.01900"],
+                ["N19.14110", "W69.01900", "N19.16179", "W68.99749"],
+                ["N19.16179", "W68.99749", "N19.18174", "W68.97523"],
+                ["N19.18174", "W68.97523", "N19.20095", "W68.95224"],
+                ["N19.20095", "W68.95224", "N19.21939", "W68.92857"],
+                ["N19.21939", "W68.92857", "N19.23703", "W68.90423"],
+                ["N19.23703", "W68.90423", "N19.25385", "W68.87925"],
+                ["N19.25385", "W68.87925", "N19.26984", "W68.85367"],
+                ["N19.26984", "W68.85367", "N19.28497", "W68.82752"],
+                ["N19.28497", "W68.82752", "N19.29923", "W68.80082"],
+                ["N19.29923", "W68.80082", "N19.31260", "W68.77362"],
+                ["N19.31260", "W68.77362", "N19.32506", "W68.74594"],
+                ["N19.32506", "W68.74594", "N19.33659", "W68.71782"],
+                ["N19.33659", "W68.71782", "N19.34719", "W68.68930"],
+                ["N19.34719", "W68.68930", "N19.35684", "W68.66040"],
+                ["N19.35684", "W68.66040", "N19.36394", "W68.63795"],
+                ["N19.36394", "W68.63795", "N19.00000", "W68.00000"],
+                ["N18.57029", "W68.38305", "N18.57809", "W68.35483"],
+                ["N18.56610", "W68.37806", "N18.56863", "W68.34880"],
+                ["N18.56796", "W68.39148", "N18.56563", "W68.39990"],
+                ["N18.56330", "W68.40833", "N18.56097", "W68.41675"],
+                ["N18.55864", "W68.42517", "N18.55631", "W68.43360"],
+                ["N18.55398", "W68.44202", "N18.55165", "W68.45045"],
+                ["N18.54361", "W68.44800", "N18.55968", "W68.45289"],
+                ["N18.54932", "W68.45887", "N18.54698", "W68.46729"],
+                ["N18.54465", "W68.47572", "N18.54232", "W68.48414"],
+                ["N18.53998", "W68.49256", "N18.53765", "W68.50098"],
+                ["N18.53531", "W68.50941", "N18.53298", "W68.51783"],
+                ["N18.52494", "W68.51539", "N18.54101", "W68.52027"],
+                ["N18.53064", "W68.52625", "N18.52831", "W68.53467"],
+                ["N18.52597", "W68.54309", "N18.52363", "W68.55151"],
+                ["N18.52130", "W68.55993", "N18.51896", "W68.56835"],
+                ["N18.51662", "W68.57677", "N18.51428", "W68.58520"],
+                ["N18.50625", "W68.58275", "N18.52232", "W68.58764"],
+                ["N18.58042", "W68.34641", "N18.58275", "W68.33798"],
+                ["N18.58508", "W68.32955", "N18.58741", "W68.32113"],
+                ["N18.58973", "W68.31270", "N18.59206", "W68.30427"],
+                ["N18.59439", "W68.29585", "N18.59671", "W68.28742"],
+                ["N18.60475", "W68.28986", "N18.58868", "W68.28498"],
+                ["N18.59904", "W68.27899", "N18.60137", "W68.27056"],
+                ["N18.60369", "W68.26213", "N18.60602", "W68.25371"],
+                ["N18.60834", "W68.24528", "N18.61066", "W68.23685"],
+                ["N18.61299", "W68.22842", "N18.61531", "W68.21999"],
+                ["N18.62335", "W68.22243", "N18.60728", "W68.21755"],
+                ["N18.61763", "W68.21156", "N18.61996", "W68.20313"],
+                ["N18.62228", "W68.19470", "N18.62460", "W68.18627"],
+                ["N18.62692", "W68.17784", "N18.62924", "W68.16941"],
+                ["N18.63156", "W68.16098", "N18.63388", "W68.15255"],
+                ["N18.64192", "W68.15499", "N18.62585", "W68.15010"],
+                ["N18.56535", "W68.38679", "N18.56459", "W68.39553"],
+                ["N18.56383", "W68.40427", "N18.56308", "W68.41300"],
+                ["N18.56232", "W68.42174", "N18.56156", "W68.43047"],
+                ["N18.56080", "W68.43921", "N18.56005", "W68.44795"],
+                ["N18.55171", "W68.44715", "N18.56838", "W68.44874"],
+                ["N18.55929", "W68.45668", "N18.55853", "W68.46542"],
+                ["N18.55777", "W68.47415", "N18.55701", "W68.48289"],
+                ["N18.55625", "W68.49162", "N18.55549", "W68.50036"],
+                ["N18.55472", "W68.50909", "N18.55396", "W68.51783"],
+                ["N18.54563", "W68.51704", "N18.56229", "W68.51862"],
+                ["N18.55320", "W68.52656", "N18.55244", "W68.53530"],
+                ["N18.55167", "W68.54403", "N18.55091", "W68.55277"],
+                ["N18.55015", "W68.56150", "N18.54938", "W68.57024"],
+                ["N18.54862", "W68.57897", "N18.54785", "W68.58771"],
+                ["N18.53952", "W68.58691", "N18.55618", "W68.58850"],
+                ["N18.56939", "W68.34006", "N18.57014", "W68.33133"],
+                ["N18.57090", "W68.32259", "N18.57165", "W68.31385"],
+                ["N18.57240", "W68.30512", "N18.57316", "W68.29638"],
+                ["N18.57391", "W68.28764", "N18.57466", "W68.27891"],
+                ["N18.58299", "W68.27970", "N18.56633", "W68.27811"],
+                ["N18.57541", "W68.27017", "N18.57617", "W68.26143"],
+                ["N18.57692", "W68.25269", "N18.57767", "W68.24396"],
+                ["N18.57842", "W68.23522", "N18.57917", "W68.22648"],
+                ["N18.57992", "W68.21775", "N18.58067", "W68.20901"],
+                ["N18.58900", "W68.20980", "N18.57234", "W68.20822"],
+                ["N18.58142", "W68.20027", "N18.58217", "W68.19153"],
+                ["N18.58291", "W68.18279", "N18.58366", "W68.17406"],
+                ["N18.58441", "W68.16532", "N18.58515", "W68.15658"],
+                ["N18.58590", "W68.14784", "N18.58665", "W68.13910"],
+                ["N18.59498", "W68.13990", "N18.57832", "W68.13831"]
+            ]
+        }  
+    ]
+}

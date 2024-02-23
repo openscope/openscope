@@ -455,6 +455,13 @@
         "premium": false
     },
     {
+        "icao": "mdpc",
+        "level": "medium",
+        "name": "Punta Cana International Airport",
+        "premium": false,
+        "disabled": false
+    },
+    {
         "icao": "mdsd",
         "level": "beginner",
         "name": "Aeropuerto Internacional Las Américas",
