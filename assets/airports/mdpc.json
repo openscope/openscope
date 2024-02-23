@@ -1,1 +1,10 @@
-
+{
+    "airac": 2402,
+    "radio": {
+        "twr": " Tower",
+        "app": " Approach",
+        "dep": " Departure"
+    },
+    "icao": "MDPC",
+    "iata": "PUG",
+    
