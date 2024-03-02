@@ -9,7 +9,7 @@
     "iata": "AUS",
     "magnetic_north": 3.6,
     "ctr_radius": 80,
-    "ctr_ceiling": 12000,
+    "ctr_ceiling": 15000,
     "initial_alt": 4000,
     "position": ["N30.195105", "W97.666406", "542ft"],
     "rangeRings": {
