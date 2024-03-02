@@ -1,5 +1,5 @@
 {
-    "airac": 2109,
+    "airac": 2401,
     "radio": {
         "twr": "Austin Tower",
         "app": "Austin Approach",
@@ -9,7 +9,7 @@
     "iata": "AUS",
     "magnetic_north": 3.6,
     "ctr_radius": 80,
-    "ctr_ceiling": 12000,
+    "ctr_ceiling": 15000,
     "initial_alt": 4000,
     "position": ["N30.195105", "W97.666406", "542ft"],
     "rangeRings": {
@@ -294,7 +294,7 @@
         },
         "ELOEL3": {
             "icao": "ELOEL3",
-            "name": "Eloel Three",
+            "name": "El oh el Three",
             "rwy": {
                 "KAUS18L": ["#175"],
                 "KAUS18R": ["#175"],
@@ -314,9 +314,9 @@
                 ["ELOEL", "KLNGR*"]
           ]
         },
-        "ILEXY3": {
-            "icao": "ILEXY3",
-            "name": "Ilexy Three",
+        "ILEXY4": {
+            "icao": "ILEXY4",
+            "name": "Ilexy Four",
             "rwy": {
                 "KAUS18L": ["#175"],
                 "KAUS18R": ["#175"],
@@ -408,9 +408,9 @@
                 ["LFK*", "BOCCK"]
           ]
         },
-        "BLEWE4": {
-            "icao": "BLEWE4",
-            "name": "Blue Four",
+        "BLEWE5": {
+            "icao": "BLEWE5",
+            "name": "Blue Five",
             "entryPoints": {
                 "ACT": ["ACT"],
                 "WINDU": ["WINDU"]
@@ -428,10 +428,11 @@
                 ["WINDU*", "BLEWE"]
           ]
         },
-        "DXEEE2": {
-            "icao": "DXEEE2",
-            "name": "Dixie Two",
+        "DXEEE3": {
+            "icao": "DXEEE3",
+            "name": "Dixie Three",
             "entryPoints": {
+                "DOBBY": ["DOBBY", ["THELM", "A200+|S280"]],
                 "HFMAN": ["HFMAN", "GYTON", "DOBBY", ["THELM", "A200+|S280"]],
                 "HOOLR": ["HOOLR", "NILEE", ["SKEWT", "A200+|S280"]]
             },
@@ -507,9 +508,9 @@
                 ["VADRR", "HHOOF", "MMARE", "SMRFF"]
           ]
         },
-        "WLEEE6": {
-            "icao": "WLEEE6",
-            "name": "Willie Six",
+        "WLEEE7": {
+            "icao": "WLEEE7",
+            "name": "Willie Seven",
             "entryPoints": {
                 "DBOYS": ["DBOYS", "WEEED", ["DOOEE", "A170+"], "WAILN"],
                 "LUKKN": ["LUKKN", "WEEED", ["DOOEE", "A170+"], "WAILN"],
@@ -542,14 +543,15 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.46,
+            "rate": 3.405,
             "airlines": [
                 ["aal/short", 8],
-                ["baw/b789", 1],
+                ["aca/short", 1],
+                ["baw/a35K", 1],
                 ["dal/short", 3],
                 ["eny", 1],
                 ["fft", 3],
-                ["n/fastGA", 1],
+                ["n/fastGA", 3],
                 ["nks", 2],
                 ["skw", 2],
                 ["swa", 12]
@@ -563,10 +565,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.54,
+            "rate": 1.419,
             "airlines": [
                 ["aal/short", 11],
-                ["n/fastGA", 2]
+                ["n/fastGA", 4]
           ]
         },
         {
@@ -577,9 +579,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.42,
+            "rate": 1.514,
             "airlines": [
                 ["dal/short", 4],
+                ["n/fastGA", 6],
                 ["ual/short", 6]
           ]
         },
@@ -587,23 +590,25 @@
             "origin": "KAUS",
             "destination": "",
             "category": "departure",
-            "route": "KAUS18L.ILEXY3.ZENZI",
+            "route": "KAUS18L.ILEXY4.ZENZI",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.20,
+            "rate": 7.850,
             "airlines": [
                 ["aal/short", 4],
                 ["aay", 3],
+                ["aca/short", 1],
                 ["ash", 3],
+                ["cmp/b738", 1],
                 ["dal/short", 15],
-                ["dlh/a333", 1],
+                ["dlh/b789", 1],
                 ["edv", 2],
                 ["fdx/long", 2],
                 ["fft", 5],
                 ["jbu", 5],
-                ["klm/a332", 1],
-                ["n/fastGA", 1],
+                ["klm/b789", 1],
+                ["n/fastGA", 5],
                 ["nks", 2],
                 ["rpa", 2],
                 ["swa", 25],
@@ -615,14 +620,14 @@
             "origin": "KAUS",
             "destination": "",
             "category": "departure",
-            "route": "KAUS18L.ILEXY3.JAYJO.V306.BLUBL",
+            "route": "KAUS18L.ILEXY4.JAYJO.V306.BLUBL",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.67,
+            "rate": 1.891,
             "airlines": [
                 ["fft", 2],
-                ["n/fastGA", 2],
+                ["n/fastGA", 6],
                 ["rpa", 1],
                 ["ual/short", 11]
           ]
@@ -635,15 +640,16 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.75,
+            "rate": 4.256,
             "airlines": [
                 ["aal/short", 8],
                 ["aay", 1],
+                ["atn", 1],
                 ["dal/short", 3],
                 ["fft", 2],
                 ["hal/a332", 1],
                 ["jbu", 2],
-                ["n/fastGA", 1],
+                ["n/fastGA", 3],
                 ["skw", 3],
                 ["swa", 19],
                 ["ual/short", 2]
@@ -657,16 +663,14 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.38,
+            "rate": 1.607,
             "airlines": [
                 ["aay", 1],
-                ["asa", 2],
-                ["bvn", 3],
+                ["asa", 4],
                 ["hal/a332", 1],
-                ["n", 20],
-                ["n/fastGA", 1],
+                ["n/fastGA", 5],
                 ["skw", 2],
-                ["swa", 3]
+                ["swa", 4]
           ]
         },
         {
@@ -677,12 +681,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.04,
+            "rate": 0.663,
             "airlines": [
                 ["asa", 3],
-                ["bvn", 1],
-                ["jza/aus", 1],
-                ["n", 20]
+                ["n/fastGA", 4]
           ]
         },
         {
@@ -693,12 +695,13 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.167,
+            "rate": 0.756,
             "airlines": [
+                ["n/fastGA", 3],
                 ["sli", 1],
                 ["swa", 1],
                 ["ups", 1],
-                ["xa/fastGA", 1]
+                ["xa/fastGA", 2]
           ]
         },
         {
@@ -709,24 +712,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.46,
+            "rate": 1.419,
             "airlines": [
-                ["n/fastGA", 1],
+                ["n/fastGA", 5],
                 ["swa", 10]
-          ]
-        },
-        {
-            "origin": "KAUS",
-            "destination": "",
-            "category": "departure",
-            "route": "KAUS18L.CWK7.ACT",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.96,
-            "airlines": [
-                ["bvn", 3],
-                ["n", 20]
           ]
         },
         {
@@ -737,7 +726,7 @@
             "altitude": 20000,
             "speed": 320,
             "method": "random",
-            "rate": 3.707,
+            "rate": 10.238,
             "airlines": [
                 ["aal/short", 16],
                 ["aay", 3],
@@ -745,17 +734,18 @@
                 ["ash", 1],
                 ["baw/b789", 1],
                 ["dal/short", 6],
-                ["dlh/a333", 1],
+                ["dlh/b789", 1],
                 ["edv", 1],
                 ["eny", 1],
                 ["fdx/long", 2],
                 ["fft", 6],
                 ["jbu", 1],
-                ["klm/a332", 1],
-                ["n/fastGA", 5],
+                ["klm/b789", 1],
+                ["n/fastGA", 11],
                 ["rpa", 2],
                 ["swa", 25],
-                ["ual/short", 10]
+                ["ual/short", 10],
+                ["wja/b73x", 1]
           ]
         },
         {
@@ -766,16 +756,17 @@
             "altitude": 33000,
             "speed": 320,
             "method": "random",
-            "rate": 3.25,
+            "rate": 9.099,
             "airlines": [
                 ["aal/short", 8],
                 ["aay", 2],
+                ["aca/short", 1],
                 ["asa", 5],
                 ["dal/short", 7],
                 ["fft", 6],
                 ["hal/a332", 1],
                 ["jbu", 2],
-                ["n/fastGA", 3],
+                ["n/fastGA", 5],
                 ["skw", 6],
                 ["swa", 27],
                 ["ual/short", 5]
@@ -785,82 +776,41 @@
             "origin": "",
             "destination": "KAUS",
             "category": "arrival",
-            "route": "HFMAN.DXEEE2.KAUS18R",
+            "route": "HFMAN.DXEEE3.KAUS18R",
             "altitude": [32000, 35000],
             "speed": 320,
             "method": "random",
-            "rate": 0.95,
+            "rate": 1.02,
             "airlines": [
-                ["n/fastGA", 1],
+                ["n/fastGA", 3],
                 ["sli", 1],
                 ["swa", 1],
                 ["ups", 1],
-                ["xa/fastGA", 1]
+                ["xa/fastGA", 3]
           ]
         },
         {
             "origin": "",
             "destination": "KAUS",
             "category": "arrival",
-            "route": "IAH..LUKKN.WLEEE6.KAUS18L",
+            "route": "IAH..LUKKN.WLEEE7.KAUS18L",
             "altitude": 26000,
             "speed": 320,
             "method": "random",
-            "rate": 2.45,
+            "rate": 5.232,
             "airlines": [
                 ["aal/short", 6],
                 ["ash", 2],
+                ["cmp/b738", 1],
                 ["dal/short", 9],
                 ["fft", 1],
                 ["jbu", 2],
-                ["n/fastGA", 1],
+                ["n/fastGA", 5],
                 ["nks", 4],
                 ["swa", 6],
                 ["ual/short", 7],
                 ["ups", 2],
-                ["xa/fastGA", 1]
-          ]
-        },
-        {
-            "origin": "",
-            "destination": "KAUS",
-            "category": "arrival",
-            "route": "AGJ..CWK",
-            "altitude": 8000,
-            "speed": 180,
-            "method": "random",
-            "rate": 0.75,
-            "airlines": [
-                ["bvn", 3],
-                ["n", 15]
-          ]
-        },
-        {
-            "origin": "",
-            "destination": "KAUS",
-            "category": "arrival",
-            "route": "BWD..CWK",
-            "altitude": 8000,
-            "speed": 180,
-            "method": "random",
-            "rate": 0.67,
-            "airlines": [
-                ["bvn", 1],
-                ["n", 15]
-          ]
-        },
-        {
-            "origin": "",
-            "destination": "KAUS",
-            "category": "arrival",
-            "route": "SJT..CWK",
-            "altitude": 9000,
-            "speed": 180,
-            "method": "random",
-            "rate": 0.79,
-            "airlines": [
-                ["bvn", 4],
-                ["n", 15]
+                ["xa/fastGA", 4]
           ]
         }
     ],
