@@ -19,7 +19,7 @@
     },
     "has_terrain": true,
     "wind": {
-        "angle": 360,
+        "angle": 90,
         "speed": 5
     },
     "airspace": [
@@ -103,7 +103,7 @@
             ]
         }
     ],
-    "arrivalRunway": "31L",
+    "arrivalRunway": "13R",
     "departureRunway": "4",
     "defaultMaps": ["Base Map"],
     "fixes": {
@@ -174,7 +174,7 @@
         "SNIDR": ["N29.6533500", "W97.8300417"],
         "SPURS": ["N30.4052917", "W98.3496028"],
         "STV"  : ["N30.2067594", "W98.7057553"],
-        "TAHKO": ["N29.4275222", "W98.2088333"],
+        "TAHKO": [29.800333, -98.155111],
         "TATAR": ["N29.8870861", "W98.8024583"],
         "THX"  : ["N28.5049972", "W98.1504667"],
         "TREVA": ["N29.7819611", "W98.6539167"],
@@ -191,7 +191,95 @@
         "WHAEL": ["N29.6622611", "W96.5047389"],
         "XOVES": ["N27.0373333", "W99.6986667"],
         "YENNS": ["N29.0679417", "W98.3219833"],
-        "ZALYO": ["N29.6855194", "W98.3094889"]
+        "ZALYO": ["N29.6855194", "W98.3094889"],
+        "CAAGE": ["N29d57m24.76", "W95d20m45.25"],
+        "LILJO": [28.761339, -98.228331],
+        "SLENA": [28.488856, -98.145578],
+        "BRENI": [27.903861, -97.445033],
+        "WRKIT": [29.629456, -98.245808],
+        "WYLSN": [30.307786, -95.321964],
+        "LVACA": [29.108150, -98.683236],
+        "TJANO": [28.816825, -98.869425],
+        "TEEPY": [28.280281, -99.217425],
+        "ZANNI": [27.809656, -99.412208],
+        "KAHAN": [27.774233, -99.328375],
+        "SITHH": [29.857406, -98.420253],
+        "YODUH": [30.073250, -98.392514],
+        "KLNGR": [31.223553, -98.038847],
+        "GJACK": [31.303211, -99.133119],
+        "PRTZY": [32.481175, -99.863383],
+        "HFMAN": [27.927156, -99.219003],
+        "GYTON": [28.203456, -99.047572],
+        "PECOZ": [28.673708, -98.686822],
+        "EELIZ": [28.193542, -97.906036],
+        "BUGGI": [28.420072, -98.270044],
+        "CRVZA": [28.853972, -98.547475],
+        "CEGAR": [29.100422, -98.544433],
+        "HARDD": [29.356125, -98.634342],
+        "SAYNN": [29.374208, -98.557481],
+        "KEENM": [29.437442, -98.485575],
+        "KRILN": [29.365767, -98.393258],
+        "TIERA": [29.404342, -98.470689],
+        "IPHON": [29.476206, -98.399914],
+        "AYALA": [29.484997, -98.547883],
+        "AGOVE": [29.536753, -98.614661],
+        "TRVLL": [30.597892, -99.817364],
+        "MOPPP": [30.176178,-100.007592],
+        "AIRBL": [29.922292, -99.214311],
+        "FOLLK": [29.865633, -99.059836],
+        "DNKIN": [29.833144, -98.971556],
+        "LDRON": [29.768333, -98.816600],
+        "GERVN": [29.705117, -98.614989],
+        "ADDYY": [29.666025, -98.450414],
+        "IXION": [29.738306, -98.379061],
+        "MANOO": [29.691292, -98.788036],
+        "DYNMO": [29.639353, -98.725900],
+        "DIIAW": [29.544328, -98.688761],
+        "TIMYY": [29.458164, -98.655153],
+        "LOWWN": [29.420186, -98.692522],
+        "PATII": [29.530292, -98.595750],
+        "DILLO": [30.796322, -98.787197],
+        "MUGSY": [31.313272, -99.302444],
+        "PPNUT": [30.891597, -99.105381],
+        "POPPO": [30.105056, -98.737800],
+        "VIICH": [29.939431, -98.748278],
+        "SWUPZ": [29.815431, -98.737528],
+        "BEKKK": [29.628478, -98.712903],
+        "LLEAD": [31.162322, -94.716964],
+        "HOSAY": [29.845561, -97.088892],
+        "NILBE": [31.662167, -97.269014],
+        "OUTLW": [30.378394, -97.529908],
+        "PGOUT": [29.868878, -97.949642],
+        "QERVO": [29.841042, -98.032906],
+        "TRITP": [29.879197, -98.346706],
+        "FJITA": [29.758658, -98.280281],
+        "TRTLA": [29.731747, -98.360728],
+        "SALZA": [29.709056, -98.430928],
+        "DOMNK": [29.713508, -98.570403],
+        "CARNE": [29.728286, -98.589525],
+        "DERRR": [29.734467, -98.192358],
+        "XLANT": [29.483544, -98.274339],
+        "TEXNN": [29.650728, -98.224592],
+        "JEFRE": [29.575983, -98.299603],
+        "MCRTY": [29.475292, -98.400406],
+        "COMUT": [29.619011, -98.359636],
+        "PRKKR": [29.727669, -98.761622],
+        "TRAGO": [29.269369, -98.719336],
+        "AVREE": [29.415411, -98.576139],
+        "NADBE": [29.477236, -98.515239],
+        "RBNSN": [29.732131, -98.730322],
+        "WORMM": [29.693522, -98.680267],
+        "NCLDA": [29.654894, -98.630247],
+        "NUGIT": [29.626861, -98.594031],
+        "ALAMO": [29.589175, -98.545383],
+        "ERROR": [29.761353, -98.234375],
+        "BRRBA": [29.716506, -98.278981],
+        "QUUUE": [29.672239, -98.322744],
+        "BRSQT": [29.648211, -98.346497],
+        "INOUT": [29.592206, -98.401817],
+        "CUGRR": [29.396750, -98.297928],
+        "SLLOW": [29.435633, -98.347814],
+        "DEFIX": [29.479769, -98.404511]
     },
     "restricted": [
     ],
@@ -253,9 +341,9 @@
                 ["SAT", "HENLY*", "JUMBO*"]
             ]
         },
-        "ALISS5": {
-            "icao": "ALISS5",
-            "name": "Aliss Five",
+        "ALISS6": {
+            "icao": "ALISS6",
+            "name": "Aliss Six",
             "rwy": {
                 "KSAT4": ["#037"],
                 "KSAT13L": ["#128"],
@@ -264,15 +352,12 @@
                 "KSAT31L": ["#308"],
                 "KSAT31R": ["#308"]
             },
-            "body": [["TREVA", "A50+"], "TATAR", "LEJON", "ALISS"],
+            "body": [["TREVA", "A50+"], "TATAR", "ALISS"],
             "exitPoints": {
-                "DIANT": ["DIANT"],
-                "FST": ["DIANT", "FST"],
-                "JCT": ["JCT"]
+                "ALISS": []
             },
             "draw": [
-                ["TREVA", "TATAR", "LEJON", "ALISS", "JCT*"],
-                ["ALISS", "DIANT", "FST*"]
+                ["TREVA", "TATAR", "ALISS"]
             ]
         },
         "BOWIE7": {
@@ -315,9 +400,9 @@
                 ["SAT", "TATAR", "LEJON*"]
             ]
         },
-        "MILET4": {
-            "icao": "MILET4",
-            "name": "Milet Four",
+        "SLENA1": {
+            "icao": "SLENA1",
+            "name": "Selena One",
             "rwy": {
                 "KSAT4": ["#037"],
                 "KSAT13L": ["#128"],
@@ -326,17 +411,18 @@
                 "KSAT31L": ["#308"],
                 "KSAT31R": ["#308"]
             },
-            "body": [["RAYBN", "A50+"]],
+            "body": [["YENNS", "A50+"], "LILJO", "SLENA"],
             "exitPoints": {
-                "LRD": ["MILET", "LRD"]
+                "BRENI": ["BRENI"],
+                "SLENA": []
             },
             "draw": [
-                ["RAYBN", "MILET", "LRD*"]
+                ["YENNS", "LILJO", "SLENA*", "BRENI*"]
             ]
         },
-        "THX4": {
-            "icao": "THX4",
-            "name": "Three Rivers Four",
+        "SNIDR1": {
+            "icao": "SNIDR1",
+            "name": "Snider One",
             "rwy": {
                 "KSAT4": ["#037"],
                 "KSAT13L": ["#128"],
@@ -345,48 +431,69 @@
                 "KSAT31L": ["#308"],
                 "KSAT31R": ["#308"]
             },
-            "body": [["YENNS", "A50+"]],
+            "body": [["WRKIT", "A50+"], "CHURN", "SNIDR"],
             "exitPoints": {
-                "CRP": ["THX", "CRP"]
+                "BLUMS": ["SEEDS", "WEMAR", "FFSSH", "WHAEL", "BLUMS"],
+                "CAAGE": ["SEEDS", "WEMAR", "FFSSH", "WHAEL", "CAAGE"],
+                "FFSSH": ["SEEDS", "WEMAR", "FFSSH"],
+                "MOLLR": ["SEEDS", "WEMAR", "FFSSH", "WHAEL", "BLUMS", "BALIO", "MOLLR"],
+                "SEEDS": ["SEEDS"],
+                "SNIDR": [],
+                "WEMAR": ["SEEDS", "WEMAR"],
+                "WHAEL": ["SEEDS", "WEMAR", "FFSSH", "WHAEL"],
+                "WYLSN": ["SEEDS", "WEMAR", "WHAEL", "WYLSN"]
             },
             "draw": [
-                ["YENNS", "THX", "CRP*"]
+                ["WRKIT", "CHURN", "SNIDR*", "SEEDS*", "WEMAR*", "FFSSH*", "WHAEL*", "BLUMS*", "BALIO", "MOLLR*"],
+                ["CAAGE*", "WHAEL", "WYLSN*"]
+            ]
+        },
+        "TJANO1": {
+            "icao": "TJANO1",
+            "name": "Tejano One",
+            "rwy": {
+                "KSAT4": ["#037"],
+                "KSAT13L": ["#128"],
+                "KSAT13R": ["#128"],
+                "KSAT22": ["#217"],
+                "KSAT31L": ["#308"],
+                "KSAT31R": ["#308"]
+            },
+            "body": [["LVACA", "A50+"], "TJANO"],
+            "exitPoints": {
+                "KAHAN": ["TEEPY", "KAHAN"],
+                "TJANO": [],
+                "ZANNI": ["TEEPY", "ZANNI"]
+            },
+            "draw": [
+                ["LVACA", "TJANO*", "TEEPY", "ZANNI*"],
+                ["TEEPY", "KAHAN*"]
+            ]
+        },
+        "YODUH1": {
+            "icao": "YODUH1",
+            "name": "Yoda One",
+            "rwy": {
+                "KSAT4": ["#037"],
+                "KSAT13L": ["#128"],
+                "KSAT13R": ["#128"],
+                "KSAT22": ["#217"],
+                "KSAT31L": ["#308"],
+                "KSAT31R": ["#308"]
+            },
+            "body": [["SITHH", "A50+"], "YODUH"],
+            "exitPoints": {
+                "KLNGR": ["KLNGR"],
+                "PRTZY": ["GJACK", "PRTZY"],
+                "YODUH": []
+            },
+            "draw": [
+                ["SITHH", "YODUH*", "KLNGR*"],
+                ["YODUH", "GJACK", "PRTZY*"]
             ]
         }
     },
     "stars" : {
-        "BRAUN3": {
-            "icao": "BRAUN3",
-            "name": "Braun Three",
-            "entryPoints": {
-                "ACT": ["ACT", "BLEWE", "CWK"],
-                "IAH": ["IAH", "WEEED", "WAILN", "REDNK", "RODIO"],
-                "LFK": ["LFK", "WEEED", "WAILN", "REDNK", "RODIO"],
-                "MOLLR": ["MOLLR", "WEEED", "WAILN", "REDNK", "RODIO"],
-                "WAILN": ["WAILN", "REDNK", "RODIO"],
-                "WINDU": ["WINDU", "BLEWE", "CWK"]
-            },
-            "body": [["MARCS", "A130"], "BRAUN"],
-            "rwy": {
-                "KSAT4": ["POYIG", "^BEBNE", "#219"],
-                "KSAT13L": ["TROOP", "CRISS", "^JATAX", "#308"],
-                "KSAT13R": ["TROOP", "CRISS", "^JATAX", "#308"],
-                "KSAT22": ["ZALYO"],
-                "KSAT31L": ["TROOP", "ALRGI", "^TAHKO", "#128"],
-                "KSAT31R": ["TROOP", "ALRGI", "^TAHKO", "#128"]
-            },
-            "draw": [
-                ["ACT*", "BLEWE", "CWK", "MARCS"],
-                ["WINDU*", "BLEWE"],
-                ["IAH*", "WEEED", "WAILN", "REDNK", "RODIO", "MARCS"],
-                ["LFK*", "WEEED"],
-                ["MOLLR*", "WEEED"],
-                ["MARCS", "BRAUN", "POYIG", "BEBNE"],
-                ["BRAUN", "TROOP", "CRISS", "JATAX"],
-                ["TROOP", "ALRGI", "TAHKO"],
-                ["BRAUN", "ZALYO"]
-            ]
-        },
         "CSI2": {
             "icao": "CSI2",
             "name": "Centerpoint Two",
@@ -407,6 +514,51 @@
                 ["FST*", "CSI"],
                 ["JCT*", "CSI"],
                 ["CSI", "BENEY", "MEDIN", "REUBE"]
+            ]
+        },
+        "CRVZA1": {
+            "icao": "CRVZA1",
+            "name": "Cerveza One",
+            "entryPoints": {
+                "BRENI": ["BRENI", "EELIZ", "BUGGI"],
+                "CRVZA": [],
+                "EELIZ": ["EELIZ", "BUGGI"],
+                "HFMAN": ["HFMAN", "GYTON", "PECOZ"]
+            },
+            "body": [["CRVZA", "A110+|A170-|S250"], ["CEGAR", "A80-"]],
+            "rwy": {
+                "KSAT4": [["HARDD", "A50|S210"]],
+                "KSAT13R": [["AYALA", "A60|S210"], ["^AGOVE", "A60"], "#308"],
+                "KSAT22": ["TIERA", ["^IPHON", "A60|S210"], "#037"],
+                "KSAT31L": ["SAYNN", ["KEENM", "A60|S210"], ["^KRILN", "A60"], "#128"]
+            },
+            "draw": [
+                ["BRENI", "EELIZ", "BUGGI", "CRVZA", "PECOZ", "GYTON", "HFMAN"],
+                ["CRVZA", "CEGAR", "HARDD"],
+                ["KRILN", "KEENM", "SAYNN", "CEGAR", "AYALA", "AGOVE"],
+                ["CEGAR", "TIERA", "IPHON"]
+            ]
+        },
+        "DNKIN1": {
+            "icao": "DNKIN1",
+            "name": "Dunkin One",
+            "entryPoints": {
+                "DNKIN": [],
+                "MOPPP": [["MOPPP", "A240+"], "AIRBL", ["FOLLK", "A90+|A130-"]],
+                "TRVLL": ["TRVLL", "AIRBL", ["FOLLK", "A90+|A130-"]]
+            },
+            "body": ["DNKIN"],
+            "rwy": {
+                "KSAT4": [["MANOO", "A90-"], ["DYNMO", "A70+|S230-"], ["DIIAW", "A60|S210"], "TIMYY", ["^LOWWN", "A60"], "#217"],
+                "KSAT13R": [["LDRON", "A70|S210"]],
+                "KSAT22": [["GERVN", "A60|S210"], "ADDYY", ["^IXION", "A60"], "#037"],
+                "KSAT31L": [["MANOO", "A90-"], ["PATII", "A70+"], ["^KEENM", "A60|S210"], "#130"]
+            },
+            "draw": [
+                ["TRVLL", "AIRBL", "MOPPP"],
+                ["AIRBL", "FOLLK", "DNKIN", "GERVN", "ADDYY", "IXION"],
+                ["LDRON", "DNKIN", "MANOO", "PATII", "KEENM"],
+                ["MANOO", "DYNMO", "DIIAW", "TIMYY", "LOWWN"]
             ]
         },
         "LEMIG1": {
@@ -459,6 +611,60 @@
                 ["MARCS", "BRAUN", "TROOP", "CRISS"]
             ]
         },
+        "POPPO1": {
+            "icao": "POPPO1",
+            "name": "Poppo One",
+            "entryPoints": {
+                "DILLO": [["DILLO", "A220+"]],
+                "POPPO": [],
+                "PPNUT": [["PPNUT", "A220+"]],
+                "PRTZY": ["PRTZY", "MUGSY", ["PPNUT", "A220+"]],
+                "TRVLL": ["TRVLL"]
+            },
+            "body": [["POPPO", "A100"], ["VIICH", "A90-|S250"]],
+            "rwy": {
+                "KSAT4": ["PRKKR", ["DYNMO", "A70+|S230-"], ["DIIAW", "A60|S210"], "TIMYY", ["^LOWWN", "A60"], "#217"],
+                "KSAT13R": [["SWUPZ", "A70|S210"]],
+                "KSAT22": [["GERVN", "A60|S210"], "ADDYY", ["^IXION", "A60|S210"], "#037"],
+                "KSAT31L": ["PRKKR", ["BEKKK", "A80+"], ["PATII", "A70+"], ["^KEENM", "A60|S210"], "#130"]
+            },
+            "draw": [
+                ["DILLO", "POPPO", "TRVLL"],
+                ["PRTZY", "MUGSY", "PPNUT", "POPPO", "VIICH", "SWUPZ"],
+                ["VIICH", "GERVN"],
+                ["VIICH", "PRKKR", "DYNMO"],
+                ["PRKKR", "BEKKK", "PATII"]
+            ]
+        },
+        "QERVO1": {
+            "icao": "QERVO1",
+            "name": "Cuervo One",
+            "entryPoints": {
+                "BLEWE": ["BLEWE", "OUTLW", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]],
+                "CAAGE": ["CAAGE", "WEEED", "WAILN", ["HOSAY", "A240+"], "RODIO", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]],
+                "LLEAD": ["LLEAD", "WEEED", "WAILN", ["HOSAY", "A240+"], "RODIO", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]],
+                "MOLLR": ["MOLLR", "WEEED", "WAILN", ["HOSAY", "A240+"], "RODIO", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]],
+                "NILBE": ["NILBE", "BLEWE", "OUTLW", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]],
+                "QERVO": [],
+                "WAILN": ["WAILN", ["HOSAY", "A240+"], "RODIO", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]],
+                "WINDU": ["WINDU", "BLEWE", "OUTLW", ["MARCS", "A130+|A150-"], ["PGOUT", "A110+|A130-|S280"]]
+            },
+            "body": ["QERVO"],
+            "rwy": {
+                "KSAT4": [["TEXNN", "A80+"], ["JEFRE", "A70+"], ["^MCRTY", "A60|S210"], "#217"],
+                "KSAT13R": [["TAHKO", "A110-"], ["FJITA", "A80-"], "TRTLA", ["SALZA", "A60|S210"], "DOMNK", ["^CARNE", "A60|S210"], "#308"],
+                "KSAT22": [["^TRITP", "A70|S210"], "#274"],
+                "KSAT31L": ["DERRR", ["COMUT", "A60|S210"], "ALRGI", ["^XLANT", "A60|S210"], "#128"]
+            },
+            "draw": [
+                ["LLEAD", "WEEED", "MOLLR"],
+                ["CAAGE", "WEEED", "WAILN", "HOSAY", "RODIO", "MARCS", "OUTLW", "BLEWE", "WINDU"],
+                ["NILBE", "BLEWE"],
+                ["MARCS", "PGOUT", "QERVO", "TRITP"],
+                ["QERVO", "TAHKO", "FJITA", "TRTLA", "SALZA", "DOMNK", "CARNE"],
+                ["MCRTY", "JEFRE", "TEXNN", "QERVO", "DERRR", "COMUT", "ALRGI", "XLANT"]
+            ]
+        },
         "STV1": {
             "icao": "STV1",
             "name": "Stonewall One",
@@ -488,59 +694,7 @@
             "origin": "KSAT",
             "destination": "",
             "category": "departure",
-            "route": "KSAT4.ALAMO3.AGJ..VUZ",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal/short", 15],
-                ["aay", 4],
-                ["ash", 5],
-                ["dal/short", 25],
-                ["edv", 8],
-                ["eny", 10],
-                ["gjs", 2],
-                ["jia", 1],
-                ["n/fastGA", 8],
-                ["nks", 5],
-                ["rpa", 12],
-                ["skw", 11],
-                ["swa", 78],
-                ["ual/short", 6]
-            ]
-        },
-        {
-            "origin": "KSAT",
-            "destination": "",
-            "category": "departure",
-            "route": "KSAT4.ALAMO3.JUMBO.J23.MQP",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal/short", 15],
-                ["aay", 4],
-                ["ash", 5],
-                ["dal/short", 25],
-                ["edv", 8],
-                ["eny", 1],
-                ["gjs", 2],
-                ["jia", 1],
-                ["n/fastGA", 8],
-                ["nks", 5],
-                ["rpa", 12],
-                ["skw", 11],
-                ["swa", 78],
-                ["ual/short", 6]
-            ]
-        },
-        {
-            "origin": "KSAT",
-            "destination": "",
-            "category": "departure",
-            "route": "KSAT4.ALISS5.JCT.J15.INK",
+            "route": "KSAT4.ALISS6.ALISS..JCT.J15.INK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -567,7 +721,7 @@
             "origin": "KSAT",
             "destination": "",
             "category": "departure",
-            "route": "KSAT4.MILET4.LRD.J22.NLD.UJ11.MTY",
+            "route": "KSAT4.SLENA1.BRENI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -590,35 +744,7 @@
             "origin": "KSAT",
             "destination": "",
             "category": "departure",
-            "route": "KSAT4.THX4.CRP.J25.BRO",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal/short", 15],
-                ["aay", 4],
-                ["aij", 3],
-                ["amx/b73x", 10],
-                ["dal/short", 10],
-                ["edv", 8],
-                ["eny", 1],
-                ["fft", 12],
-                ["n/fastGA", 8],
-                ["nks", 5],
-                ["rpa", 12],
-                ["skw", 11],
-                ["swa", 78],
-                ["ual/short", 6],
-                ["viv", 10],
-                ["voi", 10]
-            ]
-        },
-        {
-            "origin": "KSAT",
-            "destination": "",
-            "category": "departure",
-            "route": "CHURN.Q56.HRV",
+            "route": "KSAT4.SNIDR1.MOLLR.Q56.HRV",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -641,10 +767,88 @@
             ]
         },
         {
+            "origin": "KSAT",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAT4.TJANO1.ZANNI..NLD.UJ11.MTY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["aal/short", 15],
+                ["aay", 4],
+                ["ash", 5],
+                ["dal/short", 10],
+                ["edv", 8],
+                ["eny", 1],
+                ["fft", 12],
+                ["jia", 1],
+                ["n/fastGA", 8],
+                ["nks", 5],
+                ["rpa", 12],
+                ["skw", 11],
+                ["swa", 78],
+                ["ual/short", 6]
+            ]
+        },
+        {
+            "origin": "KSAT",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAT4.YODUH1.KLNGR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["aal/short", 15],
+                ["aay", 4],
+                ["ash", 5],
+                ["dal/short", 10],
+                ["edv", 8],
+                ["eny", 1],
+                ["fft", 12],
+                ["jia", 1],
+                ["n/fastGA", 8],
+                ["nks", 5],
+                ["rpa", 12],
+                ["skw", 11],
+                ["swa", 78],
+                ["ual/short", 6]
+            ]
+        },
+        {
+            "origin": "KSAT",
+            "destination": "",
+            "category": "departure",
+            "route": "KSAT4.YODUH1.PRTZY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["aal/short", 15],
+                ["aay", 4],
+                ["ash", 5],
+                ["dal/short", 10],
+                ["edv", 8],
+                ["eny", 1],
+                ["fft", 12],
+                ["jia", 1],
+                ["n/fastGA", 8],
+                ["nks", 5],
+                ["rpa", 12],
+                ["skw", 11],
+                ["swa", 78],
+                ["ual/short", 6]
+            ]
+        },
+        {
             "origin": "",
             "destination": "KSAT",
             "category": "arrival",
-            "route": "ABI.STV1.KSAT31L",
+            "route": "PRTZY.POPPO1.KSAT13R",
             "altitude": "31000",
             "speed": "310",
             "method": "random",
@@ -670,7 +874,7 @@
             "origin": "",
             "destination": "KSAT",
             "category": "arrival",
-            "route": "LFK.BRAUN3.KSAT31L",
+            "route": "WINDU.QERVO1.KSAT13R",
             "altitude": "32000",
             "speed": "310",
             "method": "random",
@@ -696,7 +900,7 @@
             "origin": "",
             "destination": "KSAT",
             "category": "arrival",
-            "route": "LRD.LEMIG1.KSAT31L",
+            "route": "BRENI.CRVZA1.KSAT13R",
             "altitude": "31000",
             "speed": "310",
             "method": "random",
@@ -717,7 +921,7 @@
             "origin": "",
             "destination": "KSAT",
             "category": "arrival",
-            "route": "FST.CSI2.KSAT31L",
+            "route": "TRVLL.DNKIN1.KSAT13R",
             "altitude": "29000",
             "speed": "310",
             "method": "random",
