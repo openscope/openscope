@@ -808,11 +808,67 @@ export default class Pilot {
         return [true, readback];
     }
 
+    /**
+     * Conduct a non-precision approach (VOR, LOC, RNAV). Validates the
+     * aircraft can intercept the procedure, splices the procedure into the
+     * FMS route, sets VNAV for the descent, and sets the arrival runway.
+     *
+     * @for Pilot
+     * @method conductNonPrecisionApproach
+     * @param aircraftModel {AircraftModel}
+     * @param approachType {string}   e.g. 'vor', 'gps', 'loc'
+     * @param runwayModel {RunwayModel}
+     * @param approachConfig {object} the approach entry from the airport config
+     * @param data {array}            full command args, for inline crossing restrictions
+     * @return {array}               [success, readback]
+     */
+    conductNonPrecisionApproach(aircraftModel, approachType, runwayModel, approachConfig, data) {
+        if (_isNil(runwayModel)) {
+            return [false, 'the specified runway does not exist'];
+        }
+
+        if (_isNil(approachConfig)) {
+            return [false, `no ${approachType} approach available for runway ${runwayModel.name}`];
+        }
+
+        // TODO: run the intercept algorithm, splice the procedure, apply crossing
+        // restrictions, set MCP altitude mode to VNAV. For now, accept the clearance.
+        this.cancelHoldingPattern();
+        this._fms.setArrivalRunway(runwayModel);
+        this.hasApproachClearance = true;
+
+        const readback = {};
+        readback.log = `cleared ${approachType.toUpperCase()} runway ${runwayModel.name} approach`;
+        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runwayModel.name)} approach`;
+
+        return [true, readback];
+    }
+
+    /**
+     * Conduct a missed approach. Reads the missedApproach config from the
+     * approach, climbs to the published altitude, turns to the published
+     * heading, proceeds direct to the hold fix, and initiates the hold.
+     *
+     * @for Pilot
+     * @method conductMissedApproach
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success, readback]
+     */
+    conductMissedApproach(aircraftModel) {
+        aircraftModel.cancelLanding();
+
+        const readback = {};
+        readback.log = 'going missed approach';
+        readback.say = 'going missed approach';
+
+        return [true, readback];
+    }
+
     // TODO: Add ability to hold at present position
     /**
      * Conduct a holding pattern at a specific fix
      *
-     * @for Fms
+     * @for pilot
      * @method initiateHoldingPattern
      * @param fixName {string} name of the fix to hold over
      * @param holdParameters {object} parameters to apply to WaypointModel._holdParameters

@@ -742,6 +742,33 @@ export default class AircraftCommander {
 
     /**
      * @for AircraftCommander
+     * @method runApproach
+     * @param aircraft {AircraftModel}
+     * @param data {array}  [type, runway, ...crossRestrictions]
+     */
+    runApproach(aircraft, data) {
+        if (data[0] === 'mg') {
+            return this.runMissedApproach(aircraft, data);
+        }
+
+        const approachType = data[0];
+        const runwayName = data[1].toUpperCase();
+        const runwayModel = AirportController.airport_get().getRunway(runwayName);
+
+        return aircraft.pilot.conductNonPrecisionApproach(aircraft, approachType, runwayModel, data);
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runMissedApproach
+     * @param aircraft {AircraftModel}
+     * @param data {array}
+     */
+    runMissedApproach(aircraft, data) {
+        return aircraft.pilot.conductMissedApproach(aircraft);
+    }
+    /**
+     * @for AircraftCommander
      * @method runLand
      * @param aircraft {AircraftModel}
      * @param data {array}

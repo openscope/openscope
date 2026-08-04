@@ -49,6 +49,29 @@ export const zeroOrOneArgumentValidator = (args = []) => {
 };
 
 /**
+ * Checks that `args` is a valid cleared-approach command. Either a single
+ * `mg` argument (missed approach) or at least two arguments (type, runway,
+ * and optional crossing restrictions).
+ *
+ * @function caValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+export const caValidator = (args = []) => {
+    if (args.length === 0) {
+        return ERROR_MESSAGE.ZERO_ARG_LENGTH;
+    }
+
+    if (args[0] === 'mg') {
+        if (args.length !== 1) {
+            return ERROR_MESSAGE.SINGLE_ARG_LENGTH;
+        }
+    } else if (args.length < 2) {
+        return ERROR_MESSAGE.TWO_ARG_LENGTH;
+    }
+};
+
+/**
  * Checks that `args` has exactly one or two values
  *
  * @function oneOrTwoArgumentValidator

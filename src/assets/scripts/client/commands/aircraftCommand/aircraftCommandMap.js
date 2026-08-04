@@ -114,6 +114,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runIls',
         isSystemCommand: false
     },
+    clearedApproach: {
+        aliases: ['ca', 'clearedApproach'],
+        functionName: 'runApproach',
+        isSystemCommand: false
+    },
     land: {
         aliases: ['land'],
         functionName: 'runLand',

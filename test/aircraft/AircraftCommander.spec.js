@@ -67,7 +67,6 @@ ava('.runSquawk() returns a success response when _onChangeTransponderCode() suc
 
     t.deepEqual(result, SQUAWK_RESPONSE_SUCCESS);
 });
-
 ava('.runSquawk() returns a failure response when _onChangeTransponderCode() fails', (t) => {
     const commander = new AircraftCommander(onChangeTransponderCodeFixture, findAircraftByIdFixture);
     const aircraft = new AircraftModel(AIRCRAFT_MOCK_BASE);

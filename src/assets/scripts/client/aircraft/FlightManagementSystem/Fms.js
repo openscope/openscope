@@ -1022,6 +1022,25 @@ export default class Fms {
     }
 
     /**
+     * Replace the current route with a procedure leg, joining at `entryFixName`
+     * and exiting at `exitFixName`. The procedure is looked up in the
+     * NavigationLibrary by its ICAO code; its body carries the fixes and
+     * restrictions.
+     *
+     * @for Fms
+     * @method insertProcedure
+     * @param entryFixName {string}
+     * @param procedureIcao {string}
+     * @param exitFixName {string}
+     * @return {array} [success, readback]
+     */
+    insertProcedure(entryFixName, procedureIcao, exitFixName) {
+        const routeString = `${entryFixName}.${procedureIcao}.${exitFixName}`;
+
+        return this.replaceFlightPlanWithNewRoute(routeString);
+    }
+
+    /**
      * Verify and then set the value of `#departureRunwayModel`
      *
      * @for Fms

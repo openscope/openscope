@@ -899,3 +899,19 @@ ava('._verifyRouteContainsMultipleWaypoints() does not throw when route has more
     t.true(fms.waypoints.length === 2);
     t.notThrows(() => fms._verifyRouteContainsMultipleWaypoints());
 });
+
+ava('.insertProcedure() returns success and replaces the route with a procedure leg', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(directOnlyRouteStringMock);
+    const result = fms.insertProcedure('MLF', 'GRNPA1', 'KLAS07R');
+
+    t.true(result[0]);
+    t.true(fms.getRouteString().includes('GRNPA1'));
+    t.false(fms.getRouteString().includes('BIKKR'));
+});
+
+ava('.insertProcedure() returns failure when the procedure does not exist', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(directOnlyRouteStringMock);
+    const result = fms.insertProcedure('MLF', 'NONEXISTENT', 'KLAS07R');
+
+    t.false(result[0]);
+});

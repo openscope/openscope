@@ -20,7 +20,8 @@ import {
     holdValidator,
     squawkValidator,
     optionalAltitudeValidator,
-    crossingValidator
+    crossingValidator,
+    caValidator
 } from '../parsers/argumentValidators';
 import {
     altitudeParser,
@@ -29,7 +30,8 @@ import {
     timewarpParser,
     optionalAltitudeParser,
     crossingParser,
-    ilsParser
+    ilsParser,
+    caParser
 } from '../parsers/argumentParsers';
 
 /**
@@ -256,6 +258,10 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     climbViaSid: {
         validate: optionalAltitudeValidator,
         parse: optionalAltitudeParser
+    },
+    clearedApproach: {
+        validate: caValidator,
+        parse: caParser
     }
 };
 

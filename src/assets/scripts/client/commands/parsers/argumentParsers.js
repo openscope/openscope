@@ -25,12 +25,20 @@ const HOLD_COMMAND_ARG_NAMES = {
 
 /**
  * Parses the the runway of an ils command.
- *
- * @function ilsParser
- * @param args {array}
- */
 // TODO: define the second value
 export const ilsParser = (args) => [null, args[0]];
+
+/**
+ * Pass-through parser for the `ca` (cleared approach) command. The first
+ * argument is the approach type or `mg` for missed approach; subsequent
+ * arguments are the runway and optional crossing restrictions. The
+ * AircraftCommander handler does the detailed parsing.
+ *
+ * @function caParser
+ * @param args {array}
+ * @return {array}
+ */
+export const caParser = (args) => args;
 
 /**
  * Converts a flight level altitude to a number in thousands and converts second arg to a boolean

@@ -20,6 +20,12 @@
         "disabled": true
     },
     {
+        "icao": "kjfk-13s",
+        "level": "easy",
+        "name": "JFK 13s Configuration",
+        "premium": false
+    },
+    {
         "icao": "eddf",
         "level": "hard",
         "name": "Frankfurt Main Airport",
