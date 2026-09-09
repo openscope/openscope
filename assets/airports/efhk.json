@@ -1,0 +1,2719 @@
+{
+    "airac": 2608,
+    "radio": {
+        "twr": "Helsinki Tower",
+        "app": "Helsinki Approach",
+        "dep": "Helsinki Departure"
+    },
+    "icao": "EFHK",
+    "iata": "HEL",
+    "magnetic_north": 10.4,
+    "ctr_radius": 110,
+    "ctr_ceiling": 28500,
+    "initial_alt": 5000,
+    "position": ["N60d19m02.00", "E024d57m48.00", "180ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N60d19m02.00", "E024d57m48.00"],
+        "radius_nm": 5
+    },
+    "has_terrain": false,
+    "wind": {
+        "angle": 40,
+        "speed": 8
+    },
+    "arrivalRunway": "04R",
+    "departureRunway": "04L",
+    "defaultMaps": ["Coastline", "Base Map", "Helsinki CTR"],
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 285,
+            "airspace_class": "C",
+            "poly": [
+                ["N60d49m13.00", "E024d46m56.00"],
+                ["N60d49m51.00", "E025d29m09.00"],
+                ["N60d41m32.00", "E025d50m30.00"],
+                ["N60d27m08.00", "E026d07m59.00"],
+                ["N60d08m00.00", "E026d33m00.00"],
+                ["N59d53m00.00", "E025d52m00.00"],
+                ["N59d54m30.00", "E025d20m00.00"],
+                ["N59d53m27.00", "E024d59m49.00"],
+                ["N59d53m00.00", "E024d51m00.00"],
+                ["N59d42m00.00", "E023d59m31.00"],
+                ["N59d54m47.00", "E023d49m28.00"],
+                ["N60d26m52.00", "E024d02m37.00"],
+                ["N60d44m33.00", "E024d29m08.00"]
+            ]
+        }
+    ],
+    "fixes": {
+        "_RWY04L": ["N60d18m46.61", "E024d54m13.93"],
+        "_RWY22R": ["N60d19m52.11", "E024d56m38.01"],
+        "_RWY04R": ["N60d18m40.65", "E024d56m10.94"],
+        "_RWY22L": ["N60d19m50.49", "E024d58m44.73"],
+        "_RWY15": ["N60d19m48.99", "E024d57m52.19"],
+        "_RWY33": ["N60d18m25.44", "E024d59m17.83"],
+        "HEL": ["N60d20m16.14", "E024d57m13.43", "Helsinki"],
+        "ADIVO": ["N60d17m51.00", "E023d58m53.00"],
+        "ARADE": ["N60d23m16.00", "E025d34m08.00"],
+        "ARVEP": ["N60d14m58.00", "E026d23m57.00"],
+        "ASPIT": ["N60d11m56.86", "E024d24m34.53"],
+        "BALTI": ["N59d54m15.00", "E025d15m06.00"],
+        "DIVAM": ["N59d50m54.00", "E023d35m37.00"],
+        "EESTI": ["N60d04m52.00", "E025d24m24.00"],
+        "EHOTE": ["N60d01m03.00", "E024d29m20.00"],
+        "ENUTO": ["N60d28m53.00", "E024d46m32.00"],
+        "FANNI": ["N60d33m40.89", "E025d12m18.08"],
+        "HELPO": ["N60d28m16.25", "E024d27m42.11"],
+        "HK416": ["N60d23m52.55", "E025d07m40.07"],
+        "HK428": ["N60d16m05.52", "E024d46m21.17"],
+        "HK451": ["N60d18m16.80", "E024d46m54.99"],
+        "HK461": ["N60d19m05.74", "E024d46m25.05"],
+        "HK711": ["N60d16m19.79", "E025d05m53.91"],
+        "HK766": ["N60d15m53.05", "E025d04m54.92"],
+        "HK804": ["N60d06m06.13", "E024d43m29.98"],
+        "HK805": ["N60d06m48.00", "E025d15m00.00"],
+        "HK806": ["N59d58m49.93", "E025d19m00.76"],
+        "HK807": ["N60d25m04.20", "E025d25m13.30"],
+        "HK817": ["N60d21m18.87", "E025d07m37.09"],
+        "HK862": ["N60d21m23.87", "E024d44m56.59"],
+        "HK863": ["N60d19m52.61", "E025d09m05.02"],
+        "HK871": ["N60d26m02.64", "E024d30m13.81"],
+        "HK890": ["N60d35m53.50", "E025d17m15.10"],
+        "HK891": ["N60d18m53.92", "E025d11m34.98"],
+        "HK897": ["N60d24m48.12", "E024d52m35.91"],
+        "HK902": ["N60d41m31.66", "E025d16m53.49"],
+        "HK903": ["N60d24m22.06", "E024d56m47.14"],
+        "HK908": ["N60d26m04.00", "E024d44m46.00"],
+        "HK909": ["N60d20m24.20", "E024d40m51.75"],
+        "HK911": ["N60d30m25.00", "E024d52m08.00"],
+        "HK912": ["N60d20m24.00", "E025d22m33.00"],
+        "HK913": ["N60d14m09.00", "E025d22m35.00"],
+        "HK914": ["N60d17m02.37", "E025d15m59.45"],
+        "HK917": ["N60d18m44.00", "E025d20m45.00"],
+        "HK918": ["N60d39m48.00", "E025d00m29.00"],
+        "HK919": ["N60d21m21.00", "E025d21m15.00"],
+        "HK921": ["N60d13m45.00", "E024d53m50.00"],
+        "HK923": ["N60d08m56.94", "E024d48m16.01"],
+        "HK924": ["N60d12m14.00", "E024d58m38.00"],
+        "HK926": ["N60d14m38.00", "E024d29m03.00"],
+        "HK927": ["N60d06m36.41", "E024d23m34.42"],
+        "HK928": ["N60d17m50.00", "E024d39m43.00"],
+        "HK929": ["N60d04m12.00", "E024d34m29.00"],
+        "HK932": ["N60d19m33.50", "E024d41m05.79"],
+        "HK933": ["N60d11m16.73", "E024d54m47.41"],
+        "HK934": ["N60d21m45.00", "E024d36m49.00"],
+        "HK935": ["N60d18m50.00", "E024d35m22.00"],
+        "HK936": ["N60d20m57.05", "E024d31m50.72"],
+        "HK937": ["N60d22m48.18", "E024d35m40.34"],
+        "HK938": ["N60d08m34.43", "E025d05m58.83"],
+        "HK939": ["N60d26m47.00", "E025d12m51.00"],
+        "HK940": ["N60d44m43.00", "E025d24m00.00"],
+        "HK941": ["N60d26m05.02", "E025d02m44.31"],
+        "HK942": ["N60d28m24.98", "E024d36m47.97"],
+        "HK943": ["N60d13m55.48", "E025d12m17.99"],
+        "HK944": ["N60d13m43.40", "E025d11m58.38"],
+        "HK945": ["N59d58m48.00", "E024d14m52.00"],
+        "HK946": ["N60d18m41.63", "E025d11m09.89"],
+        "HK947": ["N60d11m43.09", "E024d54m54.33"],
+        "HK948": ["N60d16m13.56", "E025d12m47.69"],
+        "HK949": ["N60d19m21.43", "E025d20m36.86"],
+        "HK950": ["N60d36m39.00", "E025d04m16.00"],
+        "HK951": ["N60d26m39.62", "E024d56m29.16"],
+        "HK953": ["N60d03m49.00", "E025d09m01.00"],
+        "HK954": ["N60d00m00.00", "E023d56m53.00"],
+        "HK955": ["N60d06m39.00", "E023d59m33.00"],
+        "HK956": ["N60d27m19.00", "E025d43m03.00"],
+        "HK957": ["N60d06m16.00", "E024d11m28.00"],
+        "HK958": ["N60d17m00.00", "E024d32m23.00"],
+        "HK959": ["N60d20m42.00", "E024d43m48.00"],
+        "IDEPI": ["N60d42m39.00", "E025d47m39.00"],
+        "IDMOP": ["N60d24m03.00", "E025d03m09.00"],
+        "INTOR": ["N59d49m40.00", "E025d11m12.00"],
+        "KAAVI": ["N60d32m02.46", "E025d08m25.54"],
+        "KENON": ["N60d24m03.81", "E025d23m05.02"],
+        "KOIVU": ["N59d50m41.00", "E024d39m55.00"],
+        "KUKKA": ["N60d37m30.15", "E025d07m52.25"],
+        "KUVEM": ["N60d11m26.00", "E023d56m14.00"],
+        "LAKUT": ["N60d26m17.00", "E023d52m35.00"],
+        "LASTU": ["N60d30m01.52", "E025d03m56.43"],
+        "LOHIG": ["N60d08m07.75", "E024d47m54.58"],
+        "LULAB": ["N60d30m21.00", "E025d07m54.00"],
+        "LUSEP": ["N60d57m08.00", "E025d15m53.00"],
+        "MALKE": ["N60d14m16.37", "E024d29m36.09"],
+        "MAMOP": ["N60d34m30.00", "E025d59m04.00"],
+        "MAROM": ["N60d26m52.00", "E024d02m37.00"],
+        "MILLI": ["N60d29m14.96", "E025d02m25.85"],
+        "NAHOP": ["N60d32m08.00", "E025d08m55.00"],
+        "NAPUN": ["N60d49m41.00", "E025d16m22.00"],
+        "NEKKU": ["N60d16m18.46", "E024d34m00.92"],
+        "NEMVI": ["N60d16m01.45", "E024d33m23.97"],
+        "NEPEK": ["N60d44m33.00", "E024d29m08.00"],
+        "NIDAG": ["N60d11m51.00", "E024d50m50.00"],
+        "NOFOX": ["N60d21m20.12", "E025d16m59.77"],
+        "NUNTO": ["N60d05m01.00", "E023d53m37.00"],
+        "ORILE": ["N60d08m26.73", "E024d48m35.94"],
+        "PENAD": ["N60d16m42.00", "E025d29m36.00"],
+        "PEXEN": ["N59d54m47.00", "E023d49m28.00"],
+        "RAHTU": ["N60d35m17.34", "E025d31m01.19"],
+        "REDBO": ["N60d25m38.00", "E024d51m52.00"],
+        "RENKU": ["N59d53m09.00", "E024d53m48.10"],
+        "RIPVI": ["N60d16m24.00", "E024d35m07.00"],
+        "ROHJA": ["N60d12m07.00", "E024d11m27.00"],
+        "ROPAM": ["N60d07m59.00", "E025d36m06.00"],
+        "SELLU": ["N60d36m50.00", "E025d06m26.00"],
+        "SOPOS": ["N60d07m16.42", "E024d59m26.57"],
+        "SUTAX": ["N60d29m38.26", "E024d59m05.08"],
+        "TEVRU": ["N60d49m16.00", "E024d49m29.00"],
+        "TOPPI": ["N60d11m46.29", "E025d17m18.13"],
+        "UREDA": ["N60d14m20.00", "E024d37m23.00"],
+        "VALOX": ["N59d43m54.00", "E024d08m20.00"],
+        "VAVIS": ["N60d14m06.00", "E024d50m39.00"],
+        "VEMMI": ["N60d22m03.32", "E025d18m36.19"],
+        "VEPIN": ["N60d37m53.00", "E026d19m59.00"],
+        "VIBEP": ["N60d27m33.00", "E024d14m39.00"],
+        "VISSI": ["N60d06m25.13", "E024d44m11.26"]
+    },
+    "runways": [
+        {
+            "name": ["04L", "22R"],
+            "end": [["N60d18m46.61", "E024d54m13.93", "133.6ft"], ["N60d19m52.11", "E024d56m38.01", "179.2ft"]],
+            "ils": [true, true]
+        },
+        {
+            "name": ["04R", "22L"],
+            "end": [["N60d18m40.65", "E024d56m10.94", "151.6ft"], ["N60d19m50.49", "E024d58m44.73", "148.6ft"]],
+            "ils": [true, true]
+        },
+        {
+            "name": ["15", "33"],
+            "end": [["N60d19m48.99", "E024d57m52.19", "163.5ft"], ["N60d18m25.44", "E024d59m17.83", "147.5ft"]],
+            "ils": [true, false]
+        }
+    ],
+    "sids": {
+        "ADIVO4Z": {
+            "icao": "ADIVO4Z",
+            "name": "Adivo Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"], ["HK908", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ADIVO": ["ADIVO"]
+            },
+            "draw": [["HK903", "HK908", "ADIVO*"]]
+        },
+        "KOIVU4Z": {
+            "icao": "KOIVU4Z",
+            "name": "Koivu Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"], ["HK908", "S250-"], ["HK909", "A40+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "draw": [["HK903", "HK908", "HK909", "KOIVU*"]]
+        },
+        "KUVEM4Z": {
+            "icao": "KUVEM4Z",
+            "name": "Kuvem Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"], ["HK908", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KUVEM": ["KUVEM"]
+            },
+            "draw": [["HK903", "HK908", "KUVEM*"]]
+        },
+        "NEPEK4Z": {
+            "icao": "NEPEK4Z",
+            "name": "Nepek Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEPEK": ["NEPEK"]
+            },
+            "draw": [["HK903", "NEPEK*"]]
+        },
+        "NUNTO4Z": {
+            "icao": "NUNTO4Z",
+            "name": "Nunto Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"], ["HK908", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NUNTO": ["NUNTO"]
+            },
+            "draw": [["HK903", "HK908", "NUNTO*"]]
+        },
+        "RENKU4Z": {
+            "icao": "RENKU4Z",
+            "name": "Renku Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"], ["HK908", "S250-"], ["HK909", "A40+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "draw": [["HK903", "HK908", "HK909", "RENKU*"]]
+        },
+        "TEVRU4Z": {
+            "icao": "TEVRU4Z",
+            "name": "Tevru Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "TEVRU": ["TEVRU"]
+            },
+            "draw": [["HK903", "TEVRU*"]]
+        },
+        "VALOX4Z": {
+            "icao": "VALOX4Z",
+            "name": "Valox Four Zulu",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04L": [["HK903", "S230-"], ["HK908", "S250-"], ["HK909", "A40+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "draw": [["HK903", "HK908", "HK909", "VALOX*"]]
+        },
+        "ADIVO5C": {
+            "icao": "ADIVO5C",
+            "name": "Adivo Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["LULAB", "S250-"], "HK911"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ADIVO": ["ADIVO"]
+            },
+            "draw": [["HK416", "LULAB", "HK911", "ADIVO*"]]
+        },
+        "ARVEP5C": {
+            "icao": "ARVEP5C",
+            "name": "Arvep Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["HK912", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ARVEP": ["ARVEP"]
+            },
+            "draw": [["HK416", "HK912", "ARVEP*"]]
+        },
+        "IDEPI5C": {
+            "icao": "IDEPI5C",
+            "name": "Idepi Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416"]
+            },
+            "body": [],
+            "exitPoints": {
+                "IDEPI": ["IDEPI"]
+            },
+            "draw": [["HK416", "IDEPI*"]]
+        },
+        "KOIVU5C": {
+            "icao": "KOIVU5C",
+            "name": "Koivu Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["HK912", "S250-"], "HK913"]
+            },
+            "body": [],
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "draw": [["HK416", "HK912", "HK913", "KOIVU*"]]
+        },
+        "KUVEM5C": {
+            "icao": "KUVEM5C",
+            "name": "Kuvem Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["LULAB", "S250-"], "HK911"]
+            },
+            "body": [],
+            "exitPoints": {
+                "KUVEM": ["KUVEM"]
+            },
+            "draw": [["HK416", "LULAB", "HK911", "KUVEM*"]]
+        },
+        "NEPEK5C": {
+            "icao": "NEPEK5C",
+            "name": "Nepek Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["LULAB", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEPEK": ["NEPEK"]
+            },
+            "draw": [["HK416", "LULAB", "NEPEK*"]]
+        },
+        "NUNTO5C": {
+            "icao": "NUNTO5C",
+            "name": "Nunto Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["LULAB", "S250-"], "HK911"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NUNTO": ["NUNTO"]
+            },
+            "draw": [["HK416", "LULAB", "HK911", "NUNTO*"]]
+        },
+        "RENKU5C": {
+            "icao": "RENKU5C",
+            "name": "Renku Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["HK912", "S250-"], "HK913"]
+            },
+            "body": [],
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "draw": [["HK416", "HK912", "HK913", "RENKU*"]]
+        },
+        "TEVRU5C": {
+            "icao": "TEVRU5C",
+            "name": "Tevru Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["LULAB", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "TEVRU": ["TEVRU"]
+            },
+            "draw": [["HK416", "LULAB", "TEVRU*"]]
+        },
+        "VALOX5C": {
+            "icao": "VALOX5C",
+            "name": "Valox Five Charlie",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK04R": ["HK416", ["HK912", "S250-"], "HK913"]
+            },
+            "body": [],
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "draw": [["HK416", "HK912", "HK913", "VALOX*"]]
+        },
+        "KOIVU4Q": {
+            "icao": "KOIVU4Q",
+            "name": "Koivu Four Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22R": ["HK428", ["UREDA", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "draw": [["HK428", "UREDA", "KOIVU*"]]
+        },
+        "RENKU4Q": {
+            "icao": "RENKU4Q",
+            "name": "Renku Four Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22R": ["HK428", ["UREDA", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "draw": [["HK428", "UREDA", "RENKU*"]]
+        },
+        "VALOX4Q": {
+            "icao": "VALOX4Q",
+            "name": "Valox Four Quebec",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22R": ["HK428", ["UREDA", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "draw": [["HK428", "UREDA", "VALOX*"]]
+        },
+        "ARVEP4F": {
+            "icao": "ARVEP4F",
+            "name": "Arvep Four Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22L": [["VAVIS", "S230-"], ["HK924", "S230-"], "PENAD"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ARVEP": ["ARVEP"]
+            },
+            "draw": [["VAVIS", "HK924", "PENAD", "ARVEP*"]]
+        },
+        "IDEPI4F": {
+            "icao": "IDEPI4F",
+            "name": "Idepi Four Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22L": [["VAVIS", "S230-"], ["HK924", "S230-"], "PENAD"]
+            },
+            "body": [],
+            "exitPoints": {
+                "IDEPI": ["IDEPI"]
+            },
+            "draw": [["VAVIS", "HK924", "PENAD", "IDEPI*"]]
+        },
+        "KOIVU4F": {
+            "icao": "KOIVU4F",
+            "name": "Koivu Four Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22L": [["VAVIS", "S230-"], ["HK923", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "draw": [["VAVIS", "HK923", "KOIVU*"]]
+        },
+        "RENKU4F": {
+            "icao": "RENKU4F",
+            "name": "Renku Four Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22L": [["VAVIS", "S230-"], ["HK923", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "draw": [["VAVIS", "HK923", "RENKU*"]]
+        },
+        "VALOX4F": {
+            "icao": "VALOX4F",
+            "name": "Valox Four Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK22L": [["VAVIS", "S230-"], ["HK923", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "draw": [["VAVIS", "HK923", "VALOX*"]]
+        },
+        "ADIVO4P": {
+            "icao": "ADIVO4P",
+            "name": "Adivo Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["HK928", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ADIVO": ["ADIVO"]
+            },
+            "draw": [["HK928", "ADIVO*"]]
+        },
+        "ARVEP4P": {
+            "icao": "ARVEP4P",
+            "name": "Arvep Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["IDMOP", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ARVEP": ["ARVEP"]
+            },
+            "draw": [["IDMOP", "ARVEP*"]]
+        },
+        "IDEPI4P": {
+            "icao": "IDEPI4P",
+            "name": "Idepi Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["IDMOP", "S230-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "IDEPI": ["IDEPI"]
+            },
+            "draw": [["IDMOP", "IDEPI*"]]
+        },
+        "KOIVU4P": {
+            "icao": "KOIVU4P",
+            "name": "Koivu Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["HK928", "S250-"], "HK929"]
+            },
+            "body": [],
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "draw": [["HK928", "HK929", "KOIVU*"]]
+        },
+        "KUVEM4P": {
+            "icao": "KUVEM4P",
+            "name": "Kuvem Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["HK928", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KUVEM": ["KUVEM"]
+            },
+            "draw": [["HK928", "KUVEM*"]]
+        },
+        "NEPEK4P": {
+            "icao": "NEPEK4P",
+            "name": "Nepek Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["REDBO", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEPEK": ["NEPEK"]
+            },
+            "draw": [["REDBO", "NEPEK*"]]
+        },
+        "NUNTO4P": {
+            "icao": "NUNTO4P",
+            "name": "Nunto Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["HK928", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NUNTO": ["NUNTO"]
+            },
+            "draw": [["HK928", "NUNTO*"]]
+        },
+        "RENKU4P": {
+            "icao": "RENKU4P",
+            "name": "Renku Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["HK928", "S250-"], "HK929"]
+            },
+            "body": [],
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "draw": [["HK928", "HK929", "RENKU*"]]
+        },
+        "TEVRU4P": {
+            "icao": "TEVRU4P",
+            "name": "Tevru Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["REDBO", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "TEVRU": ["TEVRU"]
+            },
+            "draw": [["REDBO", "TEVRU*"]]
+        },
+        "VALOX4P": {
+            "icao": "VALOX4P",
+            "name": "Valox Four Papa",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK33": [["HK928", "S250-"], "HK929"]
+            },
+            "body": [],
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "draw": [["HK928", "HK929", "VALOX*"]]
+        },
+        "ADIVO5D": {
+            "icao": "ADIVO5D",
+            "name": "Adivo Five Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK921", "S220-"], ["RIPVI", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ADIVO": ["ADIVO"]
+            },
+            "draw": [["HK921", "RIPVI", "ADIVO*"]]
+        },
+        "ARVEP4D": {
+            "icao": "ARVEP4D",
+            "name": "Arvep Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK914", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "ARVEP": ["ARVEP"]
+            },
+            "draw": [["HK914", "ARVEP*"]]
+        },
+        "IDEPI4D": {
+            "icao": "IDEPI4D",
+            "name": "Idepi Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK914", "S250-"], ["HK919", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "IDEPI": ["IDEPI"]
+            },
+            "draw": [["HK914", "HK919", "IDEPI*"]]
+        },
+        "KOIVU4D": {
+            "icao": "KOIVU4D",
+            "name": "Koivu Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["NIDAG", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KOIVU": ["KOIVU"]
+            },
+            "draw": [["NIDAG", "KOIVU*"]]
+        },
+        "KUVEM5D": {
+            "icao": "KUVEM5D",
+            "name": "Kuvem Five Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK921", "S220-"], ["RIPVI", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KUVEM": ["KUVEM"]
+            },
+            "draw": [["HK921", "RIPVI", "KUVEM*"]]
+        },
+        "NEPEK4D": {
+            "icao": "NEPEK4D",
+            "name": "Nepek Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK914", "S250-"], ["HK919", "S250-"], "HK918"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NEPEK": ["NEPEK"]
+            },
+            "draw": [["HK914", "HK919", "HK918", "NEPEK*"]]
+        },
+        "NUNTO5D": {
+            "icao": "NUNTO5D",
+            "name": "Nunto Five Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK921", "S220-"], ["RIPVI", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NUNTO": ["NUNTO"]
+            },
+            "draw": [["HK921", "RIPVI", "NUNTO*"]]
+        },
+        "RENKU4D": {
+            "icao": "RENKU4D",
+            "name": "Renku Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["NIDAG", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "RENKU": ["RENKU"]
+            },
+            "draw": [["NIDAG", "RENKU*"]]
+        },
+        "TEVRU4D": {
+            "icao": "TEVRU4D",
+            "name": "Tevru Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["HK914", "S250-"], ["HK919", "S250-"], "HK918"]
+            },
+            "body": [],
+            "exitPoints": {
+                "TEVRU": ["TEVRU"]
+            },
+            "draw": [["HK914", "HK919", "HK918", "TEVRU*"]]
+        },
+        "VALOX4D": {
+            "icao": "VALOX4D",
+            "name": "Valox Four Delta",
+            "altitude": 5000,
+            "rwy": {
+                "EFHK15": [["NIDAG", "S250-"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "VALOX": ["VALOX"]
+            },
+            "draw": [["NIDAG", "VALOX*"]]
+        }
+    },
+    "stars": {
+        "DIVAM5V": {
+            "icao": "DIVAM5V",
+            "name": "Divam Five Victor",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "S250-"], "HK957", "HK958", "HK959", "HK897"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22R": [["MILLI", "A20+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK957", "HK958", "HK959", "HK897", "MILLI*"]]
+        },
+        "INTOR6V": {
+            "icao": "INTOR6V",
+            "name": "Intor Six Victor",
+            "entryPoints": {
+                "INTOR": [["INTOR", "A120+"], ["BALTI", "S250-"], "HK944", "HK946"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22R": [["NOFOX", "A20+|S220-"]]
+            },
+            "draw": [["INTOR", "BALTI", "HK944", "HK946", "NOFOX*"]]
+        },
+        "LAKUT6V": {
+            "icao": "LAKUT6V",
+            "name": "Lakut Six Victor",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "S250-"], "VIBEP", "HK897"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22R": [["MILLI", "A20+|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "VIBEP", "HK897", "MILLI*"]]
+        },
+        "LUSEP6V": {
+            "icao": "LUSEP6V",
+            "name": "Lusep Six Victor",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], ["HK902", "A30+"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22R": [["SELLU", "A20+|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK902", "SELLU*"]]
+        },
+        "ROPAM5V": {
+            "icao": "ROPAM5V",
+            "name": "Ropam Five Victor",
+            "entryPoints": {
+                "ROPAM": [["ROPAM", "S250-"], "HK944", "HK946"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22R": [["NOFOX", "A20+|S220-"]]
+            },
+            "holds": {
+                "ROPAM": "292|right|1min|S230-"
+            },
+            "draw": [["ROPAM", "HK944", "HK946", "NOFOX*"]]
+        },
+        "VEPIN5V": {
+            "icao": "VEPIN5V",
+            "name": "Vepin Five Victor",
+            "entryPoints": {
+                "VEPIN": [["VEPIN", "A100+"], ["MAMOP", "S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22R": [["RAHTU", "A30+|S220-"]]
+            },
+            "holds": {
+                "VEPIN": "226|left|1min|S230-"
+            },
+            "draw": [["VEPIN", "MAMOP", "RAHTU*"]]
+        },
+        "DIVAM5B": {
+            "icao": "DIVAM5B",
+            "name": "Divam Five Bravo",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "S250-"], "HK945"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["EHOTE", "A23+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK945", "EHOTE*"]]
+        },
+        "INTOR8B": {
+            "icao": "INTOR8B",
+            "name": "Intor Eight Bravo",
+            "entryPoints": {
+                "INTOR": [["INTOR", "A120+"], ["BALTI", "S250-"], "HK953", "HK938", "HK933"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["LOHIG", "A23+|S220-"]]
+            },
+            "draw": [["INTOR", "BALTI", "HK953", "HK938", "HK933", "LOHIG*"]]
+        },
+        "LAKUT9B": {
+            "icao": "LAKUT9B",
+            "name": "Lakut Nine Bravo",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "S250-"], "HK871", "HK937", "HK932"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["NEMVI", "A23+|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "HK871", "HK937", "HK932", "NEMVI*"]]
+        },
+        "LUSEP4B": {
+            "icao": "LUSEP4B",
+            "name": "Lusep Four Bravo",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], "HK890", "HK897", "HK932"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["NEMVI", "A23+|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK890", "HK897", "HK932", "NEMVI*"]]
+        },
+        "ROPAM4B": {
+            "icao": "ROPAM4B",
+            "name": "Ropam Four Bravo",
+            "entryPoints": {
+                "ROPAM": [["ROPAM", "S250-"], "HK711", "HK933"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["LOHIG", "A23+|S220-"]]
+            },
+            "holds": {
+                "ROPAM": "292|right|1min|S230-"
+            },
+            "draw": [["ROPAM", "HK711", "HK933", "LOHIG*"]]
+        },
+        "VEPIN4B": {
+            "icao": "VEPIN4B",
+            "name": "Vepin Four Bravo",
+            "entryPoints": {
+                "VEPIN": [["VEPIN", "A100+"], ["MAMOP", "S250-"], "HK807", "HK711", "HK933"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["LOHIG", "A23+|S220-"]]
+            },
+            "holds": {
+                "VEPIN": "226|left|1min|S230-"
+            },
+            "draw": [["VEPIN", "MAMOP", "HK807", "HK711", "HK933", "LOHIG*"]]
+        },
+        "MAROM6B": {
+            "icao": "MAROM6B",
+            "name": "Marom Six Bravo",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "A120-|S250-"], ["HK871", "A70-"], "HK936", "NEMVI"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["ASPIT", "A23|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "HK871", "HK936", "NEMVI", "ASPIT*"]]
+        },
+        "NAPUN3B": {
+            "icao": "NAPUN3B",
+            "name": "Napun Three Bravo",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], "HK890", "HK897", "HK932", "NEMVI"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["ASPIT", "A23|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK890", "HK897", "HK932", "NEMVI", "ASPIT*"]]
+        },
+        "PEXEN6B": {
+            "icao": "PEXEN6B",
+            "name": "Pexen Six Bravo",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "A100-|S250-"], ["HK954", "A70-"], ["HK955", "A30+|A50-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04L": [["ROHJA", "A23+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK954", "HK955", "ROHJA*"]]
+        },
+        "DIVAM5R": {
+            "icao": "DIVAM5R",
+            "name": "Divam Five Romeo",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "S250-"], "HK945"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04R": [["EHOTE", "A33+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK945", "EHOTE*"]]
+        },
+        "INTOR7R": {
+            "icao": "INTOR7R",
+            "name": "Intor Seven Romeo",
+            "entryPoints": {
+                "INTOR": [["INTOR", "A120+"], ["BALTI", "S250-"], "HK953", "HK938", "HK933", ["ORILE", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04R": [["VISSI", "A33+|S220-"]]
+            },
+            "draw": [["INTOR", "BALTI", "HK953", "HK938", "HK933", "ORILE", "VISSI*"]]
+        },
+        "LAKUT9R": {
+            "icao": "LAKUT9R",
+            "name": "Lakut Nine Romeo",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "S250-"], "HK871", "HK937", "HK932", ["NEKKU", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04R": [["MALKE", "A33+|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "HK871", "HK937", "HK932", "NEKKU", "MALKE*"]]
+        },
+        "LUSEP4R": {
+            "icao": "LUSEP4R",
+            "name": "Lusep Four Romeo",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], "HK890", "HK897", "HK932", ["NEKKU", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04R": [["MALKE", "A33+|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK890", "HK897", "HK932", "NEKKU", "MALKE*"]]
+        },
+        "ROPAM4R": {
+            "icao": "ROPAM4R",
+            "name": "Ropam Four Romeo",
+            "entryPoints": {
+                "ROPAM": [["ROPAM", "S250-"], "HK711", "HK933", ["ORILE", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04R": [["VISSI", "A33+|S220-"]]
+            },
+            "holds": {
+                "ROPAM": "292|right|1min|S230-"
+            },
+            "draw": [["ROPAM", "HK711", "HK933", "ORILE", "VISSI*"]]
+        },
+        "VEPIN4R": {
+            "icao": "VEPIN4R",
+            "name": "Vepin Four Romeo",
+            "entryPoints": {
+                "VEPIN": [["VEPIN", "A100+"], ["MAMOP", "S250-"], "HK807", "HK711", "HK933", ["ORILE", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK04R": [["VISSI", "A33+|S220-"]]
+            },
+            "holds": {
+                "VEPIN": "226|left|1min|S230-"
+            },
+            "draw": [["VEPIN", "MAMOP", "HK807", "HK711", "HK933", "ORILE", "VISSI*"]]
+        },
+        "DIVAM5A": {
+            "icao": "DIVAM5A",
+            "name": "Divam Five Alpha",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "S250-"], "HK804", "HK891", ["VEMMI", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22L": [["KENON", "A30+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK804", "HK891", "VEMMI", "KENON*"]]
+        },
+        "INTOR6A": {
+            "icao": "INTOR6A",
+            "name": "Intor Six Alpha",
+            "entryPoints": {
+                "INTOR": [["INTOR", "A120+"], ["BALTI", "S250-"], "HK943", "HK891", ["VEMMI", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22L": [["KENON", "A30+|S220-"]]
+            },
+            "draw": [["INTOR", "BALTI", "HK943", "HK891", "VEMMI", "KENON*"]]
+        },
+        "LAKUT7A": {
+            "icao": "LAKUT7A",
+            "name": "Lakut Seven Alpha",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "S250-"], "VIBEP", "HK942", "HK951", ["LASTU", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22L": [["KAAVI", "A30+|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "VIBEP", "HK942", "HK951", "LASTU", "KAAVI*"]]
+        },
+        "LUSEP5A": {
+            "icao": "LUSEP5A",
+            "name": "Lusep Five Alpha",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], "HK902"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22L": [["KUKKA", "A30+|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK902", "KUKKA*"]]
+        },
+        "ROPAM5A": {
+            "icao": "ROPAM5A",
+            "name": "Ropam Five Alpha",
+            "entryPoints": {
+                "ROPAM": [["ROPAM", "S250-"], "HK943", "HK891", ["VEMMI", "S220-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22L": [["KENON", "A30+|S220-"]]
+            },
+            "holds": {
+                "ROPAM": "292|right|1min|S230-"
+            },
+            "draw": [["ROPAM", "HK943", "HK891", "VEMMI", "KENON*"]]
+        },
+        "VEPIN5A": {
+            "icao": "VEPIN5A",
+            "name": "Vepin Five Alpha",
+            "entryPoints": {
+                "VEPIN": [["VEPIN", "A100+"], ["MAMOP", "S250-"], "HK956"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK22L": [["ARADE", "A30+|S220-"]]
+            },
+            "holds": {
+                "VEPIN": "226|left|1min|S230-"
+            },
+            "draw": [["VEPIN", "MAMOP", "HK956", "ARADE*"]]
+        },
+        "DIVAM4W": {
+            "icao": "DIVAM4W",
+            "name": "Divam Four Whiskey",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "S250-"], "HK947"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK33": [["SOPOS", "A30+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK947", "SOPOS*"]]
+        },
+        "INTOR8W": {
+            "icao": "INTOR8W",
+            "name": "Intor Eight Whiskey",
+            "entryPoints": {
+                "INTOR": [["INTOR", "A120+"], ["BALTI", "A120-|S250-"]]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK33": [["EESTI", "A30+|S220-"]]
+            },
+            "draw": [["INTOR", "BALTI", "EESTI*"]]
+        },
+        "LAKUT8W": {
+            "icao": "LAKUT8W",
+            "name": "Lakut Eight Whiskey",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "S250-"], "VIBEP", "HK862", "HK947"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK33": [["SOPOS", "A30+|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "VIBEP", "HK862", "HK947", "SOPOS*"]]
+        },
+        "LUSEP4W": {
+            "icao": "LUSEP4W",
+            "name": "Lusep Four Whiskey",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], "HK863", "HK948"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK33": [["TOPPI", "A30+|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK863", "HK948", "TOPPI*"]]
+        },
+        "ROPAM4W": {
+            "icao": "ROPAM4W",
+            "name": "Ropam Four Whiskey",
+            "entryPoints": {
+                "ROPAM": [["ROPAM", "S250-"], "HK949", "HK948"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK33": [["TOPPI", "A30+|S220-"]]
+            },
+            "holds": {
+                "ROPAM": "292|right|1min|S230-"
+            },
+            "draw": [["ROPAM", "HK949", "HK948", "TOPPI*"]]
+        },
+        "VEPIN4W": {
+            "icao": "VEPIN4W",
+            "name": "Vepin Four Whiskey",
+            "entryPoints": {
+                "VEPIN": [["VEPIN", "A100+"], ["MAMOP", "S250-"], "HK949", "HK948"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK33": [["TOPPI", "A30+|S220-"]]
+            },
+            "holds": {
+                "VEPIN": "226|left|1min|S230-"
+            },
+            "draw": [["VEPIN", "MAMOP", "HK949", "HK948", "TOPPI*"]]
+        },
+        "DIVAM4M": {
+            "icao": "DIVAM4M",
+            "name": "Divam Four Mike",
+            "entryPoints": {
+                "DIVAM": [["DIVAM", "A100+"], ["PEXEN", "S250-"], "HK804", "HK766", "HK817", "HK941"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK15": [["SUTAX", "A20+|S220-"]]
+            },
+            "holds": {
+                "DIVAM": "058|right|1min|S230-"
+            },
+            "draw": [["DIVAM", "PEXEN", "HK804", "HK766", "HK817", "HK941", "SUTAX*"]]
+        },
+        "INTOR9M": {
+            "icao": "INTOR9M",
+            "name": "Intor Nine Mike",
+            "entryPoints": {
+                "INTOR": [["INTOR", "A120+"], ["BALTI", "S250-"], "HK806", "HK805", "HK817", "HK941"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK15": [["SUTAX", "A20+|S220-"]]
+            },
+            "draw": [["INTOR", "BALTI", "HK806", "HK805", "HK817", "HK941", "SUTAX*"]]
+        },
+        "LAKUT8M": {
+            "icao": "LAKUT8M",
+            "name": "Lakut Eight Mike",
+            "entryPoints": {
+                "LAKUT": [["LAKUT", "A100+"], ["MAROM", "S250-"], "VIBEP"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK15": [["HELPO", "A30+|S220-"]]
+            },
+            "holds": {
+                "LAKUT": "068|left|1min|S230-"
+            },
+            "draw": [["LAKUT", "MAROM", "VIBEP", "HELPO*"]]
+        },
+        "LUSEP4M": {
+            "icao": "LUSEP4M",
+            "name": "Lusep Four Mike",
+            "entryPoints": {
+                "LUSEP": [["LUSEP", "A100+"], ["NAPUN", "S250-"], ["HK902", "A30+"], "HK950"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK15": [["NAHOP", "A20+|S220-"]]
+            },
+            "holds": {
+                "LUSEP": "171|left|1min|S230-"
+            },
+            "draw": [["LUSEP", "NAPUN", "HK902", "HK950", "NAHOP*"]]
+        },
+        "ROPAM4M": {
+            "icao": "ROPAM4M",
+            "name": "Ropam Four Mike",
+            "entryPoints": {
+                "ROPAM": [["ROPAM", "S250-"], "HK817", "HK941"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK15": [["SUTAX", "A20+|S220-"]]
+            },
+            "holds": {
+                "ROPAM": "292|right|1min|S230-"
+            },
+            "draw": [["ROPAM", "HK817", "HK941", "SUTAX*"]]
+        },
+        "VEPIN4M": {
+            "icao": "VEPIN4M",
+            "name": "Vepin Four Mike",
+            "entryPoints": {
+                "VEPIN": [["VEPIN", "A100+"], ["MAMOP", "S250-"], "HK939", "HK941"]
+            },
+            "body": [],
+            "rwy": {
+                "EFHK15": [["SUTAX", "A20+|S220-"]]
+            },
+            "holds": {
+                "VEPIN": "226|left|1min|S230-"
+            },
+            "draw": [["VEPIN", "MAMOP", "HK939", "HK941", "SUTAX*"]]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK04L.VALOX4Z.VALOX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 8,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK04L.NUNTO4Z.NUNTO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 6,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK04L.KOIVU4Z.KOIVU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 6,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "EFHK",
+            "destination": "",
+            "category": "departure",
+            "route": "EFHK04L.NEPEK4Z.NEPEK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 6,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "DIVAM.DIVAM5R.EFHK04R",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 4,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "LAKUT.LAKUT9R.EFHK04R",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 4,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "VEPIN.VEPIN4R.EFHK04R",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "LUSEP.LUSEP4R.EFHK04R",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "INTOR.INTOR7R.EFHK04R",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        },
+        {
+            "origin": "",
+            "destination": "EFHK",
+            "category": "arrival",
+            "route": "ROPAM.ROPAM4R.EFHK04R",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [["fin", 6], ["sas", 2], ["nax", 2], ["baw", 1]]
+        }
+    ],
+    "maps": [
+        {
+            "name": "Base Map",
+            "lines": [
+                ["N60.313146", "E24.903501", "N60.331341", "E24.943523"],
+                ["N60.331341", "E24.943523", "N60.330943", "E24.944261"],
+                ["N60.330943", "E24.944261", "N60.312748", "E24.904237"],
+                ["N60.312748", "E24.904237", "N60.313146", "E24.903501"],
+                ["N60.311491", "E24.936004", "N60.330891", "E24.978724"],
+                ["N60.330891", "E24.978724", "N60.330493", "E24.979460"],
+                ["N60.330493", "E24.979460", "N60.311093", "E24.936740"],
+                ["N60.311093", "E24.936740", "N60.311491", "E24.936004"],
+                ["N60.330397", "E24.964983", "N60.307189", "E24.988772"],
+                ["N60.307189", "E24.988772", "N60.306945", "E24.987800"],
+                ["N60.306945", "E24.987800", "N60.330153", "E24.964011"],
+                ["N60.330153", "E24.964011", "N60.330397", "E24.964983"],
+                ["N60.330275", "E24.964497", "N60.493684", "E24.796583"],
+                ["N60.346490", "E24.954636", "N60.343770", "E24.943828"],
+                ["N60.361346", "E24.939374", "N60.358626", "E24.928560"],
+                ["N60.376201", "E24.924112", "N60.373481", "E24.913293"],
+                ["N60.391057", "E24.908849", "N60.388336", "E24.898025"],
+                ["N60.407197", "E24.898700", "N60.401907", "E24.877645"],
+                ["N60.420767", "E24.878324", "N60.418047", "E24.867491"],
+                ["N60.435623", "E24.863062", "N60.432903", "E24.852223"],
+                ["N60.450478", "E24.847799", "N60.447758", "E24.836956"],
+                ["N60.465334", "E24.832537", "N60.462613", "E24.821688"],
+                ["N60.481474", "E24.822399", "N60.476184", "E24.801296"],
+                ["N60.495044", "E24.802012", "N60.492324", "E24.791154"],
+                ["N60.307067", "E24.988286", "N60.143629", "E25.155966"],
+                ["N60.290850", "E24.998133", "N60.293568", "E25.008926"],
+                ["N60.275992", "E25.013379", "N60.278710", "E25.024167"],
+                ["N60.261134", "E25.028625", "N60.263852", "E25.039409"],
+                ["N60.246276", "E25.043871", "N60.248994", "E25.054650"],
+                ["N60.230134", "E25.054030", "N60.235420", "E25.074979"],
+                ["N60.216560", "E25.074363", "N60.219278", "E25.085132"],
+                ["N60.201702", "E25.089609", "N60.204420", "E25.100373"],
+                ["N60.186844", "E25.104855", "N60.189562", "E25.115615"],
+                ["N60.171986", "E25.120102", "N60.174704", "E25.130856"],
+                ["N60.155844", "E25.130272", "N60.161130", "E25.151173"],
+                ["N60.142270", "E25.150594", "N60.144988", "E25.161338"],
+                ["N60.312947", "E24.903869", "N60.189018", "E24.631079"],
+                ["N60.303892", "E24.874977", "N60.299470", "E24.883163"],
+                ["N60.292625", "E24.850179", "N60.288204", "E24.858363"],
+                ["N60.281359", "E24.825381", "N60.276937", "E24.833562"],
+                ["N60.270093", "E24.800584", "N60.265671", "E24.808762"],
+                ["N60.260914", "E24.771925", "N60.252317", "E24.787822"],
+                ["N60.247560", "E24.750988", "N60.243139", "E24.759161"],
+                ["N60.236294", "E24.726191", "N60.231872", "E24.734360"],
+                ["N60.225028", "E24.701393", "N60.220606", "E24.709560"],
+                ["N60.213761", "E24.676595", "N60.209340", "E24.684759"],
+                ["N60.204583", "E24.647944", "N60.195986", "E24.663813"],
+                ["N60.191229", "E24.627000", "N60.186807", "E24.635158"],
+                ["N60.331142", "E24.943892", "N60.454977", "E25.217009"],
+                ["N60.340188", "E24.972816", "N60.344612", "E24.964626"],
+                ["N60.351445", "E24.997646", "N60.355870", "E24.989453"],
+                ["N60.362703", "E25.022476", "N60.367127", "E25.014280"],
+                ["N60.373961", "E25.047307", "N60.378385", "E25.039108"],
+                ["N60.383129", "E25.076010", "N60.391732", "E25.060062"],
+                ["N60.396476", "E25.096967", "N60.400900", "E25.088762"],
+                ["N60.407734", "E25.121797", "N60.412158", "E25.113590"],
+                ["N60.418991", "E25.146628", "N60.423416", "E25.138417"],
+                ["N60.430249", "E25.171458", "N60.434673", "E25.163245"],
+                ["N60.439417", "E25.200168", "N60.448020", "E25.184192"],
+                ["N60.452764", "E25.221118", "N60.457189", "E25.212899"],
+                ["N60.311292", "E24.936372", "N60.187434", "E24.663465"],
+                ["N60.302244", "E24.907472", "N60.297820", "E24.915653"],
+                ["N60.290984", "E24.882663", "N60.286560", "E24.890842"],
+                ["N60.279724", "E24.857855", "N60.275301", "E24.866031"],
+                ["N60.268464", "E24.833047", "N60.264041", "E24.841219"],
+                ["N60.259294", "E24.804380", "N60.250692", "E24.820266"],
+                ["N60.245945", "E24.783430", "N60.241521", "E24.791597"],
+                ["N60.234685", "E24.758622", "N60.230261", "E24.766786"],
+                ["N60.223425", "E24.733813", "N60.219001", "E24.741975"],
+                ["N60.212165", "E24.709005", "N60.207742", "E24.717164"],
+                ["N60.202994", "E24.680345", "N60.194393", "E24.696204"],
+                ["N60.189646", "E24.659388", "N60.185222", "E24.667541"],
+                ["N60.330692", "E24.979092", "N60.454456", "E25.252336"],
+                ["N60.339730", "E25.008025", "N60.344157", "E24.999840"],
+                ["N60.350981", "E25.032867", "N60.355408", "E25.024678"],
+                ["N60.362233", "E25.057709", "N60.366659", "E25.049517"],
+                ["N60.373484", "E25.082551", "N60.377910", "E25.074356"],
+                ["N60.382645", "E25.111263", "N60.391252", "E25.095325"],
+                ["N60.395986", "E25.132234", "N60.400413", "E25.124034"],
+                ["N60.407238", "E25.157076", "N60.411664", "E25.148873"],
+                ["N60.418489", "E25.181918", "N60.422915", "E25.173712"],
+                ["N60.429740", "E25.206759", "N60.434167", "E25.198551"],
+                ["N60.438901", "E25.235479", "N60.447508", "E25.219513"],
+                ["N60.452243", "E25.256443", "N60.456669", "E25.248229"]
+            ]
+        },
+        {
+            "name": "Helsinki TMA",
+            "lines": [
+                ["N60d49m13.00", "E024d46m56.00", "N60d49m51.00", "E025d29m09.00"],
+                ["N60d49m51.00", "E025d29m09.00", "N60d41m32.00", "E025d50m30.00"],
+                ["N60d41m32.00", "E025d50m30.00", "N60d27m08.00", "E026d07m59.00"],
+                ["N60d27m08.00", "E026d07m59.00", "N60d08m00.00", "E026d33m00.00"],
+                ["N60d08m00.00", "E026d33m00.00", "N59d53m00.00", "E025d52m00.00"],
+                ["N59d53m00.00", "E025d52m00.00", "N59d54m30.00", "E025d20m00.00"],
+                ["N59d54m30.00", "E025d20m00.00", "N59d53m27.00", "E024d59m49.00"],
+                ["N59d53m27.00", "E024d59m49.00", "N59d53m00.00", "E024d51m00.00"],
+                ["N59d53m00.00", "E024d51m00.00", "N59d42m00.00", "E023d59m31.00"],
+                ["N59d42m00.00", "E023d59m31.00", "N59d54m47.00", "E023d49m28.00"],
+                ["N59d54m47.00", "E023d49m28.00", "N60d26m52.00", "E024d02m37.00"],
+                ["N60d26m52.00", "E024d02m37.00", "N60d44m33.00", "E024d29m08.00"],
+                ["N60d44m33.00", "E024d29m08.00", "N60d49m13.00", "E024d46m56.00"]
+            ]
+        },
+        {
+            "name": "Helsinki CTR",
+            "lines": [
+                ["N60d24m43.00", "E024d42m27.00", "N60d27m28.00", "E024d55m18.00"],
+                ["N60d27m28.00", "E024d55m18.00", "N60d27m21.00", "E024d57m28.00"],
+                ["N60d27m21.00", "E024d57m28.00", "N60d24m34.00", "E025d08m32.00"],
+                ["N60d24m34.00", "E025d08m32.00", "N60d22m09.00", "E025d12m20.00"],
+                ["N60d22m09.00", "E025d12m20.00", "N60d16m29.00", "E025d12m42.00"],
+                ["N60d16m29.00", "E025d12m42.00", "N60d13m39.00", "E025d09m14.00"],
+                ["N60d13m39.00", "E025d09m14.00", "N60d11m38.00", "E025d01m11.00"],
+                ["N60d11m38.00", "E025d01m11.00", "N60d13m14.00", "E024d59m51.00"],
+                ["N60d13m14.00", "E024d59m51.00", "N60d12m22.00", "E024d55m37.00"],
+                ["N60d12m22.00", "E024d55m37.00", "N60d13m02.00", "E024d48m49.00"],
+                ["N60d13m02.00", "E024d48m49.00", "N60d16m24.00", "E024d41m12.00"],
+                ["N60d16m24.00", "E024d41m12.00", "N60d19m36.00", "E024d38m50.00"],
+                ["N60d19m36.00", "E024d38m50.00", "N60d24m43.00", "E024d42m27.00"]
+            ]
+        },
+        {
+            "name": "Coastline",
+            "lines": [
+                ["N60.136527", "E24.888401", "N60.128782", "E24.880674"],
+                ["N60.128782", "E24.880674", "N60.126530", "E24.883430"],
+                ["N60.126530", "E24.883430", "N60.130347", "E24.890494"],
+                ["N60.130347", "E24.890494", "N60.128707", "E24.893461"],
+                ["N60.128707", "E24.893461", "N60.129740", "E24.896631"],
+                ["N60.129740", "E24.896631", "N60.136527", "E24.888401"],
+                ["N60.179851", "E24.980915", "N60.178054", "E24.989741"],
+                ["N60.178054", "E24.989741", "N60.181003", "E25.001363"],
+                ["N60.187787", "E25.058047", "N60.186927", "E25.067405"],
+                ["N60.186927", "E25.067405", "N60.190555", "E25.071814"],
+                ["N60.190555", "E25.071814", "N60.193811", "E25.073149"],
+                ["N60.193811", "E25.073149", "N60.196205", "E25.065922"],
+                ["N60.198860", "E25.101762", "N60.195785", "E25.105049"],
+                ["N60.195785", "E25.105049", "N60.195091", "E25.097728"],
+                ["N60.195091", "E25.097728", "N60.190660", "E25.089875"],
+                ["N60.190660", "E25.089875", "N60.187145", "E25.088673"],
+                ["N60.187145", "E25.088673", "N60.190190", "E25.096359"],
+                ["N60.200634", "E25.097377", "N60.206237", "E25.097999"],
+                ["N60.206237", "E25.097999", "N60.209185", "E25.110139"],
+                ["N60.203322", "E24.979927", "N60.212532", "E24.984153"],
+                ["N60.212532", "E24.984153", "N60.215821", "E24.981188"],
+                ["N60.215821", "E24.981188", "N60.215442", "E24.985534"],
+                ["N60.215442", "E24.985534", "N60.213589", "E24.984564"],
+                ["N60.165820", "E24.887938", "N60.166208", "E24.878844"],
+                ["N60.166208", "E24.878844", "N60.163151", "E24.870180"],
+                ["N60.163151", "E24.870180", "N60.165661", "E24.861603"],
+                ["N60.165661", "E24.861603", "N60.171121", "E24.861288"],
+                ["N60.171121", "E24.861288", "N60.169577", "E24.859900"],
+                ["N60.169577", "E24.859900", "N60.170231", "E24.855877"],
+                ["N60.170231", "E24.855877", "N60.161608", "E24.852666"],
+                ["N60.161608", "E24.852666", "N60.158273", "E24.858062"],
+                ["N60.158273", "E24.858062", "N60.154099", "E24.852966"],
+                ["N60.154099", "E24.852966", "N60.151535", "E24.857804"],
+                ["N60.151535", "E24.857804", "N60.154622", "E24.861420"],
+                ["N60.154622", "E24.861420", "N60.152423", "E24.864417"],
+                ["N60.152423", "E24.864417", "N60.155054", "E24.870843"],
+                ["N60.155054", "E24.870843", "N60.153915", "E24.873994"],
+                ["N60.180695", "E24.841485", "N60.174158", "E24.851517"],
+                ["N60.174158", "E24.851517", "N60.173672", "E24.856163"],
+                ["N60.173672", "E24.856163", "N60.176511", "E24.853733"],
+                ["N60.176511", "E24.853733", "N60.177847", "E24.857492"],
+                ["N60.177847", "E24.857492", "N60.181379", "E24.857726"],
+                ["N60.172152", "E25.065038", "N60.172593", "E25.060048"],
+                ["N60.172593", "E25.060048", "N60.178840", "E25.068085"],
+                ["N60.178840", "E25.068085", "N60.183610", "E25.063422"],
+                ["N60.163302", "E25.018325", "N60.164516", "E25.024176"],
+                ["N60.164516", "E25.024176", "N60.160119", "E25.034193"],
+                ["N60.160119", "E25.034193", "N60.164364", "E25.031276"],
+                ["N60.164364", "E25.031276", "N60.164994", "E25.033990"],
+                ["N60.164994", "E25.033990", "N60.166867", "E25.028185"],
+                ["N60.166867", "E25.028185", "N60.168574", "E25.028689"],
+                ["N60.168574", "E25.028689", "N60.159672", "E25.043123"],
+                ["N60.159672", "E25.043123", "N60.160510", "E25.048233"],
+                ["N60.160510", "E25.048233", "N60.158040", "E25.049285"],
+                ["N60.158040", "E25.049285", "N60.159963", "E25.049450"],
+                ["N60.159963", "E25.049450", "N60.158236", "E25.054436"],
+                ["N60.158236", "E25.054436", "N60.159646", "E25.061392"],
+                ["N60.159646", "E25.061392", "N60.158155", "E25.064934"],
+                ["N60.158155", "E25.064934", "N60.157822", "E25.076416"],
+                ["N60.157822", "E25.076416", "N60.160564", "E25.078290"],
+                ["N60.160564", "E25.078290", "N60.162718", "E25.074636"],
+                ["N60.162718", "E25.074636", "N60.162610", "E25.077491"],
+                ["N60.162610", "E25.077491", "N60.154885", "E25.082531"],
+                ["N60.154885", "E25.082531", "N60.157701", "E25.081462"],
+                ["N60.157701", "E25.081462", "N60.159803", "E25.095588"],
+                ["N60.159803", "E25.095588", "N60.161873", "E25.098079"],
+                ["N60.161873", "E25.098079", "N60.169188", "E25.092223"],
+                ["N60.169188", "E25.092223", "N60.166152", "E25.086979"],
+                ["N60.166152", "E25.086979", "N60.164293", "E25.088568"],
+                ["N60.164293", "E25.088568", "N60.163130", "E25.084091"],
+                ["N60.163130", "E25.084091", "N60.172795", "E25.085256"],
+                ["N60.172795", "E25.085256", "N60.171278", "E25.075432"],
+                ["N60.171278", "E25.075432", "N60.167995", "E25.077206"],
+                ["N60.167995", "E25.077206", "N60.165566", "E25.066236"],
+                ["N60.145613", "E25.070159", "N60.144890", "E25.078920"],
+                ["N60.144890", "E25.078920", "N60.146560", "E25.084981"],
+                ["N60.146560", "E25.084981", "N60.150756", "E25.078180"],
+                ["N60.150756", "E25.078180", "N60.150475", "E25.072289"],
+                ["N60.150475", "E25.072289", "N60.153540", "E25.065994"],
+                ["N60.153540", "E25.065994", "N60.152079", "E25.061802"],
+                ["N60.152079", "E25.061802", "N60.156593", "E25.056397"],
+                ["N60.156593", "E25.056397", "N60.157829", "E25.048811"],
+                ["N60.157829", "E25.048811", "N60.153570", "E25.042909"],
+                ["N60.153570", "E25.042909", "N60.155521", "E25.041231"],
+                ["N60.155521", "E25.041231", "N60.151764", "E25.042156"],
+                ["N60.151764", "E25.042156", "N60.144745", "E25.025309"],
+                ["N60.144745", "E25.025309", "N60.143066", "E25.033055"],
+                ["N60.143066", "E25.033055", "N60.138925", "E25.027652"],
+                ["N60.138925", "E25.027652", "N60.136654", "E25.034604"],
+                ["N60.136654", "E25.034604", "N60.135299", "E25.028682"],
+                ["N60.135299", "E25.028682", "N60.132539", "E25.031163"],
+                ["N60.132539", "E25.031163", "N60.135727", "E25.036864"],
+                ["N60.135727", "E25.036864", "N60.135180", "E25.043417"],
+                ["N60.135180", "E25.043417", "N60.137503", "E25.047716"],
+                ["N60.137503", "E25.047716", "N60.136744", "E25.064411"],
+                ["N60.136744", "E25.064411", "N60.139820", "E25.063463"],
+                ["N60.139820", "E25.063463", "N60.140402", "E25.057496"],
+                ["N60.140402", "E25.057496", "N60.143680", "E25.057164"],
+                ["N60.143680", "E25.057164", "N60.144504", "E25.062855"],
+                ["N60.064878", "E24.478498", "N60.056943", "E24.471042"],
+                ["N60.056943", "E24.471042", "N60.053371", "E24.474554"],
+                ["N60.053371", "E24.474554", "N60.048905", "E24.469149"],
+                ["N60.029107", "E24.450738", "N60.033071", "E24.465902"],
+                ["N60.033071", "E24.465902", "N60.042760", "E24.479126"],
+                ["N60.042760", "E24.479126", "N60.029932", "E24.464663"],
+                ["N60.029932", "E24.464663", "N60.026243", "E24.454011"],
+                ["N60.040209", "E24.453604", "N60.033070", "E24.444047"],
+                ["N60.033070", "E24.444047", "N60.029783", "E24.445148"],
+                ["N60.029783", "E24.445148", "N60.030606", "E24.448827"],
+                ["N60.030606", "E24.448827", "N60.029107", "E24.450738"],
+                ["N60.021961", "E24.447028", "N60.019678", "E24.439939"],
+                ["N60.019678", "E24.439939", "N60.014250", "E24.439194"],
+                ["N60.014250", "E24.439194", "N60.015192", "E24.442495"],
+                ["N60.015192", "E24.442495", "N60.005761", "E24.424163"],
+                ["N60.005761", "E24.424163", "N60.001682", "E24.423179"],
+                ["N60.001682", "E24.423179", "N60.000874", "E24.426491"],
+                ["N60.000874", "E24.426491", "N60.005297", "E24.431963"],
+                ["N60.005297", "E24.431963", "N60.007149", "E24.429141"],
+                ["N60.007149", "E24.429141", "N60.006894", "E24.437402"],
+                ["N60.006894", "E24.437402", "N60.002693", "E24.430766"],
+                ["N60.002693", "E24.430766", "N59.999552", "E24.430783"],
+                ["N59.999552", "E24.430783", "N60.000876", "E24.429668"],
+                ["N60.000876", "E24.429668", "N59.999758", "E24.426956"],
+                ["N59.999758", "E24.426956", "N59.991990", "E24.425786"],
+                ["N59.990242", "E24.464484", "N59.991847", "E24.454347"],
+                ["N59.991847", "E24.454347", "N59.995678", "E24.452012"],
+                ["N59.995678", "E24.452012", "N59.995250", "E24.446116"],
+                ["N59.995250", "E24.446116", "N59.998092", "E24.450369"],
+                ["N60.007482", "E24.447659", "N60.007979", "E24.456876"],
+                ["N60.007979", "E24.456876", "N60.003675", "E24.457670"],
+                ["N60.003675", "E24.457670", "N59.996350", "E24.452036"],
+                ["N59.996350", "E24.452036", "N59.996028", "E24.459476"],
+                ["N59.996028", "E24.459476", "N60.000786", "E24.471111"],
+                ["N60.000786", "E24.471111", "N59.994038", "E24.464668"],
+                ["N60.130108", "E24.785356", "N60.131089", "E24.790533"],
+                ["N60.131089", "E24.790533", "N60.134155", "E24.792967"],
+                ["N60.134155", "E24.792967", "N60.137838", "E24.787522"],
+                ["N60.137838", "E24.787522", "N60.135156", "E24.778171"],
+                ["N60.135156", "E24.778171", "N60.131258", "E24.773293"],
+                ["N60.131258", "E24.773293", "N60.128983", "E24.774032"],
+                ["N60.128983", "E24.774032", "N60.128020", "E24.779097"],
+                ["N60.128020", "E24.779097", "N60.130108", "E24.785356"],
+                ["N60.032790", "E24.349875", "N60.029654", "E24.339077"],
+                ["N60.029654", "E24.339077", "N60.020188", "E24.330815"],
+                ["N60.020188", "E24.330815", "N60.014420", "E24.320370"],
+                ["N60.014420", "E24.320370", "N60.009484", "E24.322629"],
+                ["N60.122857", "E24.726372", "N60.125210", "E24.729982"],
+                ["N60.125210", "E24.729982", "N60.129807", "E24.727774"],
+                ["N60.129807", "E24.727774", "N60.132252", "E24.733340"],
+                ["N60.132252", "E24.733340", "N60.134896", "E24.727134"],
+                ["N60.134896", "E24.727134", "N60.134117", "E24.719813"],
+                ["N60.134117", "E24.719813", "N60.130130", "E24.717072"],
+                ["N60.130130", "E24.717072", "N60.131289", "E24.711034"],
+                ["N60.111167", "E24.697459", "N60.108015", "E24.694994"],
+                ["N60.108015", "E24.694994", "N60.111223", "E24.704502"],
+                ["N60.111223", "E24.704502", "N60.107970", "E24.699118"],
+                ["N60.107970", "E24.699118", "N60.106604", "E24.704024"],
+                ["N60.106604", "E24.704024", "N60.107751", "E24.710796"],
+                ["N60.107751", "E24.710796", "N60.105744", "E24.708585"],
+                ["N60.105744", "E24.708585", "N60.111905", "E24.722851"],
+                ["N60.119836", "E24.703126", "N60.119639", "E24.695881"],
+                ["N60.119639", "E24.695881", "N60.115632", "E24.687018"],
+                ["N60.115632", "E24.687018", "N60.112908", "E24.686870"],
+                ["N60.112908", "E24.686870", "N60.119836", "E24.703126"],
+                ["N60.109575", "E24.664496", "N60.093461", "E24.650583"],
+                ["N60.093461", "E24.650583", "N60.098468", "E24.673157"],
+                ["N60.098468", "E24.673157", "N60.105646", "E24.677687"],
+                ["N60.105646", "E24.677687", "N60.108000", "E24.671705"],
+                ["N60.049807", "E24.578854", "N60.045123", "E24.589412"],
+                ["N60.045123", "E24.589412", "N60.047883", "E24.592910"],
+                ["N60.047883", "E24.592910", "N60.048255", "E24.598668"],
+                ["N60.048255", "E24.598668", "N60.050588", "E24.595913"],
+                ["N60.059667", "E24.607620", "N60.063058", "E24.611058"],
+                ["N60.063058", "E24.611058", "N60.063280", "E24.617256"],
+                ["N60.063280", "E24.617256", "N60.070052", "E24.621221"],
+                ["N60.070052", "E24.621221", "N60.070635", "E24.608030"],
+                ["N60.070635", "E24.608030", "N60.068912", "E24.602759"],
+                ["N60.068912", "E24.602759", "N60.070997", "E24.601241"],
+                ["N60.139713", "E24.998375", "N60.140839", "E24.996778"],
+                ["N60.140839", "E24.996778", "N60.139209", "E24.993387"],
+                ["N60.139209", "E24.993387", "N60.130228", "E24.995737"],
+                ["N60.130228", "E24.995737", "N60.132235", "E25.004741"],
+                ["N60.132235", "E25.004741", "N60.134258", "E25.004141"],
+                ["N60.134258", "E25.004141", "N60.134499", "E25.012476"],
+                ["N60.134499", "E25.012476", "N60.131507", "E25.019728"],
+                ["N60.131507", "E25.019728", "N60.133494", "E25.024642"],
+                ["N60.133494", "E25.024642", "N60.135251", "E25.021473"],
+                ["N60.135251", "E25.021473", "N60.137717", "E25.025932"],
+                ["N60.137717", "E25.025932", "N60.138621", "E25.023186"],
+                ["N60.138621", "E25.023186", "N60.136439", "E25.020817"],
+                ["N60.136439", "E25.020817", "N60.136587", "E25.014087"],
+                ["N60.136587", "E25.014087", "N60.134589", "E25.010479"],
+                ["N60.134589", "E25.010479", "N60.139820", "E25.010176"],
+                ["N60.139820", "E25.010176", "N60.139713", "E24.998375"],
+                ["N60.201262", "E25.209670", "N60.202476", "E25.211301"],
+                ["N60.202476", "E25.211301", "N60.200179", "E25.217859"],
+                ["N60.200179", "E25.217859", "N60.204911", "E25.211181"],
+                ["N60.204911", "E25.211181", "N60.205712", "E25.201307"],
+                ["N60.205712", "E25.201307", "N60.200796", "E25.206059"],
+                ["N60.200796", "E25.206059", "N60.201262", "E25.209670"],
+                ["N60.202683", "E25.019644", "N60.201777", "E25.025443"],
+                ["N60.201777", "E25.025443", "N60.194784", "E25.024083"],
+                ["N60.194784", "E25.024083", "N60.199426", "E25.013310"],
+                ["N59.986168", "E24.493796", "N59.988658", "E24.499965"],
+                ["N59.988658", "E24.499965", "N59.991329", "E24.498260"],
+                ["N59.991329", "E24.498260", "N59.993863", "E24.505525"],
+                ["N59.993863", "E24.505525", "N59.992768", "E24.493547"],
+                ["N59.975709", "E24.446230", "N59.972460", "E24.442454"],
+                ["N59.972460", "E24.442454", "N59.970946", "E24.444647"],
+                ["N59.970946", "E24.444647", "N59.976274", "E24.458695"],
+                ["N59.976274", "E24.458695", "N59.974602", "E24.453552"],
+                ["N59.974602", "E24.453552", "N59.976844", "E24.451216"],
+                ["N59.976844", "E24.451216", "N59.975709", "E24.446230"],
+                ["N59.970758", "E24.401946", "N59.966744", "E24.398896"],
+                ["N59.966744", "E24.398896", "N59.970430", "E24.404337"],
+                ["N59.970430", "E24.404337", "N59.966927", "E24.402582"],
+                ["N59.966927", "E24.402582", "N59.967905", "E24.412421"],
+                ["N59.967905", "E24.412421", "N59.975397", "E24.415481"],
+                ["N59.975397", "E24.415481", "N59.971967", "E24.407510"],
+                ["N59.971967", "E24.407510", "N59.975420", "E24.411174"],
+                ["N59.975420", "E24.411174", "N59.973508", "E24.403980"],
+                ["N59.973508", "E24.403980", "N59.970758", "E24.401946"],
+                ["N59.966069", "E24.410440", "N59.962797", "E24.409207"],
+                ["N59.962797", "E24.409207", "N59.960710", "E24.412594"],
+                ["N59.960710", "E24.412594", "N59.964025", "E24.421759"],
+                ["N59.964025", "E24.421759", "N59.968253", "E24.422588"],
+                ["N59.968253", "E24.422588", "N59.972622", "E24.417889"],
+                ["N59.972622", "E24.417889", "N59.969628", "E24.413292"],
+                ["N59.969628", "E24.413292", "N59.966877", "E24.418205"],
+                ["N59.966877", "E24.418205", "N59.966069", "E24.410440"],
+                ["N60.135034", "E24.647949", "N60.135083", "E24.662030"],
+                ["N60.135083", "E24.662030", "N60.129343", "E24.663109"],
+                ["N60.129343", "E24.663109", "N60.125680", "E24.670325"],
+                ["N60.125680", "E24.670325", "N60.123481", "E24.668364"],
+                ["N60.123481", "E24.668364", "N60.123284", "E24.672354"],
+                ["N60.123284", "E24.672354", "N60.121202", "E24.668645"],
+                ["N60.121202", "E24.668645", "N60.118837", "E24.674865"],
+                ["N60.118837", "E24.674865", "N60.116028", "E24.675793"],
+                ["N60.095803", "E25.047474", "N60.099464", "E25.054566"],
+                ["N60.099464", "E25.054566", "N60.100302", "E25.062568"],
+                ["N60.100302", "E25.062568", "N60.107792", "E25.074816"],
+                ["N60.107792", "E25.074816", "N60.104088", "E25.066988"],
+                ["N60.104088", "E25.066988", "N60.104208", "E25.061360"],
+                ["N60.104208", "E25.061360", "N60.105987", "E25.062642"],
+                ["N60.105987", "E25.062642", "N60.104468", "E25.058339"],
+                ["N60.104468", "E25.058339", "N60.105007", "E25.043218"],
+                ["N60.105007", "E25.043218", "N60.098628", "E25.042037"],
+                ["N60.098628", "E25.042037", "N60.095079", "E25.043723"],
+                ["N60.095079", "E25.043723", "N60.095803", "E25.047474"],
+                ["N60.222844", "E25.223230", "N60.222448", "E25.229785"],
+                ["N60.222448", "E25.229785", "N60.220683", "E25.224617"],
+                ["N60.220683", "E25.224617", "N60.219542", "E25.230750"],
+                ["N60.219542", "E25.230750", "N60.222598", "E25.247928"],
+                ["N60.222598", "E25.247928", "N60.231059", "E25.252754"],
+                ["N60.231059", "E25.252754", "N60.233154", "E25.250382"],
+                ["N60.233154", "E25.250382", "N60.231716", "E25.243798"],
+                ["N60.231716", "E25.243798", "N60.235281", "E25.227784"],
+                ["N60.235281", "E25.227784", "N60.233019", "E25.227788"],
+                ["N60.233019", "E25.227788", "N60.232465", "E25.219372"],
+                ["N60.232465", "E25.219372", "N60.225809", "E25.214662"],
+                ["N60.225809", "E25.214662", "N60.222372", "E25.218757"],
+                ["N60.222372", "E25.218757", "N60.222844", "E25.223230"],
+                ["N60.252903", "E25.391886", "N60.255162", "E25.405253"],
+                ["N60.255162", "E25.405253", "N60.254245", "E25.413979"],
+                ["N60.254245", "E25.413979", "N60.255552", "E25.416926"],
+                ["N60.255552", "E25.416926", "N60.257348", "E25.410401"],
+                ["N60.257348", "E25.410401", "N60.256906", "E25.422017"],
+                ["N60.256906", "E25.422017", "N60.259758", "E25.422789"],
+                ["N60.259758", "E25.422789", "N60.254960", "E25.435049"],
+                ["N60.254960", "E25.435049", "N60.256355", "E25.432120"],
+                ["N60.256355", "E25.432120", "N60.258707", "E25.437101"],
+                ["N60.258707", "E25.437101", "N60.254592", "E25.438039"],
+                ["N60.254592", "E25.438039", "N60.255253", "E25.429129"],
+                ["N60.255253", "E25.429129", "N60.252439", "E25.427919"],
+                ["N60.252439", "E25.427919", "N60.251643", "E25.446041"],
+                ["N60.251643", "E25.446041", "N60.259997", "E25.441078"],
+                ["N60.259997", "E25.441078", "N60.263477", "E25.425805"],
+                ["N60.263477", "E25.425805", "N60.264713", "E25.429495"],
+                ["N60.264713", "E25.429495", "N60.262661", "E25.440891"],
+                ["N60.262661", "E25.440891", "N60.266803", "E25.436303"],
+                ["N60.266803", "E25.436303", "N60.264486", "E25.441435"],
+                ["N60.264486", "E25.441435", "N60.256641", "E25.444986"],
+                ["N60.256641", "E25.444986", "N60.260795", "E25.449918"],
+                ["N60.260795", "E25.449918", "N60.260503", "E25.459623"],
+                ["N60.260503", "E25.459623", "N60.259035", "E25.449959"],
+                ["N60.259035", "E25.449959", "N60.255985", "E25.453110"],
+                ["N60.255985", "E25.453110", "N60.252066", "E25.450175"],
+                ["N60.252066", "E25.450175", "N60.252507", "E25.463060"],
+                ["N60.252507", "E25.463060", "N60.255300", "E25.473902"],
+                ["N60.255300", "E25.473902", "N60.256157", "E25.463039"],
+                ["N60.256157", "E25.463039", "N60.261507", "E25.464243"],
+                ["N60.261507", "E25.464243", "N60.260743", "E25.469573"],
+                ["N60.260743", "E25.469573", "N60.258431", "E25.470425"],
+                ["N60.258431", "E25.470425", "N60.257036", "E25.476242"],
+                ["N60.257036", "E25.476242", "N60.255949", "E25.474655"],
+                ["N60.255949", "E25.474655", "N60.258414", "E25.483982"],
+                ["N60.222639", "E25.434462", "N60.229031", "E25.448877"],
+                ["N60.229031", "E25.448877", "N60.236301", "E25.448964"],
+                ["N60.236301", "E25.448964", "N60.236533", "E25.444146"],
+                ["N60.236533", "E25.444146", "N60.247163", "E25.446943"],
+                ["N60.247163", "E25.446943", "N60.246200", "E25.431307"],
+                ["N60.246200", "E25.431307", "N60.248505", "E25.430305"],
+                ["N60.248505", "E25.430305", "N60.247463", "E25.426366"],
+                ["N60.247463", "E25.426366", "N60.245356", "E25.427225"],
+                ["N60.245356", "E25.427225", "N60.245334", "E25.414775"],
+                ["N60.245334", "E25.414775", "N60.246494", "E25.411348"],
+                ["N60.246494", "E25.411348", "N60.245861", "E25.415397"],
+                ["N60.245861", "E25.415397", "N60.248796", "E25.417744"],
+                ["N60.248796", "E25.417744", "N60.250568", "E25.413237"],
+                ["N60.250568", "E25.413237", "N60.249013", "E25.409026"],
+                ["N60.249013", "E25.409026", "N60.251445", "E25.407847"],
+                ["N60.251445", "E25.407847", "N60.248105", "E25.406693"],
+                ["N60.248105", "E25.406693", "N60.246525", "E25.410109"],
+                ["N60.246525", "E25.410109", "N60.245367", "E25.404837"],
+                ["N60.245367", "E25.404837", "N60.237567", "E25.414387"],
+                ["N60.237567", "E25.414387", "N60.236789", "E25.425661"],
+                ["N60.236789", "E25.425661", "N60.235303", "E25.424414"],
+                ["N60.235303", "E25.424414", "N60.236955", "E25.419075"],
+                ["N60.236955", "E25.419075", "N60.233963", "E25.421142"],
+                ["N60.233963", "E25.421142", "N60.229630", "E25.415722"],
+                ["N60.229630", "E25.415722", "N60.230478", "E25.423257"],
+                ["N60.230478", "E25.423257", "N60.222953", "E25.415178"],
+                ["N60.222953", "E25.415178", "N60.225351", "E25.420183"],
+                ["N60.225351", "E25.420183", "N60.224277", "E25.424465"],
+                ["N60.224277", "E25.424465", "N60.230097", "E25.426470"],
+                ["N60.230097", "E25.426470", "N60.227198", "E25.433651"],
+                ["N60.227198", "E25.433651", "N60.222664", "E25.431745"],
+                ["N60.222664", "E25.431745", "N60.222639", "E25.434462"],
+                ["N60.082292", "E24.663317", "N60.087348", "E24.670796"],
+                ["N60.087348", "E24.670796", "N60.090356", "E24.669980"],
+                ["N60.090356", "E24.669980", "N60.084869", "E24.659042"],
+                ["N60.084869", "E24.659042", "N60.084872", "E24.650327"],
+                ["N60.084872", "E24.650327", "N60.081316", "E24.648077"],
+                ["N60.081316", "E24.648077", "N60.078609", "E24.653911"],
+                ["N60.078609", "E24.653911", "N60.082752", "E24.657266"],
+                ["N60.082752", "E24.657266", "N60.082292", "E24.663317"],
+                ["N60.088468", "E24.608253", "N60.089557", "E24.620096"],
+                ["N60.089557", "E24.620096", "N60.084841", "E24.625773"],
+                ["N60.084841", "E24.625773", "N60.092468", "E24.640048"],
+                ["N60.092468", "E24.640048", "N60.096558", "E24.642885"],
+                ["N60.091718", "E24.600516", "N60.095189", "E24.591151"],
+                ["N60.095189", "E24.591151", "N60.095047", "E24.584505"],
+                ["N60.095047", "E24.584505", "N60.098162", "E24.588297"],
+                ["N60.098162", "E24.588297", "N60.098441", "E24.593162"],
+                ["N60.098441", "E24.593162", "N60.103143", "E24.596750"],
+                ["N60.103143", "E24.596750", "N60.101171", "E24.600440"],
+                ["N60.101171", "E24.600440", "N60.103633", "E24.601383"],
+                ["N60.103633", "E24.601383", "N60.107795", "E24.615505"],
+                ["N60.107795", "E24.615505", "N60.105549", "E24.620337"],
+                ["N60.105549", "E24.620337", "N60.108235", "E24.619256"],
+                ["N60.108235", "E24.619256", "N60.109566", "E24.624681"],
+                ["N60.109566", "E24.624681", "N60.104941", "E24.628071"],
+                ["N60.104941", "E24.628071", "N60.105079", "E24.632614"],
+                ["N60.120328", "E24.614207", "N60.105066", "E24.585859"],
+                ["N60.105066", "E24.585859", "N60.101147", "E24.566399"],
+                ["N60.101147", "E24.566399", "N60.109563", "E24.578414"],
+                ["N60.109563", "E24.578414", "N60.117175", "E24.598158"],
+                ["N60.111054", "E24.647228", "N60.121548", "E24.639786"],
+                ["N60.121548", "E24.639786", "N60.121269", "E24.634695"],
+                ["N60.121269", "E24.634695", "N60.117369", "E24.633856"],
+                ["N60.227026", "E25.189392", "N60.229607", "E25.192723"],
+                ["N60.229607", "E25.192723", "N60.233195", "E25.184931"],
+                ["N60.233195", "E25.184931", "N60.237417", "E25.186173"],
+                ["N60.237417", "E25.186173", "N60.233030", "E25.209369"],
+                ["N60.233030", "E25.209369", "N60.238244", "E25.211188"],
+                ["N60.238244", "E25.211188", "N60.238774", "E25.214865"],
+                ["N60.238774", "E25.214865", "N60.239896", "E25.202541"],
+                ["N60.239896", "E25.202541", "N60.241592", "E25.203301"],
+                ["N60.241592", "E25.203301", "N60.239902", "E25.216188"],
+                ["N60.239902", "E25.216188", "N60.241308", "E25.218168"],
+                ["N60.241308", "E25.218168", "N60.246712", "E25.212040"],
+                ["N60.246712", "E25.212040", "N60.247007", "E25.199953"],
+                ["N60.247007", "E25.199953", "N60.247516", "E25.208316"],
+                ["N60.247516", "E25.208316", "N60.248553", "E25.206215"],
+                ["N60.248553", "E25.206215", "N60.248276", "E25.191083"],
+                ["N60.248276", "E25.191083", "N60.252296", "E25.201435"],
+                ["N60.175407", "E25.244570", "N60.178380", "E25.250693"],
+                ["N60.178380", "E25.250693", "N60.181694", "E25.235577"],
+                ["N60.181694", "E25.235577", "N60.175347", "E25.235476"],
+                ["N60.175347", "E25.235476", "N60.175407", "E25.244570"],
+                ["N60.169228", "E25.352607", "N60.167597", "E25.354242"],
+                ["N60.167597", "E25.354242", "N60.168690", "E25.356842"],
+                ["N60.168690", "E25.356842", "N60.172402", "E25.351654"],
+                ["N60.172402", "E25.351654", "N60.175830", "E25.338263"],
+                ["N60.175830", "E25.338263", "N60.175578", "E25.324750"],
+                ["N60.175578", "E25.324750", "N60.173087", "E25.324878"],
+                ["N60.173087", "E25.324878", "N60.172574", "E25.321453"],
+                ["N60.172574", "E25.321453", "N60.167278", "E25.340687"],
+                ["N60.167278", "E25.340687", "N60.167062", "E25.352163"],
+                ["N60.167062", "E25.352163", "N60.169228", "E25.352607"],
+                ["N60.208812", "E25.506999", "N60.210938", "E25.513178"],
+                ["N60.210938", "E25.513178", "N60.213896", "E25.512058"],
+                ["N60.213896", "E25.512058", "N60.210593", "E25.500705"],
+                ["N60.210593", "E25.500705", "N60.212009", "E25.494212"],
+                ["N60.212009", "E25.494212", "N60.210641", "E25.495984"],
+                ["N60.210641", "E25.495984", "N60.210702", "E25.491345"],
+                ["N60.210702", "E25.491345", "N60.208264", "E25.492587"],
+                ["N60.208264", "E25.492587", "N60.209281", "E25.500583"],
+                ["N60.209281", "E25.500583", "N60.207000", "E25.497813"],
+                ["N60.207000", "E25.497813", "N60.204250", "E25.501000"],
+                ["N60.204250", "E25.501000", "N60.208812", "E25.506999"],
+                ["N60.209000", "E25.528750", "N60.206519", "E25.537135"],
+                ["N60.206519", "E25.537135", "N60.205469", "E25.530734"],
+                ["N60.205469", "E25.530734", "N60.199194", "E25.535091"],
+                ["N60.199194", "E25.535091", "N60.191815", "E25.524773"],
+                ["N60.191815", "E25.524773", "N60.192685", "E25.540720"],
+                ["N60.192685", "E25.540720", "N60.189816", "E25.539071"],
+                ["N60.189816", "E25.539071", "N60.189380", "E25.548628"],
+                ["N60.189380", "E25.548628", "N60.192445", "E25.550808"],
+                ["N60.192445", "E25.550808", "N60.193031", "E25.544427"],
+                ["N60.193031", "E25.544427", "N60.198197", "E25.543566"],
+                ["N60.198197", "E25.543566", "N60.200775", "E25.538692"],
+                ["N60.200775", "E25.538692", "N60.204403", "E25.539257"],
+                ["N60.204403", "E25.539257", "N60.206250", "E25.547500"],
+                ["N60.206250", "E25.547500", "N60.210193", "E25.551081"],
+                ["N60.210193", "E25.551081", "N60.209117", "E25.547365"],
+                ["N60.209117", "E25.547365", "N60.215582", "E25.531948"],
+                ["N60.215582", "E25.531948", "N60.213742", "E25.518451"],
+                ["N60.213742", "E25.518451", "N60.211009", "E25.521804"],
+                ["N60.211009", "E25.521804", "N60.204229", "E25.521228"],
+                ["N60.204229", "E25.521228", "N60.206981", "E25.522462"],
+                ["N60.206981", "E25.522462", "N60.205037", "E25.524952"],
+                ["N60.205037", "E25.524952", "N60.208186", "E25.524711"],
+                ["N60.208186", "E25.524711", "N60.209000", "E25.528750"],
+                ["N60.216165", "E25.497521", "N60.214320", "E25.499665"],
+                ["N60.214320", "E25.499665", "N60.214500", "E25.509500"],
+                ["N60.214500", "E25.509500", "N60.217964", "E25.503397"],
+                ["N60.217964", "E25.503397", "N60.219141", "E25.513158"],
+                ["N60.219141", "E25.513158", "N60.221205", "E25.513608"],
+                ["N60.221205", "E25.513608", "N60.221057", "E25.507055"],
+                ["N60.221057", "E25.507055", "N60.216165", "E25.497521"],
+                ["N60.220650", "E25.557154", "N60.222567", "E25.565982"],
+                ["N60.222567", "E25.565982", "N60.227421", "E25.561314"],
+                ["N60.227421", "E25.561314", "N60.225841", "E25.548786"],
+                ["N60.225841", "E25.548786", "N60.220650", "E25.557154"],
+                ["N60.156331", "E25.127178", "N60.156106", "E25.140738"],
+                ["N60.156106", "E25.140738", "N60.159168", "E25.147820"],
+                ["N60.159168", "E25.147820", "N60.160776", "E25.144590"],
+                ["N60.160776", "E25.144590", "N60.160345", "E25.137026"],
+                ["N60.160345", "E25.137026", "N60.156331", "E25.127178"],
+                ["N60.224725", "E25.289731", "N60.224325", "E25.296673"],
+                ["N60.224325", "E25.296673", "N60.227486", "E25.294561"],
+                ["N60.227486", "E25.294561", "N60.229601", "E25.299305"],
+                ["N60.229601", "E25.299305", "N60.230192", "E25.296208"],
+                ["N60.230192", "E25.296208", "N60.231951", "E25.305546"],
+                ["N60.231951", "E25.305546", "N60.234616", "E25.297768"],
+                ["N60.234616", "E25.297768", "N60.233717", "E25.293749"],
+                ["N60.233717", "E25.293749", "N60.238025", "E25.287128"],
+                ["N60.238025", "E25.287128", "N60.238056", "E25.283868"],
+                ["N60.238056", "E25.283868", "N60.235462", "E25.285957"],
+                ["N60.235462", "E25.285957", "N60.235098", "E25.282515"],
+                ["N60.235098", "E25.282515", "N60.236449", "E25.280032"],
+                ["N60.236449", "E25.280032", "N60.236280", "E25.284512"],
+                ["N60.236280", "E25.284512", "N60.238822", "E25.276657"],
+                ["N60.238822", "E25.276657", "N60.232251", "E25.283014"],
+                ["N60.232251", "E25.283014", "N60.233666", "E25.288122"],
+                ["N60.233666", "E25.288122", "N60.231763", "E25.292686"],
+                ["N60.231763", "E25.292686", "N60.231597", "E25.283279"],
+                ["N60.231597", "E25.283279", "N60.226229", "E25.284775"],
+                ["N60.226229", "E25.284775", "N60.224725", "E25.289731"],
+                ["N60.160447", "E24.927494", "N60.158743", "E24.931131"],
+                ["N60.158743", "E24.931131", "N60.159597", "E24.926202"],
+                ["N60.159597", "E24.926202", "N60.153626", "E24.925623"],
+                ["N60.153626", "E24.925623", "N60.148126", "E24.919346"],
+                ["N60.148126", "E24.919346", "N60.145919", "E24.922846"],
+                ["N60.188144", "E25.074636", "N60.184639", "E25.072197"],
+                ["N60.184639", "E25.072197", "N60.185814", "E25.066679"],
+                ["N60.185814", "E25.066679", "N60.183576", "E25.069097"],
+                ["N60.183576", "E25.069097", "N60.181544", "E25.066348"],
+                ["N60.181544", "E25.066348", "N60.178377", "E25.077275"],
+                ["N60.178377", "E25.077275", "N60.179552", "E25.081621"],
+                ["N60.179552", "E25.081621", "N60.180593", "E25.077581"],
+                ["N60.180593", "E25.077581", "N60.186118", "E25.086681"],
+                ["N60.186118", "E25.086681", "N60.189936", "E25.084149"],
+                ["N60.189936", "E25.084149", "N60.188374", "E25.077893"],
+                ["N60.188374", "E25.077893", "N60.189467", "E25.074634"],
+                ["N60.189467", "E25.074634", "N60.188144", "E25.074636"],
+                ["N60.145604", "E24.721407", "N60.148747", "E24.720791"],
+                ["N60.148747", "E24.720791", "N60.150068", "E24.734307"],
+                ["N60.150068", "E24.734307", "N60.148004", "E24.739418"],
+                ["N60.153718", "E24.941740", "N60.155198", "E24.950157"],
+                ["N60.155198", "E24.950157", "N60.153675", "E24.958356"],
+                ["N60.153675", "E24.958356", "N60.156081", "E24.963113"],
+                ["N60.156081", "E24.963113", "N60.159830", "E24.961291"],
+                ["N60.181368", "E25.009074", "N60.179718", "E25.010101"],
+                ["N60.179718", "E25.010101", "N60.179440", "E25.017247"],
+                ["N60.179440", "E25.017247", "N60.182736", "E25.015234"],
+                ["N60.182736", "E25.015234", "N60.187699", "E25.019867"],
+                ["N60.185551", "E24.886267", "N60.185897", "E24.881631"],
+                ["N60.185897", "E24.881631", "N60.181352", "E24.878748"],
+                ["N60.181352", "E24.878748", "N60.176705", "E24.881625"],
+                ["N60.176705", "E24.881625", "N60.176003", "E24.888245"],
+                ["N60.176003", "E24.888245", "N60.179910", "E24.887096"],
+                ["N60.179910", "E24.887096", "N60.181728", "E24.890853"],
+                ["N60.181728", "E24.890853", "N60.185551", "E24.886267"],
+                ["N60.200442", "E25.152394", "N60.202399", "E25.161894"],
+                ["N60.202399", "E25.161894", "N60.197070", "E25.160216"],
+                ["N60.197070", "E25.160216", "N60.196760", "E25.166687"],
+                ["N60.196760", "E25.166687", "N60.192818", "E25.171328"],
+                ["N60.192818", "E25.171328", "N60.197434", "E25.176953"],
+                ["N60.197434", "E25.176953", "N60.191687", "E25.177800"],
+                ["N60.191687", "E25.177800", "N60.198761", "E25.184384"],
+                ["N59.992768", "E24.493547", "N59.989141", "E24.483506"],
+                ["N59.989141", "E24.483506", "N59.983509", "E24.481641"],
+                ["N59.983509", "E24.481641", "N59.982433", "E24.488746"],
+                ["N59.982433", "E24.488746", "N59.986168", "E24.493796"],
+                ["N60.002651", "E24.507731", "N60.008301", "E24.518216"],
+                ["N60.008301", "E24.518216", "N60.008192", "E24.512322"],
+                ["N60.008192", "E24.512322", "N60.013015", "E24.515331"],
+                ["N60.013015", "E24.515331", "N60.020191", "E24.508366"],
+                ["N60.020191", "E24.508366", "N60.021274", "E24.517077"],
+                ["N60.021274", "E24.517077", "N60.024033", "E24.515955"],
+                ["N60.024033", "E24.515955", "N60.027510", "E24.527181"],
+                ["N60.027510", "E24.527181", "N60.022535", "E24.524468"],
+                ["N60.022535", "E24.524468", "N60.021368", "E24.532224"],
+                ["N60.021368", "E24.532224", "N60.023357", "E24.536704"],
+                ["N60.023357", "E24.536704", "N60.026681", "E24.535877"],
+                ["N60.026681", "E24.535877", "N60.025854", "E24.540793"],
+                ["N60.025854", "E24.540793", "N60.029734", "E24.549854"],
+                ["N60.029734", "E24.549854", "N60.032534", "E24.546213"],
+                ["N60.032534", "E24.546213", "N60.030631", "E24.538229"],
+                ["N60.030631", "E24.538229", "N60.035239", "E24.542645"],
+                ["N60.035239", "E24.542645", "N60.039321", "E24.538638"],
+                ["N60.039321", "E24.538638", "N60.042853", "E24.542944"],
+                ["N60.247915", "E25.222917", "N60.248166", "E25.231318"],
+                ["N60.248166", "E25.231318", "N60.245880", "E25.231660"],
+                ["N60.245880", "E25.231660", "N60.248947", "E25.238457"],
+                ["N60.248947", "E25.238457", "N60.256109", "E25.231519"],
+                ["N60.256109", "E25.231519", "N60.255701", "E25.217445"],
+                ["N60.255701", "E25.217445", "N60.252057", "E25.209592"],
+                ["N60.252057", "E25.209592", "N60.253917", "E25.207898"],
+                ["N60.253917", "E25.207898", "N60.251344", "E25.200615"],
+                ["N60.251344", "E25.200615", "N60.250921", "E25.209424"],
+                ["N60.250921", "E25.209424", "N60.247304", "E25.209654"],
+                ["N60.247304", "E25.209654", "N60.247915", "E25.222917"],
+                ["N60.026177", "E24.549165", "N60.024085", "E24.539752"],
+                ["N60.024085", "E24.539752", "N60.019136", "E24.548724"],
+                ["N60.019136", "E24.548724", "N60.023277", "E24.555047"],
+                ["N60.023277", "E24.555047", "N60.022892", "E24.552131"],
+                ["N60.022892", "E24.552131", "N60.026177", "E24.549165"],
+                ["N60.018984", "E24.416497", "N60.021948", "E24.419019"],
+                ["N60.021948", "E24.419019", "N60.018527", "E24.419242"],
+                ["N60.018527", "E24.419242", "N60.016222", "E24.424239"],
+                ["N60.016222", "E24.424239", "N60.019239", "E24.428853"],
+                ["N60.019239", "E24.428853", "N60.021998", "E24.425146"],
+                ["N60.021998", "E24.425146", "N60.025180", "E24.428641"],
+                ["N60.025180", "E24.428641", "N60.023584", "E24.424019"],
+                ["N60.023584", "E24.424019", "N60.029507", "E24.421696"],
+                ["N60.187442", "E24.984118", "N60.189189", "E24.985363"],
+                ["N60.189189", "E24.985363", "N60.189664", "E24.981785"],
+                ["N60.189664", "E24.981785", "N60.189273", "E24.985404"],
+                ["N60.189273", "E24.985404", "N60.193099", "E24.986707"],
+                ["N60.193099", "E24.986707", "N60.202164", "E24.977563"],
+                ["N60.202164", "E24.977563", "N60.203322", "E24.979927"],
+                ["N60.061549", "E24.333074", "N60.062784", "E24.336191"],
+                ["N60.062784", "E24.336191", "N60.060979", "E24.348052"],
+                ["N60.060979", "E24.348052", "N60.066143", "E24.354015"],
+                ["N60.066143", "E24.354015", "N60.068494", "E24.348244"],
+                ["N60.068494", "E24.348244", "N60.062939", "E24.332384"],
+                ["N60.062939", "E24.332384", "N60.061549", "E24.333074"],
+                ["N60.209185", "E25.110139", "N60.213626", "E25.113187"],
+                ["N60.213626", "E25.113187", "N60.213369", "E25.116428"],
+                ["N60.213369", "E25.116428", "N60.216355", "E25.117427"],
+                ["N60.216355", "E25.117427", "N60.219486", "E25.124575"],
+                ["N60.219486", "E25.124575", "N60.206422", "E25.114480"],
+                ["N60.206422", "E25.114480", "N60.198860", "E25.101762"],
+                ["N60.152337", "E24.920466", "N60.155544", "E24.923810"],
+                ["N60.155544", "E24.923810", "N60.161623", "E24.922416"],
+                ["N60.161623", "E24.922416", "N60.161648", "E24.928729"],
+                ["N60.161648", "E24.928729", "N60.160447", "E24.927494"],
+                ["N60.139792", "E24.989992", "N60.145495", "E24.986431"],
+                ["N60.145495", "E24.986431", "N60.145462", "E24.977770"],
+                ["N60.145462", "E24.977770", "N60.141072", "E24.981975"],
+                ["N60.141072", "E24.981975", "N60.141217", "E24.984997"],
+                ["N60.141217", "E24.984997", "N60.137868", "E24.985529"],
+                ["N60.137868", "E24.985529", "N60.137807", "E24.990618"],
+                ["N60.137807", "E24.990618", "N60.139792", "E24.989992"],
+                ["N60.195999", "E24.888240", "N60.191411", "E24.881867"],
+                ["N60.191411", "E24.881867", "N60.189102", "E24.882849"],
+                ["N60.189102", "E24.882849", "N60.187357", "E24.893100"],
+                ["N60.187357", "E24.893100", "N60.183559", "E24.896216"],
+                ["N60.183559", "E24.896216", "N60.187247", "E24.902911"],
+                ["N60.187247", "E24.902911", "N60.183144", "E24.909915"],
+                ["N60.183144", "E24.909915", "N60.180720", "E24.908534"],
+                ["N60.180720", "E24.908534", "N60.182712", "E24.910244"],
+                ["N60.182712", "E24.910244", "N60.181140", "E24.912469"],
+                ["N60.181140", "E24.912469", "N60.178524", "E24.910722"],
+                ["N60.009873", "E24.406482", "N60.007616", "E24.405911"],
+                ["N60.007616", "E24.405911", "N60.009107", "E24.412021"],
+                ["N60.009107", "E24.412021", "N60.010346", "E24.410117"],
+                ["N60.010346", "E24.410117", "N60.011053", "E24.414902"],
+                ["N60.011053", "E24.414902", "N60.014350", "E24.417066"],
+                ["N60.014350", "E24.417066", "N60.013018", "E24.412973"],
+                ["N60.013018", "E24.412973", "N60.015875", "E24.411910"],
+                ["N60.015875", "E24.411910", "N60.009873", "E24.406482"],
+                ["N60.153774", "E25.112729", "N60.152465", "E25.116524"],
+                ["N60.152465", "E25.116524", "N60.153965", "E25.129974"],
+                ["N60.153965", "E25.129974", "N60.156669", "E25.126811"],
+                ["N60.156669", "E25.126811", "N60.154919", "E25.123546"],
+                ["N60.154919", "E25.123546", "N60.156124", "E25.120276"],
+                ["N60.156124", "E25.120276", "N60.161554", "E25.126883"],
+                ["N60.161554", "E25.126883", "N60.162450", "E25.108479"],
+                ["N60.162450", "E25.108479", "N60.161176", "E25.105081"],
+                ["N60.161176", "E25.105081", "N60.157586", "E25.106817"],
+                ["N60.157586", "E25.106817", "N60.160305", "E25.100349"],
+                ["N60.160305", "E25.100349", "N60.156465", "E25.093209"],
+                ["N60.156465", "E25.093209", "N60.153868", "E25.098649"],
+                ["N60.153868", "E25.098649", "N60.155988", "E25.103209"],
+                ["N60.155988", "E25.103209", "N60.154328", "E25.108766"],
+                ["N60.154328", "E25.108766", "N60.156900", "E25.108409"],
+                ["N60.156900", "E25.108409", "N60.153774", "E25.112729"],
+                ["N60.192842", "E25.130481", "N60.192558", "E25.134998"],
+                ["N60.192558", "E25.134998", "N60.188107", "E25.133353"],
+                ["N60.188107", "E25.133353", "N60.183895", "E25.154681"],
+                ["N60.183895", "E25.154681", "N60.191456", "E25.145411"],
+                ["N60.191456", "E25.145411", "N60.195248", "E25.152543"],
+                ["N60.195248", "E25.152543", "N60.192890", "E25.140499"],
+                ["N60.192890", "E25.140499", "N60.195376", "E25.135583"],
+                ["N60.195376", "E25.135583", "N60.197774", "E25.139923"],
+                ["N60.197774", "E25.139923", "N60.197060", "E25.133810"],
+                ["N60.197060", "E25.133810", "N60.200036", "E25.134274"],
+                ["N60.200036", "E25.134274", "N60.199244", "E25.140617"],
+                ["N60.029021", "E24.417681", "N60.027787", "E24.420421"],
+                ["N60.027787", "E24.420421", "N60.023983", "E24.418433"],
+                ["N60.023983", "E24.418433", "N60.024879", "E24.415032"],
+                ["N60.024879", "E24.415032", "N60.022610", "E24.414416"],
+                ["N60.022610", "E24.414416", "N60.022473", "E24.410809"],
+                ["N60.022473", "E24.410809", "N60.018934", "E24.412896"],
+                ["N60.018934", "E24.412896", "N60.018984", "E24.416497"],
+                ["N59.984321", "E24.424346", "N59.988346", "E24.425012"],
+                ["N59.988346", "E24.425012", "N59.983708", "E24.429623"],
+                ["N59.983708", "E24.429623", "N59.976305", "E24.426714"],
+                ["N59.976305", "E24.426714", "N59.976987", "E24.434413"],
+                ["N59.976987", "E24.434413", "N59.983550", "E24.440307"],
+                ["N59.983550", "E24.440307", "N59.985068", "E24.445278"],
+                ["N59.985068", "E24.445278", "N59.983869", "E24.450754"],
+                ["N59.983869", "E24.450754", "N59.986922", "E24.455801"],
+                ["N59.986922", "E24.455801", "N59.984594", "E24.458466"],
+                ["N59.984594", "E24.458466", "N59.990242", "E24.464484"],
+                ["N60.031791", "E24.425749", "N60.039145", "E24.430054"],
+                ["N60.039145", "E24.430054", "N60.039420", "E24.437130"],
+                ["N60.039420", "E24.437130", "N60.043307", "E24.444354"],
+                ["N60.043307", "E24.444354", "N60.040061", "E24.443583"],
+                ["N60.040061", "E24.443583", "N60.040335", "E24.446313"],
+                ["N60.180527", "E24.840017", "N60.181161", "E24.835249"],
+                ["N60.181161", "E24.835249", "N60.188570", "E24.840772"],
+                ["N60.188570", "E24.840772", "N60.193199", "E24.838165"],
+                ["N60.193199", "E24.838165", "N60.188806", "E24.821404"],
+                ["N60.188806", "E24.821404", "N60.191605", "E24.815521"],
+                ["N60.191605", "E24.815521", "N60.195737", "E24.814454"],
+                ["N60.045808", "E24.215660", "N60.048455", "E24.217197"],
+                ["N60.048455", "E24.217197", "N60.045359", "E24.223900"],
+                ["N60.045359", "E24.223900", "N60.051794", "E24.224234"],
+                ["N60.051794", "E24.224234", "N60.053094", "E24.219582"],
+                ["N60.053094", "E24.219582", "N60.055645", "E24.219941"],
+                ["N60.055645", "E24.219941", "N60.055866", "E24.227843"],
+                ["N60.055866", "E24.227843", "N60.048009", "E24.231623"],
+                ["N60.048009", "E24.231623", "N60.049068", "E24.235553"],
+                ["N60.049068", "E24.235553", "N60.047366", "E24.242670"],
+                ["N60.047366", "E24.242670", "N60.042778", "E24.244051"],
+                ["N60.042778", "E24.244051", "N60.042928", "E24.255180"],
+                ["N60.042928", "E24.255180", "N60.045317", "E24.263837"],
+                ["N60.045317", "E24.263837", "N60.040566", "E24.259839"],
+                ["N60.040566", "E24.259839", "N60.039928", "E24.264731"],
+                ["N60.039928", "E24.264731", "N60.044201", "E24.277072"],
+                ["N60.044201", "E24.277072", "N60.044627", "E24.272761"],
+                ["N60.044627", "E24.272761", "N60.047363", "E24.271667"],
+                ["N60.047363", "E24.271667", "N60.044098", "E24.265817"],
+                ["N60.044098", "E24.265817", "N60.048026", "E24.268759"],
+                ["N60.048026", "E24.268759", "N60.052596", "E24.266244"],
+                ["N60.052596", "E24.266244", "N60.058979", "E24.283010"],
+                ["N60.058979", "E24.283010", "N60.057718", "E24.291343"],
+                ["N60.057718", "E24.291343", "N60.055027", "E24.291946"],
+                ["N60.055027", "E24.291946", "N60.056951", "E24.295406"],
+                ["N60.056951", "E24.295406", "N60.055432", "E24.303026"],
+                ["N60.055432", "E24.303026", "N60.057886", "E24.310920"],
+                ["N60.057886", "E24.310920", "N60.062917", "E24.309238"],
+                ["N60.062917", "E24.309238", "N60.058896", "E24.318094"],
+                ["N60.058896", "E24.318094", "N60.062923", "E24.318839"],
+                ["N60.062923", "E24.318839", "N60.064196", "E24.313483"],
+                ["N60.209084", "E25.230253", "N60.209208", "E25.226897"],
+                ["N60.209208", "E25.226897", "N60.210332", "E25.229797"],
+                ["N60.210332", "E25.229797", "N60.212503", "E25.225756"],
+                ["N60.212503", "E25.225756", "N60.212688", "E25.244454"],
+                ["N60.212688", "E25.244454", "N60.214110", "E25.242244"],
+                ["N60.214110", "E25.242244", "N60.219437", "E25.250208"],
+                ["N60.219437", "E25.250208", "N60.217122", "E25.243609"],
+                ["N60.217122", "E25.243609", "N60.218991", "E25.239791"],
+                ["N60.218991", "E25.239791", "N60.216395", "E25.225545"],
+                ["N60.216395", "E25.225545", "N60.220905", "E25.212018"],
+                ["N60.220905", "E25.212018", "N60.219397", "E25.210266"],
+                ["N60.219397", "E25.210266", "N60.211097", "E25.224440"],
+                ["N60.211097", "E25.224440", "N60.207932", "E25.221113"],
+                ["N60.207932", "E25.221113", "N60.209084", "E25.230253"],
+                ["N60.246021", "E25.285527", "N60.246761", "E25.289556"],
+                ["N60.246761", "E25.289556", "N60.246804", "E25.281727"],
+                ["N60.246804", "E25.281727", "N60.245323", "E25.284574"],
+                ["N60.245323", "E25.284574", "N60.243407", "E25.279663"],
+                ["N60.243407", "E25.279663", "N60.238543", "E25.296259"],
+                ["N60.238543", "E25.296259", "N60.246021", "E25.285527"],
+                ["N60.247136", "E25.314316", "N60.248413", "E25.311109"],
+                ["N60.248413", "E25.311109", "N60.246902", "E25.295929"],
+                ["N60.246902", "E25.295929", "N60.240293", "E25.303949"],
+                ["N60.240293", "E25.303949", "N60.238534", "E25.309870"],
+                ["N60.238534", "E25.309870", "N60.240786", "E25.308496"],
+                ["N60.240786", "E25.308496", "N60.240767", "E25.312711"],
+                ["N60.240767", "E25.312711", "N60.237612", "E25.315174"],
+                ["N60.237612", "E25.315174", "N60.241110", "E25.319855"],
+                ["N60.241110", "E25.319855", "N60.239957", "E25.323930"],
+                ["N60.239957", "E25.323930", "N60.243298", "E25.321517"],
+                ["N60.243298", "E25.321517", "N60.244088", "E25.324875"],
+                ["N60.244088", "E25.324875", "N60.241470", "E25.329594"],
+                ["N60.241470", "E25.329594", "N60.243920", "E25.330772"],
+                ["N60.243920", "E25.330772", "N60.248784", "E25.323572"],
+                ["N60.248784", "E25.323572", "N60.247136", "E25.314316"],
+                ["N60.244294", "E25.339795", "N60.243951", "E25.334888"],
+                ["N60.243951", "E25.334888", "N60.240517", "E25.336137"],
+                ["N60.240517", "E25.336137", "N60.243253", "E25.332569"],
+                ["N60.243253", "E25.332569", "N60.240191", "E25.329857"],
+                ["N60.240191", "E25.329857", "N60.241861", "E25.324806"],
+                ["N60.241861", "E25.324806", "N60.238665", "E25.324666"],
+                ["N60.238665", "E25.324666", "N60.235059", "E25.329405"],
+                ["N60.235059", "E25.329405", "N60.235532", "E25.340748"],
+                ["N60.235532", "E25.340748", "N60.232968", "E25.338888"],
+                ["N60.232968", "E25.338888", "N60.234578", "E25.346677"],
+                ["N60.234578", "E25.346677", "N60.229718", "E25.342645"],
+                ["N60.229718", "E25.342645", "N60.228061", "E25.348658"],
+                ["N60.228061", "E25.348658", "N60.225894", "E25.347679"],
+                ["N60.225894", "E25.347679", "N60.223131", "E25.353698"],
+                ["N60.223131", "E25.353698", "N60.226736", "E25.354806"],
+                ["N60.226736", "E25.354806", "N60.226437", "E25.358851"],
+                ["N60.226437", "E25.358851", "N60.228277", "E25.352905"],
+                ["N60.228277", "E25.352905", "N60.233864", "E25.361856"],
+                ["N60.233864", "E25.361856", "N60.234854", "E25.367933"],
+                ["N60.234854", "E25.367933", "N60.232383", "E25.372295"],
+                ["N60.232383", "E25.372295", "N60.239518", "E25.362499"],
+                ["N60.239518", "E25.362499", "N60.240891", "E25.349271"],
+                ["N60.240891", "E25.349271", "N60.238584", "E25.348848"],
+                ["N60.238584", "E25.348848", "N60.244294", "E25.339795"],
+                ["N60.239890", "E25.367155", "N60.241830", "E25.365963"],
+                ["N60.241830", "E25.365963", "N60.242932", "E25.371132"],
+                ["N60.242932", "E25.371132", "N60.250643", "E25.357969"],
+                ["N60.250643", "E25.357969", "N60.249244", "E25.356315"],
+                ["N60.249244", "E25.356315", "N60.244635", "E25.362737"],
+                ["N60.244635", "E25.362737", "N60.246403", "E25.358472"],
+                ["N60.246403", "E25.358472", "N60.245026", "E25.356534"],
+                ["N60.245026", "E25.356534", "N60.239890", "E25.367155"],
+                ["N60.226316", "E25.302104", "N60.225617", "E25.312579"],
+                ["N60.225617", "E25.312579", "N60.224253", "E25.310792"],
+                ["N60.224253", "E25.310792", "N60.225478", "E25.305940"],
+                ["N60.225478", "E25.305940", "N60.223400", "E25.303483"],
+                ["N60.223400", "E25.303483", "N60.219402", "E25.309121"],
+                ["N60.219402", "E25.309121", "N60.221229", "E25.311430"],
+                ["N60.221229", "E25.311430", "N60.223803", "E25.330123"],
+                ["N60.223803", "E25.330123", "N60.225867", "E25.326924"],
+                ["N60.225867", "E25.326924", "N60.223669", "E25.322342"],
+                ["N60.223669", "E25.322342", "N60.226136", "E25.316608"],
+                ["N60.226136", "E25.316608", "N60.228386", "E25.319683"],
+                ["N60.228386", "E25.319683", "N60.227249", "E25.315617"],
+                ["N60.227249", "E25.315617", "N60.229405", "E25.310505"],
+                ["N60.229405", "E25.310505", "N60.229360", "E25.301590"],
+                ["N60.229360", "E25.301590", "N60.226316", "E25.302104"],
+                ["N60.161836", "E25.410377", "N60.156722", "E25.411611"],
+                ["N60.156722", "E25.411611", "N60.159544", "E25.423474"],
+                ["N60.159544", "E25.423474", "N60.164431", "E25.419435"],
+                ["N60.164431", "E25.419435", "N60.163882", "E25.411422"],
+                ["N60.163882", "E25.411422", "N60.162169", "E25.410422"],
+                ["N60.166143", "E25.434988", "N60.164358", "E25.436121"],
+                ["N60.164358", "E25.436121", "N60.165412", "E25.426471"],
+                ["N60.165412", "E25.426471", "N60.163190", "E25.424399"],
+                ["N60.163190", "E25.424399", "N60.158178", "E25.441864"],
+                ["N60.158178", "E25.441864", "N60.159924", "E25.449386"],
+                ["N60.159924", "E25.449386", "N60.160902", "E25.443198"],
+                ["N60.160902", "E25.443198", "N60.161910", "E25.445372"],
+                ["N60.161910", "E25.445372", "N60.163864", "E25.442282"],
+                ["N60.163864", "E25.442282", "N60.161650", "E25.454866"],
+                ["N60.161650", "E25.454866", "N60.165304", "E25.443345"],
+                ["N60.165304", "E25.443345", "N60.167765", "E25.442625"],
+                ["N60.167765", "E25.442625", "N60.167173", "E25.437206"],
+                ["N60.183417", "E25.468852", "N60.185879", "E25.467566"],
+                ["N60.185879", "E25.467566", "N60.184034", "E25.461349"],
+                ["N60.184034", "E25.461349", "N60.184915", "E25.455814"],
+                ["N60.184915", "E25.455814", "N60.181430", "E25.449074"],
+                ["N60.181430", "E25.449074", "N60.180559", "E25.438671"],
+                ["N60.180559", "E25.438671", "N60.177744", "E25.435882"],
+                ["N60.177744", "E25.435882", "N60.174237", "E25.445282"],
+                ["N60.174237", "E25.445282", "N60.174448", "E25.458200"],
+                ["N60.174448", "E25.458200", "N60.171280", "E25.458593"],
+                ["N60.171280", "E25.458593", "N60.171442", "E25.463881"],
+                ["N60.171442", "E25.463881", "N60.173334", "E25.468758"],
+                ["N60.173334", "E25.468758", "N60.175009", "E25.462162"],
+                ["N60.175009", "E25.462162", "N60.178104", "E25.465238"],
+                ["N60.178104", "E25.465238", "N60.179215", "E25.462783"],
+                ["N60.179215", "E25.462783", "N60.182665", "E25.468943"],
+                ["N60.175132", "E25.478294", "N60.177438", "E25.479904"],
+                ["N60.177438", "E25.479904", "N60.180180", "E25.493453"],
+                ["N60.180180", "E25.493453", "N60.181216", "E25.487936"],
+                ["N60.181216", "E25.487936", "N60.179327", "E25.483537"],
+                ["N60.179327", "E25.483537", "N60.180945", "E25.482217"],
+                ["N60.180945", "E25.482217", "N60.177161", "E25.473450"],
+                ["N60.177161", "E25.473450", "N60.175132", "E25.478294"],
+                ["N60.329500", "E25.523000", "N60.330030", "E25.528675"],
+                ["N60.330030", "E25.528675", "N60.332543", "E25.531210"],
+                ["N60.332543", "E25.531210", "N60.336500", "E25.528500"],
+                ["N60.336500", "E25.528500", "N60.332056", "E25.541514"],
+                ["N60.332056", "E25.541514", "N60.334422", "E25.547032"],
+                ["N60.334422", "E25.547032", "N60.339363", "E25.548656"],
+                ["N60.339363", "E25.548656", "N60.339494", "E25.555720"],
+                ["N60.339494", "E25.555720", "N60.335000", "E25.555750"],
+                ["N60.335000", "E25.555750", "N60.332500", "E25.561750"],
+                ["N60.332500", "E25.561750", "N60.334333", "E25.568781"],
+                ["N60.334333", "E25.568781", "N60.331229", "E25.568803"],
+                ["N60.331229", "E25.568803", "N60.331902", "E25.572151"],
+                ["N60.331902", "E25.572151", "N60.334984", "E25.571446"],
+                ["N60.248869", "E25.490572", "N60.246212", "E25.484222"],
+                ["N60.246212", "E25.484222", "N60.249525", "E25.482725"],
+                ["N60.249525", "E25.482725", "N60.247506", "E25.474144"],
+                ["N60.247506", "E25.474144", "N60.251685", "E25.480030"],
+                ["N60.251685", "E25.480030", "N60.253274", "E25.477976"],
+                ["N60.253274", "E25.477976", "N60.247603", "E25.449168"],
+                ["N60.247603", "E25.449168", "N60.237693", "E25.445270"],
+                ["N60.237693", "E25.445270", "N60.235706", "E25.451425"],
+                ["N60.235706", "E25.451425", "N60.231600", "E25.451875"],
+                ["N60.231600", "E25.451875", "N60.231576", "E25.457668"],
+                ["N60.231576", "E25.457668", "N60.238238", "E25.470108"],
+                ["N60.238238", "E25.470108", "N60.243842", "E25.463146"],
+                ["N60.243842", "E25.463146", "N60.242229", "E25.469404"],
+                ["N60.242229", "E25.469404", "N60.243236", "E25.481394"],
+                ["N60.243236", "E25.481394", "N60.248869", "E25.490572"],
+                ["N60.271478", "E25.376091", "N60.268561", "E25.378147"],
+                ["N60.268561", "E25.378147", "N60.269905", "E25.381976"],
+                ["N60.269905", "E25.381976", "N60.268798", "E25.388514"],
+                ["N60.268798", "E25.388514", "N60.265007", "E25.383290"],
+                ["N60.265007", "E25.383290", "N60.263710", "E25.387669"],
+                ["N60.263710", "E25.387669", "N60.260290", "E25.378370"],
+                ["N60.260290", "E25.378370", "N60.255082", "E25.377575"],
+                ["N60.255082", "E25.377575", "N60.252276", "E25.389852"],
+                ["N60.252440", "E25.201682", "N60.255209", "E25.204056"],
+                ["N60.255209", "E25.204056", "N60.254587", "E25.209409"],
+                ["N60.254587", "E25.209409", "N60.256934", "E25.211554"],
+                ["N60.256934", "E25.211554", "N60.257562", "E25.229163"],
+                ["N60.257562", "E25.229163", "N60.259604", "E25.230171"],
+                ["N60.259604", "E25.230171", "N60.257748", "E25.234829"],
+                ["N60.257748", "E25.234829", "N60.261443", "E25.242519"],
+                ["N60.261443", "E25.242519", "N60.260729", "E25.245538"],
+                ["N60.260729", "E25.245538", "N60.253540", "E25.242272"],
+                ["N60.253540", "E25.242272", "N60.251358", "E25.246240"],
+                ["N60.251358", "E25.246240", "N60.250045", "E25.258523"],
+                ["N60.250045", "E25.258523", "N60.253939", "E25.279704"],
+                ["N60.253939", "E25.279704", "N60.256265", "E25.281448"],
+                ["N60.256265", "E25.281448", "N60.254770", "E25.285943"],
+                ["N60.254770", "E25.285943", "N60.255958", "E25.296844"],
+                ["N60.255958", "E25.296844", "N60.254205", "E25.294902"],
+                ["N60.254205", "E25.294902", "N60.253562", "E25.302042"],
+                ["N60.253562", "E25.302042", "N60.256357", "E25.302311"],
+                ["N60.256357", "E25.302311", "N60.257457", "E25.308981"],
+                ["N60.257457", "E25.308981", "N60.254120", "E25.314417"],
+                ["N60.254120", "E25.314417", "N60.256790", "E25.323682"],
+                ["N60.256790", "E25.323682", "N60.259960", "E25.323125"],
+                ["N60.259960", "E25.323125", "N60.262312", "E25.334065"],
+                ["N60.262312", "E25.334065", "N60.256819", "E25.342788"],
+                ["N60.256819", "E25.342788", "N60.262468", "E25.348253"],
+                ["N60.154093", "E24.776010", "N60.156934", "E24.785825"],
+                ["N60.156934", "E24.785825", "N60.155134", "E24.787074"],
+                ["N60.155134", "E24.787074", "N60.155491", "E24.792955"],
+                ["N60.155491", "E24.792955", "N60.157986", "E24.792860"],
+                ["N60.157986", "E24.792860", "N60.158638", "E24.800855"],
+                ["N60.158638", "E24.800855", "N60.160324", "E24.805290"],
+                ["N60.160324", "E24.805290", "N60.162310", "E24.803766"],
+                ["N60.162310", "E24.803766", "N60.162167", "E24.808151"],
+                ["N60.162167", "E24.808151", "N60.164925", "E24.806513"],
+                ["N60.164925", "E24.806513", "N60.165212", "E24.809834"],
+                ["N60.165212", "E24.809834", "N60.168583", "E24.810364"],
+                ["N60.168583", "E24.810364", "N60.170096", "E24.819280"],
+                ["N60.262440", "E25.497924", "N60.255970", "E25.484644"],
+                ["N60.255970", "E25.484644", "N60.255624", "E25.487788"],
+                ["N60.255624", "E25.487788", "N60.253886", "E25.480650"],
+                ["N60.253886", "E25.480650", "N60.251342", "E25.482843"],
+                ["N60.251342", "E25.482843", "N60.251351", "E25.486592"],
+                ["N60.251351", "E25.486592", "N60.248347", "E25.486356"],
+                ["N60.248347", "E25.486356", "N60.249344", "E25.495408"],
+                ["N60.249344", "E25.495408", "N60.252114", "E25.496040"],
+                ["N60.252114", "E25.496040", "N60.251887", "E25.491727"],
+                ["N60.251887", "E25.491727", "N60.257539", "E25.497682"],
+                ["N60.257539", "E25.497682", "N60.260837", "E25.508513"],
+                ["N60.260837", "E25.508513", "N60.271076", "E25.511530"],
+                ["N60.271076", "E25.511530", "N60.268088", "E25.500611"],
+                ["N60.268088", "E25.500611", "N60.273034", "E25.509675"],
+                ["N60.273034", "E25.509675", "N60.272361", "E25.513063"],
+                ["N60.272361", "E25.513063", "N60.279043", "E25.510465"],
+                ["N60.279043", "E25.510465", "N60.276576", "E25.518430"],
+                ["N60.276576", "E25.518430", "N60.279124", "E25.517876"],
+                ["N60.279124", "E25.517876", "N60.281896", "E25.527784"],
+                ["N60.281896", "E25.527784", "N60.284347", "E25.524184"],
+                ["N60.284347", "E25.524184", "N60.283021", "E25.514934"],
+                ["N60.283021", "E25.514934", "N60.285984", "E25.514004"],
+                ["N60.285984", "E25.514004", "N60.287731", "E25.524518"],
+                ["N60.287731", "E25.524518", "N60.286599", "E25.528717"],
+                ["N60.286599", "E25.528717", "N60.288266", "E25.529478"],
+                ["N60.288266", "E25.529478", "N60.281919", "E25.535189"],
+                ["N60.281919", "E25.535189", "N60.287511", "E25.541726"],
+                ["N60.287511", "E25.541726", "N60.295016", "E25.539979"],
+                ["N60.295016", "E25.539979", "N60.294766", "E25.545479"],
+                ["N60.294766", "E25.545479", "N60.300747", "E25.546310"],
+                ["N60.300747", "E25.546310", "N60.302671", "E25.543247"],
+                ["N60.302671", "E25.543247", "N60.302437", "E25.547431"],
+                ["N60.302437", "E25.547431", "N60.307967", "E25.553128"],
+                ["N60.307967", "E25.553128", "N60.313578", "E25.553271"],
+                ["N60.313578", "E25.553271", "N60.320653", "E25.545423"],
+                ["N60.320653", "E25.545423", "N60.321822", "E25.530601"],
+                ["N60.321822", "E25.530601", "N60.326122", "E25.530220"],
+                ["N60.326122", "E25.530220", "N60.325064", "E25.515096"],
+                ["N60.325064", "E25.515096", "N60.327237", "E25.514590"],
+                ["N60.256060", "E25.533955", "N60.254133", "E25.532872"],
+                ["N60.254133", "E25.532872", "N60.256150", "E25.527393"],
+                ["N60.256150", "E25.527393", "N60.254175", "E25.522967"],
+                ["N60.254175", "E25.522967", "N60.247795", "E25.519567"],
+                ["N60.247795", "E25.519567", "N60.244930", "E25.521769"],
+                ["N60.244930", "E25.521769", "N60.245495", "E25.519001"],
+                ["N60.245495", "E25.519001", "N60.239227", "E25.511747"],
+                ["N60.239227", "E25.511747", "N60.236376", "E25.516688"],
+                ["N60.236376", "E25.516688", "N60.236731", "E25.533005"],
+                ["N60.236731", "E25.533005", "N60.234688", "E25.533624"],
+                ["N60.234688", "E25.533624", "N60.233720", "E25.539056"],
+                ["N60.233720", "E25.539056", "N60.237611", "E25.539487"],
+                ["N60.237611", "E25.539487", "N60.242311", "E25.531318"],
+                ["N60.242311", "E25.531318", "N60.244048", "E25.540424"],
+                ["N60.244048", "E25.540424", "N60.246699", "E25.543050"],
+                ["N60.246699", "E25.543050", "N60.247636", "E25.534037"],
+                ["N60.247636", "E25.534037", "N60.253291", "E25.537491"],
+                ["N60.253291", "E25.537491", "N60.256060", "E25.533955"],
+                ["N60.018010", "E24.405175", "N60.029070", "E24.408556"],
+                ["N60.029070", "E24.408556", "N60.033985", "E24.416374"],
+                ["N60.033985", "E24.416374", "N60.032156", "E24.416561"],
+                ["N60.007006", "E24.346748", "N60.009309", "E24.352687"],
+                ["N60.009309", "E24.352687", "N60.012241", "E24.343705"],
+                ["N60.012241", "E24.343705", "N60.013181", "E24.348061"],
+                ["N60.013181", "E24.348061", "N60.025472", "E24.348046"],
+                ["N60.025472", "E24.348046", "N60.027720", "E24.358140"],
+                ["N60.027720", "E24.358140", "N60.025994", "E24.359894"],
+                ["N60.025994", "E24.359894", "N60.025895", "E24.371733"],
+                ["N60.181418", "E25.036169", "N60.180982", "E25.029368"],
+                ["N60.180982", "E25.029368", "N60.178660", "E25.028508"],
+                ["N60.178660", "E25.028508", "N60.179447", "E25.021670"],
+                ["N60.179447", "E25.021670", "N60.174257", "E25.019721"],
+                ["N60.174257", "E25.019721", "N60.175748", "E25.016019"],
+                ["N60.175748", "E25.016019", "N60.174008", "E25.013325"],
+                ["N60.136093", "E24.628038", "N60.138698", "E24.621418"],
+                ["N60.138698", "E24.621418", "N60.145794", "E24.625669"],
+                ["N60.145794", "E24.625669", "N60.145729", "E24.621985"],
+                ["N60.164169", "E24.553642", "N60.170435", "E24.561217"],
+                ["N60.170435", "E24.561217", "N60.173829", "E24.560146"],
+                ["N60.173829", "E24.560146", "N60.174255", "E24.568854"],
+                ["N60.174255", "E24.568854", "N60.178462", "E24.575406"],
+                ["N60.178462", "E24.575406", "N60.172548", "E24.580507"],
+                ["N60.172548", "E24.580507", "N60.170229", "E24.580120"],
+                ["N60.170229", "E24.580120", "N60.170577", "E24.577307"],
+                ["N60.170577", "E24.577307", "N60.168698", "E24.579935"],
+                ["N60.168698", "E24.579935", "N60.168029", "E24.576594"],
+                ["N60.168029", "E24.576594", "N60.168396", "E24.583806"],
+                ["N60.168396", "E24.583806", "N60.166345", "E24.584817"],
+                ["N60.166345", "E24.584817", "N60.168393", "E24.584136"],
+                ["N60.168393", "E24.584136", "N60.168100", "E24.588735"],
+                ["N60.168100", "E24.588735", "N60.165045", "E24.593636"],
+                ["N60.165045", "E24.593636", "N60.161991", "E24.593333"],
+                ["N59.991990", "E24.425786", "N59.989385", "E24.413982"],
+                ["N59.989385", "E24.413982", "N59.982798", "E24.401139"],
+                ["N59.982798", "E24.401139", "N59.974550", "E24.388551"],
+                ["N59.974550", "E24.388551", "N59.975067", "E24.396866"],
+                ["N59.975067", "E24.396866", "N59.966065", "E24.390997"],
+                ["N59.966065", "E24.390997", "N59.965641", "E24.394919"],
+                ["N59.965641", "E24.394919", "N59.968529", "E24.396644"],
+                ["N59.998092", "E24.450369", "N60.003702", "E24.457165"],
+                ["N60.003702", "E24.457165", "N60.008535", "E24.456135"],
+                ["N60.008535", "E24.456135", "N60.005851", "E24.447895"],
+                ["N60.167173", "E25.437206", "N60.169464", "E25.439145"],
+                ["N60.169464", "E25.439145", "N60.169003", "E25.444522"],
+                ["N60.169003", "E25.444522", "N60.171573", "E25.449766"],
+                ["N60.171573", "E25.449766", "N60.173512", "E25.447218"],
+                ["N60.173512", "E25.447218", "N60.172466", "E25.442704"],
+                ["N60.172466", "E25.442704", "N60.173864", "E25.438809"],
+                ["N60.173864", "E25.438809", "N60.170728", "E25.433788"],
+                ["N60.170728", "E25.433788", "N60.172413", "E25.430312"],
+                ["N60.172413", "E25.430312", "N60.168570", "E25.418784"],
+                ["N60.168570", "E25.418784", "N60.166436", "E25.422654"],
+                ["N60.166436", "E25.422654", "N60.167836", "E25.425836"],
+                ["N60.167836", "E25.425836", "N60.166143", "E25.434988"],
+                ["N60.116028", "E24.675793", "N60.118120", "E24.688119"],
+                ["N60.118120", "E24.688119", "N60.120291", "E24.686167"],
+                ["N60.120291", "E24.686167", "N60.120237", "E24.677075"],
+                ["N60.120237", "E24.677075", "N60.122675", "E24.677074"],
+                ["N60.122675", "E24.677074", "N60.124340", "E24.682849"],
+                ["N60.124340", "E24.682849", "N60.126002", "E24.679903"],
+                ["N60.126002", "E24.679903", "N60.127783", "E24.694150"],
+                ["N60.096652", "E24.642987", "N60.101147", "E24.651550"],
+                ["N60.101147", "E24.651550", "N60.102669", "E24.648403"],
+                ["N60.102669", "E24.648403", "N60.106366", "E24.650661"],
+                ["N60.106366", "E24.650661", "N60.106390", "E24.642404"],
+                ["N60.071148", "E24.600767", "N60.081060", "E24.618978"],
+                ["N60.081060", "E24.618978", "N60.084258", "E24.616982"],
+                ["N60.084258", "E24.616982", "N60.085899", "E24.621116"],
+                ["N60.085899", "E24.621116", "N60.087409", "E24.614791"],
+                ["N60.087409", "E24.614791", "N60.085920", "E24.613799"],
+                ["N60.085920", "E24.613799", "N60.088379", "E24.608222"],
+                ["N60.104804", "E24.632566", "N60.097823", "E24.615799"],
+                ["N60.097823", "E24.615799", "N60.094255", "E24.613434"],
+                ["N60.094255", "E24.613434", "N60.091581", "E24.601602"],
+                ["N60.167168", "E24.836428", "N60.171847", "E24.828586"],
+                ["N60.171847", "E24.828586", "N60.175541", "E24.832367"],
+                ["N60.175541", "E24.832367", "N60.174758", "E24.837928"],
+                ["N60.174758", "E24.837928", "N60.179003", "E24.836816"],
+                ["N60.179003", "E24.836816", "N60.180527", "E24.840017"],
+                ["N60.189731", "E24.869122", "N60.183743", "E24.851121"],
+                ["N60.202245", "E24.852412", "N60.196795", "E24.867863"],
+                ["N60.196795", "E24.867863", "N60.191072", "E24.871468"],
+                ["N60.170856", "E24.899042", "N60.171946", "E24.903486"],
+                ["N60.171946", "E24.903486", "N60.169215", "E24.916168"],
+                ["N60.169215", "E24.916168", "N60.167051", "E24.910087"],
+                ["N60.167051", "E24.910087", "N60.167068", "E24.898117"],
+                ["N60.225610", "E25.186091", "N60.234045", "E25.155265"],
+                ["N60.234045", "E25.155265", "N60.230293", "E25.175893"],
+                ["N60.230293", "E25.175893", "N60.231022", "E25.182112"],
+                ["N60.231022", "E25.182112", "N60.227026", "E25.189392"],
+                ["N60.146900", "E24.619048", "N60.150456", "E24.611651"],
+                ["N60.150456", "E24.611651", "N60.154660", "E24.613238"],
+                ["N60.154660", "E24.613238", "N60.156943", "E24.609698"],
+                ["N60.156943", "E24.609698", "N60.157910", "E24.591482"],
+                ["N60.157910", "E24.591482", "N60.162687", "E24.587985"],
+                ["N60.162687", "E24.587985", "N60.158112", "E24.581400"],
+                ["N60.158112", "E24.581400", "N60.159187", "E24.572176"],
+                ["N60.159187", "E24.572176", "N60.163249", "E24.566068"],
+                ["N60.163249", "E24.566068", "N60.162317", "E24.557142"],
+                ["N60.262468", "E25.348253", "N60.269059", "E25.343125"],
+                ["N60.269059", "E25.343125", "N60.278520", "E25.327226"],
+                ["N60.278520", "E25.327226", "N60.282078", "E25.324744"],
+                ["N60.282078", "E25.324744", "N60.284792", "E25.328412"],
+                ["N60.284792", "E25.328412", "N60.280624", "E25.333831"],
+                ["N60.280624", "E25.333831", "N60.278350", "E25.331980"],
+                ["N60.278350", "E25.331980", "N60.274996", "E25.340066"],
+                ["N60.274996", "E25.340066", "N60.263661", "E25.353501"],
+                ["N60.153915", "E24.873994", "N60.147158", "E24.876562"],
+                ["N60.147158", "E24.876562", "N60.146380", "E24.871932"],
+                ["N60.146380", "E24.871932", "N60.144780", "E24.872405"],
+                ["N60.144780", "E24.872405", "N60.144035", "E24.877918"],
+                ["N60.144035", "E24.877918", "N60.146186", "E24.879212"],
+                ["N60.146186", "E24.879212", "N60.145199", "E24.889453"],
+                ["N60.145199", "E24.889453", "N60.146508", "E24.892298"],
+                ["N60.146508", "E24.892298", "N60.151402", "E24.889885"],
+                ["N60.151402", "E24.889885", "N60.149654", "E24.892067"],
+                ["N60.149654", "E24.892067", "N60.150374", "E24.895224"],
+                ["N60.150374", "E24.895224", "N60.151848", "E24.891827"],
+                ["N60.151848", "E24.891827", "N60.153531", "E24.895206"],
+                ["N60.153531", "E24.895206", "N60.154547", "E24.893072"],
+                ["N60.154547", "E24.893072", "N60.152223", "E24.890359"],
+                ["N60.152223", "E24.890359", "N60.155654", "E24.888966"],
+                ["N60.155654", "E24.888966", "N60.155570", "E24.885897"],
+                ["N60.167899", "E24.957177", "N60.173963", "E24.962017"],
+                ["N60.173963", "E24.962017", "N60.173328", "E24.970317"],
+                ["N60.173328", "E24.970317", "N60.174305", "E24.962296"],
+                ["N60.174305", "E24.962296", "N60.176376", "E24.961302"],
+                ["N60.191392", "E25.010399", "N60.189943", "E25.002239"],
+                ["N60.189943", "E25.002239", "N60.191832", "E25.000384"],
+                ["N60.191832", "E25.000384", "N60.189147", "E25.002741"],
+                ["N60.189147", "E25.002741", "N60.186465", "E24.987299"],
+                ["N60.159611", "E24.609004", "N60.157219", "E24.611822"],
+                ["N60.157219", "E24.611822", "N60.156687", "E24.621694"],
+                ["N60.156687", "E24.621694", "N60.151325", "E24.628994"],
+                ["N60.112138", "E24.723925", "N60.115619", "E24.729962"],
+                ["N60.115619", "E24.729962", "N60.118986", "E24.729943"],
+                ["N60.118986", "E24.729943", "N60.115848", "E24.732107"],
+                ["N60.115848", "E24.732107", "N60.118442", "E24.734437"],
+                ["N60.118442", "E24.734437", "N60.116980", "E24.740120"],
+                ["N60.116980", "E24.740120", "N60.121743", "E24.736680"],
+                ["N60.121743", "E24.736680", "N60.124093", "E24.732493"],
+                ["N60.124093", "E24.732493", "N60.121676", "E24.731795"],
+                ["N60.121676", "E24.731795", "N60.122956", "E24.729004"],
+                ["N60.122956", "E24.729004", "N60.117976", "E24.723834"],
+                ["N60.117976", "E24.723834", "N60.116901", "E24.718841"],
+                ["N60.005246", "E24.491012", "N60.001338", "E24.499342"],
+                ["N60.001338", "E24.499342", "N59.995711", "E24.503005"],
+                ["N59.995711", "E24.503005", "N59.997486", "E24.506935"],
+                ["N59.997486", "E24.506935", "N60.002496", "E24.505201"],
+                ["N60.084496", "E24.361686", "N60.085282", "E24.366655"],
+                ["N60.085282", "E24.366655", "N60.082927", "E24.371596"],
+                ["N60.082927", "E24.371596", "N60.086539", "E24.383950"],
+                ["N60.086539", "E24.383950", "N60.082191", "E24.388791"],
+                ["N60.047483", "E24.359361", "N60.043915", "E24.356579"],
+                ["N60.043915", "E24.356579", "N60.037160", "E24.363378"],
+                ["N60.127447", "E24.694686", "N60.122602", "E24.713121"],
+                ["N60.118924", "E24.706409", "N60.112307", "E24.693174"],
+                ["N60.112307", "E24.693174", "N60.111128", "E24.685920"],
+                ["N60.111128", "E24.685920", "N60.108023", "E24.683119"],
+                ["N60.108023", "E24.683119", "N60.107299", "E24.687568"],
+                ["N60.107299", "E24.687568", "N60.109204", "E24.688175"],
+                ["N60.109204", "E24.688175", "N60.111167", "E24.697459"],
+                ["N60.005129", "E24.324361", "N60.003691", "E24.328222"],
+                ["N60.003691", "E24.328222", "N60.005982", "E24.331956"],
+                ["N60.005982", "E24.331956", "N60.003751", "E24.331417"],
+                ["N60.003751", "E24.331417", "N60.003210", "E24.335339"],
+                ["N60.003210", "E24.335339", "N60.005308", "E24.335289"],
+                ["N60.005308", "E24.335289", "N60.004392", "E24.338614"],
+                ["N60.004392", "E24.338614", "N60.006775", "E24.340227"],
+                ["N60.006775", "E24.340227", "N60.005567", "E24.343073"],
+                ["N60.005567", "E24.343073", "N60.007006", "E24.346748"],
+                ["N60.187477", "E24.872026", "N60.196083", "E24.887826"],
+                ["N60.046223", "E24.310446", "N60.052727", "E24.322363"],
+                ["N60.052727", "E24.322363", "N60.054234", "E24.318484"],
+                ["N60.054234", "E24.318484", "N60.051442", "E24.313191"],
+                ["N60.051442", "E24.313191", "N60.055195", "E24.308009"],
+                ["N60.055195", "E24.308009", "N60.048148", "E24.298862"],
+                ["N60.048148", "E24.298862", "N60.046223", "E24.310446"]
+            ]
+        }
+    ]
+}
