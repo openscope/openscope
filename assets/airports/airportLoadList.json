@@ -51,6 +51,12 @@
         "disabled": true
     },
     {
+        "icao": "efhk",
+        "level": "medium",
+        "name": "Helsinki-Vantaa Airport",
+        "premium": false
+    },
+    {
         "icao": "egcc",
         "level": "easy",
         "name": "Manchester Airport",
